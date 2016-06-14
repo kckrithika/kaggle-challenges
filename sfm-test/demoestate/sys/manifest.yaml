@@ -11,8 +11,8 @@ system:
       # expose port 80 outside the container
       ports:
       - containerPort: 80
-      resources:
-        limits: { cpu: “1”, memory: "1Gi" }
+      #resources:
+      #  limits: { cpu: “1”, memory: "1Gi" }
       logs:
       - directory:  /var/log/nginx
 
