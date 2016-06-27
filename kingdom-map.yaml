@@ -1,0 +1,15 @@
+---
+kingdoms:
+  -
+    name: sfm-test
+    estates:
+      - test
+      - demo
+  -
+    name: sam-next_kubernetes
+    estates:
+      - csc-health
+  -
+    name: e2e
+    estates:
+      - test
