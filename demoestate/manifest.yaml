@@ -1,0 +1,28 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: web
+      # container image/version to run
+      image: 10.224.246.136:5000/nginx
+      # expose port 80 outside the container
+      ports:
+      - containerPort: 80
+      # [thargrove] I turned this off because it was giving this error.  TODO: turn back on
+      # error unmarshaling JSON: quantities must match the regular expression '^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$'
+      #resources:
+      #  limits: { cpu: “1”, memory: "1Gi" }
+      logs:
+      - directory:  /var/log/nginx
+
+  # expose the function we declared above on the specified load balancer
+  loadbalancers:
+  - lbname: shared-gowebdemo1-0-phx
+    function: default
+    ports:
+      - port: 80
+        targetport: 80
+
