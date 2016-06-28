@@ -13,8 +13,8 @@ system:
       - containerPort: 80
       # [thargrove] I turned this off because it was giving this error.  TODO: turn back on
       # error unmarshaling JSON: quantities must match the regular expression '^([+-]?[0-9.]+)([eEinumkKMGTP]*[-+]?[0-9]*)$'
-      #resources:
-      #  limits: { cpu: “1”, memory: "1Gi" }
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
       logs:
       - directory:  /var/log/nginx
 
