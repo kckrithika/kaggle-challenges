@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: default
+  - name: thargrove-fn
     count: 1
     containers:
     - name: samhello
@@ -16,7 +16,7 @@ system:
 
   loadbalancers:
   - lbname: samhellolb
-    function: default
+    function: thargrove-fn
     ports:
       - port: 9090
         targetport: 9090
