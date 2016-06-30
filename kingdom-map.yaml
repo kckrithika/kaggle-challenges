@@ -3,13 +3,4 @@ kingdoms:
   -
     name: sfm-test
     estates:
-      - test
       - demoestate
-  -
-    name: sam-next_kubernetes
-    estates:
-      - csc-health
-  -
-    name: e2e
-    estates:
-      - test
