@@ -5,3 +5,7 @@ kingdoms:
     estates:
       - demoestate
       - thargrove-test
+  -
+    name: prd-sam1
+    estates:
+      - demoestate
