@@ -8,7 +8,7 @@ system:
     - name: samhello
       image: samhello:atc-20160701
       ports:
-      - containerPont: 9090
+      - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
@@ -19,4 +19,4 @@ system:
       function: antorcol-fn
       ports:
       - port: 9090
-        targetpont: 9090
+        targetport: 9090
