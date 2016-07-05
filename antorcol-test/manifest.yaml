@@ -10,13 +10,13 @@ system:
       ports:
       - containerPont: 9090
       livenessProbe:
-    httpGet:
-      path: /
-      port: 9090
+        httpGet:
+          path: /
+          port: 9090
 
     loadbalancers:
     - lbname: samhellolb
       function: antorcol-fn
       ports:
-    - port: 9090
-      targetpont: 9090
+      - port: 9090
+        targetpont: 9090
