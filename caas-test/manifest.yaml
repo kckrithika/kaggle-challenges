@@ -11,8 +11,6 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1101
-      resources:
-        limits: { cpu: “1”, memory: "80Mi" }
       logs:
       - directory:  /var/log/caas
   - name: caas2
@@ -24,8 +22,6 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1101
-      resources:
-        limits: { cpu: “1”, memory: "80Mi" }
       logs:
       - directory:  /var/log/caas
   - name: caas3
@@ -37,8 +33,6 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1101
-      resources:
-        limits: { cpu: “1”, memory: "80Mi" }
       logs:
       - directory:  /var/log/caas
 
