@@ -11,8 +11,6 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1101
-      logs:
-      - directory:  /var/log/caas
   - name: caas2
     count: 1
     containers:
@@ -22,8 +20,6 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1101
-      logs:
-      - directory:  /var/log/caas
   - name: caas3
     count: 1
     containers:
@@ -33,8 +29,6 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1101
-      logs:
-      - directory:  /var/log/caas
 
   # expose the function we declared above on the specified load balancer
   loadbalancers:
