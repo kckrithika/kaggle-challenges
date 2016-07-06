@@ -7,7 +7,7 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas-test:demo1 
+      image: caas-test:demo2 
       # expose redis outside the container
       ports:
       - containerPort: 1101
@@ -16,7 +16,7 @@ system:
     containers:
     - name: caas2c
       # container image/version to run
-      image: caas-test:demo1
+      image: caas-test:demo2
       # expose redis outside the container
       ports:
       - containerPort: 1101
@@ -25,7 +25,7 @@ system:
     containers:
     - name: caas3c
       # container image/version to run
-      image: caas-test:demo1
+      image: caas-test:demo2
       # expose redis outside the container
       ports:
       - containerPort: 1101
