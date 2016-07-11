@@ -1,7 +1,7 @@
 ---
 kingdoms:
   -
-    name: sfm-test
+    name: sfm
     estates:
       - demoestate
       - thargrove-test
@@ -9,6 +9,6 @@ kingdoms:
       - caas-test
       - mayank-test
   -
-    name: prd-sam1
+    name: prd
     estates:
       - demoestate
