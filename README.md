@@ -1,4 +1,4 @@
-This repo contains live manifests for SAM deployments.  See SAM documentation here: https://git.soma.salesforce.com/ku/sam/wiki
+This repo contains live manifests for SAM deployments.  See SAM documentation here: https://git.soma.salesforce.com/sam/sam/wiki
 
 To validate changes, run this:
 
