@@ -7,7 +7,7 @@ system:
     containers:
     - name: web
       # container image/version to run
-      image: 10.224.246.136:5000/nginx
+      image: nginx
       # expose port 80 outside the container
       ports:
       - containerPort: 80
