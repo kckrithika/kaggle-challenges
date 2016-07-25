@@ -1,0 +1,30 @@
+# We can lay out this file with pool at root, or app at root.  We need to pick one:
+
+# Pool at root
+---
+- pool:
+  - prd-sp1-sam_caas:
+    - apps:
+      - CaaS-Prod
+  - prd-sp2-sam_caas:
+    - apps:
+      - CaaS-Prod
+  - frf-sp1-sam_caas:
+    - apps:
+      - CaaS-Prod
+  - prd-samsandbox:
+    - apps:
+      - CaaS
+
+
+
+# App at root:
+- apps:
+  - CaaS-Prod:
+    - pools:
+      - prd-sp1-sam_caas
+      - prd-sp2-sam_caas
+      - ftf-sp1-sam_caas
+  - CaaS:
+    - pools:
+      - prd-samsandbox

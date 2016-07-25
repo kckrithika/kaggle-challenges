@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: reportcollector
+    count: 1
+    containers:
+    - name: reportcollector
+      image: reportcollector:dev-image-tag
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+
+    loadbalancers:
+    - lbname: rc
+      function: rc-lb
+      ports:
+      - port: 9090
+        targetport: 9090

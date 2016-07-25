@@ -1,0 +1,4 @@
+- apps:
+  - TestApp:
+    - pools:
+      - prd-samsandbox
