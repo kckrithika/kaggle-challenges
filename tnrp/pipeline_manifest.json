@@ -1,0 +1,12 @@
+{"artifacts": [
+  { "repo_id": "testandrelease",
+    "artifact_id": "golang",
+    "nexus_url": "https://nexus.soma.salesforce.com/nexus",
+    "filename": "golang-1.6-2.x86_64.rpm",
+    "version": "1.6-2.x86_64",
+    "scope": [],
+    "group_id": "golang",
+    "type": "rpm",
+    "repo_path": "golang"}
+], "snapshot_id": ""}
+ 
