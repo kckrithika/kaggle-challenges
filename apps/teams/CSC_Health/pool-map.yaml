@@ -1,8 +1,0 @@
-- apps:
-  - ReportCollector:
-    - pools:
-      - prd-sam_report_collector
-      - ftf-sam_report_collector
-  - ReportCollectorDev:
-    - pools:
-      - prd-samsandbox
