@@ -1,6 +1,6 @@
-- apps:
-  - EtcdWatchdog:
-    - pools:
-      - prd/prd-sam
-      - frf/frf-sam
-      - prd/prd-samsandbox
+apps:
+ - EtcdWatchdog:
+   pools:
+    - prd/prd-sam
+    - frf/frf-sam
+    - prd/prd-samsandbox
