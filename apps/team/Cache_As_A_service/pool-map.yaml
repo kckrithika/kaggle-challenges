@@ -1,8 +1,9 @@
 - apps:
-  - ReportCollector:
+  - CaaS-Prod:
     - pools:
-      - prd/prd-sam_report_collector
-      - frf/frf-sam_report_collector
-  - ReportCollectorDev:
+      - prd/prd-sp1-sam_caas
+      - prd/prd-sp2-sam_caas
+      - frf/frf-sp1-sam_caas
+  - CaaS:
     - pools:
       - prd/prd-samsandbox
