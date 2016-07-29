@@ -1,0 +1,33 @@
+# kc create --namespace=sam-system -f debug-portal.yaml
+
+--- 
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata: 
+  labels: 
+    name: debug-portal
+  name: debug-portal
+spec: 
+  template: 
+    metadata: 
+      labels: 
+        app: debug-portal
+    spec: 
+      containers: 
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/debug-portal:pporwal-20160726-f773f07"
+          name: debug-portal
+          ports: 
+            - 
+              containerPort: 8001
+              name: debug-portal
+          volumeMounts: 
+            - 
+              mountPath: /var/run/docker.sock
+              name: varrun
+      hostNetwork: true
+      volumes: 
+        - 
+          hostPath: 
+            path: /var/run/docker.sock
+          name: varrun
+
