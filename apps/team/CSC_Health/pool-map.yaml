@@ -1,8 +1,6 @@
 apps:
- - name: ReportCollector
-   pools:
+ - ReportCollector:
     - prd/prd-sam_report_collector
     - frf/frf-sam_report_collector
- - name: ReportCollectorDev
-   pools:
+ - ReportCollectorDev:
     - prd/prd-samsandbox
