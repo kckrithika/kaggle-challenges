@@ -1,0 +1,5 @@
+#!/bin/sh -xe
+
+cd $(dirname ${0})
+
+echo "Running dummy unit tests in $PWD"
