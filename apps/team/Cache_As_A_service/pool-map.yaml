@@ -1,9 +1,9 @@
 apps:
- - CaaS-Prod:
+ - name: CaaS-Prod
    pools:
     - prd/prd-sp1-sam_caas
     - prd/prd-sp2-sam_caas
     - frf/frf-sp1-sam_caas
- - CaaS:
+ - name: CaaS
    pools:
     - prd/prd-samsandbox

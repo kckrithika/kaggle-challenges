@@ -1,4 +1,4 @@
 apps:
- - TestApp:
+ - name: TestApp
    pools:
     - prd/prd-samsandbox

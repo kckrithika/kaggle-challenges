@@ -1,5 +1,5 @@
 apps:
- - EtcdWatchdog:
+ - name: EtcdWatchdog
    pools:
     - prd/prd-sam
     - frf/frf-sam
