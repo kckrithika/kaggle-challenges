@@ -1,0 +1,5 @@
+apps:
+ - EtcdWatchdog:
+    - prd/prd-sam
+    - frf/frf-sam
+    - prd/prd-samsandbox

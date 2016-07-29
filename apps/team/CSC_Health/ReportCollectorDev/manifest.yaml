@@ -1,0 +1,51 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: report-collector
+    count: 1
+    containers:
+    - name: report-collector
+      # container image/version to run
+      image: report-collector
+      # expose port 8080 outside the container
+      ports:
+      - name: provider-api-port
+        containerPort: 8080
+      - name: consumer-api-port
+        containerPort: 8081
+      - name: provider-api-port-secure
+        containerPort: 8443
+      - name: consumer-api-port-secure
+        containerPort: 8444
+      # TODO: change to more cores and memory when running on higher capacity nodes
+      resources:
+        limits: { cpu: "1", memory: "10Gi" }
+        requests: { cpu: "1", memory: "10Gi" }
+      logs:
+      - directory: /var/log/report-collector
+    - name: redis
+      # container image/version to run
+      image: rc-redis:3.0
+      ports:
+      - containerPort: 6379
+      # TODO: change to more cores/memory when running on higher capacity nodes
+      # resources:
+      #   limits: { cpu: "1", memory: "2Gi" }
+      logs:
+      - directory: /var/log/redis
+
+
+  # expose the function we declared above on the specified load balancer
+  loadbalancers:
+  - lbname: reportcollectorlb
+    function: report-collector
+    ports:
+      - port: 8080
+        targetport: 8080
+      - port: 8081
+        targetport: 8081
+      - port: 8443
+        targetport: 8443
+      - port: 8444
+        targetport: 8444
