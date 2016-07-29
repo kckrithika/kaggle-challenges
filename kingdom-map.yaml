@@ -2,7 +2,7 @@
 kingdoms:
   -
     name: sfm
-    estates:
+    apps:
       - demoestate
       - thargrove-test
       - antorcol-test
@@ -10,7 +10,7 @@ kingdoms:
       - mayank-test
   -
     name: prd
-    estates:
+    apps:
       - demoestate
       - cbatra-test
       - caas-test
