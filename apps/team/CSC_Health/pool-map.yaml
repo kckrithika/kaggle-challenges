@@ -1,6 +1,6 @@
 apps:
- - ReportCollector:
-    - prd/prd-sam_report_collector
-    - frf/frf-sam_report_collector
- - ReportCollectorDev:
-    - prd/prd-samsandbox
+ ReportCollector:
+  - prd/prd-sam_report_collector
+  - frf/frf-sam_report_collector
+ ReportCollectorDev:
+  - prd/prd-samsandbox
