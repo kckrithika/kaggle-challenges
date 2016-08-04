@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: samhello
+      image: samhello:jayant-20160801
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+
+  loadbalancers:
+  - lbname: samhellolb
+    function: default
+    ports:
+      - port: 19090
+        targetport: 9090
+
