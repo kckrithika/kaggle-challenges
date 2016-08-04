@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: samhello
-      image: samhello:latest
+      image: samhello:jayant-20160801
       ports:
       - containerPort: 9090
       livenessProbe:
