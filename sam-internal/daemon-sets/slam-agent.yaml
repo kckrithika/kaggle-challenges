@@ -1,4 +1,4 @@
-# kc create --namespace=sam-system -f debug-portal.yaml
+# kc create --namespace=sam-system -f slam-agent.yaml
 
 --- 
 apiVersion: extensions/v1beta1
