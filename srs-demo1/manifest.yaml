@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:    
   - name: scone-sam
-    count: 1
+    count: 3
     containers:
     - name: scone-sam
       image: scone-uber-sam:0.1
