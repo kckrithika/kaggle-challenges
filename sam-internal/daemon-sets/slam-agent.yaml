@@ -1,0 +1,33 @@
+# kc create --namespace=sam-system -f debug-portal.yaml
+
+--- 
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata: 
+  labels: 
+    name: slam-agent
+  name: slam-agent
+spec: 
+  template: 
+    metadata: 
+      labels: 
+        app: slam-agent
+    spec: 
+      containers: 
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v1.5"
+          name: slam-agent
+          ports: 
+            - 
+              containerPort: 30108
+              name: slam-agent
+              hostPort: 30108
+          volumeMounts: 
+            - 
+              mountPath: /var/run/
+              name: varrun
+      #hostNetwork: true
+      volumes: 
+        - 
+          hostPath: 
+            path: /var/run/
+          name: varrun
