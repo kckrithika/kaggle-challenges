@@ -2,22 +2,26 @@ apiVersion: v1
 
 system:
   functions:
-  - name: default
+  - name: scone-demo
     count: 1
     containers:
-    - name: samhello
-      image: samhello:jayant-20160801
+    - name: scone-sam
+      image: scone-uber-sam:0.1
       ports:
-      - containerPort: 9090
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+      - containerPort: 8080
+      - containerPort: 13572
+  
+      #livenessProbe:
+        #httpGet:
+          #path: /
+          #port: 8080
 
   loadbalancers:
-  - lbname: samhellolb
-    function: default
+  - lbname: scone-sam-lb
+    function: scone-sam
     ports:
-      - port: 19090
-        targetport: 9090
+      - port: 8080
+        targetport: 8080
+      - port: 13572
+        targetport: 13572
 
