@@ -44,10 +44,10 @@ system:
         requests: { cpu: "1", memory: "10Gi" }
       logs:
       - directory: /var/log/redis
-#    - name: announce-bark
-#      image: rc-announce-bark:0.1
-#    - name: announce-reports
-#      image: rc-announce-reports:0.1
+    - name: announce-bark
+      image: rc-announce-bark:0.1
+    - name: announce-reports
+      image: rc-announce-reports:0.1
       
   loadbalancers:
   - lbname: srs-rclb
