@@ -44,10 +44,6 @@ system:
         requests: { cpu: "1", memory: "10Gi" }
       logs:
       - directory: /var/log/redis
-
-  - name: announcers
-    count: 1
-    containers:
     - name: announce-bark
       image: rc-announce-bark:0.1
     - name: announce-reports
