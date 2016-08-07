@@ -9,7 +9,7 @@ system:
       image: scone-uber-sam:0.17
       ports:
       - containerPort: 8080
-      - containerPort: 13572
+      - containerPort: 15372
       livenessProbe: 
         httpGet:
           path: /manage/health
@@ -65,6 +65,6 @@ system:
     ports:
       - port: 8080
         targetport: 8080
-      - port: 13572
-        targetport: 13572
+      - port: 15372
+        targetport: 15372
 
