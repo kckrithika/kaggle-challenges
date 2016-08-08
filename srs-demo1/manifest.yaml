@@ -10,6 +10,13 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372      
+      resources:
+        limits: { cpu: ".5", memory: "500Mi" }
+        requests: { cpu: ".5", memory: "500Mi" }
 
   - name: srs-rc
     count: 1
@@ -41,8 +48,12 @@ system:
       - directory: /var/log/redis
     - name: announce-bark
       image: rc-announce-bark:0.1
+      resources:
+        limits: { cpu: ".1", memory: "500Mi" }
     - name: announce-reports
       image: rc-announce-reports:0.1
+      resources:
+        limits: { cpu: ".1", memory: "500Mi" }
       
   loadbalancers:
   - lbname: srs-rclb
