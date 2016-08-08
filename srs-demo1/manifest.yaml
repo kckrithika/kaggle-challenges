@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-sam
-      image: scone-uber-sam:0.17
+      image: scone-uber-sam:0.16
       ports:
       - containerPort: 8080
       - containerPort: 15372
