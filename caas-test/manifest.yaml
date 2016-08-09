@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: caas1
-    count: 10
+    count: 19
     hostnetwork: true
     containers:
     - name: caas1c
@@ -13,7 +13,7 @@ system:
       ports:
       - containerPort: 1101
   - name: caas2
-    count: 10
+    count: 19
     hostnetwork: true
     containers:
     - name: caas2c
@@ -23,7 +23,7 @@ system:
       ports:
       - containerPort: 1102
   - name: caas3
-    count: 10
+    count: 19
     hostnetwork: true
     containers:
     - name: caas3c
