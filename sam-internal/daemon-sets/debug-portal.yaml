@@ -16,8 +16,7 @@ spec:
         app: debug-portal
     spec: 
       containers: 
-        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/debug-portal:pporwal-20160726-f773f07"
-#        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/debug-portal:thargrove-20160805_154602-f57b1b9"
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/debug-portal:thargrove-20160809_124033-0543a10"
           name: debug-portal
           ports: 
             - 
