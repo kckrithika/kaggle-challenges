@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: report-collector
-      image: schu/rc_pe10 # report collector image with 10 provider endpoints
+      image: schu_reportcollector_pe10 # report collector image with 10 provider endpoints
       ports:
         - name: provider-api-port
           containerPort: 8080
@@ -35,7 +35,7 @@ system:
     count: 1
     containers:
     - name: locust-master
-      image: locust_tasks/distributed
+      image: schu_locust_distributed
       ports:
         - name: locust-master-web
           containerPort: 8089
@@ -48,7 +48,7 @@ system:
     count: 5
     containers:
     - name: locust-worker
-      image: locust_tasks/distributed
+      image: schu_locust_distributed
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
