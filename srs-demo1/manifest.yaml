@@ -24,13 +24,13 @@ system:
     - name: srs-rc
       image: report-collector
       ports:
-      - name: provider-api-port
+      - name: provider
         containerPort: 8080
-      - name: consumer-api-port
+      - name: consumer
         containerPort: 8081
-      - name: provider-api-port-secure
+      - name: provider-https
         containerPort: 8443
-      - name: consumer-api-port-secure
+      - name: consumer-https
         containerPort: 8444
       resources:
         limits: { cpu: "2", memory: "10Gi" }
