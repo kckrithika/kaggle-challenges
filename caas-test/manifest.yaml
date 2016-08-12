@@ -8,31 +8,37 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas-test:demo4 
+      image: caas-test:demo5 
       # expose redis outside the container
       ports:
       - containerPort: 1101
+      - containerPort: 1102
+      - containerPort: 1103
+      - containerPort: 1104
   - name: caas2
     count: 18
     hostnetwork: true
     containers:
     - name: caas2c
       # container image/version to run
-      image: caas-test:demo4
+      image: caas-test:demo5
       # expose redis outside the container
       ports:
-      - containerPort: 1102
+      - containerPort: 1105
+      - containerPort: 1106
   - name: caas3
     count: 18
     hostnetwork: true
     containers:
     - name: caas3c
       # container image/version to run
-      image: caas-test:demo4
+      image: caas-test:demo5
       # expose redis outside the container
       ports:
-      - containerPort: 1103
-
+      - containerPort: 1107
+      - containerPort: 1108
+      - containerPort: 1109
+      - containerPort: 1110
   # expose the function we declared above on the specified load balancer
   loadbalancers:
   - lbname: shared-caas1-0-phx
@@ -40,14 +46,28 @@ system:
     ports:
       - port: 1201
         targetport: 1101
+      - port: 1202
+        targetport: 1102
+      - port: 1203
+        targetport: 1103
+      - port: 1204
+        targetport: 1104
   - lbname: shared-caas2-0-phx
     function: caas2
     ports:
-      - port: 1202
-        targetport: 1102
+      - port: 1205
+        targetport: 1105
+      - port: 1206
+        targetport: 1106
   - lbname: shared-caas3-0-phx
     function: caas3
     ports:
-      - port: 1203
-        targetport: 1103
+      - port: 1207
+        targetport: 1107
+      - port: 1208
+        targetport: 1108
+      - port: 1209
+        targetport: 1109
+      - port: 1210
+        targetport: 1110
 
