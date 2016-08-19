@@ -14,7 +14,7 @@ spec:
         app: slam-agent
     spec: 
       containers: 
-        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v1.5"
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v1.8"
           name: slam-agent
           ports: 
             - 
