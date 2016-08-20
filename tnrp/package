@@ -18,6 +18,6 @@ done
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$(dirname $SCRIPT_DIR)"
-
-find $PARENT_DIR -name '*.yaml' -exec cp --parents -rv {} $OUTPUT_DIR \;
+cd $PARENT_DIR
+find . -name '*.yaml' -exec cp --parents -rv {} $OUTPUT_DIR \;
 
