@@ -14,7 +14,7 @@ system:
         httpGet:
           path: /manage/health
           host: localhost
-          port: 15372      
+          port: 15373      
       resources:
         limits: { cpu: ".5", memory: "500Mi" }
         requests: { cpu: ".5", memory: "500Mi" }
