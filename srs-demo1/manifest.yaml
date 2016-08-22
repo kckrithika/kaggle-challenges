@@ -13,7 +13,6 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/health
-          host: localhost
           port: 15372      
       resources:
         limits: { cpu: ".5", memory: "500Mi" }
