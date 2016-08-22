@@ -17,6 +17,7 @@ system:
           httpHeaders:
           - name: Host
             value: localhost:15372
+        failureThreshold: 7000
       resources:
         limits: { cpu: ".5", memory: "500Mi" }
         requests: { cpu: ".5", memory: "500Mi" }
