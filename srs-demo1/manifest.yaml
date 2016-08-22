@@ -10,13 +10,13 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 15372
-      livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-          httpHeaders:
-          - name: Host
-            value: localhost      
+#      livenessProbe:
+#        httpGet:
+#          path: /manage/health
+#          port: 15372
+#          httpHeaders:
+#          - name: Host
+#            value: localhost      
       resources:
         limits: { cpu: ".5", memory: "500Mi" }
         requests: { cpu: ".5", memory: "500Mi" }
