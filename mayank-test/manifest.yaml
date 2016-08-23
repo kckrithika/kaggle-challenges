@@ -13,7 +13,11 @@ system:
         httpGet:
           path: /
           port: 9090
-
+      env:
+        - name:  KEY1
+          value: "VALUE1"
+        - name:  SOME_KEY2
+          value: SOME VALUE
   loadbalancers:
   - lbname: samhellolb
     function: mayank-fn
