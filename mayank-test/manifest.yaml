@@ -6,14 +6,18 @@ system:
     count: 1
     containers:
     - name: samhello
-      image: samhello:bob-20160630
+      image: samhello:cbatra-4015
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
           port: 9090
-
+      env:
+        - name:  KEY1
+          value: "VALUE1"
+        - name:  SOME_KEY2
+          value: SOME VALUE
   loadbalancers:
   - lbname: samhellolb
     function: mayank-fn

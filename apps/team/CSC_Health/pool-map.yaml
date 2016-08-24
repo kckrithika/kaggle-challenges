@@ -3,4 +3,4 @@ apps:
   - prd/prd-sam_report_collector
   - frf/frf-sam_report_collector
  ReportCollectorDev:
-  - prd/prd-samsandbox
+  - prd/prd-sam
