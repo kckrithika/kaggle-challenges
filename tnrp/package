@@ -1,6 +1,5 @@
 #!/bin/bash -xe
 
-
 while getopts ":o:" opt; do
   case $opt in
     o)
