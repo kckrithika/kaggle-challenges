@@ -35,7 +35,7 @@ system:
     count: 1
     containers:
     - name: locust-master
-      image: locust:rc-health-host
+      image: locust:rc_orchhost_dfw
       ports:
         - name: loc-master-ui
           containerPort: 8089
@@ -48,7 +48,7 @@ system:
     count: 30
     containers:
     - name: locust-worker
-      image: locust:rc-health-host
+      image: locust:rc_orchhost_dfw
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
