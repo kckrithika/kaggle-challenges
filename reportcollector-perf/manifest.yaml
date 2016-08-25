@@ -35,7 +35,7 @@ system:
     count: 1
     containers:
     - name: locust-master
-      image: locust:prd_health_target_dfw_dump
+      image: locust:prd_health_target_dfw_dump2
       ports:
         - name: loc-master-ui
           containerPort: 8089
@@ -48,7 +48,7 @@ system:
     count: 30
     containers:
     - name: locust-worker
-      image: locust:prd_health_target_dfw_dump
+      image: locust:prd_health_target_dfw_dump2
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
