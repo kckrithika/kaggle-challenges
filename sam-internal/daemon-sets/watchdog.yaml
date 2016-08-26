@@ -6,26 +6,6 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  annotations:
-      scheduler.alpha.kubernetes.io/affinity: >
-        {
-          "nodeAffinity": {
-            "requiredDuringSchedulingIgnoredDuringExecution": {
-              "nodeSelectorTerms": [
-                {
-                  "matchExpressions": [
-                    {
-                      "key": "kubernetes.io/hostname",
-                      "operator": "In",
-                      "values": ["shared0-samkubeapi1-2-prd.eng.sfdc.net"]
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        }
-      another-annotation-key: another-annotation-value
   labels:
     name: watchdog
   name: watchdog
@@ -33,8 +13,10 @@ spec:
   template:
     metadata:
       labels:
-        app: watchdog
+        app: watchd
     spec:
+      nodeSelector:
+          kubernetes.io/hostname:  "shared0-samkubeapi1-2-prd.eng.sfdc.net"
       containers:
         - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160826_041024-aab7fad"
           name: watchdog
