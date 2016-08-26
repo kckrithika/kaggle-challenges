@@ -14,7 +14,7 @@ spec:
         app: slam-agent
     spec: 
       containers: 
-        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v2.0"
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v2.1"
           name: slam-agent
           ports: 
             - 
@@ -28,6 +28,13 @@ spec:
             - mountPath: /var/log/
               name: varlog
               readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 30108
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          name: liveness
       #hostNetwork: true
       volumes: 
         - hostPath: 
