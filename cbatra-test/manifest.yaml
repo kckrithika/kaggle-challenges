@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 1
+    count: 2
     containers:
     - name: samhello
       image: samhello:cbatra-4015
