@@ -34,7 +34,6 @@ spec:
               port: 30108
             initialDelaySeconds: 15
             timeoutSeconds: 1
-          name: liveness
       #hostNetwork: true
       volumes: 
         - hostPath: 
