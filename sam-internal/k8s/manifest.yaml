@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1 
 kind: Deployment
 metadata:
-  name: tnrp-manifest-watcher
+  name: tnrp-manifest-watcher-test
   labels:
-    name: tnrp-manifest-watcher
+    name: tnrp-manifest-watcher-test
 spec:
   replicas: 1
   selector:
