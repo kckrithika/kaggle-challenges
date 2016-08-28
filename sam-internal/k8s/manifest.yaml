@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment
+metadata:
+  name: tnrp-manifest-watcher
+  labels:
+    name: tnrp-manifest-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: manifest-watcher
+  template:
+    metadata:
+      labels:
+        name: manifest-watcher
+    spec:
+      hostNetwork: true
+      containers:
+      - name: manifest-watcher
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:prahlad.joshi-20160822_145018-589344e"
+        env:
+          - name:  ETCDSERVER
+            value: "http://shared0-samcontrol1-1-prd.eng.sfdc.net:2379/" 
+          - name: FUNNELVIP
+            value: "mandm-funnel-sfz.data.sfdc.net"
+        volumeMounts:
+        - mountPath: /manifests
+          name: sfdc-volume
+      - name: mock-tnrp
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:prahlad.joshi-20160827_160231-86e2864"
+        env:
+          - name: FUNNELVIP
+            value: "mandm-funnel-sfz.data.sfdc.net"
+          - name: KINGDOM
+            value: prd
+          - name: GIT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: gittoken
+                key: token
+          - name: GIT_USER
+            valueFrom:
+              secretKeyRef:
+                name: gittoken
+                key: username
+        volumeMounts:
+        - mountPath: /manifests
+          name: sfdc-volume
+      volumes:
+      - name: sfdc-volume
+        hostPath:
+          path: /manifests
