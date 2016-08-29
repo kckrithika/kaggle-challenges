@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment
+metadata:
+  name: samcontrol
+  labels:
+    name: samcontrol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: samcontrol
+  template:
+    metadata:
+      labels:
+        name: samcontrol
+    spec:
+      nodeSelector: 
+        kubernetes.io/hostname: "shared0-samcompute2-13-prd.eng.sfdc.net"
+      containers:
+      - name: sam-controller
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:prahlad.joshi-20160822_145018-589344e" 
+        env:
+          - name:  DOCKERREGISTRY
+            value: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000"
+          - name:  ETCDSERVER
+            value: "http://shared0-samcontrol1-1-prd.eng.sfdc.net:2379/"
+          - name: FUNNELVIP
+            value: "mandm-funnel-sfz.data.sfdc.net"
+          - name: HOSTNAME_OVERRIDE
+            value: "shared0-samcompute2-13-prd.eng.sfdc.net"
