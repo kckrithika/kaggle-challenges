@@ -21,6 +21,6 @@ system:
   - lbname: shared-gowebdemo1-0-phx
     function: default
     ports:
-      - port: 80
+      - port: 81
         targetport: 80
 
