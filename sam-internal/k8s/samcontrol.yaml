@@ -14,8 +14,7 @@ spec:
       labels:
         name: samcontrol
     spec:
-      nodeSelector: 
-        kubernetes.io/hostname: "shared0-samcompute2-13-prd.eng.sfdc.net"
+      hostNetwork: true
       containers:
       - name: sam-controller
         image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:prahlad.joshi-20160822_145018-589344e" 
