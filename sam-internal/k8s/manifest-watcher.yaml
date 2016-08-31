@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1 
 kind: Deployment
 metadata:
-  name: tnrp-manifest-watcher
+  name: manifest-watcher
   labels:
-    name: tnrp-manifest-watcher
+    name: manifest-watcher
 spec:
   replicas: 1
   selector:
@@ -31,8 +31,6 @@ spec:
         env:
           - name: FUNNELVIP
             value: "mandm-funnel-sfz.data.sfdc.net"
-          - name: KINGDOM
-            value: prd
           - name: GIT_TOKEN
             valueFrom:
               secretKeyRef:
