@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 3
+    count: 2
     containers:
     - name: web
       # container image/version to run
