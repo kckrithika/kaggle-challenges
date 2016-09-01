@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:    
   - name: zk-lb
-    count: 3
+    count: 1
     containers:
     - name: zk-lb
       image: sfm-blitz1-zk-haproxy:0.2
