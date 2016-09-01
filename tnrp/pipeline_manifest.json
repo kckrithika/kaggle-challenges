@@ -1,12 +1,31 @@
-{"artifacts": [
-  { "repo_id": "testandrelease",
-    "artifact_id": "golang",
-    "nexus_url": "https://nexus.soma.salesforce.com/nexus",
-    "filename": "golang-1.6-2.x86_64.rpm",
-    "version": "1.6-2.x86_64",
-    "scope": [],
-    "group_id": "golang",
-    "type": "rpm",
-    "repo_path": "golang"}
-], "snapshot_id": ""}
- 
+{  
+   "artifacts":[  
+      {  
+         "repo_id":"testandrelease",
+         "artifact_id":"golang",
+         "nexus_url":"https://nexus.soma.salesforce.com/nexus",
+         "filename":"golang-1.6-2.x86_64.rpm",
+         "version":"1.6-2.x86_64",
+         "scope":[  
+
+         ],
+         "group_id":"golang",
+         "type":"rpm",
+         "repo_path":"golang"
+      },
+      {  
+         "repo_id":"testandrelease",
+         "artifact_id":"dca-python-cffi",
+         "nexus_url":"https://nexus.soma.salesforce.com/nexus",
+         "filename":"dca-python-cffi-0.8.6-22.x86_64.rpm",
+         "version":"0.8.6-22.x86_64",
+         "scope":[  
+
+         ],
+         "group_id":"python",
+         "type":"rpm",
+         "repo_path":"python"
+      }
+   ],
+   "snapshot_id":""
+}
