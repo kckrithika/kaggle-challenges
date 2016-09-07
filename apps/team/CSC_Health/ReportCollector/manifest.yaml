@@ -10,13 +10,13 @@ system:
       image: report-collector
       # expose port 8080 outside the container
       ports:
-      - name: provider-api-port
+      - name: provider
         containerPort: 8080
-      - name: consumer-api-port
+      - name: consumer
         containerPort: 8081
-      - name: provider-api-port-secure
+      - name: provider-https
         containerPort: 8443
-      - name: consumer-api-port-secure
+      - name: consumer-https
         containerPort: 8444
       # TODO: change to more cores and memory when running on higher capacity nodes
       resources:
