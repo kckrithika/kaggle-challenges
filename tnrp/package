@@ -19,5 +19,6 @@ done
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PARENT_DIR="$(dirname $SCRIPT_DIR)"
 cd $PARENT_DIR
-find . -name '*.yaml' -exec cp --parents -rv {} $OUTPUT_DIR \;
 
+# Disable estates check for now until we work out the access token stuff
+/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -root .
