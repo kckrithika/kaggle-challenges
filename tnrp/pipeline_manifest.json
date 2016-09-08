@@ -28,7 +28,7 @@
       }
       {
          "repo_id": "testandrelease", 
-         "artifactId": "sammanifestbuilder"
+         "artifactId": "sammanifestbuilder",
          "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
          "filename": "sammanifestbuilder-000000-1247.x86_64.rpm", 
          "version": "000000-1247.x86_64", 
