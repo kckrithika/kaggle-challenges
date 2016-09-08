@@ -25,7 +25,7 @@
          "group_id":"python",
          "type":"rpm",
          "repo_path":"python"
-      }
+      },
       {
          "repo_id": "testandrelease", 
          "artifactId": "sammanifestbuilder",
@@ -37,7 +37,7 @@
          ],
          "groupId": "sam", 
          "type":"rpm",
-         "repo_path":"sam",
+         "repo_path":"sam"
       }
    ],
    "snapshot_id":""
