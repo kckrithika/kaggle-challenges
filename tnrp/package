@@ -21,4 +21,4 @@ PARENT_DIR="$(dirname $SCRIPT_DIR)"
 cd $PARENT_DIR
 
 # Disable estates check for now until we work out the access token stuff
-/opt/sam/sam-manifest-builder -logtostderr -output $OUTPUT_DIR -estatescheck=false -root .
+/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -root .
