@@ -26,6 +26,19 @@
          "type":"rpm",
          "repo_path":"python"
       }
+      {
+         "repo_id": "testandrelease", 
+         "artifactId": "sammanifestbuilder"
+         "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
+         "filename": "sammanifestbuilder-000000-1247.x86_64.rpm", 
+         "version": "000000-1247.x86_64", 
+         "scope":[  
+
+         ],
+         "groupId": "sam", 
+         "type":"rpm",
+         "repo_path":"sam",
+      }
    ],
    "snapshot_id":""
 }
