@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: samuel
-      image: pardot/samuel:latest
+      image: pardot-samuel:0.1
       ports:
       - containerPort: 3000
       livenessProbe:
