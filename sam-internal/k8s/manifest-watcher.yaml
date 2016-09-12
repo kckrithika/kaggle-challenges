@@ -19,17 +19,15 @@ spec:
       hostNetwork: true
       containers:
       - name: manifest-watcher
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160909_113005-4d1a1df"
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160912_133432-837be0a"
         env:
-          - name:  ETCDSERVER
-            value: "http://shared0-samkubeapi1-2-prd.eng.sfdc.net:2379/"
           - name: FUNNELVIP
             value: "mandm-funnel-sfz.data.sfdc.net"
         volumeMounts:
         - mountPath: /manifests
           name: sfdc-volume
       - name: mock-tnrp
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160909_113005-4d1a1df"
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160912_133432-837be0a"
         env:
           - name: FUNNELVIP
             value: "mandm-funnel-sfz.data.sfdc.net"
