@@ -19,11 +19,9 @@ spec:
       hostNetwork: true
       containers:
       - name: sam-controller
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:prahlad.joshi-20160822_145018-589344e" 
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:thargrove-20160912_134353-837be0a"
         env:
           - name:  DOCKERREGISTRY
             value: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000"
-          - name:  ETCDSERVER
-            value: "http://shared0-samkubeapi1-2-prd.eng.sfdc.net:2379/"
           - name: FUNNELVIP
             value: "mandm-funnel-sfz.data.sfdc.net"
