@@ -3,7 +3,7 @@
 # Temporary script to redeploy all our daemon sets and deployments to prd-sam and prd-samemp
 # Either put kubectl in your path, or set KUBECTLBIN to point to it.  For example, you can add this to .bash_profile:
 #
-# export KUBECTLBIN='~/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
+# export KUBECTLBIN='/Users/thargrove/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
 
 KUBECTLBIN=${KUBECTLBIN:-kubectl}
 
