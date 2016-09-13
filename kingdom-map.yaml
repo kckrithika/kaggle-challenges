@@ -3,7 +3,6 @@ kingdoms:
   -
     name: prd
     apps:
-      - demoestate
       - caas-test
       - reportcollector
       - reportcollector-perf
