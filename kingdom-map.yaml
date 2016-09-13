@@ -3,6 +3,5 @@ kingdoms:
   -
     name: prd
     apps:
-      - caas-test
       - jayant-test
       - pardot-samuel-test
