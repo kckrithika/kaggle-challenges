@@ -6,6 +6,7 @@
 # export KUBECTLBIN='/Users/thargrove/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
 
 KUBECTLBIN=${KUBECTLBIN:-kubectl}
+NAMESPACE=sam-system
 
 case "$1" in
     prd-sam)
@@ -24,17 +25,17 @@ esac
 echo Context is ${KCONTEXT}, using kubectl ${KUBECTLBIN}
 
 echo Updating debug-portal
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=sam-system delete ds debug-portal
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=sam-system create -f debug-portal.yaml
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds debug-portal
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f debug-portal.yaml
 
 echo Updating slam-agent
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=sam-system delete ds slam-agent
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=sam-system create -f slam-agent.yaml
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds slam-agent
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f slam-agent.yaml
 
 echo Updating manifest-watcher
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=sam-system apply -f manifest-watcher.yaml
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f manifest-watcher.yaml
 
 echo Updating samcontrol.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=sam-system apply -f samcontrol.yaml
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f samcontrol.yaml
 
 # TODO: Add some basic validations

@@ -1,9 +1,14 @@
 ### Kubernetes yaml files for SAM bits
 
-To do a deployment, you need to have kubectl in your path or else set KUBECTLBIN.  Do this with an absolute path:
-
+To do a deployment pick one of the following approaches:
+1. have kubectl in your path
+2. set KUBECTLBIN at time of running this script:
 ```sh
-export KUBECTLBIN='/Users/thargrove/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
+KUBECTLBIN=/Users/thargrove/sam/bin/kubectl ./deploy.sh prd-samtemp
+```
+3. set KUBECTLBIN in you .bash_profile
+```sh
+export KUBECTLBIN='/Users/thargrove/sam/bin/kubectl'
 ```
 
 ### Kick off a new deployment
