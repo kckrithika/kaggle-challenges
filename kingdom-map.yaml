@@ -1,13 +1,6 @@
 ---
 kingdoms:
   -
-    name: sfm
-    apps:
-      - demoestate
-      - thargrove-test
-      - caas-test
-      - mayank-test
-  -
     name: prd
     apps:
       - demoestate
