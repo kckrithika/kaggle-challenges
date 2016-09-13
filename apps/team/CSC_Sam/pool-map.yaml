@@ -1,4 +1,4 @@
 apps:
- EtcdWatchdog:
+ SamTestApp:
   - prd/prd-sam
-  - frf/frf-sam
+  - prd/prd-samtemp
