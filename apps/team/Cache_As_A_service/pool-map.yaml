@@ -1,1 +1,3 @@
 apps:
+  caas-test:
+    - prd/prd-sam
