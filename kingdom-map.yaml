@@ -4,7 +4,5 @@ kingdoms:
     name: prd
     apps:
       - caas-test
-      - reportcollector
-      - reportcollector-perf
       - jayant-test
       - pardot-samuel-test
