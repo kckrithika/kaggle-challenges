@@ -1,1 +1,5 @@
 apps:
+  reportcollector:
+    - prd/prd-sam
+  reportcollector-perf:
+    - prd/prd-sam
