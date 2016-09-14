@@ -4,3 +4,5 @@ kingdoms:
     name: prd
     apps:
       - jayant-test
+      - reportcollector
+      - reportcollector-perf
