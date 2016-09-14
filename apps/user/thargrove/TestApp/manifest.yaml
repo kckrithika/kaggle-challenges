@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: thargrove-fn
-    count: 1
+    count: 2
     containers:
     - name: samhello
       image: samhello:bob-20160909
