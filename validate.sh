@@ -6,4 +6,4 @@ set -xe
 docker run -it --rm -v ${PWD}:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-tools /sam/manifest-validator /repo/
 
 #V2
-docker run -it --rm -v ${PWD}:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-tools:prahlad.joshi-20160901_151758-8f77d78 /sam/sam-manifest-builder --root='/repo/' -validateonly --estatecheck='false' --poolaclcheck='false'
+docker run -it --rm -v ${PWD}:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-tools:thargrove-20160915_105447-fb609d7 /sam/sam-manifest-builder --root='/repo/' -validateonly 
