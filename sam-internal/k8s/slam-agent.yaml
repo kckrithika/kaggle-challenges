@@ -12,6 +12,7 @@ spec:
     metadata: 
       labels: 
         app: slam-agent
+        apptype: logagent
     spec: 
       containers: 
         - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v2.1"

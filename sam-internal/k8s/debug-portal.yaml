@@ -14,6 +14,7 @@ spec:
     metadata: 
       labels: 
         app: debug-portal
+        apptype: debugging
     spec: 
       containers: 
         - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/debug-portal:thargrove-20160811_134228-c36dfe9"
