@@ -27,7 +27,7 @@ spec:
         - mountPath: /manifests
           name: sfdc-volume
       - name: mock-tnrp
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160914_133157-a8d6545"
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160915_105447-fb609d7"
         env:
           - name: FUNNELVIP
             value: "mandm-funnel-sfz.data.sfdc.net"
