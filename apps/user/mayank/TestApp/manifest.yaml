@@ -8,15 +8,15 @@ system:
     - name: samhello
       image: samhello:bob-20160908
       ports:
-      - containerPort: 9090
+      - containerPort: 9091
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9091
 
   loadbalancers:
   - lbname: samhellolb
     function: mayank-fn
     ports:
       - port: 9091
-        targetport: 9090
+        targetport: 9091
