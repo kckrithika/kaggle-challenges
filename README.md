@@ -1,6 +1,8 @@
 This repo contains live manifests for SAM deployments.  See SAM documentation here: https://git.soma.salesforce.com/sam/sam/wiki
 
-To validate changes, run this:
+### Before submitting a pull request
+
+Please make your changes on a fork of this repo.  Remember to sync changes from master, then run validate.sh before submitting a pull request.  Pay attention to the last line of output.
 
 ```sh
 $ ./validate.sh 
@@ -9,21 +11,16 @@ NOTE: If the next command gives you an error like 'server gave HTTP response to 
 ### Loading files from disk
   Ignoring file: apps/README.md
   Found pool-map: apps/team/CSC_Health/pool-map.yaml (team/CSC_Health)
-  Found app: apps/team/CSC_Health/reportcollector/manifest.yaml (team/CSC_Health/reportcollector)
-  Found app: apps/team/CSC_Health/reportcollector-perf/manifest.yaml (team/CSC_Health/reportcollector-perf)
   ...
-  Found app: apps/user/ssandke/srs-demo1/manifest.yaml (user/ssandke/srs-demo1)
-  Found app: apps/user/thargrove/TestApp/manifest.yaml (user/thargrove/TestApp)
-  Found pool-map: apps/user/thargrove/pool-map.yaml (user/thargrove)
-  Found pool: sam-internal/pools/prd/prd-sam/pool.yaml (prd/prd-sam)
   Found pool: sam-internal/pools/prd/prd-samtemp/pool.yaml (prd/prd-samtemp)
 ### Validating Yaml Contents
 ### Successfully validated 11 app manifests
 ### All Validations Passed
 ### Successful run.  Good files: 20, Bad Files: 0, Ignored Files: 1
+
+!!! All validations passed.  You are good to commit !!!
 ```
 
-When you are ready to submit your change, do "git add" then "git commit" and use the GitHub web UI to create a PR. Please include the validation output in the PR body.  To get it to format correctly, add a line before and after the text with three back-ticks.
+To start a pull request commit your changes, push to your fork, then use the GitHub UI to create a pull request. Please include the validation output in the PR body.  To get it to format correctly, add a line before and after the text with three back-ticks.
 
-If you want a review from the SAM team paste the PR URL to #onboarding in sfsam.slack.com, but otherwise you can just merge it.
-
+If you want a review from the SAM team paste the PR URL to #onboarding in sfsam.slack.com, but otherwise you can just merge it.  If you dont have permissions you can request them from sam@salesforce.com.  Please let us know what team you are with and what you will be trying out on SAM.
