@@ -32,6 +32,14 @@ echo Updating slam-agent
 ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds slam-agent
 ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f slam-agent.yaml
 
+echo Updating watchdog
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-master
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-master.yaml
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-common
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-common.yaml
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-etcd
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-etcd.yaml
+
 echo Updating manifest-watcher
 ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f manifest-watcher.yaml
 
