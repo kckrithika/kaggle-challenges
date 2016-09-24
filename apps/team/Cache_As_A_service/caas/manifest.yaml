@@ -10,21 +10,23 @@ system:
       # container image/version to  run
       image: caas:jayant-20162209
       args: 
-        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
+        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
+        - --redis-monitor.redis-listen-ports=1300 --server.port=1301 
+        - --management.port=1302
       # expose redis outside the container
       ports:
-      - containerPort: 7500
-      - containerPort: 7501 
-      - containerPort: 7502
+      - containerPort: 1300
+      - containerPort: 1301 
+      - containerPort: 1302
 
   # expose the function we declared above on the specified load balancer
   loadbalancers:
   - lbname: shared-caas1c-0-phx
     function: jkcaas
     ports:
-      - port: 6500
-        targetport: 7500
-      - port: 6501
-        targetport: 7501
-      - port: 6502
-        targetport: 7502
+      - port: 1400
+        targetport: 1300
+      - port: 1401
+        targetport: 1301
+      - port: 1402
+        targetport: 1302
