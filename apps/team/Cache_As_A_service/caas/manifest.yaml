@@ -16,3 +16,15 @@ system:
       - containerPort: 7500
       - containerPort: 7501 
       - containerPort: 7502
+
+  # expose the function we declared above on the specified load balancer
+  loadbalancers:
+  - lbname: shared-caas1c-0-phx
+    function: jkcaas
+    ports:
+      - port: 6500
+        targetport: 7500
+      - port: 6501
+        targetport: 7501
+      - port: 6502
+        targetport: 7502
