@@ -8,10 +8,11 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas:jayant-20162209
+      image: caas:jayant-20162409
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
-        - --redis-monitor.redis-listen-ports=1300 --server.port=1301 
+        - --redis-monitor.redis-listen-ports=1300 
+        - --server.port=1301 
         - --management.port=1302
       # expose redis outside the container
       ports:
