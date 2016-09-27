@@ -17,7 +17,7 @@ system:
           port: 8000
 
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: lb123
     function: samtestfn
     ports:
       - port: 8000
