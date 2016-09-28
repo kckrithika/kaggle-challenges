@@ -17,7 +17,7 @@ spec:
         apptype: monitoring
     spec:
       containers:
-        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160920_234757-7f22ddd"
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160928_013647-b8154bb"
           name: watchdog
           command:
             - /sam/watchdog
