@@ -2,7 +2,7 @@ apiVersion: v1
 # adding a comment line
 system:
   functions:
-  - name: antorcol-fn
+  - name: antorcol-test-fn
     count: 1
     containers:
     - name: samhello
@@ -16,7 +16,7 @@ system:
 
     loadbalancers:
     - lbname: samhellolb
-      function: antorcol-fn
+      function: antorcol-test-fn
       ports:
       - port: 9090
         targetport: 9090
