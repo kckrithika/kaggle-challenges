@@ -1,0 +1,40 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: prd-caas-cluster-1
+    count: 3 
+    hostnetwork: true
+    containers:
+    - name: caas1c
+      # container image/version to  run
+      image: caas:jayant.kumar-20162709
+      args: 
+        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
+        - --redis-monitor.redis-listen-ports=1300 
+        - --server.port=1301 
+        - --management.port=1302
+        - --redis-monitor.cache-cluster-name=prd-caas-cluster-1
+      # expose redis outside the container
+      ports:
+      - containerPort: 1300
+      - containerPort: 1301 
+      - containerPort: 1302
+  - name: prd-caas-cluster-2
+    count: 4 
+    hostnetwork: true
+    containers:
+    - name: caas1c
+      # container image/version to  run
+      image: caas:jayant.kumar-20162709
+      args: 
+        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
+        - --redis-monitor.redis-listen-ports=1310 
+        - --server.port=1311 
+        - --management.port=1312
+        - --redis-monitor.cache-cluster-name=prd-caas-cluster-2
+      # expose redis outside the container
+      ports:
+      - containerPort: 1310
+      - containerPort: 1311 
+      - containerPort: 1312

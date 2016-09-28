@@ -1,27 +1,26 @@
 This repo contains live manifests for SAM deployments.  See SAM documentation here: https://git.soma.salesforce.com/sam/sam/wiki
 
-To validate changes, run this:
+### Before submitting a pull request
+
+Please make your changes on a fork of this repo.  Remember to sync changes from master, then run validate.sh before submitting a pull request.  Pay attention to the last line of output.
 
 ```sh
 $ ./validate.sh 
-Reading /repo/kingdom-map.yaml
----
-[G] Manifest /repo/demoestate/manifest.yaml - good
-[G] Manifest /repo/thargrove-test/manifest.yaml - good
-[G] Manifest /repo/antorcol-test/manifest.yaml - good
-[G] Manifest /repo/caas-test/manifest.yaml - good
-[G] Manifest /repo/mayank-test/manifest.yaml - good
-[G] Manifest /repo/demoestate/manifest.yaml - good
-[G] Manifest /repo/cbatra-test/manifest.yaml - good
----
-Successfully validated /repo/. Good=7, Errors=0, Ignored=0
+NOTE: If the next command gives you an error like 'server gave HTTP response to HTTPS client.' then you most likely are missing the insecure registry setting in docker.  See https://git.soma.salesforce.com/sam/sam/wiki/Set-Up-Docker-For-SAM
++ docker run -it --rm -v /Users/thargrove/manifests-th:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-tools:thargrove-20160915_105447-fb609d7 /sam/sam-manifest-builder --root=/repo/ -validateonly
+### Loading files from disk
+  Ignoring file: apps/README.md
+  Found pool-map: apps/team/CSC_Health/pool-map.yaml (team/CSC_Health)
+  ...
+  Found pool: sam-internal/pools/prd/prd-samtemp/pool.yaml (prd/prd-samtemp)
+### Validating Yaml Contents
+### Successfully validated 11 app manifests
+### All Validations Passed
+### Successful run.  Good files: 20, Bad Files: 0, Ignored Files: 1
+
+!!! All validations passed.  You are good to commit !!!
 ```
 
-When you are ready to submit your change, do "git add" then "git commit" and use the GitHub web UI to create a PR. Please include the validation output in the PR body.  To get it to format correctly, add a line before and after the text with three back-ticks.
+To start a pull request commit your changes, push to your fork, then use the GitHub UI to create a pull request. Please include the validation output in the PR body.  To get it to format correctly, add a line before and after the text with three back-ticks.
 
-If you want a review from the SAM team paste the PR URL to #onboarding in sfsam.slack.com, but otherwise you can just merge it.
-
-### Note about 'apps' and 'sam-internal' folders
-These two folders are for a work in progress to change our manifest layout.
-For now customers can ignore these.  When we are ready to do the switch we will migrate all existing apps.
-If you are curious about this upcoming change, see [this document](https://docs.google.com/document/d/1I0Z8zjJD3TVZvzmQSWiNEgATtuapxzp0cquc6-PXweE/edit#)
+If you want a review from the SAM team paste the PR URL to #onboarding in sfsam.slack.com, but otherwise you can just merge it.  If you dont have permissions you can request them from sam@salesforce.com.  Please let us know what team you are with and what you will be trying out on SAM.

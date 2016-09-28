@@ -1,0 +1,35 @@
+# To redeploy
+# kubectl delete --namespace=sam-system ds watchdog-etcd
+# kubectl create --namespace=sam-system -f watchdog-etcd.yaml
+
+---
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: watchdog-etcd
+  name: watchdog-etcd
+spec:
+  template:
+    metadata:
+      labels:
+        app: watchdog-etcd
+        apptype: monitoring
+    spec:
+      containers:
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160920_234757-7f22ddd"
+          name: watchdog
+          command:
+            - /sam/watchdog
+            - -role=ETCD
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "300Mi"
+            requests:
+              cpu: "0.5"
+              memory: "300Mi"
+      nodeSelector:
+          ETCD: "true"
+# This is needed so our docker images see the real hostname for now
+      hostNetwork: true

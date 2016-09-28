@@ -1,0 +1,24 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: samtestfn
+    count: 1
+    containers:
+    - name: samtestapp
+      image: sam-tools:thargrove-20160915_141441-fccc5c9
+      command:
+        - /sam/sam-test-app
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+
+  loadbalancers:
+  - lbname: lb124
+    function: samtestfn
+    ports:
+      - port: 8000
+        targetport: 8000

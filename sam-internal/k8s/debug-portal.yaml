@@ -1,0 +1,48 @@
+# To redeploy
+# kubectl delete --namespace=sam-system ds debug-portal
+# kubectl create --namespace=sam-system -f debug-portal.yaml
+
+--- 
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata: 
+  labels: 
+    name: debug-portal
+  name: debug-portal
+spec: 
+  template: 
+    metadata: 
+      labels: 
+        app: debug-portal
+        apptype: debugging
+    spec: 
+      containers: 
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/debug-portal:thargrove-20160811_134228-c36dfe9"
+          name: debug-portal
+          ports: 
+            - 
+              containerPort: 47360
+              name: debug-portal
+          volumeMounts: 
+            - 
+              mountPath: /var/run/ # Do not use /var/run/docker.sock because of docker bug
+              name: varrun
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "300Mi"
+            requests:
+              cpu: "0.5"
+              memory: "300Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 47360
+      # This is needed so our docker images see the real hostname for now
+      hostNetwork: true
+      volumes: 
+        - 
+          hostPath: 
+            path: /var/run/
+          name: varrun
+

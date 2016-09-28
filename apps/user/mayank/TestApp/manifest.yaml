@@ -2,21 +2,21 @@ apiVersion: v1
 
 system:
   functions:
-  - name: thargrove-fn
-    count: 2
+  - name: mayank-fn
+    count: 1
     containers:
     - name: samhello
-      image: samhello:bob-20160909
+      image: samhello:bob-20160908
       ports:
-      - containerPort: 9090
+      - containerPort: 9091
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9091
 
   loadbalancers:
   - lbname: samhellolb
-    function: thargrove-fn
+    function: mayank-fn
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 9091
+        targetport: 9091

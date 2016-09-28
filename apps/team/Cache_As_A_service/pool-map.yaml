@@ -1,7 +1,5 @@
 apps:
- CaaS-Prod:
-  - prd/prd-sp1-sam_caas
-  - prd/prd-sp2-sam_caas
-  - frf/frf-sp1-sam_caas
- CaaS:
-  - prd/prd-sam
+  caas-test:
+    - prd/prd-sam
+  caas:
+    - prd/prd-sam
