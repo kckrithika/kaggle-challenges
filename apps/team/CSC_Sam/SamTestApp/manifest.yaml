@@ -9,6 +9,9 @@ system:
       image: sam-tools:thargrove-20160915_141441-fccc5c9
       command:
         - /sam/sam-test-app
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE00001"
       ports:
       - containerPort: 8000
       livenessProbe:
