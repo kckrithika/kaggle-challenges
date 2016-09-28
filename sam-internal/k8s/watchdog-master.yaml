@@ -17,11 +17,18 @@ spec:
         apptype: monitoring
     spec:
       containers:
-        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160920_234757-7f22ddd"
+        - image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160928_013647-b8154bb"
           name: watchdog
           command:
             - /sam/watchdog
             - -role=MASTER
+            - -watchdogFrequency=5s
+            - -timeout=2s
+            - -rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark
+            - -smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
+            - -sender=prabh.singh@salesforce.com
+            - -recipient=sam@salesforce.com
+            - -cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com
           resources:
             limits:
               cpu: "0.5"
