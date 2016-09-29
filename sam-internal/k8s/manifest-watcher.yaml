@@ -22,13 +22,9 @@ spec:
       - name: manifest-watcher
         command:
           - /sam/manifest-watcher
-          - --src=/manifests/transfer/
           - --funneladdr=mandm-funnel-sfz.data.sfdc.net
           - --v=10
           - --logtostderr=true
           - --disableCertsCheck=true
           - --tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160927_183533-42c8c2a"
-        env:
-          - name: FUNNELVIP
-            value: "mandm-funnel-sfz.data.sfdc.net"
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160929_121456-93a1abe"
