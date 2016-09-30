@@ -4,3 +4,5 @@ apps:
     - prd/prd-sam_report_collector
   reportcollector-perf:
     - prd/prd-sam
+  reportcollectorminion:
+    - prd/prd-sam_report_collector 
