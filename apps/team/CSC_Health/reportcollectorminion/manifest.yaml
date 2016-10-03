@@ -33,7 +33,7 @@ system:
 
   loadbalancers:
   - lbname: reportcollectorlb
-    function: report-collector
+    function: rc-minion
     ports:
       - port: 8080
         targetport: 8080
