@@ -11,7 +11,7 @@ system:
         - /sam/sam-test-app
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE00003"
+          value: "SOMEVALUE00004"
       ports:
       - containerPort: 8000
       livenessProbe:
