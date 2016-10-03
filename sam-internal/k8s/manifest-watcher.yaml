@@ -27,4 +27,4 @@ spec:
           - --logtostderr=true
           - --disableCertsCheck=true
           - --tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160930_132742-e84faa5"
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20161003_091900-51e474e"
