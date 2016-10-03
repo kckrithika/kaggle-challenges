@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: report-collector
+  - name: rc-minion
     count: 1
     containers:
     - name: report-collector
