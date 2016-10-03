@@ -20,7 +20,7 @@ spec:
       hostNetwork: true
       containers:
       - name: sam-controller
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:thargrove-20160929_113217-f43c024"
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:thargrove-20160930_132742-e84faa5"
         command:
           - /sam/sam-controller
           - --debug=true
