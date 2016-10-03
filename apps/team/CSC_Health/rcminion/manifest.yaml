@@ -32,7 +32,7 @@ system:
       - directory: /var/log/redis
 
   loadbalancers:
-  - lbname: reportcollectorlb
+  - lbname: rcminionlb
     function: rc-minion
     ports:
       - port: 8080
