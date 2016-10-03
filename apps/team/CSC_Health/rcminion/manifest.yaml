@@ -22,7 +22,7 @@ system:
       logs:
       - directory: /var/log/report-collector
     - name: redis
-      image: rc-redis:3.0
+      image: shared0-samminionreportcollector1-1-prd.eng.sfdc.net:5000/rc-redis:3.0
       ports:
       - containerPort: 6379
       resources:
