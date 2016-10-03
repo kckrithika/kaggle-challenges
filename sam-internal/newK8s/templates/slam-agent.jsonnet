@@ -1,70 +1,70 @@
 {
 local images = import "images.jsonnet",
 local estate = std.extVar("estate"),
-    "kind": "DaemonSet", 
-    "spec": {
-        "template": {
-            "spec": {
-                "containers": [
+    kind: "DaemonSet", 
+    spec: {
+        template: {
+            spec: {
+                containers: [
                     {
-                        "image": images.slam_agent[estate],
-                        "volumeMounts": [
+                        image: images.slam_agent[estate],
+                        volumeMounts: [
                             {
-                                "mountPath": "/var/run/", 
-                                "name": "varrun"
+                                mountPath: "/var/run/", 
+                                name: "varrun"
                             }, 
                             {
-                                "readOnly": true, 
-                                "mountPath": "/var/log/", 
-                                "name": "varlog"
+                                readOnly: true, 
+                                mountPath: "/var/log/", 
+                                name: "varlog"
                             }
                         ], 
-                        "name": "slam-agent", 
-                        "livenessProbe": {
-                            "initialDelaySeconds": 15, 
-                            "httpGet": {
-                                "path": "/health", 
-                                "port": 30108
+                        name: "slam-agent", 
+                        livenessProbe: {
+                            initialDelaySeconds: 15, 
+                            httpGet: {
+                                path: "/health", 
+                                port: 30108
                             }, 
-                            "timeoutSeconds": 1
+                            timeoutSeconds: 1
                         }, 
-                        "ports": [
+                        ports: [
                             {
-                                "containerPort": 30108, 
-                                "name": "slam-agent", 
-                                "hostPort": 30108
+                                containerPort: 30108, 
+                                name: "slam-agent", 
+                                hostPort: 30108
                             }
                         ]
                     }
                 ], 
-                "volumes": [
+                volumes: [
                     {
-                        "hostPath": {
-                            "path": "/var/run/"
+                        hostPath: {
+                            path: "/var/run/"
                         }, 
-                        "name": "varrun"
+                        name: "varrun"
                     }, 
                     {
-                        "hostPath": {
-                            "path": "/var/log"
+                        hostPath: {
+                            path: "/var/log"
                         }, 
-                        "name": "varlog"
+                        name: "varlog"
                     }
                 ]
             }, 
-            "metadata": {
-                "labels": {
-                    "app": "slam-agent", 
-                    "apptype": "logagent"
+            metadata: {
+                labels: {
+                    app: "slam-agent", 
+                    apptype: "logagent"
                 }
             }
         }
     }, 
-    "apiVersion": "extensions/v1beta1", 
-    "metadata": {
-        "labels": {
-            "name": "slam-agent"
+    apiVersion: "extensions/v1beta1", 
+    metadata: {
+        labels: {
+            name: "slam-agent"
         }, 
-        "name": "slam-agent"
+        name: "slam-agent"
     }
 }
