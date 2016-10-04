@@ -24,41 +24,7 @@ local estate = std.extVar("estate"),
                                 value: "mandm-funnel-sfz.data.sfdc.net"
                             }
                         ]
-                    }, 
-                    {
-                        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160915_105447-fb609d7", 
-                        volumeMounts: [
-                            {
-                                mountPath: "/manifests", 
-                                name: "sfdc-volume"
-                            }
-                        ], 
-                        name: "mock-tnrp", 
-                        env: [
-                            {
-                                name: "FUNNELVIP", 
-                                value: "mandm-funnel-sfz.data.sfdc.net"
-                            }, 
-                            {
-                                valueFrom: {
-                                    secretKeyRef: {
-                                        name: "gittoken", 
-                                        key: "token"
-                                    }
-                                }, 
-                                name: "GIT_TOKEN"
-                            }, 
-                            {
-                                valueFrom: {
-                                    secretKeyRef: {
-                                        name: "gittoken", 
-                                        key: "username"
-                                    }
-                                }, 
-                                name: "GIT_USER"
-                            }
-                        ]
-                    }
+                    } 
                 ], 
                 volumes: [
                     {

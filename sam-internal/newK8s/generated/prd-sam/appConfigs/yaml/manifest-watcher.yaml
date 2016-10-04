@@ -24,24 +24,6 @@ spec:
         volumeMounts:
         - mountPath: /manifests
           name: sfdc-volume
-      - env:
-        - name: FUNNELVIP
-          value: mandm-funnel-sfz.data.sfdc.net
-        - name: GIT_TOKEN
-          valueFrom:
-            secretKeyRef:
-              key: token
-              name: gittoken
-        - name: GIT_USER
-          valueFrom:
-            secretKeyRef:
-              key: username
-              name: gittoken
-        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160915_105447-fb609d7
-        name: mock-tnrp
-        volumeMounts:
-        - mountPath: /manifests
-          name: sfdc-volume
       hostNetwork: true
       volumes:
       - hostPath:
