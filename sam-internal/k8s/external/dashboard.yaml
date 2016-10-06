@@ -50,7 +50,7 @@ spec:
           # If not specified, Dashboard will attempt to auto discover the API server and connect
           # to it. Uncomment only if the default does not work.
           - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:8080/
-          - --heapster-host=http://heapster
+          - --heapster-host=http://10.254.210.212
         livenessProbe:
           httpGet:
             path: /
@@ -67,6 +67,7 @@ metadata:
   namespace: kube-system
 spec:
   type: NodePort
+  clusterIP: 10.254.210.213
   ports:
   - port: 80
     targetPort: 9090

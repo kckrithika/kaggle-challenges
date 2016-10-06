@@ -11,9 +11,10 @@ metadata:
   namespace: kube-system
 spec:
   type: NodePort
+  clusterIP: 10.254.210.211
   ports:
   - port: 80
     targetPort: 3000
-    nodePort: 39997
+    nodePort: 39998
   selector:
     name: influxGrafana

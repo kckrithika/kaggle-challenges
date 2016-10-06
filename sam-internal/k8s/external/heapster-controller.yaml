@@ -30,4 +30,4 @@ spec:
         command:
         - /heapster
         - --source=kubernetes:http://shared0-samkubeapi1-1-prd.eng.sfdc.net:8080?inClusterConfig=false
-        - --sink=influxdb:http://monitoring-influxdb:8086
+        - --sink=influxdb:http://10.254.210.210:8086
