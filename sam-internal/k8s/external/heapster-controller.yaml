@@ -18,6 +18,8 @@ spec:
         k8s-app: heapster
         version: v6
     spec:
+      nodeSelector:
+        pool: prd-sam
       containers:
       - name: heapster
         image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/heapster:canary
