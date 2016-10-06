@@ -9,6 +9,9 @@ system:
       image: sam-tools:thargrove-20160915_141441-fccc5c9
       command:
         - /sam/sam-test-app
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE00004"
       ports:
       - containerPort: 8000
       livenessProbe:
@@ -17,7 +20,7 @@ system:
           port: 8000
 
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: lb124
     function: samtestfn
     ports:
       - port: 8000

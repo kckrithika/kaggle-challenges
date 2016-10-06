@@ -20,32 +20,11 @@ spec:
       hostNetwork: true
       containers:
       - name: manifest-watcher
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160914_133157-a8d6545"
-        env:
-          - name: FUNNELVIP
-            value: "mandm-funnel-sfz.data.sfdc.net"
-        volumeMounts:
-        - mountPath: /manifests
-          name: sfdc-volume
-      - name: mock-tnrp
-        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mock-tnrp:thargrove-20160915_105447-fb609d7"
-        env:
-          - name: FUNNELVIP
-            value: "mandm-funnel-sfz.data.sfdc.net"
-          - name: GIT_TOKEN
-            valueFrom:
-              secretKeyRef:
-                name: gittoken
-                key: token
-          - name: GIT_USER
-            valueFrom:
-              secretKeyRef:
-                name: gittoken
-                key: username
-        volumeMounts:
-        - mountPath: /manifests
-          name: sfdc-volume
-      volumes:
-      - name: sfdc-volume
-        hostPath:
-          path: /manifests
+        command:
+          - /sam/manifest-watcher
+          - --funneladdr=mandm-funnel-sfz.data.sfdc.net
+          - --v=10
+          - --logtostderr=true
+          - --disableCertsCheck=true
+          - --tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive
+        image: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20161003_091900-51e474e"
