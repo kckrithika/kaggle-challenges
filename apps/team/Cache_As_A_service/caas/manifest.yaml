@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas:jayant.kumar-20162709
+      image: caas:jayant.kumar-20160610
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1300 
@@ -26,7 +26,7 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas:jayant.kumar-20162709
+      image: caas:jayant.kumar-20160610
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1310 
