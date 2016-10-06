@@ -1,0 +1,20 @@
+#
+# File Source: https://github.com/kubernetes/heapster/tree/master/deploy/kube-config/influxdb
+#
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    kubernetes.io/cluster-service: 'true'
+    kubernetes.io/name: Heapster
+  name: heapster
+  namespace: kube-system
+spec:
+  type: NodePort
+  clusterIP: 10.254.210.212
+  ports:
+  - port: 80
+    targetPort: 8082
+    nodePort: 39999
+  selector:
+    k8s-app: heapster
