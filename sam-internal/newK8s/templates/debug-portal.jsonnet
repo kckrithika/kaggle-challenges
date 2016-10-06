@@ -30,11 +30,11 @@ local estate = std.extVar("estate"),
                         ], 
                         resources: {
                             requests: {
-                                cpu: '0.5', 
+                                cpu: "0.5", 
                                 memory: "300Mi"
                             }, 
                             limits: {
-                                cpu: '0.5', 
+                                cpu: "0.5", 
                                 memory: "300Mi"
                             }
                         }
