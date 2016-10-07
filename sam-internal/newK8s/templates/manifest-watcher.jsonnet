@@ -1,5 +1,6 @@
 {
 local images = import "images.jsonnet",
+local configs = import "config.jsonnet",
 local estate = std.extVar("estate"),
     kind: "Deployment", 
     spec: {
@@ -21,7 +22,7 @@ local estate = std.extVar("estate"),
                         env: [
                             {
                                 name: "FUNNELVIP", 
-                                value: "mandm-funnel-sfz.data.sfdc.net"
+                                value: configs.funnelVIP[estate] 
                             }
                         ]
                     } 
