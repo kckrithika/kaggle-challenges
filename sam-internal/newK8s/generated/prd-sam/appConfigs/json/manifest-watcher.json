@@ -1,0 +1,55 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "manifest-watcher"
+      },
+      "name": "manifest-watcher"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "manifest-watcher"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "manifest-watcher"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "env": [
+                     {
+                        "name": "FUNNELVIP",
+                        "value": "mandm-funnel-sfz.data.sfdc.net"
+                     }
+                  ],
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160914_133157-a8d65",
+                  "name": "manifest-watcher",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/manifests",
+                        "name": "sfdc-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/manifests"
+                  },
+                  "name": "sfdc-volume"
+               }
+            ]
+         }
+      }
+   }
+}
