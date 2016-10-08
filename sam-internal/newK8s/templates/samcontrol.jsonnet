@@ -1,7 +1,6 @@
 {
-local images = import "images.jsonnet",
 local configs = import "config.jsonnet",
-local estate = std.extVar("estate"),
+
     kind: "Deployment", 
     spec: {
         replicas: 1, 
@@ -11,16 +10,16 @@ local estate = std.extVar("estate"),
                 containers: [
                     {
 
-                        image: images.controller[estate],
+                        image: configs.controller,
                         name: "sam-controller", 
                         env: [
                             {
                                 name: "DOCKERREGISTRY", 
-                                value: configs.registry[estate] 
+                                value: configs.registry 
                             }, 
                             {
                                 name: "FUNNELVIP", 
-                                value: configs.funnelVIP[estate]
+                                value: configs.funnelVIP
                             }
                         ]
                     }

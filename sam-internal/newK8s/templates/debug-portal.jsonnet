@@ -1,6 +1,6 @@
 {
-local images = import "images.jsonnet",
-local estate = std.extVar("estate"),
+local configs = import "config.jsonnet",
+
     kind:"DaemonSet", 
     spec: {
         template: {
@@ -15,7 +15,7 @@ local estate = std.extVar("estate"),
                             }
                         }, 
                         name: "debug-portal", 
-                        image: images.debug_portal[estate],
+                        image: configs.debug_portal,
                         volumeMounts: [
                             {
                                 mountPath: "/var/run/", 
