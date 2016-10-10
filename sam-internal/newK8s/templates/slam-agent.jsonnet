@@ -1,13 +1,13 @@
 {
-local images = import "images.jsonnet",
-local estate = std.extVar("estate"),
+local configs = import "config.jsonnet",
+
     kind: "DaemonSet", 
     spec: {
         template: {
             spec: {
                 containers: [
                     {
-                        image: images.slam_agent[estate],
+                        image: configs.slam_agent,
                         volumeMounts: [
                             {
                                 mountPath: "/var/run/", 

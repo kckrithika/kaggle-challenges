@@ -1,6 +1,6 @@
 {
-local images = import "images.jsonnet",
-local estate = std.extVar("estate"),
+local configs = import "config.jsonnet",
+
     kind: "Deployment", 
     spec: {
         replicas: 1, 
@@ -10,7 +10,7 @@ local estate = std.extVar("estate"),
                 containers: [
                     {
 
-                        image: images.manifest_watcher[estate],
+                        image: configs.manifest_watcher,
                         volumeMounts: [
                             {
                                 mountPath: "/manifests", 
@@ -21,7 +21,7 @@ local estate = std.extVar("estate"),
                         env: [
                             {
                                 name: "FUNNELVIP", 
-                                value: "mandm-funnel-sfz.data.sfdc.net"
+                                value: configs.funnelVIP 
                             }
                         ]
                     } 

@@ -1,6 +1,6 @@
 {
-local images = import "images.jsonnet",
-local estate = std.extVar("estate"),
+local configs = import "config.jsonnet",
+
     kind: "DaemonSet", 
     spec: {
         template: {
@@ -8,7 +8,7 @@ local estate = std.extVar("estate"),
                 hostNetwork: true, 
                 containers: [
                     {
-                        image: images.watchdog_etcd[estate],
+                        image: configs.watchdog_etcd,
                         command: [
                             "/sam/watchdog", 
                             "-role=ETCD"

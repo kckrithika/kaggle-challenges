@@ -1,4 +1,4 @@
-#/bin/bash -xe
+#!/bin/bash 
 
 # Script to generate yaml files for all our apps in all estates 
 # ./build.sh 
@@ -17,7 +17,6 @@ fi
 generateConfigs() {
   currentEstate=$1
 
-  mkdir -p generated/$currentEstate/appConfigs/yaml
   mkdir -p generated/$currentEstate/appConfigs/json
 
   for filename in templates/*.jsonnet; do
