@@ -11,7 +11,14 @@ local configs = import "config.jsonnet",
                         image: configs.watchdog_master,
                         command: [
                             "/sam/watchdog", 
-                            "-role=MASTER"
+                            "-role=MASTER",
+                            "-watchdogFrequency=5s",
+                            "-timeout=2s",
+                            "-rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
+                            "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                            "-sender=prabh.singh@salesforce.com",
+                            "-recipient=sam@salesforce.com",
+                            "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
                         ], 
                         name: "watchdog", 
                         resources: {

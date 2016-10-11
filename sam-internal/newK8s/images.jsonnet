@@ -4,28 +4,28 @@ local estate = std.extVar("estate"),
 
     tags: {
         controller: {
-            "prd-sam": "sam-controller:mayank.kumar-20160914_145440-cfc3f85a",
-            "prd-samtemp": "sam-controller:mayank.kumar-20160914_145440-cfc3f85a"
+            "prd-sam": "sam-controller:thargrove-20160929_113217-f43c024",
+            "prd-samtemp": "sam-controller:mayank.kumar-20161003_124700-51e474e"
             },
         "debug_portal": {
             "prd-sam": "debug-portal:thargrove-20160811_134228-c36dfe9",
             "prd-samtemp": "debug-portal:thargrove-20160811_134228-c36dfe9"
             },
         "watchdog_common": {
-            "prd-sam": "watchdog:prabh.singh-20160920_234757-7f22ddd",
+            "prd-sam": "watchdog:prabh.singh-20160928_013647-b8154bb",
             "prd-samtemp": "watchdog:prabh.singh-20160920_234757-7f22ddd"
         },
         "watchdog_master": {
-            "prd-sam": "watchdog:prabh.singh-20160920_234757-7f22ddd",
+            "prd-sam": "watchdog:prabh.singh-20160928_013647-b8154bb",
             "prd-samtemp": "watchdog:prabh.singh-20160920_234757-7f22ddd"
         },
         "watchdog_etcd": {
-            "prd-sam": "watchdog:prabh.singh-20160920_234757-7f22ddd",
+            "prd-sam": "watchdog:prabh.singh-20160928_013647-b8154bb",
             "prd-samtemp": "watchdog:prabh.singh-20160920_234757-7f22ddd"
         },
         "manifest_watcher": {
-            "prd-sam": "manifest-watcher:thargrove-20160914_133157-a8d65",
-            "prd-samtemp": "manifest-watcher:thargrove-20160914_133157-a8d65"
+            "prd-sam": "manifest-watcher:thargrove-20160929_131936-85c8846",
+            "prd-samtemp": "manifest-watcher:thargrove-20161003_091900-51e474e"
         },
         "slam_agent": {
             "prd-sam": "slam-agent:v2.1",
