@@ -1,6 +1,6 @@
-#/bin/bash -xe
+#!/bin/bash -xe
 
-# Temporary script to redeploy all our daemon sets and deployments to prd-sam and prd-samemp
+# Temporary script to redeploy all our daemon sets and deployments to prd-sam and prd-samtemp
 # Either put kubectl in your path, or set KUBECTLBIN to point to it.  For example, you can add this to .bash_profile:
 #
 # export KUBECTLBIN='/Users/thargrove/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
@@ -20,30 +20,14 @@ case "$1" in
         exit 1
 esac
 
-# TODO: Add warning when running against out-of-sync git repo
-
 echo Context is ${KCONTEXT}, using kubectl ${KUBECTLBIN}
 
-echo Updating debug-portal
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds debug-portal
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f debug-portal.yaml
+#Delete all the daemon sets in NAMESPACE
+for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get ds |cut -f 1 -d " " | tail -n +2`; do
+  ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds $aDaemonSet
+done
 
-echo Updating slam-agent
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds slam-agent
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f slam-agent.yaml
-
-echo Updating watchdog
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-master
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-master.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-common
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-common.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-etcd
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-etcd.yaml
-
-echo Updating manifest-watcher
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f manifest-watcher.yaml
-
-echo Updating samcontrol.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f samcontrol.yaml
+#Update all deployments and daemon sets
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f generated/$KCONTEXT/appConfigs/json
 
 # TODO: Add some basic validations
