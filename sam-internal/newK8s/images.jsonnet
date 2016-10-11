@@ -4,7 +4,7 @@ local estate = std.extVar("estate"),
 
     tags: {
         controller: {
-            "prd-sam": "sam-controller:mayank.kumar-20160914_145440-cfc3f85a",
+            "prd-sam": "sam-controller:thargrove-20160929_113217-f43c024",
             "prd-samtemp": "sam-controller:mayank.kumar-20160914_145440-cfc3f85a"
             },
         "debug_portal": {
@@ -13,18 +13,18 @@ local estate = std.extVar("estate"),
             },
         "watchdog_common": {
             "prd-sam": "watchdog:prabh.singh-20160920_234757-7f22ddd",
-            "prd-samtemp": "watchdog:prabh.singh-20160920_234757-7f22ddd"
+            "prd-samtemp": "watchdog:prabh.singh-20160928_013647-b8154bb"
         },
         "watchdog_master": {
             "prd-sam": "watchdog:prabh.singh-20160920_234757-7f22ddd",
-            "prd-samtemp": "watchdog:prabh.singh-20160920_234757-7f22ddd"
+            "prd-samtemp": "watchdog:prabh.singh-20160928_013647-b8154bb"
         },
         "watchdog_etcd": {
             "prd-sam": "watchdog:prabh.singh-20160920_234757-7f22ddd",
-            "prd-samtemp": "watchdog:prabh.singh-20160920_234757-7f22ddd"
+            "prd-samtemp": "watchdog:prabh.singh-20160928_013647-b8154bb"
         },
         "manifest_watcher": {
-            "prd-sam": "manifest-watcher:thargrove-20160914_133157-a8d65",
+            "prd-sam": "manifest-watcher:thargrove-20160929_131936-85c8846",
             "prd-samtemp": "manifest-watcher:thargrove-20160914_133157-a8d65"
         },
         "slam_agent": {

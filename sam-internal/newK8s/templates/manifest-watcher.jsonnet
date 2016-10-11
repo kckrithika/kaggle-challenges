@@ -9,21 +9,17 @@ local configs = import "config.jsonnet",
                 hostNetwork: true, 
                 containers: [
                     {
-
-                        image: configs.manifest_watcher,
-                        volumeMounts: [
-                            {
-                                mountPath: "/manifests", 
-                                name: "sfdc-volume"
-                            }
-                        ], 
                         name: "manifest-watcher", 
-                        env: [
-                            {
-                                name: "FUNNELVIP", 
-                                value: configs.funnelVIP 
-                            }
-                        ]
+                        image: configs.manifest_watcher,
+                        command: [
+                           "/sam/manifest-watcher",
+                           "--funneladdr="+configs.funnelVIP,
+                           "--v=10",
+                           "--logtostderr=true",
+                           "--disableCertsCheck=true",
+                           #TODO:Move this to config.jsonnet
+                           "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                         ],
                     } 
                 ], 
                 volumes: [

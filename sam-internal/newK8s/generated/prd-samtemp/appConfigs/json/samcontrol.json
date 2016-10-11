@@ -24,15 +24,13 @@
          "spec": {
             "containers": [
                {
-                  "env": [
-                     {
-                        "name": "DOCKERREGISTRY",
-                        "value": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000"
-                     },
-                     {
-                        "name": "FUNNELVIP",
-                        "value": "mandm-funnel-sfz.data.sfdc.net"
-                     }
+                  "command": [
+                     "/sam/sam-controller",
+                     "---debug=true",
+                     "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
+                     "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
+                     "--v=2",
+                     "--logtostderr=true"
                   ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:mayank.kumar-20160914_145440-cfc3f85a",
                   "name": "sam-controller"

@@ -9,18 +9,15 @@ local configs = import "config.jsonnet",
                 hostNetwork: true, 
                 containers: [
                     {
-
-                        image: configs.controller,
                         name: "sam-controller", 
-                        env: [
-                            {
-                                name: "DOCKERREGISTRY", 
-                                value: configs.registry 
-                            }, 
-                            {
-                                name: "FUNNELVIP", 
-                                value: configs.funnelVIP
-                            }
+                        image: configs.controller,
+                        command:[
+                           "/sam/sam-controller",
+                           "---debug=true",
+                           "--dockerregistry="+configs.registry,
+                           "--funneladdr="+configs.funnelVIP,
+                           "--v=2",
+                           "--logtostderr=true"
                         ]
                     }
                 ]

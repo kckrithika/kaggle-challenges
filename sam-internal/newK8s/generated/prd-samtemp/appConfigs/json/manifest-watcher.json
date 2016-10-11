@@ -24,20 +24,16 @@
          "spec": {
             "containers": [
                {
-                  "env": [
-                     {
-                        "name": "FUNNELVIP",
-                        "value": "mandm-funnel-sfz.data.sfdc.net"
-                     }
+                  "command": [
+                     "/sam/manifest-watcher",
+                     "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
+                     "--v=10",
+                     "--logtostderr=true",
+                     "--disableCertsCheck=true",
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/manifest-watcher:thargrove-20160914_133157-a8d65",
-                  "name": "manifest-watcher",
-                  "volumeMounts": [
-                     {
-                        "mountPath": "/manifests",
-                        "name": "sfdc-volume"
-                     }
-                  ]
+                  "name": "manifest-watcher"
                }
             ],
             "hostNetwork": true,
