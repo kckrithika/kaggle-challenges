@@ -29,7 +29,7 @@
                      "-recipient=sam@salesforce.com",
                      "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160928_013647-b8154bb",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/watchdog:prabh.singh-20160920_234757-7f22ddd",
                   "name": "watchdog",
                   "resources": {
                      "limits": {

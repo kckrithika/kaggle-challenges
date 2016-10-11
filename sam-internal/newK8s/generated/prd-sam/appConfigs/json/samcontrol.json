@@ -26,7 +26,7 @@
                {
                   "command": [
                      "/sam/sam-controller",
-                     "---debug=true",
+                     "--debug=true",
                      "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
                      "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
                      "--v=2",

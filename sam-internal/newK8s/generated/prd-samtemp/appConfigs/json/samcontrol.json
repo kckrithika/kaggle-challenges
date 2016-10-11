@@ -26,13 +26,13 @@
                {
                   "command": [
                      "/sam/sam-controller",
-                     "---debug=true",
+                     "--debug=true",
                      "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
                      "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
                      "--v=2",
                      "--logtostderr=true"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:mayank.kumar-20160914_145440-cfc3f85a",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-controller:mayank.kumar-20161003_124700-51e474e",
                   "name": "sam-controller"
                }
             ],

@@ -13,7 +13,7 @@ local configs = import "config.jsonnet",
                         image: configs.controller,
                         command:[
                            "/sam/sam-controller",
-                           "---debug=true",
+                           "--debug=true",
                            "--dockerregistry="+configs.registry,
                            "--funneladdr="+configs.funnelVIP,
                            "--v=2",
