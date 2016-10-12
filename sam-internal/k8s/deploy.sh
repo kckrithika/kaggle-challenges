@@ -23,7 +23,7 @@ esac
 echo Context is ${KCONTEXT}, using kubectl ${KUBECTLBIN}
 
 #Delete all the daemon sets in NAMESPACE
-for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get ds |cut -f 1 -d " " | tail -n +2`; do
+for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get ds -o 'jsonpath={.items[*].metadata.name}'`; do
   ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds $aDaemonSet
 done
 
