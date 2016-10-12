@@ -18,7 +18,7 @@
          "spec": {
             "containers": [
                {
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/slam-agent:v2.1",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161011_142245-0b6273b",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/health",
