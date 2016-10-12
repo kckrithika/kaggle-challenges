@@ -2,3 +2,4 @@ apps:
  SamTestApp:
   - prd/prd-sam
   - prd/prd-samtemp
+  - prd/prd-samdev
