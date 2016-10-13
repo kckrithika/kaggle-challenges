@@ -30,7 +30,7 @@ generateConfigs() {
 
 rm -rf generated/
 
-declare -a estates=("prd-sam" "prd-samtemp")
+declare -a estates=("prd-sam" "prd-samtemp" "prd-samdev")
 
 for anEstate in "${estates[@]}"
 do

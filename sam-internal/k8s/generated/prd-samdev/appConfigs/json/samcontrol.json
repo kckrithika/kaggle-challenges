@@ -27,12 +27,12 @@
                   "command": [
                      "/sam/sam-controller",
                      "--debug=true",
-                     "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
+                     "--dockerregistry=shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000",
                      "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
                      "--v=2",
                      "--logtostderr=true"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161011_142245-0b6273b",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:mayank.kumar-20161012_171032-4d812c3",
                   "name": "sam-controller"
                }
             ],
