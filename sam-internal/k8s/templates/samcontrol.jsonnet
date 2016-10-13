@@ -16,8 +16,9 @@ local configs = import "config.jsonnet",
                            "--debug=true",
                            "--dockerregistry="+configs.registry,
                            "--funneladdr="+configs.funnelVIP,
-                           "--v=2",
-                           "--logtostderr=true"
+                           "--v=3",
+                           "--logtostderr=true",
+                           "--k8sapiserver=http://localhost:8000",
                         ]
                     }
                 ]

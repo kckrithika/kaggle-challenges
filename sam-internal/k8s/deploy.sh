@@ -19,15 +19,15 @@ case "$1" in
         KCONTEXT=prd-samdev
         ;;
     *)
-        echo "Invalid estate $1, use 'prd-sam' or 'prd-samtemp'.  exiting ..."
+        echo "Invalid estate $1, use 'prd-sam', 'prd-samtemp' or 'prd-samdev'.  exiting ..."
         exit 1
 esac
 
 echo Context is ${KCONTEXT}, using kubectl ${KUBECTLBIN}
 
 #Delete all the daemon sets in NAMESPACE
-for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get ds -o 'jsonpath={.items[*].metadata.name}'`; do
-  ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds $aDaemonSet
+for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get ds -o jsonpath='{$.items[*].metadata.name}'`; do
+  ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds $aDaemonSet --cascade=false
 done
 
 #Update all deployments and daemon sets
