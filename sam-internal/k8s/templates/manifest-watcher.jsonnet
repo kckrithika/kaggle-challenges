@@ -14,7 +14,7 @@ local configs = import "config.jsonnet",
                         command: [
                            "/sam/manifest-watcher",
                            "--funneladdr="+configs.funnelVIP,
-                           "--v=10",
+                           "--v=2",
                            "--logtostderr=true",
                            "--disableCertsCheck=true",
                            #TODO:Move this to config.jsonnet
