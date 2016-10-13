@@ -15,6 +15,9 @@ case "$1" in
     prd-samtemp)
         KCONTEXT=prd-samtemp
         ;;
+    prd-samdev)
+        KCONTEXT=prd-samdev
+        ;;
     *)
         echo "Invalid estate $1, use 'prd-sam' or 'prd-samtemp'.  exiting ..."
         exit 1

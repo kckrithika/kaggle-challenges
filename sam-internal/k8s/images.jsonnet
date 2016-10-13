@@ -4,32 +4,39 @@ local estate = std.extVar("estate"),
 
     tags: {
         controller: {
-            "prd-sam": "sam-controller:thargrove-20160929_113217-f43c024",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
             },
         "debug_portal": {
-            "prd-sam": "debug-portal:thargrove-20160811_134228-c36dfe9",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
             },
         "watchdog_common": {
-            "prd-sam": "watchdog:prabh.singh-20160928_013647-b8154bb",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
         },
         "watchdog_master": {
-            "prd-sam": "watchdog:prabh.singh-20160928_013647-b8154bb",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
         },
         "watchdog_etcd": {
-            "prd-sam": "watchdog:prabh.singh-20160928_013647-b8154bb",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
         },
         "manifest_watcher": {
-            "prd-sam": "manifest-watcher:thargrove-20160929_131936-85c8846",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
         },
         "slam_agent": {
-            "prd-sam": "slam-agent:v2.1",
-            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b"
+            "prd-sam": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
+            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
         }
     },
 

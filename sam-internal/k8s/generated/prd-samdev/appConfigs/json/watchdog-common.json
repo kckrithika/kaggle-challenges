@@ -3,15 +3,15 @@
    "kind": "DaemonSet",
    "metadata": {
       "labels": {
-         "name": "watchdog-etcd"
+         "name": "watchdog-common"
       },
-      "name": "watchdog-etcd"
+      "name": "watchdog-common"
    },
    "spec": {
       "template": {
          "metadata": {
             "labels": {
-               "app": "watchdog-etcd",
+               "app": "watchdog-common",
                "apptype": "monitoring"
             }
          },
@@ -20,7 +20,7 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=ETCD",
+                     "-role=COMMON",
                      "-watchdogFrequency=5s",
                      "-timeout=2s",
                      "-rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
@@ -29,7 +29,7 @@
                      "-recipient=sam@salesforce.com",
                      "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161011_142245-0b6273b",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:mayank.kumar-20161012_171032-4d812c3",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
@@ -45,7 +45,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "ETCD": "true"
+               "COMMON": "true"
             }
          }
       }
