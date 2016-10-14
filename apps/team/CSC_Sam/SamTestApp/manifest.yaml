@@ -21,7 +21,8 @@ system:
 
   loadbalancers:
   - lbname: lb124
+    nodeExposed: true
     function: samtestfn
     ports:
-      - port: 8000
+      - port: 8888
         targetport: 8000
