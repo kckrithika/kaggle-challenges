@@ -32,7 +32,7 @@
                      "--v=2",
                      "--logtostderr=true"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161011_142245-0b6273b",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161014_151902-f114d06",
                   "name": "sam-controller"
                }
             ],
