@@ -31,11 +31,7 @@ for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} 
 done
 
 #Delete all the pods for daemon sets
-for aPods in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get pods -lapp=slam-agent -o jsonpath='{$.items[*].metadata.name}'`; do
-  ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete pod $aPods
-done
-
-for aPods in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get pods -lapp=debug-portal -o jsonpath='{$.items[*].metadata.name}'`; do
+for aPods in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get pods -l 'app in (slam-agent,debug-portal)' -o jsonpath='{$.items[*].metadata.name}'`; do
   ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete pod $aPods
 done
 
