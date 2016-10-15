@@ -41,7 +41,8 @@ local configs = import "config.jsonnet",
             metadata: {
                 labels: {
                     app: "watchdog-common", 
-                    apptype: "monitoring"
+                    apptype: "monitoring",
+                    daemonset: "true",
                 }
             }
         }
