@@ -52,7 +52,8 @@ local configs = import "config.jsonnet",
             metadata: {
                 labels: {
                     app: "debug-portal", 
-                    apptype: "debugging"
+                    apptype: "debugging",
+                    daemonset: "true",
                 }
             }
         }

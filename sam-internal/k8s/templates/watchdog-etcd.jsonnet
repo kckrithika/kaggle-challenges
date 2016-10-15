@@ -40,7 +40,8 @@ local configs = import "config.jsonnet",
             metadata: {
                 labels: {
                     app: "watchdog-etcd", 
-                    apptype: "monitoring"
+                    apptype: "monitoring",
+                    daemonset: "true",
                 }
             }
         }

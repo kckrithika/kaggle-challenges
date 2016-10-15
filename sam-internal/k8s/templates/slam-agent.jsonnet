@@ -55,7 +55,8 @@ local configs = import "config.jsonnet",
             metadata: {
                 labels: {
                     app: "slam-agent", 
-                    apptype: "logagent"
+                    apptype: "logagent",
+                    daemonset: "true",
                 }
             }
         }
