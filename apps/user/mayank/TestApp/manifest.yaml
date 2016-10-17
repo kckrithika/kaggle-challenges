@@ -18,5 +18,5 @@ system:
   - lbname: samhellolb
     function: mayank-fn
     ports:
-      - port: 9092
+      - port: 9091
         targetport: 9090
