@@ -15,14 +15,15 @@ fi
 
 #Generates YAML files for a given cluster.
 generateConfigs() {
-  currentEstate=$1
+  currentKingdom=$1
+  currentEstate=$2
 
-  mkdir -p generated/$currentEstate/appConfigs/json
+  mkdir -p generated/$currentKingdom/$currentEstate/appConfigs/json
 
   for filename in templates/*.jsonnet; do
       appName=$(basename "$filename" .jsonnet)
       echo "Generating config file for $appName in estate $currentEstate"
-      ./jsonnet/jsonnet -V estate=$currentEstate templates/$appName.jsonnet -o generated/$currentEstate/appConfigs/json/$appName.json --jpath .
+      ./jsonnet/jsonnet -V estate=$currentEstate templates/$appName.jsonnet -o generated/$currentKingdom/$currentEstate/appConfigs/json/$appName.json --jpath .
 
   done
 }
@@ -30,11 +31,14 @@ generateConfigs() {
 
 rm -rf generated/
 
-declare -a estates=("prd-sam" "prd-samtemp" "prd-samdev")
+declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samtemp" "prd/prd-samdev" "dfw/dfw-sam")
 
-for anEstate in "${estates[@]}"
+for kingdomEstate in "${kingdomEstates[@]}"
 do
-  generateConfigs $anEstate
+      IFS='/' read -ra arr <<< "$kingdomEstate"
+      kingdom=${arr[0]}
+      estate=${arr[1]}
+      generateConfigs $kingdom $estate
 done
 
 # TODO: Add warning when running against out-of-sync git repo
