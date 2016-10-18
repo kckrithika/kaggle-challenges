@@ -8,6 +8,7 @@ local configs = import "config.jsonnet",
                 containers: [
                     {
                         image: configs.slam_agent,
+                        command: ["/sam/slam-agent"],
                         volumeMounts: [
                             {
                                 mountPath: "/var/run/", 
