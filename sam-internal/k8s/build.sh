@@ -31,18 +31,14 @@ generateConfigs() {
 
 rm -rf generated/
 
-declare -a estates=("prd-sam" "prd-samtemp" "prd-samdev" "dfw-sam")
-declare -a kingdoms=("prd" "dfw")
+declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samtemp" "prd/prd-samdev" "dfw/dfw-sam")
 
-for estate in "${estates[@]}"
+for kingdomEstate in "${kingdomEstates[@]}"
 do
-  for kingdom in "${kingdoms[@]}"
-  do
-      if [[ $estate == $kingdom* ]]
-      then
-          generateConfigs $kingdom $estate
-      fi
-  done
+      IFS='/' read -ra arr <<< "$kingdomEstate"
+      kingdom=${arr[0]}
+      estate=${arr[1]}
+      generateConfigs $kingdom $estate
 done
 
 # TODO: Add warning when running against out-of-sync git repo
