@@ -12,7 +12,8 @@
          "metadata": {
             "labels": {
                "app": "slam-agent",
-               "apptype": "logagent"
+               "apptype": "logagent",
+               "daemonset": "true"
             }
          },
          "spec": {

@@ -12,7 +12,8 @@
          "metadata": {
             "labels": {
                "app": "watchdog-master",
-               "apptype": "monitoring"
+               "apptype": "monitoring",
+               "daemonset": "true"
             }
          },
          "spec": {
