@@ -7,36 +7,45 @@ local estate = std.extVar("estate"),
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:pporwal-20161014_151902-f114d06",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
             },
         "debug_portal": {
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
             },
         "watchdog_common": {
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
         },
         "watchdog_master": {
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
+
         },
         "watchdog_etcd": {
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
+
         },
         "manifest_watcher": {
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
         },
         "slam_agent": {
             "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
             "prd-samtemp": "hypersam:xiao.zhou-20161011_142245-0b6273b",
             "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "dfw-sam": "hypersam:hypersamTag",
         }
     },
 
