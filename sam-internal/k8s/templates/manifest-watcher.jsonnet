@@ -17,8 +17,7 @@ local configs = import "config.jsonnet",
                            "--v=2",
                            "--logtostderr=true",
                            "--disableCertsCheck=true",
-                           #TODO:Move this to config.jsonnet
-                           "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                           "--tnrpArchiveEndpoint="+configs.tnrpArchiveEndpoint,
                          ],
                     } 
                 ], 

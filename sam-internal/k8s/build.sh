@@ -23,7 +23,7 @@ generateConfigs() {
   for filename in templates/*.jsonnet; do
       appName=$(basename "$filename" .jsonnet)
       echo "Generating config file for $appName in estate $currentEstate"
-      ./jsonnet/jsonnet -V estate=$currentEstate templates/$appName.jsonnet -o generated/$currentKingdom/$currentEstate/appConfigs/json/$appName.json --jpath .
+      ./jsonnet/jsonnet -V kingdom=$currentKingdom -V estate=$currentEstate templates/$appName.jsonnet -o generated/$currentKingdom/$currentEstate/appConfigs/json/$appName.json --jpath .
 
   done
 }
