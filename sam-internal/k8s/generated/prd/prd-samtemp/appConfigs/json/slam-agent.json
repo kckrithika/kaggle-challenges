@@ -19,6 +19,9 @@
          "spec": {
             "containers": [
                {
+                  "command": [
+                     "/sam/slam-agent"
+                  ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161011_142245-0b6273b",
                   "livenessProbe": {
                      "httpGet": {
