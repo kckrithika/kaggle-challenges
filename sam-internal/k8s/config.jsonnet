@@ -17,7 +17,12 @@ local images = import "images.jsonnet",
         rcImtEndpoint: {
             "prd": "http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
             "dfw": "http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
-        }
+        },
+
+        smtpServer: {
+            "prd": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+            "dfw": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+        },
     },
 
     perCluster: {
@@ -32,6 +37,7 @@ local images = import "images.jsonnet",
     funnelVIP: self.perKingdom.funnelVIP[kingdom],
     tnrpArchiveEndpoint: self.perKingdom.tnrpArchiveEndpoint[kingdom],
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
+    smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
 
     controller: images.controller,
