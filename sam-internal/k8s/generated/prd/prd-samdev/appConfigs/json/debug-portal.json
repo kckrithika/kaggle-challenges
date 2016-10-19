@@ -19,6 +19,9 @@
          "spec": {
             "containers": [
                {
+                  "command": [
+                     "/sam/debug-portal"
+                  ],
                   "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:mayank.kumar-20161012_171032-4d812c3",
                   "livenessProbe": {
                      "httpGet": {

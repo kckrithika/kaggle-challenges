@@ -19,6 +19,9 @@
          "spec": {
             "containers": [
                {
+                  "command": [
+                     "/sam/debug-portal"
+                  ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161014_115059-562cfb7",
                   "livenessProbe": {
                      "httpGet": {

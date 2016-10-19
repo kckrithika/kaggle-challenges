@@ -16,6 +16,7 @@ local configs = import "config.jsonnet",
                         }, 
                         name: "debug-portal", 
                         image: configs.debug_portal,
+                        command: ["/sam/debug-portal"],
                         volumeMounts: [
                             {
                                 mountPath: "/var/run/", 
