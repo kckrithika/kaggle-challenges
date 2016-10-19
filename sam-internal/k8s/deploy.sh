@@ -7,6 +7,7 @@
 
 KUBECTLBIN=${KUBECTLBIN:-kubectl}
 NAMESPACE=sam-system
+KINGDOM=prd
 
 case "$1" in
     prd-sam)
@@ -42,6 +43,6 @@ for aPods in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get p
 done
 
 #Update all Deployments and DaemonSets
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f generated/$KCONTEXT/appConfigs/json
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f generated/$KINGDOM/$KCONTEXT/appConfigs/json
 
 # TODO: Add some basic validations
