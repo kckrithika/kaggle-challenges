@@ -5,9 +5,9 @@ local dfwHypersamTag = "hypersam:e3155e8",
 
     tags: {
         controller: {
-            "prd-sam": "hypersam:xiao.zhou-20161014_115059-562cfb7",
+            "prd-sam": "hypersam:pporwal-20161014_151902-f114d06",
             "prd-samtemp": "hypersam:pporwal-20161014_151902-f114d06",
-            "prd-samdev": "hypersam:mayank.kumar-20161012_171032-4d812c3",
+            "prd-samdev": "hypersam:pporwal-20161014_151902-f114d06",
             "dfw-sam": dfwHypersamTag,
             },
         "debug_portal": {
