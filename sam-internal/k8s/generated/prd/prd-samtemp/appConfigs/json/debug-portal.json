@@ -22,7 +22,7 @@
                   "command": [
                      "/sam/debug-portal"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161011_142245-0b6273b",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:prahlad.joshi-20161019_160053-3942cd2",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
