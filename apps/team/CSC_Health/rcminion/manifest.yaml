@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: report-collector
-      image: shared0-samminionreportcollector1-1-prd.eng.sfdc.net:5000/report-collector
+      image: report-collector
       ports:
       - name: provider
         containerPort: 8080
@@ -22,7 +22,7 @@ system:
       logs:
       - directory: /var/log/report-collector
     - name: redis
-      image: shared0-samminionreportcollector1-1-prd.eng.sfdc.net:5000/rc-redis:3.0
+      image: rc-redis:3.0
       ports:
       - containerPort: 6379
       resources:
@@ -34,6 +34,7 @@ system:
   loadbalancers:
   - lbname: rcminionlb
     function: rc-minion
+    modeExposed: true
     ports:
       - port: 8080
         targetport: 8080
