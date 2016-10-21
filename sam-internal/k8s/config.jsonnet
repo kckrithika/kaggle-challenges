@@ -11,7 +11,7 @@ local images = import "images.jsonnet",
 
         tnrpArchiveEndpoint: {
             "prd": "https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-            "dfw": "https://ops0-piperepo1-1-dfw.eng.sfdc.net/tnrp/content_repo/0/archive",
+            "dfw": "https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
         },
 
         rcImtEndpoint: {
