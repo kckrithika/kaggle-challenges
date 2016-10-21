@@ -5,6 +5,3 @@ apps:
     - prd/prd-samdev
   reportcollector-perf:
     - prd/prd-sam
-  rcminion:
-    - prd/prd-sam_report_collector 
-    - prd/prd-samdev
