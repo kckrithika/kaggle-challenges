@@ -14,7 +14,7 @@ system:
         - --redis-monitor.redis-listen-ports=1300 
         - --server.port=1301 
         - --management.port=1302
-        - --redis-monitor.cache-cluster-name=sp-c1
+        - --cluster.name=sp-c1
       # expose redis outside the container
       ports:
       - containerPort: 1300
@@ -32,7 +32,7 @@ system:
         - --redis-monitor.redis-listen-ports=1310 
         - --server.port=1311 
         - --management.port=1312
-        - --redis-monitor.cache-cluster-name=sp-pc1
+        - --cluster.name=sp-pc1
       # expose redis outside the container
       ports:
       - containerPort: 1310
