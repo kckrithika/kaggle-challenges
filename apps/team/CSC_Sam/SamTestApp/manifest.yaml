@@ -3,15 +3,15 @@ apiVersion: v1
 system:
   functions:
   - name: samtestfn
-    count: 1
+    count: 2
     containers:
     - name: samtestapp
-      image: sam-tools:thargrove-20160915_141441-fccc5c9
+      image: hypersam:e3155e8
       command:
         - /sam/sam-test-app
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE00004"
+          value: "SOMEVALUE00005"
       ports:
       - containerPort: 8000
       livenessProbe:
@@ -21,7 +21,8 @@ system:
 
   loadbalancers:
   - lbname: lb124
+    nodeExposed: true
     function: samtestfn
     ports:
-      - port: 8000
+      - port: 8888
         targetport: 8000

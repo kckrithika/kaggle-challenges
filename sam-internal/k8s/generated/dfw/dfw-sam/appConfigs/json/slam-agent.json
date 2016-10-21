@@ -1,0 +1,72 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "slam-agent"
+      },
+      "name": "slam-agent"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "app": "slam-agent",
+               "apptype": "logagent",
+               "daemonset": "true"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/slam-agent"
+                  ],
+                  "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:e3155e8",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/health",
+                        "port": 30108
+                     },
+                     "initialDelaySeconds": 15,
+                     "timeoutSeconds": 1
+                  },
+                  "name": "slam-agent",
+                  "ports": [
+                     {
+                        "containerPort": 30108,
+                        "hostPort": 30108,
+                        "name": "slam-agent"
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/var/run/",
+                        "name": "varrun"
+                     },
+                     {
+                        "mountPath": "/var/log/",
+                        "name": "varlog",
+                        "readOnly": true
+                     }
+                  ]
+               }
+            ],
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/run/"
+                  },
+                  "name": "varrun"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/log"
+                  },
+                  "name": "varlog"
+               }
+            ]
+         }
+      }
+   }
+}

@@ -12,8 +12,10 @@ system:
       - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /available
-          port: 8080
+          path: /manage/health
+          port: 15372
+#          path: /available
+#          port: 8080
  
   loadbalancers:
   - lbname: scone-basic-rest-lb

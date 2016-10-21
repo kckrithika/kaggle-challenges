@@ -1,0 +1,44 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "samcontrol"
+      },
+      "name": "samcontrol"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "samcontrol"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "samcontrol"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/sam-controller",
+                     "--debug=true",
+                     "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
+                     "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
+                     "--v=3",
+                     "--logtostderr=true",
+                     "--k8sapiserver=http://localhost:8000"
+                  ],
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161014_151902-f114d06",
+                  "name": "sam-controller"
+               }
+            ],
+            "hostNetwork": true
+         }
+      }
+   }
+}

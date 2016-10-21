@@ -1,12 +1,13 @@
-#/bin/bash -xe
+#!/bin/bash -xe
 
-# Temporary script to redeploy all our daemon sets and deployments to prd-sam and prd-samemp
+# Temporary script to redeploy all our DaemonSets and deployments to prd-sam and prd-samtemp
 # Either put kubectl in your path, or set KUBECTLBIN to point to it.  For example, you can add this to .bash_profile:
 #
 # export KUBECTLBIN='/Users/thargrove/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
 
 KUBECTLBIN=${KUBECTLBIN:-kubectl}
 NAMESPACE=sam-system
+KINGDOM=prd
 
 case "$1" in
     prd-sam)
@@ -15,35 +16,33 @@ case "$1" in
     prd-samtemp)
         KCONTEXT=prd-samtemp
         ;;
+    prd-samdev)
+        KCONTEXT=prd-samdev
+        ;;
     *)
-        echo "Invalid estate $1, use 'prd-sam' or 'prd-samtemp'.  exiting ..."
+        echo "Invalid estate $1, use 'prd-sam', 'prd-samtemp' or 'prd-samdev'.  exiting ..."
         exit 1
 esac
 
-# TODO: Add warning when running against out-of-sync git repo
-
 echo Context is ${KCONTEXT}, using kubectl ${KUBECTLBIN}
 
-echo Updating debug-portal
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds debug-portal
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f debug-portal.yaml
+# NOTE: 
+# Issue: https://github.com/kubernetes/kubernetes/issues/33245
+# DaemonSet deletion gets stuck sometimes. The reason is not clear but the above issue gives more details.
+# To avoid getting stuck, we first delete the DaemonSet with --cascade=false, which leaves the pod around,
+# and only deletes the DaemonSets. Then we go, and cleanup all DaemonSet pods. The DaemonSet creation will
+# bring up new pods with new configuration as desired.
+# Delete all the DaemonSets in NAMESPACE
+for aDaemonSet in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get ds -o jsonpath='{$.items[*].metadata.name}'`; do
+  ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds $aDaemonSet --cascade=false
+done
 
-echo Updating slam-agent
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds slam-agent
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f slam-agent.yaml
+#Delete all the Pods for DaemonSets
+for aPods in `${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} get pods -ldaemonset=true -o jsonpath='{$.items[*].metadata.name}'`; do
+  ${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete pod $aPods
+done
 
-echo Updating watchdog
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-master
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-master.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-common
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-common.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} delete ds watchdog-etcd
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} create -f watchdog-etcd.yaml
-
-echo Updating manifest-watcher
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f manifest-watcher.yaml
-
-echo Updating samcontrol.yaml
-${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f samcontrol.yaml
+#Update all Deployments and DaemonSets
+${KUBECTLBIN} --context=${KCONTEXT} --namespace=${NAMESPACE} apply -f generated/$KINGDOM/$KCONTEXT/appConfigs/json
 
 # TODO: Add some basic validations

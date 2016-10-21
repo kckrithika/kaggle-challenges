@@ -26,6 +26,7 @@ $ git push
 ```
 
 * Make your changes
+* Run build.sh:
 * Run deploy.sh:
 
 ```sh
