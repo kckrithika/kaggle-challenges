@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: samtestapp
-      image: sam-tools:thargrove-20160915_141441-fccc5c9
+      image: hypersam:e3155e8
       command:
         - /sam/sam-test-app
       env:
