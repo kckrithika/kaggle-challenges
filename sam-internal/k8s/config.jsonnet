@@ -21,7 +21,7 @@ local images = import "images.jsonnet",
 
         smtpServer: {
             "prd": "rd1-mta1-4-sfm.ops.sfdc.net:25",
-            "dfw": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+            "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
         },
     },
 
