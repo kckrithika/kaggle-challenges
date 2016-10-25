@@ -8,13 +8,14 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas:jayant.kumar-20162110
+      image: caas:jayant.kumar-20162510
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1300 
         - --server.port=1301 
         - --management.port=1302
         - --cluster.name=sp-c1
+        - --logging.level.minimum=ALL
       # expose redis outside the container
       ports:
       - containerPort: 1300
@@ -26,13 +27,14 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: caas:jayant.kumar-20162110
+      image: caas:jayant.kumar-20162510
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1310 
         - --server.port=1311 
         - --management.port=1312
         - --cluster.name=sp-pc1
+        - --logging.level.minimum=ALL
       # expose redis outside the container
       ports:
       - containerPort: 1310
