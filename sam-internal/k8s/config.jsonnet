@@ -42,10 +42,8 @@ local images = import "images.jsonnet",
     estate: estate,
 
     controller: images.controller,
-    debug_portal: images.debug_portal,
     watchdog_common: images.watchdog_common,
     watchdog_master: images.watchdog_master,
     watchdog_etcd: images.watchdog_etcd,
     manifest_watcher: images.manifest_watcher,
-    slam_agent: images.slam_agent
 }
