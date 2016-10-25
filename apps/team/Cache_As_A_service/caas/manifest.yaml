@@ -16,6 +16,8 @@ system:
         - --management.port=1302
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
+        - --settings.path=blitz.blitz02.sfm.-.caas
+        - --metrics.startPublisher=true
       # expose redis outside the container
       ports:
       - containerPort: 1300
@@ -35,6 +37,8 @@ system:
         - --management.port=1312
         - --cluster.name=sp-pc1
         - --logging.level.minimum=ALL
+        - --settings.path=blitz.blitz02.sfm.-.caas
+        - --metrics.startPublisher=true
       # expose redis outside the container
       ports:
       - containerPort: 1310
