@@ -28,7 +28,10 @@ local configs = import "config.jsonnet",
                         }, 
                         name: "sfdc-volume"
                     }
-                ]
+                ],
+                nodeSelector: {
+                    pool: configs.estate
+                }
             }, 
             metadata: {
                 labels: {
