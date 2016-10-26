@@ -46,8 +46,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "MASTER": "true",
-               "pool": "dfw-sam"
+               "MASTER": "true"
             }
          }
       }

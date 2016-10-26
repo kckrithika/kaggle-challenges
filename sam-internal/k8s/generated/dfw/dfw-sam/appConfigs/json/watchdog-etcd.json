@@ -46,8 +46,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "ETCD": "true",
-               "pool": "dfw-sam"
+               "ETCD": "true"
             }
          }
       }

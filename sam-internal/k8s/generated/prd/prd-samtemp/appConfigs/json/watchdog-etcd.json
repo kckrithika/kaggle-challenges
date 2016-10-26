@@ -46,8 +46,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "ETCD": "true",
-               "pool": "prd-samtemp"
+               "ETCD": "true"
             }
          }
       }

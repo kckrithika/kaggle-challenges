@@ -46,8 +46,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "COMMON": "true",
-               "pool": "prd-samtemp"
+               "COMMON": "true"
             }
          }
       }
