@@ -34,7 +34,8 @@ local configs = import "config.jsonnet",
                     }
                 ], 
                 nodeSelector: {
-                    COMMON: "true"
+                    COMMON: "true",
+                    pool: configs.estate
                 }
             }, 
             metadata: {

@@ -48,7 +48,10 @@ local configs = import "config.jsonnet",
                         }, 
                         name: "varrun"
                     }
-                ]
+                ],
+                nodeSelector: {
+                    pool: configs.estate
+                }
             }, 
             metadata: {
                 labels: {

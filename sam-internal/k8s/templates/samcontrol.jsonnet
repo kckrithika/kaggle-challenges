@@ -21,7 +21,10 @@ local configs = import "config.jsonnet",
                            "--k8sapiserver=http://localhost:8000",
                         ]
                     }
-                ]
+                ],
+                nodeSelector: {
+                    pool: configs.estate
+                }
             }, 
             metadata: {
                 labels: {

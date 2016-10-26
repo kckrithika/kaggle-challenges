@@ -37,7 +37,10 @@
                   "name": "sam-controller"
                }
             ],
-            "hostNetwork": true
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-samdev"
+            }
          }
       }
    }

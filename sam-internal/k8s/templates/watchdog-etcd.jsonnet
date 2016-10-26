@@ -34,7 +34,8 @@ local configs = import "config.jsonnet",
                     }
                 ], 
                 nodeSelector: {
-                    ETCD: "true"
+                    ETCD: "true",
+                    pool: configs.estate
                 }
             }, 
             metadata: {

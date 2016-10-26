@@ -39,6 +39,7 @@ local images = import "images.jsonnet",
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
+    estate: estate,
 
     controller: images.controller,
     debug_portal: images.debug_portal,

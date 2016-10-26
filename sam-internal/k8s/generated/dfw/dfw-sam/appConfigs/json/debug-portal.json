@@ -55,6 +55,9 @@
                }
             ],
             "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "dfw-sam"
+            },
             "volumes": [
                {
                   "hostPath": {
