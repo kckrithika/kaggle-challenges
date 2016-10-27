@@ -11,12 +11,10 @@
         "prd-sam": {
             default: "hypersam:xiao.zhou-20161014_115059-562cfb7",
             controller: "hypersam:pporwal-20161014_151902-f114d06",
-            debug_portal: "hypersam:prahlad.joshi-20161019_160053-3942cd2",
         },
         "prd-samtemp": {
             default: "hypersam:xiao.zhou-20161011_142245-0b6273b",
             controller: "hypersam:pporwal-20161014_151902-f114d06",
-            debug_portal: "hypersam:prahlad.joshi-20161019_160053-3942cd2",
         },
         "prd-samdev": {
             default: "hypersam:mayank.kumar-20161012_171032-4d812c3",
@@ -41,6 +39,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: configs.registry + "/" + (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "debug_portal", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "slam_agent"]
+    [dockerimg]: configs.registry + "/" + (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher"]
 }
 
