@@ -38,7 +38,33 @@
          "group_id": "sam", 
          "type":"rpm",
          "repo_path":"sam"
-      }
+      },
+      {		
+          "repo_id": "testandrelease", 		
+          "artifact_id": "git",		
+          "nexus_url": "https://nexus.soma.salesforce.com/nexus", 		
+          "filename": "git-2.8.0-1.WANdisco.308.x86_64.rpm", 		
+          "version": "2.8.0-1.WANdisco.308.x86_64", 		
+          "scope":[  		
+ 		
+          ],		
+          "group_id": "git", 		
+          "type":"rpm",		
+          "repo_path":"git"		
+       },		
+       {		
+          "repo_id": "testandrelease", 		
+          "artifact_id": "perl-Git",		
+          "nexus_url": "https://nexus.soma.salesforce.com/nexus", 		
+          "filename": "perl-Git-2.8.0-1.WANdisco.308.noarch.rpm", 		
+          "version": "2.8.0-1.WANdisco.308.noarch", 		
+          "scope":[  		
+ 		
+          ],		
+          "group_id": "perl-Git", 		
+          "type":"rpm",		
+          "repo_path":"perl-Git"		
+       }
    ],
    "snapshot_id":""
 }
