@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: report-collector
+  - name: report-collectorha
     count: 3
     containers:
-    - name: report-collector
+    - name: report-collectorha
       image: report-collector
       ports:
       - name: provider
@@ -24,7 +24,7 @@ system:
       env:
       - name: RC_REDIS_HOST
         value: $(REDISLB_SERVICE_HOST)
-  - name: redis
+  - name: redisnoha
     count: 1
     containers:
     - name: redis
@@ -39,7 +39,7 @@ system:
 
   loadbalancers:
   - lbname: reportcollectorlb
-    function: report-collector
+    function: report-collectorha
     nodeExposed: true
     ports:
       - port: 8080
@@ -51,7 +51,7 @@ system:
       - port: 8444
         targetport: 8444
   - lbname: redislb
-    function: redis
+    function: redisnoha
     nodeExposed: true
     ports:
       - port: 6379

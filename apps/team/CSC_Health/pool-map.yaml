@@ -6,3 +6,5 @@ apps:
     - prd/prd-samdev
   reportcollector-perf:
     - prd/prd-sam
+  reportcollectorha:
+    - prd/prd-sam
