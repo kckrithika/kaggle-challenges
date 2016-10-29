@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: report-collectorha
-      image: report-collector:1.2.0-SNAPSHOT
+      image: report-collector:1.2.0-SNAPSHOT10292016T101200
       ports:
       - name: provider
         containerPort: 8080
