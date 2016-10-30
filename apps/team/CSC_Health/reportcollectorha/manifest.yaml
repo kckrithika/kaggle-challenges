@@ -22,7 +22,7 @@ system:
       logs:
       - directory: /var/log/report-collector
       env:
-      - name: REDIS_HOST
+      - name: ReportCollector_redis_host
         value: $(REDISLB_SERVICE_HOST)
   - name: redisnoha
     count: 1
