@@ -9,7 +9,7 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161101B
+      image: gater-test:dmachak-20161101D
 
       # expose gater outside the container
       ports:
