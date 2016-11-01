@@ -3,28 +3,13 @@ apiVersion: v1
 system:
   functions:
   - name: gater-test-cluster-1
-    count: 1
+    count: 2
     hostnetwork: true
     containers:
     - name: gater1
       # container image/version to run.
       # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161101A
-
-      # expose gater outside the container
-      ports:
-      - containerPort: 9522
-      - containerPort: 9523 
-      - containerPort: 8080
-      - containerPort: 15372
-  - name: gater-test-cluster-2
-    count: 1
-    hostnetwork: true
-    containers:
-    - name: gater1
-      # container image/version to run.
-      # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161101
+      image: gater-test:dmachak-20161101B
 
       # expose gater outside the container
       ports:
