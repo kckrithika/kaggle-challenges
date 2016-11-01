@@ -1,5 +1,16 @@
 #!/bin/bash -xe
 
+# Standard setup and printing of debug information.  Keep in sync with other scripts.
+set -e
+cd $(dirname ${0})
+cd ..
+echo "Current directory"
+pwd
+echo "Git information"
+git version
+git log -n 1
+# End of standard setup
+
 while getopts ":o:" opt; do
   case $opt in
     o)
@@ -15,10 +26,6 @@ while getopts ":o:" opt; do
       ;;
   esac
 done
-
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PARENT_DIR="$(dirname $SCRIPT_DIR)"
-cd $PARENT_DIR
 
 # Disable estates check for now until we work out the access token stuff
 /opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -root .
