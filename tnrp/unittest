@@ -1,5 +1,14 @@
 #!/bin/sh -xe
 
+# Standard setup and printing of debug information.  Keep in sync with other scripts.
+set -e
 cd $(dirname ${0})
+cd ..
+echo "Current directory"
+pwd
+echo "Git information"
+git version
+git log -n 1
+# End of standard setup
 
-echo "Running dummy unit tests in $PWD"
+echo "Placeholder"
