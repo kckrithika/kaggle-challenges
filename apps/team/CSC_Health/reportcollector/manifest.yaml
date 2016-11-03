@@ -38,7 +38,7 @@ system:
     ports:
     # LB was supposed to allow SSL on the backend, but its not currently
     # supported, so we will use non SSL but on these node ports (18443, 18444)
-    # since its the one exposed in estates for sam_minionreportcollector
+    # since its the one exposed in estates for sam_minionreportcollector.
     - port: 18080
       targetport: provider
     - port: 18081
