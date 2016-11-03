@@ -10,16 +10,12 @@ system:
       ports:
       - name: provider
         containerPort: 8080
-        hostPort: 18080
       - name: consumer
         containerPort: 8081
-        hostPort: 18081
       - name: provider-https
         containerPort: 8443
-        hostPort: 18443
       - name: consumer-https
         containerPort: 8444
-        hostPort: 18444
       resources:
         limits: { cpu: "10", memory: "20Gi" }
         requests: { cpu: "10", memory: "20Gi" }
@@ -46,10 +42,15 @@ system:
     function: report-collectorha
     nodeExposed: true
     ports:
+      # LB was supposed to allow SSL on the backend, but its not currently
+      # supported, so we will use non SSL but on these node ports (18443, 18444)
+      # since its the one exposed in estates for sam_minionreportcollector
       - port: 8080
         targetport: 8080
+        nodePort: 18443
       - port: 8081
         targetport: 8081
+        nodePort: 18444
       - port: 8443
         targetport: 8443
       - port: 8444

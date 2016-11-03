@@ -36,11 +36,16 @@ system:
     function: report-collector
     nodeExposed: true
     ports:
-      - port: 8080
-        targetport: 8080
-      - port: 8081
-        targetport: 8081
-      - port: 8443
-        targetport: 8443
-      - port: 8444
-        targetport: 8444
+    # LB was supposed to allow SSL on the backend, but its not currently
+    # supported, so we will use non SSL but on these node ports (18443, 18444)
+    # since its the one exposed in estates for sam_minionreportcollector
+    - port: 8080
+      targetport: 8080
+      nodePort: 18443
+    - port: 8081
+      targetport: 8081
+      nodePort: 18444
+    - port: 8443
+      targetport: 8443
+    - port: 8444
+      targetport: 8444
