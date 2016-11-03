@@ -18,7 +18,17 @@ system:
         httpGet:
           path: /
           port: 8000
-
+      volumeMounts:
+      - mountPath: /log
+        name: logVol
+      - mountPath: /tmp
+        name: ephermeralVol
+    volumes:
+    - name: logVol
+      hostPath:
+        path: /var/log
+    - name: ephermeralVol
+      emptyDir: {}
   loadbalancers:
   - lbname: lb124
     nodeExposed: true
