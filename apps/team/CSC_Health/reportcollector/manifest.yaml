@@ -17,8 +17,8 @@ system:
       - name: consumer-https
         containerPort: 8444
       resources:
-        limits: { cpu: "2", memory: "10Gi" }
-        requests: { cpu: "2", memory: "10Gi" }
+        limits: { cpu: "2", memory: "20Gi" }
+        requests: { cpu: "2", memory: "20Gi" }
       logs:
       - directory: /var/log/report-collector
     - name: redis
@@ -26,8 +26,8 @@ system:
       ports:
       - containerPort: 6379
       resources:
-        limits: { cpu: "1", memory: "10Gi" }
-        requests: { cpu: "1", memory: "10Gi" }
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
       logs:
       - directory: /var/log/redis
 
