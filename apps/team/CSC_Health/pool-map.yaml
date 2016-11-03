@@ -1,11 +1,7 @@
 apps:
   reportcollector:
     - dfw/dfw-sam_report_collector
-    - prd/prd-sam
-    - prd/prd-sam_report_collector
     - prd/prd-samdev
   reportcollector-perf:
-    - prd/prd-sam
   reportcollectorha:
-    - prd/prd-sam
-    - prd/prd-samdev
+    - prd/prd-sam_report_collector
