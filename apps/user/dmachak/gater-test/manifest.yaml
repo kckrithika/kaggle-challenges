@@ -18,7 +18,7 @@ system:
         - --aura.production=true
         - --server.port=9090
         - --external.config.dir=/opt/gater/build
-        - --synctask.enable=true
+        - --synctask.enabled=true
         - --synctask.artifact=gate-definitions-blitz
       volumeMounts:
       - mountPath: /log
