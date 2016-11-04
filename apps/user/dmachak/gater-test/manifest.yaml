@@ -25,4 +25,4 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log
+        path: /var/log/gater
