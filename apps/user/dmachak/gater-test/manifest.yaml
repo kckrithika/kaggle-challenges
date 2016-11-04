@@ -9,7 +9,11 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161103A
+      image: gater-test:dmachak-20161104A
+
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
 
       # expose gater outside the container
       ports:
@@ -17,3 +21,8 @@ system:
       - containerPort: 9523 
       - containerPort: 9090
       - containerPort: 15372
+
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/gater
