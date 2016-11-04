@@ -20,14 +20,14 @@ system:
           port: 8000
       volumeMounts:
       - mountPath: /log
-        name: logVol
+        name: logvol
       - mountPath: /tmp
-        name: ephermeralVol
+        name: ephermeralvol
     volumes:
-    - name: logVol
+    - name: logvol
       hostPath:
         path: /var/log
-    - name: ephermeralVol
+    - name: ephermeralvol
       emptyDir: {}
   loadbalancers:
   - lbname: lb124
