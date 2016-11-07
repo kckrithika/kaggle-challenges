@@ -32,7 +32,7 @@
                      "--disableCertsCheck=true",
                      "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:e3155e8",
+                  "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:ce3affd",
                   "name": "manifest-watcher"
                }
             ],
