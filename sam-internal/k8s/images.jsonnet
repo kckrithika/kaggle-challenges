@@ -18,7 +18,7 @@
             default: "hypersam:pporwal-20161103_134849-ce3affd",
         },
         "dfw-sam": {
-            default: "hypersam:e3155e8",
+            default: "hypersam:ce3affd",
         },
     },
 
