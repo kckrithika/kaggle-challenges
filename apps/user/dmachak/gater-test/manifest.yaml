@@ -9,7 +9,7 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161108A
+      image: gater-test:dmachak-20161108B
       args:
         - start
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
