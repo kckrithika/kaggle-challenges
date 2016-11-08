@@ -23,7 +23,17 @@ system:
       - directory: /var/log/report-collector
       env:
       - name: ReportCollector_redis_host
-        value: $(REDISLB_SERVICE_HOST)
+        value: $(REDISNOHALB_SERVICE_HOST)
+      - name: ReportCollector_ajna_publishEnabled
+        value: true
+      - name: ReportCollector_ajna_funnelHost
+        value: $(SFDC_METRICS_SERVICE_HOST)
+      - name: ReportCollector_ajna_funnelPort
+        value: $(SFDC_METRICS_SERVICE_PORT)
+      - name: ReportCollector_ajna_datacenter
+        value: $(KINGDOM)
+      - name: ReportCollector_ajna_device
+        value: $(FUNCTION_INSTANCE_NAME)
   - name: redisnoha
     count: 1
     containers:
