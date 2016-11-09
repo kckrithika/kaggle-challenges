@@ -9,7 +9,7 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161108B
+      image: gater-test:dmachak-20161109A
       args:
         - start
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
@@ -17,7 +17,6 @@ system:
         - --java.io.tmpdir=/tmp
         - --aura.production=true
         - --server.port=9090
-        - --external.config.dir=/opt/gater/build
         - --synctask.enabled=true
         - --synctask.artifact=gate-definitions-blitz
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
