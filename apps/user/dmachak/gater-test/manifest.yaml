@@ -19,6 +19,7 @@ system:
         - --server.port=9090
         - --synctask.enabled=true
         - --synctask.artifact=gate-definitions-blitz
+        - --prat.deploy=true
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumns section.
       volumeMounts:
