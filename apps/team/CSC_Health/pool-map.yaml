@@ -1,10 +1,7 @@
 apps:
   reportcollector:
-    - prd/prd-sam
-    - prd/prd-sam_report_collector
-    - prd/prd-samdev
   reportcollector-perf:
-    - prd/prd-sam
-  rcminion:
-    - prd/prd-sam_report_collector 
+  reportcollectorha:
+    - prd/prd-sam_report_collector
+    - dfw/dfw-sam_report_collector
     - prd/prd-samdev

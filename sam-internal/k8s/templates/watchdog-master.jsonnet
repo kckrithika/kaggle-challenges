@@ -34,7 +34,7 @@ local configs = import "config.jsonnet",
                     }
                 ], 
                 nodeSelector: {
-                    MASTER: "true"
+                    MASTER: "true",
                 }
             }, 
             metadata: {

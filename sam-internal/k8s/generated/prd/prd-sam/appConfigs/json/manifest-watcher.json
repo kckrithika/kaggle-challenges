@@ -32,11 +32,14 @@
                      "--disableCertsCheck=true",
                      "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:xiao.zhou-20161014_115059-562cfb7",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161103_134849-ce3affd",
                   "name": "manifest-watcher"
                }
             ],
             "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sam"
+            },
             "volumes": [
                {
                   "hostPath": {

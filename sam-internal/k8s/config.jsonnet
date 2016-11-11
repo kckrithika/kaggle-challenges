@@ -21,7 +21,7 @@ local images = import "images.jsonnet",
 
         smtpServer: {
             "prd": "rd1-mta1-4-sfm.ops.sfdc.net:25",
-            "dfw": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+            "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
         },
     },
 
@@ -39,12 +39,11 @@ local images = import "images.jsonnet",
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
+    estate: estate,
 
     controller: images.controller,
-    debug_portal: images.debug_portal,
     watchdog_common: images.watchdog_common,
     watchdog_master: images.watchdog_master,
     watchdog_etcd: images.watchdog_etcd,
     manifest_watcher: images.manifest_watcher,
-    slam_agent: images.slam_agent
 }

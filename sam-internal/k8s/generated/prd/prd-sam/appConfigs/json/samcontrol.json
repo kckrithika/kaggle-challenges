@@ -33,11 +33,14 @@
                      "--logtostderr=true",
                      "--k8sapiserver=http://localhost:8000"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161014_151902-f114d06",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161103_134849-ce3affd",
                   "name": "sam-controller"
                }
             ],
-            "hostNetwork": true
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sam"
+            }
          }
       }
    }

@@ -6,19 +6,29 @@ system:
     count: 2
     containers:
     - name: samtestapp
-      image: hypersam:e3155e8
+      image: hypersam:prahlad.joshi-20161031_144935-fee70c0
       command:
         - /sam/sam-test-app
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE00005"
+          value: "SOMEVALUE00009"
       ports:
       - containerPort: 8000
       livenessProbe:
         httpGet:
           path: /
           port: 8000
-
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /tmp
+        name: ephermeralvol
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/priyank/porwal/some/deep/nested/path
+    - name: ephermeralvol
+      emptyDir: {}
   loadbalancers:
   - lbname: lb124
     nodeExposed: true
