@@ -24,16 +24,25 @@ system:
       env:
       - name: ReportCollector_redis_host
         value: $(REDISNOHALB_SERVICE_HOST)
+      - name: ReportCollector_app_https_enabled
+        value: true
       - name: ReportCollector_ajna_publishEnabled
         value: true
-      - name: ReportCollector_ajna_funnelHost
-        value: $(SFDC_METRICS_SERVICE_HOST)
-      - name: ReportCollector_ajna_funnelPort
-        value: $(SFDC_METRICS_SERVICE_PORT)
-      - name: ReportCollector_ajna_datacenter
-        value: $(KINGDOM)
-      - name: ReportCollector_ajna_device
-        value: $(FUNCTION_INSTANCE_NAME)
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
+      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
+      export ReportCollector_ajna_datacenter=${KINGDOM} ;
+      export ReportCollector_ajna_device=${FUNCTION_INSTANCE_NAME} ;
+      ${JAVA_HOME}/bin/java
+        -Dlogback.configurationFile=${HOME}/logback-docker.xml
+        -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
+        -Dvertx.metrics.options.enabled=true
+        -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.disableDnsResolver=true
+        -Dlog_dir=/var/log/report-collector
+        -jar /usr/lib/report-collector/report-collector.jar
+      "]
   - name: redisnoha
     count: 1
     containers:
