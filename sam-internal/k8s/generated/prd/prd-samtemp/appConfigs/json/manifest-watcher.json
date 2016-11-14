@@ -32,7 +32,7 @@
                      "--disableCertsCheck=true",
                      "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161103_134849-ce3affd",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:thargrove-20161114_094603-7f45413",
                   "name": "manifest-watcher"
                }
             ],
