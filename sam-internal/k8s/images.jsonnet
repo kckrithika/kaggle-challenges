@@ -12,10 +12,10 @@
             default: "hypersam:pporwal-20161103_134849-ce3affd",
         },
         "prd-samtemp": {
-            default: "hypersam:pporwal-20161103_134849-ce3affd",
+            default: "hypersam:thargrove-20161114_094603-7f45413",
         },
         "prd-samdev": {
-            default: "hypersam:pporwal-20161103_134849-ce3affd",
+            default: "hypersam:thargrove-20161114_094603-7f45413",
         },
         "dfw-sam": {
             default: "hypersam:ce3affd",
