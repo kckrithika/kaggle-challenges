@@ -25,7 +25,7 @@ system:
         value: /var/log/report-collector-availability-watchdog
       command: ["/bin/sh", "-c"]
       args: ["
-      export FUNNEL_VIP=http://$(SFDC_METRICS_SERVICE_HOST):$(SFDC_METRICS_SERVICE_PORT) ;
+      export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export DATACENTER=${KINGDOM} ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
