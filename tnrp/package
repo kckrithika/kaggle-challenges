@@ -31,4 +31,5 @@ done
 /opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -root .
 
 # Temporary for now
-env > ${OUTPUT_DIR}/debug.txt
+env > ${OUTPUT_DIR}/debug_env.txt
+git log -n 1 > ${OUTPUT_DIR}/debug_gitlog.txt
