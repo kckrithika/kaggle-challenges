@@ -5,7 +5,7 @@ apps:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - prd/prd-samdev
-  report-collector-availability-watchdog:
+  repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - prd/prd-samdev

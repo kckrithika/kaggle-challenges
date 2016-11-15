@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: report-collector-availability-watchdog
+  - name: repcollavailwd
     count: 1
     containers:
-    - name: report-collector-availability-watchdog
+    - name: repcollavailwd
       image: report-collector-availability-watchdog:1.1.0-20161115T200314
       resources:
         limits: { cpu: "2", memory: "10Gi" }
