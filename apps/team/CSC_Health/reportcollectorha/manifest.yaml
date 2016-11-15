@@ -35,13 +35,13 @@ system:
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${FUNCTION_INSTANCE_NAME} ;
       ${JAVA_HOME}/bin/java
-        -Dlogback.configurationFile=${HOME}/logback-docker.xml
+        -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
         -Dvertx.disableDnsResolver=true
-        -Dlog_dir=/var/log/report-collector
-        -jar /usr/lib/report-collector/report-collector.jar
+        -Dlog_dir=${LOG_DIR}
+        -jar ${JAR_PATH}
       "]
   - name: redisnoha
     count: 1
