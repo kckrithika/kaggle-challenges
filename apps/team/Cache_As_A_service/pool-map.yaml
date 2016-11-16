@@ -1,5 +1,5 @@
 apps:
   caas-test:
     - prd/prd-sam
-  caas:
+  caas-redis:
     - prd/prd-sam

@@ -1,0 +1,60 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: redis-1300
+    count: 4 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: caas/caas-redis:15112016
+      args: 
+        - --port=1300
+        - --maxMemoryMB=1024
+      # expose redis outside the container
+      ports:
+      - containerPort: 1300
+  - name: redis-1301
+    count: 4 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: caas/caas-redis:15112016
+      args: 
+        - --port=1301
+        - --maxMemoryMB=1024
+      # expose redis outside the container
+      ports:
+      - containerPort: 1301
+
+# Redis for PC
+  - name: redis-1400
+    count: 4 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: caas/caas-redis:15112016
+      args: 
+        - --port=1400
+        - --maxMemoryMB=1024
+        - --maxMemoryPolicy=noeviction
+      # expose redis outside the container
+      ports:
+      - containerPort: 1400
+  - name: redis-1401
+    count: 4 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: caas/caas-redis:15112016
+      args: 
+        - --port=1401
+        - --maxMemoryMB=1024
+        - --maxMemoryPolicy=noeviction
+      # expose redis outside the container
+      ports:
+      - containerPort: 1401
