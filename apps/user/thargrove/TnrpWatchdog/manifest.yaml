@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: prbot
-      image: prbot:t11-15
+      image: prbot:t11-15_2
       ports:
       - containerPort: 64132
 
