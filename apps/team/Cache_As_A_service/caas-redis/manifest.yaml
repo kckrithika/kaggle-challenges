@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas/caas-redis:15112016
+      image: caas-redis:15112016
       args: 
         - --port=1300
         - --maxMemoryMB=1024
@@ -21,7 +21,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas/caas-redis:15112016
+      image: caas-redis:15112016
       args: 
         - --port=1301
         - --maxMemoryMB=1024
@@ -36,7 +36,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas/caas-redis:15112016
+      image: caas-redis:15112016
       args: 
         - --port=1400
         - --maxMemoryMB=1024
@@ -50,7 +50,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas/caas-redis:15112016
+      image: caas-redis:15112016
       args: 
         - --port=1401
         - --maxMemoryMB=1024
