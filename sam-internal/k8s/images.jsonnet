@@ -15,7 +15,7 @@
             default: "hypersam:thargrove-20161114_094603-7f45413",
         },
         "prd-samdev": {
-            default: "hypersam:thargrove-20161114_094603-7f45413",
+           default: "hypersam:prahlad.joshi-20161116_173758-94489a4", 
         },
         "dfw-sam": {
             default: "hypersam:ce3affd",
