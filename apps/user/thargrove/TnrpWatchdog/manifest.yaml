@@ -5,8 +5,8 @@ system:
   - name: tnrpwd
     count: 1
     containers:
-    - name: prbot
-      image: prbot:t11-15_2
+    - name: tnrpwd
+      image: tnrpwd:thargrove-20161117_111358-d710322
       command: ["/bin/tnrpWatchdog"]
       ports:
       - containerPort: 64132
