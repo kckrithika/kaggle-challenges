@@ -6,10 +6,14 @@ system:
     count: 1
     containers:
     - name: tnrpwd
-      image: tnrpwd:thargrove-20161117_111358-d710322
+      image: tnrpwd:thargrove-20161117_115557-22d5d32
       command: ["/bin/tnrpWatchdog"]
       ports:
       - containerPort: 64132
+      livenessProbe:
+        httpGet:
+          path: /probe
+          port: 64132
 
   loadbalancers:
   - lbname: tnrpwdlb
