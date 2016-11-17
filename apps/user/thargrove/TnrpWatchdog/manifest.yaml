@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: tnrpwd
-      image: tnrpwd:thargrove-20161117_121915-5ee2179
+      image: tnrpwd:thargrove-20161117_124937-f1d8867
       command: ["/bin/tnrpWatchdog"]
       ports:
       - containerPort: 64132
