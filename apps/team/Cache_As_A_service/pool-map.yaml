@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam
   caas-redis:
     - prd/prd-sam
+  caas-monitor:
+    - prd/prd-sam

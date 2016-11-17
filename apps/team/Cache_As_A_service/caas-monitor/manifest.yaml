@@ -1,0 +1,44 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: monitor-sp-c1
+    count: 26 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: caas-monitor:15112016
+      args: 
+        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
+        - --redis-monitor.redis-listen-ports=1300,1301
+        - --redis-monitor.start-local-redis=false 
+        - --server.port=1500 
+        - --management.port=1501
+        - --cluster.name=sp-c1
+        - --logging.level.minimum=ALL
+        - --settings.path=blitz.blitz02.sfm.-.caas
+      # expose redis outside the container
+      ports:
+      - containerPort: 1500
+      - containerPort: 1501
+  - name: monitor-sp-pc1
+    count: 26 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: caas-monitor:15112016
+      args: 
+        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
+        - --redis-monitor.redis-listen-ports=1400,1401 
+        - --redis-monitor.start-local-redis=false 
+        - --server.port=1502 
+        - --management.port=1503
+        - --cluster.name=sp-pc1
+        - --logging.level.minimum=ALL
+        - --settings.path=blitz.blitz02.sfm.-.caas
+      # expose redis outside the container
+      ports:
+      - containerPort: 1502
+      - containerPort: 1503
