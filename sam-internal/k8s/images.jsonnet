@@ -9,13 +9,13 @@
 
     estates: {
         "prd-sam": {
-            default: "hypersam:pporwal-20161103_134849-ce3affd",
+            default: "hypersam:prabh.singh-20161117_115401-899355a",
         },
         "prd-samtemp": {
-            default: "hypersam:thargrove-20161114_094603-7f45413",
+            default: "hypersam:prabh.singh-20161117_115401-899355a",
         },
         "prd-samdev": {
-           default: "hypersam:prahlad.joshi-20161116_173758-94489a4", 
+           default: "hypersam:prabh.singh-20161117_115401-899355a",
         },
         "dfw-sam": {
             default: "hypersam:ce3affd",
