@@ -10,8 +10,9 @@ system:
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
-      logs:
-      - directory: /var/log/report-collector-availability-watchdog
+      volumeMounts:
+      - mountPath: /var/log/report-collector-availability-watchdog
+        name: logvol
       env:
       - name: REPORT_COLLECTOR_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
@@ -29,3 +30,7 @@ system:
       export DATACENTER=${KINGDOM} ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/report-collector-availability-watchdog
