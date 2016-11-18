@@ -19,8 +19,9 @@ system:
       resources:
         limits: { cpu: "10", memory: "20Gi" }
         requests: { cpu: "10", memory: "20Gi" }
-      logs:
-      - directory: /var/log/report-collector
+      volumeMounts:
+      - mountPath: /var/log/report-collector
+        name: logvol
       env:
       - name: ReportCollector_redis_host
         value: $(REDISNOHALB_SERVICE_HOST)
@@ -43,6 +44,10 @@ system:
         -Dlog_dir=${LOG_DIR}
         -jar ${JAR_PATH}
       "]
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/report-collector
   - name: redisnoha
     count: 1
     containers:
