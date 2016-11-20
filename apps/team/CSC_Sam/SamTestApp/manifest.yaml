@@ -6,12 +6,12 @@ system:
     count: 2
     containers:
     - name: samtestapp
-      image: hypersam:prahlad.joshi-20161031_144935-fee70c0
-      command:
-        - /sam/sam-test-app
+      image: hypersam:prahlad.joshi-20161116_161103-94489a4
+      command: ["/sam/sam-test-app"]
+      args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE00009"
+          value: "SOMEVALUE00013"
       ports:
       - containerPort: 8000
       livenessProbe:

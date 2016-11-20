@@ -1,4 +1,7 @@
-#!/bin/bash -xe
+#!/bin/bash -e
+
+# Turn off echo for the early setup to reduce noise
+set +x
 
 # Temporary script to redeploy all our DaemonSets and deployments to prd-sam and prd-samtemp
 # Either put kubectl in your path, or set KUBECTLBIN to point to it.  For example, you can add this to .bash_profile:
@@ -8,6 +11,19 @@
 KUBECTLBIN=${KUBECTLBIN:-kubectl}
 NAMESPACE=sam-system
 KINGDOM=prd
+
+# Kubectl version check
+KUBECTLVER=$(kubectl version --client | cut -d\" -f6)
+EXPECTEDKUBECTLVER="v1.2.6"
+if [[ "$EXPECTEDKUBECTLVER" == "$KUBECTLVER" ]]; then
+  echo "Found kubectl version: $KUBECTLVER"
+else
+  echo "Expected kubectl version $EXPECTEDKUBECTLVER but found $KUBECTLVER"
+  exit
+fi
+
+# Turn echo on now
+set -x
 
 case "$1" in
     prd-sam)
