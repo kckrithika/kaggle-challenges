@@ -8,7 +8,8 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas-redis:15112016
+      image: caas:21112016
+      command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1300
         - --maxMemoryMB=1024
@@ -21,7 +22,8 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas-redis:15112016
+      image: caas:21112016
+      command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1301
         - --maxMemoryMB=1024
@@ -36,7 +38,8 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas-redis:15112016
+      image: caas:21112016
+      command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1400
         - --maxMemoryMB=1024
@@ -50,7 +53,8 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas-redis:15112016
+      image: caas:21112016
+      command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1401
         - --maxMemoryMB=1024
