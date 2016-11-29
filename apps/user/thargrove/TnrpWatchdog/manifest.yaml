@@ -1,0 +1,24 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: tnrpwd
+    count: 1
+    containers:
+    - name: tnrpwd
+      image: tnrpwd:thargrove-20161117_124937-f1d8867
+      command: ["/bin/tnrpWatchdog"]
+      ports:
+      - containerPort: 64132
+      livenessProbe:
+        httpGet:
+          path: /probe
+          port: 64132
+
+  loadbalancers:
+  - lbname: tnrpwdlb
+    function: tnrpwd
+    nodeExposed: true
+    ports:
+      - port: 64132
+        targetport: 64132

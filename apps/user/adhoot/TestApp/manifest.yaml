@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: thargrove-fn
-    count: 2
+  - name: adhoot-fn
+    count: 1
     containers:
     - name: samhello
-      image: samhello:bob-20160909
+      image: samhello:bob-20160908
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -16,7 +16,7 @@ system:
 
   loadbalancers:
   - lbname: samhellolb
-    function: thargrove-fn
+    function: adhoot-fn
     ports:
-      - port: 9090
+      - port: 9056
         targetport: 9090

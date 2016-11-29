@@ -1,7 +1,7 @@
 #!/bin/sh -xe
 
 # Standard setup and printing of debug information.  Keep in sync with other scripts.
-set -e
+set -evx
 cd $(dirname ${0})
 cd ..
 echo "Current directory"
