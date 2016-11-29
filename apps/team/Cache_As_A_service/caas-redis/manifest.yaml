@@ -73,6 +73,8 @@ system:
           command:
            - /opt/caas/build/redis-livenessprobe.sh
            - --port=1400
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 1400
@@ -96,6 +98,8 @@ system:
           command:
            - /opt/caas/build/redis-livenessprobe.sh
            - --port=1401
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 1401
