@@ -41,6 +41,13 @@ system:
       args: 
         - --port=1301
         - --maxMemoryMB=1024
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/build/redis-livenessprobe.sh
+           - --port=1301
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 1301
@@ -61,6 +68,11 @@ system:
         - --port=1400
         - --maxMemoryMB=1024
         - --maxMemoryPolicy=noeviction
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/build/redis-livenessprobe.sh
+           - --port=1400
       # expose redis outside the container
       ports:
       - containerPort: 1400
@@ -79,6 +91,11 @@ system:
         - --port=1401
         - --maxMemoryMB=1024
         - --maxMemoryPolicy=noeviction
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/build/redis-livenessprobe.sh
+           - --port=1401
       # expose redis outside the container
       ports:
       - containerPort: 1401
