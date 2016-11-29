@@ -9,6 +9,9 @@ system:
     - name: caas-redis 
       # container image/version to  run
       image: caas:21112016
+      resources:
+        limits: { memory: "1Gi" }
+        requests: { memory: "1Gi" }
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1300
@@ -23,6 +26,9 @@ system:
     - name: caas-redis 
       # container image/version to  run
       image: caas:21112016
+      resources:
+        limits: { memory: "1Gi" }
+        requests: { memory: "1Gi" }
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1301
@@ -39,6 +45,9 @@ system:
     - name: caas-redis 
       # container image/version to  run
       image: caas:21112016
+      resources:
+        limits: { memory: "1Gi" }
+        requests: { memory: "1Gi" }
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1400
@@ -54,6 +63,9 @@ system:
     - name: caas-redis 
       # container image/version to  run
       image: caas:21112016
+      resources:
+        limits: { memory: "1Gi" }
+        requests: { memory: "1Gi" }
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1401
