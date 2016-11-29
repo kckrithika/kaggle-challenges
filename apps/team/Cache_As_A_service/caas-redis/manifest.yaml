@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas:21112016
+      image: caas:29112016
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
@@ -33,7 +33,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas:21112016
+      image: caas:29112016
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
@@ -52,7 +52,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas:21112016
+      image: caas:29112016
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
@@ -70,7 +70,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas:21112016
+      image: caas:29112016
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
