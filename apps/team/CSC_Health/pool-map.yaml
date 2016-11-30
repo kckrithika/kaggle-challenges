@@ -4,8 +4,8 @@ apps:
   reportcollectorha:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
-    - prd/prd-samdev
+    # - prd/prd-samdev
   repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
-    - prd/prd-samdev
+    # - prd/prd-samdev

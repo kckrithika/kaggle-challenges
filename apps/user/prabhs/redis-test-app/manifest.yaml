@@ -9,10 +9,6 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/csc-health/redis:3.2
       ports:
       - containerPort: 9090
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
 
   loadbalancers:
   - lbname: prabhs-redislb
