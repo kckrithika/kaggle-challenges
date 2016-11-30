@@ -13,6 +13,10 @@ system:
         httpGet:
           path: /
           port: 9090
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE"
+
 
   loadbalancers:
   - lbname: samhellolb
