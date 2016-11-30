@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas-monitor:15112016
+      image: caas:29112016
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1300,1301
@@ -18,6 +18,12 @@ system:
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.blitz02.sfm.-.caas
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 1501
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 1500
@@ -28,7 +34,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas-monitor:15112016
+      image: caas:29112016
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1400,1401 
@@ -38,6 +44,12 @@ system:
         - --cluster.name=sp-pc1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.blitz02.sfm.-.caas
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 1503
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 1502
