@@ -13,21 +13,21 @@ system:
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1300,1301
         - --redis-monitor.start-local-redis=false 
-        - --server.port=1500 
-        - --management.port=1501
+        - --server.port=1600 
+        - --management.port=1601
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.blitz02.sfm.-.caas
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 1501
+          port: 1601
         initialDelaySeconds: 60 
         timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 1500
-      - containerPort: 1501
+      - containerPort: 1600
+      - containerPort: 1601
   - name: monitor-sp-pc1
     count: 26 
     hostnetwork: true
@@ -39,18 +39,18 @@ system:
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1400,1401 
         - --redis-monitor.start-local-redis=false 
-        - --server.port=1502 
-        - --management.port=1503
+        - --server.port=1602 
+        - --management.port=1603
         - --cluster.name=sp-pc1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.blitz02.sfm.-.caas
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 1503
+          port: 1603
         initialDelaySeconds: 60 
         timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 1502
-      - containerPort: 1503
+      - containerPort: 1602
+      - containerPort: 1603
