@@ -16,7 +16,7 @@ system:
         - --management.port=1302
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
-        - --settings.path=blitz1.blitz01.sfm.-.caas
+        - --settings.path=blitz.blitz02.sfm.-.caas
         - --metrics.startPublisher=true
       # expose redis outside the container
       ports:
