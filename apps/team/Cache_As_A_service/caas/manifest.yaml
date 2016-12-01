@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas1c
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12605652-56
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12605730-58
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
         - --redis-monitor.redis-listen-ports=1300 
@@ -20,7 +20,7 @@ system:
         - --metrics.startPublisher=true
       # expose redis outside the container
       env:
-      - name:  CAAS_DEMO1
+      - name:  CAAS_DEMO2
         value: DATE_12_1
       ports:
       - containerPort: 1300
