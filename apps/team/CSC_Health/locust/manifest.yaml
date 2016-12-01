@@ -23,7 +23,7 @@ system:
         value: 18443
 
   - name: locust-worker
-    count: 3
+    count: 30
     containers:
     - name: locust-worker
       image: locust:anu_a1eb15a_20161130T2210
