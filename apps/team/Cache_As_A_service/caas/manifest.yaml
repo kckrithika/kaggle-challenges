@@ -19,6 +19,9 @@ system:
         - --settings.path=blitz.blitz02.sfm.-.caas
         - --metrics.startPublisher=true
       # expose redis outside the container
+      env:
+      - name:  CAAS_DEMO
+        value: DATE_12_1
       ports:
       - containerPort: 1300
       - containerPort: 1301 
