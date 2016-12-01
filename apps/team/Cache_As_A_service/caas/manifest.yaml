@@ -20,7 +20,7 @@ system:
         - --metrics.startPublisher=true
       # expose redis outside the container
       env:
-      - name:  CAAS_DEMO1
+      - name:  CAAS_DEMO2
         value: DATE_12_1
       ports:
       - containerPort: 1300
