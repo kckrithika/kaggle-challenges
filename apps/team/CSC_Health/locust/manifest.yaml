@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: locust-master
-      image: locust:cmcnair-20160912
+      image: locust:anu_a1eb15a_20161130T2210
       ports:
       - name: loc-master-ui
         containerPort: 8089
@@ -17,18 +17,26 @@ system:
       env:
       - name: REPORTCOLLECTORLB_SERVICE_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
+      - name: TARGET_PROTOCOL
+        value: http
+      - name: TARGET_HOST_PORT
+        value: 18443
 
   - name: locust-worker
     count: 3
     containers:
     - name: locust-worker
-      image: locust:cmcnair-20160912
+      image: locust:anu_a1eb15a_20161130T2210
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
       env:
       - name: REPORTCOLLECTORLB_SERVICE_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
+      - name: TARGET_PROTOCOL
+        value: http
+      - name: TARGET_HOST_PORT
+        value: 18443
 
   loadbalancers:
     - lbname: locustmasterlb
