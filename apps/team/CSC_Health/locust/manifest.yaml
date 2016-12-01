@@ -17,9 +17,9 @@ system:
       env:
       - name: REPORTCOLLECTORLB_SERVICE_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
-      - name: TARGET_PROTOCOL
+      - name: TARGET_RC_PROVIDER_PROTOCOL
         value: http
-      - name: TARGET_HOST_PORT
+      - name: TARGET_RC_PROVIDER_PORT
         value: 18443
 
   - name: locust-worker
@@ -33,9 +33,9 @@ system:
       env:
       - name: REPORTCOLLECTORLB_SERVICE_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
-      - name: TARGET_PROTOCOL
+      - name: TARGET_RC_PROVIDER_PROTOCOL
         value: http
-      - name: TARGET_HOST_PORT
+      - name: TARGET_RC_PROVIDER_PORT
         value: 18443
 
   loadbalancers:
