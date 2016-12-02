@@ -26,13 +26,13 @@
                {
                   "command": [
                      "/sam/manifest-watcher",
-                     "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
                      "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:prabh.singh-20161129_165503-2627720",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:prabh.singh-20161201_192316-d86137b",
                   "name": "manifest-watcher"
                }
             ],
