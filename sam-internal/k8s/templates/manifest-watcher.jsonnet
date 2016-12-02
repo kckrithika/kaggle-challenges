@@ -13,7 +13,7 @@ local configs = import "config.jsonnet",
                         image: configs.manifest_watcher,
                         command: [
                            "/sam/manifest-watcher",
-                           "--funneladdr="+configs.funnelVIP,
+                           "--funnelEndpoint="+configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
                            "--disableCertsCheck=true",

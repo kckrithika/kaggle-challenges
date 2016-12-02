@@ -5,7 +5,7 @@ local images = import "images.jsonnet",
 
     perKingdom: {
         funnelVIP: {
-            "prd": "mandm-funnel-sfz.data.sfdc.net",
+            "prd": "mandm-funnel-sfz.data.sfdc.net:8080",
             "dfw": "mandm-funnel-dfw1.data.sfdc.net:8080",
         },
 

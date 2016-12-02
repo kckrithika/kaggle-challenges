@@ -24,7 +24,7 @@
                      "-role=ETCD",
                      "-watchdogFrequency=5s",
                      "-timeout=2s",
-                     "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=prabh.singh@salesforce.com",
@@ -47,7 +47,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "ETCD": "true"
+               "etcd_installed": "true"
             }
          }
       }

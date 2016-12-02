@@ -28,12 +28,12 @@
                      "/sam/sam-controller",
                      "--debug=true",
                      "--dockerregistry=shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000",
-                     "--funneladdr=mandm-funnel-sfz.data.sfdc.net",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
                      "--v=3",
                      "--logtostderr=true",
                      "--k8sapiserver=http://localhost:8000"
                   ],
-                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:prabh.singh-20161129_165503-2627720",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:prabh.singh-20161201_192316-d86137b",
                   "name": "sam-controller"
                }
             ],

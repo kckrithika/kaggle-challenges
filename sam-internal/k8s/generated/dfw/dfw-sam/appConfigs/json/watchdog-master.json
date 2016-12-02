@@ -24,7 +24,7 @@
                      "-role=MASTER",
                      "-watchdogFrequency=5s",
                      "-timeout=2s",
-                     "--funneladdr=mandm-funnel-dfw1.data.sfdc.net:8080",
+                     "--funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
                      "-sender=prabh.singh@salesforce.com",
@@ -47,7 +47,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "MASTER": "true"
+               "master": "true"
             }
          }
       }
