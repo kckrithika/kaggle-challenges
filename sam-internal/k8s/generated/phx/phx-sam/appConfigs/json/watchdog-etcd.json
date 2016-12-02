@@ -24,7 +24,7 @@
                      "-role=ETCD",
                      "-watchdogFrequency=5s",
                      "-timeout=2s",
-                     "--funneladdr=mandm-funnel2-0-phx.data.sfdc.net:8080",
+                     "--funneladdr=mandm-funnel-phx1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://ops0-orch1-1-phx.ops.sfdc.net:8080/v1/bark",
                      "-smtpServer=ops0-mta1-2-phx.ops.sfdc.net",
                      "-sender=prabh.singh@salesforce.com",
