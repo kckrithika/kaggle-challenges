@@ -22,6 +22,9 @@
         "dfw-sam": {
             default: "hypersam:ce3affd",
         },
+        "phx-sam": {
+            default: "hypersam:ce3affd",
+        }
     },
 
     # This break is needed, because above is one fixed portion of output and below is a loop per image
