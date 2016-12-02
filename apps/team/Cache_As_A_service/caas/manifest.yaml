@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: prd-caas-cluster-1
-    count: 2 
+    count: 4 
     hostnetwork: true
     containers:
     - name: caas1c
