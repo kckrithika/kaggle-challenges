@@ -7,7 +7,7 @@ local images = import "images.jsonnet",
         funnelVIP: {
             "prd": "mandm-funnel-sfz.data.sfdc.net",
             "dfw": "mandm-funnel-dfw1.data.sfdc.net:8080",
-            "phx": "mandm-funnel2-0-phx.data.sfdc.net:8080"
+            "phx": "mandm-funnel-phx1.data.sfdc.net:8080"
         },
 
         tnrpArchiveEndpoint: {
