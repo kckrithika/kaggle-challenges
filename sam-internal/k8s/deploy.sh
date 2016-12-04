@@ -35,8 +35,11 @@ case "$1" in
     prd-samdev)
         KCONTEXT=prd-samdev
         ;;
+    prd-sdc)
+        KCONTEXT=prd-sdc
+        ;;
     *)
-        echo "Invalid estate $1, use 'prd-sam', 'prd-samtemp' or 'prd-samdev'.  exiting ..."
+        echo "Invalid estate $1, use 'prd-sam', 'prd-samtemp', 'prd-samdev' or 'prd-sdc'.  exiting ..."
         exit 1
 esac
 

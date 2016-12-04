@@ -34,6 +34,7 @@ local images = import "images.jsonnet",
             "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
             "prd-samtemp": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
             "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000",
+            "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000",
             "dfw-sam": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000",
             "phx-sam": "shared0-samkubeapi1-1-phx.ops.sfdc.net:5000"
         },

@@ -19,6 +19,9 @@
         "prd-samdev": {
            default: "hypersam:prabh.singh-20161201_192316-d86137b",
         },
+        "prd-sdc": {
+            default: "hypersam:ce3affd",
+        },
         "dfw-sam": {
             default: "hypersam:ce3affd",
         },
