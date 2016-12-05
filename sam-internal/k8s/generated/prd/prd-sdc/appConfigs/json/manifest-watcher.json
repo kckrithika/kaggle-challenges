@@ -1,0 +1,54 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "manifest-watcher"
+      },
+      "name": "manifest-watcher"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "manifest-watcher"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "manifest-watcher"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/manifest-watcher",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
+                     "--v=2",
+                     "--logtostderr=true",
+                     "--disableCertsCheck=true",
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                  ],
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
+                  "name": "manifest-watcher"
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sdc"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/manifests"
+                  },
+                  "name": "sfdc-volume"
+               }
+            ]
+         }
+      }
+   }
+}

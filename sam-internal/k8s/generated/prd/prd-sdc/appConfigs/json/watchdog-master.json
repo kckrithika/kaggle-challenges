@@ -1,0 +1,55 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-master"
+      },
+      "name": "watchdog-master"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "app": "watchdog-master",
+               "apptype": "monitoring",
+               "daemonset": "true"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=MASTER",
+                     "-watchdogFrequency=5s",
+                     "-timeout=2s",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
+                     "-rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
+                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "-sender=prabh.singh@salesforce.com",
+                     "-recipient=sam@salesforce.com",
+                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                  ],
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
+                  "name": "watchdog",
+                  "resources": {
+                     "limits": {
+                        "cpu": "0.5",
+                        "memory": "300Mi"
+                     },
+                     "requests": {
+                        "cpu": "0.5",
+                        "memory": "300Mi"
+                     }
+                  }
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "master": "true"
+            }
+         }
+      }
+   }
+}
