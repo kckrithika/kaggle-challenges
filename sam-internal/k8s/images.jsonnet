@@ -9,15 +9,13 @@
 
     estates: {
         "prd-sam": {
-            default: "hypersam:prabh.singh-20161201_192316-d86137b",
-            manifest_watcher: "hypersam:xiao.zhou-20161122_140638-838c2f0",
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-samtemp": {
-            default: "hypersam:7bdec38",
-            manifest_watcher: "hypersam:prabh.singh-20161201_192316-d86137b",
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-samdev": {
-           default: "hypersam:prabh.singh-20161201_192316-d86137b",
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-sdc": {
             default: "hypersam:pporwal-20161205_131847-e72ab47",
