@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: samtestapp
-      image: hypersam:prahlad.joshi-20161116_161103-94489a4
+      image: hypersam:pporwal-20161205_131847-e72ab47
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
