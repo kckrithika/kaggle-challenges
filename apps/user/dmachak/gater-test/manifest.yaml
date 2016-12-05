@@ -45,7 +45,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-gater/log
+        path: /var/log/gater
     - name: dbvol
       hostPath:
-        path: /home/sfdc-gater/db
+        path: /data/gater/db
