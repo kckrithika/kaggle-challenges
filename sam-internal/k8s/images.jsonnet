@@ -9,17 +9,23 @@
 
     estates: {
         "prd-sam": {
-            default: "hypersam:prabh.singh-20161117_115401-899355a",
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-samtemp": {
-            default: "hypersam:7bdec38",
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-samdev": {
-           default: "hypersam:prabh.singh-20161129_165503-2627720",
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
+        },
+        "prd-sdc": {
+            default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "dfw-sam": {
             default: "hypersam:ce3affd",
         },
+        "phx-sam": {
+            default: "hypersam:ce3affd",
+        }
     },
 
     # This break is needed, because above is one fixed portion of output and below is a loop per image

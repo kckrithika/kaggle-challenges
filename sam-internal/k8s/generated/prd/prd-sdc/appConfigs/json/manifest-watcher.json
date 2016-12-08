@@ -26,19 +26,19 @@
                {
                   "command": [
                      "/sam/manifest-watcher",
-                     "--funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive"
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:ce3affd",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
                   "name": "manifest-watcher"
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "dfw-sam"
+               "pool": "prd-sdc"
             },
             "volumes": [
                {

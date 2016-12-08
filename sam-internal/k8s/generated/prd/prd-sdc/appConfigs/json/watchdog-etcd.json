@@ -3,15 +3,15 @@
    "kind": "DaemonSet",
    "metadata": {
       "labels": {
-         "name": "watchdog-common"
+         "name": "watchdog-etcd"
       },
-      "name": "watchdog-common"
+      "name": "watchdog-etcd"
    },
    "spec": {
       "template": {
          "metadata": {
             "labels": {
-               "app": "watchdog-common",
+               "app": "watchdog-etcd",
                "apptype": "monitoring",
                "daemonset": "true"
             }
@@ -21,7 +21,7 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=COMMON",
+                     "-role=ETCD",
                      "-watchdogFrequency=5s",
                      "-timeout=2s",
                      "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
@@ -31,7 +31,7 @@
                      "-recipient=sam@salesforce.com",
                      "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
@@ -45,7 +45,10 @@
                   }
                }
             ],
-            "hostNetwork": true
+            "hostNetwork": true,
+            "nodeSelector": {
+               "etcd_installed": "true"
+            }
          }
       }
    }

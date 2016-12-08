@@ -14,7 +14,7 @@ local configs = import "config.jsonnet",
                             "-role=ETCD",
                             "-watchdogFrequency=5s",
                             "-timeout=2s",
-                            "--funneladdr="+configs.funnelVIP,
+                            "--funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
                             "-smtpServer="+configs.smtpServer,
                             "-sender=prabh.singh@salesforce.com",
@@ -35,7 +35,7 @@ local configs = import "config.jsonnet",
                     }
                 ], 
                 nodeSelector: {
-                    ETCD: "true",
+                    etcd_installed: "true",
                 }
             }, 
             metadata: {
