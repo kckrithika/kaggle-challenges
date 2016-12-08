@@ -25,5 +25,4 @@ NOTE: If the next command gives you an error like 'server gave HTTP response to 
 
 To start a pull request commit your changes, push to your fork, then use the GitHub UI to create a pull request. Please include the validation output in the PR body.  To get it to format correctly, add a line before and after the text with three back-ticks.
 
-If you want a review from the SAM team paste the PR URL to #onboarding in sfsam.slack.com, but otherwise you can just merge it.  If you dont have permissions you can request them from sam@salesforce.com.  Please let us know what team you are with and what you will be trying out on SAM.
- 
+After creating a PR, the TNRP bot will post a URL as a comment.  A person other than the one who created the PR needs to click it.  That will kick off a TNRP pipeline and if it passes the changes will be merged.  For mor info see [this doc](https://confluence.internal.salesforce.com/pages/viewpage.action?pageId=15902649) 
