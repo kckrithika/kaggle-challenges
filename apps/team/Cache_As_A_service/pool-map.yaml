@@ -1,3 +1,5 @@
 apps:
   caas:
     - prd/prd-samdev
+  caas-redis:
+    - prd/prd-sam
