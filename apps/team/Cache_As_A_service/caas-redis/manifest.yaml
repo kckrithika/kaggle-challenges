@@ -12,6 +12,10 @@ system:
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1300
@@ -23,10 +27,13 @@ system:
            - --port=1300
           initialDelaySeconds: 15
           timeoutSeconds: 10
- 
       # expose redis outside the container
       ports:
       - containerPort: 1300
+    volumes:
+    - name: secretvol
+      secret:
+         name: caas-secret-sp-c1
   - name: redis-1301
     count: 4 
     hostnetwork: true
@@ -37,6 +44,10 @@ system:
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1301
@@ -51,7 +62,10 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1301
-
+    volumes:
+    - name: secretvol
+      secret:
+         name: caas-secret-sp-c1
 # Redis for PC
   - name: redis-1400
     count: 4 
@@ -60,6 +74,10 @@ system:
     - name: caas-redis 
       # container image/version to  run
       image: caas:29112016
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
@@ -78,6 +96,10 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1400
+    volumes:
+    - name: secretvol
+      secret:
+         name: caas-secret-sp-pc1
   - name: redis-1401
     count: 4 
     hostnetwork: true
@@ -85,6 +107,10 @@ system:
     - name: caas-redis 
       # container image/version to  run
       image: caas:29112016
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
@@ -103,3 +129,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 1401
+    volumes:
+    - name: secretvol
+      secret:
+         name: caas-secret-sp-pc1
