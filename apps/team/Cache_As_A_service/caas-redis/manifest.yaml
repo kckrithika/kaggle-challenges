@@ -34,4 +34,4 @@ system:
     volumes:
     - name: secretvol
       secret:
-         name: caas-secret-sp-c1
+         secretName: caas-secret-sp-c1
