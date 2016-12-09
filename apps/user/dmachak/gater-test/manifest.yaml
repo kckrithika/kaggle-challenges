@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-test-cluster-1
-    count: 10
+    count: 11
     hostnetwork: true
     containers:
     - name: gater1
