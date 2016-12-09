@@ -2,4 +2,4 @@ apps:
   caas:
     - prd/prd-samdev
   caas-redis:
-    - prd/prd-sam
+    - prd/prd-samdev
