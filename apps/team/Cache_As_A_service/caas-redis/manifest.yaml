@@ -2,90 +2,25 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis-1300
-    count: 4 
-    hostnetwork: true
-    containers:
-    - name: caas-redis 
-      # container image/version to  run
-      image: caas:29112016
-      resources:
-        limits: { memory: "1Gi" }
-        requests: { memory: "1Gi" }
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      command: ["/opt/caas/build/redis-startup.py"]
-      args: 
-        - --port=1300
-        - --maxMemoryMB=1024
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/build/redis-livenessprobe.sh
-           - --port=1300
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 1300
-    volumes:
-    - name: secretvol
-      secret:
-         secretName: caas-secret-sp-c1
-  - name: redis-1301
-    count: 4 
-    hostnetwork: true
-    containers:
-    - name: caas-redis 
-      # container image/version to  run
-      image: caas:29112016
-      resources:
-        limits: { memory: "1Gi" }
-        requests: { memory: "1Gi" }
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      command: ["/opt/caas/build/redis-startup.py"]
-      args: 
-        - --port=1301
-        - --maxMemoryMB=1024
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/build/redis-livenessprobe.sh
-           - --port=1301
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 1301
-    volumes:
-    - name: secretvol
-      secret:
-         secretName: caas-secret-sp-c1
-# Redis for PC
   - name: redis-1400
-    count: 4 
+    count: 2 
     hostnetwork: true
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: caas:29112016
+      #image: caas:29112016
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12623074-62
+      resources:
+        limits: { memory: "1Gi" }
+        requests: { memory: "1Gi" }
       volumeMounts:
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
-      resources:
-        limits: { memory: "1Gi" }
-        requests: { memory: "1Gi" }
       command: ["/opt/caas/build/redis-startup.py"]
       args: 
         - --port=1400
         - --maxMemoryMB=1024
-        - --maxMemoryPolicy=noeviction
       livenessProbe:
         exec:
           command:
@@ -99,37 +34,4 @@ system:
     volumes:
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-pc1
-  - name: redis-1401
-    count: 4 
-    hostnetwork: true
-    containers:
-    - name: caas-redis 
-      # container image/version to  run
-      image: caas:29112016
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      resources:
-        limits: { memory: "1Gi" }
-        requests: { memory: "1Gi" }
-      command: ["/opt/caas/build/redis-startup.py"]
-      args: 
-        - --port=1401
-        - --maxMemoryMB=1024
-        - --maxMemoryPolicy=noeviction
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/build/redis-livenessprobe.sh
-           - --port=1401
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 1401
-    volumes:
-    - name: secretvol
-      secret:
-         secretName: caas-secret-sp-pc1
+         secretName: caas-secret-sp-c1
