@@ -31,7 +31,7 @@
                      "-recipient=sam@salesforce.com",
                      "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
                   ],
-                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:ed6295a.dirty.xiaozhou-ltm.20161209_190255",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
