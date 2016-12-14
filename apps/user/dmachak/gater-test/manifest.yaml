@@ -16,8 +16,6 @@ system:
         - --logging.app.dir=/log
         - --java.io.tmpdir=/tmp
         - --server.port=9090
-        - --synctask.enabled=true
-        - --synctask.artifact=gate-definitions-blitz
         - --settings.path=blitz.-.prd.-.gater
         - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
