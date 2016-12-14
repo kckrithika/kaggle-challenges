@@ -37,6 +37,12 @@
                      "--keyFile=",
                      "--certFile="
                   ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/sam/config"
+                     }
+                  ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
                   "name": "sam-controller",
                   "volumeMounts": [

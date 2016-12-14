@@ -47,42 +47,34 @@ local images = import "images.jsonnet",
             "prd-sdc": "false",
             "dfw-sam": "false",
             "phx-sam": "true"
-        },
+        }
 
+    },
+
+    securityEnabled: {
         caFile: {
-            "prd-sam": "",
-            "prd-samtemp": "",
-            "prd-samdev": "/data/certs/ca.crt",
-            "prd-sdc": "",
-            "dfw-sam": "",
-            "phx-sam": "/data/certs/ca.crt"
+            "true": "/data/certs/ca.crt",
+            "false": ""
         },
 
         keyFile: {
-            "prd-sam": "",
-            "prd-samtemp": "",
-            "prd-samdev": "/data/certs/hostcert.key",
-            "prd-sdc": "",
-            "dfw-sam": "",
-            "phx-sam": "/data/certs/hostcert.key"
-          },
+            "true": "/data/certs/hostcert.key",
+            "false": ""
+        },
 
         certFile: {
-            "prd-sam": "",
-            "prd-samtemp": "",
-            "prd-samdev": "/data/certs/hostcert.crt",
-            "prd-sdc": "",
-            "dfw-sam": "",
-            "phx-sam": "/data/certs/hostcert.crt"
-         },
+            "true": "/data/certs/hostcert.crt",
+            "false": ""
+        },
 
         k8sapiserver: {
-            "prd-sam": "http://localhost:8000",
-            "prd-samtemp": "http://localhost:8000",
-            "prd-samdev": "",
-            "prd-sdc": "http://localhost:8000",
-            "dfw-sam": "http://localhost:8000",
-            "phx-sam": ""
+            "true": "",
+            "false": "http://localhost:8000"
+        },
+
+        configPath: {
+            "true": "/config/kubeconfig",
+            "false": "/sam/config"
         }
 
     },
@@ -93,10 +85,12 @@ local images = import "images.jsonnet",
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
     tlsEnabled: self.perCluster.tlsEnabled[estate],
-    caFile: self.perCluster.caFile[estate],
-    keyFile: self.perCluster.keyFile[estate],
-    certFile: self.perCluster.certFile[estate],
-    k8sapiserver: self.perCluster.k8sapiserver[estate],
+
+    caFile: self.securityEnabled.caFile[self.perCluster.tlsEnabled[estate]],
+    keyFile: self.securityEnabled.keyFile[self.perCluster.tlsEnabled[estate]],
+    certFile: self.securityEnabled.certFile[self.perCluster.tlsEnabled[estate]],
+    k8sapiserver: self.securityEnabled.k8sapiserver[self.perCluster.tlsEnabled[estate]],
+    configPath: self.securityEnabled.configPath[self.perCluster.tlsEnabled[estate]],
     estate: estate,
 
     controller: images.controller,

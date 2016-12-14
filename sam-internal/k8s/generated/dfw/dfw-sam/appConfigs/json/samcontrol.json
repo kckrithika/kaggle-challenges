@@ -37,6 +37,12 @@
                      "--keyFile=",
                      "--certFile="
                   ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/sam/config"
+                     }
+                  ],
                   "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:ce3affd",
                   "name": "sam-controller",
                   "volumeMounts": [

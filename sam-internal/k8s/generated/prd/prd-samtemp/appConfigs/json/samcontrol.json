@@ -37,6 +37,12 @@
                      "--keyFile=",
                      "--certFile="
                   ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/sam/config"
+                     }
+                  ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
                   "name": "sam-controller",
                   "volumeMounts": [

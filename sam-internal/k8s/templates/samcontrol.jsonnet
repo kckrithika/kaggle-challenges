@@ -33,8 +33,13 @@ local configs = import "config.jsonnet",
                              "mountPath": "/config",
                              "name": "config"
                           }
+                       ],
+                       env: [
+                          {
+                             "name": "KUBECONFIG",
+                             "value": configs.configPath
+                          }
                        ]
-
                     }
                 ],
                 volumes: [
