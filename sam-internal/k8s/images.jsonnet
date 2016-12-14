@@ -24,7 +24,7 @@
             default: "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: "hypersam:ce3affd",
+            default: "hypersam:050729e",
         }
     },
 
