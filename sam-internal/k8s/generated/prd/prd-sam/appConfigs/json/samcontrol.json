@@ -31,16 +31,50 @@
                      "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
                      "--v=3",
                      "--logtostderr=true",
-                     "--k8sapiserver=http://localhost:8000"
+                     "--k8sapiserver=http://localhost:8000",
+                     "--tlsEnabled=false",
+                     "--caFile=",
+                     "--keyFile=",
+                     "--certFile="
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/sam/config"
+                     }
                   ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
-                  "name": "sam-controller"
+                  "name": "sam-controller",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-sam"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }

@@ -12,10 +12,10 @@
             default: "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-samtemp": {
-            default: "hypersam:pporwal-20161205_131847-e72ab47",
+            default: "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
         },
         "prd-samdev": {
-            default: "hypersam:pporwal-20161205_131847-e72ab47",
+            default: "hypersam:050729e",
         },
         "prd-sdc": {
             default: "hypersam:pporwal-20161205_131847-e72ab47",

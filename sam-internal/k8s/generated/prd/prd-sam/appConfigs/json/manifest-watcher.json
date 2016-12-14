@@ -30,10 +30,20 @@
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--tlsEnabled=false",
+                     "--caFile=",
+                     "--keyFile=",
+                     "--certFile="
                   ],
                   "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
-                  "name": "manifest-watcher"
+                  "name": "manifest-watcher",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
@@ -41,6 +51,12 @@
                "pool": "prd-sam"
             },
             "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
                {
                   "hostPath": {
                      "path": "/manifests"

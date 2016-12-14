@@ -30,10 +30,20 @@
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive"
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--tlsEnabled=false",
+                     "--caFile=",
+                     "--keyFile=",
+                     "--certFile="
                   ],
                   "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:ce3affd",
-                  "name": "manifest-watcher"
+                  "name": "manifest-watcher",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
@@ -41,6 +51,12 @@
                "pool": "dfw-sam"
             },
             "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
                {
                   "hostPath": {
                      "path": "/manifests"

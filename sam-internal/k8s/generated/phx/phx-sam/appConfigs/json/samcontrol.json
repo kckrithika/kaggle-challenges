@@ -31,16 +31,50 @@
                      "--funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
                      "--v=3",
                      "--logtostderr=true",
-                     "--k8sapiserver=http://localhost:8000"
+                     "--k8sapiserver=",
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
                   ],
                   "image": "shared0-samkubeapi1-1-phx.ops.sfdc.net:5000/hypersam:ce3affd",
-                  "name": "sam-controller"
+                  "name": "sam-controller",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "phx-sam"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }

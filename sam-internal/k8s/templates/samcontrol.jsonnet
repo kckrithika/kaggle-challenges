@@ -18,9 +18,43 @@ local configs = import "config.jsonnet",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=3",
                            "--logtostderr=true",
-                           "--k8sapiserver=http://localhost:8000",
-                        ]
+                           "--k8sapiserver="+configs.k8sapiserver,
+                           "--tlsEnabled="+configs.tlsEnabled,
+                           "--caFile="+configs.caFile,
+                           "--keyFile="+configs.keyFile,
+                           "--certFile="+configs.certFile,
+                        ],
+                       volumeMounts: [
+                          {
+                             "mountPath": "/data/certs",
+                             "name": "certs"
+                          },
+                          {
+                             "mountPath": "/config",
+                             "name": "config"
+                          }
+                       ],
+                       env: [
+                          {
+                             "name": "KUBECONFIG",
+                             "value": configs.configPath
+                          }
+                       ]
                     }
+                ],
+                volumes: [
+                    {
+                        hostPath: {
+                                path: "/data/certs"
+                                },
+                                name: "certs"
+                        },
+                        {
+                        hostPath: {
+                                path: "/etc/kubernetes"
+                                },
+                                name: "config"
+                        }
                 ],
                 nodeSelector: {
                     pool: configs.estate
