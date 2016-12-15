@@ -17,6 +17,10 @@
             default: configs.registry + "/" + "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
         },
         "prd-samdev": {
+            # Figuring out the right docker URL here is tricky.
+            # See https://git.soma.salesforce.com/sam/sam/wiki/Official-Secure-Docker-Registry#mapping-artifactory-urls-to-docker-urls
+            # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
+            #
             default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
         },
         "prd-sdc": {
