@@ -22,6 +22,7 @@
             # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
             #
             default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
+            k8sproxy: "haproxy:050729e.dirty.mayankkuma-ltm3.20161213_214710"
         },
         "prd-sdc": {
             default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
@@ -47,6 +48,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "k8sproxy"]
 }
 
