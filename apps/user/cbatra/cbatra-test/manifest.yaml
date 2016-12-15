@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: samhello
-      image: samhello:cbatra-4015
+      image: samtestapp:withuser
       ports:
       - containerPort: 9090
       livenessProbe:
