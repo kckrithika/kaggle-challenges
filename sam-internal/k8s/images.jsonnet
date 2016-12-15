@@ -7,24 +7,26 @@
     #     controller: hypersam:some-image-being-tested
     # }
 
+    local configs = import "config.jsonnet",
+
     estates: {
         "prd-sam": {
-            default: "hypersam:pporwal-20161205_131847-e72ab47",
+            default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "prd-samtemp": {
-            default: "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
+            default: configs.registry + "/" + "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
         },
         "prd-samdev": {
-            default: "hypersam:050729e",
+            default: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-p2p/tnrp/sam/hypersam:sam-747bb3db-470",
         },
         "prd-sdc": {
-            default: "hypersam:pporwal-20161205_131847-e72ab47",
+            default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "dfw-sam": {
-            default: "hypersam:ce3affd",
+            default: configs.registry + "/" + "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: "hypersam:050729e",
+            default: configs.registry + "/" + "hypersam:050729e",
         }
     },
 
@@ -35,13 +37,12 @@
     # It will look for a per-image override above, but failing that it will use the default for the estate
     # NOTE: I tried to make the last line less ugly by moving the array of image names to its own section, but I could not make it work
 
-    local configs = import "config.jsonnet",
     local estate = std.extVar("estate"),
 
     # Loop over dockerimg (controller, debug_portal, etc...)
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: configs.registry + "/" + (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher"]
 }
 
