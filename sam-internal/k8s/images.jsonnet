@@ -17,7 +17,7 @@
             default: configs.registry + "/" + "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
         },
         "prd-samdev": {
-            default: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-p2p/tnrp/sam/hypersam:sam-747bb3db-470",
+            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
         },
         "prd-sdc": {
             default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
