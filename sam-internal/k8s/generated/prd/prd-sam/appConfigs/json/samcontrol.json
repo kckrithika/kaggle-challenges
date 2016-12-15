@@ -43,7 +43,7 @@
                         "value": "/sam/config"
                      }
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:pporwal-20161205_131847-e72ab47",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:1a20894.clean.prahladjos-ltm.20161215_160825",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
