@@ -11,7 +11,7 @@
 
     estates: {
         "prd-sam": {
-            default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
+            default: configs.registry + "/" + "hypersam:1a20894.clean.prahladjos-ltm.20161215_160825",
         },
         "prd-samtemp": {
             default: configs.registry + "/" + "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
