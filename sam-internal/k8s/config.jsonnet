@@ -98,4 +98,5 @@ local images = import "images.jsonnet",
     watchdog_master: images.watchdog_master,
     watchdog_etcd: images.watchdog_etcd,
     manifest_watcher: images.manifest_watcher,
+    k8sproxy: images.k8sproxy,
 }
