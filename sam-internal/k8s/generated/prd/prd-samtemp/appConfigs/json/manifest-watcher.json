@@ -36,7 +36,7 @@
                      "--keyFile=",
                      "--certFile="
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {

@@ -1,6 +1,5 @@
-{
-local configs = import "config.jsonnet",
-
+local configs = import "config.jsonnet";
+if configs.estate == "prd-samdev" then {
     "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
@@ -14,8 +13,8 @@ local configs = import "config.jsonnet",
             "ports": [
             {
                 "name": "k8sproxy-port",
-                "protocol": "TCP",
                 "port": 9098,
+                "protocol": "TCP",
                 "targetPort": 8080,
                 "nodePort": 40000
             }
@@ -25,5 +24,5 @@ local configs = import "config.jsonnet",
                 },
                 "type": "NodePort",
         },
-}
+} else "SKIP"
 

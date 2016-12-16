@@ -1,5 +1,5 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
+if configs.estate == "prd-samdev" then {
 
     kind: "Deployment", 
     spec: {
@@ -23,7 +23,7 @@ local configs = import "config.jsonnet",
                         ],
                         "ports": [
                         {
-                            "containerPort": 8000,
+                            "containerPort": 8080,
                             "name": "k8sproxy",
                         }
                         ]
@@ -62,4 +62,4 @@ local configs = import "config.jsonnet",
         name: "k8sproxy",
         namespace: "sam-system"
     }
-}
+} else "SKIP"
