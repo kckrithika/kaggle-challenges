@@ -18,16 +18,34 @@ local configs = import "config.jsonnet",
                            "--logtostderr=true",
                            "--disableCertsCheck=true",
                            "--tnrpArchiveEndpoint="+configs.tnrpArchiveEndpoint,
+                           "--tlsEnabled="+configs.tlsEnabled,
+                           "--caFile="+configs.caFile,
+                           "--keyFile="+configs.keyFile,
+                           "--certFile="+configs.certFile,
                          ],
+                      "volumeMounts": [
+                         {
+                            "mountPath": "/data/certs",
+                            "name": "certs"
+                         }
+                      ]
+
                     } 
                 ], 
                 volumes: [
                     {
                         hostPath: {
-                            path: "/manifests"
+                            path: "/data/certs"
                         }, 
+                        name: "certs"
+                    },
+                     {
+                        hostPath: {
+                            path: "/manifests"
+                        },
                         name: "sfdc-volume"
                     }
+
                 ],
                 nodeSelector: {
                     pool: configs.estate

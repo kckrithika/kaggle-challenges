@@ -1,0 +1,38 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "sdccontrol"
+      },
+      "name": "sdccontrol"
+   },
+   "spec": {
+      "replicas": 3,
+      "selector": {
+         "matchLabels": {
+            "name": "sdc-peering-agent"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "sdc-peering-agent"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:latest",
+                  "name": "sdc-peering-agent"
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sdc"
+            }
+         }
+      }
+   }
+}

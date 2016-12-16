@@ -28,7 +28,7 @@ while getopts ":o:" opt; do
 done
 
 # Disable estates check for now until we work out the access token stuff
-/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root .
+/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -imagefileoutdir .
 
 # Temporary for now
 env > ${OUTPUT_DIR}/debug_env.txt

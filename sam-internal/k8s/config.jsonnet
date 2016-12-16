@@ -27,6 +27,7 @@ local images = import "images.jsonnet",
             "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
             "phx": "ops0-mta1-2-phx.ops.sfdc.net"
         },
+
     },
 
     perCluster: {
@@ -38,6 +39,44 @@ local images = import "images.jsonnet",
             "dfw-sam": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000",
             "phx-sam": "shared0-samkubeapi1-1-phx.ops.sfdc.net:5000"
         },
+
+        tlsEnabled: {
+            "prd-sam": "false",
+            "prd-samtemp": "false",
+            "prd-samdev": "true",
+            "prd-sdc": "false",
+            "dfw-sam": "false",
+            "phx-sam": "true"
+        }
+
+    },
+
+    securityEnabled: {
+        caFile: {
+            "true": "/data/certs/ca.crt",
+            "false": ""
+        },
+
+        keyFile: {
+            "true": "/data/certs/hostcert.key",
+            "false": ""
+        },
+
+        certFile: {
+            "true": "/data/certs/hostcert.crt",
+            "false": ""
+        },
+
+        k8sapiserver: {
+            "true": "",
+            "false": "http://localhost:8000"
+        },
+
+        configPath: {
+            "true": "/config/kubeconfig",
+            "false": "/sam/config"
+        }
+
     },
 
     funnelVIP: self.perKingdom.funnelVIP[kingdom],
@@ -45,6 +84,13 @@ local images = import "images.jsonnet",
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
+    tlsEnabled: self.perCluster.tlsEnabled[estate],
+
+    caFile: self.securityEnabled.caFile[self.perCluster.tlsEnabled[estate]],
+    keyFile: self.securityEnabled.keyFile[self.perCluster.tlsEnabled[estate]],
+    certFile: self.securityEnabled.certFile[self.perCluster.tlsEnabled[estate]],
+    k8sapiserver: self.securityEnabled.k8sapiserver[self.perCluster.tlsEnabled[estate]],
+    configPath: self.securityEnabled.configPath[self.perCluster.tlsEnabled[estate]],
     estate: estate,
 
     controller: images.controller,
