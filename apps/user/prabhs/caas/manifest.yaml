@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: prd-caas-cluster-1
-    count: 4 
+    count: 3
     hostnetwork: true
     containers:
     - name: caas1c
@@ -21,7 +21,7 @@ system:
       # expose redis outside the container
       env:
       - name:  CAAS_DEMO3
-        value: DATE_12_1
+        value: DATE_12_15
       ports:
       - containerPort: 1300
       - containerPort: 1301 
