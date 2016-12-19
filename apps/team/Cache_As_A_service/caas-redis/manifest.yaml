@@ -9,7 +9,7 @@ system:
     - name: caas-redis 
       # container image/version to  run
       #image: caas:29112016
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12623074-62
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12715280-69
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
@@ -24,7 +24,7 @@ system:
       livenessProbe:
         exec:
           command:
-           - /opt/caas/build/redis-livenessprobe.sh
+           - /opt/caas/build/redis-livenessprobe.py
            - --port=1400
           initialDelaySeconds: 15
           timeoutSeconds: 10
