@@ -11,10 +11,10 @@
 
     estates: {
         "prd-sam": {
-            default: configs.registry + "/" + "hypersam:1a20894.clean.prahladjos-ltm.20161215_160825",
+            default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samtemp": {
-            default: configs.registry + "/" + "hypersam:dde5052.clean.xiaozhou-ltm.20161212_174436",
+            default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
             # Figuring out the right docker URL here is tricky.
@@ -22,6 +22,7 @@
             # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
             #
             default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
+            k8sproxy: "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113"
         },
         "prd-sdc": {
             default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
@@ -47,6 +48,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "k8sproxy"]
 }
 
