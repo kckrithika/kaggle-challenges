@@ -1,4 +1,5 @@
 #!/bin/bash -xe
-
+echo "Path::"
 pwd
-ls
+ls -l
+echo "Evaluating PR"
