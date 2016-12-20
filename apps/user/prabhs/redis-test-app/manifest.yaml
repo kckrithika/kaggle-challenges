@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: prabhs-redis-fn
-    count: 1
+    count: 2
     containers:
     - name: redistestapp
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/csc-health/redis:3.2
