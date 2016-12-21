@@ -1,4 +1,15 @@
 #!/bin/bash -xe
-
+echo "Path::"
 pwd
-ls
+ls -l
+echo "Evaluating PR"
+
+./validate.sh
+
+if [ 0 != $? ]
+then
+    echo "Failure"
+else
+    echo "Success"
+fi
+

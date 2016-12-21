@@ -7,6 +7,7 @@ exitcode="$?"
 if [ "0" != "$exitcode" ]
 then
   echo -e "\033[30;41mValidations failed.  You must fix these issues before merging!\033[0m"
+  exit 1
 else
   echo -e "\033[30;42m!!! All validations passed.  You are good to commit !!!\033[0m"
 fi
