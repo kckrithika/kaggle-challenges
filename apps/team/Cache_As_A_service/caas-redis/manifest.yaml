@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-1400
-    count: 4
+    count: 6
     hostnetwork: true
     containers:
     - name: caas-redis 
