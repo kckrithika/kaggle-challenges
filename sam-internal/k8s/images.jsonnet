@@ -21,8 +21,10 @@
             # See https://git.soma.salesforce.com/sam/sam/wiki/Official-Secure-Docker-Registry#mapping-artifactory-urls-to-docker-urls
             # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
             #
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
+            #default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
+            default: "hypersam:be65bf1.dirty.prabhsingh-ltm5.20161221_042125",
             k8sproxy: "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113"
+
         },
         "prd-sdc": {
             default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
