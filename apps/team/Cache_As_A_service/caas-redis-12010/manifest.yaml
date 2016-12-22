@@ -23,7 +23,7 @@ system:
       livenessProbe:
         exec:
           command:
-           - /opt/caas/redis-livenessprobe.py
+           - /opt/caas/redis/redis-livenessprobe.py
            - --port=12010
           initialDelaySeconds: 15
           timeoutSeconds: 10
