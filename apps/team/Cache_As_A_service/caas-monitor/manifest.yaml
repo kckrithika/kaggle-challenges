@@ -19,7 +19,10 @@ system:
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.blitz02.sfm.-.caas
+        - --logDir=/var/log/caas/monitor
       volumeMounts:
+        - mountPath: /var/log/caas/monitor
+          name: logvol
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
@@ -37,3 +40,6 @@ system:
     - name: secretvol
       secret:
         secretName: caas-secret-sp-c1
+    - name: logvol
+      hostPath:
+        path: /var/log/caas/monitor
