@@ -17,10 +17,10 @@ system:
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.prdsp2.sfm.-.caas
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
+#     volumeMounts:
+#        - mountPath: /var/secrets
+#          name: secretvol
+#          readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/config
@@ -31,7 +31,7 @@ system:
       ports:
       - containerPort: 7500
       - containerPort: 7501
-    volumes:
-    - name: secretvol
-      secret:
-        secretName: caas-secret-sp-c1
+#    volumes:
+#    - name: secretvol
+#      secret:
+#        secretName: caas-secret-sp-c1
