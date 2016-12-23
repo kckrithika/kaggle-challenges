@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis-12010
+  - name: redis-12001
     count: 4
     hostnetwork: true
     containers:
@@ -13,24 +13,24 @@ system:
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
- #     volumeMounts:
- #       - mountPath: /var/secrets
- #         name: secretvol
- #         readOnly: true
+#      volumeMounts:
+#        - mountPath: /var/secrets
+#          name: secretvol
+#          readOnly: true
       args: 
-        - --port=12010
+        - --port=12001
         - --maxMemoryMB=5120
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12010
+           - --port=12001
           initialDelaySeconds: 15
           timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 12010
-#    volumes:
-#    - name: secretvol
-#      secret:
-#         secretName: caas-secret-sp-pc1
+      - containerPort: 12001
+ #   volumes:
+ #   - name: secretvol
+ #     secret:
+ #        secretName: caas-secret-sp-c1

@@ -11,16 +11,16 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-12748750-11
       args: 
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
-        - --redis-monitor.redis-listen-ports=12010
+        - --redis-monitor.redis-listen-ports=12001,12011
         - --server.port=7506 
         - --management.port=7507
         - --cluster.name=sp-pc1
         - --logging.level.minimum=ALL
         - --settings.path=blitz.prdsp2.sfm.-.caas
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
+#      volumeMounts:
+#        - mountPath: /var/secrets
+#         name: secretvol
+#         readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/config
@@ -31,7 +31,7 @@ system:
       ports:
       - containerPort: 7506
       - containerPort: 7507
-    volumes:
-    - name: secretvol
-      secret:
-        secretName: caas-secret-sp-pc1
+#    volumes:
+#    - name: secretvol
+#      secret:
+#        secretName: caas-secret-sp-pc1
