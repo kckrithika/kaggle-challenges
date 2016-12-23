@@ -9,3 +9,5 @@ apps:
     - prd/prd-sp2-sam_caas
   caas-monitor-sp-c1:
     - prd/prd-sp2-sam_caas
+  caas-monitor-sp-pc1:
+    - prd/prd-sp2-sam_caas
