@@ -4,9 +4,14 @@ apps:
   caas-redis:
     - prd/prd-samdev
   caas-redis-12000:
+    - prd/prd-sp2-sam_caas
   caas-redis-12010:
+    - prd/prd-sp2-sam_caas
   caas-redis-12001:
+    - prd/prd-sp2-sam_caas
   caas-redis-12011:
+    - prd/prd-sp2-sam_caas
   caas-monitor-sp-c1:
+    - prd/prd-sp2-sam_caas
   caas-monitor-sp-pc1:
     - prd/prd-sp2-sam_caas
