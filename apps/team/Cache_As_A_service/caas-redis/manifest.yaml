@@ -8,8 +8,8 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      #image: caas:29112016
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12742755-78
+      image: caas:caastest-20161226
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-test:0.1-12742755-78
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
