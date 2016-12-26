@@ -29,7 +29,7 @@ system:
           timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 12000
+      - containerPort: 12011
  #   volumes:
  #   - name: secretvol
  #     secret:
