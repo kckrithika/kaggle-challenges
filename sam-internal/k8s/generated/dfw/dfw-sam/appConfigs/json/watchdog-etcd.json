@@ -29,7 +29,11 @@
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
                      "-sender=prabh.singh@salesforce.com",
                      "-recipient=sam@salesforce.com",
-                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com",
+                     "-tlsEnabled=false",
+                     "-caFile=",
+                     "-keyFile=",
+                     "-certFile="
                   ],
                   "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:ce3affd",
                   "name": "watchdog",
@@ -42,13 +46,27 @@
                         "cpu": "0.5",
                         "memory": "300Mi"
                      }
-                  }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "etcd_installed": "true"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               }
+            ]
          }
       }
    }
