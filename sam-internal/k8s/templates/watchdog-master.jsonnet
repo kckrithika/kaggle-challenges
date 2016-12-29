@@ -19,8 +19,18 @@ local configs = import "config.jsonnet",
                             "-smtpServer="+configs.smtpServer,
                             "-sender=prabh.singh@salesforce.com",
                             "-recipient=sam@salesforce.com",
-                            "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
-                        ], 
+                            "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com",
+                            "-tlsEnabled="+configs.tlsEnabled,
+                            "-caFile="+configs.caFile,
+                            "-keyFile="+configs.keyFile,
+                            "-certFile="+configs.certFile,
+                        ],
+                    "volumeMounts": [
+                        {
+                            "mountPath": "/data/certs",
+                            "name": "certs"
+                        }
+                    ],
                         name: "watchdog", 
                         resources: {
                             requests: {
@@ -33,7 +43,15 @@ local configs = import "config.jsonnet",
                             }
                         }
                     }
-                ], 
+                ],
+                volumes: [
+                    {
+                        hostPath: {
+                            path: "/data/certs"
+                            },
+                            name: "certs"
+                            }
+                ],
                 nodeSelector: {
                     master: "true",
                 }
