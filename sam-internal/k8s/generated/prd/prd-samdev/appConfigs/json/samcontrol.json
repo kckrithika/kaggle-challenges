@@ -43,7 +43,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:be65bf1.dirty.prabhsingh-ltm5.20161221_042125",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:252dcb7.clean.mayankkuma-ltm3.20161219_173829",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
