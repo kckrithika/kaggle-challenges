@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ "$1" == "evaluatePR" ] 
 then 
-    echo "Evaluating PR"
+    echo -e "\nEvaluating PR\n"
     /opt/sam/sam-manifest-builder --root='./' -validateonly
 else
   echo "NOTE: If the docker run command gives you an error like 'server gave HTTP response to HTTPS client.' then you most likely are missing the insecure registry setting in Docker.  See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
