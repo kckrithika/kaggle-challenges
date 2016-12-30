@@ -1,14 +1,5 @@
 #!/bin/bash -xe
-echo "Path::"
-pwd
-ls -l
+
+set -evx
 
 ./validate.sh evaluatePR
-
-if [ 0 != $? ]
-then
-    echo "Failure"
-else
-    echo "Success"
-fi
-
