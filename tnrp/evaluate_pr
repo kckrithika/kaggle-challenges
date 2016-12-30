@@ -2,9 +2,8 @@
 echo "Path::"
 pwd
 ls -l
-echo "Evaluating PR"
 
-./validate.sh
+./validate.sh evaluatePR
 
 if [ 0 != $? ]
 then
