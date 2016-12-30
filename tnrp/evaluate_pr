@@ -1,5 +1,5 @@
 #!/bin/bash -xe
 
-set -evx
+set -ex
 
 ./validate.sh evaluatePR
