@@ -34,7 +34,7 @@ system:
       - containerPort: 7501
       env:
       - name:  CAAS_UPGRADE
-        value: DATE_12_22
+        value: DATE_12_23
 #    volumes:
 #    - name: secretvol
 #      secret:
