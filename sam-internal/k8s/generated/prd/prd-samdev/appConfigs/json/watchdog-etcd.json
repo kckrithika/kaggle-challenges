@@ -29,9 +29,13 @@
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=prabh.singh@salesforce.com",
                      "-recipient=sam@salesforce.com",
-                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com",
+                     "-tlsEnabled=true",
+                     "-caFile=/data/certs/ca.crt",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-747bb3db-470",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-4ca80bde-484",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
@@ -42,13 +46,27 @@
                         "cpu": "0.5",
                         "memory": "300Mi"
                      }
-                  }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "etcd_installed": "true"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               }
+            ]
          }
       }
    }

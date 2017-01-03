@@ -29,7 +29,7 @@
                      "-f ",
                      "/etc/haproxy/haproxy.cfg"
                   ],
-                  "image": "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
                   "name": "k8sproxy",
                   "ports": [
                      {
