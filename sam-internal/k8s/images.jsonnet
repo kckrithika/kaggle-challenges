@@ -13,9 +13,6 @@
         "prd-sam": {
             default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
-        "prd-samtemp": {
-            default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-        },
         "prd-samdev": {
             # Figuring out the right docker URL here is tricky.
             # See https://git.soma.salesforce.com/sam/sam/wiki/Official-Secure-Docker-Registry#mapping-artifactory-urls-to-docker-urls
