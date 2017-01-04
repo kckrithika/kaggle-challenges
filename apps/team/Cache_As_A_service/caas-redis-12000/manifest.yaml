@@ -13,13 +13,16 @@ system:
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
-#      volumeMounts:
+      volumeMounts:
+        - mountPath: /var/log/caas/redis
+          name: logvol
 #        - mountPath: /var/secrets
 #          name: secretvol
 #          readOnly: true
       args: 
         - --port=12000
         - --maxMemoryMB=5120
+        - --logDir=/var/log/caas/redis
       livenessProbe:
         exec:
           command:
@@ -30,7 +33,10 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12000
- #   volumes:
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/caas/redis
  #   - name: secretvol
  #     secret:
  #        secretName: caas-secret-sp-c1
