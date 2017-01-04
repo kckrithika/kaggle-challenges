@@ -25,13 +25,55 @@
             "containers": [
                {
                   "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:latest",
-                  "name": "sdc-peering-agent"
+                  "name": "sdc-peering-agent",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/usr/local/etc",
+                        "name": "conf"
+                     },
+                     {
+                        "mountPath": "/usr/local/var/run",
+                        "name": "socket"
+                     }
+                  ]
+               },
+               {
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-conf:latest",
+                  "name": "sdc-peering-conf",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/usr/local/etc",
+                        "name": "conf"
+                     },
+                     {
+                        "mountPath": "/usr/local/var/run",
+                        "name": "socket"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/sdc-metrics/publisher",
+                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080"
+                  ],
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:latest",
+                  "name": "sdc-metrics"
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-sdc"
-            }
+            },
+            "volumes": [
+               {
+                  "emptyDir": { },
+                  "name": "conf"
+               },
+               {
+                  "emptyDir": { },
+                  "name": "socket"
+               }
+            ]
          }
       }
    }
