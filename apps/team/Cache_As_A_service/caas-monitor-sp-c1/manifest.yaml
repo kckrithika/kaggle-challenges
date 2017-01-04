@@ -18,7 +18,10 @@ system:
         - --logging.level.minimum=ALL
         - --settings.path=mist30.-.prd.-.caas
         - --superpodName=sp2
-#     volumeMounts:
+ #       - --logDir=/var/log/caas/monitor
+ #     volumeMounts:
+ #       - mountPath: /var/log/caas/monitor
+ #         name: logvol
 #        - mountPath: /var/secrets
 #          name: secretvol
 #          readOnly: true
@@ -36,6 +39,9 @@ system:
       - name:  CAAS_UPGRADE
         value: DATE_12_23
 #    volumes:
+#    - name: logvol
+#      hostPath:
+#        path: /var/log/caas/monitor
 #    - name: secretvol
 #      secret:
 #        secretName: caas-secret-sp-c1
