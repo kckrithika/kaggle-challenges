@@ -9,8 +9,50 @@ if configs.estate == "prd-sdc" then {
                 containers: [
                     {
                         name: "sdc-peering-agent",
-                        image: configs.registry + "/sdc-peering-agent:latest"
-                    }
+                        image: configs.registry + "/sdc-peering-agent:latest",
+                        volumeMounts: [
+                            {
+                                name: "conf",
+                                mountPath: "/usr/local/etc",
+                            },
+                            {
+                                name: "socket",
+                                mountPath: "/usr/local/var/run",
+                            },
+                        ],
+                    },
+                    {
+                        name: "sdc-peering-conf",
+                        image: configs.registry + "/sdc-peering-conf:latest",
+                        volumeMounts: [
+                            {
+                                name: "conf",
+                                mountPath: "/usr/local/etc",
+                            },
+                            {
+                                name: "socket",
+                                mountPath: "/usr/local/var/run",
+                            },
+                        ],
+                    },
+                    {
+                        name: "sdc-metrics",
+                        image: configs.registry + "/sdc-metrics:latest",
+                        command:[
+                           "/sdc-metrics/publisher",
+                           "--funnelEndpoint="+configs.funnelVIP,
+                        ],
+                    },
+                ],
+                volumes: [
+                    {
+                        name: "conf",
+                        emptyDir: {},
+                    },
+                    {
+                        name: "socket",
+                        emptyDir: {},
+                    },
                 ],
                 nodeSelector: {
                     pool: configs.estate
