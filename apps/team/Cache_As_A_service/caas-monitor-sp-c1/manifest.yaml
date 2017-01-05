@@ -11,7 +11,7 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-12764453-13
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
-        - --redis-monitor.redis-listen-ports=12000
+        - --redis-monitor.redis-listen-ports=12000,12001
         - --server.port=7500 
         - --management.port=7501
         - --cluster.name=sp-c1
