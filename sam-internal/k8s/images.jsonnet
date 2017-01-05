@@ -11,6 +11,7 @@
 
     estates: {
         "prd-sam": {
+            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
@@ -22,13 +23,15 @@
             k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-sdc": {
+            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "dfw-sam": {
+            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-4ca80bde-484"
+            default: "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-0c2a6125-496"
         }
     },
 
