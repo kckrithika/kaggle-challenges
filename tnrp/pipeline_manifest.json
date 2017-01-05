@@ -35,9 +35,9 @@
          "scope":[  
 
          ],
-         "group_id": "sam", 
+         "group_id": "rpm-sam", 
          "type":"rpm",
-         "repo_path":"sam"
+         "repo_path":"rpm-sam"
       }
    ],
    "snapshot_id":""
