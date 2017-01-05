@@ -27,8 +27,7 @@ system:
         value: /secrets/grok-client.key
       command: ["/bin/sh", "-c"]
       args: ["
-        export OBS_AJNA_FUNNELHOST=${SFDC_METRICS_SERVICE_HOST} ;
-        export OBS_AJNA_FUNNELPORT=${SFDC_METRICS_SERVICE_PORT} ;
+        export OBS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export OBS_AJNA_DATACENTER=${KINGDOM} ;
         export OBS_AJNA_DEVICE=${FUNCTION_INSTANCE_NAME} ;
         /main
