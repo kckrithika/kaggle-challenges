@@ -9,9 +9,10 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161212A
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-p2p/tnrp/gater/gater/0.0.1-12654833-17
       args:
         - start
+        - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
         - --logging.app.dir=/log
         - --java.io.tmpdir=/tmp
@@ -41,7 +42,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/gater-test
+        path: /home/sfdc-gater/logs/gater
     - name: dbvol
       hostPath:
         path: /data/gater-test/db

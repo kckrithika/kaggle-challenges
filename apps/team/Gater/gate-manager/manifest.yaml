@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: gate-manager
-    count: 3
+    count: 2
     hostnetwork: true
     containers:
     - name: gater
@@ -14,10 +14,10 @@ system:
         - start
         - --logging.app.dir=/log
         - --java.io.tmpdir=/tmp
-        - --aura.production=true
         - --server.port=9090
         - --settings.path=prod.-.phx.-.gater
         - --superpod.name=-
+        - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
         - --tnrp.use-vip=false
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-phx.data.sfdc.net
@@ -44,7 +44,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/gater
+        path: /home/sfdc-gater/logs/gater
     - name: dbvol
       hostPath:
         path: /data/gater/db
