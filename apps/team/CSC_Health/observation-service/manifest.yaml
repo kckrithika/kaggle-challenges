@@ -22,10 +22,10 @@ system:
       - name: OBS_GROK_ENDPOINT
         value: https://ops0-grok1-0-prd.data.sfdc.net
       - name: OBS_GROK_CERTPATH
-        value: /var/secrets/grok-client.crt.pem
+        value: /secrets/grok-client.crt.pem
       - name: OBS_GROK_KEYPATH
-        value: /var/secrets/grok-client.key
-      command: ["/bin/sh", "-c"]  
+        value: /secrets/grok-client.key
+      command: ["/bin/sh", "-c"]
       args: ["
         export OBS_AJNA_FUNNELHOST=${SFDC_METRICS_SERVICE_HOST} ;
         export OBS_AJNA_FUNNELPORT=${SFDC_METRICS_SERVICE_PORT} ;
