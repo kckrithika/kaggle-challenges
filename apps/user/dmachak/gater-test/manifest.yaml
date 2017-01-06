@@ -8,8 +8,8 @@ system:
     containers:
     - name: gater1
       # container image/version to run.
-      # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-p2p/tnrp/gater/gater:0.0.1-12654833-17
+      # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/gater/gater:0.0.1-12654833-17
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
