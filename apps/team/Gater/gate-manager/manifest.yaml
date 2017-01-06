@@ -8,8 +8,8 @@ system:
     containers:
     - name: gater
       # container image/version to run.
-      # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161212A
+      # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
+      image: docker-all/tnrp/gater/gater:0.0.1-12654833-17
       args:
         - start
         - --logging.app.dir=/log
