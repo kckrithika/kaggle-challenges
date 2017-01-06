@@ -28,7 +28,7 @@
                      "/sam/sam-controller",
                      "--debug=true",
                      "--dockerregistry=shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000",
-                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--v=3",
                      "--logtostderr=true",
                      "--k8sapiserver=http://localhost:8000",

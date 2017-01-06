@@ -54,7 +54,7 @@
                {
                   "command": [
                      "/sdc-metrics/publisher",
-                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080"
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:latest",
                   "name": "sdc-metrics"
