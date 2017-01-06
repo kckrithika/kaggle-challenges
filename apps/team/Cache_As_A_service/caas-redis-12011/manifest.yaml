@@ -14,7 +14,7 @@ system:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
       volumeMounts:
-        - mountPath: /var/log/caas/redis/pc/b
+        - mountPath: /var/log/caas/redis/sppc/b
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -23,7 +23,7 @@ system:
         - --port=12011
         - --maxMemoryMB=5120
         - --max-memory-policy=noeviction
-        - --logDir=/var/log/caas/redis
+        - --logDir=/var/log/caas/redis/sppc/b
       livenessProbe:
         exec:
           command:
@@ -37,7 +37,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/caas/redis/pc/b
+        path: /var/log/caas/redis/sppc/b
     - name: secretvol
       secret:
          secretName: caas-secret-sp-pc1
