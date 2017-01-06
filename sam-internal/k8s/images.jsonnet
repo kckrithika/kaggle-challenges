@@ -31,7 +31,7 @@
             default: configs.registry + "/" + "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-0c2a6125-496"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-0c2a6125-496"
         }
     },
 
