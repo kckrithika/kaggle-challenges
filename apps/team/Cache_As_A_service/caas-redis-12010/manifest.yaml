@@ -22,7 +22,7 @@ system:
       args: 
         - --port=12010
         - --maxMemoryMB=5120
-        - --max-memory-policy=noeviction
+        - --maxmemory-policy=noeviction
         - --logDir=/var/log/caas/redis/sppc/a
       livenessProbe:
         exec:
