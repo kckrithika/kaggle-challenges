@@ -11,8 +11,8 @@
 
     estates: {
         "prd-sam": {
-            # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-6b6fa4e0-499",
+            k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
             # Figuring out the right docker URL here is tricky.

@@ -19,7 +19,7 @@ if [[ "$EXPECTEDKUBECTLVER" == "$KUBECTLVER" ]]; then
   echo "Found kubectl version: $KUBECTLVER"
 else
   echo "Expected kubectl version $EXPECTEDKUBECTLVER but found $KUBECTLVER"
-  exit
+#  exit
 fi
 
 # Turn echo on now
