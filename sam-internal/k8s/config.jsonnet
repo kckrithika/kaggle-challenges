@@ -7,25 +7,29 @@ local images = import "images.jsonnet",
         funnelVIP: {
             "prd": "ajna0-funnel1-0-prd.data.sfdc.net:80",
             "dfw": "mandm-funnel-dfw1.data.sfdc.net:8080",
-            "phx": "mandm-funnel-phx1.data.sfdc.net:8080"
+            "phx": "mandm-funnel-phx1.data.sfdc.net:8080",
+            "frf": "mandm-funnel-frf1.data.sfdc.net:8080"
         },
 
         tnrpArchiveEndpoint: {
             "prd": "https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
             "dfw": "https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
             "phx": "https://ops0-piperepo1-1-phx.ops.sfdc.net/tnrp/content_repo/0/archive",
+            "frf": "https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
         },
 
         rcImtEndpoint: {
             "prd": "http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
             "dfw": "http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
-            "phx": "http://ops0-orch1-1-phx.ops.sfdc.net:8080/v1/bark"
+            "phx": "http://ops0-orch1-1-phx.ops.sfdc.net:8080/v1/bark",
+            "frf": "http://ops0-orch1-1-frf.ops.sfdc.net:8080/v1/bark"
         },
 
         smtpServer: {
             "prd": "rd1-mta1-4-sfm.ops.sfdc.net:25",
             "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
-            "phx": "ops0-mta1-2-phx.ops.sfdc.net"
+            "phx": "ops0-mta1-2-phx.ops.sfdc.net:25",
+            "frf": "ops0-mta2-1-frf.ops.sfdc.net:25"
         },
 
     },
@@ -36,7 +40,8 @@ local images = import "images.jsonnet",
             "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000",
             "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000",
             "dfw-sam": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000",
-            "phx-sam": "ops0-artifactrepo1-0-phx.data.sfdc.net"
+            "phx-sam": "ops0-artifactrepo1-0-phx.data.sfdc.net",
+            "frf-sam": "ops0-artifactrepo1-0-frf.data.sfdc.net"
         },
 
         tlsEnabled: {
@@ -44,7 +49,8 @@ local images = import "images.jsonnet",
             "prd-samdev": "true",
             "prd-sdc": "false",
             "dfw-sam": "false",
-            "phx-sam": "true"
+            "phx-sam": "true",
+            "frf-sam": "true"
         }
 
     },
