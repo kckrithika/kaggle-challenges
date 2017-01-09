@@ -40,7 +40,7 @@ local images = import "images.jsonnet",
         },
 
         tlsEnabled: {
-            "prd-sam": "false",
+            "prd-sam": "true",
             "prd-samdev": "true",
             "prd-sdc": "false",
             "dfw-sam": "false",
