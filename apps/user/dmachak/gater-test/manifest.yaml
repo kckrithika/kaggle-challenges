@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-test-cluster-1
-    count: 2
+    count: 4
     hostnetwork: true
     containers:
     - name: gater1
@@ -18,13 +18,12 @@ system:
         - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --settings.path=blitz.-.prd.-.gater
-        - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section.
       volumeMounts:
       - mountPath: /log
         name: logvol
-      - mountPath: /db
+      - mountPath: /fastdata
         name: dbvol
       # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
       # change this to a different port for instances running in SAM. Note server.port above reflects this.
