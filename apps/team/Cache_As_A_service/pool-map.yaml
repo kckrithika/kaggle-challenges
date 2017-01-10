@@ -15,3 +15,15 @@ apps:
     - prd/prd-sp2-sam_caas
   caas-monitor-sp-pc1:
     - prd/prd-sp2-sam_caas
+  phx-caas-redis-12000-sp-c1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-redis-12001-sp-c1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-redis-12010-sp-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-redis-12011-sp-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-monitor-sp-c1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-monitor-sp-pc1:
+    - phx/phx-sp1-sam_caas
