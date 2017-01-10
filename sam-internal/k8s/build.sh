@@ -38,7 +38,7 @@ generateConfigs() {
 
 rm -rf generated/
 
-declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samtemp" "prd/prd-samdev" "prd/prd-sdc" "dfw/dfw-sam" "phx/phx-sam")
+declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samdev" "prd/prd-sdc" "dfw/dfw-sam" "phx/phx-sam" "frf/frf-sam")
 
 for kingdomEstate in "${kingdomEstates[@]}"
 do

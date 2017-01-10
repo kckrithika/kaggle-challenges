@@ -27,23 +27,23 @@
                   "command": [
                      "/sam/sam-controller",
                      "--debug=true",
-                     "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
-                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
+                     "--dockerregistry=ops0-artifactrepo1-0-frf.data.sfdc.net",
+                     "--funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
                      "--v=3",
                      "--logtostderr=true",
-                     "--k8sapiserver=http://localhost:8000",
-                     "--tlsEnabled=false",
-                     "--caFile=",
-                     "--keyFile=",
-                     "--certFile="
+                     "--k8sapiserver=",
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
                   ],
                   "env": [
                      {
                         "name": "KUBECONFIG",
-                        "value": "/sam/config"
+                        "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-0c2a6125-496",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
@@ -59,7 +59,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-samtemp"
+               "pool": "frf-sam"
             },
             "volumes": [
                {

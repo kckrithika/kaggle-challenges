@@ -26,17 +26,17 @@
                {
                   "command": [
                      "/sam/manifest-watcher",
-                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
                      "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-                     "--tlsEnabled=false",
-                     "--caFile=",
-                     "--keyFile=",
-                     "--certFile="
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-6b6fa4e0-499",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {

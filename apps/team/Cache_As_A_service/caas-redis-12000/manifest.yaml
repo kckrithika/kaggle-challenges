@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-12000
-    count: 3
+    count: 2
     hostnetwork: true
     containers:
     - name: caas-redis 
@@ -13,16 +13,16 @@ system:
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
-#      volumeMounts:
-#        - mountPath: /var/log/caas/redis
-#          name: logvol
-#        - mountPath: /var/secrets
-#          name: secretvol
-#          readOnly: true
+      volumeMounts:
+        - mountPath: /var/log/caas/redis/spc/a
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       args: 
         - --port=12000
         - --maxMemoryMB=5120
-#        - --logDir=/var/log/caas/redis
+        - --logDir=/var/log/caas/redis/spc/a
       livenessProbe:
         exec:
           command:
@@ -33,10 +33,10 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12000
-#    volumes:
-#    - name: logvol
-#      hostPath:
-#        path: /var/log/caas/redis
- #   - name: secretvol
- #     secret:
- #        secretName: caas-secret-sp-c1
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/caas/redis/spc/a
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-c1

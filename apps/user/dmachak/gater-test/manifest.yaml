@@ -3,27 +3,28 @@ apiVersion: v1
 system:
   functions:
   - name: gater-test-cluster-1
-    count: 2
+    count: 4
     hostnetwork: true
     containers:
     - name: gater1
       # container image/version to run.
-      # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161212A
+      # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/gater/gater:0.0.1-12654833-17
       args:
         - start
+        - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
         - --logging.app.dir=/log
         - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --settings.path=blitz.-.prd.-.gater
-        - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
+        - --spring.datasource.url=jdbc:h2:file:/fastdata/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section.
       volumeMounts:
       - mountPath: /log
         name: logvol
-      - mountPath: /db
+      - mountPath: /fastdata
         name: dbvol
       # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
       # change this to a different port for instances running in SAM. Note server.port above reflects this.
@@ -41,7 +42,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/gater-test
+        path: /home/sfdc-gater/logs/gater
     - name: dbvol
       hostPath:
         path: /data/gater-test/db

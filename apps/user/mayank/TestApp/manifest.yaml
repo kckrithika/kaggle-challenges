@@ -16,14 +16,6 @@ system:
       env:
         - name: DUMMYENV
           value: "SOMEVALUE"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-gater
-
 
   loadbalancers:
   - lbname: samhellolb

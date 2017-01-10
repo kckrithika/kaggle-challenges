@@ -3,21 +3,21 @@ apiVersion: v1
 system:
   functions:
   - name: gate-manager
-    count: 3
+    count: 2
     hostnetwork: true
     containers:
     - name: gater
       # container image/version to run.
-      # this is published separately to http://shared0-samcontrol1-1-prd.eng.sfdc.net:5000
-      image: gater-test:dmachak-20161212A
+      # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
+      image: docker-all/tnrp/gater/gater:0.0.1-12654833-17
       args:
         - start
         - --logging.app.dir=/log
         - --java.io.tmpdir=/tmp
-        - --aura.production=true
         - --server.port=9090
         - --settings.path=prod.-.phx.-.gater
         - --superpod.name=-
+        - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
         - --tnrp.use-vip=false
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-phx.data.sfdc.net
@@ -44,7 +44,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/gater
+        path: /home/sfdc-gater/logs/gater
     - name: dbvol
       hostPath:
         path: /data/gater/db

@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: monitor-sp-pc1
-    count: 5
+    count: 8
     hostnetwork: true
     containers:
     - name: caas-monitor 
@@ -11,17 +11,20 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-12764453-13
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
-        - --redis-monitor.redis-listen-ports=12001
+        - --redis-monitor.redis-listen-ports=12010,12011
         - --server.port=7506 
         - --management.port=7507
         - --cluster.name=sp-pc1
         - --logging.level.minimum=ALL
         - --settings.path=mist30.-.prd.-.caas
         - --superpodName=sp2
-#      volumeMounts:
-#        - mountPath: /var/secrets
-#         name: secretvol
-#         readOnly: true
+        - --logDir=/var/log/caas/monitor/sppc
+      volumeMounts:
+        - mountPath: /var/log/caas/monitor/sppc
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/config
@@ -32,7 +35,10 @@ system:
       ports:
       - containerPort: 7506
       - containerPort: 7507
-#    volumes:
-#    - name: secretvol
-#      secret:
-#        secretName: caas-secret-sp-pc1
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/caas/monitor/sppc
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-pc1

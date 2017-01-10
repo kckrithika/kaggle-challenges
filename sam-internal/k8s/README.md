@@ -6,7 +6,7 @@ To do a deployment pick one of the following approaches:
 * set KUBECTLBIN at time of running this script:
 
 ```sh
-KUBECTLBIN=/Users/thargrove/sam/bin/kubectl ./deploy.sh prd-samtemp
+KUBECTLBIN=/Users/thargrove/sam/bin/kubectl ./deploy.sh prd-samdev
 ```
 
 * set KUBECTLBIN in you .bash_profile
@@ -30,7 +30,7 @@ $ git push
 * Run deploy.sh:
 
 ```sh
-$ ./deploy.sh prd-samtemp
+$ ./deploy.sh prd-samdev
 ```
 
 * Check in your changes

@@ -11,28 +11,30 @@
 
     estates: {
         "prd-sam": {
-            default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-        },
-        "prd-samtemp": {
-            default: configs.registry + "/" + "hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-6b6fa4e0-499",
+            k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
             # Figuring out the right docker URL here is tricky.
             # See https://git.soma.salesforce.com/sam/sam/wiki/Official-Secure-Docker-Registry#mapping-artifactory-urls-to-docker-urls
             # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
             #
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-4ca80bde-484",
+            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0c2a6125-496",
             k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            controller: configs.registry + "/" + "hypersam:252dcb7.clean.mayankkuma-ltm3.20161219_173829",
         },
         "prd-sdc": {
+            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
         },
         "dfw-sam": {
+            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-4ca80bde-484"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-0c2a6125-496"
+        },
+        "frf-sam": {
+                    default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-0c2a6125-496"
         }
     },
 

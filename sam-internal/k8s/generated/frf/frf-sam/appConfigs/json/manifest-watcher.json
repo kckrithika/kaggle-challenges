@@ -26,17 +26,17 @@
                {
                   "command": [
                      "/sam/manifest-watcher",
-                     "--funnelEndpoint=mandm-funnel-sfz.data.sfdc.net:8080",
+                     "--funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-                     "--tlsEnabled=false",
-                     "--caFile=",
-                     "--keyFile=",
-                     "--certFile="
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-0c2a6125-496",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {
@@ -48,7 +48,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-samtemp"
+               "pool": "frf-sam"
             },
             "volumes": [
                {
