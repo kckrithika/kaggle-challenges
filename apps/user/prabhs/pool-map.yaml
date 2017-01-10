@@ -2,9 +2,5 @@ apps:
  redis-test-app:
   - prd/prd-sam
   - prd/prd-samdev
- caas:
-  - phx/phx-sp1-sam_caas
- caas-redis:
-  - phx/phx-sp1-sam_caas
  caas-test:
   - prd/prd-sp2-sam_caas
