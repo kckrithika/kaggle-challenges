@@ -16,9 +16,9 @@ system:
       volumeMounts:
         - mountPath: /var/log/caas/redis/spc/a
           name: logvol
-#        - mountPath: /var/secrets
-#          name: secretvol
-#          readOnly: true
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       args: 
         - --port=12000
         - --maxMemoryMB=5120
@@ -37,6 +37,6 @@ system:
     - name: logvol
       hostPath:
         path: /var/log/caas/redis/spc/a
-#    - name: secretvol
-#      secret:
-#         secretName: caas-secret-sp-c1
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-c1
