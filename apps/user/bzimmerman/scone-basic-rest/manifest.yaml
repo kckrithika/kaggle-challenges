@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: scone-basic-rest
-      image: scone-basic-rest:zim-20161003
+      image: scone-basic-rest:zim-20170111
       ports:
       - containerPort: 8080
       - containerPort: 15372
