@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: monitor-sp-c1
-    count: 8 
+    count: 10 
     hostnetwork: true
     containers:
     - name: caas-monitor 
