@@ -33,6 +33,9 @@ system:
       ports:
       - containerPort: 7506
       - containerPort: 7507
+      env:
+      - name:  CAAS_SP_PC1
+        value: DATE_12_23
     volumes:
     - name: logvol
       hostPath:
