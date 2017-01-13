@@ -33,6 +33,10 @@ if configs.estate == "prd-sdc" then {
                                 name: "socket",
                                 mountPath: "/usr/local/var/run",
                             },
+                            {
+                                name: "bird_csv",
+                                mountPath: "/root/sdc/sdcc/conf",
+                            },
                         ],
                     },
                     {
@@ -52,6 +56,12 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "socket",
                         emptyDir: {},
+                    },
+                    {
+                        name: "bird_csv",
+                        hostPath: {
+                                path: /usr/local/sdc_bird_conf
+                        }
                     },
                 ],
                 nodeSelector: {
