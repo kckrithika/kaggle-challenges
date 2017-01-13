@@ -60,7 +60,7 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "bird_csv",
                         hostPath: {
-                                path: /usr/local/sdc_bird_conf
+                            path: "/usr/local/sdc_bird_conf"
                         }
                     },
                 ],
