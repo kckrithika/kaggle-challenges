@@ -35,7 +35,7 @@
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0c2a6125-496",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-aea47398-513",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
