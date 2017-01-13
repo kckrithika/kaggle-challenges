@@ -11,3 +11,4 @@ apps:
     - dfw/dfw-sam_report_collector
   observation-service:
     - prd/prd-sam_report_collector
+    - prd/prd-samdev
