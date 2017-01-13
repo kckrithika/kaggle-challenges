@@ -44,4 +44,4 @@ system:
         path: /home/sfdc-gater/logs/gater
     - name: dbvol
       hostPath:
-        path: /data/gater-sandbox/db
+        path: /home/sfdc-gater/db
