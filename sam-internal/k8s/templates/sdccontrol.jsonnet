@@ -34,8 +34,8 @@ if configs.estate == "prd-sdc" then {
                                 mountPath: "/usr/local/var/run",
                             },
                             {
-                                name: "bird_csv",
-                                mountPath: "/root/sdc/sdcc/conf",
+                                name: "bird-csv",
+                                mountPath: "/root/src/sdcc/conf",
                             },
                         ],
                     },
@@ -58,7 +58,7 @@ if configs.estate == "prd-sdc" then {
                         emptyDir: {},
                     },
                     {
-                        name: "bird_csv",
+                        name: "bird-csv",
                         hostPath: {
                             path: "/usr/local/sdc_bird_conf"
                         }

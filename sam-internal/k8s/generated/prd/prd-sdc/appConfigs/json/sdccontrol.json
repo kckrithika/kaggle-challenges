@@ -48,6 +48,10 @@
                      {
                         "mountPath": "/usr/local/var/run",
                         "name": "socket"
+                     },
+                     {
+                        "mountPath": "/root/src/sdcc/conf",
+                        "name": "bird-csv"
                      }
                   ]
                },
@@ -72,6 +76,12 @@
                {
                   "emptyDir": { },
                   "name": "socket"
+               },
+               {
+                  "hostPath": {
+                     "path": "/usr/local/sdc_bird_conf"
+                  },
+                  "name": "bird-csv"
                }
             ]
          }
