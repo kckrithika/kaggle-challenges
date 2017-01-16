@@ -20,7 +20,6 @@ system:
         - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
         - --tnrp.use-vip=false
-        - --metrics.funnelEndPointURL=ajna0-funnel1-0-phx.data.sfdc.net
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section.
       volumeMounts:
