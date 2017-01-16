@@ -1,8 +1,8 @@
 apps:
   caas-monitor:
-    - prd/prd-sam
+    - prd/prd-samdev
   caas-redis:
-    - prd/prd-sam
+    - prd/prd-samdev
   caas-redis-12000:
     - prd/prd-sp2-sam_caas
   caas-redis-12010:
