@@ -33,6 +33,11 @@ if configs.estate == "prd-sdc" then {
                                 name: "socket",
                                 mountPath: "/usr/local/var/run",
                             },
+                            {
+                                name: "sdc-vol",
+                                mountPath: "/root/src/sdcc/conf",
+                                readOnly: true,
+                            },
                         ],
                     },
                     {
@@ -52,6 +57,12 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "socket",
                         emptyDir: {},
+                    },
+                    {
+                        name: "sdc-vol",
+                        hostPath: {
+                            path: "/usr/local/sdc"
+                        }
                     },
                 ],
                 nodeSelector: {
