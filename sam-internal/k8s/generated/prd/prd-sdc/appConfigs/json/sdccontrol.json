@@ -24,8 +24,8 @@
          "spec": {
             "containers": [
                {
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:latest",
-                  "name": "sdc-peering-agent",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:pporwal-201701171227",
+                  "name": "sdc-bird",
                   "volumeMounts": [
                      {
                         "mountPath": "/usr/local/etc",

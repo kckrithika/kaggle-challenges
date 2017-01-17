@@ -8,8 +8,8 @@ if configs.estate == "prd-sdc" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdc-peering-agent",
-                        image: configs.registry + "/sdc-peering-agent:latest",
+                        name: "sdc-bird",
+                        image: configs.registry + "/sdc-bird:pporwal-201701171227",
                         volumeMounts: [
                             {
                                 name: "conf",
