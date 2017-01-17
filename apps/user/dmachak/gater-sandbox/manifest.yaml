@@ -2,20 +2,20 @@ apiVersion: v1
 
 system:
   functions:
-  - name: gater-sandbox-cluster-1
+  - name: gater-sandbox
     count: 2
     hostnetwork: true
     containers:
     - name: gatersandbox
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: gater-sandbox:dmachak-20170116A
+      image: gater-prd:dmachak-20170117A
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --logging.app.dir=/log/app
         - --java.io.tmpdir=/tmp
-        - --server.port=9090
+        - --server.port=8080
         - --settings.path=blitz.-.prd.-.gater
         - --spring.datasource.url=jdbc:h2:file:/fastdata/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
@@ -31,7 +31,7 @@ system:
       ports:
       - containerPort: 9522
       - containerPort: 9523 
-      - containerPort: 9090
+      - containerPort: 8080
       - containerPort: 15372
 
     # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
