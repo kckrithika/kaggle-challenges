@@ -1,4 +1,4 @@
 apps:
-    my-sam-test:
+    sam-test:
         - prd/prd-sam
         - prd/prd-samtemp
