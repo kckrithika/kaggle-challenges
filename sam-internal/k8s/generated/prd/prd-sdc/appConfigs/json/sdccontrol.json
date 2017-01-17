@@ -51,7 +51,8 @@
                      },
                      {
                         "mountPath": "/root/src/sdcc/conf",
-                        "name": "bird-csv"
+                        "name": "sdc-vol",
+                        "readOnly": true
                      }
                   ]
                },
@@ -79,9 +80,9 @@
                },
                {
                   "hostPath": {
-                     "path": "/usr/local/sdc_bird_conf"
+                     "path": "/usr/local/sdc"
                   },
-                  "name": "bird-csv"
+                  "name": "sdc-vol"
                }
             ]
          }
