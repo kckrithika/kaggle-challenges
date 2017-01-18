@@ -48,6 +48,11 @@
                      {
                         "mountPath": "/usr/local/var/run",
                         "name": "socket"
+                     },
+                     {
+                        "mountPath": "/root/src/sdcc/conf",
+                        "name": "sdc-vol",
+                        "readOnly": true
                      }
                   ]
                },
@@ -72,6 +77,12 @@
                {
                   "emptyDir": { },
                   "name": "socket"
+               },
+               {
+                  "hostPath": {
+                     "path": "/usr/local/sdc"
+                  },
+                  "name": "sdc-vol"
                }
             ]
          }
