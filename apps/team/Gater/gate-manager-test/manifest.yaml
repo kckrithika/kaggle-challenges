@@ -2,14 +2,14 @@ apiVersion: v1
 
 system:
   functions:
-  - name: gater-test-cluster-1
+  - name: gater-prd
     count: 4
     hostnetwork: true
     containers:
     - name: gater1
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: gater-test:dmachak-20170116A
+      image: gater-prd:dmachak-20170117A
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80

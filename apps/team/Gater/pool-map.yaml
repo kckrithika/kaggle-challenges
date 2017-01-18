@@ -1,3 +1,5 @@
 apps:
  gate-manager:
   - phx/phx-sam_gater
+ gate-manager-test:
+  - prd/prd-sam_gater
