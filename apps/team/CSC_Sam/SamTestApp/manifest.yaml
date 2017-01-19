@@ -26,7 +26,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/priyank/porwal/some/deep/nested/path
+        path: /home/caas/logs/apps
     - name: ephermeralvol
       emptyDir: {}
   loadbalancers:
