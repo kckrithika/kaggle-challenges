@@ -9,7 +9,7 @@ system:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
-      image: docker-all/tnrp/gater/gater:0.0.1-12654833-17
+      image: docker-all/tnrp/gater/gater:1.0.3-12858974-20
       args:
         - start
         - --logging.app.dir=/log/app
@@ -18,14 +18,14 @@ system:
         - --settings.path=prod.-.phx.-.gater
         - --superpod.name=-
         - --settings.superPod=-
-        - --spring.datasource.url=jdbc:h2:file:/db/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
+        - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
         - --tnrp.use-vip=false
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section.
       volumeMounts:
       - mountPath: /log
         name: logvol
-      - mountPath: /db
+      - mountPath: /fastdata/gater
         name: dbvol
       # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
       # change this to a different port for instances running in SAM. Note server.port above reflects this.
@@ -46,4 +46,4 @@ system:
         path: /home/sfdc-gater/logs/gater
     - name: dbvol
       hostPath:
-        path: /data/gater/db
+        path: /home/sfdc-gater/db
