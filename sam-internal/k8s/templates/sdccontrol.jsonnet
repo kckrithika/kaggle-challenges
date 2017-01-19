@@ -8,8 +8,8 @@ if configs.estate == "prd-sdc" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdc-peering-agent",
-                        image: configs.registry + "/sdc-peering-agent:latest",
+                        name: "sdc-bird",
+                        image: configs.registry + "/sdc-bird:pporwal-201701171227",
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -23,7 +23,7 @@ if configs.estate == "prd-sdc" then {
                     },
                     {
                         name: "sdc-peering-conf",
-                        image: configs.registry + "/sdc-peering-conf:latest",
+                        image: configs.registry + "/sdc-peering-conf:vkarnati-201701191242",
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -42,7 +42,7 @@ if configs.estate == "prd-sdc" then {
                     },
                     {
                         name: "sdc-metrics",
-                        image: configs.registry + "/sdc-metrics:latest",
+                        image: configs.registry + "/sdc-metrics:vkarnati-201701191232",
                         command:[
                            "/sdc-metrics/publisher",
                            "--funnelEndpoint="+configs.funnelVIP,

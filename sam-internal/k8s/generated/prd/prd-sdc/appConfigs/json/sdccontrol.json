@@ -24,8 +24,8 @@
          "spec": {
             "containers": [
                {
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:latest",
-                  "name": "sdc-peering-agent",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:pporwal-201701171227",
+                  "name": "sdc-bird",
                   "volumeMounts": [
                      {
                         "mountPath": "/usr/local/etc",
@@ -38,7 +38,7 @@
                   ]
                },
                {
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-conf:latest",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-conf:vkarnati-201701191242",
                   "name": "sdc-peering-conf",
                   "volumeMounts": [
                      {
@@ -61,7 +61,7 @@
                      "/sdc-metrics/publisher",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:latest",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:vkarnati-201701191232",
                   "name": "sdc-metrics"
                }
             ],
