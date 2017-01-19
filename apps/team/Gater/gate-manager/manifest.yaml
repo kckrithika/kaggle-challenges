@@ -9,7 +9,7 @@ system:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
-      image: docker-all/tnrp/gater/gater:0.0.1-12654833-17
+      image: docker-all/tnrp/gater/gater:1.0.3-12858974-20
       args:
         - start
         - --logging.app.dir=/log/app
