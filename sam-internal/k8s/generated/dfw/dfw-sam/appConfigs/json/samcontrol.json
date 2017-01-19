@@ -27,23 +27,23 @@
                   "command": [
                      "/sam/sam-controller",
                      "--debug=true",
-                     "--dockerregistry=ops0-artifactrepo1-0-dfw.data.sfdc.net",
+                     "--dockerregistry=shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000",
                      "--funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "--v=3",
                      "--logtostderr=true",
-                     "--k8sapiserver=",
-                     "--tlsEnabled=true",
-                     "--caFile=/data/certs/ca.crt",
-                     "--keyFile=/data/certs/hostcert.key",
-                     "--certFile=/data/certs/hostcert.crt"
+                     "--k8sapiserver=http://localhost:8000",
+                     "--tlsEnabled=false",
+                     "--caFile=",
+                     "--keyFile=",
+                     "--certFile="
                   ],
                   "env": [
                      {
                         "name": "KUBECONFIG",
-                        "value": "/config/kubeconfig"
+                        "value": "/sam/config"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/hypersam:sam-9db6a3ff-515",
+                  "image": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000/hypersam:ce3affd",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
