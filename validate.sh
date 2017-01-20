@@ -8,7 +8,7 @@ then
   echo -e '\n```\n'
 else
   echo "NOTE: If the docker run command gives you an error like 'server gave HTTP response to HTTPS client.' then you most likely are missing the insecure registry setting in Docker.  See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
-  docker run -it --rm -v ${PWD}:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170119_151143.c66a0b6.clean.mayankkuma-ltm3 /sam/sam-manifest-builder --root='/repo/' -validateonly
+  docker run -it --rm -v ${PWD}:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170119_185334.43ccc94.clean.prahladjos-ltm /sam/sam-manifest-builder --root='/repo/' -validateonly
   exitcode="$?"
 fi
 
