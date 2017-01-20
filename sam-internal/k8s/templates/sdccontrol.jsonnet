@@ -23,7 +23,7 @@ if configs.estate == "prd-sdc" then {
                     },
                     {
                         name: "sdc-peering-conf",
-                        image: configs.registry + "/sdc-peering-conf:vkarnati-201701191242",
+                        image: configs.registry + "/sdc-peering-conf:nkatta-201701200445",
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -35,7 +35,7 @@ if configs.estate == "prd-sdc" then {
                             },
                             {
                                 name: "sdc-vol",
-                                mountPath: "/root/src/sdcc/conf",
+                                mountPath: "/usr/local/sdc",
                                 readOnly: true,
                             },
                         ],
