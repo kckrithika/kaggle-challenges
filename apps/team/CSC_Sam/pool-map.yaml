@@ -4,3 +4,5 @@ apps:
   - prd/prd-samdev
   - prd/prd-sdc
   - dfw/dfw-sam
+ SamTestAppReg:
+  - frf/frf-sam
