@@ -37,6 +37,7 @@ system:
       export ReportCollector_ajna_device=${FUNCTION_INSTANCE_NAME} ;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
+        -Dvertx.disableFileCPResolving=true
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
