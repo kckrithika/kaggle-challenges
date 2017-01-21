@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: report-collector-availability-watchdog:1.1.0-20161115T200314
+      image: report-collector-availability-watchdog:1.1.0-20170120T234907
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
