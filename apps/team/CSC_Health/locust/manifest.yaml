@@ -1,0 +1,53 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: locust-master
+    count: 1
+    containers:
+    - name: locust-master
+      image: locust:anu_a1eb15a_20161130T2210
+      ports:
+      - name: loc-master-ui
+        containerPort: 8089
+      - name: loc-master-w1
+        containerPort: 5557
+      - name: loc-master-w2
+        containerPort: 5558
+      env:
+      - name: REPORTCOLLECTORLB_SERVICE_HOST
+        value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
+      - name: TARGET_RC_PROVIDER_PROTOCOL
+        value: http
+      - name: TARGET_RC_PROVIDER_PORT
+        value: 18443
+
+  - name: locust-worker
+    count: 30
+    containers:
+    - name: locust-worker
+      image: locust:anu_a1eb15a_20161130T2210
+      resources:
+        limits: { cpu: "1", memory: "2Gi" }
+        requests: { cpu: "1", memory: "2Gi" }
+      env:
+      - name: REPORTCOLLECTORLB_SERVICE_HOST
+        value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
+      - name: TARGET_RC_PROVIDER_PROTOCOL
+        value: http
+      - name: TARGET_RC_PROVIDER_PORT
+        value: 18443
+
+  loadbalancers:
+    - lbname: locustmasterlb
+      function: locust-master
+      ports:
+        - port: 8089
+          targetPort: 8089
+          name: loc-master-ui
+        - port: 5557
+          targetPort: 5557
+          name: loc-master-w1
+        - port: 5558
+          targetPort: 5558
+          name: loc-master-w2

@@ -13,21 +13,39 @@ local configs = import "config.jsonnet",
                         image: configs.manifest_watcher,
                         command: [
                            "/sam/manifest-watcher",
-                           "--funneladdr="+configs.funnelVIP,
+                           "--funnelEndpoint="+configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
                            "--disableCertsCheck=true",
                            "--tnrpArchiveEndpoint="+configs.tnrpArchiveEndpoint,
+                           "--tlsEnabled="+configs.tlsEnabled,
+                           "--caFile="+configs.caFile,
+                           "--keyFile="+configs.keyFile,
+                           "--certFile="+configs.certFile,
                          ],
+                      "volumeMounts": [
+                         {
+                            "mountPath": "/data/certs",
+                            "name": "certs"
+                         }
+                      ]
+
                     } 
                 ], 
                 volumes: [
                     {
                         hostPath: {
-                            path: "/manifests"
+                            path: "/data/certs"
                         }, 
+                        name: "certs"
+                    },
+                     {
+                        hostPath: {
+                            path: "/manifests"
+                        },
                         name: "sfdc-volume"
                     }
+
                 ],
                 nodeSelector: {
                     pool: configs.estate

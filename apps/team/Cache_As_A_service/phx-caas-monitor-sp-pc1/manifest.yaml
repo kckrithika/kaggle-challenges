@@ -1,0 +1,45 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: monitor-sp-pc1
+    count: 10
+    hostnetwork: true
+    containers:
+    - name: caas-monitor 
+      # container image/version to  run
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/caas/caas-monitor:0.1-12764453-13
+      args: 
+        - --redis-monitor.redis-listen-ports=12010,12011
+        - --server.port=7506 
+        - --management.port=7507
+        - --cluster.name=sp-pc1
+        - --logging.level.minimum=ALL
+        - --superpodName=sp1
+        - --logDir=/var/log/caas/monitor/sppc
+      volumeMounts:
+        - mountPath: /var/log/caas/monitor/sppc
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7507
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 7506
+      - containerPort: 7507
+      env:
+      - name:  CAAS_SP_PC1
+        value: DATE_12_23
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/caas/monitor/sppc
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-pc1

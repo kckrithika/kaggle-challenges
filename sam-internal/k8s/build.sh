@@ -1,7 +1,7 @@
-#!/bin/bash 
+#!/bin/bash
 
-# Script to generate yaml files for all our apps in all estates 
-# ./build.sh 
+# Script to generate yaml files for all our apps in all estates
+# ./build.sh
 
 
 #Check if jsonnet is available, if not get it.
@@ -18,20 +18,27 @@ generateConfigs() {
   currentKingdom=$1
   currentEstate=$2
 
-  mkdir -p generated/$currentKingdom/$currentEstate/appConfigs/json
+  dir=generated/$currentKingdom/$currentEstate/appConfigs/json
+  mkdir -p $dir
 
   for filename in templates/*.jsonnet; do
       appName=$(basename "$filename" .jsonnet)
       echo "Generating config file for $appName in estate $currentEstate"
-      ./jsonnet/jsonnet -V kingdom=$currentKingdom -V estate=$currentEstate templates/$appName.jsonnet -o generated/$currentKingdom/$currentEstate/appConfigs/json/$appName.json --jpath .
-
+      ./jsonnet/jsonnet -V kingdom=$currentKingdom -V estate=$currentEstate templates/$appName.jsonnet -o $dir/$appName.json --jpath .
+      # For some experimental features, we'd like to generate manifests only for
+      # certain SAM clusters. To achieve this, the jsonnet templates may emit
+      # the quoted string "SKIP" where their output is not wanted.
+      if [ "x$(head -n 1 $dir/$appName.json)" == 'x"SKIP"' ]; then
+        echo "(skipped)"
+        rm $dir/$appName.json
+      fi
   done
 }
 
 
 rm -rf generated/
 
-declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samtemp" "prd/prd-samdev" "dfw/dfw-sam")
+declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samdev" "prd/prd-sdc" "dfw/dfw-sam" "phx/phx-sam" "frf/frf-sam")
 
 for kingdomEstate in "${kingdomEstates[@]}"
 do

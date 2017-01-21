@@ -1,5 +1,29 @@
 apps:
-  caas-test:
-    - prd/prd-sam
-  caas:
-    - prd/prd-sam
+  caas-monitor:
+    - prd/prd-samdev
+  caas-redis:
+    - prd/prd-samdev
+  caas-redis-12000:
+    - prd/prd-sp2-sam_caas
+  caas-redis-12010:
+    - prd/prd-sp2-sam_caas
+  caas-redis-12001:
+    - prd/prd-sp2-sam_caas
+  caas-redis-12011:
+    - prd/prd-sp2-sam_caas
+  caas-monitor-sp-c1:
+    - prd/prd-sp2-sam_caas
+  caas-monitor-sp-pc1:
+    - prd/prd-sp2-sam_caas
+  phx-caas-redis-12000-sp-c1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-redis-12001-sp-c1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-redis-12010-sp-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-redis-12011-sp-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-monitor-sp-c1:
+    - phx/phx-sp1-sam_caas
+  phx-caas-monitor-sp-pc1:
+    - phx/phx-sp1-sam_caas

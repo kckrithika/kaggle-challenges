@@ -1,5 +1,4 @@
 apps:
- sam-test:
+ gater-sandbox:
   - prd/prd-sam
- gater-test:
-  - prd/prd-sam
+  - prd/prd-samdev

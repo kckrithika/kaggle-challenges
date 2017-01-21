@@ -1,6 +1,9 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
-# Temporary script to redeploy all our DaemonSets and deployments to prd-sam and prd-samtemp
+# Turn off echo for the early setup to reduce noise
+set +x
+
+# Temporary script to redeploy all our DaemonSets and deployments to a cluster passed as a first argument
 # Either put kubectl in your path, or set KUBECTLBIN to point to it.  For example, you can add this to .bash_profile:
 #
 # export KUBECTLBIN='/Users/thargrove/sam/src/k8s.io/kubernetes/cluster/kubectl.sh'
@@ -9,24 +12,37 @@ KUBECTLBIN=${KUBECTLBIN:-kubectl}
 NAMESPACE=sam-system
 KINGDOM=prd
 
+# Kubectl version check
+KUBECTLVER=$(kubectl version --client | cut -d\" -f6)
+EXPECTEDKUBECTLVER="v1.2.6"
+if [[ "$EXPECTEDKUBECTLVER" == "$KUBECTLVER" ]]; then
+  echo "Found kubectl version: $KUBECTLVER"
+else
+  echo "Expected kubectl version $EXPECTEDKUBECTLVER but found $KUBECTLVER"
+#  exit
+fi
+
+# Turn echo on now
+set -x
+
 case "$1" in
     prd-sam)
         KCONTEXT=prd-sam
         ;;
-    prd-samtemp)
-        KCONTEXT=prd-samtemp
-        ;;
     prd-samdev)
         KCONTEXT=prd-samdev
         ;;
+    prd-sdc)
+        KCONTEXT=prd-sdc
+        ;;
     *)
-        echo "Invalid estate $1, use 'prd-sam', 'prd-samtemp' or 'prd-samdev'.  exiting ..."
+        echo "Invalid estate $1, use 'prd-sam', 'prd-samdev' or 'prd-sdc'.  exiting ..."
         exit 1
 esac
 
 echo Context is ${KCONTEXT}, using kubectl ${KUBECTLBIN}
 
-# NOTE: 
+# NOTE:
 # Issue: https://github.com/kubernetes/kubernetes/issues/33245
 # DaemonSet deletion gets stuck sometimes. The reason is not clear but the above issue gives more details.
 # To avoid getting stuck, we first delete the DaemonSet with --cascade=false, which leaves the pod around,

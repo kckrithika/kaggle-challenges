@@ -1,0 +1,18 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: prabhs-redis-fn
+    count: 4
+    containers:
+    - name: redistestapp
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/csc-health/redis:3.2
+      ports:
+      - containerPort: 9090
+
+  loadbalancers:
+  - lbname: prabhs-redislb
+    function: prabhs-redis-fn
+    ports:
+      - port: 9098
+        targetport: 9090

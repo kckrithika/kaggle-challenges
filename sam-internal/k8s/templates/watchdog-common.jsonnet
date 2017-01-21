@@ -14,6 +14,7 @@ local configs = import "config.jsonnet",
                             "-role=COMMON",
                             "-watchdogFrequency=5s",
                             "-timeout=2s",
+                            "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
                             "-smtpServer="+configs.smtpServer,
                             "-sender=prabh.singh@salesforce.com",
@@ -32,10 +33,7 @@ local configs = import "config.jsonnet",
                             }
                         }
                     }
-                ], 
-                nodeSelector: {
-                    COMMON: "true",
-                }
+                ],
             }, 
             metadata: {
                 labels: {

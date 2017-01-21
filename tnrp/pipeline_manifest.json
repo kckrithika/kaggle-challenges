@@ -30,40 +30,14 @@
          "repo_id": "testandrelease", 
          "artifact_id": "sammanifestbuilder",
          "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
-         "filename": "sammanifestbuilder-000000-1623.x86_64.rpm",
-         "version": "000000-1623.x86_64",
-         "scope":[  
+         "filename": "sammanifestbuilder-20170120_230012.ac95137.dirty.ops_pipebuild1_1_prd-1.x86_64.rpm",
+         "version": "20170120_230012.ac95137.dirty.ops_pipebuild1_1_prd-1.x86_64",
+         "scope":[
 
          ],
-         "group_id": "sam", 
+         "group_id": "rpm-sam", 
          "type":"rpm",
-         "repo_path":"sam"
-      },
-      {
-         "repo_id": "testandrelease", 
-         "artifact_id": "git",
-         "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
-         "filename": "git-2.8.0-1.WANdisco.308.x86_64.rpm", 
-         "version": "2.8.0-1.WANdisco.308.x86_64", 
-         "scope":[  
-
-         ],
-         "group_id": "git", 
-         "type":"rpm",
-         "repo_path":"git"
-      },
-       {
-         "repo_id": "testandrelease", 
-         "artifact_id": "perl-Git",
-         "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
-         "filename": "perl-Git-2.8.0-1.WANdisco.308.noarch.rpm", 
-         "version": "2.8.0-1.WANdisco.308.noarch", 
-         "scope":[  
-
-         ],
-         "group_id": "perl-Git", 
-         "type":"rpm",
-         "repo_path":"perl-Git"
+         "repo_path":"rpm-sam"
       }
    ],
    "snapshot_id":""

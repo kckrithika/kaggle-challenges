@@ -1,3 +1,6 @@
 apps:
- TestApp:
+ redis-test-app:
+  - prd/prd-sam
   - prd/prd-samdev
+ caas-test:
+  - prd/prd-sp2-sam_caas

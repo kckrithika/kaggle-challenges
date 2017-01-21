@@ -1,0 +1,63 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "k8sproxy"
+      },
+      "name": "k8sproxy",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "k8sproxy"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "proxy",
+               "name": "k8sproxy"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "-f ",
+                     "/etc/haproxy/haproxy.cfg"
+                  ],
+                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "name": "k8sproxy",
+                  "ports": [
+                     {
+                        "containerPort": 8080,
+                        "name": "k8sproxy"
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/certs",
+                        "name": "sfdc-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-samdev"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "sfdc-volume"
+               }
+            ]
+         }
+      }
+   }
+}

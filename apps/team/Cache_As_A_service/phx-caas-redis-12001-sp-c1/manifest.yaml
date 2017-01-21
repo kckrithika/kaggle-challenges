@@ -1,0 +1,42 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: redis-12001
+    count: 7
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      #image: caas:29112016
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/caas/caas-redis:0.1-12742755-6
+      resources:
+        limits: { memory: "5Gi" }
+        requests: { memory: "5Gi" }
+      volumeMounts:
+        - mountPath: /var/log/caas/redis/spc/b
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12001
+        - --maxMemoryMB=5120
+        - --logDir=/var/log/caas/redis/spc/b
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12001
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12001
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/caas/redis/spc/b
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-c1
