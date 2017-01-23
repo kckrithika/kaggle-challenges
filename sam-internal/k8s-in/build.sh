@@ -18,7 +18,7 @@ generateConfigs() {
   currentKingdom=$1
   currentEstate=$2
 
-  dir=generated/$currentKingdom/$currentEstate/appConfigs/json
+  dir=../k8s-out/$currentKingdom/$currentEstate/
   mkdir -p $dir
 
   for filename in templates/*.jsonnet; do
