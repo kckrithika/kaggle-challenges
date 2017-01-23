@@ -1,21 +1,6 @@
-### Kubernetes yaml files for SAM bits
+### How to deploy SAM
 
-To do a deployment pick one of the following approaches:
-
-* have kubectl in your path
-* set KUBECTLBIN at time of running this script:
-
-```sh
-KUBECTLBIN=/Users/thargrove/sam/bin/kubectl ./deploy.sh prd-samdev
-```
-
-* set KUBECTLBIN in you .bash_profile
-
-```sh
-export KUBECTLBIN='/Users/thargrove/sam/bin/kubectl'
-```
-
-### Kick off a new deployment
+Full Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
 
 * First sync your enlistment!
 
@@ -25,12 +10,9 @@ $ git pull --rebase upstream master
 $ git push
 ```
 
-* Make your changes
-* Run build.sh:
-* Run deploy.sh:
-
-```sh
-$ ./deploy.sh prd-samdev
-```
-
+* Make your changes to images.jsonnet / config.jsonnet
+* Run build.sh
+* Check that everything looks good
 * Check in your changes
+* Wait for a TNRP build
+* Log onto a kubeapi machine and run a up-to-date copy of https://git.soma.salesforce.com/sam/sam/blob/master/tools/deploy-sam/deploy.sh
