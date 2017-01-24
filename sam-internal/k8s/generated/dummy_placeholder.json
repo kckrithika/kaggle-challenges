@@ -1,0 +1,81 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "samcontrol"
+      },
+      "name": "samcontrol"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "samcontrol"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "samcontrol"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/sam-controller",
+                     "--debug=true",
+                     "--dockerregistry=shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--v=3",
+                     "--logtostderr=true",
+                     "--k8sapiserver=",
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-5ef3b352-512",
+                  "name": "sam-controller",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
