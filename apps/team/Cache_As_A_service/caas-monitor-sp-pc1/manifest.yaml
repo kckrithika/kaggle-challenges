@@ -34,6 +34,9 @@ system:
       ports:
       - containerPort: 7506
       - containerPort: 7507
+      env:
+      - name:  CAAS_MONITOR
+        value: DATE_1_25
     volumes:
     - name: logvol
       hostPath:
