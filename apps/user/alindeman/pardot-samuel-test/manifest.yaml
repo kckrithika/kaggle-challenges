@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: samuel
-      image: pardot-samuel:0.2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/pardot-samuel:0.2
       ports:
       - containerPort: 3000
       livenessProbe:

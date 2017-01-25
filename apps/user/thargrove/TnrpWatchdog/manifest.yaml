@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: tnrpwd
-      image: tnrpwd:thargrove-20161117_124937-f1d8867
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/tnrpwd:thargrove-20161117_124937-f1d8867
       command: ["/bin/tnrpWatchdog"]
       ports:
       - containerPort: 64132
