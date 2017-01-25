@@ -6,12 +6,12 @@ system:
     count: 2
     containers:
     - name: samtestapp
-      image: docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515
+      image: shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:fd5693f.dirty.thargrove-ltm1.20161214_112926
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE00021"
+          value: "SOMEVALUE00022"
       ports:
       - containerPort: 8000
       livenessProbe:
@@ -26,7 +26,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/priyank/porwal/some/deep/nested/path
+        path: /home/caas/logs/apps
     - name: ephermeralvol
       emptyDir: {}
   loadbalancers:
