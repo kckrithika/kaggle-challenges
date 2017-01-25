@@ -40,7 +40,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/caas/monitor/spc
+        path: /home/caas/logs/caas
     - name: secretvol
       secret:
         secretName: caas-secret-sp-c1
