@@ -17,7 +17,6 @@ system:
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
         - --settings.path=mist30.-.prd.-.caas
-        - --superpodName=sp2
         - --logDir=/var/log/caas/monitor/spc
       volumeMounts:
         - mountPath: /var/log/caas/monitor/spc
