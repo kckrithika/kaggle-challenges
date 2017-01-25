@@ -9,7 +9,7 @@ system:
     - name: gatersandbox
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: gater-prd:dmachak-20170117C
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-prd:dmachak-20170117C
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
