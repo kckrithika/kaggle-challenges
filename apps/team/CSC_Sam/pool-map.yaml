@@ -5,7 +5,7 @@ apps:
   - prd/prd-samdev
  SamTestApp-prd-sdc:
   - prd/prd-sdc
- SamTestApp-prd-dfw:
+ SamTestApp-dfw-sam:
   - dfw/dfw-sam
  SamTestApp-frf-sam:
   - frf/frf-sam
