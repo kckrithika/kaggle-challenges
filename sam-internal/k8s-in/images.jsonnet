@@ -11,7 +11,7 @@
 
     estates: {
         "prd-sam": {
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-5ef3b352-512",
+            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-9db6a3ff-515",
             k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
@@ -31,7 +31,7 @@
             default: configs.registry + "/" + "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-0c2a6125-496"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
         },
         "frf-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
