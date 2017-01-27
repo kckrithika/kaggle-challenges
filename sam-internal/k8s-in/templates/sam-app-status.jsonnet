@@ -6,7 +6,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
       "name": "sam-app-status.salesforce.com"
     },
     "description": "A specification of a SAM application",
-    "versions": {
-      "name": "v1"
-    }
+    "versions": [
+      {
+        "name": "v1"
+      }
+    ]
 } else "SKIP"
