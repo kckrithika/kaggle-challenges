@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: observation-service
-      image: observation-service:cmcnair-1.0.0
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/csc-health/observation-service:observation-service-c201b52f-3
       resources:
         limits: { cpu: "10", memory: "20Gi" }
         requests: { cpu: "10", memory: "20Gi" }

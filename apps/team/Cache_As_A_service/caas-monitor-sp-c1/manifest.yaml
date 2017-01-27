@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-monitor 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-12842153-19
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-12880218-21
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --redis-monitor.redis-listen-ports=12000,12001
@@ -17,10 +17,9 @@ system:
         - --cluster.name=sp-c1
         - --logging.level.minimum=ALL
         - --settings.path=mist30.-.prd.-.caas
-        - --superpodName=sp2
-        - --logDir=/var/log/caas/monitor/spc
+        - --logDir=/home/caas/logs/caas
       volumeMounts:
-        - mountPath: /var/log/caas/monitor/spc
+        - mountPath: /home/caas/logs/caas
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -41,7 +40,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/caas/monitor/spc
+        path: /home/caas/logs/caas
     - name: secretvol
       secret:
         secretName: caas-secret-sp-c1

@@ -1,0 +1,24 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: samdeploymentportal
+    count: 1
+    containers:
+    - name: samdeploymentportal
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/deploymentportal:cbatra-20170126_115420-eaec0f6
+      command: ["/sam-deployment-portal/main"]
+      ports:
+      - containerPort: 64123
+      livenessProbe:
+        httpGet:
+          path: /probe
+          port: 64123
+
+  loadbalancers:
+  - lbname: samdeploymentportallb
+    function: samdeploymentportal
+    nodeExposed: true
+    ports:
+      - port: 64123
+        targetport: 64123
