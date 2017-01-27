@@ -35,6 +35,9 @@
         },
         "frf-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
+        },
+        "par-sam": {
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
         }
     },
 
