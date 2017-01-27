@@ -2,21 +2,21 @@ apiVersion: v1
 
 system:
     functions:
-        - name: default
-        count: 2
-        containers:
-            - name: hello
-            image: hello:ph-jan162017
-            ports:
-                - containerPort: 9090
-            livenessProbe:
-                httpGet:
-                    path: /
-                    port: 9090
+    - name: phsamhello
+      count: 2
+      containers:
+      - name: hello
+        image: hello:ph-jan162017
+        ports:
+        - containerPort: 9090
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9090
 
     loadbalancers:
-        - lbname: hellolb
-        function: default
-        ports:
-	        - port: 9090
-            targetport: 9090
+    - lbname: hellolb
+      function: phsamhello
+      ports:
+        - port: 9090
+          targetport: 9090
