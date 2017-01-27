@@ -43,6 +43,7 @@ system:
         -Dvertx.metrics.options.registryName=vertx-registry
         -Dvertx.disableDnsResolver=true
         -Dlog_dir=${LOG_DIR}
+        -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
     volumes:
