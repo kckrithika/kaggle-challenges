@@ -3,7 +3,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
    "apiVersion": "extensions/v1beta1",
     "kind": "ThirdPartyResource",
     "metadata": {
-      "name": "samapps.salesforce.com"
+      "name": "sam-app-status.salesforce.com"
     },
     "description": "A specification of a SAM application",
     "versions": {
