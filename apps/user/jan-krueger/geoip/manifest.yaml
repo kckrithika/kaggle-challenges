@@ -7,11 +7,6 @@ system:
     containers:
     - name: ccait-geoip-backend
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-backend:0.0.1
-      env:
-        - name: GRPC_ROUTING_GEOIP_HOST
-          value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
-        - name: GRPC_ROUTING_GEOIP_PORT
-          value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
       ports:
       - containerPort: 6565
         name: grpc
@@ -26,6 +21,11 @@ system:
     containers:
     - name: ccait-geoip-frontend
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:0.0.1
+      env:
+        - name: GRPC_ROUTING_GEOIP_HOST
+          value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
+        - name: GRPC_ROUTING_GEOIP_PORT
+          value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
       ports:
       - containerPort: 8080
       livenessProbe:
