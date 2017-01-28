@@ -14,10 +14,13 @@ system:
           value: "6565"
       ports:
       - containerPort: 6565
-      livenessProbe:
-        httpGet:
-          path: /admin/health
-          port: 8080
+        name: grpc
+      # - containerPort: 8080
+      #   name: http
+      # livenessProbe:
+      #   httpGet:
+      #     path: /admin/health
+      #     port: 8080
   - name: frontend
     count: 1
     containers:
