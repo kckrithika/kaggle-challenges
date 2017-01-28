@@ -9,3 +9,5 @@ apps:
   - dfw/dfw-sam
  SamTestApp-frf-sam:
   - frf/frf-sam
+ SamTestApp-par-sam:
+  - par/par-sam
