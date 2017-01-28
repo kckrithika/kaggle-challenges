@@ -1,0 +1,43 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: backend
+    count: 2
+    containers:
+    - name: ccait-geoip-backend
+      image: ccait-geoip-backend:0.0.1
+      env:
+        - name: "GRPC_ROUTING_GEOIP_HOST"
+          value: "ccait-geoip-backend-lb"
+        - name: "GRPC_ROUTING_GEOIP_PORT"
+          value: "6565"
+      ports:
+      - containerPort: 6565
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 6565
+  - name: frontend
+    count: 1
+    containers:
+    - name: ccait-geoip-frontend
+      image: ccait-geoip-frontend:0.0.1
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+
+  loadbalancers:
+  - lbname: ccait-geoip-backend-lb
+    function: backend
+    ports:
+      - port: 6565
+        targetport: 6565
+  - lbname: ccait-geoip-frontend-lb
+    function: frontend
+    ports:
+      - port: 8080
+        targetport: 8080

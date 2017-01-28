@@ -1,3 +1,5 @@
 apps:
- hello-sam:
-  - prd/prd-sam
+  hello-sam:
+    - prd/prd-sam
+  geoip:
+    - prd/prd-sam
