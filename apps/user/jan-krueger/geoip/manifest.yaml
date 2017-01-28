@@ -13,7 +13,7 @@ system:
         - name: "GRPC_ROUTING_GEOIP_PORT"
           value: "6565"
       ports:
-      - containerPort: 8080
+      - containerPort: 6565
       livenessProbe:
         httpGet:
           path: /admin/health
