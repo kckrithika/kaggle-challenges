@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+
 if configs.estate == "prd-sdc" then {
     kind: "Deployment",
     spec: {
@@ -9,7 +10,7 @@ if configs.estate == "prd-sdc" then {
                 containers: [
                     {
                         name: "sdc-bird",
-                        image: configs.registry + "/sdc-bird:pporwal-201701171227",
+                        image: configs.sdc_bird,
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -20,10 +21,20 @@ if configs.estate == "prd-sdc" then {
                                 mountPath: "/usr/local/var/run",
                             },
                         ],
+                        env: [
+                            {
+                                name: "BIRD_CONF",
+                                value: "/usr/local/etc/bird.conf"
+                            },
+                            {
+                                name: "BIRD_SOCKET",
+                                value: "/usr/local/var/run/bird.ctl"
+                            },
+                        ],
                     },
                     {
-                        name: "sdc-peering-conf",
-                        image: configs.registry + "/sdc-peering-conf:nkatta-201701200445",
+                        name: "sdc-peering-agent",
+                        image: configs.sdc_peering_agent,
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -39,6 +50,7 @@ if configs.estate == "prd-sdc" then {
                                 readOnly: true,
                             },
                         ],
+                        args: ["--birdsock", "/usr/local/var/run/bird.ctl", "--birdconf", "/usr/local/etc/bird.conf", "--ipamcsv", "/usr/local/sdc/conf/samInput.csv"],
                     },
                     {
                         name: "sdc-metrics",

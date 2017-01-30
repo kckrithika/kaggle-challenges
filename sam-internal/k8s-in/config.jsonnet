@@ -109,4 +109,7 @@ local images = import "images.jsonnet",
     watchdog_etcd: images.watchdog_etcd,
     manifest_watcher: images.manifest_watcher,
     k8sproxy: images.k8sproxy,
+    
+    sdc_bird: images.sdc_bird,
+    sdc_peering_agent: images.sdc_peering_agent,
 }
