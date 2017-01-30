@@ -17,9 +17,9 @@ system:
         - --cluster.name=sp-pc1
         - --logging.level.minimum=ALL
         - --settings.path=mist30.-.prd.-.caas
-        - --logDir=/var/log/caas/monitor/sppc
+        - --logDir=/home/caas/logs/caas
       volumeMounts:
-        - mountPath: /var/log/caas/monitor/sppc
+        - mountPath: /home/caas/logs/caas
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -40,7 +40,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/caas/monitor/sppc
+        path: /home/caas/logs/caas
     - name: secretvol
       secret:
         secretName: caas-secret-sp-pc1
