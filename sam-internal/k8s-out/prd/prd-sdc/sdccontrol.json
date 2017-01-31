@@ -24,7 +24,17 @@
          "spec": {
             "containers": [
                {
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:pporwal-201701171227",
+                  "env": [
+                     {
+                        "name": "BIRD_CONF",
+                        "value": "/usr/local/etc/bird.conf"
+                     },
+                     {
+                        "name": "BIRD_SOCKET",
+                        "value": "/usr/local/var/run/bird.ctl"
+                     }
+                  ],
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:pporwal-201701292135",
                   "name": "sdc-bird",
                   "volumeMounts": [
                      {
@@ -38,8 +48,16 @@
                   ]
                },
                {
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-conf:nkatta-201701200445",
-                  "name": "sdc-peering-conf",
+                  "args": [
+                     "--birdsock",
+                     "/usr/local/var/run/bird.ctl",
+                     "--birdconf",
+                     "/usr/local/etc/bird.conf",
+                     "--ipamcsv",
+                     "/usr/local/sdc/conf/samInput.csv"
+                  ],
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:pporwal-201701292249",
+                  "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {
                         "mountPath": "/usr/local/etc",

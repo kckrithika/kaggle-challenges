@@ -24,7 +24,9 @@
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
+            default: configs.registry + "/" + "hypersam:sam-cd52c792-543",
+            sdc_bird: configs.registry + "/" + "sdc-bird:pporwal-201701292135",
+            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:pporwal-201701292249",
         },
         "dfw-sam": {
             # Switch this to use artifactrepo as soon as we move to centos 7
@@ -54,6 +56,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "k8sproxy"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
 }
 
