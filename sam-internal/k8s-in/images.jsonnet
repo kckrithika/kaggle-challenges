@@ -33,7 +33,7 @@
             default: configs.registry + "/" + "hypersam:ce3affd",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:20170131_115744.99a7d75.dirty.prahladjos-ltm"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543"
         },
         "frf-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
