@@ -6,7 +6,7 @@ system:
       count: 2
       containers:
       - name: hello
-        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hello:ph-gs0-jan31-2pm
+        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hello:ph-gs0-jan31-230pm
         ports:
         - containerPort: 9090
         livenessProbe:
