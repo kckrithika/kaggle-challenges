@@ -24,7 +24,7 @@
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
+            default: configs.registry + "/" + "hypersam:sam-cd52c792-543",
             sdc_bird: configs.registry + "/" + "sdc-bird:pporwal-201701292135",
             sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:pporwal-201701292249",
         },
