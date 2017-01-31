@@ -43,7 +43,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/sam/hypersam:20170131_115744.99a7d75.dirty.prahladjos-ltm",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
