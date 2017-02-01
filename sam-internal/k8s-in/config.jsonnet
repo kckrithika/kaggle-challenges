@@ -53,7 +53,7 @@ local images = import "images.jsonnet",
             "prd-sam": "true",
             "prd-samdev": "true",
             "prd-sdc": "false",
-            "dfw-sam": "false",
+            "dfw-sam": "true",
             "phx-sam": "true",
             "frf-sam": "true",
             "par-sam": "true"
