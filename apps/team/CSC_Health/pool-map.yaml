@@ -12,3 +12,7 @@ apps:
   observation-service:
     - prd/prd-sam_report_collector
     - prd/prd-samdev
+  expreportcollectorha:
+    - prd/prd-sam_report_collector
+  exprepcollavailwd:
+    - prd/prd-sam_report_collector
