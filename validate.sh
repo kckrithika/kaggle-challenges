@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170123_140537.ca70936.dirty.thargrove-ltm1
+HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170201_102925.546a0f2.dirty.thargrove-ltm1
 
 if [ "$1" == "evaluatePR" ] 
 then
