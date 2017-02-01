@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: exprepcollavailwd
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-prod-default/tnrp/csc-health/report-collector-availability-watchdog:1.1.0-377f76b8-40
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/csc-health/report-collector-availability-watchdog:1.1.0-377f76b8-40
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
