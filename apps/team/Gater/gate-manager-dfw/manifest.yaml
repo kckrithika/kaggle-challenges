@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: gate-manager
+  - name: gate-manager-dfw
     count: 4
     hostnetwork: true
     containers:
-    - name: gater
+    - name: gater-dfw
       # container image/version to run.
       # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
       image: docker-all/tnrp/gater/gater:1.0.3-12858974-20
