@@ -1,13 +1,8 @@
 apps:
  SamTestApp:
   - prd/prd-sam
- SamTestApp-prd-samdev:
   - prd/prd-samdev
- SamTestApp-prd-sdc:
   - prd/prd-sdc
- SamTestApp-dfw-sam:
   - dfw/dfw-sam
- SamTestApp-frf-sam:
   - frf/frf-sam
- SamTestApp-par-sam:
   - par/par-sam
