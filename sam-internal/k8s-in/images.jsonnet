@@ -27,7 +27,7 @@
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:sam-cd52c792-543",
             sdc_bird: configs.registry + "/" + "sdc-bird:pporwal-201701292135",
-            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:pporwal-201701292249",
+            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:agajjala-201702012236",
         },
         "dfw-sam": {
             # Switch this to use artifactrepo as soon as we move to centos 7
