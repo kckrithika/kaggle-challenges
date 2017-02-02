@@ -8,12 +8,12 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12842153-9
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
       volumeMounts:
-        - mountPath: /var/log/caas/redis/sppc/b
+        - mountPath: /home/caas/logs
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -22,7 +22,7 @@ system:
         - --port=12011
         - --maxMemoryMB=5120
         - --maxMemoryPolicy=noeviction
-        - --logDir=/var/log/caas/redis/sppc/b
+        - --logDir=/home/caas/logs
       livenessProbe:
         exec:
           command:
@@ -36,7 +36,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/caas/redis/sppc/b
+        path: /home/caas/logs
     - name: secretvol
       secret:
          secretName: caas-secret-sp-pc1
