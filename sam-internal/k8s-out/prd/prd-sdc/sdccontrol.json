@@ -60,7 +60,7 @@
                      "--overrideBGPSecret",
                      "NetworkSoftware"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:pporwal-201701292249",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702012236",
                   "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {
