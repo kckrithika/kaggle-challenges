@@ -31,7 +31,7 @@
         },
         "dfw-sam": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: "ops0-artifactrepo1-0-dfw.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
         },
         "phx-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543"
