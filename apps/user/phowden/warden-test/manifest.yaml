@@ -6,7 +6,7 @@ system:
       count: 2
       containers:
       - name: casp/warden
-        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp/warden:ph-warden-feb01-1pm
+        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp/warden:ph-warden-feb01-427pm
         ports:
         - containerPort: 8889
         - containerPort: 2812
