@@ -54,7 +54,11 @@
                      "--birdconf",
                      "/usr/local/etc/bird.conf",
                      "--ipamcsv",
-                     "/usr/local/sdc/conf/samInput.csv"
+                     "/usr/local/sdc/conf/samInput.csv",
+                     "--vaultkeypair",
+                     "/usr/local/sdc/SDCBird_keypair",
+                     "--overrideBGPSecret",
+                     "NetworkSoftware"
                   ],
                   "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:pporwal-201701292249",
                   "name": "sdc-peering-agent",

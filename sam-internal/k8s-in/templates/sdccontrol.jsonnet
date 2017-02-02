@@ -50,7 +50,11 @@ if configs.estate == "prd-sdc" then {
                                 readOnly: true,
                             },
                         ],
-                        args: ["--birdsock", "/usr/local/var/run/bird.ctl", "--birdconf", "/usr/local/etc/bird.conf", "--ipamcsv", "/usr/local/sdc/conf/samInput.csv"],
+                        args: ["--birdsock", "/usr/local/var/run/bird.ctl",
+                        "--birdconf", "/usr/local/etc/bird.conf",
+                        "--ipamcsv", "/usr/local/sdc/conf/samInput.csv",
+                        "--vaultkeypair", "/usr/local/sdc/SDCBird_keypair",
+                        "--overrideBGPSecret", "NetworkSoftware"],
                     },
                     {
                         name: "sdc-metrics",
