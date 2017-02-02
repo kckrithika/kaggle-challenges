@@ -1,5 +1,5 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
+if configs.estate == "prd-sam" then {
 
     kind: "Deployment",
     spec: {
@@ -80,4 +80,4 @@ local configs = import "config.jsonnet",
         },
         name: "watchdog-node"
     }
-}
+} else "SKIP"
