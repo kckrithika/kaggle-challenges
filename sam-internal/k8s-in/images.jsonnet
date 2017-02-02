@@ -14,7 +14,7 @@
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm",
-            watchdog_node: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170201_154643.5b5ba41.dirty.prabhsingh-ltm5",
+            watchdog_node: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170202_010941.2d1843c.dirty.prabhsingh-ltm5",
         },
         "prd-samdev": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",

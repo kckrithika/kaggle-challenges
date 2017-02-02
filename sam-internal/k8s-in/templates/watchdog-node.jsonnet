@@ -26,6 +26,10 @@ local configs = import "config.jsonnet",
                         ],
                        volumeMounts: [
                           {
+                             "mountPath": "/data/certs",
+                             "name": "certs"
+                          },
+                          {
                              "mountPath": "/config",
                              "name": "config"
                           }
@@ -39,6 +43,12 @@ local configs = import "config.jsonnet",
                     }
                 ],
                 volumes: [
+                    {
+                        hostPath: {
+                                path: "/data/certs"
+                                },
+                                name: "certs"
+                        },
                         {
                         hostPath: {
                                 path: "/etc/kubernetes"

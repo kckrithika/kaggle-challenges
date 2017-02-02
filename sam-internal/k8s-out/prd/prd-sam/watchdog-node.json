@@ -43,9 +43,13 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170201_154643.5b5ba41.dirty.prabhsingh-ltm5",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170202_010941.2d1843c.dirty.prabhsingh-ltm5",
                   "name": "watchdog-node",
                   "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
                      {
                         "mountPath": "/config",
                         "name": "config"
@@ -58,6 +62,12 @@
                "pool": "prd-sam"
             },
             "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
                {
                   "hostPath": {
                      "path": "/etc/kubernetes"

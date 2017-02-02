@@ -47,6 +47,10 @@
                   "name": "watchdog-node",
                   "volumeMounts": [
                      {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
                         "mountPath": "/config",
                         "name": "config"
                      }
@@ -58,6 +62,12 @@
                "pool": "phx-sam"
             },
             "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
                {
                   "hostPath": {
                      "path": "/etc/kubernetes"
