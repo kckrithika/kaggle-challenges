@@ -1,0 +1,71 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-node"
+      },
+      "name": "watchdog-node"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-node"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "watchdog-node"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=NODE",
+                     "-watchdogFrequency=60s",
+                     "-emailFrequency=24h",
+                     "-timeout=2s",
+                     "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
+                     "-rcImtEndpoint=http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
+                     "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
+                     "-sender=prabh.singh@salesforce.com",
+                     "-recipient=sam@salesforce.com",
+                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
+                  "name": "watchdog-node",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "dfw-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
