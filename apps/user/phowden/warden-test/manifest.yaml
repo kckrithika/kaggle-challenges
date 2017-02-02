@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+    functions:
+    - name: phwardentest
+      count: 2
+      containers:
+      - name: casp/warden
+        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp/warden:ph-warden-feb01-427pm
+        ports:
+        - containerPort: 8889
+        - containerPort: 2812
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8889
+
+    loadbalancers:
+    - lbname: wardenlb
+      function: phwardentest
+      ports:
+        - port: 8889
+          targetport: 8889

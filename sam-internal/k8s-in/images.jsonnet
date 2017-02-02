@@ -13,6 +13,7 @@
         "prd-sam": {
             default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            sam_deployment_portal: configs.registry + "/" + "hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm"
         },
         "prd-samdev": {
             # Figuring out the right docker URL here is tricky.
@@ -30,10 +31,10 @@
         },
         "dfw-sam": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "hypersam:ce3affd",
+            default: "ops0-artifactrepo1-0-dfw.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543"
         },
         "frf-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
@@ -56,6 +57,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
 }
 
