@@ -33,7 +33,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm",
                   "name": "sam-deployment-portal",
                   "volumeMounts": [
                      {

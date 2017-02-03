@@ -13,7 +13,7 @@
         "prd-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            sam_deployment_portal: configs.registry + "/" + "hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm"
+            sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm"
         },
         "prd-samdev": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
