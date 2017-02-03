@@ -40,7 +40,7 @@ local images = import "images.jsonnet",
 
     perCluster: {
         registry: {
-            "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
+            "prd-sam": "ops0-artifactrepo2-0-prd.data.sfdc.net",
             "prd-samdev": "ops0-artifactrepo2-0-prd.data.sfdc.net",
             "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000",
             "dfw-sam": "ops0-artifactrepo1-0-dfw.data.sfdc.net",

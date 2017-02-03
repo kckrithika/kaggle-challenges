@@ -11,9 +11,9 @@
 
     estates: {
         "prd-sam": {
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            sam_deployment_portal: configs.registry + "/" + "hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm"
+            sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm"
         },
         "prd-samdev": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
@@ -26,7 +26,6 @@
             sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:agajjala-201702012236",
         },
         "dfw-sam": {
-            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
         },
         "phx-sam": {
