@@ -25,7 +25,7 @@
                      "-watchdogFrequency=5s",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
-                     "-rcImtEndpoint=http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
+                     "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
                      "-sender=prabh.singh@salesforce.com",
                      "-recipient=sam@salesforce.com",
@@ -35,7 +35,7 @@
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-da5d3be6-571",
                   "name": "watchdog",
                   "resources": {
                      "limits": {

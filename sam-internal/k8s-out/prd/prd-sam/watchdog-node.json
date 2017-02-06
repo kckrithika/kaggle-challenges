@@ -31,7 +31,7 @@
                      "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "-rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=prabh.singh@salesforce.com",
                      "-recipient=sam@salesforce.com",
@@ -43,7 +43,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170202_010941.2d1843c.dirty.prabhsingh-ltm5",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-da5d3be6-571",
                   "name": "watchdog-node",
                   "volumeMounts": [
                      {
