@@ -8,7 +8,7 @@ local configs = import "config.jsonnet",
                 hostNetwork: true, 
                 containers: [
                     {
-                        image: configs.watchdog_etcd,
+                        image: configs.watchdog,
                         command: [
                             "/sam/watchdog", 
                             "-role=ETCD",
