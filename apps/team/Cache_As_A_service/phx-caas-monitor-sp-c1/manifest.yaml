@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-monitor 
       # container image/version to  run
-      image: ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/caas/caas-monitor:0.1-12880218-21
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/caas/caas-monitor:0.1-12934413-22
       args: 
         - --redis-monitor.redis-listen-ports=12000,12001
         - --server.port=7500 
