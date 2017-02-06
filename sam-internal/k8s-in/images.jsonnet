@@ -11,27 +11,23 @@
 
     estates: {
         "prd-sam": {
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
-            k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            sam_deployment_portal: configs.registry + "/" + "hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm"
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
+            k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm",
+            watchdog_node: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170202_010941.2d1843c.dirty.prabhsingh-ltm5",
         },
         "prd-samdev": {
-            # Figuring out the right docker URL here is tricky.
-            # See https://git.soma.salesforce.com/sam/sam/wiki/Official-Secure-Docker-Registry#mapping-artifactory-urls-to-docker-urls
-            # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
-            #
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
-            k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
+            k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:sam-cd52c792-543",
             sdc_bird: configs.registry + "/" + "sdc-bird:pporwal-201701292135",
-            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:pporwal-201701292249",
+            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:agajjala-201702012236",
         },
         "dfw-sam": {
-            # Switch this to use artifactrepo as soon as we move to centos 7
-            default: "ops0-artifactrepo1-0-dfw.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
         },
         "phx-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543"
@@ -57,6 +53,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd","watchdog_node", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
 }
 

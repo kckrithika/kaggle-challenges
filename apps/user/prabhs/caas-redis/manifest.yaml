@@ -9,7 +9,7 @@ system:
     - name: caas-redis 
       # container image/version to  run
       #image: caas:29112016
-      image: ops0-artifactrepo1-0-phx.data.sfdc.net/docker-all/tnrp/caas/caas-test:0.1-12623074-62
+      image: tnrp/caas/caas-test:0.1-12623074-62
       resources:
         limits: { memory: "1Gi" }
         requests: { memory: "1Gi" }
