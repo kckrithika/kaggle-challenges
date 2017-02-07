@@ -9,7 +9,7 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/gater/gater:1.0.3-12858974-20
+      image: tnrp/gater/gater:1.0.3-12858974-20
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80

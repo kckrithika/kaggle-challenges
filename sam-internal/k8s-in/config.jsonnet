@@ -21,11 +21,11 @@ local images = import "images.jsonnet",
         },
 
         rcImtEndpoint: {
-            "prd": "http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
-            "dfw": "http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
-            "phx": "http://ops0-orch1-1-phx.ops.sfdc.net:8080/v1/bark",
-            "frf": "http://ops0-orch1-1-frf.ops.sfdc.net:8080/v1/bark",
-            "par": "http://ops0-orch1-1-par.ops.sfdc.net:8080/v1/bark"
+            "prd": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+            "dfw": "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
+            "phx": "https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
+            "frf": "https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
+            "par": "https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark"
         },
 
         smtpServer: {
@@ -104,10 +104,7 @@ local images = import "images.jsonnet",
     estate: estate,
 
     controller: images.controller,
-    watchdog_common: images.watchdog_common,
-    watchdog_master: images.watchdog_master,
-    watchdog_etcd: images.watchdog_etcd,
-    watchdog_node: images.watchdog_node,
+    watchdog: images.watchdog,
     manifest_watcher: images.manifest_watcher,
     k8sproxy: images.k8sproxy,
     sam_deployment_portal: images.sam_deployment_portal,

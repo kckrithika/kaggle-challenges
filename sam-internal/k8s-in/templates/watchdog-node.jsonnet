@@ -1,5 +1,5 @@
-local configs = import "config.jsonnet";
-if configs.estate == "prd-sam" then {
+{
+local configs = import "config.jsonnet",
 
     kind: "Deployment",
     spec: {
@@ -10,7 +10,7 @@ if configs.estate == "prd-sam" then {
                 containers: [
                     {
                         name: "watchdog-node",
-                        image: configs.watchdog_node,
+                        image: configs.watchdog,
                         command:[
                             "/sam/watchdog",
                             "-role=NODE",
@@ -80,4 +80,4 @@ if configs.estate == "prd-sam" then {
         },
         name: "watchdog-node"
     }
-} else "SKIP"
+}
