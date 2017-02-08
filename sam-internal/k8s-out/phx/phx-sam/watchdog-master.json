@@ -22,8 +22,8 @@
                   "command": [
                      "/sam/watchdog",
                      "-role=MASTER",
-                     "-watchdogFrequency=150s",
-                     "-timeout=5s",
+                     "-watchdogFrequency=5s",
+                     "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta1-2-phx.ops.sfdc.net:25",
