@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: gater-prd
-    count: 4
+    count: 5
     hostnetwork: true
     containers:
     - name: gater1
@@ -48,3 +48,8 @@ system:
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
