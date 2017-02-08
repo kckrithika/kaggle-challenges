@@ -3,5 +3,9 @@ apps:
   - phx/phx-sam_gater
  gate-manager-dfw:
   - dfw/dfw-sam_gater
+ gate-manager-frf:
+  - frf/frf-sam_gater
+ gate-manager-par:
+  - par/par-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
