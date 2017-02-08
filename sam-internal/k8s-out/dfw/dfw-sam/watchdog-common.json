@@ -22,8 +22,8 @@
                   "command": [
                      "/sam/watchdog",
                      "-role=COMMON",
-                     "-watchdogFrequency=5s",
-                     "-timeout=2s",
+                     "-watchdogFrequency=150s",
+                     "-timeout=5s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
