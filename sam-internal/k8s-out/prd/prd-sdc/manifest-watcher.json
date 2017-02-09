@@ -31,12 +31,12 @@
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
                      "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-                     "--tlsEnabled=false",
-                     "--caFile=",
-                     "--keyFile=",
-                     "--certFile="
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:sam-cd52c792-543",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/hypersam:sam-cd52c792-543",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {
