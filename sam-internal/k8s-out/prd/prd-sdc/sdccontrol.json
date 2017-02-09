@@ -80,7 +80,7 @@
                },
                {
                   "command": [
-                     "/sdc-metrics/publisher",
+                     "/go/metrics-publisher",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sdc-metrics:agajjala-201702082327",
