@@ -22,8 +22,8 @@
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
         },
         "prd-sdc": {
-            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "hypersam:sam-cd52c792-543",
+            k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             sdc_bird: configs.registry + "/" + "sdc-bird:agajjala-201702082334",
             sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:agajjala-201702082327",
         },
