@@ -24,9 +24,9 @@
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
-            sdc_bird: configs.registry + "/" + "sdc-bird:agajjala-201702082334",
-            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:agajjala-201702082327",
-            sdc_metrics: configs.registry + "/" + "sdc-metrics:agajjala-201702082327",
+            sdc_bird: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
+            sdc_peering_agent: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
+            sdc_metrics: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
