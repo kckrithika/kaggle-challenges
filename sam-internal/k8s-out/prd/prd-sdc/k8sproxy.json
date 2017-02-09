@@ -29,7 +29,7 @@
                      "-f ",
                      "/etc/haproxy/haproxy.cfg"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/hypersam:sam-cd52c792-543",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:sam-cd52c792-543",
                   "name": "k8sproxy",
                   "ports": [
                      {
