@@ -34,7 +34,7 @@
                         "value": "/usr/local/var/run/bird.ctl"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sdc-bird:pporwal-201701292135",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sdc-bird:agajjala-201702082334",
                   "name": "sdc-bird",
                   "volumeMounts": [
                      {
@@ -60,7 +60,7 @@
                      "--overrideBGPSecret",
                      "NetworkSoftware"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sdc-peering-agent:agajjala-201702012236",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/sdc-peering-agent:agajjala-201702082327",
                   "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {
