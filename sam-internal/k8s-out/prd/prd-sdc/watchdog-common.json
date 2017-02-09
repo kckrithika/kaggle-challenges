@@ -31,7 +31,7 @@
                      "-recipient=sam@salesforce.com",
                      "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:sam-cd52c792-543",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/hypersam:sam-cd52c792-543",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
