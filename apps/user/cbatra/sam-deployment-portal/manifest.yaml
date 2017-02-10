@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: samdeploymentportal
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/deploymentportal:cbatra-20170126_115420-eaec0f6
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/deploymentportal:cbatra-20170209_155246-9b4a0df
       command: ["/sam-deployment-portal/main"]
       ports:
       - containerPort: 64123

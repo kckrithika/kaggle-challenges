@@ -28,14 +28,14 @@
                      "/sam/watchdog",
                      "-role=NODE",
                      "-watchdogFrequency=60s",
+                     "-alertThreshold=150s",
                      "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
-                     "-sender=prabh.singh@salesforce.com",
-                     "-recipient=sam@salesforce.com",
-                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sam@salesforce.com"
                   ],
                   "env": [
                      {
@@ -43,7 +43,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-da5d3be6-571",
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-2b0f4665-588",
                   "name": "watchdog-node",
                   "volumeMounts": [
                      {

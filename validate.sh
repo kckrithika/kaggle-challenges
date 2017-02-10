@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170203_151511.e783ff6.clean.thargrove-ltm1
+HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170208_174602.32c93f4.dirty.prahladjos-ltm
 
 if [ "$1" == "evaluatePR" ] 
 then
@@ -11,7 +11,12 @@ then
   echo -e '\n```\n'
 else
   echo "NOTE: If the docker run command gives you an error like 'server gave HTTP response to HTTPS client.' then you most likely are missing the insecure registry setting in Docker.  See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
-  docker run -it --rm -v ${PWD}:/repo/ ${HYPERSAM} /sam/sam-manifest-builder --root='/repo/' -validateonly
+  EXTRAARGS=""
+  if [ "$1" == "verbose" ]
+  then
+    EXTRAARGS="-verbose"
+  fi
+  docker run -it --rm -v ${PWD}:/repo/ ${HYPERSAM} /sam/sam-manifest-builder --root='/repo/' -validateonly $EXTRAARGS
   exitcode="$?"
 fi
 

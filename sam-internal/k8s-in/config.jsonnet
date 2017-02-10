@@ -42,7 +42,7 @@ local images = import "images.jsonnet",
         registry: {
             "prd-sam": "ops0-artifactrepo2-0-prd.data.sfdc.net",
             "prd-samdev": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-            "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000",
+            "prd-sdc": "ops0-artifactrepo2-0-prd.data.sfdc.net",
             "dfw-sam": "ops0-artifactrepo1-0-dfw.data.sfdc.net",
             "phx-sam": "ops0-artifactrepo1-0-phx.data.sfdc.net",
             "frf-sam": "ops0-artifactrepo1-0-frf.data.sfdc.net",
@@ -52,11 +52,31 @@ local images = import "images.jsonnet",
         tlsEnabled: {
             "prd-sam": "true",
             "prd-samdev": "true",
-            "prd-sdc": "false",
+            "prd-sdc": "true",
             "dfw-sam": "true",
             "phx-sam": "true",
             "frf-sam": "true",
             "par-sam": "true"
+        },
+
+        watchdog_emailsender: {
+            "prd-sam": "sam@salesforce.com",
+            "prd-samdev":"sam@salesforce.com",
+            "prd-sdc": "sam@salesforce.com",
+            "dfw-sam": "sam@salesforce.com",
+            "phx-sam": "sam@salesforce.com",
+            "frf-sam": "sam@salesforce.com",
+            "par-sam": "sam@salesforce.com"
+        },
+
+        watchdog_emailrec: {
+            "prd-sam": "sam@salesforce.com",
+            "prd-samdev": "sam@salesforce.com",
+            "prd-sdc": "network-software@salesforce.com",
+            "dfw-sam": "sam@salesforce.com",
+            "phx-sam": "sam@salesforce.com",
+            "frf-sam": "sam@salesforce.com",
+            "par-sam": "sam@salesforce.com"
         }
 
     },
@@ -95,6 +115,8 @@ local images = import "images.jsonnet",
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
     tlsEnabled: self.perCluster.tlsEnabled[estate],
+    watchdog_emailsender: self.perCluster.watchdog_emailsender[estate],
+    watchdog_emailrec: self.perCluster.watchdog_emailrec[estate],
 
     caFile: self.securityEnabled.caFile[self.perCluster.tlsEnabled[estate]],
     keyFile: self.securityEnabled.keyFile[self.perCluster.tlsEnabled[estate]],
@@ -111,4 +133,5 @@ local images = import "images.jsonnet",
     
     sdc_bird: images.sdc_bird,
     sdc_peering_agent: images.sdc_peering_agent,
+    sdc_metrics: images.sdc_metrics,
 }

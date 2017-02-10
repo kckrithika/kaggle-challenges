@@ -4,6 +4,7 @@ system:
   functions:
   - name: tnrpwd
     count: 1
+    hostnetwork: true
     containers:
     - name: tnrpwd
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/tnrpwd:thargrove-20161117_124937-f1d8867
@@ -15,10 +16,12 @@ system:
           path: /probe
           port: 64132
 
-  loadbalancers:
-  - lbname: tnrpwdlb
-    function: tnrpwd
-    nodeExposed: true
-    ports:
-      - port: 64132
-        targetport: 64132
+# Turning this off to see if host network helps us be able to talk to git.soma
+
+#  loadbalancers:
+#  - lbname: tnrpwdlb
+#    function: tnrpwd
+#    nodeExposed: true
+#    ports:
+#      - port: 64132
+#        targetport: 64132
