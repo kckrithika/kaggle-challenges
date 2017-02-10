@@ -57,6 +57,26 @@ local images = import "images.jsonnet",
             "phx-sam": "true",
             "frf-sam": "true",
             "par-sam": "true"
+        },
+
+        watchdog_emailsender: {
+            "prd-sam": "sam@salesforce.com",
+            "prd-samdev":"sam@salesforce.com",
+            "prd-sdc": "sam@salesforce.com",
+            "dfw-sam": "sam@salesforce.com",
+            "phx-sam": "sam@salesforce.com",
+            "frf-sam": "sam@salesforce.com",
+            "par-sam": "sam@salesforce.com"
+        },
+
+        watchdog_emailrec: {
+            "prd-sam": "sam@salesforce.com",
+            "prd-samdev": "sam@salesforce.com",
+            "prd-sdc": "network-software@salesforce.com",
+            "dfw-sam": "sam@salesforce.com",
+            "phx-sam": "sam@salesforce.com",
+            "frf-sam": "sam@salesforce.com",
+            "par-sam": "sam@salesforce.com"
         }
 
     },
@@ -95,6 +115,8 @@ local images = import "images.jsonnet",
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
     tlsEnabled: self.perCluster.tlsEnabled[estate],
+    watchdog_emailsender: self.perCluster.watchdog_emailsender[estate],
+    watchdog_emailrec: self.perCluster.watchdog_emailrec[estate],
 
     caFile: self.securityEnabled.caFile[self.perCluster.tlsEnabled[estate]],
     keyFile: self.securityEnabled.keyFile[self.perCluster.tlsEnabled[estate]],

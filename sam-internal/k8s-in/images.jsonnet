@@ -14,35 +14,37 @@
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "prd-samdev": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
+            k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
             sdc_bird: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
             sdc_peering_agent: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
             sdc_metrics: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "phx-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "frf-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "par-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-da5d3be6-571",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         }
     },
 
