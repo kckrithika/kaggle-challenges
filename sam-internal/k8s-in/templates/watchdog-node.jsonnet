@@ -15,14 +15,14 @@ local configs = import "config.jsonnet",
                             "/sam/watchdog",
                             "-role=NODE",
                             "-watchdogFrequency=60s",
+                            "-alertThreshold=150s",
                             "-emailFrequency=24h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
                             "-smtpServer="+configs.smtpServer,
-                            "-sender=prabh.singh@salesforce.com",
-                            "-recipient=sam@salesforce.com",
-                            "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                            "-sender="+configs.watchdog_emailsender,
+                            "-recipient="+configs.watchdog_emailrec,
                         ],
                        volumeMounts: [
                           {
