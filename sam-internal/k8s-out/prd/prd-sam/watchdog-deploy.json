@@ -1,19 +1,24 @@
 {
    "apiVersion": "extensions/v1beta1",
-   "kind": "DaemonSet",
+   "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-master"
+         "name": "watchdog-deploy"
       },
-      "name": "watchdog-master"
+      "name": "watchdog-deploy"
    },
    "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-deploy"
+         }
+      },
       "template": {
          "metadata": {
             "labels": {
-               "app": "watchdog-master",
                "apptype": "monitoring",
-               "daemonset": "true"
+               "name": "watchdog-deploy"
             }
          },
          "spec": {
@@ -21,9 +26,10 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=MASTER",
-                     "-watchdogFrequency=5s",
+                     "-role=DEPLOYMENT",
+                     "-watchdogFrequency=60s",
                      "-alertThreshold=150s",
+                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
@@ -35,29 +41,29 @@
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170210_143358.b3869a2.dirty.prabhsingh-ltm5",
-                  "name": "watchdog",
-                  "resources": {
-                     "limits": {
-                        "cpu": "0.5",
-                        "memory": "300Mi"
-                     },
-                     "requests": {
-                        "cpu": "0.5",
-                        "memory": "300Mi"
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
                      }
-                  },
+                  ],
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170210_143358.b3869a2.dirty.prabhsingh-ltm5",
+                  "name": "watchdog-deploy",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "master": "true"
+               "pool": "prd-sam"
             },
             "volumes": [
                {
@@ -65,6 +71,12 @@
                      "path": "/data/certs"
                   },
                   "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
                }
             ]
          }

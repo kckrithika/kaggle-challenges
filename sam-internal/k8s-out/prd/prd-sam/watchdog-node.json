@@ -43,7 +43,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-2b0f4665-588",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170210_143358.b3869a2.dirty.prabhsingh-ltm5",
                   "name": "watchdog-node",
                   "volumeMounts": [
                      {
