@@ -58,7 +58,7 @@ if configs.estate == "prd-sdc" then {
                     },
                     {
                         name: "sdc-metrics",
-                        image: configs.registry + "/sdc-metrics:agajjala-201702082327",
+                        image: configs.sdc_metrics,
                         command:[
                            "/go/metrics-publisher",
                            "--funnelEndpoint="+configs.funnelVIP,

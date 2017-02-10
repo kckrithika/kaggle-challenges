@@ -22,11 +22,13 @@
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "prd-sdc": {
-            default: configs.registry + "/" + "hypersam:sam-cd52c792-543",
+            # Switch this to use artifactrepo as soon as we move to centos 7
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
-            sdc_bird: configs.registry + "/" + "sdc-bird:agajjala-201702082334",
-            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:agajjala-201702082327",
+            sdc_bird: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
+            sdc_peering_agent: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
+            sdc_metrics: "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
@@ -59,6 +61,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent", "sdc_metrics"]
 }
 

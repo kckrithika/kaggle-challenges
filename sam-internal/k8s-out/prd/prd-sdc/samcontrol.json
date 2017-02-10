@@ -43,7 +43,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/hypersam:sam-cd52c792-543",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-cd52c792-543",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
