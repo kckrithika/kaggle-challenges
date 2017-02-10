@@ -34,7 +34,7 @@
                         "value": "/usr/local/var/run/bird.ctl"
                      }
                   ],
-                  "image": "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
                   "name": "sdc-bird",
                   "volumeMounts": [
                      {
@@ -60,7 +60,7 @@
                      "--overrideBGPSecret",
                      "NetworkSoftware"
                   ],
-                  "image": "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
                   "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {
@@ -83,7 +83,7 @@
                      "/go/metrics-publisher",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
                   "name": "sdc-metrics"
                }
             ],
