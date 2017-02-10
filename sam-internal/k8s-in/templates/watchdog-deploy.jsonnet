@@ -14,9 +14,9 @@ if configs.estate == "prd-sam" then {
                         command:[
                             "/sam/watchdog",
                             "-role=DEPLOYMENT",
-                            "-watchdogFrequency=60s",
-                            "-alertThreshold=150s",
-                            "-emailFrequency=24h",
+                            "-watchdogFrequency=10s",
+                            "-alertThreshold=300s",
+                            "-emailFrequency=1h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
