@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: exprepcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:1.1.0-377f76b8-40
+      image: tnrp/csc-health/report-collector-availability-watchdog:1.2.1-10729666-45
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
@@ -28,6 +28,7 @@ system:
       args: ["
       export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export DATACENTER=${KINGDOM} ;
+      export SHOULD_PUBLISH_PROD_METRICS=`[ \"${KINGDOM}\" = \"prd\" ] && echo false || echo true` ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
     volumes:
