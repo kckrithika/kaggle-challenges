@@ -17,9 +17,9 @@
             watchdog: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170210_143358.b3869a2.dirty.prabhsingh-ltm5",
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
