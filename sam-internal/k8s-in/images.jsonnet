@@ -30,16 +30,16 @@
             sdc_metrics: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
         },
         "dfw-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-6acc29a7-604",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-6acc29a7-604",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "frf-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-6acc29a7-604",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "par-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-6acc29a7-604",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         }
     },
 
