@@ -21,7 +21,8 @@ system:
       ports:
       - containerPort: 6379
       volumeMounts:
-      - mountPath /redis-master-data
+      - hostPath:
+          path: /data/redis-master-data
         name: data
     volumes:
     - name: data
@@ -36,7 +37,8 @@ system:
       ports:
       - containerPort: 6379
       volumeMounts:
-      - mountPath: /redis-master-data
+      - hostPath:
+          path: /data/redis-master-data
         name: data
     volumes:
       - name: data
@@ -59,4 +61,3 @@ system:
     ports:
       - port: 26379
         targetport: 26379
-
