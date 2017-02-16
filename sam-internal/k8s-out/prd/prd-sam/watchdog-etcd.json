@@ -23,19 +23,19 @@
                      "/sam/watchdog",
                      "-role=ETCD",
                      "-watchdogFrequency=5s",
+                     "-alertThreshold=150s",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "-rcImtEndpoint=http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "-sender=prabh.singh@salesforce.com",
+                     "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
-                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com",
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
+                  "image": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170210_143358.b3869a2.dirty.prabhsingh-ltm5",
                   "name": "watchdog",
                   "resources": {
                      "limits": {

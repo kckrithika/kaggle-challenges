@@ -21,11 +21,11 @@ local images = import "images.jsonnet",
         },
 
         rcImtEndpoint: {
-            "prd": "http://ops0-orch1-1-prd.eng.sfdc.net:8080/v1/bark",
-            "dfw": "http://ops0-orch1-1-dfw.ops.sfdc.net:8080/v1/bark",
-            "phx": "http://ops0-orch1-1-phx.ops.sfdc.net:8080/v1/bark",
-            "frf": "http://ops0-orch1-1-frf.ops.sfdc.net:8080/v1/bark",
-            "par": "http://ops0-orch1-1-par.ops.sfdc.net:8080/v1/bark"
+            "prd": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+            "dfw": "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
+            "phx": "https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
+            "frf": "https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
+            "par": "https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark"
         },
 
         smtpServer: {
@@ -40,10 +40,10 @@ local images = import "images.jsonnet",
 
     perCluster: {
         registry: {
-            "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000",
-            "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000",
-            "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000",
-            "dfw-sam": "shared0-samkubeapi1-1-dfw.ops.sfdc.net:5000",
+            "prd-sam": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+            "prd-samdev": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+            "prd-sdc": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+            "dfw-sam": "ops0-artifactrepo1-0-dfw.data.sfdc.net",
             "phx-sam": "ops0-artifactrepo1-0-phx.data.sfdc.net",
             "frf-sam": "ops0-artifactrepo1-0-frf.data.sfdc.net",
             "par-sam": "ops0-artifactrepo1-0-par.data.sfdc.net"
@@ -52,11 +52,31 @@ local images = import "images.jsonnet",
         tlsEnabled: {
             "prd-sam": "true",
             "prd-samdev": "true",
-            "prd-sdc": "false",
-            "dfw-sam": "false",
+            "prd-sdc": "true",
+            "dfw-sam": "true",
             "phx-sam": "true",
             "frf-sam": "true",
             "par-sam": "true"
+        },
+
+        watchdog_emailsender: {
+            "prd-sam": "sam@salesforce.com",
+            "prd-samdev":"sam@salesforce.com",
+            "prd-sdc": "sam@salesforce.com",
+            "dfw-sam": "sam@salesforce.com",
+            "phx-sam": "sam@salesforce.com",
+            "frf-sam": "sam@salesforce.com",
+            "par-sam": "sam@salesforce.com"
+        },
+
+        watchdog_emailrec: {
+            "prd-sam": "sam@salesforce.com",
+            "prd-samdev": "sam@salesforce.com",
+            "prd-sdc": "network-software@salesforce.com",
+            "dfw-sam": "sam@salesforce.com",
+            "phx-sam": "sam@salesforce.com",
+            "frf-sam": "sam@salesforce.com",
+            "par-sam": "sam@salesforce.com"
         }
 
     },
@@ -95,6 +115,8 @@ local images = import "images.jsonnet",
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
     tlsEnabled: self.perCluster.tlsEnabled[estate],
+    watchdog_emailsender: self.perCluster.watchdog_emailsender[estate],
+    watchdog_emailrec: self.perCluster.watchdog_emailrec[estate],
 
     caFile: self.securityEnabled.caFile[self.perCluster.tlsEnabled[estate]],
     keyFile: self.securityEnabled.keyFile[self.perCluster.tlsEnabled[estate]],
@@ -104,12 +126,12 @@ local images = import "images.jsonnet",
     estate: estate,
 
     controller: images.controller,
-    watchdog_common: images.watchdog_common,
-    watchdog_master: images.watchdog_master,
-    watchdog_etcd: images.watchdog_etcd,
+    watchdog: images.watchdog,
     manifest_watcher: images.manifest_watcher,
     k8sproxy: images.k8sproxy,
+    sam_deployment_portal: images.sam_deployment_portal,
     
     sdc_bird: images.sdc_bird,
     sdc_peering_agent: images.sdc_peering_agent,
+    sdc_metrics: images.sdc_metrics,
 }

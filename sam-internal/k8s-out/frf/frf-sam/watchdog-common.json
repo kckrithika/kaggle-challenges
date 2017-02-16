@@ -23,15 +23,15 @@
                      "/sam/watchdog",
                      "-role=COMMON",
                      "-watchdogFrequency=5s",
+                     "-alertThreshold=150s",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
-                     "-rcImtEndpoint=http://ops0-orch1-1-frf.ops.sfdc.net:8080/v1/bark",
+                     "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
-                     "-sender=prabh.singh@salesforce.com",
-                     "-recipient=sam@salesforce.com",
-                     "-cc=prabh.singh@salesforce.com,cdebains@salesforce.com,adhoot@salesforce.com,thargrove@salesforce.com,pporwal@salesforce.com,mayank.kumar@salesforce.com,prahlad.joshi@salesforce.com,xiao.zhou@salesforce.com,cbatra@salesforce.com"
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sam@salesforce.com"
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-2b0f4665-588",
                   "name": "watchdog",
                   "resources": {
                      "limits": {

@@ -1,3 +1,5 @@
 apps:
     sam-test:
         - prd/prd-sam
+    warden-test:
+        - prd/prd-sam

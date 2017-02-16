@@ -2,14 +2,14 @@ apiVersion: v1
 
 system:
   functions:
-  - name: gater-prd
-    count: 4
+  - name: gater
+    count: 5
     hostnetwork: true
     containers:
     - name: gater1
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/gater/gater:1.0.3-12858974-20
+      image: tnrp/gater/gater:1.0.3-12858974-20
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
@@ -36,6 +36,9 @@ system:
       - containerPort: 9523 
       - containerPort: 9090
       - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: blitz
 
     # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
@@ -48,3 +51,8 @@ system:
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1

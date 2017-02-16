@@ -11,35 +11,40 @@
 
     estates: {
         "prd-sam": {
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
-            k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
+            k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170131_184659.aa812d6.dirty.cbatra-ltm",
+            watchdog: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170210_143358.b3869a2.dirty.prabhsingh-ltm5",
         },
         "prd-samdev": {
-            # Figuring out the right docker URL here is tricky.
-            # See https://git.soma.salesforce.com/sam/sam/wiki/Official-Secure-Docker-Registry#mapping-artifactory-urls-to-docker-urls
-            # Make sure this is ops0-artifactrepo2-0-prd ... /docker-release-candidate/ ...
-            #
-            default: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-cd52c792-543",
-            k8sproxy: configs.registry + "/" + "haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-cd52c792-543",
+            k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "hypersam:pporwal-20161205_131847-e72ab47",
-            sdc_bird: configs.registry + "/" + "sdc-bird:pporwal-201701292135",
-            sdc_peering_agent: configs.registry + "/" + "sdc-peering-agent:pporwal-201701292249",
+            default: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170214_142452.2b39d74.dirty.agajjala-ltm5",
+            k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
+            sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
+            sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
+            sdc_metrics: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
         },
         "dfw-sam": {
-            # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "hypersam:ce3affd",
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-cd52c792-543",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "frf-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         },
         "par-sam": {
-            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515"
+            default: configs.registry + "/" + "docker-all/tnrp/sam/hypersam:sam-9db6a3ff-515",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
         }
     },
 
@@ -56,6 +61,6 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog_common", "watchdog_master", "watchdog_etcd", "manifest_watcher", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent", "sdc_metrics"]
 }
 

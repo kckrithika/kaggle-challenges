@@ -3,13 +3,13 @@ apiVersion: v1
 system:
   functions:
   - name: gate-manager
-    count: 4
+    count: 5
     hostnetwork: true
     containers:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
-      image: docker-all/tnrp/gater/gater:1.0.3-12858974-20
+      image: tnrp/gater/gater:1.0.3-12858974-20
       args:
         - start
         - --logging.app.dir=/log/app
@@ -48,3 +48,8 @@ system:
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
