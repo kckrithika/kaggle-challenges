@@ -24,6 +24,8 @@ system:
         value: $(EXPREPORTCOLLECTORHALB_SERVICE_HOST)
       - name: LOG_DIR
         value: /var/log/report-collector-availability-watchdog
+      - name: DEBUG_ENABLED
+        value: true
       command: ["/bin/sh", "-c"]
       args: ["
       export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
