@@ -21,13 +21,12 @@ system:
       ports:
       - containerPort: 6379
       volumeMounts:
-      - hostPath:
-          path: /data/redis-master-data
+      - mountPath: /redis-master-data
         name: data
     volumes:
-    - name: data
-      emptyDir: {}
-
+    - hostPath:
+        path: /data/redis-master-data
+      name: data
 
   - name: redis-rc
     count: 3
@@ -37,12 +36,12 @@ system:
       ports:
       - containerPort: 6379
       volumeMounts:
-      - hostPath:
-          path: /data/redis-master-data
+      - mountPath: /redis-master-data
         name: data
     volumes:
-      - name: data
-        emptyDir: {}
+    - hostPath:
+        path: /data/redis-master-data
+      name: data
 
   - name: redis-sentinel
     count: 3
