@@ -7,14 +7,16 @@ system:
     count: 1
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
       env:
         - name: SENTINEL
+          value: "true"
+        - name: BOOTSTRAP
           value: "true"
       ports:
         - containerPort: 26379
     - name: master
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
       env:
         - name: MASTER
           value: "true"
@@ -31,7 +33,7 @@ system:
     count: 3
     containers:
     - name: redis
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
       ports:
       - containerPort: 6379
       volumeMounts:
@@ -45,7 +47,7 @@ system:
     count: 3
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
       env:
         - name: SENTINEL
           value: "true"
