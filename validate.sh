@@ -5,6 +5,8 @@ HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170216_175432.6a
 if [ "$1" == "evaluatePR" ] 
 then
   echo -e "\nEvaluating PR\n"
+  #Trying to find out the tnrp git setup
+  git remote -v || true
   echo -e '```\n'
   /opt/sam/sam-manifest-builder --root='./' -validateonly
   exitcode="$?"
