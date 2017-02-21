@@ -24,7 +24,7 @@
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170214_142452.2b39d74.dirty.agajjala-ltm5",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-2b0f4665-588",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
             sdc_metrics: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
@@ -58,4 +58,3 @@
     #
     [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent", "sdc_metrics"]
 }
-
