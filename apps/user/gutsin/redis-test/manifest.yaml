@@ -24,8 +24,7 @@ system:
       - mountPath: /redis-master-data
         name: data
     volumes:
-    - hostPath:
-        path: /data/redis-master-data
+    - emptyDir: {}
       name: data
 
   - name: redis-rc
@@ -39,8 +38,7 @@ system:
       - mountPath: /redis-master-data
         name: data
     volumes:
-    - hostPath:
-        path: /data/redis-master-data
+    - emptyDir: {}
       name: data
 
   - name: redis-sentinel
