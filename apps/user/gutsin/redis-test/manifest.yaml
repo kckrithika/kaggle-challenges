@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: sentinel
-      image: kubernetes/redis:v1
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:kube
       env:
         - name: SENTINEL
           value: "true"
