@@ -22,7 +22,7 @@
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170214_142452.2b39d74.dirty.agajjala-ltm5",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
