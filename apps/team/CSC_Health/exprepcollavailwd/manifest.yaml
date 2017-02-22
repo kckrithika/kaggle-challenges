@@ -28,7 +28,7 @@ system:
         value: true
       command: ["/bin/sh", "-c"]
       args: ["
-      export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+      export FUNNEL_VIP=http://DISABLED${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export DATACENTER=${KINGDOM} ;
       export SHOULD_PUBLISH_PROD_METRICS=`[ \"${KINGDOM}\" = \"prd\" ] && echo false || echo true` ;
       node --harmony ${APP_DIR}/lib/watchdog.js
