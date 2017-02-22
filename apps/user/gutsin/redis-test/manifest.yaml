@@ -5,6 +5,8 @@ system:
 
   - name: redis-master
     count: 1
+    labels:
+      sentinel: "true"
     containers:
     - name: sentinel
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
@@ -45,6 +47,8 @@ system:
 
   - name: redis-sentinel
     count: 3
+    labels:
+      sentinel: "true"
     containers:
     - name: sentinel
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
@@ -56,7 +60,8 @@ system:
 
   loadbalancers:
   - lbname: sentinel-lb
-    function: redis-sentinel
+    selector:
+      sentinel: "true"
     ports:
       - port: 26379
         targetport: 26379
