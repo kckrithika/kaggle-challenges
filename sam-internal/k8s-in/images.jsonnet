@@ -16,29 +16,30 @@
             sam_deployment_portal: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170216_141910.cab5aa4.dirty.cbatra-ltm",
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-edf9098e-615",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-edf9098e-615",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702082327",
             sdc_metrics: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
         },
         "dfw-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-edf9098e-615",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-edf9098e-615",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "frf-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-edf9098e-615",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         },
         "par-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-edf9098e-615",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-6acc29a7-604",
         }
     },
 
