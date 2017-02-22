@@ -29,7 +29,7 @@
                      "-role=DEPLOYMENT",
                      "-watchdogFrequency=10s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=1h",
+                     "-emailFrequency=12h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
@@ -47,7 +47,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-6acc29a7-604",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-edf9098e-615",
                   "name": "watchdog-deploy",
                   "volumeMounts": [
                      {

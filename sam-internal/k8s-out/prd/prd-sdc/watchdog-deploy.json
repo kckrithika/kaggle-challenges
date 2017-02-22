@@ -3,39 +3,43 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "samcontrol"
+         "name": "watchdog-deploy"
       },
-      "name": "samcontrol"
+      "name": "watchdog-deploy"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "samcontrol"
+            "name": "watchdog-deploy"
          }
       },
       "template": {
          "metadata": {
             "labels": {
-               "apptype": "control",
-               "name": "samcontrol"
+               "apptype": "monitoring",
+               "name": "watchdog-deploy"
             }
          },
          "spec": {
             "containers": [
                {
                   "command": [
-                     "/sam/sam-controller",
-                     "--debug=true",
-                     "--dockerregistry=ops0-artifactrepo1-0-par.data.sfdc.net",
-                     "--funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
-                     "--v=3",
-                     "--logtostderr=true",
-                     "--k8sapiserver=",
-                     "--tlsEnabled=true",
-                     "--caFile=/data/certs/ca.crt",
-                     "--keyFile=/data/certs/hostcert.key",
-                     "--certFile=/data/certs/hostcert.crt"
+                     "/sam/watchdog",
+                     "-role=DEPLOYMENT",
+                     "-watchdogFrequency=10s",
+                     "-alertThreshold=300s",
+                     "-emailFrequency=12h",
+                     "-timeout=2s",
+                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "-sender=sam@salesforce.com",
+                     "-recipient=network-software@salesforce.com",
+                     "-tlsEnabled=true",
+                     "-caFile=/data/certs/ca.crt",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
                   "env": [
                      {
@@ -43,8 +47,8 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-edf9098e-615",
-                  "name": "sam-controller",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-edf9098e-615",
+                  "name": "watchdog-deploy",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
@@ -59,7 +63,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "par-sam"
+               "pool": "prd-sdc"
             },
             "volumes": [
                {

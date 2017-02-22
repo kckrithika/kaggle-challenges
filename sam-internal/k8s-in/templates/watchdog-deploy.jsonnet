@@ -1,5 +1,5 @@
-local configs = import "config.jsonnet";
-if configs.estate == "prd-sam" then {
+{
+local configs = import "config.jsonnet",
 
     kind: "Deployment",
     spec: {
@@ -16,7 +16,7 @@ if configs.estate == "prd-sam" then {
                             "-role=DEPLOYMENT",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=1h",
+                            "-emailFrequency=12h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
@@ -84,4 +84,4 @@ if configs.estate == "prd-sam" then {
         },
         name: "watchdog-deploy"
     }
-} else "SKIP"
+}
