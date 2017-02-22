@@ -5,8 +5,37 @@ HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170216_175432.6a
 if [ "$1" == "evaluatePR" ] 
 then
   echo -e "\nEvaluating PR\n"
-  #Trying to find out the tnrp git setup
   git remote -v || true
+  git branch
+  commitCount=`git log origin.. --pretty=format:'%H %P' |wc -l`
+  if [ $commitCount -gt 1 ]
+  then
+    echo "Only 1 commit is allowed per PR"
+    #This is for testing othewise we would exit here.
+  fi
+
+  if [ $commitCount -eq 1 ]
+  then
+    commitHashes=`git log origin.. --pretty=format:'%H %P'`
+    echo "AdditionalCommits "$commitHashes
+    head=`git rev-parse origin/master`
+    while IFS=' ' read -ra hashes
+    do
+      for commit in ${hashes[@]}
+      do
+        if [ "$commit" == "$head" ]
+        then
+          found="true"
+          break
+        fi
+      done
+    done <<< "$commitHashes"
+    if [ "$found" != "true" ]
+    then
+      echo "Commit in the PR must have upstream HEAD as its parent"
+      #This is for testing othewise we would exit here.
+    fi
+  fi
   echo -e '```\n'
   /opt/sam/sam-manifest-builder --root='./' -validateonly
   exitcode="$?"
