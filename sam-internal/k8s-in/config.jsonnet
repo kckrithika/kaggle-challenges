@@ -133,5 +133,4 @@ local images = import "images.jsonnet",
     
     sdc_bird: images.sdc_bird,
     sdc_peering_agent: images.sdc_peering_agent,
-    sdc_metrics: images.sdc_metrics,
 }

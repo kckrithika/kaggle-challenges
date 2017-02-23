@@ -57,14 +57,6 @@ if configs.estate == "prd-sdc" then {
                         "--overrideBGPSecret", "NetworkSoftware",
                         "--funnelEndpoint", configs.funnelVIP],
                     },
-                    {
-                        name: "sdc-metrics",
-                        image: configs.sdc_metrics,
-                        command:[
-                           "/go/metrics-publisher",
-                           "--funnelEndpoint="+configs.funnelVIP,
-                        ],
-                    },
                 ],
                 volumes: [
                     {
