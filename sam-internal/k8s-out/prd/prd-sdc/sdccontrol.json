@@ -79,14 +79,6 @@
                         "readOnly": true
                      }
                   ]
-               },
-               {
-                  "command": [
-                     "/go/metrics-publisher",
-                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
-                  ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-metrics:agajjala-201702082327",
-                  "name": "sdc-metrics"
                }
             ],
             "hostNetwork": true,
