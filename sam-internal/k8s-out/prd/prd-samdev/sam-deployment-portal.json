@@ -33,7 +33,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-6acc29a7-604",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-d2931cc1-617",
                   "name": "sam-deployment-portal",
                   "volumeMounts": [
                      {
