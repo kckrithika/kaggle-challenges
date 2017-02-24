@@ -24,9 +24,24 @@ system:
         env:
           - name: MONGO_SIDECAR_POD_LABELS
             value: "role=mongo,environment=test"
+        command: ["/bin/sh", "-c"]
+        args: ["
+        while true; do
+          echo lol
+          sleep 10000
+        done
+        "]
+        volumeMounts:
+        - name: secretsvol
+          mountPath: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+          readOnly: true
+
     volumes:
     - emptyDir: {}
       name: data
+    - name: secretsvol
+      secret:
+        secretName: cass-secrets
     strategy:
       type: RollingUpdate
       rollingUpdate:
