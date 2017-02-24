@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: samhello
-      image: samhello:bob-20160630
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:bob-20160630
       ports:
       - containerPort: 9090
       livenessProbe:
