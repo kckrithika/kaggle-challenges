@@ -4,7 +4,7 @@
     "metadata": {
       "name": "sam-deployment-log.samlogs.salesforce.com"
     },
-    "description": "A specification of a SAM application",
+    "description": "A specification of SAM Controller run log",
     "versions": [
       {
         "name": "v1"
