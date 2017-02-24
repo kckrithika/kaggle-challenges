@@ -7,7 +7,7 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.6
       env:
         - name: SENTINEL
           value: "true"
@@ -16,7 +16,7 @@ system:
       ports:
         - containerPort: 26379
     - name: master
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.6
       env:
         - name: MASTER
           value: "true"
@@ -25,6 +25,7 @@ system:
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
+      workingDir: /redis-master-data
     volumes:
     - emptyDir: {}
       name: data
@@ -44,6 +45,7 @@ system:
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
+      workingDir: /redis-master-data
     volumes:
     - emptyDir: {}
       name: data
@@ -59,7 +61,7 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.6
       env:
         - name: SENTINEL
           value: "true"
