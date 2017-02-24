@@ -2,7 +2,7 @@
    "apiVersion": "extensions/v1beta1",
     "kind": "ThirdPartyResource",
     "metadata": {
-      "name": "sam-app-status.sam.salesforce.com"
+      "name": "sam-deployment-log.samlogs.salesforce.com"
     },
     "description": "A specification of a SAM application",
     "versions": [
