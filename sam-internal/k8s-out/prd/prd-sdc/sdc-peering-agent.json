@@ -1,23 +1,18 @@
 {
    "apiVersion": "extensions/v1beta1",
-   "kind": "Deployment",
+   "kind": "DaemonSet",
    "metadata": {
       "labels": {
-         "name": "sdccontrol"
+         "name": "sdc-peering-agent"
       },
-      "name": "sdccontrol"
+      "name": "sdc-peering-agent"
    },
    "spec": {
-      "replicas": 3,
-      "selector": {
-         "matchLabels": {
-            "name": "sdc-peering-agent"
-         }
-      },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "control",
+               "daemonset": "true",
                "name": "sdc-peering-agent"
             }
          },
@@ -82,9 +77,6 @@
                }
             ],
             "hostNetwork": true,
-            "nodeSelector": {
-               "pool": "prd-sdc"
-            },
             "volumes": [
                {
                   "emptyDir": { },
