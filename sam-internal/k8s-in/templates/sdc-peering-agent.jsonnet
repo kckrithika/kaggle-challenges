@@ -1,9 +1,8 @@
 local configs = import "config.jsonnet";
 
 if configs.estate == "prd-sdc" then {
-    kind: "Deployment",
+    kind: "DaemonSet",
     spec: {
-        replicas: 3,
         template: {
             spec: {
                 hostNetwork: true,
@@ -74,28 +73,21 @@ if configs.estate == "prd-sdc" then {
                         }
                     },
                 ],
-                nodeSelector: {
-                    pool: configs.estate
-                }
             },
             metadata: {
                 labels: {
                     name: "sdc-peering-agent",
-                    apptype: "control"
+                    apptype: "control",
+                    daemonset: "true",
                 }
             }
         },
-        selector: {
-            matchLabels: {
-                name: "sdc-peering-agent"
-            }
-        }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdccontrol"
+            name: "sdc-peering-agent",
         },
-        name: "sdccontrol"
+        name: "sdc-peering-agent",
     }
 } else "SKIP"
