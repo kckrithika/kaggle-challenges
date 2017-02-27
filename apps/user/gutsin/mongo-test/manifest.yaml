@@ -25,12 +25,7 @@ system:
           - name: MONGO_SIDECAR_POD_LABELS
             value: "role=mongo,environment=test"
         command: ["/bin/sh", "-c"]
-        args: ["
-        while true; do
-          echo lol
-          sleep 10000
-        done
-        "]
+        args: ["while true; do echo lol && sleep 10; done"]
         volumeMounts:
         - name: secretsvol
           mountPath: "/var/run/secrets/kubernetes.io/serviceaccount/token"
