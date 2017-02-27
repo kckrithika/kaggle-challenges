@@ -13,6 +13,8 @@ if [ ! -f jsonnet/jsonnet ]; then
     popd
 fi
 
+rm -rf ../k8s-out/**
+
 #Generates YAML files for a given cluster.
 generateConfigs() {
   currentKingdom=$1
