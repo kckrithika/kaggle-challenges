@@ -39,7 +39,7 @@ system:
     count: 2
     containers:
     - name: redis
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.6
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7
       ports:
       - containerPort: 6379
       volumeMounts:
