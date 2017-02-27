@@ -32,8 +32,8 @@ system:
     strategy:
       type: RollingUpdate
       rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
+        maxSurge: 1
+        maxUnavailable: 0
 
   - name: redis-rc
     count: 2
@@ -52,8 +52,8 @@ system:
     strategy:
       type: RollingUpdate
       rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
+        maxSurge: 1
+        maxUnavailable: 0
 
   - name: redis-sentinel
     count: 2
@@ -70,8 +70,8 @@ system:
     strategy:
       type: RollingUpdate
       rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
+        maxSurge: 1
+        maxUnavailable: 0
 
   loadbalancers:
   - lbname: sentinel-lb
