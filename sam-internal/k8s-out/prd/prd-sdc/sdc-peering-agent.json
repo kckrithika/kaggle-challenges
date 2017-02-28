@@ -55,7 +55,7 @@
                      "--funnelEndpoint",
                      "ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702231026",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702281020",
                   "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {
