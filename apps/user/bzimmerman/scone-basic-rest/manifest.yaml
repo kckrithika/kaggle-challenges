@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: scone-basic-rest
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-basic-rest:zim-20170111
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-basic-rest:zim-20170228
       ports:
       - containerPort: 8080
       - containerPort: 15372
