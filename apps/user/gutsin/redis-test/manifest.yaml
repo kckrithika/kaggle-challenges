@@ -15,6 +15,13 @@ system:
           value: "true"
       ports:
         - containerPort: 26379
+      livenessProbe:
+        exec:
+          command:
+          - redis-cli
+          - ping
+        initialDelaySeconds: 5
+        periodSeconds: 5
     - name: master
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.6
       env:
@@ -22,6 +29,13 @@ system:
           value: "true"
       ports:
       - containerPort: 6379
+      livenessProbe:
+        exec:
+          command:
+          - redis-cli
+          - ping
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
@@ -46,6 +60,13 @@ system:
       - mountPath: /redis-master-data
         name: data
       workingDir: /redis-master-data
+      livenessProbe:
+        exec:
+          command:
+          - redis-cli
+          - ping
+        initialDelaySeconds: 5
+        periodSeconds: 5
     volumes:
     - emptyDir: {}
       name: data
@@ -67,6 +88,13 @@ system:
           value: "true"
       ports:
       - containerPort: 26379
+      livenessProbe:
+        exec:
+          command:
+          - redis-cli
+          - ping
+        initialDelaySeconds: 5
+        periodSeconds: 5
     strategy:
       type: RollingUpdate
       rollingUpdate:
