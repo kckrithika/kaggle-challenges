@@ -1,15 +1,15 @@
 {
 local configs = import "config.jsonnet",
 
-    kind: "Deployment", 
+    kind: "Deployment",
     spec: {
-        replicas: 1, 
+        replicas: 1,
         template: {
             spec: {
-                hostNetwork: true, 
+                hostNetwork: true,
                 containers: [
                     {
-                        name: "sam-controller", 
+                        name: "sam-controller",
                         image: configs.controller,
                         command:[
                            "/sam/sam-controller",
@@ -24,7 +24,8 @@ local configs = import "config.jsonnet",
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
-                        ],
+                           ]
+                           + if configs.estate == "prd-samdev" then [ "-volPermissionInitContainerImage="+configs.controller ] else [],
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",
@@ -60,25 +61,25 @@ local configs = import "config.jsonnet",
                 nodeSelector: {
                     pool: configs.estate
                 }
-            }, 
+            },
             metadata: {
                 labels: {
-                    name: "samcontrol", 
+                    name: "samcontrol",
                     apptype: "control"
                 }
             }
-        }, 
+        },
         selector: {
             matchLabels: {
                 name: "samcontrol"
             }
         }
-    }, 
-    apiVersion: "extensions/v1beta1", 
+    },
+    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "samcontrol"
-        }, 
+        },
         name: "samcontrol"
     }
 }
