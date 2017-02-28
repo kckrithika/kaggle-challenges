@@ -53,7 +53,7 @@ if configs.estate == "prd-sdc" then {
                         "--birdconf", "/usr/local/etc/bird.conf",
                         "--ipamcsv", "/usr/local/sdc/conf/samInput.csv",
                         "--vaultkeypair", "/usr/local/sdc/SDCBird_keypair",
-                        "--overrideBGPSecret", "NetworkSoftware",
+                        "--overrideBGPSecret", "",
                         "--funnelEndpoint", configs.funnelVIP],
                     },
                 ],
