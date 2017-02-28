@@ -52,8 +52,6 @@
                      "/usr/local/sdc/conf/samInput.csv",
                      "--vaultkeypair",
                      "/usr/local/sdc/SDCBird_keypair",
-                     "--overrideBGPSecret",
-                     "NetworkSoftware",
                      "--funnelEndpoint",
                      "ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
