@@ -7,35 +7,38 @@ then
   echo -e "\nEvaluating PR\n"
   git remote -v || true
   git branch
-  commitCount=`git log origin.. --pretty=format:'%H %P' |wc -l`
-  if [ $commitCount -gt 1 ]
+  # TODO: Clean this up, document it, and put it in functions
+  mergeCommits=`git log origin.. --merges --pretty=format:'%H %P%n' | wc -l | tr -d '[[:space:]]' `
+  nonMergeCommits=`git log origin.. --no-merges --pretty=format:'%H %P%n' | wc -l | tr -d '[[:space:]]' `
+  echo "PR has ${mergeCommits} merge commits and ${nonMergeCommits} normal commits"
+  if [ $mergeCommits -ne "0" ]
   then
-    echo "Only 1 commit is allowed per PR"
-    #This is for testing othewise we would exit here.
+    echo "Merge commits are not allowed in PRs"
+    exit 1
   fi
 
-  if [ $commitCount -eq 1 ]
-  then
-    commitHashes=`git log origin.. --pretty=format:'%H %P'`
-    echo "AdditionalCommits "$commitHashes
-    head=`git rev-parse origin/master`
-    while IFS=' ' read -ra hashes
-    do
-      for commit in ${hashes[@]}
-      do
-        if [ "$commit" == "$head" ]
-        then
-          found="true"
-          break
-        fi
-      done
-    done <<< "$commitHashes"
-    if [ "$found" != "true" ]
-    then
-      echo "Commit in the PR must have upstream HEAD as its parent"
-      #This is for testing othewise we would exit here.
-    fi
-  fi
+  #if [ $commitCount -eq 1 ]
+  #then
+  #  commitHashes=`git log origin.. --pretty=format:'%H %P'`
+  #  echo "AdditionalCommits "$commitHashes
+  #  head=`git rev-parse origin/master`
+  #  while IFS=' ' read -ra hashes
+  #  do
+  #    for commit in ${hashes[@]}
+  #    do
+  #      if [ "$commit" == "$head" ]
+  #      then
+  #        found="true"
+  #        break
+  #      fi
+  #    done
+  #  done <<< "$commitHashes"
+  #  if [ "$found" != "true" ]
+  #  then
+  #    echo "Commit in the PR must have upstream HEAD as its parent"
+  #    #This is for testing othewise we would exit here.
+  #  fi
+  #fi
   echo -e '```\n'
   /opt/sam/sam-manifest-builder --root='./' -validateonly
   exitcode="$?"
