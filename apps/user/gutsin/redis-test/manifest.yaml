@@ -61,7 +61,7 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.6
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7
       env:
         - name: SENTINEL
           value: "true"
