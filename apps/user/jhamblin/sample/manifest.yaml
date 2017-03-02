@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 4
+    containers:
+    - name: proxy
+      image: shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/proxy:jhamblin-20170302a
+      ports:
+      - containerPort: 6789
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 6789
+ 
+  loadbalancers:
+  - lbname: proxylb
+    function: default
+    ports:
+      - port: 6789
+        targetport: 6789
