@@ -22,6 +22,13 @@ system:
           value: "true"
       ports:
       - containerPort: 6379
+      livenessProbe:
+        exec:
+          command:
+          - redis-cli
+          - ping
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
@@ -37,6 +44,8 @@ system:
 
   - name: redis-rc
     count: 2
+    labels:
+      sentinel: "true"
     containers:
     - name: redis
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
@@ -46,6 +55,13 @@ system:
       - mountPath: /redis-master-data
         name: data
       workingDir: /redis-master-data
+    - name: sentinel
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
+      env:
+        - name: SENTINEL
+          value: "true"
+      ports:
+      - containerPort: 26379
     volumes:
     - emptyDir: {}
       name: data
