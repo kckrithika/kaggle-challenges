@@ -11,7 +11,7 @@ system:
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE00100"
+          value: "SOMEVALUE00101"
       ports:
       - containerPort: 8000
       livenessProbe:
