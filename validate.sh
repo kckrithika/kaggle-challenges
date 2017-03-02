@@ -14,9 +14,10 @@ exitIfMergeCommitFound() {
   #present in the current branch but not in origin/master.
   nonMergeCommits=`git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:'%H %P%n' | wc -l | tr -d '[[:space:]]' `
   echo "PR has ${mergeCommits} merge commits and ${nonMergeCommits} normal commits"
-  if [ $mergeCommits -ne "0" ]
+  if [ "$mergeCommits" -ne "0" ]
   then
     echo "Merge commits are not allowed in PRs"
+    echo "For help removing them see http://stackoverflow.com/questions/21115596/remove-a-merge-commit-keeping-current-changes"
     exit 1
   fi
 }
@@ -27,8 +28,6 @@ if [ "$1" == "evaluatePR" ]
 then
   set -x
   echo -e "\nEvaluating PR\n"
-  git remote -v || true
-  git branch
   exitIfMergeCommitFound
   echo -e '```\n'
   /opt/sam/sam-manifest-builder --root='./' -validateonly
