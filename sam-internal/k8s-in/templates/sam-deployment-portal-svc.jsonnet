@@ -13,9 +13,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
             "ports": [
             {
                 "name": "portal-port",
-                "port": 64123,
+                "port": 64121,
                 "protocol": "TCP",
-                "targetPort": 64123,
+                "targetPort": 64121,
                 "nodePort": 39999
             }
             ],
