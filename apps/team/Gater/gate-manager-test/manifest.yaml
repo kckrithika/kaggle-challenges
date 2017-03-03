@@ -9,7 +9,7 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: tnrp/gater/gater:1.0.3-12858974-20
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-prd:gater-20170303A
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
@@ -21,6 +21,7 @@ system:
         - --superpod.name=-
         - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
+        - --logging.perms.enforce=false
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section.
       volumeMounts:
