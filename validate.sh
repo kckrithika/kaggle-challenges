@@ -6,15 +6,18 @@
 #If it finds any merge commits, it calls exit.
 exitIfMergeCommitFound() {
   GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
+  tnrpBotName='tnrp-ro@salesforce.com'
   #Find count of all the merge commits that are 
   #present in the current branch but not in origin/master.
+  #Merge commits by tnrp bot are ignored.
   key="commit"
   git log origin/master..$GIT_CURRENT_BRANCH --merges
   git log origin/master..$GIT_CURRENT_BRANCH --no-merges
-  mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P" --author='^((?!tnrp-ro@salesforce.com \<tnrp-ro@salesforce.com>\>).*)$' --perl-regexp| grep -c $key) || true
+  mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P %an" |grep -v $tnrpBotName | grep -c $key) || true
   #Find count of all non merge commits that are 
   #present in the current branch but not in origin/master.
-  nonMergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:"$key %H %P" --author='^((?!tnrp-ro@salesforce.com \<tnrp-ro@salesforce.com>\>).*)$' --perl-regexp | grep -c $key) || true
+  #Commits by tnrp bot are ignored.
+  nonMergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:"$key %H %P %an" |grep -v $tnrpBotName | grep -c $key) || true
   echo "PR has ${mergeCommits} merge commits and ${nonMergeCommits} normal commits"
   if [ "$mergeCommits" -ne "0" ]
   then
