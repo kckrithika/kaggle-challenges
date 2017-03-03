@@ -13,9 +13,9 @@
          {
             "name": "portal-port",
             "nodePort": 39999,
-            "port": 64123,
+            "port": 64121,
             "protocol": "TCP",
-            "targetPort": 64123
+            "targetPort": 64121
          }
       ],
       "selector": {
