@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 #exitIfMergeCommitFound checks if there are any 
 #merge commits introduced by the current branch 
@@ -9,22 +8,13 @@ exitIfMergeCommitFound() {
   GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
   #Find count of all the merge commits that are 
   #present in the current branch but not in origin/master.
-  mergeCommits=`git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:'%H %P'`
+  key="commit"
+  mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P" | grep -c $key) || true
   #Find count of all non merge commits that are 
   #present in the current branch but not in origin/master.
-  nonMergeCommits=`git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:'%H %P' | wc -l | tr -d '[[:space:]]'`
-  mergeCommitsCount=0
-  if [ "$mergeCommits" ]
-  then
-    mergeCommitCount=$(( `echo $mergeCommits| wc -l | tr -d '[[:space:]]'` + 1 ))
-  fi
-  if [ "$nonMergeCommits" ]
-  nonMergeCommitsCount=0
-  then
-    nonMergeCommitsCount=$(( `echo $nonMergeCommits| wc -l | tr -d '[[:space:]]'` + 1 ))
-  fi
-  echo "PR has ${mergeCommitsCount} merge commits and ${nonMergeCommitsCount} normal commits"
-  if [ $mergeCommitsCount -ne 0 ]
+  nonMergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:"$key %H %P" | grep -c $key) || true
+  echo "PR has ${mergeCommits} merge commits and ${nonMergeCommits} normal commits"
+  if [ "$mergeCommits" -ne "0" ]
   then
     echo "Merge commits are not allowed in PRs"
     echo "For help removing them see http://stackoverflow.com/questions/21115596/remove-a-merge-commit-keeping-current-changes"
