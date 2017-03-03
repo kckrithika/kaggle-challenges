@@ -9,10 +9,12 @@ exitIfMergeCommitFound() {
   #Find count of all the merge commits that are 
   #present in the current branch but not in origin/master.
   key="commit"
-  mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P" | grep -c $key) || true
+  git log origin/master..$GIT_CURRENT_BRANCH --merges
+  git log origin/master..$GIT_CURRENT_BRANCH --no-merges
+  mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P" --author='^((?!tnrp-ro@salesforce.com \<tnrp-ro@salesforce.com>\>).*)$' --perl-regexp| grep -c $key) || true
   #Find count of all non merge commits that are 
   #present in the current branch but not in origin/master.
-  nonMergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:"$key %H %P" | grep -c $key) || true
+  nonMergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:"$key %H %P" --author='^((?!tnrp-ro@salesforce.com \<tnrp-ro@salesforce.com>\>).*)$' --perl-regexp | grep -c $key) || true
   echo "PR has ${mergeCommits} merge commits and ${nonMergeCommits} normal commits"
   if [ "$mergeCommits" -ne "0" ]
   then
