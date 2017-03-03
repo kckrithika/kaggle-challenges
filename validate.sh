@@ -9,6 +9,8 @@ exitIfMergeCommitFound() {
   #Find count of all the merge commits that are 
   #present in the current branch but not in origin/master.
   key="commit"
+  git log origin/master..$GIT_CURRENT_BRANCH --merges
+  git log origin/master..$GIT_CURRENT_BRANCH --no-merges
   mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P" | grep -c $key) || true
   #Find count of all non merge commits that are 
   #present in the current branch but not in origin/master.
