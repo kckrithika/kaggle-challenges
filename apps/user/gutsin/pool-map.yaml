@@ -1,5 +1,3 @@
 apps:
  redis-test:
   - prd/prd-sam
- mongo-test:
-  - prd/prd-sam
