@@ -37,7 +37,7 @@
                      "--keyFile=/data/certs/hostcert.key",
                      "--certFile=/data/certs/hostcert.crt",
                      "--checkImageExistsFlag=false",
-                     "--volPermissionInitContainerImage=shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:sam-f8709348-635"
+                     "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-f8709348-635"
                   ],
                   "env": [
                      {
@@ -45,7 +45,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:sam-f8709348-635",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-f8709348-635",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
