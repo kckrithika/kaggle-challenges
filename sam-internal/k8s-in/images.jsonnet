@@ -15,7 +15,7 @@
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
-            default: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:sam-f8709348-635",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-f8709348-635",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-sdc": {
