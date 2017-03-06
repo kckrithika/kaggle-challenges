@@ -15,6 +15,7 @@ system:
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
         - --logging.app.dir=/log/app
+        - --log.dir=/log
         - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --settings.path=blitz.-.prd.-.gater
