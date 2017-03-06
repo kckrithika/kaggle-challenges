@@ -7,7 +7,7 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7c
       env:
         - name: SENTINEL
           value: "true"
@@ -15,8 +15,14 @@ system:
           value: "true"
       ports:
         - containerPort: 26379
+      livenessProbe:
+        exec:
+          command:
+          - sh /etc/healthprobe.sh
+        initialDelaySeconds: 30
+        periodSeconds: 30
     - name: redis
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7c
       env:
         - name: MASTER
           value: "true"
@@ -25,14 +31,9 @@ system:
       livenessProbe:
         exec:
           command:
-          - redis-cli
-          - ping
-          - "-p"
-          - "${SENTINEL_LB_SERVICE_PORT}"
-          - "-h"
-          - "${SENTINEL_LB_SERVICE_HOST}"
-        initialDelaySeconds: 5
-        periodSeconds: 5
+          - sh /etc/healthprobe.sh
+        initialDelaySeconds: 30
+        periodSeconds: 30
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
@@ -52,20 +53,32 @@ system:
       sentinel: "true"
     containers:
     - name: redis
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7c
       ports:
       - containerPort: 6379
+      livenessProbe:
+        exec:
+          command:
+          - sh /etc/healthprobe.sh
+        initialDelaySeconds: 30
+        periodSeconds: 30
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
       workingDir: /redis-master-data
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7c
       env:
         - name: SENTINEL
           value: "true"
       ports:
       - containerPort: 26379
+      livenessProbe:
+        exec:
+          command:
+          - sh /etc/healthprobe.sh
+        initialDelaySeconds: 30
+        periodSeconds: 30
     volumes:
     - emptyDir: {}
       name: data
@@ -81,12 +94,18 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7c
       env:
         - name: SENTINEL
           value: "true"
       ports:
       - containerPort: 26379
+      livenessProbe:
+        exec:
+          command:
+          - sh /etc/healthprobe.sh
+        initialDelaySeconds: 30
+        periodSeconds: 30
     strategy:
       type: RollingUpdate
       rollingUpdate:
