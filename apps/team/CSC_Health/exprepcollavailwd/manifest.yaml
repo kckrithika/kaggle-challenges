@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: exprepcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:1.3.1-fc4b0efe-49
+      image: tnrp/csc-health/report-collector-availability-watchdog:1.3.2-4d3411ba-51
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
