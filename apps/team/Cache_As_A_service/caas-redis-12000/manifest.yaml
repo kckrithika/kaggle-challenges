@@ -34,6 +34,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12000
+      - containerPort: 12015
     volumes:
     - name: logvol
       hostPath:
