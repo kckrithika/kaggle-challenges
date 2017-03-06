@@ -22,6 +22,8 @@ system:
         - --port=12001
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
+        - --sslPort=12016
+        - --useStunnel
       livenessProbe:
         exec:
           command:
@@ -32,6 +34,7 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12001
+      - containerPort: 12015
       env:
       - name:  CAAS_UPGRADE
         value: DATE_12_23
