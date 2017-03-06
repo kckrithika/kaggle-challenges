@@ -9,13 +9,12 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-prd:gater-20170303A
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-prd:gater-20170306A
       args:
         - start
         - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
-        - --logging.app.dir=/log/app
-        - --log.dir=/log
+        - --logging.dir=/log
         - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --settings.path=blitz.-.prd.-.gater
@@ -23,8 +22,9 @@ system:
         - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
         - --logging.perms.enforce=false
-      # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
-      # and this volume mount is mapped to a host directory below in the volumes section.
+      # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
+      # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
+      # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -49,7 +49,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-gater/logs/gater
+        path: /home/sfdc-gater/logs
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
