@@ -22,6 +22,13 @@ system:
           value: "true"
       ports:
       - containerPort: 6379
+      livenessProbe:
+        exec:
+          command:
+          - bash
+          - /etc/healthprobe.sh
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
@@ -44,6 +51,13 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
       ports:
       - containerPort: 6379
+      livenessProbe:
+        exec:
+          command:
+          - bash
+          - /etc/healthprobe.sh
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /redis-master-data
         name: data
