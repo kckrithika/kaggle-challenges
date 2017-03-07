@@ -1,6 +1,6 @@
 apps:
  TestApp:
   - prd/prd-sam
- TestRCHostNW
+ TestRCHostNW:
   - prd/prd-sam
   #- prd/prd-samdev

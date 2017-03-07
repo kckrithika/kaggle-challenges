@@ -74,7 +74,7 @@ system:
   loadbalancers:
   - lbname: rchnwreportcollectorhalb
     function: rchnwreport-collectorha
-    nodeExposed: true
+    # nodeExposed: true the manifest validation does not allow 
     ports:
       # LB was supposed to allow SSL on the backend, but its not currently
       # supported, so we will use non SSL but on these node ports (18443, 18444)
@@ -85,7 +85,7 @@ system:
       targetport: 18081
   - lbname: rchnwredisnohalb
     function: rchnwredisnoha
-    nodeExposed: true
+    # nodeExposed: true the manifest validation does not allow
     ports:
       - port: 26379
         targetport: 6379
