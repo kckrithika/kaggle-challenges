@@ -3,20 +3,20 @@ apiVersion: v1
 system:
   functions:
   - name: rchnwreport-collectorha
-    count: 3
+    count: 2
     hostnetwork: true
     containers:
     - name: rchnwreport-collectorha
       image: tnrp/csc-health/report-collector:1.3.0-0034e8be-93
       ports:
       - name: provider
-        containerPort: 8080
+        containerPort: 18080
       - name: consumer
-        containerPort: 8081
+        containerPort: 18081
       - name: provider-https
-        containerPort: 8443
+        containerPort: 18443
       - name: consumer-https
-        containerPort: 8444
+        containerPort: 18444
       resources:
         limits: { cpu: "10", memory: "20Gi" }
         requests: { cpu: "10", memory: "20Gi" }
@@ -79,10 +79,10 @@ system:
       # LB was supposed to allow SSL on the backend, but its not currently
       # supported, so we will use non SSL but on these node ports (18443, 18444)
       # since its the one exposed in estates for sam_minionreportcollector
-    - port: 28443
-      targetport: 8080
-    - port: 28444
-      targetport: 8081
+    - port: 28080
+      targetport: 18080
+    - port: 28081
+      targetport: 18081
   - lbname: rchnwredisnohalb
     function: rchnwredisnoha
     nodeExposed: true
