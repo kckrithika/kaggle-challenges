@@ -29,6 +29,14 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                              "value": configs.configPath
                           }
                        ],
+                       livenessProbe: {
+                           initialDelaySeconds: 15,
+                           httpGet: {
+                               path: "/",
+                               port: 64121
+                           },
+                           timeoutSeconds: 10
+                       },
                        workingDir: "/sam"
                     }
                 ],
