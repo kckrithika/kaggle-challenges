@@ -12,14 +12,11 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-prd:gater-20170306A
       args:
         - start
-        - --metrics.funnelEndPointURL=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181
         - --logging.dir=/log
         - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --settings.path=blitz.-.prd.-.gater
         - --superpod.name=-
-        - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
         - --logging.perms.enforce=false
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
