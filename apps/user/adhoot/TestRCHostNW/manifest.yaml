@@ -1,0 +1,91 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: rchnwreport-collectorha
+    count: 3
+    hostnetwork: true
+    containers:
+    - name: rchnwreport-collectorha
+      image: tnrp/csc-health/report-collector:1.3.0-0034e8be-93
+      ports:
+      - name: provider
+        containerPort: 8080
+      - name: consumer
+        containerPort: 8081
+      - name: provider-https
+        containerPort: 8443
+      - name: consumer-https
+        containerPort: 8444
+      resources:
+        limits: { cpu: "10", memory: "20Gi" }
+        requests: { cpu: "10", memory: "20Gi" }
+      volumeMounts:
+      - mountPath: /var/log/report-collector
+        name: logvol
+      env:
+      - name: ReportCollector_redis_host
+        value: $(RCHNWREDISNOHALB_SERVICE_HOST)
+      - name: ReportCollector_redis_port
+        value: $(RCHNWREDISNOHALB_SERVICE_PORT)
+      - name: ReportCollector_app_https_enabled
+        value: true
+      - name: ReportCollector_ajna_publishEnabled
+        value: true
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
+      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
+      export ReportCollector_ajna_datacenter=${KINGDOM} ;
+      export ReportCollector_ajna_device=${FUNCTION_INSTANCE_NAME} ;
+      ${JAVA_HOME}/bin/java
+        -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
+        -Dvertx.disableFileCPResolving=true
+        -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
+        -Dvertx.metrics.options.enabled=true
+        -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.disableDnsResolver=true
+        -Dlog_dir=${LOG_DIR}
+        -Dinstance=${FUNCTION_INSTANCE_NAME}
+        -jar ${JAR_PATH}
+      "]
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/report-collector
+  - name: rchnwredisnoha
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: rchnwredis
+      image: tnrp/p4tools/redis:3.0.2-01
+      ports:
+      - containerPort: 6379
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
+      logs:
+      - directory: /var/log/redis
+      command: ["/bin/sh", "-c"]
+      args: ["
+      echo save '' | redis-server -
+      "]
+
+  loadbalancers:
+  - lbname: rchnwreportcollectorhalb
+    function: rchnwreport-collectorha
+    nodeExposed: true
+    ports:
+      # LB was supposed to allow SSL on the backend, but its not currently
+      # supported, so we will use non SSL but on these node ports (18443, 18444)
+      # since its the one exposed in estates for sam_minionreportcollector
+    - port: 28443
+      targetport: 8080
+    - port: 28444
+      targetport: 8081
+  - lbname: rchnwredisnohalb
+    function: rchnwredisnoha
+    nodeExposed: true
+    ports:
+      - port: 26379
+        targetport: 6379
