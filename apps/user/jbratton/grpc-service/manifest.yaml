@@ -8,7 +8,7 @@ system:
     - name: grpc-service
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2
       ports:
-      - name: grpc-service-port
+      - name: grpc-port
         containerPort: 5000
     - name: sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-1
