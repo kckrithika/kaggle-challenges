@@ -26,8 +26,8 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-d71d11c2-645",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
-            sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045",
-            sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045"
+            sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:vkarnati-201703081449",
+            sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:vkarnati-201703081449"
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
