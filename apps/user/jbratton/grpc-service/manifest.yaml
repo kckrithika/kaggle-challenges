@@ -9,10 +9,23 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2
       ports:
       - containerPort: 5000
+    - name: sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-1
+      args:
+        - -a 9999
+        - -i 4141
+        - -o 4142
+        - -s 5000
+      ports:
+      - containerPort: 9999
+      - containerPort: 4141
+      - containerPort: 4142
  
   loadbalancers:
   - lbname: grpc-service-lb
     function: default
     ports:
-      - port: 5000
-        targetport: 5000
+      - port: 9999
+        targetport: 9999
+      - port: 4141
+        targetport: 4141
