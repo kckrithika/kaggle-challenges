@@ -22,8 +22,6 @@ system:
         - --port=12000
         - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
-        - --sslPort=12015
-        - --useStunnel
       livenessProbe:
         exec:
           command:
