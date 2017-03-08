@@ -34,6 +34,14 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "sdc-peering-agent",
                         image: configs.sdc_peering_agent,
+                        command:[
+                            "/sdc/sdc-peering-agent",
+                            "--birdsock=/usr/local/var/run/bird.ctl",
+                            "--birdconf=/usr/local/etc/bird.conf",
+                            "--ipamcsv=/usr/local/sdc/conf/samInput.csv",
+                            "--vaultkeypair=/usr/local/sdc/SDCBird_keypair",
+                            "--funnelEndpoint="+configs.funnelVIP
+                        ],
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -49,11 +57,6 @@ if configs.estate == "prd-sdc" then {
                                 readOnly: true,
                             },
                         ],
-                        args: ["--birdsock", "/usr/local/var/run/bird.ctl",
-                        "--birdconf", "/usr/local/etc/bird.conf",
-                        "--ipamcsv", "/usr/local/sdc/conf/samInput.csv",
-                        "--vaultkeypair", "/usr/local/sdc/SDCBird_keypair",
-                        "--funnelEndpoint", configs.funnelVIP],
                     },
                 ],
                 volumes: [
