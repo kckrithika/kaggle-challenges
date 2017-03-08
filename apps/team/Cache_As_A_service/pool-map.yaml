@@ -11,6 +11,8 @@ apps:
     - prd/prd-sp2-sam_caas
   caas-redis-12011:
     - prd/prd-sp2-sam_caas
+  caas-redis-12029:
+    - prd/prd-sp2-sam_caas
   caas-monitor-sp-c1:
     - prd/prd-sp2-sam_caas
   caas-monitor-sp-pc1:
