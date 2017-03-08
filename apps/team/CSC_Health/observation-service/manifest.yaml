@@ -26,11 +26,11 @@ system:
       - name: OBS_GROK_KEYPATH
         value: /var/secrets/grok-client.key
       - name: OBS_HEALTH_PORT
-        value: 80
+        value: 8080
       livenessProbe:
         httpGet:
           path: /healthz
-          port: 80
+          port: 8080
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
@@ -50,4 +50,4 @@ system:
       nodeExposed: true
       ports:
       - port: 80
-        targetport: 80
+        targetport: 8080
