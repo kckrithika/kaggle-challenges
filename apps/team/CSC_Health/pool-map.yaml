@@ -6,9 +6,11 @@ apps:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
     - prd/prd-samdev
+    - prd/prd-sdc
   repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
+    - prd/prd-sdc
   observation-service:
     - prd/prd-sam_report_collector
     - prd/prd-samdev
