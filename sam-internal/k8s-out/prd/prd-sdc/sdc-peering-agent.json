@@ -49,7 +49,8 @@
                      "--birdconf=/usr/local/etc/bird.conf",
                      "--ipamcsv=/usr/local/sdc/conf/samInput.csv",
                      "--vaultkeypair=/usr/local/sdc/SDCBird_keypair",
-                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
                   "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045",
                   "name": "sdc-peering-agent",
