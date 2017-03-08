@@ -25,6 +25,7 @@
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-415d4f0e-621",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702281020",
+            hypersdc: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045"
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
@@ -53,5 +54,5 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent", "hypersdc"]
 }

@@ -1,0 +1,39 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "sdc-watchdog"
+      },
+      "name": "sdc-watchdog"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "sdc-watchdog"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdc/sdc-watchdog",
+                     "--pingDelay=180s",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--pingCount=1",
+                     "--pingInterval=1s",
+                     "--pingTimeout=5s"
+                  ],
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045",
+                  "name": "sdc-watchdog"
+               }
+            ],
+            "hostNetwork": true
+         }
+      }
+   }
+}
