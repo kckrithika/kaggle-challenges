@@ -14,20 +14,20 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-1
       args: ["-a", "9999", "-i", "4141", "-o", "4142", "-s", "5000"]
       ports:
-      - name: sherpa-admin-port
+      - name: admin-port
         containerPort: 9999
-      - name: sherpa-incoming-port
+      - name: in-port
         containerPort: 4141
-      - name: sherpa-outgoing-port
+      - name: out-port
         containerPort: 4142
  
   loadbalancers:
   - lbname: grpc-service-lb
     function: grpc-service
     ports:
-      - name: sherpa-admin-port
+      - name: admin-port
         port: 9999
         targetport: 9999
-      - name: sherpa-incoming-port
+      - name: in-port
         port: 4141
         targetport: 4141
