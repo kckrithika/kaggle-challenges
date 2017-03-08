@@ -11,18 +11,20 @@
 
     estates: {
         "prd-sam": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-af241e54-637",
+            # For now we need to keep the root level folder 'docker-release-candidate' because it is needed for promotion
+            # even though that is not a required root level directory.  For prod clusters leave this off (it would be
+            # different in prod anyways)
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-d71d11c2-645",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-af241e54-637",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-d71d11c2-645",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-d71d11c2-645",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-415d4f0e-621",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045",
             sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045"
