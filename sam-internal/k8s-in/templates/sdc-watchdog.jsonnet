@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" then {
                 containers: [
                     {
                         name: "sdc-watchdog",
-                        image: configs.hypersdc,
+                        image: configs.sdc_watchdog,
                         command:[
                             "/sdc/sdc-watchdog",
                             "--pingDelay=180s",

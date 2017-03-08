@@ -43,19 +43,15 @@
                   ]
                },
                {
-                  "args": [
-                     "--birdsock",
-                     "/usr/local/var/run/bird.ctl",
-                     "--birdconf",
-                     "/usr/local/etc/bird.conf",
-                     "--ipamcsv",
-                     "/usr/local/sdc/conf/samInput.csv",
-                     "--vaultkeypair",
-                     "/usr/local/sdc/SDCBird_keypair",
-                     "--funnelEndpoint",
-                     "ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  "command": [
+                     "/sdc/sdc-peering-agent",
+                     "--birdsock=/usr/local/var/run/bird.ctl",
+                     "--birdconf=/usr/local/etc/bird.conf",
+                     "--ipamcsv=/usr/local/sdc/conf/samInput.csv",
+                     "--vaultkeypair=/usr/local/sdc/SDCBird_keypair",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-peering-agent:agajjala-201702281020",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703072045",
                   "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {
