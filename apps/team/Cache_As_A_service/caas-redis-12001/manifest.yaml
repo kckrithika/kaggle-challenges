@@ -10,8 +10,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-13104054-12
       resources:
-        limits: { memory: "5Gi" }
-        requests: { memory: "5Gi" }
+        limits: { memory: "8Gi" }
+        requests: { memory: "8Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -20,15 +20,8 @@ system:
           readOnly: true
       args: 
         - --port=12001
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12001
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12001
