@@ -45,7 +45,7 @@ system:
           secretName: csc-health-secret
 
     loadbalancers:
-    - lbname: observation-service-lb
+    - lbname: observationservicelb
       function: observation-service
       nodeExposed: true
       ports:
