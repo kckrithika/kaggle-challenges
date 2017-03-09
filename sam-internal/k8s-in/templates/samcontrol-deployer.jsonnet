@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" then {
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
-                           "--tnrpEndpoint="+configs.tnrpEndpoint,
+                           "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--observeMode="+configs.scdObserveMode
                          ],
