@@ -1,14 +1,14 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
-    kind: "Deployment", 
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
+    kind: "Deployment",
     spec: {
-        replicas: 1, 
+        replicas: 1,
         template: {
             spec: {
-                hostNetwork: true, 
+                hostNetwork: true,
                 containers: [
                     {
-                        name: "sam-deployment-portal", 
+                        name: "sam-deployment-portal",
                         image: configs.sam_deployment_portal,
                         command:[
                            "/sam/sam-deployment-portal",
@@ -57,25 +57,25 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                 nodeSelector: {
                     pool: configs.estate
                 }
-            }, 
+            },
             metadata: {
                 labels: {
-                    name: "sam-deployment-portal", 
+                    name: "sam-deployment-portal",
                     apptype: "control"
                 }
             }
-        }, 
+        },
         selector: {
             matchLabels: {
                 name: "sam-deployment-portal"
             }
         }
-    }, 
-    apiVersion: "extensions/v1beta1", 
+    },
+    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "sam-deployment-portal"
-        }, 
+        },
         name: "sam-deployment-portal"
     }
 } else "SKIP"

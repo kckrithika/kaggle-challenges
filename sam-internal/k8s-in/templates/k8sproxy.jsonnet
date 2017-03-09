@@ -1,15 +1,15 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
 
-    kind: "Deployment", 
+    kind: "Deployment",
     spec: {
-        replicas: 1, 
+        replicas: 1,
         template: {
             spec: {
-                hostNetwork: true, 
+                hostNetwork: true,
                 containers: [
                     {
-                        name: "k8sproxy", 
+                        name: "k8sproxy",
                         image: configs.k8sproxy,
                         args:[
                            "-f ",
@@ -33,32 +33,32 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                     {
                         hostPath: {
                             path: "/data/certs"
-                        }, 
+                        },
                         name: "sfdc-volume"
                     }
                 ],
                 nodeSelector: {
                     pool: configs.estate
                 }
-            }, 
+            },
             metadata: {
                 labels: {
-                    name: "k8sproxy", 
+                    name: "k8sproxy",
                     apptype: "proxy"
                 }
             }
-        }, 
+        },
         selector: {
             matchLabels: {
                 name: "k8sproxy"
             }
         }
-    }, 
-    apiVersion: "extensions/v1beta1", 
+    },
+    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "k8sproxy"
-        }, 
+        },
         name: "k8sproxy",
         namespace: "sam-system"
     }

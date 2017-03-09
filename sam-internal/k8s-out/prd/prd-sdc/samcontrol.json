@@ -37,7 +37,7 @@
                      "--keyFile=/data/certs/hostcert.key",
                      "--certFile=/data/certs/hostcert.crt",
                      "--checkImageExistsFlag=false",
-                     "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-d2931cc1-617"
+                     "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-6497dbf3-648"
                   ],
                   "env": [
                      {
