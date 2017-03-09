@@ -44,10 +44,10 @@ system:
         secret:
           secretName: csc-health-secret
 
-    loadbalancers:
-    - lbname: observationservicelb
-      function: observation-service
-      nodeExposed: true
-      ports:
-      - port: 80
-        targetport: 8080
+  loadbalancers:
+  - lbname: observationservicelb
+    function: observation-service
+    nodeExposed: true
+    ports:
+    - port: 80
+      targetport: 8080
