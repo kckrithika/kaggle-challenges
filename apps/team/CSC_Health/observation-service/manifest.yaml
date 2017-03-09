@@ -7,6 +7,8 @@ system:
     containers:
     - name: observation-service
       image: tnrp/csc-health/observation-service:observation-service-b819dc1e-7
+      ports:
+      - containerPort: 8080
       resources:
         limits: { cpu: "10", memory: "20Gi" }
         requests: { cpu: "10", memory: "20Gi" }
@@ -44,10 +46,10 @@ system:
         secret:
           secretName: csc-health-secret
 
-    loadbalancers:
-    - lbname: observationservicelb
-      function: observation-service
-      nodeExposed: true
-      ports:
-      - port: 80
-        targetport: 8080
+  loadbalancers:
+  - lbname: observationservicelb
+    function: observation-service
+    nodeExposed: true
+    ports:
+    - port: 80
+      targetport: 8080
