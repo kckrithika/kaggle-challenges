@@ -10,8 +10,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-13104054-12
       resources:
-        limits: { memory: "8Gi" }
-        requests: { memory: "8Gi" }
+        limits: { memory: "10Gi" }
+        requests: { memory: "10Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -22,6 +22,7 @@ system:
         - --port=12000
         - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
+        - --sslPort=12015
       # expose redis outside the container
       ports:
       - containerPort: 12000
