@@ -15,8 +15,6 @@ system:
         value: true
       - name: OBSWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
         value: true
-      - name: OBSWD_OBSERVATIONSERVICE_ENDPOINT
-        value: changeme-when-lb-is-available
       - name: OBSWD_LOGLEVEL
         value: debug
       command: ["/bin/sh", "-c"]
@@ -24,5 +22,6 @@ system:
         export OBSWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export OBSWD_AJNA_DATACENTER=${KINGDOM} ;
         export OBSWD_AJNA_DEVICE=${FUNCTION} ;
+        export OBSWD_OBSERVATIONSERVICE_ENDPOINT=http://${OBSERVATIONSERVICELB_SERVICE_HOST}:${OBSERVATIONSERVICELB_SERVICE_PORT} ;
         /observation-service-watchdog
       "]
