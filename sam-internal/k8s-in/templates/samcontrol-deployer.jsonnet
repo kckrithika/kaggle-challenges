@@ -14,15 +14,11 @@ if configs.estate == "prd-sdc" then {
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
-                           "--tnrpArchiveEndpoint="+configs.tnrpArchiveEndpoint,
+                           "--tnrpEndpoint="+configs.tnrpEndpoint,
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--observeMode="+configs.scdObserveMode
                          ],
                          "volumeMounts": [
-                           {
-                              "mountPath": "/data/certs",
-                              "name": "certs"
-                           },
                            {
                               "mountPath": "/config",
                               "name": "config"
@@ -47,18 +43,6 @@ if configs.estate == "prd-sdc" then {
                 volumes: [
                     {
                         hostPath: {
-                            path: "/data/certs"
-                        },
-                        name: "certs"
-                    },
-                    {
-                        hostPath: {
-                            path: "/manifests"
-                        },
-                        name: "sfdc-volume"
-                    },
-                    {
-                        hostPath: {
                             path: "/etc/kubernetes"
                         },
                         name: "config"
@@ -75,11 +59,6 @@ if configs.estate == "prd-sdc" then {
                 }
             }
         },
-        selector: {
-            matchLabels: {
-                name: "samcontrol-deployer"
-            }
-        }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {

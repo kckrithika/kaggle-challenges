@@ -20,6 +20,10 @@ local images = import "images.jsonnet",
             "par": "https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive"
         },
 
+        tnrpEndpoint: {
+            "prd": "https://ops0-piperepo1-1-prd.eng.sfdc.net"
+        },
+
         rcImtEndpoint: {
             "prd": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
             "dfw": "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
@@ -126,6 +130,7 @@ local images = import "images.jsonnet",
 
     funnelVIP: self.perKingdom.funnelVIP[kingdom],
     tnrpArchiveEndpoint: self.perKingdom.tnrpArchiveEndpoint[kingdom],
+    tnrpEndpoint: self.perKingdom.tnrpEndpoint[kingdom],
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
