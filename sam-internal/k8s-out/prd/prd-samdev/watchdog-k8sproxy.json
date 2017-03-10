@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-k8sProxy"
+         "name": "watchdog-proxy"
       },
-      "name": "watchdog-k8sProxy"
+      "name": "watchdog-proxy"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "watchdog-k8sProxy"
+            "name": "watchdog-proxy"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "watchdog-k8sProxy"
+               "name": "watchdog-proxy"
             }
          },
          "spec": {
@@ -39,7 +39,7 @@
                      "-recipient=sam@salesforce.com"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-6497dbf3-648",
-                  "name": "watchdog-k8sProxy"
+                  "name": "watchdog-proxy"
                }
             ],
             "hostNetwork": true,
