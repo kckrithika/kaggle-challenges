@@ -1,0 +1,13 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "description": "A specification of a SAM application",
+   "kind": "ThirdPartyResource",
+   "metadata": {
+      "name": "sam-app-status.sam.salesforce.com"
+   },
+   "versions": [
+      {
+         "name": "v1"
+      }
+   ]
+}
