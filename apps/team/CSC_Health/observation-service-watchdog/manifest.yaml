@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: observation-service-watchdog
-      image: tnrp/csc-health/observation-service-watchdog:observation-service-watchdog-22dc179e-3
+      image: tnrp/csc-health/observation-service-watchdog:observation-service-watchdog-d4334665-4
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
