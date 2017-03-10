@@ -14,20 +14,20 @@
             # For now we need to keep the root level folder 'docker-release-candidate' because it is needed for promotion
             # even though that is not a required root level directory.  For prod clusters leave this off (it would be
             # different in prod anyways)
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-6497dbf3-648",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-6497dbf3-648",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samtest": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-6497dbf3-648",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
             k8sproxy: "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-6497dbf3-648",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201702082334",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:vkarnati-201703081449",
