@@ -9,7 +9,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "watchdog-k8sProxy",
+                        name: "watchdog-proxy",
                         image: configs.watchdog,
                         command:[
                             "/sam/watchdog",
@@ -33,22 +33,22 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
             },
             metadata: {
                 labels: {
-                    name: "watchdog-k8sProxy",
+                    name: "watchdog-proxy",
                     apptype: "monitoring"
                 }
             }
         },
         selector: {
             matchLabels: {
-                name: "watchdog-k8sProxy"
+                name: "watchdog-proxy"
             }
         }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-k8sProxy"
+            name: "watchdog-proxy"
         },
-        name: "watchdog-k8sProxy"
+        name: "watchdog-proxy"
     }
 } else "SKIP"
