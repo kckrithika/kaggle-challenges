@@ -7,7 +7,7 @@ system:
     containers:
 
     - name: csr-sfdc-base
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/sfdc-base:206.10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/sfdc-base:206.10-1
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - sfdc-base
@@ -176,7 +176,7 @@ system:
         - containerPort: 8085
 
     - name: csr-tools
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/tools:206.10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/tools:206.10-1
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - tools
@@ -185,7 +185,7 @@ system:
         name: vol-csr-tools
 
     - name: csr-htdocs
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/htdocs:206.10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/htdocs:206.10-1
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - htdocs
@@ -194,7 +194,7 @@ system:
         name: vol-csr-htdocs
 
     - name: csr-lpconfig
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/lpconfig:206.10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/lpconfig:206.10-1
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - lpconfig
@@ -205,7 +205,7 @@ system:
         name: vol-csr-lpconfig2
 
     - name: csr-config
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/config:206.10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/config:206.10-1
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - config
@@ -362,7 +362,7 @@ system:
         mountPath: /shared/home/sfdc/salesforce/sfdc/config
 
     - name: csr-ext
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/ext:206.10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/ext:206.10-1
       args:
       - /home/sfdc/salesforce/build/sam-startup.sh 
       - ext
