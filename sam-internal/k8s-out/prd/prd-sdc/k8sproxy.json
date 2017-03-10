@@ -30,6 +30,14 @@
                      "/etc/haproxy/haproxy.cfg"
                   ],
                   "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/",
+                        "port": 8080
+                     },
+                     "initialDelaySeconds": 15,
+                     "timeoutSeconds": 10
+                  },
                   "name": "k8sproxy",
                   "ports": [
                      {

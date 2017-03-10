@@ -26,7 +26,15 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             "containerPort": 8080,
                             "name": "k8sproxy",
                         }
-                        ]
+                        ],
+                      livenessProbe: {
+                           initialDelaySeconds: 15,
+                           httpGet: {
+                               path: "/",
+                               port: 8080
+                           },
+                           timeoutSeconds: 10
+                        },
                     }
                 ],
                 volumes: [
@@ -39,7 +47,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 ],
                 nodeSelector: {
                     pool: configs.estate
-                }
+                },
             },
             metadata: {
                 labels: {
