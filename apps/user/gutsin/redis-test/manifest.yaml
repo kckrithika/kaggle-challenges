@@ -3,8 +3,6 @@ system:
   functions:
   - name: redis-bootstrap
     count: 1
-    labels:
-      sentinel: "true"
     containers:
     - name: sentinel
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
@@ -51,8 +49,6 @@ system:
 
   - name: redis-rc
     count: 2
-    labels:
-      sentinel: "true"
     containers:
     - name: redis
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
@@ -69,6 +65,18 @@ system:
       - mountPath: /redis-master-data
         name: data
       workingDir: /redis-master-data
+    volumes:
+    - emptyDir: {}
+      name: data
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+
+  - name: redis-sentinel-1
+    count: 1
+    containers:
     - name: sentinel
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
       env:
@@ -83,19 +91,14 @@ system:
           - /etc/healthprobe.sh
         initialDelaySeconds: 5
         periodSeconds: 5
-    volumes:
-    - emptyDir: {}
-      name: data
     strategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
         maxUnavailable: 0
 
-  - name: redis-sentinel
-    count: 2
-    labels:
-      sentinel: "true"
+  - name: redis-sentinel-2
+    count: 1
     containers:
     - name: sentinel
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
@@ -118,9 +121,18 @@ system:
         maxUnavailable: 0
 
   loadbalancers:
-  - lbname: sentinel-lb
-    selector:
-      sentinel: "true"
+  - lbname: sentinel-lb-0
+    function: redis-bootstrap
+    ports:
+      - port: 26379
+        targetport: 26379
+  - lbname: sentinel-lb-1
+    function: redis-sentinel-1
+    ports:
+      - port: 26379
+        targetport: 26379
+  - lbname: sentinel-lb-2
+    function: redis-sentinel-2
     ports:
       - port: 26379
         targetport: 26379
