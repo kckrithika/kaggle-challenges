@@ -16,7 +16,7 @@ if configs.estate == "prd-sdc" then {
                            "--logtostderr=true",
                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
                            "--k8sapiserver="+configs.k8sapiserver,
-                           "--observeMode="+configs.scdObserveMode
+                           "--observeMode="+configs.samcontrol_deployer_ObserveMode
                          ],
                          "volumeMounts": [
                            {
