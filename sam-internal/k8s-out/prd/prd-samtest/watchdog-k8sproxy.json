@@ -44,7 +44,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-sam"
+               "pool": "prd-samtest"
             }
          }
       }
