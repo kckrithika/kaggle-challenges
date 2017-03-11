@@ -4,6 +4,7 @@ system:
   functions:
   - name: default
     count: 2
+    hostnetwork: true
     containers:
     - name: gateway-service
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gateway-service:happycat-20170309
