@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: vveeriah-helloworld-fn
+    count: 1
+    containers:
+    - name: hellovpod-vveeriah
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/helloworld:vpod-20170311
+      ports:
+      - containerPort: 8081
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8081
+
+  loadbalancers:
+  - lbname: hellovpod-vveeriah-lb
+    function: vveeriah-helloworld-fn
+    ports:
+      - port: 8081
+        targetport: 8081

@@ -1,0 +1,4 @@
+apps:
+ HelloWorld:
+  - prd/prd-sam
+  #- prd/prd-samdev
