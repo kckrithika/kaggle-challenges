@@ -45,7 +45,7 @@ else
   then
     EXTRAARGS="-verbose"
   fi
-  docker run -it --rm -v ${PWD}:/repo/ ${HYPERSAM} /sam/sam-manifest-builder --root='/repo/' -validateonly $EXTRAARGS
+  docker run -it --rm -u 0 -v ${PWD}:/repo/ ${HYPERSAM} /sam/sam-manifest-builder --root='/repo/' -validateonly $EXTRAARGS
   exitcode="$?"
 fi
 
