@@ -24,8 +24,8 @@ local configs = import "config.jsonnet",
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
-                           ]
-                           + if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then [ "--volPermissionInitContainerImage="+configs.controller ] else [],
+                           "--volPermissionInitContainerImage="+configs.controller
+                           ],
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",

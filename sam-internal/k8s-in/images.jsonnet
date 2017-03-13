@@ -34,16 +34,16 @@
             sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:vkarnati-201703081449"
         },
         "dfw-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "frf-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "par-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-d2931cc1-617",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         }
     },
 
