@@ -23,6 +23,7 @@
                      "/sam/samcontrol-deployer",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--logtostderr=true",
+                     "--disableSecurityCheck=true",
                      "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--k8sapiserver=",
                      "--observeMode=true"
@@ -45,6 +46,10 @@
                   "name": "samcontrol-deployer",
                   "volumeMounts": [
                      {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
                         "mountPath": "/config",
                         "name": "config"
                      }
@@ -56,6 +61,12 @@
                "pool": "prd-sdc"
             },
             "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
                {
                   "hostPath": {
                      "path": "/etc/kubernetes"

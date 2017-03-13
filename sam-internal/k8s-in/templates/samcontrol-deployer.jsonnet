@@ -14,11 +14,16 @@ if configs.estate == "prd-sdc" then {
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
+                           "--disableSecurityCheck=true",
                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--observeMode="+configs.samcontrol_deployer_ObserveMode
                          ],
                          "volumeMounts": [
+                           {
+                              "mountPath": "/data/certs",
+                              "name": "certs"
+                           },
                            {
                               "mountPath": "/config",
                               "name": "config"
@@ -41,6 +46,12 @@ if configs.estate == "prd-sdc" then {
                     }
                 ],
                 volumes: [
+                    {
+                        hostPath: {
+                            path: "/data/certs"
+                        },
+                        name: "certs"
+                    },
                     {
                         hostPath: {
                             path: "/etc/kubernetes"
