@@ -18,8 +18,6 @@ system:
         name: vol-csr-htdocs
       - mountPath: /home/sfdc/salesforce/nlp
         name: vol-csr-lpconfig1
-      - mountPath: /home/sfdc/salesforce/sfdc/config/rlp
-        name: vol-csr-lpconfig2
       - mountPath: /home/sfdc/salesforce/ext
         name: vol-csr-ext
       - name: vol-csr-config1
@@ -170,8 +168,6 @@ system:
         mountPath: /home/sfdc/salesforce/archive/config
       - name: vol-csr-config74
         mountPath: /home/sfdc/salesforce/config
-      - name: vol-csr-config75
-        mountPath: /home/sfdc/salesforce/sfdc/config
       ports:
         - containerPort: 8085
 
@@ -201,8 +197,8 @@ system:
       volumeMounts:
       - mountPath: /shared/home/sfdc/salesforce/nlp
         name: vol-csr-lpconfig1
-      - mountPath: /shared/home/sfdc/salesforce/sfdc/config/rlp
-        name: vol-csr-lpconfig2
+      - mountPath: /shared/home/sfdc/salesforce/sfdc/config
+        name: vol-csr-config44
 
     - name: csr-config
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/config:206.10-1
@@ -358,8 +354,6 @@ system:
         mountPath: /shared/home/sfdc/salesforce/archive/config
       - name: vol-csr-config74
         mountPath: /shared/home/sfdc/salesforce/config
-      - name: vol-csr-config75
-        mountPath: /shared/home/sfdc/salesforce/sfdc/config
 
     - name: csr-ext
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/mgainsborough/csr/ext:206.10-1
@@ -374,9 +368,6 @@ system:
     - name: vol-csr-lpconfig1
       hostPath:
         path: /data/mgainsborough/csr/home/sfdc/salesforce/nlp
-    - name: vol-csr-lpconfig2
-      hostPath:
-        path: /data/mgainsborough/csr/home/sfdc/salesforce/sfdc/config/rlp
     - name: vol-csr-tools
       hostPath:
         path: /data/mgainsborough/csr/home/sfdc/tools
@@ -610,9 +601,6 @@ system:
     - name: vol-csr-config74
       hostPath:
         path: /data/mgainsborough/csr/home/sfdc/salesforce/config
-    - name: vol-csr-config75
-      hostPath:
-        path: /data/mgainsborough/csr/home/sfdc/salesforce/sfdc/config
 
   
   
