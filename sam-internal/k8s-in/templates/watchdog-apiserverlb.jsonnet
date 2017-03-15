@@ -1,0 +1,57 @@
+local configs = import "config.jsonnet";
+
+if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate == "frf-sam" || configs.estate == "par-sam" || configs.estate == "dfw-sam" then {
+    kind: "Deployment",
+    spec: {
+        replicas: 1,
+        template: {
+            spec: {
+                hostNetwork: true,
+                containers: [
+                    {
+                        name: "watchdog-apiserverlb",
+                        image: configs.watchdog,
+                        command:[
+                            "/sam/watchdog",
+                            "-role=APISERVERLB",
+                            "-watchdogFrequency=60s",
+                            "-alertThreshold=60s",
+                            "-emailFrequency=1h",
+                            "-timeout=2s",
+                            "-funnelEndpoint="+configs.funnelVIP,
+                            "-rcImtEndpoint="+configs.rcImtEndpoint,
+                            "-smtpServer="+configs.smtpServer,
+                            "-sender="+configs.watchdog_emailsender,
+                            "-recipient="+configs.watchdog_emailrec,
+                            "-tlsEnabled="+configs.tlsEnabled,
+                            "-caFile="+configs.caFile,
+                            "-keyFile="+configs.keyFile,
+                            "-certFile="+configs.certFile,
+                        ],
+                    }
+                ],
+                nodeSelector: {
+                    pool: configs.estate
+                }
+            },
+            metadata: {
+                labels: {
+                    name: "watchdog-apiserverlb",
+                    apptype: "monitoring"
+                }
+            }
+        },
+        selector: {
+            matchLabels: {
+                name: "watchdog-apiserverlb"
+            }
+        }
+    },
+    apiVersion: "extensions/v1beta1",
+    metadata: {
+        labels: {
+            name: "watchdog-apiserverlb"
+        },
+        name: "watchdog-apiserverlb"
+    }
+} else "SKIP"
