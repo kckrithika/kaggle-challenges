@@ -40,7 +40,7 @@
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-deployer-imageName=ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+                     "-deployer-imageName=ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-c07d4afb-673",
                      "-deployer-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-deployer-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-deployer-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
@@ -53,7 +53,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-c07d4afb-673",
                   "name": "watchdog-deployer",
                   "volumeMounts": [
                      {

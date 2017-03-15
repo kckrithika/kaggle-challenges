@@ -1,19 +1,24 @@
 {
    "apiVersion": "extensions/v1beta1",
-   "kind": "DaemonSet",
+   "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-master"
+         "name": "watchdog-apiserverlb"
       },
-      "name": "watchdog-master"
+      "name": "watchdog-apiserverlb"
    },
    "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-apiserverlb"
+         }
+      },
       "template": {
          "metadata": {
             "labels": {
-               "app": "watchdog-master",
                "apptype": "monitoring",
-               "daemonset": "true"
+               "name": "watchdog-apiserverlb"
             }
          },
          "spec": {
@@ -21,9 +26,10 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=MASTER",
-                     "-watchdogFrequency=5s",
-                     "-alertThreshold=150s",
+                     "-role=APISERVERLB",
+                     "-watchdogFrequency=60s",
+                     "-alertThreshold=60s",
+                     "-emailFrequency=1h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
@@ -36,37 +42,13 @@
                      "-certFile=/data/certs/hostcert.crt"
                   ],
                   "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-c07d4afb-673",
-                  "name": "watchdog",
-                  "resources": {
-                     "limits": {
-                        "cpu": "0.5",
-                        "memory": "300Mi"
-                     },
-                     "requests": {
-                        "cpu": "0.5",
-                        "memory": "300Mi"
-                     }
-                  },
-                  "volumeMounts": [
-                     {
-                        "mountPath": "/data/certs",
-                        "name": "certs"
-                     }
-                  ]
+                  "name": "watchdog-apiserverlb"
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "master": "true"
-            },
-            "volumes": [
-               {
-                  "hostPath": {
-                     "path": "/data/certs"
-                  },
-                  "name": "certs"
-               }
-            ]
+               "pool": "phx-sam"
+            }
          }
       }
    }
