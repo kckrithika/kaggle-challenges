@@ -20,6 +20,18 @@ system:
         containerPort: 4141
       - name: out-port
         containerPort: 4142
+      readinessProbe:
+        exec:
+          command:
+            - is-ready.sh 
+          initialDelaySeconds: 5 
+          periodSeconds: 5
+      livenessProbe:
+        exec:
+          command:
+            - is-alive.sh 
+          initialDelaySeconds: 10
+          periodSeconds: 5
  
   loadbalancers:
   - lbname: grpc-service-lb
