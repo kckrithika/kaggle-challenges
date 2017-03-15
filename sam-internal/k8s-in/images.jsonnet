@@ -39,19 +39,19 @@
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "phx-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "frf-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
         }
     },
 
