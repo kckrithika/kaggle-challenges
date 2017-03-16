@@ -18,14 +18,12 @@
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "prd-samtest": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
