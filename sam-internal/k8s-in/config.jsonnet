@@ -147,7 +147,7 @@ local images = import "images.jsonnet",
     k8sproxy: images.k8sproxy,
     sam_deployment_portal: images.sam_deployment_portal,
     samcontrol_deployer: images.samcontrol_deployer,
-    samcontrol_deployer_ObserveMode: true,
+    samcontrol_deployer_ObserveMode: false,
 
     sdc_bird: images.sdc_bird,
     sdc_peering_agent: images.sdc_peering_agent,
