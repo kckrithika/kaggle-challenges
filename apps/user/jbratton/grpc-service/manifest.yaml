@@ -11,7 +11,7 @@ system:
       - name: grpc-port
         containerPort: 5000
     - name: sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-1
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-2
       args: ["-a", "9999", "-i", "4141", "-o", "4142", "-s", "5000"]
       ports:
       - name: admin-port
@@ -20,6 +20,18 @@ system:
         containerPort: 4141
       - name: out-port
         containerPort: 4142
+      readinessProbe:
+        exec:
+          command:
+            - is-ready.sh 
+          initialDelaySeconds: 5 
+          periodSeconds: 5
+      livenessProbe:
+        exec:
+          command:
+            - is-alive.sh 
+          initialDelaySeconds: 10
+          periodSeconds: 5
  
   loadbalancers:
   - lbname: grpc-service-lb
