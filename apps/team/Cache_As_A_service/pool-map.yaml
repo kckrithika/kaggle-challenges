@@ -1,4 +1,6 @@
 apps:
+  caas-redis-for-perf:
+    - prd/prd-sp2-sam_caas
   caas-monitor:
     - prd/prd-samdev
   caas-redis:
