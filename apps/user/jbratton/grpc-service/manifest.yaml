@@ -11,8 +11,8 @@ system:
       - name: grpc-port
         containerPort: 7010
     - name: sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-3
-      args: ["-a", "7080", "-i", "7012", "-o", "7011", "-s", "grpc-service/7010"]
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-4
+      args: ["-a", "7080", "-i", "7012", "-o", "7011", "-s", "grpc-service", "-p", "7010"]
       ports:
       - name: admin-port
         containerPort: 7080
