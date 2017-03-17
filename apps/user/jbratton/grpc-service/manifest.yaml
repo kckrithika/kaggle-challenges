@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: grpc-service
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000\\/jbratton-grpc-service:0.0.2
       ports:
       - name: grpc-port
         containerPort: 7010
