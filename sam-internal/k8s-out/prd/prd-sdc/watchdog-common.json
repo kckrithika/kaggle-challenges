@@ -25,6 +25,7 @@
                      "-watchdogFrequency=5s",
                      "-alertThreshold=150s",
                      "-timeout=2s",
+                     "-emailFrequency=12h",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
