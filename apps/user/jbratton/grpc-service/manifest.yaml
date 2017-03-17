@@ -9,17 +9,17 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2
       ports:
       - name: grpc-port
-        containerPort: 5000
+        containerPort: 7002
     - name: sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-2
-      args: ["-a", "9999", "-i", "4141", "-o", "4142", "-s", "5000"]
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-3
+      args: ["-a", "7080", "-i", "7000", "-o", "7001", "-s", "grpc-service/7002"]
       ports:
       - name: admin-port
-        containerPort: 9999
+        containerPort: 7080
       - name: in-port
-        containerPort: 4141
+        containerPort: 7000
       - name: out-port
-        containerPort: 4142
+        containerPort: 7001
       readinessProbe:
         exec:
           command:
@@ -38,8 +38,8 @@ system:
     function: grpc-service
     ports:
       - name: admin-port
-        port: 9999
-        targetport: 9999
+        port: 7080
+        targetport: 7080
       - name: in-port
-        port: 4141
-        targetport: 4141
+        port: 7000
+        targetport: 7000
