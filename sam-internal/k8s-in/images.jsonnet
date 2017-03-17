@@ -16,14 +16,18 @@
             # different in prod anyways)
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
@@ -33,23 +37,28 @@
             sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201703201117",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703201044",
             sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703201044",
-            samcontrol_deployer: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170316_100851.104b9ea.dirty.dhu-wsl1"
+            samcontrol_deployer: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170316_100851.104b9ea.dirty.dhu-wsl1",
+            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "phx-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "frf-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
             watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         }
     },
 
@@ -66,5 +75,5 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent", "sdc_watchdog", "samcontrol_deployer"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdc_bird", "sdc_peering_agent", "sdc_watchdog", "samcontrol_deployer", "permissionInitContainer"]
 }
