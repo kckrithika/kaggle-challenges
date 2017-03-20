@@ -15,7 +15,7 @@ if configs.estate == "prd-sdc" then {
                             "/sdc/sdc-watchdog",
                             "--pingDelay=180s",
                             "--funnelEndpoint="+configs.funnelVIP,
-                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--tnrpEndpoint=http://shared0-sdcsamcompute2-14-prd.eng.sfdc.net:14431/tnrp/content_repo/0/archive/",
                             "--pingCount=1",
                             "--pingInterval=1s",
                             "--pingTimeout=5s"

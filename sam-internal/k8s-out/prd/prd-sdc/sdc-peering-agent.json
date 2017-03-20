@@ -29,7 +29,7 @@
                         "value": "/usr/local/var/run/bird.ctl"
                      }
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:pporwal-201703131418",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201703201117",
                   "name": "sdc-bird",
                   "volumeMounts": [
                      {
@@ -52,7 +52,7 @@
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:pporwal-201703131412",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703201044",
                   "name": "sdc-peering-agent",
                   "volumeMounts": [
                      {

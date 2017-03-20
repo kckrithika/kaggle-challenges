@@ -30,9 +30,9 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
             watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
-            sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:pporwal-201703131418",
-            sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:pporwal-201703131412",
-            sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:pporwal-201703131412",
+            sdc_bird: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/sdc-bird:agajjala-201703201117",
+            sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703201044",
+            sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703201044",
             samcontrol_deployer: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170316_100851.104b9ea.dirty.dhu-wsl1"
         },
         "dfw-sam": {
