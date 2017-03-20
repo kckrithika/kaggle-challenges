@@ -23,13 +23,13 @@ system:
       readinessProbe:
         exec:
           command:
-            - is-ready.sh 
+            - "./is-ready.sh" 
           initialDelaySeconds: 5 
           periodSeconds: 5
       livenessProbe:
         exec:
           command:
-            - is-alive.sh 
+            - "./is-alive.sh" 
           initialDelaySeconds: 10
           periodSeconds: 5
  
