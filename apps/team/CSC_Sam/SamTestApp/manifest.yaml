@@ -35,7 +35,7 @@ system:
     - name: samtestwd
       image: tnrp/sam/hypersam:sam-0000700-88e67884
       command: ["/sam/service-wd"]
-      args: ["-service lb124"]
+      args: ["-service", "lb124"]
   loadbalancers:
   - lbname: lb124
     nodeExposed: true
