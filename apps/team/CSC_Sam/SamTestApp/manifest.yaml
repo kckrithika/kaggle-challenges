@@ -3,10 +3,10 @@ apiVersion: v1
 system:
   functions:
   - name: samtestfn
-    count: 10
+    count: 2
     containers:
     - name: samtestapp
-      image: tnrp/sam/hypersam:sam-0000700-88e67884
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
@@ -33,7 +33,7 @@ system:
     count: 1
     containers:
     - name: samtestwd
-      image: tnrp/sam/hypersam:sam-0000700-88e67884
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/service-wd"]
       args: ["-service=lb124"]
   loadbalancers:
