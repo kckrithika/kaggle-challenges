@@ -3,15 +3,15 @@ apiVersion: v1
 system:
   functions:
   - name: samtestfn
-    count: 5
+    count: 1
     containers:
     - name: samtestapp
-      image: tnrp/sam/hypersam:sam-0000698-06dbb4a3
+      image: tnrp/sam/hypersam:sam-0000700-88e67884
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
-        - name: DUMMYENV
-          value: "SOMEVALUE00101"
+        - name: l337
+          value: "10100111001"
       ports:
       - containerPort: 8000
       livenessProbe:
@@ -22,13 +22,20 @@ system:
       - mountPath: /log
         name: logvol
       - mountPath: /tmp
-        name: ephermeralvol
+        name: amagicvolumethatvanishes
     volumes:
     - name: logvol
       hostPath:
         path: /home/caas/logs/apps
-    - name: ephermeralvol
+    - name: amagicvolumethatvanishes
       emptyDir: {}
+  - name: samtestwd
+    count: 1
+    containers:
+    - name: samtestwd
+      image: tnrp/sam/hypersam:sam-0000700-88e67884
+      command: ["/sam/service-wd"]
+      args: ["-service lb124"]
   loadbalancers:
   - lbname: lb124
     nodeExposed: true
