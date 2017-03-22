@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" then {
                             "--ipamcsv=/usr/local/sdc/conf/samInput.csv",
                             "--vaultkeypair=/usr/local/sdc/SDCBird_keypair",
                             "--funnelEndpoint="+configs.funnelVIP,
-                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--tnrpEndpoint=http://shared0-sdcsamcompute2-14-prd.eng.sfdc.net:14431/tnrp/content_repo/0/archive/",
                         ],
                         volumeMounts: [
                             {
