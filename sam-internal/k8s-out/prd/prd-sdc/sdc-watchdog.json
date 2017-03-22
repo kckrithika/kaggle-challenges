@@ -23,12 +23,12 @@
                      "/sdc/sdc-watchdog",
                      "--pingDelay=180s",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--tnrpEndpoint=http://shared0-sdcsamcompute2-14-prd.eng.sfdc.net:14431/tnrp/content_repo/0/archive/",
+                     "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--pingCount=1",
                      "--pingInterval=1s",
                      "--pingTimeout=5s"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703201044",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703221348",
                   "name": "sdc-watchdog"
                }
             ],
