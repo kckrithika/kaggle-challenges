@@ -16,7 +16,7 @@ system:
  
   loadbalancers:
   - lbname: gdothelloworldlb
-    function: default
+    function: gdothelloworld 
     ports:
       - port: 9090
         targetport: 9090
