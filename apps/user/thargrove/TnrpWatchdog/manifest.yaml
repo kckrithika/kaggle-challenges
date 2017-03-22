@@ -7,7 +7,7 @@ system:
 #    hostnetwork: true
     containers:
     - name: tnrpwd
-      image: docker-sam/thargrove/tnrpwd:thargrove-20161117_124937-f1d8867
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/tnrpwd:thargrove-20161117_124937-f1d8867
       command: ["/bin/tnrpWatchdog"]
       ports:
       - containerPort: 64132
