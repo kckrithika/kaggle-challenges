@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: gdothelloworld
+    count: 2
+    containers:
+    - name: gdothelloworld
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gdot-helloworld:20170321
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+ 
+  loadbalancers:
+  - lbname: gdothelloworldlb
+    function: default
+    ports:
+      - port: 9090
+        targetport: 9090
