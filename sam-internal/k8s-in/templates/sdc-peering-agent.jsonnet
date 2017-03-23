@@ -35,7 +35,7 @@ if configs.estate == "prd-sdc" then {
                         name: "sdc-peering-agent",
                         image: configs.sdc_peering_agent,
                         command:[
-                            "/sdc/sdc-peering-agent",
+                            "/sdn/sdc-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
                             "--ipamcsv=/usr/local/sdc/conf/samInput.csv",
