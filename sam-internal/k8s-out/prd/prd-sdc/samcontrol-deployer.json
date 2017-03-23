@@ -34,7 +34,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170316_100851.104b9ea.dirty.dhu-wsl1",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170323_095339.2115fbd.dirty.dhu-wsl1",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",

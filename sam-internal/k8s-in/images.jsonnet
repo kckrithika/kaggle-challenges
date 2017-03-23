@@ -38,7 +38,7 @@
             sdc_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000006-9a0bd192",
             sdc_peering_agent: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703221348",
             sdc_watchdog: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdc:agajjala-201703221348",
-            samcontrol_deployer: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170316_100851.104b9ea.dirty.dhu-wsl1",
+            samcontrol_deployer: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersam:20170323_095339.2115fbd.dirty.dhu-wsl1",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "dfw-sam": {
