@@ -12,7 +12,7 @@ if configs.estate == "prd-sdc" then {
                         name: "sdc-watchdog",
                         image: configs.sdc_watchdog,
                         command:[
-                            "/sdc/sdc-watchdog",
+                            "/sdn/sdc-watchdog",
                             "--pingDelay=180s",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
