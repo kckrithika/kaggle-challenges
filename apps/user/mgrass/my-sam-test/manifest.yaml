@@ -6,13 +6,22 @@ system:
     count: 2
     containers:
     - name: samhello
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:mgrass-20170321
+      #### Image which fails liveness probes by crashing
+      # image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:mgrass-20170321
+
+      #### Image which should run fine.
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:mgrass-20170315
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
           port: 9090
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
 
   loadbalancers:
   - lbname: samhellolb
