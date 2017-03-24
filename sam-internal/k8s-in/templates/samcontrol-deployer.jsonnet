@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                          livenessProbe: {
                            "httpGet": {
                              "path": "/",
-                             "port": 9090
+                             "port": 9099
                            },
                            "initialDelaySeconds": 2,
                            "periodSeconds": 10
