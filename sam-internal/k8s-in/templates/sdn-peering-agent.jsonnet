@@ -8,8 +8,8 @@ if configs.estate == "prd-sdc" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdc-bird",
-                        image: configs.sdc_bird,
+                        name: "sdn-bird",
+                        image: configs.sdn_bird,
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -32,14 +32,13 @@ if configs.estate == "prd-sdc" then {
                         ],
                     },
                     {
-                        name: "sdc-peering-agent",
-                        image: configs.sdc_peering_agent,
+                        name: "sdn-peering-agent",
+                        image: configs.sdn_peering_agent,
                         command:[
-                            "/sdn/sdc-peering-agent",
+                            "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
-                            "--ipamcsv=/usr/local/sdc/conf/samInput.csv",
-                            "--vaultkeypair=/usr/local/sdc/SDCBird_keypair",
+                            "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
                         ],
@@ -53,8 +52,8 @@ if configs.estate == "prd-sdc" then {
                                 mountPath: "/usr/local/var/run",
                             },
                             {
-                                name: "sdc-vol",
-                                mountPath: "/usr/local/sdc",
+                                name: "sdn-vol",
+                                mountPath: "/usr/local/sdn",
                                 readOnly: true,
                             },
                         ],
@@ -70,7 +69,7 @@ if configs.estate == "prd-sdc" then {
                         emptyDir: {},
                     },
                     {
-                        name: "sdc-vol",
+                        name: "sdn-vol",
                         hostPath: {
                             path: "/usr/local/sdc"
                         }
@@ -79,7 +78,7 @@ if configs.estate == "prd-sdc" then {
             },
             metadata: {
                 labels: {
-                    name: "sdc-peering-agent",
+                    name: "sdn-peering-agent",
                     apptype: "control",
                     daemonset: "true",
                 }
@@ -89,8 +88,8 @@ if configs.estate == "prd-sdc" then {
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdc-peering-agent",
+            name: "sdn-peering-agent",
         },
-        name: "sdc-peering-agent",
+        name: "sdn-peering-agent",
     }
 } else "SKIP"

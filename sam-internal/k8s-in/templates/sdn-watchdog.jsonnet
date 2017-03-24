@@ -9,10 +9,10 @@ if configs.estate == "prd-sdc" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdc-watchdog",
-                        image: configs.sdc_watchdog,
+                        name: "sdn-watchdog",
+                        image: configs.sdn_watchdog,
                         command:[
-                            "/sdn/sdc-watchdog",
+                            "/sdn/sdn-watchdog",
                             "--pingDelay=180s",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
@@ -25,7 +25,7 @@ if configs.estate == "prd-sdc" then {
             },
             metadata: {
                 labels: {
-                    name: "sdc-watchdog",
+                    name: "sdn-watchdog",
                     apptype: "monitoring"
                 }
             }
@@ -34,8 +34,8 @@ if configs.estate == "prd-sdc" then {
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdc-watchdog"
+            name: "sdn-watchdog"
         },
-        name: "sdc-watchdog"
+        name: "sdn-watchdog"
     }
 } else "SKIP"
