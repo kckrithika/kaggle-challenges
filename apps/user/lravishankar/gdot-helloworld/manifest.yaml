@@ -8,15 +8,15 @@ system:
     - name: gdothelloworld
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gdot-helloworld:20170321
       ports:
-      - containerPort: 9090
+      - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /
-          port: 9090
+          path: /manage/info
+          port: 15372
  
   loadbalancers:
   - lbname: gdothelloworldlb
     function: gdothelloworld 
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 15372
+        targetport: 15372
