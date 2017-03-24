@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" then {
                          livenessProbe: {
                            "httpGet": {
                              "path": "/",
-                             "port": 9090
+                             "port": 9099
                            },
                            "initialDelaySeconds": 2,
                            "periodSeconds": 10
