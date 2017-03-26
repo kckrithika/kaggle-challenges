@@ -11,8 +11,9 @@ system:
       - containerPort: 8443
       livenessProbe:
         httpGet:
-          path: /
-          port: 8443
+          path: /health
+          port: 8081
+	  scheme: https
 
   loadbalancers:
   - lbname: facade-lb
