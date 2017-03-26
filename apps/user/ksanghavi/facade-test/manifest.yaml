@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ksanghavi-facade-fn
+    count: 1
+    containers:
+    - name: facade-test-sam
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/facade:local
+      ports:
+      - containerPort: 8443
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8443
+
+  loadbalancers:
+  - lbname: facade-lb
+    function: ksanghavi-facade-fn
+    ports:
+      - port: 8443
+        targetport: 8443
