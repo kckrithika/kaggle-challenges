@@ -8,16 +8,14 @@ system:
     - name: facade-test-sam
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/facade:local
       ports:
-      - containerPort: 8443
+      - containerPort: 8080 
       livenessProbe:
         httpGet:
           path: /health
-          port: 8081
-	  scheme: https
-
+          port: 8080
   loadbalancers:
   - lbname: facade-lb
     function: ksanghavi-facade-fn
     ports:
-      - port: 8443
-        targetport: 8443
+      - port: 8080
+        targetport: 8080
