@@ -17,7 +17,6 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000717-5041629c",
             k8sproxy: "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000699-f50ea7de",
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000717-5041629c",
@@ -33,7 +32,6 @@
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000717-5041629c",
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             k8sproxy: "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000006-9a0bd192",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000005-c5147cde",
