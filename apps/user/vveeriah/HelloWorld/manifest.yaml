@@ -11,7 +11,7 @@ system:
       - containerPort: 8081
       livenessProbe:
         httpGet:
-          path: /
+          path: /hello/
           port: 8081
 
   loadbalancers:
