@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: helloworld-dockersam
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/helloworld-dockersam:1.0.0-0000003-a26c782e
+      ports:
+      - containerPort: 10600
+      livenessProbe:
+        httpGet:
+          path: /ping
+          port: 10601
+ 
+  loadbalancers:
+  - lbname: helloworld-dockersam-lb
+    function: default
+    ports:
+      - port: 10600
+        targetport: 10600
