@@ -8,7 +8,7 @@ system:
     containers:
     - name: sdbmaster
       # container image/version to  run
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdbv1:sdbv1
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170326
       env:
       - name: ZK_ENSEMBLE
         value: sayonara1a-mnds1-1-prd.eng.sfdc.net:2181,sayonara1a-mnds1-2-prd.eng.sfdc.net:2181,sayonara1a-mnds1-3-prd.eng.sfdc.net:2181
