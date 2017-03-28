@@ -3,4 +3,6 @@ apps:
   - prd/prd-sam
  TestRCHostNW:
   - prd/prd-sam
+ TestRCHostNWrepwd:
+  - prd/prd-sam
   #- prd/prd-samdev
