@@ -1,0 +1,25 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: samreport
+    count: 1
+#    hostnetwork: true
+    containers:
+    - name: samreport
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170328_134509.cfda8bc.dirty.thargrove-ltm1
+      command: ["/sam/sam-daily-report"]
+      ports:
+      - containerPort: 64122
+      livenessProbe:
+        httpGet:
+          path: /probe
+          port: 64122
+
+  loadbalancers:
+  - lbname: samdrlb
+    function: samreport
+    nodeExposed: true
+    ports:
+      - port: 64122
+        targetport: 64122
