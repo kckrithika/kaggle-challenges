@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.3.0-0034e8be-93
+      image: tnrp/csc-health/report-collector:1.4.0-0000106-22c71e3f
       ports:
       - name: provider
         containerPort: 8080
