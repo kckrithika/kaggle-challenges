@@ -10,6 +10,9 @@ system:
       ports:
       - containerPort: 6565
         name: grpc
+      env:
+        - name: LOGGING_DIR
+          value: /geoip/logs
       # - containerPort: 8080
       #   name: http
       # livenessProbe:
@@ -26,6 +29,8 @@ system:
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
         - name: GRPC_ROUTING_GEOIP_PORT
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
+        - name: LOGGING_DIR
+          value: /opt/geoip-demo/logs
       ports:
       - containerPort: 8080
       livenessProbe:
