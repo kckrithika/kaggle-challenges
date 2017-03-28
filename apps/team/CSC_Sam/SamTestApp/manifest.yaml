@@ -11,7 +11,7 @@ system:
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
         - name: El337
-          value: "10100111001"
+          value: "101001110011"
       ports:
       - containerPort: 8000
       livenessProbe:
