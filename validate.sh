@@ -27,7 +27,7 @@ exitIfMergeCommitFound() {
   fi
 }
 
-HYPERSAM=shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hypersam:20170216_175432.6acc29a.dirty.thargrove-ltm1
+SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/sam-tools:20170328_121047.3b259f9.clean.prahladjos-ltm
 
 if [ "$1" == "evaluatePR" ] 
 then
@@ -45,7 +45,16 @@ else
   then
     EXTRAARGS="-verbose"
   fi
-  docker run -it --rm -u 0 -v ${PWD}:/repo/ ${HYPERSAM} /sam/sam-manifest-builder --root='/repo/' -validateonly $EXTRAARGS
+  docker run \
+    --rm \
+    -it \
+    -u 0 \
+    -v ${PWD}:/repo \
+    ${SAMTOOLS} \
+    sam-manifest-builder \
+    --root='/repo/' \
+    -validateonly \
+    $EXTRAARGS
   exitcode="$?"
 fi
 
