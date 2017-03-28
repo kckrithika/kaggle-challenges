@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: helloworld-dockersam
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/helloworld-dockersam:1.0.0-0000003-a26c782e
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/helloworld-dockersam:1.0.0-0000004-2505d9dd
       ports:
       - containerPort: 10600
       livenessProbe:
