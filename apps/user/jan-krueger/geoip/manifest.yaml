@@ -28,10 +28,10 @@ system:
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
       ports:
       - containerPort: 8080
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 8080
+      # livenessProbe:
+      #   httpGet:
+      #     path: /
+      #     port: 8080
 
   loadbalancers:
   - lbname: ccait-geoip-backend-lb
