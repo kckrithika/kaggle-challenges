@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: ccait-geoip-backend
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-backend:0.0.1
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-backend:1.0.1
       ports:
       - containerPort: 6565
         name: grpc
@@ -20,7 +20,7 @@ system:
     count: 1
     containers:
     - name: ccait-geoip-frontend
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:0.0.1
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:1.0.2
       env:
         - name: GRPC_ROUTING_GEOIP_HOST
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
