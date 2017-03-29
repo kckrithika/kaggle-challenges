@@ -9,8 +9,7 @@ system:
     - name: samreport
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170329_144601.7c1b360.clean.thargrove-ltm1
       command: ["/sam/sam-daily-report"]
-      args:
-        - --tokenfile /var/secrets/token.txt
+      args: ["-tokenfile", "/var/secrets/token.txt"]
       ports:
       - containerPort: 64122
       livenessProbe:
