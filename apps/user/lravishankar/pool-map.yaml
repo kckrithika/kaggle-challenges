@@ -1,3 +1,5 @@
 apps:
  gdot-helloworld:
   - prd/prd-sam
+ cloudatlas:
+  - prd/prd-sam

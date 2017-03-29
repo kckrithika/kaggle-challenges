@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: cloudatlas
+    count: 2
+    containers:
+    - name: cloudatlas
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas:20170328
+      ports:
+      - containerPort: 1389
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 1389
+ 
+  loadbalancers:
+  - lbname: cloudatlaslb
+    function: cloudatlas
+    ports:
+      - port: 1389
+        targetport: 1389
