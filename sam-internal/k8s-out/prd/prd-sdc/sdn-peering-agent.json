@@ -49,9 +49,9 @@
                      "--birdconf=/usr/local/etc/bird.conf",
                      "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000007-2a54ed6f",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000015-fe8deb76",
                   "name": "sdn-peering-agent",
                   "volumeMounts": [
                      {
