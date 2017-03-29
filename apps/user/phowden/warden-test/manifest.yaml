@@ -6,7 +6,7 @@ system:
       count: 2
       containers:
       - name: casp-warden
-        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-Mar07-1140AM
+        image: docker-p2p/tnrp/casp-test/warden:0.0.0-0000004-6ae8f865
         ports:
         - containerPort: 8889
         livenessProbe:
