@@ -1,0 +1,7 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName
+shared0-samtestcompute1-1-prd.eng.sfdc.net,10.231.100.26/29,10.251.158.0/27,k11-02
+shared0-samtestkubeapi2-1-prd.eng.sfdc.net,10.231.100.2/29,10.251.158.32/27,m38-02
+shared0-samtestkubeapi1-1-prd.eng.sfdc.net,10.231.100.42/29,10.251.158.64/27,n40-02
+shared0-samtestkubeapi3-1-prd.eng.sfdc.net,10.231.100.10/29,10.251.158.96/27,u40-02
+shared0-samtestcompute1-2-prd.eng.sfdc.net,10.231.100.18/29,10.251.158.128/27,v34-02
+shared0-samtestcompute2-1-prd.eng.sfdc.net,10.231.100.34/29,10.251.158.160/27,w31-02
