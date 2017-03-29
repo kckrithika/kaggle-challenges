@@ -26,7 +26,8 @@
                      "--disableSecurityCheck=true",
                      "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--k8sapiserver=",
-                     "--observeMode=false"
+                     "--observeMode=false",
+                     "--delay=30s"
                   ],
                   "env": [
                      {

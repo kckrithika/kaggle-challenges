@@ -17,7 +17,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                            "--disableSecurityCheck=true",
                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
                            "--k8sapiserver="+configs.k8sapiserver,
-                           "--observeMode="+configs.samcontrol_deployer_ObserveMode
+                           "--observeMode="+configs.samcontrol_deployer_ObserveMode,
+                           "--delay=30s",
                          ],
                          "volumeMounts": [
                            {

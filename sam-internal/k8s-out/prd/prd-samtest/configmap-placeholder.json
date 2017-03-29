@@ -1,0 +1,15 @@
+{
+   "apiVersion": "v1",
+   "data": {
+      "example.property.1": "hello",
+      "example.property.2": "world"
+   },
+   "kind": "ConfigMap",
+   "metadata": {
+      "labels": {
+         "app": "configmap-placeholder"
+      },
+      "name": "configmap-placeholder",
+      "namespace": "sam-system"
+   }
+}
