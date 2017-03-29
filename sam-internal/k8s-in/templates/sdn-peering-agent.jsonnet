@@ -40,7 +40,7 @@ if configs.estate == "prd-sdc" then {
                             "--birdconf=/usr/local/etc/bird.conf",
                             "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                             "--funnelEndpoint="+configs.funnelVIP,
-                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                         ],
                         volumeMounts: [
                             {
