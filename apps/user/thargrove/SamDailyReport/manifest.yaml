@@ -24,7 +24,7 @@ system:
     volumes:
     - name: secretvol
       secret:
-        secretName: gittoken
+        secretName: git-token
   loadbalancers:
   - lbname: samdrlb
     function: samreport
