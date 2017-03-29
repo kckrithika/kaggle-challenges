@@ -7,7 +7,7 @@ system:
     containers:
 
     - name: csr-sfdc-base
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mgainsborough/csr/sfdc-base:206.10-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/sfdc-base:206.10-2
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - sfdc-base
@@ -172,7 +172,7 @@ system:
         - containerPort: 8085
 
     - name: csr-tools
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mgainsborough/csr/tools:206.10-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/tools:206.10-2
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - tools
@@ -181,7 +181,7 @@ system:
         name: vol-csr-tools
 
     - name: csr-htdocs
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mgainsborough/csr/htdocs:206.10-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/htdocs:206.10-2
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - htdocs
@@ -190,7 +190,7 @@ system:
         name: vol-csr-htdocs
 
     - name: csr-lpconfig
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mgainsborough/csr/lpconfig:206.10-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/lpconfig:206.10-2
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - lpconfig
@@ -201,7 +201,7 @@ system:
         name: vol-csr-config44
 
     - name: csr-config
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mgainsborough/csr/config:206.10-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/config:206.10-2
       args:
         - /home/sfdc/salesforce/build/sam-startup.sh 
         - config
@@ -356,7 +356,7 @@ system:
         mountPath: /shared/home/sfdc/salesforce/config
 
     - name: csr-ext
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mgainsborough/csr/ext:206.10-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/ext:206.10-2
       args:
       - /home/sfdc/salesforce/build/sam-startup.sh 
       - ext
