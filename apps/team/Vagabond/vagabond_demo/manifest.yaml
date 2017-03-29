@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: prd-vagabond-cluster-1
-    count: 3
+    count: 6
     hostnetwork: true
     containers:
     - name: vagabond
