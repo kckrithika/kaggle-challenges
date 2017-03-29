@@ -1,6 +1,6 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
 
+if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -67,4 +67,4 @@ local configs = import "config.jsonnet",
         },
         name: "watchdog-etcd-quorum"
     }
-}
+} else "SKIP"
