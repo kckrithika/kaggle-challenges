@@ -140,6 +140,7 @@ local images = import "images.jsonnet",
     k8sapiserver: self.securityEnabled.k8sapiserver[self.perCluster.tlsEnabled[estate]],
     configPath: self.securityEnabled.configPath[self.perCluster.tlsEnabled[estate]],
     estate: estate,
+    kingdom: kingdom,
 
     controller: images.controller,
     watchdog: images.watchdog,

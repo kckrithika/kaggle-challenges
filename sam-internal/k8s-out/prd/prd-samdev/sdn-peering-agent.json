@@ -1,0 +1,93 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "sdn-peering-agent"
+      },
+      "name": "sdn-peering-agent"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "daemonset": "true",
+               "name": "sdn-peering-agent"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "env": [
+                     {
+                        "name": "BIRD_CONF",
+                        "value": "/usr/local/etc/bird.conf"
+                     },
+                     {
+                        "name": "BIRD_SOCKET",
+                        "value": "/usr/local/var/run/bird.ctl"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/bird:v-0000006-9a0bd192",
+                  "name": "sdn-bird",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/usr/local/etc",
+                        "name": "conf"
+                     },
+                     {
+                        "mountPath": "/usr/local/var/run",
+                        "name": "socket"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/sdn/sdn-peering-agent",
+                     "--birdsock=/usr/local/var/run/bird.ctl",
+                     "--birdconf=/usr/local/etc/bird.conf",
+                     "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000015-fe8deb76",
+                  "name": "sdn-peering-agent",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/usr/local/etc",
+                        "name": "conf"
+                     },
+                     {
+                        "mountPath": "/usr/local/var/run",
+                        "name": "socket"
+                     },
+                     {
+                        "mountPath": "/usr/local/sdn",
+                        "name": "sdn-vol",
+                        "readOnly": true
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "emptyDir": { },
+                  "name": "conf"
+               },
+               {
+                  "emptyDir": { },
+                  "name": "socket"
+               },
+               {
+                  "hostPath": {
+                     "path": "/usr/local/sdc"
+                  },
+                  "name": "sdn-vol"
+               }
+            ]
+         }
+      }
+   }
+}
