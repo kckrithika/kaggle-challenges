@@ -37,7 +37,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate 
                     // In the case of samtest, we deploy only to master so we can assimilate the control-estate
                     // minions to consumer minions and extrapolate the required permissions for those nodes.
                     // When the testing of authorization is done, we can move back to normal (any node of the control-estate)
-                    master: true
+                    master: "true"
                 } else {}
             },
             metadata: {
