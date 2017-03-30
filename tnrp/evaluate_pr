@@ -3,3 +3,11 @@
 set -ex
 
 ./validate.sh evaluatePR
+
+# Check whether build.sh output matches applied changes
+pushd ./sam-internal/k8s-in || true
+./build.sh || true
+if [[ `git status --porcelain || false` ]]; then
+  echo "build.sh output does not match applied changes"
+  # exit 1
+fi
