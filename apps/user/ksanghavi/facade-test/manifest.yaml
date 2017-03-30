@@ -11,7 +11,7 @@ system:
       - containerPort: 8080 
       livenessProbe:
         httpGet:
-          path: /health
+          path: /swagger-ui.html
           port: 8080
   loadbalancers:
   - lbname: facade-lb
