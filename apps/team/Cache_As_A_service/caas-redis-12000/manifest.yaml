@@ -10,8 +10,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000017-13232819
       resources:
-        limits: { memory: "10Gi" }
-        requests: { memory: "10Gi" }
+        limits: { memory: "20Gi" }
+        requests: { memory: "20Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -20,7 +20,7 @@ system:
           readOnly: true
       args: 
         - --port=12000
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=19456
         - --logDir=/home/caas/logs
         - --sslPort=12015
         - --useStunnel
