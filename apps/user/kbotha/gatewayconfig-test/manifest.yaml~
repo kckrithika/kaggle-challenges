@@ -6,8 +6,8 @@ system:
     count: 1
     hostnetwork: true
     containers:
-    - name: gateway-service
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gateway-service:happycat-20170309
+    - name: gatewayconfig
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-03-29
       ports:
       - containerPort: 8080
       livenessProbe:

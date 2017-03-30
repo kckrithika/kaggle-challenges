@@ -1,0 +1,17 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: gatewayconfig
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-03-29
+      ports:
+      - containerPort: 9133
+      livenessProbe:
+        httpGet:
+          path: /api/v1
+          port: 9133
+
