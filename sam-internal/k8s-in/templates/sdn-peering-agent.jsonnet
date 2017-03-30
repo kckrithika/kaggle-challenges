@@ -40,7 +40,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                             "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "-keyFile=/data/certs/hostcert.key",
+                            "-certFile=/data/certs/hostcert.crt",
                         ],
+                        "livenessProbe": {
+                            "httpGet": {
+                               "path": "/",
+                               "port": 9100
+                            },
+                            "initialDelaySeconds": 5,
+                            "periodSeconds": 10
+                        },
                         volumeMounts: [
                             {
                                 name: "conf",
@@ -54,6 +64,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                                 name: "sdn-vol",
                                 mountPath: "/usr/local/sdn",
                                 readOnly: true,
+                            },
+                            {
+                                name: "certs",
+                                "mountPath": "/data/certs",
                             },
                         ],
                     },
@@ -71,6 +85,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                         name: "sdn-vol",
                         hostPath: {
                             path: "/usr/local/sdc"
+                        }
+                    },
+                    {
+                        name: "certs",
+                        "hostPath": {
+                            "path": "/data/certs"
                         }
                     },
                 ],
