@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: facade-test-sam
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/facade:local
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/facade:local2
       ports:
       - containerPort: 8080 
       livenessProbe:
