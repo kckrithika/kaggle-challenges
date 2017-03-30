@@ -49,9 +49,19 @@
                      "--birdconf=/usr/local/etc/bird.conf",
                      "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000015-fe8deb76",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/",
+                        "port": 9100
+                     },
+                     "initialDelaySeconds": 5,
+                     "periodSeconds": 10
+                  },
                   "name": "sdn-peering-agent",
                   "volumeMounts": [
                      {
@@ -66,6 +76,10 @@
                         "mountPath": "/usr/local/sdn",
                         "name": "sdn-vol",
                         "readOnly": true
+                     },
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
                      }
                   ]
                }
@@ -85,6 +99,12 @@
                      "path": "/usr/local/sdc"
                   },
                   "name": "sdn-vol"
+               },
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
                }
             ]
          }
