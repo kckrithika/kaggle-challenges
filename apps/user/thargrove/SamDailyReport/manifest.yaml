@@ -7,9 +7,9 @@ system:
 #    hostnetwork: true
     containers:
     - name: samreport
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170329_163120.9c035e8.dirty.thargrove-ltm1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170330_155532.686497e.dirty.thargrove-ltm1
       command: ["/sam/sam-daily-report"]
-      args: ["-tokenfile", "/var/secrets/token.txt"]
+      args: ["-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password"]
       ports:
       - containerPort: 64122
       livenessProbe:
@@ -17,11 +17,17 @@ system:
           path: /probe
           port: 64122
       volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
+        - mountPath: /var/secrets/git
+          name: gitvol
+          readOnly: true
+        - mountPath: /var/secrets/argus
+          name: argusvol
           readOnly: true
     volumes:
-    - name: secretvol
+    - name: argusvol
+      secret:
+        secretName: argus
+    - name: gitvol
       secret:
         secretName: git-token
   loadbalancers:
