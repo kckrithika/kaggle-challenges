@@ -1,0 +1,39 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "sdn-watchdog"
+      },
+      "name": "sdn-watchdog"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "sdn-watchdog"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/sdn-watchdog",
+                     "--pingDelay=180s",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--pingCount=1",
+                     "--pingInterval=1s",
+                     "--pingTimeout=5s"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000021-f6b03ec7",
+                  "name": "sdn-watchdog"
+               }
+            ],
+            "hostNetwork": true
+         }
+      }
+   }
+}
