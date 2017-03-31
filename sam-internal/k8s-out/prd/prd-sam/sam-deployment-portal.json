@@ -51,6 +51,11 @@
                      {
                         "mountPath": "/config",
                         "name": "config"
+                     },
+                     {
+                        "mountPath": "/var/token",
+                        "name": "token",
+                        "readOnly": true
                      }
                   ],
                   "workingDir": "/sam"
@@ -72,6 +77,12 @@
                      "path": "/etc/kubernetes"
                   },
                   "name": "config"
+               },
+               {
+                  "name": "token",
+                  "secret": {
+                     "secretName": "git-token"
+                  }
                }
             ]
          }
