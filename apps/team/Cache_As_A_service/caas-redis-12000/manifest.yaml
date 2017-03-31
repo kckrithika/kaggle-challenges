@@ -23,7 +23,6 @@ system:
         - --maxMemoryMB=19456
         - --logDir=/home/caas/logs
         - --sslPort=12015
-        - --useStunnel
       # expose redis outside the container
       ports:
       - containerPort: 12000
