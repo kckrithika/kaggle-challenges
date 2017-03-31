@@ -150,6 +150,7 @@ local images = import "images.jsonnet",
     samcontrol_deployer: images.samcontrol_deployer,
     permissionInitContainer: images.permissionInitContainer,
     samcontrol_deployer_ObserveMode: false,
+    sam_deployment_reporter: images.sam_deployment_reporter,
 
     sdn_bird: images.sdn_bird,
     sdn_peering_agent: images.sdn_peering_agent,
