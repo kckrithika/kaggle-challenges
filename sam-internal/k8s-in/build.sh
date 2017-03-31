@@ -7,7 +7,7 @@
 #Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."
-    git clone https://github.com/google/jsonnet.git
+    git clone git@git.soma.salesforce.com:sam/jsonnet.git
     pushd jsonnet
     make
     popd
