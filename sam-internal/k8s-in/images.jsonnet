@@ -50,23 +50,19 @@
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "dfw-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
             permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "phx-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c7",
             permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "frf-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
             permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         },
         "par-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-c07d4afb-673",
+            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
             permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
         }
     },
