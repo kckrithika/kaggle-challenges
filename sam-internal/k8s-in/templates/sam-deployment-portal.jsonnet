@@ -21,7 +21,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                           {
                              "mountPath": "/config",
                              "name": "config"
-                          }
+                          },
+                          { 
+                             "mountPath": "/var/token",
+                             "name": "token",
+                             "readOnly" : true
+                          } 
                        ],
                        env: [
                           {
@@ -52,6 +57,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                                 path: "/etc/kubernetes"
                                 },
                                 name: "config"
+                        },
+                        {
+                        secret: {
+                              secretName: "git-token"
+                              },
+                              name: "token"
                         }
                 ],
                 nodeSelector: {
