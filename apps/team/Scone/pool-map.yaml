@@ -1,0 +1,6 @@
+apps:
+    ordering:
+        - prd/prd-sam
+    shipping:
+        - prd/prd-sam
+
