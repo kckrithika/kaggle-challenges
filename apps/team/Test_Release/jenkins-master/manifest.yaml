@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: jenkins-tnrp-master
-      image: tnrp/jenkins-master:2.32.2
+      image: tnrp/jenkins:2.32.3
       ports:
       - containerPort: 8080
       - containerPort: 50000
