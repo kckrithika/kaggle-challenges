@@ -40,8 +40,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                             "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
-                            "-keyfile=/data/certs/hostcert.key",
-                            "-certfile=/data/certs/hostcert.crt",
+                            "--keyfile=/data/certs/hostcert.key",
+                            "--certfile=/data/certs/hostcert.crt",
                         ],
                         "livenessProbe": {
                             "httpGet": {
