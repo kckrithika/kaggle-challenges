@@ -8,6 +8,7 @@ system:
 
     - name: csr-sfdc-base
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/sfdc-base:206.10-2
+      command: ["/bin/bash", "-c"]
       args:
         - /home/sfdc/salesforce/build/sam_startup.sh 
         - sfdc-base
@@ -173,6 +174,7 @@ system:
 
     - name: csr-tools
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/tools:206.10-2
+      command: ["/bin/bash", "-c"]
       args:
         - /home/sfdc/salesforce/build/sam_startup.sh 
         - tools
@@ -182,6 +184,7 @@ system:
 
     - name: csr-htdocs
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/htdocs:206.10-2
+      command: ["/bin/bash", "-c"]
       args:
         - /home/sfdc/salesforce/build/sam_startup.sh 
         - htdocs
@@ -191,6 +194,7 @@ system:
 
     - name: csr-lpconfig
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/lpconfig:206.10-2
+      command: ["/bin/bash", "-c"]
       args:
         - /home/sfdc/salesforce/build/sam_startup.sh 
         - lpconfig
@@ -202,6 +206,7 @@ system:
 
     - name: csr-config
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/config:206.10-2
+      command: ["/bin/bash", "-c"]
       args:
         - /home/sfdc/salesforce/build/sam_startup.sh 
         - config
@@ -357,6 +362,7 @@ system:
 
     - name: csr-ext
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/ext:206.10-2
+      command: ["/bin/bash", "-c"]
       args:
       - /home/sfdc/salesforce/build/sam_startup.sh 
       - ext
