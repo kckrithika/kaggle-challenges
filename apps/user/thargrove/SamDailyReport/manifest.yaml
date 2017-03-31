@@ -7,9 +7,9 @@ system:
 #    hostnetwork: true
     containers:
     - name: samreport
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170330_155532.686497e.dirty.thargrove-ltm1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170330_171212.732c1e9.clean.thargrove-ltm1
       command: ["/sam/sam-daily-report"]
-      args: ["-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password"]
+      args: ["-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password", "-disableargus"]
       ports:
       - containerPort: 64122
       livenessProbe:
