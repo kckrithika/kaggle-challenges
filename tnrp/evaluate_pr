@@ -1,14 +1,16 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
-set -ex
+set -e
 
 # Check whether build.sh output matches applied changes
 pushd ./sam-internal/k8s-in
 ./build.sh > /dev/null
 if [[ `git status --porcelain` ]]; then
   echo "build.sh output does not match applied changes"
+  popd
+  git status
   exit 1
 fi
-pushd ../..
+popd
 
 ./validate.sh evaluatePR
