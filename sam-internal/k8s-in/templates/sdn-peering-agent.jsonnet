@@ -37,7 +37,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
-                            "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--keyfile=/data/certs/hostcert.key",

@@ -47,7 +47,6 @@
                      "/sdn/sdn-peering-agent",
                      "--birdsock=/usr/local/var/run/bird.ctl",
                      "--birdconf=/usr/local/etc/bird.conf",
-                     "--vaultkeypair=/usr/local/sdn/SDCBird_keypair",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--keyfile=/data/certs/hostcert.key",
