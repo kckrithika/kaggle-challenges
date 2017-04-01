@@ -72,11 +72,6 @@
                         "name": "socket"
                      },
                      {
-                        "mountPath": "/usr/local/sdn",
-                        "name": "sdn-vol",
-                        "readOnly": true
-                     },
-                     {
                         "mountPath": "/data/certs",
                         "name": "certs"
                      }
@@ -92,12 +87,6 @@
                {
                   "emptyDir": { },
                   "name": "socket"
-               },
-               {
-                  "hostPath": {
-                     "path": "/usr/local/sdc"
-                  },
-                  "name": "sdn-vol"
                },
                {
                   "hostPath": {

@@ -60,11 +60,6 @@ if configs.kingdom == "prd" then {
                                 mountPath: "/usr/local/var/run",
                             },
                             {
-                                name: "sdn-vol",
-                                mountPath: "/usr/local/sdn",
-                                readOnly: true,
-                            },
-                            {
                                 name: "certs",
                                 "mountPath": "/data/certs",
                             },
@@ -79,12 +74,6 @@ if configs.kingdom == "prd" then {
                     {
                         name: "socket",
                         emptyDir: {},
-                    },
-                    {
-                        name: "sdn-vol",
-                        hostPath: {
-                            path: "/usr/local/sdc"
-                        }
                     },
                     {
                         name: "certs",
