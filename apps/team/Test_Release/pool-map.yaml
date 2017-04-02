@@ -1,5 +1,3 @@
 apps:
- tnrp-integration-docker:
-  - prd/prd-sam
  jenkins-master:
-  - prd/prd-sam
+  - prd/prd-sam_jenkins_master

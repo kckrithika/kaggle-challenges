@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: jenkins-tnrp-master
+  - name: jenkins-master
     count: 1
     containers:
-    - name: jenkins-tnrp-master
+    - name: jenkins-master
       image: tnrp/jenkins-swarm-master:2.32.3
       ports:
       - containerPort: 8080
@@ -26,8 +26,10 @@ system:
         emptyDir: {}
   loadbalancers:
   - lbname: jenkinstnrpmasterlb
-    function: jenkins-tnrp-master
+    function: jenkins-master
     nodeExposed: true
     ports:
     - port: 8080
       targetport: 8080
+    - port: 50000
+      targetport: 50000
