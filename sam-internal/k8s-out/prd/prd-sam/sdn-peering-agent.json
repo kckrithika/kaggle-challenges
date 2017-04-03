@@ -29,7 +29,16 @@
                         "value": "/usr/local/var/run/bird.ctl"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/bird:v-0000006-9a0bd192",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
+                  "livenessProbe": {
+                     "exec": {
+                        "command": [
+                           "/bird/sdn-bird-watcher"
+                        ]
+                     },
+                     "initialDelaySeconds": 5,
+                     "periodSeconds": 10
+                  },
                   "name": "sdn-bird",
                   "volumeMounts": [
                      {

@@ -9,6 +9,15 @@ if configs.kingdom == "prd" then {
                     {
                         name: "sdn-bird",
                         image: configs.sdn_bird,
+                        livenessProbe: {
+                            exec: {
+                               command: [
+                                    "/bird/sdn-bird-watcher"
+                               ]
+                            },
+                            initialDelaySeconds: 5,
+                            periodSeconds: 10
+                        },
                         volumeMounts: [
                             {
                                 name: "conf",
