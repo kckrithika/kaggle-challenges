@@ -18,11 +18,6 @@ system:
       volumeMounts:
         - mountPath: /var/jenkins_home
           name: jenkins-data
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 8080
-        initialDelaySeconds: 120
     volumes:
       - name: jenkins-data
         emptyDir: {}
