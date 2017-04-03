@@ -8,8 +8,10 @@ system:
     - name: jenkins-master
       image: tnrp/jenkins-swarm-master:2.32.3
       ports:
-      - containerPort: 8080
-      - containerPort: 50000
+      - name: webui
+        containerPort: 8080
+      - name: agent
+        containerPort: 50000
       resources:
         limits: { cpu: "10", memory: "20Gi" }
         requests: { cpu: "10", memory: "20Gi" }
@@ -20,7 +22,7 @@ system:
         httpGet:
           path: /
           port: 8080
-        initialDelaySeconds: 5
+        initialDelaySeconds: 120
     volumes:
       - name: jenkins-data
         emptyDir: {}
