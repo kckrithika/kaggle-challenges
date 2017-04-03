@@ -22,7 +22,7 @@ system:
         httpGet:
           path: /
           port: 8080
-        initialDelaySeconds: 5
+        initialDelaySeconds: 120
     volumes:
       - name: jenkins-data
         emptyDir: {}
