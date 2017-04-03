@@ -9,6 +9,9 @@ system:
         image: tnrp/casp-test/warden:0.0.0-0000005-79d1f938
         ports:
         - containerPort: 8889
+        env:
+        - name: BRANCH
+          value: "dev"
         livenessProbe:
           httpGet:
             path: /
