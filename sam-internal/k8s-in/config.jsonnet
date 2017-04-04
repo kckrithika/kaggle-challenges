@@ -50,6 +50,17 @@ local images = import "images.jsonnet",
             "par-sam": "ops0-artifactrepo1-0-par.data.sfdc.net"
         },
 
+        insecureRegistries: {
+            "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/",
+            "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/",
+            "prd-samtest": "",
+            "prd-sdc": "",
+            "dfw-sam": "",
+            "phx-sam": "",
+            "frf-sam": "",
+            "par-sam": ""
+        },
+
         tlsEnabled: {
             "prd-sam": "true",
             "prd-samdev": "true",
@@ -129,6 +140,7 @@ local images = import "images.jsonnet",
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
+    insecureRegistries: self.perCluster.insecureRegistries[estate],
     tlsEnabled: self.perCluster.tlsEnabled[estate],
     checkImageExistsFlag: self.perCluster.checkImageExistsFlag[estate],
     watchdog_emailsender: self.perCluster.watchdog_emailsender[estate],
