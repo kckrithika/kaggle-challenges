@@ -27,6 +27,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate 
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
+                            "-snoozedAlarms haApiChecker=2017/04/08",
                         ],
                     }
                 ],

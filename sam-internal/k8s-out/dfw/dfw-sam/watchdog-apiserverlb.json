@@ -39,7 +39,8 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt"
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-snoozedAlarms haApiChecker=2017/04/08"
                   ],
                   "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
                   "name": "watchdog-apiserverlb"
