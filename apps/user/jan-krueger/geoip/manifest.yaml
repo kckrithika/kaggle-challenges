@@ -32,6 +32,13 @@ system:
       #   httpGet:
       #     path: /
       #     port: 8080
+  - name: xlt
+    count: 1
+    containers:
+    - name: ccait-xlt
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-xlt-agent:4.8.3
+      ports:
+      - containerPort: 8500
 
   loadbalancers:
   - lbname: ccait-geoip-backend-lb
@@ -44,3 +51,8 @@ system:
     ports:
       - port: 8080
         targetport: 8080
+  - lbname: ccait-xlt-lb
+    function: xlt
+    ports:
+      - port: 8500
+        targetport: 8500
