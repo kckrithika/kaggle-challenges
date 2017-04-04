@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samdev" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam"then {
 
     kind: "Deployment",
     spec: {
@@ -18,6 +18,7 @@ if configs.estate == "prd-samdev" then {
                            "--smtpServer="+configs.smtpServer,
                            "--sender=xiao.zhou@salesforce.com",
                            "--defaultRecipient=xiao.zhou@salesforce.com",
+                           "--namespacesToSkip=sam-watchdog",
                            ],
                        volumeMounts: [
                           {

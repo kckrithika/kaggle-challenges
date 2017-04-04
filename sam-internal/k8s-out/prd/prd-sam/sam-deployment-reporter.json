@@ -56,7 +56,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-samdev"
+               "pool": "prd-sam"
             },
             "volumes": [
                {
