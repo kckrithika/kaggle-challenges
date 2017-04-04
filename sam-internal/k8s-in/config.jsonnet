@@ -63,7 +63,7 @@ local images = import "images.jsonnet",
 
         checkImageExistsFlag: {
             "prd-sam": "false",
-            "prd-samdev": "false",
+            "prd-samdev": "true",
             "prd-samtest": "false",
             "prd-sdc": "false",
             "dfw-sam": "false",
