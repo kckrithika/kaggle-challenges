@@ -9,6 +9,13 @@ system:
     - name: vagabond
       # container image/version to  run
       image: shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/docker-acs:dharju-20170328_1
+      volumeMounts:
+      - mountPath /home/sfdc-acs/logs
+        name: log-volume
+      - mountPath /home/sfdc-acs/v
+        name: data-volume
+      - mountPath /home/sfdc-acs/acs-config
+        name: config-volume
       #args: 
       #  - --zookeeper.seedHosts=blitz1-mnds1-1-sfm.ops.sfdc.net:2181 
       #  - --redis-monitor.redis-listen-ports=1300 
@@ -25,3 +32,10 @@ system:
       ports:
       - containerPort: 8085
       - containerPort: 15372
+    volumes:
+    - name: log-volume
+      hostPath: /var/log
+    - name: date-volume
+      hostPath: /data
+    - name: config-volume
+      hostPath: /data
