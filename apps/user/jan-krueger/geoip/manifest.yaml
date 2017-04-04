@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: backend
-    count: 2
+    count: 1
     containers:
     - name: ccait-geoip-backend
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/geoip/geoip:latest-0000005-13cacd3e
