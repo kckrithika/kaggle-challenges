@@ -37,7 +37,8 @@
                      "--keyFile=/data/certs/hostcert.key",
                      "--certFile=/data/certs/hostcert.crt",
                      "--checkImageExistsFlag=false",
-                     "--volPermissionInitContainerImage=ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
+                     "--volPermissionInitContainerImage=ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+                     "--insecureRegistries="
                   ],
                   "env": [
                      {

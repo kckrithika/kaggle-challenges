@@ -24,7 +24,8 @@ local configs = import "config.jsonnet",
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
-                           "--volPermissionInitContainerImage="+configs.permissionInitContainer
+                           "--volPermissionInitContainerImage="+configs.permissionInitContainer,
+                           "--insecureRegistries="+configs.insecureRegistries
                            ],
                        volumeMounts: [
                           {
