@@ -27,7 +27,7 @@ exitIfMergeCommitFound() {
   fi
 }
 
-SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/sam-tools:20170328_121047.3b259f9.clean.prahladjos-ltm
+SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sam-tools:20170405_093103.706740b.dirty.thargrove-ltm1
 
 if [ "$1" == "evaluatePR" ] 
 then
