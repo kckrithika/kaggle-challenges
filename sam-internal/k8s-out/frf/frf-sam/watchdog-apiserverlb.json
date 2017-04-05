@@ -39,17 +39,30 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt",
-                     "-snoozedAlarms haApiChecker=2017/04/08"
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
                   "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                  "name": "watchdog-apiserverlb"
+                  "name": "watchdog-apiserverlb",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "frf-sam"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               }
+            ]
          }
       }
    }

@@ -27,9 +27,22 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate 
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
-                            "-snoozedAlarms haApiChecker=2017/04/08",
+                        ],
+                        volumeMounts: [
+                                  {
+                                     "mountPath": "/data/certs",
+                                     "name": "certs"
+                                  },
                         ],
                     }
+                ],
+                volumes: [
+                    {
+                        hostPath: {
+                                path: "/data/certs"
+                                },
+                                name: "certs"
+                        },
                 ],
                 nodeSelector: {
                     pool: configs.estate
