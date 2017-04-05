@@ -24,6 +24,7 @@ local configs = import "config.jsonnet",
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
+                           "--httpsDisableCertsCheck="+configs.httpsDisableCertsCheck,
                            "--volPermissionInitContainerImage="+configs.permissionInitContainer,
                            "--insecureRegistries="+configs.insecureRegistries
                            ],

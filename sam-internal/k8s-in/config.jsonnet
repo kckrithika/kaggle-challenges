@@ -83,6 +83,17 @@ local images = import "images.jsonnet",
             "par-sam": "false"
         },
 
+        httpsDisableCertsCheck: {
+            "prd-sam": "false",
+            "prd-samdev": "true",
+            "prd-samtest": "false",
+            "prd-sdc": "false",
+            "dfw-sam": "false",
+            "phx-sam": "false",
+            "frf-sam": "false",
+            "par-sam": "false"
+        },
+
         watchdog_emailsender: {
             "prd-sam": "sam@salesforce.com",
             "prd-samdev":"sam@salesforce.com",
@@ -143,6 +154,7 @@ local images = import "images.jsonnet",
     insecureRegistries: self.perCluster.insecureRegistries[estate],
     tlsEnabled: self.perCluster.tlsEnabled[estate],
     checkImageExistsFlag: self.perCluster.checkImageExistsFlag[estate],
+    httpsDisableCertsCheck: self.perCluster.httpsDisableCertsCheck[estate],
     watchdog_emailsender: self.perCluster.watchdog_emailsender[estate],
     watchdog_emailrec: self.perCluster.watchdog_emailrec[estate],
 
