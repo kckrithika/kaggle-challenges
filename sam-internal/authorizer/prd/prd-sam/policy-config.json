@@ -1,0 +1,728 @@
+{
+    "minion": {
+        "samappstatuses": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "deployments": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "samdeploymentlogs": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "namespaces": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "services": {
+            "*": {
+                "$namespace": {
+                    "*": [
+                        "read"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "nodes": {
+            "status": {
+                "*": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                },
+                "": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "endpoints": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "pods": {
+            "status": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            },
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "events": {
+            "": {
+                "*": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        }
+    },
+    "master": {
+        "persistentvolumeclaims": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "horizontalpodautoscalers": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "samappstatuses": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "bindings": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "configmaps": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "persistentvolumes": {
+            "": {
+                "*": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "deployments": {
+            "status": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            },
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "nodes": {
+            "status": {
+                "*": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                }
+            },
+            "": {
+                "*": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "events": {
+            "": {
+                "*": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "jobs": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "replicationcontrollers": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "namespaces": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "services": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "resourcequotas": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "thirdpartyresources": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "secrets": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "pods": {
+            "status": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            },
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "daemonsets": {
+            "status": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            },
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "petsets": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "samdeploymentlogs": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "serviceaccounts": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "endpoints": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "replicasets": {
+            "status": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            },
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "clusterroles": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "rolebindings": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "clusterrolebindings": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "statefulsets": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "limitranges": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "certificatesigningrequests": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "networkpolicies": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "ingresses": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "poddisruptionbudgets": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "roles": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "podtemplates": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        },
+        "storageclasses": {
+            "": {
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "*": {
+                    "*": [
+                        "read"
+                    ]
+                }
+            }
+        }
+    }
+}
