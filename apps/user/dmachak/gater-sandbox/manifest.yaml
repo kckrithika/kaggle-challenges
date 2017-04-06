@@ -11,6 +11,7 @@ system:
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170405D
       args:
+        - start
         - --logging.dir=/log
         - --server.port=9090
         - --management.port=15522
