@@ -10,6 +10,7 @@ if configs.estate == "prd-sdc" then {
         "name": "slb-ipvs"
     },
     "spec": {
+        replicas: 1,
         "template": {
             "metadata": {
                 "labels": {
