@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: gatewayconfig
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-03-29
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-05
       ports:
       - containerPort: 9133
       livenessProbe:
