@@ -35,6 +35,7 @@
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
             slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
             slb_ipvs: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000743-af977e49",
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000733-7c1115e1",
