@@ -31,7 +31,7 @@ system:
     function: jenkins-master
     nodeExposed: true
     ports:
-    - port: 8080
+    - port: 8082
       targetport: 8080
     - port: 50000
       targetport: 50000
