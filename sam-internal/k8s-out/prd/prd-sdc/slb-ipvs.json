@@ -1,0 +1,91 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "slb-ipvs"
+      },
+      "name": "slb-ipvs"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "slb-ipvs"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-ipvs-installer",
+                     "--modules=/sdn",
+                     "--host=/host"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+                  "name": "slb-ipvs-installer",
+                  "securityContext": {
+                     "capabilities": {
+                        "add": [
+                           "ALL"
+                        ]
+                     },
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/dev",
+                        "name": "dev-volume"
+                     },
+                     {
+                        "mountPath": "/lib/modules",
+                        "name": "lib-modules-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/sdn/slb-ipvs-agent",
+                     "--path=/host/var/slb"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+                  "name": "slb-ipvs-agent",
+                  "securityContext": {
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "mountPath": "/var/slb",
+                  "name": "var-slb-volume"
+               },
+               {
+                  "mountPath": "/dev",
+                  "name": "dev-volume"
+               },
+               {
+                  "mountPath": "/lib/modules",
+                  "name": "lib-modules-volume"
+               },
+               {
+                  "mountPath": "/",
+                  "name": "host-volume"
+               }
+            ]
+         }
+      }
+   }
+}
