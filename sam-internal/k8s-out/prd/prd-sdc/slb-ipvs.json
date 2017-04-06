@@ -8,6 +8,7 @@
       "name": "slb-ipvs"
    },
    "spec": {
+      "replicas": 1,
       "template": {
          "metadata": {
             "labels": {
