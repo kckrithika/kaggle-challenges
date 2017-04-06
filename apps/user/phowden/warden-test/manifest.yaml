@@ -6,16 +6,23 @@ system:
       count: 2
       containers:
       - name: casp-warden
-        image: tnrp/casp-test/warden:0.0.0-0000005-79d1f938
+        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-Apr06-0239PM
         ports:
         - containerPort: 8889
         env:
         - name: BRANCH
           value: "dev"
+        volumeMounts:
+        - mountPath: /home/sfdc-casp
+          name: casphome
         livenessProbe:
           httpGet:
             path: /
             port: 8889
+      volumes:
+      - name: casphome
+        hostPath:
+          path: /home/sfdc-casp
 
     loadbalancers:
     - lbname: wardenlb
