@@ -13,7 +13,7 @@ system:
         - name: BRANCH
           value: "dev"
         volumeMounts:
-        - mountPath: /home/sfdc-casp
+        - mountPath: /home/sfdc-casp/lib/warden/mysql
           name: casphome
         livenessProbe:
           httpGet:
@@ -22,7 +22,7 @@ system:
       volumes:
       - name: casphome
         hostPath:
-          path: /home/sfdc-casp
+          path: /home/sfdc-casp/lib/warden/mysql
 
     loadbalancers:
     - lbname: wardenlb
