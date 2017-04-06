@@ -14,6 +14,7 @@ apps:
   repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
+    - prd/prd-samdev
     - prd/prd-samtest
     - prd/prd-sdc
     - phx/phx-sam_report_collector
