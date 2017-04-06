@@ -21,12 +21,12 @@ if configs.estate == "prd-sdc" then {
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                   {
-                       "name": "var-slb-volume",
-                       "mountPath": "/var/slb"
-                   }
-                 ],
-                 "containers": [
+                    {
+                        "name": "var-slb-volume",
+                        "mountPath": "/var/slb"
+                    }
+                ],
+                "containers": [
                     {
                         "name": "slb-iface-agent",
                         "image": configs.slb_iface_agent,

@@ -20,25 +20,25 @@ if configs.estate == "prd-sdc" then {
                 "hostNetwork": true,
 
                 "volumes": [
-                   {
-                       "name": "var-slb-volume",
-                       "mountPath": "/var/slb"
-                   },
-                   {
-                       "name": "dev-volume",
-                       "mountPath": "/dev"
-                   },
-                   {
-                       "name": "lib-modules-volume",
-                       "mountPath": "/lib/modules"
-                   },
-                   {
-                       "name": "host-volume",
-                       "mountPath": "/"
-                   }
-                 ],
+                    {
+                        "name": "var-slb-volume",
+                        "mountPath": "/var/slb"
+                    },
+                    {
+                        "name": "dev-volume",
+                        "mountPath": "/dev"
+                    },
+                    {
+                        "name": "lib-modules-volume",
+                        "mountPath": "/lib/modules"
+                    },
+                    {
+                        "name": "host-volume",
+                        "mountPath": "/"
+                    }
+                ],
 
-                 "containers": [
+                "containers": [
                     {
                         "name": "slb-ipvs-installer",
                         "image": configs.slb_ipvs,
