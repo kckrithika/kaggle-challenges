@@ -29,7 +29,7 @@
                      "-f ",
                      "/etc/haproxy/haproxy.cfg"
                   ],
-                  "image": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/haproxy:10e016e.clean.mayankkuma-ltm3.20161216_011113",
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
