@@ -10,8 +10,9 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-05
       ports:
       - containerPort: 9133
+      - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /api/v1
+          path: /api
           port: 9133
 
