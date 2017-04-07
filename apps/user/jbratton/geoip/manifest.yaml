@@ -7,6 +7,9 @@ system:
     containers:
     - name: backend
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+      ports:
+      - name: b-man-port
+        containerPort: 15372
     - name: backend-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
       args: ["-s", "backend"]
@@ -32,9 +35,13 @@ system:
         value: localhost
       - name: GRPC_ROUTING_GEOIP_PORT
         value: 7013
+      - name: MANAGEMENT_PORT
+        value: 15373
       ports:
       - name: f-port
         containerPort: 8080
+      - name: f-man-port
+        containerPort: 15373
     - name: frontend-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
       args: ["-a", "7081", "-o", "7013", "-d", "localhost", "-q", "7012"]
@@ -48,10 +55,16 @@ system:
     ports:
       - name: b-admin-port
         port: 7080
-        targetport: 7080
+        targetPort: 7080
+      - name: b-man-port
+        port: 15372
+        targetPort: 15372
       - name: f-port
         port: 8080
-        targetport: 8080
+        targetPort: 8080
       - name: f-admin-port
         port: 7081
         targetPort: 7081
+      - name: f-man-port
+        port: 15373
+        targetPort: 15373
