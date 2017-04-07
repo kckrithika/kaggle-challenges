@@ -15,7 +15,7 @@ system:
         containerPort: 15372
     - name: backend-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-s", "backend"]
+      args: ["-s", "localhost"]
       ports:
       - name: b-admin-port
         containerPort: 7080
