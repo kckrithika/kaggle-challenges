@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: redis-12028
+    count: 1 
+    hostnetwork: true
+    containers:
+    - name: caas-redis 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:0.1-0000019-13364365
+      resources:
+        limits: { memory: "5Gi" }
+        requests: { memory: "5Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+      args: 
+        - --port=12028
+        - --maxMemoryMB=100
+        - --logDir=/home/caas/logs
+      # expose redis outside the container
+      ports:
+      - containerPort: 12028
+    - name: caas-redis-announcer 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:0.1-0000019-13364365
+      resources:
+        limits: { memory: "200M" }
+        requests: { memory: "200M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args: 
+        - --redisPort=12028
+        - --cluster.name=sp-c2
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs
