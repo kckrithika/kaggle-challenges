@@ -9,6 +9,9 @@
 
     local configs = import "config.jsonnet",
 
+    # Define image for SLB
+    local slb_image = configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000032-7f4c7b9f",
+
     estates: {
         "prd-sam": {
             # For now we need to keep the root level folder 'docker-release-candidate' because it is needed for promotion
@@ -21,8 +24,8 @@
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
-            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
-            slb_ipvs: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+            slb_iface_agent: slb_image,
+            slb_ipvs:        slb_image,
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000733-7c1115e1",
@@ -33,8 +36,8 @@
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
-            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
-            slb_ipvs: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+            slb_iface_agent: slb_image,
+            slb_ipvs:        slb_image,
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000743-af977e49",
         },
         "prd-samtest": {
@@ -45,8 +48,8 @@
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
-            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
-            slb_ipvs: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+            slb_iface_agent: slb_image,
+            slb_ipvs:        slb_image,
         },
         "prd-sdc": {
             # Switch this to use artifactrepo as soon as we move to centos 7
@@ -57,8 +60,8 @@
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000743-af977e49",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
-            slb_ipvs: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000028-45cce23f",
+            slb_iface_agent: slb_image,
+            slb_ipvs:        slb_image,
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
