@@ -10,7 +10,7 @@ system:
     containers:
     - name: sdbmaster
       # container image/version to  run
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170406
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170407
       env:
       - name: ZK_ENSEMBLE
         value: sayonara1a-mnds1-1-prd.eng.sfdc.net:2181,sayonara1a-mnds1-2-prd.eng.sfdc.net:2181,sayonara1a-mnds1-3-prd.eng.sfdc.net:2181
@@ -19,17 +19,17 @@ system:
       - name: SDBPORT
         value: "1521"
       - name: SDBDBNAME
-        value: "gssdb1"
+        value: "samsdb1"
       - name: SDBROOT
         value: "/sdb"
       - name: SDBSTORE
         value: "sfstore://localhost:5555"
       - name: SDBUUID
-        value: "81f8a870-5a5d-47a7-90d5-99ec59cbd9fd"
+        value: "dfc3c493-efea-4e62-b362-59ab1c42d398"
       - name: SDBCLUUID
-        value: "81f8a870-5a5d-47a7-90d5-99ec59cbd9fd"
+        value: "dfc3c493-efea-4e62-b362-59ab1c42d398"
       - name: SDBCLUSTERNAME
-        value: "81f8a870-5a5d-47a7-90d5-99ec59cbd9fd"
+        value: "dfc3c493-efea-4e62-b362-59ab1c42d398"
       ports:
       # expose sdb port outside the container
       - containerPort: 1521
