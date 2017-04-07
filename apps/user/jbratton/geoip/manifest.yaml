@@ -7,6 +7,9 @@ system:
     containers:
     - name: backend
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+      env:
+      - name: SERVER_PORT
+        value: 0
       ports:
       - name: b-man-port
         containerPort: 15372
