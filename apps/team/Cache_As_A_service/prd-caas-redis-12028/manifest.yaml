@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000019-13364365
+      image: tnrp/caas/caas-redis:0.1-0000020-13364594
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
@@ -32,6 +32,22 @@ system:
       # expose redis outside the container
       ports:
       - containerPort: 12028
+    - name: caas-redis-announcer
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:0.1-0000020-13364594
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12028
+        - --cluster.name=sp-c2
+      resources:
+        limits: { memory: "200M" }
+        requests: { memory: "200M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
     volumes:
     - name: logvol
       hostPath:
