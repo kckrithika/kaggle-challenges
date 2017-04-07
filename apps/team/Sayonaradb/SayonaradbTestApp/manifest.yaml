@@ -5,7 +5,7 @@ system:
   - name: prd-sdb-cluster-1
     count: 1
     strategy:
-       type: recreate
+       type: Recreate
     hostnetwork: true
     containers:
     - name: sdbmaster
