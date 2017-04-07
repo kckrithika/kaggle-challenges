@@ -1,0 +1,57 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: geoip
+    count: 2
+    containers:
+    - name: backend
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+    - name: backend-sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
+      args: ["-s", "backend"]
+      ports:
+      - name: b-admin-port
+        containerPort: 7080
+      readinessProbe:
+        exec:
+          command:
+            - "./is-ready.sh" 
+          initialDelaySeconds: 5 
+          periodSeconds: 5
+      livenessProbe:
+        exec:
+          command:
+            - "./is-alive.sh" 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+    - name: frontend
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev
+      env:
+      - name: GRPC_ROUTING_GEOIP_HOST
+        value: localhost
+      - name: GRPC_ROUTING_GEOIP_PORT
+        value: 7013
+      ports:
+      - name: f-port
+        containerPort: 8080
+    - name: frontend-sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
+      args: ["-a", "7081", "-o", "7013", "-d", "localhost", "-q", "7012"]
+      ports:
+      - name: f-admin-port
+        containerPort: 7081
+
+  loadbalancers:
+  - lbname: geoip-lb
+    function: geoip
+    ports:
+      - name: b-admin-port
+        port: 7080
+        targetport: 7080
+      - name: f-port
+        port: 8080
+        targetport: 8080
+      - name: f-admin-port
+        port: 7081
+        targetPort: 7081
