@@ -22,7 +22,7 @@ system:
         containerPort: 15372
     - name: backend1-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7080", "-i", "7012", "-o", "7011", "-s", "localhost"]
+      args: ["-a", "7080", "-i", "7012", "-o", "7011", "-p", "7020", "-s", "localhost"]
       ports:
       - name: b1-in-port
         containerPort: 7012
@@ -45,7 +45,7 @@ system:
         containerPort: 15373
     - name: backend2-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7081", "-i", "7014", "-o", "7013", "-s", "localhost"]
+      args: ["-a", "7081", "-i", "7014", "-o", "7013", "-p", "7021", "-s", "localhost"]
       ports:
       - name: b2-in-port
         containerPort: 7014
@@ -68,7 +68,7 @@ system:
         containerPort: 15374
     - name: backend3-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7082", "-i", "7016", "-o", "7015", "-s", "localhost"]
+      args: ["-a", "7082", "-i", "7016", "-o", "7015", "-p", "7022", "-s", "localhost"]
       ports:
       - name: b3-in-port
         containerPort: 7016
@@ -81,7 +81,7 @@ system:
       - name: GRPC_ROUTING_GEOIP_HOST
         value: localhost
       - name: GRPC_ROUTING_GEOIP_PORT
-        value: 7013
+        value: 7017
       - name: MANAGEMENT_PORT
         value: 15375
       ports:
