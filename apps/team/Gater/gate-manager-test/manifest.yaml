@@ -9,7 +9,7 @@ system:
     - name: gater1
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: tnrp/gater/gater:1.1.0-0000047-13314197
+      image: tnrp/gater/gater:1.1.0-0000061-13374165
       args:
         - start
         - --logging.dir=/log
