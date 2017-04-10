@@ -61,7 +61,7 @@
                      "--keyfile=/data/certs/hostcert.key",
                      "--certfile=/data/certs/hostcert.crt"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000035-50cff33b",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
