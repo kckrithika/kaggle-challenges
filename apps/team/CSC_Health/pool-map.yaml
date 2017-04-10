@@ -22,7 +22,6 @@ apps:
     - par/par-sam_report_collector
   observation-service:
     - prd/prd-sam_report_collector
-    - prd/prd-samdev
   observation-service-watchdog:
     - prd/prd-sam_report_collector
   expreportcollectorha:
