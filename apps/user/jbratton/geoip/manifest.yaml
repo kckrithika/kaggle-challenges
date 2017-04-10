@@ -91,7 +91,8 @@ system:
         containerPort: 15375
     - name: frontend-sherpa
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7083", "-o", "7017", "-d", "localhost", "-q", "7012"]
+      command: ["./demo-sherpa-launcher.sh"]
+      #args: ["-a", "7083", "-o", "7017", "-d", "localhost", "-q", "7012"]
       ports:
       - name: f-admin-port
         containerPort: 7083
