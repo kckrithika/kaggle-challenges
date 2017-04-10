@@ -8,7 +8,7 @@ system:
     containers:
     - name: vagabond
       # container image/version to  run
-      image: shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/docker-acs:dharju-20170328_1
+      image: shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/docker-acs:dharju-20170410
       volumeMounts:
       - mountPath: /home/sfdc-acs/logs
         name: log-volume
