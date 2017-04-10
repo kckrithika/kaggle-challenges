@@ -39,6 +39,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: SFDC_SETTINGS_SUPERPOD
+        value: "-"
 
     # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
