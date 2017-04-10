@@ -5,10 +5,16 @@
                 "$namespace": {
                     "*": [
                         "read"
+                    ],
+                    "$resource": [
+                        "read"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -19,10 +25,16 @@
                 "$namespace": {
                     "*": [
                         "read"
+                    ],
+                    "$resource": [
+                        "read"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -33,10 +45,16 @@
                 "$namespace": {
                     "*": [
                         "read"
+                    ],
+                    "$resource": [
+                        "read"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -47,10 +65,16 @@
                 "$namespace": {
                     "*": [
                         "read"
+                    ],
+                    "$resource": [
+                        "read"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -61,10 +85,16 @@
                 "$namespace": {
                     "*": [
                         "read"
+                    ],
+                    "$resource": [
+                        "read"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -72,6 +102,15 @@
         },
         "nodes": {
             "status": {
+                "$namespace": {
+                    "$resource": [
+                        "read",
+                        "write"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                },
                 "*": {
                     "$resource": [
                         "read",
@@ -83,6 +122,15 @@
                 }
             },
             "*": {
+                "$namespace": {
+                    "$resource": [
+                        "read",
+                        "write"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                },
                 "*": {
                     "$resource": [
                         "read",
@@ -99,10 +147,16 @@
                 "$namespace": {
                     "*": [
                         "read"
+                    ],
+                    "$resource": [
+                        "read"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -114,10 +168,17 @@
                     "*": [
                         "read",
                         "write"
+                    ],
+                    "$resource": [
+                        "read",
+                        "write"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -127,10 +188,17 @@
                     "*": [
                         "read",
                         "write"
+                    ],
+                    "$resource": [
+                        "read",
+                        "write"
                     ]
                 },
                 "*": {
                     "*": [
+                        "read"
+                    ],
+                    "$resource": [
                         "read"
                     ]
                 }
@@ -138,6 +206,14 @@
         },
         "events": {
             "": {
+                "$namespace": {
+                    "$resource": [
+                        "read"
+                    ],
+                    "*": [
+                        "read"
+                    ]
+                },
                 "*": {
                     "$resource": [
                         "read"
@@ -153,6 +229,20 @@
         "*": {
             "*": {
                 "*": {
+                    "$resource": [
+                        "read",
+                        "write"
+                    ],
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "$namespace": {
+                    "$resource": [
+                        "read",
+                        "write"
+                    ],
                     "*": [
                         "read",
                         "write"
