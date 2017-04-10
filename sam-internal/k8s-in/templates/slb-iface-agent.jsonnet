@@ -23,7 +23,9 @@ if configs.estate == "prd-sdc" then {
                 "volumes": [
                     {
                         "name": "var-slb-volume",
-                        "hostPath": "/var/slb"
+                        "hostPath": {
+                            "path": "/var/slb"
+                         }
                     }
                 ],
                 "containers": [

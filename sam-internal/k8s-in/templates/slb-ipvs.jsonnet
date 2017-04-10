@@ -22,19 +22,27 @@ if configs.estate == "prd-sdc" then {
                 "volumes": [
                     {
                         "name": "var-slb-volume",
-                        "hostPath": "/var/slb"
+                        "hostPath": {
+                            "path": "/var/slb"
+                         }
                     },
                     {
                         "name": "dev-volume",
-                        "hostPath": "/dev"
+                        "hostPath": {
+                            "path": "/dev"
+                         }
                     },
                     {
                         "name": "lib-modules-volume",
-                        "hostPath": "/lib/modules"
+                        "hostPath": {
+                            "path": "/lib/modules"
+                         }
                     },
                     {
                         "name": "host-volume",
-                        "hostPath": "/"
+                        "hostPath": {
+                            "path": "/"
+                         }
                     }
                 ],
 
