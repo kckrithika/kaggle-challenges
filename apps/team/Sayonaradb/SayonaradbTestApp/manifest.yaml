@@ -25,11 +25,11 @@ system:
       - name: SDBSTORE
         value: "sfstore://localhost:5555"
       - name: SDBUUID
-        value: "dfc3c493-efea-4e62-b362-59ab1c42d398"
+        value: "468b1cc5-b905-428b-a500-90a6100a3563"
       - name: SDBCLUUID
-        value: "dfc3c493-efea-4e62-b362-59ab1c42d398"
+        value: "468b1cc5-b905-428b-a500-90a6100a3563"
       - name: SDBCLUSTERNAME
-        value: "dfc3c493-efea-4e62-b362-59ab1c42d398"
+        value: "468b1cc5-b905-428b-a500-90a6100a3563"
       ports:
       # expose sdb port outside the container
       - containerPort: 1521
