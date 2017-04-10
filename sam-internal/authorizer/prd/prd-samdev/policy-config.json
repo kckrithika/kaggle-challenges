@@ -166,12 +166,10 @@
             "status": {
                 "$namespace": {
                     "*": [
-                        "read",
-                        "write"
+                        "read"
                     ],
                     "$resource": [
-                        "read",
-                        "write"
+                        "read"
                     ]
                 },
                 "*": {
@@ -211,15 +209,18 @@
                         "read"
                     ],
                     "*": [
-                        "read"
+                        "read",
+                        "write"
                     ]
                 },
                 "*": {
                     "$resource": [
-                        "read"
+                        "read",
+                        "write"
                     ],
                     "*": [
-                        "read"
+                        "read",
+                        "write"
                     ]
                 }
             }
