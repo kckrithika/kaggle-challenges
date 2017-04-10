@@ -176,7 +176,8 @@
                 },
                 "*": {
                     "*": [
-                        "read"
+                        "read",
+                        "write"
                     ],
                     "$resource": [
                         "read"
@@ -211,15 +212,18 @@
                         "read"
                     ],
                     "*": [
-                        "read"
+                        "read",
+                        "write"
                     ]
                 },
                 "*": {
                     "$resource": [
-                        "read"
+                        "read",
+                        "write"
                     ],
                     "*": [
-                        "read"
+                        "read",
+                        "write"
                     ]
                 }
             }
