@@ -6,7 +6,7 @@ system:
     count: 5
     containers:
     - name: samhello
-      image: shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/samtestapp:withuser
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sam/xiao.zhou/samtestapp:testnoimage
       ports:
       - containerPort: 9090
       livenessProbe:
