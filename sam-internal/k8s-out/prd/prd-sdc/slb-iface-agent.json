@@ -41,7 +41,7 @@
             "hostNetwork": true,
             "volumes": [
                {
-                  "mountPath": "/var/slb",
+                  "hostPath": "/var/slb",
                   "name": "var-slb-volume"
                }
             ]
