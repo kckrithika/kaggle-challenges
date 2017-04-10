@@ -94,6 +94,9 @@ system:
       command: ["./demo-sherpa-launcher.sh"]
       #args: ["-a", "7083", "-o", "7017", "-d", "localhost", "-q", "7012"]
       ports:
+      # Normally we wouldn't expose the sherpa output port
+      - name: f-out-port
+        containerPort: 7017
       - name: f-admin-port
         containerPort: 7083
 
@@ -143,6 +146,9 @@ system:
       - name: f-port
         port: 8080
         targetPort: 8080
+      - name: f-out-port
+        port: 7017
+        targetPort: 7017
       - name: f-admin-port
         port: 7083
         targetPort: 7083
