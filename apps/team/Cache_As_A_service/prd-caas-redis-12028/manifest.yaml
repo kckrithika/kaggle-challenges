@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000021-13373890
+      image: tnrp/caas/caas-redis:0.1-0000022-13374009
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
@@ -34,7 +34,7 @@ system:
       - containerPort: 12028
     - name: caas-redis-announcer
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000021-13373890
+      image: tnrp/caas/caas-redis:0.1-0000022-13374009
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12028
