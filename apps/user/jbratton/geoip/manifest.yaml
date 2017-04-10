@@ -1,45 +1,150 @@
 apiVersion: v1
-
+ 
 system:
   functions:
-    - name: geoip-backend
-      count: 3
-      containers:
-        - name: backend
-          image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
-          ports:
-            - name: b-port
-              containerPort: 7020
-            - name: b-man-port
-              containerPort: 15372
-        - name: backend-sherpa
-          image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-          args: ["-s", "localhost"]
-          ports:
-            - name: b-admin-port
-              containerPort: 7080
-            - name: b-in-port
-              containerPort: 7012
-    - name: geoip-frontend
-      count: 1
-      containers:
-        - name: frontend
-          image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev
-          env:
-            # Route geoip requests to frontend-sherpa's outgoing request port.
-            - name: GRPC_ROUTING_GEOIP_HOST
-              value: localhost
-            - name: GRPC_ROUTING_GEOIP_PORT
-              value: 7011
-          ports:
-            - name: f-port
-              containerPort: 8080
-            - name: f-man-port
-              containerPort: 15373
-        - name: frontend-sherpa
-          image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-          # TODO: This destination and port is wrong. For the demo we'll manually edit the linkerd config to set up the right dtab entries.
-          args: ["-d", "localhost", "-q", "7012"]
-          orts:
-            - name: f-admin-port
-              containerPort: 7080
+  - name: geoip
+    count: 1
+    containers:
+
+    - name: backend1
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+      env:
+      - name: GRPC_PORT
+        value: 7020
+      - name: MANAGEMENT_PORT
+        value: 15372
+      - name: SERVER_PORT
+        value: 0
+      ports:
+      - name: b1-port
+        containerPort: 7020
+      - name: b1-man-port
+        containerPort: 15372
+    - name: backend1-sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
+      args: ["-a", "7080", "-i", "7012", "-o", "7011", "-s", "localhost"]
+      ports:
+      - name: b1-in-port
+        containerPort: 7012
+      - name: b1-admin-port
+        containerPort: 7080
+
+    - name: backend2
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+      env:
+      - name: GRPC_PORT
+        value: 7021
+      - name: MANAGEMENT_PORT
+        value: 15373
+      - name: SERVER_PORT
+        value: 0
+      ports:
+      - name: b2-port
+        containerPort: 7021
+      - name: b2-man-port
+        containerPort: 15373
+    - name: backend2-sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
+      args: ["-a", "7081", "-i", "7014", "-o", "7013", "-s", "localhost"]
+      ports:
+      - name: b2-in-port
+        containerPort: 7014
+      - name: b2-admin-port
+        containerPort: 7081
+
+    - name: backend3
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+      env:
+      - name: GRPC_PORT
+        value: 7022
+      - name: MANAGEMENT_PORT
+        value: 15374
+      - name: SERVER_PORT
+        value: 0
+      ports:
+      - name: b3-port
+        containerPort: 7022
+      - name: b3-man-port
+        containerPort: 15374
+    - name: backend3-sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
+      args: ["-a", "7082", "-i", "7016", "-o", "7015", "-s", "localhost"]
+      ports:
+      - name: b3-in-port
+        containerPort: 7016
+      - name: b3-admin-port
+        containerPort: 7082
+
+    - name: frontend
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev
+      env:
+      - name: GRPC_ROUTING_GEOIP_HOST
+        value: localhost
+      - name: GRPC_ROUTING_GEOIP_PORT
+        value: 7013
+      - name: MANAGEMENT_PORT
+        value: 15375
+      ports:
+      - name: f-port
+        containerPort: 8080
+      - name: f-man-port
+        containerPort: 15375
+    - name: frontend-sherpa
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
+      args: ["-a", "7083", "-o", "7017", "-d", "localhost", "-q", "7012"]
+      ports:
+      - name: f-admin-port
+        containerPort: 7083
+
+  loadbalancers:
+  - lbname: geoip-lb
+    function: geoip
+    ports:
+      - name: b1-in-port
+        port: 7012
+        targetPort: 7012
+      - name: b1-admin-port
+        port: 7080
+        targetPort: 7080
+      - name: b1-port
+        port: 7020
+        targetPort: 7020
+      - name: b1-man-port
+        port: 15372
+        targetPort: 15372
+
+      - name: b2-in-port
+        port: 7014
+        targetPort: 7014
+      - name: b2-admin-port
+        port: 7081
+        targetPort: 7081
+      - name: b2-port
+        port: 7021
+        targetPort: 7021
+      - name: b2-man-port
+        port: 15373
+        targetPort: 15373
+
+      - name: b3-in-port
+        port: 7016
+        targetPort: 7016
+      - name: b3-admin-port
+        port: 7082
+        targetPort: 7082
+      - name: b3-port
+        port: 7022
+        targetPort: 7022
+      - name: b3-man-port
+        port: 15374
+        targetPort: 15374
+
+      - name: f-port
+        port: 8080
+        targetPort: 8080
+      - name: f-admin-port
+        port: 7083
+        targetPort: 7083
+      - name: f-man-port
+        port: 15375
+        targetPort: 15375
