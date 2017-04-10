@@ -69,19 +69,19 @@
             "hostNetwork": true,
             "volumes": [
                {
-                  "mountPath": "/var/slb",
+                  "hostPath": "/var/slb",
                   "name": "var-slb-volume"
                },
                {
-                  "mountPath": "/dev",
+                  "hostPath": "/dev",
                   "name": "dev-volume"
                },
                {
-                  "mountPath": "/lib/modules",
+                  "hostPath": "/lib/modules",
                   "name": "lib-modules-volume"
                },
                {
-                  "mountPath": "/",
+                  "hostPath": "/",
                   "name": "host-volume"
                }
             ]
