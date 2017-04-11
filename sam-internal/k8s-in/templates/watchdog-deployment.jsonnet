@@ -9,7 +9,7 @@ local configs = import "config.jsonnet",
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "watchdog-deploy",
+                        name: "watchdog-deployment",
                         image: configs.watchdog,
                         command:[
                             "/sam/watchdog",
@@ -27,8 +27,8 @@ local configs = import "config.jsonnet",
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
-                            "-snoozedAlarms=deploymentChecker=2017/04/15",
-                        ],
+                            ]
+                            + if configs.estate != "prd-sam" then [ "-snoozedAlarms=deploymentChecker=2017/04/15" ] else [],
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",
@@ -73,22 +73,22 @@ local configs = import "config.jsonnet",
             },
             metadata: {
                 labels: {
-                    name: "watchdog-deploy",
+                    name: "watchdog-deployment",
                     apptype: "monitoring"
                 }
             }
         },
         selector: {
             matchLabels: {
-                name: "watchdog-deploy"
+                name: "watchdog-deployment"
             }
         }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-deploy"
+            name: "watchdog-deployment"
         },
-        name: "watchdog-deploy"
+        name: "watchdog-deployment"
     }
 }

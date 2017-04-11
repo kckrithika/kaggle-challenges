@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-deploy"
+         "name": "watchdog-deployment"
       },
-      "name": "watchdog-deploy"
+      "name": "watchdog-deployment"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "watchdog-deploy"
+            "name": "watchdog-deployment"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "watchdog-deploy"
+               "name": "watchdog-deployment"
             }
          },
          "spec": {
@@ -31,9 +31,9 @@
                      "-alertThreshold=300s",
                      "-emailFrequency=24h",
                      "-timeout=2s",
-                     "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
-                     "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
-                     "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
+                     "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
+                     "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
+                     "-smtpServer=ops0-mta1-2-phx.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
                      "-tlsEnabled=true",
@@ -48,8 +48,8 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                  "name": "watchdog-deploy",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
+                  "name": "watchdog-deployment",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
@@ -64,7 +64,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "dfw-sam"
+               "pool": "phx-sam"
             },
             "volumes": [
                {
