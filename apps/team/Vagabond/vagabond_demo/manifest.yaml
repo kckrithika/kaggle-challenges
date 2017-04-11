@@ -30,8 +30,15 @@ system:
       #- name:  CAAS_DEMO3
       #  value: DATE_12_1
       ports:
-      - containerPort: 8085
-      - containerPort: 15372
+      - name: service-port 
+        containerPort: 8085
+      - name: management-port 
+        containerPort: 15372
+      livenessProbe:
+        httpGet:
+        path: /manage/health
+        port: management-port
+                
     volumes:
     - name: log-volume
       hostPath:
