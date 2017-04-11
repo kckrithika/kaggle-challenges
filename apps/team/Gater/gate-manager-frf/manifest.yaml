@@ -9,18 +9,18 @@ system:
     - name: gater-frf
       # container image/version to run.
       # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
-      image: tnrp/gater/gater:1.0.3-12858974-20
+      image: tnrp/gater/gater:1.1.0-0000026-13383348
       args:
         - start
-        - --logging.app.dir=/log/app
+        - --logging.dir=/log
         - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --settings.path=prod.-.frf.-.gater
         - --superpod.name=-
         - --settings.superPod=-
         - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
+        - --logging.perms.enforce=false
         - --tnrp.use-vip=false
-        - --logging.level.minimum=ERROR
       # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section.
       volumeMounts:
@@ -36,6 +36,9 @@ system:
       - containerPort: 9523 
       - containerPort: 9090
       - containerPort: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
 
     # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
@@ -44,7 +47,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-gater/logs/gater
+        path: /home/sfdc-gater/logs
     - name: dbvol
       hostPath:
         path: /home/sfdc-gater/db
