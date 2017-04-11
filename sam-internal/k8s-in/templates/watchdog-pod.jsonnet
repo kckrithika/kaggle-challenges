@@ -27,7 +27,8 @@ if configs.estate == "prd-sam" then {
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
-                        ],
+                        ]
+                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [ "-snoozedAlarms=podUpTimeChecker=2017/04/25" ] else  [],
                     }
                 ],
                 nodeSelector: {

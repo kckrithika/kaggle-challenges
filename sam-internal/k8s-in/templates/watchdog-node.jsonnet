@@ -23,7 +23,8 @@ local configs = import "config.jsonnet",
                             "-smtpServer="+configs.smtpServer,
                             "-sender="+configs.watchdog_emailsender,
                             "-recipient="+configs.watchdog_emailrec,
-                        ],
+                        ]
+                        + if configs.estate == "prd-sam" then [ "-snoozedAlarms=nodeChecker=2017/04/25" ] else  [],
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",
