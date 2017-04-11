@@ -26,6 +26,8 @@ system:
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
         - name: GRPC_ROUTING_GEOIP_PORT
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
+        - name: TEST
+          value: foo
       ports:
       - containerPort: 8080
       # livenessProbe:
