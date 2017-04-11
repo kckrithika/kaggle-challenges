@@ -47,7 +47,7 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
-        maxUnavailable: 0
+        maxUnavailable: 1
 
   - name: redis-rc
     count: 2
@@ -74,7 +74,7 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
-        maxUnavailable: 0
+        maxUnavailable: 1
 
   - name: redis-sentinel
     count: 2
@@ -99,7 +99,7 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 1
-        maxUnavailable: 0
+        maxUnavailable: 1
 
   - name: report-collectorha-sentinel-test
     count: 3
