@@ -16,7 +16,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate 
                             "-role=APISERVERLB",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=60s",
-                            "-emailFrequency=1h",
+                            "-emailFrequency=12h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,

@@ -16,7 +16,7 @@ if configs.estate == "prd-sam" then {
                             "-role=POD",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=12h",
+                            "-emailFrequency=24h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,

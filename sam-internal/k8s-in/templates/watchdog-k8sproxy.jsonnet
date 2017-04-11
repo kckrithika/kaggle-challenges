@@ -17,7 +17,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             "-k8sproxyEndpoint=http://localhost:40000",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=12h",
+                            "-emailFrequency=24h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,

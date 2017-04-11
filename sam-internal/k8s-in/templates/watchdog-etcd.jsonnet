@@ -1,19 +1,20 @@
 {
 local configs = import "config.jsonnet",
 
-    kind: "DaemonSet", 
+    kind: "DaemonSet",
     spec: {
         template: {
             spec: {
-                hostNetwork: true, 
+                hostNetwork: true,
                 containers: [
                     {
                         image: configs.watchdog,
                         command: [
-                            "/sam/watchdog", 
+                            "/sam/watchdog",
                             "-role=ETCD",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
+                            "-emailFrequency=12h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
@@ -31,14 +32,14 @@ local configs = import "config.jsonnet",
                             "name": "certs"
                         }
                     ],
-                        name: "watchdog", 
+                        name: "watchdog",
                         resources: {
                             requests: {
-                                cpu: "0.5", 
+                                cpu: "0.5",
                                 memory: "300Mi"
-                            }, 
+                            },
                             limits: {
-                                cpu: "0.5", 
+                                cpu: "0.5",
                                 memory: "300Mi"
                             }
                         }
@@ -55,21 +56,21 @@ local configs = import "config.jsonnet",
                 nodeSelector: {
                     etcd_installed: "true",
                 }
-            }, 
+            },
             metadata: {
                 labels: {
-                    app: "watchdog-etcd", 
+                    app: "watchdog-etcd",
                     apptype: "monitoring",
                     daemonset: "true",
                 }
             }
         }
-    }, 
-    apiVersion: "extensions/v1beta1", 
+    },
+    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "watchdog-etcd"
-        }, 
+        },
         name: "watchdog-etcd"
     }
 }
