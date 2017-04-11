@@ -29,7 +29,7 @@
                      "-role=APISERVERLB",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=60s",
-                     "-emailFrequency=1h",
+                     "-emailFrequency=12h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",

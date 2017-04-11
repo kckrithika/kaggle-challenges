@@ -1,19 +1,20 @@
 {
 local configs = import "config.jsonnet",
 
-    kind: "DaemonSet", 
+    kind: "DaemonSet",
     spec: {
         template: {
             spec: {
-                hostNetwork: true, 
+                hostNetwork: true,
                 containers: [
                     {
                         image: configs.watchdog,
                         command: [
-                            "/sam/watchdog", 
+                            "/sam/watchdog",
                             "-role=MASTER",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
+                            "-emailFrequency=12h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
@@ -31,14 +32,14 @@ local configs = import "config.jsonnet",
                             "name": "certs"
                         }
                     ],
-                        name: "watchdog", 
+                        name: "watchdog",
                         resources: {
                             requests: {
-                                cpu: "0.5", 
+                                cpu: "0.5",
                                 memory: "300Mi"
-                            }, 
+                            },
                             limits: {
-                                cpu: "0.5", 
+                                cpu: "0.5",
                                 memory: "300Mi"
                             }
                         }
@@ -55,21 +56,21 @@ local configs = import "config.jsonnet",
                 nodeSelector: {
                     master: "true",
                 }
-            }, 
+            },
             metadata: {
                 labels: {
-                    app: "watchdog-master", 
+                    app: "watchdog-master",
                     apptype: "monitoring",
                     daemonset: "true",
                 }
             }
         }
-    }, 
-    apiVersion: "extensions/v1beta1", 
+    },
+    apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
             name: "watchdog-master"
-        }, 
+        },
         name: "watchdog-master"
     }
 }

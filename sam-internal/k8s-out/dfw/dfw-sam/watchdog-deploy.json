@@ -29,7 +29,7 @@
                      "-role=DEPLOYMENT",
                      "-watchdogFrequency=10s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=12h",
+                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",

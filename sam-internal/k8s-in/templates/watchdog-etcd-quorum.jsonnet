@@ -16,6 +16,7 @@ if configs.kingdom == "prd" then {
                             "-role=ETCDQUORUM",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
+                            "-emailFrequency=6h",
                             "-timeout=2s",
                             "-funnelEndpoint="+configs.funnelVIP,
                             "-rcImtEndpoint="+configs.rcImtEndpoint,
