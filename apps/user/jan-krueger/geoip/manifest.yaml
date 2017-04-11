@@ -14,6 +14,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 15
   - name: frontend
     count: 1
@@ -28,6 +33,11 @@ system:
       ports:
         - containerPort: 8080
       livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
