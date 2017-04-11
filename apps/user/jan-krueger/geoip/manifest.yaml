@@ -8,14 +8,13 @@ system:
     - name: ccait-geoip-backend
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/geoip/geoip:latest-0000006-7d845eb4
       ports:
-      - containerPort: 6565
-        name: grpc
-      # - containerPort: 8080
-      #   name: http
-      # livenessProbe:
-      #   httpGet:
-      #     path: /admin/health
-      #     port: 8080
+        - containerPort: 6565
+          name: grpc
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
   - name: frontend
     count: 1
     containers:
@@ -27,11 +26,12 @@ system:
         - name: GRPC_ROUTING_GEOIP_PORT
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
       ports:
-      - containerPort: 8080
-      # livenessProbe:
-      #   httpGet:
-      #     path: /
-      #     port: 8080
+        - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
   - name: xlt
     count: 1
     containers:
