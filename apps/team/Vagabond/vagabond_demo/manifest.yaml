@@ -36,8 +36,10 @@ system:
         containerPort: 15372
       livenessProbe:
         httpGet:
-        path: /manage/health
-        port: management-port
+            path: /manage/health
+            port: management-port
+        initialDelaySeconds: 30
+        periodSeconds: 30
                 
     volumes:
     - name: log-volume
