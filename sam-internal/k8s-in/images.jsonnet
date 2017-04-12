@@ -14,7 +14,7 @@
             # For now we need to keep the root level folder 'docker-release-candidate' because it is needed for promotion
             # even though that is not a required root level directory.  For prod clusters leave this off (it would be
             # different in prod anyways)
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000767-193277c9",
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000775-00f3d6a3",
             k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
             sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170403_143920.77ebb78.dirty.xiaozhou-ltm",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",

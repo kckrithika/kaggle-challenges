@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-deploy"
+         "name": "watchdog-deployment"
       },
-      "name": "watchdog-deploy"
+      "name": "watchdog-deployment"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "watchdog-deploy"
+            "name": "watchdog-deployment"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "watchdog-deploy"
+               "name": "watchdog-deployment"
             }
          },
          "spec": {
@@ -31,16 +31,15 @@
                      "-alertThreshold=300s",
                      "-emailFrequency=24h",
                      "-timeout=2s",
-                     "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
-                     "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
-                     "-smtpServer=ops0-mta1-2-phx.ops.sfdc.net:25",
+                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt",
-                     "-snoozedAlarms=deploymentChecker=2017/04/15"
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
                   "env": [
                      {
@@ -48,8 +47,8 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                  "name": "watchdog-deploy",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000775-00f3d6a3",
+                  "name": "watchdog-deployment",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
@@ -64,7 +63,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "phx-sam"
+               "pool": "prd-sam"
             },
             "volumes": [
                {
