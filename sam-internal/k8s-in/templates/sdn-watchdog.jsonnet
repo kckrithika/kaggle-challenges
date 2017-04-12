@@ -21,6 +21,9 @@ if configs.kingdom == "prd" then {
                         ],
                     }
                 ],
+                nodeSelector: {
+                    pool: configs.estate
+                },
             },
             metadata: {
                 labels: {
