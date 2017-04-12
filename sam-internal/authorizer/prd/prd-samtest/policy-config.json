@@ -24,10 +24,12 @@
             "": {
                 "$namespace": {
                     "*": [
-                        "read"
+                        "read",
+                        "write"
                     ],
                     "$resource": [
-                        "read"
+                        "read",
+                        "write"
                     ]
                 },
                 "*": {
