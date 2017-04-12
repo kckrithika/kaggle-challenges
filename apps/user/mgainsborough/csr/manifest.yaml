@@ -10,8 +10,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/sfdc-base:206.10-3
       command: ["/bin/bash", "-c"]
       args:
-        - /home/sfdc/salesforce/build/sam_startup.sh 
-        - sfdc-base
+        - /home/sfdc/salesforce/build/sam_startup.sh sfdc-base
       volumeMounts:
       - mountPath: /home/sfdc/tools
         name: vol-csr-tools
@@ -176,8 +175,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/tools:206.10-3
       command: ["/bin/bash", "-c"]
       args:
-        - /home/sfdc/salesforce/build/sam_startup.sh 
-        - tools
+        - /home/sfdc/salesforce/build/sam_startup.sh tools
       volumeMounts:
       - mountPath: /shared/home/sfdc/tools
         name: vol-csr-tools
@@ -186,8 +184,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/htdocs:206.10-3
       command: ["/bin/bash", "-c"]
       args:
-        - /home/sfdc/salesforce/build/sam_startup.sh 
-        - htdocs
+        - /home/sfdc/salesforce/build/sam_startup.sh htdocs
       volumeMounts:
       - mountPath: /shared/home/sfdc/salesforce/sfdc/htdocs
         name: vol-csr-htdocs
@@ -196,8 +193,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/lpconfig:206.10-3
       command: ["/bin/bash", "-c"]
       args:
-        - /home/sfdc/salesforce/build/sam_startup.sh 
-        - lpconfig
+        - /home/sfdc/salesforce/build/sam_startup.sh lpconfig
       volumeMounts:
       - mountPath: /shared/home/sfdc/salesforce/nlp
         name: vol-csr-lpconfig1
@@ -208,8 +204,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/config:206.10-3
       command: ["/bin/bash", "-c"]
       args:
-        - /home/sfdc/salesforce/build/sam_startup.sh 
-        - config
+        - /home/sfdc/salesforce/build/sam_startup.sh config
       volumeMounts:
       - name: vol-csr-config1
         mountPath: /shared/home/sfdc/salesforce/marketing/config
@@ -364,8 +359,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr/ext:206.10-3
       command: ["/bin/bash", "-c"]
       args:
-      - /home/sfdc/salesforce/build/sam_startup.sh 
-      - ext
+      - /home/sfdc/salesforce/build/sam_startup.sh ext
       volumeMounts:
       - mountPath: /shared/home/sfdc/salesforce/ext
         name: vol-csr-ext
