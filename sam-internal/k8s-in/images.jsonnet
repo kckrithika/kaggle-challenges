@@ -16,7 +16,6 @@
             # different in prod anyways)
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
             k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
-            sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170403_143920.77ebb78.dirty.xiaozhou-ltm",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000035-50cff33b",
@@ -25,9 +24,7 @@
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
-            controller: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000758-b30fec6b",
             k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
-            sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170403_143920.77ebb78.dirty.xiaozhou-ltm",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000035-50cff33b",
