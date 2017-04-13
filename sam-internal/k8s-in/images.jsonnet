@@ -52,8 +52,8 @@
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000030-c65135ea",
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000743-af977e49",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000034-9c0a672a",
-            slb_ipvs:        configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000034-9c0a672a",
+            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000039-23ef3120",
+            slb_ipvs:        configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000039-23ef3120",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
