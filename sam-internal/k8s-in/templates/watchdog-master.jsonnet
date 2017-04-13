@@ -25,7 +25,8 @@ local configs = import "config.jsonnet",
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
-                        ],
+                        ]
+                        + if configs.estate == "prd-samtest" then [ "-snoozedAlarms=kubeApiChecker=2017/04/25" ] else  [],
                     "volumeMounts": [
                         {
                             "mountPath": "/data/certs",
