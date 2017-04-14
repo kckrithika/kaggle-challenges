@@ -1,0 +1,15 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: dkardach-hello-world
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/hello-world:20171210
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
