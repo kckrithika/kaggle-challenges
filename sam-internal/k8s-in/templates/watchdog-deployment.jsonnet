@@ -27,8 +27,8 @@ local configs = import "config.jsonnet",
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
-                            ]
-                            + if configs.estate != "prd-sam" then [ "-snoozedAlarms=deploymentChecker=2017/04/15" ] else [],
+                            "-snoozedAlarms=deploymentChecker=2017/04/20",
+                        ],
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",
