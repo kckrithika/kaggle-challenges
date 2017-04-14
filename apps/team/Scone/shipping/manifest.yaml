@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-shipping
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-shipping:zim-20170330
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-shipping:zim-20170415
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
