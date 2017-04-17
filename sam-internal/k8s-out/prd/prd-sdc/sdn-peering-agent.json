@@ -68,7 +68,8 @@
                         "port": 9100
                      },
                      "initialDelaySeconds": 5,
-                     "periodSeconds": 10
+                     "periodSeconds": 20,
+                     "timeoutSeconds": 5
                   },
                   "name": "sdn-peering-agent",
                   "volumeMounts": [

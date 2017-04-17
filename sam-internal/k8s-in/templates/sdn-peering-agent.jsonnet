@@ -57,7 +57,8 @@ if configs.kingdom == "prd" then {
                                "port": 9100
                             },
                             "initialDelaySeconds": 5,
-                            "periodSeconds": 10
+                            "timeoutSeconds": 5,
+                            "periodSeconds": 20
                         },
                         volumeMounts: [
                             {
