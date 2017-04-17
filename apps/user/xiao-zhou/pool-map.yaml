@@ -1,3 +1,4 @@
 apps:
  deployment-reporter-test:
   - prd/prd-samdev
+  - prd/prd-sam
