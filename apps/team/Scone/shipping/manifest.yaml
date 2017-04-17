@@ -14,10 +14,10 @@ system:
       - containerPort: 8088
       - containerPort: 15377
       livenessProbe:
+        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15377
-          initialDelaySeconds: 15
  
   loadbalancers:
   - lbname: scone-basic-rest-lb
