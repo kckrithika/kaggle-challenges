@@ -39,6 +39,7 @@ system:
       args:
         - --redisPort=12028
         - --cluster.name=sp-c2
+        - --logDir=/home/caas/logs
       resources:
         limits: { memory: "200M" }
         requests: { memory: "200M" }
