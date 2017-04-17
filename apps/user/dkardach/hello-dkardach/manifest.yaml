@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: dkardach-hello-world
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/hello-world:20171210
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/hello-world:20170412
       ports:
       - containerPort: 9090
       livenessProbe:
