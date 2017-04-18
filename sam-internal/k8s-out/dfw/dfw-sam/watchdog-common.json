@@ -30,7 +30,8 @@
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
-                     "-recipient=sam@salesforce.com"
+                     "-recipient=sam@salesforce.com",
+                     "-snoozedAlarms=bridgeChecker=2017/04/25"
                   ],
                   "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
                   "name": "watchdog",
