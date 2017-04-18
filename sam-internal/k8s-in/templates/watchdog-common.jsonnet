@@ -21,6 +21,7 @@ local configs = import "config.jsonnet",
                             "-smtpServer="+configs.smtpServer,
                             "-sender="+configs.watchdog_emailsender,
                             "-recipient="+configs.watchdog_emailrec,
+                            "-snoozedAlarms=bridgeChecker=2017/04/25",
                         ],
                         name: "watchdog",
                         resources: {
