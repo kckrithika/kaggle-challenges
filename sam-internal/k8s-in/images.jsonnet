@@ -47,7 +47,7 @@
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
             sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
             sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
-            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
+            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000797-fb3c2ca6",
             permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
             slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
             slb_ipvs:        configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
