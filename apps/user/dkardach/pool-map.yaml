@@ -1,3 +1,5 @@
 apps:
  hello-dkardach:
   - prd/prd-sam
+ aqueduct-test-deploy:
+  - prd/prd-sam
