@@ -42,7 +42,8 @@
                         "port": 9099
                      },
                      "initialDelaySeconds": 2,
-                     "periodSeconds": 10
+                     "periodSeconds": 10,
+                     "timeoutSeconds": 10
                   },
                   "name": "samcontrol-deployer",
                   "volumeMounts": [

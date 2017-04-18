@@ -42,7 +42,8 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                              "port": 9099
                            },
                            "initialDelaySeconds": 2,
-                           "periodSeconds": 10
+                           "periodSeconds": 10,
+                           "timeoutSeconds": 10
                         }
                     }
                 ],
