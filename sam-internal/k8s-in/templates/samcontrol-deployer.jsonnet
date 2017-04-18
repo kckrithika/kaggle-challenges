@@ -10,7 +10,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                     {
                         name: "samcontrol-deployer",
                         image: configs.samcontrol_deployer,
-                        command: [
+                        command: if configs.estate == "prd-sdc" then [
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
@@ -19,7 +19,20 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--observeMode="+configs.samcontrol_deployer_ObserveMode,
                            "--delay=30s",
-                         ],
+                           "--emailNotify="+configs.samcontrol_deployer_EmailNotify,
+                           "--smtpServer="+configs.smtpServer,
+                           "--sender="+configs.watchdog_emailsender,
+                           "--recipient="+configs.watchdog_emailrec,
+                         ] else [
+                            "/sam/samcontrol-deployer",
+                            "--funnelEndpoint="+configs.funnelVIP,
+                            "--logtostderr=true",
+                            "--disableSecurityCheck=true",
+                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--k8sapiserver="+configs.k8sapiserver,
+                            "--observeMode="+configs.samcontrol_deployer_ObserveMode,
+                            "--delay=30s",
+                          ],
                          "volumeMounts": [
                            {
                               "mountPath": "/data/certs",
