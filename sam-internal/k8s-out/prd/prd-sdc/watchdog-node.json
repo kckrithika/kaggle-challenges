@@ -35,7 +35,7 @@
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
-                     "-recipient=network-software@salesforce.com"
+                     "-recipient=sdn@salesforce.com"
                   ],
                   "env": [
                      {
