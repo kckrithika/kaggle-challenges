@@ -4,6 +4,7 @@ system:
   functions:
   - name: samtestfn
     count: 1
+    progressDeadlineSeconds: 120
     containers:
     - name: samtestapp
       image: tnrp/sam/hypersam:sam-0000701-487f2675
