@@ -7,7 +7,11 @@ system:
     hostnetwork: true
     containers:
     - name: gatewayconfig
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-19-4
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-19-5
+      args:
+        - start
+        - --settings.path=-.-.prd.-.gatewayconfig
+        - --superpod.name=-
       ports:
       - containerPort: 9133
       - containerPort: 15372
