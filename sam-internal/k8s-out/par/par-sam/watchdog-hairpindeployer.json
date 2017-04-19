@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-deployer"
+         "name": "watchdog-hairpindeployer"
       },
-      "name": "watchdog-deployer"
+      "name": "watchdog-hairpindeployer"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "watchdog-deployer"
+            "name": "watchdog-hairpindeployer"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "watchdog-deployer"
+               "name": "watchdog-hairpindeployer"
             }
          },
          "spec": {
@@ -26,24 +26,24 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=DEPLOYER",
+                     "-role=HAIRPINDEPLOYER",
                      "-watchdogFrequency=120s",
                      "-alertThreshold=300s",
                      "-emailFrequency=24h",
                      "-timeout=2s",
-                     "-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
-                     "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
-                     "-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
+                     "-funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
+                     "-rcImtEndpoint=https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
+                     "-smtpServer=ops0-mta2-1-par.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-deployer-imageName=ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                     "-deployer-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
-                     "-deployer-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
-                     "-deployer-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
+                     "-deployer-imageName=ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
+                     "-deployer-funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
+                     "-deployer-rcImtEndpoint=https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
+                     "-deployer-smtpServer=ops0-mta2-1-par.ops.sfdc.net:25",
                      "-deployer-sender=sam@salesforce.com",
                      "-deployer-recipient=sam@salesforce.com"
                   ],
@@ -53,8 +53,8 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                  "name": "watchdog-deployer",
+                  "image": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
+                  "name": "watchdog-hairpindeployer",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
@@ -69,7 +69,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "frf-sam"
+               "pool": "par-sam"
             },
             "volumes": [
                {

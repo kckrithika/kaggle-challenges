@@ -3,43 +3,44 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "samcontrol"
+         "name": "watchdog-pod"
       },
-      "name": "samcontrol"
+      "name": "watchdog-pod"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "samcontrol"
+            "name": "watchdog-pod"
          }
       },
       "template": {
          "metadata": {
             "labels": {
-               "apptype": "control",
-               "name": "samcontrol"
+               "apptype": "monitoring",
+               "name": "watchdog-pod"
             }
          },
          "spec": {
             "containers": [
                {
                   "command": [
-                     "/sam/sam-controller",
-                     "--debug=true",
-                     "--dockerregistry=ops0-artifactrepo2-0-prd.data.sfdc.net",
-                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--v=3",
-                     "--logtostderr=true",
-                     "--k8sapiserver=",
-                     "--tlsEnabled=true",
-                     "--caFile=/data/certs/ca.crt",
-                     "--keyFile=/data/certs/hostcert.key",
-                     "--certFile=/data/certs/hostcert.crt",
-                     "--checkImageExistsFlag=false",
-                     "--httpsDisableCertsCheck=false",
-                     "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-                     "--insecureRegistries="
+                     "/sam/watchdog",
+                     "-role=POD",
+                     "-watchdogFrequency=60s",
+                     "-alertThreshold=300s",
+                     "-emailFrequency=24h",
+                     "-timeout=2s",
+                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sam@salesforce.com",
+                     "-tlsEnabled=true",
+                     "-caFile=/data/certs/ca.crt",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-snoozedAlarms=podUpTimeChecker=2017/04/25"
                   ],
                   "env": [
                      {
@@ -47,8 +48,8 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
-                  "name": "sam-controller",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000803-3a897099",
+                  "name": "watchdog-pod",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
@@ -63,7 +64,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-sdc"
+               "pool": "prd-samdev"
             },
             "volumes": [
                {

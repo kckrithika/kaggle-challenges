@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-deployer"
+         "name": "watchdog-pod"
       },
-      "name": "watchdog-deployer"
+      "name": "watchdog-pod"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "watchdog-deployer"
+            "name": "watchdog-pod"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "watchdog-deployer"
+               "name": "watchdog-pod"
             }
          },
          "spec": {
@@ -26,8 +26,8 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=DEPLOYER",
-                     "-watchdogFrequency=120s",
+                     "-role=POD",
+                     "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
                      "-emailFrequency=24h",
                      "-timeout=2s",
@@ -39,13 +39,7 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt",
-                     "-deployer-imageName=ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                     "-deployer-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
-                     "-deployer-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
-                     "-deployer-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
-                     "-deployer-sender=sam@salesforce.com",
-                     "-deployer-recipient=sam@salesforce.com"
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
                   "env": [
                      {
@@ -54,7 +48,7 @@
                      }
                   ],
                   "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                  "name": "watchdog-deployer",
+                  "name": "watchdog-pod",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",

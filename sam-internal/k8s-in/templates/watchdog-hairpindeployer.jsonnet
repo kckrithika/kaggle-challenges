@@ -9,11 +9,11 @@ local configs = import "config.jsonnet",
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "watchdog-deployer",
+                        name: "watchdog-hairpindeployer",
                         image: configs.watchdog,
                         command:[
                             "/sam/watchdog",
-                            "-role=DEPLOYER",
+                            "-role=HAIRPINDEPLOYER",
                             "-watchdogFrequency=120s",
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
@@ -78,22 +78,22 @@ local configs = import "config.jsonnet",
             },
             metadata: {
                 labels: {
-                    name: "watchdog-deployer",
+                    name: "watchdog-hairpindeployer",
                     apptype: "monitoring"
                 }
             }
         },
         selector: {
             matchLabels: {
-                name: "watchdog-deployer"
+                name: "watchdog-hairpindeployer"
             }
         }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-deployer"
+            name: "watchdog-hairpindeployer"
         },
-        name: "watchdog-deployer"
+        name: "watchdog-hairpindeployer"
     }
 }

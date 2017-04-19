@@ -1,6 +1,6 @@
-local configs = import "config.jsonnet";
+{
+local configs = import "config.jsonnet",
 
-if configs.estate == "prd-sam" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -29,8 +29,38 @@ if configs.estate == "prd-sam" then {
                             "-certFile="+configs.certFile,
                         ]
                         + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [ "-snoozedAlarms=podUpTimeChecker=2017/04/25" ] else  [],
+                        volumeMounts: [
+                            {
+                                "mountPath": "/data/certs",
+                                "name": "certs"
+                            },
+                            {
+                                "mountPath": "/config",
+                                "name": "config"
+                            }
+                            ],
+                        env: [
+                             {
+                                "name": "KUBECONFIG",
+                                "value": configs.configPath
+                             }
+                        ]
                     }
                 ],
+                volumes: [
+                    {
+                        hostPath: {
+                                    path: "/data/certs"
+                                  },
+                                    name: "certs"
+                            },
+                    {
+                        hostPath: {
+                                    path: "/etc/kubernetes"
+                                   },
+                                    name: "config"
+                    }
+                    ],
                 nodeSelector: {
                     pool: configs.estate
                 } +
@@ -61,4 +91,4 @@ if configs.estate == "prd-sam" then {
         },
         name: "watchdog-pod"
     }
-} else "SKIP"
+}
