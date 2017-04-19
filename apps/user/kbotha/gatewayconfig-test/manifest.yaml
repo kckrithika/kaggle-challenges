@@ -7,14 +7,14 @@ system:
     hostnetwork: true
     containers:
     - name: gatewayconfig
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-19-3
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-19-4
       ports:
       - containerPort: 9133
       - containerPort: 15372
       livenessProbe:
+        initialDelaySeconds: 20
+        periodSeconds: 15
         httpGet:
           path: /api
           port: 9133
-          initialDelaySeconds: 20
-          periodSeconds: 15
 
