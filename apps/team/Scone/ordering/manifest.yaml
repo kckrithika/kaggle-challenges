@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: scone-ordering
     count: 1
     containers:
     - name: scone-ordering
@@ -19,8 +19,8 @@ system:
           port: 15372
  
   loadbalancers:
-  - lbname: scone-basic-rest-lb
-    function: default
+  - lbname: scone-ordering-lb
+    function: scone-ordering
     ports:
       - port: 8080
         targetport: 8080
