@@ -16,13 +16,15 @@ system:
           port: 5001
         initialDelaySeconds: 120
         timeoutSeconds: 120
+    strategy:
+      type: recreate
 
 
-#  loadbalancers:
-#  - lbname: squeduct-test-deploy-lb
-#    function: default
-#    ports:
-#      - port: 5000
-#        targetport: 5000
-#      - port: 5001
-#        targetport: 5001
+  loadbalancers:
+  - lbname: squeduct-test-deploy-lb
+    function: default
+    ports:
+      - port: 5000
+        targetport: 5000
+      - port: 9090
+        targetport: 5001
