@@ -15,4 +15,6 @@ system:
         httpGet:
           path: /api
           port: 9133
+          initialDelaySeconds: 20
+          periodSeconds: 15
 
