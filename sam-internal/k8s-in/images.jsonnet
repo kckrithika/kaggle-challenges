@@ -9,66 +9,88 @@
 
     local configs = import "config.jsonnet",
 
+    testimages: {
+        testbeddefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
+        sandboxdefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
+        # Please avoid using this for overrides as much as possible.  The only hypersam below here should be for permissionInit which is special.
+        # Overrides should live in the per-estate sections below, and get removed when the new default rolls out.  Stuff here is more long term.
+        k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
+        permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
+        sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
+        sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
+    },
+    prodimages: {
+        default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
+        permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
+    },
+
     estates: {
         "prd-sam": {
             # For now we need to keep the root level folder 'docker-release-candidate' because it is needed for promotion
             # even though that is not a required root level directory.  For prod clusters leave this off (it would be
             # different in prod anyways)
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
-            k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
+            default: $.testimages.sandboxdefault, 
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
+	    sdn_bird: $.testimages.sdn_bird,
+	    sdn_peering_agent: $.testimages.sdn_image,
+	    sdn_watchdog: $.testimages.sdn_image,
+
+            # Temporary overrides
             sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170418_120006.8091190.dirty.xiaozhou-ltm",
-            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-            sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
-            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
-            sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
-            k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
+            default: $.testimages.testbeddefault,
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
+            sdn_bird: $.testimages.sdn_bird,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
+
+            # Temporary overrides
             sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170418_120006.8091190.dirty.xiaozhou-ltm",
-            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
-            sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
-            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
-            sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
         },
         "prd-samtest": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
-            k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
-            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
+            default: $.testimages.testbeddefault,
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
-            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
-            sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
+
+            # Temporary overrides
+            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-sdc": {
-            # Switch this to use artifactrepo as soon as we move to centos 7
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000733-7c1115e1",
-            k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
-            sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
-            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
-            sdn_watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
+            sdn_bird: $.testimages.sdn_bird,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
+            slb_iface_agent: $.testimages.sdn_image,
+            slb_ipvs: $.testimages.sdn_image,
+            
+            # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000797-fb3c2ca6",
-            permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-1ebeb0ac-657",
-            slb_iface_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
-            slb_ipvs:        configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
         },
         "dfw-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
-            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
+            default: $.prodimages.default,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "phx-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
-            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
+            default: $.prodimages.default,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "frf-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
-            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
+            default: $.prodimages.default,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "par-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
-            permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
+            default: $.prodimages.default,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
         }
     },
 
