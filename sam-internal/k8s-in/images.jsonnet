@@ -36,9 +36,9 @@
             default: $.testimages.sandboxdefault, 
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
-	    sdn_bird: $.testimages.sdn_bird,
-	    sdn_peering_agent: $.testimages.sdn_image,
-	    sdn_watchdog: $.testimages.sdn_image,
+            sdn_bird: $.testimages.sdn_bird,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
             sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170418_120006.8091190.dirty.xiaozhou-ltm",
