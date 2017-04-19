@@ -9,16 +9,20 @@
 
     local configs = import "config.jsonnet",
 
+    # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
+    # and get removed each time we roll out a default newer than the override.
     testimages: {
+        # SAM releases should start with the test beds (everything in PRD except the sandbox)
         testbeddefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
+        # After bits have been stable on the other test beds, roll them to the sandbox
         sandboxdefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
-        # Please avoid using this for overrides as much as possible.  The only hypersam below here should be for permissionInit which is special.
-        # Overrides should live in the per-estate sections below, and get removed when the new default rolls out.  Stuff here is more long term.
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
     },
+
+    # Shared images for all prod beds.  This should be a previously tested image from the sandbox above.
     prodimages: {
         default: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000717-5041629c",
         permissionInitContainer: configs.registry + "/" + "tnrp/sam/hypersam:sam-1ebeb0ac-657",
