@@ -8,10 +8,8 @@ system:
     - name: aqueduct-test-deploy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/aqueduct-test-deploy:20170418-2
       ports:
-      - name: public
-        containerPort: 5000
-      - name: admin
-        containerPort: 5001
+      - containerPort: 5000
+      - containerPort: 5001
       livenessProbe:
         httpGet:
           path: /healthcheck
@@ -20,11 +18,11 @@ system:
         timeoutSeconds: 120
 
 
-  loadbalancers:
-  - lbname: squeduct-test-deploy-lb
-    function: default
-    ports:
-      - port: 5000
-        targetport: 5000
-      - port: 5001
-        targetport: 5001
+#  loadbalancers:
+#  - lbname: squeduct-test-deploy-lb
+#    function: default
+#    ports:
+#      - port: 5000
+#        targetport: 5000
+#      - port: 5001
+#        targetport: 5001
