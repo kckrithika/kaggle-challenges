@@ -13,9 +13,9 @@
     # and get removed each time we roll out a default newer than the override.
     testimages: {
         # SAM releases should start with the test beds (everything in PRD except the sandbox)
-        testbeddefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
+        testbeddefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000803-3a897099",
         # After bits have been stable on the other test beds, roll them to the sandbox
-        sandboxdefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000789-c9552b4c",
+        sandboxdefault: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000803-3a897099",
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",

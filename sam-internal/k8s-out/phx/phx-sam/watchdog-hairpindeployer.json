@@ -3,22 +3,22 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-deployer"
+         "name": "watchdog-hairpindeployer"
       },
-      "name": "watchdog-deployer"
+      "name": "watchdog-hairpindeployer"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "watchdog-deployer"
+            "name": "watchdog-hairpindeployer"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "watchdog-deployer"
+               "name": "watchdog-hairpindeployer"
             }
          },
          "spec": {
@@ -26,7 +26,7 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=DEPLOYER",
+                     "-role=HAIRPINDEPLOYER",
                      "-watchdogFrequency=120s",
                      "-alertThreshold=300s",
                      "-emailFrequency=24h",
@@ -54,7 +54,7 @@
                      }
                   ],
                   "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
-                  "name": "watchdog-deployer",
+                  "name": "watchdog-hairpindeployer",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
