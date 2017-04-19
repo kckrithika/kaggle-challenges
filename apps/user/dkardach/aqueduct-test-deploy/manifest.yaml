@@ -9,12 +9,12 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/aqueduct-test-deploy:20170418
       ports:
       - containerPort: 5000
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 5000
-        initialDelaySeconds: 120
-        timeoutSeconds: 120
+#      livenessProbe:
+#        httpGet:
+#          path: /
+#          port: 5000
+#        initialDelaySeconds: 120
+#        timeoutSeconds: 120
     strategy:
       type: Recreate
 
