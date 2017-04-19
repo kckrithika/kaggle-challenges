@@ -1,7 +1,7 @@
-Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName
-shared0-samdevcompute1-2-prd.eng.sfdc.net,10.253.233.18/29,10.251.156.0/27,c02-02
-shared0-samdevkubeapi2-1-prd.eng.sfdc.net,10.253.233.34/29,10.251.156.32/27,m35-02
-shared0-samdevkubeapi3-1-prd.eng.sfdc.net,10.253.233.42/29,10.251.156.64/27,m41-02
-shared0-samdevcompute2-1-prd.eng.sfdc.net,10.253.233.10/29,10.251.156.96/27,n31-02
-shared0-samdevcompute1-1-prd.eng.sfdc.net,10.253.233.2/29,10.251.156.128/27,n32-02
-shared0-samdevkubeapi1-1-prd.eng.sfdc.net,10.253.233.26/29,10.251.156.160/27,v34-02
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samdevcompute1-2-prd.eng.sfdc.net,10.253.233.18/29,10.251.156.0/27,c02-02,prd-samdev
+shared0-samdevkubeapi2-1-prd.eng.sfdc.net,10.253.233.34/29,10.251.156.32/27,m35-02,prd-samdev
+shared0-samdevkubeapi3-1-prd.eng.sfdc.net,10.253.233.42/29,10.251.156.64/27,m41-02,prd-samdev
+shared0-samdevcompute2-1-prd.eng.sfdc.net,10.253.233.10/29,10.251.156.96/27,n31-02,prd-samdev
+shared0-samdevcompute1-1-prd.eng.sfdc.net,10.253.233.2/29,10.251.156.128/27,n32-02,prd-samdev
+shared0-samdevkubeapi1-1-prd.eng.sfdc.net,10.253.233.26/29,10.251.156.160/27,v34-02,prd-samdev
