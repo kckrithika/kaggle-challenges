@@ -1,17 +1,13 @@
 apiVersion: v1
 
 system:
-  notifications:
-    email:
-      - cbatra@salesforce.com
-      - xiao.zhou@salesforce.com
   functions:
-  - name: dr-fn
-    count: 3
+  - name: noimage-fn
+    count: 1
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/samtestapp:withuser
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/samtestapp:testnoimage
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -25,7 +21,7 @@ system:
         value: myenv
   loadbalancers:
   - lbname: samhellolb
-    function: dr-fn
+    function: noimage-fn
     ports:
-      - port: 9088
+      - port: 9087
         targetport: 9090

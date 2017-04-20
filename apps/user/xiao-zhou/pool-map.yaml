@@ -2,3 +2,6 @@ apps:
  deployment-reporter-test:
   - prd/prd-samdev
   - prd/prd-sam
+ no-image-test:
+  - prd/prd-samdev
+  - prd/prd-sam
