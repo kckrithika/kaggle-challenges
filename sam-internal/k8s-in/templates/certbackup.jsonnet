@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.estate == "prd-samdev" then {
+if configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
