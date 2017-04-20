@@ -24,6 +24,8 @@ apps:
     - prd/prd-sam_report_collector
   observation-service-watchdog:
     - prd/prd-sam_report_collector
+  candidate-service:
+    - prd/prd-sam_report_collector
   expreportcollectorha:
     - prd/prd-sam_report_collector
   exprepcollavailwd:
