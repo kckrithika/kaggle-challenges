@@ -1,0 +1,82 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "samcontrol-deployer"
+      },
+      "name": "samcontrol-deployer"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "samcontrol-deployer"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/samcontrol-deployer",
+                     "--funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
+                     "--logtostderr=true",
+                     "--disableSecurityCheck=true",
+                     "--tnrpEndpoint=https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--k8sapiserver=",
+                     "--observeMode=false",
+                     "--delay=30s"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000717-5041629c",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/",
+                        "port": 9099
+                     },
+                     "initialDelaySeconds": 2,
+                     "periodSeconds": 10,
+                     "timeoutSeconds": 10
+                  },
+                  "name": "samcontrol-deployer",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "dfw-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}

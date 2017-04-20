@@ -1,5 +1,6 @@
-local configs = import "config.jsonnet";
-if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "par" then {
+{
+    local configs = import "config.jsonnet",
+
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -99,4 +100,4 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "p
         },
         name: "samcontrol-deployer"
     }
-} else "SKIP"
+}
