@@ -1,0 +1,24 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: gatewayconfig
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:2017-04-20a
+      args:
+        - start
+        - --settings.path=-.-.prd.-.gatewayconfig
+        - --superpod.name=-
+      ports:
+      - containerPort: 9133
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 20
+        periodSeconds: 15
+        httpGet:
+          path: /api
+          port: 9133
+
