@@ -41,7 +41,6 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
-            sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170418_120006.8091190.dirty.xiaozhou-ltm",
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samdev": {
@@ -53,7 +52,6 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
-            sam_deployment_reporter: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20170418_120006.8091190.dirty.xiaozhou-ltm",
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samtest": {
