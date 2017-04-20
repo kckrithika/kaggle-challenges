@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 
 if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
     kind: "Deployment",
@@ -18,13 +19,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                             "-emailFrequency=12h",
-                            "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
-                            "-sender="+configs.watchdog_emailsender,
-                            "-recipient="+configs.watchdog_emailrec,
-                        ],
+                        ]
+                        + wdconfig.shared_args
                     }
                 ],
                 nodeSelector: {

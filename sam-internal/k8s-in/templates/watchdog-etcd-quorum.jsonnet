@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 
 if configs.kingdom == "prd" then {
     kind: "Deployment",
@@ -17,32 +18,16 @@ if configs.kingdom == "prd" then {
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                             "-emailFrequency=6h",
-                            "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
-                            "-sender="+configs.watchdog_emailsender,
-                            "-recipient="+configs.watchdog_emailrec,
-                            "-tlsEnabled="+configs.tlsEnabled,
-                            "-caFile="+configs.caFile,
-                            "-keyFile="+configs.keyFile,
-                            "-certFile="+configs.certFile,
-                        ],
+                        ]
+                        + wdconfig.shared_args
+                        + wdconfig.shared_args_certs,
                        volumeMounts: [
-                          {
-                             "mountPath": "/data/certs",
-                             "name": "certs"
-                          },
+                          wdconfig.cert_volume_mount,
                        ],
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                                path: "/data/certs"
-                                },
-                                name: "certs"
-                        },
+                    wdconfig.cert_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

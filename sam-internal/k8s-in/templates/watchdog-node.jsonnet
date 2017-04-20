@@ -1,6 +1,7 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 
+{
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -17,23 +18,12 @@ local configs = import "config.jsonnet",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=150s",
                             "-emailFrequency=24h",
-                            "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
-                            "-sender="+configs.watchdog_emailsender,
-                            "-recipient="+configs.watchdog_emailrec,
                         ]
+                        + wdconfig.shared_args
                         + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then [ "-snoozedAlarms=nodeChecker=2017/04/25" ] else  [],
                        volumeMounts: [
-                          {
-                             "mountPath": "/data/certs",
-                             "name": "certs"
-                          },
-                          {
-                             "mountPath": "/config",
-                             "name": "config"
-                          }
+                          wdconfig.cert_volume_mount,
+                          wdconfig.kube_config_volume_mount,
                        ],
                        env: [
                           {
@@ -44,18 +34,8 @@ local configs = import "config.jsonnet",
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                                path: "/data/certs"
-                                },
-                                name: "certs"
-                        },
-                        {
-                        hostPath: {
-                                path: "/etc/kubernetes"
-                                },
-                                name: "config"
-                        }
+                    wdconfig.cert_volume,
+                    wdconfig.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

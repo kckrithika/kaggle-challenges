@@ -1,6 +1,7 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 
+{
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -17,16 +18,10 @@ local configs = import "config.jsonnet",
                             "-watchdogFrequency=120s",
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
-                            "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
-                            "-sender="+configs.watchdog_emailsender,
-                            "-recipient="+configs.watchdog_emailrec,
-                            "-tlsEnabled="+configs.tlsEnabled,
-                            "-caFile="+configs.caFile,
-                            "-keyFile="+configs.keyFile,
-                            "-certFile="+configs.certFile,
+                        ]
+                        + wdconfig.shared_args
+                        + wdconfig.shared_args_certs
+                        + [
                             "-deployer-imageName="+configs.watchdog,
                             "-deployer-funnelEndpoint="+configs.funnelVIP,
                             "-deployer-rcImtEndpoint="+configs.rcImtEndpoint,
@@ -35,14 +30,8 @@ local configs = import "config.jsonnet",
                             "-deployer-recipient="+configs.watchdog_emailrec,
                         ],
                        volumeMounts: [
-                          {
-                             "mountPath": "/data/certs",
-                             "name": "certs"
-                          },
-                          {
-                             "mountPath": "/config",
-                             "name": "config"
-                          }
+                          wdconfig.cert_volume_mount,
+                          wdconfig.kube_config_volume_mount,
                        ],
                        env: [
                           {
@@ -53,18 +42,8 @@ local configs = import "config.jsonnet",
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                                path: "/data/certs"
-                                },
-                                name: "certs"
-                        },
-                        {
-                        hostPath: {
-                                path: "/etc/kubernetes"
-                                },
-                                name: "config"
-                        }
+                    wdconfig.cert_volume,
+                    wdconfig.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate
