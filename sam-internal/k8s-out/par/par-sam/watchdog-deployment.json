@@ -39,8 +39,7 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt",
-                     "-snoozedAlarms=deploymentChecker=2017/04/20"
+                     "-certFile=/data/certs/hostcert.crt"
                   ],
                   "env": [
                      {

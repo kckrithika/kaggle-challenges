@@ -27,8 +27,8 @@ local configs = import "config.jsonnet",
                             "-caFile="+configs.caFile,
                             "-keyFile="+configs.keyFile,
                             "-certFile="+configs.certFile,
-                            "-snoozedAlarms=deploymentChecker=2017/04/20",
-                        ],
+                        ]
+                        + if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ] else  [],
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",
