@@ -37,7 +37,7 @@
 
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
     # and get removed each time we roll out a default newer than the override.
-    prdimages: {
+    testimages: {
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
@@ -55,46 +55,46 @@
             # even though that is not a required root level directory.  For prod clusters leave this off (it would be
             # different in prod anyways)
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam, 
-            k8sproxy: $.prdimages.k8sproxy,
-            permissionInitContainer: $.prdimages.permissionInitContainer,
-            sdn_bird: $.prdimages.sdn_bird,
-            sdn_peering_agent: $.prdimages.sdn_image,
-            sdn_watchdog: $.prdimages.sdn_image,
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
+            sdn_bird: $.testimages.sdn_bird,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam, 
-            k8sproxy: $.prdimages.k8sproxy,
-            permissionInitContainer: $.prdimages.permissionInitContainer,
-            sdn_bird: $.prdimages.sdn_bird,
-            sdn_peering_agent: $.prdimages.sdn_image,
-            sdn_watchdog: $.prdimages.sdn_image,
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
+            sdn_bird: $.testimages.sdn_bird,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
-            k8sproxy: $.prdimages.k8sproxy,
-            permissionInitContainer: $.prdimages.permissionInitContainer,
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
-            sdn_peering_agent: $.prdimages.sdn_image,
-            sdn_watchdog: $.prdimages.sdn_image,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,  
-            k8sproxy: $.prdimages.k8sproxy,
-            permissionInitContainer: $.prdimages.permissionInitContainer,
-            sdn_bird: $.prdimages.sdn_bird,
-            sdn_peering_agent: $.prdimages.sdn_image,
-            sdn_watchdog: $.prdimages.sdn_image,
-            slb_iface_agent: $.prdimages.sdn_image,
-            slb_ipvs: $.prdimages.sdn_image,
+            k8sproxy: $.testimages.k8sproxy,
+            permissionInitContainer: $.testimages.permissionInitContainer,
+            sdn_bird: $.testimages.sdn_bird,
+            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_watchdog: $.testimages.sdn_image,
+            slb_iface_agent: $.testimages.sdn_image,
+            slb_ipvs: $.testimages.sdn_image,
             
             # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000797-fb3c2ca6",
