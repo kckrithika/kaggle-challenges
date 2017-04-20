@@ -60,7 +60,7 @@ if configs.kingdom == "prd" then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        volumeMounts: [
+                        volumeMounts: if configs.estate == "prd-sdc" then [
                             {
                                 name: "conf",
                                 mountPath: "/usr/local/etc",
@@ -71,12 +71,29 @@ if configs.kingdom == "prd" then {
                             },
                             {
                                 name: "certs",
-                                "mountPath": "/data/certs",
+                                mountPath: "/data/certs",
+                            },
+                            {
+                                name: "secrets",
+                                mountPath: "/data/secrets",
+                            },
+                        ] else [
+                            {
+                                name: "conf",
+                                mountPath: "/usr/local/etc",
+                            },
+                            {
+                                name: "socket",
+                                mountPath: "/usr/local/var/run",
+                            },
+                            {
+                                name: "certs",
+                                mountPath: "/data/certs",
                             },
                         ],
                     },
                 ],
-                volumes: [
+                volumes: if configs.estate == "prd-sdc" then [
                     {
                         name: "conf",
                         emptyDir: {},
@@ -87,8 +104,29 @@ if configs.kingdom == "prd" then {
                     },
                     {
                         name: "certs",
-                        "hostPath": {
-                            "path": "/data/certs"
+                        hostPath: {
+                            path: "/data/certs",
+                        }
+                    },
+                    {
+                        name: "secrets",
+                        secret: {
+                            secretName: "sdn",
+                        },
+                    },
+                ] else [
+                    {
+                        name: "conf",
+                        emptyDir: {},
+                    },
+                    {
+                        name: "socket",
+                        emptyDir: {},
+                    },
+                    {
+                        name: "certs",
+                        hostPath: {
+                            path: "/data/certs",
                         }
                     },
                 ],
