@@ -9,7 +9,7 @@ system:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: tnrp/gater/gater:1.1.0-0000063-13382899
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170420A
       args:
         - start
         - --logging.dir=/log
