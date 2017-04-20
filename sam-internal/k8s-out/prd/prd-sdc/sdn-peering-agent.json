@@ -84,6 +84,10 @@
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/data/secrets",
+                        "name": "secrets"
                      }
                   ]
                }
@@ -103,6 +107,12 @@
                      "path": "/data/certs"
                   },
                   "name": "certs"
+               },
+               {
+                  "name": "secrets",
+                  "secret": {
+                     "secretName": "sdn"
+                  }
                }
             ]
          }
