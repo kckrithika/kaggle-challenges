@@ -42,6 +42,7 @@
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000010-c19100be",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000042-d1acc38d",
+        slb_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000045-df50ed19",
     },
 
     # Shared images for all prod beds.  This should be a previously tested image from the sandbox above.
@@ -93,8 +94,8 @@
             sdn_bird: $.testimages.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image,
             sdn_watchdog: $.testimages.sdn_image,
-            slb_iface_agent: $.testimages.sdn_image,
-            slb_ipvs: $.testimages.sdn_image,
+            slb_iface_agent: $.testimages.slb_image,
+            slb_ipvs: $.testimages.slb_image,
             
             # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000797-fb3c2ca6",
