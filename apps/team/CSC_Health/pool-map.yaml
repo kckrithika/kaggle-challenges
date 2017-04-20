@@ -28,3 +28,9 @@ apps:
     - prd/prd-sam_report_collector
   exprepcollavailwd:
     - prd/prd-sam_report_collector
+  cname-repcollavailwd:
+    - prd/prd-sam_report_collector
+    - dfw/dfw-sam_report_collector
+    - phx/phx-sam_report_collector
+    - frf/frf-sam_report_collector
+    - par/par-sam_report_collector
