@@ -1,6 +1,10 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - cbatra@salesforce.com
+      - xiao.zhou@salesforce.com
   functions:
   - name: default
     count: 5
