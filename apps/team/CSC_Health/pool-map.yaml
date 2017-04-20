@@ -27,9 +27,7 @@ apps:
   candidate-service:
     - prd/prd-sam_report_collector
   expreportcollectorha:
-    - prd/prd-sam_report_collector
   exprepcollavailwd:
-    - prd/prd-sam_report_collector
   cname-repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
