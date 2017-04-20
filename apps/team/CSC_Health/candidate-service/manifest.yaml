@@ -1,0 +1,54 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: candidate-service
+    count: 1
+    containers:
+    - name: candidate-service
+      image: tnrp/csc-health/candidate-service:candidate-service-0000003-c4d0b5ba
+      ports:
+      - containerPort: 8888
+      resources:
+        limits: { cpu: "10", memory: "5Gi" }
+        requests: { cpu: "10", memory: "5Gi" }
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      env:
+      - name: CHS_AJNA_ENABLED
+        value: true
+      - name: CHS_REPORTCOLLECTOR_ENDPOINT
+        value: https://ops0-health1-1-prd.eng.sfdc.net:18444
+      - name: CHS_GROK_ENDPOINT
+        value: https://ops0-grok1-0-prd.data.sfdc.net
+      - name: CHS_GROK_CERTPATH
+        value: /var/secrets/grok-client.crt.pem
+      - name: CHS_GROK_KEYPATH
+        value: /var/secrets/grok-client.key
+      - name: CHS_HEALTH_PORT
+        value: 8888
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+        export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export CHS_AJNA_DATACENTER=${KINGDOM} ;
+        export CHS_AJNA_DEVICE=${FUNCTION_INSTANCE_NAME} ;
+        /candidateservice
+      "]
+    volumes:
+      - name: secretvol
+        secret:
+          secretName: csc-health-secret
+
+  loadbalancers:
+  - lbname: candidateservicelb
+    function: candidate-service
+    ports:
+    - port: 80
+      targetport: 8888
