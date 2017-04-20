@@ -91,7 +91,7 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,  
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
-            sdn_bird: $.testimages.sdn_bird,
+            sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
             sdn_peering_agent: $.testimages.sdn_image,
             sdn_watchdog: $.testimages.sdn_image,
             slb_iface_agent: $.testimages.slb_image,
