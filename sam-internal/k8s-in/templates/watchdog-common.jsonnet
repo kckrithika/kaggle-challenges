@@ -1,6 +1,7 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -15,12 +16,9 @@ local configs = import "config.jsonnet",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
                             "-emailFrequency=24h",
-                            "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
-                            "-sender="+configs.watchdog_emailsender,
-                            "-recipient="+configs.watchdog_emailrec,
+                        ]
+                        + wdconfig.shared_args
+                        + [
                             "-snoozedAlarms=bridgeChecker=2017/04/25",
                         ],
                         name: "watchdog",

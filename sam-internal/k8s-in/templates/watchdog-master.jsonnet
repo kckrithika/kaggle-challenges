@@ -1,6 +1,7 @@
-{
-local configs = import "config.jsonnet",
+local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -15,23 +16,12 @@ local configs = import "config.jsonnet",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
                             "-emailFrequency=12h",
-                            "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
-                            "-sender="+configs.watchdog_emailsender,
-                            "-recipient="+configs.watchdog_emailrec,
-                            "-tlsEnabled="+configs.tlsEnabled,
-                            "-caFile="+configs.caFile,
-                            "-keyFile="+configs.keyFile,
-                            "-certFile="+configs.certFile,
                         ]
+                        + wdconfig.shared_args
+                        + wdconfig.shared_args_certs
                         + if configs.estate == "prd-samtest" then [ "-snoozedAlarms=kubeApiChecker=2017/04/25" ] else  [],
                     "volumeMounts": [
-                        {
-                            "mountPath": "/data/certs",
-                            "name": "certs"
-                        }
+                        wdconfig.cert_volume_mount,
                     ],
                         name: "watchdog",
                         resources: {
@@ -47,12 +37,7 @@ local configs = import "config.jsonnet",
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                            path: "/data/certs"
-                            },
-                            name: "certs"
-                            }
+                    wdconfig.cert_volume,
                 ],
                 nodeSelector: {
                     master: "true",

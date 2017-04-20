@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/bin/bash 
+
+# Stop execution on first error
+set -e
 
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh

@@ -1,4 +1,6 @@
 local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
+
 if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
