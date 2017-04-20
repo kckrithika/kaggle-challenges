@@ -1,0 +1,30 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: cname-repcollavailwd
+    count: 1
+    containers:
+    - name: cname-repcollavailwd
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.2.0-0000056-3dbf7901
+      resources:
+        requests: { cpu: "0.5", memory: "200M" }
+      env:
+      - name: NODE_TLS_REJECT_UNAUTHORIZED
+        value: 0
+      - name: REPORT_COLLECTOR_PROVIDER_PORT
+        value: 18443
+      - name: REPORT_COLLECTOR_CONSUMER_PORT
+        value: 18444
+      - name: REPORT_COLLECTOR_PROTOCOL
+        value: https
+      - name: DEBUG_ENABLED
+        value: true
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+      export REPORT_COLLECTOR_HOST=reportcollector-${KINGDOM}.data.sfdc.net ;
+      export DEVICE=${REPORT_COLLECTOR_HOST} ;
+      export DATACENTER=${KINGDOM} ;
+      node --harmony ${APP_DIR}/lib/watchdog.js
+      "]
