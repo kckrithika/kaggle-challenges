@@ -1,6 +1,9 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - thargrove@salesforce.com
   functions:
   - name: tnrpwd
     count: 1
