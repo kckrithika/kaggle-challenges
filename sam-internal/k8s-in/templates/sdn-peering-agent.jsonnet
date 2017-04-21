@@ -60,7 +60,7 @@ if configs.kingdom == "prd" then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        volumeMounts: if configs.estate == "prd-sdc" then [
+                        volumeMounts: [
                             {
                                 name: "conf",
                                 mountPath: "/usr/local/etc",
@@ -78,23 +78,10 @@ if configs.kingdom == "prd" then {
                                 mountPath: "/data/secrets",
                                 readOnly: true,
                             },
-                        ] else [
-                            {
-                                name: "conf",
-                                mountPath: "/usr/local/etc",
-                            },
-                            {
-                                name: "socket",
-                                mountPath: "/usr/local/var/run",
-                            },
-                            {
-                                name: "certs",
-                                mountPath: "/data/certs",
-                            },
                         ],
                     },
                 ],
-                volumes: if configs.estate == "prd-sdc" then [
+                volumes: [
                     {
                         name: "conf",
                         emptyDir: {},
@@ -115,21 +102,6 @@ if configs.kingdom == "prd" then {
                             defaultMode: 256,
                             secretName: "sdn",
                         },
-                    },
-                ] else [
-                    {
-                        name: "conf",
-                        emptyDir: {},
-                    },
-                    {
-                        name: "socket",
-                        emptyDir: {},
-                    },
-                    {
-                        name: "certs",
-                        hostPath: {
-                            path: "/data/certs",
-                        }
                     },
                 ],
             },

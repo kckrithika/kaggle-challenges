@@ -84,6 +84,11 @@
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/data/secrets",
+                        "name": "secrets",
+                        "readOnly": true
                      }
                   ]
                }
@@ -103,6 +108,13 @@
                      "path": "/data/certs"
                   },
                   "name": "certs"
+               },
+               {
+                  "name": "secrets",
+                  "secret": {
+                     "defaultMode": 256,
+                     "secretName": "sdn"
+                  }
                }
             ]
          }
