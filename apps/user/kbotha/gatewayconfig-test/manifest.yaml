@@ -1,6 +1,10 @@
 apiVersion: v1
  
 system:
+  notifications:
+    email:
+      - kbotha@salesforce.com
+      - gateway@salesforce.com
   functions:
   - name: default
     count: 1
