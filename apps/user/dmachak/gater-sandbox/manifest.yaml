@@ -9,18 +9,10 @@ system:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170420A
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170421B
       args:
-        - start
-        - --logging.dir=/log
-        - --java.io.tmpdir=/tmp
         - --server.port=9090
         - --management.port=15522
-        - --settings.path=blitz.-.prd.-.gater
-        - --superpod.name=-
-        - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
-        - --logging.perms.enforce=false
-        - --tnrp.use-vip=true
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
