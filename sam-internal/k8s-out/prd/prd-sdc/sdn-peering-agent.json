@@ -87,7 +87,8 @@
                      },
                      {
                         "mountPath": "/data/secrets",
-                        "name": "secrets"
+                        "name": "secrets",
+                        "readOnly": true
                      }
                   ]
                }
