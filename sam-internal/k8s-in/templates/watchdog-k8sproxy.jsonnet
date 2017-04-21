@@ -20,7 +20,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
                         ]
-                        + wdconfig.shared_args,
+                        + wdconfig.shared_args
+                        + if configs.estate == "prd-samtest" then [ "-snoozedAlarms=k8sProxyChecker=2017/05/01" ] else  [],
                     }
                 ],
                 nodeSelector: {
