@@ -76,6 +76,7 @@ if configs.kingdom == "prd" then {
                             {
                                 name: "secrets",
                                 mountPath: "/data/secrets",
+                                readOnly: true,
                             },
                         ] else [
                             {
@@ -111,6 +112,7 @@ if configs.kingdom == "prd" then {
                     {
                         name: "secrets",
                         secret: {
+                            defaultMode: 256,
                             secretName: "sdn",
                         },
                     },

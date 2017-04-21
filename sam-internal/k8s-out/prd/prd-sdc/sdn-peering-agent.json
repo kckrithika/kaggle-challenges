@@ -87,7 +87,8 @@
                      },
                      {
                         "mountPath": "/data/secrets",
-                        "name": "secrets"
+                        "name": "secrets",
+                        "readOnly": true
                      }
                   ]
                }
@@ -111,6 +112,7 @@
                {
                   "name": "secrets",
                   "secret": {
+                     "defaultMode": 256,
                      "secretName": "sdn"
                   }
                }
