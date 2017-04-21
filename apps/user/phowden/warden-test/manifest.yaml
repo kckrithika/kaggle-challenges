@@ -1,6 +1,19 @@
 apiVersion: v1
 
 system:
+    notifications:
+      email:
+        - paul.howden@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
+        - dtupper@salesforce.com
     functions:
     - name: phwardentest
       count: 2
