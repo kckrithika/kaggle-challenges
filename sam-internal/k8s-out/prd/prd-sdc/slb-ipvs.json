@@ -23,7 +23,7 @@
                      "--modules=/sdn",
                      "--host=/host"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000045-df50ed19",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000048-f105804b",
                   "name": "slb-ipvs-installer",
                   "securityContext": {
                      "capabilities": {
@@ -53,7 +53,7 @@
                      "/sdn/slb-ipvs-agent",
                      "--path=/host/var/slb"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000045-df50ed19",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000048-f105804b",
                   "name": "slb-ipvs-agent",
                   "securityContext": {
                      "privileged": true

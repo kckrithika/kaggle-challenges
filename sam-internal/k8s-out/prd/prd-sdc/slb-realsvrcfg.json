@@ -3,9 +3,9 @@
    "kind": "DaemonSet",
    "metadata": {
       "labels": {
-         "name": "slb-iface-agent"
+         "name": "slb-realsvrcfg"
       },
-      "name": "slb-iface-agent"
+      "name": "slb-realsvrcfg"
    },
    "spec": {
       "template": {
@@ -13,20 +13,20 @@
             "labels": {
                "apptype": "control",
                "daemonset": "true",
-               "name": "slb-iface-agent"
+               "name": "slb-realsvrcfg"
             }
          },
          "spec": {
             "containers": [
                {
                   "command": [
-                     "/sdn/slb-iface-agent",
+                     "/sdn/slb-realsvrcfg",
                      "--path=/host/var/slb",
                      "--period=2s",
                      "--bin=/sdn"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000048-f105804b",
-                  "name": "slb-iface-agent",
+                  "name": "slb-realsvrcfg",
                   "securityContext": {
                      "privileged": true
                   },
