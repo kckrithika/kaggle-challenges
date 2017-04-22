@@ -63,7 +63,6 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
-            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam, 
@@ -74,7 +73,6 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
-            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
@@ -85,7 +83,6 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
-            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000778-246f2e02",
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,  
@@ -98,7 +95,6 @@
             slb_ipvs: $.testimages.slb_image,
             
             # Temporary overrides
-            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000797-fb3c2ca6",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam, 
