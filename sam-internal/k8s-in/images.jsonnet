@@ -112,6 +112,9 @@
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
+
+            # Temporary overrides
+            samcontrol_deployer: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000807-258dde00",
         }
     },
 
