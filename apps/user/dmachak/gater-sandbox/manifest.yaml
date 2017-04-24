@@ -12,7 +12,7 @@ system:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170424A
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170424B
       args:
         - --server.port=9090
         - --management.port=15522
