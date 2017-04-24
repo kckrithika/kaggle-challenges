@@ -11,7 +11,7 @@
                     {
                         name: "samcontrol-deployer",
                         image: configs.samcontrol_deployer,
-                        command: if configs.estate == "prd-sdc" then [
+                        command: if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then [
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
