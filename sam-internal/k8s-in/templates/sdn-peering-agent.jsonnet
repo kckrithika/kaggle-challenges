@@ -42,7 +42,16 @@ if configs.kingdom == "prd" then {
                     {
                         name: "sdn-peering-agent",
                         image: configs.sdn_peering_agent,
-                        command:[
+                        command: if configs.estate == "prd-samtest" then [
+                            "/sdn/sdn-peering-agent",
+                            "--birdsock=/usr/local/var/run/bird.ctl",
+                            "--birdconf=/usr/local/etc/bird.conf",
+                            "--funnelEndpoint="+configs.funnelVIP,
+                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--keyfile=/data/certs/hostcert.key",
+                            "--certfile=/data/certs/hostcert.crt",
+                            "--bgpPasswordFile=/data/secrets/sambgppassword",
+                        ] else [
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",

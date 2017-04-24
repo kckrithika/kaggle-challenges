@@ -27,7 +27,7 @@
     phase3_prod_canary: {
       hypersam: "sam-0000803-3a897099",
     },
-    
+
     # Release Phase 4 - Rest of Prod
     phase4_prod_all: {
       hypersam: "sam-0000803-3a897099",
@@ -55,7 +55,7 @@
             # For now we need to keep the root level folder 'docker-release-candidate' because it is needed for promotion
             # even though that is not a required root level directory.  For prod clusters leave this off (it would be
             # different in prod anyways)
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam, 
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird,
@@ -65,7 +65,7 @@
             # Temporary overrides
         },
         "prd-samdev": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam, 
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird,
@@ -79,13 +79,13 @@
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
-            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000049-594d8ab4",
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
         },
         "prd-sdc": {
-            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,  
+            default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
@@ -94,23 +94,23 @@
             slb_iface_agent: $.testimages.slb_image,
             slb_ipvs: $.testimages.slb_image,
             slb_realsvrcfg : $.testimages.slb_image,
-            
+
             # Temporary overrides
         },
         "dfw-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam, 
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "phx-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam, 
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "frf-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam, 
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "par-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam, 
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
         }
     },
