@@ -40,7 +40,7 @@
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-snoozedAlarms=podUpTimeChecker=2017/04/25"
+                     "-snoozedAlarms=podUpTimeChecker=2017/05/02"
                   ],
                   "env": [
                      {
