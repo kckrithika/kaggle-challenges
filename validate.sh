@@ -31,13 +31,11 @@ SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/sam-too
 
 if [ "$1" == "evaluatePR" ] 
 then
-  set -x
+  set -ex
   echo -e "\nEvaluating PR\n"
   exitIfMergeCommitFound
   echo -e '```\n'
-  env || true
-  ls /opt/sam/
-  /opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$(basename -s @salesforce.com $STAGE_GO_TRIGGER_USER) || true
+  /opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER || true
   /opt/sam/sam-manifest-builder --root='./' -validateonly
   exitcode="$?"
   echo -e '\n```\n'
