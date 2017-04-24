@@ -20,7 +20,7 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-emailFrequency=24h",
                         ]
                         + wdconfig.shared_args
-                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then [ "-snoozedAlarms=nodeChecker=2017/04/25" ] else  [],
+                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "phx" then [ "-snoozedAlarms=nodeChecker=2017/05/02" ] else  [],
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                           wdconfig.kube_config_volume_mount,

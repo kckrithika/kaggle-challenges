@@ -21,7 +21,8 @@ local wdconfig = import "wdconfig.jsonnet";
                         ]
                         + wdconfig.shared_args
                         + wdconfig.shared_args_certs
-                        + if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ] else  [],
+                        + if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ]
+                             else if configs.kingdom == "phx" then [ "-snoozedAlarms=deploymentChecker=2017/05/02" ] else [],
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                           wdconfig.kube_config_volume_mount,

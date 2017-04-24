@@ -21,7 +21,8 @@ local wdconfig = import "wdconfig.jsonnet";
                         ]
                         + wdconfig.shared_args
                         + wdconfig.shared_args_certs
-                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [ "-snoozedAlarms=podUpTimeChecker=2017/04/25" ] else  [],
+                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.kingdom == "phx"
+                            then [ "-snoozedAlarms=podUpTimeChecker=2017/05/02" ] else  [],
                         volumeMounts: [
                             wdconfig.cert_volume_mount,
                             wdconfig.kube_config_volume_mount,
