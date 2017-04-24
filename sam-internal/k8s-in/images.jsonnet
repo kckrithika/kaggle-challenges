@@ -59,7 +59,7 @@
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird,
-            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000049-594d8ab4",
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
@@ -69,7 +69,7 @@
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird,
-            sdn_peering_agent: $.testimages.sdn_image,
+            sdn_peering_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000049-594d8ab4",
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
