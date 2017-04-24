@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.estate == "prd-samdev" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -11,7 +11,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         # Todo: switch to hypersam from tnrp when it is merged
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170420_153626.f6ca1d3.dirty.thargrove-ltm1",
+                        image: configs.controller,
                         command: [
                             "/sam/certbackup.sh"
                         ],
