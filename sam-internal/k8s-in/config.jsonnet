@@ -182,5 +182,6 @@ local images = import "images.jsonnet",
     sdn_watchdog: images.sdn_watchdog,
 
     slb_iface_agent: images.slb_iface_agent,
-    slb_ipvs: images.slb_ipvs
+    slb_ipvs: images.slb_ipvs,
+    slb_realsvrcfg: images.slb_realsvrcfg
 }

@@ -53,7 +53,9 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
-                            "--host=/host"
+                            "--host=/host",
+                            "--mode=continuous"
+
                         ],
                         "volumeMounts": [
                             {
