@@ -42,7 +42,7 @@ if configs.kingdom == "prd" then {
                     {
                         name: "sdn-peering-agent",
                         image: configs.sdn_peering_agent,
-                        command: if configs.estate == "prd-samtest" then [
+                        command: if configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then [
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
