@@ -39,5 +39,5 @@ exitIfMergeCommitFound() {
 
 echo -e "\nEvaluating PR\n"
 exitIfMergeCommitFound
-/opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER || true
+/opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 /opt/sam/sam-manifest-builder --root='./' -validateonly
