@@ -14,7 +14,7 @@ system:
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:kbotha-2017-04-19-5
       args:
         - start
-        - --settings.path=-.-.sfm-.gatewayconfig
+        - --settings.path=-.-.sfm.-.gatewayconfig
         - --superpod.name=-
       ports:
       - containerPort: 9133
