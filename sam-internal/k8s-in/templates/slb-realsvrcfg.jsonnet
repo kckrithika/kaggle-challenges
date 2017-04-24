@@ -34,9 +34,9 @@ if configs.estate == "prd-sdc" then {
                         "image": configs.slb_realsvrcfg,
                         "command":[
                             "/sdn/slb-realsvrcfg",
-                            "--path=/host/var/slb",
-                            "--period=2s",
-                            "--bin=/sdn"
+                            "--configDir=/host/var/slb/config",
+                            "--period=5s",
+                            "--netInterfaceName=eth0"
                         ],
                         "volumeMounts": [
                             {

@@ -21,9 +21,9 @@
                {
                   "command": [
                      "/sdn/slb-realsvrcfg",
-                     "--path=/host/var/slb",
-                     "--period=2s",
-                     "--bin=/sdn"
+                     "--configDir=/host/var/slb/config",
+                     "--period=5s",
+                     "--netInterfaceName=eth0"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000048-f105804b",
                   "name": "slb-realsvrcfg",
