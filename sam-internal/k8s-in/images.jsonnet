@@ -96,6 +96,7 @@
             slb_realsvrcfg : $.testimages.slb_image,
 
             # Temporary overrides
+            samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000807-258dde00",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
