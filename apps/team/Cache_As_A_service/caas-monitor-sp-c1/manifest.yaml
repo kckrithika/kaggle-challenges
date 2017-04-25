@@ -1,6 +1,10 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - jayant.kumar@salesforce.com
+      - caas-dev@salesforce.com
   functions:
   - name: monitor-sp-c1
     count: 9 
@@ -8,7 +12,7 @@ system:
     containers:
     - name: caas-monitor 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-12934413-22
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor-prod:2.1.18-0000003-13500097
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --redis-monitor.redis-listen-ports=12000
