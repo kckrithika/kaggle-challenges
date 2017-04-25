@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/sam-tools:20170424_123626.6a77ae7.clean.prahladjos-ltm
+SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/sam-tools:20170425_124235.c332148.clean.prahladjos-ltm
 
 set -e
 
