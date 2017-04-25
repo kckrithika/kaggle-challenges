@@ -15,12 +15,12 @@
 
     # Release Phase 1 - Test Beds
     phase1_test: {
-      hypersam: "sam-0000823-9d4a0250",
+      hypersam: "sam-0000832-c5b300e8",
     },
 
     # Release Phase 2 - PRD Sandbox and prd-sdc
     phase2_sandbox: {
-      hypersam: "sam-0000803-3a897099",
+      hypersam: "sam-0000823-9d4a0250",
     },
 
     # Release Phase 3 - Canary Prod FRF
