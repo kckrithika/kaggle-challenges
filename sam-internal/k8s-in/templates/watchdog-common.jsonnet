@@ -19,7 +19,7 @@ local wdconfig = import "wdconfig.jsonnet";
                         ]
                         + wdconfig.shared_args
                         + [
-                            "-snoozedAlarms=bridgeChecker=2017/04/25",
+                            "-snoozedAlarms=bridgeChecker=2017/05/02",
                         ],
                         name: "watchdog",
                         resources: {
