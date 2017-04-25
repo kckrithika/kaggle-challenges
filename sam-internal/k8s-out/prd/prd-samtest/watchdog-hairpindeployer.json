@@ -45,7 +45,8 @@
                      "-deployer-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-deployer-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-deployer-sender=sam@salesforce.com",
-                     "-deployer-recipient=sam@salesforce.com"
+                     "-deployer-recipient=sam@salesforce.com",
+                     "-snoozedAlarms=hairpinChecker=2017/05/02"
                   ],
                   "env": [
                      {

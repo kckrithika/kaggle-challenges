@@ -28,7 +28,8 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-deployer-smtpServer="+configs.smtpServer,
                             "-deployer-sender="+configs.watchdog_emailsender,
                             "-deployer-recipient="+configs.watchdog_emailrec,
-                        ],
+                        ]
+                        + if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/05/02" ] else [],
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                           wdconfig.kube_config_volume_mount,
