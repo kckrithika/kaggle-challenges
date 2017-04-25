@@ -25,7 +25,7 @@
                      "--period=2s",
                      "--bin=/sdn"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000048-f105804b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000051-79039d3d",
                   "name": "slb-iface-agent",
                   "securityContext": {
                      "privileged": true
