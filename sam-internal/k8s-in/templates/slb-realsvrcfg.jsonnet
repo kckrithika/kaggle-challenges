@@ -26,8 +26,14 @@ if configs.estate == "prd-sdc" then {
                         "hostPath": {
                             "path": "/var/slb"
                          }
+                    },
+                    {
+                        "name": "host-volume",
+                        "hostPath": {
+                            "path": "/"
+                         }
                     }
-                ],
+                 ],
                 "containers": [
                     {
                         "name": "slb-realsvrcfg",
@@ -42,8 +48,12 @@ if configs.estate == "prd-sdc" then {
                             {
                                 "name": "var-slb-volume",
                                 "mountPath": "/host/var/slb"
+                            },
+                            {
+                                "name": "host-volume",
+                                "mountPath": "/host"
                             }
-                        ],
+                         ],
                         "securityContext": {
                             "privileged": true
                         }

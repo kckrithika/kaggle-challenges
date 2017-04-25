@@ -22,7 +22,8 @@
                      "/sdn/slb-ipvs-installer",
                      "--modules=/sdn",
                      "--host=/host",
-                     "--mode=continuous"
+                     "--mode=continuous",
+                     "--target=/host/var/slb"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000051-79039d3d",
                   "name": "slb-ipvs-installer",

@@ -34,6 +34,10 @@
                      {
                         "mountPath": "/host/var/slb",
                         "name": "var-slb-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
                      }
                   ]
                }
@@ -45,6 +49,12 @@
                      "path": "/var/slb"
                   },
                   "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
                }
             ]
          }
