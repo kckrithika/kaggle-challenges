@@ -1,0 +1,69 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-etcd-quorum"
+      },
+      "name": "watchdog-etcd-quorum"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-etcd-quorum"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "watchdog-etcd-quorum"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=ETCDQUORUM",
+                     "-watchdogFrequency=10s",
+                     "-alertThreshold=300s",
+                     "-emailFrequency=6h",
+                     "-timeout=2s",
+                     "-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
+                     "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
+                     "-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sam@salesforce.com",
+                     "-tlsEnabled=true",
+                     "-caFile=/data/certs/ca.crt",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt"
+                  ],
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
+                  "name": "watchdog-etcd-quorum",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "frf-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               }
+            ]
+         }
+      }
+   }
+}
