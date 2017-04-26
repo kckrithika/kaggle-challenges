@@ -11,7 +11,7 @@ system:
     hostnetwork: true
     containers:
     - name: gatewayconfig
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:2017-04-20a
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:2017-04-26a
       args:
         - start
         - --settings.path=-.-.sfm.-.gatewayconfig
