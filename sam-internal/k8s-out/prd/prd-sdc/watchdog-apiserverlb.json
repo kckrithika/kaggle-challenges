@@ -1,0 +1,69 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-apiserverlb"
+      },
+      "name": "watchdog-apiserverlb"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-apiserverlb"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "watchdog-apiserverlb"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=APISERVERLB",
+                     "-watchdogFrequency=60s",
+                     "-alertThreshold=60s",
+                     "-emailFrequency=12h",
+                     "-timeout=2s",
+                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sdn@salesforce.com",
+                     "-tlsEnabled=true",
+                     "-caFile=/data/certs/ca.crt",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000823-9d4a0250",
+                  "name": "watchdog-apiserverlb",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sdc"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               }
+            ]
+         }
+      }
+   }
+}

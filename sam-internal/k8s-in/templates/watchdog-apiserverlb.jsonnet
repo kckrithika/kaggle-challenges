@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate == "frf-sam" || configs.estate == "par-sam" || configs.estate == "dfw-sam" then {
+{
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -59,4 +59,4 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate 
         },
         name: "watchdog-apiserverlb"
     }
-} else "SKIP"
+}
