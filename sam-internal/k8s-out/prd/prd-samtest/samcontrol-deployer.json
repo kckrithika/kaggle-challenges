@@ -27,7 +27,11 @@
                      "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--k8sapiserver=",
                      "--observeMode=false",
-                     "--delay=30s"
+                     "--delay=30s",
+                     "--emailNotify=true",
+                     "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "--sender=sam@salesforce.com",
+                     "--recipient=sam@salesforce.com"
                   ],
                   "env": [
                      {
