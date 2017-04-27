@@ -28,7 +28,7 @@
                      "--pingInterval=1s",
                      "--pingTimeout=5s"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000049-594d8ab4",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000062-f9b0ef9e",
                   "name": "sdn-watchdog"
                }
             ],
