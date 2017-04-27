@@ -11,7 +11,7 @@
                     {
                         name: "samcontrol-deployer",
                         image: configs.samcontrol_deployer,
-                        command: if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then [
+                        command: [
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
@@ -24,16 +24,7 @@
                            "--smtpServer="+configs.smtpServer,
                            "--sender="+configs.watchdog_emailsender,
                            "--recipient="+configs.watchdog_emailrec,
-                         ] else [
-                            "/sam/samcontrol-deployer",
-                            "--funnelEndpoint="+configs.funnelVIP,
-                            "--logtostderr=true",
-                            "--disableSecurityCheck=true",
-                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
-                            "--k8sapiserver="+configs.k8sapiserver,
-                            "--observeMode="+configs.samcontrol_deployer_ObserveMode,
-                            "--delay=30s",
-                          ],
+                         ],
                          "volumeMounts": [
                            {
                               "mountPath": "/data/certs",
