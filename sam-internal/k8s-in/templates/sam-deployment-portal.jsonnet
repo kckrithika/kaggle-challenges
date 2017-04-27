@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
+if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
