@@ -53,8 +53,8 @@ local images = import "images.jsonnet",
         insecureRegistries: {
             "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/",
             "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/",
-            "prd-samtest": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000",
-            "prd-sdc": "",
+            "prd-samtest": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/",
+            "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/",
             "dfw-sam": "",
             "phx-sam": "",
             "frf-sam": "",
@@ -76,22 +76,22 @@ local images = import "images.jsonnet",
             "prd-sam": "true",
             "prd-samdev": "true",
             "prd-samtest": "true",
-            "prd-sdc": "false",
-            "dfw-sam": "false",
-            "phx-sam": "false",
-            "frf-sam": "false",
-            "par-sam": "false"
+            "prd-sdc": "true",
+            "dfw-sam": "true",
+            "phx-sam": "true",
+            "frf-sam": "true",
+            "par-sam": "true"
         },
 
         httpsDisableCertsCheck: {
             "prd-sam": "true",
             "prd-samdev": "true",
             "prd-samtest": "true",
-            "prd-sdc": "false",
-            "dfw-sam": "false",
-            "phx-sam": "false",
-            "frf-sam": "false",
-            "par-sam": "false"
+            "prd-sdc": "true",
+            "dfw-sam": "true",
+            "phx-sam": "true",
+            "frf-sam": "true",
+            "par-sam": "true"
         },
 
         watchdog_emailsender: {

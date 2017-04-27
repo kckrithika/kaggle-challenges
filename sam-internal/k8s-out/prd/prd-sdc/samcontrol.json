@@ -36,10 +36,10 @@
                      "--caFile=/data/certs/ca.crt",
                      "--keyFile=/data/certs/hostcert.key",
                      "--certFile=/data/certs/hostcert.crt",
-                     "--checkImageExistsFlag=false",
-                     "--httpsDisableCertsCheck=false",
+                     "--checkImageExistsFlag=true",
+                     "--httpsDisableCertsCheck=true",
                      "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-                     "--insecureRegistries="
+                     "--insecureRegistries=shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/"
                   ],
                   "env": [
                      {
