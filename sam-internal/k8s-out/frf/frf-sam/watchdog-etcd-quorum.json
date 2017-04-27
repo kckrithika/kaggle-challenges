@@ -1,19 +1,24 @@
 {
    "apiVersion": "extensions/v1beta1",
-   "kind": "DaemonSet",
+   "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "watchdog-etcd"
+         "name": "watchdog-etcd-quorum"
       },
-      "name": "watchdog-etcd"
+      "name": "watchdog-etcd-quorum"
    },
    "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-etcd-quorum"
+         }
+      },
       "template": {
          "metadata": {
             "labels": {
-               "app": "watchdog-etcd",
                "apptype": "monitoring",
-               "daemonset": "true"
+               "name": "watchdog-etcd-quorum"
             }
          },
          "spec": {
@@ -21,10 +26,10 @@
                {
                   "command": [
                      "/sam/watchdog",
-                     "-role=ETCD",
-                     "-watchdogFrequency=5s",
-                     "-alertThreshold=150s",
-                     "-emailFrequency=12h",
+                     "-role=ETCDQUORUM",
+                     "-watchdogFrequency=10s",
+                     "-alertThreshold=300s",
+                     "-emailFrequency=6h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
@@ -37,17 +42,7 @@
                      "-certFile=/data/certs/hostcert.crt"
                   ],
                   "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
-                  "name": "watchdog",
-                  "resources": {
-                     "limits": {
-                        "cpu": "0.5",
-                        "memory": "300Mi"
-                     },
-                     "requests": {
-                        "cpu": "0.5",
-                        "memory": "300Mi"
-                     }
-                  },
+                  "name": "watchdog-etcd-quorum",
                   "volumeMounts": [
                      {
                         "mountPath": "/data/certs",
@@ -58,7 +53,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "etcd_installed": "true"
+               "pool": "frf-sam"
             },
             "volumes": [
                {
