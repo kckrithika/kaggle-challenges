@@ -1,8 +1,10 @@
 #!/bin/bash -e
 
+#Exit on first error
 set -e
 
-# Check whether build.sh output matches applied changes
+# Check if json files conforms to jsonnets
+ensureLatestJsons() {
 pushd ./sam-internal/k8s-in
 ./build.sh > /dev/null
 popd
@@ -11,6 +13,7 @@ if [[ `git status --porcelain` ]]; then
   git status
   exit 1
 fi
+}
 
 #exitIfMergeCommitFound checks if there are any
 #merge commits introduced by the current branch
@@ -38,6 +41,11 @@ exitIfMergeCommitFound() {
 }
 
 echo -e "\nEvaluating PR\n"
+
+ensureLatestJsons
+
 exitIfMergeCommitFound
+
 /opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
+
 /opt/sam/sam-manifest-builder --root='./' -validateonly
