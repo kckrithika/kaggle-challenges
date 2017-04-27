@@ -6,12 +6,12 @@ system:
     count: 1
     containers:
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-24e0afee-8
+      image: tnrp/csc-health/observation-service:observation-service-0000016-80ce1521
       ports:
       - containerPort: 8080
       resources:
-        limits: { cpu: "10", memory: "20Gi" }
-        requests: { cpu: "10", memory: "20Gi" }
+        limits: { cpu: "10", memory: "5Gi" }
+        requests: { cpu: "10", memory: "5Gi" }
       volumeMounts:
         - mountPath: /var/secrets
           name: secretvol
