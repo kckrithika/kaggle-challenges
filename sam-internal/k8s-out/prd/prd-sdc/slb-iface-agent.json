@@ -23,9 +23,10 @@
                      "/sdn/slb-iface-agent",
                      "--path=/host/var/slb",
                      "--period=2s",
-                     "--bin=/sdn"
+                     "--bin=/sdn",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000051-79039d3d",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000063-324f6af5",
                   "name": "slb-iface-agent",
                   "securityContext": {
                      "privileged": true
