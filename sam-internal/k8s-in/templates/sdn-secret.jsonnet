@@ -10,6 +10,7 @@
   "type": "Opaque",
 
   "data": {
+    /* No secret value here. Only the source to fetch it from. Source is authN/authZ protected. */
     "sambgppassword": "@SecretService/sdn_" + configs.kingdom + "/SamBgpPassword"
   }
 }
