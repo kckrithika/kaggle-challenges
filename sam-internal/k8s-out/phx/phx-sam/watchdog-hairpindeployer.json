@@ -40,7 +40,7 @@
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-deployer-imageName=ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000803-3a897099",
+                     "-deployer-imageName=ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
                      "-deployer-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
                      "-deployer-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
                      "-deployer-smtpServer=ops0-mta1-2-phx.ops.sfdc.net:25",
@@ -53,7 +53,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000803-3a897099",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
                   "name": "watchdog-hairpindeployer",
                   "volumeMounts": [
                      {
