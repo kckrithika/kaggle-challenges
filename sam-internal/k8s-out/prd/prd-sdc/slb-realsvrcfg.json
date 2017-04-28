@@ -21,11 +21,11 @@
                {
                   "command": [
                      "/sdn/slb-realsvrcfg",
-                     "--realServersDir=/host/var/slb/config",
+                     "--configDir=/host/var/slb/config",
                      "--period=5s",
                      "--netInterfaceName=eth0"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000063-324f6af5",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000065-8a47eb74",
                   "name": "slb-realsvrcfg",
                   "securityContext": {
                      "privileged": true

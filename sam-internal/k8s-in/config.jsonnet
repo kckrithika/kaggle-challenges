@@ -183,5 +183,6 @@ local images = import "images.jsonnet",
 
     slb_iface_agent: images.slb_iface_agent,
     slb_ipvs: images.slb_ipvs,
-    slb_realsvrcfg: images.slb_realsvrcfg
+    slb_realsvrcfg: images.slb_realsvrcfg,
+    slb_config_processor: images.slb_config_processor
 }

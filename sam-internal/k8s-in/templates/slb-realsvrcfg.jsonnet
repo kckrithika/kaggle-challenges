@@ -40,7 +40,7 @@ if configs.estate == "prd-sdc" then {
                         "image": configs.slb_realsvrcfg,
                         "command":[
                             "/sdn/slb-realsvrcfg",
-                            "--realServersDir=/host/var/slb/config",
+                            "--configDir=/host/var/slb/config",
                             "--period=5s",
                             "--netInterfaceName=eth0"
                         ],
