@@ -1,0 +1,31 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: candidate-service-watchdog
+    count: 1
+    containers:
+    - name: candidate-service-watchdog
+      image: tnrp/csc-health/health-endpoint-watchdog:health-endpoint-watchdog-0000002-e337db53
+      resources:
+        limits: { cpu: "1", memory: "2Gi" }
+        requests: { cpu: "1", memory: "2Gi" }
+      env:
+      - name: HEWD_AJNA_ENABLED
+        value: true
+      - name: HEWD_AJNA_SERVICE
+        value: candidate-service
+      - name: HEWD_TARGET_DISPLAYNAME
+        value: "Candidate Service"
+      - name: HEWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
+        value: true
+      - name: HEWD_LOGLEVEL
+        value: debug
+      command: ["/bin/sh", "-c"]
+      args: ["
+        export HEWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export HEWD_AJNA_DATACENTER=${KINGDOM} ;
+        export HEWD_AJNA_DEVICE=${FUNCTION} ;
+        export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICELB_SERVICE_HOST}:${CANDIDATESERVICELB_SERVICE_PORT} ;
+        /health-endpoint-watchdog
+      "]
