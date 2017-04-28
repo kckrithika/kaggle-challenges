@@ -36,8 +36,8 @@
                      "--caFile=/data/certs/ca.crt",
                      "--keyFile=/data/certs/hostcert.key",
                      "--certFile=/data/certs/hostcert.crt",
-                     "--checkImageExistsFlag=true",
-                     "--httpsDisableCertsCheck=true",
+                     "--checkImageExistsFlag=false",
+                     "--httpsDisableCertsCheck=false",
                      "--volPermissionInitContainerImage=ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657",
                      "--insecureRegistries="
                   ],

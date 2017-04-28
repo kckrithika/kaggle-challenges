@@ -77,10 +77,10 @@ local images = import "images.jsonnet",
             "prd-samdev": "true",
             "prd-samtest": "true",
             "prd-sdc": "true",
-            "dfw-sam": "true",
-            "phx-sam": "true",
+            "dfw-sam": "false",
+            "phx-sam": "false",
             "frf-sam": "true",
-            "par-sam": "true"
+            "par-sam": "false"
         },
 
         httpsDisableCertsCheck: {
@@ -88,10 +88,10 @@ local images = import "images.jsonnet",
             "prd-samdev": "true",
             "prd-samtest": "true",
             "prd-sdc": "true",
-            "dfw-sam": "true",
-            "phx-sam": "true",
+            "dfw-sam": "false",
+            "phx-sam": "false",
             "frf-sam": "true",
-            "par-sam": "true"
+            "par-sam": "false"
         },
 
         watchdog_emailsender: {
