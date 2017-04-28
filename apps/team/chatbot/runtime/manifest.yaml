@@ -1,0 +1,28 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - david.ji@salesforce.com
+      - d.l.taylor@salesforce.com
+      - joslyn.esser@salesforce.com
+      - justin.powers@salesforce.com
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: chatbot-runtime
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/chatbot:0.0.2-SNAPSHOT
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+
+  loadbalancers:
+  - lbname: chatbot
+    function: default
+    ports:
+      - port: 8080
+        targetport: 8080
