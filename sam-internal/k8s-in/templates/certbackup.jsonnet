@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.kingdom == "prd" then {
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -48,4 +48,4 @@ if configs.kingdom == "prd" then {
         },
         name: "certbackup"
     }
-} else "SKIP"
+}
