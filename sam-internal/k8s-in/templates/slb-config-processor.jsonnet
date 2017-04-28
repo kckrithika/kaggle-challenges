@@ -80,11 +80,11 @@ if configs.estate == "prd-sdc" then {
                             {
                                 "name": "host-volume",
                                 "mountPath": "/host"
-                            }
+                            },
                             {
                                 "name": "certs",
                                 "mountPath": "/data/certs"
-                            }
+                            },
                             {
                                "name": "config",
                                "mountPath": "/config"
