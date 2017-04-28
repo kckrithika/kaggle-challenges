@@ -66,7 +66,7 @@ if configs.estate == "prd-sdc" then {
                             "--namespace=sam-system",
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--serviceList=slb-test-svc",
-                            "--vipList=10.251.129.228"
+                            "--vipList=10.251.129.228:80"
                         ],
                         "volumeMounts": [
                             {
