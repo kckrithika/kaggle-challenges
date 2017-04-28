@@ -52,6 +52,14 @@
                         "name": "var-config-volume"
                      },
                      {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     },
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
                         "mountPath": "/config",
                         "name": "config"
                      }
