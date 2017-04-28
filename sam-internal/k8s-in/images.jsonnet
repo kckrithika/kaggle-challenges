@@ -94,6 +94,7 @@
             slb_iface_agent: $.testimages.slb_image,
             slb_ipvs: $.testimages.slb_image,
             slb_realsvrcfg : $.testimages.slb_image,
+            slb_config_processor : $.testimages.slb_image,
 
             # Temporary overrides
             samcontrol_deployer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000807-258dde00",
