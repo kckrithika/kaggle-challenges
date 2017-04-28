@@ -6,22 +6,26 @@ system:
     count: 1
     containers:
     - name: observation-service-watchdog
-      image: tnrp/csc-health/observation-service-watchdog:observation-service-watchdog-d4334665-4
+      image: tnrp/csc-health/health-endpoint-watchdog:health-endpoint-watchdog-0000002-e337db53
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
       env:
-      - name: OBSWD_AJNA_ENABLED
+      - name: HEWD_AJNA_ENABLED
         value: true
-      - name: OBSWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
+      - name: HEWD_AJNA_SERVICE
+        value: observation-service
+      - name: HEWD_TARGET_DISPLAYNAME
+        value: "Observation Service"
+      - name: HEWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
         value: true
-      - name: OBSWD_LOGLEVEL
+      - name: HEWD_LOGLEVEL
         value: debug
       command: ["/bin/sh", "-c"]
       args: ["
-        export OBSWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
-        export OBSWD_AJNA_DATACENTER=${KINGDOM} ;
-        export OBSWD_AJNA_DEVICE=${FUNCTION} ;
-        export OBSWD_OBSERVATIONSERVICE_ENDPOINT=http://${OBSERVATIONSERVICELB_SERVICE_HOST}:${OBSERVATIONSERVICELB_SERVICE_PORT} ;
-        /observation-service-watchdog
+        export HEWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export HEWD_AJNA_DATACENTER=${KINGDOM} ;
+        export HEWD_AJNA_DEVICE=${FUNCTION} ;
+        export HEWD_TARGET_ENDPOINT=http://${OBSERVATIONSERVICELB_SERVICE_HOST}:${OBSERVATIONSERVICELB_SERVICE_PORT} ;
+        /health-endpoint-watchdog
       "]
