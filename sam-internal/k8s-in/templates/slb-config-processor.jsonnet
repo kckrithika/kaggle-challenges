@@ -48,7 +48,7 @@ if configs.estate == "prd-sdc" then {
                      {
                         "name": "config",
                         "hostPath": {
-                            "path": "/config",
+                            "path": "/etc/kubernetes",
                          }
                     }
                  ],

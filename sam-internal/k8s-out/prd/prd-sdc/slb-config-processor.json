@@ -86,7 +86,7 @@
                },
                {
                   "hostPath": {
-                     "path": "/config"
+                     "path": "/etc/kubernetes"
                   },
                   "name": "config"
                }
