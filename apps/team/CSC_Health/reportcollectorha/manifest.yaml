@@ -29,6 +29,8 @@ system:
         value: true
       - name: ReportCollector_ajna_publishEnabled
         value: true
+      - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 10
       command: ["/bin/sh", "-c"]
       args: ["
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
