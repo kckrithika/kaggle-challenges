@@ -13,7 +13,7 @@ shared_args: [
 ],
 
 shared_args_certs: [
-    "-tlsEnabled="+configs.tlsEnabled,
+    "-tlsEnabled=true",
     "-caFile="+configs.caFile,
     "-keyFile="+configs.keyFile,
     "-certFile="+configs.certFile,
