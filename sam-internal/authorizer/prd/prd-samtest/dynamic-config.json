@@ -1,0 +1,98 @@
+{
+    "shared0-samtestcompute2-1-prd.eng.sfdc.net": {
+        "variables": {
+            "name": [],
+            "resource": [],
+            "namespace": [
+                "kube-system",
+                "user-cdebains",
+                "sam-system",
+                "csc-sam",
+                "csc-health",
+                "sam-watchdog"
+            ],
+            "subresource": []
+        },
+        "role": "minion"
+    },
+    "shared0-samtestkubeapi2-1-prd.eng.sfdc.net": {
+        "variables": {
+            "name": [],
+            "resource": [],
+            "namespace": [
+                "kube-system",
+                "user-cdebains",
+                "sam-system",
+                "csc-sam",
+                "csc-health",
+                "sam-watchdog"
+            ],
+            "subresource": []
+        },
+        "role": "master"
+    },
+    "shared0-samtestcompute1-2-prd.eng.sfdc.net": {
+        "variables": {
+            "name": [],
+            "resource": [],
+            "namespace": [
+                "kube-system",
+                "user-cdebains",
+                "sam-system",
+                "csc-sam",
+                "csc-health",
+                "sam-watchdog"
+            ],
+            "subresource": []
+        },
+        "role": "minion"
+    },
+    "shared0-samtestkubeapi3-1-prd.eng.sfdc.net": {
+        "variables": {
+            "name": [],
+            "resource": [],
+            "namespace": [
+                "kube-system",
+                "user-cdebains",
+                "sam-system",
+                "csc-sam",
+                "csc-health",
+                "sam-watchdog"
+            ],
+            "subresource": []
+        },
+        "role": "master"
+    },
+    "shared0-samtestkubeapi1-1-prd.eng.sfdc.net": {
+        "variables": {
+            "name": [],
+            "resource": [],
+            "namespace": [
+                "kube-system",
+                "user-cdebains",
+                "sam-system",
+                "csc-sam",
+                "csc-health",
+                "sam-watchdog"
+            ],
+            "subresource": []
+        },
+        "role": "master"
+    },
+    "shared0-samtestcompute1-1-prd.eng.sfdc.net": {
+        "variables": {
+            "name": [],
+            "resource": [],
+            "namespace": [
+                "kube-system",
+                "user-cdebains",
+                "sam-system",
+                "csc-sam",
+                "csc-health",
+                "sam-watchdog"
+            ],
+            "subresource": []
+        },
+        "role": "minion"
+    }
+}
