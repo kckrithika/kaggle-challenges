@@ -35,7 +35,6 @@ local images = import "images.jsonnet",
             "frf": "ops0-mta2-1-frf.ops.sfdc.net:25",
             "par": "ops0-mta2-1-par.ops.sfdc.net:25"
         },
-
     },
 
     perCluster: {
@@ -61,17 +60,6 @@ local images = import "images.jsonnet",
             "par-sam": ""
         },
 
-        tlsEnabled: {
-            "prd-sam": "true",
-            "prd-samdev": "true",
-            "prd-samtest": "true",
-            "prd-sdc": "true",
-            "dfw-sam": "true",
-            "phx-sam": "true",
-            "frf-sam": "true",
-            "par-sam": "true"
-        },
-
         checkImageExistsFlag: {
             "prd-sam": "true",
             "prd-samdev": "true",
@@ -93,58 +81,20 @@ local images = import "images.jsonnet",
             "frf-sam": "true",
             "par-sam": "false"
         },
-
-        watchdog_emailsender: {
-            "prd-sam": "sam@salesforce.com",
-            "prd-samdev":"sam@salesforce.com",
-            "prd-samtest":"sam@salesforce.com",
-            "prd-sdc": "sam@salesforce.com",
-            "dfw-sam": "sam@salesforce.com",
-            "phx-sam": "sam@salesforce.com",
-            "frf-sam": "sam@salesforce.com",
-            "par-sam": "sam@salesforce.com"
-        },
-
-        watchdog_emailrec: {
-            "prd-sam": "sam@salesforce.com",
-            "prd-samdev": "sam@salesforce.com",
-            "prd-samtest": "sam@salesforce.com",
-            "prd-sdc": "sdn@salesforce.com",
-            "dfw-sam": "sam@salesforce.com",
-            "phx-sam": "sam@salesforce.com",
-            "frf-sam": "sam@salesforce.com",
-            "par-sam": "sam@salesforce.com"
-        }
-
     },
 
-    securityEnabled: {
-        caFile: {
-            "true": "/data/certs/ca.crt",
-            "false": ""
-        },
+    # Global
 
-        keyFile: {
-            "true": "/data/certs/hostcert.key",
-            "false": ""
-        },
+    caFile: "/data/certs/ca.crt",
+    keyFile: "/data/certs/hostcert.key",
+    certFile: "/data/certs/hostcert.crt",
+    k8sapiserver: "",
+    configPath: "/config/kubeconfig",
 
-        certFile: {
-            "true": "/data/certs/hostcert.crt",
-            "false": ""
-        },
+    watchdog_emailsender: "sam@salesforce.com",
+    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else "sam@salesforce.com"),
 
-        k8sapiserver: {
-            "true": "",
-            "false": "http://localhost:8000"
-        },
-
-        configPath: {
-            "true": "/config/kubeconfig",
-            "false": "/sam/config"
-        }
-
-    },
+    # Pass-through below here only
 
     funnelVIP: self.perKingdom.funnelVIP[kingdom],
     tnrpArchiveEndpoint: self.perKingdom.tnrpArchiveEndpoint[kingdom],
@@ -152,17 +102,9 @@ local images = import "images.jsonnet",
     smtpServer: self.perKingdom.smtpServer[kingdom],
     registry: self.perCluster.registry[estate],
     insecureRegistries: self.perCluster.insecureRegistries[estate],
-    tlsEnabled: self.perCluster.tlsEnabled[estate],
     checkImageExistsFlag: self.perCluster.checkImageExistsFlag[estate],
     httpsDisableCertsCheck: self.perCluster.httpsDisableCertsCheck[estate],
-    watchdog_emailsender: self.perCluster.watchdog_emailsender[estate],
-    watchdog_emailrec: self.perCluster.watchdog_emailrec[estate],
-
-    caFile: self.securityEnabled.caFile[self.perCluster.tlsEnabled[estate]],
-    keyFile: self.securityEnabled.keyFile[self.perCluster.tlsEnabled[estate]],
-    certFile: self.securityEnabled.certFile[self.perCluster.tlsEnabled[estate]],
-    k8sapiserver: self.securityEnabled.k8sapiserver[self.perCluster.tlsEnabled[estate]],
-    configPath: self.securityEnabled.configPath[self.perCluster.tlsEnabled[estate]],
+    
     estate: estate,
     kingdom: kingdom,
 
