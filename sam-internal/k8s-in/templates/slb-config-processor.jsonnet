@@ -63,10 +63,10 @@ if configs.estate == "prd-sdc" then {
                             "--servers=/host/var/slb/servers",
                             "--available=/host/var/slb/available",
                             "--period=30s",
-                            "--namespace=sam-system",
+                            "--namespace=default",
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--serviceList=slb-test-svc",
-                            "--vipList=10.251.129.228:80"
+                            "--vipList=10.251.129.233:80"
                         ],
                         "volumeMounts": [
                             {
