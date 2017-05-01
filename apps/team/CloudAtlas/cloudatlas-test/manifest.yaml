@@ -1,0 +1,26 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - ashafer@salesforce.com
+  functions:
+  - name: cloudatlas-test
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: samhello
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:ashafer-20170417
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+ 
+  loadbalancers:
+  - lbname: ca-samhellolb
+    function: cloudatlas-test
+    ports:
+      - port: 9090
+        targetport: 9090
