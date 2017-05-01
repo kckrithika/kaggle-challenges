@@ -1,9 +1,6 @@
 #!/bin/bash
-
-SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/sam-tools:20170425_124235.c332148.clean.prahladjos-ltm
-
-#Exit on first failure.
 set -e
+SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smithsam-tools:20170501_140130.0adab6a1.clean.duncsmith-ltm
 
 echo "NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
 
@@ -15,4 +12,5 @@ docker run \
   ${SAMTOOLS} \
   sam-manifest-builder \
   --root='/repo/' \
-  -validateonly
+  -validateonly \
+  -validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml
