@@ -1,0 +1,36 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - paul.howden@salesforce.com
+    functions:
+    - name: warden-func
+      count: 3
+      containers:
+      - name: prd-warden
+        image: tnrp/casp-test/warden:0.0.0-0000011-c993967b
+        ports:
+        - containerPort: 8889
+        env:
+        - name: BRANCH
+          value: "dev"
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/lib/warden/mysql
+          name: casp-home-vol
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8889
+      volumes:
+      - name: casp-home-vol
+        hostPath:
+          path: /home/sfdc-casp/lib/warden/mysql
+
+    loadbalancers:
+    - lbname: wardenlb
+      function: warden-func
+      ports:
+        - port: 8889
+          targetport: 8889
+
