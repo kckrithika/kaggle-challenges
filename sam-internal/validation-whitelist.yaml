@@ -24,3 +24,4 @@ LivenessProbeExceptions:
   - "tnrp/gater/gater:1.1.1-0000079-13550320"
   - "tnrp/p4tools/redis:3.0.2-01"
   - "tnrp/sam/hypersam:sam-0000701-487f2675"
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170502A"
