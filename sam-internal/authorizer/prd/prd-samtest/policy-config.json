@@ -1,204 +1,79 @@
 {
     "minion": {
-        "samappstatuses": {
+        "secrets": {
             "": {
-                "$namespace": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                }
-            }
-        },
-        "deployments": {
-            "": {
-                "$namespace": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                }
-            }
-        },
-        "samdeploymentlogs": {
-            "": {
-                "$namespace": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                }
-            }
-        },
-        "namespaces": {
-            "": {
-                "$namespace": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
+                "sam-system": {
+                    "$own-certname": [
+                        "read",
+                        "write"
                     ]
                 }
             }
         },
         "services": {
-            "*": {
-                "$namespace": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
+            "": {
+                "": {
+                    "": [
                         "read"
                     ]
                 }
             }
         },
         "nodes": {
-            "status": {
-                "$namespace": {
-                    "$resource": [
+            "*": {
+                "": {
+                    "$own-hostname": [
                         "read",
                         "write"
-                    ],
-                    "*": [
-                        "read"
                     ]
-                },
-                "*": {
-                    "$resource": [
-                        "read",
-                        "write"
-                    ],
                     "*": [
                         "read"
                     ]
                 }
             },
-            "*": {
-                "$namespace": {
-                    "$resource": [
+            "status": {
+                "": {
+                    "*": [
                         "read",
                         "write"
-                    ],
-                    "*": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "$resource": [
-                        "read",
-                        "write"
-                    ],
-                    "*": [
-                        "read"
                     ]
                 }
             }
         },
         "endpoints": {
             "": {
-                "$namespace": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
+                "": {
+                    "": [
                         "read"
                     ]
                 }
             }
         },
         "pods": {
+            "": {
+                "": {
+                    "": [
+                        "read"
+                    ]
+                },
+                "$namespace": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                },
+                "sam-system": {
+                    "*": [
+                        "read",
+                        "write"
+                    ]
+                }
+            },
             "status": {
                 "$namespace": {
                     "*": [
                         "read",
                         "write"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
-                    ]
-                }
-            },
-            "": {
-                "$namespace": {
-                    "*": [
-                        "read",
-                        "write"
-                    ],
-                    "$resource": [
-                        "read",
-                        "write"
-                    ]
-                },
-                "*": {
-                    "*": [
-                        "read"
-                    ],
-                    "$resource": [
-                        "read"
                     ]
                 }
             }
@@ -206,19 +81,6 @@
         "events": {
             "": {
                 "$namespace": {
-                    "$resource": [
-                        "read"
-                    ],
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                },
-                "*": {
-                    "$resource": [
-                        "read",
-                        "write"
-                    ],
                     "*": [
                         "read",
                         "write"
@@ -231,20 +93,6 @@
         "*": {
             "*": {
                 "*": {
-                    "$resource": [
-                        "read",
-                        "write"
-                    ],
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                },
-                "$namespace": {
-                    "$resource": [
-                        "read",
-                        "write"
-                    ],
                     "*": [
                         "read",
                         "write"
