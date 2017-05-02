@@ -11,6 +11,8 @@ system:
     containers:
     - name: cloudatlas-pdm-install
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170502a
+      command: ["tail"]
+      args: ["-f", "/dev/null"]
       volumeMounts:
       - mountPath: /home/ubid
         name: hosthomevol
