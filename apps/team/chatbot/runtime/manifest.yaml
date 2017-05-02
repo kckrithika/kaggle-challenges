@@ -21,8 +21,12 @@ system:
           port: 8080
 
   loadbalancers:
-  - lbname: chatbot
+  - lbname: chatbot-runtime-lb
     function: default
     ports:
       - port: 8080
         targetport: 8080
+      - port: 15373
+        targetport: 15373
+      - port: 7021
+        targetport: 7021
