@@ -73,6 +73,7 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
+            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328"
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
@@ -83,6 +84,7 @@
             sdn_watchdog: $.testimages.sdn_image,
 
             # Temporary overrides
+            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328"
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
