@@ -19,13 +19,12 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        execAction:
+          command: ["true"]
     volumes:
     - name: hosthomevol
       hostPath:
-        path: /home/sfdc-atlas
+        path: /data/ca-test
   loadbalancers:
   - lbname: ca-samhellolb
     function: cloudatlas-test
