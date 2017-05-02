@@ -1,15 +1,20 @@
 {
     "shared0-samtestcompute2-1-prd.eng.sfdc.net": {
         "variables": {
-            "name": [],
             "resource": [],
+            "name": [],
             "namespace": [
                 "kube-system",
-                "user-cdebains",
-                "sam-system",
                 "csc-sam",
-                "csc-health",
+                "sam-system",
+                "user-cdebains",
                 "sam-watchdog"
+            ],
+            "own-hostname": [
+                "shared0-samtestcompute2-1-prd.eng.sfdc.net"
+            ],
+            "own-certname": [
+                "cert-shared0-samtestcompute2-1-prd.eng.sfdc.net"
             ],
             "subresource": []
         },
@@ -17,15 +22,20 @@
     },
     "shared0-samtestkubeapi2-1-prd.eng.sfdc.net": {
         "variables": {
-            "name": [],
             "resource": [],
+            "name": [],
             "namespace": [
                 "kube-system",
-                "user-cdebains",
-                "sam-system",
                 "csc-sam",
-                "csc-health",
+                "sam-system",
+                "user-cdebains",
                 "sam-watchdog"
+            ],
+            "own-hostname": [
+                "shared0-samtestkubeapi2-1-prd.eng.sfdc.net"
+            ],
+            "own-certname": [
+                "cert-shared0-samtestkubeapi2-1-prd.eng.sfdc.net"
             ],
             "subresource": []
         },
@@ -33,15 +43,20 @@
     },
     "shared0-samtestcompute1-2-prd.eng.sfdc.net": {
         "variables": {
-            "name": [],
             "resource": [],
+            "name": [],
             "namespace": [
                 "kube-system",
-                "user-cdebains",
-                "sam-system",
                 "csc-sam",
-                "csc-health",
+                "sam-system",
+                "user-cdebains",
                 "sam-watchdog"
+            ],
+            "own-hostname": [
+                "shared0-samtestcompute1-2-prd.eng.sfdc.net"
+            ],
+            "own-certname": [
+                "cert-shared0-samtestcompute1-2-prd.eng.sfdc.net"
             ],
             "subresource": []
         },
@@ -49,15 +64,20 @@
     },
     "shared0-samtestkubeapi3-1-prd.eng.sfdc.net": {
         "variables": {
-            "name": [],
             "resource": [],
+            "name": [],
             "namespace": [
                 "kube-system",
-                "user-cdebains",
-                "sam-system",
                 "csc-sam",
-                "csc-health",
+                "sam-system",
+                "user-cdebains",
                 "sam-watchdog"
+            ],
+            "own-hostname": [
+                "shared0-samtestkubeapi3-1-prd.eng.sfdc.net"
+            ],
+            "own-certname": [
+                "cert-shared0-samtestkubeapi3-1-prd.eng.sfdc.net"
             ],
             "subresource": []
         },
@@ -65,15 +85,20 @@
     },
     "shared0-samtestkubeapi1-1-prd.eng.sfdc.net": {
         "variables": {
-            "name": [],
             "resource": [],
+            "name": [],
             "namespace": [
                 "kube-system",
-                "user-cdebains",
-                "sam-system",
                 "csc-sam",
-                "csc-health",
+                "sam-system",
+                "user-cdebains",
                 "sam-watchdog"
+            ],
+            "own-hostname": [
+                "shared0-samtestkubeapi1-1-prd.eng.sfdc.net"
+            ],
+            "own-certname": [
+                "cert-shared0-samtestkubeapi1-1-prd.eng.sfdc.net"
             ],
             "subresource": []
         },
@@ -81,15 +106,20 @@
     },
     "shared0-samtestcompute1-1-prd.eng.sfdc.net": {
         "variables": {
-            "name": [],
             "resource": [],
+            "name": [],
             "namespace": [
                 "kube-system",
-                "user-cdebains",
-                "sam-system",
                 "csc-sam",
-                "csc-health",
+                "sam-system",
+                "user-cdebains",
                 "sam-watchdog"
+            ],
+            "own-hostname": [
+                "shared0-samtestcompute1-1-prd.eng.sfdc.net"
+            ],
+            "own-certname": [
+                "cert-shared0-samtestcompute1-1-prd.eng.sfdc.net"
             ],
             "subresource": []
         },
