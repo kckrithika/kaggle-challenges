@@ -4,7 +4,6 @@ system:
   functions:
   - name: redis-12028
     count: 5 
-    hostnetwork: true
     containers:
     - name: caas-redis 
       # container image/version to  run
