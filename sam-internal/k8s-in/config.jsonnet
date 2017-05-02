@@ -65,10 +65,10 @@ local images = import "images.jsonnet",
             "prd-samdev": "true",
             "prd-samtest": "true",
             "prd-sdc": "true",
-            "dfw-sam": "false",
-            "phx-sam": "false",
+            "dfw-sam": "true",
+            "phx-sam": "true",
             "frf-sam": "true",
-            "par-sam": "false"
+            "par-sam": "true"
         },
 
         httpsDisableCertsCheck: {
@@ -76,10 +76,10 @@ local images = import "images.jsonnet",
             "prd-samdev": "true",
             "prd-samtest": "true",
             "prd-sdc": "true",
-            "dfw-sam": "false",
-            "phx-sam": "false",
+            "dfw-sam": "true",
+            "phx-sam": "true",
             "frf-sam": "true",
-            "par-sam": "false"
+            "par-sam": "true"
         },
     },
 
