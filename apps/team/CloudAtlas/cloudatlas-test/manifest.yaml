@@ -19,7 +19,7 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
-        execAction:
+        exec:
           command: ["true"]
     volumes:
     - name: hosthomevol
