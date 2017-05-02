@@ -20,7 +20,7 @@
 
     # Release Phase 2 - PRD Sandbox and prd-sdc
     phase2_sandbox: {
-      hypersam: "sam-0000832-c5b300e8",
+      hypersam: "sam-0000848-5c2cced6",
     },
 
     # Release Phase 3 - Canary Prod FRF
