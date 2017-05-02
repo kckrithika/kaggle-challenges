@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam"then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "frf" then {
 
     kind: "Deployment",
     spec: {
@@ -16,7 +16,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam"then {
                            "--v=5",
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--smtpServer="+configs.smtpServer,
-                           "--sender=xiao.zhou@salesforce.com",
+                           "--sender=sam@salesforce.com",
                            "--defaultRecipient=xiao.zhou@salesforce.com",
                            "--namespacesToSkip=sam-watchdog",
                            ],

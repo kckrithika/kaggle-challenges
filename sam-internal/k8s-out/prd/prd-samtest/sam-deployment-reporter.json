@@ -56,7 +56,8 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-sam"
+               "master": "true",
+               "pool": "prd-samtest"
             },
             "volumes": [
                {
