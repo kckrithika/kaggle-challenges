@@ -17,8 +17,9 @@ system:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /v1/conversation # root directory is 404ing for now so use this endpoint
           port: 8080
+        initialDelaySeconds: 30
 
   loadbalancers:
   - lbname: chatbot-runtime-lb
