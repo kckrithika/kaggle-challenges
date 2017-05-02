@@ -9,15 +9,21 @@ system:
     count: 1
     hostnetwork: true
     containers:
-    - name: samhello
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:ashafer-20170417
+    - name: cloudatlas-pdm-install
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170502a
+      volumeMounts:
+      - mountPath: /home/ubid
+        name: hosthomevol
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
           port: 9090
- 
+    volumes:
+    - name: hosthomevol
+      hostPath:
+        path: /home/sfdc-atlas
   loadbalancers:
   - lbname: ca-samhellolb
     function: cloudatlas-test
