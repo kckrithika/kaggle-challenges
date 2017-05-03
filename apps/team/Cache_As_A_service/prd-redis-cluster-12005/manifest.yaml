@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis-12005
+  - name: redis-cluster-12005
     count: 6
     hostnetwork: true
     containers:
