@@ -1,0 +1,3 @@
+apps:
+  redis-cluster-12005:
+    - prd/prd-sp2-sam_caas
