@@ -7,7 +7,7 @@
                         "read",
                         "write"
                     ],
-                    "SDN": [
+                    "sdn": [
                         "read"
                     ]
                 }
@@ -28,7 +28,7 @@
                     "$own-hostname": [
                         "read",
                         "write"
-                    ]
+                    ],
                     "*": [
                         "read"
                     ]
