@@ -28,7 +28,7 @@
                     "$own-hostname": [
                         "read",
                         "write"
-                    ]
+                    ],
                     "*": [
                         "read"
                     ]
