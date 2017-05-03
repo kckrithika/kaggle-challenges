@@ -6,6 +6,9 @@
                     "$own-certname": [
                         "read",
                         "write"
+                    ],
+                    "SDN": [
+                        "read"
                     ]
                 }
             }
