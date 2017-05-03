@@ -23,7 +23,8 @@
                      "--modules=/sdn",
                      "--host=/host",
                      "--mode=continuous",
-                     "--target=/host/var/slb"
+                     "--target=/host/var/slb",
+                     "--period=300s"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000077-2c084c92",
                   "name": "slb-ipvs-installer",
@@ -53,7 +54,8 @@
                {
                   "command": [
                      "/sdn/slb-ipvs-agent",
-                     "--path=/host/var/slb"
+                     "--path=/host/var/slb",
+                     "--period=300s"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000077-2c084c92",
                   "name": "slb-ipvs-agent",
@@ -69,6 +71,11 @@
                }
             ],
             "hostNetwork": true,
+            "nodeSelector": [
+               {
+                  "service": "slb-ipvs"
+               }
+            ],
             "volumes": [
                {
                   "hostPath": {
