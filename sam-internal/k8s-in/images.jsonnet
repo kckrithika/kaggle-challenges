@@ -109,6 +109,9 @@
         "phx-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
+
+            # Temporary overrides
+            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328"
         },
         "frf-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,

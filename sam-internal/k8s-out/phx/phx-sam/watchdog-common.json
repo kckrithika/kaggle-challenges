@@ -33,7 +33,7 @@
                      "-recipient=sam@salesforce.com",
                      "-snoozedAlarms=bridgeChecker=2017/05/02"
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
