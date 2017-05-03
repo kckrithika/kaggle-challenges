@@ -35,7 +35,7 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/slb-iface-agent",
                             "--path=/host/var/slb",
-                            "--period=2s",
+                            "--period=300s",
                             "--bin=/sdn",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],

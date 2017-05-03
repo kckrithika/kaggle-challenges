@@ -45,7 +45,6 @@ if configs.estate == "prd-sdc" then {
                          }
                     }
                 ],
-
                 "containers": [
                     {
                         "name": "slb-ipvs-installer",
@@ -55,7 +54,8 @@ if configs.estate == "prd-sdc" then {
                             "--modules=/sdn",
                             "--host=/host",
                             "--mode=continuous",
-                            "--target=/host/var/slb"
+                            "--target=/host/var/slb",
+                            "--period=300s"
                         ],
                         "volumeMounts": [
                             {
@@ -86,7 +86,8 @@ if configs.estate == "prd-sdc" then {
                         "image": configs.slb_ipvs,
                         "command":[
                             "/sdn/slb-ipvs-agent",
-                            "--path=/host/var/slb"
+                            "--path=/host/var/slb",
+                            "--period=300s"
                         ],
                         "volumeMounts": [
                             {
@@ -99,6 +100,11 @@ if configs.estate == "prd-sdc" then {
                         }
                     }
 
+                ],
+                "nodeSelector":[
+                    {
+                        "service": "slb-ipvs"
+                    }
                 ]
             }
         }

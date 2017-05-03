@@ -22,7 +22,7 @@
                   "command": [
                      "/sdn/slb-iface-agent",
                      "--path=/host/var/slb",
-                     "--period=2s",
+                     "--period=300s",
                      "--bin=/sdn",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
