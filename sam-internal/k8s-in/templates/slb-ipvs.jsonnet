@@ -101,11 +101,9 @@ if configs.estate == "prd-sdc" then {
                     }
 
                 ],
-                "nodeSelector":[
-                    {
-                        "service": "slb-ipvs"
-                    }
-                ]
+                "nodeSelector":{
+                    "service": "slb-ipvs"
+                }
             }
         }
     }
