@@ -11,7 +11,7 @@ system:
     containers:
     - name: gater1
       # container image/version to run. published separately.
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170503C
+      image: tnrp/gater/gater:1.1.1-0000091-13619565
       args:
         - --server.port=9090
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
