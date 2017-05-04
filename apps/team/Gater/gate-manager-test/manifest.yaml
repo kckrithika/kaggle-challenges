@@ -6,15 +6,12 @@ system:
       - dmachak@salesforce.com
   functions:
   - name: gater
-    count: 5
+    count: 4
     hostnetwork: true
     containers:
     - name: gater1
       # container image/version to run. published separately.
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170503B
-      resources:
-        limits: { memory: "8Gi" }
-        requests: { memory: "8Gi" }
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170503C
       args:
         - --server.port=9090
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
