@@ -1,0 +1,15 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute2-1-dfw.ops.sfdc.net,10.247.104.18/28,10.214.128.0/27,m09-01,dfw-sam
+shared0-samkubeapi2-1-dfw.ops.sfdc.net,10.247.104.19/28,10.214.128.32/27,m09-01,dfw-sam
+shared0-samcompute1-1-dfw.ops.sfdc.net,10.247.104.10/28,10.214.128.64/27,s17-01,dfw-sam
+shared0-samkubeapi1-1-dfw.ops.sfdc.net,10.247.104.11/28,10.214.128.96/27,s17-01,dfw-sam
+shared0-samcompute1-2-dfw.ops.sfdc.net,10.247.104.34/28,10.214.128.128/27,u17-01,dfw-sam
+shared0-samkubeapi3-1-dfw.ops.sfdc.net,10.247.104.35/28,10.214.128.160/27,u17-01,dfw-sam
+shared0-samminiongater2-2-dfw.ops.sfdc.net,10.247.113.34/29,10.214.130.0/27,j10-02,dfw-sam_gater
+shared0-samminiongater1-1-dfw.ops.sfdc.net,10.247.113.2/29,10.214.130.32/27,k03-02,dfw-sam_gater
+shared0-samminiongater1-2-dfw.ops.sfdc.net,10.247.113.26/29,10.214.130.64/27,k10-02,dfw-sam_gater
+shared0-samminiongater2-1-dfw.ops.sfdc.net,10.247.113.10/29,10.214.130.96/27,l25-02,dfw-sam_gater
+shared0-samminiongater1-3-dfw.ops.sfdc.net,10.247.113.18/29,10.214.130.128/27,t18-01,dfw-sam_gater
+shared0-samminionreportcollector3-1-dfw.ops.sfdc.net,10.247.108.18/29,10.214.132.0/27,m08-01,dfw-sam_report_collector
+shared0-samminionreportcollector2-1-dfw.ops.sfdc.net,10.247.108.10/29,10.214.132.32/27,s18-01,dfw-sam_report_collector
+shared0-samminionreportcollector1-1-dfw.ops.sfdc.net,10.247.108.2/29,10.214.132.64/27,v31-01,dfw-sam_report_collector
