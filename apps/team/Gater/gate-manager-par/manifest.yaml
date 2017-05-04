@@ -1,28 +1,22 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - dmachak@salesforce.com
   functions:
   - name: gate-manager-par
     count: 5
     hostnetwork: true
     containers:
     - name: gater-par
-      # container image/version to run.
-      # this is published separately to ops0-artifactrepo1-0-phx.data.sfdc.net
-      image: tnrp/gater/gater:1.1.0-0000026-13383348
+      # container image/version to run. published separately.
+      image: tnrp/gater/gater:1.1.1-0000091-13619565
       args:
-        - start
-        - --logging.dir=/log
-        - --java.io.tmpdir=/tmp
         - --server.port=9090
-        - --settings.path=prod.-.par.-.gater
-        - --superpod.name=-
-        - --settings.superPod=-
-        - --spring.datasource.url=jdbc:h2:file:/fastdata/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
-        - --logging.perms.enforce=false
-        - --tnrp.use-vip=false
-      # associate the /log directory to a logical volume. logging.app.dir is set to this in the startup script args above,
-      # and this volume mount is mapped to a host directory below in the volumes section.
+      # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
+      # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
+      # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
       volumeMounts:
       - mountPath: /log
         name: logvol
