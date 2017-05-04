@@ -27,13 +27,6 @@ system:
         - --maxMemoryMB=4096
         - --configurations=cluster-enabled=yes
         - --logDir=/home/caas/logs
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12005
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12005
