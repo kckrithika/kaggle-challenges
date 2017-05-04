@@ -25,7 +25,7 @@ system:
       args: 
         - --port=12005
         - --maxMemoryMB=4096
-        - --configurations cluster-node-timeout=5000 cluster-enabled=yes
+        - --configurations=cluster-enabled=yes
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
