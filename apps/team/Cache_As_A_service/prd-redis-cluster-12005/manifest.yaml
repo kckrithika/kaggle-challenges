@@ -25,11 +25,11 @@ system:
       args: 
         - --port=12005
         - --maxMemoryMB=4096
-        - --configurations=cluster-enabled=yes
         - --logDir=/home/caas/logs
       # expose redis outside the container
       ports:
       - containerPort: 12005
+      - containerPort: 12006
     - name: caas-redis-announcer
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000024-13415531
