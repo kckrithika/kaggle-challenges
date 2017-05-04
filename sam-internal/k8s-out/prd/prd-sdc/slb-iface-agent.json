@@ -23,6 +23,7 @@
                      "/sdn/slb-iface-agent",
                      "--path=/host/var/slb",
                      "--period=300s",
+                     "--marker=600s",
                      "--bin=/sdn",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
