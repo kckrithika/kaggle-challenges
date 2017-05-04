@@ -1,6 +1,10 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - jayant.kumar@salesforce.com
+      - caas-dev@salesforce.com
   functions:
   - name: redis-cluster-12005
     count: 6
@@ -21,9 +25,7 @@ system:
       args: 
         - --port=12005
         - --maxMemoryMB=4096
-        - --cluster-enabled=yes
-        - --cluster-config-file=nodes.conf
-        - --cluster-node-timeout=5000
+        - --configurations cluster-node-timeout=5000 cluster-enabled=yes
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
