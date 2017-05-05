@@ -29,7 +29,6 @@
                      "-role=POD",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
@@ -40,7 +39,7 @@
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-snoozedAlarms=podUpTimeChecker=2017/05/02"
+                     "-emailFrequency=24h"
                   ],
                   "env": [
                      {

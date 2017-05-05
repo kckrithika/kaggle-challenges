@@ -17,10 +17,10 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=APISERVERLB",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=60s",
-                            "-emailFrequency=12h",
                         ]
                         + wdconfig.shared_args
-                        + wdconfig.shared_args_certs,
+                        + wdconfig.shared_args_certs
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=12h" ]),
                         volumeMounts: [
                                   wdconfig.cert_volume_mount
                         ],

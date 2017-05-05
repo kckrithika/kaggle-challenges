@@ -29,7 +29,6 @@
                      "-role=ETCDQUORUM",
                      "-watchdogFrequency=10s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=6h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
@@ -39,7 +38,8 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt"
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-emailFrequency=6h"
                   ],
                   "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000854-12298328",
                   "name": "watchdog-etcd-quorum",

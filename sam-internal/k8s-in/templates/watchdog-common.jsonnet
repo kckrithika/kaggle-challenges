@@ -15,12 +15,11 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=COMMON",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
-                            "-emailFrequency=24h",
                         ]
                         + wdconfig.shared_args
-                        + [
-                            "-snoozedAlarms=bridgeChecker=2017/05/02",
-                        ],
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ])
+                        # [thargrove] 2017-05-05 Waiting on the fix for bug related to SP hostnames (phx-sp1-sam_caas)
+                        + (if configs.kingdom == "phx" then [ "-snoozedAlarms=bridgeChecker=2017/06/02" ] else []),
                         name: "watchdog",
                         resources: {
                             requests: {

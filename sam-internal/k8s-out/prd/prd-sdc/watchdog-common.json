@@ -24,14 +24,13 @@
                      "-role=COMMON",
                      "-watchdogFrequency=5s",
                      "-alertThreshold=150s",
-                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
                      "-recipient=sdn@salesforce.com",
-                     "-snoozedAlarms=bridgeChecker=2017/05/02"
+                     "-emailFrequency=72h"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000848-5c2cced6",
                   "name": "watchdog",

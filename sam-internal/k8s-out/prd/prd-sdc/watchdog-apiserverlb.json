@@ -29,7 +29,6 @@
                      "-role=APISERVERLB",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=60s",
-                     "-emailFrequency=12h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
@@ -39,7 +38,8 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt"
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-emailFrequency=72h"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000848-5c2cced6",
                   "name": "watchdog-apiserverlb",

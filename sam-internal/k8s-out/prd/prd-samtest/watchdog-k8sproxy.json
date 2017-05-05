@@ -30,14 +30,13 @@
                      "-k8sproxyEndpoint=http://localhost:40000",
                      "-watchdogFrequency=10s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=24h",
+                     "-emailFrequency=48h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
-                     "-recipient=sam@salesforce.com",
-                     "-snoozedAlarms=k8sProxyChecker=2017/05/01"
+                     "-recipient=sam@salesforce.com"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328",
                   "name": "watchdog-proxy"

@@ -18,10 +18,9 @@ if configs.kingdom == "prd" then {
                             "-k8sproxyEndpoint=http://localhost:40000",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=24h",
+                            "-emailFrequency=48h",
                         ]
-                        + wdconfig.shared_args
-                        + if configs.estate == "prd-samtest" then [ "-snoozedAlarms=k8sProxyChecker=2017/05/01" ] else  [],
+                        + wdconfig.shared_args,
                     }
                 ],
                 nodeSelector: {

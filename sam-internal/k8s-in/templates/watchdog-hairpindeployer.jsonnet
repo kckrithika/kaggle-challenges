@@ -17,11 +17,6 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=HAIRPINDEPLOYER",
                             "-watchdogFrequency=120s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=24h",
-                        ]
-                        + wdconfig.shared_args
-                        + wdconfig.shared_args_certs
-                        + [
                             "-deployer-imageName="+configs.watchdog,
                             "-deployer-funnelEndpoint="+configs.funnelVIP,
                             "-deployer-rcImtEndpoint="+configs.rcImtEndpoint,
@@ -29,7 +24,11 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-deployer-sender="+configs.watchdog_emailsender,
                             "-deployer-recipient="+configs.watchdog_emailrec,
                         ]
-                        + if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/05/02" ] else [],
+                        + wdconfig.shared_args
+                        + wdconfig.shared_args_certs
+                        # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down
+                        + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/06/02" ] else [])
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                           wdconfig.kube_config_volume_mount,
