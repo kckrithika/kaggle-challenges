@@ -62,7 +62,7 @@ if configs.estate == "prd-sdc" then {
                             "--services=/host/var/slb/services",
                             "--servers=/host/var/slb/servers",
                             "--available=/host/var/slb/available",
-                            "--period=30s",
+                            "--period=5s",
                             "--namespace=default",
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--serviceList=slb-test-svc",

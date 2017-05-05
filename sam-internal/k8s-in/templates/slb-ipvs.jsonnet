@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" then {
         "name": "slb-ipvs"
     },
     "spec": {
-        replicas: 1,
+        replicas: 2,
         "template": {
             "metadata": {
                 "labels": {
@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" then {
                             "--host=/host",
                             "--mode=continuous",
                             "--target=/host/var/slb",
-                            "--period=300s"
+                            "--period=5s"
                         ],
                         "volumeMounts": [
                             {
@@ -87,7 +87,7 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/slb-ipvs-agent",
                             "--path=/host/var/slb",
-                            "--period=300s"
+                            "--period=5s"
                         ],
                         "volumeMounts": [
                             {
