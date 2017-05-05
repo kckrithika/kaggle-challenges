@@ -29,7 +29,6 @@
                      "-role=POD",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
@@ -39,7 +38,9 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt"
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-snoozedAlarms=podUpTimeChecker=2017/06/01",
+                     "-emailFrequency=72h"
                   ],
                   "env": [
                      {

@@ -17,10 +17,10 @@
                             "-role=ETCDQUORUM",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=6h",
                         ]
                         + wdconfig.shared_args
-                        + wdconfig.shared_args_certs,
+                        + wdconfig.shared_args_certs
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=6h" ]),
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                        ],

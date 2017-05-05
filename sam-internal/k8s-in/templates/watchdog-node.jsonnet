@@ -17,10 +17,11 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=NODE",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=150s",
-                            "-emailFrequency=24h",
                         ]
                         + wdconfig.shared_args
-                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "phx" then [ "-snoozedAlarms=nodeChecker=2017/05/02" ] else  [],
+                        # [thargrove] 2017-05-05 We have minions down in the following 3 estates
+                        + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then [ "-snoozedAlarms=nodeChecker=2017/06/01" ] else  [])
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                           wdconfig.kube_config_volume_mount,

@@ -29,7 +29,6 @@
                      "-role=DEPLOYMENT",
                      "-watchdogFrequency=10s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
@@ -39,7 +38,8 @@
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt"
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-emailFrequency=24h"
                   ],
                   "env": [
                      {

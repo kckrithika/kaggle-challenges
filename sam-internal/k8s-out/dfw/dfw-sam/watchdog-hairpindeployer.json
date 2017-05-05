@@ -29,7 +29,12 @@
                      "-role=HAIRPINDEPLOYER",
                      "-watchdogFrequency=120s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=24h",
+                     "-deployer-imageName=ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
+                     "-deployer-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
+                     "-deployer-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
+                     "-deployer-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
+                     "-deployer-sender=sam@salesforce.com",
+                     "-deployer-recipient=sam@salesforce.com",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
@@ -40,12 +45,7 @@
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-deployer-imageName=ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
-                     "-deployer-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
-                     "-deployer-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
-                     "-deployer-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
-                     "-deployer-sender=sam@salesforce.com",
-                     "-deployer-recipient=sam@salesforce.com"
+                     "-emailFrequency=24h"
                   ],
                   "env": [
                      {

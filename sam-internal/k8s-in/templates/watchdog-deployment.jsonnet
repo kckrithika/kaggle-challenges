@@ -17,12 +17,12 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=DEPLOYMENT",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=24h",
                         ]
                         + wdconfig.shared_args
                         + wdconfig.shared_args_certs
-                        + if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ]
-                             else if configs.kingdom == "phx" then [ "-snoozedAlarms=deploymentChecker=2017/05/02" ] else [],
+                        # [thargrove] 2017-05-05 Right now this checker fails for customer apps.  We need to ignore user-* namespaces
+                        + (if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ] else [])
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
                           wdconfig.cert_volume_mount,
                           wdconfig.kube_config_volume_mount,

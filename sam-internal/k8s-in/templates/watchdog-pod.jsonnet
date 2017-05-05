@@ -17,12 +17,13 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=POD",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=24h",
                         ]
                         + wdconfig.shared_args
                         + wdconfig.shared_args_certs
-                        + if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.kingdom == "phx" || configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "par"
-                            then [ "-snoozedAlarms=podUpTimeChecker=2017/05/02" ] else  [],
+                        # [thargrove] 2017-05-05 We have failing customer pods in all test beds.  We need to ignore 
+                        # failing pods with "user-*" namespace
+                        + (if configs.kingdom == "prd" then [ "-snoozedAlarms=podUpTimeChecker=2017/06/01" ] else [])
+                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                         volumeMounts: [
                             wdconfig.cert_volume_mount,
                             wdconfig.kube_config_volume_mount,

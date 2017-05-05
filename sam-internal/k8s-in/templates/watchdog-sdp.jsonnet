@@ -18,7 +18,7 @@ if configs.kingdom == "prd" then {
                             "-sdpEndpoint=http://localhost:39999",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=12h",
+                            "-emailFrequency=24h",
                         ]
                         + wdconfig.shared_args
                     }

@@ -29,13 +29,13 @@
                      "-role=NODE",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=150s",
-                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
-                     "-recipient=sam@salesforce.com"
+                     "-recipient=sam@salesforce.com",
+                     "-emailFrequency=24h"
                   ],
                   "env": [
                      {

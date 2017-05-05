@@ -29,7 +29,6 @@
                      "-role=POD",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
-                     "-emailFrequency=24h",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
@@ -40,7 +39,7 @@
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
                      "-certFile=/data/certs/hostcert.crt",
-                     "-snoozedAlarms=podUpTimeChecker=2017/05/02"
+                     "-emailFrequency=24h"
                   ],
                   "env": [
                      {
