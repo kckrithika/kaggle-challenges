@@ -1,0 +1,50 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: prd-redis-metrics-publisher
+    count: 1 
+    hostnetwork: true
+    containers:
+    - name: caas-metrics-publisher 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-0000024-13624787
+      args: 
+        - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
+        - --redis-monitor.redis-listen-ports=12000
+        - --server.port=7500 
+        - --management.port=7501
+        - --cluster.name=sp-c1
+        - --logging.level.minimum=ALL
+        - --settings.path=mist30.-.prd.-.caas
+        - --logDir=/home/caas/logs/caas
+        - --metrics-publisher-mode=true
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7501
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 7500
+      - containerPort: 7501
+      env:
+      - name:  CAAS_UPGRADE
+        value: DATE_12_23
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
