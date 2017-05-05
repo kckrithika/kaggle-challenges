@@ -22,7 +22,7 @@ local wdconfig = import "wdconfig.jsonnet";
                         + wdconfig.shared_args_certs
                         # [thargrove] 2017-05-05 We have failing customer pods in all test beds.  We need to ignore 
                         # failing pods with "user-*" namespace
-                        + (if configs.kingdom == "prd" then ["--snoozedAlarms=podUpTimeChecker=2017/06/01"] else [])
+                        + (if configs.kingdom == "prd" then [ "-snoozedAlarms=podUpTimeChecker=2017/06/01" ] else [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                         volumeMounts: [
                             wdconfig.cert_volume_mount,
