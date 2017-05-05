@@ -10,9 +10,8 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170505a
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170505b
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
-      args: [">/opt/pdm/pdm.log", "2>&1"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: DS_LOCAL
