@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smithsam-tools:20170501_140130.0adab6a1.clean.duncsmith-ltm
+SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/sam-tools:20170505_101751.b42b99ec.clean.duncsmith-ltm
 
 echo "NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
 

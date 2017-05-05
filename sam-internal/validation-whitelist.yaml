@@ -25,3 +25,6 @@ LivenessProbeExceptions:
   - "tnrp/p4tools/redis:3.0.2-01"
   - "tnrp/sam/hypersam:sam-0000701-487f2675"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170502A"
+  - "tnrp/csc-health/health-endpoint-watchdog:health-endpoint-watchdog-0000006-c9f39ecc"
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170503B"
+  - "tnrp/gater/gater:1.1.1-0000028-13622462"
