@@ -8,7 +8,7 @@
       "name": "slb-ipvs"
    },
    "spec": {
-      "replicas": 1,
+      "replicas": 2,
       "template": {
          "metadata": {
             "labels": {
@@ -24,7 +24,7 @@
                      "--host=/host",
                      "--mode=continuous",
                      "--target=/host/var/slb",
-                     "--period=300s"
+                     "--period=5s"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000077-2c084c92",
                   "name": "slb-ipvs-installer",
@@ -55,7 +55,7 @@
                   "command": [
                      "/sdn/slb-ipvs-agent",
                      "--path=/host/var/slb",
-                     "--period=300s"
+                     "--period=5s"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000077-2c084c92",
                   "name": "slb-ipvs-agent",
