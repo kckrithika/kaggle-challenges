@@ -1,5 +1,5 @@
 #Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
-#If you are updating it, there is a high chance you need to update k8s-out/access.yaml
+#If you are updating it, there is a high chance you need to update sam-internal/access.yaml
 #and tnrp/access.yaml
 users:
   #SAM team members
