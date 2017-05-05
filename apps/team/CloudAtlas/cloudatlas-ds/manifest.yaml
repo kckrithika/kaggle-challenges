@@ -15,7 +15,7 @@ system:
       args: [">/opt/pdm/pdm.log", "2>&1"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
-        value: DS_TOPOMASTER_ONLY
+        value: DS_LOCAL
       volumeMounts:
       - mountPath: /home/ubid
         name: hosthomevol
