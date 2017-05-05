@@ -14,7 +14,7 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
-        value: DS_LOCAL
+        value: ALL
       volumeMounts:
       - mountPath: /home/ubid
         name: hosthomevol
