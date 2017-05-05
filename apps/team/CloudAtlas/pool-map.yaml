@@ -1,3 +1,5 @@
 apps:
-  cloudatlas-test:
+  cloudatlas-proxy:
+    - prd/prd-sam_cloudatlas
+  cloudatlas-ds:
     - prd/prd-sam_cloudatlas_dir
