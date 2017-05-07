@@ -7,10 +7,15 @@ system:
   functions:
   - name: cloudatlas-node
     count: 4
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170505b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170507a
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -20,7 +25,9 @@ system:
         name: hosthomevol
       ports:
       - containerPort: 1636
+        hostPort: 1636
       - containerPort: 8443
+        hostPort: 8890
       livenessProbe:
         exec:
           command: ["true"]
