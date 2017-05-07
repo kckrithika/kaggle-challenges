@@ -7,10 +7,15 @@ system:
   functions:
   - name: cloudatlas-node
     count: 5
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170505b
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas-pdm-install:ashafer-20170507a
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
