@@ -18,7 +18,7 @@ system:
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=caas-cluster-1
-        - --logging.level.minimum=ALL
+        - --logging.level.minimum=INFO
         - --settings.path=mist30.-.prd.-.caas
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
