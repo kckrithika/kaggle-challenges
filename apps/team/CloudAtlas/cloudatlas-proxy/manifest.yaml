@@ -25,9 +25,8 @@ system:
         name: hosthomevol
       ports:
       - containerPort: 1636
-        hostPort: 1636
       - containerPort: 8443
-        hostPort: 8890
+      - containerPort: 8890
       livenessProbe:
         exec:
           command: ["true"]
