@@ -21,6 +21,8 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-caas-redis-12028:
     - prd/prd-sp2-sam_caas
+  prd-caas-redis-12042:
+    - prd/prd-sp2-sam_caas
   prd-redis-cluster-12005:
     - prd/prd-sp2-sam_caas
   prd-redis-metrics-publisher:

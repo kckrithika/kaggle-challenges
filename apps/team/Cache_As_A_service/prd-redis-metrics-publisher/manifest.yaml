@@ -15,9 +15,9 @@ system:
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --redis-monitor.redis-listen-ports=12000
-        - --server.port=7500 
-        - --management.port=7501
-        - --cluster.name=sp-c1
+        - --server.port=7521 
+        - --management.port=7522
+        - --cluster.name=caas-cluster-1
         - --logging.level.minimum=ALL
         - --settings.path=mist30.-.prd.-.caas
         - --logDir=/home/caas/logs/caas
@@ -31,16 +31,10 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 7501
+          port: 7522
         initialDelaySeconds: 60 
         timeoutSeconds: 10
       # expose redis outside the container
-      ports:
-      - containerPort: 7500
-      - containerPort: 7501
-      env:
-      - name:  CAAS_UPGRADE
-        value: DATE_12_23
     volumes:
     - name: logvol
       hostPath:
