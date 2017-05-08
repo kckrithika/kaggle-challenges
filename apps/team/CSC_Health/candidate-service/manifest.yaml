@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000008-9d46cecd
+      image: tnrp/csc-health/candidate-service:candidate-service-0000009-fdbf2743
       ports:
       - containerPort: 8888
       resources:
