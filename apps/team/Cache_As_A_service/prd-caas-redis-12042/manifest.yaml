@@ -54,4 +54,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       secret:
-         secretName: caas-secret-caas-cluster-1
+         secretName: caas-secret-sp-c1
