@@ -5,6 +5,35 @@ system:
   - name: candidate-service
     count: 1
     containers:
+    - name: candidate-service-logrotator
+      image: tnrp/csc-health/candidate-service:candidate-service-0000008-9d46cecd
+      volumeMounts:
+        - mountPath: /home/sfdc-csc-health/candidate-service
+          name: logvol
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+        echo "compress
+        /home/sfdc-csc-health/candidate-service/candidate-service-app.log {
+          rotate 4
+          size 1024
+          copytruncate
+          delaycompress
+        }" > /tmp/candidate-service-logrotate.conf;
+        cmd="/usr/sbin/logrotate -v /tmp/candidate-service-logrotate.conf";
+        while true
+        do
+          printf "\n`date`\n\n"
+          $cmd;
+          sleep 600;
+        done
+      ']
     - name: candidate-service
       image: tnrp/csc-health/candidate-service:candidate-service-0000008-9d46cecd
       ports:
@@ -16,6 +45,8 @@ system:
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
+        - mountPath: /home/sfdc-csc-health/candidate-service
+          name: logvol
       env:
       - name: CHS_AJNA_ENABLED
         value: true
@@ -45,6 +76,9 @@ system:
       - name: secretvol
         secret:
           secretName: csc-health-secret
+      - name: logvol
+        hostPath:
+          path: /home/sfdc-csc-health/candidate-service
 
   loadbalancers:
   - lbname: candidateservicelb
