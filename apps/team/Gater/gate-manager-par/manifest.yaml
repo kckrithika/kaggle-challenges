@@ -5,11 +5,11 @@ system:
     email:
       - dmachak@salesforce.com
   functions:
-  - name: gate-manager-par
+  - name: gater
     count: 5
     hostnetwork: true
     containers:
-    - name: gater-par
+    - name: gate-manager
       # container image/version to run. published separately.
       image: tnrp/gater/gater:1.1.1-0000028-13622462
       args:
