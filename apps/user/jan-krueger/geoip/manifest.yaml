@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: backend
+  - name: geoip
     count: 3
     containers:
     - name: ccait-geoip-backend
@@ -20,12 +20,16 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 15
-  - name: frontend
+  - name: geoip-demo
     count: 1
     containers:
     - name: ccait-geoip-frontend
       image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:1.0.2
       env:
+        - name: SFDC_ENVIRONMENT
+          value: dev
+        - name: SFDC_SUBENVIRONMENT
+          value: ""
         - name: GRPC_ROUTING_GEOIP_HOST
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
         - name: GRPC_ROUTING_GEOIP_PORT
@@ -42,7 +46,7 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 15
-  - name: xlt
+  - name: geoip-xlt
     count: 1
     containers:
     - name: ccait-xlt
@@ -52,17 +56,17 @@ system:
 
   loadbalancers:
   - lbname: ccait-geoip-backend-lb
-    function: backend
+    function: geoip
     ports:
       - port: 6565
         targetport: 6565
   - lbname: ccait-geoip-frontend-lb
-    function: frontend
+    function: geoip-demo
     ports:
       - port: 8080
         targetport: 8080
   - lbname: ccait-xlt-lb
-    function: xlt
+    function: geoip-xlt
     ports:
       - port: 8500
         targetport: 8500
