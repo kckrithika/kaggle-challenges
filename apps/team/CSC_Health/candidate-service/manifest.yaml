@@ -25,7 +25,14 @@ system:
           size 1024
           copytruncate
           delaycompress
-        }" > /tmp/candidate-service-logrotate.conf; cmd="/usr/sbin/logrotate -v /tmp/candidate-service-logrotate.conf"; while true; do echo; date; echo; $cmd; sleep 600; done
+        }" > /tmp/candidate-service-logrotate.conf;
+        cmd="/usr/sbin/logrotate -v /tmp/candidate-service-logrotate.conf";
+        while true
+        do
+          printf "\n`date`\n\n"
+          $cmd;
+          sleep 600;
+        done
       ']
     - name: candidate-service
       image: tnrp/csc-health/candidate-service:candidate-service-0000008-9d46cecd
