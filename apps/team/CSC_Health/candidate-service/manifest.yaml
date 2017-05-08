@@ -27,9 +27,9 @@ system:
           delaycompress
         }" > /tmp/candidate-service-logrotate.conf;
         cmd="/usr/sbin/logrotate -v /tmp/candidate-service-logrotate.conf";
-        while true
+        while true;
         do
-          printf "\n`date`\n\n"
+          printf "\n`date`\n\n";
           $cmd;
           sleep 600;
         done
