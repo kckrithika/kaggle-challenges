@@ -29,7 +29,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: dev
         - name: SFDC_SUBENVIRONMENT
-          value:
+          value: ""
         - name: GRPC_ROUTING_GEOIP_HOST
           value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
         - name: GRPC_ROUTING_GEOIP_PORT
