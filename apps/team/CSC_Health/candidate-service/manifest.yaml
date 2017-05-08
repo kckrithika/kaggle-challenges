@@ -19,12 +19,12 @@ system:
         periodSeconds: 30
       command: ["/bin/sh", "-c"]
       args: ['
-        echo "compress
-        /home/sfdc-csc-health/candidate-service/candidate-service-app.log {
-          rotate 4
-          size 1024
-          copytruncate
-          delaycompress
+        printf "compress\n
+        /home/sfdc-csc-health/candidate-service/candidate-service-app.log {\n
+          rotate 4\n
+          size 1024\n
+          copytruncate\n
+          delaycompress\n
         }" > /tmp/candidate-service-logrotate.conf;
         cmd="/usr/sbin/logrotate -v /tmp/candidate-service-logrotate.conf";
         while true;
