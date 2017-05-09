@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: prd-vagabond-cluster-1
-    count: 6
+    count: 5
     hostnetwork: true
     containers:
     - name: vagabond
@@ -51,3 +51,9 @@ system:
     - name: config-volume
       hostPath:
         path: /data/vagabond
+
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 2
