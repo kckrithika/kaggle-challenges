@@ -28,7 +28,7 @@ while getopts ":o:" opt; do
 done
 
 # Disable estates check for now until we work out the access token stuff
-/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer
+/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . --swaggerspecdir=/opt/sam/swagger-spec -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer
 cp ./image-promotion.yaml ${OUTPUT_DIR}
 
 # Temporary for now

@@ -48,4 +48,4 @@ exitIfMergeCommitFound
 
 /opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 
-/opt/sam/sam-manifest-builder --root='./' -validateonly
+/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -validateonly
