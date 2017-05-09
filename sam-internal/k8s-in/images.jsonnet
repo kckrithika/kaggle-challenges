@@ -61,9 +61,6 @@
             sdn_bird: $.testimages.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image,
             sdn_watchdog: $.testimages.sdn_image,
-
-            # Temporary overrides
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328"
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
@@ -72,10 +69,6 @@
             sdn_bird: $.testimages.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image,
             sdn_watchdog: $.testimages.sdn_image,
-
-            # Temporary overrides
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328",
-            sam_deployment_reporter: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000856-9340f97f"
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
@@ -84,9 +77,6 @@
             sdn_bird: $.testimages.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image,
             sdn_watchdog: $.testimages.sdn_image,
-
-            # Temporary overrides
-            watchdog: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000854-12298328"
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
