@@ -41,7 +41,7 @@
                      "-certFile=/data/certs/hostcert.crt",
                      "-emailFrequency=48h"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000848-5c2cced6",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000867-67f434f4",
                   "name": "watchdog-etcd-quorum",
                   "volumeMounts": [
                      {
