@@ -37,6 +37,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12042
+        - --pathPrefix=/mist30/prd/-
         - --cluster.name=caas-cluster-1
         - --logDir=/home/caas/logs
       resources:
