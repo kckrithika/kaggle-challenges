@@ -26,7 +26,7 @@ system:
           copytruncate\n
           delaycompress\n
         }" > /tmp/candidate-service-logrotate.conf;
-        cmd="/usr/sbin/logrotate -v /tmp/candidate-service-logrotate.conf";
+        cmd="/usr/sbin/logrotate -v -s /tmp/logrotate.status /tmp/candidate-service-logrotate.conf";
         while true;
         do
           printf "\n`date`\n\n";
