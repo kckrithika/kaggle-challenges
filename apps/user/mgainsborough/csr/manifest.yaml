@@ -7,7 +7,7 @@ system:
 
     containers:
     - name: csr-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/csr_sam:206.10-8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.3.5-3
  
       livenessProbe:
         exec:
