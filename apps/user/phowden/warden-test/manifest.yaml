@@ -4,22 +4,12 @@ system:
     notifications:
       email:
         - paul.howden@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
-        - dtupper@salesforce.com
     functions:
     - name: phwardentest
       count: 2
       containers:
       - name: casp-warden
-        image: tnrp/casp-test/warden:0.0.0-0000011-c993967b
+        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-May10-0951AM
         ports:
         - containerPort: 8889
         env:
