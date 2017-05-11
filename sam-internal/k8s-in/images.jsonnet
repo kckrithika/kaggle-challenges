@@ -30,7 +30,7 @@
 
     # Release Phase 4 - Rest of Prod
     phase4_prod_all: {
-      hypersam: "sam-0000823-9d4a0250",
+      hypersam: "sam-0000867-67f434f4",
     },
 
     # ====================================================
@@ -100,9 +100,6 @@
         "phx-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
-
-            # Temporary overrides
-            watchdog: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000854-12298328"
         },
         "frf-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,
@@ -111,9 +108,6 @@
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
-
-            # Temporary overrides
-            samcontrol_deployer: configs.registry + "/" + "tnrp/sam/hypersam:sam-0000807-258dde00",
         }
     },
 

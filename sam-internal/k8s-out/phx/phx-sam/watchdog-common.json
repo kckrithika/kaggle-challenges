@@ -33,7 +33,7 @@
                      "-emailFrequency=24h",
                      "-snoozedAlarms=bridgeChecker=2017/06/02"
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000854-12298328",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000867-67f434f4",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
