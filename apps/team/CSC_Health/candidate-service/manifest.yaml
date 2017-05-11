@@ -69,7 +69,7 @@ system:
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         case ${KINGDOM} in
           dfw)
-            export CHS_REPORTCOLLECTOR_ENDPOINT=https://${REPORTCOLLECTORHALB_SERVICE_HOST}:${REPORTCOLLECTORHALB_SERVICE_PORT_TCP18444}
+            export CHS_REPORTCOLLECTOR_ENDPOINT=http://${REPORTCOLLECTORHALB_SERVICE_HOST}:${REPORTCOLLECTORHALB_SERVICE_PORT_TCP18444}
             ;;
           prd)
             export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
