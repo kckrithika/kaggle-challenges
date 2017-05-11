@@ -1,0 +1,16 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: signature-validation-test
+    count: 6
+    hostnetwork: true
+    containers:
+    - name: signature-validation-test
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:bob-20160908
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
