@@ -77,7 +77,7 @@ system:
           *)
             export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.ops.sfdc.net:18444
             ;;
-        esac
+        esac ;
         /candidateservice
       "]
     volumes:
