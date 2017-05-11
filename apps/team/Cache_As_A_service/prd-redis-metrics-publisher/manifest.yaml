@@ -11,10 +11,9 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-0000024-13624787
+      image: tnrp/caas/caas-monitor:0.1-0000026-13654660
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
-        - --redis-monitor.redis-listen-ports=12000
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=caas-cluster-1
