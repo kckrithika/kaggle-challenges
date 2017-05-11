@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000008-9d46cecd
+      image: tnrp/csc-health/candidate-service:candidate-service-0000009-fdbf2743
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -50,10 +50,6 @@ system:
       env:
       - name: CHS_AJNA_ENABLED
         value: true
-      - name: CHS_REPORTCOLLECTOR_ENDPOINT
-        value: https://ops0-health1-1-prd.eng.sfdc.net:18444
-      - name: CHS_GROK_ENDPOINT
-        value: https://ops0-grok1-0-prd.data.sfdc.net
       - name: CHS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: CHS_GROK_KEYPATH
@@ -70,6 +66,18 @@ system:
         export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export CHS_AJNA_DATACENTER=${KINGDOM} ;
         export CHS_AJNA_DEVICE=${FUNCTION_INSTANCE_NAME} ;
+        export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
+        case ${KINGDOM} in
+          dfw)
+            export CHS_REPORTCOLLECTOR_ENDPOINT=https://${REPORTCOLLECTORHALB_SERVICE_HOST}:${REPORTCOLLECTORHALB_SERVICE_PORT_TCP18444}
+            ;;
+          prd)
+            export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
+            ;;
+          *)
+            export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.ops.sfdc.net:18444
+            ;;
+        esac
         /candidateservice
       "]
     volumes:
