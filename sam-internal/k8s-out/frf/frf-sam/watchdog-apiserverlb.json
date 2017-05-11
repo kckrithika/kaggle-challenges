@@ -41,7 +41,7 @@
                      "-certFile=/data/certs/hostcert.crt",
                      "-emailFrequency=12h"
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000823-9d4a0250",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000867-67f434f4",
                   "name": "watchdog-apiserverlb",
                   "volumeMounts": [
                      {
