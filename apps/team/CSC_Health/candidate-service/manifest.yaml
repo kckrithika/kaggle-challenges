@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000009-fdbf2743
+      image: tnrp/csc-health/candidate-service:candidate-service-0000010-f60f5d56
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -35,7 +35,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000009-fdbf2743
+      image: tnrp/csc-health/candidate-service:candidate-service-0000010-f60f5d56
       ports:
       - containerPort: 8888
       resources:
@@ -56,6 +56,8 @@ system:
         value: /var/secrets/grok-client.key
       - name: CHS_HEALTH_PORT
         value: 8888
+      - name: CHS_LOG_FILE
+        value: /home/sfdc-csc-health/candidate-service/candidate-service-app.log
       livenessProbe:
         httpGet:
           path: /healthz
