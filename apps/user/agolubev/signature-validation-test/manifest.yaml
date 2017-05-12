@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: signature-validation-test
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:bob-20160908
+      image: shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/samhello:bob-20160908
       ports:
       - containerPort: 9090
       livenessProbe:
