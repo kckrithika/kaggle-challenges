@@ -21,17 +21,18 @@ system:
       args: ['
         printf "compress\n
         /home/sfdc-csc-health/candidate-service/candidate-service-app.log {\n
-          rotate 4\n
-          size 1024\n
+          rotate 30\n
+          daily\n
           copytruncate\n
           delaycompress\n
         }" > /tmp/candidate-service-logrotate.conf;
-        cmd="/usr/sbin/logrotate -v -s /tmp/logrotate.status /tmp/candidate-service-logrotate.conf";
+        status_file=/home/sfdc-csc-health/candidate-service/candidate-service-logrotate.status;
+        cmd="/usr/sbin/logrotate -v -s ${status_file} /tmp/candidate-service-logrotate.conf";
         while true;
         do
           printf "\n`date`\n\n";
           $cmd;
-          sleep 600;
+          sleep 21600;
         done
       ']
     - name: candidate-service
