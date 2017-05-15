@@ -122,6 +122,7 @@ local images = import "images.jsonnet",
     sdn_bird: images.sdn_bird,
     sdn_peering_agent: images.sdn_peering_agent,
     sdn_watchdog: images.sdn_watchdog,
+    sdn_vault_agent: images.sdn_vault_agent,
 
     slb_iface_agent: images.slb_iface_agent,
     slb_ipvs: images.slb_ipvs,
