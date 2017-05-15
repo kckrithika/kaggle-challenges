@@ -3,31 +3,36 @@ apiVersion: v1
 system:
   functions:
   - name: prd-sdb-cluster-1
-    count: 1 
+    count: 1
+    strategy:
+       type: Recreate
     hostnetwork: true
     containers:
     - name: sdbmaster
+      volumeMounts:
+      - name: sdblogs
+        mountPath: /sdb/sdblogs
       # container image/version to  run
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:sraspudic-20170515
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170407
       env:
       - name: ZK_ENSEMBLE
         value: sayonara1a-mnds1-1-prd.eng.sfdc.net:2181,sayonara1a-mnds1-2-prd.eng.sfdc.net:2181,sayonara1a-mnds1-3-prd.eng.sfdc.net:2181
       - name: SDBUSER
-        value: "sdb"
+        value: "sam"
       - name: SDBPORT
         value: "1521"
       - name: SDBDBNAME
-        value: "gssdb1"
+        value: "samsdb1"
       - name: SDBROOT
         value: "/sdb"
       - name: SDBSTORE
         value: "sfstore://localhost:5555"
       - name: SDBUUID
-        value: "81f8a870-5a5d-47a7-90d5-f9ec59cbd9fd"
+        value: "468b1cc4-fe05-428b-a500-90a6100a3542"
       - name: SDBCLUUID
-        value: "81f8a870-5a5d-47a7-90d5-f9ec59cbd9fd"
+        value: "468b1cc4-fe05-428b-a500-90a6100a3542"
       - name: SDBCLUSTERNAME
-        value: "81f8a870-5a5d-47a7-90d5-f9ec59cbd9fd"
+        value: "468b1cc4-fe05-428b-a500-90a6100a3542"
       ports:
       # expose sdb port outside the container
       - containerPort: 1521
@@ -36,4 +41,6 @@ system:
            tcpSocket:
              port: 1521
            initialDelaySeconds: 180
-      
+    volumes:
+      - name: sdblogs
+        emptyDir: {}
