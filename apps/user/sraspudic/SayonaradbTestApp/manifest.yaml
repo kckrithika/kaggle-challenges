@@ -13,7 +13,6 @@ system:
       - name: sdblogs
         mountPath: /sdb/sdblogs
       # container image/version to  run
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:sraspudic-20170515a
       image: ops0-artifactrepo1-0-prd.data.sfdc.net:5000/docker-sam/sraspudic/sdb-prd:sdb_sraspudic_20170515
       env:
       - name: ZK_ENSEMBLE
