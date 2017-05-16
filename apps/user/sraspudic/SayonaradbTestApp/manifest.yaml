@@ -13,7 +13,7 @@ system:
       - name: sdblogs
         mountPath: /sdb/sdblogs
       # container image/version to  run
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sraspudic/sdb-prd:sdb_sraspudic_20170515
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sraspudic/sdb-prd:sdb_sraspudic_20170515c
       env:
       - name: ZK_ENSEMBLE
         value: sayonara1a-mnds1-1-prd.eng.sfdc.net:2181,sayonara1a-mnds1-2-prd.eng.sfdc.net:2181,sayonara1a-mnds1-3-prd.eng.sfdc.net:2181
@@ -28,11 +28,11 @@ system:
       - name: SDBSTORE
         value: "sfstore://localhost:5555"
       - name: SDBUUID
-        value: "468b1cc4-fec5-628b-a510-90a6100a3542"
+        value: "468b1cc4-fec5-668b-a510-90a6100a3511"
       - name: SDBCLUUID
-        value: "468b1cc4-fec5-628b-a510-90a6100a3542"
+        value: "468b1cc4-fec5-668b-a510-90a6100a3511"
       - name: SDBCLUSTERNAME
-        value: "468b1cc4-fec5-628b-a510-90a6100a3542"
+        value: "468b1cc4-fec5-668b-a510-90a6100a3511"
       ports:
       # expose sdb port outside the container
       - containerPort: 1521
