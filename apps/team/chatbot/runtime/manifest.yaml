@@ -6,7 +6,6 @@ system:
       - david.ji@salesforce.com
       - d.l.taylor@salesforce.com
       - joslyn.esser@salesforce.com
-      - justin.powers@salesforce.com
   functions:
   - name: default
     count: 2
@@ -17,7 +16,7 @@ system:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /v1/conversation # root directory is 404ing for now so use this endpoint
+          path: /v1/_health # root directory is 404ing for now so use this endpoint
           port: 8080
         initialDelaySeconds: 30
 
