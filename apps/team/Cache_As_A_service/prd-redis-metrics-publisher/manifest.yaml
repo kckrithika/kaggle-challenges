@@ -21,6 +21,7 @@ system:
         - --settings.path=mist30.-.prd.-.caas
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
+        - --metrics.container=caas.mist30.caas-cluster-1
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
