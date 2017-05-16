@@ -12,7 +12,7 @@ system:
     count: 2
     containers:
     - name: chatbot-runtime
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/chatbot/chatbot-runtime:0.0.2-SNAPSHOT-0000009-af89cd1d
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/chatbot/chatbot-runtime:0.0.2-0000009-af89cd1d
       ports:
       - containerPort: 8080
       livenessProbe:
