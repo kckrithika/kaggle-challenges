@@ -27,6 +27,8 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
       # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
       # change this to a different port for instances running in SAM. Note server.port above reflects this.
       # The ports listed here are exposed at the host network level. This is controlled by the hostnetwork setting above.
