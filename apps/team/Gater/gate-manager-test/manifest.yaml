@@ -11,7 +11,7 @@ system:
     containers:
     - name: gater1
       # container image/version to run. published separately.
-      image: tnrp/gater/gater:1.1.1-0000028-13622462
+      image: tnrp/gater/gater:1.2.0-0000107-13692978
       args:
         - --server.port=9090
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
@@ -22,6 +22,11 @@ system:
         name: logvol
       - mountPath: /fastdata/gater
         name: dbvol
+      # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
       # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
       # change this to a different port for instances running in SAM. Note server.port above reflects this.
       # The ports listed here are exposed at the host network level. This is controlled by the hostnetwork setting above.
