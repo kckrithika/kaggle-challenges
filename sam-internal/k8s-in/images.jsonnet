@@ -85,6 +85,8 @@
             sdn_bird: $.testimages.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image,
             sdn_watchdog: $.testimages.sdn_image,
+            # Demo purpose using a demo image from the insecure registry
+            sdn_demo_watchdog: configs.insecureRegistries + "hypersdn:vkarnati-201705171424",
             sdn_vault_agent: $.testimages.sdn_image,
             slb_iface_agent: $.testimages.slb_image,
             slb_ipvs: $.testimages.slb_image,
@@ -123,5 +125,5 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdn_bird", "sdn_peering_agent", "sdn_watchdog", "sdn_vault_agent", "slb_iface_agent", "slb_ipvs", "samcontrol_deployer", "permissionInitContainer", "sam_deployment_reporter", "slb_realsvrcfg", "slb_config_processor"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdn_bird", "sdn_peering_agent", "sdn_watchdog", "sdn_demo_watchdog", "sdn_vault_agent", "slb_iface_agent", "slb_ipvs", "samcontrol_deployer", "permissionInitContainer", "sam_deployment_reporter", "slb_realsvrcfg", "slb_config_processor"]
 }
