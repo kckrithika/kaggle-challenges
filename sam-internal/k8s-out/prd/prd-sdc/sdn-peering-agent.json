@@ -62,7 +62,7 @@
                      "--certfile=/data/certs/hostcert.crt",
                      "--bgpPasswordFile=/data/secrets/sambgppassword"
                   ],
-                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdn:agajjala-201705172143",
+                  "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdn:agajjala-201705172220",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
