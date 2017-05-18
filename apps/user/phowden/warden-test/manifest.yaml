@@ -9,12 +9,12 @@ system:
       count: 2
       containers:
       - name: casp-warden
-        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-May18-1009AM
+        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-May18-0137PM
         ports:
         - containerPort: 8889
         env:
         - name: BRANCH
-          value: "cors_to_wsl4"
+          value: "cors_to_dev_jwt"
         volumeMounts:
         - mountPath: /home/sfdc-casp/lib/warden/mysql
           name: casphome
