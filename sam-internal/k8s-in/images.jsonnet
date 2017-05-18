@@ -30,7 +30,7 @@
 
     # Release Phase 4 - Rest of Prod
     phase4_prod_all: {
-      hypersam: "sam-0000867-67f434f4",
+      hypersam: "sam-0000873-7dc8110d",
     },
 
     # ====================================================
