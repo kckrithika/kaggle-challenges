@@ -22,7 +22,7 @@ if configs.estate == "prd-sdc" then {
                             "--sender="+configs.sdn_demo_emailsender,
                             "--emailFrequency=60s",
                             "--alertThreshold=60s",
-                            "--watchdogFrequency=1m"
+                            "--watchdogFrequency=60s"
                         ],
                     }
                 ],

@@ -29,7 +29,7 @@
                      "--sender=sdn@salesforce.com",
                      "--emailFrequency=60s",
                      "--alertThreshold=60s",
-                     "--watchdogFrequency=1m"
+                     "--watchdogFrequency=60s"
                   ],
                   "image": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/hypersdn:vkarnati-201705171424",
                   "name": "sdn-watchdog"
