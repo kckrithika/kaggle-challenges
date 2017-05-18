@@ -83,7 +83,8 @@
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird,
-            sdn_peering_agent: $.testimages.sdn_image,
+            # Demo purpose using a demo image from the insecure registry
+            sdn_peering_agent: configs.insecureRegistries + "hypersdn:agajjala-201705172013",
             sdn_watchdog: $.testimages.sdn_image,
             # Demo purpose using a demo image from the insecure registry
             sdn_demo_watchdog: configs.insecureRegistries + "hypersdn:vkarnati-201705171424",
