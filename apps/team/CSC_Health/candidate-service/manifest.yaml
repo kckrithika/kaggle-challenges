@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000010-f60f5d56
+      image: tnrp/csc-health/candidate-service:candidate-service-0000011-ed7a759b
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -36,7 +36,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000010-f60f5d56
+      image: tnrp/csc-health/candidate-service:candidate-service-0000011-ed7a759b
       ports:
       - containerPort: 8888
       resources:
