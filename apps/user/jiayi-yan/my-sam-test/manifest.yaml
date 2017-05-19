@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: jiayi-sam-testapp
+    count: 1
+    containers:
+    - name: main
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/samtestapp:samhelloworld
+      ports:
+      - containerPort: 9000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9000
+ 
+  loadbalancers:
+  - lbname: jiayi-sam-testapp-lb
+    function: jiayi-sam-testapp
+    ports:
+      - port: 9000
+        targetport: 9000
