@@ -1,0 +1,15 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute1-1-ukb.ops.sfdc.net,10.218.148.66/28,10.213.58.0/27,b07-02,ukb-sam
+shared0-samcompute1-2-ukb.ops.sfdc.net,10.218.148.18/28,10.213.58.32/27,d07-02,ukb-sam
+shared0-samcompute2-1-ukb.ops.sfdc.net,10.218.148.50/28,10.213.58.64/27,f07-02,ukb-sam
+shared0-samkubeapi1-1-ukb.ops.sfdc.net,10.218.148.10/28,10.213.58.96/27,j08-02,ukb-sam
+shared0-samkubeapi2-1-ukb.ops.sfdc.net,10.218.148.34/28,10.213.58.128/27,l28-01,ukb-sam
+shared0-samkubeapi3-1-ukb.ops.sfdc.net,10.218.148.82/28,10.213.58.160/27,m09-02,ukb-sam
+shared0-samminiongater1-2-ukb.ops.sfdc.net,10.218.143.34/29,10.213.60.0/27,d07-02,ukb-sam_gater
+shared0-samminiongater1-3-ukb.ops.sfdc.net,10.218.143.10/29,10.213.60.32/27,h02-02,ukb-sam_gater
+shared0-samminiongater2-1-ukb.ops.sfdc.net,10.218.143.26/29,10.213.60.64/27,j08-02,ukb-sam_gater
+shared0-samminiongater1-1-ukb.ops.sfdc.net,10.218.143.18/29,10.213.60.96/27,k23-01,ukb-sam_gater
+shared0-samminiongater2-2-ukb.ops.sfdc.net,10.218.143.2/29,10.213.60.128/27,m08-02,ukb-sam_gater
+shared0-samminionreportcollector1-1-ukb.ops.sfdc.net,10.218.149.34/28,10.213.62.0/27,b07-02,ukb-sam_report_collector
+shared0-samminionreportcollector2-1-ukb.ops.sfdc.net,10.218.149.18/28,10.213.62.32/27,f07-02,ukb-sam_report_collector
+shared0-samminionreportcollector3-1-ukb.ops.sfdc.net,10.218.149.10/28,10.213.62.64/27,l28-01,ukb-sam_report_collector

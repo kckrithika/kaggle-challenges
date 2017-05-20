@@ -1,0 +1,10 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+samcaas1-caasminion2-3-iad.ops.sfdc.net,10.222.211.100/29,10.213.132.0/27,d02-02,iad-sp1-sam_caas
+samcaas1-caasminion1-2-iad.ops.sfdc.net,10.222.211.106/29,10.213.132.32/27,d03-02,iad-sp1-sam_caas
+samcaas1-caasminion3-1-iad.ops.sfdc.net,10.222.211.114/29,10.213.132.64/27,d09-02,iad-sp1-sam_caas
+samcaas1-caasminion3-2-iad.ops.sfdc.net,10.222.211.122/29,10.213.132.96/27,d10-02,iad-sp1-sam_caas
+samcaas1-caasminion1-1-iad.ops.sfdc.net,10.222.211.66/29,10.213.132.128/27,j05-02,iad-sp1-sam_caas
+samcaas1-caasminion1-3-iad.ops.sfdc.net,10.222.211.74/29,10.213.132.160/27,j06-02,iad-sp1-sam_caas
+samcaas1-caasminion1-4-iad.ops.sfdc.net,10.222.211.82/29,10.213.132.192/27,j08-02,iad-sp1-sam_caas
+samcaas1-caasminion2-1-iad.ops.sfdc.net,10.222.211.90/29,10.213.132.224/27,j09-02,iad-sp1-sam_caas
+samcaas1-caasminion2-2-iad.ops.sfdc.net,10.222.211.91/29,10.213.133.0/27,j09-02,iad-sp1-sam_caas
