@@ -1,0 +1,11 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+samcaas1-caasminion1-1-ord.ops.sfdc.net,10.223.211.130/29,10.213.196.0/27,a05-02,ord-sp1-sam_caas
+samcaas1-caasminion1-2-ord.ops.sfdc.net,10.223.211.131/29,10.213.196.32/27,a05-02,ord-sp1-sam_caas
+samcaas1-caasminion1-3-ord.ops.sfdc.net,10.223.211.138/29,10.213.196.64/27,a06-02,ord-sp1-sam_caas
+samcaas1-caasminion2-1-ord.ops.sfdc.net,10.223.211.146/29,10.213.196.96/27,a11-02,ord-sp1-sam_caas
+samcaas1-caasminion2-2-ord.ops.sfdc.net,10.223.211.147/29,10.213.196.128/27,a11-02,ord-sp1-sam_caas
+samcaas1-caasminion2-3-ord.ops.sfdc.net,10.223.211.154/29,10.213.196.160/27,a16-02,ord-sp1-sam_caas
+samcaas1-caasminion3-1-ord.ops.sfdc.net,10.223.211.162/29,10.213.196.192/27,a17-01,ord-sp1-sam_caas
+samcaas1-caasminion3-2-ord.ops.sfdc.net,10.223.211.170/29,10.213.196.224/27,b07-02,ord-sp1-sam_caas
+samcaas1-caasminion3-3-ord.ops.sfdc.net,10.223.211.178/29,10.213.197.0/27,b08-02,ord-sp1-sam_caas
+samcaas1-caasminion1-4-ord.ops.sfdc.net,10.223.211.186/29,10.213.197.32/27,b12-02,ord-sp1-sam_caas
