@@ -15,7 +15,7 @@
 
     # Release Phase 1 - Test Beds
     phase1_test: {
-      hypersam: "sam-0000873-7dc8110d",
+      hypersam: "sam-0000890-479271fb",
     },
 
     # Release Phase 2 - PRD Sandbox and prd-sdc
