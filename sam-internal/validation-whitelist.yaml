@@ -30,3 +30,8 @@ LivenessProbeExceptions:
   - "tnrp/gater/gater:1.1.1-0000028-13622462"
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
+PortCollisionExceptions:
+  - "user/gutsin/redis-test"
+  - "user/adhoot/TestRCHostNW"
+  - "team/CSC_Sam/SamTestApp"
+  - "user/dlucey/SamTestApp"
