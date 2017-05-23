@@ -11,7 +11,7 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000026-13735779
+      image: tnrp/caas/caas-redis:0.1-0000027-13736440
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
@@ -37,12 +37,20 @@ system:
       - containerPort: 12042
     - name: caas-redis-announcer
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000024-13415531
+      image: tnrp/caas/caas-redis:0.1-0000027-13736440
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12042
         - --cluster.name=caas-cluster-1
         - --logDir=/home/caas/logs
+        - --podName=na45
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12042
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
       resources:
         limits: { memory: "200M" }
         requests: { memory: "200M" }

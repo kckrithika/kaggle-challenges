@@ -11,18 +11,18 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor:0.1-0000031-13735779
+      image: tnrp/caas/caas-monitor:0.1-0000032-13736431
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=caas-cluster-1
         - --logging.level.minimum=FINE
-        - --settings.path=$(SFDC_ENVIRONMENT).$(SFDC_SUBENVIRONMENT).$(KINGDOM).na45.caas
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
         - --metrics.container=caas.na45.caas-cluster-1
         - --superpod-service=true
+        - --podName=na45
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
