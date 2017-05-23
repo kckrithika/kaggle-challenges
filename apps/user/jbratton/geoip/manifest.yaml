@@ -3,155 +3,102 @@ apiVersion: v1
 system:
   functions:
   - name: geoip
+    count: 3
+    containers:
+    - name: ccait-geoip-backend
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/geoip/geoip:latest-0000006-7d845eb4
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+    - name: sherpa-backend
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/tnrp/sherpa:0.0.1-15
+      ports:
+      - containerPort: 7012
+        name: sherpa-backend-in
+      - containerPort: 7080
+        name: sherpa-backend-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./is-alive.sh" 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./is-ready.sh" 
+          initialDelaySeconds: 5 
+          periodSeconds: 5
+
+  - name: geoip-demo
     count: 1
     containers:
-
-    - name: backend1
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
+    - name: ccait-geoip-frontend
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:1.0.2
       env:
-      - name: GRPC_PORT
-        value: 7020
-      - name: MANAGEMENT_PORT
-        value: 15372
-      - name: SERVER_PORT
-        value: 0
-      ports:
-      - name: b1-port
-        containerPort: 7020
-      - name: b1-man-port
-        containerPort: 15372
-    - name: backend1-sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7080", "-i", "7012", "-o", "7011", "-p", "7020", "-s", "localhost"]
-      ports:
-      - name: b1-in-port
-        containerPort: 7012
-      - name: b1-admin-port
-        containerPort: 7080
-
-    - name: backend2
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
-      env:
-      - name: GRPC_PORT
-        value: 7021
-      - name: MANAGEMENT_PORT
-        value: 15373
-      - name: SERVER_PORT
-        value: 0
-      ports:
-      - name: b2-port
-        containerPort: 7021
-      - name: b2-man-port
-        containerPort: 15373
-    - name: backend2-sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7081", "-i", "7014", "-o", "7013", "-p", "7021", "-s", "localhost"]
-      ports:
-      - name: b2-in-port
-        containerPort: 7014
-      - name: b2-admin-port
-        containerPort: 7081
-
-    - name: backend3
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev
-      env:
-      - name: GRPC_PORT
-        value: 7022
-      - name: MANAGEMENT_PORT
-        value: 15374
-      - name: SERVER_PORT
-        value: 0
-      ports:
-      - name: b3-port
-        containerPort: 7022
-      - name: b3-man-port
-        containerPort: 15374
-    - name: backend3-sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      args: ["-a", "7082", "-i", "7016", "-o", "7015", "-p", "7022", "-s", "localhost"]
-      ports:
-      - name: b3-in-port
-        containerPort: 7016
-      - name: b3-admin-port
-        containerPort: 7082
-
-    - name: frontend
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev
-      env:
+      - name: SFDC_ENVIRONMENT
+        value: dev
+      - name: SFDC_SUBENVIRONMENT
+        value: ""
       - name: GRPC_ROUTING_GEOIP_HOST
-        value: localhost
+        value: geoip.localhost.mesh.force.com
       - name: GRPC_ROUTING_GEOIP_PORT
-        value: 7017
-      - name: MANAGEMENT_PORT
-        value: 15375
+        value: 7011
       ports:
-      - name: f-port
-        containerPort: 8080
-      - name: f-man-port
-        containerPort: 15375
-    - name: frontend-sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev
-      command: ["./demo-sherpa-launcher.sh"]
-      #args: ["-a", "7083", "-o", "7017", "-d", "localhost", "-q", "7012"]
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+    - name: sherpa-frontend
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/tnrp/sherpa:0.0.1-15
       ports:
-      # Normally we wouldn't expose the sherpa output port
-      - name: f-out-port
-        containerPort: 7017
-      - name: f-admin-port
-        containerPort: 7083
+      - containerPort: 7080
+        name: sherpa-frontend-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./is-alive.sh" 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./is-ready.sh" 
+          initialDelaySeconds: 5 
+          periodSeconds: 5
+
+  - name: geoip-xlt
+    count: 1
+    containers:
+    - name: ccait-xlt
+      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-xlt-agent:4.8.3
+      ports:
+      - containerPort: 8500
 
   loadbalancers:
-  - lbname: geoip-lb
-    function: geoip
+  - lbname: ccait-geoip-frontend-lb
+    function: geoip-demo
     ports:
-      - name: b1-in-port
-        port: 7012
-        targetPort: 7012
-      - name: b1-admin-port
-        port: 7080
-        targetPort: 7080
-      - name: b1-port
-        port: 7020
-        targetPort: 7020
-      - name: b1-man-port
-        port: 15372
-        targetPort: 15372
-
-      - name: b2-in-port
-        port: 7014
-        targetPort: 7014
-      - name: b2-admin-port
-        port: 7081
-        targetPort: 7081
-      - name: b2-port
-        port: 7021
-        targetPort: 7021
-      - name: b2-man-port
-        port: 15373
-        targetPort: 15373
-
-      - name: b3-in-port
-        port: 7016
-        targetPort: 7016
-      - name: b3-admin-port
-        port: 7082
-        targetPort: 7082
-      - name: b3-port
-        port: 7022
-        targetPort: 7022
-      - name: b3-man-port
-        port: 15374
-        targetPort: 15374
-
-      - name: f-port
-        port: 8080
-        targetPort: 8080
-      - name: f-out-port
-        port: 7017
-        targetPort: 7017
-      - name: f-admin-port
-        port: 7083
-        targetPort: 7083
-      - name: f-man-port
-        port: 15375
-        targetPort: 15375
+    - port: 7080
+      targetport: 7080
+    - port: 8080
+      targetport: 8080
+  - lbname: ccait-xlt-lb
+    function: geoip-xlt
+    ports:
+    - port: 8500
+      targetport: 8500
