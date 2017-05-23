@@ -62,7 +62,7 @@
                      "--certfile=/data/certs/hostcert.crt",
                      "--bgpPasswordFile=/data/secrets/sambgppassword"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000082-0d4ac95c",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000095-7dddf15",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
