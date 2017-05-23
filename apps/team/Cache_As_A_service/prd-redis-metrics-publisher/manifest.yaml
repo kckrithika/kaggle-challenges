@@ -8,20 +8,24 @@ system:
   - name: prd-redis-metrics-publisher
     count: 1 
     hostnetwork: true
+    env:
+      - name: POD
+        value: na45
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor:0.1-0000027-13660923
+      image: tnrp/caas/caas-monitor:0.1-0000031-13735779
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
         - --cluster.name=caas-cluster-1
-        - --logging.level.minimum=INFO
-        - --settings.path=mist30.-.prd.-.caas
+        - --logging.level.minimum=FINE
+        #- --settings.path=mist30.-.prd.-.caas
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
-        - --metrics.container=caas.mist30.caas-cluster-1
+        - --metrics.container=caas.na45.caas-cluster-1
+        - --superpod-service=true
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol

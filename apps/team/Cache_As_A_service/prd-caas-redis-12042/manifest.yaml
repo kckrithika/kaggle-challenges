@@ -4,11 +4,14 @@ system:
   functions:
   - name: redis-12042
     count: 4
-    hostnetwork: true 
+    hostnetwork: true
+    env:
+      - name: POD
+        value: na45
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000024-13415531
+      image: tnrp/caas/caas-redis:0.1-0000026-13735779
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "5Gi" }
@@ -38,7 +41,6 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12042
-        - --pathPrefix=/mist30/prd/-
         - --cluster.name=caas-cluster-1
         - --logDir=/home/caas/logs
       resources:
