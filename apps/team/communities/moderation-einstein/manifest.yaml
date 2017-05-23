@@ -14,6 +14,7 @@ system:
         ports:
         - containerPort: 8890
         livenessProbe:
+          initialDelaySeconds: 30
           httpGet:
             path: /
             port: 8890
