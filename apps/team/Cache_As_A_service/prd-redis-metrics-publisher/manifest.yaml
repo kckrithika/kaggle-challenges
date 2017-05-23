@@ -21,7 +21,7 @@ system:
         - --management.port=7522
         - --cluster.name=caas-cluster-1
         - --logging.level.minimum=FINE
-        #- --settings.path=mist30.-.prd.-.caas
+        - --settings.path=$SFDC_ENVIRONMENT.$SFDC_SUBENVIRONMENT.$KINGDOM.na45.caas
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
         - --metrics.container=caas.na45.caas-cluster-1
