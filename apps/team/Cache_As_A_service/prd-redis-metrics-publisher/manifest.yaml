@@ -8,13 +8,6 @@ system:
   - name: prd-redis-metrics-publisher
     count: 1 
     hostnetwork: true
-    env:
-      - name: POD
-        value: na45
-      - name: pod
-        value: na45
-      - name: environmentProperties.pod
-        value: na45
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
@@ -25,7 +18,7 @@ system:
         - --management.port=7522
         - --cluster.name=caas-cluster-1
         - --logging.level.minimum=FINE
-        #- --settings.path=mist30.-.prd.-.caas
+        - --settings.path=$(SFDC_ENVIRONMENT).$(SFDC_SUBENVIRONMENT).$(KINGDOM).na45.caas
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
         - --metrics.container=caas.na45.caas-cluster-1
