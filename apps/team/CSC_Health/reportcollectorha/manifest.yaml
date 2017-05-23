@@ -18,7 +18,7 @@ system:
         containerPort: 8444
       resources:
         limits: { cpu: "10", memory: "20Gi" }
-        requests: { cpu: "10", memory: "20Gi" }
+        requests: { cpu: "20", memory: "20Gi" }
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
@@ -30,6 +30,8 @@ system:
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 10
+      - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 10
       command: ["/bin/sh", "-c"]
       args: ["
