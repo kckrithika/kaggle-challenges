@@ -1,0 +1,28 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - shaktiprakash.das@salesforce.com
+        - communities.moderation@salesforce.com
+    functions:
+    - name: moderation-einstein
+      count: 3
+      containers:
+      - name: moderation-einstein-service
+        image: tnrp/moderation-einstein/moderation-einstein-service:1.0.2-0000006-31c09796
+        ports:
+        - containerPort: 8890
+        livenessProbe:
+          initialDelaySeconds: 30
+          httpGet:
+            path: /
+            port: 8890
+
+    loadbalancers:
+    - lbname: moderation-einstein-lb
+      function: moderation-einstein
+      ports:
+        - port: 8890
+          targetport: 8890
+
