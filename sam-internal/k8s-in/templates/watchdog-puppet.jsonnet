@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" then {
     kind: "DaemonSet",
     spec: {
         template: {
