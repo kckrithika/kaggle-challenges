@@ -18,7 +18,7 @@ system:
           port: 15372
         initialDelaySeconds: 15
     - name: sherpa-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/tnrp/sherpa:0.0.1-15
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000015-77b63f30
       ports:
       - containerPort: 7012
         name: sherpa-backend-in
@@ -64,7 +64,7 @@ system:
           port: 15372
         initialDelaySeconds: 15
     - name: sherpa-frontend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/tnrp/sherpa:0.0.1-15
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000015-77b63f30
       ports:
       - containerPort: 7080
         name: sherpa-frontend-admin
