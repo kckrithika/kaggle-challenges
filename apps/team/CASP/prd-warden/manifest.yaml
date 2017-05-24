@@ -30,6 +30,7 @@ system:
     loadbalancers:
     - lbname: wardenlb
       function: warden-func
+      nodeExposed: true
       ports:
         - port: 8889
           targetport: 8889
