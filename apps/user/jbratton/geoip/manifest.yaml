@@ -17,13 +17,13 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 15
-    - name: sherpa-backend
+    - name: sherpa-b
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000015-77b63f30
       ports:
       - containerPort: 7012
-        name: sherpa-backend-in
+        name: sherpa-b-in
       - containerPort: 7080
-        name: sherpa-backend-admin
+        name: sherpa-b-admin
       livenessProbe:
         exec:
           command:
@@ -63,11 +63,11 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 15
-    - name: sherpa-frontend
+    - name: sherpa-f
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000015-77b63f30
       ports:
       - containerPort: 7080
-        name: sherpa-frontend-admin
+        name: sherpa-f-admin
       livenessProbe:
         exec:
           command:
