@@ -8,13 +8,12 @@ system:
     containers:
     - name: caas-monitor 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor-prod:2.1.18-0000003-13500097
+      image: tnrp/caas/caas-monitor-prod:2.2.7-0000006-13681445
       args: 
         - --redis-monitor.redis-listen-ports=12010,12011
         - --server.port=7506 
         - --management.port=7507
         - --cluster.name=sp-pc1
-        - --logging.level.minimum=ALL
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
