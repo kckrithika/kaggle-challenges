@@ -27,13 +27,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./is-alive.sh" 
+          - "sh ./templates-build/is-alive.sh" 
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./is-ready.sh" 
+          - "sh ./templates-build/is-ready.sh" 
           initialDelaySeconds: 5 
           periodSeconds: 5
 
@@ -71,13 +71,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./is-alive.sh" 
+          - "sh ./templates-build/is-alive.sh" 
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./is-ready.sh" 
+          - "sh ./templates-build/is-ready.sh" 
           initialDelaySeconds: 5 
           periodSeconds: 5
 
