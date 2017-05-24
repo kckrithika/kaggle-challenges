@@ -7,6 +7,10 @@ system:
     containers:
     - name: ccait-geoip-backend
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/geoip/geoip:latest-0000006-7d845eb4
+      env:
+      # TODO: This can go away once we roll out docker images for the latest geoip code.
+      - name: GRPC_PORT
+        value: 7020
       livenessProbe:
         httpGet:
           path: /manage/health
