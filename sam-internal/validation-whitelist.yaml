@@ -30,8 +30,52 @@ LivenessProbeExceptions:
   - "tnrp/gater/gater:1.1.1-0000028-13622462"
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
+InsecureImageExceptions:
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:1.0.2" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:ganesh-20161207" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mikedhello:mike-20170414" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-ordering:zim-20170330" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:egrim-20170309" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:bob-20160630" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:jayant-20160801" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/adhoot:rcwd-qualifiednameasdevice" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-5" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samtestapp:withuser" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:jan-krueger01262017" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:bob-20160908" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:tag-min" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/facade:local2" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:yunzhao-20170503" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/testapp:sam-testapp-20170503" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:brian-20160401" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:ramm-20170306" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas:20170328" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:shakti-20170202" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-rc:1" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:ashafer-20170417" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gdot-helloworld:20170321" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:2017-04-26a" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/helloworld:vpod-20170311" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170326" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-shipping:zim-20170421" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-xlt-agent:4.8.3" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:aaron-20170319" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:mgrass-20170321" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/pardot-samuel:0.2" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/hello:ph-gs0-feb08-157pm" 
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev" 
+  - "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/samhello:bob-20160908" 
+  - "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/samhello:bob-20160908" 
+  - "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/samhello:slb-poc-20170228-1200" 
+  - "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/proxy:jhamblin-20170302a"
+  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-May18-0137PM"
 PortCollisionExceptions:
   - "user/gutsin/redis-test"
   - "user/adhoot/TestRCHostNW"
   - "team/CSC_Sam/SamTestApp"
   - "user/dlucey/SamTestApp"
+PortsReserved: [0-1024, 32000-40000, 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 64121]
