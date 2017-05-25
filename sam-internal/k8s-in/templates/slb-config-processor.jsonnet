@@ -64,7 +64,7 @@ if configs.estate == "prd-sdc" then {
                             "--available=/host/var/slb/available",
                             "--period=5s",
                             "--namespace=default",
-                            "--k8sapiserver="+configs.apiserver,
+                            "--k8sApiServer="+configs.apiserver,
                             "--serviceList=slb-test-svc",
                             "--vipList=10.251.129.235:9090",
                             "--metricsEndpoint="+configs.funnelVIP
