@@ -38,6 +38,14 @@ local images = import "images.jsonnet",
     },
 
     perCluster: {
+        apiserver: {
+                "prd-sdc": "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/"
+        },
+
+        matricEndpoint:{
+                "prd-sdc":"ajna0-funnel1-0-prd.data.sfdc.net"
+        },
+
         registry: {
             "prd-sam": "ops0-artifactrepo2-0-prd.data.sfdc.net",
             "prd-samdev": "ops0-artifactrepo2-0-prd.data.sfdc.net",
@@ -100,6 +108,8 @@ local images = import "images.jsonnet",
     tnrpArchiveEndpoint: self.perKingdom.tnrpArchiveEndpoint[kingdom],
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
+    apiserver: self.perCluster.apiserver[estate],
+    matricEndpoint: self.perCluster.matricEndpoint[estate],
     registry: self.perCluster.registry[estate],
     insecureRegistries: self.perCluster.insecureRegistries[estate],
     checkImageExistsFlag: self.perCluster.checkImageExistsFlag[estate],
