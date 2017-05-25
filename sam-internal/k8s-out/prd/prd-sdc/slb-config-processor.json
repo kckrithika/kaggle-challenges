@@ -30,7 +30,7 @@
                      "--k8sapiserver=http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
                      "--serviceList=slb-test-svc",
                      "--vipList=10.251.129.235:9090",
-                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net"
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [
                      {
