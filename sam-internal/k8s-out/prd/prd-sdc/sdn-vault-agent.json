@@ -24,7 +24,7 @@
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000095-7dddf15",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000095-7dddf15c",
                   "name": "sdn-vault-agent"
                }
             ],

@@ -39,7 +39,7 @@
 
     # ====================================================
     phase1_prdsdc: {
-      hypersdn: "v-0000095-7dddf15",
+      hypersdn: "v-0000095-7dddf15c",
     },
 
     # Release to rest of the SAM clusters
