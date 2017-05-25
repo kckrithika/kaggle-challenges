@@ -17,7 +17,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--smtpServer="+configs.smtpServer,
                            "--sender=sam@salesforce.com",
-                           "--defaultRecipient=xiao.zhou@salesforce.com",
+                           "--defaultRecipient=",
                            "--namespacesToSkip=sam-watchdog",
                            ],
                        volumeMounts: [
