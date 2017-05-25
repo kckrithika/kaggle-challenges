@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.4.0-0000106-22c71e3f
+      image: tnrp/csc-health/report-collector:1.5.0-0000118-e09f147c
       ports:
       - name: provider
         containerPort: 8080
@@ -33,6 +33,11 @@ system:
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 10
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
