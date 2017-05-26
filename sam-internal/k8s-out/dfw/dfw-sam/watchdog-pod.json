@@ -29,6 +29,7 @@
                      "-role=POD",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
+                     "unHealthyPodUpTimeThreshold=120s",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",

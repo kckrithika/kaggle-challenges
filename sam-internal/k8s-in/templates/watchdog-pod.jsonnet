@@ -17,6 +17,7 @@ local wdconfig = import "wdconfig.jsonnet";
                             "-role=POD",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=300s",
+                            "unHealthyPodUpTimeThreshold=120s"
                         ]
                         + wdconfig.shared_args
                         + wdconfig.shared_args_certs
