@@ -9,7 +9,7 @@ system:
       count: 2
       containers:
       - name: casp-warden
-        image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/casp-warden:ph-warden-May18-0137PM
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/phowden/casp-warden:ph-warden-May18-0137PM
         ports:
         - containerPort: 8889
         env:

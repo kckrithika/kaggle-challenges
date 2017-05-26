@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: gdothelloworld
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gdot-helloworld:20170321
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lravishankar/gdot-helloworld:20170321
       ports:
       - containerPort: 15372
       livenessProbe:

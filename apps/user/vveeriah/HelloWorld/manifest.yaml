@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: hellovpod-vveeriah
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/helloworld:vpod-20170311
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vveeriah/helloworld:vpod-20170311
       ports:
       - containerPort: 8081
       livenessProbe:

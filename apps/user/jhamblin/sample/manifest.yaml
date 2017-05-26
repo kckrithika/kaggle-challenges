@@ -6,7 +6,7 @@ system:
     count: 4
     containers:
     - name: proxy
-      image: shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/proxy:jhamblin-20170302a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/proxy:jhamblin-20170302a
       ports:
       - containerPort: 6789
       livenessProbe:

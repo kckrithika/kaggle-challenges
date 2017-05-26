@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: cloudatlas
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/cloudatlas:20170328
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lravishankar/cloudatlas:20170328
       ports:
       - containerPort: 1389
       livenessProbe:
