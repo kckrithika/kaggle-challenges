@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.estate == "prd-sdc" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -10,16 +10,19 @@ if configs.kingdom == "prd" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdn-watchdog",
-                        image: configs.sdn_watchdog,
+                        name: "sdn-route-watchdog",
+                        image: configs.sdn_route_watchdog,
                         command:[
-                            "/sdn/sdn-watchdog",
-                            "--pingDelay=180s",
+                            "/sdn/sdn-route-watchdog",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
-                            "--pingCount=1",
-                            "--pingInterval=1s",
-                            "--pingTimeout=5s"
+                            "--momCollectorEndpoint="+configs.momCollectorEndpoint,
+                            "--smtpServer="+configs.smtpServer,
+                            "--sender="+configs.watchdog_emailsender,
+                            "--recipient="+configs.watchdog_emailrec,
+                            "--emailFrequency=12h",
+                            "--watchdogFrequency=180s",
+                            "--alertThreshold=300s"
                         ],
                     }
                 ],
@@ -29,7 +32,7 @@ if configs.kingdom == "prd" then {
             },
             metadata: {
                 labels: {
-                    name: "sdn-watchdog",
+                    name: "sdn-route-watchdog",
                     apptype: "monitoring"
                 }
             }
@@ -38,8 +41,8 @@ if configs.kingdom == "prd" then {
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdn-watchdog"
+            name: "sdn-route-watchdog"
         },
-        name: "sdn-watchdog"
+        name: "sdn-route-watchdog"
     }
 } else "SKIP"

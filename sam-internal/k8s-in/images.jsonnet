@@ -39,7 +39,7 @@
 
     # ====================================================
     phase1_prdsdc: {
-      hypersdn: "v-0000095-7dddf15c",
+      hypersdn: "v-0000109-c79e7ec3",
     },
 
     # Release to rest of the SAM clusters
@@ -96,7 +96,8 @@
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
-            sdn_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
+            sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
+            sdn_route_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             sdn_vault_agent: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             slb_iface_agent: $.testimages.slb_image,
             slb_ipvs: $.testimages.slb_image,
@@ -135,5 +136,5 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdn_bird", "sdn_peering_agent", "sdn_watchdog", "sdn_vault_agent", "slb_iface_agent", "slb_ipvs", "samcontrol_deployer", "permissionInitContainer", "sam_deployment_reporter", "slb_realsvrcfg", "slb_config_processor"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdn_bird", "sdn_peering_agent", "sdn_watchdog", "sdn_ping_watchdog", "sdn_route_watchdog", "sdn_vault_agent", "slb_iface_agent", "slb_ipvs", "samcontrol_deployer", "permissionInitContainer", "sam_deployment_reporter", "slb_realsvrcfg", "slb_config_processor"]
 }
