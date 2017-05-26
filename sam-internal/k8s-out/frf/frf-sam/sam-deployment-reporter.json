@@ -31,7 +31,7 @@
                      "--k8sapiserver=",
                      "--smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
                      "--sender=sam@salesforce.com",
-                     "--defaultRecipient=xiao.zhou@salesforce.com",
+                     "--defaultRecipient=",
                      "--namespacesToSkip=sam-watchdog"
                   ],
                   "env": [
