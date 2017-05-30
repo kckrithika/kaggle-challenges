@@ -35,6 +35,10 @@ local images = import "images.jsonnet",
             "frf": "ops0-mta2-1-frf.ops.sfdc.net:25",
             "par": "ops0-mta2-1-par.ops.sfdc.net:25"
         },
+
+        momCollectorEndpoint: {
+            "prd": "http://ops0-mom1-1-prd.eng.sfdc.net:8080/network/device?key=host-bgp-routes",
+        },
     },
 
     perCluster: {
@@ -103,6 +107,7 @@ local images = import "images.jsonnet",
     tnrpArchiveEndpoint: self.perKingdom.tnrpArchiveEndpoint[kingdom],
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
+    momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
     apiserver: self.perCluster.apiserver[estate],
     registry: self.perCluster.registry[estate],
     insecureRegistries: self.perCluster.insecureRegistries[estate],
@@ -126,6 +131,8 @@ local images = import "images.jsonnet",
     sdn_bird: images.sdn_bird,
     sdn_peering_agent: images.sdn_peering_agent,
     sdn_watchdog: images.sdn_watchdog,
+    sdn_ping_watchdog: images.sdn_ping_watchdog,
+    sdn_route_watchdog: images.sdn_route_watchdog,
     sdn_vault_agent: images.sdn_vault_agent,
 
     slb_iface_agent: images.slb_iface_agent,
