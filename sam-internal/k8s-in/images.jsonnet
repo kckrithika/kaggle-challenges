@@ -27,12 +27,12 @@
 
     # Release Phase 3 - Canary Prod FRF
     phase3_prod_canary: {
-      hypersam: "sam-0000890-479271fb",
+      hypersam: "sam-0000873-7dc8110d",
     },
 
     # Release Phase 4 - Rest of Prod
     phase4_prod_all: {
-      hypersam: "sam-0000890-479271fb",
+      hypersam: "sam-0000873-7dc8110d",
     },
 
     # ================== SDN RELEASE ====================
