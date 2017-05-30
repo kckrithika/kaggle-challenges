@@ -113,7 +113,7 @@ local images = import "images.jsonnet",
     insecureRegistries: self.perCluster.insecureRegistries[estate],
     checkImageExistsFlag: self.perCluster.checkImageExistsFlag[estate],
     httpsDisableCertsCheck: self.perCluster.httpsDisableCertsCheck[estate],
-    
+
     estate: estate,
     kingdom: kingdom,
 
@@ -127,6 +127,8 @@ local images = import "images.jsonnet",
     samcontrol_deployer_ObserveMode: false,
     samcontrol_deployer_EmailNotify: true,
     sam_deployment_reporter: images.sam_deployment_reporter,
+    sam_secret_agent: images.sam_secret_agent,
+    sam_secret_agent_ObserveMode: false,
 
     sdn_bird: images.sdn_bird,
     sdn_peering_agent: images.sdn_peering_agent,
