@@ -93,6 +93,7 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/slb-ipvs-agent",
                             "--configDir=/host/var/slb/config",
+                            "--marker=/host/var/slb/ipvs.installed",
                             "--period=5s"
                         ],
                         "volumeMounts": [

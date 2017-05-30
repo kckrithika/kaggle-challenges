@@ -55,6 +55,7 @@
                   "command": [
                      "/sdn/slb-ipvs-agent",
                      "--configDir=/host/var/slb/config",
+                     "--marker=/host/var/slb/ipvs.installed",
                      "--period=5s"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000115-84f83ddc",
