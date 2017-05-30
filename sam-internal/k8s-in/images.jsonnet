@@ -41,12 +41,14 @@
 
     # ====================================================
     phase1_prdsdc: {
-      hypersdn: "v-0000109-c79e7ec3",
+      hypersdn: "v-0000115-84f83ddc",
+      sdn_bird: "v-0000014-b0a5951d"
     },
 
     # Release to rest of the SAM clusters
     phase2_sam: {
       hypersdn: "v-0000095-7dddf15c",
+      sdn_bird: "v-0000012-1d22df3a"
     },
 
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
@@ -54,7 +56,7 @@
     testimages: {
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-        sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
+        sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn",
         slb_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000115-84f83ddc",
     },
@@ -72,7 +74,7 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
-            sdn_bird: $.testimages.sdn_bird,
+            sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
         },
@@ -80,7 +82,7 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
-            sdn_bird: $.testimages.sdn_bird,
+            sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
         },
@@ -88,7 +90,7 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
-            sdn_bird: $.testimages.sdn_bird,
+            sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
         },
@@ -96,7 +98,7 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
-            sdn_bird: $.testimages.sdn_bird,
+            sdn_bird: $.testimages.sdn_bird + ":" + $.phase1_prdsdc.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             sdn_route_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
