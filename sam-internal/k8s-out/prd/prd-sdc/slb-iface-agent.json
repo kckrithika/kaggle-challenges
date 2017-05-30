@@ -23,6 +23,7 @@
                      "/sdn/slb-iface-agent",
                      "--configDir=/host/var/slb/config",
                      "--period=5s",
+                     "--marker=/host/var/slb/ipvs.marker",
                      "--markerPeriod=10s",
                      "--bin=/sdn",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
