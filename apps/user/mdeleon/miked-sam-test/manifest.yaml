@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: mikedhello
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/mikedhello:mike-20170414
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mdeleon/mikedhello:mike-20170414
       ports:
       - containerPort: 9090
       livenessProbe:
