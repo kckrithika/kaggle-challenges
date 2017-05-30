@@ -12,10 +12,12 @@
     # ================== SAM RELEASE ====================
     # Releases should follow the order below unless there are special circumstances.  Each phase should use the
     # image from the previous stage after a 24 hour bake time with no issues (check that all watchdog are healthy)
+    #
+    # https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM
 
     # Release Phase 1 - Test Beds
     phase1_test: {
-      hypersam: "sam-0000890-479271fb",
+      hypersam: "sam-0000900-4864e366",
     },
 
     # Release Phase 2 - PRD Sandbox and prd-sdc
@@ -30,7 +32,7 @@
 
     # Release Phase 4 - Rest of Prod
     phase4_prod_all: {
-      hypersam: "sam-0000873-7dc8110d",
+      hypersam: "sam-0000890-479271fb",
     },
 
     # ================== SDN RELEASE ====================
