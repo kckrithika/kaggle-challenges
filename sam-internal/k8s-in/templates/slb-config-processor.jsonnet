@@ -59,9 +59,6 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/slb-config-processor",
                             "--configDir=/host/var/slb/config",
-                            "--services=/host/var/slb/services",
-                            "--servers=/host/var/slb/servers",
-                            "--available=/host/var/slb/available",
                             "--period=599s",
                             "--namespace=default",
                             "--k8sApiServer="+configs.apiserver,
