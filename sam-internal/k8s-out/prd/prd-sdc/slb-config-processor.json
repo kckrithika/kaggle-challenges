@@ -22,9 +22,6 @@
                   "command": [
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
-                     "--services=/host/var/slb/services",
-                     "--servers=/host/var/slb/servers",
-                     "--available=/host/var/slb/available",
                      "--period=599s",
                      "--namespace=default",
                      "--k8sApiServer=http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
