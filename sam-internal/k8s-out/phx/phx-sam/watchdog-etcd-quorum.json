@@ -41,7 +41,7 @@
                      "-certFile=/data/certs/hostcert.crt",
                      "-emailFrequency=6h"
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000890-479271fb",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0000873-7dc8110d",
                   "name": "watchdog-etcd-quorum",
                   "volumeMounts": [
                      {
