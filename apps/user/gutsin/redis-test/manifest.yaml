@@ -7,7 +7,7 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gutsin/gutsin-redis:3.2.7d
       env:
       - name: SENTINEL
         value: "true"
@@ -23,7 +23,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 5
     - name: redis
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gutsin/gutsin-redis:3.2.7d
       env:
       - name: MASTER
         value: "true"
@@ -53,7 +53,7 @@ system:
     count: 2
     containers:
     - name: redis
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gutsin/gutsin-redis:3.2.7d
       ports:
       - containerPort: 6379
       livenessProbe:
@@ -82,7 +82,7 @@ system:
       sentinel: "true"
     containers:
     - name: sentinel
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gutsin/gutsin-redis:3.2.7d
       env:
       - name: SENTINEL
         value: "true"
@@ -105,7 +105,7 @@ system:
     count: 3
     containers:
     - name: report-collectorha-sentinel-test
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-rc:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gutsin/gutsin-rc:1
       livenessProbe:
         httpGet:
           path: /v1/reports

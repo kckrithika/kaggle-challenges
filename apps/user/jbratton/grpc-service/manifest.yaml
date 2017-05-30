@@ -6,12 +6,12 @@ system:
     count: 2
     containers:
     - name: grpc-service
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/jbratton-grpc-service:0.0.2
       ports:
       - name: grpc-port
         containerPort: 7020
     - name: sherpa
-      image: shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa:joey-5
       args: ["-s", "grpc-service"]
       ports:
       - name: admin-port
