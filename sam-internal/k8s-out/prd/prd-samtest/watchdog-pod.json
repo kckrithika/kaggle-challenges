@@ -29,6 +29,7 @@
                      "-role=POD",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
+                     "-unHealthyPodUpTimeThreshold=120s",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
