@@ -56,7 +56,7 @@
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird:v-0000012-1d22df3a",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn",
-        slb_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000108-16476671",
+        slb_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000115-84f83ddc",
     },
 
     # Shared images for all prod beds.  This should be a previously tested image from the sandbox above.

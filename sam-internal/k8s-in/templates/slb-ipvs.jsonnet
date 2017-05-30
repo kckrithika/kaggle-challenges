@@ -27,6 +27,12 @@ if configs.estate == "prd-sdc" then {
                          }
                     },
                     {
+                        "name": "var-config-volume",
+                        "hostPath": {
+                            "path": "/var/slb/config"
+                        }
+                    },
+                    {
                         "name": "dev-volume",
                         "hostPath": {
                             "path": "/dev"
@@ -86,13 +92,17 @@ if configs.estate == "prd-sdc" then {
                         "image": configs.slb_ipvs,
                         "command":[
                             "/sdn/slb-ipvs-agent",
-                            "--path=/host/var/slb",
+                            "--configDir=/host/var/slb/config",
                             "--period=5s"
                         ],
                         "volumeMounts": [
                             {
                                 "name": "var-slb-volume",
                                 "mountPath": "/host/var/slb"
+                            },
+                            {
+                                "name": "var-config-volume",
+                                "mountPath": "/host/var/slb/config"
                             }
                         ],
                         "securityContext": {

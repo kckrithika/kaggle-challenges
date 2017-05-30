@@ -26,6 +26,12 @@ if configs.estate == "prd-sdc" then {
                         "hostPath": {
                             "path": "/var/slb"
                          }
+                    },
+                    {
+                        "name": "var-config-volume",
+                        "hostPath": {
+                            "path": "/var/slb/config"
+                        }
                     }
                 ],
                 "containers": [
@@ -34,9 +40,9 @@ if configs.estate == "prd-sdc" then {
                         "image": configs.slb_iface_agent,
                         "command":[
                             "/sdn/slb-iface-agent",
-                            "--path=/host/var/slb",
+                            "--configDir=/host/var/slb/config",
                             "--period=5s",
-                            "--marker=10s",
+                            "--markerPeriod=10s",
                             "--bin=/sdn",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
@@ -44,6 +50,10 @@ if configs.estate == "prd-sdc" then {
                             {
                                 "name": "var-slb-volume",
                                 "mountPath": "/host/var/slb"
+                            },
+                            {
+                                "name": "var-config-volume",
+                                "mountPath": "/host/var/slb/config"
                             }
                         ],
                         "securityContext": {
