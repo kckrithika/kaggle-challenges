@@ -43,7 +43,10 @@ local images = import "images.jsonnet",
 
     perCluster: {
         apiserver: {
-                "prd-sdc": "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/"
+            "prd-sdc": "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
+            "prd-samtest": "http://shared0-samtestkubeapi1-1-prd.eng.sfdc.net:40000/",
+            "prd-samdev": "http://shared0-samdevkubeapi1-1-prd.eng.sfdc.net:40000/",
+            "prd-sam": "http://shared0-samkubeapi1-2-prd.eng.sfdc.net:40000/"
         },
         registry: {
             "prd-sam": "ops0-artifactrepo2-0-prd.data.sfdc.net",

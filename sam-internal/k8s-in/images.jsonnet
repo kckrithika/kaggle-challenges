@@ -93,6 +93,7 @@
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
+            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff",
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
@@ -107,8 +108,7 @@
             slb_ipvs: $.testimages.slb_image,
             slb_realsvrcfg : $.testimages.slb_image,
             slb_config_processor : $.testimages.slb_image,
-            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff"
-
+            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff",
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
