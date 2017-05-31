@@ -11,7 +11,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       ports:
-      - containerPort: 8080
+      - containerPort: 7020
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 15
@@ -23,8 +23,8 @@ system:
   - lbname: scone-shipping-lb
     function: scone-shipping
     ports:
-      - port: 8080
-        targetport: 8080
+      - port: 7020
+        targetport: 7020
       - port: 15372
         targetport: 15372
 
