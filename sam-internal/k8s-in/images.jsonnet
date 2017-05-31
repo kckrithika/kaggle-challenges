@@ -47,8 +47,8 @@
 
     # Release to rest of the SAM clusters
     phase2_sam: {
-      hypersdn: "v-0000095-7dddf15c",
-      sdn_bird: "v-0000012-1d22df3a"
+      hypersdn: "v-0000115-84f83ddc",
+      sdn_bird: "v-0000014-b0a5951d"
     },
 
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
