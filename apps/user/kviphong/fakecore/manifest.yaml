@@ -2,10 +2,10 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: fakecore
     count: 2
     containers:
-    - name: fakecore
+    - name: fakecore-sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:05301716
       ports:
       - containerPort: 8085
@@ -16,7 +16,8 @@ system:
  
   loadbalancers:
   - lbname: fakecoreslb
-    function: default
+    function: fakecore
+    nodeExposed: true
     ports:
       - port: 8085
         targetport: 8085
