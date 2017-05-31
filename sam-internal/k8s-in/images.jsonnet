@@ -76,7 +76,7 @@
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
-            sdn_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
+            sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
         },
         "prd-samdev": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
@@ -84,7 +84,7 @@
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
-            sdn_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
+            sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
         },
         "prd-samtest": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
@@ -92,7 +92,7 @@
             permissionInitContainer: $.testimages.permissionInitContainer,
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
-            sdn_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
+            sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
