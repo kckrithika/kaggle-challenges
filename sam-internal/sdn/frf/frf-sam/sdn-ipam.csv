@@ -23,3 +23,6 @@ samcaas1-caasminion2-3-frf.ops.sfdc.net,10.248.141.75/29,10.214.60.192/27,c10-01
 samcaas1-caasminion3-1-frf.ops.sfdc.net,10.248.141.100/29,10.214.60.224/27,c14-01,frf-sp1-sam_caas
 samcaas1-caasminion3-3-frf.ops.sfdc.net,10.248.141.114/29,10.214.61.0/27,e14-01,frf-sp1-sam_caas
 samcaas1-caasminion3-2-frf.ops.sfdc.net,10.248.141.82/29,10.214.61.32/27,k04-01,frf-sp1-sam_caas
+shared0-samminionwarden1-2-frf.ops.sfdc.net,10.248.171.66/29,10.214.6.0/27,a18-01,frf-sam_warden
+shared0-samminionwarden1-1-frf.ops.sfdc.net,10.248.171.74/29,10.214.6.32/27,a21-01,frf-sam_warden
+shared0-samminionwarden2-1-frf.ops.sfdc.net,10.248.171.82/29,10.214.6.64/27,d15-01,frf-sam_warden

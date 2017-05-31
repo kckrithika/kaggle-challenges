@@ -9,3 +9,17 @@ samcaas1-caasminion1-4-iad.ops.sfdc.net,10.222.211.82/29,10.213.132.192/27,j08-0
 samcaas1-caasminion2-1-iad.ops.sfdc.net,10.222.211.90/29,10.213.132.224/27,j09-02,iad-sp1-sam_caas
 samcaas1-caasminion2-2-iad.ops.sfdc.net,10.222.211.91/29,10.213.133.0/27,j09-02,iad-sp1-sam_caas
 samcaas1-caasminion3-3-iad.ops.sfdc.net,10.222.211.123/29,10.213.133.32/27,d10-02,iad-sp1-sam_caas
+shared0-samcompute2-1-iad.ops.sfdc.net,10.222.222.10/28,10.213.130.0/27,d09-02,iad-sam
+shared0-samkubeapi2-1-iad.ops.sfdc.net,10.222.222.11/28,10.213.130.32/27,d09-02,iad-sam
+shared0-samcompute1-1-iad.ops.sfdc.net,10.222.222.18/28,10.213.130.64/27,d10-02,iad-sam
+shared0-samkubeapi1-1-iad.ops.sfdc.net,10.222.222.19/28,10.213.130.96/27,d10-02,iad-sam
+shared0-samcompute1-2-iad.ops.sfdc.net,10.222.222.34/28,10.213.130.128/27,d12-02,iad-sam
+shared0-samkubeapi3-1-iad.ops.sfdc.net,10.222.222.35/28,10.213.130.160/27,d12-02,iad-sam
+shared0-samminiongater2-1-iad.ops.sfdc.net,10.222.215.210/29,10.213.136.0/27,d02-02,iad-sam_gater
+shared0-samminiongater1-2-iad.ops.sfdc.net,10.222.215.194/29,10.213.136.32/27,d12-02,iad-sam_gater
+shared0-samminiongater2-2-iad.ops.sfdc.net,10.222.215.202/29,10.213.136.64/27,g14-02,iad-sam_gater
+shared0-samminiongater1-3-iad.ops.sfdc.net,10.222.215.218/29,10.213.136.96/27,h14-02,iad-sam_gater
+shared0-samminiongater1-1-iad.ops.sfdc.net,10.222.215.226/29,10.213.136.128/27,j06-02,iad-sam_gater
+shared0-samminionwarden1-2-iad.ops.sfdc.net,10.222.221.146/29,10.213.138.0/27,d02-02,iad-sam_warden
+shared0-samminionwarden1-1-iad.ops.sfdc.net,10.222.221.130/29,10.213.138.32/27,d12-02,iad-sam_warden
+shared0-samminionwarden2-1-iad.ops.sfdc.net,10.222.221.138/29,10.213.138.64/27,g14-02,iad-sam_warden
