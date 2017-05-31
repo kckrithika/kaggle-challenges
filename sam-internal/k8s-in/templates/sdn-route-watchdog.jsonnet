@@ -19,7 +19,7 @@ if configs.estate == "prd-sdc" then {
                             "--momCollectorEndpoint="+configs.momCollectorEndpoint,
                             "--smtpServer="+configs.smtpServer,
                             "--sender="+configs.watchdog_emailsender,
-                            "--recipient="+configs.watchdog_emailrec,
+                            "--recipient=sdn@salesforce.com",
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s"
