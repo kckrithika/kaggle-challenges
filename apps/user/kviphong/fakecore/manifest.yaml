@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: fakecore
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:05301716
+      ports:
+      - containerPort: 8085
+      livenessProbe:
+        httpGet:
+          path: /response
+          port: 8085
+ 
+  loadbalancers:
+  - lbname: fakecoreslb
+    function: default
+    ports:
+      - port: 8085
+        targetport: 8085
