@@ -4,11 +4,12 @@ LivenessProbeExceptions:
   - "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/geoip/geoip:latest-0000006-7d845eb4"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/adhoot:rcwd-qualifiednameasdevice"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:1.0.2"
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-xlt-agent:4.8.3"
+  - "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/ccait-xlt-agent:4.8.3"
+  - "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jan-krueger/ccait-xlt-agent:4.8.3"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gater-sandbox:dmachak-20170424B"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev"
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2"
+  - "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/jbratton-grpc-service:0.0.2"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-5"
   - "tnrp/caas/caas-redis:0.1-0000017-13232819"
@@ -31,25 +32,15 @@ LivenessProbeExceptions:
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
 InsecureImageExceptions:
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-redis:3.2.7d" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-geoip-frontend:1.0.2" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/jbratton-grpc-service:0.0.2" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip:dev" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-ordering:zim-20170330" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/adhoot:rcwd-qualifiednameasdevice" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:joey-5" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:tag-min" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:yunzhao-20170503" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/testapp:sam-testapp-20170503" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:brian-20160401" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gutsin-rc:1" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sherpa:dev" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/gatewayconfig:2017-04-26a" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170326" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-shipping:zim-20170421" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/ccait-xlt-agent:4.8.3" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:mgrass-20170321" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/geoip-demo:dev" 
   - "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/samhello:slb-poc-20170228-1200" 
 PortCollisionExceptions:
   - "user/gutsin/redis-test"
