@@ -22,6 +22,7 @@ system:
           httpGet:
             path: /
             port: 8889
+          initialDelaySeconds: 15
       volumes:
       - name: casp-home-vol
         hostPath:
