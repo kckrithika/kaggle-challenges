@@ -32,6 +32,7 @@ LivenessProbeExceptions:
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
 InsecureImageExceptions:
+  - "dummy"
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-ordering:zim-20170330" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/adhoot:rcwd-qualifiednameasdevice" 
   - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:tag-min" 
