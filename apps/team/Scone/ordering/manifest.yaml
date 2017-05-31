@@ -11,19 +11,19 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       ports:
-      - containerPort: 8080
-      - containerPort: 15372
+      - containerPort: 7021
+      - containerPort: 15373
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15373
  
   loadbalancers:
   - lbname: scone-ordering-lb
     function: scone-ordering
     ports:
-      - port: 8080
-        targetport: 8080
-      - port: 15372
-        targetport: 15372
+      - port: 7021
+        targetport: 7021
+      - port: 15373
+        targetport: 15373
 
