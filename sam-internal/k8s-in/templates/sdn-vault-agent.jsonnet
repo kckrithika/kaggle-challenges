@@ -15,7 +15,10 @@ if configs.estate == "prd-sdc" then {
                         command:[
                             "/sdn/sdn-vault-agent",
                             "--funnelEndpoint="+configs.funnelVIP,
-                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint
+                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--keyfile=/data/certs/hostcert.key",
+                            "--certfile=/data/certs/hostcert.crt",
+                            "--cafile=/data/certs/ca.crt"
                         ],
                         volumeMounts: [
                             {
