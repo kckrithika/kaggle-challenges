@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: cname-repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.2.0-0000056-3dbf7901
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.2.1-0000058-4aecb0d2
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       env:
