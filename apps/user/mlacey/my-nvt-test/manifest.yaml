@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: nvthello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nvthello:mick-20170531
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mlacey/nvthello:mick-20170601
       ports:
       - containerPort: 9090
       livenessProbe:
