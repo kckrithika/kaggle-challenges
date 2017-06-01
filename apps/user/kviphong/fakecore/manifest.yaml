@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: fakecore-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:05301716
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:c0457b7
       ports:
       - containerPort: 8085
       livenessProbe:
