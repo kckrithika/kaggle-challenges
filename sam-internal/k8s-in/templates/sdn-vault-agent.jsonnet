@@ -17,7 +17,21 @@ if configs.estate == "prd-sdc" then {
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint
                         ],
+                        volumeMounts: [
+                            {
+                                name: "certs",
+                                mountPath: "/data/certs",
+                            }
+                        ],
                     }
+                ],
+                volumes: [
+                    {
+                        name: "certs",
+                        hostPath: {
+                            path: "/data/certs",
+                        }
+                    },
                 ],
                 nodeSelector: {
                     pool: configs.estate
