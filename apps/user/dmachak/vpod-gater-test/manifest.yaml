@@ -18,6 +18,14 @@ system:
         requests: { memory: "8Gi" }
       args:
         - --server.port=9090
+      # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
+      # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
+      # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      - mountPath: /fastdata/gater
+        name: dbvol
       # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
       livenessProbe:
         httpGet:
@@ -35,8 +43,20 @@ system:
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
-        value: blitz
+        value: vpod
 
+    # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
+    # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
+    # written to this directory.
+    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-gater/logs
+    - name: dbvol
+      hostPath:
+        path: /home/sfdc-gater/db
+        
     loadbalancers:
     - lbname: gaterlb
       function: gater-vpod
