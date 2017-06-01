@@ -16,9 +16,9 @@ local wdconfig = import "wdconfig.jsonnet";
                             "/sam/watchdog",
                             "-role=POD",
                             "-watchdogFrequency=60s",
-                            "-alertThreshold=300s",
-                            "-unHealthyPodUpTimeThreshold=120s"
+                            "-alertThreshold=300s"
                         ]
+			+ (if configs.kingdom == "prd" || configs.kingdom == "frf" then [ "-maxUptimeSampleSize=5" ] else [ "-unHealthyPodUpTimeThreshold=120s"])
                         + wdconfig.shared_args
                         + wdconfig.shared_args_certs
                         # [thargrove] 2017-05-05 We have failing customer pods in all test beds.  We need to ignore 
