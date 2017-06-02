@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 # Stop execution on first error
 set -e
@@ -43,7 +43,7 @@ generateConfigs() {
 
 rm -rf generated/
 
-declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samdev" "prd/prd-samtest" "prd/prd-sdc" "dfw/dfw-sam" "phx/phx-sam" "frf/frf-sam" "par/par-sam")
+declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samdev" "prd/prd-samtest" "prd/prd-sdc" "dfw/dfw-sam" "phx/phx-sam" "frf/frf-sam" "par/par-sam" "yul/yul-sam" "yhu/yhu-sam")
 
 for kingdomEstate in "${kingdomEstates[@]}"
 do

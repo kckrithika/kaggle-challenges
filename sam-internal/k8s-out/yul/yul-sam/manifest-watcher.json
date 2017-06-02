@@ -1,0 +1,70 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "manifest-watcher"
+      },
+      "name": "manifest-watcher"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "manifest-watcher"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "manifest-watcher"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/manifest-watcher",
+                     "--funnelEndpoint=mandm-funnel-yul1.data.sfdc.net:8080",
+                     "--v=2",
+                     "--logtostderr=true",
+                     "--disableCertsCheck=true",
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-yul.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
+                  ],
+                  "image": "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0000900-4864e366",
+                  "name": "manifest-watcher",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "yul-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/manifests"
+                  },
+                  "name": "sfdc-volume"
+               }
+            ]
+         }
+      }
+   }
+}

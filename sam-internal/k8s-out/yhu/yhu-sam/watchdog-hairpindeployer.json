@@ -1,0 +1,91 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-hairpindeployer"
+      },
+      "name": "watchdog-hairpindeployer"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-hairpindeployer"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "watchdog-hairpindeployer"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=HAIRPINDEPLOYER",
+                     "-watchdogFrequency=120s",
+                     "-alertThreshold=300s",
+                     "-deployer-imageName=ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-0000900-4864e366",
+                     "-deployer-funnelEndpoint=mandm-funnel-yhu1.data.sfdc.net:8080",
+                     "-deployer-rcImtEndpoint=https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark",
+                     "-deployer-smtpServer=ops0-mta2-1-yhu.ops.sfdc.net:25",
+                     "-deployer-sender=sam@salesforce.com",
+                     "-deployer-recipient=sam@salesforce.com",
+                     "-timeout=2s",
+                     "-funnelEndpoint=mandm-funnel-yhu1.data.sfdc.net:8080",
+                     "-rcImtEndpoint=https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark",
+                     "-smtpServer=ops0-mta2-1-yhu.ops.sfdc.net:25",
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sam@salesforce.com",
+                     "-tlsEnabled=true",
+                     "-caFile=/data/certs/ca.crt",
+                     "-keyFile=/data/certs/hostcert.key",
+                     "-certFile=/data/certs/hostcert.crt",
+                     "-emailFrequency=24h"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-0000900-4864e366",
+                  "name": "watchdog-hairpindeployer",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "yhu-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}

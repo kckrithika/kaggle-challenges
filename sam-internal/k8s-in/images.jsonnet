@@ -125,6 +125,14 @@
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
+        },
+        "yul-sam": {
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
+        },
+        "yhu-sam": {
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
         }
     },
 
