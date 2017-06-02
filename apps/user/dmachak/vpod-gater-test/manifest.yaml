@@ -18,14 +18,13 @@ system:
         requests: { memory: "8Gi" }
       args:
         - --server.port=9090
+        - --datasource.url=jdbc:h2:file:/opt/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
       volumeMounts:
       - mountPath: /log
         name: logvol
-      - mountPath: /fastdata/gater
-        name: dbvol
       # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
       livenessProbe:
         httpGet:
@@ -53,9 +52,7 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-gater/logs
-    - name: dbvol
-      hostPath:
-        path: /home/sfdc-gater/db
+
         
     loadbalancers:
     - lbname: gaterlb
