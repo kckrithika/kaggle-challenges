@@ -5,15 +5,15 @@ if configs.estate == "prd-sdc" then {
     "kind": "DaemonSet",
     "metadata": {
         "labels": {
-            "name": "slb-iface-agent"
+            "name": "slb-iface-processor"
         },
-        "name": "slb-iface-agent"
+        "name": "slb-iface-processor"
     },
     "spec": {
         "template": {
             "metadata": {
                 "labels": {
-                    "name": "slb-iface-agent",
+                    "name": "slb-iface-processor",
                     "apptype": "control",
                     "daemonset": "true"
                 }
@@ -36,15 +36,14 @@ if configs.estate == "prd-sdc" then {
                 ],
                 "containers": [
                     {
-                        "name": "slb-iface-agent",
-                        "image": configs.slb_iface_agent,
+                        "name": "slb-iface-processor",
+                        "image": configs.slb_iface_processor,
                         "command":[
-                            "/sdn/slb-iface-agent",
+                            "/sdn/slb-iface-processor",
                             "--configDir=/host/var/slb/config",
                             "--period=5s",
                             "--marker=/host/var/slb/ipvs.marker",
                             "--markerPeriod=10s",
-                            "--bin=/sdn",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [

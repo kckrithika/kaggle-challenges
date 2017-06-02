@@ -88,13 +88,14 @@ if configs.estate == "prd-sdc" then {
                     },
 
                     {
-                        "name": "slb-ipvs-agent",
+                        "name": "slb-ipvs-processor",
                         "image": configs.slb_ipvs,
                         "command":[
-                            "/sdn/slb-ipvs-agent",
+                            "/sdn/slb-ipvs-processor",
                             "--configDir=/host/var/slb/config",
                             "--marker=/host/var/slb/ipvs.installed",
-                            "--period=5s"
+                            "--period=5s",
+                            "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
                             {
