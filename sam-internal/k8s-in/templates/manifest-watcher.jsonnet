@@ -22,7 +22,8 @@ local configs = import "config.jsonnet",
                            "--caFile="+configs.caFile,
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
-                         ],
+                         ]
+                      + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then [ "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive" ] else []),
                       "volumeMounts": [
                          {
                             "mountPath": "/data/certs",
