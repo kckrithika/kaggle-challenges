@@ -29,3 +29,8 @@ system:
       export SHOULD_PUBLISH_PROD_METRICS=`[ \"${KINGDOM}\" = \"dfw\" ] && echo true || echo false` ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
+      livenessProbe:
+        exec:
+          command:
+          - true
+        initialDelaySeconds: 5

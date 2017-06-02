@@ -31,6 +31,11 @@ system:
       export DATACENTER=${KINGDOM} ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
+      livenessProbe:
+        exec:
+          command:
+          - true
+        initialDelaySeconds: 5
     volumes:
     - name: logvol
       hostPath:
