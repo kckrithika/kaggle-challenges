@@ -9,7 +9,9 @@ local images = import "images.jsonnet",
             "dfw": "mandm-funnel-dfw1.data.sfdc.net:8080",
             "phx": "mandm-funnel-phx1.data.sfdc.net:8080",
             "frf": "mandm-funnel-frf1.data.sfdc.net:8080",
-            "par": "mandm-funnel-par1.data.sfdc.net:8080"
+            "par": "mandm-funnel-par1.data.sfdc.net:8080",
+            "yul": "mandm-funnel-yul1.data.sfdc.net:8080",
+            "yhu": "mandm-funnel-yhu1.data.sfdc.net:8080"
         },
 
         tnrpArchiveEndpoint: {
@@ -17,7 +19,9 @@ local images = import "images.jsonnet",
             "dfw": "https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
             "phx": "https://ops0-piperepo1-1-phx.ops.sfdc.net/tnrp/content_repo/0/archive",
             "frf": "https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
-            "par": "https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive"
+            "par": "https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive",
+            "yul": "https://ops0-piperepo1-1-yul.ops.sfdc.net/tnrp/content_repo/0/archive",
+            "yhu": "https://ops0-piperepo1-1-yhu.ops.sfdc.net/tnrp/content_repo/0/archive"
         },
 
         rcImtEndpoint: {
@@ -25,7 +29,9 @@ local images = import "images.jsonnet",
             "dfw": "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
             "phx": "https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
             "frf": "https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
-            "par": "https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark"
+            "par": "https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
+            "yul": "https://ops0-health1-1-yul.ops.sfdc.net:18443/v1/bark",
+            "yhu": "https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark"
         },
 
         smtpServer: {
@@ -33,7 +39,9 @@ local images = import "images.jsonnet",
             "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
             "phx": "ops0-mta1-2-phx.ops.sfdc.net:25",
             "frf": "ops0-mta2-1-frf.ops.sfdc.net:25",
-            "par": "ops0-mta2-1-par.ops.sfdc.net:25"
+            "par": "ops0-mta2-1-par.ops.sfdc.net:25",
+            "yul": "ops0-mta2-1-yul.ops.sfdc.net:25",
+            "yhu": "ops0-mta2-1-yhu.ops.sfdc.net:25"
         },
 
         momCollectorEndpoint: {
@@ -56,7 +64,9 @@ local images = import "images.jsonnet",
             "dfw-sam": "ops0-artifactrepo1-0-dfw.data.sfdc.net",
             "phx-sam": "ops0-artifactrepo1-0-phx.data.sfdc.net",
             "frf-sam": "ops0-artifactrepo1-0-frf.data.sfdc.net",
-            "par-sam": "ops0-artifactrepo1-0-par.data.sfdc.net"
+            "par-sam": "ops0-artifactrepo1-0-par.data.sfdc.net",
+            "yul-sam": "ops0-artifactrepo1-0-yul.data.sfdc.net",
+            "yhu-sam": "ops0-artifactrepo1-0-yhu.data.sfdc.net"
         },
 
         insecureRegistries: {
@@ -67,7 +77,9 @@ local images = import "images.jsonnet",
             "dfw-sam": "",
             "phx-sam": "",
             "frf-sam": "",
-            "par-sam": ""
+            "par-sam": "",
+            "yul-sam": "",
+            "yhu-sam": ""
         },
 
         checkImageExistsFlag: {
@@ -78,7 +90,9 @@ local images = import "images.jsonnet",
             "dfw-sam": "true",
             "phx-sam": "true",
             "frf-sam": "true",
-            "par-sam": "true"
+            "par-sam": "true",
+            "yul-sam": "true",
+            "yhu-sam": "true"
         },
 
         httpsDisableCertsCheck: {
@@ -89,7 +103,9 @@ local images = import "images.jsonnet",
             "dfw-sam": "true",
             "phx-sam": "true",
             "frf-sam": "true",
-            "par-sam": "true"
+            "par-sam": "true",
+            "yul-sam": "true",
+            "yhu-sam": "true"
         },
     },
 
