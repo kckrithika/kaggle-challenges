@@ -32,17 +32,7 @@ LivenessProbeExceptions:
 DuplicateFunctionExceptions:
   - "user/dkardach:default"
 InsecureImageExceptions:
-  - "dummy"
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-ordering:zim-20170330" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/adhoot:rcwd-qualifiednameasdevice" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:tag-min" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:yunzhao-20170503" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/testapp:sam-testapp-20170503" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:brian-20160401" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sdb-prd:rramaraju-20170326" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/scone-shipping:zim-20170421" 
-  - "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/samhello:mgrass-20170321" 
-  - "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/samhello:slb-poc-20170228-1200" 
+  - "dummyToEnableCheck"
 PortCollisionExceptions:
   - "user/gutsin/redis-test"
   - "user/adhoot/TestRCHostNW"
