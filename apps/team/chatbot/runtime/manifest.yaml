@@ -16,7 +16,7 @@ system:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /v1/_health # root directory is 404ing for now so use this endpoint
+          path: /_health # root directory is 404ing for now so use this endpoint
           port: 8080
         initialDelaySeconds: 30
 
