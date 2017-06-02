@@ -39,10 +39,10 @@
     # Releases should follow the order below unless there are special circumstances.  Each phase should use the
     # image from the previous stage after a 24 hour bake time with no issues (check that all watchdog are healthy)
 
-    # ====================================================
     phase1_prdsdc: {
       hypersdn: "v-0000115-84f83ddc",
-      sdn_bird: "v-0000014-b0a5951d"
+      sdn_bird: "v-0000014-b0a5951d",
+      slb: "v-0000115-84f83ddc"
     },
 
     # Release to rest of the SAM clusters
@@ -56,9 +56,8 @@
     testimages: {
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-        sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn",
-        slb_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn:v-0000115-84f83ddc",
+        sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird",
     },
 
     # Shared images for all prod beds.  This should be a previously tested image from the sandbox above.
@@ -90,25 +89,25 @@
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase1_test.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
+            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff",
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
-            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff",
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
             k8sproxy: $.testimages.k8sproxy,
             permissionInitContainer: $.testimages.permissionInitContainer,
+            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff",
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase1_prdsdc.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             sdn_route_watchdog: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
             sdn_vault_agent: $.testimages.sdn_image + ":" + $.phase1_prdsdc.hypersdn,
-            slb_iface_agent: $.testimages.slb_image,
-            slb_ipvs: $.testimages.slb_image,
-            slb_realsvrcfg : $.testimages.slb_image,
-            slb_config_processor : $.testimages.slb_image,
-            sam_secret_agent: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-0000901-82ac08ff",
+            slb_config_processor : $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
+            slb_iface_agent: $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
+            slb_ipvs: $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
+            slb_realsvrcfg : $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
