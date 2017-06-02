@@ -34,7 +34,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - true
+          - "true"
         initialDelaySeconds: 5
     volumes:
     - name: logvol
