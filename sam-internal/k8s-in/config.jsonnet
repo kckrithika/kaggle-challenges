@@ -156,7 +156,7 @@ local images = import "images.jsonnet",
     sdn_route_watchdog: images.sdn_route_watchdog,
     sdn_vault_agent: images.sdn_vault_agent,
 
-    slb_iface_agent: images.slb_iface_agent,
+    slb_iface_processor: images.slb_iface_processor,
     slb_ipvs: images.slb_ipvs,
     slb_realsvrcfg: images.slb_realsvrcfg,
     slb_config_processor: images.slb_config_processor

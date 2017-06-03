@@ -62,8 +62,8 @@ if configs.estate == "prd-sdc" then {
                             "--period=599s",
                             "--namespace=default",
                             "--k8sApiServer="+configs.apiserver,
-                            "--serviceList=slb-test-svc",
-                            "--vipList=10.251.129.235:9090",
+                            "--serviceList=slb-alpha,slb-bravo,slb-charlie",
+                            "--vipList=10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
