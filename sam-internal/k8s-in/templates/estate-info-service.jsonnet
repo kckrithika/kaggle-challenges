@@ -16,7 +16,7 @@ if configs.estate == "prd-samtest" then {
                 "port": 8080,
                 "protocol": "TCP",
                 "targetPort": 9090,
-                "nodePort": 40000
+                "nodePort": 40001
             }
             ],
                 "selector": {
