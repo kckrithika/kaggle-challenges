@@ -13,9 +13,9 @@ if configs.estate == "prd-samtest" then {
             "ports": [
             {
                 "name": "estate-info-port",
-                "port": 9090,
+                "port": 8080,
                 "protocol": "TCP",
-                "targetPort": 8080,
+                "targetPort": 9090,
                 "nodePort": 40000
             }
             ],

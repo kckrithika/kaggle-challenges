@@ -59,7 +59,7 @@
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird",
-        estate_info: "estates-rest-server:v12 ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estates-info-server:2017.06.03.1",
+        estate_info: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estates-info-server:2017.06.03.1",
     },
 
     # Shared images for all prod beds.  This should be a previously tested image from the sandbox above.

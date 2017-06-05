@@ -5,7 +5,6 @@ if configs.estate == "prd-samtest" then {
         replicas: 1,
         template: {
             spec: {
-                hostNetwork: true,
                 containers: [
                     {
                         name: "estate-info",
@@ -20,7 +19,7 @@ if configs.estate == "prd-samtest" then {
                         "ports": [
                         {
                             "containerPort": 9090,
-                            "name": "prd-samtest",
+                            "name": "estate-info",
                         }
                         ],
                       livenessProbe: {
