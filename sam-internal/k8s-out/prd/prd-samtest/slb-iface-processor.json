@@ -1,0 +1,65 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "slb-iface-processor"
+      },
+      "name": "slb-iface-processor"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "daemonset": "true",
+               "name": "slb-iface-processor"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-iface-processor",
+                     "--configDir=/host/var/slb/config",
+                     "--period=5s",
+                     "--marker=/host/var/slb/ipvs.marker",
+                     "--markerPeriod=10s",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000125-2256216e",
+                  "name": "slb-iface-processor",
+                  "securityContext": {
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     },
+                     {
+                        "mountPath": "/host/var/slb/config",
+                        "name": "var-config-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/slb/config"
+                  },
+                  "name": "var-config-volume"
+               }
+            ]
+         }
+      }
+   }
+}

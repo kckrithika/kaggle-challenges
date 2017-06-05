@@ -48,7 +48,8 @@
     # Release to rest of the SAM clusters
     phase2_sam: {
       hypersdn: "v-0000115-84f83ddc",
-      sdn_bird: "v-0000014-b0a5951d"
+      sdn_bird: "v-0000014-b0a5951d",
+      slb: "v-0000125-2256216e"
     },
 
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
@@ -93,6 +94,10 @@
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
+            slb_config_processor : $.testimages.sdn_image + ":" + $.phase2_sam.slb,
+            slb_iface_processor: $.testimages.sdn_image + ":" + $.phase2_sam.slb,
+            slb_ipvs: $.testimages.sdn_image + ":" + $.phase2_sam.slb,
+            slb_realsvrcfg : $.testimages.sdn_image + ":" + $.phase2_sam.slb,
         },
         "prd-sdc": {
             default: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam" + ":" + $.phase2_sandbox.hypersam,
