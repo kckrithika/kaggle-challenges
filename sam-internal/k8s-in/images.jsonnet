@@ -155,5 +155,5 @@
     #   Key: dockerimg
     #   Value: registry + "/" + ( if estates above has an entry for this estate+dockerimg use it, else use estate+"default" image )
     #
-    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "sdn_bird", "sdn_peering_agent", "sdn_watchdog", "sdn_ping_watchdog", "sdn_route_watchdog", "sdn_vault_agent", "slb_iface_processor", "slb_ipvs", "samcontrol_deployer", "permissionInitContainer", "sam_deployment_reporter", "slb_realsvrcfg", "slb_config_processor", "sam_secret_agent"]
+    [dockerimg]: (if std.objectHas($.estates[estate], dockerimg) then $.estates[estate][dockerimg] else $.estates[estate]["default"]) for dockerimg in ["controller", "watchdog", "manifest_watcher","sam_deployment_portal", "k8sproxy", "estate_info", "sdn_bird", "sdn_peering_agent", "sdn_watchdog", "sdn_ping_watchdog", "sdn_route_watchdog", "sdn_vault_agent", "slb_iface_processor", "slb_ipvs", "samcontrol_deployer", "permissionInitContainer", "sam_deployment_reporter", "slb_realsvrcfg", "slb_config_processor", "sam_secret_agent"]
 }

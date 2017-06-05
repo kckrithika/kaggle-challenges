@@ -32,19 +32,16 @@ if configs.estate == "prd-samtest" then {
                         },
                     }
                 ],
-                volumes: [
-                    hostPath: {
-                            path: "/data/certs"
-                            },
-                            name: "certs"
+                volumes: {
+                    certsPath: {
+                            path: "/data/certs",
+                            name: "certs",
                     },
-                    {
-                    hostPath: {
-                            path: "/etc/kubernetes"
-                            },
-                            name: "config"
-                    }
-                ],
+                    configPath: {
+                            path: "/etc/kubernetes",
+                            name: "config",
+                    },
+                },
                 nodeSelector: {
                     pool: configs.estate
                 } +
