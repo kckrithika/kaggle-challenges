@@ -14,7 +14,7 @@ system:
         exec:
           command:
           - echo
-          - always_healthy  
+          - always_healthy
       env:
       - name: HEWD_AJNA_ENABLED
         value: true
@@ -30,7 +30,7 @@ system:
       args: ["
         export HEWD_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export HEWD_AJNA_DATACENTER=${KINGDOM} ;
-        export HEWD_AJNA_DEVICE=${FUNCTION} ;
+        export HEWD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export HEWD_TARGET_ENDPOINT=http://${CANDIDATESERVICELB_SERVICE_HOST}:${CANDIDATESERVICELB_SERVICE_PORT} ;
         /health-endpoint-watchdog
       "]
