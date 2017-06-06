@@ -38,7 +38,7 @@
                      "-sender=sam@salesforce.com",
                      "-recipient=sdn@salesforce.com"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000900-4864e366",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000921-2e7e2318",
                   "name": "watchdog-sdp"
                }
             ],
