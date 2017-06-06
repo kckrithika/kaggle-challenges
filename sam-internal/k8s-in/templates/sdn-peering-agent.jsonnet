@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
@@ -51,11 +52,12 @@ if configs.kingdom == "prd" then {
                             "--keyfile=/data/certs/hostcert.key",
                             "--certfile=/data/certs/hostcert.crt",
                             "--bgpPasswordFile=/data/secrets/sambgppassword",
+                            "--livenessProbePort="+portconfigs.sdn.sdn_peering_agent,
                         ],
                         "livenessProbe": {
                             "httpGet": {
                                "path": "/",
-                               "port": 9100
+                               "port": std.parseInt(portconfigs.sdn.sdn_peering_agent)
                             },
                             "initialDelaySeconds": 5,
                             "timeoutSeconds": 5,
