@@ -1,3 +1,4 @@
 apps:
-  SayonaradbTestApp:
-    - prd/prd-sp1-sdb_kube
+ SayonaradbTestApp:
+  - prd/prd-sp1-sdb_kube
+  
