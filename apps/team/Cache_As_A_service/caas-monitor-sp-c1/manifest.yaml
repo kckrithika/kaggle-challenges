@@ -12,7 +12,7 @@ system:
     containers:
     - name: caas-monitor 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor:0.1-0000036-13820616
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-monitor-prod:2.2.7-0000006-13681445
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --redis-monitor.redis-listen-ports=12000
