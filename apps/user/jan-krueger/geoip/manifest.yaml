@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: ccait-geoip-backend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/ccait/geoip2:1.0.6-snapshot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6-snapshot
       ports:
         - containerPort: 6565
           name: grpc
@@ -24,7 +24,7 @@ system:
     count: 1
     containers:
     - name: ccait-geoip-frontend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/ccait/geoip2-demo:1.0.6-snapshot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
       env:
         - name: SFDC_ENVIRONMENT
           value: dev
