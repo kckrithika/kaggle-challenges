@@ -44,6 +44,26 @@ system:
       - name: SFDC_ENVIRONMENT
         value: vpod
 
+    - name: docker-log
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/docker-log:dmachak-20170606A
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9191
+        initialDelaySeconds: 30
+        timeoutSeconds: 10
+      # expose gater outside the container. Note that the host is already exposing port 8080, so we need to
+      # change this to a different port for instances running in SAM. Note server.port above reflects this.
+      # The ports listed here are exposed at the host network level. This is controlled by the hostnetwork setting above.
+      ports:
+      - containerPort: 9191
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: vpod
+
     # maps the logval volumnMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
     # written to this directory.
@@ -53,7 +73,6 @@ system:
       hostPath:
         path: /home/sfdc-gater/logs
 
-        
     loadbalancers:
     - lbname: gaterlb
       function: gater-vpod
