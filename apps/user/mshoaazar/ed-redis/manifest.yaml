@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: ed-redis
+      image: docker-sam/mshoaazar/ed-redis:v1-rc1
+      ports:
+      - containerPort: 6379
+      livenessProbe:
+        tcpSocket:
+          port: 6379
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+
+  loadbalancers:
+  - lbname: ed-redis
+    function: default
+    ports:
+      - port: 6379
+        targetport: 6379
