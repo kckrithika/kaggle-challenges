@@ -7,9 +7,6 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: monitor-sp-c1
-    env:
-      - name: SFDC_ENVIRONMENT
-        value: mist30
     count: 9 
     hostnetwork: true
     containers:
@@ -43,6 +40,8 @@ system:
       env:
       - name:  CAAS_UPGRADE
         value: DATE_12_23
+      - name: SFDC_ENVIRONMENT
+        value: mist30
     volumes:
     - name: logvol
       hostPath:
