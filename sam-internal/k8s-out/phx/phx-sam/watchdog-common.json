@@ -44,10 +44,24 @@
                         "cpu": "0.5",
                         "memory": "300Mi"
                      }
-                  }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/hostproc",
+                        "name": "procfs-volume"
+                     }
+                  ]
                }
             ],
-            "hostNetwork": true
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/proc"
+                  },
+                  "name": "procfs-volume"
+               }
+            ]
          }
       }
    }
