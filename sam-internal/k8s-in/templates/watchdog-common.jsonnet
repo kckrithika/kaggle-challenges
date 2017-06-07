@@ -30,9 +30,23 @@ local wdconfig = import "wdconfig.jsonnet";
                                 cpu: "0.5",
                                 memory: "300Mi"
                             }
-                        }
+                          },
+                        volumeMounts: [
+                             {
+                                "mountPath": "/hostproc",
+                                "name": "procfs-volume"
+                             }
+                        ]
                     }
                 ],
+                volumes: [
+                   {
+                      "hostPath": {
+                         "path": "/proc"
+                      },
+                      "name": "procfs-volume"
+                   }
+                ]
             },
             metadata: {
                 labels: {
