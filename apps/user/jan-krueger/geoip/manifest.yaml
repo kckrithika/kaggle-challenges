@@ -7,6 +7,12 @@ system:
     containers:
     - name: ccait-geoip-database
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:latest
+      # liveness probe is required by SAM so we run httpd as part of our 'data container' for now
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 10
       volumeMounts:
         - mountPath: /database
           name: maxmind-volume
