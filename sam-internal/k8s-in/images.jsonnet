@@ -40,7 +40,7 @@
     # image from the previous stage after a 24 hour bake time with no issues (check that all watchdog are healthy)
 
     phase1_prdsdc: {
-      hypersdn: "v-0000115-84f83ddc",
+      hypersdn: "v-0000133-6a6e44d7",
       sdn_bird: "v-0000014-b0a5951d",
       slb: "v-0000125-2256216e"
     },
