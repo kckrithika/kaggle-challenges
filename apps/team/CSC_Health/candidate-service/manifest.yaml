@@ -68,7 +68,7 @@ system:
       args: ["
         export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export CHS_AJNA_DATACENTER=${KINGDOM} ;
-        export CHS_AJNA_DEVICE=${FUNCTION_INSTANCE_NAME} ;
+        export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
         case ${KINGDOM} in
           prd)

@@ -38,7 +38,7 @@ system:
       args: ["
         export OBS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
         export OBS_AJNA_DATACENTER=${KINGDOM} ;
-        export OBS_AJNA_DEVICE=${FUNCTION_INSTANCE_NAME} ;
+        export OBS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         /observationservice
       "]
     volumes:
