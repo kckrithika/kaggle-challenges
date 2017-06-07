@@ -5,8 +5,23 @@ system:
   - name: geoip
     count: 3
     containers:
+    - name: ccait-geoip-database
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:latest
+      volumeMounts:
+        - mountPath: /database
+          name: maxmind-volume
     - name: ccait-geoip-backend
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6-snapshot
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: dev
+        - name: SFDC_SUBENVIRONMENT
+          value: ""
+        - name: COM_MAXMIND_DATABASE-FILE
+          value: /dw/data
+      volumeMounts:
+        - mountPath: /dw/data
+          name: maxmind-volume
       ports:
         - containerPort: 7020
           name: grpc
@@ -20,6 +35,9 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 15
+    volumes:
+    - name: maxmind-volume
+      emptyDir: {}
   - name: geoip-demo
     count: 1
     containers:
