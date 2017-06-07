@@ -1,0 +1,67 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-common"
+      },
+      "name": "watchdog-common"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "app": "watchdog-common",
+               "apptype": "monitoring",
+               "daemonset": "true"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=COMMON",
+                     "-watchdogFrequency=5s",
+                     "-alertThreshold=150s",
+                     "-timeout=2s",
+                     "-funnelEndpoint=mandm-funnel-ord1.data.sfdc.net:8080",
+                     "-rcImtEndpoint=https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
+                     "-smtpServer=ops0-mta2-1-ord.ops.sfdc.net:25",
+                     "-sender=sam@salesforce.com",
+                     "-recipient=sam@salesforce.com",
+                     "-emailFrequency=24h"
+                  ],
+                  "image": "ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-0000900-4864e366",
+                  "name": "watchdog",
+                  "resources": {
+                     "limits": {
+                        "cpu": "0.5",
+                        "memory": "300Mi"
+                     },
+                     "requests": {
+                        "cpu": "0.5",
+                        "memory": "300Mi"
+                     }
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/hostproc",
+                        "name": "procfs-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/proc"
+                  },
+                  "name": "procfs-volume"
+               }
+            ]
+         }
+      }
+   }
+}

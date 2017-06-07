@@ -43,7 +43,9 @@ generateConfigs() {
 
 rm -rf generated/
 
-declare -a kingdomEstates=("prd/prd-sam" "prd/prd-samdev" "prd/prd-samtest" "prd/prd-sdc" "dfw/dfw-sam" "phx/phx-sam" "frf/frf-sam" "par/par-sam" "yul/yul-sam" "yhu/yhu-sam")
+# Keep this in alphabetical order
+# TODO: scan the pools and generate this automatically
+declare -a kingdomEstates=( "dfw/dfw-sam" "frf/frf-sam" "iad/iad-sam" "ord/ord-sam" "par/par-sam" "phx/phx-sam" "prd/prd-sam" "prd/prd-samdev" "prd/prd-samtest" "prd/prd-sdc" "ukb/ukb-sam" "yhu/yhu-sam" "yul/yul-sam" )
 
 for kingdomEstate in "${kingdomEstates[@]}"
 do

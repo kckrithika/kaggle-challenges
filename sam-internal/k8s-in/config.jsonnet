@@ -4,25 +4,6 @@ local kingdom = std.extVar("kingdom"),
 local images = import "images.jsonnet",
 
     perKingdom: {
-        funnelVIP: {
-            "prd": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-            "dfw": "mandm-funnel-dfw1.data.sfdc.net:8080",
-            "phx": "mandm-funnel-phx1.data.sfdc.net:8080",
-            "frf": "mandm-funnel-frf1.data.sfdc.net:8080",
-            "par": "mandm-funnel-par1.data.sfdc.net:8080",
-            "yul": "mandm-funnel-yul1.data.sfdc.net:8080",
-            "yhu": "mandm-funnel-yhu1.data.sfdc.net:8080"
-        },
-
-        tnrpArchiveEndpoint: {
-            "prd": "https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-            "dfw": "https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
-            "phx": "https://ops0-piperepo1-1-phx.ops.sfdc.net/tnrp/content_repo/0/archive",
-            "frf": "https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
-            "par": "https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive",
-            "yul": "https://ops0-piperepo1-1-yul.ops.sfdc.net/tnrp/content_repo/0/archive",
-            "yhu": "https://ops0-piperepo1-1-yhu.ops.sfdc.net/tnrp/content_repo/0/archive"
-        },
 
         rcImtEndpoint: {
             "prd": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
@@ -31,9 +12,14 @@ local images = import "images.jsonnet",
             "frf": "https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
             "par": "https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
             "yul": "https://ops0-health1-1-yul.ops.sfdc.net:18443/v1/bark",
-            "yhu": "https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark"
+            "yhu": "https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark",
+            "iad": "https://ops0-health1-1-iad.ops.sfdc.net:18443/v1/bark",
+            "ord": "https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
+            "ukb": "https://ops0-health1-1-ukb.ops.sfdc.net:18443/v1/bark"
         },
 
+        # Why are some of these 1-4, some 2-2, some 1-2, and others 2-1???
+        # TODO: Clean this up
         smtpServer: {
             "prd": "rd1-mta1-4-sfm.ops.sfdc.net:25",
             "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
@@ -41,7 +27,10 @@ local images = import "images.jsonnet",
             "frf": "ops0-mta2-1-frf.ops.sfdc.net:25",
             "par": "ops0-mta2-1-par.ops.sfdc.net:25",
             "yul": "ops0-mta2-1-yul.ops.sfdc.net:25",
-            "yhu": "ops0-mta2-1-yhu.ops.sfdc.net:25"
+            "yhu": "ops0-mta2-1-yhu.ops.sfdc.net:25",
+            "iad": "ops0-mta2-1-iad.ops.sfdc.net:25",
+            "ord": "ops0-mta2-1-ord.ops.sfdc.net:25",
+            "ukb": "ops0-mta2-1-ukb.ops.sfdc.net:25"
         },
 
         momCollectorEndpoint: {
@@ -56,19 +45,8 @@ local images = import "images.jsonnet",
             "prd-samdev": "http://shared0-samdevkubeapi1-1-prd.eng.sfdc.net:40000/",
             "prd-sam": "http://shared0-samkubeapi1-2-prd.eng.sfdc.net:40000/"
         },
-        registry: {
-            "prd-sam": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-            "prd-samdev": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-            "prd-samtest": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-            "prd-sdc": "ops0-artifactrepo2-0-prd.data.sfdc.net",
-            "dfw-sam": "ops0-artifactrepo1-0-dfw.data.sfdc.net",
-            "phx-sam": "ops0-artifactrepo1-0-phx.data.sfdc.net",
-            "frf-sam": "ops0-artifactrepo1-0-frf.data.sfdc.net",
-            "par-sam": "ops0-artifactrepo1-0-par.data.sfdc.net",
-            "yul-sam": "ops0-artifactrepo1-0-yul.data.sfdc.net",
-            "yhu-sam": "ops0-artifactrepo1-0-yhu.data.sfdc.net"
-        },
-
+        
+        # This should go away soon
         insecureRegistries: {
             "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/",
             "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/",
@@ -79,34 +57,12 @@ local images = import "images.jsonnet",
             "frf-sam": "",
             "par-sam": "",
             "yul-sam": "",
-            "yhu-sam": ""
+            "yhu-sam": "",
+            "iad-sam":"",
+            "ord-sam":"",
+            "ukb-sam":""
         },
 
-        checkImageExistsFlag: {
-            "prd-sam": "true",
-            "prd-samdev": "true",
-            "prd-samtest": "true",
-            "prd-sdc": "true",
-            "dfw-sam": "true",
-            "phx-sam": "true",
-            "frf-sam": "true",
-            "par-sam": "true",
-            "yul-sam": "true",
-            "yhu-sam": "true"
-        },
-
-        httpsDisableCertsCheck: {
-            "prd-sam": "true",
-            "prd-samdev": "true",
-            "prd-samtest": "true",
-            "prd-sdc": "true",
-            "dfw-sam": "true",
-            "phx-sam": "true",
-            "frf-sam": "true",
-            "par-sam": "true",
-            "yul-sam": "true",
-            "yhu-sam": "true"
-        },
     },
 
     # Global
@@ -120,18 +76,21 @@ local images = import "images.jsonnet",
     watchdog_emailsender: "sam@salesforce.com",
     watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else "sam@salesforce.com"),
 
+    # Stuff with if statements
+
+    funnelVIP: (if kingdom == "prd" then "ajna0-funnel1-0-prd.data.sfdc.net:80" else "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080"),
+    tnrpArchiveEndpoint: (if kingdom == "prd" then "https://ops0-piperepo1-1-"+kingdom+".eng.sfdc.net/tnrp/content_repo/0/archive" else "https://ops0-piperepo1-1-"+kingdom+".ops.sfdc.net/tnrp/content_repo/0/archive"),
+    registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
+
     # Pass-through below here only
 
-    funnelVIP: self.perKingdom.funnelVIP[kingdom],
-    tnrpArchiveEndpoint: self.perKingdom.tnrpArchiveEndpoint[kingdom],
     rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
     apiserver: self.perCluster.apiserver[estate],
-    registry: self.perCluster.registry[estate],
     insecureRegistries: self.perCluster.insecureRegistries[estate],
-    checkImageExistsFlag: self.perCluster.checkImageExistsFlag[estate],
-    httpsDisableCertsCheck: self.perCluster.httpsDisableCertsCheck[estate],
+    checkImageExistsFlag: "true",
+    httpsDisableCertsCheck: "true",
 
     estate: estate,
     kingdom: kingdom,
