@@ -27,7 +27,7 @@
                      "--certfile=/data/certs/hostcert.crt",
                      "--cafile=/data/certs/ca.crt"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000115-84f83ddc",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000133-6a6e44d7",
                   "name": "sdn-vault-agent",
                   "volumeMounts": [
                      {
