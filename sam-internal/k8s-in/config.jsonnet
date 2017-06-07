@@ -1,22 +1,12 @@
 {
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
+local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 local images = import "images.jsonnet",
 
     perKingdom: {
 
-        rcImtEndpoint: {
-            "prd": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
-            "dfw": "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
-            "phx": "https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
-            "frf": "https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
-            "par": "https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
-            "yul": "https://ops0-health1-1-yul.ops.sfdc.net:18443/v1/bark",
-            "yhu": "https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark",
-            "iad": "https://ops0-health1-1-iad.ops.sfdc.net:18443/v1/bark",
-            "ord": "https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
-            "ukb": "https://ops0-health1-1-ukb.ops.sfdc.net:18443/v1/bark"
-        },
+        # We should try and compute kingdom level config and not require an entry per kingdom!
 
         # Why are some of these 1-4, some 2-2, some 1-2, and others 2-1???
         # TODO: Clean this up
@@ -38,7 +28,10 @@ local images = import "images.jsonnet",
         },
     },
 
-    perCluster: {
+    perEstate: {
+
+        # We should try and compute estate level config and not require an entry per kingdom!
+
         apiserver: {
             "prd-sdc": "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
             "prd-samtest": "http://shared0-samtestkubeapi1-1-prd.eng.sfdc.net:40000/",
@@ -52,15 +45,6 @@ local images = import "images.jsonnet",
             "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/",
             "prd-samtest": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/",
             "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/",
-            "dfw-sam": "",
-            "phx-sam": "",
-            "frf-sam": "",
-            "par-sam": "",
-            "yul-sam": "",
-            "yhu-sam": "",
-            "iad-sam":"",
-            "ord-sam":"",
-            "ukb-sam":""
         },
 
     },
@@ -76,19 +60,19 @@ local images = import "images.jsonnet",
     watchdog_emailsender: "sam@salesforce.com",
     watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else "sam@salesforce.com"),
 
-    # Stuff with if statements
+    # Computed values
 
     funnelVIP: (if kingdom == "prd" then "ajna0-funnel1-0-prd.data.sfdc.net:80" else "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080"),
-    tnrpArchiveEndpoint: (if kingdom == "prd" then "https://ops0-piperepo1-1-"+kingdom+".eng.sfdc.net/tnrp/content_repo/0/archive" else "https://ops0-piperepo1-1-"+kingdom+".ops.sfdc.net/tnrp/content_repo/0/archive"),
+    tnrpArchiveEndpoint: "https://ops0-piperepo1-1-"+kingdom+"."+engOrOps+".sfdc.net/tnrp/content_repo/0/archive",
     registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
+    insecureRegistries: (if kingdom == "prd" then self.perEstate.insecureRegistries[estate] else ""),
+    rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://ops0-health1-1-"+kingdom+"."+engOrOps+".sfdc.net:18443/v1/bark"),
 
     # Pass-through below here only
 
-    rcImtEndpoint: self.perKingdom.rcImtEndpoint[kingdom],
     smtpServer: self.perKingdom.smtpServer[kingdom],
     momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
-    apiserver: self.perCluster.apiserver[estate],
-    insecureRegistries: self.perCluster.insecureRegistries[estate],
+    apiserver: self.perEstate.apiserver[estate],
     checkImageExistsFlag: "true",
     httpsDisableCertsCheck: "true",
 
