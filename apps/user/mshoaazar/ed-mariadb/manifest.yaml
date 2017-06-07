@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: ed-mariadb
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-mariadb:v1-rc1
+      ports:
+      - containerPort: 3306
+      livenessProbe:
+        tcpSocket:
+          port: 3306
+        initialDelaySeconds: 30
+        timeoutSeconds: 1
+
+  loadbalancers:
+  - lbname: ed-mariadb
+    function: default
+    ports:
+      - port: 3307
+        targetport: 3306
