@@ -27,7 +27,7 @@
 
     # Release Phase 3 - Canary Prod FRF
     phase3_prod_canary: {
-      hypersam: "sam-0000900-4864e366",
+      hypersam: "sam-0000921-2e7e2318",
     },
 
     # Release Phase 4 - Rest of Prod
