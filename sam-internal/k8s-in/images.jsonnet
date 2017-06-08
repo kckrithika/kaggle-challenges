@@ -47,7 +47,7 @@
 
     # Release to rest of the SAM clusters
     phase2_sam: {
-      hypersdn: "v-0000115-84f83ddc",
+      hypersdn: "v-0000133-6a6e44d7",
       sdn_bird: "v-0000014-b0a5951d",
       slb: "v-0000125-2256216e"
     },
