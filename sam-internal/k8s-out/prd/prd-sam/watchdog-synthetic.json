@@ -1,7 +1,4 @@
-local configs = import "config.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
-
-if configs.kingdom == "prd" then {
+{
    "apiVersion": "extensions/v1beta1",
    "kind": "Deployment",
    "metadata": {
@@ -37,15 +34,9 @@ if configs.kingdom == "prd" then {
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
-                     "-recipient="+configs.watchdog_emailrec,
+                     "-recipient=sam@salesforce.com",
                      "-laddr=0.0.0.0:8083",
-                     "-imageName="+configs.watchdog
-                  ],
-                  "ports": [
-                      {
-                      "name": "synthetic",
-                      "containerPort": 8083
-                      }
+                     "-imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000921-2e7e2318"
                   ],
                   "env": [
                      {
@@ -53,8 +44,14 @@ if configs.kingdom == "prd" then {
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": configs.watchdog,
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000921-2e7e2318",
                   "name": "watchdog-synthetic",
+                  "ports": [
+                     {
+                        "containerPort": 8083,
+                        "name": "synthetic"
+                     }
+                  ],
                   "volumeMounts": [
                      {
                         "mountPath": "/test",
@@ -77,7 +74,7 @@ if configs.kingdom == "prd" then {
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": configs.estate
+               "pool": "prd-sam"
             },
             "volumes": [
                {
@@ -93,11 +90,11 @@ if configs.kingdom == "prd" then {
                   "name": "sfdc-volume"
                },
                {
-                  "emptyDir": {},
+                  "emptyDir": { },
                   "name": "test"
                },
                {
-                  "emptyDir": {},
+                  "emptyDir": { },
                   "name": "output"
                },
                {
@@ -110,5 +107,4 @@ if configs.kingdom == "prd" then {
          }
       }
    }
-} else "SKIP"
-
+}
