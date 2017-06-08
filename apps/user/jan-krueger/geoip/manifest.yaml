@@ -20,11 +20,11 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6-snapshot
       env:
         - name: SFDC_ENVIRONMENT
-          value: dev
+          value: "dev"
         - name: SFDC_SUBENVIRONMENT
           value: ""
         - name: COM_MAXMIND_DATABASE-FILE
-          value: /dw/data
+          value: "/dw/data/GeoIP2-City.mmdb"
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
@@ -51,7 +51,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
       env:
         - name: SFDC_ENVIRONMENT
-          value: dev
+          value: "dev"
         - name: SFDC_SUBENVIRONMENT
           value: ""
         - name: GRPC_ROUTING_GEOIP_HOST
