@@ -33,7 +33,7 @@
                      "--pingInterval=1s",
                      "--pingTimeout=5s"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000115-84f83ddc",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000133-6a6e44d7",
                   "name": "sdn-ping-watchdog"
                }
             ],
