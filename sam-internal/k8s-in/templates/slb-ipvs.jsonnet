@@ -59,9 +59,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
                             "--host=/host",
-                            "--mode=continuous",
-                            "--target=/host/var/slb",
-                            "--period=5s"
+                            "--marker=/host/var/slb/ipvs.marker",
+                            "--period=5s",
+                            "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
                             {
@@ -93,7 +93,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "command":[
                             "/sdn/slb-ipvs-processor",
                             "--configDir=/host/var/slb/config",
-                            "--marker=/host/var/slb/ipvs.installed",
+                            "--marker=/host/var/slb/ipvs.marker",
                             "--period=5s",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],

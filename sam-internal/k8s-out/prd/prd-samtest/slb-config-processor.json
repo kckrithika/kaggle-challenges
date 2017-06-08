@@ -22,11 +22,11 @@
                   "command": [
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
-                     "--period=599s",
+                     "--period=5s",
                      "--namespace=default",
                      "--k8sApiServer=http://shared0-samtestkubeapi1-1-prd.eng.sfdc.net:40000/",
-                     "--serviceList=slb-alpha,slb-bravo,slb-charlie",
-                     "--vipList=10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090",
+                     "--serviceList=slb-alpha,slb-bravo,slb-charlie,slb-delta,slb-echo",
+                     "--vipList=10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090,10.251.129.233:9090,10.251.129.234:9090",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [

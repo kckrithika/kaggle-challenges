@@ -22,9 +22,9 @@
                      "/sdn/slb-ipvs-installer",
                      "--modules=/sdn",
                      "--host=/host",
-                     "--mode=continuous",
-                     "--target=/host/var/slb",
-                     "--period=5s"
+                     "--marker=/host/var/slb/ipvs.marker",
+                     "--period=5s",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000125-2256216e",
                   "name": "slb-ipvs-installer",
@@ -55,7 +55,7 @@
                   "command": [
                      "/sdn/slb-ipvs-processor",
                      "--configDir=/host/var/slb/config",
-                     "--marker=/host/var/slb/ipvs.installed",
+                     "--marker=/host/var/slb/ipvs.marker",
                      "--period=5s",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],

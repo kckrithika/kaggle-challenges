@@ -42,7 +42,7 @@
     phase1_prdsdc: {
       hypersdn: "v-0000133-6a6e44d7",
       sdn_bird: "v-0000014-b0a5951d",
-      slb: "v-0000125-2256216e"
+      slb: "v-0000136-6281e0a8"
     },
 
     # Release to rest of the SAM clusters

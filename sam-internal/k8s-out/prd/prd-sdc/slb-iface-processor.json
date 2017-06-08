@@ -27,7 +27,7 @@
                      "--markerPeriod=10s",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000125-2256216e",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000136-6281e0a8",
                   "name": "slb-iface-processor",
                   "securityContext": {
                      "privileged": true

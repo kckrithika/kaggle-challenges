@@ -59,11 +59,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "command":[
                             "/sdn/slb-config-processor",
                             "--configDir=/host/var/slb/config",
-                            "--period=599s",
+                            "--period=5s",
                             "--namespace=default",
                             "--k8sApiServer="+configs.apiserver,
-                            "--serviceList=slb-alpha,slb-bravo,slb-charlie",
-                            "--vipList=10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090",
+                            "--serviceList=slb-alpha,slb-bravo,slb-charlie,slb-delta,slb-echo",
+                            "--vipList=10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090,10.251.129.233:9090,10.251.129.234:9090",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
