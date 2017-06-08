@@ -141,6 +141,18 @@
         "yhu-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
+        },
+        "iad-sam": {
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
+        },
+        "ord-sam": {
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
+        },
+        "ukb-sam": {
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            permissionInitContainer: $.prodimages.permissionInitContainer,
         }
     },
 

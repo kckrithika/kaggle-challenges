@@ -1,0 +1,85 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "samcontrol"
+      },
+      "name": "samcontrol"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "samcontrol"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "samcontrol"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/sam-controller",
+                     "--debug=true",
+                     "--dockerregistry=ops0-artifactrepo1-0-ukb.data.sfdc.net",
+                     "--funnelEndpoint=mandm-funnel-ukb1.data.sfdc.net:8080",
+                     "--v=3",
+                     "--logtostderr=true",
+                     "--k8sapiserver=",
+                     "--tlsEnabled=true",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt",
+                     "--checkImageExistsFlag=true",
+                     "--httpsDisableCertsCheck=true",
+                     "--volPermissionInitContainerImage=ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+                     "--insecureRegistries="
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/hypersam:sam-0000900-4864e366",
+                  "name": "sam-controller",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "ukb-sam"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
