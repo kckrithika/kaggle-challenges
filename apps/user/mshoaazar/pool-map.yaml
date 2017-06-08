@@ -1,3 +1,5 @@
 apps:
  ed-redis:
   - prd/prd-sam
+ ed-mariadb:
+  - prd/prd-sam
