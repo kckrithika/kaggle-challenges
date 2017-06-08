@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: ccait-geoip-database
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:20170604
       # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
       args: ["-d"]
       livenessProbe:
