@@ -32,7 +32,7 @@
 
     # Release Phase 4 - Rest of Prod
     phase4_prod_all: {
-      hypersam: "sam-0000900-4864e366",
+      hypersam: "sam-0000921-2e7e2318",
     },
 
     # ================== SDN RELEASE ====================
