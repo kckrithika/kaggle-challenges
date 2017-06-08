@@ -12,7 +12,7 @@ system:
     - name: gater
       # container image/version to run.
       # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: tnrp/gater/gater:1.2.0-0000107-13692978
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-test:dmachak-20170607
       resources:
         limits: { memory: "8Gi" }
         requests: { memory: "8Gi" }
