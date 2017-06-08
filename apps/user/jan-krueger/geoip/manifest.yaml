@@ -23,7 +23,7 @@ system:
           value: "dev"
         - name: SFDC_SUBENVIRONMENT
           value: ""
-        - name: COM_MAXMIND_DATABASE-FILE
+        - name: COM_MAXMIND_DATABASE_FILE
           value: "/dw/data/GeoIP2-City.mmdb"
       volumeMounts:
         - mountPath: /dw/data
