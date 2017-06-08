@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     "apiVersion": "extensions/v1beta1",
@@ -92,8 +93,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "image": configs.slb_ipvs,
                         "command":[
                             "/sdn/slb-ipvs-processor",
-                            "--configDir=/host/var/slb/config",
-                            "--marker=/host/var/slb/ipvs.marker",
+                            "--configDir="+slbconfigs.configDir,
+                            "--marker="+slbconfigs.ipvsMarkerFile,
                             "--period=5s",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],

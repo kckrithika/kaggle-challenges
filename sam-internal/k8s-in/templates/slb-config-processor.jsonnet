@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     "apiVersion": "extensions/v1beta1",
@@ -58,13 +59,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "image": configs.slb_config_processor,
                         "command":[
                             "/sdn/slb-config-processor",
-                            "--configDir=/host/var/slb/config",
-                            "--period=5s",
+                            "--configDir="+slbconfigs.configDir,
+                            "--period=6s",
                             "--namespace=default",
                             "--subnet=10.251.129.224/27",
                             "--k8sApiServer="+configs.apiserver,
-                            "--serviceList=slb-alpha,slb-bravo,slb-charlie,slb-delta,slb-echo",
-                            "--vipList=10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090,10.251.129.233:9090,10.251.129.234:9090",
+                            "--serviceList="+slbconfigs.serviceList,
+                            "--vipList="+slbconfigs.vipList,
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
