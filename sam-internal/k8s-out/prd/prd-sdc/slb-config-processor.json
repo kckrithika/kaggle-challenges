@@ -22,7 +22,7 @@
                   "command": [
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
-                     "--period=5s",
+                     "--period=6s",
                      "--namespace=default",
                      "--subnet=10.251.129.224/27",
                      "--k8sApiServer=http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",

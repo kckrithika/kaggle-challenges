@@ -60,7 +60,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "command":[
                             "/sdn/slb-config-processor",
                             "--configDir="+slbconfigs.configDir,
-                            "--period=5s",
+                            "--period=6s",
                             "--namespace=default",
                             "--subnet=10.251.129.224/27",
                             "--k8sApiServer="+configs.apiserver,
