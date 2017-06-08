@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     "apiVersion": "extensions/v1beta1",
@@ -40,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "image": configs.slb_realsvrcfg,
                         "command":[
                             "/sdn/slb-realsvrcfg",
-                            "--configDir=/host/var/slb/config",
+                            "--configDir="+slbconfigs.configDir,
                             "--period=5s",
                             "--netInterfaceName=eth0"
                         ],
