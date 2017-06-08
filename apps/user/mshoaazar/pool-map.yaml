@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  ed-mariadb:
   - prd/prd-sam
+ ed-h2o:
+  - prd/prd-sam
