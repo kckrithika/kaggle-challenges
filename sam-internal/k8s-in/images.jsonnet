@@ -49,7 +49,7 @@
     phase2_sam: {
       hypersdn: "v-0000115-84f83ddc",
       sdn_bird: "v-0000014-b0a5951d",
-      slb: "v-0000125-2256216e"
+      slb: "v-0000136-6281e0a8"
     },
 
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
