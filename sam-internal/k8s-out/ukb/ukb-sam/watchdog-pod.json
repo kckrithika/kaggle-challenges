@@ -29,7 +29,7 @@
                      "-role=POD",
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
-                     "-unHealthyPodUpTimeThreshold=120s",
+                     "-maxUptimeSampleSize=5",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-ukb1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-ukb.ops.sfdc.net:18443/v1/bark",
