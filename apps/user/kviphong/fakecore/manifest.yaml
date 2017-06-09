@@ -13,11 +13,18 @@ system:
         httpGet:
           path: /response
           port: 8085
+  - name: nginx 
+    count: 1
+    containers:
+    - name: nginx-sam
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/casam/custom-nginx:2
+      ports:
+      - containerPort: 80
  
   loadbalancers:
   - lbname: fakecoreslb
-    function: fakecore
+    function: nginx
     nodeExposed: true
     ports:
-      - port: 8085
-        targetport: 8085
+      - port: 80
+        targetport: 80
