@@ -18,9 +18,7 @@ local wdconfig = import "wdconfig.jsonnet";
                         ]
                         + wdconfig.shared_args
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ])
-                        # [thargrove] 2017-05-05 Waiting on the fix for bug related to SP hostnames (phx-sp1-sam_caas)
-                        + (if configs.kingdom == "phx" then [ "-snoozedAlarms=bridgeChecker=2017/06/02" ] else [])
-                        + (if configs.kingdom == "prd" then [ "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15" ] else []),
+                        + [ "-snoozedAlarms=kubeletChecker=2017/06/12&kubeProxyChecker=2017/06/12" ],
                         name: "watchdog",
                         resources: {
                             requests: {

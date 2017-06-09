@@ -30,7 +30,8 @@
                      "-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
-                     "-emailFrequency=24h"
+                     "-emailFrequency=24h",
+                     "-snoozedAlarms=kubeletChecker=2017/06/12&kubeProxyChecker=2017/06/12"
                   ],
                   "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000921-2e7e2318",
                   "name": "watchdog",
