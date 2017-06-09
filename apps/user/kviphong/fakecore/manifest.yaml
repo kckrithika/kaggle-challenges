@@ -17,14 +17,18 @@ system:
     count: 1
     containers:
     - name: nginx-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/casam/custom-nginx:2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/custom-nginx:2
       ports:
       - containerPort: 80
+      livenessProbe:
+        httpGet:
+          path: /response
+          port: 80
  
   loadbalancers:
   - lbname: fakecoreslb
     function: nginx
     nodeExposed: true
     ports:
-      - port: 80
+      - port: 8111
         targetport: 80
