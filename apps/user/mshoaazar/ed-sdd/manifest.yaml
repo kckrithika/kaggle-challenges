@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ed-sdd
+    count: 1
+    containers:
+    - name: ed-sdd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-sdd:v1-rc3
+      ports:
+      - containerPort: 80
+      livenessProbe:
+        tcpSocket:
+          port: 80
+        initialDelaySeconds: 30
+        timeoutSeconds: 10
+
+  loadbalancers:
+  - lbname: ed-sdd
+    function: ed-sdd
+    ports:
+      - port: 9000
+        targetport: 80
