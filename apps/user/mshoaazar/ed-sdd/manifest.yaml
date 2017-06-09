@@ -6,12 +6,12 @@ system:
     count: 1
     containers:
     - name: ed-sdd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-sdd:v1-rc3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-sdd:v1-rc4
       ports:
-      - containerPort: 80
+      - containerPort: 8080
       livenessProbe:
         tcpSocket:
-          port: 80
+          port: 8080
         initialDelaySeconds: 30
         timeoutSeconds: 10
 
@@ -19,5 +19,5 @@ system:
   - lbname: ed-sdd
     function: ed-sdd
     ports:
-      - port: 9000
-        targetport: 80
+      - port: 8080
+        targetport: 8080
