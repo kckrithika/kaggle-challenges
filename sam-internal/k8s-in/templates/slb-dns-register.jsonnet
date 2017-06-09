@@ -36,7 +36,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                 "containers": [
                     {
                         "name": "slb-dns-register-processor",
-                        "image": configs.slb_ipvs,
+                        "image": configs.slb_dns_register,
                         "command":[
                             "/sdn/slb-dns-register",
                             "--path="+slbconfigs.configDir,
