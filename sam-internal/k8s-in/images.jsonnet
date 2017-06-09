@@ -117,6 +117,7 @@
             slb_iface_processor: $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
             slb_ipvs: $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
             slb_realsvrcfg : $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
+            slb_dns_register : $.testimages.sdn_image + ":" + $.phase1_prdsdc.slb,
         },
         "dfw-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
