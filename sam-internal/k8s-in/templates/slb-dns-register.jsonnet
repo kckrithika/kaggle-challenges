@@ -44,6 +44,7 @@ if configs.estate == "prd-sdc" then {
                             "--ddi="+slbconfigs.ddiService,
                             "--keyfile="+configs.keyFile,
                             "--certfile="+configs.certFile,
+                            "--cafile="+configs.caFile,
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
