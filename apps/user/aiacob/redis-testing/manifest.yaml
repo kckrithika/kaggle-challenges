@@ -13,10 +13,10 @@ system:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
       livenessProbe:
-        httpGet:
-          path: /healthz
-          port: 8080
-        initialDelaySeconds: 5
+        tcpSocket:
+          port: 6379
+        initialDelaySeconds: 15
+        periodSeconds: 20
 
   loadbalancers:
   - lbname: csc-health-redis
