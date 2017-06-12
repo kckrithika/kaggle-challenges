@@ -5,8 +5,38 @@ system:
   - name: observation-service
     count: 1
     containers:
+    - name: observation-service-logrotator
+      image: tnrp/csc-health/observation-service:observation-service-0000020-530bf5c2
+      volumeMounts:
+        - mountPath: /home/sfdc-csc-health/observation-service
+          name: logvol
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+        printf "compress\n
+        /home/sfdc-csc-health/observation-service/observation-service-app.log {\n
+          rotate 30\n
+          daily\n
+          copytruncate\n
+          delaycompress\n
+        }" > /tmp/observation-service-logrotate.conf;
+        status_file=/home/sfdc-csc-health/observation-service/observation-service-logrotate.status;
+        cmd="/usr/sbin/logrotate -v -s ${status_file} /tmp/observation-service-logrotate.conf";
+        while true;
+        do
+          printf "\n`date`\n\n";
+          $cmd;
+          sleep 21600;
+        done
+      ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000018-d6ee544f
+      image: tnrp/csc-health/observation-service:observation-service-0000020-530bf5c2
       ports:
       - containerPort: 8080
       resources:
@@ -16,6 +46,8 @@ system:
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
+        - mountPath: /home/sfdc-csc-health/observation-service
+          name: logvol
       env:
       - name: OBS_AJNA_ENABLED
         value: true
@@ -29,6 +61,8 @@ system:
         value: /var/secrets/grok-client.key
       - name: OBS_HEALTH_PORT
         value: 8080
+      - name: OBS_LOG_FILE
+        value: /home/sfdc-csc-health/observation-service/observation-service-app.log
       livenessProbe:
         httpGet:
           path: /healthz
@@ -45,6 +79,9 @@ system:
       - name: secretvol
         secret:
           secretName: csc-health-secret
+      - name: logvol
+        hostPath:
+          path: /home/sfdc-csc-health/observation-service
 
   loadbalancers:
   - lbname: observationservicelb
