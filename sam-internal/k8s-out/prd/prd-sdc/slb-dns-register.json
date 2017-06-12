@@ -43,6 +43,7 @@
                   ]
                }
             ],
+            "hostNetwork": true,
             "volumes": [
                {
                   "hostPath": {

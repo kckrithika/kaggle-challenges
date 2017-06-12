@@ -19,6 +19,7 @@ if configs.estate == "prd-sdc" then {
                 }
             },
             "spec": {
+                "hostNetwork": true,
                 "volumes": [
                     {
                         "name": "certs",
