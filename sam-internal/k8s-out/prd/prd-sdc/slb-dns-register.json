@@ -43,9 +43,6 @@
                   ]
                }
             ],
-            "nodeSelector": {
-               "service": "slb-dns-register"
-            },
             "volumes": [
                {
                   "hostPath": {

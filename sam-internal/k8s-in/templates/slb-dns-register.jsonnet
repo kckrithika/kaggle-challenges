@@ -60,10 +60,7 @@ if configs.estate == "prd-sdc" then {
                         }
                     }
 
-                ],
-                "nodeSelector":{
-                    "service": "slb-dns-register"
-                }
+                ]
             }
         }
     }
