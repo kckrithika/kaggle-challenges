@@ -23,7 +23,7 @@
                      "/sam/watchdog",
                      "-role=COMMON",
                      "-watchdogFrequency=5s",
-                     "-alertThreshold=150s",
+                     "-alertThreshold=300s",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-yul1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-yul.ops.sfdc.net:18443/v1/bark",
@@ -31,7 +31,7 @@
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
                      "-emailFrequency=24h",
-                     "-snoozedAlarms=kubeletChecker=2017/06/12&kubeProxyChecker=2017/06/12"
+                     "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15"
                   ],
                   "image": "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0000921-2e7e2318",
                   "name": "watchdog",
