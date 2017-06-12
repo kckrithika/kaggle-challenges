@@ -14,11 +14,11 @@ local wdconfig = import "wdconfig.jsonnet";
                             "/sam/watchdog",
                             "-role=COMMON",
                             "-watchdogFrequency=5s",
-                            "-alertThreshold=150s",
+                            "-alertThreshold=300s",
                         ]
                         + wdconfig.shared_args
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ])
-                        + [ "-snoozedAlarms=kubeletChecker=2017/06/12&kubeProxyChecker=2017/06/12" ],
+                        + [ "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15" ],
                         name: "watchdog",
                         resources: {
                             requests: {
