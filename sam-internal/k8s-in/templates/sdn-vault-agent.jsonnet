@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
