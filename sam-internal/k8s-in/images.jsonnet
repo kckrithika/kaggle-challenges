@@ -77,6 +77,7 @@
             sdn_bird: $.testimages.sdn_bird + ":" + $.phase2_sam.sdn_bird,
             sdn_peering_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             sdn_ping_watchdog: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
+            sdn_vault_agent: $.testimages.sdn_image + ":" + $.phase2_sam.hypersdn,
             slb_config_processor : $.testimages.sdn_image + ":" + $.phase2_sam.slb,
             slb_iface_processor: $.testimages.sdn_image + ":" + $.phase2_sam.slb,
             slb_ipvs: $.testimages.sdn_image + ":" + $.phase2_sam.slb,
