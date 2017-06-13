@@ -27,7 +27,7 @@ system:
           readOnly: true
 
   loadbalancers:
-  - lbname: csc-health-redis
+  - lbname: csc-health-redis-lb
     function: csc-health-redis
     nodeExposed: true
     ports:
