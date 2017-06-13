@@ -4,9 +4,13 @@ system:
   functions:
   - name: csc-health-redis
     count: 1
+    volumes:
+    - name: authvolume
+      secret:
+        secretname: csc-redis-auth
     containers:
     - name: csc-health-redis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/csc_health_redis:andrei-201706121
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/csc_health_redis:andrei-201706123
       ports:
       - containerPort: 6379
       resources:
@@ -17,6 +21,10 @@ system:
           port: 6379
         initialDelaySeconds: 15
         periodSeconds: 20
+      volumeMounts:
+        - name: authvolume
+          mountPath: "/var/secrets/redis/auth"
+          readOnly: true
 
   loadbalancers:
   - lbname: csc-health-redis
