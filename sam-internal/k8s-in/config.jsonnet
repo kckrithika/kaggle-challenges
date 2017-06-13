@@ -42,8 +42,8 @@ local images = import "images.jsonnet",
         # This should go away soon
         insecureRegistries: {
             "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/",
-            "prd-samdev": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:5000/",
-            "prd-samtest": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net:5000/",
+            "prd-samdev": "",
+            "prd-samtest": "",
             "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/",
         },
 
