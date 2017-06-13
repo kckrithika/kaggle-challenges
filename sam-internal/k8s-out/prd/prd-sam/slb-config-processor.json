@@ -23,7 +23,7 @@
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
                      "--period=6s",
-                     "--namespace=default",
+                     "--namespace=sam-system",
                      "--subnet=10.251.129.224/27",
                      "--k8sApiServer=http://shared0-samkubeapi1-2-prd.eng.sfdc.net:40000/",
                      "--serviceList=sam-deployment-portal",
