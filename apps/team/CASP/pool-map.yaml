@@ -1,3 +1,5 @@
 apps:
  prd-warden:
   - prd/prd-sam_warden
+ prod-warden:
+  - dfw/dfw-sam_warden
