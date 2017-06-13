@@ -57,11 +57,7 @@ if configs.estate == "prd-sdc" then {
                                 "mountPath": "/host/var/slb/config"
                             }
                         ],
-                        "securityContext": {
-                            "privileged": true
-                        }
                     }
-
                 ]
             }
         }
