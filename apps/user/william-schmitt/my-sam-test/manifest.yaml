@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/william.schmitt/samhello:william-1497378076 
+      ports:
+      - containerPort: 8989 
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8989
+ 
+  loadbalancers:
+  - lbname: samhellolb
+    function: default
+    ports:
+      - port: 8989 
+        targetport: 8989 
