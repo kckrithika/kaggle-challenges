@@ -1,0 +1,35 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: csc-health-redis
+    count: 1
+    volumes:
+    - name: authvolume
+      secret:
+        secretname: csc-redis-auth
+    containers:
+    - name: csc-health-redis
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/csc_health_redis:andrei-201706123
+      ports:
+      - containerPort: 6379
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
+      livenessProbe:
+        tcpSocket:
+          port: 6379
+        initialDelaySeconds: 15
+        periodSeconds: 20
+      volumeMounts:
+        - name: authvolume
+          mountPath: "/var/secrets/redis/auth"
+          readOnly: true
+
+  loadbalancers:
+  - lbname: csc-health-redis-lb
+    function: csc-health-redis
+    nodeExposed: true
+    ports:
+      - port: 6380
+        targetport: 6379
