@@ -1,0 +1,45 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "sdn-route-watchdog"
+      },
+      "name": "sdn-route-watchdog"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "sdn-route-watchdog"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/sdn-route-watchdog",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--momCollectorEndpoint=http://ops0-mom1-1-prd.eng.sfdc.net:8080/network/device?key=host-bgp-routes",
+                     "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "--sender=sam@salesforce.com",
+                     "--recipient=sdn@salesforce.com",
+                     "--emailFrequency=12h",
+                     "--watchdogFrequency=180s",
+                     "--alertThreshold=300s"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000133-6a6e44d7",
+                  "name": "sdn-route-watchdog"
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-samtest"
+            }
+         }
+      }
+   }
+}
