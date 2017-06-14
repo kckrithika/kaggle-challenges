@@ -36,7 +36,7 @@
                      "-sender=sam@salesforce.com",
                      "-recipient=sdn@salesforce.com",
                      "-laddr=0.0.0.0:8083",
-                     "-imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000921-2e7e2318"
+                     "-imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000934-6f12a434"
                   ],
                   "env": [
                      {
@@ -44,7 +44,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000921-2e7e2318",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000934-6f12a434",
                   "name": "watchdog-synthetic",
                   "ports": [
                      {
