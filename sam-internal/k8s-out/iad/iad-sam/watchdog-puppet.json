@@ -26,7 +26,7 @@
                      "-alertThreshold=48h",
                      "-emailFrequency=168h",
                      "-timeout=2s",
-                     "-funnelEndpoint=mandm-funnel-iad1.data.sfdc.net:8080",
+                     "-funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-iad.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-1-iad.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
