@@ -27,7 +27,7 @@
 
     # Release Phase 3 - Canary Prod FRF
     phase3_prod_canary: {
-      hypersam: "sam-0000921-2e7e2318",
+      hypersam: "sam-0000934-6f12a434",
     },
 
     # Release Phase 4 - Rest of Prod
@@ -146,11 +146,11 @@
             permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "yul-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "yhu-sam": {
-            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
+            default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
         },
         "iad-sam": {

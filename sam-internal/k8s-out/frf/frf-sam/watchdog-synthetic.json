@@ -36,7 +36,7 @@
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com",
                      "-laddr=0.0.0.0:8083",
-                     "-imageName=ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000921-2e7e2318"
+                     "-imageName=ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000934-6f12a434"
                   ],
                   "env": [
                      {
@@ -44,7 +44,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000921-2e7e2318",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0000934-6f12a434",
                   "name": "watchdog-synthetic",
                   "ports": [
                      {
