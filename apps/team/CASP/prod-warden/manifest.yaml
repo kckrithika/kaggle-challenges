@@ -24,9 +24,9 @@ system:
           name: log-vol
         livenessProbe:
           httpGet:
-            path: /
-            port: 8889
-          initialDelaySeconds: 15
+            path: /manage/health
+            port: 15372
+          initialDelaySeconds: 30
       volumes:
       - name: mysql-vol
         hostPath:
