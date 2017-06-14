@@ -5,6 +5,7 @@ apps:
   - frf/frf-sam_gater
   - yul/yul-sam_gater
   - yhu/yhu-sam_gater
+  - ukb/ukb-sam_gater
  gate-manager-par:
   - par/par-sam_gater
  gate-manager-test:
