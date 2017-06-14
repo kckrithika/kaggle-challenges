@@ -14,21 +14,26 @@ system:
         - containerPort: 8889
         env:
         - name: BRANCH
-          value: "cors_to_wsl4"
+          value: "prod"
         - name: JWT_ENABLED
           value: "true"
         volumeMounts:
         - mountPath: /home/sfdc-casp/lib/warden/mysql
-          name: casp-home-vol
+          name: mysql-vol
+        - mountPath: /home/sfdc-casp/logs
+          name: log-vol
         livenessProbe:
           httpGet:
             path: /
             port: 8889
           initialDelaySeconds: 15
       volumes:
-      - name: casp-home-vol
+      - name: mysql-vol
         hostPath:
           path: /home/sfdc-casp/lib/warden/mysql
+      - name: log-vol
+        hostPath:
+          path: /home/sfdc-casp/logs
 
     loadbalancers:
     - lbname: wardenlb
