@@ -26,7 +26,7 @@
                {
                   "command": [
                      "/sam/manifest-watcher",
-                     "--funnelEndpoint=mandm-funnel-iad1.data.sfdc.net:8080",
+                     "--funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80",
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
