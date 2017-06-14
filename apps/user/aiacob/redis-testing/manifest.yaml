@@ -23,7 +23,7 @@ system:
         periodSeconds: 20
       volumeMounts:
         - name: authvolume
-          mountPath: "/var/secrets/redis/auth"
+          mountPath: "/var/secrets/redis"
           readOnly: true
 
   loadbalancers:
