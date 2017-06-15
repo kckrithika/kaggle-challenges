@@ -1,0 +1,251 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: redis-for-perf
+    count: 1 
+    hostnetwork: true
+    containers:
+    - name: caas-redis-12015 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12015
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12015
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12015
+    - name: caas-redis-12016 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12016
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12016
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12016
+    - name: caas-redis-12017 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12017
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12017
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12017
+    - name: caas-redis-12018 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12018
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12018
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12018
+    - name: caas-redis-12019 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12019
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12019
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12019
+    - name: caas-redis-12020 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12020
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12020
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12020
+    - name: caas-redis-12021 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12021
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12021
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12021
+    - name: caas-redis-12022 
+      # container image/version to  run
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      resources:
+        limits: { memory: "6Gi" }
+        requests: { memory: "6Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12022
+        - --maxMemoryMB=5120
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12022
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12022
+    - name: caas-redis-announcer
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:0.1-0000029-13843998
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12015,12016,12017,12018,12019,12020,,12021,,12022
+        - --cluster.name=sp-c1
+        - --logDir=/home/caas/logs
+        - --pathPrefix=mistperf1.prd.sp2
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12042
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+      resources:
+        limits: { memory: "200M" }
+        requests: { memory: "200M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-c1
