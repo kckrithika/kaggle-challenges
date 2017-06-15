@@ -13,9 +13,9 @@
          {
             "name": "k8sproxy-port",
             "nodePort": 40000,
-            "port": 9098,
+            "port": 5000,
             "protocol": "TCP",
-            "targetPort": 8080
+            "targetPort": 5000
          }
       ],
       "selector": {

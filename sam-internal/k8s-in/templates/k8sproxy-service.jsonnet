@@ -13,9 +13,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
             "ports": [
             {
                 "name": "k8sproxy-port",
-                "port": 9098,
+                "port": 5000,
                 "protocol": "TCP",
-                "targetPort": 8080,
+                "targetPort": 5000,
                 "nodePort": 40000
             }
             ],

@@ -55,7 +55,7 @@
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
     # and get removed each time we roll out a default newer than the override.
     testimages: {
-        k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
+        k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
         permissionInitContainer: configs.registry + "/" + "docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
         sdn_image: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/hypersdn",
         sdn_bird: configs.registry + "/" + "docker-release-candidate/tnrp/sdn/bird",
