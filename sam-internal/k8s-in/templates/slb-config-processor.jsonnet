@@ -63,7 +63,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                             "--period=6s",
                             "--namespace=sam-system",
                             "--subnet=10.251.129.224/27",
-                            "--k8sApiServer="+configs.apiserver,
+                            "--k8sapiserver="+configs.k8sapiserver,
                             "--serviceList="+slbconfigs.serviceList,
                             "--vipList="+slbconfigs.vipList,
                             "--metricsEndpoint="+configs.funnelVIP
