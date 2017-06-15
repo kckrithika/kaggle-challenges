@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ed-h2o
+    count: 1
+    containers:
+    - name: ed-h2o
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-h2o:v1-rc3
+      ports:
+      - containerPort: 54321
+      livenessProbe:
+        tcpSocket:
+          port: 54321
+        initialDelaySeconds: 30
+        timeoutSeconds: 10
+
+  loadbalancers:
+  - lbname: ed-h2o
+    function: ed-h2o
+    ports:
+      - port: 60148
+        targetport: 54321
