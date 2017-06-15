@@ -23,7 +23,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         ],
                         "ports": [
                         {
-                            "containerPort": 8080,
+                            "containerPort": 5000,
                             "name": "k8sproxy",
                         }
                         ],
@@ -31,7 +31,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                            initialDelaySeconds: 15,
                            httpGet: {
                                path: "/",
-                               port: 8080
+                               port: 5000
                            },
                            timeoutSeconds: 10
                         },
@@ -46,14 +46,21 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                     }
                 ],
                 nodeSelector: {
-                    pool: configs.estate
-                } +
-                if configs.estate == "prd-samtest" then {
+                }
+		+ if configs.estate == "prd-sam" then {
                     // In the case of samtest, we deploy only to master so we can assimilate the control-estate
                     // minions to consumer minions and extrapolate the required permissions for those nodes.
                     // When the testing of authorization is done, we can move back to normal (any node of the control-estate)
-                    master: "true"
-                } else {},
+                    hostname: "kube11"
+                } else {
+                    pool: configs.estate
+                } 
+                + if configs.estate == "prd-samtest" then {
+                    // In the case of samtest, we deploy only to master so we can assimilate the control-estate
+                    // minions to consumer minions and extrapolate the required permissions for those nodes.
+                    // When the testing of authorization is done, we can move back to normal (any node of the control-estate)
+                    master: "true",
+                } else {} 
             },
             metadata: {
                 labels: {

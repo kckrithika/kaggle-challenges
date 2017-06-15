@@ -29,11 +29,11 @@
                      "-f ",
                      "/etc/haproxy/haproxy.cfg"
                   ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/haproxy:20170404_084549.17ef285.dirty.thargrove-ltm1",
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
-                        "port": 8080
+                        "port": 5000
                      },
                      "initialDelaySeconds": 15,
                      "timeoutSeconds": 10
@@ -41,7 +41,7 @@
                   "name": "k8sproxy",
                   "ports": [
                      {
-                        "containerPort": 8080,
+                        "containerPort": 5000,
                         "name": "k8sproxy"
                      }
                   ],
