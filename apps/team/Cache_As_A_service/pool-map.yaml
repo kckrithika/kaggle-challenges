@@ -27,6 +27,8 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-redis-metrics-publisher:
     - prd/prd-sp2-sam_caas
+  prd-caas-redis-for-perf:
+    - prd/prd-sp2-sam_caas
   phx-caas-redis-12000-sp-c1:
     - phx/phx-sp1-sam_caas
   phx-caas-redis-12001-sp-c1:
