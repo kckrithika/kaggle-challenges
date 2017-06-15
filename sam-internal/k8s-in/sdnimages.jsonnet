@@ -35,6 +35,12 @@ local utils = import "util_functions.jsonnet";
             "hypersdn": "v-0000146-e0248107", 
             "bird": "v-0000014-b0a5951d"
             },
+
+        ### Release Phase 4 - All Prod
+        "4": {
+            "hypersdn": "v-0000146-e0248107",
+            "bird": "v-0000014-b0a5951d"
+            },
     },
 
     ### Phase kingdom/estate mapping
@@ -43,8 +49,10 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else
+        else if (kingdom == "frf") then
             "3"
+        else
+            "4"
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
