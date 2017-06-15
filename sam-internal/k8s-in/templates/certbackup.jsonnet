@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "wdconfig.jsonnet";
 
@@ -11,7 +12,7 @@ local wdconfig = import "wdconfig.jsonnet";
                 containers: [
                     {
                         # Todo: switch to hypersam from tnrp when it is merged
-                        image: configs.controller,
+                        image: samimages.hypersam,
                         command: [
                             "/sam/certbackup.sh"
                         ],

@@ -29,7 +29,7 @@ generateConfigs() {
   for filename in templates/*.jsonnet; do
       appName=$(basename "$filename" .jsonnet)
       echo "Generating config file for $appName in estate $currentEstate"
-      ./jsonnet/jsonnet -V kingdom=$currentKingdom -V estate=$currentEstate templates/$appName.jsonnet -o $dir/$appName.json --jpath .
+      ./jsonnet/jsonnet -V kingdom=$currentKingdom -V estate=$currentEstate -V template=$appName templates/$appName.jsonnet -o $dir/$appName.json --jpath .
       # For some experimental features, we'd like to generate manifests only for
       # certain SAM clusters. To achieve this, the jsonnet templates may emit
       # the quoted string "SKIP" where their output is not wanted.

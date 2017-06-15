@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
-
+local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
     spec: {
@@ -11,13 +11,13 @@ local wdconfig = import "wdconfig.jsonnet";
                 containers: [
                     {
                         name: "watchdog-hairpindeployer",
-                        image: configs.watchdog,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/watchdog",
                             "-role=HAIRPINDEPLOYER",
                             "-watchdogFrequency=120s",
                             "-alertThreshold=300s",
-                            "-deployer-imageName="+configs.watchdog,
+                            "-deployer-imageName="+samimages.hypersam,
                             "-deployer-funnelEndpoint="+configs.funnelVIP,
                             "-deployer-rcImtEndpoint="+configs.rcImtEndpoint,
                             "-deployer-smtpServer="+configs.smtpServer,

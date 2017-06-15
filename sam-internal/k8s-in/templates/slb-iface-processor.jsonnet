@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
+local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     "apiVersion": "extensions/v1beta1",
@@ -38,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                 "containers": [
                     {
                         "name": "slb-iface-processor",
-                        "image": configs.slb_iface_processor,
+                        "image": slbimages.hypersdn,
                         "command":[
                             "/sdn/slb-iface-processor",
                             "--configDir="+slbconfigs.configDir,

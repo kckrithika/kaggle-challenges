@@ -1,4 +1,6 @@
 local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
+
 if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
 
     kind: "Deployment",
@@ -10,7 +12,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 containers: [
                     {
                         name: "k8sproxy",
-                        image: configs.k8sproxy,
+                        image: samimages.k8sproxy,
                         args:[
                            "-f ",
                            "/etc/haproxy/haproxy.cfg"

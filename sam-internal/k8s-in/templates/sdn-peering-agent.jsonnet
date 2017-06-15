@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnimages = import "sdnimages.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
@@ -9,7 +10,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "sdn-bird",
-                        image: configs.sdn_bird,
+                        image: sdnimages.bird,
                         livenessProbe: {
                             exec: {
                                command: [
@@ -42,7 +43,7 @@ if configs.kingdom == "prd" then {
                     },
                     {
                         name: "sdn-peering-agent",
-                        image: configs.sdn_peering_agent,
+                        image: sdnimages.hypersdn,
                         command: [
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",

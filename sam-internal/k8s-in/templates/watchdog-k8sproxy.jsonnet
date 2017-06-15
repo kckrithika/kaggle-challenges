@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
-
+local samimages = import "samimages.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
@@ -11,7 +11,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "watchdog-proxy",
-                        image: configs.watchdog,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/watchdog",
                             "-role=K8SPROXY",

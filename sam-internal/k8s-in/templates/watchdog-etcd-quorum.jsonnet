@@ -1,7 +1,7 @@
+local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
+local samimages = import "samimages.jsonnet";
 {
-  local configs = import "config.jsonnet",
-  local wdconfig = import "wdconfig.jsonnet",
-
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -11,7 +11,7 @@
                 containers: [
                     {
                         name: "watchdog-etcd-quorum",
-                        image: configs.watchdog,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/watchdog",
                             "-role=ETCDQUORUM",

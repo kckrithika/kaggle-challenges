@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
+local sdnimages = import "sdnimages.jsonnet";
 
 if configs.kingdom == "prd" then {
     kind: "Deployment",
@@ -11,7 +12,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "sdn-route-watchdog",
-                        image: configs.sdn_route_watchdog,
+                        image: sdnimages.hypersdn,
                         command:[
                             "/sdn/sdn-route-watchdog",
                             "--funnelEndpoint="+configs.funnelVIP,

@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
-
+local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
     spec: {
@@ -11,7 +11,7 @@ local wdconfig = import "wdconfig.jsonnet";
                 containers: [
                     {
                         name: "watchdog-apiserverlb",
-                        image: configs.watchdog,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/watchdog",
                             "-role=APISERVERLB",

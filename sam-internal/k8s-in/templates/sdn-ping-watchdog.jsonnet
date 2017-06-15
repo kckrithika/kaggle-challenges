@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
+local sdnimages = import "sdnimages.jsonnet";
 
 if configs.kingdom == "prd" then {
     kind: "Deployment",
@@ -11,7 +12,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "sdn-ping-watchdog",
-                        image: configs.sdn_ping_watchdog,
+                        image: sdnimages.hypersdn,
                         command:[
                             "/sdn/sdn-ping-watchdog",
                             "--funnelEndpoint="+configs.funnelVIP,

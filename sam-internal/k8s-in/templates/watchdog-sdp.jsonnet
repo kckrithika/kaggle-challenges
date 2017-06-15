@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
-
+local samimages = import "samimages.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
@@ -11,7 +11,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "watchdog-sdp",
-                        image: configs.watchdog,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/watchdog",
                             "-role=SDP",
