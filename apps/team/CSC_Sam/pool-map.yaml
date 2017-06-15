@@ -6,5 +6,10 @@ apps:
   - prd/prd-sdc
   - dfw/dfw-sam
   - frf/frf-sam
+  - iad/iad-sam
+  - ord/ord-sam
   - par/par-sam
   - phx/phx-sam
+  - ukb/ukb-sam
+  - yhu/yhu-sam
+  - yul/yul-sam
