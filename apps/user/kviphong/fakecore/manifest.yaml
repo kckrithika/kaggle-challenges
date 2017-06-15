@@ -3,32 +3,32 @@ apiVersion: v1
 system:
   functions:
   - name: fakecore
-    count: 2
+    count: 1
     containers:
     - name: fakecore-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:f888bd3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:76dd9ce
       ports:
       - containerPort: 8085
       livenessProbe:
         httpGet:
           path: /response
           port: 8085
-  - name: nginx 
+  - name: fakecore-v2
     count: 1
     containers:
-    - name: nginx-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/custom-nginx:2
+    - name: fakecore-sam-v2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:76dd9ce-v2
       ports:
-      - containerPort: 80
+      - containerPort: 8085
       livenessProbe:
         httpGet:
           path: /response
-          port: 80
+          port: 8085
  
   loadbalancers:
   - lbname: fakecoreslb
-    function: nginx
+    function: fakecore
     nodeExposed: true
     ports:
       - port: 8111
-        targetport: 80
+        targetport: 8085
