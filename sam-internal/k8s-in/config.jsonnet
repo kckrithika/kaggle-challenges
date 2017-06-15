@@ -2,7 +2,6 @@
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
 local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
-local images = import "images.jsonnet",
 
     perKingdom: {
 
@@ -95,29 +94,7 @@ local images = import "images.jsonnet",
     estate: estate,
     kingdom: kingdom,
 
-    controller: images.controller,
-    watchdog: images.watchdog,
-    manifest_watcher: images.manifest_watcher,
-    k8sproxy: images.k8sproxy,
-    sam_deployment_portal: images.sam_deployment_portal,
-    samcontrol_deployer: images.samcontrol_deployer,
-    permissionInitContainer: images.permissionInitContainer,
     samcontrol_deployer_ObserveMode: false,
     samcontrol_deployer_EmailNotify: true,
-    sam_deployment_reporter: images.sam_deployment_reporter,
-    sam_secret_agent: images.sam_secret_agent,
     sam_secret_agent_ObserveMode: false,
-
-    sdn_bird: images.sdn_bird,
-    sdn_peering_agent: images.sdn_peering_agent,
-    sdn_watchdog: images.sdn_watchdog,
-    sdn_ping_watchdog: images.sdn_ping_watchdog,
-    sdn_route_watchdog: images.sdn_route_watchdog,
-    sdn_vault_agent: images.sdn_vault_agent,
-
-    slb_iface_processor: images.slb_iface_processor,
-    slb_ipvs: images.slb_ipvs,
-    slb_realsvrcfg: images.slb_realsvrcfg,
-    slb_config_processor: images.slb_config_processor,
-    slb_dns_register: images.slb_dns_register,
 }

@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
+local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" then {
     "apiVersion": "extensions/v1beta1",
@@ -37,7 +38,7 @@ if configs.estate == "prd-sdc" then {
                 "containers": [
                     {
                         "name": "slb-dns-register-processor",
-                        "image": configs.slb_dns_register,
+                        "image": slbimages.hypersdn,
                         "command":[
                             "/sdn/slb-dns-register",
                             "--path="+slbconfigs.configDir,

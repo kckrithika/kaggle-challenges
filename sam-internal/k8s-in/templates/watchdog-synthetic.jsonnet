@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
+local samimages = import "samimages.jsonnet";
 
 if configs.kingdom == "prd" || configs.kingdom == "frf" then {
    "apiVersion": "extensions/v1beta1",
@@ -39,7 +40,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                      "-sender=sam@salesforce.com",
                      "-recipient="+configs.watchdog_emailrec,
                      "-laddr=0.0.0.0:8083",
-                     "-imageName="+configs.watchdog
+                     "-imageName="+samimages.hypersam
                   ],
                   "ports": [
                       {
@@ -53,7 +54,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": configs.watchdog,
+                  "image": samimages.hypersam,
                   "name": "watchdog-synthetic",
                   "volumeMounts": [
                      {

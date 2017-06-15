@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
+local sdnimages = import "sdnimages.jsonnet";
 
 if configs.kingdom == "frf" || configs.kingdom == "prd" then {
     kind: "Deployment",
@@ -11,7 +12,7 @@ if configs.kingdom == "frf" || configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "sdn-vault-agent",
-                        image: configs.sdn_vault_agent,
+                        image: sdnimages.hypersdn,
                         command:[
                             "/sdn/sdn-vault-agent",
                             "--funnelEndpoint="+configs.funnelVIP,

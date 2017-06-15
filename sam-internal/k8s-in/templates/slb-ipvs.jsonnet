@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
+local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     "apiVersion": "extensions/v1beta1",
@@ -55,7 +56,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                 "containers": [
                     {
                         "name": "slb-ipvs-installer",
-                        "image": configs.slb_ipvs,
+                        "image": slbimages.hypersdn,
                         "command":[
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
@@ -90,7 +91,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
 
                     {
                         "name": "slb-ipvs-processor",
-                        "image": configs.slb_ipvs,
+                        "image": slbimages.hypersdn,
                         "command":[
                             "/sdn/slb-ipvs-processor",
                             "--configDir="+slbconfigs.configDir,

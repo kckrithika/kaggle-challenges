@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
-
+local samimages = import "samimages.jsonnet";
 {
     kind: "DaemonSet",
     spec: {
@@ -9,7 +9,7 @@ local wdconfig = import "wdconfig.jsonnet";
                 hostNetwork: true,
                 containers: [
                     {
-                        image: configs.watchdog,
+                        image: samimages.hypersam,
                         command: [
                             "/sam/watchdog",
                             "-role=MASTER",

@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
@@ -9,7 +10,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "sam-deployment-portal",
-                        image: configs.sam_deployment_portal,
+                        image: samimages.hypersam,
                         command:[
                            "/sam/sam-deployment-portal",
                         ],

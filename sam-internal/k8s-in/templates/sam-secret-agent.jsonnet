@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-
+local samimages = import "samimages.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
@@ -10,7 +10,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "sam-secret-agent",
-                        image: configs.sam_secret_agent,
+                        image: samimages.hypersam,
                         command: [
                            "/sam/sam-secret-agent",
                            "--funnelEndpoint="+configs.funnelVIP,

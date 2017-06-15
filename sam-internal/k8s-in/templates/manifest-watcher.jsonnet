@@ -1,5 +1,7 @@
+local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
+
 {
-local configs = import "config.jsonnet",
 
     kind: "Deployment",
     spec: {
@@ -10,7 +12,7 @@ local configs = import "config.jsonnet",
                 containers: [
                     {
                         name: "manifest-watcher",
-                        image: configs.manifest_watcher,
+                        image: samimages.hypersam,
                         command: [
                            "/sam/manifest-watcher",
                            "--funnelEndpoint="+configs.funnelVIP,

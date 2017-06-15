@@ -1,5 +1,6 @@
+local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
 {
-local configs = import "config.jsonnet",
 
     kind: "Deployment",
     spec: {
@@ -10,7 +11,7 @@ local configs = import "config.jsonnet",
                 containers: [
                     {
                         name: "sam-controller",
-                        image: configs.controller,
+                        image: samimages.hypersam,
                         command:[
                            "/sam/sam-controller",
                            "--debug=true",
@@ -25,7 +26,7 @@ local configs = import "config.jsonnet",
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
                            "--httpsDisableCertsCheck="+configs.httpsDisableCertsCheck,
-                           "--volPermissionInitContainerImage="+configs.permissionInitContainer,
+                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
                            "--insecureRegistries="+configs.insecureRegistries
                            ],
                        volumeMounts: [

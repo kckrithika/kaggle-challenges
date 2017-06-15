@@ -1,6 +1,6 @@
+local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
 {
-    local configs = import "config.jsonnet",
-
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -10,7 +10,7 @@
                 containers: [
                     {
                         name: "samcontrol-deployer",
-                        image: configs.samcontrol_deployer,
+                        image: samimages.hypersam,
                         command: [
                            "/sam/samcontrol-deployer",
                            "--funnelEndpoint="+configs.funnelVIP,

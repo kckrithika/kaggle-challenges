@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
 if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "frf" then {
 
     kind: "Deployment",
@@ -10,7 +11,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 containers: [
                     {
                         name: "sam-deployment-reporter",
-                        image: configs.sam_deployment_reporter,
+                        image: samimages.hypersam,
                         command:[
                            "/sam/sam-deployment-reporter",
                            "--v=5",
