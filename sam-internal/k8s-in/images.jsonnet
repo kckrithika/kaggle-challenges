@@ -45,8 +45,15 @@
       slb: "v-0000149-6e609e0f"
     },
 
-    # Release to rest of the SAM clusters
+    # Release to rest of the SAM clusters in PRD
     phase2_sam: {
+      hypersdn: "v-0000146-e0248107",
+      sdn_bird: "v-0000014-b0a5951d",
+      slb: "v-0000145-58fce058"
+    },
+
+    # Release to canary sites in Prod
+    phase3_sdn_prod_canary: {
       hypersdn: "v-0000146-e0248107",
       sdn_bird: "v-0000014-b0a5951d",
       slb: "v-0000145-58fce058"
@@ -140,6 +147,7 @@
         "frf-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
+            sdn_vault_agent: $.testimages.sdn_image + ":" + $.phase3_sdn_prod_canary.hypersdn,
         },
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,

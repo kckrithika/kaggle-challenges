@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.kingdom == "frf" || configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
