@@ -147,7 +147,7 @@
         "frf-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase3_prod_canary.hypersam,
             permissionInitContainer: $.prodimages.permissionInitContainer,
-            sdn_vault_agent: $.testimages.sdn_image + ":" + $.phase3_sdn_prod_canary.hypersdn,
+            sdn_vault_agent: configs.registry + "/" + "tnrp/sdn/hypersdn" + ":" + $.phase3_sdn_prod_canary.hypersdn,
         },
         "par-sam": {
             default: configs.registry + "/" + "tnrp/sam/hypersam" + ":" + $.phase4_prod_all.hypersam,
