@@ -40,7 +40,7 @@ system:
         - --redisPort=12015
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -98,7 +98,7 @@ system:
         - --redisPort=12016
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -156,7 +156,7 @@ system:
         - --redisPort=12017
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -214,7 +214,7 @@ system:
         - --redisPort=12018
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -272,7 +272,7 @@ system:
         - --redisPort=12019
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -330,7 +330,7 @@ system:
         - --redisPort=12020
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -388,7 +388,7 @@ system:
         - --redisPort=12021
         - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=mistperf1.prd.sp2
+        - --pathPrefix=mistperf1/prd/sp2
       livenessProbe:
         exec:
           command:
