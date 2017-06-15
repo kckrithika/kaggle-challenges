@@ -49,14 +49,14 @@
     phase2_sam: {
       hypersdn: "v-0000146-e0248107",
       sdn_bird: "v-0000014-b0a5951d",
-      slb: "v-0000145-58fce058"
+      slb: "v-0000149-6e609e0f"
     },
 
     # Release to canary sites in Prod
     phase3_sdn_prod_canary: {
       hypersdn: "v-0000146-e0248107",
       sdn_bird: "v-0000014-b0a5951d",
-      slb: "v-0000145-58fce058"
+      slb: "v-0000149-6e609e0f"
     },
 
     # This section is for shared long-lived images (not overrides).  Overrides should live in the per-estate sections below
