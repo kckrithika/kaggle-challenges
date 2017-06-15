@@ -51,9 +51,10 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "prd-sdc": "http://shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:40000/",
             "prd-samtest": "http://shared0-samtestkubeapi1-1-prd.eng.sfdc.net:40000/",
             "prd-samdev": "http://shared0-samdevkubeapi1-1-prd.eng.sfdc.net:40000/",
-            "prd-sam": "http://shared0-samkubeapi1-2-prd.eng.sfdc.net:40000/"
+            "prd-sam": "http://shared0-samkubeapi1-2-prd.eng.sfdc.net:40000/",
+            "frf-sam": "http://shared0-samkubeapi1-1-frf.ops.sfdc.net:8000/" 
         },
-        
+
         # This should go away soon
         insecureRegistries: {
             "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/",
