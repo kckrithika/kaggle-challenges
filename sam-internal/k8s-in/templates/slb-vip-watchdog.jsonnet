@@ -1,9 +1,8 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sdc" then {
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
     "metadata": {
