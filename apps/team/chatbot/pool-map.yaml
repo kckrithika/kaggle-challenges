@@ -1,3 +1,6 @@
 apps:
  runtime:
   - prd/prd-sam
+ chatbot-runtime-staging:
+  - prd/prd-sp2-sam_chatbot
+
