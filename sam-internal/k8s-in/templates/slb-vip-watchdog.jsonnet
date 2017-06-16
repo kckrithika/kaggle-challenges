@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local wdconfig = import "wdconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
