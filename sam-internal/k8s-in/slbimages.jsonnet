@@ -19,16 +19,24 @@ local utils = import "util_functions.jsonnet";
     per_phase: {
         
         ### Release Phase 1 - prd-sdc
-        "1": { "hypersdn": "v-0000149-6e609e0f", },
+        "1": { 
+            "hypersdn": "v-0000149-6e609e0f", 
+            },
         
         ### Release Phase 2 - Rest of the SAM clusters in PRD
-        "2": { "hypersdn": "v-0000149-6e609e0f", },
+        "2": {
+            "hypersdn": "v-0000149-6e609e0f", 
+            },
 
         ### Release Phase 3 - Canary sites in Prod
-        "3": { "hypersdn": "v-0000149-6e609e0f", },
+        "3": {
+            "hypersdn": "v-0000149-6e609e0f", 
+            },
 
         ### Release Phase 3 - All Prod
-        "4": { "hypersdn": "v-0000149-6e609e0f", },
+        "4": {
+            "hypersdn": "v-0000149-6e609e0f", 
+            },
     },
 
     ### Phase kingdom/estate mapping
@@ -45,8 +53,6 @@ local utils = import "util_functions.jsonnet";
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
-    hypersdn_tag_with_override: utils.dooverrides($.overrides, "hypersdn", $.per_phase[$.phase]["hypersdn"]),
-    
     # These are the images used by the templates
-    hypersdn: utils.addtnrpregistry("sdn", "hypersdn", $.hypersdn_tag_with_override),
+    hypersdn: utils.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase]["hypersdn"]),
 }

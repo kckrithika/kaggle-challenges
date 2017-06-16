@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
-local wdconfig = import "wdconfig.jsonnet";
+local wdconfig = import "samwdconfig.jsonnet";
 
 {
     kind: "DaemonSet",

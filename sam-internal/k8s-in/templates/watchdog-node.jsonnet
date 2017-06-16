@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
@@ -18,13 +18,13 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=60s",
                             "-alertThreshold=150s",
                         ]
-                        + wdconfig.shared_args
+                        + samwdconfig.shared_args
                         # [thargrove] 2017-05-05 We have minions down in the following 3 estates
                         + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then [ "-snoozedAlarms=nodeChecker=2017/06/01" ] else  [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
-                          wdconfig.cert_volume_mount,
-                          wdconfig.kube_config_volume_mount,
+                          samwdconfig.cert_volume_mount,
+                          samwdconfig.kube_config_volume_mount,
                        ],
                        env: [
                           {
@@ -35,8 +35,8 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
-                    wdconfig.kube_config_volume,
+                    samwdconfig.cert_volume,
+                    samwdconfig.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

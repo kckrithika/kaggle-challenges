@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 if configs.kingdom == "prd" then {
     kind: "Deployment",
@@ -20,7 +20,7 @@ if configs.kingdom == "prd" then {
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
                         ]
-                        + wdconfig.shared_args
+                        + samwdconfig.shared_args
                     }
                 ],
                 nodeSelector: {

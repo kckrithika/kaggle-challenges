@@ -27,16 +27,24 @@ local utils = import "util_functions.jsonnet";
     per_phase: {
         
         ### Release Phase 1 - Test Beds
-        "1": { "hypersam": "sam-0000934-6f12a434" },
+        "1": { 
+            "hypersam": "sam-0000934-6f12a434",
+            },
         
         ### Release Phase 2 - PRD Sandbox and prd-sdc
-        "2": { "hypersam": "sam-0000934-6f12a434"},
+        "2": {
+            "hypersam": "sam-0000934-6f12a434",
+            },
         
         ### Release Phase 3 - Canary Prod FRF
-        "3": { "hypersam": "sam-0000934-6f12a434"},
+        "3": {
+            "hypersam": "sam-0000934-6f12a434",
+            },
 
         ### Release Phase 4 - Rest of Prod
-        "4": { "hypersam": "sam-0000934-6f12a434"},
+        "4": {
+            "hypersam": "sam-0000934-6f12a434",
+            },
     },
     
     ### Phase kingdom/estate mapping
@@ -65,13 +73,9 @@ local utils = import "util_functions.jsonnet";
 
     # ====== DO NOT EDIT BELOW HERE ======
 
-    hypersam_tag_with_override: utils.dooverrides($.overrides, "hypersam", $.per_phase[$.phase]["hypersam"]),
-    permissioninit_with_override: utils.dooverrides($.overrides, "permissionInitContainer", $.static["permissionInitContainer"]),
-    k8sproxy_with_override: utils.dooverrides($.overrides, "k8sproxy", $.static["k8sproxy"]),
-
     # These are the images used by the templates
-    hypersam: utils.addtnrpregistry("sam", "hypersam", $.hypersam_tag_with_override),
-    k8sproxy: $.k8sproxy_with_override,
-    permissionInitContainer: utils.addtnrpregistry("sam", "hypersam", $.permissioninit_with_override),
+    hypersam: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
+    k8sproxy: utils.do_override_for_not_tnrp_image($.overrides, "k8sproxy", $.static["k8sproxy"]),
+    permissionInitContainer: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
 
 }

@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "DaemonSet",
@@ -16,11 +16,11 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
                         ]
-                        + wdconfig.shared_args
-                        + wdconfig.shared_args_certs
+                        + samwdconfig.shared_args
+                        + samwdconfig.shared_args_certs
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                     "volumeMounts": [
-                        wdconfig.cert_volume_mount,
+                        samwdconfig.cert_volume_mount,
                     ],
                         name: "watchdog",
                         resources: {
@@ -36,7 +36,7 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
+                    samwdconfig.cert_volume,
                 ],
                 nodeSelector: {
                     etcd_installed: "true",
