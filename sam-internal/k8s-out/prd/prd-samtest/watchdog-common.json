@@ -33,7 +33,7 @@
                      "-emailFrequency=72h",
                      "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000934-6f12a434",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000946-31f93246",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
