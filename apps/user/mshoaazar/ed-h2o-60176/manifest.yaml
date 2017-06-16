@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: ed-h2o-60176
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-h2o-60176:v1-rc3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-h2o:v1-rc3
       ports:
       - containerPort: 54321
       livenessProbe:
