@@ -24,7 +24,7 @@ perCluster: {
         "prd-sdc": "slb-alpha,slb-bravo,slb-charlie",
         "prd-samtest": "slb-delta",
         "prd-samdev": "slb-echo",
-        "prd-sam": "sam-deployment-portal"
+        "prd-sam": "slb-foxtrot"
     },
 },
 
