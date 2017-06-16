@@ -16,7 +16,7 @@ local samimages = import "samimages.jsonnet";
                             "/sam/watchdog",
                             "-role=APISERVERLB",
                             "-watchdogFrequency=60s",
-                            "-alertThreshold=60s",
+                            "-alertThreshold=5m",
                         ]
                         + samwdconfig.shared_args
                         + samwdconfig.shared_args_certs

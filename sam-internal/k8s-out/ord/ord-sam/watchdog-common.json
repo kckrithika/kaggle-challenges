@@ -23,7 +23,7 @@
                      "/sam/watchdog",
                      "-role=COMMON",
                      "-watchdogFrequency=5s",
-                     "-alertThreshold=300s",
+                     "-alertThreshold=20m",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
