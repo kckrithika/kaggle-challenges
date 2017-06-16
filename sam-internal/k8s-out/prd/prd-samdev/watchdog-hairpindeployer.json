@@ -29,7 +29,7 @@
                      "-role=HAIRPINDEPLOYER",
                      "-watchdogFrequency=120s",
                      "-alertThreshold=300s",
-                     "-deployer-imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000946-31f93246",
+                     "-deployer-imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000947-edc298bd",
                      "-deployer-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-deployer-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-deployer-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
@@ -53,7 +53,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000946-31f93246",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000947-edc298bd",
                   "name": "watchdog-hairpindeployer",
                   "volumeMounts": [
                      {
