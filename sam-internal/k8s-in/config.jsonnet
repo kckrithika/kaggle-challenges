@@ -26,21 +26,6 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "prd": "http://ops0-mom1-1-prd.eng.sfdc.net:8080/network/device?key=host-bgp-routes",
         },
 
-        funnelVIP: {
-            "prd": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-            # We have been running with mandm for a while, but this might not be right.
-            "dfw": "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080",
-            "phx": "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080",
-            "frf": "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080",
-            "par": "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080",
-            "yul": "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080",
-            "yhu": "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080",
-            # These kingdoms do not have mandm, but maybe that is ok.
-            # We should convert the above or below to all the same
-            "iad": "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80",
-            "ord": "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80",
-            "ukb": "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80",
-        },
     },
 
     perEstate: {
@@ -70,7 +55,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     # Computed values
 
-    funnelVIP: self.perKingdom.funnelVIP[kingdom],
+    funnelVIP: "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80",
     tnrpArchiveEndpoint: "https://ops0-piperepo1-1-"+kingdom+"."+engOrOps+".sfdc.net/tnrp/content_repo/0/archive",
     registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
     insecureRegistries: (if kingdom == "prd" then self.perEstate.insecureRegistries[estate] else ""),

@@ -30,7 +30,7 @@
                      "-watchdogFrequency=10s",
                      "-alertThreshold=300s",
                      "-timeout=2s",
-                     "-funnelEndpoint=mandm-funnel-dfw1.data.sfdc.net:8080",
+                     "-funnelEndpoint=ajna0-funnel1-0-dfw.data.sfdc.net:80",
                      "-rcImtEndpoint=http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-2-dfw.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",
