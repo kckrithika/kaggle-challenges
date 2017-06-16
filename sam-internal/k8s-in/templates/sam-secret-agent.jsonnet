@@ -17,7 +17,6 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                            "--logtostderr=true",
                            "--disableSecurityCheck=true",
                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
-                           "--k8sapiserver="+configs.k8sapiserver,
                            "--observeMode="+configs.sam_secret_agent_ObserveMode,
                            "--delay=300s",
                            "--keyfile=/data/certs/hostcert.key",
