@@ -14,9 +14,6 @@ system:
     containers:
     - name: chatbot-runtime-staging
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/chatbot/chatbot-runtime:210.0-0000034-6608f6a2
-      args:
-        - --server.port=7022
-        - --synctask.modifier=0
       ports:
       - containerPort: 7022
       - containerPort: 15372
