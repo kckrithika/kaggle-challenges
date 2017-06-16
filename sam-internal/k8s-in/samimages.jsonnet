@@ -27,16 +27,24 @@ local utils = import "util_functions.jsonnet";
     per_phase: {
         
         ### Release Phase 1 - Test Beds
-        "1": { "hypersam": "sam-0000934-6f12a434" },
+        "1": { 
+            "hypersam": "sam-0000934-6f12a434",
+            },
         
         ### Release Phase 2 - PRD Sandbox and prd-sdc
-        "2": { "hypersam": "sam-0000934-6f12a434" },
+        "2": {
+            "hypersam": "sam-0000934-6f12a434",
+            },
         
         ### Release Phase 3 - Canary Prod FRF
-        "3": { "hypersam": "sam-0000934-6f12a434" },
+        "3": {
+            "hypersam": "sam-0000934-6f12a434",
+            },
 
         ### Release Phase 4 - Rest of Prod
-        "4": { "hypersam": "sam-0000934-6f12a434"},
+        "4": {
+            "hypersam": "sam-0000934-6f12a434",
+            },
     },
     
     ### Phase kingdom/estate mapping
