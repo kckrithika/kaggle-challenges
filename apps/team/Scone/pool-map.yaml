@@ -3,4 +3,5 @@ apps:
         - prd/prd-sam
     shipping:
         - prd/prd-sam
-
+    examples-xlt:
+        - prd/prd-sam
