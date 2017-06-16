@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "samwdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
@@ -18,16 +18,16 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
-                        + wdconfig.shared_args
-                        + wdconfig.shared_args_certs
+                        + samwdconfig.shared_args
+                        + samwdconfig.shared_args_certs
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=6h" ]),
                        volumeMounts: [
-                          wdconfig.cert_volume_mount,
+                          samwdconfig.cert_volume_mount,
                        ],
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
+                    samwdconfig.cert_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

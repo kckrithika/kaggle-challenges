@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "samwdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "DaemonSet",
@@ -16,13 +16,13 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
                         ]
-                        + wdconfig.shared_args
-                        + wdconfig.shared_args_certs
+                        + samwdconfig.shared_args
+                        + samwdconfig.shared_args_certs
                         # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=kubeApiChecker=2017/06/02" ] else  [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                     "volumeMounts": [
-                        wdconfig.cert_volume_mount,
+                        samwdconfig.cert_volume_mount,
                     ],
                         name: "watchdog",
                         resources: {
@@ -38,7 +38,7 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
+                    samwdconfig.cert_volume,
                 ],
                 nodeSelector: {
                     master: "true",

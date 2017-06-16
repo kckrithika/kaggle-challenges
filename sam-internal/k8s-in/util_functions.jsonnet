@@ -43,10 +43,10 @@ local internal = {
     #
     # overrides - a map of "kingdom,estate,template,image" to "tag"
     # image_name - the docker image name (usually "hypersam" or "hypersdn")
-    # default_tag - the docker tag to use when no override is found ("sam-0000934-6f12a434")
+    # full_docker_image - the fully qualified docker image and tag ("ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/...")
     #
-    do_override_for_not_tnrp_image(overrides, image_name, default_tag):: (
-        internal.do_override(overrides, image_name, default_tag)
+    do_override_for_not_tnrp_image(overrides, image_name, full_docker_image):: (
+        internal.do_override(overrides, image_name, full_docker_image)
     ),
 
     # This is for TNRP tags where we need to generate the long form

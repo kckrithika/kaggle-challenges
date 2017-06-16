@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "samwdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
@@ -24,14 +24,14 @@ local samimages = import "samimages.jsonnet";
                             "-deployer-sender="+configs.watchdog_emailsender,
                             "-deployer-recipient="+configs.watchdog_emailrec,
                         ]
-                        + wdconfig.shared_args
-                        + wdconfig.shared_args_certs
+                        + samwdconfig.shared_args
+                        + samwdconfig.shared_args_certs
                         # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/06/02" ] else [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
-                          wdconfig.cert_volume_mount,
-                          wdconfig.kube_config_volume_mount,
+                          samwdconfig.cert_volume_mount,
+                          samwdconfig.kube_config_volume_mount,
                        ],
                        env: [
                           {
@@ -42,8 +42,8 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
-                    wdconfig.kube_config_volume,
+                    samwdconfig.cert_volume,
+                    samwdconfig.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "samwdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
@@ -18,14 +18,14 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
-                        + wdconfig.shared_args
-                        + wdconfig.shared_args_certs
+                        + samwdconfig.shared_args
+                        + samwdconfig.shared_args_certs
                         # [thargrove] 2017-05-05 Right now this checker fails for customer apps.  We need to ignore user-* namespaces
                         + (if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ] else [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
-                          wdconfig.cert_volume_mount,
-                          wdconfig.kube_config_volume_mount,
+                          samwdconfig.cert_volume_mount,
+                          samwdconfig.kube_config_volume_mount,
                        ],
                        env: [
                           {
@@ -36,8 +36,8 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
-                    wdconfig.kube_config_volume,
+                    samwdconfig.cert_volume,
+                    samwdconfig.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "samwdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "DaemonSet",
@@ -16,7 +16,7 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=5s",
                             "-alertThreshold=300s",
                         ]
-                        + wdconfig.shared_args
+                        + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ])
                         + [ "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15" ],
                         name: "watchdog",

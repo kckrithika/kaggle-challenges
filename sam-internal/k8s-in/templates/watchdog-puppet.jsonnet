@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "samwdconfig.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "DaemonSet",
@@ -31,7 +31,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=48h",
                             "-emailFrequency=168h",
                         ]
-                        + wdconfig.shared_args,
+                        + samwdconfig.shared_args,
                         name: "watchdog",
                         resources: {
                             requests: {
