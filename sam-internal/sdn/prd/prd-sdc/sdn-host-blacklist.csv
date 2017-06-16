@@ -1,0 +1,3 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-sdcsamkubeapi2-1-prd.eng.sfdc.net,10.253.152.142/29,10.251.128.176/29,n31-02,prd-sdc
+shared0-sdcsdcc1-3-prd.eng.sfdc.net,10.253.152.158/29,10.251.128.96/29,k10-02,prd-sdc

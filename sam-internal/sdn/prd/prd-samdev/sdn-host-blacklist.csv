@@ -1,0 +1,3 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samdevcompute1-1-prd.eng.sfdc.net,10.253.233.2/29,10.251.156.128/27,n32-02,prd-samdev
+shared0-samdevkubeapi3-1-prd.eng.sfdc.net,10.253.233.42/29,10.251.156.64/27,m41-02,prd-samdev
