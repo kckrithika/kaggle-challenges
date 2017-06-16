@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
         "3": { "hypersam": "sam-0000934-6f12a434"},
 
         ### Release Phase 4 - Rest of Prod
-        "4": { "hypersam": "sam-0000921-2e7e2318"},
+        "4": { "hypersam": "sam-0000934-6f12a434"},
     },
     
     ### Phase kingdom/estate mapping
