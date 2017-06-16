@@ -27,7 +27,7 @@ system:
  
   loadbalancers:
   - lbname: fakecoreslb
-    function: fakecore-v2
+    function: fakecore
     nodeExposed: true
     ports:
       - port: 8111
