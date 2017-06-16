@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: scone-examples-xlt
+    count: 1
+    containers:
+    - name: scone-examples-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20170616
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /
+          port: 8000
+  loadbalancers:
+  - lbname: scone-examples-xlt-lb
+    function: scone-examples-xlt
+    ports:
+      - port: 8000
+        targetport: 8000
