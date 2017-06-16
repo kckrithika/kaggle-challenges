@@ -14,7 +14,7 @@ local samimages = import "samimages.jsonnet";
                             "/sam/watchdog",
                             "-role=COMMON",
                             "-watchdogFrequency=5s",
-                            "-alertThreshold=300s",
+                            "-alertThreshold=20m",
                         ]
                         + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ])
