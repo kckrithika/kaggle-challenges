@@ -25,7 +25,7 @@
                      "-watchdogFrequency=5s",
                      "-alertThreshold=150s",
                      "-timeout=2s",
-                     "-funnelEndpoint=mandm-funnel-phx1.data.sfdc.net:8080",
+                     "-funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta1-2-phx.ops.sfdc.net:25",
                      "-sender=sam@salesforce.com",

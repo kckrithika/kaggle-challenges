@@ -21,7 +21,7 @@
                {
                   "command": [
                      "/sam/samcontrol-deployer",
-                     "--funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
+                     "--funnelEndpoint=ajna0-funnel1-0-par.data.sfdc.net:80",
                      "--logtostderr=true",
                      "--disableSecurityCheck=true",
                      "--tnrpEndpoint=https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive",
