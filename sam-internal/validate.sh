@@ -2,7 +2,7 @@
 #Run this script by running validate.sh in the root dir
 
 set -e
-SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0000943-121335be
+SAMTOOLS=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0000944-f4612d93
 
 echo "NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)"
 
