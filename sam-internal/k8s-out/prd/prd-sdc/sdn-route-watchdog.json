@@ -25,7 +25,7 @@
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--momCollectorEndpoint=http://ops0-mom1-1-prd.eng.sfdc.net:8080/network/device?key=host-bgp-routes",
                      "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "--sender=sam@salesforce.com",
+                     "--sender=sam-alerts@salesforce.com",
                      "--recipient=sdn@salesforce.com",
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",

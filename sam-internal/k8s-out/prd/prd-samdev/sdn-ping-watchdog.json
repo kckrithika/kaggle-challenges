@@ -24,7 +24,7 @@
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "--sender=sam@salesforce.com",
+                     "--sender=sam-alerts@salesforce.com",
                      "--recipient=sdn@salesforce.com",
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",

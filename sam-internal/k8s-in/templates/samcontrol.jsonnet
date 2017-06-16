@@ -26,8 +26,7 @@ local samimages = import "samimages.jsonnet";
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
                            "--httpsDisableCertsCheck="+configs.httpsDisableCertsCheck,
-                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
-                           "--insecureRegistries="+configs.insecureRegistries
+                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer
                            ],
                        volumeMounts: [
                           {

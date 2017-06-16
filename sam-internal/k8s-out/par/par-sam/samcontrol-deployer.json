@@ -30,8 +30,8 @@
                      "--delay=30s",
                      "--emailNotify=true",
                      "--smtpServer=ops0-mta2-1-par.ops.sfdc.net:25",
-                     "--sender=sam@salesforce.com",
-                     "--recipient=sam@salesforce.com"
+                     "--sender=sam-alerts@salesforce.com",
+                     "--recipient=sam-alerts@salesforce.com"
                   ],
                   "env": [
                      {

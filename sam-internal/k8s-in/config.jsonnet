@@ -29,20 +29,6 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     },
 
-    perEstate: {
-
-        # We should try and compute estate level config and not require an entry per kingdom!
-
-        # This should go away soon
-        insecureRegistries: {
-            "prd-sam": "shared0-samcontrol1-1-prd.eng.sfdc.net:5000/",
-            "prd-samdev": "",
-            "prd-samtest": "",
-            "prd-sdc": "shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net:5000/",
-        },
-
-    },
-
     # Global
 
     caFile: "/data/certs/ca.crt",
@@ -51,15 +37,14 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     k8sapiserver: "",
     configPath: "/config/kubeconfig",
 
-    watchdog_emailsender: "sam@salesforce.com",
-    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else "sam@salesforce.com"),
+    watchdog_emailsender: "sam-alerts@salesforce.com",
+    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else "sam-alerts@salesforce.com"),
 
     # Computed values
 
     funnelVIP:(if kingdom == "par" || kingdom == "frf" then "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080" else  "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80"),
     tnrpArchiveEndpoint: "https://ops0-piperepo1-1-"+kingdom+"."+engOrOps+".sfdc.net/tnrp/content_repo/0/archive",
     registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
-    insecureRegistries: (if kingdom == "prd" then self.perEstate.insecureRegistries[estate] else ""),
     rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://ops0-health1-1-"+kingdom+"."+engOrOps+".sfdc.net:18443/v1/bark"),
 
     # Pass-through below here only

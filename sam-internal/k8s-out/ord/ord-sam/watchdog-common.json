@@ -28,8 +28,8 @@
                      "-funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-1-ord.ops.sfdc.net:25",
-                     "-sender=sam@salesforce.com",
-                     "-recipient=sam@salesforce.com",
+                     "-sender=sam-alerts@salesforce.com",
+                     "-recipient=sam-alerts@salesforce.com",
                      "-emailFrequency=24h",
                      "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15"
                   ],
