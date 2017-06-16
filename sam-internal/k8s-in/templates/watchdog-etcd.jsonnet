@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
+local wdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
     kind: "DaemonSet",

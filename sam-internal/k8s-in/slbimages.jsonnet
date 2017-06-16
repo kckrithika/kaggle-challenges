@@ -45,8 +45,6 @@ local utils = import "util_functions.jsonnet";
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
-    hypersdn_tag_with_override: utils.dooverrides($.overrides, "hypersdn", $.per_phase[$.phase]["hypersdn"]),
-    
     # These are the images used by the templates
-    hypersdn: utils.addtnrpregistry("sdn", "hypersdn", $.hypersdn_tag_with_override),
+    hypersdn: utils.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase]["hypersdn"]),
 }
