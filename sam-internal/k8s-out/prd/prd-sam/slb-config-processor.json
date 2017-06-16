@@ -26,7 +26,7 @@
                      "--namespace=sam-system",
                      "--subnet=10.251.129.224/27",
                      "--k8sapiserver=",
-                     "--serviceList=sam-deployment-portal",
+                     "--serviceList=slb-foxtrot",
                      "--vipList=10.251.129.235:0",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
