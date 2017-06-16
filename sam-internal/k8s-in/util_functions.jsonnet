@@ -10,13 +10,24 @@ local internal = {
     # When they get promoted to production, they show up under "docker-all", but we have chosen
     # to leave off the root folder for prod which means "search all registries".
     # TODO: We should consider switching to a explicit root folder for prod.
-    add_tnrp_registry(repo, image_name, tag):: (
+    #
+    # tnrp_repo - the output repo on artifactrepo under the "tnrp" folder (usually "sam" or "sdn")
+    # image_name - the docker image name (usually "hypersam" or "hypersdn")
+    # tag - the docker tag.  Used when no override exists, otherwise gets replaced ("sam-0000934-6f12a434")
+    #
+    add_tnrp_registry(tnrp_repo, image_name, tag):: (
         if (kingdom == "prd") then
-            configs.registry + "/" + "docker-release-candidate/tnrp/"+repo+"/" + image_name + ":" + tag
+            configs.registry + "/" + "docker-release-candidate/tnrp/"+tnrp_repo+"/" + image_name + ":" + tag
         else
-            configs.registry + "/" + "tnrp/"+repo+"/" + image_name + ":" + tag
+            configs.registry + "/" + "tnrp/"+tnrp_repo+"/" + image_name + ":" + tag
         ),
 
+    # Check for an override based on kingdom,estate,template,image.  If not found return default_tag
+    #
+    # overrides - a map of "kingdom,estate,template,image" to "tag"
+    # image_name - the docker image name (usually "hypersam" or "hypersdn")
+    # default_tag - the docker tag to use when no override is found ("sam-0000934-6f12a434")
+    #
     do_override(overrides, image_name, default_tag):: (
         if ( std.objectHas(overrides, kingdom+","+estate+","+template+","+image_name) ) then
             overrides[kingdom+","+estate+","+template+","+image_name]
@@ -29,12 +40,23 @@ local internal = {
 {
     # Use this for long-form images not built by TNRP
     # These can only be used in PRD
+    #
+    # overrides - a map of "kingdom,estate,template,image" to "tag"
+    # image_name - the docker image name (usually "hypersam" or "hypersdn")
+    # default_tag - the docker tag to use when no override is found ("sam-0000934-6f12a434")
+    #
     do_override_for_not_tnrp_image(overrides, image_name, default_tag):: (
         internal.do_override(overrides, image_name, default_tag)
     ),
 
     # This is for TNRP tags where we need to generate the long form
-    do_override_for_tnrp_image(overrides, repo, image_name, tag):: 
-        internal.add_tnrp_registry(repo, image_name, internal.do_override(overrides, image_name, tag))
+    #
+    # overrides - a map of "kingdom,estate,template,image" to "tag"
+    # tnrp_repo - the output repo on artifactrepo under the "tnrp" folder (usually "sam" or "sdn")
+    # image_name - the docker image name (usually "hypersam" or "hypersdn")
+    # tag - the docker tag.  Used when no override exists, otherwise gets replaced ("sam-0000934-6f12a434")
+    #
+    do_override_for_tnrp_image(overrides, tnrp_repo, image_name, tag):: 
+        internal.add_tnrp_registry(tnrp_repo, image_name, internal.do_override(overrides, image_name, tag))
     ,
 }
