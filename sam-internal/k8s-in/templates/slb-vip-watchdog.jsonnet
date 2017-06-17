@@ -16,6 +16,20 @@ if configs.estate == "prd-sdc" then {
         "template": {
             "spec": {
                 "hostNetwork": true,
+                "volumes": [
+                   {
+                       "name": "var-slb-volume",
+                        "hostPath": {
+                           "path": "/var/slb"
+                        }
+                   },
+                   {
+                       "name": "host-volume",
+                       "hostPath": {
+                           "path": "/"
+                       }
+                   }
+                ],
                 "containers": [
                     {
                         "name": "slb-vip-watchdog",

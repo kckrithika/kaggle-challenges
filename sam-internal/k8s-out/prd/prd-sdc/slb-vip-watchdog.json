@@ -48,7 +48,21 @@
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-sdc"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               }
+            ]
          }
       }
    }
