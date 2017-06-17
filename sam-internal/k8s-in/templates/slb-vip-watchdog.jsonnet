@@ -32,6 +32,16 @@ if configs.estate == "prd-sdc" then {
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s"
                         ],
+                        "volumeMounts": [
+                            {
+                                "name": "var-slb-volume",
+                                "mountPath": "/host/var/slb"
+                            },
+                            {
+                                 "name": "host-volume",
+                                 "mountPath": "/host"
+                            }
+                        ],
                     }
                 ],
                 nodeSelector: {
