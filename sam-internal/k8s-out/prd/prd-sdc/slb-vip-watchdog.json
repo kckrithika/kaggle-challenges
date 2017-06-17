@@ -32,13 +32,37 @@
                      "--alertThreshold=300s"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000153-22e3424e",
-                  "name": "slb-vip-watchdog"
+                  "name": "slb-vip-watchdog",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-sdc"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               }
+            ]
          }
       }
    }

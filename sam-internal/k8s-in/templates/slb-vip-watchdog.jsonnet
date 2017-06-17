@@ -16,6 +16,20 @@ if configs.estate == "prd-sdc" then {
         "template": {
             "spec": {
                 "hostNetwork": true,
+                "volumes": [
+                   {
+                       "name": "var-slb-volume",
+                        "hostPath": {
+                           "path": "/var/slb"
+                        }
+                   },
+                   {
+                       "name": "host-volume",
+                       "hostPath": {
+                           "path": "/"
+                       }
+                   }
+                ],
                 "containers": [
                     {
                         "name": "slb-vip-watchdog",
@@ -31,6 +45,16 @@ if configs.estate == "prd-sdc" then {
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s"
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "var-slb-volume",
+                                "mountPath": "/host/var/slb"
+                            },
+                            {
+                                 "name": "host-volume",
+                                 "mountPath": "/host"
+                            }
                         ],
                     }
                 ],
