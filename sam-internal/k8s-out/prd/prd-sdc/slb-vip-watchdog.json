@@ -26,7 +26,7 @@
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
                      "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "--sender=sam@salesforce.com",
-                     "--recipient=sdn@salesforce.com",
+                     "--recipient=slb@salesforce.com",
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s"
