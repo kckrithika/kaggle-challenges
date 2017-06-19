@@ -57,7 +57,7 @@ if configs.kingdom == "prd" then {
                         ],
                         "livenessProbe": {
                             "httpGet": {
-                               "path": "/",
+                               "path": "/liveness-probe",
                                "port": portconfigs.sdn.sdn_peering_agent
                             },
                             "initialDelaySeconds": 5,
