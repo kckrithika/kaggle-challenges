@@ -18,9 +18,6 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/config
