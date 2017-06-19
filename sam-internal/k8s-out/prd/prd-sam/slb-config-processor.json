@@ -24,10 +24,10 @@
                      "--configDir=/host/var/slb/config",
                      "--period=6s",
                      "--namespace=sam-system",
-                     "--subnet=10.251.129.224/27",
+                     "--subnet=10.251.167.224/27",
                      "--k8sapiserver=",
                      "--serviceList=slb-foxtrot",
-                     "--vipList=10.251.129.236:0",
+                     "--vipList=10.251.167.224:0",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [
