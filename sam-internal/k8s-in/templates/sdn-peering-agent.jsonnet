@@ -58,7 +58,7 @@ if configs.kingdom == "prd" then {
                         "livenessProbe": {
                             "httpGet": {
                                "path": "/",
-                               "port": std.parseInt(portconfigs.sdn.sdn_peering_agent)
+                               "port": portconfigs.sdn.sdn_peering_agent
                             },
                             "initialDelaySeconds": 5,
                             "timeoutSeconds": 5,
