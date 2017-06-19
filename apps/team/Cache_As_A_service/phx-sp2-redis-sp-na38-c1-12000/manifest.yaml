@@ -14,9 +14,6 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
       args: 
         - --port=12000
         - --maxMemoryMB=4096
