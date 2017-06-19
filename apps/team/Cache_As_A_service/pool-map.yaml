@@ -41,3 +41,7 @@ apps:
     - phx/phx-sp1-sam_caas
   phx-caas-monitor-sp-pc1:
     - phx/phx-sp1-sam_caas
+  phx-sp2-metrics-publisher-sp-na38-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na38-c1-12000:
+    - phx/phx-sp2-sam_caas
