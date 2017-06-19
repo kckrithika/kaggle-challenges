@@ -21,9 +21,9 @@
                {
                   "command": [
                      "/sdn/sdn-ping-watchdog",
-                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-                     "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "--funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
                      "--sender=sam@salesforce.com",
                      "--recipient=sdn@salesforce.com",
                      "--emailFrequency=12h",
@@ -33,13 +33,13 @@
                      "--pingInterval=1s",
                      "--pingTimeout=5s"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000146-e0248107",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000146-e0248107",
                   "name": "sdn-ping-watchdog"
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": "prd-sdc"
+               "pool": "frf-sam"
             }
          }
       }

@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
-if configs.kingdom == "prd" then {
+if configs.kingdom == "frf" || configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -53,11 +53,11 @@ if configs.kingdom == "prd" then {
                             "--keyfile=/data/certs/hostcert.key",
                             "--certfile=/data/certs/hostcert.crt",
                             "--bgpPasswordFile=/data/secrets/sambgppassword",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_peering_agent,
+                            "--livenessProbePort="+std.toString(portconfigs.sdn.sdn_peering_agent),
                         ],
                         "livenessProbe": {
                             "httpGet": {
-                               "path": "/liveness-probe",
+                               "path": "/",
                                "port": portconfigs.sdn.sdn_peering_agent
                             },
                             "initialDelaySeconds": 5,
