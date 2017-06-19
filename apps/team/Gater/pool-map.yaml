@@ -6,6 +6,8 @@ apps:
   - yul/yul-sam_gater
   - yhu/yhu-sam_gater
   - ukb/ukb-sam_gater
+  - iad/iad-sam_gater
+  - ord/ord-sam_gater
  gate-manager-par:
   - par/par-sam_gater
  gate-manager-test:
