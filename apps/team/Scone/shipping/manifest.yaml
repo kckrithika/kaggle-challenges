@@ -18,7 +18,17 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
- 
+    - name: beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20170620
+      args:
+        - -name shipping
+        - -scope DATACENTER
+        - -port 7020
+      livenessProbe:
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: scone-shipping-lb
     function: scone-shipping
