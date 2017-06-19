@@ -66,7 +66,7 @@
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000154-fa1698fa",
                   "livenessProbe": {
                      "httpGet": {
-                        "path": "/",
+                        "path": "/liveness-probe",
                         "port": 9100
                      },
                      "initialDelaySeconds": 5,
