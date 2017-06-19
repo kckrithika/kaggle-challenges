@@ -4,8 +4,8 @@
 
     # Here is the syntax to the format to be used:
     # "<teamname>": {
-    #     serviceA: "portA",
-    #     serviceB: "portB"
+    #     serviceA: portA,
+    #     serviceB: portB
     # },
 
     "sam": {
@@ -13,9 +13,9 @@
     },
 
     "sdn": {
-        sdn_peering_agent: "9100",
-        sdn_ping_watchdog: "9102",
-        sdn_route_watchdog: "9104",
-        sdn_vault_agent: "9106",
+        sdn_peering_agent: 9100,
+        sdn_ping_watchdog: 9102,
+        sdn_route_watchdog: 9104,
+        sdn_vault_agent: 9106,
     },
 }
