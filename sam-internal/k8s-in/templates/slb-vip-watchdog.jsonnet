@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" then {
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--smtpServer="+configs.smtpServer,
                             "--sender="+configs.watchdog_emailsender,
-                            "--recipient=sdn@salesforce.com",
+                            "--recipient=slb@salesforce.com",
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s"
