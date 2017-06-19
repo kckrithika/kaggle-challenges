@@ -1,29 +1,7 @@
 apps:
   caas-redis-for-perf:
     - prd/prd-sp2-sam_caas
-  caas-monitor:
-    - prd/prd-samdev
-  caas-redis:
-    - prd/prd-samdev
-  caas-redis-12000:
-    - prd/prd-sp2-sam_caas
-  caas-redis-12010:
-    - prd/prd-sp2-sam_caas
-  caas-redis-12001:
-    - prd/prd-sp2-sam_caas
-  caas-redis-12011:
-    - prd/prd-sp2-sam_caas
-  caas-redis-12029:
-    - prd/prd-sp2-sam_caas
-  caas-monitor-sp-c1:
-    - prd/prd-sp2-sam_caas
-  caas-monitor-sp-pc1:
-    - prd/prd-sp2-sam_caas
-  prd-caas-redis-12028:
-    - prd/prd-sp2-sam_caas
   prd-caas-redis-12042:
-    - prd/prd-sp2-sam_caas
-  prd-redis-cluster-12005:
     - prd/prd-sp2-sam_caas
   prd-redis-metrics-publisher:
     - prd/prd-sp2-sam_caas
