@@ -13,11 +13,18 @@ perCluster: {
         "prd-sam": ""
     },
 
+    subnet: {
+            "prd-sdc": "10.251.129.224/27",
+            "prd-samtest": "10.251.129.224/27",
+            "prd-samdev": "10.251.129.224/27",
+            "prd-sam": "10.251.167.224/27"
+    },
+
     vipList: {
         "prd-sdc": "10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090",
         "prd-samtest": "10.251.129.233:9090",
         "prd-samdev": "10.251.129.234:9090",
-        "prd-sam": "10.251.129.236:0"
+        "prd-sam": "10.251.167.224:0"
     },
 
     serviceList: {
@@ -28,6 +35,7 @@ perCluster: {
     },
 },
 
+subnet: self.perCluster.subnet[estate],
 vipList: self.perCluster.vipList[estate],
 serviceList: self.perCluster.serviceList[estate],
 ddiService: self.perCluster.ddiService[estate],
