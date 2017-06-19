@@ -29,7 +29,7 @@
                         "value": "/usr/local/var/run/bird.ctl"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/bird:v-0000014-b0a5951d",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/bird:v-0000014-b0a5951d",
                   "livenessProbe": {
                      "exec": {
                         "command": [
@@ -56,14 +56,14 @@
                      "/sdn/sdn-peering-agent",
                      "--birdsock=/usr/local/var/run/bird.ctl",
                      "--birdconf=/usr/local/etc/bird.conf",
-                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
                      "--keyfile=/data/certs/hostcert.key",
                      "--certfile=/data/certs/hostcert.crt",
                      "--bgpPasswordFile=/data/secrets/sambgppassword",
                      "--livenessProbePort=9100"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000146-e0248107",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000146-e0248107",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
