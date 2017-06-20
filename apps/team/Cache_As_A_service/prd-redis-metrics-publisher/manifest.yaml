@@ -33,6 +33,8 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
+       - name: CAAS_ENV
+         value: 12
       # expose redis outside the container
     volumes:
     - name: logvol
