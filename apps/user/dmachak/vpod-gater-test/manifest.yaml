@@ -11,7 +11,7 @@ system:
     containers:
     - name: gater
       # container image/version to run.
-      image: tnrp/gater/gater:1.2.0-0000145-13906256
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater:dmachak-20170620A
       args:
         - --server.port=9090
         - --spring.datasource.url=jdbc:h2:file:/opt/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
