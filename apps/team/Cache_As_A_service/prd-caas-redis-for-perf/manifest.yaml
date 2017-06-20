@@ -416,7 +416,7 @@ system:
           readOnly: true
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor:0.1-0000039-13863881
+      image: tnrp/caas/caas-monitor:0.1-0000041-13913230
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
@@ -426,7 +426,6 @@ system:
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
         - --metrics.container=caas.mistperf1.c1
-        - --override.cluster.config.dir=caas-cluster-1
         - --settings.path=mistperf1.-.prd.-.caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
