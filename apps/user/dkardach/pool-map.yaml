@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  aqueduct-test-deploy:
   - prd/prd-sam
+ controlplane:
+  - prd/prd-sam
