@@ -10,8 +10,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -20,7 +20,7 @@ system:
           readOnly: true
       args: 
         - --port=12015
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -49,8 +49,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -61,8 +61,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -71,7 +71,7 @@ system:
           readOnly: true
       args: 
         - --port=12016
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -100,8 +100,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -112,8 +112,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -122,7 +122,7 @@ system:
           readOnly: true
       args: 
         - --port=12017
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -151,8 +151,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -163,8 +163,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -173,7 +173,7 @@ system:
           readOnly: true
       args: 
         - --port=12018
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -202,8 +202,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -214,8 +214,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -224,7 +224,7 @@ system:
           readOnly: true
       args: 
         - --port=12019
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -253,8 +253,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -265,8 +265,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -275,7 +275,7 @@ system:
           readOnly: true
       args: 
         - --port=12020
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -304,8 +304,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -316,8 +316,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -326,7 +326,7 @@ system:
           readOnly: true
       args: 
         - --port=12021
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -355,8 +355,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -367,8 +367,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -377,7 +377,7 @@ system:
           readOnly: true
       args: 
         - --port=12022
-        - --maxMemoryMB=5120
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -406,8 +406,8 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "100M" }
+        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
