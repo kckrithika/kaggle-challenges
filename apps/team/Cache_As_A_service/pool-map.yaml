@@ -23,3 +23,7 @@ apps:
     - phx/phx-sp2-sam_caas
   phx-sp2-redis-sp-na38-c1-12000:
     - phx/phx-sp2-sam_caas
+  phx-sp3-metrics-publisher-sp-cs7-c1:
+    - phx/phx-sp3-sam_caas
+  phx-sp3-redis-sp-cs7-c1-12000:
+    - phx/phx-sp3-sam_caas
