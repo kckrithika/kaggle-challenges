@@ -9,12 +9,12 @@ system:
       count: 3
       containers:
       - name: prd-warden
-        image: tnrp/casp-test/warden:0.0.0-0000033-d4543669
+        image: tnrp/casp-test/warden:0.0.0-0000042-4803ea6e
         ports:
         - containerPort: 8889
         env:
         - name: BRANCH
-          value: "prod" 
+          value: "cors_to_wsl4" 
         volumeMounts:
         - mountPath: /home/sfdc-casp/lib/warden/mysql
           name: casp-home-vol
