@@ -2,6 +2,27 @@
    "apiVersion": "extensions/v1beta1",
    "kind": "Deployment",
    "metadata": {
+      "annotations": {
+         "scheduler.alpha.kubernetes.io/affinity": {
+            "nodeAffinity": {
+               "requiredDuringSchedulingIgnoredDuringExecution": {
+                  "nodeSelectorTerms": [
+                     {
+                        "matchExpressions": [
+                           {
+                              "key": "service",
+                              "operator": "NotIn",
+                              "values": [
+                                 "slb-ipvs"
+                              ]
+                           }
+                        ]
+                     }
+                  ]
+               }
+            }
+         }
+      },
       "labels": {
          "name": "slb-vip-watchdog"
       },

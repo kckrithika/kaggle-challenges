@@ -9,7 +9,28 @@ if configs.estate == "prd-sdc" then {
             "labels": {
                 "name": "slb-vip-watchdog"
             },
-            "name": "slb-vip-watchdog"
+            "name": "slb-vip-watchdog",
+             "annotations": {
+                  "scheduler.alpha.kubernetes.io/affinity": {
+                    "nodeAffinity": {
+                      "requiredDuringSchedulingIgnoredDuringExecution": {
+                        "nodeSelectorTerms": [
+                          {
+                            "matchExpressions": [
+                              {
+                                "key": "service",
+                                "operator": "NotIn",
+                                "values": [
+                                  "slb-ipvs"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  }
+             }
      },
     "spec": {
         replicas: 1,
