@@ -80,13 +80,13 @@ system:
       args: ['
           while sleep ${CLEANUP_PERIOD_SECONDS};
           do
-              echo $(date) "Processing" $CLEANUP_FOLDER
+              echo $(date) "Processing" $CLEANUP_FOLDER;
               if [ ! -d "$CLEANUP_FOLDER" ]; then
-                  echo $CLEANUP_FOLDER " doesn''t exist"
-                  continue
-              fi
+                  echo $CLEANUP_FOLDER " doesn''t exist";
+                  continue;
+              fi;
 
-              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mtime +$CLEANUP_FILE_AGE_DAYS -type f -print -delete
+              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mtime +$CLEANUP_FILE_AGE_DAYS -type f -print -delete;
           done
       ']
     volumes:
