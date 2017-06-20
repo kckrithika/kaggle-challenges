@@ -24,9 +24,6 @@ system:
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/config
@@ -41,6 +38,3 @@ system:
     - name: logvol
       hostPath:
         path: /home/caas/logs/caas
-    - name: secretvol
-      secret:
-        secretName: caas-secret-sp-c1
