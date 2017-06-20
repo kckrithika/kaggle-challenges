@@ -6,7 +6,7 @@ system:
       - dmachak@salesforce.com
   functions:
   - name: gater-vpod
-    count: 1
+    count: 2
     hostnetwork: false
     containers:
     - name: gater
@@ -74,3 +74,16 @@ system:
       rollingUpdate:
         maxSurge: 0
         maxUnavailable: 1
+  loadbalancers:
+  - lbname: gaterlb
+    function: gater-vpod
+    nodeExposed: true
+    ports:
+    - port: 9722
+      targetport: 9522
+    - port: 9723
+      targetport: 9523
+    - port: 9790
+      targetport: 9090
+    - port: 17372
+      targetport: 15372
