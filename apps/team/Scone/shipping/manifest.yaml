@@ -25,6 +25,7 @@ system:
         - -scope DATACENTER
         - -port 7020
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
