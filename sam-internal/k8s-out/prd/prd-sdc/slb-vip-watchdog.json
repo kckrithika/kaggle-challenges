@@ -3,8 +3,25 @@
    "kind": "Deployment",
    "metadata": {
       "annotations": {
-         "another-annotation-key": "another-annotation-value",
-         "scheduler.alpha.kubernetes.io/affinity": "{\n  \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
+         "scheduler.alpha.kubernetes.io/affinity": {
+            "nodeAffinity": {
+               "requiredDuringSchedulingIgnoredDuringExecution": {
+                  "nodeSelectorTerms": [
+                     {
+                        "matchExpressions": [
+                           {
+                              "key": "service",
+                              "operator": "NotIn",
+                              "values": [
+                                 "slb-ipvs"
+                              ]
+                           }
+                        ]
+                     }
+                  ]
+               }
+            }
+         }
       },
       "labels": {
          "name": "slb-vip-watchdog"
