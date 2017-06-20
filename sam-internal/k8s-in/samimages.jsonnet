@@ -13,9 +13,9 @@ local utils = import "util_functions.jsonnet";
         #
         # This section lets you override any hypersam image for a given kingdom,estate,template,image.
         # Template is the short name of the template.  For k8s-in/templates/samcontrol.jsonnet use "samcontrol"
-        # Image name 
+        # Image name
         #
-        # Example: 
+        # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
 
@@ -25,17 +25,17 @@ local utils = import "util_functions.jsonnet";
 
     ### Per-phase image tags
     per_phase: {
-        
+
         ### Release Phase 1 - Test Beds
-        "1": { 
-            "hypersam": "sam-0000947-edc298bd",
+        "1": {
+            "hypersam": "sam-0000954-e0a1a61a",
             },
-        
+
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
             "hypersam": "sam-0000947-edc298bd",
             },
-        
+
         ### Release Phase 3 - Canary Prod FRF
         "3": {
             "hypersam": "sam-0000934-6f12a434",
@@ -46,7 +46,7 @@ local utils = import "util_functions.jsonnet";
             "hypersam": "sam-0000934-6f12a434",
             },
     },
-    
+
     ### Phase kingdom/estate mapping
     phase: (
         if (estate == "prd-samdev" || estate == "prd-samtest") then
@@ -64,7 +64,7 @@ local utils = import "util_functions.jsonnet";
         "k8sproxy": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
 
         "permissionInitContainer": (
-            if (kingdom=="prd") then 
+            if (kingdom=="prd") then
                 "sam-c07d4afb-673"
             else
                 "sam-1ebeb0ac-657"
