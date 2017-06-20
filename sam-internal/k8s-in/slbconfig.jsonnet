@@ -24,14 +24,14 @@ perCluster: {
         "prd-sdc": "10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090",
         "prd-samtest": "10.251.129.233:9090",
         "prd-samdev": "10.251.129.234:9090",
-        "prd-sam": "10.251.167.224:0"
+        "prd-sam": "10.251.167.224:0,10.251.167.225:0"
     },
 
     serviceList: {
         "prd-sdc": "slb-alpha,slb-bravo,slb-charlie",
         "prd-samtest": "slb-delta",
         "prd-samdev": "slb-echo",
-        "prd-sam": "slb-foxtrot"
+        "prd-sam": "slb-foxtrot,sam-deployment-portal"
     },
 },
 
