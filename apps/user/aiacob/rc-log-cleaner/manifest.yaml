@@ -1,0 +1,130 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: report-collectorha
+    count: 3
+    containers:
+    - name: report-collectorha
+      image: tnrp/csc-health/report-collector:1.5.0-0000118-e09f147c
+      ports:
+      - name: provider
+        containerPort: 8080
+      - name: consumer
+        containerPort: 8081
+      - name: provider-https
+        containerPort: 8443
+      - name: consumer-https
+        containerPort: 8444
+      resources:
+        limits: { cpu: "20", memory: "20Gi" }
+        requests: { cpu: "10", memory: "20Gi" }
+      volumeMounts:
+      - mountPath: /var/log/report-collector
+        name: logvol
+      env:
+      - name: ReportCollector_redis_host
+        value: $(REDISNOHALB_SERVICE_HOST)
+      - name: ReportCollector_app_https_enabled
+        value: true
+      - name: ReportCollector_ajna_publishEnabled
+        value: true
+      - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 10
+      - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
+        value: 10
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
+      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
+      export ReportCollector_ajna_datacenter=${KINGDOM} ;
+      export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      ${JAVA_HOME}/bin/java
+        -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
+        -Dvertx.disableFileCPResolving=true
+        -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
+        -Dvertx.metrics.options.enabled=true
+        -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.disableDnsResolver=true
+        -Dlog_dir=${LOG_DIR}
+        -Dinstance=${FUNCTION_INSTANCE_NAME}
+        -jar ${JAR_PATH}
+      "]
+    - name: csc-health-stale-log-cleaner
+      image: tnrp/csc-health/report-collector:1.5.0-0000118-e09f147c
+      volumeMounts:
+        - mountPath: /var/log/report-collector
+          name: logvol
+      env:
+        - name: CLEANUP_FOLDER
+          value: /var/log/report-collector
+        - name: CLEANUP_PERIOD_SECONDS
+          value: 600
+        - name: CLEANUP_FILE_PATTERN
+          value: "*tmp*"
+        - name: CLEANUP_FILE_AGE_DAYS
+          value: 0
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+          while sleep ${CLEANUP_PERIOD_SECONDS};
+          do
+              echo $(date) "Processing" $CLEANUP_FOLDER
+              if [ ! -d "$CLEANUP_FOLDER" ]; then
+                  echo $CLEANUP_FOLDER " doesn''t exist"
+                  continue
+              fi
+
+              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mtime +$CLEANUP_FILE_AGE_DAYS -type f -print -delete
+          done
+      ']
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/report-collector
+  - name: redisnoha
+    count: 1
+    containers:
+    - name: redis
+      image: tnrp/p4tools/redis:3.0.2-01
+      ports:
+      - containerPort: 6379
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
+      logs:
+      - directory: /var/log/redis
+      command: ["/bin/sh", "-c"]
+      args: ["
+      echo save '' | redis-server -
+      "]
+
+  loadbalancers:
+  - lbname: reportcollectorhalb
+    function: report-collectorha
+    nodeExposed: true
+    ports:
+      # LB was supposed to allow SSL on the backend, but its not currently
+      # supported, so we will use non SSL but on these node ports (18443, 18444)
+      # since its the one exposed in estates for sam_minionreportcollector
+    - port: 18445
+      targetport: 8080
+    - port: 18446
+      targetport: 8081
+  - lbname: redisnohalb
+    function: redisnoha
+    nodeExposed: true
+    ports:
+      - port: 6381
+        targetport: 6379
