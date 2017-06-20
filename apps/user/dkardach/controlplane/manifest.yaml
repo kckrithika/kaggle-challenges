@@ -10,7 +10,7 @@ system:
       ports:
       - name: server
         containerPort: 8080
-      - name: GRPC
+      - name: grpc
         containerPort: 9090
       livenessProbe:
         httpGet:
