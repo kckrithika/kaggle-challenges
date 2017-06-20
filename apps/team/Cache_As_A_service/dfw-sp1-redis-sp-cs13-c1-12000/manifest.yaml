@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis-sp-na38-c1-12000
+  - name: redis-sp-cs13-c1-12000
     count: 10
     hostnetwork: true
     containers:
@@ -32,7 +32,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12000
-        - --cluster.name=sp-na38-c1
+        - --cluster.name=sp-cs13-c1
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
