@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -34,7 +34,7 @@ system:
       - containerPort: 12015
     - name: caas-redis-12016 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -60,7 +60,7 @@ system:
       - containerPort: 12016
     - name: caas-redis-12017 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -86,7 +86,7 @@ system:
       - containerPort: 12017
     - name: caas-redis-12018 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -112,7 +112,7 @@ system:
       - containerPort: 12018
     - name: caas-redis-12019 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -138,7 +138,7 @@ system:
       - containerPort: 12019
     - name: caas-redis-12020 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -164,7 +164,7 @@ system:
       - containerPort: 12020
     - name: caas-redis-12021 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
@@ -190,7 +190,7 @@ system:
       - containerPort: 12021
     - name: caas-redis-12022 
       # container image/version to  run
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/caas/caas-redis:0.1-12934413-10
+      image: tnrp/caas/caas-redis:0.1-0000030-13912563
       resources:
         limits: { memory: "6Gi" }
         requests: { memory: "6Gi" }
