@@ -6,19 +6,16 @@ system:
       - dmachak@salesforce.com
   functions:
   - name: gater-vpod
-    count: 0
+    count: 1
     hostnetwork: false
     containers:
     - name: gater
       # container image/version to run.
-      # this is published separately to ops0-artifactrepo2-0-prd.data.sfdc.net
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dmachak/gater-test:dmachak-20170607
-      resources:
-        limits: { memory: "8Gi" }
-        requests: { memory: "8Gi" }
+      image: tnrp/gater/gater:1.2.0-0000145-13906256
       args:
         - --server.port=9090
         - --spring.datasource.url=jdbc:h2:file:/opt/gater/gaterdb;ACCESS_MODE_DATA=rws;CACHE_SIZE=20971520;CACHE_TYPE=SOFT_LRU;
+        - --synctask.enabled=false
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
@@ -72,20 +69,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-gater/logs
-
-    loadbalancers:
-    - lbname: gaterlb
-      function: gater-vpod
-      nodeExposed: true
-      ports:
-      - port: 9522
-        targetport: 9522
-      - port: 9523
-        targetport: 9523
-      - port: 9090
-        targetport: 9090
-      - port: 15372
-        targetport: 15372
     strategy:
       type: RollingUpdate
       rollingUpdate:
