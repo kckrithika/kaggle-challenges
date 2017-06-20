@@ -27,3 +27,7 @@ apps:
     - phx/phx-sp3-sam_caas
   phx-sp3-redis-sp-cs7-c1-12000:
     - phx/phx-sp3-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs13-c1:
+    - phx/phx-sp3-sam_caas
+  dfw-sp1-redis-sp-cs13-c1-12000:
+    - phx/phx-sp3-sam_caas
