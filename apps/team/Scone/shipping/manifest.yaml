@@ -21,9 +21,12 @@ system:
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20170621
       args:
-        - -name shipping
-        - -scope DATACENTER
-        - -port 7020
+        - -name
+        - shipping
+        - -scope
+        - DATACENTER
+        - -port
+        - 7020
       livenessProbe:
         initialDelaySeconds: 5
         exec:
