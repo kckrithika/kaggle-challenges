@@ -3,21 +3,10 @@ apiVersion: v1
 system:
   functions:
   - name: fakecore
-    count: 1
+    count: 10
     containers:
     - name: fakecore-sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:1
-      ports:
-      - containerPort: 8085
-      livenessProbe:
-        httpGet:
-          path: /response
-          port: 8085
-  - name: fakecore-v2
-    count: 1
-    containers:
-    - name: fakecore-sam-v2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:2
       ports:
       - containerPort: 8085
       livenessProbe:
