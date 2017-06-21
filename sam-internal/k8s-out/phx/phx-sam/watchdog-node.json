@@ -33,8 +33,8 @@
                      "-funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-phx.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta1-2-phx.ops.sfdc.net:25",
-                     "-sender=sam@salesforce.com",
-                     "-recipient=sam@salesforce.com",
+                     "-sender=sam-alerts@salesforce.com",
+                     "-recipient=sam-alerts@salesforce.com",
                      "-emailFrequency=24h"
                   ],
                   "env": [
