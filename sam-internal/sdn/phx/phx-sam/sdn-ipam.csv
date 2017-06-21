@@ -45,6 +45,11 @@ shared0-samcompute2-1-phx.ops.sfdc.net,10.246.104.18/28,10.214.192.64/27,n53-01,
 shared0-samkubeapi1-1-phx.ops.sfdc.net,10.246.104.11/28,10.214.192.32/27,n52-01,phx-sam
 shared0-samkubeapi2-1-phx.ops.sfdc.net,10.246.104.19/28,10.214.192.96/27,n53-01,phx-sam
 shared0-samkubeapi3-1-phx.ops.sfdc.net,10.246.104.35/28,10.214.192.160/27,s22-01,phx-sam
+shared0-samminionatlasdir1-1-phx.ops.sfdc.net,10.246.113.34/29,10.214.216.32/27,x09-01,phx-sam_cloudatlas_dir
+shared0-samminionatlasdir1-2-phx.ops.sfdc.net,10.246.113.42/29,10.214.216.0/27,w23-01,phx-sam_cloudatlas_dir
+shared0-samminionatlasdir2-1-phx.ops.sfdc.net,10.246.113.50/29,10.214.216.64/27,x32-01,phx-sam_cloudatlas_dir
+shared0-samminionatlasfe1-1-phx.ops.sfdc.net,10.246.109.100/29,10.214.198.32/27,x11-01,phx-sam_cloudatlas
+shared0-samminionatlasfe2-1-phx.ops.sfdc.net,10.246.109.106/29,10.214.198.0/27,v42-01,phx-sam_cloudatlas
 shared0-samminiongater1-1-phx.ops.sfdc.net,10.246.111.34/29,10.214.194.96/27,w49-01,phx-sam_gater
 shared0-samminiongater1-2-phx.ops.sfdc.net,10.246.111.10/29,10.214.194.32/27,w36-01,phx-sam_gater
 shared0-samminiongater1-3-phx.ops.sfdc.net,10.246.111.26/29,10.214.194.0/27,v50-01,phx-sam_gater
