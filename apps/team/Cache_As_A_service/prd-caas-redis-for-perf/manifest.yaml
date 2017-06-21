@@ -48,9 +48,6 @@ system:
            - --port=12015
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -99,9 +96,6 @@ system:
            - --port=12016
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -150,9 +144,6 @@ system:
            - --port=12017
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -201,9 +192,6 @@ system:
            - --port=12018
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -252,9 +240,6 @@ system:
            - --port=12019
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -303,9 +288,6 @@ system:
            - --port=12020
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -354,9 +336,6 @@ system:
            - --port=12021
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -405,9 +384,6 @@ system:
            - --port=12022
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      resources:
-        limits: { memory: "100M" }
-        requests: { memory: "100M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
