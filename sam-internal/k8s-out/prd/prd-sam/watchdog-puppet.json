@@ -32,7 +32,7 @@
                      "-sender=sam@salesforce.com",
                      "-recipient=sam@salesforce.com"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000947-edc298bd",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0000954-e0a1a61a",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
