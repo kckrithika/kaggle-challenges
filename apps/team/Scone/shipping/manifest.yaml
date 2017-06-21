@@ -19,7 +19,7 @@ system:
           path: /manage/health
           port: 15372
     - name: beacon
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20170620
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20170621
       args:
         - -name shipping
         - -scope DATACENTER
