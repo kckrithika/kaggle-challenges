@@ -45,6 +45,11 @@ shared0-samcompute2-1-dfw.ops.sfdc.net,10.247.104.18/28,10.214.128.0/27,m09-01,d
 shared0-samkubeapi1-1-dfw.ops.sfdc.net,10.247.104.11/28,10.214.128.96/27,s17-01,dfw-sam
 shared0-samkubeapi2-1-dfw.ops.sfdc.net,10.247.104.19/28,10.214.128.32/27,m09-01,dfw-sam
 shared0-samkubeapi3-1-dfw.ops.sfdc.net,10.247.104.35/28,10.214.128.160/27,u17-01,dfw-sam
+shared0-samminionatlasdir1-1-dfw.ops.sfdc.net,10.247.178.50/29,10.214.152.0/27,e32-01,dfw-sam_cloudatlas_dir
+shared0-samminionatlasdir1-2-dfw.ops.sfdc.net,10.247.178.34/29,10.214.152.32/27,l03-02,dfw-sam_cloudatlas_dir
+shared0-samminionatlasdir2-1-dfw.ops.sfdc.net,10.247.178.42/29,10.214.152.64/27,l09-01,dfw-sam_cloudatlas_dir
+shared0-samminionatlasfe1-1-dfw.ops.sfdc.net,10.247.122.130/29,10.214.134.32/27,v31-01,dfw-sam_cloudatlas
+shared0-samminionatlasfe2-1-dfw.ops.sfdc.net,10.247.122.138/29,10.214.134.0/27,j32-02,dfw-sam_cloudatlas
 shared0-samminiongater1-1-dfw.ops.sfdc.net,10.247.113.2/29,10.214.130.32/27,k03-02,dfw-sam_gater
 shared0-samminiongater1-2-dfw.ops.sfdc.net,10.247.113.26/29,10.214.130.64/27,k10-02,dfw-sam_gater
 shared0-samminiongater1-3-dfw.ops.sfdc.net,10.247.113.18/29,10.214.130.128/27,t18-01,dfw-sam_gater
