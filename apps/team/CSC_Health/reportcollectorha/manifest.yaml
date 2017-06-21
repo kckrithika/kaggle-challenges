@@ -55,6 +55,40 @@ system:
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
+    - name: csc-health-stale-log-cleaner
+      image: tnrp/csc-health/report-collector:1.5.0-0000118-e09f147c
+      volumeMounts:
+        - mountPath: /var/log/report-collector
+          name: logvol
+      env:
+        - name: CLEANUP_FOLDER
+          value: /var/log/report-collector
+        - name: CLEANUP_PERIOD_SECONDS
+          value: 21600
+        - name: CLEANUP_FILE_PATTERN
+          value: "*tmp*"
+        - name: CLEANUP_FILE_AGE_DAYS
+          value: 0
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+          while sleep ${CLEANUP_PERIOD_SECONDS};
+          do
+              echo $(date) "Processing" $CLEANUP_FOLDER;
+              if [ ! -d "$CLEANUP_FOLDER" ]; then
+                  echo $CLEANUP_FOLDER " doesn''t exist";
+                  continue;
+              fi;
+
+              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mtime +$CLEANUP_FILE_AGE_DAYS -type f -print -delete;
+          done
+      ']
     volumes:
     - name: logvol
       hostPath:
