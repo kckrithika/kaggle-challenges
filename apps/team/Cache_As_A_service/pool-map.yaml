@@ -3,6 +3,8 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-caas-redis-12042:
     - prd/prd-sp2-sam_caas
+  prd-caas-redis-12043:
+    - prd/prd-sp2-sam_caas
   prd-redis-metrics-publisher:
     - prd/prd-sp2-sam_caas
   prd-caas-redis-for-perf:
