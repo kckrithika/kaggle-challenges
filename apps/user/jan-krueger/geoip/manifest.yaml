@@ -82,7 +82,7 @@ system:
         - name: GRPC_ROUTING_GEOIP_HOST
           value: geoip.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
-          value: 7012
+          value: 7011
       ports:
         - containerPort: 8080
       livenessProbe:
