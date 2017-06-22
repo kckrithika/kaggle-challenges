@@ -6,13 +6,18 @@ system:
     count: 5
     containers:
     - name: fakecore-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:d5262fa-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:d5262fa-2
       ports:
       - containerPort: 8085
       livenessProbe:
         httpGet:
           path: /response
           port: 8085
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
   loadbalancers:
   - lbname: fakecoreslb
     function: fakecore
