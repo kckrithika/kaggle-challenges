@@ -1,1 +1,3 @@
 apps:
+  controlplane:
+    - prd/prd-sp2-sam_iot_test
