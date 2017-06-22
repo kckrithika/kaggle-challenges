@@ -19,7 +19,6 @@ system:
         tcpSocket:
           port: 10000
         initialDelaySeconds: 5
-      command: ["/bin/sh", "-c"]
 
   loadbalancers:
   - lbname: serviceeventrecorderlb
