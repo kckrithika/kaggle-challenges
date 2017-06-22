@@ -56,3 +56,5 @@ apps:
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
+  service-event-recorder:
+    - prd/prd-sam_report_collector

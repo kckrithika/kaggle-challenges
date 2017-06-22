@@ -1,0 +1,29 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: service-event-recorder
+    count: 1
+    containers:
+    - name: service-event-recorder
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000003-1a38d387
+      ports:
+      - containerPort: 10000
+      resources:
+        limits: { cpu: "10", memory: "5Gi" }
+        requests: { cpu: "10", memory: "5Gi" }
+      env:
+      - name: SER_GRPC_PORT
+        value: 10000
+      livenessProbe:
+        tcpSocket:
+          port: 10000
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+
+  loadbalancers:
+  - lbname: serviceeventrecorderlb
+    function: service-event-recorder
+    ports:
+    - port: 80
+      targetport: 10000
