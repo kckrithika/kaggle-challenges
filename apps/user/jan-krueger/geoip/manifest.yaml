@@ -80,9 +80,9 @@ system:
         - name: SFDC_SUBENVIRONMENT
           value: ""
         - name: GRPC_ROUTING_GEOIP_HOST
-          value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_HOST)
+          value: geoip.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
-          value: $(CCAIT_GEOIP_BACKEND_LB_SERVICE_PORT)
+          value: 7012
       ports:
         - containerPort: 8080
       livenessProbe:
