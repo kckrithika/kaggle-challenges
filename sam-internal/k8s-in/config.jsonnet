@@ -24,7 +24,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
         momCollectorEndpoint: {
             "frf": "http://ops0-mom2-1-frf.ops.sfdc.net:8080/network/device?key=host-bgp-routes",
-            "prd": "http://ops0-mom1-1-prd.eng.sfdc.net:8080/network/device?key=host-bgp-routes",
+            "prd": "https://ops0-momapi1-0-prd.data.sfdc.net/network/device?key=host-bgp-routes",
         },
 
     },
