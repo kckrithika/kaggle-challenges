@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-examples-xlt
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20170623
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20170623-2
       ports:
       - containerPort: 8000
       livenessProbe:
@@ -14,13 +14,13 @@ system:
         httpGet:
           path: /status/health
           port: 8000
-    - name: sherpa-b
+    - name: sherpa-xlt
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000016-3f32ded0
-      ports:
-      - containerPort: 7012
-        name: sherpa-b-in
-      - containerPort: 7080
-        name: sherpa-b-admin
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: dev
+        - name: SFDC_SUBENVIRONMENT
+          value: ""
       livenessProbe:
         exec:
           command:
