@@ -29,17 +29,17 @@ if configs.estate == "prd-sdc" then {
                             "--pingTimeout=5s",
                             "--livenessProbePort="+portconfigs.sdn.sdn_ping_watchdog
                         ],
+                        "livenessProbe": {
+                            "httpGet": {
+                                "path": "/liveness-probe",
+                                "port": portconfigs.sdn.sdn_ping_watchdog
+                            },
+                            "initialDelaySeconds": 5,
+                            "timeoutSeconds": 5,
+                            "periodSeconds": 20
+                        },
                     }
                 ],
-                "livenessProbe": {
-                    "httpGet": {
-                       "path": "/liveness-probe",
-                       "port": portconfigs.sdn.sdn_ping_watchdog
-                    },
-                    "initialDelaySeconds": 5,
-                    "timeoutSeconds": 5,
-                    "periodSeconds": 20
-                },
                 nodeSelector: {
                     pool: configs.estate
                 },
