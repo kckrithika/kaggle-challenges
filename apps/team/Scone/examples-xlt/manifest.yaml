@@ -18,9 +18,7 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000016-3f32ded0
       env:
         - name: SFDC_ENVIRONMENT
-          value: dev
-        - name: SFDC_SUBENVIRONMENT
-          value: ""
+          value: sconex
       livenessProbe:
         exec:
           command:
