@@ -11,7 +11,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-ping-admin
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ashafer/cloudatlas-admin-allow-insecure-jmx:ashafer-20170622a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ashafer/cloudatlas-admin-allow-insecure-jmx:ashafer-20170623a
       command: ["/opt/admin-script-delivery/deliver.sh"]
       volumeMounts:
       - mountPath: /home/sfdc-atlas
