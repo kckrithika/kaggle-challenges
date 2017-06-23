@@ -34,7 +34,7 @@
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000153-22e3424e",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000169-3c14ddfe",
                   "name": "slb-vip-watchdog",
                   "volumeMounts": [
                      {
