@@ -28,4 +28,4 @@ system:
       - port: 9090
         targetport: 9090
       - port: 8080
-        targetport: 800
+        targetport: 8080
