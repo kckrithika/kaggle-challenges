@@ -22,8 +22,8 @@ local samimages = import "samimages.jsonnet";
                            "--delay=30s",
                            "--emailNotify="+configs.samcontrol_deployer_EmailNotify,
                            "--smtpServer="+configs.smtpServer,
-                           "--sender="+configs.watchdog_emailsender,
-                           "--recipient="+configs.watchdog_emailrec,
+                           "--sender=sam@salesforce.com",
+                           "--recipient=sam@salesforce.com",
                          ],
                          "volumeMounts": [
                            {
