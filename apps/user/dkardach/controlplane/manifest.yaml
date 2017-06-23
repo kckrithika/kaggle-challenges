@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 1
+    count: 4
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
@@ -20,3 +20,12 @@ system:
         timeoutSeconds: 120
     strategy:
       type: Recreate
+
+  loadbalancers:
+  - lbname: samhellolb
+    function: default
+    ports:
+      - port: 9090
+        targetport: 9090
+      - port: 8080
+        targetport: 8080
