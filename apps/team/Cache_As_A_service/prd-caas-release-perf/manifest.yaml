@@ -20,7 +20,7 @@ system:
           readOnly: true
       args: 
         - --port=12015
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -68,7 +68,7 @@ system:
           readOnly: true
       args: 
         - --port=12016
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -116,7 +116,7 @@ system:
           readOnly: true
       args: 
         - --port=12017
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -164,7 +164,7 @@ system:
           readOnly: true
       args: 
         - --port=12018
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -212,7 +212,7 @@ system:
           readOnly: true
       args: 
         - --port=12019
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -260,7 +260,7 @@ system:
           readOnly: true
       args: 
         - --port=12020
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -308,7 +308,7 @@ system:
           readOnly: true
       args: 
         - --port=12021
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -356,7 +356,7 @@ system:
           readOnly: true
       args: 
         - --port=12022
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=5120
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
