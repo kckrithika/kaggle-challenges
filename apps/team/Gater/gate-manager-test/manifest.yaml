@@ -11,7 +11,7 @@ system:
     containers:
     - name: gater1
       # container image/version to run. published separately.
-      image: tnrp/gater/gater:1.2.0-0000151-13943269
+      image: tnrp/gater/gater:1.2.0-0000030-13945546
       args:
         - --server.port=9090
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
