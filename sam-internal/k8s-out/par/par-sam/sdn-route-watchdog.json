@@ -1,0 +1,55 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "sdn-route-watchdog"
+      },
+      "name": "sdn-route-watchdog"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "sdn-route-watchdog"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/sdn-route-watchdog",
+                     "--funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--momCollectorEndpoint=http://ops0-mom2-1-par.ops.sfdc.net:8080/network/device?key=host-bgp-routes",
+                     "--smtpServer=ops0-mta2-1-par.ops.sfdc.net:25",
+                     "--sender=sam-alerts@salesforce.com",
+                     "--recipient=sdn@salesforce.com",
+                     "--emailFrequency=12h",
+                     "--watchdogFrequency=180s",
+                     "--alertThreshold=300s",
+                     "--livenessProbePort=9104"
+                  ],
+                  "image": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000146-e0248107",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/liveness-probe",
+                        "port": 9104
+                     },
+                     "initialDelaySeconds": 5,
+                     "periodSeconds": 20,
+                     "timeoutSeconds": 5
+                  },
+                  "name": "sdn-route-watchdog"
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "par-sam"
+            }
+         }
+      }
+   }
+}
