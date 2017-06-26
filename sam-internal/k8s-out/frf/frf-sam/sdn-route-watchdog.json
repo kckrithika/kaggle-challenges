@@ -29,9 +29,19 @@
                      "--recipient=sdn@salesforce.com",
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
-                     "--alertThreshold=300s"
+                     "--alertThreshold=300s",
+                     "--livenessProbePort=9104"
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000146-e0248107",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000170-013aa50b",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/liveness-probe",
+                        "port": 9104
+                     },
+                     "initialDelaySeconds": 5,
+                     "periodSeconds": 20,
+                     "timeoutSeconds": 5
+                  },
                   "name": "sdn-route-watchdog"
                }
             ],
