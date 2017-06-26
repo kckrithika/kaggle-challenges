@@ -16,8 +16,9 @@ system:
       - name: SER_GRPC_PORT
         value: 10000
       livenessProbe:
-        tcpSocket:
-          port: 10000
+        exec:
+          command:
+            - "nc -z localhost 10000"
         initialDelaySeconds: 5
 
   loadbalancers:
