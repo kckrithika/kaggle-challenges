@@ -1,0 +1,12 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute1-1-hnd.ops.sfdc.net,10.219.181.50/28,10.213.66.160/27,f16-02,hnd-sam
+shared0-samcompute1-2-hnd.ops.sfdc.net,10.219.181.34/28,10.213.66.32/27,c08-02,hnd-sam
+shared0-samcompute2-1-hnd.ops.sfdc.net,10.219.181.66/28,10.213.66.128/27,f04-02,hnd-sam
+shared0-samkubeapi1-1-hnd.ops.sfdc.net,10.219.181.10/28,10.213.66.96/27,d16-02,hnd-sam
+shared0-samkubeapi2-1-hnd.ops.sfdc.net,10.219.181.82/28,10.213.66.0/27,b01-02,hnd-sam
+shared0-samkubeapi3-1-hnd.ops.sfdc.net,10.219.181.18/28,10.213.66.64/27,d13-02,hnd-sam
+shared0-samminiongater1-1-hnd.ops.sfdc.net,10.219.180.218/29,10.213.68.128/27,f13-02,hnd-sam_gater
+shared0-samminiongater1-2-hnd.ops.sfdc.net,10.219.180.210/29,10.213.68.0/27,d10-02,hnd-sam_gater
+shared0-samminiongater1-3-hnd.ops.sfdc.net,10.219.180.194/29,10.213.68.64/27,d16-02,hnd-sam_gater
+shared0-samminiongater2-1-hnd.ops.sfdc.net,10.219.180.202/29,10.213.68.32/27,d13-02,hnd-sam_gater
+shared0-samminiongater2-2-hnd.ops.sfdc.net,10.219.180.226/29,10.213.68.96/27,e02-02,hnd-sam_gater
