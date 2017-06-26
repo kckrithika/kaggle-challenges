@@ -51,7 +51,7 @@ system:
       - containerPort: 7012
         name: sherpa-b-in
       - containerPort: 7080
-        name: sherpa-b-admin
+        name: sherpa-b-adm
       livenessProbe:
         exec:
           command:
@@ -98,7 +98,7 @@ system:
         value: "sam-dev"
       ports:
       - containerPort: 7080
-        name: sherpa-f-admin
+        name: sherpa-f-adm
       livenessProbe:
         exec:
           command:
@@ -125,7 +125,7 @@ system:
         value: "sam-dev"
       ports:
       - containerPort: 7080
-        name: sherpa-xlt-admin
+        name: sherpa-xlt-adm
       livenessProbe:
         exec:
           command:
