@@ -20,7 +20,7 @@ if configs.estate == "prd-samtest" then {
             }
             ],
                 "selector": {
-                    "name": "estate-info",
+                    "name": "estate-info-server",
                 },
                 "type": "NodePort",
         },

@@ -77,6 +77,7 @@ local utils = import "util_functions.jsonnet";
     # These are the images used by the templates
     hypersam: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
     k8sproxy: utils.do_override_for_not_tnrp_image($.overrides, "k8sproxy", $.static["k8sproxy"]),
+    estate_info: utils.do_override_for_not_tnrp_image($.overrides, "estate_info", $.static["estate_info"]),
     permissionInitContainer: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
 
 }

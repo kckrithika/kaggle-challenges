@@ -1,4 +1,6 @@
 local configs = import "config.jsonnet";
+local samimages = import "samimages.jsonnet";
+
 if configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
@@ -7,41 +9,25 @@ if configs.estate == "prd-samtest" then {
             spec: {
                 containers: [
                     {
-                        name: "estate-info",
-                        image: configs.estate_info,
+                        name: "estate-info-server",
+                        image: samimages.estate_info,
                         args:[],
-                        volumeMounts: [
-                            {
-                                name: "certs",
-                                mountPath: "/etc/certs"
-                            }
-                        ],
                         "ports": [
                         {
                             "containerPort": 9090,
-                            "name": "estate-info",
+                            "name": "estate-info-server",
                         }
                         ],
                       livenessProbe: {
                            initialDelaySeconds: 15,
                            httpGet: {
-                               path: "/",
+                               path: "/info",
                                port: 9090
                            },
                            timeoutSeconds: 10
                         },
                     }
                 ],
-                volumes: {
-                    certsPath: {
-                            path: "/data/certs",
-                            name: "certs",
-                    },
-                    configPath: {
-                            path: "/etc/kubernetes",
-                            name: "config",
-                    },
-                },
                 nodeSelector: {
                     pool: configs.estate
                 } +
@@ -54,23 +40,23 @@ if configs.estate == "prd-samtest" then {
             },
             metadata: {
                 labels: {
-                    name: "estate-info",
+                    name: "estate-info-server",
                     apptype: "server"
                 }
             }
         },
         selector: {
             matchLabels: {
-                name: "estate-info"
+                name: "estate-info-server"
             }
         }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "estate-info"
+            name: "estate-info-server"
         },
-        name: "estate-info",
+        name: "estate-info-server",
         namespace: "sam-system"
     }
 } else "SKIP"

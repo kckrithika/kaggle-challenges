@@ -3,49 +3,43 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "estate-info"
+         "name": "estate-info-server"
       },
-      "name": "estate-info",
+      "name": "estate-info-server",
       "namespace": "sam-system"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "estate-info"
+            "name": "estate-info-server"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "server",
-               "name": "estate-info"
+               "name": "estate-info-server"
             }
          },
          "spec": {
             "containers": [
                {
                   "args": [ ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estates-info-server:2017.06.03.1",
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estate-info:2017.6.26.0",
                   "livenessProbe": {
                      "httpGet": {
-                        "path": "/",
+                        "path": "/info",
                         "port": 9090
                      },
                      "initialDelaySeconds": 15,
                      "timeoutSeconds": 10
                   },
-                  "name": "estate-info",
+                  "name": "estate-info-server",
                   "ports": [
                      {
                         "containerPort": 9090,
-                        "name": "estate-info"
-                     }
-                  ],
-                  "volumeMounts": [
-                     {
-                        "mountPath": "/etc/certs",
-                        "name": "certs"
+                        "name": "estate-info-server"
                      }
                   ]
                }
@@ -53,16 +47,6 @@
             "nodeSelector": {
                "master": "true",
                "pool": "prd-samtest"
-            },
-            "volumes": {
-               "certsPath": {
-                  "name": "certs",
-                  "path": "/data/certs"
-               },
-               "configPath": {
-                  "name": "config",
-                  "path": "/etc/kubernetes"
-               }
             }
          }
       }
