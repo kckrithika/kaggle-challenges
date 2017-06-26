@@ -14,6 +14,7 @@ local utils = import "util_functions.jsonnet";
         #
 
         "frf,frf-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "frf,frf-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
     },
 
     ### Per-phase image tags
