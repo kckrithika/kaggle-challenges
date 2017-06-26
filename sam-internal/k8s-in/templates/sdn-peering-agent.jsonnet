@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
-if configs.estate == "prd-sdc" then {
+if configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -125,7 +125,7 @@ if configs.estate == "prd-sdc" then {
         },
         name: "sdn-peering-agent",
     }
-} else if configs.kingdom == "frf" || configs.kingdom == "prd" then {
+} else if configs.kingdom == "frf" then {
     kind: "DaemonSet",
     spec: {
         template: {

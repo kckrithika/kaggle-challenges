@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -57,7 +57,7 @@ if configs.estate == "prd-sdc" then {
         },
         name: "sdn-route-watchdog"
     }
-} else if configs.kingdom == "frf" || configs.kingdom == "prd" then {
+} else if configs.kingdom == "frf" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
