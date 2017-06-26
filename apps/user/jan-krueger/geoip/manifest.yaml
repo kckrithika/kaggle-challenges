@@ -22,10 +22,10 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: "sam-dev"
-        - name: SFDC_SUBENVIRONMENT
-          value: ""
         - name: COM_MAXMIND_DATABASE_FILE
           value: "/dw/data/GeoIP2-City.mmdb"
+        - name: GRPC_ANNOUNCED_PORT
+          value: 7012
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
@@ -43,12 +43,10 @@ system:
           port: 15372
         initialDelaySeconds: 15
     - name: sherpa-b
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000024-7c4ff6f3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam-dev"
-      - name: SFDC_SUBENVIRONMENT
-        value: ""
       ports:
       - containerPort: 7012
         name: sherpa-b-in
@@ -77,8 +75,6 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: "sam-dev"
-        - name: SFDC_SUBENVIRONMENT
-          value: ""
         - name: GRPC_ROUTING_GEOIP_HOST
           value: geoip.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
@@ -96,12 +92,10 @@ system:
           port: 15372
         initialDelaySeconds: 15
     - name: sherpa-f
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000024-7c4ff6f3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam-dev"
-      - name: SFDC_SUBENVIRONMENT
-        value: ""
       ports:
       - containerPort: 7080
         name: sherpa-f-admin
@@ -124,13 +118,28 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jan-krueger/ccait-xlt-agent:4.8.3
       ports:
       - containerPort: 8500
+    - name: sherpa-xlt
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam-dev"
+      ports:
+      - containerPort: 7080
+        name: sherpa-xlt-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
 
   loadbalancers:
-  - lbname: ccait-geoip-backend-lb
-    function: geoip
-    ports:
-      - port: 7020
-        targetport: 7020
   - lbname: ccait-geoip-frontend-lb
     function: geoip-demo
     ports:
@@ -141,5 +150,7 @@ system:
   - lbname: ccait-xlt-lb
     function: geoip-xlt
     ports:
+      - port: 7080
+        targetport: 7080
       - port: 8500
         targetport: 8500
