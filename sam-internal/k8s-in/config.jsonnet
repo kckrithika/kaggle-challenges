@@ -61,17 +61,4 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     samcontrol_deployer_ObserveMode: false,
     samcontrol_deployer_EmailNotify: true,
     sam_secret_agent_ObserveMode: false,
-    estate_info: images.estate_info,
-
-    sdn_bird: images.sdn_bird,
-    sdn_peering_agent: images.sdn_peering_agent,
-    sdn_watchdog: images.sdn_watchdog,
-    sdn_ping_watchdog: images.sdn_ping_watchdog,
-    sdn_route_watchdog: images.sdn_route_watchdog,
-    sdn_vault_agent: images.sdn_vault_agent,
-
-    slb_iface_processor: images.slb_iface_processor,
-    slb_ipvs: images.slb_ipvs,
-    slb_realsvrcfg: images.slb_realsvrcfg,
-    slb_config_processor: images.slb_config_processor
 }
