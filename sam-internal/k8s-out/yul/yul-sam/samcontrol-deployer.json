@@ -39,7 +39,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0000934-6f12a434",
+                  "image": "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0000954-e0a1a61a",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
