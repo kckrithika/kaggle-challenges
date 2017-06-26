@@ -24,7 +24,7 @@
                      "--configDir=/host/var/slb/config",
                      "--period=6s",
                      "--namespace=sam-system",
-                     "--subnet=10.251.129.224/27",
+                     "--subnet=10.251.129.235-245",
                      "--k8sapiserver=",
                      "--serviceList=slb-delta",
                      "--vipList=10.251.129.233:9090",
@@ -36,7 +36,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000149-6e609e0f",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000169-3c14ddfe",
                   "name": "slb-config-processor",
                   "securityContext": {
                      "privileged": true
