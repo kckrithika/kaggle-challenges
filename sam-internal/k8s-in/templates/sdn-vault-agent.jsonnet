@@ -67,7 +67,7 @@ if configs.kingdom == "prd" then {
         },
         name: "sdn-vault-agent"
     }
-} else if configs.kingdom == "frf" || configs.kingdom == "par" then {
+} else if configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "par" || configs.kingdom == "phx" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
