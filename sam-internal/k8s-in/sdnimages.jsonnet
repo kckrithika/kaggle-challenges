@@ -13,6 +13,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
 
+        "frf,frf-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
     },
 
     ### Per-phase image tags
