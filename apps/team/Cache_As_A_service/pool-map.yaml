@@ -57,3 +57,11 @@ apps:
     - phx/phx-sp1-sam_caas
   phx-sp1-redis-sp-na45-pc1-12023:
     - phx/phx-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs5-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs5-c1-12000:
+    - ukb/ukb-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs65-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs65-c1-12000:
+    - iad/iad-sp1-sam_caas
