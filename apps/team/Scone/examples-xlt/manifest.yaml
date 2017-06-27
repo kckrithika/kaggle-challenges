@@ -12,15 +12,16 @@ system:
         value: shipping.localhost.mesh.force.com
       - name: SCONE_SHIPPING_SERVICE_PORT
         value: 7011
-      - name: SCONE_SERVICE_ORDERING_HOST
+      - name: SCONE_ORDERING_SERVICE_HOST
         value: ordering.localhost.mesh.force.com
-      - name: SCONE_SERVICE_ORDERING_PORT
+      - name: SCONE_ORDERING_SERVICE_PORT
         value: 7011
       ports:
       - containerPort: 8000
       livenessProbe:
         initialDelaySeconds: 15
         periodSeconds: 60
+        timeoutSeconds: 30
         httpGet:
           path: /status/health
           port: 8000
