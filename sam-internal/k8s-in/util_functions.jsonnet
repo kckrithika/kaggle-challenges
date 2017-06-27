@@ -56,7 +56,12 @@ local internal = {
     # image_name - the docker image name (usually "hypersam" or "hypersdn")
     # tag - the docker tag.  Used when no override exists, otherwise gets replaced ("sam-0000934-6f12a434")
     #
-    do_override_for_tnrp_image(overrides, tnrp_repo, image_name, tag):: 
+    do_override_for_tnrp_image(overrides, tnrp_repo, image_name, tag)::
         internal.add_tnrp_registry(tnrp_repo, image_name, internal.do_override(overrides, image_name, tag))
     ,
+
+    # This is for filtering Public Clouds from Private Clouds
+    is_public_cloud(kingdom):: (
+        kingdom == "cdu" || kingdom == "syd" || kingdom == "yhu" || kingdom == "yul"
+    ),
 }
