@@ -1,107 +1,127 @@
 {
-    "minion": {
-        "secrets": {
-            "": {
-                "sam-system": {
-                    "$own-certname": [
-                        "read",
-                        "write"
-                    ],
-                    "sdn": [
-                        "read"
-                    ]
-                }
-            }
-        },
-        "services": {
-            "": {
-                "": {
-                    "": [
-                        "read"
-                    ]
-                }
-            }
-        },
-        "nodes": {
-            "*": {
-                "": {
-                    "$own-hostname": [
-                        "read",
-                        "write"
-                    ],
-                    "*": [
-                        "read"
-                    ]
-                }
+    "role": {
+        "minion-pool": [
+            {
+                "resource": "secrets",
+                "subresource": "",
+                "namespace": "sam-system",
+                "name": "$own-certname",
+                "verbGroup": "RW"
             },
-            "status": {
-                "": {
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                }
-            }
-        },
-        "endpoints": {
-            "": {
-                "": {
-                    "": [
-                        "read"
-                    ]
-                }
-            }
-        },
-        "pods": {
-            "": {
-                "": {
-                    "": [
-                        "read"
-                    ]
-                },
-                "$namespace": {
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                },
-                "sam-system": {
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                }
+            {
+                "resource": "secrets",
+                "subresource": "",
+                "namespace": "sam-system",
+                "name": "sdn",
+                "verbGroup": "R"
             },
-            "status": {
-                "$namespace": {
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                }
+            {
+                "resource": "services",
+                "subresource": "",
+                "namespace": "",
+                "name": "",
+                "verbGroup": "R"
+            },
+            {
+                "resource": "nodes",
+                "subresource": "status",
+                "namespace": "",
+                "name": "*",
+                "verbGroup": "RW"
+            },
+            {
+                "resource": "nodes",
+                "subresource": "*",
+                "namespace": "",
+                "name": "$own-hostname",
+                "verbGroup": "RW"
+            },
+            {
+                "resource": "nodes",
+                "subresource": "*",
+                "namespace": "",
+                "name": "*",
+                "verbGroup": "R"
+            },
+            {
+                "resource": "endpoints",
+                "subresource": "",
+                "namespace": "",
+                "name": "",
+                "verbGroup": "R"
+            },
+            {
+                "resource": "pods",
+                "subresource": "",
+                "namespace": "$namespace",
+                "name": "*",
+                "verbGroup": "RW"
+            },
+            {
+                "resource": "pods",
+                "subresource": "",
+                "namespace": "sam-system",
+                "name": "*",
+                "verbGroup": "RW"
+            },
+            {
+                "resource": "pods",
+                "subresource": "",
+                "namespace": "",
+                "name": "",
+                "verbGroup": "R"
+            },
+            {
+                "resource": "pods",
+                "subresource": "status",
+                "namespace": "$namespace",
+                "name": "*",
+                "verbGroup": "RW"
+            },
+            {
+                "resource": "events",
+                "subresource": "",
+                "namespace": "$namespace",
+                "name": "*",
+                "verbGroup": "RW"
             }
-        },
-        "events": {
-            "": {
-                "$namespace": {
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                }
+        ],
+        "control-estate": [
+            {
+                "verbGroup": "RW"
             }
-        }
+        ]
     },
-    "master": {
-        "*": {
-            "*": {
-                "*": {
-                    "*": [
-                        "read",
-                        "write"
-                    ]
-                }
-            }
+    "verbGroups": [
+        {
+            "name": "R",
+            "verbs": [
+                "trace",
+                "get",
+                "track",
+                "watch",
+                "propfind",
+                "list",
+                "options"
+            ]
+        },
+        {
+            "name": "RW",
+            "verbs": [
+                "trace",
+                "get",
+                "track",
+                "watch",
+                "propfind",
+                "list",
+                "options",
+                "update",
+                "patch",
+                "put",
+                "post",
+                "create",
+                "delete"
+            ]
         }
-    }
+    ]
 }
