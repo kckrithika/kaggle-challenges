@@ -17,10 +17,10 @@ system:
         value: 10000
       livenessProbe:
         exec:
-          command: 
-            - "/healthcheck"
-          args:
-            - "10000"
+          command:
+            - /bin/sh
+            - -c
+            - "/healthcheck 10000"
         initialDelaySeconds: 5
 
   loadbalancers:
