@@ -19,7 +19,6 @@ system:
         exec:
           command:
             - /healthcheck
-            - "10000"
         initialDelaySeconds: 5
 
   loadbalancers:
