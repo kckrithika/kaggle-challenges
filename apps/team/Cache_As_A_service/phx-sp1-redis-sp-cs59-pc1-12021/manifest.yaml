@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-sp-cs59-pc1-12021
-    count: 4
+    count: 3
     hostnetwork: true
     containers:
     - name: caas-redis
