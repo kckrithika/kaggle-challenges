@@ -22,7 +22,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15373
-    - name: beacon
+    - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170622
       args:
         - -name
@@ -36,6 +36,23 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+    - name: sherpa-ordering
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive" 
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready" 
+          initialDelaySeconds: 5 
+          periodSeconds: 5
   loadbalancers:
   - lbname: scone-ordering-lb
     function: scone-ordering
