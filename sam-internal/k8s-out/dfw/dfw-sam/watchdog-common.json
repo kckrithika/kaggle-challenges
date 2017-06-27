@@ -33,7 +33,7 @@
                      "-emailFrequency=24h",
                      "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15"
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000934-6f12a434",
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0000954-e0a1a61a",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
