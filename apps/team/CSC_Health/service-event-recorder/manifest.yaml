@@ -18,7 +18,8 @@ system:
       livenessProbe:
         exec:
           command:
-            - "/healthcheck 10000"
+            - /healthcheck
+            - "10000"
         initialDelaySeconds: 5
 
   loadbalancers:
