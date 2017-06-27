@@ -39,3 +39,7 @@ apps:
     - dfw/dfw-sp2-sam_caas
   dfw-sp2-redis-sp-cs62-c1-12000:
     - dfw/dfw-sp2-sam_caas
+  phx-sp1-metrics-publisher-sp-cs59-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs59-c1-12020:
+    - phx/phx-sp1-sam_caas
