@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000004-61527409
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000006-74161702
       ports:
       - containerPort: 10000
       resources:
@@ -18,7 +18,7 @@ system:
       livenessProbe:
         exec:
           command:
-            - "nc -z localhost 10000"
+            - "/healthcheck 10000"
         initialDelaySeconds: 5
 
   loadbalancers:
