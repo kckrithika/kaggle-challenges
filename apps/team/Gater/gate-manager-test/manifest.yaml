@@ -6,7 +6,7 @@ system:
       - gater@salesforce.com
   functions:
   - name: gater
-    count: 4
+    count: 5
     hostnetwork: true
     containers:
     - name: gater1
