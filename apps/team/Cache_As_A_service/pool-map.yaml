@@ -11,6 +11,8 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-caas-release-perf:
     - prd/prd-sp2-sam_caas
+  prd-caas-redis-sp-chatbot-c1-12000:
+    - prd/prd-sp2-sam_caas
   phx-caas-redis-12000-sp-c1:
     - phx/phx-sp1-sam_caas
   phx-caas-redis-12001-sp-c1:
