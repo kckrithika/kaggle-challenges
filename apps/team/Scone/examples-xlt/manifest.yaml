@@ -6,11 +6,21 @@ system:
     count: 1
     containers:
     - name: scone-examples-xlt
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20170623-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20170626
+      env:
+      - name: SCONE_SHIPPING_SERVICE_HOST
+        value: shipping.localhost.mesh.force.com
+      - name: SCONE_SHIPPING_SERVICE_PORT
+        value: 7011
+      - name: SCONE_SERVICE_ORDERING_HOST
+        value: ordering.localhost.mesh.force.com
+      - name: SCONE_SERVICE_ORDERING_PORT
+        value: 7011
       ports:
       - containerPort: 8000
       livenessProbe:
         initialDelaySeconds: 15
+        periodSeconds: 60
         httpGet:
           path: /status/health
           port: 8000
