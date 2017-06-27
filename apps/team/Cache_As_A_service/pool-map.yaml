@@ -47,3 +47,11 @@ apps:
     - phx/phx-sp1-sam_caas
   phx-sp1-redis-sp-cs59-pc1-12021:
     - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na45-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na45-c1-12022:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na45-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na45-pc1-12023:
+    - phx/phx-sp1-sam_caas
