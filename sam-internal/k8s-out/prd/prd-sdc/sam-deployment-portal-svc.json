@@ -3,7 +3,8 @@
    "kind": "Service",
    "metadata": {
       "labels": {
-         "app": "sam-deployment-portal"
+         "app": "sam-deployment-portal",
+         "slb_vip": "sdp"
       },
       "name": "portal-svc",
       "namespace": "sam-system"
