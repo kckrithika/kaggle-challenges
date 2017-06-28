@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "par" || configs.kingdom == "phx" || configs.kingdom == "prd" then {
+local utils = import "util_functions.jsonnet";
+if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
