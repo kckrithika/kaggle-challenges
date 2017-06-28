@@ -25,12 +25,12 @@ system:
     - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170622
       args:
-        - -name
-        - ordering
-        - -scope
-        - DATACENTER
-        - -port
-        - 7021
+      - -name
+      - ordering
+      - -scope
+      - DATACENTER
+      - -port
+      - 7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -38,9 +38,10 @@ system:
             - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      args: ["--service", "localhost:7021"]
       env:
-        - name: SFDC_ENVIRONMENT
-          value: sconex
+      - name: SFDC_ENVIRONMENT
+        value: sconex
       livenessProbe:
         exec:
           command:
@@ -53,12 +54,3 @@ system:
           - "./bin/is-ready" 
           initialDelaySeconds: 5 
           periodSeconds: 5
-  loadbalancers:
-  - lbname: scone-ordering-lb
-    function: scone-ordering
-    ports:
-      - port: 7021
-        targetport: 7021
-      - port: 15373
-        targetport: 15373
-
