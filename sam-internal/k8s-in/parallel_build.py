@@ -6,19 +6,19 @@ import subprocess
 from subprocess import Popen, PIPE, STDOUT
 from Queue import Queue
 from threading import Thread
-import time
 
 NUM_WORKER_THREADS = 10
 
+# Info needed to process one jsonnet file for one estate
 class jsonnet_workitem:
     def __init__(self, kingdom, estate, jsonnet_file, output_dir):
         self.kingdom = kingdom
         self.estate = estate
         self.jsonnet_file = jsonnet_file
         self.output_dir = output_dir
-        #print("("+kingdom+","+estate+","+jsonnet_file+")")
 
-# Run a command.  First return is true for success, second return is stdout+stderr
+# Simple run command wrapper
+# First return is true for success, second return is cmd+stdout+stderr
 def run_cmd(cmd):
     combined = cmd.strip()
     try:
@@ -37,6 +37,9 @@ def run_cmd(cmd):
     except Exception as e:
         return False, combined + "\nException: " + str(e)
 
+# For some apps we SKIP in template by writing "SKIP" to output file
+# Remove the output file when this happenes
+# Returns true if file is deleted
 def delete_if_skip(filename):
     with open(filename) as f:
       lines = f.readlines()
@@ -45,7 +48,7 @@ def delete_if_skip(filename):
           return True
     return False
 
-# Provess one template
+# Process one jsonnet template
 def run_jsonnet(item):
     appNameWithExt = os.path.basename(item.jsonnet_file)
     appName = os.path.splitext(appNameWithExt)[0]
@@ -61,12 +64,14 @@ def run_jsonnet(item):
     if passed:
         if delete_if_skip(outfile):
             return True, "Skipped " + outfile
-
     return (passed, msg)
 
+# Thread safe queues
 worl_queue = Queue()
 result_queue = Queue()
 error_queue = Queue()
+
+# Show total for better progress output
 total = 0
 
 # Show progress on stdout
@@ -80,7 +85,7 @@ def progress():
             failed += 1
             error_queue.put(pair[1])
         done += 1
-        print("done="+ str(done) + ",failed=" + str(failed) + ",total=" + str(total) + " " + str(pair[0]) + ". CMD: " + pair[1])
+        print("done="+ str(done) + ",total=" + str(total) + ",failed=" + str(failed) + " " + str(pair[0]) + ". CMD: " + pair[1])
         result_queue.task_done()
 
 # A worker thread to process work items
@@ -88,7 +93,6 @@ def worker():
     while True:
         this_item = worl_queue.get()
         passed, msg = run_jsonnet(this_item)
-        #print("MSG:"+msg)
         result_queue.put( (passed,msg) )
         worl_queue.task_done()
 
@@ -136,7 +140,7 @@ def make_work_items(templates_dir, output_root_dir, control_estates):
     return ret
 
 def main():
-    
+    # Process arguments
     if len(sys.argv) != 4:
         print("usage: parallel_run.py template_dir output_dir list_of_control_estates.txt")
         return
@@ -151,12 +155,11 @@ def main():
           if not line.startswith("#"):
             control_estates.append(line.strip())
 
+    # Do the work
     work_items = make_work_items(template_dir, output_dir, control_estates)
-    
     failures = run_all_work_items(work_items)
 
-    end_time = time.clock()
-
+    # Report results
     if len(failures) == 0:
         print("Run successful")
         sys.exit(0)
@@ -168,5 +171,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # We should never get here
+    # We should never get here.  Return error just in case
     sys.exit(1)
