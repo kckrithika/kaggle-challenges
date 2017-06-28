@@ -42,7 +42,8 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     configPath: "/config/kubeconfig",
 
     watchdog_emailsender: "sam-alerts@salesforce.com",
-    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else "sam-alerts@salesforce.com"),
+    # TODO: change prd to sam-test-alerts@salesforce.com when it is ready
+    watchdog_emailrec: (if kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
 
     # Computed values
 
