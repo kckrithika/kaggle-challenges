@@ -19,7 +19,10 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "yhu": "ops0-mta2-1-yhu.ops.sfdc.net:25",
             "iad": "ops0-mta2-1-iad.ops.sfdc.net:25",
             "ord": "ops0-mta2-1-ord.ops.sfdc.net:25",
-            "ukb": "ops0-mta2-1-ukb.ops.sfdc.net:25"
+            "ukb": "ops0-mta2-1-ukb.ops.sfdc.net:25",
+            "hnd": "ops0-mta2-1-hnd.ops.sfdc.net:25",
+            "cdu": "ops0-mta2-1-cdu.ops.sfdc.net:25",
+            "syd": "ops0-mta2-1-syd.ops.sfdc.net:25",
         },
 
         momCollectorEndpoint: {

@@ -45,7 +45,7 @@ rm -rf generated/
 
 # Keep this in alphabetical order
 # TODO: scan the pools and generate this automatically
-declare -a kingdomEstates=( "dfw/dfw-sam" "frf/frf-sam" "iad/iad-sam" "ord/ord-sam" "par/par-sam" "phx/phx-sam" "prd/prd-sam" "prd/prd-samdev" "prd/prd-samtest" "prd/prd-sdc" "ukb/ukb-sam" "yhu/yhu-sam" "yul/yul-sam" )
+declare -a kingdomEstates=( $( grep -v "#" control-estates.txt ))
 
 for kingdomEstate in "${kingdomEstates[@]}"
 do
