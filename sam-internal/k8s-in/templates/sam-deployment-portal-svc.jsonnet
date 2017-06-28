@@ -6,7 +6,8 @@ if configs.kingdom == "prd" then {
             "name": "portal-svc",
             "namespace": "sam-system",
             "labels": {
-                "app": "sam-deployment-portal"
+                "app": "sam-deployment-portal",
+                "slb_vip": "sdp"
             },
         },
         "spec": {
