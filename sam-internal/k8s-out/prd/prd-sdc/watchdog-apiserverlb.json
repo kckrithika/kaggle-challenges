@@ -34,7 +34,7 @@
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sdn@salesforce.com",
+                     "-recipient=sam@salesforce.com",
                      "-tlsEnabled=true",
                      "-caFile=/data/certs/ca.crt",
                      "-keyFile=/data/certs/hostcert.key",
