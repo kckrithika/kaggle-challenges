@@ -65,3 +65,11 @@ apps:
     - iad/iad-sp1-sam_caas
   iad-sp1-redis-sp-cs65-c1-12000:
     - iad/iad-sp1-sam_caas
+  iad-sp2-metrics-publisher-sp-sample-c1:
+    - iad/iad-sp2-sam_caas
+  iad-sp2-redis-sp-sample-c1-12000:
+    - iad/iad-sp2-sam_caas
+  phx-sp4-metrics-publisher-sp-cs68-c1:
+    - phx/phx-sp4-sam_caas
+  phx-sp4-redis-sp-cs68-c1-12000:
+    - phx/phx-sp4-sam_caas
