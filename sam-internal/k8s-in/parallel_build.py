@@ -47,8 +47,9 @@ def delete_if_skip(filename):
 
 # Provess one template
 def run_jsonnet(item):
-    appName = os.path.basename(item.jsonnet_file)
-    outfile = os.path.join(item.output_dir, os.path.splitext(appName)[0] + ".json")
+    appNameWithExt = os.path.basename(item.jsonnet_file)
+    appName = os.path.splitext(appNameWithExt)[0]
+    outfile = os.path.join(item.output_dir, appName + ".json")
     cmd = "./jsonnet/jsonnet"
     cmd += " -V kingdom=" + item.kingdom
     cmd += " -V estate=" + item.estate
