@@ -9,7 +9,10 @@ shared_args: [
     "-rcImtEndpoint="+configs.rcImtEndpoint,
     "-smtpServer="+configs.smtpServer,
     "-sender="+configs.watchdog_emailsender,
+] + if (kingdom != "prd" || estate == "prd-sam") then [
     "-recipient="+configs.watchdog_emailrec,
+] else [
+    # For now turn off test bed emails
 ],
 
 shared_args_certs: [
