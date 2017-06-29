@@ -1,3 +1,5 @@
+#If you are updating sam-manifest-builder also update in sam-internal/validate.sh and follow all the steps
+#here https://git.soma.salesforce.com/sam/sam/wiki/Update-SAM-Manifest-Builder
 {  
    "artifacts":[  
       {  
@@ -30,8 +32,8 @@
          "repo_id": "testandrelease", 
          "artifact_id": "sammanifestbuilder",
          "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
-         "filename": "sammanifestbuilder-20170616_000955.f4612d9.clean.ops_pipebuild1_1_prd-1.x86_64.rpm",
-         "version": "20170616_000955.f4612d9.clean.ops_pipebuild1_1_prd-1.x86_64",
+         "filename": "sammanifestbuilder-20170629_213035.f2a0a40.clean.ops_pipebuild1_1_prd-1.x86_64.rpm",
+         "version": "20170629_213035.f2a0a40.clean.ops_pipebuild1_1_prd-1.x86_64",
          "scope":[
 
          ],
