@@ -13,6 +13,8 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
 
+        "dfw,dfw-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "dfw,dfw-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
         "frf,frf-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
         "frf,frf-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
         "par,par-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
