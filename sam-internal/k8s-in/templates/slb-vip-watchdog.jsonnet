@@ -47,7 +47,8 @@ if configs.estate == "prd-sdc" then {
                             "--recipient=slb@salesforce.com",
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
-                            "--alertThreshold=300s"
+                            "--alertThreshold=300s",
+                            "--vipLoop=100"
                         ],
                         "volumeMounts": [
                             {
