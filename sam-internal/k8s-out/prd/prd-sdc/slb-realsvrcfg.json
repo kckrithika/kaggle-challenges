@@ -25,7 +25,7 @@
                      "--period=5s",
                      "--netInterfaceName=eth0"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000174-0c975994",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000178-7e9e38d1",
                   "name": "slb-realsvrcfg",
                   "securityContext": {
                      "privileged": true
