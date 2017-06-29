@@ -15,10 +15,10 @@ local utils = import "util_functions.jsonnet";
 
         "dfw,dfw-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
         "dfw,dfw-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
-        "frf,frf-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
-        "frf,frf-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
         "par,par-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
         "par,par-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "phx,phx-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "phx,phx-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
     },
 
     ### Per-phase image tags
@@ -38,7 +38,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            "hypersdn": "v-0000146-e0248107",
+            "hypersdn": "v-0000170-013aa50b",
             "bird": "v-0000014-b0a5951d"
             },
 
