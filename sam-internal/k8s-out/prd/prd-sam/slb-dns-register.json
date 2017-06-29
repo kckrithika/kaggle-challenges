@@ -21,7 +21,7 @@
                   "command": [
                      "/sdn/slb-dns-register",
                      "--path=/host/var/slb/config",
-                     "--ddi=",
+                     "--ddi=https://ddi-api-prd.data.sfdc.net",
                      "--keyfile=/data/certs/hostcert.key",
                      "--certfile=/data/certs/hostcert.crt",
                      "--cafile=/data/certs/ca.crt",

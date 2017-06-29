@@ -10,7 +10,7 @@ perCluster: {
         "prd-sdc": "https://ddi-api-prd.data.sfdc.net",
         "prd-samtest": "https://ddi-api-prd.data.sfdc.net",
         "prd-samdev": "https://ddi-api-prd.data.sfdc.net",
-        "prd-sam": ""
+        "prd-sam": "https://ddi-api-prd.data.sfdc.net"
     },
 
     subnet: {
