@@ -5,8 +5,8 @@ system:
   - name: default
     count: 2
     containers:
-    - name: ddworkenhelloworld
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ddworken/ddworkenhelloworld:dc-20170701
+    - name: ddworkenhelloworld2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ddworken/ddworkenhelloworld2:dc-20170701
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -15,7 +15,7 @@ system:
           port: 9090
  
   loadbalancers:
-  - lbname: ddworkenhellolb
+  - lbname: ddworkenhello2lb
     function: default
     ports:
       - port: 9090
