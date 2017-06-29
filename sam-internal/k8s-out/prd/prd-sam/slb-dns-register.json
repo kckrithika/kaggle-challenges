@@ -1,0 +1,62 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "slb-dns-register"
+      },
+      "name": "slb-dns-register"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "slb-dns-register"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-dns-register",
+                     "--path=/host/var/slb/config",
+                     "--ddi=https://ddi-api-prd.data.sfdc.net",
+                     "--keyfile=/data/certs/hostcert.key",
+                     "--certfile=/data/certs/hostcert.crt",
+                     "--cafile=/data/certs/ca.crt",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000169-3c14ddfe",
+                  "name": "slb-dns-register-processor",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/host/var/slb/config",
+                        "name": "var-config-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/slb/config"
+                  },
+                  "name": "var-config-volume"
+               }
+            ]
+         }
+      }
+   }
+}
