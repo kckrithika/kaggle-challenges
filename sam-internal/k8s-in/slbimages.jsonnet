@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
         
         ### Release Phase 1 - prd-sdc
         "1": { 
-            "hypersdn": "v-0000169-3c14ddfe",
+            "hypersdn": "v-0000174-0c975994",
             },
         
         ### Release Phase 2 - Rest of the SAM clusters in PRD
