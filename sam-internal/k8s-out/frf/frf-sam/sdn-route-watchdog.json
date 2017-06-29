@@ -23,7 +23,7 @@
                      "/sdn/sdn-route-watchdog",
                      "--funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
-                     "--momCollectorEndpoint=http://ops0-mom2-1-frf.ops.sfdc.net:8080/network/device?key=host-bgp-routes",
+                     "--momCollectorEndpoint=https://ops0-momapi1-0-frf.data.sfdc.net/network/device?key=host-bgp-routes",
                      "--smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
                      "--sender=sam-alerts@salesforce.com",
                      "--recipient=sdn@salesforce.com",
