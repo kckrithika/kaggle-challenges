@@ -125,7 +125,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
         },
         name: "sdn-peering-agent",
     }
-} else if configs.kingdom == "par" || configs.kingdom == "dfw" then {
+} else if configs.kingdom == "par" || configs.kingdom == "phx" || configs.kingdom == "dfw" then {
     kind: "DaemonSet",
     spec: {
         template: {
