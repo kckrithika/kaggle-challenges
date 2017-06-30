@@ -3,23 +3,23 @@
    "kind": "Deployment",
    "metadata": {
       "labels": {
-         "name": "estate-info-server"
+         "name": "estate-server"
       },
-      "name": "estate-info-server",
+      "name": "estate-server",
       "namespace": "sam-system"
    },
    "spec": {
       "replicas": 1,
       "selector": {
          "matchLabels": {
-            "name": "estate-info-server"
+            "name": "estate-server"
          }
       },
       "template": {
          "metadata": {
             "labels": {
                "apptype": "server",
-               "name": "estate-info-server"
+               "name": "estate-server"
             }
          },
          "spec": {
@@ -35,11 +35,11 @@
                      "initialDelaySeconds": 15,
                      "timeoutSeconds": 10
                   },
-                  "name": "estate-info-server",
+                  "name": "estate-server",
                   "ports": [
                      {
                         "containerPort": 9090,
-                        "name": "estate-info-server"
+                        "name": "estate-server"
                      }
                   ]
                }
