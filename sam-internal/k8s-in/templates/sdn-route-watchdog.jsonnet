@@ -2,8 +2,9 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "par" || configs.kingdom == "phx" || configs.kingdom == "prd" then {
+if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,

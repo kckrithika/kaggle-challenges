@@ -1,0 +1,57 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "sdn-ping-watchdog"
+      },
+      "name": "sdn-ping-watchdog"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "sdn-ping-watchdog"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/sdn-ping-watchdog",
+                     "--funnelEndpoint=ajna0-funnel1-0-ukb.data.sfdc.net:80",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-ukb.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--smtpServer=ops0-mta2-1-ukb.ops.sfdc.net:25",
+                     "--sender=sam-alerts@salesforce.com",
+                     "--recipient=sdn@salesforce.com",
+                     "--emailFrequency=12h",
+                     "--watchdogFrequency=180s",
+                     "--alertThreshold=300s",
+                     "--pingCount=1",
+                     "--pingInterval=1s",
+                     "--pingTimeout=5s",
+                     "--livenessProbePort=9102"
+                  ],
+                  "image": "ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sdn/hypersdn:v-0000170-013aa50b",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/liveness-probe",
+                        "port": 9102
+                     },
+                     "initialDelaySeconds": 5,
+                     "periodSeconds": 20,
+                     "timeoutSeconds": 5
+                  },
+                  "name": "sdn-ping-watchdog"
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "ukb-sam"
+            }
+         }
+      }
+   }
+}
