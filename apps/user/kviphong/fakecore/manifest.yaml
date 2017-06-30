@@ -6,13 +6,20 @@ system:
     count: 5
     containers:
     - name: fakecore-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:d5262fa-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore:df9091c-1
       ports:
       - containerPort: 8085
       livenessProbe:
         httpGet:
           path: /response
           port: 8085
+      readinessProbe:
+        httpGet:
+          path: /ready.jsp
+          port: 8085
+      env:
+        - name: DELAY
+          value: 60
     strategy:
       type: RollingUpdate
       rollingUpdate:
