@@ -33,7 +33,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            "hypersam": "sam-0000974-61dae805",
+            "hypersam": "sam-0000977-fc51fbdf",
             },
 
         ### Release Phase 3 - Canary Prod FRF
