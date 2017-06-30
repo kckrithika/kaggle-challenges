@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
+local utils = import "util_functions.jsonnet";
+
 if configs.kingdom == "frf" || configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
@@ -125,7 +127,7 @@ if configs.kingdom == "frf" || configs.kingdom == "prd" then {
         },
         name: "sdn-peering-agent",
     }
-} else if configs.kingdom == "dfw" || configs.kingdom == "par" || configs.kingdom == "phx" then {
+} else if !utils.is_public_cloud(configs.kingdom) then {
     kind: "DaemonSet",
     spec: {
         template: {
