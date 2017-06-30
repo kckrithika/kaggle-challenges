@@ -64,11 +64,11 @@ system:
         - name: CLEANUP_FOLDER
           value: /var/log/report-collector
         - name: CLEANUP_PERIOD_SECONDS
-          value: 21600
+          value: 1800
         - name: CLEANUP_FILE_PATTERN
           value: "*tmp*"
-        - name: CLEANUP_FILE_AGE_DAYS
-          value: 0
+        - name: CLEANUP_FILE_AGE_MINUTES
+          value: 30
       livenessProbe:
         exec:
           command:
@@ -86,7 +86,7 @@ system:
                   continue;
               fi;
 
-              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mtime +$CLEANUP_FILE_AGE_DAYS -type f -print -delete;
+              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
           done
       ']
     volumes:
