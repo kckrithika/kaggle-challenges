@@ -11,7 +11,7 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor:0.1-0000043-13921766
+      image: tnrp/caas/caas-monitor-prod:2.3.8-0000008-14008866
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
@@ -19,8 +19,6 @@ system:
         - --cluster.name=na45-c1
         - --logging.level.minimum=FINE
         - --logDir=/home/caas/logs/caas
-        - --metrics-publisher-mode=true
-        - --metrics.container=caas.na45.c1
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
