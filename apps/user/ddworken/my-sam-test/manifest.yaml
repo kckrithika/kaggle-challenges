@@ -13,6 +13,7 @@ system:
         httpGet:
           path: /
           port: 9090
+        initialDelaySeconds: 3600
  
   loadbalancers:
   - lbname: samhellolb
