@@ -9,6 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ddworken/ddworkenhelloworld3:samhellodocker
       ports:
       - containerPort: 9090
+      - containerPort: 22
       livenessProbe:
         httpGet:
           path: /
@@ -21,3 +22,5 @@ system:
     ports:
       - port: 9090
         targetport: 9090
+      - port: 22
+        targetport: 22
