@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "par" || configs.kingdom == "dfw" then {
+if configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "par" || configs.kingdom == "phx" || configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
