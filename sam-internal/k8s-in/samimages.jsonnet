@@ -62,6 +62,7 @@ local utils = import "util_functions.jsonnet";
     # Static images that do not go in phases
     static: {
         "k8sproxy": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
+        "estate_info": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estate-info:2017.6.26.0",
 
         "permissionInitContainer": (
             if (kingdom=="prd") then
@@ -76,6 +77,7 @@ local utils = import "util_functions.jsonnet";
     # These are the images used by the templates
     hypersam: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
     k8sproxy: utils.do_override_for_not_tnrp_image($.overrides, "k8sproxy", $.static["k8sproxy"]),
+    estate_info: utils.do_override_for_not_tnrp_image($.overrides, "estate_info", $.static["estate_info"]),
     permissionInitContainer: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
 
 }

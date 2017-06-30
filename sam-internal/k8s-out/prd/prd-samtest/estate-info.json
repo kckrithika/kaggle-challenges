@@ -1,0 +1,54 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "estate-info-server"
+      },
+      "name": "estate-info-server",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "estate-info-server"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "server",
+               "name": "estate-info-server"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [ ],
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estate-info:2017.6.26.0",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/info",
+                        "port": 9090
+                     },
+                     "initialDelaySeconds": 15,
+                     "timeoutSeconds": 10
+                  },
+                  "name": "estate-info-server",
+                  "ports": [
+                     {
+                        "containerPort": 9090,
+                        "name": "estate-info-server"
+                     }
+                  ]
+               }
+            ],
+            "nodeSelector": {
+               "master": "true",
+               "pool": "prd-samtest"
+            }
+         }
+      }
+   }
+}
