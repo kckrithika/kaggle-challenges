@@ -3,23 +3,23 @@
    "kind": "Service",
    "metadata": {
       "labels": {
-         "app": "estate-info"
+         "app": "estate-server"
       },
-      "name": "estate-info-service",
+      "name": "estate-service",
       "namespace": "sam-system"
    },
    "spec": {
       "ports": [
          {
-            "name": "estate-info-port",
-            "nodePort": 40001,
+            "name": "estate-port",
+            "nodePort": 32999,
             "port": 8080,
             "protocol": "TCP",
             "targetPort": 9090
          }
       ],
       "selector": {
-         "name": "estate-info-server"
+         "name": "estate-server"
       },
       "type": "NodePort"
    }

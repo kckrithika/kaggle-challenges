@@ -9,13 +9,13 @@ if configs.estate == "prd-samtest" then {
             spec: {
                 containers: [
                     {
-                        name: "estate-info-server",
+                        name: "estate-server",
                         image: samimages.estate_info,
                         args:[],
                         "ports": [
                         {
                             "containerPort": 9090,
-                            "name": "estate-info-server",
+                            "name": "estate-server",
                         }
                         ],
                       livenessProbe: {
@@ -40,23 +40,23 @@ if configs.estate == "prd-samtest" then {
             },
             metadata: {
                 labels: {
-                    name: "estate-info-server",
+                    name: "estate-server",
                     apptype: "server"
                 }
             }
         },
         selector: {
             matchLabels: {
-                name: "estate-info-server"
+                name: "estate-server"
             }
         }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "estate-info-server"
+            name: "estate-server"
         },
-        name: "estate-info-server",
+        name: "estate-server",
         namespace: "sam-system"
     }
 } else "SKIP"
