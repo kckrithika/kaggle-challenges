@@ -5,8 +5,8 @@ system:
   - name: default
     count: 1
     containers:
-    - name: grpcsample
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/grpc-sample/rama.rao-20170703
+    - name: grpc-sample
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/grpc-sample:rama.rao-20170704
       ports:
       - containerPort: 5555
       livenessProbe:
