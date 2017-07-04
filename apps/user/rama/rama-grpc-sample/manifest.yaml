@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: grpcsample
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/grpc-sample/rama.rao-20170703
+      ports:
+      - containerPort: 5555
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 5555
+
+  loadbalancers:
+  - lbname: samplegrpclb
+    function: default
+    ports:
+      - port: 5555
+        targetport: 5555
