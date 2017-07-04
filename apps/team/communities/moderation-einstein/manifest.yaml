@@ -10,7 +10,7 @@ system:
       count: 3
       containers:
       - name: moderation-einstein-service
-        image: tnrp/moderation-einstein/moderation-einstein-service:1.0.2-0000006-31c09796
+        image: tnrp/moderation-einstein/moderation-einstein-service:1.0.2-0000008-c3e8b61f
         ports:
         - containerPort: 8890
         livenessProbe:

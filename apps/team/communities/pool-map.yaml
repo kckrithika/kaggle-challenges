@@ -1,3 +1,5 @@
 apps:
+  moderation-einstein-test:
+    - prd/prd-sam
   moderation-einstein:
     - prd/prd-sam_moderation_einstein
