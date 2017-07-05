@@ -42,6 +42,9 @@
                }
             ],
             "hostNetwork": true,
+            "nodeSelector": {
+               "service": "slb-ipvs"
+            },
             "volumes": [
                {
                   "hostPath": {
