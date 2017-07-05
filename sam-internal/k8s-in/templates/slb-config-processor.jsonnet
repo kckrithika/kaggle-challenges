@@ -63,6 +63,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                             "--configDir="+slbconfigs.configDir,
                             "--period=6s",
                             "--namespace=sam-system",
+                            "--podstatus=running",
                             "--subnet="+slbconfigs.subnet,
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--serviceList="+slbconfigs.serviceList,
