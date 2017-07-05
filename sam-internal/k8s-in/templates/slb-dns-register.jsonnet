@@ -59,7 +59,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                             }
                         ],
                     }
-                ]
+                ],
+                "nodeSelector":{
+                    "service": "slb-ipvs"
+                }
             }
         }
     }
