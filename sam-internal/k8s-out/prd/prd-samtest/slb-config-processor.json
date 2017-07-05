@@ -26,8 +26,8 @@
                      "--namespace=sam-system",
                      "--subnet=10.251.129.235-245",
                      "--k8sapiserver=",
-                     "--serviceList=slb-delta",
-                     "--vipList=10.251.129.233:9090",
+                     "--serviceList=slb-delta,sam-deployment-portal,k8sproxy",
+                     "--vipList=10.251.129.235:9090,10.251.129.236:0,10.251.129.237:0",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [

@@ -21,17 +21,17 @@ perCluster: {
     },
 
     vipList: {
-        "prd-sdc": "10.251.129.230:9090,10.251.129.231:9090,10.251.129.232:9090",
-        "prd-samtest": "10.251.129.233:9090",
-        "prd-samdev": "10.251.129.234:9090",
-        "prd-sam": "10.251.167.224:0,10.251.167.225:0"
+        "prd-sdc": "10.251.129.224:9090,10.251.129.225:9090,10.251.129.226:9090,10.251.129.227:0,10.251.129.228:0",
+        "prd-samtest": "10.251.129.235:9090,10.251.129.236:0,10.251.129.237:0",
+        "prd-samdev": "10.251.129.246:9090,10.251.129.247:0,10.251.129.248:0",
+        "prd-sam": "10.251.167.224:0,10.251.167.225:0,10.251.167.226:0"
     },
 
     serviceList: {
-        "prd-sdc": "slb-alpha,slb-bravo,slb-charlie",
-        "prd-samtest": "slb-delta",
-        "prd-samdev": "slb-echo",
-        "prd-sam": "slb-foxtrot,sam-deployment-portal"
+        "prd-sdc": "slb-alpha,slb-bravo,slb-charlie,sam-deployment-portal,k8sproxy",
+        "prd-samtest": "slb-delta,sam-deployment-portal,k8sproxy",
+        "prd-samdev": "slb-echo,sam-deployment-portal,k8sproxy",
+        "prd-sam": "slb-foxtrot,sam-deployment-portal,k8sproxy"
     },
 },
 
