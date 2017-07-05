@@ -63,7 +63,7 @@
                      "--bgpPasswordFile=/data/secrets/sambgppassword",
                      "--livenessProbePort=9100"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000181-afcb9bb6",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000182-aef3baec",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
