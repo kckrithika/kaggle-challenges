@@ -24,6 +24,7 @@
                      "--configDir=/host/var/slb/config",
                      "--period=6s",
                      "--namespace=sam-system",
+                     "--podstatus=running",
                      "--subnet=10.251.129.235-245",
                      "--k8sapiserver=",
                      "--serviceList=slb-delta,sam-deployment-portal,k8sproxy",
