@@ -51,6 +51,9 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     # TODO: change prd to sam-test-alerts@salesforce.com when it is ready
     watchdog_emailrec: (if kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
 
+    sdn_watchdog_emailsender: "sdn-alerts@salesforce.com",
+    sdn_watchdog_emailrec: "sdn-alerts@salesforce.com",
+
     # Computed values
 
     funnelVIP:(if kingdom == "par" || kingdom == "frf" then "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080" else  "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80"),
