@@ -40,7 +40,34 @@ exitIfMergeCommitFound() {
   fi
 }
 
+exitIfApproverNAuthorAreDifferent() {
+    declare -a authors=()
+
+    while read commit; do
+       authors+=("$(git --no-pager show -s --format='%ae' $commit | cut -d '@' -f 1|tr '-' '.')")
+    done <<<"$(git ls-remote origin "pull/$STAGE_PULL_REQUEST_ID/head"|awk '{print $1}')"
+
+    echo "Pull request authors are ${authors[@]}"
+
+    approver=$(basename $STAGE_GO_TRIGGER_USER @salesforce.com)
+
+    isAuthorNApproverSame="0"
+    for author in "${authors[@]}"; do
+        if [ "$author" == "$approver" ]; then
+            echo "$author and $approver are same"
+            isAuthorNApproverSame="1"
+        fi
+    done
+
+    if [ "$isAuthorNApproverSame" -eq "0" ]
+      then
+        echo "Author and approver are different"
+        exit 0
+    fi
+}
+
 echo -e "\nEvaluating PR\n"
+
 
 ensureLatestJsons
 
@@ -49,3 +76,44 @@ exitIfMergeCommitFound
 /opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 
 /opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -validateonly -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
+
+exitIfApproverNAuthorAreDifferent
+
+#scratch pad for SMB output with PR changes
+prOutputDir=/tmp/PR_$STAGE_PULL_REQUEST_ID
+
+rm -rf $prOutputDir || true
+
+mkdir $prOutputDir
+
+/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $prOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
+
+#A branch without PR changes.
+origBranch=br_$STAGE_PULL_REQUEST_ID
+
+#scratch pad for SMB output without PR changes
+origOutputDir=/tmp/$origBranch
+
+rm -rf $origOutputDir || true
+mkdir $origOutputDir
+
+git pull origin master:$origBranch
+git checkout $origBranch
+
+/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $origOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
+
+#Switch back to the last branch
+git checkout -
+
+git branch -D $origBranch
+
+#Ignore hashes.yaml and the prd folder
+#Ignore output,timeStamp and all strings begining with 
+#latest in control-estate.yaml as these would be
+#different for different runs in different branches.
+difference=$(diff -wr -x hashes.yaml --exclude=prd -I output -I timeStamp -I 'latest*' $origOutputDir/goal-state $prOutputDir/goal-state)
+if [ ! -z $difference ]; then
+    echo "Non prd changes are not allowed when author and approver are the same"
+else
+    echo "Only prd changes in this PR approver and author can be same."
+fi
