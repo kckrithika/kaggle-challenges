@@ -47,7 +47,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            "hypersdn": "v-0000170-013aa50b",
+            "hypersdn": "v-0000182-aef3baec",
             "bird": "v-0000014-b0a5951d"
             },
 
