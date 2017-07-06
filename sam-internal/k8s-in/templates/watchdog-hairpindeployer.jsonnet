@@ -4,6 +4,13 @@ local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
     spec: {
+        strategy: {
+              type: "RollingUpdate",
+              rollingUpdate: {
+                    maxSurge:   0,
+                    maxUnavailable: 1,
+              },
+         },
         replicas: 1,
         template: {
             spec: {
