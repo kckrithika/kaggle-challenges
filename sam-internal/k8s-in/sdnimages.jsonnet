@@ -12,6 +12,22 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
+
+        "dfw,dfw-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "hnd,hnd-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "iad,iad-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "ord,ord-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "par,par-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "phx,phx-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+        "ukb,ukb-sam,sdn-ping-watchdog,hypersdn":"v-0000170-013aa50b",
+
+        "dfw,dfw-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "hnd,hnd-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "iad,iad-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "ord,ord-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "par,par-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "phx,phx-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
+        "ukb,ukb-sam,sdn-route-watchdog,hypersdn":"v-0000170-013aa50b",
     },
 
     ### Per-phase image tags
@@ -37,7 +53,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - All Prod
         "4": {
-            "hypersdn": "v-0000181-afcb9bb6",
+            "hypersdn": "v-0000146-e0248107",
             "bird": "v-0000014-b0a5951d"
             },
     },

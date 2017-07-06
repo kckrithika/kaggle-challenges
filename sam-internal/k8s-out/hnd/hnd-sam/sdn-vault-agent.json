@@ -28,7 +28,7 @@
                      "--cafile=/data/certs/ca.crt",
                      "--livenessProbePort=9106"
                   ],
-                  "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000181-afcb9bb6",
+                  "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000146-e0248107",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
