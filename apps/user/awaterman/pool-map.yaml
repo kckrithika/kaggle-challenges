@@ -1,0 +1,6 @@
+apps:
+ my-sam-test:
+   - prd/prd-sam
+ eaas-prd:
+   - prd/prd-sam
+

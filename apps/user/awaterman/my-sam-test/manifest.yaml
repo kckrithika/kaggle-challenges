@@ -2,10 +2,10 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: default 
     count: 2
     containers:
-    - name: samhello
+    - name: samhello-awaterman
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/awaterman/samhello:awaterman-20170627 
       ports:
       - containerPort: 9090
@@ -15,7 +15,7 @@ system:
           port: 9090
  
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: samhello-awaterman-lb
     function: default
     ports:
       - port: 9090
