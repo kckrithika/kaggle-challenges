@@ -1,0 +1,73 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "annotations": {
+         "scheduler.alpha.kubernetes.io/affinity": "{\n  \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
+      },
+      "labels": {
+         "name": "slb-vip-watchdog"
+      },
+      "name": "slb-vip-watchdog"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "slb-vip-watchdog"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-vip-watchdog",
+                     "--configDir=/host/var/slb/config",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "--sender=sam-alerts@salesforce.com",
+                     "--recipient=slb@salesforce.com",
+                     "--emailFrequency=12h",
+                     "--watchdogFrequency=180s",
+                     "--alertThreshold=300s",
+                     "--vipLoop=100"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000182-aef3baec",
+                  "name": "slb-vip-watchdog",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-samtest"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               }
+            ]
+         }
+      }
+   }
+}
