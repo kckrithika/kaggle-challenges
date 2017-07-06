@@ -14,6 +14,13 @@
             "name": "watchdog-hairpindeployer"
          }
       },
+      "strategy": {
+         "rollingUpdate": {
+            "maxSurge": 0,
+            "maxUnavailable": 1
+         },
+         "type": "RollingUpdate"
+      },
       "template": {
          "metadata": {
             "labels": {
