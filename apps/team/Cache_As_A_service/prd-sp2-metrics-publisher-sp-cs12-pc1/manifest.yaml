@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: metrics-publisher-sp-cs12-pc1
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: metrics-publisher
+      image: tnrp/caas/caas-monitor-prod:2.3.8-0000008-14008866
+      args:
+        - --server.port=7557
+        - --management.port=7558
+        - --cluster.name=sp-cs12-pc1
+        - --logDir=/home/caas/logs/caas
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7558
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 7557
+      - containerPort: 7558
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-cs12-pc1
