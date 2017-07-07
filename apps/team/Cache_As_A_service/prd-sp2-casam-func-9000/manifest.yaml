@@ -1,0 +1,51 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: csr
+    count: 1
+    
+    hostnetwork: true
+    
+    containers:
+    - name: csr-sam
+      image: tnrp/casam/coreapp:208.3.5-0000009-eb33e8c7
+
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+ 
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+      readinessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+      ports:
+        # Actually used by the container
+        - containerPort: 9000
+        # To avoid conflicts with CaaS perf hosts
+        - containerPort: 12015
+        
+      env:
+        # Not currently setting the redirect host name. By default it'll pickup the hostname of the minion
+        # we're launched on. That's fine for single container, but we'll need to figure out how to handle this
+        # with multiple containers (assuming we're using hostnetwork / containerPort to isolated from caas,
+        # so can't use nodePort).
+        #- name: PUBLIC_HOST_NAME
+        #  value: mist30sam-prd.eng.sfdc.net
+        - name: DEPLOYMENT
+          value: L
+        - name: DB_USER
+          value: sleepy
+
