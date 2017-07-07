@@ -1,0 +1,78 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: core
+    count: 3
+
+    containers:
+    - name: core-sam
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1000
+ 
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+      readinessProbe:
+        httpGet:
+          path: /ready.jsp
+          port: 9000
+          initialDelaySeconds: 5
+          periodSeconds: 1
+
+      ports:
+        - containerPort: 9000
+
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 200%
+          maxUnavailable: 0
+        
+      env:
+        - name: PUBLIC_HOST_NAME
+          value: shared0-samcompute1-1-prd.eng.sfdc.net
+        - name: DEPLOYMENT
+          value: L
+        - name: PORT
+          value: 9000
+        - name: NODES
+          value: 2
+        - name: IP_APP1
+          value: 10.225.243.162
+        - name: IP_APP2
+          value: 10.225.243.54
+        - name: IP_ACS1
+          value: 10.225.243.96
+        - name: IP_ACS2
+          value: 10.225.243.195
+        - name: IP_DB
+          value: 10.225.243.151 
+        - name: IP_QPID1
+          value: 10.225.243.220 
+        - name: IP_QPID2
+          value: 10.225.243.36 
+        - name: IP_MNDS1
+          value: 10.225.243.225 
+        - name: IP_FFX1
+          value: 10.225.243.221 
+        - name: IP_FFX2
+          value: 10.225.243.38 
+        - name: DB_USER
+          value: oracle 
+        - name: DB_PASSWORD
+          value: oracle
+        - name: DB_SID
+          value: database
+
+  loadbalancers:
+  - lbname: coreslb
+    function: core
+    nodeExposed: true
+    ports:
+    - port: 9001
+      targetport: 9000
