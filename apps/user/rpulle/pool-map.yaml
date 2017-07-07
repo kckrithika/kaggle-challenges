@@ -1,3 +1,10 @@
 apps:
  my-sam-test:
   - prd/prd-sam
+
+ rpc-client:
+  - prd/prd-sam
+
+ rpc-server:
+  - prd/prd-sam
+
