@@ -1,4 +1,6 @@
 apps:
+  prd-sp2-casam-func-9000:
+    - prd/prd-sp2-sam_caas
   prd-caas-redis-12099:
     - prd/prd-sp2-sam_caas
   prd-redis-metrics-publisher:
