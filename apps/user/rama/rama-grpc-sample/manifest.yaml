@@ -6,13 +6,13 @@ system:
     count: 1
     containers:
     - name: grpc-sample
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/grpc-sample:rama.rao-20170706
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/grpc-sample:20170707
       ports:
       - name: grpc-port
         containerPort: 5555
       livenessProbe:
         exec:
           command:
-            - "./is-alive.sh"
+            - "./bin/is-alive.sh"
           initialDelaySeconds: 10
           periodSeconds: 5
