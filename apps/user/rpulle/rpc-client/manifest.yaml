@@ -15,6 +15,17 @@ system:
     - name: rpc-client
 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/rpc-client:1.0
+      livenessProbe:
+
+        exec:
+
+          command:
+
+            - "./is-alive.sh"
+
+          initialDelaySeconds: 10
+
+          periodSeconds: 5
 
     - name: linkerd
 
