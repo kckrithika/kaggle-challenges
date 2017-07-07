@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.5.0-0000118-e09f147c
+      image: tnrp/csc-health/report-collector:1.7.0-0000133-a36eb9c5
       ports:
       - name: provider
         containerPort: 8080
@@ -56,7 +56,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.5.0-0000118-e09f147c
+      image: tnrp/csc-health/report-collector:1.7.0-0000133-a36eb9c5
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
