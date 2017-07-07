@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: rpc-server
+    count: 1
+    containers:
+    - name: rpc-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/rpc-server:1.0
+      ports:
+      - name: rpc-port
+        containerPort: 11111
+      livenessProbe:
+        exec:
+          command:
+            - "./is-alive.sh"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+    - name: linkerd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/linkerd-server:1.0
+      args: ["-s", "linkerd-server"]
+      ports:
+      - name: admin-port
+        containerPort: 9990
+      - name: in-port
+        containerPort: 11112
+      livenessProbe:
+        exec:
+          command:
+            - "./is-alive.sh"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+  loadbalancers:
+  - lbname: rpc-server-lb
+    function: rpc-server
+    ports:
+      - name: in-port
+        port: 11111
+        targetport: 11111
