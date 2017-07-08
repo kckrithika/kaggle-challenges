@@ -7,7 +7,7 @@ system:
 
     containers:
     - name: core-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1000
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1001
  
       livenessProbe:
         exec:
@@ -41,7 +41,7 @@ system:
         - name: PORT
           value: 9000
         - name: NODES
-          value: 2
+          value: 3
         - name: IP_APP1
           value: 10.225.243.162
         - name: IP_APP2
