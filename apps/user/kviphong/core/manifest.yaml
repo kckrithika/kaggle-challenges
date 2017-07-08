@@ -7,7 +7,7 @@ system:
 
     containers:
     - name: core-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1002
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1002-v2
  
       livenessProbe:
         exec:
@@ -27,17 +27,11 @@ system:
       ports:
         - containerPort: 9000
 
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxSurge: 200%
-          maxUnavailable: 0
-        
       env:
         - name: PUBLIC_HOST_NAME
           value: shared0-samcompute1-1-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: M
+          value: L
         - name: PORT
           value: 9000
         - name: NODES
@@ -68,6 +62,12 @@ system:
           value: oracle
         - name: DB_SID
           value: database
+
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
 
   loadbalancers:
   - lbname: coreslb
