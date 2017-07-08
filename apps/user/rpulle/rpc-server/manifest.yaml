@@ -4,6 +4,7 @@ system:
   functions:
   - name: rpc-server
     count: 1
+    hostnetwork: true
     containers:
     - name: rpc-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/rpc-server:1.0

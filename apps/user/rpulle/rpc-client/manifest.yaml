@@ -9,6 +9,7 @@ system:
   - name: rpc-client
 
     count: 1
+    hostnetwork: true
 
     containers:
 
