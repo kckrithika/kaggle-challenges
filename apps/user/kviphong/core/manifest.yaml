@@ -7,7 +7,7 @@ system:
 
     containers:
     - name: core-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1001
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1002
  
       livenessProbe:
         exec:
