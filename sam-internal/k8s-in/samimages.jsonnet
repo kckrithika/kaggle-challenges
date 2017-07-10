@@ -28,7 +28,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Test Beds
         "1": {
-            "hypersam": "sam-0000977-fc51fbdf",
+            "hypersam": "sam-0001021-7e7202eb",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
