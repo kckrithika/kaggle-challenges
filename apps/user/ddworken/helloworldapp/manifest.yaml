@@ -1,0 +1,27 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 1  # The number of instances to deploy
+    containers:
+    - name: helloworldapp
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/$USER/helloworldapp:latest  # The tagged container to pull. Make sure to replace $USER with your username here!
+      ports:
+      - containerPort: 9090  # Any ports that need to be exposed to the load balancer
+      # SAM automatically restarts any apps that are frozen, so in order to do this we have to define a liveness probe
+      # that allows for SAM to check if the app is currently alive. In this case, our liveness probe is simply whether
+      # the app is hosting a webserver on port 9090. 
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+        initialDelaySeconds: 3600  # If the web server takes a long time to start up, then you will likely need to tweak this value
+ 
+  loadbalancers:
+  - lbname: helloworldapp-lb
+    function: default
+    ports:
+      - port: 9090  # The port to expose to the outside internet 
+        targetport: 9090  # The port that the container exposes
+
