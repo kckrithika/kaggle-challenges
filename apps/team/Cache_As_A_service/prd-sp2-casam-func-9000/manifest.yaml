@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: csr
-    count: 1
+    count: 2
     
     hostnetwork: true
     
@@ -41,12 +41,9 @@ system:
         # Matches the external port on the load balancer
         - name: PUBLIC_PORT
           value: 9001
-        # Not currently setting the redirect host name. By default it'll pickup the hostname of the minion
-        # we're launched on. That's fine for single container, but we'll need to figure out how to handle this
-        # with multiple containers (assuming we're using hostnetwork / containerPort to isolate from caas,
-        # so can't use nodePort).
-        #- name: PUBLIC_HOST_NAME
-        #  value: mist30sam-prd.eng.sfdc.net
+        # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+        - name: PUBLIC_HOST_NAME
+          value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
           value: L
         - name: DB_USER
