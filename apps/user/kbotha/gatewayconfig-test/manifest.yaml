@@ -11,7 +11,7 @@ system:
     hostnetwork: true
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2017-07-07c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2017-07-10a
       args:
         - start
         - --settings.path=-.-.sfm.-.gatewayconfig
