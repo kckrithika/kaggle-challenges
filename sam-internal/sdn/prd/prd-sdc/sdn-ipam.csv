@@ -16,14 +16,14 @@ shared0-sdcsamcompute1-9-prd.eng.sfdc.net,10.253.152.172/29,10.251.128.128/29,p3
 shared0-sdcsamcompute2-1-prd.eng.sfdc.net,10.253.152.154/29,10.251.128.64/29,k10-02,prd-sdc
 shared0-sdcsamcompute2-10-prd.eng.sfdc.net,10.253.152.178/29,10.251.128.0/29,c40-02,prd-sdc
 shared0-sdcsamcompute2-11-prd.eng.sfdc.net,10.253.152.162/29,10.251.128.184/29,n40-02,prd-sdc
-shared0-sdcsamcompute2-12-prd.eng.sfdc.net,10.253.152.155/29,10.251.128.72/29,k10-02,prd-sdc
+shared0-sdcsamcompute2-12-prd.eng.sfdc.net,10.253.152.155/29,10.251.129.144/29,k10-02,prd-sdc
 shared0-sdcsamcompute2-13-prd.eng.sfdc.net,10.253.152.179/29,10.251.129.56/29,c40-02,prd-sdc
-shared0-sdcsamcompute2-14-prd.eng.sfdc.net,10.253.152.138/29,10.251.128.144/29,n31-02,prd-sdc
+shared0-sdcsamcompute2-14-prd.eng.sfdc.net,10.253.152.138/29,10.251.128.136/29,n31-02,prd-sdc
 shared0-sdcsamcompute2-2-prd.eng.sfdc.net,10.253.152.163/29,10.251.128.192/29,n40-02,prd-sdc
 shared0-sdcsamcompute2-3-prd.eng.sfdc.net,10.253.152.156/29,10.251.128.80/29,k10-02,prd-sdc
 shared0-sdcsamcompute2-4-prd.eng.sfdc.net,10.253.152.164/29,10.251.128.200/29,n40-02,prd-sdc
 shared0-sdcsamcompute2-5-prd.eng.sfdc.net,10.253.152.139/29,10.251.128.152/29,n31-02,prd-sdc
-shared0-sdcsamcompute2-6-prd.eng.sfdc.net,10.253.152.140/29,10.251.128.160/29,n31-02,prd-sdc
+shared0-sdcsamcompute2-6-prd.eng.sfdc.net,10.253.152.140/29,10.251.128.72/29,n31-02,prd-sdc
 shared0-sdcsamcompute2-7-prd.eng.sfdc.net,10.253.152.180/29,10.251.128.16/29,c40-02,prd-sdc
 shared0-sdcsamcompute2-8-prd.eng.sfdc.net,10.253.152.141/29,10.251.128.168/29,n31-02,prd-sdc
 shared0-sdcsamcompute2-9-prd.eng.sfdc.net,10.253.152.157/29,10.251.128.88/29,k10-02,prd-sdc
@@ -31,7 +31,7 @@ shared0-sdcsamkubeapi1-1-prd.eng.sfdc.net,10.253.152.173/29,10.251.129.24/29,p31
 shared0-sdcsamkubeapi1-2-prd.eng.sfdc.net,10.253.152.134/29,10.251.129.240/29,n41-02,prd-sdc
 shared0-sdcsamkubeapi2-1-prd.eng.sfdc.net,10.253.152.142/29,10.251.128.176/29,n31-02,prd-sdc
 shared0-sdcsamkubeapi3-1-prd.eng.sfdc.net,10.253.152.181/29,10.251.128.24/29,c40-02,prd-sdc
-shared0-sdcsdcc1-1-prd.eng.sfdc.net,10.253.152.150/29,10.251.129.224/29,l41-02,prd-sdc
+shared0-sdcsdcc1-1-prd.eng.sfdc.net,10.253.152.150/29,10.251.129.192/29,l41-02,prd-sdc
 shared0-sdcsdcc1-2-prd.eng.sfdc.net,10.253.152.165/29,10.251.128.40/29,n40-02,prd-sdc
 shared0-sdcsdcc1-3-prd.eng.sfdc.net,10.253.152.158/29,10.251.128.96/29,k10-02,prd-sdc
 shared0-sdcsdcc1-4-prd.eng.sfdc.net,10.253.152.189/29,10.251.129.176/29,c41-02,prd-sdc
