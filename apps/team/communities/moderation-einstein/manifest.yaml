@@ -22,8 +22,8 @@ system:
       livenessProbe:
         initialDelaySeconds: 60
         httpGet:
-          path: /
-          port: 8890
+          path: /manage/info
+          port: 15372
 
     # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
     # for a short time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
