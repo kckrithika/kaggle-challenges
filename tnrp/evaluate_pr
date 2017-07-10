@@ -99,6 +99,11 @@ git checkout -
 
 git branch -D $origBranch
 
+if ! diff -wr "$origOutputDir/sam-internal" "$prOutputDir/sam-internal"; then
+    echo "sam-stack updates are not allowed when author and approver are the same"
+    exit 1
+fi
+
 #Ignore hashes.yaml and the prd folder
 #Ignore output,timeStamp and all strings begining with 
 #latest in control-estate.yaml as these would be
