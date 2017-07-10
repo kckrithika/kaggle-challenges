@@ -31,7 +31,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: shared0-samcompute1-1-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: L
+          value: B
         - name: PORT
           value: 9000
         - name: NODES
