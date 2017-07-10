@@ -7,7 +7,7 @@ system:
 
     containers:
     - name: core-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1002
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1002-v2
  
       livenessProbe:
         exec:
@@ -31,7 +31,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: shared0-samcompute1-1-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: G
+          value: B
         - name: PORT
           value: 9000
         - name: NODES
