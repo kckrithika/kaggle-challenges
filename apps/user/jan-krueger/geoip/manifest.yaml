@@ -43,7 +43,7 @@ system:
           port: 15372
         initialDelaySeconds: 15
     - name: sherpa-b
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000032-edd3d815
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam-dev"
@@ -92,7 +92,7 @@ system:
           port: 15372
         initialDelaySeconds: 15
     - name: sherpa-f
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000032-edd3d815
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam-dev"
@@ -119,7 +119,7 @@ system:
       ports:
       - containerPort: 8500
     - name: sherpa-xlt
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000032-edd3d815
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam-dev"
