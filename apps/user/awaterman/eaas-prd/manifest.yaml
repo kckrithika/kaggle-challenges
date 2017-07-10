@@ -6,7 +6,7 @@ system:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas-prd-test 
-    count: 2
+    count: 3 
     strategy:
       type: RollingUpdate
       rollingUpdate:
@@ -14,7 +14,7 @@ system:
         maxUnavailable: 1
     containers:
     - name: eaas-prd-test
-      image: emailinfrastructure/eaas:0.0.1-13 
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/tnrp/emailinfrastructure/eaas:0.0.1-13 
       ports:
         - containerPort: 8080
         - containerPort: 9507
@@ -22,7 +22,8 @@ system:
         httpGet:
           path: /available
           port: 8080
-      minReadySeconds: 25
+          initialDelaySeconds: 10
+        minReadySeconds: 25
   loadbalancers:
   - lbname: eaas-prd-test-lb
     function: eaas-prd-test
