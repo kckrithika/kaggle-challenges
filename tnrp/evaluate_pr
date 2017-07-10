@@ -40,27 +40,19 @@ exitIfMergeCommitFound() {
   fi
 }
 
+readOnlyGitToken="ef11904af720485500651dedc5c513303bc3a5d3"
+
 exitIfApproverNAuthorAreDifferent() {
-    declare -a authors=()
 
-    while read commit; do
-       authors+=("$(git --no-pager show -s --format='%ae' $commit | cut -d '@' -f 1|tr '-' '.')")
-    done <<<"$(git ls-remote origin "pull/$STAGE_PULL_REQUEST_ID/head"|awk '{print $1}')"
+    author=$(curl https://$readOnlyGitToken@git.soma.salesforce.com/api/v3/repos/sam/manifests/pulls/$STAGE_PULL_REQUEST_ID |  python -c 'import json,sys;obj=json.load(sys.stdin);print obj["user"]["login"]' | tr '-' '.')
 
-    echo "Pull request authors are ${authors[@]}"
+    echo "Pull request author is $author"
 
     approver=$(basename $STAGE_GO_TRIGGER_USER @salesforce.com)
 
-    isAuthorNApproverSame="0"
-    for author in "${authors[@]}"; do
-        if [ "$author" == "$approver" ]; then
-            echo "$author and $approver are same"
-            isAuthorNApproverSame="1"
-        fi
-    done
-
-    if [ "$isAuthorNApproverSame" -eq "0" ]
-      then
+    if [ "$author" == "$approver" ]; then
+        echo "$author and $approver are same"
+    else
         echo "Author and approver are different"
         exit 0
     fi
