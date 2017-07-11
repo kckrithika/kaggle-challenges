@@ -21,6 +21,7 @@ system:
         - --synctask.archive-dir=/opt/gater
         - --tnrp.use-vip=true
         - --tnrp.with-tls=false
+        - --scone.srpc.announcing-enabled=false
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
