@@ -61,7 +61,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                         "command":[
                             "/sdn/slb-config-processor",
                             "--configDir="+slbconfigs.configDir,
-                            "--period=6s",
+                            "--period=15s",
                             "--namespace=sam-system",
                             "--podstatus=running",
                             "--subnet="+slbconfigs.subnet,
