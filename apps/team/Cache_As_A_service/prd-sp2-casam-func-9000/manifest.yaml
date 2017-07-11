@@ -9,7 +9,7 @@ system:
     
     containers:
     - name: csr-sam
-      image: tnrp/casam/coreapp:208.3.5-0000011-96eff820
+      image: tnrp/casam/coreapp:208.3.5-0000012-521109bb
 
       resources:
         limits: { memory: "8292M" }
@@ -18,18 +18,17 @@ system:
       livenessProbe:
         exec:
           command:
-           - echo
-           - HEALTHY
-          initialDelaySeconds: 5
-          periodSeconds: 5
+           - ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`
+          initialDelaySeconds: 60
+          periodSeconds: 1
 
       readinessProbe:
-        exec:
-          command:
-           - echo
-           - HEALTHY
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        httpGet:
+          path: /ready.jsp
+          port: 9000
+          initialDelaySeconds: 120
+          periodSeconds: 1
+          failureThreshold: 3
 
       ports:
         # Actually used by the container
@@ -48,6 +47,10 @@ system:
           value: L
         - name: DB_USER
           value: sleepy
+        - name: PORT
+          value: 9000
+        - name: NODES
+          value: 2
 
   loadbalancers:
   - lbname: csrlb
