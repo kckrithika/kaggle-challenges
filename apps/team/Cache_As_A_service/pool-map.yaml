@@ -225,3 +225,19 @@ apps:
     - phx/phx-sp1-sam_caas
   phx-sp1-redis-sp-cs52-c1-12028:
     - phx/phx-sp1-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs9-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs9-c1-12020:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp4-metrics-publisher-sp-cs69-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-cs69-c1-12020:
+    - dfw/dfw-sp4-sam_caas
+  frf-sp1-metrics-publisher-sp-cs83-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs83-c1-12020:
+    - frf/frf-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs88-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs88-c1-12020:
+    - par/par-sp1-sam_caas
