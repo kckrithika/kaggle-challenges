@@ -153,3 +153,75 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-sp2-redis-sp-cs3-pc1-12039:
     - prd/prd-sp2-sam_caas
+  phx-sp1-metrics-publisher-sp-na34-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na34-pc1-12039:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na8-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na8-pc1-12035:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-cs3-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs3-c1-12024:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na7-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na7-c1-12032:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-cs3-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs3-pc1-12025:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na39-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na39-pc1-12041:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na8-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na8-c1-12034:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na39-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na39-c1-12040:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na44-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na44-c1-12030:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na34-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na34-c1-12038:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na33-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na33-c1-12036:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na7-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na7-pc1-12033:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-cs12-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs12-pc1-12027:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na33-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na33-pc1-12037:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-cs12-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs12-c1-12026:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-cs52-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs52-pc1-12029:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-na44-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-na44-pc1-12031:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-cs52-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-cs52-c1-12028:
+    - phx/phx-sp1-sam_caas
