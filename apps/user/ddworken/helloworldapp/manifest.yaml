@@ -6,7 +6,7 @@ system:
     count: 1  # The number of instances to deploy
     containers:
     - name: helloworldapp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/$USER/helloworldapp:latest  # The tagged container to pull. Make sure to replace $USER with your username here!
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ddworken/helloworldapp:latest  # The tagged container to pull. Make sure to replace $USER with your username here!
       ports:
       - containerPort: 9090  # Any ports that need to be exposed to the load balancer
       # SAM automatically restarts any apps that are frozen, so in order to do this we have to define a liveness probe
