@@ -7,26 +7,26 @@ apps:
   - prd/prd-sam
  ed-sdd:
   - prd/prd-sam
-#  ed-h2o-60100:
-#   - prd/prd-sam
-#  ed-h2o-60101:
-#   - prd/prd-sam
-#  ed-h2o-60102:
-#   - prd/prd-sam
-#  ed-h2o-60103:
-#   - prd/prd-sam
-#  ed-h2o-60104:
-#   - prd/prd-sam
-#  ed-h2o-60105:
-#   - prd/prd-sam
-#  ed-h2o-60106:
-#   - prd/prd-sam
-#  ed-h2o-60107:
-#   - prd/prd-sam
-#  ed-h2o-60108:
-#   - prd/prd-sam
-#  ed-h2o-60109:
-#   - prd/prd-sam
+ ed-h2o-60100:
+  - prd/prd-sam
+ ed-h2o-60101:
+  - prd/prd-sam
+ ed-h2o-60102:
+  - prd/prd-sam
+ ed-h2o-60103:
+  - prd/prd-sam
+ ed-h2o-60104:
+  - prd/prd-sam
+ ed-h2o-60105:
+  - prd/prd-sam
+ ed-h2o-60106:
+  - prd/prd-sam
+ ed-h2o-60107:
+  - prd/prd-sam
+ ed-h2o-60108:
+  - prd/prd-sam
+ ed-h2o-60109:
+  - prd/prd-sam
 #  ed-h2o-60110:
 #   - prd/prd-sam
 #  ed-h2o-60111:
