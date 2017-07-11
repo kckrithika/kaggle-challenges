@@ -16,9 +16,6 @@ system:
         containerPort: 8443
       - name: consumer-https
         containerPort: 8444
-      resources:
-        limits: { cpu: "20", memory: "20Gi" }
-        requests: { cpu: "10", memory: "20Gi" }
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
@@ -100,9 +97,6 @@ system:
       image: tnrp/p4tools/redis:3.0.2-01
       ports:
       - containerPort: 6379
-      resources:
-        limits: { cpu: "2", memory: "10Gi" }
-        requests: { cpu: "2", memory: "10Gi" }
       logs:
       - directory: /var/log/redis
       command: ["/bin/sh", "-c"]
