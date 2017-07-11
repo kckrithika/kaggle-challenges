@@ -20,9 +20,9 @@ system:
           name: casp-home-vol
         livenessProbe:
           httpGet:
-            path: /
-            port: 8889
-          initialDelaySeconds: 15
+            path: /manage/health
+            port: 15372
+          initialDelaySeconds: 60
       volumes:
       - name: casp-home-vol
         hostPath:
