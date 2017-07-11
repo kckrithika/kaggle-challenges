@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: redis-sp-na45-c1-12022
+  - name: redis-sp-na44-c1-12030
     count: 4
     hostnetwork: true
     containers:
@@ -15,30 +15,30 @@ system:
         - mountPath: /home/caas/logs
           name: logvol
       args:
-        - --port=12022
+        - --port=12030
         - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12022
+           - --port=12030
           initialDelaySeconds: 15
           timeoutSeconds: 10
       ports:
-      - containerPort: 12022
+      - containerPort: 12030
     - name: caas-redis-announcer
       image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
-        - --redisPort=12022
-        - --cluster.name=sp-na45-c1
+        - --redisPort=12030
+        - --cluster.name=sp-na44-c1
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12022
+           - --port=12030
           initialDelaySeconds: 15
           timeoutSeconds: 10
       env:
@@ -59,4 +59,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-na45-c1
+         secretName: caas-secret-sp-na44-c1

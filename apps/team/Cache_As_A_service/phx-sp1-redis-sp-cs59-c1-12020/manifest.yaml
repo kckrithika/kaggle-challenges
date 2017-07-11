@@ -9,14 +9,14 @@ system:
     - name: caas-redis
       image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
       resources:
-        limits: { memory: "4196M" }
-        requests: { memory: "4196M" }
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
       args:
         - --port=12020
-        - --maxMemoryMB=4096
+        - --maxMemoryMB=8192
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
