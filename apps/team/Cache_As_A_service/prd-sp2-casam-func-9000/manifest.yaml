@@ -19,16 +19,16 @@ system:
         exec:
           command:
            - ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`
-          initialDelaySeconds: 60
-          periodSeconds: 1
+        initialDelaySeconds: 60
+        periodSeconds: 1
 
       readinessProbe:
         httpGet:
           path: /ready.jsp
           port: 9000
-          initialDelaySeconds: 120
-          periodSeconds: 1
-          failureThreshold: 3
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 3
 
       ports:
         # Actually used by the container
