@@ -18,11 +18,10 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
+                        + (if configs.kingdom == "prd" then [ "-deploymentNamespacePrefixWhitelist=sam-system,csc-sam" ] else [])
                         + samwdconfig.shared_args
                         + samwdconfig.shared_args_certs
-                        # [thargrove] 2017-05-05 Right now this checker fails for customer apps.  We need to ignore user-* namespaces
-                        + (if configs.kingdom == "prd" then [ "-snoozedAlarms=deploymentChecker=2017/06/01" ] else [])
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
+                        + [ "-emailFrequency=24h" ],
                        volumeMounts: [
                           samwdconfig.cert_volume_mount,
                           samwdconfig.kube_config_volume_mount,
