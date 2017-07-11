@@ -14,7 +14,7 @@ system:
         maxUnavailable: 1
     containers:
     - name: eaas-prd-test
-      image: tnrp/emailinfrastructure/eaas:0.0.1-13 
+      image: tnrp/emailinfrastructure/eaas/0.0.1-0000013-d3a5606c 
       ports:
         - containerPort: 8080
         - containerPort: 9507
