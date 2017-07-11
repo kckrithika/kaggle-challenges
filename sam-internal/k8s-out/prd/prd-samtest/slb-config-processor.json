@@ -22,7 +22,7 @@
                   "command": [
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
-                     "--period=6s",
+                     "--period=15s",
                      "--namespace=sam-system",
                      "--podstatus=running",
                      "--subnet=10.251.129.235-245",
