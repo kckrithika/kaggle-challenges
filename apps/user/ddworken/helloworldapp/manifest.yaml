@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: default 
     count: 1  # The number of instances to deploy
     containers:
     - name: helloworldapp
