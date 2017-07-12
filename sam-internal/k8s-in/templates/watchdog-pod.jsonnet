@@ -17,7 +17,9 @@ local samimages = import "samimages.jsonnet";
                             "-role=POD",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=300s",
-                            "-maxUptimeSampleSize=5"
+                            "-maxUptimeSampleSize=5",
+                            # We dont want to report on broken hairpin pods, since hairpin already alerts on those
+                            "-podNamespacePrefixBlacklist=sam-watchdog",
                         ]
                         + (if configs.kingdom == "prd" then [ "-podNamespacePrefixWhitelist=sam-system" ] else [])
                         + samwdconfig.shared_args

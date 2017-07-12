@@ -30,6 +30,7 @@
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
                      "-maxUptimeSampleSize=5",
+                     "-podNamespacePrefixBlacklist=sam-watchdog",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
                      "-rcImtEndpoint=https://ops0-health1-1-par.ops.sfdc.net:18443/v1/bark",
