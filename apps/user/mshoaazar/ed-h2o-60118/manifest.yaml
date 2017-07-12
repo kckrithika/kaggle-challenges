@@ -19,5 +19,5 @@ system:
   - lbname: ed-h2o-60118
     function: ed-h2o-60118
     ports:
-      - port: 60118
+      - port: 54321
         targetport: 54321
