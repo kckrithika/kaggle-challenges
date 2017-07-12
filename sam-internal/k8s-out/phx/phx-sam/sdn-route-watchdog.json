@@ -30,7 +30,8 @@
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
-                     "--livenessProbePort=9104"
+                     "--livenessProbePort=9104",
+                     "--snoozedAlarms=RouteValidator=2017/07/19"
                   ],
                   "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000181-afcb9bb6",
                   "livenessProbe": {
