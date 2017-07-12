@@ -5,8 +5,8 @@ system:
     email:
       - iotenterprise@salesforce.com
   functions:
-  - name: controlplane
-    count: 4
+  - name: controlplane-ftest
+    count: 2
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
@@ -38,8 +38,8 @@ system:
       type: Recreate
 
   loadbalancers:
-  - lbname: controlplane
-    function: controlplane
+  - lbname: controlplane-ftest
+    function: controlplane-ftest
     ports:
       - port: 9090
         targetport: 9090
