@@ -18,7 +18,9 @@ system:
       livenessProbe:
         exec:
           command:
-           - ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`
+           - "/bin/sh"
+           - "-c"
+           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
         initialDelaySeconds: 60
         periodSeconds: 1
 
