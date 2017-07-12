@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.kingdom == "frf" then {
+{
 
     kind: "Deployment",
     spec: {
@@ -84,4 +84,4 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
         name: "sam-deployment-reporter",
         namespace: "sam-system"
     }
-} else "SKIP"
+}
