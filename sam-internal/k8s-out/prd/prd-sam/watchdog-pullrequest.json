@@ -1,0 +1,66 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "watchdog-pullrequest"
+      },
+      "name": "watchdog-pullrequest"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "watchdog-pullrequest"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "monitoring",
+               "name": "watchdog-pullrequest"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/watchdog",
+                     "-role=PULLREQUEST",
+                     "-watchdogFrequency=3m",
+                     "-alertThreshold=10s",
+                     "-emailFrequency=1h",
+                     "-timeout=2s",
+                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
+                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
+                     "-sender=sam-alerts@salesforce.com",
+                     "-recipient=sam@salesforce.com"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001034-070ff746",
+                  "name": "watchdog-pullrequest",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/var/token",
+                        "name": "token",
+                        "readOnly": true
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sam"
+            },
+            "volumes": [
+               {
+                  "name": "token",
+                  "secret": {
+                     "secretName": "git-token"
+                  }
+               }
+            ]
+         }
+      }
+   }
+}

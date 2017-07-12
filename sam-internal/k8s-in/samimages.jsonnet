@@ -21,6 +21,7 @@ local utils = import "util_functions.jsonnet";
 
         "prd,prd-sdc,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
         "prd,prd-samtest,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
+        "prd,prd-sam,watchdog-pullrequest,hypersam": "sam-0001034-070ff746",
     },
 
     ### Per-phase image tags
