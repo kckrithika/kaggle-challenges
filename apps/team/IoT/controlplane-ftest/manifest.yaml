@@ -6,7 +6,7 @@ system:
       - iotenterprise@salesforce.com
   functions:
   - name: controlplane-ftest
-    count: 4
+    count: 2
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
