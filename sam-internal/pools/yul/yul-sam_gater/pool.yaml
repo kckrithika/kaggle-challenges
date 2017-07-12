@@ -5,4 +5,4 @@ access:
   - 'team/Gater'
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo
-controlEstate: yul/yul-sam_gater
+controlEstate: yul/yul-sam
