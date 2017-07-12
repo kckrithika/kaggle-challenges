@@ -241,3 +241,7 @@ apps:
     - par/par-sp1-sam_caas
   par-sp1-redis-sp-cs88-c1-12020:
     - par/par-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs15-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs15-c1-12000:
+    - ord/ord-sp1-sam_caas
