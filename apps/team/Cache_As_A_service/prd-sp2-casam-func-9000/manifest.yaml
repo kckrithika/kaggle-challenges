@@ -46,7 +46,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: L
+          value: M
         - name: DB_USER
           value: sleepy
         - name: PORT
