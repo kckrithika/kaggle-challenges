@@ -8,7 +8,7 @@ system:
   functions:
   - name: default
     count: 2
-    hostnetwork: true
+    #hostnetwork: true
     containers:
     - name: gatewayconfig
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2017-07-11a
@@ -27,6 +27,7 @@ system:
           port: 9133
   loadbalancers:
   - lbname: gatewayconfiglb
+    nodeexposed: true
     function: default
     ports:
       - port: 9133
