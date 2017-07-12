@@ -7,23 +7,25 @@ system:
 
     containers:
     - name: core-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1002-v2
- 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.12-1003
+
       livenessProbe:
         exec:
           command:
-           - echo
-           - HEALTHY
-          initialDelaySeconds: 5
-          periodSeconds: 5
+           - "/bin/sh"
+           - "-c"
+           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+        initialDelaySeconds: 60
+        periodSeconds: 1
 
       readinessProbe:
         httpGet:
           path: /ready.jsp
           port: 9000
-          initialDelaySeconds: 5
-          periodSeconds: 1
-
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 3
+ 
       ports:
         - containerPort: 9000
 
@@ -31,31 +33,31 @@ system:
         - name: PUBLIC_HOST_NAME
           value: shared0-samcompute1-1-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: B
+          value: A
         - name: PORT
           value: 9000
         - name: NODES
           value: 3
         - name: IP_APP1
-          value: 10.225.240.96
+          value: 10.225.245.60
         - name: IP_APP2
-          value: 10.225.240.20
+          value: 10.225.245.130
         - name: IP_ACS1
-          value: 10.225.240.251
+          value: 10.225.245.146 
         - name: IP_ACS2
-          value: 10.225.240.240
+          value: 10.225.245.220
         - name: IP_DB
-          value: 10.225.240.97
+          value: 10.225.245.41
         - name: IP_QPID1
-          value: 10.225.240.123
+          value: 10.225.245.88
         - name: IP_QPID2
-          value: 10.225.240.49
+          value: 10.225.245.75
         - name: IP_MNDS1
-          value: 10.225.240.60
+          value: 10.225.245.33
         - name: IP_FFX1
-          value: 10.225.240.110
+          value: 10.225.245.136
         - name: IP_FFX2
-          value: 10.225.240.159
+          value: 10.225.245.56
         - name: DB_USER
           value: oracle 
         - name: DB_PASSWORD
