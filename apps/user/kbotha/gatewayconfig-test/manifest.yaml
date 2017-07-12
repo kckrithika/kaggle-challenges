@@ -25,4 +25,9 @@ system:
         httpGet:
           path: /api
           port: 9133
-
+  loadbalancers:
+  - lbname: gatewayconfiglb
+    function: default
+    ports:
+      - port: 9133
+        targetport: 9133
