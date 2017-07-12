@@ -139,21 +139,40 @@ def make_work_items(templates_dir, output_root_dir, control_estates):
             ret.append(jsonnet_workitem(kingdom, estate, template, full_out_dir))
     return ret
 
+# Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
+# This is ugly right now, but it avoid an extra step each time we add a control estate.
+def find_control_estates(pools_dir):
+    all_control_estates = {}
+    pool_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(pools_dir) for f in filenames if os.path.basename(f) == 'pool.yaml']
+    for pool_file in pool_files:
+        with open(pool_file, 'r') as poolfd:
+            lines = poolfd.readlines()
+            this_ce = ""
+            for line in lines:
+                if line.strip().startswith("controlEstate:"):
+                    if this_ce != "":
+                        raise IOError("More than one controlEstate entry in " + pool_file)
+                    this_ce = line.split(":")[1].strip()
+            if this_ce == "":
+                raise IOError("Could not find controlEstate in " + pool_file)
+            all_control_estates[this_ce] = 1
+    ret = []
+    for ce in all_control_estates.keys():
+        ret.append(ce)
+    sorted(ret)
+    return ret
+
 def main():
     # Process arguments
     if len(sys.argv) != 4:
-        print("usage: parallel_run.py template_dir output_dir list_of_control_estates.txt")
+        print("usage: parallel_run.py template_dir output_dir pools_dir")
         return
     template_dir = sys.argv[1]
     output_dir = sys.argv[2]
-    control_estates_filename = sys.argv[3]
+    pools_dir = sys.argv[3]
 
     # Read control estates
-    control_estates = []
-    with open(control_estates_filename) as f:
-      for line in f.readlines():
-          if not line.startswith("#"):
-            control_estates.append(line.strip())
+    control_estates = find_control_estates(pools_dir)
 
     # Do the work
     work_items = make_work_items(template_dir, output_dir, control_estates)
