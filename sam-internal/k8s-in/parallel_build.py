@@ -6,7 +6,6 @@ import subprocess
 from subprocess import Popen, PIPE, STDOUT
 from Queue import Queue
 from threading import Thread
-import yaml
 
 NUM_WORKER_THREADS = 10
 
@@ -140,18 +139,23 @@ def make_work_items(templates_dir, output_root_dir, control_estates):
             ret.append(jsonnet_workitem(kingdom, estate, template, full_out_dir))
     return ret
 
+# Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
+# This is ugly right now, but it avoid an extra step each time we add a control estate.
 def find_control_estates(pools_dir):
     all_control_estates = {}
     pool_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(pools_dir) for f in filenames if os.path.basename(f) == 'pool.yaml']
     for pool_file in pool_files:
-        with open(pool_file, 'r') as stream:
-            try:
-                y = yaml.load(stream)
-                ce = y["controlEstate"]
-                all_control_estates[ce] = 1
-            except yaml.YAMLError as exc:
-                print(exc)
-                raise exc
+        with open(pool_file, 'r') as poolfd:
+            lines = poolfd.readlines()
+            this_ce = ""
+            for line in lines:
+                if line.strip().startswith("controlEstate:"):
+                    if this_ce != "":
+                        raise IOError("More than one controlEstate entry in " + pool_file)
+                    this_ce = line.split(":")[1].strip()
+            if this_ce == "":
+                raise IOError("Could not find controlEstate in " + pool_file)
+            all_control_estates[this_ce] = 1
     ret = []
     for ce in all_control_estates.keys():
         ret.append(ce)
