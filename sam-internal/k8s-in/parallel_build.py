@@ -6,6 +6,7 @@ import subprocess
 from subprocess import Popen, PIPE, STDOUT
 from Queue import Queue
 from threading import Thread
+import yaml
 
 NUM_WORKER_THREADS = 10
 
@@ -139,21 +140,35 @@ def make_work_items(templates_dir, output_root_dir, control_estates):
             ret.append(jsonnet_workitem(kingdom, estate, template, full_out_dir))
     return ret
 
+def find_control_estates(pools_dir):
+    all_control_estates = {}
+    pool_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(pools_dir) for f in filenames if os.path.basename(f) == 'pool.yaml']
+    for pool_file in pool_files:
+        with open(pool_file, 'r') as stream:
+            try:
+                y = yaml.load(stream)
+                ce = y["controlEstate"]
+                all_control_estates[ce] = 1
+            except yaml.YAMLError as exc:
+                print(exc)
+                raise exc
+    ret = []
+    for ce in all_control_estates.keys():
+        ret.append(ce)
+    sorted(ret)
+    return ret
+
 def main():
     # Process arguments
     if len(sys.argv) != 4:
-        print("usage: parallel_run.py template_dir output_dir list_of_control_estates.txt")
+        print("usage: parallel_run.py template_dir output_dir pools_dir")
         return
     template_dir = sys.argv[1]
     output_dir = sys.argv[2]
-    control_estates_filename = sys.argv[3]
+    pools_dir = sys.argv[3]
 
     # Read control estates
-    control_estates = []
-    with open(control_estates_filename) as f:
-      for line in f.readlines():
-          if not line.startswith("#"):
-            control_estates.append(line.strip())
+    control_estates = find_control_estates(pools_dir)
 
     # Do the work
     work_items = make_work_items(template_dir, output_dir, control_estates)

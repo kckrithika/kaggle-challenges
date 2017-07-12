@@ -1,0 +1,86 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "samcontrol-deployer"
+      },
+      "name": "samcontrol-deployer"
+   },
+   "spec": {
+      "replicas": 1,
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "samcontrol-deployer"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/samcontrol-deployer",
+                     "--funnelEndpoint=ajna0-funnel1-0-yul.data.sfdc.net:80",
+                     "--logtostderr=true",
+                     "--disableSecurityCheck=true",
+                     "--tnrpEndpoint=https://ops0-piperepo1-1-yul.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--k8sapiserver=",
+                     "--observeMode=false",
+                     "--delay=30s",
+                     "--emailNotify=true",
+                     "--smtpServer=ops0-mta2-1-yul.ops.sfdc.net:25",
+                     "--sender=sam@salesforce.com",
+                     "--recipient=sam@salesforce.com"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0000974-61dae805",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/",
+                        "port": 9099
+                     },
+                     "initialDelaySeconds": 2,
+                     "periodSeconds": 10,
+                     "timeoutSeconds": 10
+                  },
+                  "name": "samcontrol-deployer",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "yul-sam_gater"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
