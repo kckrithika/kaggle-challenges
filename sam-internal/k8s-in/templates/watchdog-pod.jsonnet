@@ -19,12 +19,10 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=300s",
                             "-maxUptimeSampleSize=5"
                         ]
+                        + (if configs.kingdom == "prd" then [ "-podNamespacePrefixWhitelist=sam-system" ] else [])
                         + samwdconfig.shared_args
                         + samwdconfig.shared_args_certs
-                        # [thargrove] 2017-05-05 We have failing customer pods in all test beds.  We need to ignore 
-                        # failing pods with "user-*" namespace
-                        + (if configs.kingdom == "prd" then [ "-snoozedAlarms=podUpTimeChecker=2017/06/01" ] else [])
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
+                        + [ "-emailFrequency=24h" ],
                         volumeMounts: [
                             samwdconfig.cert_volume_mount,
                             samwdconfig.kube_config_volume_mount,
