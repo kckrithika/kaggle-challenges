@@ -32,7 +32,7 @@
                      "-sender=sam-alerts@salesforce.com",
                      "-recipient=sam-alerts@salesforce.com"
                   ],
-                  "image": "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0000974-61dae805",
+                  "image": "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0001027-676096c4",
                   "name": "watchdog",
                   "resources": {
                      "limits": {

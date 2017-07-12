@@ -36,7 +36,7 @@
                      "--keyFile=/data/certs/hostcert.key",
                      "--certFile=/data/certs/hostcert.crt"
                   ],
-                  "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0000974-61dae805",
+                  "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001027-676096c4",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {
