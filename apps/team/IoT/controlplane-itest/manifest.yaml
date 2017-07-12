@@ -5,20 +5,20 @@ system:
     email:
       - iotenterprise@salesforce.com
   functions:
-  - name: controlplane
+  - name: controlplane-itest
     count: 4
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
       ports:
         - name: server
-          containerPort: 8080
+          containerPort: 8081
         - name: grpc
-          containerPort: 9090
+          containerPort: 9091
       livenessProbe:
         httpGet:
           path: /ping
-          port: 8080
+          port: 8081
         initialDelaySeconds: 120
         timeoutSeconds: 120
       # TODO: arrange this with iot-ent team
@@ -38,10 +38,10 @@ system:
       type: Recreate
 
   loadbalancers:
-  - lbname: controlplane
-    function: controlplane
+  - lbname: controlplane-itest
+    function: controlplane-itest
     ports:
-      - port: 9090
-        targetport: 9090
-      - port: 8080
-        targetport: 8080
+      - port: 9091
+        targetport: 9091
+      - port: 8081
+        targetport: 8081
