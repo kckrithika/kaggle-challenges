@@ -9,6 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/samhello:bob-20160908
       ports:
       - containerPort: 9090
+        name: testportname
       livenessProbe:
         httpGet:
           path: /
