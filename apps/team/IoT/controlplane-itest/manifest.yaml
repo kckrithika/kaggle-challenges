@@ -25,6 +25,13 @@ system:
       volumeMounts:
       - mountPath: /logs
         name: logvol
+      resources:
+        requests:
+          memory: '2G'
+          cpu: 2
+        limits:
+          memory: '16G'
+          cpu: 7
  
     # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
