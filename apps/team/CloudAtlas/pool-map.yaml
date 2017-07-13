@@ -1,9 +1,9 @@
 apps:
-  cloudatlas-proxy:
+  prd-cloudatlas-proxy:
     - prd/prd-sam_cloudatlas
-  cloudatlas-ds:
+  prd-cloudatlas-ds:
     - prd/prd-sam_cloudatlas_dir
-  cloudatlas-proxy-admin:
+  prd-cloudatlas-proxy-admin:
     - prd/prd-sam_cloudatlas
-  cloudatlas-ds-admin:
+  prd-cloudatlas-ds-admin:
     - prd/prd-sam_cloudatlas_dir
