@@ -25,7 +25,7 @@ local utils = import "util_functions.jsonnet";
         
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            "hypersdn": "v-0000209-3af55ab1",
+            "hypersdn": "v-0000211-a7a885a1",
             },
 
         ### Release Phase 3 - Canary sites in Prod
