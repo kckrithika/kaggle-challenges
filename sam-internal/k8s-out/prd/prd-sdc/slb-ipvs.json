@@ -1,0 +1,118 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "slb-ipvs"
+      },
+      "name": "slb-ipvs"
+   },
+   "spec": {
+      "replicas": 2,
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "slb-ipvs"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-ipvs-installer",
+                     "--modules=/sdn",
+                     "--host=/host",
+                     "--marker=/host/var/slb/ipvs.marker",
+                     "--period=5s",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000211-a7a885a1",
+                  "name": "slb-ipvs-installer",
+                  "securityContext": {
+                     "capabilities": {
+                        "add": [
+                           "ALL"
+                        ]
+                     },
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/dev",
+                        "name": "dev-volume"
+                     },
+                     {
+                        "mountPath": "/lib/modules",
+                        "name": "lib-modules-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/sdn/slb-ipvs-processor",
+                     "--configDir=/host/var/slb/config",
+                     "--marker=/host/var/slb/ipvs.marker",
+                     "--period=5s",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000211-a7a885a1",
+                  "name": "slb-ipvs-processor",
+                  "securityContext": {
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     },
+                     {
+                        "mountPath": "/host/var/slb/config",
+                        "name": "var-config-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "service": "slb-ipvs"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/slb/config"
+                  },
+                  "name": "var-config-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/dev"
+                  },
+                  "name": "dev-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/lib/modules"
+                  },
+                  "name": "lib-modules-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               }
+            ]
+         }
+      }
+   }
+}
