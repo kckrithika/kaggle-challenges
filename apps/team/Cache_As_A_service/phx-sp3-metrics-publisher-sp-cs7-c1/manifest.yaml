@@ -7,14 +7,12 @@ system:
     hostnetwork: true
     containers:
     - name: metrics-publisher 
-      image: tnrp/caas/caas-monitor:0.1-0000040-13905023
+      image: tnrp/caas/caas-monitor-prod:2.3.8-0000008-14008866
       args: 
         - --server.port=7500 
         - --management.port=7501
         - --cluster.name=sp-cs7-c1
         - --logDir=/home/caas/logs/caas
-        - --metrics-publisher-mode=true
-        - --metrics.container=caas.sp.cs7.c1
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
