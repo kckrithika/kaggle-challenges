@@ -33,31 +33,31 @@ system:
         - name: PUBLIC_HOST_NAME
           value: shared0-samcompute1-1-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: A
+          value: B
         - name: PORT
           value: 9000
         - name: NODES
           value: 3
         - name: IP_APP1
-          value: 10.225.245.60
+          value: 10.225.242.231
         - name: IP_APP2
-          value: 10.225.245.130
+          value: 10.225.242.30
         - name: IP_ACS1
-          value: 10.225.245.146 
+          value: 10.225.242.124
         - name: IP_ACS2
-          value: 10.225.245.220
+          value: 10.225.242.193
         - name: IP_DB
-          value: 10.225.245.41
+          value: 10.225.242.80
         - name: IP_QPID1
-          value: 10.225.245.88
+          value: 10.225.242.81
         - name: IP_QPID2
-          value: 10.225.245.75
+          value: 10.225.242.56
         - name: IP_MNDS1
-          value: 10.225.245.33
+          value: 10.225.242.46
         - name: IP_FFX1
-          value: 10.225.245.136
+          value: 10.225.242.75
         - name: IP_FFX2
-          value: 10.225.245.56
+          value: 10.225.242.82
         - name: DB_USER
           value: oracle 
         - name: DB_PASSWORD
