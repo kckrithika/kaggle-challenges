@@ -12,13 +12,13 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
       ports:
         - name: server
-          containerPort: 8081
+          containerPort: 8080
         - name: grpc
-          containerPort: 9091
+          containerPort: 9090
       livenessProbe:
         httpGet:
           path: /ping
-          port: 8081
+          port: 8080
         initialDelaySeconds: 120
         timeoutSeconds: 120
       # TODO: arrange this with iot-ent team
@@ -42,6 +42,6 @@ system:
     function: controlplane-itest
     ports:
       - port: 9091
-        targetport: 9091
+        targetport: 9090
       - port: 8081
-        targetport: 8081
+        targetport: 8080
