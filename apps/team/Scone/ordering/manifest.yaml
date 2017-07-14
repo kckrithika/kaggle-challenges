@@ -23,14 +23,10 @@ system:
           path: /manage/health
           port: 15373
     - name: beacon-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170622
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170714
       args:
-      - -name
-      - ordering
-      - -scope
-      - DATACENTER
-      - -port
-      - 7012
+      - -endpoint
+      - ordering:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
