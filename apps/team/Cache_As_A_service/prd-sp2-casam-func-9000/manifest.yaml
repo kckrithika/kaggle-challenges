@@ -9,7 +9,7 @@ system:
     
     containers:
     - name: csr-sam
-      image: tnrp/casam/coreapp:208.3.5-0000012-521109bb
+      image: tnrp/casam/coreapp:208.3.5-0000014-20c620f1
 
       resources:
         limits: { memory: "8292M" }
@@ -21,7 +21,7 @@ system:
            - "/bin/sh"
            - "-c"
            - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
-        initialDelaySeconds: 60
+        initialDelaySeconds: 360
         periodSeconds: 1
 
       readinessProbe:
