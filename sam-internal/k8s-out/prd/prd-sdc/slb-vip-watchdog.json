@@ -35,7 +35,7 @@
                      "--alertThreshold=300s",
                      "--vipLoop=100"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000212-f1f52414",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000213-1612e1fb",
                   "name": "slb-vip-watchdog",
                   "volumeMounts": [
                      {
