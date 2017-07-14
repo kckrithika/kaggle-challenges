@@ -4,7 +4,7 @@ local samimages = import "samimages.jsonnet";
 if configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
-        replicas: 1,
+        replicas: 3,
         template: {
             spec: {
                 containers: [
