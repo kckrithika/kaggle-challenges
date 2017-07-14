@@ -2,6 +2,7 @@ apps:
   reportcollector:
   reportcollector-perf:
   locust:
+    - prd/prd-sam_report_collector
   reportcollectorha:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector

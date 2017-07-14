@@ -15,10 +15,10 @@ system:
       - name: loc-master-w2
         containerPort: 5558
       env:
-      - name: REPORTCOLLECTORLB_SERVICE_HOST
-        value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
+      - name: TARGET_RC_HOST_ADDRESS
+        value: ops0-health2-1-prd.eng.sfdc.net
       - name: TARGET_RC_PROVIDER_PROTOCOL
-        value: http
+        value: https
       - name: TARGET_RC_PROVIDER_PORT
         value: 18443
 
@@ -31,10 +31,10 @@ system:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
       env:
-      - name: REPORTCOLLECTORLB_SERVICE_HOST
-        value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
+      - name: TARGET_RC_HOST_ADDRESS
+        value: ops0-health2-1-prd.eng.sfdc.net
       - name: TARGET_RC_PROVIDER_PROTOCOL
-        value: http
+        value: https
       - name: TARGET_RC_PROVIDER_PORT
         value: 18443
 
