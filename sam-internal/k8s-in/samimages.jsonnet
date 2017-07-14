@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local privatebuildoverride = import "privatebuildoverride.jsonnet";
 local utils = import "util_functions.jsonnet";
 {
     # ================== SAM RELEASE ====================
@@ -46,11 +47,19 @@ local utils = import "util_functions.jsonnet";
         "4": {
             "hypersam": "sam-0001027-676096c4",
             },
+
+       ### For testing private bits from a developer's machine pre-checkin if
+       ### there is a variable defined, otherwise use phase 1
+       "privates": {
+           "hypersam": (if privatebuildoverride.private_build_tag != "" then privatebuildoverride.private_build_tag else $.per_phase["1"]["hypersam"]),
+           },
     },
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-samdev" || estate == "prd-samtest") then
+        if (estate == "prd-samtest") then
+            "privates"
+        else if (estate == "prd-samdev") then
             "1"
         else if (kingdom == "prd") then
             "2"
