@@ -7,6 +7,10 @@ if configs.estate == "prd-samtest" then {
         replicas: 3,
         template: {
             spec: {
+                securityContext: {
+                    runAsUser: 0,
+                    fsGroup: 0
+                },
                 containers: [
                     {
                         name: "estate-server",
