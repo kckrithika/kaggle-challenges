@@ -21,6 +21,11 @@ system:
         value: https
       - name: TARGET_RC_PROVIDER_PORT
         value: 18443
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
 
   - name: locust-worker
     count: 30
@@ -37,6 +42,11 @@ system:
         value: https
       - name: TARGET_RC_PROVIDER_PORT
         value: 18443
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy  
 
   loadbalancers:
     - lbname: locustmasterlb
