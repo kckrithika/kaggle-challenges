@@ -4,14 +4,15 @@ local samimages = import "samimages.jsonnet";
 if configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
-        replicas: 1,
+        replicas: 3,
         template: {
             spec: {
                 containers: [
                     {
                         name: "estate-server",
                         image: samimages.estate_info,
-                        args:[],
+                        command:["/sam/estatesvc/script/estatesvc-wrapper.sh"],
+                        args:[configs.kingdom],
                         "ports": [
                         {
                             "containerPort": 9090,

@@ -9,7 +9,7 @@
       "namespace": "sam-system"
    },
    "spec": {
-      "replicas": 1,
+      "replicas": 3,
       "selector": {
          "matchLabels": {
             "name": "estate-server"
@@ -25,8 +25,13 @@
          "spec": {
             "containers": [
                {
-                  "args": [ ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estate-info:2017.6.26.0",
+                  "args": [
+                     "prd"
+                  ],
+                  "command": [
+                     "/sam/estatesvc/script/estatesvc-wrapper.sh"
+                  ],
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/hypersam:2017.7.14.0",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/info",

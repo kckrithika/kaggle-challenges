@@ -63,7 +63,7 @@ local utils = import "util_functions.jsonnet";
     # Static images that do not go in phases
     static: {
         "k8sproxy": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
-        "estate_info": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/estate-info:2017.6.26.0",
+        "estate_info": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/hypersam:2017.7.14.0",
 
         "permissionInitContainer": (
             if (kingdom=="prd") then
