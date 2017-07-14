@@ -46,9 +46,11 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: M
+          value: K
+        # For casam deployments, we can switch back and forth between sleepy and sneezy
+        # MIST30 core app servers are currently using bashful
         - name: DB_USER
-          value: sleepy
+          value: sneezy
         - name: PORT
           value: 9000
         - name: NODES
