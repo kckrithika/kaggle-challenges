@@ -1,6 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local privatebuildoverride = import "privatebuildoverride.jsonnet";
+local privatebuildoverride = std.extVar("privatebuildoverride");#import "privatebuildoverride.jsonnet";
 local utils = import "util_functions.jsonnet";
 {
     # ================== SAM RELEASE ====================

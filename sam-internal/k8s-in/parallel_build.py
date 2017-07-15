@@ -57,6 +57,7 @@ def run_jsonnet(item):
     cmd += " -V kingdom=" + item.kingdom
     cmd += " -V estate=" + item.estate
     cmd += " -V template=" + appName
+    cmd += " -V privatebuildoverride"
     cmd += " " + item.jsonnet_file
     cmd += " -o " + outfile
     cmd += " --jpath ."
@@ -118,7 +119,7 @@ def run_all_work_items(work_item_list):
     worl_queue.join()
     result_queue.join()
     print("Done")
-    
+
     ret = []
     for i in range(0, error_queue.qsize()):
         ret.append(error_queue.get())
