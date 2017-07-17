@@ -5,7 +5,7 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-node
+  - name: cloudatlas-prd0-node
     count: 6
     strategy:
       type: RollingUpdate
@@ -14,8 +14,8 @@ system:
         maxUnavailable: 2
     hostnetwork: true
     containers:
-    - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rzhang/cloudatlas-pdm-install:rzhang-20170628a
+    - name: cloudatlas-prd0-pdm-install
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloudatlas/cloudatlas-prd-pdm-install:ashafer-20170717a
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
