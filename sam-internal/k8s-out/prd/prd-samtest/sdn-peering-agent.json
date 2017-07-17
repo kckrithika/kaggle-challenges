@@ -61,7 +61,8 @@
                      "--keyfile=/data/certs/hostcert.key",
                      "--certfile=/data/certs/hostcert.crt",
                      "--bgpPasswordFile=/data/secrets/sambgppassword",
-                     "--livenessProbePort=9100"
+                     "--livenessProbePort=9100",
+                     "--controlEndpoint=prd-samtest"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000203-3cca2f25",
                   "livenessProbe": {
