@@ -10,9 +10,11 @@ system:
       ports:
       - containerPort: 8099
       livenessProbe:
-        httpGet:
-          path: /services/dataJourney/v1
-          port: 8099
+        exec:
+          command:
+            - /healthcheck.sh
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
  
   loadbalancers:
   - lbname: diet-pnodelb
