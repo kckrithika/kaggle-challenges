@@ -11,7 +11,7 @@ system:
       - containerPort: 8099
       livenessProbe:
         httpGet:
-          path: /
+          path: /services/dataJourney/v1
           port: 8099
  
   loadbalancers:
