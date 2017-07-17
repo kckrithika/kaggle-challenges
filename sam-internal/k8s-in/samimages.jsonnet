@@ -51,7 +51,7 @@ local utils = import "util_functions.jsonnet";
        ### For testing private bits from a developer's machine pre-checkin if
        ### there is a variable defined, otherwise use phase 1
        "privates": {
-           "hypersam": (if privatebuildoverride.private_build_tag != "" then privatebuildoverride.private_build_tag else $.per_phase["1"]["hypersam"]),
+           "hypersam": (if privatebuildoverride != "" then privatebuildoverride else $.per_phase["1"]["hypersam"]),
            },
     },
 
