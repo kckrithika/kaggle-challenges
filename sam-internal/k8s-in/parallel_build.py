@@ -22,7 +22,8 @@ class jsonnet_workitem:
 def run_cmd(cmd):
     combined = cmd.strip()
     try:
-        p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+        d = dict(os.environ)
+        p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True, env = d)
         p.wait()
         stdout = p.stdout.read().decode()
         stderr = p.stdout.read().decode()
