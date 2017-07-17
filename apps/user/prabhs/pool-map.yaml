@@ -3,3 +3,4 @@ apps:
   - prd/prd-sam
  TestApp:
   - prd/prd-samdev
+  - prd/prd-samtest
