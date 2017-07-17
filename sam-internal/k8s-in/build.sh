@@ -7,7 +7,7 @@ set -e
 # ./build.sh
 
 if [ ! -z $privatebuildoverride ]; then
-    echo "Using privatebuildoverride ${privatebuildoverride}"
+    echo "Using an override for prd-samtest with version ${privatebuildoverride}"
 fi
 
 #Check if jsonnet is available, if not get it.
