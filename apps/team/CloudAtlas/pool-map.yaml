@@ -7,5 +7,3 @@ apps:
     - prd/prd-sam_cloudatlas
   prd0-cloudatlas-ds-admin:
     - prd/prd-sam_cloudatlas_dir
-  iad-cloudatlas-ds:
-    - iad/iad-sam_cloudatlas_dir
