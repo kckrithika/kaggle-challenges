@@ -9,7 +9,7 @@ system:
     
     containers:
     - name: csr-sam
-      image: tnrp/casam/coreapp:208.3.5-0000016-6998379d
+      image: tnrp/casam/coreapp:208.4-0000017-c3a8a95d
 
       resources:
         limits: { memory: "8292M" }
@@ -49,8 +49,9 @@ system:
           value: K
         # For casam deployments, we can switch back and forth between sleepy and sneezy
         # MIST30 core app servers are currently using bashful
+        # As of this manifest, sneezy=203.3.5 plsql; sleepy=208.4 plsql 
         - name: DB_USER
-          value: sneezy
+          value: sleepy
         - name: PORT
           value: 9000
         - name: NODES
