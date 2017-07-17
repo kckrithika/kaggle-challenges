@@ -2,8 +2,9 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
-    count: 2
+  - name: pnode
+    count: 1
+    hostnetwork: true
     containers:
     - name: diet-pnode
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170713 
@@ -15,10 +16,18 @@ system:
             - /healthcheck.sh
           initialDelaySeconds: 15
           timeoutSeconds: 10
+    - name: pb-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/pbserver:ben-20170717
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080       
  
   loadbalancers:
   - lbname: diet-pnodelb
-    function: default
+    function: pnode
     ports:
       - port: 8099
         targetport: 8099
