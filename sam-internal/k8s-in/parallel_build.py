@@ -173,6 +173,8 @@ def main():
     output_dir = sys.argv[2]
     pools_dir = sys.argv[3]
 
+    print "Using privatebuildoverride flags as " + os.environ["privatebuildoverride"]
+
     # Read control estates
     control_estates = find_control_estates(pools_dir)
 

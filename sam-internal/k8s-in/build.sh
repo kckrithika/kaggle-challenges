@@ -6,6 +6,9 @@ set -e
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
+if [ ! -z $privatebuildoverride ]; then
+    echo "Using privatebuildoverride ${privatebuildoverride}"
+fi
 
 #Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
