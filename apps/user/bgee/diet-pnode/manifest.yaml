@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: diet-pnode
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170713 
+      ports:
+      - containerPort: 8099
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8099
+ 
+  loadbalancers:
+  - lbname: diet-pnodelb
+    function: default
+    ports:
+      - port: 8099
+        targetport: 8099
