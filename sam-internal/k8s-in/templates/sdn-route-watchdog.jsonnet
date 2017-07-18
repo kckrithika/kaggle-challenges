@@ -26,7 +26,8 @@ if configs.kingdom == "prd" then {
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog
+                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog,
+                            "--snoozedAlarms=RouteValidator=2017/07/20"
                         ],
                         "env": [
                             {

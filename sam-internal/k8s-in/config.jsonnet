@@ -33,7 +33,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "ord": "https://ops0-momapi1-0-ord.data.sfdc.net/network/device?key=host-bgp-routes",
             "par": "https://ops0-momapi1-0-par.data.sfdc.net/network/device?key=host-bgp-routes",
             "phx": "https://ops0-momapi1-0-phx.data.sfdc.net/network/device?key=host-bgp-routes",
-            "prd": "https://ops0-momapi1-0-prd.data.sfdc.net/network/device?key=host-bgp-routes",
+            "prd": "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             "ukb": "https://ops0-momapi1-0-ukb.data.sfdc.net/network/device?key=host-bgp-routes",
         },
 
