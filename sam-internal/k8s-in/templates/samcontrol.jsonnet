@@ -26,8 +26,9 @@ local samimages = import "samimages.jsonnet";
                            "--certFile="+configs.certFile,
                            "--checkImageExistsFlag="+configs.checkImageExistsFlag,
                            "--httpsDisableCertsCheck="+configs.httpsDisableCertsCheck,
-                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer
-                           ],
+                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
+                           ]
+                           + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else []),
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",

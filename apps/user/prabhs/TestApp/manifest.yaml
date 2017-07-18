@@ -2,21 +2,34 @@ apiVersion: v1
 
 system:
   functions:
-  - name: prabhs-fn
+  - name: prabhstestfn1
+    count: 2
+    progressDeadlineSeconds: 120
+    containers:
+      - name: prabhstestapp
+        image: tnrp/sam/hypersam:sam-0000701-487f2675
+        command: ["/sam/sam-test-app"]
+        args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
+        env:
+          - name: El337
+            value: "10100111011"
+        ports:
+          - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+  - name: prabhstestfn2
     count: 1
     containers:
-    - name: samhello
-      image: samhello:bob-20160908
-      ports:
-      - containerPort: 9090
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
-
+      - name: prabhstestwd
+        image: tnrp/sam/hypersam:sam-0000701-487f2675
+        command: ["/sam/service-wd"]
+        args: ["-service=lb124"]
   loadbalancers:
-  - lbname: samhellolb
-    function: prabhs-fn
-    ports:
-      - port: 9098
-        targetport: 9090
+    - lbname: lb124
+      nodeExposed: true
+      function: prabhstestfn1
+      ports:
+        - port: 8889
+          targetport: 8000
