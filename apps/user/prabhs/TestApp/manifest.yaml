@@ -19,17 +19,3 @@ system:
           httpGet:
             path: /
             port: 8000
-  - name: prabhstestfn2
-    count: 1
-    containers:
-      - name: prabhstestwd
-        image: tnrp/sam/hypersam:sam-0000701-487f2675
-        command: ["/sam/service-wd"]
-        args: ["-service=lb124"]
-  loadbalancers:
-    - lbname: lb124
-      nodeExposed: true
-      function: prabhstestfn1
-      ports:
-        - port: 8889
-          targetport: 8000
