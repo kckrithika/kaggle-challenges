@@ -19,7 +19,7 @@ system:
           path: /manage/health
           port: 15372
     - name: beacon-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170714
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170717
       args:
       - -endpoint
       - shipping:DATACENTER:7022
