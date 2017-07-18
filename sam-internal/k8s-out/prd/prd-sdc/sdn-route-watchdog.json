@@ -32,7 +32,7 @@
                      "--alertThreshold=300s",
                      "--livenessProbePort=9104"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000203-3cca2f25",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000219-9372a88f",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
