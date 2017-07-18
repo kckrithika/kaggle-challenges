@@ -34,6 +34,12 @@
                      "--pingTimeout=5s",
                      "--livenessProbePort=9102"
                   ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000219-9372a88f",
                   "livenessProbe": {
                      "httpGet": {
@@ -44,13 +50,37 @@
                      "periodSeconds": 20,
                      "timeoutSeconds": 5
                   },
-                  "name": "sdn-ping-watchdog"
+                  "name": "sdn-ping-watchdog",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-samdev"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }
