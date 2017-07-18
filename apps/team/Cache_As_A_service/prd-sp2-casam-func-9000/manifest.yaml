@@ -6,10 +6,13 @@ system:
     count: 2
     
     hostnetwork: true
+
+# Need to verify this is implemented and this is the right place for it...    
+#    terminationGracePeriodSeconds: 120
     
     containers:
     - name: csr-sam
-      image: tnrp/casam/coreapp:208.4-0000017-c3a8a95d
+      image: tnrp/casam/coreapp:208.4-0000018-a0b91a42
 
       resources:
         limits: { memory: "8292M" }
@@ -46,7 +49,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: K
+          value: L
         # For casam deployments, we can switch back and forth between sleepy and sneezy
         # MIST30 core app servers are currently using bashful
         # As of this manifest, sneezy=203.3.5 plsql; sleepy=208.4 plsql 
