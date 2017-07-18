@@ -31,7 +31,10 @@
                      "--emailNotify=true",
                      "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "--sender=sam@salesforce.com",
-                     "--recipient=sam@salesforce.com"
+                     "--recipient=sam@salesforce.com",
+                     "--caFile=/data/certs/ca.crt",
+                     "--keyFile=/data/certs/hostcert.key",
+                     "--certFile=/data/certs/hostcert.crt"
                   ],
                   "env": [
                      {
