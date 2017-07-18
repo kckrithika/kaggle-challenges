@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then {
    "apiVersion": "extensions/v1beta1",
    "kind": "Deployment",
    "metadata": {
@@ -34,14 +34,10 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                      "-watchdogFrequency=60s",
                      "-alertThreshold=300s",
                      "-emailFrequency=12h",
-                     "-timeout=2s",
-                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "-sender=sam@salesforce.com",
-                     "-recipient="+configs.watchdog_emailrec,
                      "-laddr=0.0.0.0:8083",
                      "-imageName="+samimages.hypersam
-                  ],
+                  ]
+                  + samwdconfig.shared_args,
                   "ports": [
                       {
                       "name": "synthetic",
