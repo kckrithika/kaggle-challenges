@@ -245,3 +245,211 @@ apps:
     - ord/ord-sp1-sam_caas
   ord-sp1-redis-sp-cs15-c1-12000:
     - ord/ord-sp1-sam_caas
+  dfw-sp4-metrics-publisher-sp-na61-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na61-pc1-12027:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na67-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na67-c1-12030:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na61-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na61-c1-12026:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na68-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na68-c1-12032:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-cs90-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-cs90-pc1-12023:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na62-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na62-c1-12028:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-cs69-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-cs69-pc1-12021:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na67-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na67-pc1-12031:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-cs90-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-cs90-c1-12022:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na68-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na68-pc1-12033:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na53-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na53-pc1-12025:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na53-c1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na53-c1-12024:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-metrics-publisher-sp-na62-pc1:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp4-redis-sp-na62-pc1-12029:
+    - dfw/dfw-sp4-sam_caas
+  dfw-sp3-metrics-publisher-sp-na40-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-na40-c1-12030:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-na51-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-na51-c1-12032:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs71-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs71-c1-12028:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs9-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs9-pc1-12021:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs10-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs10-c1-12022:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-na52-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-na52-pc1-12035:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-na52-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-na52-c1-12034:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs11-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs11-c1-12024:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs10-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs10-pc1-12023:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-na51-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-na51-pc1-12033:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs70-c1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs70-c1-12026:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs71-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs71-pc1-12029:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs70-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs70-pc1-12027:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-cs11-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-cs11-pc1-12025:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-metrics-publisher-sp-na40-pc1:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp3-redis-sp-na40-pc1-12031:
+    - dfw/dfw-sp3-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs63-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs63-c1-12002:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na35-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na35-c1-12004:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na42-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na42-c1-12008:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs62-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs62-pc1-12001:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na43-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na43-pc1-12011:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na43-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na43-c1-12010:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs63-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs63-pc1-12003:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na48-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na48-pc1-12013:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na37-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na37-c1-12006:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na48-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na48-c1-12012:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na42-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na42-pc1-12009:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na35-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na35-pc1-12005:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na37-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na37-pc1-12007:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp1-metrics-publisher-sp-na3-c1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-na3-c1-12008:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-na32-c1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-na32-c1-12010:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs50-c1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs50-c1-12004:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs30-c1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs30-c1-12002:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs51-c1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs51-c1-12006:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-na3-pc1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-na3-pc1-12009:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs51-pc1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs51-pc1-12007:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs50-pc1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs50-pc1-12005:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs30-pc1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs30-pc1-12003:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-na32-pc1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-na32-pc1-12011:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-metrics-publisher-sp-cs13-pc1:
+    - dfw/dfw-sp1-sam_caas
+  dfw-sp1-redis-sp-cs13-pc1-12001:
+    - dfw/dfw-sp1-sam_caas
