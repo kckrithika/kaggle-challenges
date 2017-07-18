@@ -28,6 +28,12 @@ if configs.kingdom == "prd" then {
                             "--alertThreshold=300s",
                             "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog
                         ],
+                        "env": [
+                            {
+                                "name": "KUBECONFIG",
+                                "value": "/config/kubeconfig"
+                            }
+                        ],
                         "livenessProbe": {
                             "httpGet": {
                               "path": "/liveness-probe",
@@ -37,6 +43,30 @@ if configs.kingdom == "prd" then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/data/certs",
+                                "name": "certs"
+                            },
+                            {
+                                "mountPath": "/config",
+                                "name": "config"
+                            }
+                        ]
+                    }
+                ],
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/data/certs"
+                        },
+                        "name": "certs"
+                    },
+                    {
+                        "hostPath": {
+                            "path": "/etc/kubernetes"
+                        },
+                        "name": "config"
                     }
                 ],
                 nodeSelector: {
