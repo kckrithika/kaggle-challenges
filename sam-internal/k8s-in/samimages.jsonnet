@@ -1,7 +1,8 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local privatebuildoverriderepo = std.extVar("privatebuildoverriderepo");
-local privatebuildoverridetag = std.extVar("privatebuildoverridetag");
+local privatebuildoverride = import "privatebuildoverride.jsonnet";
+local privatebuildoverriderepo = privatebuildoverride.privatebuildoverriderepo;
+local privatebuildoverridetag = privatebuildoverride.privatebuildoverridetag;
 local utils = import "util_functions.jsonnet";
 {
     # ================== SAM RELEASE ====================
@@ -88,7 +89,8 @@ local utils = import "util_functions.jsonnet";
     # ====== DO NOT EDIT BELOW HERE ======
 
     # These are the images used by the templates
-    hypersam: if ($.phase == "privates" && privatebuildoverridetag != "" && privatebuildoverriderepo != "") then
+    hypersam: (
+      if $.phase == "privates" && privatebuildoverridetag != "" && privatebuildoverriderepo != "" then
         privatebuildoverriderepo+"/hypersam:"+privatebuildoverridetag else
         utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"])
         ),
