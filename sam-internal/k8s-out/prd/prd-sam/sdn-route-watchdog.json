@@ -23,14 +23,15 @@
                      "/sdn/sdn-route-watchdog",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--archiveSvcEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
-                     "--momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/network/device?key=host-bgp-routes",
+                     "--momCollectorEndpoint=http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
                      "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "--sender=sdn-alerts@salesforce.com",
                      "--recipient=sdn-alerts@salesforce.com",
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
-                     "--livenessProbePort=9104"
+                     "--livenessProbePort=9104",
+                     "--snoozedAlarms=RouteValidator=2017/07/20"
                   ],
                   "env": [
                      {
