@@ -58,7 +58,8 @@ def run_jsonnet(item):
     cmd += " -V kingdom=" + item.kingdom
     cmd += " -V estate=" + item.estate
     cmd += " -V template=" + appName
-    cmd += " -V privatebuildoverride"
+    cmd += " -V privatebuildoverridetag"
+    cmd += " -V privatebuildoverriderepo"
     cmd += " " + item.jsonnet_file
     cmd += " -o " + outfile
     cmd += " --jpath ."
