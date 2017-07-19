@@ -1,6 +1,5 @@
 local configs = import "config.jsonnet";
-
-if configs.kingdom == "prd" || configs.kingdom == "frf"  then {
+{
     "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
@@ -25,5 +24,5 @@ if configs.kingdom == "prd" || configs.kingdom == "frf"  then {
                 },
                 "type": "NodePort",
         },
-} else "SKIP"
+}
 

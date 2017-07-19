@@ -24,8 +24,8 @@ local samimages = import "samimages.jsonnet";
                            "--caFile="+configs.caFile,
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
-                         ]
-                      + (if configs.kingdom == "prd" || configs.kingdom == "frf" then [ "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive" ] else []),
+                           "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
+                         ],
                       "volumeMounts": [
                          {
                             "mountPath": "/data/certs",
