@@ -15,8 +15,10 @@ if configs.estate == "prd-samtest" then {
                     {
                         name: "estate-server",
                         image: samimages.estate_info,
-                        command:["/sam/estatesvc/script/estatesvc-wrapper.sh"],
-                        args:[configs.kingdom],
+                        command:[
+                            "/sam/estatesvc/script/estatesvc-wrapper.sh",
+                            configs.kingdom,
+                        ],
                         "ports": [
                         {
                             "containerPort": 9090,
