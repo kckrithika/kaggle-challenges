@@ -80,6 +80,10 @@ mkdir $prOutputDir
 
 /opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $prOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
 
+cp -r sam-internal/k8s-out $prOutputDir/
+cp -r sam-internal/sdn $prOutputDir/
+cp -r sam-internal/authorizer $prOutputDir/
+
 #A branch without PR changes.
 origBranch=br_$STAGE_PULL_REQUEST_ID
 
@@ -94,11 +98,19 @@ git checkout $origBranch
 
 /opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $origOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
 
+cp -r sam-internal/k8s-out $origOutputDir/
+cp -r sam-internal/sdn $origOutputDir/
+cp -r sam-internal/authorizer $origOutputDir/
+
 #Switch back to the last branch
 git checkout -
 
 git branch -D $origBranch
 
+if ! diff -wr --exclude=prd "$origOutputDir/sam-internal" "$prOutputDir/sam-internal"; then
+    echo "sam-stack updates outside prd are not allowed when author and approver are the same"
+    exit 1
+fi
 #Ignore hashes.yaml and the prd folder
 #Ignore output,timeStamp and all strings begining with 
 #latest in control-estate.yaml as these would be
