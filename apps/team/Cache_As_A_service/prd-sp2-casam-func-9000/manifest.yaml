@@ -58,7 +58,7 @@ system:
         - name: PORT
           value: 9000
         - name: NODES
-          value: 2
+          value: 1
 
     strategy:
       type: RollingUpdate
