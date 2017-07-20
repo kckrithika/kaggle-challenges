@@ -6,24 +6,22 @@ system:
     count: 1
     hostnetwork: true
     containers:
-    - name: diet-pnode
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170713 
-      ports:
-      - containerPort: 8099
-      livenessProbe:
-        exec:
-          command:
-            - /healthcheck.sh
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
     - name: pb-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/pbserver:ben-20170717
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/dj_pbdataflow:ben-20170720
       ports:
-      - containerPort: 8080
+      - containerPort: 10000
       livenessProbe:
         httpGet:
           path: /
-          port: 8080       
+          port: 10000 
+    - name: diet-pnode
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170720
+      ports:
+      - containerPort: 8099
+      livenessProbe:
+        httpGet:
+          path: /services/dataJourney/v1
+          port: 8099
  
   loadbalancers:
   - lbname: diet-pnodelb
