@@ -27,7 +27,6 @@ if configs.kingdom == "prd" then {
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
                             "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog,
-                            "--snoozedAlarms=RouteValidator=2017/07/20"
                         ],
                         "env": [
                             {

@@ -30,8 +30,7 @@
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
-                     "--livenessProbePort=9104",
-                     "--snoozedAlarms=RouteValidator=2017/07/20"
+                     "--livenessProbePort=9104"
                   ],
                   "env": [
                      {
