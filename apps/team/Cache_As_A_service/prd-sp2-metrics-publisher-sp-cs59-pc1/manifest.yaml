@@ -29,9 +29,12 @@ system:
       ports:
       - containerPort: 7565
       - containerPort: 7566
+      - containerPort: 12015
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
+       - name: CAAS_ENVIRONMENT
+         value: none
     volumes:
     - name: logvol
       hostPath:
