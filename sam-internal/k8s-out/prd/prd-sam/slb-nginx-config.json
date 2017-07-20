@@ -39,6 +39,7 @@
                   ]
                }
             ],
+            "hostNetwork": true,
             "nodeSelector": {
                "service": "slb-nginx"
             },

@@ -20,6 +20,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                 }
             },
             "spec": {
+                "hostNetwork": true,
                 "volumes": [
                      {
                         "name": "var-target-config-volume",
