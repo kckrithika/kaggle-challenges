@@ -14,8 +14,8 @@ system:
         httpGet:
           path: /services
           port: 10000 
-      initialDelaySeconds: 600
-      timeoutSeconds: 10
+        initialDelaySeconds: 850
+        timeoutSeconds: 10
     - name: diet-pnode
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170720
       ports:
@@ -24,7 +24,7 @@ system:
         httpGet:
           path: /services/dataJourney/v1
           port: 8099
-        initialDelaySeconds: 850
+        initialDelaySeconds: 1000
         timeoutSeconds: 10
 
   loadbalancers:
