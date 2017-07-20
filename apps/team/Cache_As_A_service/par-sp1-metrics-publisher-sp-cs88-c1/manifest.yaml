@@ -9,27 +9,35 @@ system:
     - name: metrics-publisher
       image: tnrp/caas/caas-monitor-prod:2.3.8-0000008-14008866
       args:
-        - --server.port=7510
-        - --management.port=7511
+        - --server.port=7500
+        - --management.port=7501
         - --cluster.name=sp-cs88-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 7511
+          port: 7501
         initialDelaySeconds: 60
         timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 7510
-      - containerPort: 7511
+      - containerPort: 7500
+      - containerPort: 7501
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
+       - name: CAAS_ENVIRONMENT
+         value: none
     volumes:
     - name: logvol
       hostPath:
         path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-cs88-c1
