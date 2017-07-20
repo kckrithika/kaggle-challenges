@@ -11,11 +11,11 @@ system:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 0
-        maxUnavailable: 2
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: cloudatlas-prd0-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloudatlas/cloudatlas-prd-pdm-install:ashafer-20170717a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloudatlas/cloudatlas-prd-pdm-install:ashafer-20170720a
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
