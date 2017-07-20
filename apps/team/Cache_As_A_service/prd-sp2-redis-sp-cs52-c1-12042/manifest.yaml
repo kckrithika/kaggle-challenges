@@ -44,8 +44,6 @@ system:
            - --port=12042
           initialDelaySeconds: 15
           timeoutSeconds: 10
-      ports:
-      - containerPort: 12015
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
