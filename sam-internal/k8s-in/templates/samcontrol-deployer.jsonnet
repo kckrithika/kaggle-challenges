@@ -23,9 +23,8 @@ local samimages = import "samimages.jsonnet";
                            "--emailNotify="+configs.samcontrol_deployer_EmailNotify,
                            "--smtpServer="+configs.smtpServer,
                            "--sender=sam@salesforce.com",
-                           "--recipient=sam@salesforce.com",
-                         ]
-                         + (if configs.estate == "prd-sam" || configs.estate == "prd-sdc" then [ "--caFile="+configs.caFile, "--keyFile="+configs.keyFile, "--certFile="+configs.certFile ] else []),
+                           "--recipient=sam@salesforce.com"
+                         ],
                          "volumeMounts": [
                            {
                               "mountPath": "/data/certs",
