@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-sp-cs12-pc1-12041
-    count: 2
+    count: 1
     hostnetwork: true
     containers:
     - name: caas-redis
