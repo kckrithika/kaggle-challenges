@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: pb-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/dj_pbdataflow:ben-20170720
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/dj_pbdataflow:sam-user-20170720
       ports:
       - containerPort: 10000
       livenessProbe:
