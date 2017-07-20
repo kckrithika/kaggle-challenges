@@ -41,7 +41,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                         "image": slbimages.hypersdn,
                         "command":[
                             "/sdn/slb-nginx-config",
-                            "--path="+slbconfigs.configDir,
+                            "--configDir="+slbconfigs.configDir,
                             "--target=/host/var/slb/nginx/config",
                             "--netInterfaceName=eth0",
                             "--metricsEndpoint="+configs.funnelVIP
