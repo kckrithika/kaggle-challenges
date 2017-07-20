@@ -29,7 +29,6 @@ system:
       ports:
       - containerPort: 7563
       - containerPort: 7564
-      - containerPort: 12015
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
