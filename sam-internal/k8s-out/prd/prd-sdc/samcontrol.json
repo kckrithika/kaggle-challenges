@@ -38,9 +38,7 @@
                      "--certFile=/data/certs/hostcert.crt",
                      "--checkImageExistsFlag=true",
                      "--httpsDisableCertsCheck=true",
-                     "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",
-                     "--deletionEnabled=true",
-                     "--deletionPercentageThreshold=10"
+                     "--volPermissionInitContainerImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673"
                   ],
                   "env": [
                      {
@@ -48,7 +46,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001043-8457582d",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {
