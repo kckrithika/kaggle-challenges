@@ -1,0 +1,65 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: redis-sp-cs84-c1-12022
+    count: 4
+    hostnetwork: true
+    containers:
+    - name: caas-redis
+      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
+      resources:
+        limits: { memory: "8292M" }
+        requests: { memory: "8292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args:
+        - --port=12022
+        - --maxMemoryMB=8192
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12022
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      ports:
+      - containerPort: 12022
+    - name: caas-redis-announcer
+      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12022
+        - --cluster.name=sp-cs84-c1
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12022
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+      resources:
+        limits: { memory: "200M" }
+        requests: { memory: "200M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-cs84-c1

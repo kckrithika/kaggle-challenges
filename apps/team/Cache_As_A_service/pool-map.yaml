@@ -571,3 +571,311 @@ apps:
     - phx/phx-sp4-sam_caas
   phx-sp4-redis-sp-cs68-c1-12022:
     - phx/phx-sp4-sam_caas
+  iad-sp1-metrics-publisher-sp-cs64-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs64-c1-12008:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs17-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs17-c1-12004:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs14-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs14-c1-12010:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs8-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs8-c1-12002:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na50-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na50-pc1-12017:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na46-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na46-pc1-12013:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na56-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na56-pc1-12019:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs65-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs65-pc1-12001:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs17-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs17-pc1-12005:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs8-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs8-pc1-12003:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na49-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na49-c1-12014:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na88-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na88-pc1-12021:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na88-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na88-c1-12020:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na50-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na50-c1-12016:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na49-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na49-pc1-12015:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs64-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs64-pc1-12009:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs18-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs18-pc1-12007:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na46-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na46-c1-12012:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs18-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs18-c1-12006:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs14-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs14-pc1-12011:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na56-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na56-c1-12018:
+    - iad/iad-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na74-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na74-c1-12012:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs16-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs16-c1-12002:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na58-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na58-pc1-12011:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs15-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs15-pc1-12001:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na58-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na58-c1-12010:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na57-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na57-c1-12008:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs16-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs16-pc1-12003:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na78-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na78-c1-12014:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na74-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na74-pc1-12013:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs66-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs66-pc1-12005:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na57-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na57-pc1-12009:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs67-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs67-pc1-12007:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na78-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na78-pc1-12015:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs67-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs67-c1-12006:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs66-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs66-c1-12004:
+    - ord/ord-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap2-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap2-c1-12014:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap4-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap4-c1-12018:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs58-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs58-c1-12008:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap0-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap0-pc1-12011:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap0-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap0-c1-12010:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs31-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs31-pc1-12005:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap1-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap1-pc1-12013:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap3-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap3-c1-12016:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap5-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap5-c1-12020:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs57-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs57-pc1-12007:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap1-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap1-c1-12012:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs6-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs6-pc1-12003:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap5-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap5-pc1-12021:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap4-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap4-pc1-12019:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs5-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs5-pc1-12001:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap3-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap3-pc1-12017:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs6-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs6-c1-12002:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs58-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs58-pc1-12009:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-ap2-pc1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-ap2-pc1-12015:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs31-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs31-c1-12004:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-metrics-publisher-sp-cs57-c1:
+    - ukb/ukb-sp1-sam_caas
+  ukb-sp1-redis-sp-cs57-c1-12006:
+    - ukb/ukb-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs85-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs85-pc1-12025:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu9-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu9-c1-12032:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu4-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu4-pc1-12027:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs83-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs83-pc1-12021:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu4-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu4-c1-12026:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu7-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu7-c1-12030:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu7-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu7-pc1-12031:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu6-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu6-pc1-12029:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs85-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs85-c1-12024:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu6-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu6-c1-12028:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs84-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs84-c1-12022:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu9-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu9-pc1-12033:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs84-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs84-pc1-12023:
+    - frf/frf-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs89-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs89-c1-12022:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu5-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu5-c1-12024:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs88-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs88-pc1-12021:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu11-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu11-pc1-12027:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu11-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu11-c1-12026:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu5-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu5-pc1-12025:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs89-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs89-pc1-12023:
+    - par/par-sp1-sam_caas
