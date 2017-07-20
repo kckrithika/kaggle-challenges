@@ -23,6 +23,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                 "hostNetwork": true,
                 "volumes": [
                      {
+                        "name": "host-volume",
+                        "hostPath": {
+                            "path": "/"
+                         }
+                     },
+                     {
                         "name": "var-target-config-volume",
                         "hostPath": {
                             "path": "/var/slb/nginx/config"
@@ -47,6 +53,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
+                            {
+                                "name": "host-volume",
+                                "mountPath": "/host"
+                            },
                             {
                                 "name": "var-target-config-volume",
                                 "mountPath": "/host/var/slb/nginx/config"

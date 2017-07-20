@@ -29,6 +29,10 @@
                   "name": "slb-nginx-config",
                   "volumeMounts": [
                      {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     },
+                     {
                         "mountPath": "/host/var/slb/nginx/config",
                         "name": "var-target-config-volume"
                      },
@@ -44,6 +48,12 @@
                "service": "slb-nginx"
             },
             "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               },
                {
                   "hostPath": {
                      "path": "/var/slb/nginx/config"
