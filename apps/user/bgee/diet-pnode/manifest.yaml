@@ -17,7 +17,10 @@ system:
         initialDelaySeconds: 850
         timeoutSeconds: 10
     - name: diet-pnode
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170720
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170721
+      env:
+      - name: datajourney.pbserver.url.host
+        value: localhost
       ports:
       - containerPort: 8099
       livenessProbe:
