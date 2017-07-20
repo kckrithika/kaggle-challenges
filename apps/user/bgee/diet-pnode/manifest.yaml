@@ -19,7 +19,7 @@ system:
     - name: diet-pnode
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170721
       env:
-      - name: datajourney.pbserver.url.host
+      - name: datajourney_pbserver_url_host
         value: localhost
       ports:
       - containerPort: 8099
