@@ -48,7 +48,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "service": "slb-nginx"
+               "slb-service": "slb-nginx"
             },
             "volumes": [
                {
