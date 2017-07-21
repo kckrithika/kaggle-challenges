@@ -27,6 +27,9 @@
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000223-e2c77f45",
                   "name": "slb-nginx-config",
+                  "securityContext": {
+                     "privileged": true
+                  },
                   "volumeMounts": [
                      {
                         "mountPath": "/host",

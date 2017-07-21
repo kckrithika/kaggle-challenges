@@ -66,7 +66,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                                 "mountPath": "/host/var/slb/config"
                             }
                         ],
-                    }
+                        "securityContext": {
+                            "privileged": true
+                        }
+                     }
                 ],
                 "nodeSelector":{
                     "service": "slb-nginx"
