@@ -17,7 +17,7 @@ system:
         initialDelaySeconds: 850
         timeoutSeconds: 10
     - name: diet-pnode
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170721
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170722
       env:
       - name: datajourney_pbserver_url_host
         value: localhost
@@ -29,6 +29,8 @@ system:
           port: 8099
         initialDelaySeconds: 1000
         timeoutSeconds: 10
+      command: ["/bin/sh"]
+      args: ["-c", "/wait_ready.sh && /docker-entrypoint.sh"]
 
   loadbalancers:
   - lbname: diet-pnodelb
