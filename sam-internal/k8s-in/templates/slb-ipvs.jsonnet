@@ -112,8 +112,26 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                         "securityContext": {
                             "privileged": true
                         }
-                    }
+                    },
 
+                    {
+                       "name": "slb-ipvs-data",
+                       "image": slbimages.hypersdn,
+                       "command":[
+                           "/sdn/slb-ipvs-data",
+                           "--connPort=34578"
+                       ],
+                       "volumeMounts": [
+                           {
+                               "name": "var-slb-volume",
+                               "mountPath": "/host/var/slb"
+
+                           }
+                       ],
+                       "securityContext": {
+                           "privileged": true
+                       }
+                    }
                 ],
                 "nodeSelector":{
                     "slb-service": "slb-ipvs"
