@@ -12,7 +12,7 @@ system:
     
     containers:
     - name: csr-sam
-      image: tnrp/casam/coreapp:208.4-0000020-e7d829e5
+      image: tnrp/casam/coreapp:208.4-0000021-297097bc
 
       resources:
         limits: { memory: "8292M" }
@@ -21,9 +21,11 @@ system:
       livenessProbe:
         exec:
           command:
-           - "/bin/sh"
-           - "-c"
-           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+            - echo
+            - HEALTHY
+#           - "/bin/sh"
+#           - "-c"
+#           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
         initialDelaySeconds: 360
         periodSeconds: 1
 
@@ -49,7 +51,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: L
+          value: K
         # For casam deployments, we can switch back and forth between sleepy and sneezy
         # MIST30 core app servers are currently using bashful
         # As of this manifest, sneezy=203.3.5 plsql; sleepy=208.4 plsql 
