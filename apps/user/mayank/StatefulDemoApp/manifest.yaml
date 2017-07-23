@@ -21,9 +21,9 @@ system:
       env:
         - name: DUMMYENV
           value: "SOMEVALUE"
-  lbname: stateful-lb
-  terminationGracePeriodSeconds: 33
-  volumeClaimTemplates:
-  - name: www
-    storageClassName: slow-rdi
-    minStorageSize: 2Gi
+    lbname: stateful-lb
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: www
+      storageClassName: slow-rdi
+      minStorageSize: 2Gi
