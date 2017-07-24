@@ -3,7 +3,9 @@ apiVersion: v1
 system:
   functions:
   - name: csr
-    count: 1
+
+    # If the count is changed, the same value must be set for the NODES env variable below
+    count: 2
     
     hostnetwork: true
 
@@ -51,7 +53,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: K
+          value: L
         # For casam deployments, we can switch back and forth between sleepy and sneezy
         # MIST30 core app servers are currently using bashful
         # As of this manifest, sneezy=203.3.5 plsql; sleepy=208.4 plsql 
@@ -60,7 +62,7 @@ system:
         - name: PORT
           value: 9000
         - name: NODES
-          value: 1
+          value: 2
 
     strategy:
       type: RollingUpdate
