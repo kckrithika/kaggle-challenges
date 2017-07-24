@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            "hypersdn": "v-0000223-e2c77f45",
+            "hypersdn": "v-0000226-2fc72d38",
             "bird": "v-0000014-b0a5951d"
             },
 
@@ -31,13 +31,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            "hypersdn": "v-0000219-9372a88f",
+            "hypersdn": "v-0000223-e2c77f45",
             "bird": "v-0000014-b0a5951d"
             },
 
         ### Release Phase 4 - All Prod
         "4": {
-            "hypersdn": "v-0000203-3cca2f25",
+            "hypersdn": "v-0000219-9372a88f",
             "bird": "v-0000014-b0a5951d"
             },
     },
