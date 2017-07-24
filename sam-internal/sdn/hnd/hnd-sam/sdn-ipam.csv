@@ -1,4 +1,14 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+samcaas1-caasminion1-1-hnd.ops.sfdc.net,10.219.183.170/29,10.213.76.192/27,l13-01,hnd-sp1-sam_caas
+samcaas1-caasminion1-2-hnd.ops.sfdc.net,10.219.183.146/29,10.213.76.0/27,a09-02,hnd-sp1-sam_caas
+samcaas1-caasminion1-3-hnd.ops.sfdc.net,10.219.183.178/29,10.213.77.0/27,q07-01,hnd-sp1-sam_caas
+samcaas1-caasminion1-4-hnd.ops.sfdc.net,10.219.183.179/29,10.213.77.32/27,q07-01,hnd-sp1-sam_caas
+samcaas1-caasminion2-1-hnd.ops.sfdc.net,10.219.183.130/29,10.213.76.64/27,d13-02,hnd-sp1-sam_caas
+samcaas1-caasminion2-2-hnd.ops.sfdc.net,10.219.183.131/29,10.213.76.96/27,d13-02,hnd-sp1-sam_caas
+samcaas1-caasminion2-3-hnd.ops.sfdc.net,10.219.183.186/29,10.213.76.224/27,m14-01,hnd-sp1-sam_caas
+samcaas1-caasminion3-1-hnd.ops.sfdc.net,10.219.183.138/29,10.213.76.128/27,d16-02,hnd-sp1-sam_caas
+samcaas1-caasminion3-2-hnd.ops.sfdc.net,10.219.183.162/29,10.213.76.160/27,l03-01,hnd-sp1-sam_caas
+samcaas1-caasminion3-3-hnd.ops.sfdc.net,10.219.183.154/29,10.213.76.32/27,b09-02,hnd-sp1-sam_caas
 shared0-samcompute1-1-hnd.ops.sfdc.net,10.219.181.50/28,10.213.66.160/27,f16-02,hnd-sam
 shared0-samcompute1-2-hnd.ops.sfdc.net,10.219.181.34/28,10.213.66.32/27,c08-02,hnd-sam
 shared0-samcompute2-1-hnd.ops.sfdc.net,10.219.181.66/28,10.213.66.128/27,f04-02,hnd-sam
@@ -15,6 +25,9 @@ shared0-samminiongater1-2-hnd.ops.sfdc.net,10.219.180.210/29,10.213.68.0/27,d10-
 shared0-samminiongater1-3-hnd.ops.sfdc.net,10.219.180.194/29,10.213.68.64/27,d16-02,hnd-sam_gater
 shared0-samminiongater2-1-hnd.ops.sfdc.net,10.219.180.202/29,10.213.68.32/27,d13-02,hnd-sam_gater
 shared0-samminiongater2-2-hnd.ops.sfdc.net,10.219.180.226/29,10.213.68.96/27,e02-02,hnd-sam_gater
+shared0-samminionmoderationeinstein1-1-hnd.ops.sfdc.net,10.219.183.210/29,10.213.80.64/27,d13-02,hnd-sam_moderation_einstein
+shared0-samminionmoderationeinstein1-2-hnd.ops.sfdc.net,10.219.183.194/29,10.213.80.0/27,a09-02,hnd-sam_moderation_einstein
+shared0-samminionmoderationeinstein2-1-hnd.ops.sfdc.net,10.219.183.202/29,10.213.80.32/27,b09-02,hnd-sam_moderation_einstein
 shared0-samminionwarden1-1-hnd.ops.sfdc.net,10.219.177.210/29,10.213.64.64/27,d16-02,hnd-sam_warden
 shared0-samminionwarden1-2-hnd.ops.sfdc.net,10.219.177.202/29,10.213.64.32/27,b09-02,hnd-sam_warden
 shared0-samminionwarden2-1-hnd.ops.sfdc.net,10.219.177.194/29,10.213.64.0/27,a09-02,hnd-sam_warden
