@@ -14,10 +14,6 @@ system:
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 80
       env:
         - name: DUMMYENV
           value: "SOMEVALUE"
