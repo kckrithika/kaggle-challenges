@@ -111,7 +111,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
                             "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog,
-                            "--snoozedAlarms=RouteValidator=2017/07/19"
+                            "--snoozedAlarms=RouteValidator=2017/07/31"
                         ],
                         "livenessProbe": {
                             "httpGet": {

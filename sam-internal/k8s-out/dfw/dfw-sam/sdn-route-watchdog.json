@@ -31,7 +31,7 @@
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
                      "--livenessProbePort=9104",
-                     "--snoozedAlarms=RouteValidator=2017/07/19"
+                     "--snoozedAlarms=RouteValidator=2017/07/31"
                   ],
                   "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000219-9372a88f",
                   "livenessProbe": {
