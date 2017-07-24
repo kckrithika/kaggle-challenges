@@ -2,6 +2,3 @@ apps:
  TestApp:
   - prd/prd-sam
   #- prd/prd-samdev
- StatefulDemoApp:
-  - prd/prd-samdev
-  
