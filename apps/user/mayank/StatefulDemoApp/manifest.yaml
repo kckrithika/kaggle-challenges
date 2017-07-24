@@ -7,20 +7,22 @@ system:
     count: 1
     containers:
     - name: stateful-hello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank/nginx:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20170723_115938.58ece62.dirty.mayankkuma-ltm3
+      command:
+        - /sam/sam-test-app
       ports:
-      - containerPort: 80
+      - containerPort: 8000
         name: web
         volumeMounts:
         - name: www
-          mountPath: /usr/share/nginx/html
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 80
+          mountPath: /rbd/html
       env:
         - name: DUMMYENV
           value: "SOMEVALUE"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
     lbname: stateful-lb
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
