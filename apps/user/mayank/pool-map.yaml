@@ -2,6 +2,6 @@ apps:
  TestApp:
   - prd/prd-sam
   #- prd/prd-samdev
- statefuldemoapp:
+ demoapp:
   - prd/prd-samdev
  
