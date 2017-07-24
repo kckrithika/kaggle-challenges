@@ -13,9 +13,9 @@ system:
       ports:
       - containerPort: 8000
         name: web
-        volumeMounts:
-        - name: www
-          mountPath: /rbd/html
+      volumeMounts:
+      - name: www
+        mountPath: /rbd/html
       env:
         - name: DUMMYENV
           value: "SOMEVALUE"
