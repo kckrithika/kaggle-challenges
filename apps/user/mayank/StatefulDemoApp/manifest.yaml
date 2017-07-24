@@ -28,4 +28,4 @@ system:
     volumeClaimTemplates:
     - name: www
       storageClassName: slow-rdi
-      storageSizeRequest: 2Gi
+      minStorageSize: 2Gi
