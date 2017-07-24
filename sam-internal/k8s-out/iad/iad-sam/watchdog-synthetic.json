@@ -1,7 +1,3 @@
-local configs = import "config.jsonnet";
-local samwdconfig = import "samwdconfig.jsonnet";
-local samimages = import "samimages.jsonnet";
-
 {
    "apiVersion": "extensions/v1beta1",
    "kind": "Deployment",
@@ -35,14 +31,13 @@ local samimages = import "samimages.jsonnet";
                      "-alertThreshold=300s",
                      "-emailFrequency=12h",
                      "-laddr=0.0.0.0:8083",
-                     "-imageName="+samimages.hypersam
-                  ]
-                  + samwdconfig.shared_args,
-                  "ports": [
-                      {
-                      "name": "synthetic",
-                      "containerPort": 8083
-                      }
+                     "-imageName=ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001027-676096c4",
+                     "-timeout=2s",
+                     "-funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80",
+                     "-rcImtEndpoint=https://ops0-health1-1-iad.ops.sfdc.net:18443/v1/bark",
+                     "-smtpServer=ops0-mta2-1-iad.ops.sfdc.net:25",
+                     "-sender=sam-alerts@salesforce.com",
+                     "-recipient=sam-alerts@salesforce.com"
                   ],
                   "env": [
                      {
@@ -50,8 +45,14 @@ local samimages = import "samimages.jsonnet";
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": samimages.hypersam,
+                  "image": "ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001027-676096c4",
                   "name": "watchdog-synthetic",
+                  "ports": [
+                     {
+                        "containerPort": 8083,
+                        "name": "synthetic"
+                     }
+                  ],
                   "volumeMounts": [
                      {
                         "mountPath": "/test",
@@ -74,7 +75,7 @@ local samimages = import "samimages.jsonnet";
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "pool": configs.estate
+               "pool": "iad-sam"
             },
             "volumes": [
                {
@@ -90,11 +91,11 @@ local samimages = import "samimages.jsonnet";
                   "name": "sfdc-volume"
                },
                {
-                  "emptyDir": {},
+                  "emptyDir": { },
                   "name": "test"
                },
                {
-                  "emptyDir": {},
+                  "emptyDir": { },
                   "name": "output"
                },
                {
@@ -107,5 +108,4 @@ local samimages = import "samimages.jsonnet";
          }
       }
    }
-}   
-
+}
