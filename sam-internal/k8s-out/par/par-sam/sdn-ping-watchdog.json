@@ -22,7 +22,7 @@
                   "command": [
                      "/sdn/sdn-ping-watchdog",
                      "--funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080",
-                     "--archiveSvcEndpoint=https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--archiveSvcEndpoint=https://ops0-piperepo1-0-par.data.sfdc.net/tnrp/content_repo/0/archive",
                      "--smtpServer=ops0-mta2-1-par.ops.sfdc.net:25",
                      "--sender=sdn-alerts@salesforce.com",
                      "--recipient=sdn-alerts@salesforce.com",

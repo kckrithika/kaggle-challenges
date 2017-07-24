@@ -30,7 +30,7 @@
                      "--v=2",
                      "--logtostderr=true",
                      "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-par.ops.sfdc.net/tnrp/content_repo/0/archive",
+                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-0-par.data.sfdc.net/tnrp/content_repo/0/archive",
                      "--tlsEnabled=true",
                      "--caFile=/data/certs/ca.crt",
                      "--keyFile=/data/certs/hostcert.key",
