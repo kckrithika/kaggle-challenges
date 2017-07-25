@@ -33,11 +33,27 @@ perCluster: {
         "prd-samdev": "slb-echo,sam-deployment-portal,k8sproxy",
         "prd-sam": "slb-foxtrot,sam-deployment-portal,k8sproxy"
     },
+
+    canaryServiceName: {
+        "prd-sdc": "slb-sdc-svc",
+        "prd-samtest": "slb-samtest-svc",
+        "prd-samdev": "slb-samdev-svc",
+        "prd-sam": "slb-sam-svc"
+    },
+
+    canaryServicePort: {
+        "prd-sdc": "32135",
+        "prd-samtest": "32136",
+        "prd-samdev": "32137",
+        "prd-sam": "32138"
+    },
 },
 
 subnet: self.perCluster.subnet[estate],
 vipList: self.perCluster.vipList[estate],
 serviceList: self.perCluster.serviceList[estate],
 ddiService: self.perCluster.ddiService[estate],
+canaryServiceName: self.perCluster.canaryServiceName[estate],
+canaryServicePort: self.perCluster.canaryServicePort[estate],
 
 }

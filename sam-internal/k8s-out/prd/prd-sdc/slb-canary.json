@@ -1,0 +1,72 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "slb-canary"
+      },
+      "name": "slb-canary"
+   },
+   "spec": {
+      "replicas": 2,
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "slb-canary"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-canary-service",
+                     "--serviceName=slb-sdc-svc",
+                     "--port=32135"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000229-e2a5f060",
+                  "name": "slb-canary",
+                  "securityContext": {
+                     "capabilities": {
+                        "add": [
+                           "ALL"
+                        ]
+                     },
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/dev",
+                        "name": "dev-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/dev"
+                  },
+                  "name": "dev-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               }
+            ]
+         }
+      }
+   }
+}
