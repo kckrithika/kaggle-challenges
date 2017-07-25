@@ -5,6 +5,8 @@ system:
   - name: caas-release-perf
     count: 1 
     hostnetwork: true
+    nodeSelector:
+      kubernetes.io/hostname=samcaas2-caasminion1-1-prd.eng.sfdc.net    
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
