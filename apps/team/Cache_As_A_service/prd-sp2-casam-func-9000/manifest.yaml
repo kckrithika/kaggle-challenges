@@ -14,7 +14,7 @@ system:
     
     containers:
     - name: csr-sam
-      image: tnrp/casam/coreapp:208.4-0000022-c4ca97d9
+      image: tnrp/casam/coreapp:208.4-0000023-c7e65039
 
       resources:
         limits: { memory: "8292M" }
@@ -43,6 +43,7 @@ system:
         # Actually used by the container
         - containerPort: 9000
         # To avoid conflicts with CaaS perf hosts
+        - containerPort: 12000
         - containerPort: 12015
         
       env:
