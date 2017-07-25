@@ -13,6 +13,9 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         "prd,prd-sdc,sdn-route-watchdog,hypersdn": "v-0000229-e2a5f060",
+        "prd,prd-samtest,sdn-route-watchdog,hypersdn": "v-0000229-e2a5f060",
+        "prd,prd-samdev,sdn-route-watchdog,hypersdn": "v-0000229-e2a5f060",
+        "prd,prd-sam,sdn-route-watchdog,hypersdn": "v-0000229-e2a5f060",
     },
 
     ### Per-phase image tags
