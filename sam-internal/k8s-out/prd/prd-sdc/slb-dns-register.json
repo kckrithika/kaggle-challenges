@@ -27,7 +27,7 @@
                      "--cafile=/data/certs/ca.crt",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000228-90b265a6",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000229-e2a5f060",
                   "name": "slb-dns-register-processor",
                   "volumeMounts": [
                      {

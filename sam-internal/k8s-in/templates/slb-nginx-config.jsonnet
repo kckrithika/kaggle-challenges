@@ -50,7 +50,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--configDir="+slbconfigs.configDir,
                             "--target=/host/var/slb/nginx/config",
                             "--netInterfaceName=eth0",
-                            "--metricsEndpoint="+configs.funnelVIP
+                            "--metricsEndpoint="+configs.funnelVIP,
+                            "--mode=no_tunnel"
                         ],
                         "volumeMounts": [
                             {
