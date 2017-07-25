@@ -25,13 +25,11 @@
          "spec": {
             "containers": [
                {
-                  "args": [
+                  "command": [
+                     "/sam/estatesvc/script/estatesvc-wrapper.sh",
                      "prd"
                   ],
-                  "command": [
-                     "/sam/estatesvc/script/estatesvc-wrapper.sh"
-                  ],
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan-wang/hypersam:2017.7.14.3",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001050-b02c2dec",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/info",

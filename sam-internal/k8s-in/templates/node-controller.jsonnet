@@ -11,7 +11,9 @@ if configs.estate == "prd-samtest" then {
                     {
                         name: "node-controller",
                         image: samimages.node_controller,
-                        command:["/sam/node-controller"],
+                        command:[
+                            "/sam/node-controller",
+                        ],
                         volumeMounts: [
                           {
                              "mountPath": "/data/certs",
