@@ -1,0 +1,27 @@
+{
+   "apiVersion": "v1",
+   "kind": "Service",
+   "metadata": {
+      "labels": {
+         "app": "slb-canary-service",
+         "slb_vip": "slb-canary-service"
+      },
+      "name": "slb-canary-service",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "ports": [
+         {
+            "name": "slb-canary-port",
+            "nodePort": 32135,
+            "port": 9000,
+            "protocol": "TCP",
+            "targetPort": 9000
+         }
+      ],
+      "selector": {
+         "name": "slb-canary"
+      },
+      "type": "NodePort"
+   }
+}

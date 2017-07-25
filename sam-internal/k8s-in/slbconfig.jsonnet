@@ -42,10 +42,10 @@ perCluster: {
     },
 
     canaryServicePort: {
-        "prd-sdc": "32135",
-        "prd-samtest": "32136",
-        "prd-samdev": "32137",
-        "prd-sam": "32138"
+        "prd-sdc": 32135,
+        "prd-samtest": 32136,
+        "prd-samdev": 32137,
+        "prd-sam": 32138
     },
 },
 
