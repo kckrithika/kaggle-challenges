@@ -12,6 +12,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
+        "prd,prd-sdc,sdn-route-watchdog,hypersdn": "v-0000229-e2a5f060",
     },
 
     ### Per-phase image tags
