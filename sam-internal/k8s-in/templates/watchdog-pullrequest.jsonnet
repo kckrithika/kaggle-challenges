@@ -18,6 +18,8 @@ if configs.estate == "prd-sam" then {
                             "-watchdogFrequency=3m",
                             "-alertThreshold=10s",
                             "-emailFrequency=1h",
+                            # Snooze prChecker for 2 weeks, @Prahlad-Joshi is on it.
+                            "-snoozedAlarms=prChecker=2017/08/07"
                         ]
                         + samwdconfig.shared_args,
                         volumeMounts: [
