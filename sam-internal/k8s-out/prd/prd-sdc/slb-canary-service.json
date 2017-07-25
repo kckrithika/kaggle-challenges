@@ -13,7 +13,7 @@
       "ports": [
          {
             "name": "slb-canary-port",
-            "nodePort": "32135",
+            "nodePort": 32135,
             "port": 9000,
             "protocol": "TCP",
             "targetPort": 9000
