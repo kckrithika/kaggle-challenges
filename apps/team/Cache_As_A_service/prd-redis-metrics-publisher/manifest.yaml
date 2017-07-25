@@ -28,6 +28,9 @@ system:
           port: 7522
         initialDelaySeconds: 60 
         timeoutSeconds: 10
+      ports:
+      - containerPort: 7521
+      - containerPort: 7522
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
