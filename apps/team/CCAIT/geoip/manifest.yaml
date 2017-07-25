@@ -1,0 +1,156 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: geoip
+    count: 3
+    containers:
+    - name: ccait-geoip-database
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:20170604
+      # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
+      args: ["-d"]
+      livenessProbe:
+        exec:
+          command: ["ls", "/database/GeoIP2-City.mmdb"]
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+        - mountPath: /database
+          name: maxmind-volume
+    - name: ccait-geoip-backend
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6-snapshot
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        - name: COM_MAXMIND_DATABASE_FILE
+          value: "/dw/data/GeoIP2-City.mmdb"
+        - name: GRPC_ANNOUNCED_PORT
+          value: 7012
+      volumeMounts:
+        - mountPath: /dw/data
+          name: maxmind-volume
+      ports:
+        - containerPort: 7020
+          name: grpc
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+    - name: sherpa-b
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000032-edd3d815
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
+    volumes:
+    - name: maxmind-volume
+      emptyDir: {}
+  - name: geoip-demo
+    count: 1
+    containers:
+    - name: ccait-geoip-frontend
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        - name: GRPC_ROUTING_GEOIP_HOST
+          value: geoip.localhost.mesh.force.com
+        - name: GRPC_ROUTING_GEOIP_PORT
+          value: 7011
+      ports:
+        - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+    - name: sherpa-f
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000032-edd3d815
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7080
+        name: sherpa-f-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
+  - name: geoip-xlt
+    count: 1
+    containers:
+    - name: ccait-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jan-krueger/ccait-xlt-agent:4.8.3
+      ports:
+      - containerPort: 8500
+    - name: sherpa-xlt
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000032-edd3d815
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7080
+        name: sherpa-xlt-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+  loadbalancers:
+  - lbname: ccait-geoip-frontend-lb
+    function: geoip-demo
+    ports:
+      - port: 7080
+        targetport: 7080
+      - port: 8080
+        targetport: 8080
+  - lbname: ccait-xlt-lb
+    function: geoip-xlt
+    ports:
+      - port: 7080
+        targetport: 7080
+      - port: 8500
+        targetport: 8500
