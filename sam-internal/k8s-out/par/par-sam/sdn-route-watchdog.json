@@ -30,10 +30,15 @@
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
-                     "--livenessProbePort=9104",
-                     "--snoozedAlarms=RouteValidator=2017/07/31"
+                     "--livenessProbePort=9104"
                   ],
-                  "image": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000219-9372a88f",
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000223-e2c77f45",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
@@ -43,13 +48,37 @@
                      "periodSeconds": 20,
                      "timeoutSeconds": 5
                   },
-                  "name": "sdn-route-watchdog"
+                  "name": "sdn-route-watchdog",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "par-sam"
-            }
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }
