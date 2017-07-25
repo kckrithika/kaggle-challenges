@@ -38,7 +38,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000226-2fc72d38",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000229-e2a5f060",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
