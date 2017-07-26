@@ -13,6 +13,8 @@ if configs.estate == "prd-samtest" then {
                         image: samimages.hypersam,
                         command:[
                             "/sam/service-discovery-module",
+			    "-namespaceFilter=user-kdhabalia",
+			    "-zkIP=+configs.zookeeperIP"
                         ],
                         volumeMounts: [
                           {
@@ -24,16 +26,6 @@ if configs.estate == "prd-samtest" then {
                              "name": "config"
                           }
                        ],
-                       env: [
-                          {
-                             "name": "namespaceFilter",
-                             "value": "user-kdhabalia"
-                          },
-			  {
-			     "name": "zkIP",
-			     "value": "10.230.14.31:2181"
-			  }
-                       ]
                     }
                 ],
                 volumes: [
