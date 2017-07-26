@@ -42,7 +42,7 @@ exitIfMergeCommitFound() {
 
 readOnlyGitToken="ef11904af720485500651dedc5c513303bc3a5d3"
 
-exitIfApproverNAuthorAreDifferent() {
+exitIfApproverNAuthorAreSame() {
 
     author=$(curl https://$readOnlyGitToken@git.soma.salesforce.com/api/v3/repos/sam/manifests/pulls/$STAGE_PULL_REQUEST_ID |  python -c 'import json,sys;obj=json.load(sys.stdin);print obj["user"]["login"]' | tr '-' '.')
 
@@ -52,24 +52,17 @@ exitIfApproverNAuthorAreDifferent() {
 
     if [ "$author" == "$approver" ]; then
         echo "$author and $approver are same"
-    else
-        echo "Author and approver are different"
-        exit 0
+        exit 1
     fi
 }
 
 echo -e "\nEvaluating PR\n"
 
-
 ensureLatestJsons
 
 exitIfMergeCommitFound
 
-/opt/sam/aclrepo --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
-
-/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -validateonly -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
-
-exitIfApproverNAuthorAreDifferent
+/opt/sam/aclrepo  --repo manifests --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 
 #scratch pad for SMB output with PR changes
 prOutputDir=/tmp/PR_$STAGE_PULL_REQUEST_ID
@@ -78,11 +71,11 @@ rm -rf $prOutputDir || true
 
 mkdir $prOutputDir
 
-/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $prOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
+/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $prOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml -internalpassthrough k8s-out,sdn,authorizer -imagefileoutdir $prOutputDir
 
-cp -r sam-internal/k8s-out $prOutputDir/
-cp -r sam-internal/sdn $prOutputDir/
-cp -r sam-internal/authorizer $prOutputDir/
+cp -r --parents sam-internal/k8s-out $prOutputDir/
+cp -r --parents sam-internal/sdn $prOutputDir/
+cp -r --parents sam-internal/authorizer $prOutputDir/
 
 #A branch without PR changes.
 origBranch=br_$STAGE_PULL_REQUEST_ID
@@ -96,11 +89,11 @@ mkdir $origOutputDir
 git pull origin master:$origBranch
 git checkout $origBranch
 
-/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $origOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
+/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $origOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml -internalpassthrough k8s-out,sdn,authorizer -imagefileoutdir $origOutputDir
 
-cp -r sam-internal/k8s-out $origOutputDir/
-cp -r sam-internal/sdn $origOutputDir/
-cp -r sam-internal/authorizer $origOutputDir/
+cp -r --parents sam-internal/k8s-out $origOutputDir/
+cp -r --parents sam-internal/sdn $origOutputDir/
+cp -r --parents sam-internal/authorizer $origOutputDir/
 
 #Switch back to the last branch
 git checkout -
@@ -108,17 +101,40 @@ git checkout -
 git branch -D $origBranch
 
 if ! diff -wr --exclude=prd "$origOutputDir/sam-internal" "$prOutputDir/sam-internal"; then
-    echo "sam-stack updates outside prd are not allowed when author and approver are the same"
-    exit 1
+    exitIfApproverNAuthorAreSame
 fi
+
 #Ignore hashes.yaml and the prd folder
-#Ignore output,timeStamp and all strings begining with 
-#latest in control-estate.yaml as these would be
-#different for different runs in different branches.
-difference=$(diff -wr -x hashes.yaml --exclude=prd -I output -I timeStamp -I 'latest*' $origOutputDir/goal-state $prOutputDir/goal-state)
+#Ignore control-estate.yaml
+difference=$(diff -wr -x hashes.yaml -x control-estate.yaml --exclude=prd $origOutputDir/goal-state $prOutputDir/goal-state)
 if [ ! -z $difference ]; then
-    echo "Non prd changes are not allowed when author and approver are the same"
-    exit 1
-else
-    echo "Only prd changes in this PR approver and author can be same."
+    exitIfApproverNAuthorAreSame
 fi
+
+
+prdRepo=ops0-artifactrepo1-0-prd.data.sfdc.net
+
+prdPrefix=ops0-artifactrepo2-0-prd.data.sfdc.net
+
+exitCode=0
+
+sort $origOutputDir/image-promotion.yaml -o $origOutputDir/image-promotion.yaml
+sort $prOutputDir/image-promotion.yaml -o $prOutputDir/image-promotion.yaml
+
+for anImage in $(diff $origOutputDir/image-promotion.yaml $prOutputDir/image-promotion.yaml | grep ">" | sed -e "s/^> - image: //");
+do
+    echo "Checking if image $anImage is valid"
+    imageNTag=$(echo $anImage| sed -e "s/.*sfdc.net\///" )
+    image=$(echo $imageNTag | cut -d ':' -f 1)
+    tag=$(echo $imageNTag | cut -d ':' -f 2)
+    if [[ $anImage != *"$prdRepo"* ]]; then
+        imagePath="https://$prdPrefix/v2/$image/manifests/$tag"
+    else
+        imagePath="https://$prdRepo/v2/$image/manifests/$tag"
+    fi
+    if curl $imagePath | grep -q "MANIFEST_UNKNOWN"; then
+        echo $imagePath is missing
+        exitCode=1
+    fi
+done
+exit $exitCode
