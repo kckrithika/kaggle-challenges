@@ -16,6 +16,12 @@ if configs.estate == "prd-samtest" then {
 			    "-namespaceFilter=user-kdhabalia",
 			    "-zkIP="+configs.zookeeperip,
                         ],
+			env: [
+                          {
+                             "name": "KUBECONFIG",
+                             "value": configs.configPath
+                          }
+                        ],
                         volumeMounts: [
                           {
                              "mountPath": "/data/certs",
@@ -45,6 +51,7 @@ if configs.estate == "prd-samtest" then {
                 nodeSelector: {
                     pool: configs.estate
                 },
+
             },
             metadata: {
                 labels: {

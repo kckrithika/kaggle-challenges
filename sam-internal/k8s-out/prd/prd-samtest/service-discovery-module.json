@@ -30,6 +30,12 @@
                      "-namespaceFilter=user-kdhabalia",
                      "-zkIP=shared0-discovery1-0-sfm.data.sfdc.net:2181"
                   ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/config/kubeconfig"
+                     }
+                  ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001068-adfe25aa",
                   "name": "service-discovery-module",
                   "volumeMounts": [
