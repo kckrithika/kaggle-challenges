@@ -127,28 +127,38 @@ apps:
  ed-h2o-60139:
 #   - prd/prd-sam
   - prd/prd-samtest
-#  ed-h2o-60140:
+ ed-h2o-60140:
 #   - prd/prd-sam
-#  ed-h2o-60141:
+  - prd/prd-samtest
+ ed-h2o-60141:
 #   - prd/prd-sam
-#  ed-h2o-60142:
+  - prd/prd-samtest
+ ed-h2o-60142:
 #   - prd/prd-sam
-#  ed-h2o-60143:
+  - prd/prd-samtest
+ ed-h2o-60143:
 #   - prd/prd-sam
-#  ed-h2o-60144:
+  - prd/prd-samtest
+ ed-h2o-60144:
 #   - prd/prd-sam
-#  ed-h2o-60145:
+  - prd/prd-samtest
+ ed-h2o-60145:
 #   - prd/prd-sam
-#  ed-h2o-60146:
+  - prd/prd-samtest
+ ed-h2o-60146:
 #   - prd/prd-sam
-#  ed-h2o-60147:
+  - prd/prd-samtest
+ ed-h2o-60147:
 #   - prd/prd-sam
-#  ed-h2o-60148:
+ ed-h2o-60148:
 #   - prd/prd-sam
-#  ed-h2o-60149:
+  - prd/prd-samtest
+ ed-h2o-60149:
 #   - prd/prd-sam
-#  ed-h2o-60150:
+  - prd/prd-samtest
+ ed-h2o-60150:
 #   - prd/prd-sam
+  - prd/prd-samtest
 #  ed-h2o-60151:
 #   - prd/prd-sam
 #  ed-h2o-60152:
