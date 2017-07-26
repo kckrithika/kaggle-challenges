@@ -30,6 +30,7 @@
                      "-watchdogFrequency=3m",
                      "-alertThreshold=10s",
                      "-emailFrequency=1h",
+                     "-snoozedAlarms=prChecker=2017/08/07",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
