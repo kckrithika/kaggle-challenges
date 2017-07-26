@@ -1,27 +1,27 @@
 #If you are updating sam-manifest-builder also update in sam-internal/validate.sh and follow all the steps
 #here https://git.soma.salesforce.com/sam/sam/wiki/Update-SAM-Manifest-Builder
-{  
-   "artifacts":[  
-      {  
+{
+   "artifacts":[
+      {
          "repo_id":"testandrelease",
          "artifact_id":"golang",
          "nexus_url":"https://nexus.soma.salesforce.com/nexus",
          "filename":"golang-1.6-2.x86_64.rpm",
          "version":"1.6-2.x86_64",
-         "scope":[  
+         "scope":[
 
          ],
          "group_id":"golang",
          "type":"rpm",
          "repo_path":"golang"
       },
-      {  
+      {
          "repo_id":"testandrelease",
          "artifact_id":"dca-python-cffi",
          "nexus_url":"https://nexus.soma.salesforce.com/nexus",
          "filename":"dca-python-cffi-0.8.6-22.x86_64.rpm",
          "version":"0.8.6-22.x86_64",
-         "scope":[  
+         "scope":[
 
          ],
          "group_id":"python",
@@ -29,15 +29,15 @@
          "repo_path":"python"
       },
       {
-         "repo_id": "testandrelease", 
+         "repo_id": "testandrelease",
          "artifact_id": "sammanifestbuilder",
-         "nexus_url": "https://nexus.soma.salesforce.com/nexus", 
-         "filename": "sammanifestbuilder-20170724_203703.7da40f5.clean.ops_pipebuild1_1_prd-1.x86_64.rpm",
-         "version": "20170724_203703.7da40f5.clean.ops_pipebuild1_1_prd-1.x86_64",
+         "nexus_url": "https://nexus.soma.salesforce.com/nexus",
+         "filename": "sammanifestbuilder-20170726_165714.adfe25a.clean.ops_pipebuild1_1_prd-1.x86_64.rpm",
+         "version": "20170726_165714.adfe25a.clean.ops_pipebuild1_1_prd-1.x86_64",
          "scope":[
 
          ],
-         "group_id": "rpm-sam", 
+         "group_id": "rpm-sam",
          "type":"rpm",
          "repo_path":"rpm-sam"
       }
