@@ -4,7 +4,7 @@ system:
   functions:
   - name: stateful-func
     type: stateful-set
-    count: 1
+    count: 2
     containers:
     - name: stateful-hello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20170723_115938.58ece62.dirty.mayankkuma-ltm3
