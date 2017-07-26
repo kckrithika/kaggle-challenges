@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000006-74161702
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000016-5d1e5ba2
       ports:
       - containerPort: 10000
       resources:
@@ -15,6 +15,30 @@ system:
       env:
       - name: SER_GRPC_PORT
         value: 10000
+      - name: SER_GUSWAVE_LOGINSERVER
+        value: "https://gs0.salesforce.com"
+      - name: SER_GUSWAVE_USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: csc-health-gus-svc
+            key: username
+      - name: SER_GUSWAVE_PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: csc-health-gus-svc
+            key: password
+      - name: SER_GUSWAVE_OAUTHCLIENTSECRET
+        valueFrom:
+          secretKeyRef:
+            name: csc-health-gus-svc
+            key: oauthclientsecret
+      - name: SER_GUSWAVE_OAUTHCLIENTKEY
+        valueFrom:
+          secretKeyRef:
+            name: csc-health-gus-svc
+            key: oauthclientkey
+      - name: HTTP_PROXY
+        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       livenessProbe:
         exec:
           command:
