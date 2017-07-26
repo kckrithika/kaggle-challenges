@@ -38,7 +38,8 @@
                      "--certFile=/data/certs/hostcert.crt",
                      "--checkImageExistsFlag=true",
                      "--httpsDisableCertsCheck=true",
-                     "--volPermissionInitContainerImage=ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
+                     "--volPermissionInitContainerImage=ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657",
+                     "--statefulAppEnabled=false"
                   ],
                   "env": [
                      {
