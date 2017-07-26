@@ -14,7 +14,7 @@ if configs.estate == "prd-samtest" then {
                         command:[
                             "/sam/service-discovery-module",
 			    "-namespaceFilter=user-kdhabalia",
-			    "-zkIP=+configs.zookeeperIP"
+			    "-zkIP="+configs.zookeeperip,
                         ],
                         volumeMounts: [
                           {

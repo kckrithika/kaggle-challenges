@@ -37,8 +37,8 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "ukb": "https://ops0-momapi1-0-ukb.data.sfdc.net/network/device?key=host-bgp-routes",
         },
 	
-	zookeeperIP : {
-	    "prd" : "shared0-discovery1-0-sfm.data.sfdc.net:2181"
+	zookeeperip : {
+	    "prd" : "shared0-discovery1-0-sfm.data.sfdc.net:2181",
 	},
 
     },
@@ -71,6 +71,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     smtpServer: self.perKingdom.smtpServer[kingdom],
     momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
+    zookeeperip: self.perKingdom.zookeeperip[kingdom],
     apiserver: self.perEstate.apiserver[estate],
     checkImageExistsFlag: "true",
     httpsDisableCertsCheck: "true",
