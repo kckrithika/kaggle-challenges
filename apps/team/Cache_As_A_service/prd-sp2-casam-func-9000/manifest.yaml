@@ -5,7 +5,7 @@ system:
   - name: csr
 
     # If the count is changed, the same value must be set for the NODES env variable below
-    count: 3
+    count: 2
     
     hostnetwork: true
 
@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:208.12-0000025-93dcc7ec
+      image: tnrp/casam/coreapp:208.12-0000026-18ac24d9
 
       resources:
         limits: { memory: "8292M" }
@@ -64,7 +64,7 @@ system:
         - name: PORT
           value: 9000
         - name: NODES
-          value: 3
+          value: 2
         # The flag below configs the app to use a single shared memcached running in SAM
         # To revert to standard local container memcached comment out the 2 lines below
         - name: USE_SAM_MCD
