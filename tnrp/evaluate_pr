@@ -64,6 +64,8 @@ exitIfMergeCommitFound
 
 /opt/sam/aclrepo  --repo manifests --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 
+/opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -validateonly -validationExceptionsFile=./sam-internal/validation-whitelist.yaml
+
 #scratch pad for SMB output with PR changes
 prOutputDir=/tmp/PR_$STAGE_PULL_REQUEST_ID
 
@@ -88,6 +90,7 @@ mkdir $origOutputDir
 
 git pull origin master:$origBranch
 git checkout $origBranch
+
 
 /opt/sam/sam-manifest-builder --root='./' --swaggerspecdir='/opt/sam/swagger-spec' -output $origOutputDir -validationExceptionsFile=./sam-internal/validation-whitelist.yaml -internalpassthrough k8s-out,sdn,authorizer -imagefileoutdir $origOutputDir
 
