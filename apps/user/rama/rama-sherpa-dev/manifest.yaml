@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: sherpa-rama
+    image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/sherpa:1
+    ports:
+    - containerPort: 7012
+      name: sherpa-rama-in
+    - containerPort: 7080
+      name: sherpa-rama-admin
+    livenessProbe:
+      exec:
+        command:
+        - "./bin/is-alive"
+        initialDelaySeconds: 10
+        periodSeconds: 5
+    readinessProbe:
+      exec:
+        command:
+        - "./bin/is-ready"
+        initialDelaySeconds: 5
+        periodSeconds: 5
