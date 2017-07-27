@@ -125,18 +125,19 @@ def run_all_work_items(work_item_list):
     return ret
 
 # Returns a list of jsonnet_workitem
-def make_work_items(templates_dir, output_root_dir, control_estates):
+def make_work_items(templates_dirs, output_root_dir, control_estates):
     ret = []
-    template_list = [os.path.join(dp, f) for dp, dn, filenames in os.walk(templates_dir) for f in filenames if os.path.splitext(f)[1] == '.jsonnet']
-    for ce in control_estates:
-        for template in template_list:
-            kingdom, estate = ce.split("/")
-            full_out_dir = os.path.join(output_root_dir, kingdom, estate)
+    for template_dir in templates_dirs:
+      template_list = [os.path.join(dp, f) for dp, dn, filenames in os.walk(template_dir) for f in filenames if os.path.splitext(f)[1] == '.jsonnet']
+      for ce in control_estates:
+          for template in template_list:
+              kingdom, estate = ce.split("/")
+              full_out_dir = os.path.join(output_root_dir, kingdom, estate)
 
-            # Do this here so threads dont race as this is not atomic
-            if not os.path.exists(full_out_dir):
-                os.makedirs(full_out_dir)
-            ret.append(jsonnet_workitem(kingdom, estate, template, full_out_dir))
+              # Do this here so threads dont race as this is not atomic
+              if not os.path.exists(full_out_dir):
+                  os.makedirs(full_out_dir)
+              ret.append(jsonnet_workitem(kingdom, estate, template, full_out_dir))
     return ret
 
 # Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
@@ -167,7 +168,7 @@ def main():
     if len(sys.argv) != 4:
         print("usage: parallel_run.py template_dir output_dir pools_dir")
         return
-    template_dir = sys.argv[1]
+    template_dirs = sys.argv[1]
     output_dir = sys.argv[2]
     pools_dir = sys.argv[3]
 
@@ -175,7 +176,7 @@ def main():
     control_estates = find_control_estates(pools_dir)
 
     # Do the work
-    work_items = make_work_items(template_dir, output_dir, control_estates)
+    work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)
     failures = run_all_work_items(work_items)
 
     # Report results
