@@ -24,7 +24,7 @@
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--logtostderr=true",
                      "--disableSecurityCheck=true",
-                     "--tnrpEndpoint=https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
+                     "--tnrpEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
                      "--k8sapiserver=",
                      "--observeMode=false",
                      "--delay=30s",
