@@ -43,6 +43,7 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 9000
+        - containerPort: 11211
         # To avoid conflicts with CaaS perf hosts
         - containerPort: 12000
         - containerPort: 12015
@@ -55,12 +56,12 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: L
+          value: K
         # For casam deployments, we can switch back and forth between sleepy and sneezy
-        # MIST30 core app servers are currently using bashful
-        # As of this manifest, sneezy=208.12 plsql; sleepy=208.4 plsql 
+        # MIST30 core app servers are currently using sneezy
+        # As of this manifest, sleepy=208.12 plsql 
         - name: DB_USER
-          value: sneezy
+          value: sleepy
         - name: PORT
           value: 9000
         - name: NODES
