@@ -10,7 +10,7 @@ system:
 
     containers:
     - name: csrmemcached-sam
-      image: tnrp/casam/coreapp:208.4-0000023-c7e65039
+      image: tnrp/casam/coreapp:208.12-0000025-93dcc7ec
       command: ["/home/sfdc/tools/Linux/memcached/1.4.24.2/x86_64/centos7/bin/memcached"]
       args: ["-p","11211", "-m","128", "-t","16", "-vv"]
 
@@ -34,8 +34,7 @@ system:
         # Actually used by the container
         - containerPort: 11211
         # To avoid conflicts with CaaS perf hosts
-        - containerPort: 12000
-        - containerPort: 12015
+        - containerPort: 12025
         
   loadbalancers:
   - lbname: csrmemcachedlb
