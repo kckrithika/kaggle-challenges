@@ -9,8 +9,7 @@ system:
     
     hostnetwork: true
 
-# Need to verify this is implemented and this is the right place for it...    
-#    terminationGracePeriodSeconds: 120
+    terminationGracePeriodSeconds: 120
     
     containers:
     - name: csr-sam
@@ -66,6 +65,10 @@ system:
           value: 9000
         - name: NODES
           value: 3
+        # The flag below configs the app to use a single shared memcached running in SAM
+        # To revert to standard local container memcached comment out the 2 lines below
+        - name: USE_SAM_MCD
+          value: true
 
     strategy:
       type: RollingUpdate
