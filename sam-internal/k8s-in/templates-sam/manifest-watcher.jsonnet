@@ -32,7 +32,12 @@ local samimages = import "samimages.jsonnet";
                             "name": "certs"
                          }
                       ]
-
+                      + if configs.estate == "prd-samtest" then [
+                          {
+                            "mountPath": "/config",
+                            "name": "config"
+                          }
+                       ] else [],
                     }
                 ],
                 volumes: [
@@ -48,8 +53,15 @@ local samimages = import "samimages.jsonnet";
                         },
                         name: "sfdc-volume"
                     }
-
-                ],
+                ] +
+                if configs.estate == "prd-samtest" then [
+                    {
+                        name: "config",
+                        configMap: {
+                          name: "manifest-watcher",
+                        }
+                    }
+                ] else [],
                 nodeSelector: {
                     pool: configs.estate
                 } +
