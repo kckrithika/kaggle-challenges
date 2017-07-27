@@ -19,13 +19,13 @@ system:
  
       livenessProbe:
         tcpSocket:
-          port: 11211
+          port: 11210
         initialDelaySeconds: 4
         periodSeconds: 1
 
       readinessProbe:
         tcpSocket:
-          port: 11211
+          port: 11210
         initialDelaySeconds: 1
         periodSeconds: 1
         failureThreshold: 3
