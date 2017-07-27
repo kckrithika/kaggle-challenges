@@ -19,7 +19,7 @@ fi
 rm -rf ../k8s-out/**
 mkdir -p ../k8s-out/
 
-time ./parallel_build.py templates/ ../k8s-out/ ../pools/
+time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/ ../k8s-out/ ../pools/
 
 # TODO: Add warning when running against out-of-sync git repo
 
