@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:208.12-0000025-93dcc7ec
+      image: tnrp/casam/coreapp:208.12-0000026-18ac24d9
 
       resources:
         limits: { memory: "8292M" }
