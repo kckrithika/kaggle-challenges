@@ -73,8 +73,6 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
     zookeeperip: self.perKingdom.zookeeperip[kingdom],
     apiserver: self.perEstate.apiserver[estate],
-    checkImageExistsFlag: "true",
-    httpsDisableCertsCheck: "true",
 
     estate: estate,
     kingdom: kingdom,

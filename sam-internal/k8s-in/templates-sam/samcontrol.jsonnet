@@ -24,9 +24,9 @@ local samimages = import "samimages.jsonnet";
                            "--caFile="+configs.caFile,
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
-                           "--checkImageExistsFlag="+configs.checkImageExistsFlag,
-                           "--httpsDisableCertsCheck="+configs.httpsDisableCertsCheck,
-                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer
+                           "--checkImageExistsFlag=true",
+                           "--httpsDisableCertsCheck=true",
+                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
                            ]
                            + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
                            + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else []),

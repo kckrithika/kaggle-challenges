@@ -43,6 +43,10 @@
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
@@ -64,6 +68,12 @@
                      "path": "/manifests"
                   },
                   "name": "sfdc-volume"
+               },
+               {
+                  "configMap": {
+                     "name": "manifest-watcher"
+                  },
+                  "name": "config"
                }
             ]
          }
