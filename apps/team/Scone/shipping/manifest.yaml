@@ -22,7 +22,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170717
       args:
       - -endpoint
-      - shipping:DATACENTER:7022
+      - shipping:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
