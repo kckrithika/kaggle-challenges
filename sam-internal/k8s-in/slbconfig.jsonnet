@@ -42,10 +42,17 @@ perCluster: {
     },
 
     canaryServicePort: {
-        "prd-sdc": 32135,
-        "prd-samtest": 32136,
-        "prd-samdev": 32137,
-        "prd-sam": 32138
+        "prd-sdc": 9111,
+        "prd-samtest": 9112,
+        "prd-samdev": 9113,
+        "prd-sam": 9114
+    },
+
+    ipvsDataConnPort: {
+        "prd-sdc": 9107,
+        "prd-samtest": 9108,
+        "prd-samdev": 9109,
+        "prd-sam": 9110
     },
 },
 
@@ -55,5 +62,6 @@ serviceList: self.perCluster.serviceList[estate],
 ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 canaryServicePort: self.perCluster.canaryServicePort[estate],
+ipvsDataConnPort:self.perCluster.ipvsDataConnPort[estate],
 
 }
