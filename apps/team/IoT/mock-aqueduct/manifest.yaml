@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: default
+  - name: mock-aqueduct 
     count: 1
     containers:
     - name: mock-aqueduct
@@ -18,7 +18,12 @@ system:
     strategy:
       type: Recreate
 
-
+  loadbalancers:
+  - lbname: mock-aqueduct
+    function: mock-aqueduct 
+    ports:
+      - port: 5000
+        targetport: 5000
 #  loadbalancers:
 #  - lbname: squeduct-test-deploy-lb
 #    function: default
