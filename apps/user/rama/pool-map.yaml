@@ -3,3 +3,6 @@ apps:
   - prd/prd-sam
  rama-grpc-sample:
    - prd/prd-sam
+# Adding sherpa sample
+ rama-sherpa-sample:
+    - prd/prd-sam
