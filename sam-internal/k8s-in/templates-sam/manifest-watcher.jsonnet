@@ -32,7 +32,7 @@ local samimages = import "samimages.jsonnet";
                             "name": "certs"
                          }
                       ]
-                      + if configs.estate == "prd-samtest" then [
+                      + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
                           {
                             "mountPath": "/config",
                             "name": "config"
@@ -54,7 +54,7 @@ local samimages = import "samimages.jsonnet";
                         name: "sfdc-volume"
                     }
                 ] +
-                if configs.estate == "prd-samtest" then [
+                if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
                     {
                         name: "config",
                         configMap: {
