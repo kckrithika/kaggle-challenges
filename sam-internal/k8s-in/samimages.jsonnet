@@ -51,7 +51,7 @@ local utils = import "util_functions.jsonnet";
             },
 
        ### For testing private bits from a developer's machine pre-checkin if
-       ### privatebuildoverride env variables are defined, otherwise use phase 1
+       ### privatebuildoverride overrides are defined, otherwise use phase 1
        "privates": {
            "hypersam": (
              if (privatebuildoverridetag != "") then
@@ -89,11 +89,7 @@ local utils = import "util_functions.jsonnet";
     # ====== DO NOT EDIT BELOW HERE ======
 
     # These are the images used by the templates
-    hypersam: (
-      if $.phase == "privates" && privatebuildoverridetag != "" && privatebuildoverriderepo != "" then
-        privatebuildoverriderepo+"/hypersam:"+privatebuildoverridetag else
-        utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"])
-        ),
+    hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
     k8sproxy: utils.do_override_for_not_tnrp_image($.overrides, "k8sproxy", $.static["k8sproxy"]),
     permissionInitContainer: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
 

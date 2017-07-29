@@ -6,10 +6,6 @@ set -e
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
-if [ ! -z $privatebuildoverridetag ]; then
-    echo "Using an override for prd-samtest with tag ${privatebuildoverridetag} and repo ${privatebuildoverriderepo}"
-fi
-
 #Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."

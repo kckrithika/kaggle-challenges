@@ -60,6 +60,23 @@ local internal = {
         internal.add_tnrp_registry(tnrp_repo, image_name, internal.do_override(overrides, image_name, tag))
     ,
 
+    # This is for tags where it may have the full repository path. If it does
+    # then do not add anything, otherwise add the tnrp registry
+    #
+    # overrides - a map of "kingdom,estate,template,image" to "tag"
+    # tnrp_repo - the output repo on artifactrepo under the "tnrp" folder (usually "sam" or "sdn")
+    # image_name - the docker image name (usually "hypersam" or "hypersdn")
+    # tag - the docker tag.  Used when no override exists, otherwise gets replaced ("sam-0000934-6f12a434")
+    #
+    do_override_based_on_tag(overrides, tnrp_repo, image_name, tag):: (
+        local tagAfterOverride = internal.do_override(overrides, image_name, tag);
+        if ( std.startsWith(tagAfterOverride, configs.registry)) then
+          tagAfterOverride
+        else
+          internal.add_tnrp_registry(tnrp_repo, image_name, tagAfterOverride)
+      )
+    ,
+
     # This is for filtering Public Clouds from Private Clouds
     is_public_cloud(kingdom):: (
         kingdom == "cdu" || kingdom == "syd" || kingdom == "yhu" || kingdom == "yul"
