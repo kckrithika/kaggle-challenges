@@ -55,7 +55,7 @@ system:
         - name: PUBLIC_HOST_NAME
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: DEPLOYMENT
-          value: L
+          value: M
         # For casam deployments, we can switch back and forth between sleepy and sneezy
         # MIST30 core app servers are currently using sneezy
         # As of this manifest, sleepy=208.12 plsql 
