@@ -48,8 +48,7 @@
                }
             ],
             "nodeSelector": {
-               "master": "true",
-               "pool": "prd-samtest"
+               "pool": "prd-samdev"
             },
             "securityContext": {
                "fsGroup": 0,

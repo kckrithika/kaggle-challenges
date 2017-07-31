@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -10,7 +10,7 @@ if configs.estate == "prd-samtest" then {
                 containers: [
                     {
                         name: "node-controller",
-                        image: samimages.node_controller,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/node-controller",
                         ],
