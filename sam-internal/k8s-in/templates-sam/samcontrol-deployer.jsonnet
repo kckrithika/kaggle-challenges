@@ -25,7 +25,7 @@ local samimages = import "samimages.jsonnet";
                            "--sender=sam@salesforce.com",
                            "--recipient=sam@salesforce.com"
                          ]
-                         + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [ "--caFile="+configs.caFile, "--keyFile="+configs.keyFile, "--certFile="+configs.certFile ] else []),
+                         + (if configs.kingdom == "prd" then [ "--caFile="+configs.caFile, "--keyFile="+configs.keyFile, "--certFile="+configs.certFile ] else []),
                          "volumeMounts": [
                            {
                               "mountPath": "/data/certs",
