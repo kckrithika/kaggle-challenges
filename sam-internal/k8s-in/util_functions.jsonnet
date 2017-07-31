@@ -70,7 +70,7 @@ local internal = {
     #
     do_override_based_on_tag(overrides, tnrp_repo, image_name, tag):: (
         local tagAfterOverride = internal.do_override(overrides, image_name, tag);
-        if ( std.startsWith(tagAfterOverride, configs.registry)) then
+        if ( std.startsWith(tagAfterOverride, "ops0-artifactrepo")) then
           tagAfterOverride
         else
           internal.add_tnrp_registry(tnrp_repo, image_name, tagAfterOverride)
