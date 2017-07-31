@@ -1,4 +1,3 @@
 {
-  privatebuildoverriderepo:"",
   privatebuildoverridetag:"",
 }
