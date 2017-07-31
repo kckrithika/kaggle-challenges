@@ -62,6 +62,6 @@ serviceList: self.perCluster.serviceList[estate],
 ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 canaryServicePort: self.perCluster.canaryServicePort[estate],
-ipvsDataConnPort:self.perCluster.ipvsDataConnPort[estate],
+ipvsDataConnPort: self.perCluster.ipvsDataConnPort[estate],
 
 }
