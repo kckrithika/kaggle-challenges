@@ -42,9 +42,7 @@ system:
       livenessProbe:
         exec:
           command:
-            - /bin/sh
-            - -c
-            - "/healthcheck 10000"
+            - "true"
         initialDelaySeconds: 5
 
   loadbalancers:
