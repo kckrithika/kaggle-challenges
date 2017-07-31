@@ -797,3 +797,5 @@ apps:
     - par/par-sp1-sam_caas
   par-sp1-redis-sp-cs89-pc1-12023:
     - par/par-sp1-sam_caas
+  prd-caas-benchmark-perf:
+   - prd/prd-sp2-sam_caas
