@@ -14,7 +14,6 @@ local samimages = import "samimages.jsonnet";
                         image: samimages.hypersam,
                         command:[
                            "/sam/sam-controller",
-                           "--debug=true",
                            "--dockerregistry="+configs.registry,
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=3",
