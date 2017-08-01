@@ -13,6 +13,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         image: samimages.hypersam,
                         command:[
                             "/sam/node-controller",
+                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                         ],
                         volumeMounts: [
                           {
@@ -25,6 +26,14 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                           }
                        ],
                        env: [
+                          {
+                              "name": "NODE_NAME",
+                              "valueFrom": {
+                                  "fieldRef": {
+                                      "fieldPath": "spec.nodeName",
+                                  },
+                              },
+                          },
                           {
                              "name": "KUBECONFIG",
                              "value": configs.configPath

@@ -26,9 +26,18 @@
             "containers": [
                {
                   "command": [
-                     "/sam/node-controller"
+                     "/sam/node-controller",
+                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [
+                     {
+                        "name": "NODE_NAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "fieldPath": "spec.nodeName"
+                           }
+                        }
+                     },
                      {
                         "name": "KUBECONFIG",
                         "value": "/config/kubeconfig"

@@ -18,6 +18,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         command:[
                             "/sam/estatesvc/script/estatesvc-wrapper.sh",
                             configs.kingdom,
+                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                         ],
                         "ports": [
                         {
@@ -25,7 +26,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             "name": "estate-server",
                         }
                         ],
-                      livenessProbe: {
+                        livenessProbe: {
                            initialDelaySeconds: 15,
                            httpGet: {
                                path: "/info",
@@ -33,6 +34,24 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                            },
                            timeoutSeconds: 10
                         },
+                        env: [
+                            {
+                                "name": "NODE_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "fieldPath": "spec.nodeName",
+                                    },
+                                },
+                            },
+                            {
+                                "name": "POD_NAME",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "fieldPath": "metadata.name",
+                                    },
+                                },
+                            },
+                        ],
                     }
                 ],
                 nodeSelector: {
