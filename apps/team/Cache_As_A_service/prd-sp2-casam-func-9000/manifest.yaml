@@ -4,17 +4,39 @@ system:
   functions:
   - name: csr
 
-    # If the count is changed, the same value must be set for the NODES env variable below
-    count: 2
-    
-    hostnetwork: true
-
-    terminationGracePeriodSeconds: 500
+    count: 3
     
     containers:
     - name: csr-sam
 
       image: tnrp/casam/coreapp:208.12-0000027-fb2f4086
+
+      env:
+        - name: DEPLOYMENT
+          value: A
+        - name: DB_USER
+          value: sleepy
+
+
+        # The flag below configs the app to use a single shared memcached running in SAM
+        # To revert to standard local container memcached comment out the 2 lines below
+        - name: USE_SAM_MCD
+          value: true
+        # Matches the external port on the load balancer
+        - name: PUBLIC_PORT
+          value: 9001
+        # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+        - name: PUBLIC_HOST_NAME
+          value: samcaas2-caasminion2-2-prd.eng.sfdc.net
+        - name: PORT
+          value: 9000
+        # If the count is changed above, the same value must be set for the NODES env variable below
+        - name: NODES
+          value: 3
+
+        # For casam deployments, we can switch back and forth between sleepy and sneezy db users
+        # MIST30 core app servers are currently using sneezy
+        # As of this manifest, sleepy=208.12 plsql 
 
       resources:
         limits: { memory: "8292M" }
@@ -23,11 +45,9 @@ system:
       livenessProbe:
         exec:
           command:
-            - echo
-            - HEALTHY
-#           - "/bin/sh"
-#           - "-c"
-#           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+           - "/bin/sh"
+           - "-c"
+           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
         initialDelaySeconds: 360
         periodSeconds: 1
 
@@ -47,29 +67,10 @@ system:
         - containerPort: 12000
         - containerPort: 12015
         
-      env:
-        # Matches the external port on the load balancer
-        - name: PUBLIC_PORT
-          value: 9001
-        # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
-        - name: PUBLIC_HOST_NAME
-          value: samcaas2-caasminion2-2-prd.eng.sfdc.net
-        - name: DEPLOYMENT
-          value: A
-        # For casam deployments, we can switch back and forth between sleepy and sneezy
-        # MIST30 core app servers are currently using sneezy
-        # As of this manifest, sleepy=208.12 plsql 
-        - name: DB_USER
-          value: sleepy
-        - name: PORT
-          value: 9000
-        - name: NODES
-          value: 2
-        # The flag below configs the app to use a single shared memcached running in SAM
-        # To revert to standard local container memcached comment out the 2 lines below
-        - name: USE_SAM_MCD
-          value: true
+    hostnetwork: true
 
+    terminationGracePeriodSeconds: 500
+    
     strategy:
       type: RollingUpdate
       rollingUpdate:
