@@ -9,11 +9,11 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:208.12-0000027-fb2f4086
+      image: tnrp/casam/coreapp:208.12-0000027-fb2f4086n
 
       env:
         - name: DEPLOYMENT
-          value: A
+          value: B
         - name: DB_USER
           value: sleepy
 
