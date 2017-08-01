@@ -13,7 +13,7 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: A
+          value: B
         - name: DB_USER
           value: sleepy
 
