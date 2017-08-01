@@ -28,7 +28,8 @@ local samimages = import "samimages.jsonnet";
                            "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
                            ]
                            + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
-                           + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else []),
+                           + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else [])
+                           + (if configs.kingdom != "prd" then [ "--debug=true" ] else []),
                        volumeMounts: [
                           {
                              "mountPath": "/data/certs",
