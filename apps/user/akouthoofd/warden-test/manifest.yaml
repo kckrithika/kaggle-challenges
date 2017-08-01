@@ -12,6 +12,10 @@ system:
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0001
         ports:
         - containerPort: 8889
+        - name: ES_REST
+          containerPort: 9200
+        - name: ES_COMM
+          containerPort: 9300
         env:
         - name: BRANCH
           value: "cors_to_wsl4"
