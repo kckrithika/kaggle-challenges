@@ -27,7 +27,7 @@
                {
                   "command": [
                      "/sam/node-controller",
-                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [
                      {

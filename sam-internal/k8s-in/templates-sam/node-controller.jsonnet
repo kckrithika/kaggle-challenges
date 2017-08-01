@@ -13,7 +13,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         image: samimages.hypersam,
                         command:[
                             "/sam/node-controller",
-                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                           "--funnelEndpoint="+configs.funnelVIP,
                         ],
                         volumeMounts: [
                           {

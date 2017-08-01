@@ -28,7 +28,7 @@
                   "command": [
                      "/sam/estatesvc/script/estatesvc-wrapper.sh",
                      "prd",
-                     "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [
                      {

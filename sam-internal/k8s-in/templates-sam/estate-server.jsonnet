@@ -18,7 +18,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         command:[
                             "/sam/estatesvc/script/estatesvc-wrapper.sh",
                             configs.kingdom,
-                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                           "--funnelEndpoint="+configs.funnelVIP,
                         ],
                         "ports": [
                         {
