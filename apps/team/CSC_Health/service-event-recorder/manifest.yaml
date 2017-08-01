@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000018-17ca7ba6
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000019-ed3d01f3
       ports:
       - containerPort: 10000
       resources:
@@ -15,6 +15,8 @@ system:
       env:
       - name: SER_GRPC_PORT
         value: 10000
+      - name: SER_GUSWAVE_LOGINSERVER
+        value: "https://gs0.salesforce.com"
       - name: SER_GUSWAVE_USERNAME
         valueFrom:
           secretKeyRef:
