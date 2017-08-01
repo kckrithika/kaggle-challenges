@@ -9,12 +9,10 @@ system:
       count: 3
       containers:
       - name: casp-warden
-        image: tnrp/casp-test/warden:0.0.0-0000088-4acfb80f
+        image: docker-sam/akouthoofd/caspwarden:test-0001
         ports:
         - containerPort: 8889
         env:
-        - name: ES_PUBLISH_IP
-          value: "${HOSTNAME}"
         - name: BRANCH
           value: "cors_to_wsl4"
         livenessProbe:
