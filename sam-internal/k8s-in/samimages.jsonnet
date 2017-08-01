@@ -1,5 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local privatebuildoverride = import "privatebuildoverride.jsonnet";
+local privatebuildoverridetag = privatebuildoverride.privatebuildoverridetag;
 local utils = import "util_functions.jsonnet";
 {
     # ================== SAM RELEASE ====================
@@ -46,11 +48,22 @@ local utils = import "util_functions.jsonnet";
         "4": {
             "hypersam": "sam-0001027-676096c4",
             },
+
+       ### For testing private bits from a developer's machine pre-checkin if
+       ### privatebuildoverride overrides are defined, otherwise use phase 1
+       "privates": {
+           "hypersam": (
+             if (privatebuildoverridetag != "") then
+                privatebuildoverridetag
+             else $.per_phase["1"]["hypersam"]),
+           },
     },
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-samdev" || estate == "prd-samtest") then
+        if (estate == "prd-samtest") then
+            "privates"
+        else if (estate == "prd-samdev") then
             "1"
         else if (kingdom == "prd") then
             "2"
@@ -75,8 +88,7 @@ local utils = import "util_functions.jsonnet";
     # ====== DO NOT EDIT BELOW HERE ======
 
     # These are the images used by the templates
-    hypersam: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
-    k8sproxy: utils.do_override_for_not_tnrp_image($.overrides, "k8sproxy", $.static["k8sproxy"]),
-    permissionInitContainer: utils.do_override_for_tnrp_image($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
-
+    hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
+    k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static["k8sproxy"]),
+    permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
 }

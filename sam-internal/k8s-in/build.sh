@@ -6,7 +6,6 @@ set -e
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
-
 #Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."
