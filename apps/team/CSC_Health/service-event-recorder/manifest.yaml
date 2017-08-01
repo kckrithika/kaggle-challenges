@@ -15,8 +15,6 @@ system:
       env:
       - name: SER_GRPC_PORT
         value: 10000
-      - name: SER_GUSWAVE_LOGINSERVER
-        value: "https://gs0.salesforce.com"
       - name: SER_GUSWAVE_USERNAME
         valueFrom:
           secretKeyRef:
