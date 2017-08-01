@@ -1,0 +1,33 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - akouthoofd@salesforce.com
+    functions:
+    - name: akwardentest
+      count: 3
+      containers:
+      - name: casp-warden
+        image: tnrp/casp-test/warden:0.0.0-0000088-4acfb80f
+        ports:
+        - containerPort: 8889
+        env:
+        - name: ES_PUBLISH_IP
+          value: "${HOSTNAME}"
+        - name: BRANCH
+          value: "cors_to_wsl4"
+        livenessProbe:
+          httpGet:
+            path: /manage/health
+            port: 15372
+          initialDelaySeconds: 60
+
+    loadbalancers:
+    - lbname: wardenlb
+      function: akwardentest
+      nodeExposed: true
+      ports:
+        - port: 8889
+          targetport: 8889
+
