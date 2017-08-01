@@ -13,7 +13,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                         image: samimages.hypersam,
                         command:[
                             "/sam/service-discovery-module",
-			    "-namespaceFilter=user-kdhabalia,caas",
+			    "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2",
 			    "-zkIP="+configs.zookeeperip,
                         ],
 			env: [
