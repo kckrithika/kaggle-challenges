@@ -4,7 +4,7 @@ system:
   functions:
   - name: csr
 
-    count: 3
+    count: 2
     
     containers:
     - name: csr-sam
@@ -13,7 +13,7 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: B
+          value: C
         - name: DB_USER
           value: sleepy
 
