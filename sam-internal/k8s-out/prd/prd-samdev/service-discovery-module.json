@@ -27,7 +27,7 @@
                {
                   "command": [
                      "/sam/service-discovery-module",
-                     "-namespaceFilter=user-kdhabalia",
+                     "-namespaceFilter=user-kdhabalia,caas",
                      "-zkIP=shared0-discovery1-0-sfm.data.sfdc.net:2181"
                   ],
                   "env": [

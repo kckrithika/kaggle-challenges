@@ -36,7 +36,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001068-adfe25aa",
                   "name": "service-discovery-module",
                   "volumeMounts": [
                      {
@@ -51,7 +51,7 @@
                }
             ],
             "nodeSelector": {
-               "pool": "prd-samtest"
+               "pool": "prd-sam"
             },
             "volumes": [
                {

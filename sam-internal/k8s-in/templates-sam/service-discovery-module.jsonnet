@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -13,7 +13,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                         image: samimages.hypersam,
                         command:[
                             "/sam/service-discovery-module",
-			    "-namespaceFilter=user-kdhabalia",
+			    "-namespaceFilter=user-kdhabalia,caas",
 			    "-zkIP="+configs.zookeeperip,
                         ],
 			env: [
