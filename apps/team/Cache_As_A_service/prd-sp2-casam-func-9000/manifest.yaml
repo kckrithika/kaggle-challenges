@@ -18,6 +18,9 @@ system:
           value: sleepy
 
 
+        # If the count is changed above, the same value must be set for the NODES env variable below
+        - name: NODES
+          value: 2
         # The flag below configs the app to use a single shared memcached running in SAM
         # To revert to standard local container memcached comment out the 2 lines below
         - name: USE_SAM_MCD
@@ -30,9 +33,6 @@ system:
           value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: PORT
           value: 9000
-        # If the count is changed above, the same value must be set for the NODES env variable below
-        - name: NODES
-          value: 3
 
         # For casam deployments, we can switch back and forth between sleepy and sneezy db users
         # MIST30 core app servers are currently using sneezy
