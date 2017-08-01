@@ -1,0 +1,11 @@
+{
+   "apiVersion": "v1",
+   "data": {
+      "config.json": "{\"caFile\": \"/data/certs/ca.crt\", \"certFile\": \"/data/certs/hostcert.crt\", \"keyFile\": \"/data/certs/hostcert.key\"}"
+   },
+   "kind": "ConfigMap",
+   "metadata": {
+      "name": "watchdog",
+      "namespace": "sam-system"
+   }
+}
