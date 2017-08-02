@@ -27,7 +27,26 @@
                {
                   "command": [
                      "/sam/estatesvc/script/estatesvc-wrapper.sh",
-                     "prd"
+                     "prd",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  ],
+                  "env": [
+                     {
+                        "name": "NODE_NAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "fieldPath": "spec.nodeName"
+                           }
+                        }
+                     },
+                     {
+                        "name": "POD_NAME",
+                        "valueFrom": {
+                           "fieldRef": {
+                              "fieldPath": "metadata.name"
+                           }
+                        }
+                     }
                   ],
                   "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170802_093413.c065e44.dirty.thargrove-ltm1.wdliveconfig",
                   "livenessProbe": {
