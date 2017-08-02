@@ -2,4 +2,4 @@ apps:
  my-sam-test:
   - prd/prd-samdev
   - prd/prd-samtest
-
+  - prd/prd-sam
