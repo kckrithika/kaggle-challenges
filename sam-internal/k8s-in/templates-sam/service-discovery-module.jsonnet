@@ -13,10 +13,11 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                         image: samimages.hypersam,
                         command:[
                             "/sam/service-discovery-module",
-			    "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2",
-			    "-zkIP="+configs.zookeeperip,
+			                "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs",
+			                "-zkIP="+configs.zookeeperip,
+			                "-funnelEndpoint="+configs.funnelVIP,
                         ],
-			env: [
+			    env: [
                           {
                              "name": "KUBECONFIG",
                              "value": configs.configPath
