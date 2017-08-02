@@ -33,7 +33,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:20170802_093413.c065e44.dirty.thargrove-ltm1.wdliveconfig",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/",
