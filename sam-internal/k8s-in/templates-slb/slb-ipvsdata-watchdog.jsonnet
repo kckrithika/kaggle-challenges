@@ -7,9 +7,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
     "kind": "Deployment",
     "metadata": {
             "labels": {
-                "name": "slb-ipvsData-watchdog"
+                "name": "slb-ipvsdata-watchdog"
             },
-            "name": "slb-ipvsData-watchdog",
+            "name": "slb-ipvsdata-watchdog",
             "annotations": {
                 "scheduler.alpha.kubernetes.io/affinity": "{\n  \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
             }
@@ -35,10 +35,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                 ],
                 "containers": [
                     {
-                        "name": "slb-ipvsData-watchdog",
+                        "name": "slb-ipvsdata-watchdog",
                         "image": slbimages.hypersdn,
                         "command":[
-                            "/sdn/slb-ipvsData-watchdog",
+                            "/sdn/slb-ipvsdata-watchdog",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--smtpServer="+configs.smtpServer,
@@ -73,7 +73,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             },
             metadata: {
                 labels: {
-                    name: "slb-ipvsData-watchdog",
+                    name: "slb-ipvsdata-watchdog",
                     apptype: "monitoring"
                 }
             }

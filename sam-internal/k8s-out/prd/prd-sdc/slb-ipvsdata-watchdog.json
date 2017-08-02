@@ -6,9 +6,9 @@
          "scheduler.alpha.kubernetes.io/affinity": "{\n  \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
       },
       "labels": {
-         "name": "slb-ipvsData-watchdog"
+         "name": "slb-ipvsdata-watchdog"
       },
-      "name": "slb-ipvsData-watchdog"
+      "name": "slb-ipvsdata-watchdog"
    },
    "spec": {
       "replicas": 1,
@@ -16,14 +16,14 @@
          "metadata": {
             "labels": {
                "apptype": "monitoring",
-               "name": "slb-ipvsData-watchdog"
+               "name": "slb-ipvsdata-watchdog"
             }
          },
          "spec": {
             "containers": [
                {
                   "command": [
-                     "/sdn/slb-ipvsData-watchdog",
+                     "/sdn/slb-ipvsdata-watchdog",
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
                      "--smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
@@ -37,8 +37,8 @@
                      "--retryPeriod=120s",
                      "--maxretries=2"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000240-3b642cf3",
-                  "name": "slb-ipvsData-watchdog",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000243-6eb62b70",
+                  "name": "slb-ipvsdata-watchdog",
                   "securityContext": {
                      "privileged": true
                   },
