@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.kingdom == "prd" then {
+{
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -10,4 +10,4 @@ if configs.kingdom == "prd" then {
     data: {
       "config.json": std.toString(import "../configs-sam/manifest-watcher-config.jsonnet")
     }
-} else "SKIP"
+}

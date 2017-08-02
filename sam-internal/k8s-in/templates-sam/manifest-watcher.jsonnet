@@ -30,14 +30,12 @@ local samimages = import "samimages.jsonnet";
                          {
                             "mountPath": "/data/certs",
                             "name": "certs"
-                         }
-                      ]
-                      + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
-                          {
+                         },
+                         {
                             "mountPath": "/config",
                             "name": "config"
-                          }
-                       ] else [],
+                         }
+                       ],
                     }
                 ],
                 volumes: [
@@ -52,16 +50,14 @@ local samimages = import "samimages.jsonnet";
                             path: "/manifests"
                         },
                         name: "sfdc-volume"
-                    }
-                ] +
-                if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
+                    },
                     {
                         name: "config",
                         configMap: {
                           name: "manifest-watcher",
                         }
                     }
-                ] else [],
+                ],
                 nodeSelector: {
                     pool: configs.estate
                 } +
