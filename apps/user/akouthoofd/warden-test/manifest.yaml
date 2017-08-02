@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: casp-warden
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0002
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akouthoofd/caspwarden:test-0003
         ports:
         - containerPort: 8889
         - containerPort: 9200
@@ -17,11 +17,23 @@ system:
         env:
         - name: BRANCH
           value: "cors_to_wsl4"
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/lib/warden/mysql
+          name: casp-home-vol
+        - mountPath: /home/sfdc-casp/elasticsearch/data
+          name: casp-es-vol
         livenessProbe:
           httpGet:
             path: /manage/health
             port: 15372
           initialDelaySeconds: 60
+      volumes:
+      - name: casp-home-vol
+        hostPath:
+          path: /home/sfdc-casp/lib/warden/mysql
+      - name: casp-es-vol
+        hostPath:
+          path: /home/sfdc-casp/elasticsearch/data
 
     loadbalancers:
     - lbname: wardenlb
