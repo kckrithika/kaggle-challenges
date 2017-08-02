@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000020-bc64b2ac
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000021-c4d14377
       ports:
       - containerPort: 10000
       resources:
@@ -37,7 +37,7 @@ system:
           secretKeyRef:
             name: csc-health-gus-svc
             key: oauthclientkey
-      - name: SER_GUSWAVE_PROXY
+      - name: HTTPS_PROXY
         value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       livenessProbe:
         exec:
