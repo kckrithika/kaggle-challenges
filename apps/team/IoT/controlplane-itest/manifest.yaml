@@ -14,7 +14,7 @@ system:
         - name: server
           containerPort: 8080
         - name: grpc
-          containerPort: 9090
+          containerPort: 7020
       livenessProbe:
         httpGet:
           path: /ping
@@ -49,6 +49,6 @@ system:
     function: controlplane-itest
     ports:
       - port: 9091
-        targetport: 9090
+        targetport: 7020
       - port: 8081
         targetport: 8080
