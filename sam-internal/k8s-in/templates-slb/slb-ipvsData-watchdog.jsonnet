@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                         "name": "slb-ipvsData-watchdog",
                         "image": slbimages.hypersdn,
                         "command":[
-                            "/sdn/slb-vip-watchdog",
+                            "/sdn/slb-ipvsData-watchdog",
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--smtpServer="+configs.smtpServer,
@@ -62,6 +62,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                                  "mountPath": "/host"
                             }
                         ],
+                        "securityContext": {
+                           "privileged": true
+                        }
                     }
                 ],
                 nodeSelector: {
