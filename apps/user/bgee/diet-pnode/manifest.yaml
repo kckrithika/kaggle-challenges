@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: pb-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/dj_pbdataflow:sam-user-20170720
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/dj_pbdataflow:ben-20170802
       ports:
       - containerPort: 10000
       livenessProbe:
@@ -17,7 +17,7 @@ system:
         initialDelaySeconds: 850
         timeoutSeconds: 10
     - name: diet-pnode
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170724
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bgee/diet-pnode:ben-20170801
       env:
       - name: datajourney_pbserver_url_host
         value: localhost
