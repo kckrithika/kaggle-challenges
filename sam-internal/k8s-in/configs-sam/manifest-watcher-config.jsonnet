@@ -1,9 +1,9 @@
 local configs = import "config.jsonnet";
 
 {
-  disableCertsCheck: "true",
+  disableCertsCheck: true,
   tnrpArchiveEndpoint: configs.tnrpArchiveEndpoint,
-  tlsEnabled: "true",
+  tlsEnabled: true,
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
