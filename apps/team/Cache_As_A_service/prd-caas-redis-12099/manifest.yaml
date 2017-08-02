@@ -30,8 +30,12 @@ system:
           initialDelaySeconds: 15
           timeoutSeconds: 10
       # expose redis outside the container
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
       ports:
       - containerPort: 12099
+        name: caas-cluster
     - name: caas-redis-announcer
       # container image/version to  run
       image: tnrp/caas/caas-redis:0.1-0000033-13921907 
