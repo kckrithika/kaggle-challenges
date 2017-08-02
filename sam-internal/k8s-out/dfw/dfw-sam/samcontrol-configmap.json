@@ -1,7 +1,7 @@
 {
    "apiVersion": "v1",
    "data": {
-      "config.json": "{\"caFile\": \"/data/certs/ca.crt\", \"certFile\": \"/data/certs/hostcert.crt\", \"checkImageExistsFlag\": \"true\", \"debug\": \"true\", \"dockerregistry\": \"ops0-artifactrepo1-0-dfw.data.sfdc.net\", \"httpsDisableCertsCheck\": \"true\", \"k8sapiserver\": \"\", \"keyFile\": \"/data/certs/hostcert.key\", \"tlsEnabled\": \"true\", \"volPermissionInitContainerImage\": \"ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657\"}"
+      "config.json": "{\"caFile\": \"/data/certs/ca.crt\", \"certFile\": \"/data/certs/hostcert.crt\", \"checkImageExistsFlag\": true, \"debug\": true, \"dockerregistry\": \"ops0-artifactrepo1-0-dfw.data.sfdc.net\", \"httpsDisableCertsCheck\": true, \"k8sapiserver\": \"\", \"keyFile\": \"/data/certs/hostcert.key\", \"tlsEnabled\": true, \"volPermissionInitContainerImage\": \"ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657\"}"
    },
    "kind": "ConfigMap",
    "metadata": {
