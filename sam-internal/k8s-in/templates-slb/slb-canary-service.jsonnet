@@ -18,7 +18,7 @@ if configs.estate == "prd-sdc" then {
                 "port": slbconfigs.canaryServicePort,
                 "protocol": "TCP",
                 "targetPort": slbconfigs.canaryServicePort,
-                "nodePort": slbconfigs.canaryServicePort
+                "nodePort": 32136
             }
             ],
                 "selector": {
