@@ -13,7 +13,7 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: F
+          value: G
         - name: DB_USER
           value: grumpy
 
@@ -57,7 +57,7 @@ system:
           port: 9000
         initialDelaySeconds: 120
         periodSeconds: 1
-        failureThreshold: 3
+        failureThreshold: 10
 
       ports:
         # Actually used by the container
