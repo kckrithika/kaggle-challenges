@@ -16,7 +16,7 @@ system:
       - name: SER_GRPC_PORT
         value: 10000
       - name: SER_GUSWAVE_LOGINSERVER
-        value: "https://gus.my.salesforce.com"
+        value: "https://gs0.my.salesforce.com"
       - name: SER_GUSWAVE_USERNAME
         valueFrom:
           secretKeyRef:
@@ -37,8 +37,6 @@ system:
           secretKeyRef:
             name: csc-health-gus-svc
             key: oauthclientkey
-      - name: HTTPS_PROXY
-        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       livenessProbe:
         exec:
           command:
