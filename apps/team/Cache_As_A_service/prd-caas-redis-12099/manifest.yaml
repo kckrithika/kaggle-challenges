@@ -42,8 +42,8 @@ system:
       args:
         - -endpoint
         - caas/cluster/na45-c1:SUPERPOD:12099
-        - -logDir
-        - /home/caas/logs
+        - -zk
+        - shared0-discovery1-0-crd.data.sfdc.net:2181
       livenessProbe:
         initialDelaySeconds: 5
         exec:
