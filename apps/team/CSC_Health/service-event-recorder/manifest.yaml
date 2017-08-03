@@ -37,12 +37,11 @@ system:
           secretKeyRef:
             name: csc-health-gus-svc
             key: oauthclientkey
+      - name: SER_GUSWAVE_PROXY
+        value: "http://public0-proxy1-0-prd.data.sfdc.net:8080"
       livenessProbe:
-        exec:
-          command:
-            - /bin/sh
-            - -c
-            - "/healthcheck 10000"
+        tcpSocket:
+          port: 10000
         initialDelaySeconds: 5
 
   loadbalancers:
