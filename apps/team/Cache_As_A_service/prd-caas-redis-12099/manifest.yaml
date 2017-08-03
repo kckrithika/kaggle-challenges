@@ -42,8 +42,6 @@ system:
       args:
         - -endpoint
         - caas/cluster/na45-c1:SUPERPOD:12099
-        - -logDir
-        - /home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
         exec:
