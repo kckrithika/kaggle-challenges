@@ -43,7 +43,7 @@
                   "env": [
                      {
                         "name": "KUBECONFIG",
-                        "value": "/config/kubeconfig"
+                        "value": "/kubeconfig/kubeconfig"
                      }
                   ],
                   "image": "ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001068-adfe25aa",
@@ -52,6 +52,10 @@
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/kubeconfig",
+                        "name": "kubeconfig"
                      },
                      {
                         "mountPath": "/config",
@@ -74,6 +78,12 @@
                {
                   "hostPath": {
                      "path": "/etc/kubernetes"
+                  },
+                  "name": "kubeconfig"
+               },
+               {
+                  "configMap": {
+                     "name": "samcontrol"
                   },
                   "name": "config"
                }

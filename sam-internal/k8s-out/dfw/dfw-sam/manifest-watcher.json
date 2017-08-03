@@ -29,13 +29,7 @@
                      "--funnelEndpoint=ajna0-funnel1-0-dfw.data.sfdc.net:80",
                      "--v=2",
                      "--logtostderr=true",
-                     "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-dfw.ops.sfdc.net/tnrp/content_repo/0/archive",
-                     "--tlsEnabled=true",
-                     "--caFile=/data/certs/ca.crt",
-                     "--keyFile=/data/certs/hostcert.key",
-                     "--certFile=/data/certs/hostcert.crt",
-                     "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
+                     "--config=/config/manifestwatcher.json"
                   ],
                   "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001068-adfe25aa",
                   "name": "manifest-watcher",

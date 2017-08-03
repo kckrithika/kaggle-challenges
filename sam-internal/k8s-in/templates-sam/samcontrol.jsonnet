@@ -36,6 +36,10 @@ local samimages = import "samimages.jsonnet";
                              "name": "certs"
                           },
                           {
+                             "mountPath": "/kubeconfig",
+                             "name": "kubeconfig"
+                          },
+                          {
                              "mountPath": "/config",
                              "name": "config"
                           }
@@ -43,7 +47,7 @@ local samimages = import "samimages.jsonnet";
                        env: [
                           {
                              "name": "KUBECONFIG",
-                             "value": configs.configPath
+                             "value": "/kubeconfig/kubeconfig"
                           }
                        ]
                     }
@@ -59,7 +63,13 @@ local samimages = import "samimages.jsonnet";
                         hostPath: {
                                 path: "/etc/kubernetes"
                                 },
-                                name: "config"
+                                name: "kubeconfig"
+                        },
+                        {
+                            name: "config",
+                            configMap: {
+                            name: "samcontrol",
+                            }
                         }
                 ],
                 nodeSelector: {
