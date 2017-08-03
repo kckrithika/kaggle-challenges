@@ -20,19 +20,31 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                   {
-                       "name": "var-slb-volume",
+                    {
+                        "name": "var-slb-volume",
                         "hostPath": {
-                           "path": "/var/slb"
+                            "path": "/var/slb"
+                         }
+                    },
+                    {
+                        "name": "host-volume",
+                        "hostPath": {
+                            "path": "/"
+                         }
+                    },
+                    {
+                        "name": "certs",
+                        "hostPath": {
+                            "path": "/data/certs",
                         }
-                   },
-                   {
-                       "name": "host-volume",
-                       "hostPath": {
-                           "path": "/"
-                       }
-                   }
-                ],
+                     },
+                     {
+                        "name": "config",
+                        "hostPath": {
+                            "path": "/etc/kubernetes",
+                         }
+                    }
+                 ],
                 "containers": [
                     {
                         "name": "slb-ipvsdata-watchdog",
@@ -49,7 +61,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--alertThreshold=300s",
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--connPort="+slbconfigs.ipvsDataConnPort,
-                            "--retryPeriod=120s",
+                            "--retryPeriod=2m",
                             "--maxretries=2"
                         ],
                         "volumeMounts": [
@@ -58,8 +70,22 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                                 "mountPath": "/host/var/slb"
                             },
                             {
-                                 "name": "host-volume",
-                                 "mountPath": "/host"
+                                "name": "host-volume",
+                                "mountPath": "/host"
+                            },
+                            {
+                                "name": "certs",
+                                "mountPath": "/data/certs"
+                            },
+                            {
+                               "name": "config",
+                               "mountPath": "/config"
+                            }
+                         ],
+                         env: [
+                            {
+                                "name": "KUBECONFIG",
+                                "value": configs.configPath
                             }
                         ],
                         "securityContext": {
