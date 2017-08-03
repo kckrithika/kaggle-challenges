@@ -34,6 +34,13 @@ perCluster: {
         "prd-sam": "slb-foxtrot,sam-deployment-portal,k8sproxy"
     },
 
+    useProxyServicesList: {
+        "prd-sdc": "slb-bravo-svc",
+        "prd-samtest": "",
+        "prd-samdev": "",
+        "prd-sam": ""
+    },
+
     canaryServiceName: {
         "prd-sdc": "slb-sdc-svc",
         "prd-samtest": "slb-samtest-svc",
@@ -63,5 +70,6 @@ ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 canaryServicePort: self.perCluster.canaryServicePort[estate],
 ipvsDataConnPort: self.perCluster.ipvsDataConnPort[estate],
+useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 
 }
