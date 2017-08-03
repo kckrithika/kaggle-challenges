@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - xiao.zhou@salesforce.com
+        kbradicich@salesforce.com
+  functions:
+  - name: latency-reporter
+    count: 1
+    progressDeadlineSeconds: 120
+    containers:
+    - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:deployment-latency
+      command: ["/sam/sam-deployment-reporter"]
+      args:
+        - --v=5
+        - --cluster.name=sp-na61-pc1
+        - --logDir=/home/caas/logs
+        - —-namespacesToSkip=sam-watchdog
+      volumeMounts:
+        - mountPath: /e2e
+          name: csvvol
+      ports:
+      - containerPort: 9899
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9899
+    nodeSelector:
+          kubernetes.io/hostname=shared0-samdevcompute1-2-prd.eng.sfdc.net
+    volumes:
+    - name: csvvol
+      hostPath:
+        path: /data/csv
+  loadbalancers:
+  - lbname: latency-reporterlb
+    function: latency-reporter
+    ports:
+      - port: 9081
+        targetport: 9899
