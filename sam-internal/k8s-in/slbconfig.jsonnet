@@ -55,6 +55,13 @@ perCluster: {
         "prd-sam": 9114
     },
 
+    slbVipLabel: {
+        "prd-sdc": "",
+        "prd-samtest": "slb_vip",
+        "prd-samdev": "slb_vip",
+        "prd-sam": "slb_vip"
+    },
+
     ipvsDataConnPort: {
         "prd-sdc": 9107,
         "prd-samtest": 9108,
@@ -71,5 +78,6 @@ canaryServiceName: self.perCluster.canaryServiceName[estate],
 canaryServicePort: self.perCluster.canaryServicePort[estate],
 ipvsDataConnPort: self.perCluster.ipvsDataConnPort[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
+slbVipLabel: self.perCluster.slbVipLabel[estate],
 
 }
