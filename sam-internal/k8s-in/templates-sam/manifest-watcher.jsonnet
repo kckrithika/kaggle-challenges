@@ -18,6 +18,7 @@ local samimages = import "samimages.jsonnet";
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
+                        ] + if (configs.kingdom == "prd") then [ 
                            "--disableCertsCheck=true",
                            "--tnrpArchiveEndpoint="+configs.tnrpArchiveEndpoint,
                            "--tlsEnabled=true",
@@ -25,6 +26,8 @@ local samimages = import "samimages.jsonnet";
                            "--keyFile="+configs.keyFile,
                            "--certFile="+configs.certFile,
                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
+                         ] else [
+                           "--config=/config/manifestwatcher.json"
                          ],
                       "volumeMounts": [
                          {
