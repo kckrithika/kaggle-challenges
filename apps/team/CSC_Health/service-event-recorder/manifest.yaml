@@ -38,8 +38,11 @@ system:
             name: csc-health-gus-svc
             key: oauthclientkey
       livenessProbe:
-        tcpSocket:
-          port: 10000
+        exec:
+          command:
+            - /bin/sh
+            - -c
+            - "/healthcheck 10000"
         initialDelaySeconds: 5
 
   loadbalancers:
