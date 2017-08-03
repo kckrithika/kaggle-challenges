@@ -5,8 +5,6 @@ apps:
     - prd/prd-sp2-sam_iot_test
   controlplane-ptest:
     - prd/prd-sp2-sam_iot_test
-  mock-aqueduct:
-    - prd/prd-sp2-sam_iot_test
   aqueduct:
     - prd/prd-sp2-sam_iot_test
   intake-bridge:

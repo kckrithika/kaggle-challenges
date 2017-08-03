@@ -47,6 +47,7 @@ system:
   loadbalancers:
   - lbname: controlplane-itest
     function: controlplane-itest
+    nodeExposed: true
     ports:
       - port: 9091
         targetport: 7020
