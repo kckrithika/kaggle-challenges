@@ -107,8 +107,7 @@ fi
 
 #Ignore hashes.yaml and the prd folder
 #Ignore control-estate.yaml
-difference=$(diff -wr -x hashes.yaml -x control-estate.yaml --exclude=prd $origOutputDir/goal-state $prOutputDir/goal-state)
-if [ ! -z $difference ]; then
+if ! diff -wr -x hashes.yaml -x control-estate.yaml --exclude=prd $origOutputDir/goal-state $prOutputDir/goal-state; then
     exitIfApproverNAuthorAreSame
 fi
 
