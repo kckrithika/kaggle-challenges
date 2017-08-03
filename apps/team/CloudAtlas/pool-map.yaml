@@ -1,9 +1,46 @@
+version: v2
 apps:
   prd0-cloudatlas-proxy:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+      - test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
   prd0-cloudatlas-ds:
-    - prd/prd-sam_cloudatlas_dir
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+      - test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+      - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+      - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
   prd0-cloudatlas-proxy-admin:
-    - prd/prd-sam_cloudatlas
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+      - test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
   prd0-cloudatlas-ds-admin:
-    - prd/prd-sam_cloudatlas_dir
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+      - test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+      - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+      - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+  prd1-cloudatlas-proxy:
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+      - test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+  prd1-cloudatlas-ds:
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+      - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+      - test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+      - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+  prd1-cloudatlas-proxy-admin:
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+      - test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+  prd1-cloudatlas-ds-admin:
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+      - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+      - test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+      - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net

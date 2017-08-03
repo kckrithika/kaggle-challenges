@@ -6,7 +6,7 @@ system:
       - cloudatlas@salesforce.com
   functions:
   - name: cloudatlas-prd0-admin-node
-    count: 4
+    count: 2
     hostnetwork: true
     containers:
     - name: cloudatlas-prd0-ping-admin
