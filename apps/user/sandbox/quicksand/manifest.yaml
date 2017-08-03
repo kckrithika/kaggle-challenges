@@ -7,7 +7,7 @@ system:
     count: 2
     containers:
     - name: quicksand5
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ananyajha/quicksand:quicksand5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ananyajha/quicksand:quicksand6
       ports:
       - containerPort: 10000
       livenessProbe:
