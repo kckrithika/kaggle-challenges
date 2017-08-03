@@ -47,8 +47,9 @@ system:
   loadbalancers:
   - lbname: controlplane-ftest
     function: controlplane-ftest
+    nodeExposed: true
     ports:
       - port: 9090
         targetport: 7020
-      - port: 8080
+      - port: 8084
         targetport: 8080
