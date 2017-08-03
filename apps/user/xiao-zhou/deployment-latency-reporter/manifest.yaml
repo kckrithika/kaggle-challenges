@@ -15,7 +15,8 @@ system:
       command: ["/sam/sam-deployment-reporter"]
       args:
         - --v=5
-        - —-namespacesToSkip=sam-watchdog
+        - —-namespacesToSkip=sam-watchdog,csc-sam
+        - --sender=xiao.zhou@salesforce.com
       volumeMounts:
         - mountPath: /e2e
           name: csvvol
