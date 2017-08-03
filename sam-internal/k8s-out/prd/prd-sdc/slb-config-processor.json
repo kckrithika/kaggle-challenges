@@ -29,6 +29,7 @@
                      "--k8sapiserver=",
                      "--serviceList=slb-alpha,slb-bravo,slb-charlie,sam-deployment-portal,k8sproxy",
                      "--vipList=10.251.129.224:9090,10.251.129.225:9090,10.251.129.226:9090,10.251.129.227:0,10.251.129.228:0",
+                     "--slbVipLabel=",
                      "--useProxyServicesList=slb-bravo-svc",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
@@ -38,7 +39,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000243-6eb62b70",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000245-4e90c634",
                   "name": "slb-config-processor",
                   "securityContext": {
                      "privileged": true

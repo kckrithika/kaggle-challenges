@@ -29,6 +29,7 @@
                      "--k8sapiserver=",
                      "--serviceList=slb-foxtrot,sam-deployment-portal,k8sproxy",
                      "--vipList=10.251.167.224:0,10.251.167.225:0,10.251.167.226:0",
+                     "--slbVipLabel=",
                      "--useProxyServicesList=",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
