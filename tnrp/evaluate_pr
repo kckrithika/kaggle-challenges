@@ -6,7 +6,7 @@ set -ex
 # Check if json files conforms to jsonnets
 ensureLatestJsons() {
 pushd ./sam-internal/k8s-in
-./build.sh > /dev/null
+./build.sh 
 popd
 if [[ `git status --porcelain` ]]; then
   echo "build.sh output does not match applied changes"
