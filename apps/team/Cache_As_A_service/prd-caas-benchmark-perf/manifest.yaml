@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: caas-benchmark-perf
-    count: 2 
+    count: 4 
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
