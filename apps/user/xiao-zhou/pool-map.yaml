@@ -5,3 +5,5 @@ apps:
  no-image-test:
   - prd/prd-samdev
   - prd/prd-sam
+ deployment-latency-reporter:
+  - prd/prd-samdev
