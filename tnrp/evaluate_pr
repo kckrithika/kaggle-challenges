@@ -1,7 +1,7 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 #Exit on first error
-set -e
+set -ex
 
 # Check if json files conforms to jsonnets
 ensureLatestJsons() {
