@@ -19,8 +19,9 @@ system:
       type: Recreate
 
   loadbalancers:
-  - lbname: squeduct-lb
+  - lbname: aqueduct-lb
     function: aqueduct
+    nodeExposed: true
     ports:
       - port: 5000
         targetport: 5000
