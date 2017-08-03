@@ -36,21 +36,19 @@ system:
       ports:
       - containerPort: 12099
         name: caas-cluster
-    - name: caas-redis-announcer
+    - name: beacon
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000033-13921907 
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170802 
       args:
-        - --redisPort=12099
-        - --cluster.name=na45-c1
-        - --logDir=/home/caas/logs
+        - -endpoint
+        - caas/cluster/na45-c1:SUPERPOD:12099
+        - -logDir
+        - /home/caas/logs
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12099
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/home/scone/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
