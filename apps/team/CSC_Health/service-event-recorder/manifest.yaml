@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000021-c4d14377
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000022-2849775b
       ports:
       - containerPort: 10000
       resources:
@@ -38,9 +38,8 @@ system:
             name: csc-health-gus-svc
             key: oauthclientkey
       livenessProbe:
-        exec:
-          command:
-            - "true"
+        tcpSocket:
+          port: 10000
         initialDelaySeconds: 5
 
   loadbalancers:
