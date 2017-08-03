@@ -5,11 +5,11 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-prd0-admin-node
+  - name: cloudatlas-prd1-admin-node
     count: 3
     hostnetwork: true
     containers:
-    - name: cloudatlas-prd0-ping-admin
+    - name: cloudatlas-prd1-ping-admin
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ashafer/cloudatlas-admin-allow-insecure-jmx:ashafer-20170623a
       command: ["/opt/admin-script-delivery/deliver.sh"]
       volumeMounts:
