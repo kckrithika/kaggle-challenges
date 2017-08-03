@@ -4,7 +4,7 @@ system:
   notifications:
     email:
       - xiao.zhou@salesforce.com
-        kbradicich@salesforce.com
+      - kbradicich@salesforce.com
   functions:
   - name: latency-reporter
     count: 1
@@ -15,8 +15,6 @@ system:
       command: ["/sam/sam-deployment-reporter"]
       args:
         - --v=5
-        - --cluster.name=sp-na61-pc1
-        - --logDir=/home/caas/logs
         - —-namespacesToSkip=sam-watchdog
       volumeMounts:
         - mountPath: /e2e
