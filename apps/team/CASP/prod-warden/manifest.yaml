@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: prod-warden
-        image: tnrp/casp-test/warden:0.0.0-0000093-9122b30a
+        image: tnrp/casp-test/warden:0.0.0-0000094-5bd5517d
         ports:
         - containerPort: 8889
         env:
