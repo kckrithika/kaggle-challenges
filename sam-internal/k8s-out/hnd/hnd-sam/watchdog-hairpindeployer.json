@@ -36,7 +36,7 @@
                      "-role=HAIRPINDEPLOYER",
                      "-watchdogFrequency=120s",
                      "-alertThreshold=300s",
-                     "-deployer-imageName=ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001068-adfe25aa",
+                     "-deployer-imageName=ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
                      "-deployer-funnelEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80",
                      "-deployer-rcImtEndpoint=https://ops0-health1-1-hnd.ops.sfdc.net:18443/v1/bark",
                      "-deployer-smtpServer=ops0-mta2-1-hnd.ops.sfdc.net:25",
@@ -60,7 +60,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001068-adfe25aa",
+                  "image": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
                   "name": "watchdog-hairpindeployer",
                   "volumeMounts": [
                      {

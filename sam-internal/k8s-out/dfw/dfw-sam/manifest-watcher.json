@@ -37,7 +37,7 @@
                      "--certFile=/data/certs/hostcert.crt",
                      "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001068-adfe25aa",
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {
