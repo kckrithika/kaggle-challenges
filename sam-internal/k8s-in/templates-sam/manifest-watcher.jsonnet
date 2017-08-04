@@ -30,10 +30,7 @@ local samimages = import "samimages.jsonnet";
                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
                          ],
                       "volumeMounts": [
-                         {
-                            "mountPath": "/data/certs",
-                            "name": "certs"
-                         },
+                         configs.cert_volume_mount,
                          {
                             "mountPath": "/config",
                             "name": "config"
@@ -42,12 +39,7 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                            path: "/data/certs"
-                        },
-                        name: "certs"
-                    },
+                    configs.cert_volume,
                      {
                         hostPath: {
                             path: "/manifests"

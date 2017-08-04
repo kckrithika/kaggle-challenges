@@ -15,14 +15,8 @@ if configs.kingdom == "prd" then {
                            "/sam/sam-deployment-portal",
                         ],
                        volumeMounts: [
-                          {
-                             "mountPath": "/data/certs",
-                             "name": "certs"
-                          },
-                          {
-                             "mountPath": "/config",
-                             "name": "config"
-                          },
+                          configs.cert_volume_mount,
+                          configs.kube_config_volume_mount,
                           { 
                              "mountPath": "/var/token",
                              "name": "token",
@@ -30,10 +24,7 @@ if configs.kingdom == "prd" then {
                           } 
                        ],
                        env: [
-                          {
-                             "name": "KUBECONFIG",
-                             "value": configs.configPath
-                          }
+                          configs.kube_config_env,
                        ],
                        livenessProbe: {
                            initialDelaySeconds: 15,
@@ -47,24 +38,14 @@ if configs.kingdom == "prd" then {
                     }
                 ],
                 volumes: [
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                     {
-                        hostPath: {
-                                path: "/data/certs"
-                                },
-                                name: "certs"
-                        },
-                        {
-                        hostPath: {
-                                path: "/etc/kubernetes"
-                                },
-                                name: "config"
-                        },
-                        {
                         secret: {
                               secretName: "git-token"
-                              },
-                              name: "token"
-                        }
+                        },
+                        name: "token"
+                    }
                 ],
                 nodeSelector: {
                     pool: configs.estate

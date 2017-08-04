@@ -18,21 +18,18 @@ local wdconfig = import "samwdconfig.jsonnet";
                         ],
                         name: "certbackup",
                         volumeMounts: [
-                          wdconfig.cert_volume_mount,
-                          wdconfig.kube_config_volume_mount,
+                          configs.cert_volume_mount,
+                          configs.kube_config_volume_mount,
                        ],
                        env: [
-                          {
-                             "name": "KUBECONFIG",
-                             "value": configs.configPath
-                          }
+                          configs.kube_config_env,
                        ]
                     }
                 ],
                 volumes: [
-                    wdconfig.cert_volume,
-                    wdconfig.kube_config_volume,
-                ],
+                    configs.cert_volume,
+                    configs.kube_config_volume,
+                ]
             },
             metadata: {
                 labels: {

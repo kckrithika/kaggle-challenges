@@ -20,7 +20,7 @@ local samimages = import "samimages.jsonnet";
                         + samwdconfig.shared_args_certs
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                     "volumeMounts": [
-                        samwdconfig.cert_volume_mount,
+                        configs.cert_volume_mount,
                     ],
                         name: "watchdog",
                         resources: {
@@ -36,7 +36,7 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    samwdconfig.cert_volume,
+                    configs.cert_volume,
                 ],
                 nodeSelector: {
                     etcd_installed: "true",

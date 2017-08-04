@@ -45,10 +45,7 @@ local samimages = import "samimages.jsonnet";
                       }
                   ],
                   "env": [
-                     {
-                        "name": "KUBECONFIG",
-                        "value": "/config/kubeconfig"
-                     }
+                     configs.kube_config_env,
                   ],
                   "image": samimages.hypersam,
                   "name": "watchdog-synthetic",
@@ -61,14 +58,8 @@ local samimages = import "samimages.jsonnet";
                         "mountPath": "/_output",
                         "name": "output"
                      },
-                     {
-                        "mountPath": "/config",
-                        "name": "config"
-                     },
-                     {
-                        "mountPath": "/data/certs",
-                        "name": "certs"
-                     }
+                     configs.kube_config_volume_mount,
+                     configs.cert_volume_mount,
                   ]
                }
             ],
@@ -77,12 +68,7 @@ local samimages = import "samimages.jsonnet";
                "pool": configs.estate
             },
             "volumes": [
-               {
-                  "hostPath": {
-                     "path": "/data/certs"
-                  },
-                  "name": "certs"
-               },
+               configs.cert_volume,
                {
                   "hostPath": {
                      "path": "/manifests"
@@ -97,12 +83,7 @@ local samimages = import "samimages.jsonnet";
                   "emptyDir": {},
                   "name": "output"
                },
-               {
-                  "hostPath": {
-                     "path": "/etc/kubernetes"
-                  },
-                  "name": "config"
-               }
+               configs.kube_config_volume,
             ]
          }
       }

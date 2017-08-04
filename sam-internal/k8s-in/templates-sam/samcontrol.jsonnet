@@ -31,46 +31,27 @@ local samimages = import "samimages.jsonnet";
                            + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else [])
                            + (if configs.kingdom != "prd" then [ "--debug=true" ] else []),
                        volumeMounts: [
-                          {
-                             "mountPath": "/data/certs",
-                             "name": "certs"
-                          },
-                          {
-                             "mountPath": "/kubeconfig",
-                             "name": "kubeconfig"
-                          },
+                          configs.cert_volume_mount,
+                          configs.kube_config_volume_mount,
                           {
                              "mountPath": "/config",
                              "name": "config"
                           }
                        ],
                        env: [
-                          {
-                             "name": "KUBECONFIG",
-                             "value": "/kubeconfig/kubeconfig"
-                          }
+                          configs.kube_config_env,
                        ]
                     }
                 ],
                 volumes: [
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                     {
-                        hostPath: {
-                                path: "/data/certs"
-                                },
-                                name: "certs"
-                        },
-                        {
-                        hostPath: {
-                                path: "/etc/kubernetes"
-                                },
-                                name: "kubeconfig"
-                        },
-                        {
-                            name: "config",
-                            configMap: {
+                        name: "config",
+                        configMap: {
                             name: "samcontrol",
-                            }
                         }
+                    }
                 ],
                 nodeSelector: {
                     pool: configs.estate,

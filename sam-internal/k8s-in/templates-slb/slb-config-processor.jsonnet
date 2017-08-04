@@ -41,18 +41,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "path": "/"
                          }
                     },
-                    {
-                        "name": "certs",
-                        "hostPath": {
-                            "path": "/data/certs",
-                        }
-                     },
-                     {
-                        "name": "config",
-                        "hostPath": {
-                            "path": "/etc/kubernetes",
-                         }
-                    }
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                  ],
                 "containers": [
                     {
@@ -85,20 +75,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                                 "name": "host-volume",
                                 "mountPath": "/host"
                             },
-                            {
-                                "name": "certs",
-                                "mountPath": "/data/certs"
-                            },
-                            {
-                               "name": "config",
-                               "mountPath": "/config"
-                            }
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
                          ],
                          env: [
-                            {
-                                "name": "KUBECONFIG",
-                                "value": configs.configPath
-                            }
+                            configs.kube_config_env,
                         ],
                         "securityContext": {
                             "privileged": true

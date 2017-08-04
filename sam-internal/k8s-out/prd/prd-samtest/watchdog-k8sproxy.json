@@ -38,14 +38,16 @@
                      "-sender=sam-alerts@salesforce.com"
                   ],
                   "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170802_093413.c065e44.dirty.thargrove-ltm1.wdliveconfig",
-                  "name": "watchdog-proxy"
+                  "name": "watchdog-proxy",
+                  "volumeMounts": [ ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "master": "true",
                "pool": "prd-samtest"
-            }
+            },
+            "volumes": [ ]
          }
       }
    }

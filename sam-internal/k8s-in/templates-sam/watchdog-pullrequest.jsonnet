@@ -27,7 +27,7 @@ if configs.estate == "prd-sam" then {
                              "mountPath": "/var/token",
                              "name": "token",
                              "readOnly" : true
-                          }
+                          },
                        ],
                     }
                 ],
@@ -37,7 +37,7 @@ if configs.estate == "prd-sam" then {
                             secretName: "git-token"
                           },
                         name: "token"
-                    }
+                    },
                 ],
                 nodeSelector: {
                     pool: configs.estate

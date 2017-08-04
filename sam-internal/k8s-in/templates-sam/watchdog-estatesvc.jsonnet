@@ -19,7 +19,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             "-alertThreshold=300s",
                         ]
                         + samwdconfig.shared_args,
+                    
+                        volumeMounts: [
+                        ],
                     }
+                ],
+                volumes: [
                 ],
                 nodeSelector: {
                     pool: configs.estate

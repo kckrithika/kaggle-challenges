@@ -22,12 +22,12 @@ local samimages = import "samimages.jsonnet";
                         + samwdconfig.shared_args_certs
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=6h" ]),
                        volumeMounts: [
-                          samwdconfig.cert_volume_mount,
+                          configs.cert_volume_mount,
                        ],
                     }
                 ],
                 volumes: [
-                    samwdconfig.cert_volume,
+                    configs.cert_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

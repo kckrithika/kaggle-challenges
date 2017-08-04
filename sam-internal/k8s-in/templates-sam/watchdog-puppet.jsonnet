@@ -19,7 +19,7 @@ local samimages = import "samimages.jsonnet";
                             "path": "/etc/puppet"
                         },
                         "name": "afw-build"
-                    }
+                    },
                 ],
                 containers: [
                     {
@@ -51,7 +51,7 @@ local samimages = import "samimages.jsonnet";
                             {
                                "mountPath": "/etc/puppet",
                                "name": "afw-build"
-                            }
+                            },
                          ]
                     }
                 ],

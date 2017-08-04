@@ -22,28 +22,19 @@ shared_args_certs: [
     "-certFile="+configs.certFile,
 ],
 
-cert_volume_mount: {
-    "mountPath": "/data/certs",
-    "name": "certs"
-},
+# TODO: Add these in next slice
+#
+#config_volume_mount: {
+#    "mountPath": "/config",
+#    "name": "config"
+#},
+#
+#config_volume: {
+#    name: "config",
+#    configMap: {
+#        name: "watchdog",
+#    }
+#},
 
-cert_volume: {
-    hostPath: {
-        path: "/data/certs"
-    },
-    name: "certs"
-},
-
-kube_config_volume_mount: {
-    "mountPath": "/config",
-    "name": "config"
-},
-
-kube_config_volume: {
-    hostPath: {
-        path: "/etc/kubernetes"
-    },
-    name: "config"
-},
 
 }

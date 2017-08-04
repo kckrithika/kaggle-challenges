@@ -16,14 +16,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                            "--funnelEndpoint="+configs.funnelVIP,
                         ],
                         volumeMounts: [
-                          {
-                             "mountPath": "/data/certs",
-                             "name": "certs"
-                          },
-                          {
-                             "mountPath": "/config",
-                             "name": "config"
-                          }
+                          configs.cert_volume_mount,
+                          configs.kube_config_volume_mount,
                        ],
                        env: [
                           {
@@ -34,26 +28,13 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                                   },
                               },
                           },
-                          {
-                             "name": "KUBECONFIG",
-                             "value": configs.configPath
-                          }
+                          configs.kube_config_env,
                        ]
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                                path: "/data/certs"
-                                },
-                                name: "certs"
-                        },
-                        {
-                        hostPath: {
-                                path: "/etc/kubernetes"
-                                },
-                                name: "config"
-                        }
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate
