@@ -53,6 +53,10 @@
                      {
                         "mountPath": "/kubeconfig",
                         "name": "kubeconfig"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
@@ -74,6 +78,12 @@
                      "path": "/etc/kubernetes"
                   },
                   "name": "kubeconfig"
+               },
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
                }
             ]
          }

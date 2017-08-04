@@ -49,6 +49,10 @@
                      {
                         "mountPath": "/hostproc",
                         "name": "procfs-volume"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
@@ -60,6 +64,12 @@
                      "path": "/proc"
                   },
                   "name": "procfs-volume"
+               },
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
                }
             ]
          }

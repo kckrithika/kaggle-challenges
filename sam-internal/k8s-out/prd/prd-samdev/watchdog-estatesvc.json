@@ -38,14 +38,26 @@
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001114-240d0853",
                   "name": "watchdog-estatesvc",
-                  "volumeMounts": [ ]
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-samdev"
             },
-            "volumes": [ ]
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }

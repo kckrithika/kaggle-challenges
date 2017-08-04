@@ -28,6 +28,7 @@ if configs.estate == "prd-sam" then {
                              "name": "token",
                              "readOnly" : true
                           },
+                          configs.config_volume_mount,
                        ],
                     }
                 ],
@@ -38,6 +39,7 @@ if configs.estate == "prd-sam" then {
                           },
                         name: "token"
                     },
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

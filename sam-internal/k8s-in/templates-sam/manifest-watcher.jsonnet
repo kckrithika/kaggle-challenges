@@ -31,10 +31,7 @@ local samimages = import "samimages.jsonnet";
                          ],
                       "volumeMounts": [
                          configs.cert_volume_mount,
-                         {
-                            "mountPath": "/config",
-                            "name": "config"
-                         }
+                         configs.config_volume_mount,
                        ],
                     }
                 ],
@@ -46,12 +43,7 @@ local samimages = import "samimages.jsonnet";
                         },
                         name: "sfdc-volume"
                     },
-                    {
-                        name: "config",
-                        configMap: {
-                          name: "manifest-watcher",
-                        }
-                    }
+                    configs.config_volume("manifest-watcher"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

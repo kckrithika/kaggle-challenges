@@ -35,6 +35,7 @@ local samimages = import "samimages.jsonnet";
                                 "mountPath": "/hostproc",
                                 "name": "procfs-volume"
                              },
+                             configs.config_volume_mount,
                         ]
                     }
                 ],
@@ -45,6 +46,7 @@ local samimages = import "samimages.jsonnet";
                       },
                       "name": "procfs-volume"
                    },
+                   configs.config_volume("watchdog"),
                 ]
             },
             metadata: {

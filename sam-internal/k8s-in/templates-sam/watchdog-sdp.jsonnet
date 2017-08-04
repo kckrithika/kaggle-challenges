@@ -22,10 +22,12 @@ if configs.kingdom == "prd" then {
                         ]
                         + samwdconfig.shared_args,
                         volumeMounts: [
+                            configs.config_volume_mount,
                         ]
                     }
                 ],
                 volumes: [
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

@@ -52,6 +52,10 @@
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
@@ -66,6 +70,12 @@
                      "path": "/data/certs"
                   },
                   "name": "certs"
+               },
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
                }
             ]
          }

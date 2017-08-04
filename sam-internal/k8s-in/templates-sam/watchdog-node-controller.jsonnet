@@ -23,6 +23,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                        volumeMounts: [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
+                          configs.config_volume_mount,
                        ],
                        env: [
                           configs.kube_config_env,
@@ -32,6 +33,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 volumes: [
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

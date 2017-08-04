@@ -21,10 +21,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         + samwdconfig.shared_args,
                     
                         volumeMounts: [
+                            configs.config_volume_mount,
                         ],
                     }
                 ],
                 volumes: [
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

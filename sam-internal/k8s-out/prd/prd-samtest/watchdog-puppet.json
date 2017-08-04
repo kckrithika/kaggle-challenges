@@ -51,6 +51,10 @@
                      {
                         "mountPath": "/etc/puppet",
                         "name": "afw-build"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
@@ -68,6 +72,12 @@
                      "path": "/etc/puppet"
                   },
                   "name": "afw-build"
+               },
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
                }
             ]
          }

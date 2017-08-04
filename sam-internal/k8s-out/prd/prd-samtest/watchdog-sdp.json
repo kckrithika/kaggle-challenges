@@ -39,14 +39,26 @@
                   ],
                   "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170802_093413.c065e44.dirty.thargrove-ltm1.wdliveconfig",
                   "name": "watchdog-sdp",
-                  "volumeMounts": [ ]
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-samtest"
             },
-            "volumes": [ ]
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }
