@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000022-2849775b
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000024-b5f8997b
       ports:
       - containerPort: 10000
       resources:
