@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:bbuxton-20170802
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:bzimmerman-20170804
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -33,7 +33,7 @@ system:
           command:
             - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000029-77d80cce
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000038-81596870
       args: ["--service", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
