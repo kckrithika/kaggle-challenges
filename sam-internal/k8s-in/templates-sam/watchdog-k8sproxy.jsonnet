@@ -21,7 +21,11 @@ if configs.kingdom == "prd" then {
                             "-emailFrequency=48h",
                         ]
                         + samwdconfig.shared_args,
+                        volumeMounts: [
+                        ],
                     }
+                ],
+                volumes: [
                 ],
                 nodeSelector: {
                     pool: configs.estate

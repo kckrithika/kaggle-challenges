@@ -38,13 +38,15 @@
                      "-sender=sam-alerts@salesforce.com"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001114-240d0853",
-                  "name": "watchdog-sdp"
+                  "name": "watchdog-sdp",
+                  "volumeMounts": [ ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-samdev"
-            }
+            },
+            "volumes": [ ]
          }
       }
    }

@@ -34,7 +34,7 @@ local samimages = import "samimages.jsonnet";
                              {
                                 "mountPath": "/hostproc",
                                 "name": "procfs-volume"
-                             }
+                             },
                         ]
                     }
                 ],
@@ -44,7 +44,7 @@ local samimages = import "samimages.jsonnet";
                          "path": "/proc"
                       },
                       "name": "procfs-volume"
-                   }
+                   },
                 ]
             },
             metadata: {

@@ -30,7 +30,7 @@
                   "env": [
                      {
                         "name": "KUBECONFIG",
-                        "value": "/config/kubeconfig"
+                        "value": "/kubeconfig/kubeconfig"
                      }
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001114-240d0853",
@@ -49,8 +49,8 @@
                         "name": "certs"
                      },
                      {
-                        "mountPath": "/config",
-                        "name": "config"
+                        "mountPath": "/kubeconfig",
+                        "name": "kubeconfig"
                      },
                      {
                         "mountPath": "/var/token",
@@ -76,7 +76,7 @@
                   "hostPath": {
                      "path": "/etc/kubernetes"
                   },
-                  "name": "config"
+                  "name": "kubeconfig"
                },
                {
                   "name": "token",

@@ -22,7 +22,7 @@ local samimages = import "samimages.jsonnet";
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=kubeApiChecker=2017/06/02" ] else  [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                     "volumeMounts": [
-                        samwdconfig.cert_volume_mount,
+                        configs.cert_volume_mount,
                     ],
                         name: "watchdog",
                         resources: {
@@ -38,7 +38,7 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    samwdconfig.cert_volume,
+                    configs.cert_volume,
                 ],
                 nodeSelector: {
                     master: "true",

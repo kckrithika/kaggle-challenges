@@ -37,20 +37,17 @@ local samimages = import "samimages.jsonnet";
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/06/02" ] else [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
                        volumeMounts: [
-                          samwdconfig.cert_volume_mount,
-                          samwdconfig.kube_config_volume_mount,
+                          configs.cert_volume_mount,
+                          configs.kube_config_volume_mount,
                        ],
                        env: [
-                          {
-                             "name": "KUBECONFIG",
-                             "value": configs.configPath
-                          }
+                          configs.kube_config_env,
                        ]
                     }
                 ],
                 volumes: [
-                    samwdconfig.cert_volume,
-                    samwdconfig.kube_config_volume,
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

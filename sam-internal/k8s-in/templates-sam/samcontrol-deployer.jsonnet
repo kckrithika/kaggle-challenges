@@ -27,20 +27,11 @@ local samimages = import "samimages.jsonnet";
                          ]
                          + (if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul" then [ "--caFile="+configs.caFile, "--keyFile="+configs.keyFile, "--certFile="+configs.certFile ] else []),
                          "volumeMounts": [
-                           {
-                              "mountPath": "/data/certs",
-                              "name": "certs"
-                           },
-                           {
-                              "mountPath": "/config",
-                              "name": "config"
-                           }
+                           configs.cert_volume_mount,
+                           configs.kube_config_volume_mount,
                          ],
                          env: [
-                           {
-                             "name": "KUBECONFIG",
-                             "value": configs.configPath
-                           }
+                           configs.kube_config_env,
                          ],
                          livenessProbe: {
                            "httpGet": {
@@ -54,18 +45,8 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                            path: "/data/certs"
-                        },
-                        name: "certs"
-                    },
-                    {
-                        hostPath: {
-                            path: "/etc/kubernetes"
-                        },
-                        name: "config"
-                    }
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                 ],
                 nodeSelector: {
                     pool: configs.estate

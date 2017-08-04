@@ -45,11 +45,40 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     # Global
 
+    # Frequently used volume: KubeConfig
+    kube_config_env: {
+        "name": "KUBECONFIG",
+        "value": "/kubeconfig/kubeconfig"
+    },
+    kube_config_volume_mount: {
+        "mountPath": "/kubeconfig",
+        "name": "kubeconfig"
+    },
+    kube_config_volume: {
+        hostPath: {
+            path: "/etc/kubernetes"
+        },
+        name: "kubeconfig"
+    },
+
+    # Frequently used volume: Certs
+    cert_volume_mount: {
+        "mountPath": "/data/certs",
+        "name": "certs"
+    },
+    cert_volume: {
+        hostPath: {
+            path: "/data/certs"
+        },
+        name: "certs"
+    },
+
     caFile: "/data/certs/ca.crt",
     keyFile: "/data/certs/hostcert.key",
     certFile: "/data/certs/hostcert.crt",
+
     k8sapiserver: "",
-    configPath: "/config/kubeconfig",
+    #kubeConfigPath: "/kubeconfig/kubeconfig",
 
     watchdog_emailsender: "sam-alerts@salesforce.com",
     # TODO: change prd to sam-test-alerts@salesforce.com when it is ready

@@ -20,8 +20,12 @@ if configs.kingdom == "prd" then {
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
                         ]
-                        + samwdconfig.shared_args
+                        + samwdconfig.shared_args,
+                        volumeMounts: [
+                        ]
                     }
+                ],
+                volumes: [
                 ],
                 nodeSelector: {
                     pool: configs.estate
