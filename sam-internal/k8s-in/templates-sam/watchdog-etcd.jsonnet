@@ -21,6 +21,7 @@ local samimages = import "samimages.jsonnet";
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                     "volumeMounts": [
                         configs.cert_volume_mount,
+                        configs.config_volume_mount,
                     ],
                         name: "watchdog",
                         resources: {
@@ -37,6 +38,7 @@ local samimages = import "samimages.jsonnet";
                 ],
                 volumes: [
                     configs.cert_volume,
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     etcd_installed: "true",

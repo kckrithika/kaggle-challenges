@@ -20,6 +20,7 @@ local samimages = import "samimages.jsonnet";
                         },
                         "name": "afw-build"
                     },
+                    configs.config_volume("watchdog"),
                 ],
                 containers: [
                     {
@@ -52,6 +53,7 @@ local samimages = import "samimages.jsonnet";
                                "mountPath": "/etc/puppet",
                                "name": "afw-build"
                             },
+                            configs.config_volume_mount,
                          ]
                     }
                 ],

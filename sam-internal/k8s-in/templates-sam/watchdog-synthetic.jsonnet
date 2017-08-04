@@ -60,6 +60,7 @@ local samimages = import "samimages.jsonnet";
                      },
                      configs.kube_config_volume_mount,
                      configs.cert_volume_mount,
+                     configs.config_volume_mount,
                   ]
                }
             ],
@@ -84,6 +85,7 @@ local samimages = import "samimages.jsonnet";
                   "name": "output"
                },
                configs.kube_config_volume,
+               configs.config_volume("watchdog"),
             ]
          }
       }

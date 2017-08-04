@@ -33,10 +33,7 @@ local samimages = import "samimages.jsonnet";
                        volumeMounts: [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
-                          {
-                             "mountPath": "/config",
-                             "name": "config"
-                          }
+                          configs.config_volume_mount,
                        ],
                        env: [
                           configs.kube_config_env,
@@ -46,12 +43,7 @@ local samimages = import "samimages.jsonnet";
                 volumes: [
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    {
-                        name: "config",
-                        configMap: {
-                            name: "samcontrol",
-                        }
-                    }
+                    configs.config_volume("samcontrol"),
                 ],
                 nodeSelector: {
                     pool: configs.estate,

@@ -23,11 +23,13 @@ local samimages = import "samimages.jsonnet";
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=6h" ]),
                        volumeMounts: [
                           configs.cert_volume_mount,
+                          configs.config_volume_mount,
                        ],
                     }
                 ],
                 volumes: [
                     configs.cert_volume,
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

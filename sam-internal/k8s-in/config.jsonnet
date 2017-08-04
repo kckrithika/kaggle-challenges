@@ -73,6 +73,18 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         name: "certs"
     },
 
+    # Frequently used volume: config
+    config_volume_mount: {
+        "mountPath": "/config",
+        "name": "config",
+    },
+    config_volume(configMap):: {
+        name: "config",
+        configMap: {
+            name: configMap,
+        }
+    },
+
     caFile: "/data/certs/ca.crt",
     keyFile: "/data/certs/hostcert.key",
     certFile: "/data/certs/hostcert.crt",

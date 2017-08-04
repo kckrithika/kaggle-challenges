@@ -25,6 +25,7 @@ local samimages = import "samimages.jsonnet";
                        volumeMounts: [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
+                          configs.config_volume_mount,
                        ],
                        env: [
                           configs.kube_config_env,
@@ -34,6 +35,7 @@ local samimages = import "samimages.jsonnet";
                 volumes: [
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    configs.config_volume("watchdog"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

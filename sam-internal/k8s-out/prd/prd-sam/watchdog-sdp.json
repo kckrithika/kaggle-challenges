@@ -40,14 +40,26 @@
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001087-559df78b",
                   "name": "watchdog-sdp",
-                  "volumeMounts": [ ]
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-sam"
             },
-            "volumes": [ ]
+            "volumes": [
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
+               }
+            ]
          }
       }
    }

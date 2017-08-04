@@ -69,6 +69,10 @@
                      {
                         "mountPath": "/data/certs",
                         "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
                      }
                   ]
                }
@@ -103,6 +107,12 @@
                      "path": "/etc/kubernetes"
                   },
                   "name": "kubeconfig"
+               },
+               {
+                  "configMap": {
+                     "name": "watchdog"
+                  },
+                  "name": "config"
                }
             ]
          }
