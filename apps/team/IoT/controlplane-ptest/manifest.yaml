@@ -25,6 +25,12 @@ system:
       volumeMounts:
       - mountPath: /logs
         name: logvol
+      - mountPath: /home/controlplane/ajnaclientcert
+        name: ajnaclientcert
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-keytab
+        name: controlplanekeytab
+        readOnly: true
  
     # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
@@ -34,6 +40,13 @@ system:
     - name: logvol
       hostPath:
         path: /var/log/iot
+    - name: ajnaclientcert
+      secret:
+        secretName: iot-dva-kafka-prd-test
+    - name: controlplanekeytab
+      secret:
+        secretName: controlplane-keytab
+
     strategy:
       type: Recreate
 
