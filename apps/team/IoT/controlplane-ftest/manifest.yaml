@@ -25,6 +25,13 @@ system:
       volumeMounts:
       - mountPath: /logs
         name: logvol
+      - mountPath: /home/controlplane/ajnaclientcert
+        name: ajnaclientcert
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-keytab
+        name: controlplanekeytab
+        readOnly: true
+
       resources:
         requests:
           memory: '2G'
@@ -41,6 +48,13 @@ system:
     - name: logvol
       hostPath:
         path: /var/log/iot
+    - name: ajnaclientcert
+      secret:
+        secretName: iot-dva-kafka-prd-test
+    - name: controlplanekeytab
+      secret:
+        secretName: controlplane-keytab
+
     strategy:
       type: Recreate
 
@@ -53,3 +67,5 @@ system:
         targetport: 7020
       - port: 8083
         targetport: 8080
+  volumes:
+
