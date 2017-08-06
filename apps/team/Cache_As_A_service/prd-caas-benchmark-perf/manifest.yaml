@@ -10,8 +10,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -58,8 +58,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -106,8 +106,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -154,8 +154,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -202,8 +202,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -250,8 +250,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -298,8 +298,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -346,8 +346,8 @@ system:
       # container image/version to  run
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
+        limits: { memory: "10240M" }
+        requests: { memory: "10240M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -382,198 +382,6 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12022
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-    - name: caas-redis-12023 
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      args: 
-        - --port=12023
-        - --maxMemoryMB=8192
-        - --logDir=/home/caas/logs
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12023
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 12023
-    - name: caas-redis-announcer-12023
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      command: ["/opt/caas/redis/announcer-startup.sh"]
-      args:
-        - --redisPort=12023
-        - --cluster.name=sp-c5
-        - --logDir=/home/caas/logs
-        - --pathPrefix=/mistperf2/prd/sp2
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12023
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-    - name: caas-redis-12024 
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      args: 
-        - --port=12024
-        - --maxMemoryMB=8192
-        - --logDir=/home/caas/logs
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12024
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 12024
-    - name: caas-redis-announcer-12024
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      command: ["/opt/caas/redis/announcer-startup.sh"]
-      args:
-        - --redisPort=12024
-        - --cluster.name=sp-c5
-        - --logDir=/home/caas/logs
-        - --pathPrefix=/mistperf2/prd/sp2
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12024
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-    - name: caas-redis-12025 
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      args: 
-        - --port=12025
-        - --maxMemoryMB=8192
-        - --logDir=/home/caas/logs
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12025
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 12025
-    - name: caas-redis-announcer-12025
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      command: ["/opt/caas/redis/announcer-startup.sh"]
-      args:
-        - --redisPort=12025
-        - --cluster.name=sp-c5
-        - --logDir=/home/caas/logs
-        - --pathPrefix=/mistperf2/prd/sp2
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12025
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-    - name: caas-redis-12026 
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      resources:
-        limits: { memory: "8592M" }
-        requests: { memory: "8592M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-      args: 
-        - --port=12026
-        - --maxMemoryMB=8192
-        - --logDir=/home/caas/logs
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12026
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
-      ports:
-      - containerPort: 12026
-    - name: caas-redis-announcer-12026
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
-      command: ["/opt/caas/redis/announcer-startup.sh"]
-      args:
-        - --redisPort=12026
-        - --cluster.name=sp-c5
-        - --logDir=/home/caas/logs
-        - --pathPrefix=/mistperf2/prd/sp2
-      livenessProbe:
-        exec:
-          command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12026
           initialDelaySeconds: 15
           timeoutSeconds: 10
       volumeMounts:
