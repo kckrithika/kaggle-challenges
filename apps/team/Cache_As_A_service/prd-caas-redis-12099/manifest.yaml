@@ -38,12 +38,14 @@ system:
         name: caas-cluster
     - name: beacon
       # container image/version to  run
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170802 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170804
       args:
         - -endpoint
         - caas/cluster/na45-c1:SUPERPOD:12099
         - -zk
         - shared0-discovery1-0-crd.data.sfdc.net:2181
+        - -logDir
+        - /home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
         exec:
