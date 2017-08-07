@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             },
             "name": "slb-ipvsdata-watchdog",
             "annotations": {
-                "scheduler.alpha.kubernetes.io/affinity": "{\n  \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
+                "scheduler.alpha.kubernetes.io/affinity": "{\n  \"podAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"labelSelector\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
             }
      },
     "spec": {
