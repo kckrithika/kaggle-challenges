@@ -793,3 +793,5 @@ apps:
     - par/par-sp1-sam_caas
   prd-caas-benchmark-perf:
    - prd/prd-sp2-sam_caas
+  prd-caas-benchmark-monitor-perf:
+   - prd/prd-sp2-sam_caas
