@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/enterprise-controlplane:14
       ports:
         - name: server
           containerPort: 8080
