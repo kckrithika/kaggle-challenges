@@ -23,9 +23,11 @@ local samimages = import "samimages.jsonnet";
                            "--emailNotify="+configs.samcontrol_deployer_EmailNotify,
                            "--smtpServer="+configs.smtpServer,
                            "--sender=sam@salesforce.com",
-                           "--recipient=sam@salesforce.com"
-                         ]
-                         + (if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul" then [ "--caFile="+configs.caFile, "--keyFile="+configs.keyFile, "--certFile="+configs.certFile ] else []),
+                           "--recipient=sam@salesforce.com",
+                           "--caFile="+configs.caFile,
+                           "--keyFile="+configs.keyFile,
+                           "--certFile="+configs.certFile,
+                         ],
                          "volumeMounts": [
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,
