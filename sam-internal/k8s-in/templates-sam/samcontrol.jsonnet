@@ -18,6 +18,12 @@ local samimages = import "samimages.jsonnet";
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=3",
                            "--logtostderr=true",
+                        ] + 
+                        # With the next phased rollout, we can expand this until all kingdoms are switched to configMap
+                        # ConfigMaps are better for feature flags because they dont crash on unknown config values like flags
+                        if (configs.estate == "prd-samdev" || configs.estate == "prd-samtest") then [
+                           "--config=/config/samcontrol.json"
+                        ] else [
                            "--k8sapiserver="+configs.k8sapiserver,
                            "--tlsEnabled=true",
                            "--caFile="+configs.caFile,
@@ -26,10 +32,10 @@ local samimages = import "samimages.jsonnet";
                            "--checkImageExistsFlag=true",
                            "--httpsDisableCertsCheck=true",
                            "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
-                           ]
-                           + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
-                           + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else [])
-                           + (if configs.kingdom != "prd" then [ "--debug=true" ] else []),
+                        ]
+                        + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
+                        + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else [])
+                        + (if configs.kingdom != "prd" then [ "--debug=true" ] else []),
                        volumeMounts: [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,

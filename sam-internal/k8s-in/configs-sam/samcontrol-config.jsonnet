@@ -13,3 +13,8 @@ local samimages = import "samimages.jsonnet";
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
 }
++ if (configs.kingdom == "prd") then {
+  deletionEnabled: true,
+  deletionPercentageThreshold: 10,
+  statefulAppEnabled:true,
+} else {}
