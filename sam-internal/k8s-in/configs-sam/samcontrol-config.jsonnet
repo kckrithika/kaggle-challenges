@@ -16,5 +16,5 @@ local samimages = import "samimages.jsonnet";
 + if (configs.kingdom == "prd") then {
   deletionEnabled: true,
   deletionPercentageThreshold: 10,
-  statefulAppEnabled:true,
+  statefulAppEnabled: true,
 } else {}
