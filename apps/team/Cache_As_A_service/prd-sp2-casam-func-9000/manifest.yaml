@@ -13,14 +13,14 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: H
+          value: I
         - name: DB_USER
           value: grumpy
 
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
-          value: 3
+          value: 2
         # The flag below configs the app to use a single shared memcached running in SAM
         # To revert to standard local container memcached comment out the 2 lines below
         - name: USE_SAM_MCD
@@ -70,7 +70,7 @@ system:
     hostnetwork: true
 
     terminationGracePeriodSeconds: 500
-    progressDeadlineSeconds: 300
+    #progressDeadlineSeconds: 300
     
     strategy:
       type: RollingUpdate
