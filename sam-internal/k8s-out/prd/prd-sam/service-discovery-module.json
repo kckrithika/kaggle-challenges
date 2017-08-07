@@ -37,7 +37,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001110-36303b1b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001132-d806c518",
                   "name": "service-discovery-module",
                   "volumeMounts": [
                      {
