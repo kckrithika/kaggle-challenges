@@ -4,6 +4,7 @@ system:
   functions:
   - name: service-event-recorder
     count: 1
+    hostnetwork: true
     containers:
     - name: service-event-recorder
       image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000025-e27bba48
