@@ -56,7 +56,7 @@ perCluster: {
     },
 
     slbVipLabel: {
-        "prd-sdc": "",
+        "prd-sdc": "slb_vip",
         "prd-samtest": "slb_vip",
         "prd-samdev": "slb_vip",
         "prd-sam": "slb_vip"
