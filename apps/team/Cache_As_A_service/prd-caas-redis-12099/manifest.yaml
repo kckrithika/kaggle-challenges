@@ -44,7 +44,7 @@ system:
         - caas/cluster/na45-c1:SUPERPOD:12099
         - -zk
         - shared0-discovery1-0-crd.data.sfdc.net:2181
-        - -logDir
+        - -logdir
         - /home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
