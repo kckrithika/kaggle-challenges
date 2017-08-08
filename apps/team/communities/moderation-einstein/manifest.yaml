@@ -10,7 +10,7 @@ system:
     count: 3
     containers:
     - name: moderation-einstein-service
-      image: tnrp/moderation-einstein/moderation-einstein-service:1.0.3-0000016-3d7ff557
+      image: tnrp/moderation-einstein/moderation-einstein-service:1.0.4-0000018-26d42552
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: maas/app, maas/jvm, maas/json. 
