@@ -11,7 +11,9 @@ system:
       - name: prod-warden
         image: tnrp/casp-test/warden:0.0.0-0000095-a326a67e
         ports:
-        - containerPort: 8889
+        - name: warden
+          containerPort: 8889
+          hostPort: 18889
         env:
         - name: BRANCH
           value: "prod"
@@ -42,4 +44,3 @@ system:
       ports:
         - port: 8889
           targetport: 8889
-
