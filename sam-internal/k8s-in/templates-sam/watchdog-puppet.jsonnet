@@ -33,6 +33,7 @@ local samimages = import "samimages.jsonnet";
                             "-emailFrequency=168h",
                         ]
                         + samwdconfig.shared_args,
+                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         name: "watchdog",
                         resources: {
                             requests: {

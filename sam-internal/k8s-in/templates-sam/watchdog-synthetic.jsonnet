@@ -38,6 +38,7 @@ local samimages = import "samimages.jsonnet";
                      "-imageName="+samimages.hypersam
                   ]
                   + samwdconfig.shared_args,
+                  # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                   "ports": [
                       {
                       "name": "synthetic",
