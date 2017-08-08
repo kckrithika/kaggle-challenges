@@ -21,6 +21,7 @@ local samimages = import "samimages.jsonnet";
                         + samwdconfig.shared_args
                         + samwdconfig.shared_args_certs
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=6h" ]),
+                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: [
                           configs.cert_volume_mount,
                           configs.config_volume_mount,

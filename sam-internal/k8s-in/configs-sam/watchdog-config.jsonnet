@@ -2,6 +2,17 @@ local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
 {
+  # Snoozes - This is a central list of all snoozed watchdogs.  For each snooze, please add a comment explaining the reason
+  # Format of struct is here: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/tools/watchdog/internal/config/config.go
+  # Fields `estates`, `checker`, and `until` are required.  Specific instances can be listed with `instances` or using regex with `instanceRegex`
+  # Until date format is YYYY/MM/DD.
+  #
+  # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
+  snooze: [
+    # [thargrove] Example snoozes that existed previously as flags but are expired.  Can be removed next update
+    { estates: ["prd-samtest"], checker: "kubeApiChecker", until: "2017/06/02" },
+  ],
+
   # Shared
   caFile: configs.caFile,
   keyFile: configs.keyFile,

@@ -20,6 +20,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         ]
                         + samwdconfig.shared_args
                         + samwdconfig.shared_args_certs,
+                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,

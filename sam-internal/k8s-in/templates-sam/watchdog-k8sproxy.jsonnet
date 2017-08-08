@@ -21,6 +21,7 @@ if configs.kingdom == "prd" then {
                             "-emailFrequency=48h",
                         ]
                         + samwdconfig.shared_args,
+                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: [
                             configs.config_volume_mount,
                         ],

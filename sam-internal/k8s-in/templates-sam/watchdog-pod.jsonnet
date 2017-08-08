@@ -25,6 +25,7 @@ local samimages = import "samimages.jsonnet";
                         + samwdconfig.shared_args
                         + samwdconfig.shared_args_certs
                         + [ "-emailFrequency=24h" ],
+                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: [
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,

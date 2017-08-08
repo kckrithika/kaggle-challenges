@@ -22,6 +22,7 @@ if configs.estate == "prd-sam" then {
                             "-snoozedAlarms=prChecker=2017/08/07"
                         ]
                         + samwdconfig.shared_args,
+                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: [
                           {
                              "mountPath": "/var/token",
