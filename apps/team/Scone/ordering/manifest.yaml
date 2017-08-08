@@ -14,8 +14,6 @@ system:
         value: shipping.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
         value: 7011
-      - name: demo.remote.thread
-        value: true
       ports:
       - containerPort: 7021
       - containerPort: 15373
