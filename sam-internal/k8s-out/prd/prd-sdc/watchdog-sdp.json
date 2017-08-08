@@ -35,9 +35,10 @@
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "-sender=sam-alerts@salesforce.com"
+                     "-sender=sam-alerts@salesforce.com",
+                     "--config=/config/watchdog.json"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001133-bc0734d4",
                   "name": "watchdog-sdp",
                   "volumeMounts": [
                      {
