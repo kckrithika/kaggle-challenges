@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
     per_phase: {
         
         ### Release Phase 1 - prd-sdc
-        "1": { 
+        "1": {
             "hypersdn": "v-0000258-f5f75e61",
             },
         
