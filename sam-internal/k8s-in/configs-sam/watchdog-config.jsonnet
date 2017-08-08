@@ -24,6 +24,11 @@ local samimages = import "samimages.jsonnet";
   # Synthetic
   laddr: "0.0.0.0:8083",
   imageName: samimages.hypersam,
+  # Snoozes
+  snooze: [
+    { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
+    { estates: ["prd-samtest"], checker: "kubeApiChecker", until: "2017/06/02" },
+  ]
 } + 
 (
   if configs.kingdom == "prd" then {
