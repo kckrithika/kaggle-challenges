@@ -26,15 +26,15 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         },
 
         momCollectorEndpoint: {
-            "dfw": "https://ops0-momapi1-0-dfw.data.sfdc.net/network/device?key=host-bgp-routes",
+            "dfw": "http://ops0-mom2-1-dfw.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             "frf": "http://ops0-mom2-1-frf.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "hnd": "https://ops0-momapi1-0-hnd.data.sfdc.net/network/device?key=host-bgp-routes",
-            "iad": "https://ops0-momapi1-0-iad.data.sfdc.net/network/device?key=host-bgp-routes",
-            "ord": "https://ops0-momapi1-0-ord.data.sfdc.net/network/device?key=host-bgp-routes",
-            "par": "https://ops0-momapi1-0-par.data.sfdc.net/network/device?key=host-bgp-routes",
-            "phx": "https://ops0-momapi1-0-phx.data.sfdc.net/network/device?key=host-bgp-routes",
+            "hnd": "http://ops0-mom2-1-hnd.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            "iad": "http://ops0-mom2-1-iad.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            "ord": "http://ops0-mom2-1-ord.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            "par": "http://ops0-mom2-1-par.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            "phx": "http://ops0-mom2-1-phx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             "prd": "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "ukb": "https://ops0-momapi1-0-ukb.data.sfdc.net/network/device?key=host-bgp-routes",
+            "ukb": "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
         },
 
 	zookeeperip : {
