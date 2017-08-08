@@ -29,7 +29,7 @@
                      "--k8sapiserver=",
                      "--serviceList=slb-echo,sam-deployment-portal,k8sproxy",
                      "--vipList=10.251.129.246:9090,10.251.129.247:0,10.251.129.248:0",
-                     "--slbVipLabel=slb_vip",
+                     "--useVipLabelToSelectSvcs=true",
                      "--useProxyServicesList=",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
@@ -39,7 +39,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000240-3b642cf3",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000256-1832fb10",
                   "name": "slb-config-processor",
                   "securityContext": {
                      "privileged": true
