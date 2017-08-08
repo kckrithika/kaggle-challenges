@@ -10,16 +10,10 @@ shared_args: [
     "-rcImtEndpoint="+configs.rcImtEndpoint,
     "-smtpServer="+configs.smtpServer,
     "-sender="+configs.watchdog_emailsender,
+    "-recipient="+configs.watchdog_emailrec,
 ] + if (kingdom == "prd") then [
     "--config=/config/watchdog.json",
-] else [
-    
-]
- + if (kingdom != "prd" || estate == "prd-sam") then [
-    "-recipient="+configs.watchdog_emailrec,
-] else [
-    # For now turn off test bed emails
-],
+] else [],
 
 shared_args_certs: [
     # TODO: Remove these next 4 when configMap is enabled everywhere
