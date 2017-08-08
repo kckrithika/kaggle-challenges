@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: hbast-test-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/hbase-test-client:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/hbase-test-client:alpha
       livenessProbe:
         exec:
           command:
