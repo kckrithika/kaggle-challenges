@@ -16,6 +16,8 @@ system:
       env:
       - name: SER_GRPC_PORT
         value: 10000
+      - name: SER_ROUTER_ROTATEPERIOD
+        value: 1440
       - name: SER_GUSWAVE_LOGINSERVER
         value: "https://gs0.my.salesforce.com"
       - name: SER_GUSWAVE_USERNAME
