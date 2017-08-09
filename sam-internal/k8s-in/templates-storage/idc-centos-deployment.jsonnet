@@ -5,9 +5,10 @@ if configs.estate == "prd-samtest" then {
     "kind": "Deployment",
     "metadata": {
         "labels": {
-            "name": "idc-centos"
+            "name": "idc-centos-deployment"
         },
-        "name": "idc-centos"
+        "name": "idc-centos-deployment",
+        "namespace": "idc"
     },
     "spec": {
         replicas: 1,
