@@ -34,12 +34,12 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Test Beds
         "1": {
-            "hypersam": "sam-0001138-0ae46aba",
+            "hypersam": "sam-0001140-a550f4f8",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            "hypersam": "sam-0001138-0ae46aba",
+            "hypersam": "sam-0001140-a550f4f8",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
