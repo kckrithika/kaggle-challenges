@@ -5,28 +5,25 @@ if configs.estate == "prd-samtest" then {
     "kind": "Deployment",
     "metadata": {
         "labels": {
-            "name": "idc-centos-config"
+            "name": "idc-centos"
         },
-        "name": "idc-centos-config"
+        "name": "idc-centos"
     },
     "spec": {
         replicas: 1,
         "template": {
             "metadata": {
                 "labels": {
-                    "name": "idc-centos-config"
+                    "name": "idc-centos"
                 }
             },
             "spec": {
                 "containers": [
                     {
-                        "name": "idc-centos-config",
+                        "name": "idc-centos",
                         "image": ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/cops/centos:7.2017.08
                     }
                 ],
-                "nodeSelector":{
-                    "idc-service": "idc-centos"
-                }
             }
         }
     }
