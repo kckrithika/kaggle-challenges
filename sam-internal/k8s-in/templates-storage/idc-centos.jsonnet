@@ -21,7 +21,7 @@ if configs.estate == "prd-samtest" then {
                 "containers": [
                     {
                         "name": "idc-centos",
-                        "image": ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/cops/centos:7.2017.08
+                        "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/cops/centos:7.2017.08",
                     }
                 ],
             }
