@@ -1,4 +1,6 @@
 apps:
+  controlplane-ftest:
+    - prd/prd-sp2-sam_iot_test
   controlplane-itest:
     - prd/prd-sp2-sam_iot_test
   controlplane-ptest:
