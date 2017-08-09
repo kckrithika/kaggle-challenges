@@ -15,10 +15,10 @@ if configs.estate == "prd-sdc" then {
             "ports": [
             {
                 "name": "slb-canary-port",
-                "port": portconfigs.sdc.canaryServicePort,
+                "port": portconfigs.slb.canaryServicePort,
                 "protocol": "TCP",
-                "targetPort": portconfigs.sdc.canaryServicePort,
-                "nodePort": portconfigs.sdc.canaryServiceNodePort
+                "targetPort": portconfigs.slb.canaryServicePort,
+                "nodePort": portconfigs.slb.canaryServiceNodePort
             }
             ],
                 "selector": {

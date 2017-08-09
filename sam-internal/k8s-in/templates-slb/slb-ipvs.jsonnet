@@ -120,7 +120,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                        "image": slbimages.hypersdn,
                        "command":[
                            "/sdn/slb-ipvs-data",
-                           "--connPort="+portconfigs.sdc.ipvsDataConnPort
+                           "--connPort="+portconfigs.slb.ipvsDataConnPort
                        ],
                        "volumeMounts": [
                            {

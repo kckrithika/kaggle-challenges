@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
                             "--k8sapiserver="+configs.k8sapiserver,
-                            "--connPort="+portconfigs.sdc.ipvsDataConnPort,
+                            "--connPort="+portconfigs.slb.ipvsDataConnPort,
                             "--retryPeriod=2m",
                             "--maxretries=2"
                         ],
