@@ -1,0 +1,76 @@
+local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
+local slbimages = import "slbimages.jsonnet";
+
+if configs.estate == "prd-sdc" then {
+    "apiVersion": "extensions/v1beta1",
+    "kind": "Deployment",
+    "metadata": {
+        "labels": {
+            "name": "slb-bravo"
+        },
+        "name": "slb-bravo"
+    },
+    "spec": {
+        replicas: 1,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "name": "slb-bravo"
+                }
+            },
+            "spec": {
+                "volumes": [
+                    {
+                        "name": "var-slb-volume",
+                        "hostPath": {
+                            "path": "/var/slb"
+                         }
+                    },
+                    {
+                        "name": "dev-volume",
+                        "hostPath": {
+                            "path": "/dev"
+                         }
+                    },
+                    {
+                        "name": "host-volume",
+                        "hostPath": {
+                            "path": "/"
+                         }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "slb-bravo",
+                        "image": slbimages.hypersdn,
+                        "command":[
+                            "/sdn/slb-canary-service",
+                            "--serviceName=slb-bravo-svc",
+                            "--port=9090",
+                            "--metricsEndpoint="+configs.funnelVIP
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "dev-volume",
+                                "mountPath": "/dev"
+                            },
+                            {
+                                "name": "host-volume",
+                                "mountPath": "/host"
+                            }
+                        ],
+                        "securityContext": {
+                            "privileged": true,
+                            "capabilities": {
+                                "add": [
+                                    "ALL"
+                                ]
+                            }
+                        }
+                    }
+                ],
+            }
+        }
+    }
+} else "SKIP"
