@@ -1,0 +1,70 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - iotenterprise@salesforce.com
+  functions:
+  - name: controlplane-ftest
+    count: 2
+    containers:
+    - name: controlplane
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/enterprise-controlplane:14
+      ports:
+        - name: server
+          containerPort: 8080
+        - name: grpc
+          containerPort: 7020
+      livenessProbe:
+        httpGet:
+          path: /ping
+          port: 8080
+        initialDelaySeconds: 120
+        timeoutSeconds: 120
+      # TODO: arrange this with iot-ent team
+      volumeMounts:
+      - mountPath: /logs
+        name: logvol
+      - mountPath: /home/controlplane/ajnaclientcert
+        name: ajnaclientcert
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-keytab
+        name: controlplanekeytab
+        readOnly: true
+
+      resources:
+        requests:
+          memory: '2G'
+          cpu: 2
+        limits:
+          memory: '16G'
+          cpu: 7
+ 
+    # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
+    # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
+    # written to this directory.
+    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/iot
+    - name: ajnaclientcert
+      secret:
+        secretName: iot-dva-kafka-prd-test
+    - name: controlplanekeytab
+      secret:
+        secretName: controlplane-keytab
+
+    strategy:
+      type: Recreate
+
+  loadbalancers:
+  - lbname: controlplane-ftest
+    function: controlplane-ftest
+    nodeExposed: true
+    ports:
+      - port: 9094
+        targetport: 7020
+      - port: 8084
+        targetport: 8080
+
