@@ -47,6 +47,7 @@ perCluster: {
         "prd-samdev": "slb-samdev-svc",
         "prd-sam": "slb-sam-svc"
     },
+
     useVipLabelToSelectSvcs: {
         "prd-sdc": false,
         "prd-samtest": true,
