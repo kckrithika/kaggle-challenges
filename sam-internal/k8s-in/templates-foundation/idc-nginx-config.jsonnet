@@ -1,8 +1,4 @@
-#IDC started from ../templates-sdb/slb-nginx-config.jsonnet
-
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
-local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-samtest" then {
     "apiVersion": "extensions/v1beta1",
@@ -22,56 +18,11 @@ if configs.estate == "prd-samtest" then {
                 }
             },
             "spec": {
-                "hostNetwork": true,
-                "volumes": [
-                     {
-                        "name": "host-volume",
-                        "hostPath": {
-                            "path": "/"
-                         }
-                     },
-                     {
-                        "name": "var-target-config-volume",
-                        "hostPath": {
-                            "path": "/var/idc/centos/config"
-                         }
-                     },
-                     {
-                        "name": "var-config-volume",
-                        "hostPath": {
-                            "path": "/var/idc/config"
-                        }
-                    }
-                ],
                 "containers": [
                     {
                         "name": "idc-centos-config",
-                        "image": slbimages.hypersdn,
-                        "command":[
-                            "/sdn/slb-centos-config",
-                            "--configDir="+slbconfigs.configDir,
-                            "--target=/host/var/idc/centos/config",
-                            "--netInterfaceName=eth0",
-#                            "--metricsEndpoint="+configs.funnelVIP
-                        ],
-                        "volumeMounts": [
-                            {
-                                "name": "host-volume",
-                                "mountPath": "/host"
-                            },
-                            {
-                                "name": "var-target-config-volume",
-                                "mountPath": "/host/var/idc/centos/config"
-                            },
-                            {
-                                "name": "var-config-volume",
-                                "mountPath": "/host/var/idc/config"
-                            }
-                        ],
-#                        "securityContext": {
-#                            "privileged": true
-#                        }
-                     }
+                        "image": ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/cops/centos:7.2017.08
+                    }
                 ],
                 "nodeSelector":{
                     "idc-service": "idc-centos"
