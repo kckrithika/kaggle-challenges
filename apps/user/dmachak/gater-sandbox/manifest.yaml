@@ -21,7 +21,7 @@ system:
         - --management.port=15522
         - --synctask.artifact=gate-definitions
         - --synctask.archive-dir=/fastdata/gater
-        - --dt.tnrp-port=443
+        - --dt.tnrp-port=80
         - --scone.srpc.announcing-enabled=false
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
