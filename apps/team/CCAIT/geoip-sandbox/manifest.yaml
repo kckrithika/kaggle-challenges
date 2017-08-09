@@ -18,14 +18,19 @@ system:
         - mountPath: /database
           name: maxmind-volume
     - name: ccait-geoip-backend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6-snapshot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6
       env:
-        - name: SFDC_ENVIRONMENT
-          value: "sam"
-        - name: COM_MAXMIND_DATABASE_FILE
-          value: "/dw/data/GeoIP2-City.mmdb"
-        - name: GRPC_ANNOUNCED_PORT
-          value: 7012
+      - name: JAVA_OPTS
+        value: "-Xms512m -Xmx512m"
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      - name: COM_MAXMIND_DATABASE_FILE
+        value: "/dw/data/GeoIP2-City.mmdb"
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
+      resources:
+        limits: { cpu: "500m", memory: "750Mi" }
+        requests: { cpu: "100m", memory: "750Mi" }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
@@ -73,12 +78,17 @@ system:
     - name: ccait-geoip-frontend
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
       env:
+        - name: JAVA_OPTS
+          value: "-Xms512m -Xmx512m"
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: GRPC_ROUTING_GEOIP_HOST
           value: geoip.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 7011
+      resources:
+        limits: { cpu: "100m", memory: "750Mi" }
+        requests: { cpu: "100m", memory: "750Mi" }
       ports:
         - containerPort: 8080
       livenessProbe:
