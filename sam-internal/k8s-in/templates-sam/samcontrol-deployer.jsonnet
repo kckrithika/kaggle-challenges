@@ -11,8 +11,8 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "samcontrol-deployer",
                         image: samimages.hypersam,
-                        command: [
-                           "/sam/samcontrol-deployer",
+                        command: [ "/sam/samcontrol-deployer" ]
+                           + if (configs.kingdom == "prd") then [ "--config=/config/samcontroldeployer.json" ] else [
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
                            "--disableSecurityCheck=true",
@@ -31,6 +31,7 @@ local samimages = import "samimages.jsonnet";
                          "volumeMounts": [
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,
+                           configs.config_volume_mount,
                          ],
                          env: [
                            configs.kube_config_env,
@@ -49,6 +50,7 @@ local samimages = import "samimages.jsonnet";
                 volumes: [
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    configs.config_volume("samcontrol-deployer"),
                 ],
                 nodeSelector: {
                     pool: configs.estate

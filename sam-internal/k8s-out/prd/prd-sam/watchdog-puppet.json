@@ -30,9 +30,10 @@
                      "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
                      "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
                      "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam@salesforce.com"
+                     "-recipient=sam@salesforce.com",
+                     "--config=/config/watchdog.json"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001138-0ae46aba",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
