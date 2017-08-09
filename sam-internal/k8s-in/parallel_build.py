@@ -4,7 +4,7 @@ import os
 import sys
 import subprocess
 from subprocess import Popen, PIPE, STDOUT
-from Queue import Queue
+from queue import Queue
 from threading import Thread
 
 NUM_WORKER_THREADS = 10
