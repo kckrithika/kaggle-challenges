@@ -47,26 +47,11 @@ perCluster: {
         "prd-samdev": "slb-samdev-svc",
         "prd-sam": "slb-sam-svc"
     },
-
-    canaryServicePort: {
-        "prd-sdc": 9111,
-        "prd-samtest": 9112,
-        "prd-samdev": 9113,
-        "prd-sam": 9114
-    },
-
     useVipLabelToSelectSvcs: {
         "prd-sdc": false,
         "prd-samtest": true,
         "prd-samdev": true,
         "prd-sam": true
-    },
-
-    ipvsDataConnPort: {
-        "prd-sdc": 9107,
-        "prd-samtest": 9108,
-        "prd-samdev": 9109,
-        "prd-sam": 9110
     },
 },
 
@@ -75,8 +60,6 @@ vipList: self.perCluster.vipList[estate],
 serviceList: self.perCluster.serviceList[estate],
 ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
-canaryServicePort: self.perCluster.canaryServicePort[estate],
-ipvsDataConnPort: self.perCluster.ipvsDataConnPort[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
 

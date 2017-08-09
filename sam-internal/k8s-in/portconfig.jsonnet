@@ -18,4 +18,9 @@
         sdn_route_watchdog: 9104,
         sdn_vault_agent: 9106,
     },
+    "sdc":  {
+        ipvsDataConnPort: 9107,
+        canaryServicePort: 9111,
+        canaryServiceNodePort:32136,
+    }
 }

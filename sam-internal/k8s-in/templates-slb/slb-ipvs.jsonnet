@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     "apiVersion": "extensions/v1beta1",
@@ -119,7 +120,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                        "image": slbimages.hypersdn,
                        "command":[
                            "/sdn/slb-ipvs-data",
-                           "--connPort="+slbconfigs.ipvsDataConnPort
+                           "--connPort="+portconfigs.sdc.ipvsDataConnPort
                        ],
                        "volumeMounts": [
                            {
