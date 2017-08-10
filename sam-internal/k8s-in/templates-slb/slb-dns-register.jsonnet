@@ -61,7 +61,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                     }
                 ],
                 "nodeSelector":{
-                    "slb-service": "slb-ipvs"
+                    "slb-service": "slb-dns-register"
                 }
             }
         }
