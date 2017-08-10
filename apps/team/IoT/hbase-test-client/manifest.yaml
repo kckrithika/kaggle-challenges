@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: hbast-test-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/hbase-test-client:alpha
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/hbase-test-client:beta
       livenessProbe:
         exec:
           command:
@@ -20,8 +20,14 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
+      - mountPath: /home/controlplane/ajnaclientcert
+        name: ajnaclientcert
+        readOnly: true
 
     volumes:
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
+    - name: ajnaclientcert
+      secret:
+        secretName: iot-dva-kafka-prd-test
