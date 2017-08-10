@@ -16,7 +16,7 @@ system:
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
-        - --cluster.name=na45-c1
+        - --cluster.name=sp-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -32,7 +32,7 @@ system:
       - containerPort: 7522
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod
+         value: mist30
        - name: CAAS_ENV
          value: 12
       # expose redis outside the container
