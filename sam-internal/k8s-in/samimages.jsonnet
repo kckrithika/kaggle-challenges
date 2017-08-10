@@ -63,8 +63,8 @@ local utils = import "util_functions.jsonnet";
        ### privatebuildoverride overrides are defined, otherwise use phase 1
        "privates": {
            "hypersam": (
-             if (privatebuildoverridetag != "") then
-                privatebuildoverridetag
+             if ($.privatebuildoverridetag != "") then
+                $.privatebuildoverridetag
              else $.per_phase["1"]["hypersam"]),
            },
     },
