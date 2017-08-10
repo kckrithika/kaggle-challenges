@@ -1,0 +1,107 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "slb-config-processor"
+      },
+      "name": "slb-config-processor"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "daemonset": "true",
+               "name": "slb-config-processor"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-config-processor",
+                     "--configDir=/host/var/slb/config",
+                     "--period=15s",
+                     "--namespace=sam-system",
+                     "--podstatus=running",
+                     "--subnet=10.251.129.235-245",
+                     "--k8sapiserver=",
+                     "--serviceList=slb-delta,sam-deployment-portal,k8sproxy",
+                     "--vipList=10.251.129.235:9090,10.251.129.236:0,10.251.129.237:0",
+                     "--useVipLabelToSelectSvcs=true",
+                     "--useProxyServicesList=",
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                  ],
+                  "env": [
+                     {
+                        "name": "KUBECONFIG",
+                        "value": "/kubeconfig/kubeconfig"
+                     }
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000260-321c5cee",
+                  "name": "slb-config-processor",
+                  "securityContext": {
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     },
+                     {
+                        "mountPath": "/host/var/slb/config",
+                        "name": "var-config-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     },
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/kubeconfig",
+                        "name": "kubeconfig"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/slb/config"
+                  },
+                  "name": "var-config-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/etc/kubernetes"
+                  },
+                  "name": "kubeconfig"
+               }
+            ]
+         }
+      }
+   }
+}
