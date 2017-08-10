@@ -15,9 +15,9 @@ if configs.estate == "prd-sdc" then {
             "ports": [
             {
                 "name": "slb-alpha-port",
-                "port": 9090,
+                "port": 9008,
                 "protocol": "TCP",
-                "targetPort": 9090,
+                "targetPort": 9008,
                 "nodePort": portconfigs.slb.alphaServiceNodePort
             }
             ],
