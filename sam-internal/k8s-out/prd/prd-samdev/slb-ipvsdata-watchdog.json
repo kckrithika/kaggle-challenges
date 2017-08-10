@@ -33,7 +33,7 @@
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
                      "--k8sapiserver=",
-                     "--connPort=9109",
+                     "--connPort=9107",
                      "--retryPeriod=2m",
                      "--maxretries=2"
                   ],

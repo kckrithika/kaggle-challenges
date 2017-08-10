@@ -78,7 +78,7 @@
                {
                   "command": [
                      "/sdn/slb-ipvs-data",
-                     "--connPort=9110"
+                     "--connPort=9107"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000260-321c5cee",
                   "name": "slb-ipvs-data",

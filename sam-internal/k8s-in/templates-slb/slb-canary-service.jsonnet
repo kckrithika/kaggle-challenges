@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 if configs.estate == "prd-sdc" then {
     "kind": "Service",
         "apiVersion": "v1",
@@ -15,10 +15,10 @@ if configs.estate == "prd-sdc" then {
             "ports": [
             {
                 "name": "slb-canary-port",
-                "port": slbconfigs.canaryServicePort,
+                "port": portconfigs.slb.canaryServicePort,
                 "protocol": "TCP",
-                "targetPort": slbconfigs.canaryServicePort,
-                "nodePort": 32136
+                "targetPort": portconfigs.slb.canaryServicePort,
+                "nodePort": portconfigs.slb.canaryServiceNodePort
             }
             ],
                 "selector": {

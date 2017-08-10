@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 if configs.estate == "prd-sdc" then {
     "kind": "Service",
         "apiVersion": "v1",
@@ -18,7 +18,7 @@ if configs.estate == "prd-sdc" then {
                 "port": 9090,
                 "protocol": "TCP",
                 "targetPort": 9090,
-                "nodePort": 32137
+                "nodePort": portconfigs.slb.alphaServiceNodePort
             }
             ],
                 "selector": {

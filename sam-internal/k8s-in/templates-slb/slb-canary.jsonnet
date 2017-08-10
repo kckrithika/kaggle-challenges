@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" then {
     "apiVersion": "extensions/v1beta1",
@@ -48,7 +49,7 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/slb-canary-service",
                             "--serviceName="+slbconfigs.canaryServiceName,
-                            "--port="+slbconfigs.canaryServicePort,
+                            "--port="+portconfigs.slb.canaryServicePort,
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
