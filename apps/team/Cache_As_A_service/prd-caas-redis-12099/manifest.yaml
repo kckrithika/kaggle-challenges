@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-12099
-    count: 2 
+    count: 1 
     hostnetwork: true
     containers:
     - name: caas-redis 
@@ -32,7 +32,7 @@ system:
       # expose redis outside the container
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod
+         value: mist30
       ports:
       - containerPort: 12099
         name: caas-cluster
@@ -41,7 +41,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170804
       args:
         - -endpoint
-        - caas/cluster/na45-c1:SUPERPOD:12099
+        - caas/cluster/sp-c1:SUPERPOD:12099
         - -zk
         - shared0-discovery1-0-crd.data.sfdc.net:2181
         - -logdir
@@ -53,10 +53,10 @@ system:
             - "/home/scone/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod
+         value: mist30
       resources:
-        limits: { memory: "200M" }
-        requests: { memory: "200M" }
+        limits: { memory: "400M" }
+        requests: { memory: "400M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
