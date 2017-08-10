@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" then {
     "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
