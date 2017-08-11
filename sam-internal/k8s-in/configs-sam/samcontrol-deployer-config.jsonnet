@@ -18,3 +18,7 @@ local samimages = import "samimages.jsonnet";
   "resource-cooldown": 120000000000,
   "max-resource-time": 1200000000000,
 }
++ if configs.kingdom == "prd" then {
+  "recipient": "sam@salesforce.com,slb@salesforce.com"
+} else {
+}
