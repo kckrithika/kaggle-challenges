@@ -19,7 +19,7 @@
          "spec": {
             "containers": [
                {
-                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/cops/centos:7.2017.08",
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/busybox",
                   "name": "idc-centos"
                }
             ]
