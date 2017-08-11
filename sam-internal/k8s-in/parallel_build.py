@@ -4,7 +4,10 @@ import os
 import sys
 import subprocess
 from subprocess import Popen, PIPE, STDOUT
-from Queue import Queue
+if sys.version_info >= (3,0):
+    from queue import Queue
+else:
+    from Queue import Queue
 from threading import Thread
 
 NUM_WORKER_THREADS = 10
