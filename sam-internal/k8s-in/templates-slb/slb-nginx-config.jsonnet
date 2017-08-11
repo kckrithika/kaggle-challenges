@@ -50,7 +50,6 @@ if configs.estate == "prd-sdc" then {
                             "--configDir="+slbconfigs.configDir,
                             "--target=/host/var/slb/nginx/config",
                             "--netInterfaceName=eth0",
-                            "--tunnel=tunl0",
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
