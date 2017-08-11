@@ -31,7 +31,12 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
-
+      - mountPath: /home/controlplane/service-config
+        name: controlplaneproperties
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-config
+        name: controlplaneconfig
+        readOnly: true
       resources:
         requests:
           memory: '2G'
@@ -54,7 +59,12 @@ system:
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
-
+    - name: controlplaneproperties
+      secret:
+        secretName: controlplane-server-properties
+    - name: controlplaneconfig
+      secret:
+        secretName: controlplane-config
     strategy:
       type: Recreate
 
