@@ -1,14 +1,9 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
 samcaas1-caasminion1-1-prd.eng.sfdc.net,10.253.231.10/29,10.251.152.192/27,u40-02,prd-sp1-sam_caas
 samcaas1-caasminion1-2-prd.eng.sfdc.net,10.253.231.34/29,10.251.152.32/27,f34-02,prd-sp1-sam_caas
-samcaas1-caasminion1-3-prd.eng.sfdc.net,10.253.231.82/28,10.251.153.32/27,w32-02,prd-sp1-sam_caas
-samcaas1-caasminion1-4-prd.eng.sfdc.net,10.253.231.50/28,10.251.153.0/27,v38-02,prd-sp1-sam_caas
 samcaas1-caasminion2-1-prd.eng.sfdc.net,10.253.231.2/29,10.251.152.64/27,k23-02,prd-sp1-sam_caas
 samcaas1-caasminion2-2-prd.eng.sfdc.net,10.253.231.18/29,10.251.152.224/27,u41-02,prd-sp1-sam_caas
-samcaas1-caasminion2-3-prd.eng.sfdc.net,10.253.231.100/28,10.251.152.0/27,e35-02,prd-sp1-sam_caas
 samcaas1-caasminion3-1-prd.eng.sfdc.net,10.253.231.26/29,10.251.152.96/27,p31-02,prd-sp1-sam_caas
-samcaas1-caasminion3-2-prd.eng.sfdc.net,10.253.231.66/28,10.251.152.160/27,u34-02,prd-sp1-sam_caas
-samcaas1-caasminion3-3-prd.eng.sfdc.net,10.253.231.114/28,10.251.152.128/27,u31-02,prd-sp1-sam_caas
 samcaas2-caasminion1-1-prd.eng.sfdc.net,10.231.71.2/29,10.251.179.0/27,m31-02,prd-sp2-sam_caas
 samcaas2-caasminion1-2-prd.eng.sfdc.net,10.231.71.26/29,10.251.178.64/27,e35-02,prd-sp2-sam_caas
 samcaas2-caasminion1-3-prd.eng.sfdc.net,10.231.71.50/29,10.251.178.160/27,j08-02,prd-sp2-sam_caas
@@ -90,6 +85,9 @@ shared0-sdbcompute2-3-prd.eng.sfdc.net,10.253.100.27/29,10.251.144.160/27,w35-02
 shared2-samminionretailcre1-1-prd.eng.sfdc.net,10.231.128.146/29,10.251.180.64/27,j20-02,prd-sp2-sam_retail_cre
 shared2-samminionretailcre2-1-prd.eng.sfdc.net,10.231.128.138/29,10.251.180.32/27,h07-02,prd-sp2-sam_retail_cre
 shared2-samminionretailcre3-1-prd.eng.sfdc.net,10.231.128.154/29,10.251.180.0/27,e40-02,prd-sp2-sam_retail_cre
+shared2-samminionretailcredata1-1-prd.eng.sfdc.net,10.231.133.250/29,10.251.184.64/27,v32-02,prd-sp2-sam_retail_credata
+shared2-samminionretailcredata2-1-prd.eng.sfdc.net,10.231.133.242/29,10.251.184.0/27,j20-02,prd-sp2-sam_retail_credata
+shared2-samminionretailcredata3-1-prd.eng.sfdc.net,10.231.133.234/29,10.251.184.32/27,p06-02,prd-sp2-sam_retail_credata
 shared2-samminionretaildss1-1-prd.eng.sfdc.net,10.231.128.162/29,10.251.181.32/27,f34-02,prd-sp2-sam_retail_dss
 shared2-samminionretaildss2-1-prd.eng.sfdc.net,10.231.128.178/29,10.251.181.64/27,k07-02,prd-sp2-sam_retail_dss
 shared2-samminionretaildss3-1-prd.eng.sfdc.net,10.231.128.186/29,10.251.181.0/27,d32-02,prd-sp2-sam_retail_dss
