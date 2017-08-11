@@ -4,6 +4,7 @@
    "metadata": {
       "labels": {
          "app": "slb-canary-service",
+         "slb.sfdc.net/name": "slb-canary-service",
          "slb_vip": "slb-canary-service"
       },
       "name": "slb-canary-service",

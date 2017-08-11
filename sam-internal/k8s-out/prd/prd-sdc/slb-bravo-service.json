@@ -4,6 +4,7 @@
    "metadata": {
       "labels": {
          "app": "slb-bravo-svc",
+         "slb.sfdc.net/name": "slb-bravo-svc",
          "slb_vip": "slb-bravo-svc"
       },
       "name": "slb-bravo-svc",

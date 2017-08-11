@@ -4,6 +4,7 @@
    "metadata": {
       "labels": {
          "app": "slb-alpha-svc",
+         "slb.sfdc.net/name": "slb-alpha-svc",
          "slb_vip": "slb-alpha-svc"
       },
       "name": "slb-alpha-svc",

@@ -8,7 +8,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             "namespace": "sam-system",
             "labels": {
                 "app": "slb-canary-service",
-                "slb_vip": "slb-canary-service"
+                "slb_vip": "slb-canary-service",
+                "slb.sfdc.net/name": "slb-canary-service"
             },
         },
         "spec": {
