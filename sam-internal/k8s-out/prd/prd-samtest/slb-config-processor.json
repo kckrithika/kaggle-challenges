@@ -27,8 +27,7 @@
                      "--podstatus=running",
                      "--subnet=10.251.129.235-245",
                      "--k8sapiserver=",
-                     "--serviceList=slb-delta,sam-deployment-portal,k8sproxy",
-                     "--vipList=10.251.129.235:9090,10.251.129.236:0,10.251.129.237:0",
+                     "--serviceList=",
                      "--useVipLabelToSelectSvcs=true",
                      "--useProxyServicesList=",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
