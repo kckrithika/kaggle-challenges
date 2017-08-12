@@ -7,22 +7,22 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
             "name": "idc-svc",
             "namespace": "idc",
             "labels": {
-                "app": "idc-centos-deployment",
+                "app": "idc-samhello-deployment",
                 "slb_vip": "sdp"
             },
         },
         "spec": {
             "ports": [
             {
-                "name": "portal-port",
-                "port": 59999,
+                "name": "idc-samhello-port",
+                "port": 9090,
                 "protocol": "TCP",
-                "targetPort": 59999,
-                "nodePort": 59999
+                "targetPort": 9090,
+                "nodePort": 33333
             }
             ],
                 "selector": {
-                    "name": "idc-centos-deployment",
+                    "name": "idc-samhello-deployment",
                 },
                 "type": "NodePort",
         },

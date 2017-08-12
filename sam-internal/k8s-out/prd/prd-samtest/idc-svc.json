@@ -3,7 +3,7 @@
    "kind": "Service",
    "metadata": {
       "labels": {
-         "app": "idc-centos-deployment",
+         "app": "idc-samhello-deployment",
          "slb_vip": "sdp"
       },
       "name": "idc-svc",
@@ -12,15 +12,15 @@
    "spec": {
       "ports": [
          {
-            "name": "portal-port",
-            "nodePort": 59999,
-            "port": 59999,
+            "name": "idc-samhello-port",
+            "nodePort": 33333,
+            "port": 9090,
             "protocol": "TCP",
-            "targetPort": 59999
+            "targetPort": 9090
          }
       ],
       "selector": {
-         "name": "idc-centos-deployment"
+         "name": "idc-samhello-deployment"
       },
       "type": "NodePort"
    }
