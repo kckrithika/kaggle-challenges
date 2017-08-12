@@ -8,7 +8,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
             "namespace": "idc",
             "labels": {
                 "app": "idc-samhello-deployment",
-                "slb_vip": "sdp"
+                "slb_vip": "idc",
+                "slb.sfdc.net/name": "idc"
             },
         },
         "spec": {
