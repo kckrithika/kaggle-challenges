@@ -4,7 +4,8 @@
    "metadata": {
       "labels": {
          "app": "idc-samhello-deployment",
-         "slb_vip": "sdp"
+         "slb.sfdc.net/name": "idc",
+         "slb_vip": "idc"
       },
       "name": "idc-svc",
       "namespace": "idc"
