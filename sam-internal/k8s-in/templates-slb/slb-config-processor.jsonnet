@@ -57,7 +57,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--subnet="+slbconfigs.subnet,
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--serviceList="+slbconfigs.serviceList,
-                            "--vipList="+slbconfigs.vipList,
                             "--useVipLabelToSelectSvcs="+slbconfigs.useVipLabelToSelectSvcs,
                             "--useProxyServicesList="+slbconfigs.useProxyServicesList,
                             "--metricsEndpoint="+configs.funnelVIP
