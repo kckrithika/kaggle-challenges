@@ -1,0 +1,28 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - warden@salesforce.com
+    functions:
+    - name: casp-nginx-func
+      count: 3
+      containers:
+      - name: prd-nginx
+        image: tnrp/casp-test/nginx-test:0.0.0-0000104-02d47e4e
+        ports:
+        - name: casp-nginx-port
+          containerPort: 8080
+        env:
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+
+    loadbalancers:
+    - lbname: casp-nginx-lb
+      function: casp-nginx-func
+      nodeExposed: true
+      ports:
+        - port: 8080
+          targetport: 8080
