@@ -28,12 +28,16 @@ system:
         value: "/dw/data/GeoIP2-City.mmdb"
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
+      - name: LOGGING_DIR
+        value: "/log"
       #resources:
       #  limits: { cpu: "500m", memory: "750Mi" }
       #  requests: { cpu: "100m", memory: "750Mi" }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
+        - mountPath: /log
+          name: log-volume
       ports:
         - containerPort: 7020
           name: grpc
@@ -72,6 +76,9 @@ system:
     volumes:
     - name: maxmind-volume
       emptyDir: {}
+    - name: log-volume
+      hostPath:
+        path: /home/sfdc-geoip/logs
   - name: geoip-demo
     count: 1
     containers:
