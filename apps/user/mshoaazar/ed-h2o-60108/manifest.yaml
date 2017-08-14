@@ -9,6 +9,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mshoaazar/ed-h2o:v1-rc3
       ports:
       - containerPort: 54321
+      resouces:
+      - limits: { cpu: "1", memory: "1.5Gi" }
       livenessProbe:
         tcpSocket:
           port: 54321
