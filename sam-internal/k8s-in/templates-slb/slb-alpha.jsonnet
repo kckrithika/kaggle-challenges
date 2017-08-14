@@ -70,6 +70,9 @@ if configs.estate == "prd-sdc" then {
                         }
                     }
                 ],
+                "nodeSelector":{
+                    "slb-service": "alpha"
+                }
             }
         }
     }

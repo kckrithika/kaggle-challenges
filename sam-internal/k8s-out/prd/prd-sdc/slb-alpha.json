@@ -46,6 +46,9 @@
                   ]
                }
             ],
+            "nodeSelector": {
+               "slb-service": "alpha"
+            },
             "volumes": [
                {
                   "hostPath": {
