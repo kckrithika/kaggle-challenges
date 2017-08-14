@@ -68,7 +68,7 @@ if configs.estate == "prd-sdc" then {
                                 ]
                             }
                         }
-                    }
+                    },
                     {
                         "name": "slb-realsvrcfg-internal",
                         "image": slbimages.hypersdn,
