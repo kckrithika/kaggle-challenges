@@ -73,8 +73,8 @@ system:
     function: controlplane-ftest
     nodeExposed: true
     ports:
-      - port: 9094
+      - port: 9091
         targetport: 7020
-      - port: 8084
+      - port: 8081
         targetport: 8080
 

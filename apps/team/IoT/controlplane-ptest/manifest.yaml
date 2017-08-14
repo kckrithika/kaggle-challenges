@@ -9,7 +9,7 @@ system:
     count: 4
     containers:
     - name: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
       ports:
         - name: server
           containerPort: 8080
@@ -31,6 +31,12 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
+      - mountPath: /home/controlplane/service-config
+        name: controlplaneproperties
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-config
+        name: controlplaneconfig
+        readOnly: true
  
     # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
@@ -46,6 +52,12 @@ system:
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
+    - name: controlplaneproperties
+      secret:
+        secretName: controlplane-server-properties
+    - name: controlplaneconfig
+      secret:
+        secretName: controlplane-config
 
     strategy:
       type: Recreate

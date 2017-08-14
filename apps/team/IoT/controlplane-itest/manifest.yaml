@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkardach/controlplane:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
       ports:
         - name: server
           containerPort: 8080
@@ -30,6 +30,12 @@ system:
         readOnly: true
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
+        readOnly: true
+      - mountPath: /home/controlplane/service-config
+        name: controlplaneproperties
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-config
+        name: controlplaneconfig
         readOnly: true
       resources:
         requests:
@@ -53,6 +59,12 @@ system:
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
+    - name: controlplaneproperties
+      secret:
+        secretName: controlplane-server-properties
+    - name: controlplaneconfig
+      secret:
+        secretName: controlplane-config
 
     strategy:
       type: Recreate
@@ -62,7 +74,7 @@ system:
     function: controlplane-itest
     nodeExposed: true
     ports:
-      - port: 9091
+      - port: 9094
         targetport: 7020
-      - port: 8081
+      - port: 8084
         targetport: 8080
