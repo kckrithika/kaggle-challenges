@@ -32,15 +32,7 @@
                      "-alertThreshold=300s",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
-                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam@salesforce.com",
-                     "--config=/config/watchdog.json",
-                     "-tlsEnabled=true",
-                     "-caFile=/data/certs/ca.crt",
-                     "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt"
+                     "--config=/config/watchdog.json"
                   ],
                   "env": [
                      {

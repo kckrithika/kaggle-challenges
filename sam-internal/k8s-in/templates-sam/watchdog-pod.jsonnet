@@ -23,7 +23,6 @@ local samimages = import "samimages.jsonnet";
                         ]
                         + (if configs.kingdom == "prd" then [ "-podNamespacePrefixWhitelist=sam-system" ] else [])
                         + samwdconfig.shared_args
-                        + samwdconfig.shared_args_certs
                         + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: [

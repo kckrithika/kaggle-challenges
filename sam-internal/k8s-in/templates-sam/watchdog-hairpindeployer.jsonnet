@@ -32,7 +32,6 @@ local samimages = import "samimages.jsonnet";
                             "-deployer-recipient="+configs.watchdog_emailrec,
                         ]
                         + samwdconfig.shared_args
-                        + samwdconfig.shared_args_certs
                         # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/06/02" ] else [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),

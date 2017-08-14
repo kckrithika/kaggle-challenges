@@ -18,22 +18,8 @@ local samimages = import "samimages.jsonnet";
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=3",
                            "--logtostderr=true",
-                        ] + 
-                        # With the next phased rollout, we can expand this until all kingdoms are switched to configMap
-                        # ConfigMaps are better for feature flags because they dont crash on unknown config values like flags
-                        if (configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul") then [
-                           "--config=/config/samcontrol.json"
-                        ] else [
-                           "--k8sapiserver="+configs.k8sapiserver,
-                           "--tlsEnabled=true",
-                           "--caFile="+configs.caFile,
-                           "--keyFile="+configs.keyFile,
-                           "--certFile="+configs.certFile,
-                           "--checkImageExistsFlag=true",
-                           "--httpsDisableCertsCheck=true",
-                           "--volPermissionInitContainerImage="+samimages.permissionInitContainer,
-                        ]
-                        + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
+                           "--config=/config/samcontrol.json",
+                        ] + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
                         + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else []),
                        volumeMounts: [
                           configs.cert_volume_mount,

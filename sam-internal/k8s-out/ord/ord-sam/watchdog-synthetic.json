@@ -31,13 +31,10 @@
                      "-alertThreshold=300s",
                      "-emailFrequency=12h",
                      "-laddr=0.0.0.0:8083",
-                     "-imageName=ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
+                     "-imageName=ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-0001140-a550f4f8",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80",
-                     "-rcImtEndpoint=https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
-                     "-smtpServer=ops0-mta2-1-ord.ops.sfdc.net:25",
-                     "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam-alerts@salesforce.com"
+                     "--config=/config/watchdog.json"
                   ],
                   "env": [
                      {
@@ -45,7 +42,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-0001140-a550f4f8",
                   "name": "watchdog-synthetic",
                   "ports": [
                      {

@@ -19,7 +19,6 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=5m",
                         ]
                         + samwdconfig.shared_args
-                        + samwdconfig.shared_args_certs
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=12h" ]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: [
