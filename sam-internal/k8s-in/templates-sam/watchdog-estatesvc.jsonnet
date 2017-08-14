@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -20,7 +20,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                         ]
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-                    
+
                         volumeMounts: [
                             configs.config_volume_mount,
                         ],
