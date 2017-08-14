@@ -69,6 +69,29 @@ if configs.estate == "prd-sdc" then {
                             }
                         }
                     }
+                    {
+                        "name": "slb-realsvrcfg",
+                        "image": slbimages.hypersdn,
+                        "command":[
+                            "/sdn/slb-realsvrcfg",
+                            "--configDir="+slbconfigs.configDir,
+                            "--period=5s",
+                            "--netInterfaceName=eth0"
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "var-slb-volume",
+                                "mountPath": "/host/var/slb"
+                            },
+                            {
+                                "name": "host-volume",
+                                "mountPath": "/host"
+                            }
+                         ],
+                        "securityContext": {
+                            "privileged": true
+                        }
+                    }
                 ],
                 "nodeSelector":{
                     "slb-service": "alpha"
