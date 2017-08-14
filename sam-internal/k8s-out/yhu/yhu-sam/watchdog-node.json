@@ -35,6 +35,7 @@
                      "-smtpServer=ops0-mta2-1-yhu.ops.sfdc.net:25",
                      "-sender=sam-alerts@salesforce.com",
                      "-recipient=sam-alerts@salesforce.com",
+                     "--config=/config/watchdog.json",
                      "-emailFrequency=24h"
                   ],
                   "env": [
@@ -43,7 +44,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-0001140-a550f4f8",
                   "name": "watchdog-node",
                   "volumeMounts": [
                      {

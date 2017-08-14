@@ -18,7 +18,7 @@ local samimages = import "samimages.jsonnet";
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
-                        ] + if (configs.kingdom == "prd") then [ 
+                        ] + if (configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul") then [
                            "--config=/config/manifestwatcher.json"
                          ] else [
                            "--disableCertsCheck=true",
