@@ -35,9 +35,10 @@
                      "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
                      "-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
                      "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam-alerts@salesforce.com"
+                     "-recipient=sam-alerts@salesforce.com",
+                     "--config=/config/watchdog.json"
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001140-a550f4f8",
                   "name": "watchdog-estatesvc",
                   "volumeMounts": [
                      {

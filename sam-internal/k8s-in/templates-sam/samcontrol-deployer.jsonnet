@@ -12,7 +12,7 @@ local samimages = import "samimages.jsonnet";
                         name: "samcontrol-deployer",
                         image: samimages.hypersam,
                         command: [ "/sam/samcontrol-deployer" ]
-                           + if (configs.kingdom == "prd") then [ "--config=/config/samcontroldeployer.json" ] else [
+                           + if (configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul") then [ "--config=/config/samcontroldeployer.json" ] else [
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--logtostderr=true",
                            "--disableSecurityCheck=true",

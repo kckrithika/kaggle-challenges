@@ -11,7 +11,7 @@ shared_args: [
     "-smtpServer="+configs.smtpServer,
     "-sender="+configs.watchdog_emailsender,
     "-recipient="+configs.watchdog_emailrec,
-] + if (kingdom == "prd") then [
+] + if (kingdom == "prd" || kingdom == "frf" || kingdom == "yhu" || kingdom == "yul") then [
     "--config=/config/watchdog.json",
 ] else [],
 

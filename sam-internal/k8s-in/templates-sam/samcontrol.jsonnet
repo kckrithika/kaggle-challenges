@@ -21,7 +21,7 @@ local samimages = import "samimages.jsonnet";
                         ] + 
                         # With the next phased rollout, we can expand this until all kingdoms are switched to configMap
                         # ConfigMaps are better for feature flags because they dont crash on unknown config values like flags
-                        if (configs.kingdom == "prd") then [
+                        if (configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul") then [
                            "--config=/config/samcontrol.json"
                         ] else [
                            "--k8sapiserver="+configs.k8sapiserver,

@@ -29,15 +29,9 @@
                      "--funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
                      "--v=2",
                      "--logtostderr=true",
-                     "--disableCertsCheck=true",
-                     "--tnrpArchiveEndpoint=https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive",
-                     "--tlsEnabled=true",
-                     "--caFile=/data/certs/ca.crt",
-                     "--keyFile=/data/certs/hostcert.key",
-                     "--certFile=/data/certs/hostcert.crt",
-                     "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
+                     "--config=/config/manifestwatcher.json"
                   ],
-                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001087-559df78b",
+                  "image": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001140-a550f4f8",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {
