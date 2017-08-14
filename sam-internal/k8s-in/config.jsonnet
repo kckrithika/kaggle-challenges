@@ -100,6 +100,8 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     sdn_watchdog_emailsender: "sdn-alerts@salesforce.com",
     sdn_watchdog_emailrec: "sdn-alerts@salesforce.com",
+    sdn_dev_watchdog_emailsender: "sdn@salesforce.com",
+    sdn_dev_watchdog_emailrec: "sdn@salesforce.com",
 
     # Computed values
 
