@@ -24,7 +24,7 @@
                      "--port=9008",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000270-6172f350",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000271-32055dc8",
                   "name": "slb-alpha",
                   "securityContext": {
                      "capabilities": {
@@ -38,6 +38,29 @@
                      {
                         "mountPath": "/dev",
                         "name": "dev-volume"
+                     },
+                     {
+                        "mountPath": "/host",
+                        "name": "host-volume"
+                     }
+                  ]
+               },
+               {
+                  "command": [
+                     "/sdn/slb-realsvrcfg",
+                     "--configDir=/host/var/slb/config",
+                     "--period=5s",
+                     "--netInterfaceName=eth0"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000271-32055dc8",
+                  "name": "slb-realsvrcfg-internal",
+                  "securityContext": {
+                     "privileged": true
+                  },
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
                      },
                      {
                         "mountPath": "/host",
