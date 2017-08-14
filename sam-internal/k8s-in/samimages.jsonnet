@@ -1,7 +1,5 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local privatebuildoverride = import "privatebuildoverride.jsonnet";
-local privatebuildoverridetag = privatebuildoverride.privatebuildoverridetag;
 local utils = import "util_functions.jsonnet";
 {
     # ================== SAM RELEASE ====================
@@ -28,6 +26,13 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,service-discovery-module,hypersam": "sam-0001132-d806c518",
         "prd,prd-samtest,service-discovery-module,hypersam": "sam-0001132-d806c518",
     },
+
+    ### This section list private build overrides that can be deployed to the test clusters
+    # for temporary testing
+    # While doing a new release this should be set to empty to deploy the official build
+    #
+    privatebuildoverridetag:"",
+
 
     ### Per-phase image tags
     per_phase: {
@@ -56,18 +61,16 @@ local utils = import "util_functions.jsonnet";
        ### privatebuildoverride overrides are defined, otherwise use phase 1
        "privates": {
            "hypersam": (
-             if (privatebuildoverridetag != "") then
-                privatebuildoverridetag
+             if ($.privatebuildoverridetag != "") then
+                $.privatebuildoverridetag
              else $.per_phase["1"]["hypersam"]),
            },
     },
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-samtest") then
+        if (estate == "prd-samtest" || estate == "prd-samdev") then
             "privates"
-        else if (estate == "prd-samdev") then
-            "1"
         else if (kingdom == "prd") then
             "2"
         else if (kingdom == "frf" || kingdom == "yhu" || kingdom == "yul") then
