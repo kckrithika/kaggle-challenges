@@ -52,7 +52,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "/sdn/slb-config-processor",
                             "--configDir="+slbconfigs.configDir,
                             "--period=15s",
-                            "--namespace=sam-system",
+                            "--namespace="+slbconfigs.namespace,
                             "--podstatus=running",
                             "--subnet="+slbconfigs.subnet,
                             "--k8sapiserver="+configs.k8sapiserver,

@@ -24,7 +24,14 @@ perCluster: {
         "prd-sdc": "",
         "prd-samtest": "",
         "prd-samdev": "",
-        "prd-sam": ""
+        "prd-sam": "csrlb"
+    },
+
+    namespace: {
+        "prd-sdc": "",
+        "prd-samtest": "sam-system",
+        "prd-samdev": "sam-system",
+        "prd-sam": "sam-system"
     },
 
     useProxyServicesList: {
@@ -42,7 +49,7 @@ perCluster: {
     },
 
     useVipLabelToSelectSvcs: {
-        "prd-sdc": false,
+        "prd-sdc": true,
         "prd-samtest": true,
         "prd-samdev": true,
         "prd-sam": true
@@ -51,6 +58,7 @@ perCluster: {
 
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
+namespace: self.perCluster.namespace[estate],
 ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
