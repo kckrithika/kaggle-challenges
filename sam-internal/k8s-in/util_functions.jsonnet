@@ -81,4 +81,9 @@ local internal = {
     is_public_cloud(kingdom):: (
         kingdom == "cdu" || kingdom == "syd" || kingdom == "yhu" || kingdom == "yul"
     ),
+
+    # This is for filtering in, or out, testing clusters.
+    is_test_cluster(estate):: (
+        estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc"
+    ),
 }
