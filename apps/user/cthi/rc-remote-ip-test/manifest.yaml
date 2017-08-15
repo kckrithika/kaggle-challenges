@@ -120,13 +120,13 @@ system:
       # LB was supposed to allow SSL on the backend, but its not currently
       # supported, so we will use non SSL but on these node ports (18443, 18444)
       # since its the one exposed in estates for sam_minionreportcollector
-    - port: 18445
+    - port: 18448
       targetport: 8080
-    - port: 18446
+    - port: 18449
       targetport: 8081
   - lbname: redisnohalb
     function: redisnoha
     nodeExposed: true
     ports:
-      - port: 6380
+      - port: 6383
         targetport: 6379
