@@ -5,7 +5,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
         "apiVersion": "v1",
         "metadata": {
             "name": "idc-svc",
-            "namespace": "idc",
+            "namespace": "sam-system",
             "labels": {
                 "app": "idc-samhello-deployment",
                 "slb_vip": "idc",

@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
             "name": "idc-samhello-deployment"
         },
         "name": "idc-samhello-deployment",
-        "namespace": "idc"
+        "namespace": "sam-system"
     },
     "spec": {
         "replicas": 1,

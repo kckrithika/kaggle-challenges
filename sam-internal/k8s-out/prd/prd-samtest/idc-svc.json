@@ -8,7 +8,7 @@
          "slb_vip": "idc"
       },
       "name": "idc-svc",
-      "namespace": "idc"
+      "namespace": "sam-system"
    },
    "spec": {
       "ports": [
