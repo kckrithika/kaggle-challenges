@@ -40,7 +40,7 @@
                         "value": "/config/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000237-8b2bb616",
+                  "image": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000253-42510f3a",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
