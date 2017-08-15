@@ -19,6 +19,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                 }
             },
             "spec": {
+                "hostNetwork": true,
                 "containers": [
                     {
                         "name": "idc-samhello",

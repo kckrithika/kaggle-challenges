@@ -31,7 +31,7 @@ perCluster: {
         "prd-sdc": "",
         "prd-samtest": "sam-system",
         "prd-samdev": "sam-system",
-        "prd-sam": "sam-system"
+        "prd-sam": ""
     },
 
     useProxyServicesList: {
