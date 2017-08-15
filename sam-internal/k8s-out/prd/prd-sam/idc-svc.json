@@ -3,7 +3,7 @@
    "kind": "Service",
    "metadata": {
       "labels": {
-         "app": "idc-samhello-deployment",
+         "app": "idc-samhello",
          "slb.sfdc.net/name": "idc",
          "slb_vip": "idc"
       },
@@ -21,7 +21,7 @@
          }
       ],
       "selector": {
-         "name": "idc-samhello-deployment"
+         "name": "idc-samhello"
       },
       "type": "NodePort"
    }

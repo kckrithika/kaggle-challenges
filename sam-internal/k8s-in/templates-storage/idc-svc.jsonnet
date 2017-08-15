@@ -7,7 +7,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
             "name": "idc-svc",
             "namespace": "sam-system",
             "labels": {
-                "app": "idc-samhello-deployment",
+                "app": "idc-samhello",
                 "slb_vip": "idc",
                 "slb.sfdc.net/name": "idc"
             },
@@ -23,7 +23,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
             }
             ],
                 "selector": {
-                    "name": "idc-samhello-deployment",
+                    "name": "idc-samhello",
                 },
                 "type": "NodePort",
         },

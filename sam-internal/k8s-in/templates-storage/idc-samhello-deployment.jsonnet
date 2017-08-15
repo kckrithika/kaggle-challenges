@@ -5,7 +5,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
     "kind": "Deployment",
     "metadata": {
         "labels": {
-            "name": "idc-samhello-deployment"
+            "name": "idc-samhello"
         },
         "name": "idc-samhello-deployment",
         "namespace": "sam-system"
