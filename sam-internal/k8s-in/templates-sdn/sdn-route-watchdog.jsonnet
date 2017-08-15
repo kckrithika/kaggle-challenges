@@ -4,7 +4,7 @@ local sdnimages = import "sdnimages.jsonnet";
 local wdconfig = import "wdconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) && configs.estate != "prd-sdc" && configs.estate != "prd-samdev" && configs.estate != "prd-samtest" then {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_test_cluster(configs.estate) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -88,7 +88,7 @@ if !utils.is_public_cloud(configs.kingdom) && configs.estate != "prd-sdc" && con
         },
         name: "sdn-route-watchdog"
     }
-} else if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+} else if utils.is_test_cluster(configs.estate) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
