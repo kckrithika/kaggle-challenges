@@ -6,7 +6,7 @@
          "name": "idc-samhello-deployment"
       },
       "name": "idc-samhello-deployment",
-      "namespace": "idc"
+      "namespace": "sam-system"
    },
    "spec": {
       "replicas": 1,
