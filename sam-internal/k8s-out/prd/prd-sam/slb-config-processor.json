@@ -23,7 +23,7 @@
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
                      "--period=15s",
-                     "--namespace=sam-system",
+                     "--namespace=",
                      "--podstatus=running",
                      "--subnet=10.251.167.224/27",
                      "--k8sapiserver=",
