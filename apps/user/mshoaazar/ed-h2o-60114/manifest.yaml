@@ -10,7 +10,8 @@ system:
       ports:
       - containerPort: 54321
       resources:
-      - limits: { cpu: "1", memory: "1.5Gi" }
+        limits: { cpu: "1", memory: "1.5Gi" }
+        requests: { cpu: "1", memory: "1.5Gi" }
       livenessProbe:
         tcpSocket:
           port: 54321
