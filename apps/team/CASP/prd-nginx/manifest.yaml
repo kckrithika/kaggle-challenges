@@ -9,7 +9,7 @@ system:
       count: 3
       containers:
       - name: prd-nginx
-        image: tnrp/casp-test/nginx-test:0.0.0-0000108-b1726595
+        image: tnrp/casp-test/nginx-test:0.0.0-0000109-c5c9e613
         ports:
         - name: casp-nginx-port
           containerPort: 9888
