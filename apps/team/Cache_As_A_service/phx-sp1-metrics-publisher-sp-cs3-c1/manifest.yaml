@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - rpragada@salesforce.com
+      - caas-dev@salesforce.com
   functions:
   - name: metrics-publisher-sp-cs3-c1
     count: 1
