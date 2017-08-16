@@ -7,7 +7,5 @@ apps:
     - prd/prd-sp2-sam_iot_test
   aqueduct:
     - prd/prd-sp2-sam_iot_test
-  intake-bridge:
-    - prd/prd-sp2-sam_iot_test
   hbase-test-client:
     - prd/prd-sp2-sam_iot_test
