@@ -9,7 +9,10 @@ if configs.estate == "prd-sdc" then {
         "labels": {
             "name": "slb-alpha"
         },
-        "name": "slb-alpha"
+        "name": "slb-alpha",
+        "annotations": {
+              "scheduler.alpha.kubernetes.io/affinity": "{\n  \"podAntiAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": [\n      {\n        \"labelSelector\": {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"In\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        },\n        \"topologyKey\": \"kubernetes.io/hostname\"\n     }\n    ]\n   }\n }\n"
+        }
     },
     "spec": {
         replicas: 1,
