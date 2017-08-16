@@ -1,13 +1,16 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
   functions:
   - name: metrics-publisher-sp-cs12-pc1
     count: 1
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.3.8-0000008-14008866
+      image: tnrp/caas/caas-monitor-prod:2.4.6-0000013-14297396
       args:
         - --server.port=7524
         - --management.port=7525
