@@ -9,20 +9,20 @@ system:
       count: 3
       containers:
       - name: prd-nginx
-        image: tnrp/casp-test/nginx-test:0.0.0-0000104-02d47e4e
+        image: tnrp/casp-test/nginx-test:0.0.0-0000108-b1726595
         ports:
         - name: casp-nginx-port
-          containerPort: 8080
+          containerPort: 9888
         env:
         livenessProbe:
           httpGet:
             path: /
-            port: 8080
+            port: 9888
 
     loadbalancers:
     - lbname: casp-nginx-lb
       function: casp-nginx-func
       nodeExposed: true
       ports:
-        - port: 8080
-          targetport: 8080
+        - port: 9888
+          targetport: 9888
