@@ -43,7 +43,7 @@
             ],
             "hostNetwork": true,
             "nodeSelector": {
-               "slb-service": "slb-dns-register"
+               "slb-dns-register": "true"
             },
             "volumes": [
                {
