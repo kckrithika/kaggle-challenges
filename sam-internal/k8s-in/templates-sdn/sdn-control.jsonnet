@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" then {
     "apiVersion": "extensions/v1beta1",
@@ -28,6 +29,7 @@ if configs.estate == "prd-sdc" then {
                         "command":[
                             "/sdn/sdn-control-service",
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--port="+portconfigs.sdn.sdn_control_service,
                         ],
                     }
                 ],
