@@ -17,6 +17,7 @@
         sdn_ping_watchdog: 9102,
         sdn_route_watchdog: 9104,
         sdn_vault_agent: 9106,
+        sdn_control_service: 9108,
     },
     "slb":  {
         ipvsDataConnPort: 9107,
