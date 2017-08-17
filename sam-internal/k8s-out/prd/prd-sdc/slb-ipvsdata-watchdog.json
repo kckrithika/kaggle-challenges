@@ -43,7 +43,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000276-3d17565c",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000278-46f8e283",
                   "name": "slb-ipvsdata-watchdog",
                   "securityContext": {
                      "privileged": true
