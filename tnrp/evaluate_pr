@@ -6,10 +6,10 @@ REPO_OWNER=sam
 REPO_NAME=manifests
 
 # TNRP starts us off in ./ (root of manifests repo)
-# on branch master (with commits from the PR)
+# on branch master (with commits from the PR merged on top)
 # There is another branch, called PULLREQUEST, which points to refs/pull/:id/head
 
-git reset --hard origin/master
-git checkout PULLREQUEST
+# As a temporary fix, we checkout to a new branch and reset master to match remote
+git checkout -b mergedpr && git branch -f master origin/master
 
 /opt/sam/evaluate-pr --repo-owner="$REPO_OWNER" --repo-name="$REPO_NAME" --pr="$STAGE_PULL_REQUEST_ID" --authorizer="$STAGE_GO_TRIGGER_USER"
