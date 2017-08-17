@@ -33,15 +33,7 @@
                      "-podNamespacePrefixBlacklist=sam-watchdog",
                      "-timeout=2s",
                      "-funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080",
-                     "-rcImtEndpoint=https://ops0-health1-1-frf.ops.sfdc.net:18443/v1/bark",
-                     "-smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25",
-                     "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam-alerts@salesforce.com",
                      "--config=/config/watchdog.json",
-                     "-tlsEnabled=true",
-                     "-caFile=/data/certs/ca.crt",
-                     "-keyFile=/data/certs/hostcert.key",
-                     "-certFile=/data/certs/hostcert.crt",
                      "-emailFrequency=24h"
                   ],
                   "env": [

@@ -30,7 +30,10 @@
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--v=3",
                      "--logtostderr=true",
-                     "--config=/config/samcontrol.json"
+                     "--config=/config/samcontrol.json",
+                     "--deletionEnabled=true",
+                     "--deletionPercentageThreshold=10",
+                     "--statefulAppEnabled=true"
                   ],
                   "env": [
                      {

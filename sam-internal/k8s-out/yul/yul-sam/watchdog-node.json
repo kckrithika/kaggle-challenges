@@ -31,10 +31,6 @@
                      "-alertThreshold=150s",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-yul.data.sfdc.net:80",
-                     "-rcImtEndpoint=https://ops0-health1-1-yul.ops.sfdc.net:18443/v1/bark",
-                     "-smtpServer=ops0-mta2-1-yul.ops.sfdc.net:25",
-                     "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam-alerts@salesforce.com",
                      "--config=/config/watchdog.json",
                      "-emailFrequency=24h"
                   ],

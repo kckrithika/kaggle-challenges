@@ -11,23 +11,10 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "samcontrol-deployer",
                         image: samimages.hypersam,
-                        command: [ "/sam/samcontrol-deployer" ]
-                           + if (configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "yhu" || configs.kingdom == "yul") then [ "--config=/config/samcontroldeployer.json" ] else [
-                           "--funnelEndpoint="+configs.funnelVIP,
-                           "--logtostderr=true",
-                           "--disableSecurityCheck=true",
-                           "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
-                           "--k8sapiserver="+configs.k8sapiserver,
-                           "--observeMode="+configs.samcontrol_deployer_ObserveMode,
-                           "--delay=30s",
-                           "--emailNotify="+configs.samcontrol_deployer_EmailNotify,
-                           "--smtpServer="+configs.smtpServer,
-                           "--sender=sam@salesforce.com",
-                           "--recipient=sam@salesforce.com",
-                           "--caFile="+configs.caFile,
-                           "--keyFile="+configs.keyFile,
-                           "--certFile="+configs.certFile,
-                         ],
+                        command: [
+                           "/sam/samcontrol-deployer",
+                           "--config=/config/samcontroldeployer.json",
+                           ],
                          "volumeMounts": [
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,

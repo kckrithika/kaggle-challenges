@@ -18,8 +18,7 @@ if configs.kingdom == "prd" then {
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
-                        + samwdconfig.shared_args
-                        + samwdconfig.shared_args_certs,
+                        + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: [
                           configs.cert_volume_mount,
