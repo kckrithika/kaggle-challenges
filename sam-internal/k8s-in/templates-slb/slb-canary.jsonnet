@@ -72,6 +72,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                         }
                     }
                 ],
+                nodeSelector: {
+                    pool: configs.estate
+                },
             }
         }
     }
