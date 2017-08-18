@@ -9,5 +9,3 @@ apps:
   - ukb/ukb-sam_warden
   - phx/phx-sam_warden
   - frf/frf-sam_warden
- prd-nginx:
-  - prd/prd-sam_warden
