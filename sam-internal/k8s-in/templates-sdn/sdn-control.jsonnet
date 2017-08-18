@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" then {
             "name": "sdn-control"
         },
         "name": "sdn-control",
-        "namespace": "sam-system",
+        "namespace": "sdn-control",
     },
     "spec": {
         replicas: 1,

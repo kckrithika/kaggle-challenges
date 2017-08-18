@@ -5,7 +5,7 @@ if configs.estate == "prd-sdc" then {
         "apiVersion": "v1",
         "metadata": {
             "name": "sdn-control-svc",
-            "namespace": "sam-system",
+            "namespace": "sdn-control",
         },
         "spec": {
             "ports": [
