@@ -4,8 +4,7 @@
    "metadata": {
       "labels": {
          "app": "sam-deployment-portal",
-         "slb.sfdc.net/name": "sdp",
-         "slb_vip": "sdp"
+         "slb.sfdc.net/name": "sdp"
       },
       "name": "portal-svc",
       "namespace": "sam-system"

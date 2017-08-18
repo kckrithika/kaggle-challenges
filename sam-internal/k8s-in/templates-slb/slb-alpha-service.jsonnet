@@ -8,7 +8,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
             "namespace": "sam-system",
             "labels": {
                 "app": "slb-alpha-svc",
-                "slb_vip": "slb-alpha-svc",
                 "slb.sfdc.net/name": "slb-alpha-svc"
             },
         },

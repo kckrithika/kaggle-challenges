@@ -27,16 +27,19 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                         "ports": [
                             {
                             "containerPort": 9090
-		            },
-			],
+		                    },
+			            ],
                         "livenessProbe": {
                             "httpGet": {
                                 "path": "/",
                                 "port": 9090
                             },
                         },
-		    },
+                    },
                 ],
+                nodeSelector: {
+                    pool: configs.estate
+                },
             }
         }
     }
