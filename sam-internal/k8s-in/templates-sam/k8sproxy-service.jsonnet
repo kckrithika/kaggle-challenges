@@ -7,7 +7,6 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
             "namespace": "sam-system",
             "labels": {
                 "app": "k8sproxy",
-                "slb_vip": "k8sproxy",
                 "slb.sfdc.net/name": "k8sproxy"
             },
         },

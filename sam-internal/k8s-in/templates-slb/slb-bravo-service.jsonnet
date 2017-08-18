@@ -8,7 +8,6 @@ if configs.estate == "prd-sdc" then {
             "namespace": "sam-system",
             "labels": {
                 "app": "slb-bravo-svc",
-                "slb_vip": "slb-bravo-svc",
                 "slb.sfdc.net/name": "slb-bravo-svc"
             },
         },

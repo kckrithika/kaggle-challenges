@@ -4,8 +4,7 @@
    "metadata": {
       "labels": {
          "app": "idc-samhello",
-         "slb.sfdc.net/name": "idc",
-         "slb_vip": "idc"
+         "slb.sfdc.net/name": "idc"
       },
       "name": "idc-svc",
       "namespace": "sam-system"

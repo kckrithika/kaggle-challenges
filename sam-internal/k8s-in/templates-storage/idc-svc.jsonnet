@@ -8,7 +8,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
             "namespace": "sam-system",
             "labels": {
                 "app": "idc-samhello",
-                "slb_vip": "idc",
                 "slb.sfdc.net/name": "idc"
             },
         },
