@@ -23,8 +23,8 @@ system:
           path: /manage/health
           port: 15373
       resources:
-        limits: { cpu: "500m", memory: "750Mi" }
-        requests: { cpu: "250m", memory: "750Mi" }
+        limits: { cpu: "500m", memory: "1.5Gi" }
+        requests: { cpu: "250m", memory: "1.5Gi" }
     - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170802
       args:
