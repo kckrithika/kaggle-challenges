@@ -7,5 +7,4 @@ local configs = import "config.jsonnet";
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
-  syntheticEndpoint: "http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
 }
