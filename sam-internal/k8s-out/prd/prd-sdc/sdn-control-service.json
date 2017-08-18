@@ -3,7 +3,7 @@
    "kind": "Service",
    "metadata": {
       "name": "sdn-control-svc",
-      "namespace": "sdn-control"
+      "namespace": "sam-system"
    },
    "spec": {
       "ports": [
