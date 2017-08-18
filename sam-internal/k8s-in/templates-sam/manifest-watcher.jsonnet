@@ -18,7 +18,8 @@ local samimages = import "samimages.jsonnet";
                            "--funnelEndpoint="+configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
-                           "--config=/config/manifestwatcher.json"
+                           "--config=/config/manifestwatcher.json",
+                           "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
                          ],
                       "volumeMounts": [
                          configs.cert_volume_mount,
