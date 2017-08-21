@@ -52,6 +52,12 @@ local utils = import "util_functions.jsonnet";
             "hypersam": "sam-0001140-a550f4f8",
             },
 
+        ### Release Phase 3.1 - Temporary phase for syd and cdu to release hosts.go changes
+        "3.1": {
+            "hypersam": "sam-0001169-1688ed8f",
+            },
+
+
         ### Release Phase 4 - Rest of Prod
         "4": {
             "hypersam": "sam-0001140-a550f4f8",
@@ -77,6 +83,8 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (kingdom == "frf" || kingdom == "yhu" || kingdom == "yul") then
             "3"
+        else if (kingdom == "syd" || kingdom == "cdu") then
+            "3.1"
         else
             "4"
         ),
