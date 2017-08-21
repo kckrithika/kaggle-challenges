@@ -18,7 +18,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
-
+        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170821_134322.0d2be06.dirty.thargrove-ltm1",
         "prd,prd-sdc,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
         "prd,prd-samtest,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
         "prd,prd-sam,watchdog-pullrequest,hypersam": "sam-0001125-8748288b",
@@ -69,8 +69,10 @@ local utils = import "util_functions.jsonnet";
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-samtest" || estate == "prd-samdev") then
+        if (estate == "prd-samtest") then
             "privates"
+        else if (estate == "prd-samdev") then
+            "1"
         else if (kingdom == "prd") then
             "2"
         else if (kingdom == "frf" || kingdom == "yhu" || kingdom == "yul") then
