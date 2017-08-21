@@ -11,8 +11,8 @@ system:
       ports:
       - containerPort: 10000
       resources:
-        limits: { cpu: "10", memory: "5Gi" }
-        requests: { cpu: "10", memory: "5Gi" }
+        limits: { cpu: "10", memory: "10Gi" }
+        requests: { cpu: "10", memory: "10Gi" }
       env:
       - name: SER_GRPC_PORT
         value: 10000
