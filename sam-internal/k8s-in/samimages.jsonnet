@@ -18,7 +18,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170821_134322.0d2be06.dirty.thargrove-ltm1",
+        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20170821_154300.68251f7.dirty.thargrove-ltm1",
         "prd,prd-sdc,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
         "prd,prd-samtest,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
         "prd,prd-sam,watchdog-pullrequest,hypersam": "sam-0001125-8748288b",
