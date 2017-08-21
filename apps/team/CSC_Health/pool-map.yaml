@@ -12,6 +12,7 @@ apps:
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
+    - ukb/ukb-sam_report_collector
   repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -21,6 +22,7 @@ apps:
     - phx/phx-sam_report_collector
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
+    - ukb/ukb-sam_report_collector
   observation-service:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
