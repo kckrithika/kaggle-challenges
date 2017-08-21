@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+#Disabled by thargrove on 2017/08/21 because it is failing with a PodFitPort and blocking all other deployments
+#if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+if "0" == "1" then {
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
     "metadata": {

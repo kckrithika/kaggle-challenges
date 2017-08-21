@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+# Disabled due to error with port already allocated
+#if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+if "0" == "1" then {
     "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
