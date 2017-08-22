@@ -35,7 +35,7 @@ if configs.estate == "prd-samtest" then {
         kind: "ClusterRoleBinding",
         apiVersion: "rbac.authorization.k8s.io/v1alpha1",
         metadata: {
-          name: "update-node-status:" + node
+          name: "update-node-status-binding:" + node
         },
         subjects: [{
            kind: "User",
