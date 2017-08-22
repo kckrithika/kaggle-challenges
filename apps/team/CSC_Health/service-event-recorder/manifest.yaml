@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: service-event-recorder
-      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000026-67fd2945
+      image: tnrp/csc-health/service-event-recorder:service-event-recorder-0000028-fb85a685
       ports:
       - containerPort: 10000
       resources:
