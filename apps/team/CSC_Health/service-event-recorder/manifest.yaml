@@ -17,9 +17,9 @@ system:
       - name: SER_GRPC_PORT
         value: 10000
       - name: SER_ROUTER_ROTATEPERIOD
-        value: 1440
+        value: 30
       - name: SER_GUSWAVE_LOGINSERVER
-        value: "https://gs0.my.salesforce.com"
+        value: "https://gus.my.salesforce.com"
       - name: SER_GUSWAVE_USERNAME
         valueFrom:
           secretKeyRef:
