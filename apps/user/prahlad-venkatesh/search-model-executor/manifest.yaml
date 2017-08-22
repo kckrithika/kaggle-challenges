@@ -11,10 +11,8 @@ system:
       - name: service-port
         containerPort: 7020
       livenessProbe:
-        httpGet:
-          path: /
-          port: 3555
+        tcpSocket:
+        port: 3555
       readinessProbe:
-        httpGet:
-          path: /
-          port: 3555
+        tcpSocket:
+        port: 3555
