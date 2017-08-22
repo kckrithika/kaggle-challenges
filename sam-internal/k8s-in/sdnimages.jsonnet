@@ -19,13 +19,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            "hypersdn": "v-0000272-95ed2ee0",
+            "hypersdn": "v-0000284-f74fc7b6",
             "bird": "v-0000014-b0a5951d"
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            "hypersdn": "v-0000272-95ed2ee0",
+            "hypersdn": "v-0000284-f74fc7b6",
             "bird": "v-0000014-b0a5951d"
             },
 
@@ -37,7 +37,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - All Prod
         "4": {
-            "hypersdn": "v-0000253-42510f3a",
+            "hypersdn": "v-0000272-95ed2ee0",
             "bird": "v-0000014-b0a5951d"
             },
     },
