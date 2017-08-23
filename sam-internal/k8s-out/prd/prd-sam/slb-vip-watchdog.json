@@ -49,7 +49,6 @@
                   ]
                }
             ],
-            "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-sam"
             },

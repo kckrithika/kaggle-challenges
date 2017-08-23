@@ -68,7 +68,6 @@
                   ]
                }
             ],
-            "hostNetwork": true,
             "nodeSelector": {
                "pool": "prd-samdev"
             },
