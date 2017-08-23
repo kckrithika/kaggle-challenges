@@ -27,6 +27,15 @@ system:
 
     - name: mandm-kafka
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/mandm-kafka:latest
+      env:
+        - name: KAfKA_HOST
+          value: localhost
+        - name: KAFKA_PORT
+          value: 6667
+        - name: ZOOKEEPER_HOST
+          value: localhost
+        - name: ZOOKEEPER_PORT
+          value: 2181
       livenessProbe:
         exec:
           command:
@@ -37,6 +46,19 @@ system:
 
     - name: graphite-kafka-consumer
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/graphite-kafka-consumer:latest
+      env:
+        - name: KAfKA_HOST
+          value: localhost
+        - name: KAFKA_PORT
+          value: 6667
+        - name: ZOOKEEPER_HOST
+          value: localhost
+        - name: ZOOKEEPER_PORT
+          value: 2181
+        - name: GRAPHITE_HOST
+          value: localhost
+        - name: GRAPHITE_PORT
+          value: 8003
       livenessProbe:
         exec:
           command:
@@ -45,6 +67,22 @@ system:
 
     - name: mandm-funnel
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/mandm-funnel:latest
+      env:
+        - name: KAfKA_HOST
+          value: localhost
+        - name: KAFKA_PORT
+          value: 6667
+      livenessProbe:
+        exec:
+          command:
+            - ls
+        initialDelaySeconds: 60
+      ports:
+      - containerPort: 8060
+
+
+    - name: graphite
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/graphite-statsd:latest
       livenessProbe:
         exec:
           command:
