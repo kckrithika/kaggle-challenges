@@ -10,6 +10,10 @@ system:
       ports:
       - name: service-port
         containerPort: 7020
+      - name: encrypted-service-port
+        containerPort: 7012
+      - name: admin-port
+        containerPort: 15372
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
