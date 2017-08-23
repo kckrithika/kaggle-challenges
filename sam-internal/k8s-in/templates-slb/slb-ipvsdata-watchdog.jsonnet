@@ -10,14 +10,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                 "name": "slb-ipvsdata-watchdog"
             },
             "name": "slb-ipvsdata-watchdog",
-            "annotations": {
-                  "scheduler.alpha.kubernetes.io/affinity": "{\n  \"podAntiAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": [\n      {\n        \"labelSelector\": {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"In\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-config\"]\n            }\n          ]\n        },\n        \"topologyKey\": \"kubernetes.io/hostname\"\n     }\n    ]\n   }\n }\n"
-            }
+		    "annotations": {
+			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
+		    }
      },
     "spec": {
         replicas: 1,
         "template": {
             "spec": {
+                "hostNetwork": true,
                 "volumes": [
                     {
                         "name": "var-slb-volume",
