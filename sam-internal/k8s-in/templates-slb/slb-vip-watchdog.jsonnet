@@ -18,7 +18,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
         replicas: 1,
         "template": {
             "spec": {
-                "hostNetwork": true,
                 "volumes": [
                    {
                        "name": "var-slb-volume",
