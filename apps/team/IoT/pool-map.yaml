@@ -5,3 +5,5 @@ apps:
     - prd/prd-sp2-sam_iot_test
   hbase-test-client:
     - prd/prd-sp2-sam_iot_test
+  ajna:
+    - prd/prd-sp2-sam_iot_test
