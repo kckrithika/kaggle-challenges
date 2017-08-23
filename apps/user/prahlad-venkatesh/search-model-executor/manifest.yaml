@@ -10,6 +10,12 @@ system:
       ports:
       - name: service-port
         containerPort: 7020
+      resources:
+        limits: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "2", memory: "10Gi" }
       livenessProbe:
+        tcpSocket:
+        port: 3555
+      readinessProbe:
         tcpSocket:
         port: 3555
