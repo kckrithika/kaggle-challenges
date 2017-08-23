@@ -78,7 +78,7 @@ system:
             - ls
         initialDelaySeconds: 60
       ports:
-      - containerPort: 8080
+      - containerPort: 8060
 
 
     - name: graphite
