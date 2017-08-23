@@ -11,7 +11,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -20,7 +20,7 @@ system:
           readOnly: true
       args: 
         - --port=12015
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -59,7 +59,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -68,7 +68,7 @@ system:
           readOnly: true
       args: 
         - --port=12016
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -107,7 +107,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -116,7 +116,7 @@ system:
           readOnly: true
       args: 
         - --port=12017
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -155,7 +155,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -164,7 +164,7 @@ system:
           readOnly: true
       args: 
         - --port=12018
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -203,7 +203,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -212,7 +212,7 @@ system:
           readOnly: true
       args: 
         - --port=12019
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -251,7 +251,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -260,7 +260,7 @@ system:
           readOnly: true
       args: 
         - --port=12020
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -299,7 +299,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -308,7 +308,7 @@ system:
           readOnly: true
       args: 
         - --port=12021
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -347,7 +347,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -356,7 +356,7 @@ system:
           readOnly: true
       args: 
         - --port=12022
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -395,7 +395,7 @@ system:
       image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
       resources:
         limits: { memory: "10240M" }
-        requests: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -404,7 +404,7 @@ system:
           readOnly: true
       args: 
         - --port=12023
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -438,28 +438,150 @@ system:
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
-    - name: caas-metrics-publisher 
+    - name: caas-redis-12024 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor-prod:2.4.4-0000010-14164957
-      args: 
-        - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
-        - --server.port=7521 
-        - --management.port=7522
-        - --cluster.name=sp-c5
-        - --logDir=/home/caas/logs/caas
-        - --settings.path=mistperf2.-.prd.-.caas
+      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
+      resources:
+        limits: { memory: "10240M" }
+        requests: { memory: "6292M" }
       volumeMounts:
-        - mountPath: /home/caas/logs/caas
+        - mountPath: /home/caas/logs
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
+      args: 
+        - --port=12024
+        - --maxMemoryMB=6144
+        - --logDir=/home/caas/logs
       livenessProbe:
-        httpGet:
-          path: /manage/config
-          port: 7522
-        initialDelaySeconds: 60 
-        timeoutSeconds: 10
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12024
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12024
+    - name: caas-redis-announcer-12024
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12024
+        - --cluster.name=sp-c5
+        - --logDir=/home/caas/logs
+        - --pathPrefix=/mistperf2/prd/sp2
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12024
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+    - name: caas-redis-12025 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
+      resources:
+        limits: { memory: "10240M" }
+        requests: { memory: "6292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12025
+        - --maxMemoryMB=6144
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12025
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12025
+    - name: caas-redis-announcer-12025
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12025
+        - --cluster.name=sp-c5
+        - --logDir=/home/caas/logs
+        - --pathPrefix=/mistperf2/prd/sp2
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12025
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+    - name: caas-redis-12026 
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
+      resources:
+        limits: { memory: "10240M" }
+        requests: { memory: "6292M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args: 
+        - --port=12026
+        - --maxMemoryMB=6144
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12026
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 12026
+    - name: caas-redis-announcer-12026
+      # container image/version to  run
+      image: tnrp/caas/caas-redis:2.4.4-0000005-14164957
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12026
+        - --cluster.name=sp-c5
+        - --logDir=/home/caas/logs
+        - --pathPrefix=/mistperf2/prd/sp2
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12026
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
       env:
        - name: SFDC_ENVIRONMENT
          value: mistperf2
