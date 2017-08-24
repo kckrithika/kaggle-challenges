@@ -20,10 +20,6 @@ mkdir -p ../k8s-out/
 
 time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/,templates-storage/ ../k8s-out/ ../pools/
 
-# Temporary test
-
-cp tmp/manifest-watcher-configmap.yaml ../k8s-out/prd/prd-samdev/
-
 # TODO: Add warning when running against out-of-sync git repo
 
 # TODO: Add some basic validations
