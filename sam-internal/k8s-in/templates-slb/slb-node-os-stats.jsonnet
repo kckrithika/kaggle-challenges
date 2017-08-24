@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" then {
         "name": "slb-node-os-stats"
     },
     "spec": {
-        replicas: 1,
+        replicas: 2,
         "template": {
             "metadata": {
                 "labels": {
