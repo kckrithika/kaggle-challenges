@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor:20170826
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor:20170827
       ports:
       - name: service-port
         containerPort: 7020
