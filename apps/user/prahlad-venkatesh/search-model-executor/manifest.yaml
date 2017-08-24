@@ -9,7 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor:20170827
       ports:
       - name: service-port
-        containerPort: 7020
+        containerPort: 3555
       - name: encrypted-port
         containerPort: 7012
       - name: admin-port
@@ -34,5 +34,5 @@ system:
     function: search-model-executor
     nodeExposed: true
     ports:
-    - port: 7020
-      targetport: 7020
+    - port: 3555
+      targetport: 3555
