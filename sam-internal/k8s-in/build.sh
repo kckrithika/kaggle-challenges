@@ -25,8 +25,9 @@ mkdir -p ../k8s-out/
 
 time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/,templates-storage/ ../k8s-out/ ../pools/
 
-# Json is quite poor when it comes to multi-line strings.  Since configMaps are a file in a string, using json
-# results in output configMap files with crazy long lines that are hard to review.
+# Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
+# encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read 
+# or review.
 # This tool converts everything to yaml, and for configMaps it pretty prints the inner config entries
 
 # TODO: Uncomment after updating rpm
