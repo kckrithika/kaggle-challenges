@@ -34,5 +34,5 @@ system:
     function: search-model-executor
     nodeExposed: true
     ports:
-    - port: 7020
-      targetport: 7020
+    - port: 3555
+      targetport: 3555
