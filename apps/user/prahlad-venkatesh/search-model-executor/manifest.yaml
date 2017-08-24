@@ -29,10 +29,10 @@ system:
           port: 15372
         initialDelaySeconds: 60 
         timeoutSeconds: 10
-    loadbalancers:
-    - lbname: search-model-executor-lb
-      function: search-model-executor-lb
-      nodeExposed: true
-      ports:
-      - port: 7020
-        targetport: 7020
+  loadbalancers:
+  - lbname: search-model-executor-lb
+    function: search-model-executor
+    nodeExposed: true
+    ports:
+    - port: 7020
+      targetport: 7020
