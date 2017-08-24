@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" then {
@@ -21,24 +22,14 @@ if configs.estate == "prd-sdc" then {
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                    {
-                        "name": "var-slb-volume",
-                        "hostPath": {
-                            "path": "/var/slb"
-                         }
-                    },
+                    slbconfigs.slb_volume,
                     {
                         "name": "dev-volume",
                         "hostPath": {
                             "path": "/dev"
                          }
                     },
-                    {
-                        "name": "host-volume",
-                        "hostPath": {
-                            "path": "/"
-                         }
-                    }
+                    slbconfigs.host_volume,
                 ],
                 "containers": [
                     {
@@ -49,11 +40,7 @@ if configs.estate == "prd-sdc" then {
                            "--metricsEndpoint="+configs.funnelVIP
                        ],
                        "volumeMounts": [
-                           {
-                               "name": "var-slb-volume",
-                               "mountPath": "/host/var/slb"
-
-                           }
+                           slbconfigs.slb_volume_mount,
                        ],
                        "securityContext": {
                            "privileged": true

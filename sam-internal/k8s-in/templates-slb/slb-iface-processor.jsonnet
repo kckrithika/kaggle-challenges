@@ -23,18 +23,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                    {
-                        "name": "var-slb-volume",
-                        "hostPath": {
-                            "path": "/var/slb"
-                         }
-                    },
-                    {
-                        "name": "var-config-volume",
-                        "hostPath": {
-                            "path": "/var/slb/config"
-                        }
-                    }
+                    slbconfigs.slb_volume,
+                    slbconfigs.slb_config_volume,
                 ],
                 "containers": [
                     {
@@ -49,14 +39,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
-                            {
-                                "name": "var-slb-volume",
-                                "mountPath": "/host/var/slb"
-                            },
-                            {
-                                "name": "var-config-volume",
-                                "mountPath": "/host/var/slb/config"
-                            }
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.slb_config_volume_mount,
                         ],
                         "securityContext": {
                             "privileged": true

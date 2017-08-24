@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
@@ -20,25 +21,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                    {
-                        "name": "var-slb-volume",
-                        "hostPath": {
-                            "path": "/var/slb"
-                         }
-                    },
-                    {
-                        "name": "host-volume",
-                        "hostPath": {
-                            "path": "/"
-                         }
-                    },
-                    {
-                        "name": "certs",
-                        "hostPath": {
-                            "path": "/data/certs",
-                        }
-                     },
-                     configs.kube_config_volume,
+                    slbconfigs.slb_volume,
+                    slbconfigs.host_volume,
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                  ],
                 "containers": [
                     {
@@ -60,18 +46,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--maxretries=2"
                         ],
                         "volumeMounts": [
-                            {
-                                "name": "var-slb-volume",
-                                "mountPath": "/host/var/slb"
-                            },
-                            {
-                                "name": "host-volume",
-                                "mountPath": "/host"
-                            },
-                            {
-                                "name": "certs",
-                                "mountPath": "/data/certs"
-                            },
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.host_volume_mount,
+                            configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                          ],
                          env: [

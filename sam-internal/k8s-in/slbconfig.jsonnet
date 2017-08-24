@@ -56,6 +56,43 @@ perCluster: {
     },
 },
 
+
+# Frequently used volume: slb
+    slb_volume: {
+        name: "var-slb-volume",
+        hostPath: {
+            "path": "/var/slb"
+        }
+    },
+    slb_volume_mount: {
+        "name": "var-slb-volume",
+        "mountPath": "/host/var/slb"
+    },
+
+# Frequently used volume: slb-config
+    slb_config_volume: {
+        name: "var-config-volume",
+        hostPath: {
+            "path": "/var/slb/config"
+        }
+    },
+    slb_config_volume_mount: {
+        "name": "var-config-volume",
+        "mountPath": "/host/var/slb/config"
+    },
+
+# Frequently used volume: host
+    host_volume: {
+        name: "host-volume",
+        hostPath: {
+            "path": "/"
+        }
+    },
+    host_volume_mount: {
+        "name": "host-volume",
+        "mountPath": "/host"
+    },
+
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
 namespace: self.perCluster.namespace[estate],

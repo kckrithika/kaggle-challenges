@@ -22,24 +22,14 @@ if configs.estate == "prd-sdc" then {
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                     {
-                        "name": "host-volume",
-                        "hostPath": {
-                            "path": "/"
-                         }
-                     },
+                     slbconfigs.host_volume,
                      {
                         "name": "var-target-config-volume",
                         "hostPath": {
                             "path": "/var/slb/nginx/config"
                          }
                      },
-                     {
-                        "name": "var-config-volume",
-                        "hostPath": {
-                            "path": "/var/slb/config"
-                        }
-                    }
+                     slbconfigs.slb_config_volume,
                 ],
                 "containers": [
                     {
@@ -53,18 +43,12 @@ if configs.estate == "prd-sdc" then {
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
-                            {
-                                "name": "host-volume",
-                                "mountPath": "/host"
-                            },
+                            slbconfigs.host_volume_mount,
                             {
                                 "name": "var-target-config-volume",
                                 "mountPath": "/host/var/slb/nginx/config"
                             },
-                            {
-                                "name": "var-config-volume",
-                                "mountPath": "/host/var/slb/config"
-                            }
+                            slbconfigs.slb_config_volume_mount,
                         ],
                         "securityContext": {
                             "privileged": true
