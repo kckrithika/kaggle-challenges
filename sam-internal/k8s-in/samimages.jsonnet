@@ -49,7 +49,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
-            "hypersam": "sam-0001140-a550f4f8",
+            "hypersam": "sam-0001191-d752a5d0",
             },
 
         ### Release Phase 3.1 - Temporary phase for syd and cdu to release hosts.go changes
