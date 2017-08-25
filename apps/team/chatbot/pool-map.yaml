@@ -1,4 +1,7 @@
 apps:
- runtime:
+  runtime:
   - prd/prd-sam
+  chatbot-runtime-test:
+  - prd/prd-sp2-sam_chatbot
+
 
