@@ -1381,7 +1381,79 @@
     {
       "controlestate": "hnd-sam",
       "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-10-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
       "hostname": "shared0-samminionchatbotrt1-2-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-3-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-4-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-5-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-6-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-7-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-8-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt1-9-hnd.ops.sfdc.net",
       "kingdom": "hnd",
       "pod": "none",
       "role": "samcompute",
@@ -1399,7 +1471,79 @@
     {
       "controlestate": "hnd-sam",
       "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-10-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
       "hostname": "shared0-samminionchatbotrt2-2-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-3-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-4-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-5-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-6-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-7-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-8-hnd.ops.sfdc.net",
+      "kingdom": "hnd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "hnd-sam",
+      "estate": "hnd-sam_chatbot_kingdom",
+      "hostname": "shared0-samminionchatbotrt2-9-hnd.ops.sfdc.net",
       "kingdom": "hnd",
       "pod": "none",
       "role": "samcompute",
