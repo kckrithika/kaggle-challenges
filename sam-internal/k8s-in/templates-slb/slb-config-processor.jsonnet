@@ -23,24 +23,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
             "spec": {
                 "hostNetwork": true,
                 "volumes": [
-                    {
-                        "name": "var-slb-volume",
-                        "hostPath": {
-                            "path": "/var/slb"
-                         }
-                    },
-                    {
-                        "name": "var-config-volume",
-                        "hostPath": {
-                        "path": "/var/slb/config"
-                        }
-                    },
-                    {
-                        "name": "host-volume",
-                        "hostPath": {
-                            "path": "/"
-                         }
-                    },
+                    slbconfigs.slb_volume,
+                    slbconfigs.slb_config_volume,
+                    slbconfigs.host_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                  ],
@@ -62,18 +47,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--metricsEndpoint="+configs.funnelVIP
                         ],
                         "volumeMounts": [
-                            {
-                                "name": "var-slb-volume",
-                                "mountPath": "/host/var/slb"
-                            },
-                            {
-                                "name": "var-config-volume",
-                                "mountPath": "/host/var/slb/config"
-                            },
-                            {
-                                "name": "host-volume",
-                                "mountPath": "/host"
-                            },
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.slb_config_volume_mount,
+                            slbconfigs.host_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                          ],
