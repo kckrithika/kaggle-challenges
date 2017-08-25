@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: search-model-executor
-    count: 2
+    count: 3
     containers:
     - name: search-model-executor
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor:20170829
