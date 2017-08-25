@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
     "metadata": {
@@ -47,16 +47,11 @@ if configs.estate == "prd-sdc" then {
                             },
                             slbconfigs.host_volume_mount,
                         ],
-                        "securityContext": {
-                            "privileged": true,
-                            "capabilities": {
-                                "add": [
-                                    "ALL"
-                                ]
-                            }
-                        }
                     }
                 ],
+                nodeSelector: {
+                    pool: configs.estate
+                },
             }
         }
     }
