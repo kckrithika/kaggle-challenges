@@ -47,16 +47,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             },
                             slbconfigs.host_volume_mount,
                         ],
-                        "securityContext": {
-                            "privileged": true,
-                            "capabilities": {
-                                "add": [
-                                    "ALL"
-                                ]
-                            }
-                        }
                     }
                 ],
+                nodeSelector: {
+                    pool: configs.estate
+                },
             }
         }
     }

@@ -26,14 +26,6 @@
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000288-a53c443b",
                   "name": "slb-bravo",
-                  "securityContext": {
-                     "capabilities": {
-                        "add": [
-                           "ALL"
-                        ]
-                     },
-                     "privileged": true
-                  },
                   "volumeMounts": [
                      {
                         "mountPath": "/dev",
@@ -46,6 +38,9 @@
                   ]
                }
             ],
+            "nodeSelector": {
+               "pool": "prd-sdc"
+            },
             "volumes": [
                {
                   "hostPath": {
