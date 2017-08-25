@@ -3,6 +3,7 @@ local estate = std.extVar("estate"),
 
 slbDir: "/host/var/slb",
 configDir: self.slbDir+"/config",
+logsDir: self.slbDir+"/logs",
 ipvsMarkerFile: self.slbDir+"/ipvs.marker",
 
 perCluster: {
@@ -91,6 +92,18 @@ perCluster: {
     host_volume_mount: {
         "name": "host-volume",
         "mountPath": "/host"
+    },
+
+# Frequently used volume: logs
+    logs_volume: {
+        name: "var-logs-volume",
+        hostPath: {
+            "path": "/var/slb/logs"
+        }
+    },
+    logs_volume_mount: {
+        "name": "var-logs-volume",
+        "mountPath": "/host/var/slb/logs"
     },
 
 subnet: self.perCluster.subnet[estate],

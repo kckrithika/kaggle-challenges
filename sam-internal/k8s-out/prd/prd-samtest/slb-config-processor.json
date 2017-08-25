@@ -57,6 +57,10 @@
                         "name": "host-volume"
                      },
                      {
+                        "mountPath": "/host/var/slb/logs",
+                        "name": "var-logs-volume"
+                     },
+                     {
                         "mountPath": "/data/certs",
                         "name": "certs"
                      },
@@ -86,6 +90,12 @@
                      "path": "/"
                   },
                   "name": "host-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/slb/logs"
+                  },
+                  "name": "var-logs-volume"
                },
                {
                   "hostPath": {
