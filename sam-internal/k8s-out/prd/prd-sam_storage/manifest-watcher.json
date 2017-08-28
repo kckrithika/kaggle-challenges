@@ -1,0 +1,75 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "manifest-watcher"
+      },
+      "name": "manifest-watcher"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "manifest-watcher"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "name": "manifest-watcher"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sam/manifest-watcher",
+                     "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--v=2",
+                     "--logtostderr=true",
+                     "--config=/config/manifestwatcher.json"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001140-a550f4f8",
+                  "name": "manifest-watcher",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/data/certs",
+                        "name": "certs"
+                     },
+                     {
+                        "mountPath": "/config",
+                        "name": "config"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "pool": "prd-sam_storage"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/manifests"
+                  },
+                  "name": "sfdc-volume"
+               },
+               {
+                  "configMap": {
+                     "name": "manifest-watcher"
+                  },
+                  "name": "config"
+               }
+            ]
+         }
+      }
+   }
+}
