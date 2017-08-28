@@ -44,11 +44,10 @@ system:
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/is-alive.sh
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
