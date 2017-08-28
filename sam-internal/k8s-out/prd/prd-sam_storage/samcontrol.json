@@ -30,7 +30,10 @@
                      "--funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                      "--v=3",
                      "--logtostderr=true",
-                     "--config=/config/samcontrol.json"
+                     "--config=/config/samcontrol.json",
+                     "--deletionEnabled=true",
+                     "--deletionPercentageThreshold=10",
+                     "--statefulAppEnabled=true"
                   ],
                   "env": [
                      {
@@ -38,7 +41,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001140-a550f4f8",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001191-d752a5d0",
                   "name": "sam-controller",
                   "volumeMounts": [
                      {

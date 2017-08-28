@@ -31,10 +31,6 @@
                      "-alertThreshold=150s",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "-rcImtEndpoint=https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
-                     "-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25",
-                     "-sender=sam-alerts@salesforce.com",
-                     "-recipient=sam@salesforce.com",
                      "--config=/config/watchdog.json",
                      "-emailFrequency=72h"
                   ],
@@ -44,7 +40,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001140-a550f4f8",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001191-d752a5d0",
                   "name": "watchdog-node",
                   "volumeMounts": [
                      {

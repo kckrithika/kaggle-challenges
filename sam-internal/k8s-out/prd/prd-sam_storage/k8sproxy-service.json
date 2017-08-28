@@ -3,24 +3,24 @@
    "kind": "Service",
    "metadata": {
       "labels": {
-         "app": "sam-deployment-portal",
-         "slb.sfdc.net/name": "sdp"
+         "app": "k8sproxy",
+         "slb.sfdc.net/name": "k8sproxy"
       },
-      "name": "portal-svc",
+      "name": "k8sproxy-service",
       "namespace": "sam-system"
    },
    "spec": {
       "ports": [
          {
-            "name": "portal-port",
-            "nodePort": 39999,
-            "port": 64121,
+            "name": "k8sproxy-port",
+            "nodePort": 40000,
+            "port": 5000,
             "protocol": "TCP",
-            "targetPort": 64121
+            "targetPort": 5000
          }
       ],
       "selector": {
-         "name": "sam-deployment-portal"
+         "name": "k8sproxy"
       },
       "type": "NodePort"
    }
