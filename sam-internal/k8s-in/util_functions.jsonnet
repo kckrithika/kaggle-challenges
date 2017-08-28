@@ -84,6 +84,6 @@ local internal = {
 
     # This is for filtering in, or out, testing clusters.
     is_test_cluster(estate):: (
-        estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc"
+        estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" || estate == "prd-sam"
     ),
 }

@@ -1,11 +1,11 @@
-local rbacconfigs = import "rbacconfig.jsonnet";
 local configs = import "config.jsonnet";
+local rbac_utils = import "sam_rbac_functions.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-samtest" then {
   "apiVersion": "v1",
   "kind": "List",
   "metadata": {},
-  local estateConfig = rbacconfigs[configs.kingdom][configs.estate],
   createRoleBinding(namespace, hosts):: {
       #Gives permission to read secrets & update events & pod status in the rolebinding's namespace
       "kind": "RoleBinding",
@@ -47,14 +47,12 @@ if configs.estate == "prd-samtest" then {
         "apiGroup": "rbac.authorization.k8s.io"
       }
   },
-  local roleBindings = std.join([], [
-            local hosts =  pool.hosts;
-            local namespaces = pool.namespaces;
-            local poolName = pool.pool;
+   local roleBindings = std.join([], [
+            local hosts =  rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
             # In Prod samcompute & samkubeapi nodes get admin access.
-            # In PRD customer apps run on samcompute nodes. So samcompute nodes get restricted access but all the permissions are across namespace(clusterRoleBinding)
-            [if configs.kingdom == "prd" && poolName == "samcompute" then self.createClusterRoleBinding(hosts) else self.createRoleBinding(namespace, hosts) for namespace in namespaces]
-            for pool in estateConfig.minion
+            # In PRD customer apps run on samcompute nodes. So samcompute nodes get restricted access but all the  permissions are across namespace(clusterRoleBinding)
+            if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [self.createClusterRoleBinding(hosts)] else [self.createRoleBinding(namespace, hosts) for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)]
+            for minionEstate in rbac_utils.get_Minion_Estates(configs.kingdom, configs.estate)
         ]),
 
   local clusterRoleBindings = [
@@ -68,7 +66,7 @@ if configs.estate == "prd-samtest" then {
         {
           "kind": "User",
           "name": masterNode
-        } for masterNode in estateConfig.master
+        } for masterNode in rbac_utils.get_Nodes(configs.kingdom, configs.estate, rbac_utils.masterRole)
       ],
       "roleRef": {
         "kind": "ClusterRole",
@@ -118,11 +116,10 @@ if configs.estate == "prd-samtest" then {
         "kind": "Role",
         "name": "update-secrets",
         "apiGroup": "rbac.authorization.k8s.io"
-     
-      }
+    }
     }
 
   ],
 
   "items": clusterRoleBindings + roleBindings
-} else "SKIP" 
+} else "SKIP"

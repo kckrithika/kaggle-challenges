@@ -50,8 +50,8 @@ items:
   - kind: User
     name: shared0-samtestcompute1-1-prd.eng.sfdc.net
   - kind: User
-    name: shared0-samtestcompute2-1-prd.eng.sfdc.net
-  - kind: User
     name: shared0-samtestcompute1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samtestcompute2-1-prd.eng.sfdc.net
 kind: List
 metadata: {}

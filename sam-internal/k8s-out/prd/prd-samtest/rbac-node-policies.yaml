@@ -16,12 +16,12 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node-status:shared0-samtestcompute2-1-prd.eng.sfdc.net
+    name: update-node-status:shared0-samtestcompute1-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
-    - shared0-samtestcompute2-1-prd.eng.sfdc.net
+    - shared0-samtestcompute1-2-prd.eng.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -29,12 +29,12 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node-status:shared0-samtestcompute1-2-prd.eng.sfdc.net
+    name: update-node-status:shared0-samtestcompute2-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
-    - shared0-samtestcompute1-2-prd.eng.sfdc.net
+    - shared0-samtestcompute2-1-prd.eng.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -53,17 +53,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-status-binding:shared0-samtestcompute2-1-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: update-node-status:shared0-samtestcompute2-1-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-samtestcompute2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
     name: update-node-status-binding:shared0-samtestcompute1-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -72,5 +61,16 @@ items:
   subjects:
   - kind: User
     name: shared0-samtestcompute1-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: update-node-status-binding:shared0-samtestcompute2-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: update-node-status:shared0-samtestcompute2-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samtestcompute2-1-prd.eng.sfdc.net
 kind: List
 metadata: {}
