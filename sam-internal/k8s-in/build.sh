@@ -33,7 +33,7 @@ time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/,templates-
 if [ -z "$GO_PIPELINE_LABEL" ]; then
   docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/prd/prd-samtest/ --rm
 else
-  /opt/sam/manifestctl kube-json-to-yaml --in ../sam-internal/k8s-out/prd/prd-samtest/ --rm
+  /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/prd/prd-samtest/ --rm
 fi
 
 # TODO: Add warning when running against out-of-sync git repo
