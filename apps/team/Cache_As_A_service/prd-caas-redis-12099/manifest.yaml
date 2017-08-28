@@ -37,7 +37,7 @@ system:
       - containerPort: 12099
         name: caas-cluster
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.4.5-0000008-14383414
+      image: tnrp/caas/caas-redis:2.4.5-0000009-14383588
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12099
