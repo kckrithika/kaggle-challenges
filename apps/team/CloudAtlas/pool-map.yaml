@@ -1,5 +1,9 @@
 version: v2
 apps:
+  iad-cloudatlas-proxy:
+    - name: iad/iad-sam_cloudatlas
+  iad-cloudatlas-ds:
+    - name: iad/iad-sam_cloudatlas_dir
   prd0-cloudatlas-proxy:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
