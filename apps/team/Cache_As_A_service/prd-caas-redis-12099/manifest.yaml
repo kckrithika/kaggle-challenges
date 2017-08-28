@@ -8,10 +8,10 @@ system:
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.5-0000006-14188568 
+      image: tnrp/caas/caas-redis:2.4.5-0000007-14383179
       resources:
-        limits: { memory: "5Gi" }
-        requests: { memory: "5Gi" }
+        limits: { memory: "10Gi" }
+        requests: { memory: "6Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -20,7 +20,7 @@ system:
           readOnly: true
       args: 
         - --port=12099
-        - --maxMemoryMB=4096
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -36,27 +36,25 @@ system:
       ports:
       - containerPort: 12099
         name: caas-cluster
-    - name: beacon
-      # container image/version to  run
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:bbuxton-20170804
+    - name: caas-redis-announcer
+      image: tnrp/caas/caas-redis:2.4.5-0000007-14383179
+      command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
-        - -endpoint
-        - caas/cluster/sp-na1-c1:SUPERPOD:12099
-        - -zk
-        - shared0-discovery1-0-crd.data.sfdc.net:2181
-        - -logdir
-        - /home/caas/logs
+        - --redisPort=12099
+        - --cluster.name=sp-na1-c1
+        - --logDir=/home/caas/logs
       livenessProbe:
-        initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
+           - /opt/caas/redis/is-alive.sh
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
       resources:
-        limits: { memory: "400M" }
-        requests: { memory: "400M" }
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol

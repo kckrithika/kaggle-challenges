@@ -12,6 +12,9 @@ system:
     - name: caas-metrics-publisher 
       # container image/version to  run
       image: tnrp/caas/caas-monitor-prod:2.4.6-0000013-14297396
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "1536M" }
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
