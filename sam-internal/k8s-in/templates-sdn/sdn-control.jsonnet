@@ -31,7 +31,7 @@ if configs.estate == "prd-sdc" then {
                             "/sdn/sdn-control-service",
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--port="+portconfigs.sdn.sdn_control_service,
-                            "charonAgentEndpoint="+configs.charonEndpoint,
+                            "--charonAgentEndpoint="+configs.charonEndpoint,
                         ],
                     }
                 ],
