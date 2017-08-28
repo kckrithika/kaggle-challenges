@@ -1,8 +1,6 @@
 local configs = import "config.jsonnet";
 
-# Disabled due to error with port already allocated
-#if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
-if "0" == "1" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
@@ -17,9 +15,9 @@ if "0" == "1" then {
             "ports": [
             {
                 "name": "idc-samhello-port",
-                "port": 9090,
+                "port": 9078,
                 "protocol": "TCP",
-                "targetPort": 9090,
+                "targetPort": 9078,
                 "nodePort": 33333
             }
             ],

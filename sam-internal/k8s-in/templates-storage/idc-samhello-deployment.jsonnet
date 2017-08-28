@@ -1,8 +1,6 @@
 local configs = import "config.jsonnet";
 
-#Disabled by thargrove on 2017/08/21 because it is failing with a PodFitPort and blocking all other deployments
-#if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
-if "0" == "1" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
     "metadata": {
@@ -25,16 +23,16 @@ if "0" == "1" then {
                 "containers": [
                     {
                         "name": "idc-samhello",
-                        "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ichakeres/samhello:idc-20170811b",
+                        "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ichakeres/samhello:idc-20170828a",
                         "ports": [
                             {
-                            "containerPort": 9090
+                            "containerPort": 9078
 		                    },
 			            ],
                         "livenessProbe": {
                             "httpGet": {
                                 "path": "/",
-                                "port": 9090
+                                "port": 9078
                             },
                         },
                     },
