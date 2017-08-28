@@ -15,7 +15,7 @@ system:
         path: /home/sfdc-chatbot/logs
     containers:
     - name: chatbot-runtime
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/chatbots/chatbot-runtime:210.151-SNAPSHOT-313ee44
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/chatbots/chatbot-runtime:210.153-SNAPSHOT-8543927
       ports:
       - containerPort: 7022
       env:
