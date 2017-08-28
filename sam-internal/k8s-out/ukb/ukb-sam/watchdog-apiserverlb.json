@@ -34,7 +34,7 @@
                      "--config=/config/watchdog.json",
                      "-emailFrequency=12h"
                   ],
-                  "image": "ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/hypersam:sam-0001140-a550f4f8",
+                  "image": "ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sam/hypersam:sam-0001191-d752a5d0",
                   "name": "watchdog-apiserverlb",
                   "volumeMounts": [
                      {
