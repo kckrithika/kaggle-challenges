@@ -2,11 +2,11 @@ apiVersion: v1
  
 system:
   functions:
-  - name: csr
+  - name: csrold
     count: 2
 
     containers:
-    - name: csr-sam
+    - name: csrold-sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.3.5-8
  
       livenessProbe:
@@ -36,8 +36,8 @@ system:
 
 
   loadbalancers:
-  - lbname: csrlb
-    function: csr
+  - lbname: csroldlb
+    function: csrold
     nodeExposed: true
     ports:
     - port: 9000
