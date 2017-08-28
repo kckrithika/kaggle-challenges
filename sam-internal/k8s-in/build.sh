@@ -30,12 +30,11 @@ time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/,templates-
 # or review.
 # This tool converts everything to yaml, and for configMaps it pretty prints the inner config entries
 
-# TODO: Uncomment after updating rpm
-#if [ -z "$GO_PIPELINE_LABEL" ]; then
-#  docker run --rm -it -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/prd/prd-samtest/ --rm
-#else
-#  /opt/sam/manifestctl jube-json-to-yaml
-#fi
+if [ -z "$GO_PIPELINE_LABEL" ]; then
+  docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/prd/prd-samtest/ --rm
+else
+  /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/prd/prd-samtest/ --rm
+fi
 
 # TODO: Add warning when running against out-of-sync git repo
 
