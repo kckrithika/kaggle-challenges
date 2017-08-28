@@ -39,7 +39,7 @@ perCluster: {
         "prd-sdc": "slb-bravo-svc",
         "prd-samtest": "",
         "prd-samdev": "",
-        "prd-sam": ""
+        "prd-sam": "slb-bravo-svc"
     },
 
     canaryServiceName: {
