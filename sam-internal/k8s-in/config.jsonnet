@@ -37,6 +37,11 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "ukb": "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
         },
 
+        # TODO: remove mom and charon endpoint to sdn-config
+        charonEndpoint: {
+            "prd": "http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions",
+        },
+
 	zookeeperip : {
 	    "prd" : "shared0-discovery1-0-sfm.data.sfdc.net:2181",
 	},
@@ -112,6 +117,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     smtpServer: self.perKingdom.smtpServer[kingdom],
     momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
+    charonEndpoint: self.perKingdom.charonEndpoint[kingdom],
     zookeeperip: self.perKingdom.zookeeperip[kingdom],
     apiserver: self.perEstate.apiserver[estate],
 
