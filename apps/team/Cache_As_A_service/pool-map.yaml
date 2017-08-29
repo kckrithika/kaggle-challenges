@@ -1507,3 +1507,19 @@ apps:
     - frf/frf-sp1-sam_caas
   frf-sp1-redis-sp-cs89-pc1-12037:
     - frf/frf-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-ap3-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-ap3-c1-12054:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-ap4-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-ap4-pc1-12057:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-ap3-pc1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-ap3-pc1-12055:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-metrics-publisher-sp-ap4-c1:
+    - phx/phx-sp1-sam_caas
+  phx-sp1-redis-sp-ap4-c1-12056:
+    - phx/phx-sp1-sam_caas

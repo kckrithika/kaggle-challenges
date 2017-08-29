@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: metrics-publisher-sp-cs5-pc1
+  - name: metrics-publisher-sp-ap3-c1
     count: 1
     hostnetwork: true
     containers:
@@ -15,9 +15,9 @@ system:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args:
-        - --server.port=7502
-        - --management.port=7503
-        - --cluster.name=sp-cs5-pc1
+        - --server.port=7578
+        - --management.port=7579
+        - --cluster.name=sp-ap3-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -28,13 +28,13 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 7503
+          port: 7579
         initialDelaySeconds: 60
         timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 7502
-      - containerPort: 7503
+      - containerPort: 7578
+      - containerPort: 7579
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
@@ -46,4 +46,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-sp-cs5-pc1
+        secretName: caas-secret-sp-ap3-c1

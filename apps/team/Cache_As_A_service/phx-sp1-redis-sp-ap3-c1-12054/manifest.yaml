@@ -5,8 +5,8 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: redis-sp-cs6-c1-12002
-    count: 3
+  - name: redis-sp-ap3-c1-12054
+    count: 2
     hostnetwork: true
     containers:
     - name: caas-redis
@@ -21,24 +21,24 @@ system:
           name: secretvol
           readOnly: true
       args:
-        - --port=12002
+        - --port=12054
         - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12002
+           - --port=12054
           initialDelaySeconds: 15
           timeoutSeconds: 10
       ports:
-      - containerPort: 12002
+      - containerPort: 12054
     - name: caas-redis-announcer
       image: tnrp/caas/caas-redis:2.4.5-0000009-14383588
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
-        - --redisPort=12002
-        - --cluster.name=sp-cs6-c1
+        - --redisPort=12054
+        - --cluster.name=sp-ap3-c1
         - --logDir=/home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
@@ -63,4 +63,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-cs6-c1
+         secretName: caas-secret-sp-ap3-c1
