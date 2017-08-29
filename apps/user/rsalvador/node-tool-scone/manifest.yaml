@@ -1,0 +1,29 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: node-tool-scone
+    count: 2
+    containers:
+    - name: node-tool-scone
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsalvador/node-tool-scone:0.1.0
+      ports:
+      - name: service-port
+        containerPort: 7070
+      - name: admin-port
+        containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+ 
+  loadbalancers:
+  - lbname: node-tool-scone-lb
+    function: node-tool-scone
+    ports:
+      - port: 7070
+        targetport: 7070
+      - port: 15372
+        targetport: 15372
