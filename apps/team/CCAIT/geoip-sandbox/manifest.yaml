@@ -31,8 +31,8 @@ system:
       - name: LOGGING_DIR
         value: "/log"
       resources:
-        limits: { memory: "750Mi" }
-        requests: { memory: "512Mi" }
+        limits: { cpu: 0.5, memory: 750Mi }
+        requests: { cpu: 0.5, memory: 750Mi }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
@@ -94,8 +94,8 @@ system:
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 7011
       resources:
-        limits: { memory: "750Mi" }
-        requests: { memory: "512Mi" }
+        limits: { cpu: 0.5, memory: 750Mi }
+        requests: { cpu: 0.5, memory: 750Mi }
       ports:
         - containerPort: 8080
       livenessProbe:
