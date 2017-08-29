@@ -17,7 +17,7 @@ local samimages = import "samimages.jsonnet";
   "cert-file": configs.certFile,
   "resource-progression-timeout": 120000000000,
   "resource-cooldown": 15000000000,
-  "max-resource-time": 30000000000,
+  "max-resource-time": 300000000000,
 }
 + if configs.kingdom == "prd" then {
   "recipient": "sam@salesforce.com,slb@salesforce.com"
