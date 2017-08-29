@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: search-model-executor-proxy
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-proxy:20170828
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor-proxy:20170828_2
       ports:
       - name: service-port
         containerPort: 3555
