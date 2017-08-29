@@ -795,3 +795,83 @@ apps:
    - prd/prd-sp2-sam_caas
   prd-caas-benchmark-monitor-perf:
    - prd/prd-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs60-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs60-c1-12014:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs60-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs60-pc1-12015:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs61-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs61-c1-12016:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-cs61-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-cs61-pc1-12017:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na38-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na38-c1-12018:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-metrics-publisher-sp-na38-pc1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-sp-na38-pc1-12019:
+    - dfw/dfw-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-cs63-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-cs63-c1-12008:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na35-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na35-c1-12010:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na43-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na43-pc1-12017:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na37-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na37-c1-12012:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-cs62-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-cs62-pc1-12007:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na43-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na43-c1-12016:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na42-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na42-pc1-12015:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-cs63-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-cs63-pc1-12009:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na42-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na42-c1-12014:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na48-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na48-pc1-12019:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-cs62-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-cs62-c1-12006:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na48-c1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na48-c1-12018:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na37-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na37-pc1-12013:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-metrics-publisher-sp-na35-pc1:
+    - phx/phx-sp2-sam_caas
+  phx-sp2-redis-sp-na35-pc1-12011:
+    - phx/phx-sp2-sam_caas
