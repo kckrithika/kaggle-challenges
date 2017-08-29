@@ -24,6 +24,27 @@ data:
             "prd-samtest"
           ],
           "until": "2017/06/02"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "iad-sam"
+          ],
+          "until": "2017/09/15"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "iad-sam"
+          ],
+          "until": "2017/09/15"
+        },
+        {
+          "checker": "deploymentChecker",
+          "estates": [
+            "iad-sam"
+          ],
+          "until": "2017/09/15"
         }
       ],
       "tlsEnabled": true
