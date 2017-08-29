@@ -1451,3 +1451,59 @@ apps:
     - ord/ord-sp2-sam_caas
   ord-sp2-redis-sp-cs95-c1-12014:
     - ord/ord-sp2-sam_caas
+  par-sp1-metrics-publisher-sp-cs85-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs85-pc1-12031:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu7-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu7-pc1-12033:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu7-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu7-c1-12032:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu9-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu9-c1-12034:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs85-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs85-c1-12030:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs84-c1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs84-c1-12028:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-eu9-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-eu9-pc1-12035:
+    - par/par-sp1-sam_caas
+  par-sp1-metrics-publisher-sp-cs84-pc1:
+    - par/par-sp1-sam_caas
+  par-sp1-redis-sp-cs84-pc1-12029:
+    - par/par-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs89-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs89-c1-12036:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu11-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu11-c1-12038:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs88-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs88-pc1-12035:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu11-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu11-pc1-12039:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs88-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs88-c1-12034:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-cs89-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-cs89-pc1-12037:
+    - frf/frf-sp1-sam_caas
