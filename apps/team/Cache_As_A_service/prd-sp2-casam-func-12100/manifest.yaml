@@ -9,11 +9,11 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.2-0000038-b018ce8c
+      image: tnrp/casam/coreapp:210.2-0000039-5e2619d0
 
       env:
         - name: DEPLOYMENT
-          value: B
+          value: C
         - name: DB_USER
           value: grumpy
 
@@ -45,16 +45,18 @@ system:
       livenessProbe:
         exec:
           command:
-           - "/bin/sh"
-           - "-c"
-           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+           - echo
+           - HEALTHY
+#           - "/bin/sh"
+#           - "-c"
+#           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
         initialDelaySeconds: 360
         periodSeconds: 1
 
       readinessProbe:
         httpGet:
           path: /ready.jsp
-          port: 9000
+          port: 12100
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
