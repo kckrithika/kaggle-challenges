@@ -29,7 +29,7 @@
                      "--k8sapiserver=",
                      "--serviceList=csrlb",
                      "--useVipLabelToSelectSvcs=true",
-                     "--useProxyServicesList=slb-bravo-svc",
+                     "--useProxyServicesList=slb-bravo-svc,csrlb",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
                   ],
                   "env": [
