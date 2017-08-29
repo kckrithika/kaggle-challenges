@@ -30,9 +30,9 @@ system:
         value: 7012
       - name: LOGGING_DIR
         value: "/log"
-      #resources:
-      #  limits: { cpu: "500m", memory: "750Mi" }
-      #  requests: { cpu: "100m", memory: "750Mi" }
+      resources:
+        limits: { memory: "750Mi" }
+        requests: { memory: "512Mi" }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
@@ -93,9 +93,9 @@ system:
           value: geoip.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 7011
-      #resources:
-      #  limits: { cpu: "100m", memory: "750Mi" }
-      #  requests: { cpu: "100m", memory: "750Mi" }
+      resources:
+        limits: { memory: "750Mi" }
+        requests: { memory: "512Mi" }
       ports:
         - containerPort: 8080
       livenessProbe:
