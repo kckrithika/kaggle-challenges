@@ -7,6 +7,7 @@ system:
   functions:
   - name: controlplane-ptest
     count: 4
+    hostnetwork: true
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
@@ -66,6 +67,7 @@ system:
   - lbname: controlplane-ptest
     function: controlplane-ptest
     nodeExposed: true
+    slbEnabled: true
     ports:
       - port: 9092
         targetport: 7020
