@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - caas-dev@salesforce.com
+      - rpragada@salesforce.com
   functions:
   - name: metrics-publisher-sp-cs69-pc1
     count: 1
@@ -11,6 +11,9 @@ system:
     containers:
     - name: metrics-publisher
       image: tnrp/caas/caas-monitor-prod:2.4.6-0000013-14297396
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "1536M" }
       args:
         - --server.port=7512
         - --management.port=7513
