@@ -1123,3 +1123,155 @@ apps:
     - phx/phx-sp4-sam_caas
   phx-sp4-redis-sp-na53-c1-12036:
     - phx/phx-sp4-sam_caas
+  iad-sp1-metrics-publisher-sp-cs16-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs16-pc1-12025:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs15-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs15-pc1-12023:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na57-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na57-c1-12030:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na78-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na78-c1-12036:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na57-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na57-pc1-12031:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na74-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na74-c1-12034:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs67-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs67-pc1-12029:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs66-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs66-c1-12026:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs15-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs15-c1-12022:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs66-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs66-pc1-12027:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na78-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na78-pc1-12037:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs16-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs16-c1-12024:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na58-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na58-pc1-12033:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na58-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na58-c1-12032:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-cs67-c1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-cs67-c1-12028:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-metrics-publisher-sp-na74-pc1:
+    - iad/iad-sp1-sam_caas
+  iad-sp1-redis-sp-na74-pc1-12035:
+    - iad/iad-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs64-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs64-c1-12022:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs14-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs14-pc1-12017:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs14-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs14-c1-12016:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na50-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na50-pc1-12033:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na56-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na56-pc1-12035:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs65-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs65-pc1-12025:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na88-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na88-pc1-12037:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na46-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na46-pc1-12029:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs8-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs8-pc1-12027:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na50-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na50-c1-12032:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na88-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na88-c1-12036:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na49-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na49-c1-12030:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs8-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs8-c1-12026:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na49-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na49-pc1-12031:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs64-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs64-pc1-12023:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs18-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs18-pc1-12021:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs17-pc1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs17-pc1-12019:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na46-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na46-c1-12028:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs18-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs18-c1-12020:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs17-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs17-c1-12018:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-cs65-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-cs65-c1-12024:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-metrics-publisher-sp-na56-c1:
+    - ord/ord-sp1-sam_caas
+  ord-sp1-redis-sp-na56-c1-12034:
+    - ord/ord-sp1-sam_caas
