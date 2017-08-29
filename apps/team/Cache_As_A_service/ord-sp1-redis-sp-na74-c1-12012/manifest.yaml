@@ -1,16 +1,19 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
   functions:
   - name: redis-sp-na74-c1-12012
-    count: 4
+    count: 3
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
+      image: tnrp/caas/caas-redis:2.4.5-0000009-14383588
       resources:
-        limits: { memory: "8292M" }
-        requests: { memory: "8292M" }
+        limits: { memory: "10Gi" }
+        requests: { memory: "6Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -19,7 +22,7 @@ system:
           readOnly: true
       args:
         - --port=12012
-        - --maxMemoryMB=8192
+        - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -31,24 +34,22 @@ system:
       ports:
       - containerPort: 12012
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
+      image: tnrp/caas/caas-redis:2.4.5-0000009-14383588
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12012
         - --cluster.name=sp-na74-c1
         - --logDir=/home/caas/logs
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12012
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
       resources:
-        limits: { memory: "200M" }
+        limits: { memory: "500M" }
         requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
