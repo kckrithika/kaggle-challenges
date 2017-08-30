@@ -1,5 +1,8 @@
 apps:
  redis-test-app:
-  - prd/prd-sam
+  - prd/prd-samdev
+  - prd/prd-samtest
  TestApp:
+  - prd/prd-sam
+  - prd/prd-samdev
   - prd/prd-samtest
