@@ -7,7 +7,7 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
+      image: tnrp/caas/caas-redis:2.4.5-0000007-14383179
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -26,8 +26,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12046
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       env:
        - name: SFDC_ENVIRONMENT
@@ -36,7 +36,7 @@ system:
       - containerPort: 12046
         name: caas-cluster
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
+      image: tnrp/caas/caas-redis:2.4.5-0000009-14383588
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12046
@@ -44,12 +44,10 @@ system:
         - --logDir=/home/caas/logs
         - --pathPrefix=/mist30/prd/sp2
       livenessProbe:
+        initialDelaySeconds: 5 
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12046
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+           - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
@@ -68,4 +66,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-casam-c1
+         secretName: caas-secret-sp-c1
