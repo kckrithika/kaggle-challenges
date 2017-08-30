@@ -45,13 +45,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--serviceList="+slbconfigs.serviceList,
                             "--useVipLabelToSelectSvcs="+slbconfigs.useVipLabelToSelectSvcs,
                             "--useProxyServicesList="+slbconfigs.useProxyServicesList,
-                            "--metricsEndpoint="+configs.funnelVIP
-                        ]
-                        + (
-                             if configs.estate == "prd-sdc" then [
-                                 "--logsDir="+slbconfigs.logsDir,
-                             ] else []
-                        ),
+                            "--metricsEndpoint="+configs.funnelVIP,
+                            "--log_dir="+slbconfigs.logsDir
+                        ],
 
                         "volumeMounts": [
                             slbconfigs.slb_volume_mount,

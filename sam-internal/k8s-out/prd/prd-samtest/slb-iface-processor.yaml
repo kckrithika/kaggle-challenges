@@ -20,6 +20,7 @@ spec:
         - --marker=/host/var/slb/ipvs.marker
         - --markerPeriod=10s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --log_dir=/host/var/slb/logs
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000289-2c9bb222
         name: slb-iface-processor
         securityContext:
@@ -29,6 +30,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/var/slb/config
           name: var-config-volume
+        - mountPath: /host/var/slb/logs
+          name: var-logs-volume
       hostNetwork: true
       volumes:
       - hostPath:
@@ -37,3 +40,6 @@ spec:
       - hostPath:
           path: /var/slb/config
         name: var-config-volume
+      - hostPath:
+          path: /var/slb/logs
+        name: var-logs-volume

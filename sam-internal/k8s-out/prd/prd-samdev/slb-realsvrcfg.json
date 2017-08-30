@@ -23,7 +23,8 @@
                      "/sdn/slb-realsvrcfg",
                      "--configDir=/host/var/slb/config",
                      "--period=5s",
-                     "--netInterfaceName=eth0"
+                     "--netInterfaceName=eth0",
+                     "--log_dir=/host/var/slb/logs"
                   ],
                   "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000289-2c9bb222",
                   "name": "slb-realsvrcfg",
@@ -38,6 +39,10 @@
                      {
                         "mountPath": "/host",
                         "name": "host-volume"
+                     },
+                     {
+                        "mountPath": "/host/var/slb/logs",
+                        "name": "var-logs-volume"
                      }
                   ]
                }
@@ -55,6 +60,12 @@
                      "path": "/"
                   },
                   "name": "host-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/var/slb/logs"
+                  },
+                  "name": "var-logs-volume"
                }
             ]
          }

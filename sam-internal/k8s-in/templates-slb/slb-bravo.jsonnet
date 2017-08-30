@@ -29,6 +29,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                          }
                     },
                     slbconfigs.host_volume,
+                    slbconfigs.logs_volume,
                 ],
                 "containers": [
                     {
@@ -38,7 +39,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "/sdn/slb-canary-service",
                             "--serviceName=slb-bravo-svc",
                             "--port=9090",
-                            "--metricsEndpoint="+configs.funnelVIP
+                            "--metricsEndpoint="+configs.funnelVIP,
+                            "--log_dir="+slbconfigs.logsDir
                         ],
                         "volumeMounts": [
                             {
@@ -46,6 +48,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                 "mountPath": "/dev"
                             },
                             slbconfigs.host_volume_mount,
+                            slbconfigs.logs_volume_mount,
                         ],
                     }
                 ],

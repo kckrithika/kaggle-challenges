@@ -45,6 +45,7 @@ spec:
         - --connPort=9107
         - --retryPeriod=2m
         - --maxretries=2
+        - --log_dir=/host/var/slb/logs
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
@@ -57,6 +58,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host
           name: host-volume
+        - mountPath: /host/var/slb/logs
+          name: var-logs-volume
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -71,6 +74,9 @@ spec:
       - hostPath:
           path: /
         name: host-volume
+      - hostPath:
+          path: /var/slb/logs
+        name: var-logs-volume
       - hostPath:
           path: /data/certs
         name: certs

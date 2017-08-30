@@ -30,6 +30,7 @@ if configs.estate == "prd-sdc" then {
                          }
                     },
                     slbconfigs.host_volume,
+                    slbconfigs.logs_volume,
                 ],
                 "containers": [
                     {
@@ -37,10 +38,12 @@ if configs.estate == "prd-sdc" then {
                        "image": slbimages.hypersdn,
                        "command":[
                            "/sdn/slb-node-os-stats",
-                           "--metricsEndpoint="+configs.funnelVIP
+                           "--metricsEndpoint="+configs.funnelVIP,
+                           "--log_dir="+slbconfigs.logsDir
                        ],
                        "volumeMounts": [
                            slbconfigs.slb_volume_mount,
+                           slbconfigs.logs_volume_mount,
                        ],
                        "securityContext": {
                            "privileged": true
