@@ -8,14 +8,14 @@ system:
       - joslyn.esser@salesforce.com
   functions:
   - name: chatbot-runtime-test
-    count: 1
+    count: 2
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-chatbot/logs
     containers:
     - name: chatbot-runtime
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/chatbots/chatbot-runtime:210.153-SNAPSHOT-8543927
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/chatbots/chatbot-runtime:210.0-3a905b8
       ports:
       - containerPort: 7022
       env:
@@ -30,13 +30,13 @@ system:
           secretKeyRef:
             name: chatbot-runtime-metamind-secrets
             key: email
-      - name: METAMIND_CERT
+      - name: METAMIND_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
             name: chatbot-runtime-metamind-secrets
-            key: cert
-      - name: CACHE_CLUSTER_NAME
-        value: sp-chatbot-c1
+            key: private_key
+      - name: CACHE_PROVIDER
+        value: memory
       volumeMounts:
       - name: logvol
         mountPath: /home/sfdc-chatbot/logs
