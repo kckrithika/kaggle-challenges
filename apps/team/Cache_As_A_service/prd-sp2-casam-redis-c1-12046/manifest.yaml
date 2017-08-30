@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: prd-sp2-casam-redis-c1-12046
+  - name: csr-redis-c1-12046
     count: 1
     hostnetwork: true
     containers:
