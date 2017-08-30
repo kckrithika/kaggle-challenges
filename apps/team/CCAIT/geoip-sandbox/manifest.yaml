@@ -31,8 +31,8 @@ system:
       - name: LOGGING_DIR
         value: "/log"
       resources:
-        limits: { cpu: 1, memory: 750Mi }
-        requests: { cpu: 1, memory: 750Mi }
+        limits: { cpu: "2", memory: "750Mi" }
+        requests: { cpu: "2", memory: "750Mi" }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
@@ -45,12 +45,12 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 30
+        initialDelaySeconds: 130
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 15
+        initialDelaySeconds: 115
     - name: sherpa-b
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
       env:
@@ -65,13 +65,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 5
     volumes:
     - name: maxmind-volume
@@ -94,20 +94,20 @@ system:
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 7011
       resources:
-        limits: { cpu: 1, memory: 750Mi }
-        requests: { cpu: 1, memory: 750Mi }
+        limits: { cpu: "2", memory: "750Mi" }
+        requests: { cpu: "2", memory: "750Mi" }
       ports:
         - containerPort: 8080
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 30
+        initialDelaySeconds: 130
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 15
+        initialDelaySeconds: 115
     - name: sherpa-f
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
       env:
@@ -120,13 +120,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 5
   - name: geoip-xlt
     count: 1
