@@ -13,7 +13,7 @@ if configs.estate == "prd-sdc" then {
         "name": "slb-portal"
     },
     "spec": {
-        replicas: 2,
+        replicas: 1,
         "template": {
             "metadata": {
                 "labels": {
@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" then {
                            "/sdn/slb-portal",
                            "--configDir="+slbconfigs.configDir,
                            "--templatePath="+slbconfigs.slbPortalTemplatePath,
-                           "--port="+portconfigs.slb.slbPortalServerPort
+                           "--port="+portconfigs.slb.slbPortalServicePort
                        ],
                        "volumeMounts": [
                            slbconfigs.slb_volume_mount,
