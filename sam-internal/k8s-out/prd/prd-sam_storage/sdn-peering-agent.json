@@ -64,7 +64,7 @@
                      "--livenessProbePort=9100",
                      "--controlEndpoint=prd-sam_storage"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000286-e2c3562b",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000293-1c189691",
                   "livenessProbe": {
                      "httpGet": {
                         "path": "/liveness-probe",
