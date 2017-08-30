@@ -18,17 +18,26 @@ system:
         - mountPath: /database
           name: maxmind-volume
     - name: ccait-geoip-backend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6-snapshot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2:1.0.6
       env:
-        - name: SFDC_ENVIRONMENT
-          value: "sam"
-        - name: COM_MAXMIND_DATABASE_FILE
-          value: "/dw/data/GeoIP2-City.mmdb"
-        - name: GRPC_ANNOUNCED_PORT
-          value: 7012
+      - name: JAVA_OPTS
+        value: "-Xms512m -Xmx512m"
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      - name: COM_MAXMIND_DATABASE_FILE
+        value: "/dw/data/GeoIP2-City.mmdb"
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
+      - name: LOGGING_DIR
+        value: "/log"
+      resources:
+        limits: { cpu: "1", memory: "750Mi" }
+        requests: { cpu: "1", memory: "750Mi" }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
+        - mountPath: /log
+          name: log-volume
       ports:
         - containerPort: 7020
           name: grpc
@@ -36,17 +45,20 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 30
+        initialDelaySeconds: 130
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 15
+        initialDelaySeconds: 115
     - name: sherpa-b
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-in
@@ -56,14 +68,17 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 5
     volumes:
     - name: maxmind-volume
       emptyDir: {}
+    - name: log-volume
+      hostPath:
+        path: /home/sfdc-geoip/logs
