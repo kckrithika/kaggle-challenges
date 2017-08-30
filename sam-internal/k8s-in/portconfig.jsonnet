@@ -23,6 +23,7 @@
         ipvsDataConnPort: 9107,
         canaryServicePort: 9111,
         slbPortalServicePort: 9112,
+        
         canaryServiceNodePort: 32136,
         alphaServiceNodePort: 32137,
         bravoServiceNodePort: 32138,
