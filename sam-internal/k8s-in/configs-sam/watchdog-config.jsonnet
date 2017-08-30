@@ -11,6 +11,9 @@ local samimages = import "samimages.jsonnet";
   snooze: [
     # [thargrove] Example snoozes that existed previously as flags but are expired.  Can be removed next update
     { estates: ["prd-samtest"], checker: "kubeApiChecker", until: "2017/06/02" },
+    { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
+    { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
+    { estates: ["iad-sam"], checker: "deploymentChecker", until: "2017/09/15" },
   ],
 
   # Shared
@@ -39,5 +42,6 @@ local samimages = import "samimages.jsonnet";
 (
   if configs.kingdom == "prd" then {
     deploymentNamespacePrefixWhitelist: "sam-system,csc-sam" 
+  } else if configs.kingdom == "iad" then {
   } else {}
 )
