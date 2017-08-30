@@ -27,7 +27,7 @@ perCluster: {
         "prd-sdc": "",
         "prd-samtest": "",
         "prd-samdev": "",
-        "prd-sam": "csrlb"
+        "prd-sam": "csrlb,controlplane-ptest"
     },
 
     namespace: {
@@ -41,7 +41,7 @@ perCluster: {
         "prd-sdc": "slb-bravo-svc",
         "prd-samtest": "",
         "prd-samdev": "",
-        "prd-sam": "slb-bravo-svc,csrlb"
+        "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest"
     },
 
     canaryServiceName: {
