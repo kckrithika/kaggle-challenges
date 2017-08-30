@@ -5,7 +5,7 @@ system:
     email:
       - tyler.phong@salesforce.com
   functions:
-  - name: metrics-publisher-sp-casam-c1
+  - name: metrics-publisher-csr-c1
     count: 1
     hostnetwork: true
     containers:
