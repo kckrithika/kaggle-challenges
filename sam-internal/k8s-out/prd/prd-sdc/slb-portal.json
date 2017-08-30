@@ -24,7 +24,7 @@
                      "--templatePath=/sdn/webfiles",
                      "--port=9112"
                   ],
-                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000299-d7a48710",
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000302-cee44f54",
                   "name": "slb-portal",
                   "volumeMounts": [
                      {
