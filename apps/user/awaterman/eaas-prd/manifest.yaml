@@ -14,21 +14,21 @@ system:
         maxUnavailable: 1
     containers:
     - name: eaas-prd-test
-      image: tnrp/emailinfrastructure/eaas:0.0.1-0000013-d3a5606c 
+      image: tnrp/emailinfrastructure/eaas:1.0.0-0000016-16e8db06
       ports:
-        - containerPort: 8080
-        - containerPort: 9507
+        - containerPort: 7021
+        - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /available
-          port: 8080
+          path: /manage/health
+          port: 15372
           initialDelaySeconds: 10
         minReadySeconds: 25
   loadbalancers:
   - lbname: eaas-prd-test-lb
     function: eaas-prd-test
     ports:
-      - port: 8080 
-        targetport: 8080
-      - port: 9507 
-        targetport: 9507
+      - port: 15372
+        targetport: 15372
+      - port: 7021 
+        targetport: 7021
