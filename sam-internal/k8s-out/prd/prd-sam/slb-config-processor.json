@@ -30,7 +30,8 @@
                      "--serviceList=csrlb",
                      "--useVipLabelToSelectSvcs=true",
                      "--useProxyServicesList=slb-bravo-svc,csrlb",
-                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80"
+                     "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                     "--log_dir=/host/var/slb/logs"
                   ],
                   "env": [
                      {

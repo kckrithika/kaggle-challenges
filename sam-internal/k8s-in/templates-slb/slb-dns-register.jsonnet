@@ -24,6 +24,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                 "volumes": [
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
+                    slbconfigs.logs_volume,
                 ],
                 "containers": [
                     {
@@ -36,11 +37,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--keyfile="+configs.keyFile,
                             "--certfile="+configs.certFile,
                             "--cafile="+configs.caFile,
-                            "--metricsEndpoint="+configs.funnelVIP
+                            "--metricsEndpoint="+configs.funnelVIP,
+                            "--log_dir="+slbconfigs.logsDir
                         ],
                         "volumeMounts": [
                             configs.cert_volume_mount,
                             slbconfigs.slb_config_volume_mount,
+                            slbconfigs.logs_volume_mount,
                         ],
                     }
                 ],

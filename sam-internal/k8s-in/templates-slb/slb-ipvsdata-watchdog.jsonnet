@@ -23,6 +23,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                 "volumes": [
                     slbconfigs.slb_volume,
                     slbconfigs.host_volume,
+                    slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                  ],
@@ -43,11 +44,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--k8sapiserver="+configs.k8sapiserver,
                             "--connPort="+portconfigs.slb.ipvsDataConnPort,
                             "--retryPeriod=2m",
-                            "--maxretries=2"
+                            "--maxretries=2",
+                            "--log_dir="+slbconfigs.logsDir
                         ],
                         "volumeMounts": [
                             slbconfigs.slb_volume_mount,
                             slbconfigs.host_volume_mount,
+                            slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                          ],

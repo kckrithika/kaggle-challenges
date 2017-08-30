@@ -30,6 +30,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                          }
                      },
                      slbconfigs.slb_config_volume,
+                     slbconfigs.logs_volume,
                 ],
                 "containers": [
                     {
@@ -40,7 +41,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--configDir="+slbconfigs.configDir,
                             "--target=/host/var/slb/nginx/config",
                             "--netInterfaceName=eth0",
-                            "--metricsEndpoint="+configs.funnelVIP
+                            "--metricsEndpoint="+configs.funnelVIP,
+                            "--log_dir="+slbconfigs.logsDir
                         ],
                         "volumeMounts": [
                             slbconfigs.host_volume_mount,
@@ -49,6 +51,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                 "mountPath": "/host/var/slb/nginx/config"
                             },
                             slbconfigs.slb_config_volume_mount,
+                            slbconfigs.logs_volume_mount,
                         ],
                         "securityContext": {
                             "privileged": true

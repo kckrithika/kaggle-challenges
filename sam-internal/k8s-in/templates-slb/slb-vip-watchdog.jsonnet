@@ -22,6 +22,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                 "volumes": [
                    slbconfigs.slb_volume,
                    slbconfigs.host_volume,
+                   slbconfigs.logs_volume,
                 ],
                 "containers": [
                     {
@@ -38,11 +39,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
-                            "--vipLoop=100"
+                            "--vipLoop=100",
+                            "--log_dir="+slbconfigs.logsDir
                         ],
                         "volumeMounts": [
                             slbconfigs.slb_volume_mount,
                             slbconfigs.host_volume_mount,
+                            slbconfigs.logs_volume_mount,
                         ],
                     }
                 ],
