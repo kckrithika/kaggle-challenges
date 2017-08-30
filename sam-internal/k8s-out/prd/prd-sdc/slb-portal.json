@@ -1,0 +1,63 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "slb-portal"
+      },
+      "name": "slb-portal"
+   },
+   "spec": {
+      "replicas": 2,
+      "template": {
+         "metadata": {
+            "labels": {
+               "name": "slb-portal"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-portal",
+                     "--configDir=/host/var/slb/config",
+                     "--templatePath=/sdn/webfiles",
+                     "--port=32139"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000299-d7a48710",
+                  "name": "slb-portal",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/var/slb",
+                        "name": "var-slb-volume"
+                     }
+                  ]
+               }
+            ],
+            "nodeSelector": {
+               "pool": "prd-sdc"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/var/slb"
+                  },
+                  "name": "var-slb-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/dev"
+                  },
+                  "name": "dev-volume"
+               },
+               {
+                  "hostPath": {
+                     "path": "/"
+                  },
+                  "name": "host-volume"
+               }
+            ]
+         }
+      }
+   }
+}

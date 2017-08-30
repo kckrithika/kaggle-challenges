@@ -5,6 +5,7 @@ slbDir: "/host/var/slb",
 configDir: self.slbDir+"/config",
 logsDir: self.slbDir+"/logs",
 ipvsMarkerFile: self.slbDir+"/ipvs.marker",
+slbPortalTemplatePath: "/sdn/webfiles",
 
 perCluster: {
     ddiService: {
