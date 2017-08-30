@@ -4,6 +4,7 @@ data:
     {
       "ca-file": "/data/certs/ca.crt",
       "cert-file": "/data/certs/hostcert.crt",
+      "disable-rollback": true,
       "disable-security-check": true,
       "dry-run": false,
       "email": true,
