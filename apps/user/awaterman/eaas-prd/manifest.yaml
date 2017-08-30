@@ -6,12 +6,9 @@ system:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas-prd-test 
-    count: 3 
+    count: 2 
     strategy:
       type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 0
-        maxUnavailable: 1
     containers:
     - name: eaas-prd-test
       image: tnrp/emailinfrastructure/eaas:1.0.0-0000016-16e8db06
@@ -22,8 +19,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          initialDelaySeconds: 10
-        minReadySeconds: 25
   loadbalancers:
   - lbname: eaas-prd-test-lb
     function: eaas-prd-test
