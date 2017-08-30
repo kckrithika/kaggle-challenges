@@ -9,14 +9,14 @@ system:
       count: 3
       containers:
       - name: prod-warden
-        image: tnrp/casp-test/warden:0.0.0-0000095-a326a67e
+        image: tnrp/casp/warden:0.0.1-0000117-3e9f886d
         ports:
         - name: warden
           containerPort: 8889
           hostPort: 18889
         env:
         - name: BRANCH
-          value: "prod"
+          value: "ops_production"
         - name: JWT_ENABLED
           value: "true"
         volumeMounts:
