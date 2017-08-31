@@ -1,12 +1,12 @@
 apiVersion: v1
- 
+
 system:
   functions:
   - name: scone-ordering
     count: 1
     containers:
     - name: scone-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:bbuxton-20170807-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:plaird-20170831
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -41,12 +41,12 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive" 
+          - "./bin/is-alive"
           initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready" 
-          initialDelaySeconds: 110 
+          - "./bin/is-ready"
+          initialDelaySeconds: 110
           periodSeconds: 5
