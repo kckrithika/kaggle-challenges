@@ -16,7 +16,7 @@ system:
         - containerPort: 7021
         - containerPort: 15372
       livenessProbe:
-        initialDelaySeconds: 15
+        initialDelaySeconds: 90
         periodSeconds: 60
         timeoutSeconds: 30
         httpGet:
