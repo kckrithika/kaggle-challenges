@@ -52,7 +52,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: mist30
        - name: SETTINGS_SUPERPOD
-         value: -
+         value: '-'
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
