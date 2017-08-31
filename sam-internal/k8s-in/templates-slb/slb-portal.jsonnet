@@ -21,6 +21,7 @@ if configs.estate == "prd-sdc" then {
                 }
             },
             "spec": {
+                "hostNetwork": true,
                 "volumes": [
                     slbconfigs.slb_volume,
                     {
