@@ -35,7 +35,7 @@ system:
       - containerPort: 7522
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist30
+         value: mist
        - name: CAAS_ENV
          value: 12
       # expose redis outside the container
