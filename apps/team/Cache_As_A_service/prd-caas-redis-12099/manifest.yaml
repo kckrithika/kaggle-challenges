@@ -43,7 +43,7 @@ system:
         - --redisPort=12099
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/mist30/prd/_
+        - --pathPrefix=/mist/prd/_
       livenessProbe:
         initialDelaySeconds: 5
         exec:
