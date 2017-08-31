@@ -6,12 +6,10 @@ system:
     count: 3
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor:20170832
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.venkatesh/search-model-executor:20170833
       ports:
       - name: service-port
-        containerPort: 3555
-      - name: encrypted-port
-        containerPort: 7012
+        containerPort: 7020
       - name: admin-port
         containerPort: 15372
       resources:
@@ -29,10 +27,32 @@ system:
           port: 15372
         initialDelaySeconds: 60 
         timeoutSeconds: 10
+    - name: sherpa-b
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
   loadbalancers:
   - lbname: search-model-executor-lb
     function: search-model-executor
     nodeExposed: true
     ports:
-    - port: 3555
-      targetport: 3555
+    - port: 7020
+      targetport: 7020
