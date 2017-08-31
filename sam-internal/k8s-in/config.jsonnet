@@ -99,7 +99,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     watchdog_emailsender: "sam-alerts@salesforce.com",
     # TODO: change prd to sam-test-alerts@salesforce.com when it is ready
-    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else if kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
+    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else if estate == "prd-sam_storage" then "storagefoundation@salesforce.com" else if kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
 
     statefulAppEnabled: (if kingdom == "prd" then "true" else "false"),
 
