@@ -70,5 +70,3 @@ system:
     ports:
       - port: 9092
         targetport: 7020
-      - port: 8082
-        targetport: 8080
