@@ -4,3 +4,4 @@ apps:
   #- prd/prd-samdev
  StatefulDemoApp:
   - prd/prd-samdev
+  - prd/prd-sam
