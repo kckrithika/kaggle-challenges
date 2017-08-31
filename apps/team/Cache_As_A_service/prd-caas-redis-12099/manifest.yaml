@@ -43,6 +43,7 @@ system:
         - --redisPort=12099
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs
+        - --pathPrefix=/mist30/prd/_
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -51,8 +52,6 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
-       - name: SETTINGS_SUPERPOD
-         value: '-'
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
