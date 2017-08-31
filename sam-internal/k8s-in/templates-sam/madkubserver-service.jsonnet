@@ -13,7 +13,7 @@ if configs.estate == "prd-samtest" then {
   spec: {
     ports: [
       {
-        name: "MadkubTLSPort",
+        name: "madkubapitls",
         port: 32007,
         targetPort: 32007,
       }
