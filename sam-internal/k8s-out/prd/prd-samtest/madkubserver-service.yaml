@@ -6,7 +6,7 @@ metadata:
   namespace: sam-system
 spec:
   ports:
-  - name: MadkubTLSPort
+  - name: madkubapitls
     port: 32007
     targetPort: 32007
   selector:
