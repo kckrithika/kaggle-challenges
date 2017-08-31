@@ -12,3 +12,6 @@ apps:
   - yhu/yhu-sam
   - yul/yul-sam
   - hnd/hnd-sam
+ TmpChatbotTest:
+  - prd/prd-sam
+  - frf/frf-sam

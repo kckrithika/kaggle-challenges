@@ -1,0 +1,17 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - thargrove@salesforce.com
+  functions:
+  - name: cbtestfn
+    count: 1
+    progressDeadlineSeconds: 120
+    containers:
+    - name: cbtest
+      image: tnrp/dci/chatbot-runtime:2
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
