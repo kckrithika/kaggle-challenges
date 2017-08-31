@@ -5673,6 +5673,42 @@
     },
     {
       "controlestate": "prd-sam",
+      "estate": "prd-sp2-sam_eaas_sp",
+      "hostname": "shared2-samminioneaassp1-1-prd.eng.sfdc.net",
+      "kingdom": "prd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "sp2"
+    },
+    {
+      "controlestate": "prd-sam",
+      "estate": "prd-sp2-sam_eaas_sp",
+      "hostname": "shared2-samminioneaassp1-2-prd.eng.sfdc.net",
+      "kingdom": "prd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "sp2"
+    },
+    {
+      "controlestate": "prd-sam",
+      "estate": "prd-sp2-sam_eaas_sp",
+      "hostname": "shared2-samminioneaassp2-1-prd.eng.sfdc.net",
+      "kingdom": "prd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "sp2"
+    },
+    {
+      "controlestate": "prd-sam",
+      "estate": "prd-sp2-sam_eaas_sp",
+      "hostname": "shared2-samminioneaassp2-2-prd.eng.sfdc.net",
+      "kingdom": "prd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "sp2"
+    },
+    {
+      "controlestate": "prd-sam",
       "estate": "prd-sp2-sam_iot_test",
       "hostname": "shared0-samminioniottest1-1-prd.eng.sfdc.net",
       "kingdom": "prd",
