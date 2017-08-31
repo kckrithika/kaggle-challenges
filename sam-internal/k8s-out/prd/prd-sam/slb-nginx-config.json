@@ -49,6 +49,19 @@
                         "name": "var-logs-volume"
                      }
                   ]
+               },
+               {
+                  "command": [
+                     "/runner.sh"
+                  ],
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mpopov/slb_nginx:v-071220171147",
+                  "name": "slb-nginx-proxy",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/nginx/conf.d",
+                        "name": "var-target-config-volume"
+                     }
+                  ]
                }
             ],
             "hostNetwork": true,
