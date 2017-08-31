@@ -32,6 +32,8 @@ system:
       # expose redis outside the container
       env:
        - name: SFDC_ENVIRONMENT
+         value: mist
+       - name: SFDC_SUBENVIRONMENT
          value: mist30
       ports:
       - containerPort: 12099

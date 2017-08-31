@@ -36,6 +36,8 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: mist
+       - name: SFDC_SUBENVIRONMENT
+         value: mist30
        - name: CAAS_ENV
          value: 12
       # expose redis outside the container
