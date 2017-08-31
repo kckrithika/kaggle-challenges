@@ -50,7 +50,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
-            "hypersam": "sam-0001191-d752a5d0",
+            "hypersam": "sam-0001210-ef6a180b",
             },
 
 
