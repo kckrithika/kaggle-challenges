@@ -56,11 +56,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         "securityContext": {
                             "privileged": true
                         }
-                     },
-                 ] +
+                   },
 
-                     if configs.estate == "prd-sdc" then [
-                       {
+                    {
                         "name": "slb-nginx-proxy",
                         "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mpopov/slb_nginx:v-071220171147",
                         "command": [ "/runner.sh" ],
@@ -70,8 +68,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                               "mountPath": "/etc/nginx/conf.d",
                            }
                         ]
-                       } 
-                     ] else [],
+                    } 
+                ],
 
                 "nodeSelector":{
                     "slb-service": "slb-nginx"
