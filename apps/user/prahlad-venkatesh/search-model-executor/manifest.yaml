@@ -15,6 +15,9 @@ system:
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
+      env:
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -49,10 +52,3 @@ system:
           - "./bin/is-ready"
           initialDelaySeconds: 5
           periodSeconds: 5
-  loadbalancers:
-  - lbname: search-model-executor-lb
-    function: search-model-executor
-    nodeExposed: true
-    ports:
-    - port: 7020
-      targetport: 7020
