@@ -1659,3 +1659,11 @@ apps:
     - phx/phx-sp1-sam_caas
   phx-sp1-redis-sp-na3-c1-12050:
     - phx/phx-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu2-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu2-c1-12040:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-metrics-publisher-sp-eu2-pc1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-sp-eu2-pc1-12041:
+    - frf/frf-sp1-sam_caas
