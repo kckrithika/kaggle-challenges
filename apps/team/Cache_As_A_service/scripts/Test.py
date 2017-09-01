@@ -58,10 +58,8 @@ parser.add_argument('-metadata_dir', action='store', dest='metadata_dir',
 
 arguments = parser.parse_args()
 
-#password = getpass.getpass('Enter SSO Password:')
-user = "rpragada"
+password = getpass.getpass('Enter SSO Password:')
 
-password = "Srihaan@2017"
 group_name = arguments.group_name
 metadata_dir = arguments.metadata_dir
 

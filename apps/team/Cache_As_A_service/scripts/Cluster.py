@@ -27,6 +27,21 @@ class Cluster(object):
     def getIsDRDeployment(self):
         return self.isDRDeployment
 
+    def getPodName(self):
+        return self.name.split('-')[1]
+
+    def setDrKingdom(self, drKingdom):
+        self.drKingdom = drKingdom
+
+    def setDrSpod(self, drSpod):
+        self.drSpod = drSpod
+
+    def getDrKingdom(self):
+        return self.drKingdom
+
+    def getDrSpod(self):
+        return self.drSpod
+
     def __str__(self):
         return "Caas Cluster : name %s, srv port %s, mgmt port %s, redis port %s, redis count %s is DR deployment %s, DR Kingdom %s" \
                ", DR Spod %s" \
