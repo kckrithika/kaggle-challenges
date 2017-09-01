@@ -52,10 +52,3 @@ system:
           - "./bin/is-ready"
           initialDelaySeconds: 5
           periodSeconds: 5
-  loadbalancers:
-  - lbname: search-model-executor-lb
-    function: search-model-executor
-    nodeExposed: true
-    ports:
-    - port: 7020
-      targetport: 7020  
