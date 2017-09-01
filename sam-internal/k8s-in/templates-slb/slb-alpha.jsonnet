@@ -62,23 +62,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             }
                         }
                     },
-                    {
-                        "name": "slb-realsvrcfg-internal",
-                        "image": slbimages.hypersdn,
-                        "command":[
-                            "/sdn/slb-realsvrcfg",
-                            "--configDir="+slbconfigs.configDir,
-                            "--period=5s",
-                            "--netInterfaceName=eth0"
-                        ],
-                        "volumeMounts": [
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.host_volume_mount,
-                         ],
-                        "securityContext": {
-                            "privileged": true
-                        }
-                    }
                 ],
                 "nodeSelector":{
                     "slb-service": "alpha"
