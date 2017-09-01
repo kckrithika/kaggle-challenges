@@ -20,7 +20,9 @@ local samimages = import "samimages.jsonnet";
   "max-resource-time": 300000000000,
   "disable-rollback": true,
 }
-+ if configs.kingdom == "prd" then {
-  "recipient": "sam@salesforce.com,slb@salesforce.com"
-} else {
++ if configs.estate == "prd-sam_storage" then {
+    "recipient": "storagefoundation@salesforce.com"
+  } else if configs.kingdom == "prd" then {
+    "recipient": "sam@salesforce.com,slb@salesforce.com"
+  } else {
 }
