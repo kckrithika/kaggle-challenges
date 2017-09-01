@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     "apiVersion": "extensions/v1beta1",
     "kind": "Deployment",
     "metadata": {
