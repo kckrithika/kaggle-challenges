@@ -22,7 +22,7 @@
                   "command": [
                      "/sdn/slb-config-processor",
                      "--configDir=/host/var/slb/config",
-                     "--period=15s",
+                     "--period=1800s",
                      "--namespace=",
                      "--podstatus=running",
                      "--subnet=10.251.167.224/27",
@@ -31,7 +31,8 @@
                      "--useVipLabelToSelectSvcs=true",
                      "--useProxyServicesList=slb-bravo-svc,csrlb,controlplane-ptest",
                      "--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
-                     "--log_dir=/host/var/slb/logs"
+                     "--log_dir=/host/var/slb/logs",
+                     "--sleepTime=100ms"
                   ],
                   "env": [
                      {
