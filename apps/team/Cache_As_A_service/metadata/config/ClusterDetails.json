@@ -1977,6 +1977,38 @@
                         ]
                     }, 
                     {
+                        "sp-eu2-c1": [
+                            {
+                                "server_port": 7540
+                            }, 
+                            {
+                                "mgmt_port": 7541
+                            }, 
+                            {
+                                "redis_port": 12040
+                            }, 
+                            {
+                                "redis_count": 3
+                            }
+                        ]
+                    }, 
+                    {
+                        "sp-eu2-pc1": [
+                            {
+                                "server_port": 7542
+                            }, 
+                            {
+                                "mgmt_port": 7543
+                            }, 
+                            {
+                                "redis_port": 12041
+                            }, 
+                            {
+                                "redis_count": 2
+                            }
+                        ]
+                    }, 
+                    {
                         "sp-eu4-c1": [
                             {
                                 "server_port": 7512
