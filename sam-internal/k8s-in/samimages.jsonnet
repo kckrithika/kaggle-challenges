@@ -54,7 +54,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod
         "4": {
-            "hypersam": "sam-0001191-d752a5d0",
+            "hypersam": "sam-0001210-ef6a180b",
             },
 
        ### For testing private bits from a developer's machine pre-checkin if

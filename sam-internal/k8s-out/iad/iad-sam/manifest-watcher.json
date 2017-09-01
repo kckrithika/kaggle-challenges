@@ -32,7 +32,7 @@
                      "--config=/config/manifestwatcher.json",
                      "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
                   ],
-                  "image": "ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001191-d752a5d0",
+                  "image": "ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b",
                   "name": "manifest-watcher",
                   "volumeMounts": [
                      {

@@ -31,7 +31,7 @@
                      "-alertThreshold=300s",
                      "-emailFrequency=12h",
                      "-laddr=0.0.0.0:8083",
-                     "-imageName=ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001191-d752a5d0",
+                     "-imageName=ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b",
                      "-timeout=2s",
                      "-funnelEndpoint=ajna0-funnel1-0-cdu.data.sfdc.net:80",
                      "--config=/config/watchdog.json"
@@ -42,7 +42,7 @@
                         "value": "/kubeconfig/kubeconfig"
                      }
                   ],
-                  "image": "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001191-d752a5d0",
+                  "image": "ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b",
                   "name": "watchdog-synthetic",
                   "ports": [
                      {

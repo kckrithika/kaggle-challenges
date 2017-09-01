@@ -29,7 +29,7 @@
                      "-funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80",
                      "--config=/config/watchdog.json"
                   ],
-                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001191-d752a5d0",
+                  "image": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b",
                   "name": "watchdog",
                   "resources": {
                      "limits": {
