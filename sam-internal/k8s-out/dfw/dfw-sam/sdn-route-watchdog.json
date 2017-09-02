@@ -30,7 +30,8 @@
                      "--emailFrequency=12h",
                      "--watchdogFrequency=180s",
                      "--alertThreshold=300s",
-                     "--livenessProbePort=9104"
+                     "--livenessProbePort=9104",
+                     "--controlEndpoint=dfw-sam"
                   ],
                   "env": [
                      {

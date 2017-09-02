@@ -104,7 +104,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     statefulAppEnabled: (if kingdom == "prd" then "true" else "false"),
 
     sdn_watchdog_emailsender: "sdn-alerts@salesforce.com",
-    sdn_watchdog_emailrec: (if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" then "sdn@salesforce.com" else "sdn-alerts@salesforce.com"),
+    sdn_watchdog_emailrec: (if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam_storage" || estate == "prd-sdc" then "sdn@salesforce.com" else "sdn-alerts@salesforce.com"),
 
     # Computed values
 
