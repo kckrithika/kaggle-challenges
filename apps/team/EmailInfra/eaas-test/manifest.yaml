@@ -1,0 +1,32 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - emailinfrastructure@salesforce.com
+  functions:
+  - name: eaas-test
+    count: 4 
+    strategy:
+      type: RollingUpdate
+    containers:
+    - name: eaas
+      image: tnrp/emailinfrastructure/eaas:1.0.0
+      ports:
+        - containerPort: 7021
+        - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 90
+        periodSeconds: 60
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+  loadbalancers:
+  - lbname: eaas-test-lb
+    function: eaas-test
+    ports:
+      - port: 15372
+        targetport: 15372
+      - port: 7021 
+        targetport: 7021
