@@ -25,7 +25,6 @@ spec:
         - --watchdogFrequency=180s
         - --alertThreshold=300s
         - --livenessProbePort=9104
-        - --controlEndpoint=prd-samtest
         env:
         - name: KUBECONFIG
           value: /config/kubeconfig

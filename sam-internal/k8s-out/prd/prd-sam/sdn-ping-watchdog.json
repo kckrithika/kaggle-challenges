@@ -32,8 +32,7 @@
                      "--pingCount=1",
                      "--pingInterval=1s",
                      "--pingTimeout=5s",
-                     "--livenessProbePort=9102",
-                     "--controlEndpoint=prd-sam"
+                     "--livenessProbePort=9102"
                   ],
                   "env": [
                      {
