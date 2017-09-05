@@ -33,8 +33,41 @@ if configs.estate == "prd-sdc" then {
                             "--port="+portconfigs.sdn.sdn_control_service,
                             "--charonAgentEndpoint="+configs.charonEndpoint,
                         ],
+                        "env": [
+                            {
+                                "name": "KUBECONFIG",
+                                "value": "/config/kubeconfig"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/data/certs",
+                                "name": "certs"
+                            },
+                            {
+                                "mountPath": "/config",
+                                "name": "config"
+                            }
+                        ]
                     }
                 ],
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/data/certs"
+                        },
+                        "name": "certs"
+                    },
+                    {
+                        "hostPath": {
+                            "path": "/etc/kubernetes"
+                        },
+                        "name": "config"
+                    }
+                ],
+                nodeSelector: {
+                    pool: configs.estate
+                },
             }
         }
     }
