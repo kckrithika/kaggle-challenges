@@ -28,8 +28,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--pingCount=1",
                             "--pingInterval=1s",
                             "--pingTimeout=5s",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_ping_watchdog,
-                            "--controlEndpoint="+configs.estate
+                            "--livenessProbePort="+portconfigs.sdn.sdn_ping_watchdog
                         ],
                         "env": [
                             {

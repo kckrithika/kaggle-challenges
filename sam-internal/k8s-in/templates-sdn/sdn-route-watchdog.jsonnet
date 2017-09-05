@@ -26,8 +26,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog,
-                            "--controlEndpoint="+configs.estate
+                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog
                         ],
                         "env": [
                             {
