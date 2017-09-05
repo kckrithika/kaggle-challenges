@@ -1,0 +1,55 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: tictactoe-server
+    count: 1
+    containers:
+    - name: tictactoe-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20170905-14
+      ports:
+        - containerPort: 7020
+          name: grpc
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 50
+        timeoutSeconds: 10
+    - name: sherpa-tictactoesrv
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 50
+          periodSeconds: 5
+
+  loadbalancers:
+  - lbname: tictactoe-server-lb
+    function: tictactoe-server
+    ports:
+    ports:
+      - port: 7080
+        targetport: 7080
+
