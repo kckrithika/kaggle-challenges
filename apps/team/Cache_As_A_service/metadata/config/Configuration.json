@@ -75,6 +75,13 @@
         ]
     }, 
     {
+        "dc-cluster": [
+            {
+                "redisAnnouncerDockerImgVer": "2.4.6-0000010-14425579"
+            }
+        ]
+    }, 
+    {
         "prd-sp2": [
             {
                 "environment": "dev"

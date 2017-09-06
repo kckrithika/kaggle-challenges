@@ -1675,3 +1675,11 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-sp2-redis-dc-c1-12010:
     - prd/prd-sp2-sam_caas
+  dfw-sp2-metrics-publisher-dc-c1:
+    - dfw/dfw-sp2-sam_caas
+  dfw-sp2-redis-dc-c1-12020:
+    - dfw/dfw-sp2-sam_caas
+  frf-sp1-metrics-publisher-dc-c1:
+    - frf/frf-sp1-sam_caas
+  frf-sp1-redis-dc-c1-12041:
+    - frf/frf-sp1-sam_caas

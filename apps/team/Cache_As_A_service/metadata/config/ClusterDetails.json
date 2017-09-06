@@ -553,6 +553,22 @@
             {
                 "sp2": [
                     {
+                        "dc-c1": [
+                            {
+                                "server_port": 7550
+                            }, 
+                            {
+                                "mgmt_port": 7551
+                            }, 
+                            {
+                                "redis_port": 12020
+                            }, 
+                            {
+                                "redis_count": 4
+                            }
+                        ]
+                    }, 
+                    {
                         "sp-cs60-c1": [
                             {
                                 "server_port": 7538
@@ -1784,6 +1800,22 @@
         "frf": [
             {
                 "sp1": [
+                    {
+                        "dc-c1": [
+                            {
+                                "server_port": 7542
+                            }, 
+                            {
+                                "mgmt_port": 7543
+                            }, 
+                            {
+                                "redis_port": 12041
+                            }, 
+                            {
+                                "redis_count": 4
+                            }
+                        ]
+                    }, 
                     {
                         "sp-cs83-c1": [
                             {
