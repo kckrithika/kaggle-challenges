@@ -8,6 +8,9 @@ system:
       - name: servercertvol
         secret:
           secretName: csc-rc-certificates
+      - name: logvol
+        hostPath:
+          path: /var/log/report-collector
     containers:
     - name: report-collectorha
       image: tnrp/csc-health/report-collector:1.9.0-0000161-95d31d29
@@ -113,10 +116,6 @@ system:
               find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
           done
       ']
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /var/log/report-collector
   - name: redisnoha
     count: 1
     containers:
