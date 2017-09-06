@@ -3,6 +3,7 @@ from ConfigLoader import getAllKingdoms
 from ConfigLoader import getConfiguration
 from ConfigLoader import getConfigurationForGroup
 from ConfigLoader import getClusterNamesForGroup
+from ConfigLoader import getGroupDetails
 from string import Template
 import argparse
 import json
@@ -40,6 +41,13 @@ def loadTemplates():
     pcRedisTemplateFilePath = os.path.join(metadata_dir, pcRedisTemplateFileName);
     pcRedisTemplateFile = open(pcRedisTemplateFilePath, "r");
     loadTemplates.pcRedisTemplate = Template(pcRedisTemplateFile.read());
+
+
+    # load general redis template for psuedo DC level cluster
+    dcRedisTemplateFileName = "metadata/templates/dc-redis-manifest.yaml";
+    dcRedisTemplateFilePath = os.path.join(metadata_dir, dcRedisTemplateFileName);
+    dcRedisTemplateFile = open(dcRedisTemplateFilePath, "r");
+    loadTemplates.dcRedisTemplate = Template(dcRedisTemplateFile.read());
 
 
 def main():
@@ -123,26 +131,29 @@ def main():
     metricsPublisherContainerMemoryLimit = configMapForGrp['metricsPublisherContainerMemoryLimit']
     metricsPublisherContainerMemoryRequest = configMapForGrp['metricsPublisherContainerMemoryRequest']
 
-    clusterForGroup = getClusterNamesForGroup(metadata_dir, group_name)
-    for kingdomName in kingdoms:
-        kingdom = kingdoms[kingdomName];
-        spods = kingdom.getSpods();
-        for spodName in spods:
-            spod = spods[spodName];
-            clusters = spod.getClusters();
-            for clusterName in clusters:
-                if clusterName in clusterForGroup:
-                    cluster = clusters[clusterName];
-                    serverPort = cluster.getSrvPort();
-                    mgmtPort = cluster.getMgmtPort();
-                    redisPort = cluster.getRedisPort();
-                    redisCount = cluster.getRedisCount();
+    groupDetails = getGroupDetails(metadata_dir, group_name)
 
-                    generateMetricsPublisherManifest(clusterName, MetricsPublisherImageVersion, serverPort, mgmtPort,
-                                                     kingdomName, spodName, metricsPublisherContainerMemoryLimit,
-                                                     metricsPublisherContainerMemoryRequest );
-                    generateRedisManifest(clusterName, RedisAnnouncerImageVersion, redisPort, redisCount, kingdomName,
-                                          spodName, configMapForGrp);
+    for groupDetail in groupDetails:
+        kingdomName = groupDetail.getKingdomName()
+        spodName = groupDetail.getSpodName()
+        clusterName = groupDetail.getClusterName()
+
+        kingdom = kingdoms[kingdomName]
+        spods = kingdom.getSpods()
+        spod = spods[spodName]
+        clusters = spod.getClusters()
+
+        cluster = clusters[clusterName];
+        serverPort = cluster.getSrvPort();
+        mgmtPort = cluster.getMgmtPort();
+        redisPort = cluster.getRedisPort();
+        redisCount = cluster.getRedisCount();
+
+        generateMetricsPublisherManifest(clusterName, MetricsPublisherImageVersion, serverPort, mgmtPort,
+                                         kingdomName, spodName, metricsPublisherContainerMemoryLimit,
+                                         metricsPublisherContainerMemoryRequest)
+        generateRedisManifest(clusterName, RedisAnnouncerImageVersion, redisPort, redisCount, kingdomName,
+                              spodName, configMapForGrp)
 
 
 def generateMetricsPublisherManifest(clusterName, MetricsPublisherImageVersion, serverPort, mgmtPort, kingdomName,
@@ -181,9 +192,12 @@ def generateRedisManifest(clusterName, RedisAnnouncerImageVersion, redisPort, re
                                };
 
     if clusterName.endswith("pc1"):
-        redisManifest = loadTemplates.pcRedisTemplate.substitute(redisTemplateSubstitues);
+        redisManifest = loadTemplates.pcRedisTemplate.substitute(redisTemplateSubstitues)
     else:
-        redisManifest = loadTemplates.redisTemplate.substitute(redisTemplateSubstitues);
+        if clusterName.startswith("dc"):
+            redisManifest = loadTemplates.dcRedisTemplate.substitute(redisTemplateSubstitues)
+        else:
+            redisManifest = loadTemplates.redisTemplate.substitute(redisTemplateSubstitues);
 
     manifestDirName = ''.join([kingdomName, '-', spodName, '-redis-', clusterName, '-', str(redisPort)]);
     manifestDirectory = os.path.join(output_dir,

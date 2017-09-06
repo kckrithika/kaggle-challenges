@@ -2,6 +2,7 @@ from Kingdom import Kingdom
 from Spod import Spod
 from Cluster import Cluster
 from xlrd import open_workbook
+from GroupDetails import GroupDetails
 import os
 
 configFileName = "metadata/config/Configuration.xls"
@@ -42,6 +43,25 @@ def getConfigurationForGroup(configuration, groupName):
         for k,v in paramValDictForGroup.items():
             paramValDict[k] = v
     return paramValDict
+
+def getGroupDetails(metaDataDir, groupName):
+    configFile = os.path.join(metaDataDir, clusterDetailsFileName);
+
+    book = open_workbook(configFile);
+    sheet = book.sheet_by_name(groupName)
+
+    groupDetails = set()
+
+    header = [sheet.cell(0, col_index).value for col_index in xrange(sheet.ncols)]
+    for row_index in xrange(1, sheet.nrows):
+        #col 1 is kingdom, 2 is spod, 3 is clustername
+        kingdomName = sheet.cell(row_index, 0).value
+        spodName = sheet.cell(row_index, 1).value
+        clusterName = sheet.cell(row_index, 2).value
+        groupDetail = GroupDetails(kingdomName, spodName, clusterName)
+        groupDetails.add(groupDetail)
+
+    return groupDetails
 
 
 def getClusterNamesForGroup(metaDataDir, groupName):
@@ -89,9 +109,10 @@ def getKingdomDetails(metaDataDir, kingdomSpodSheetName, kingdoms):
             isDRDeployment = sheet.cell(row_index, 7).value
             drKingdom = sheet.cell(row_index, 8).value
             drSpod = sheet.cell(row_index, 9).value
+            description = sheet.cell(row_index, 10).value
 
         cluster = Cluster(clusterName, srvPort, mgmtPort, redisPort, redisCount, isDRDeployment,
-                          drKingdom, drSpod)
+                          drKingdom, drSpod, description)
 
         if kingdoms.has_key(kingdomName):
             kingdom = kingdoms.get(kingdomName)

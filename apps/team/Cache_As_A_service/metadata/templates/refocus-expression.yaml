@@ -1,0 +1,35 @@
+{   "repeatIntervalMillis" : 60000,
+    "extract" : [
+      {
+        "format" : "Argus",
+        "endpoint" : "argus-prod",
+        "defaultValue" : $defaultValue,
+       "expression" : "FILL_CALCULATE(DOWNSAMPLE(-6m:caas.$ClusterName.$Kingdom.$Spod.-:caas-$ClusterName.Redis__Server__Count_99thPercentile{device=*}:avg, #5m-min#), #min#)",
+        "name" : "$ClusterName-clustersize"
+      }
+    ],
+    "transform" : [
+      {
+        "name" : "LastDatapoint"
+      },
+      {
+        "name" : "Threshold",
+        "criticalThreshold" : $Critical,
+        "warningThreshold" : $Warning,
+        "type" : "LESS_THAN"
+      },
+      {
+        "name" : "HighestValue",
+        "messageCodeSource" : "ORIGINAL_VALUE"
+      }
+    ],
+    "load" : [
+      {
+        "format" : "Refocus",
+        "endpoint" : "refocus-prod",
+        "subject" : "$Root.$Kingdom.$Spod.$UpperClusterName",
+        "aspect" : "Cluster-Size"
+      }
+    ],
+    "disabled" : false
+}

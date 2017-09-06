@@ -1,5 +1,5 @@
 class Cluster(object):
-    def __init__(self, name, srvPort, mgmtPort, redisPort, redisCount, isDRDeployment, drKingdom, drSpod ):
+    def __init__(self, name, srvPort, mgmtPort, redisPort, redisCount, isDRDeployment, drKingdom, drSpod, description ):
         self.name = name
         self.srvPort = srvPort
         self.mgmtPort = mgmtPort
@@ -8,6 +8,7 @@ class Cluster(object):
         self.isDRDeployment = isDRDeployment
         self.drKingdom = drKingdom
         self.drSpod = drSpod
+        self.description = description
 
     def getName(self):
         return self.name
@@ -42,8 +43,11 @@ class Cluster(object):
     def getDrSpod(self):
         return self.drSpod
 
+    def getDescription(self):
+        return self.description
+
     def __str__(self):
         return "Caas Cluster : name %s, srv port %s, mgmt port %s, redis port %s, redis count %s is DR deployment %s, DR Kingdom %s" \
-               ", DR Spod %s" \
+               ", DR Spod %s, Description %s" \
                (self.name, self.srvPort, self.mgmtPort, self.rediPort, self.redisCount, self.isDRDeployment
-                , self.drKingdom, self.drSpod)
+                , self.drKingdom, self.drSpod, self.description)

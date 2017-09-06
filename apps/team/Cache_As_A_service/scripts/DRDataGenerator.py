@@ -53,10 +53,10 @@ def queryPodtapData():
                 #If DR entry already exist in drDetails then use them as well
                 if clusterName in drDetails:
                     drKingdomSpod = drDetails[clusterName]
-                    cluster = Cluster(clusterName, 0, 0, 0, 0, dr, drKingdomSpod.split('-')[0], drKingdomSpod.split('-')[1])
+                    cluster = Cluster(clusterName, 0, 0, 0, 0, dr, drKingdomSpod.split('-')[0], drKingdomSpod.split('-')[1], None)
                     drDetails.pop(clusterName)
                 else:
-                    cluster = Cluster(clusterName, 0, 0, 0, 0, dr, None, None)
+                    cluster = Cluster(clusterName, 0, 0, 0, 0, dr, None, None, None)
 
                 if kingdoms.has_key(kingdomName):
                     kingdom = kingdoms.get(kingdomName)
