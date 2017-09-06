@@ -21,7 +21,7 @@
                 "redisContainerMemoryRequest": "6Gi"
             }, 
             {
-                "kidngdomspodsheets": "phx-sp1,phx-sp2,phx-sp3,phx-sp4,dfw-sp1,dfw-sp2,dfw-sp3,dfw-sp4,frf-sp1,par-sp1,ord-sp1,ukb-sp1,iad-sp1,iad-sp2,ord-sp2"
+                "kidngdomspodsheets": "phx-sp1,phx-sp2,phx-sp3,phx-sp4,dfw-sp1,dfw-sp2,dfw-sp3,dfw-sp4,frf-sp1,par-sp1,ord-sp1,ukb-sp1,iad-sp1,iad-sp2,ord-sp2,prd-sp2"
             }, 
             {
                 "metricsPublisherContainerMemoryRequest": "1536M"
@@ -68,6 +68,13 @@
         "sb0": [
             {
                 "redisMaxMemory": 6144.0
+            }
+        ]
+    }, 
+    {
+        "prd-sp2": [
+            {
+                "redisAnnouncerDockerImgVer": "2.4.6-0000010-14425579"
             }
         ]
     }
