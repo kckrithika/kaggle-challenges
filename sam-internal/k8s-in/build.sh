@@ -31,11 +31,9 @@ time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/,templates-
 # This tool converts everything to yaml, and for configMaps it pretty prints the inner config entries
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
-  docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/prd/prd-samtest/ --rm
-  docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/prd/prd-samdev/ --rm
+  docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl kube-json-to-yaml --in /repo/sam-internal/k8s-out/prd/ --rm
 else
-  /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/prd/prd-samtest/ --rm
-  /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/prd/prd-samdev/ --rm
+  /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/prd/ --rm
 fi
 
 # TODO: Add warning when running against out-of-sync git repo
