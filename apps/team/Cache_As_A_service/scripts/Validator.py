@@ -3,6 +3,8 @@ import urllib
 from string import Template
 from ConfigLoader import getKingdomDetails
 from ConfigLoader import getConfiguration
+from ConfigLoader import getAllKingdoms
+from ConfigLoader import getGroupDetails
 import splunklib.client as client
 import splunklib.results as splunkresults
 from ConfigLoader import getConfigurationForGroup
@@ -77,87 +79,83 @@ table = PrettyTable(
     [textColors.BOLD + 'Kingdom', 'SPOD', 'Cluster', 'Redis Count Check', 'Version Check' + textColors.ENDC])
 
 # load kingdom details
-kingdoms = getKingdomDetails(metadata_dir, group_name, dict())
+kingdoms = getAllKingdoms(metadata_dir)
+groupDetails = getGroupDetails(metadata_dir, group_name)
+clusterCount = len(groupDetails)
 
-clusterCount = 0;
-for kingdomName in kingdoms:
-    kingdom = kingdoms[kingdomName]
-    spods = kingdom.getSpods()
-    for spodName in spods:
-        spod = spods[spodName]
-        clusters = spod.getClusters()
-        for clusterName in clusters:
-            clusterCount = clusterCount + 1;
 count = 0
 bar = progressbar.ProgressBar(maxval=clusterCount, \
     widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 bar.start()
 
-for kingdomName in kingdoms:
+for groupDetail in groupDetails:
+    kingdomName = groupDetail.getKingdomName()
+    spodName = groupDetail.getSpodName()
+    clusterName = groupDetail.getClusterName()
+
     kingdom = kingdoms[kingdomName]
     spods = kingdom.getSpods()
-    for spodName in spods:
-        spod = spods[spodName]
-        clusters = spod.getClusters()
-        for clusterName in clusters:
-            cluster = clusters[clusterName]
-            redisCountFromConfig = cluster.getRedisCount()
-            dottedClusterName = clusterName
-            dottedClusterName = dottedClusterName.replace('-', '*')
+    spod = spods[spodName]
+    clusters = spod.getClusters()
 
-            substitutes = {'ClusterName': clusterName,
-                           'ClusterDottedName': dottedClusterName,
-                           'DC': kingdomName.upper(),
-                           'SPOD': spodName.upper()}
+    cluster = clusters[clusterName]
+    redisCountFromConfig = cluster.getRedisCount()
+    dottedClusterName = clusterName
+    dottedClusterName = dottedClusterName.replace('-', '*')
 
-            templateQuery = Template(configMapForGrp['query'])
-            actualQueryStr = templateQuery.substitute(substitutes)
-            encodedQueryStr = urllib.quote_plus(actualQueryStr)
-            jsonObj = sessionObj.get(argusBaseURL + configMapForGrp['metricsQueryAPI'] + encodedQueryStr).json()
+    substitutes = {'ClusterName': clusterName,
+                   'ClusterDottedName': dottedClusterName,
+                   'DC': kingdomName.upper(),
+                   'SPOD': spodName.upper()}
 
-            if len(jsonObj) != 0 and type(jsonObj) is list:
-                redisCountValues = jsonObj[0]['datapoints']
-                if redisCountValues.values()[0] == redisCountFromConfig:
-                    redisCountStatus = textColors.OKGREEN + 'Matched : Count = ' + str(
-                        redisCountFromConfig) + textColors.ENDC
-                else:
-                    redisCountStatus = textColors.FAIL + 'Not Matched : Count = ' + str(
-                        redisCountValues.values()[0]) + textColors.ENDC
+    templateQuery = Template(configMapForGrp['query'])
+    actualQueryStr = templateQuery.substitute(substitutes)
+    encodedQueryStr = urllib.quote_plus(actualQueryStr)
+    jsonObj = sessionObj.get(argusBaseURL + configMapForGrp['metricsQueryAPI'] + encodedQueryStr).json()
+
+    if len(jsonObj) != 0 and type(jsonObj) is list:
+        redisCountValues = jsonObj[0]['datapoints']
+        if redisCountValues.values()[0] == redisCountFromConfig:
+            redisCountStatus = textColors.OKGREEN + 'Matched : Count = ' + str(
+                redisCountFromConfig) + textColors.ENDC
+        else:
+            redisCountStatus = textColors.FAIL + 'Not Matched : Count = ' + str(
+                redisCountValues.values()[0]) + textColors.ENDC
+    else:
+        redisCountStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
+
+    kwargsExport = {"earliest_time": "-" + configMapForGrp['splunkQueryEarliestTime'],
+                     "latest_time": configMapForGrp['splunkQueryLatestTime']}
+    splunkQueryTemplate = Template(configMapForGrp['spunkQuery'])
+    querySubstitutes = {'ClusterName': clusterName}
+    queryExport = splunkQueryTemplate.substitute(querySubstitutes)
+    exportsearchResults = splunkService.jobs.oneshot(queryExport, **kwargsExport)
+
+    versionCheckStatus = ''
+    if exportsearchResults.empty:
+        versionCheckStatus = textColors.FAIL + 'Unknown : No data found' + textColors.ENDC
+
+    dataNotFoundInSplunk = True
+    results = splunkresults.ResultsReader(exportsearchResults)
+    if not results:
+        versionCheckStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
+    else:
+        for result in results:
+            dataNotFoundInSplunk = False
+            event = result.popitem()
+            versionFromLog = str(event[1]).rsplit(':', 1)[1].strip()
+            if configMapForGrp['version'] == versionFromLog:
+                versionCheckStatus = textColors.OKGREEN + 'Success : ' + versionFromLog + textColors.ENDC
             else:
-                redisCountStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
+                versionCheckStatus = textColors.FAIL + 'Failed : ' + versionFromLog + textColors.ENDC
 
-            kwargsExport = {"earliest_time": "-" + configMapForGrp['splunkQueryEarliestTime'],
-                             "latest_time": configMapForGrp['splunkQueryLatestTime']}
-            splunkQueryTemplate = Template(configMapForGrp['spunkQuery'])
-            querySubstitutes = {'ClusterName': clusterName}
-            queryExport = splunkQueryTemplate.substitute(querySubstitutes)
-            exportsearchResults = splunkService.jobs.oneshot(queryExport, **kwargsExport)
+    if dataNotFoundInSplunk:
+        versionCheckStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
 
-            versionCheckStatus = ''
-            if exportsearchResults.empty:
-                versionCheckStatus = textColors.FAIL + 'Unknown : No data found' + textColors.ENDC
+    table.add_row([textColors.OKBLUE + kingdomName, spodName, clusterName + textColors.ENDC, redisCountStatus,
+                   versionCheckStatus])
 
-            dataNotFoundInSplunk = True
-            results = splunkresults.ResultsReader(exportsearchResults)
-            if not results:
-                versionCheckStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
-            else:
-                for result in results:
-                    dataNotFoundInSplunk = False
-                    event = result.popitem()
-                    versionFromLog = str(event[1]).rsplit(':', 1)[1].strip()
-                    if configMapForGrp['version'] == versionFromLog:
-                        versionCheckStatus = textColors.OKGREEN + 'Success : ' + versionFromLog + textColors.ENDC
-                    else:
-                        versionCheckStatus = textColors.FAIL + 'Failed : ' + versionFromLog + textColors.ENDC
-
-            if dataNotFoundInSplunk:
-                versionCheckStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
-
-            table.add_row([textColors.OKBLUE + kingdomName, spodName, clusterName + textColors.ENDC, redisCountStatus,
-                           versionCheckStatus])
-
-            count = count + 1
-            bar.update(count)
+    count = count + 1
+    bar.update(count)
 bar.finish()
 print table
