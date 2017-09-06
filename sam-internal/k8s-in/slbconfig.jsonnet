@@ -57,6 +57,12 @@ perCluster: {
         "prd-samdev": true,
         "prd-sam": true
     },
+    period: {
+        "prd-sdc": "1800s",
+        "prd-samtest": "15s",
+        "prd-samdev": "15s",
+        "prd-sam": "15s"
+    },
 },
 
 
@@ -115,5 +121,6 @@ ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
+period: self.perCluster.period[estate],
 
 }
