@@ -130,6 +130,7 @@ def main():
     RedisAnnouncerImageVersion = configMapForGrp['redisAnnouncerDockerImgVer']
     metricsPublisherContainerMemoryLimit = configMapForGrp['metricsPublisherContainerMemoryLimit']
     metricsPublisherContainerMemoryRequest = configMapForGrp['metricsPublisherContainerMemoryRequest']
+    environment = configMapForGrp['environment']
 
     groupDetails = getGroupDetails(metadata_dir, group_name)
 
@@ -151,19 +152,20 @@ def main():
 
         generateMetricsPublisherManifest(clusterName, MetricsPublisherImageVersion, serverPort, mgmtPort,
                                          kingdomName, spodName, metricsPublisherContainerMemoryLimit,
-                                         metricsPublisherContainerMemoryRequest)
+                                         metricsPublisherContainerMemoryRequest, environment)
         generateRedisManifest(clusterName, RedisAnnouncerImageVersion, redisPort, redisCount, kingdomName,
-                              spodName, configMapForGrp)
+                              spodName, configMapForGrp, environment)
 
 
 def generateMetricsPublisherManifest(clusterName, MetricsPublisherImageVersion, serverPort, mgmtPort, kingdomName,
-                                     spodName, metricsPublisherContainerMemoryLimit, metricsPublisherContainerMemoryRequest):
+                                     spodName, metricsPublisherContainerMemoryLimit, metricsPublisherContainerMemoryRequest, environment):
     metricsPublisherTemplateSubstitues = {'ClusterName': clusterName,
                                           'MetricsPublisherImageVersion': MetricsPublisherImageVersion,
                                           'ServerPort': serverPort,
                                           'ManagementPort': mgmtPort,
                                           'MetricsPublisherContainerMemoryLimit': metricsPublisherContainerMemoryLimit,
-                                          'MetricsPublisherContainerMemoryRequest': metricsPublisherContainerMemoryRequest};
+                                          'MetricsPublisherContainerMemoryRequest': metricsPublisherContainerMemoryRequest,
+                                          'Environment': environment};
     metricsPublisherManifest = loadTemplates.metricsPubTemplate.substitute(metricsPublisherTemplateSubstitues);
     manifestDirName = ''.join([kingdomName, '-', spodName, '-metrics-publisher-', clusterName]);
     manifestDirectory = os.path.join(output_dir,
@@ -173,7 +175,7 @@ def generateMetricsPublisherManifest(clusterName, MetricsPublisherImageVersion, 
 
 
 def generateRedisManifest(clusterName, RedisAnnouncerImageVersion, redisPort, redisCount, kingdomName, spodName,
-                          configMap):
+                          configMap, environment):
     redisMaxMemory = int(configMap['redisMaxMemory'])
     redisContainerMaxMemory = configMap['redisContainerMaxMemory']
     redisContainerMemoryRequest = configMap['redisContainerMemoryRequest']
@@ -188,7 +190,8 @@ def generateRedisManifest(clusterName, RedisAnnouncerImageVersion, redisPort, re
                                'RedisContainerMemoryRequest': redisContainerMemoryRequest,
                                'RedisMemory': redisMaxMemory,
                                'AnnouncerContainerMemoryLimit': announcerContainerMemory,
-                               'AnnouncerContainerMemoryRequest': announcerContainerMemoryRequest
+                               'AnnouncerContainerMemoryRequest': announcerContainerMemoryRequest,
+                               'Environment': environment
                                };
 
     if clusterName.endswith("pc1"):

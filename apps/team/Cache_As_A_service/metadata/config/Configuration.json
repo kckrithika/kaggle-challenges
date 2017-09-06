@@ -3,6 +3,9 @@
     {
         "default": [
             {
+                "environment": "prod"
+            }, 
+            {
                 "spunkQuery": "search splunk_server_group=distapps (index=distapps) \"*MonitorServiceInitializer.start(): starting service *\"  $ClusterName  zslog | head 1 | table _raw"
             }, 
             {
@@ -73,6 +76,9 @@
     }, 
     {
         "prd-sp2": [
+            {
+                "environment": "dev"
+            }, 
             {
                 "redisAnnouncerDockerImgVer": "2.4.6-0000010-14425579"
             }

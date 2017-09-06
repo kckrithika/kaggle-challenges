@@ -47,7 +47,7 @@ system:
             - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod
+         value: $Environment
       resources:
         limits: { memory: "$AnnouncerContainerMemoryLimit" }
         requests: { memory: "$AnnouncerContainerMemoryRequest" }
