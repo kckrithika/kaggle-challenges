@@ -6339,6 +6339,22 @@
                                 "redis_count": 4
                             }
                         ]
+                    }, 
+                    {
+                        "sp-c1": [
+                            {
+                                "server_port": 7502
+                            }, 
+                            {
+                                "mgmt_port": 7503
+                            }, 
+                            {
+                                "redis_port": 12011
+                            }, 
+                            {
+                                "redis_count": 2
+                            }
+                        ]
                     }
                 ]
             }

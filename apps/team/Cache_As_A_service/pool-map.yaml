@@ -1683,3 +1683,7 @@ apps:
     - frf/frf-sp1-sam_caas
   frf-sp1-redis-dc-c1-12041:
     - frf/frf-sp1-sam_caas
+  prd-sp2-metrics-publisher-sp-c1:
+    - prd/prd-sp2-sam_caas
+  prd-sp2-redis-sp-c1-12011:
+    - prd/prd-sp2-sam_caas
