@@ -16,6 +16,7 @@ items:
     - '*'
     resources:
     - secrets
+    - configmaps
     verbs:
     - get
     - watch
