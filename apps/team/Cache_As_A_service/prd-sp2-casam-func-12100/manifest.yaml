@@ -9,11 +9,11 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.2-0000040-d1f281ab
+      image: tnrp/casam/coreapp:210.2-0000041-96edc671
 
       env:
         - name: DEPLOYMENT
-          value: E
+          value: F
         - name: DB_USER
           value: grumpy
 
