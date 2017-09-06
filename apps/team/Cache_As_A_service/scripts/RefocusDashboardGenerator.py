@@ -35,7 +35,7 @@ def createSubject(subjectJson):
         jsonVal = json.dumps(subjectJson)
         req = urllib2.Request(url)
         req.add_header('Content-Type', 'application/json')
-        req.add_header('Authorization', ' XXXX ')
+        req.add_header('Authorization', ' XXX ')
         req.add_header('method', 'POST')
         response = urllib2.urlopen(req, jsonVal)
         print response
@@ -82,30 +82,31 @@ def createRefocusDashboard():
     kingdoms = getAllKingdoms(metadata_dir)
     baseName = 'CAAS'
     data = getRefocusSubjectJson(baseName, baseName, "")
-    createSubject(data)
+    #createSubject(data)
 
     for kingdomName in kingdoms:
-        kingdom = kingdoms[kingdomName];
-        data = getRefocusSubjectJson(kingdomName, kingdomName, baseName)
-        createSubject(data)
-        spods = kingdom.getSpods();
-        for spodName in spods:
-            spod = spods[spodName]
-            data = getRefocusSubjectJson(spodName, spodName, baseName + "." + kingdomName)
+        if kingdomName != 'prd':  #Ignore internal enviorment
+            kingdom = kingdoms[kingdomName];
+            data = getRefocusSubjectJson(kingdomName, kingdomName, baseName)
             createSubject(data)
-            clusters = spod.getClusters();
-            for clusterName in clusters:
-                cluster = clusters[clusterName]
-                description = cluster.getDescription()
-                redisCount = cluster.getRedisCount()
-
-                if not description:
-                    description = clusterName.upper()
-                parentAbsolutePath = baseName + "." + kingdomName + "." + spodName
-                data = getRefocusSubjectJson(clusterName, description, parentAbsolutePath)
+            spods = kingdom.getSpods();
+            for spodName in spods:
+                spod = spods[spodName]
+                data = getRefocusSubjectJson(spodName, spodName, baseName + "." + kingdomName)
                 createSubject(data)
+                clusters = spod.getClusters();
+                for clusterName in clusters:
+                    cluster = clusters[clusterName]
+                    description = cluster.getDescription()
+                    redisCount = cluster.getRedisCount()
 
-                createExpressionFile(baseName, kingdomName, spodName, clusterName, redisCount)
+                    if not description:
+                        description = clusterName.upper()
+                    parentAbsolutePath = baseName + "." + kingdomName + "." + spodName
+                    data = getRefocusSubjectJson(clusterName, description, parentAbsolutePath)
+                    createSubject(data)
+
+                    createExpressionFile(baseName, kingdomName, spodName, clusterName, redisCount)
 
 
 def main():
