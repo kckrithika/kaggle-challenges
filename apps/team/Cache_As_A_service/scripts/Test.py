@@ -10,7 +10,7 @@ import argparse
 import getpass
 from prettytable import PrettyTable
 import progressbar
-
+#
 class textColors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -20,18 +20,52 @@ class textColors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-    #
-    # import requests
-    # from requests.auth import HTTPDigestAuth
-    # import json
-    #
-    # # Replace with the correct URL
-    # url = "https://refocus.internal.salesforce.com/v1/subjects?name=*&absolutePath=Salesforce.SFDC_Core.*.NA44&tags=Pod"
-    #
-    # #response = requests.post(config.REFOCUS_URL + url, json=data, headers={'Authorization': config.REFOCUS_TOKEN})
-    # # It is a good practice not to hardcode the credentials. So ask the user to enter credentials at runtime
-    # myResponse = requests.get(url, headers={'Authorization':'2d9be630-a014-4753-a03b-4f2a7dc1eb78'})
-    # # print (myResponse.status_code)
+
+# import requests
+# from requests.auth import HTTPDigestAuth
+# import json
+#
+# # Replace with the correct URL
+# url = "https://refocus-staging.internal.salesforce.com/v1/subjects"
+#
+# # data = {  "description": "ramtest1",
+# #  "isPublished": True,
+# #  "name": "ramtest1",
+# #  "parentAbsolutePath": "t1.ct1"
+# # }
+# # data = {  "description": "CAAS",
+# #  "isPublished": True,
+# #  "name": "CAAS11",
+# #  "parentAbsolutePath": "t1"
+# # }
+# import ast
+#
+#
+# str ='data={"description":"par","isPublished":True,"name":"PAR","parentAbsolutePath":"CAAS"}'
+# eval = ast.literal_eval(str)
+#
+#
+# #response = requests.post(url, json=data, headers={'Authorization', ' XXXXXX ', 'Content-Type',
+# #                                                  'application/json'})
+#
+# #print response
+#
+# req = urllib2.Request(url)
+# req.add_header('Content-Type', 'application/json')
+# req.add_header('Authorization', ' XXXXX ')
+# req.add_header('method','PATCH')
+# dataJson = json.dumps(str)
+# response = urllib2.urlopen(req, json.dumps(data))
+#
+#
+# print response
+
+
+
+    #response = requests.post(url, json=data, headers={'Aut, horization': '', })
+    # It is a good practice not to hardcode the credentials. So ask the user to enter credentials at runtime
+    #myResponse = requests.get(url, headers={'Authorization':' XXXXXX '})
+    # print (myResponse.status_code)
     #
     # # For successful API call, response code will be 200 (OK)
     # if (myResponse.ok):
@@ -48,7 +82,7 @@ class textColors:
     # else:
     #     # If response code is not ok (200), print the resulting http error code with description
     #     myResponse.raise_for_status()
-
+    #
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-user', action='store', dest='user_name', help='SSO Username')
@@ -78,7 +112,7 @@ sessionObj = requests.session()
 argusBaseURL = configMapForGrp['argusWSURL']
 result = sessionObj.post(argusBaseURL +
                          configMapForGrp['authAPI'],
-                         json={"username": user, "password": password})
+                         json={"username": 'rpragada', "password": password})
 if result.status_code != 200:
     argusConnectionMsgStr = argusConnectionMsgStr + textColors.FAIL + ' Failed : Reason : ' + result.status_code + textColors.ENDC
     print argusConnectionMsgStr
@@ -88,7 +122,7 @@ else:
     print argusConnectionMsgStr
     redisCountFromConfig = 4
 
-    encodedQueryStr = urllib.quote_plus('DOWNSAMPLE(-6m:caas.sp-na38-c1.PHX.SP2.-:caas-sp-na38-c1.Redis__Server__Count_99thPercentile{device=*}:avg, #5m-min#)')
+    encodedQueryStr = urllib.quote_plus('FILL_CALCULATE(DOWNSAMPLE(-6m:caas.sp-ap3-c1.UKB.SP1.-:caas-sp-ap3-c1.Redis__Server__Count_99thPercentile{device=*}:avg, #5m-min#), #min#)')
     for ctr in range(1, 5000):
         jsonObj = sessionObj.get(argusBaseURL + configMapForGrp['metricsQueryAPI'] + encodedQueryStr).json()
         print jsonObj
