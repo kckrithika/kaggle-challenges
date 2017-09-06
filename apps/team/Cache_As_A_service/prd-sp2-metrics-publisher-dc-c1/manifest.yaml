@@ -37,7 +37,7 @@ system:
       - containerPort: 7501
       env:
        - name: SFDC_ENVIRONMENT
-         value: dev
+         value: dev-prd
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:

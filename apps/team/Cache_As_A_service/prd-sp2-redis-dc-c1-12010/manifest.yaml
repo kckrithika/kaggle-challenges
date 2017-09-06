@@ -48,7 +48,7 @@ system:
             - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
-         value: dev
+         value: dev-prd
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
