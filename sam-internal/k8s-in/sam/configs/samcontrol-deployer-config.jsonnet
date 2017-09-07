@@ -7,7 +7,7 @@ local samimages = import "samimages.jsonnet";
   "tnrp-endpoint": configs.tnrpArchiveEndpoint,
   "dry-run": false,
   "poll-delay": 30000000000,
-  "email": configs.samcontrol_deployer_EmailNotify,
+  "email": true,
   "email-delay": 0,
   "smtp-server": configs.smtpServer,
   "sender": "sam@salesforce.com",

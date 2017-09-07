@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--namespace="+slbconfigs.namespace,
                             "--podstatus=running",
                             "--subnet="+slbconfigs.subnet,
-                            "--k8sapiserver="+configs.k8sapiserver,
+                            "--k8sapiserver=",
                             "--serviceList="+slbconfigs.serviceList,
                             "--useVipLabelToSelectSvcs="+slbconfigs.useVipLabelToSelectSvcs,
                             "--useProxyServicesList="+slbconfigs.useProxyServicesList,

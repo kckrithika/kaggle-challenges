@@ -123,4 +123,8 @@ useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
 period: self.perCluster.period[estate],
 
+sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
+sdn_watchdog_emailrec: "slb@salesforce.com",
+
+
 }

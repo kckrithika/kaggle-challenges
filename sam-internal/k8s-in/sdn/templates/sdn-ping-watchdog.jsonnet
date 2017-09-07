@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
-local wdconfig = import "wdconfig.jsonnet";
+local sdnconfig = import "sdnconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
 if !utils.is_public_cloud(configs.kingdom) then {
@@ -28,8 +28,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--funnelEndpoint="+configs.funnelVIP,
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--smtpServer="+configs.smtpServer,
-                            "--sender="+configs.sdn_watchdog_emailsender,
-                            "--recipient="+configs.sdn_watchdog_emailrec,
+                            "--sender="+sdnconfig.sdn_watchdog_emailsender,
+                            "--recipient="+sdnconfig.sdn_watchdog_emailrec,
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",

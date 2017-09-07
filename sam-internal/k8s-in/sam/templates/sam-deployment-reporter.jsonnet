@@ -15,7 +15,7 @@ local samimages = import "samimages.jsonnet";
                         command:[
                            "/sam/sam-deployment-reporter",
                            "--v=5",
-                           "--k8sapiserver="+configs.k8sapiserver,
+                           "--k8sapiserver=",
                            "--smtpServer="+configs.smtpServer,
                            "--sender=sam@salesforce.com",
                            "--defaultRecipient=",

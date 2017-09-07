@@ -1,7 +1,15 @@
+#
+# NOTE: This file should contain the minimum set of shared data needed by the different teams (SAM, SLB, SDN, etc...)
+# Do not put team-specific configuration here.  We should keep this file as small as possible.
+#
 {
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
 local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
+
+    # === DISCOVERY ===
+
+    # External services we need to talk to that are different in different kingdoms
 
     perKingdom: {
 
@@ -42,15 +50,31 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             "prd": "http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions",
         },
 
-	zookeeperip : {
-	    "prd" : "shared0-discovery1-0-sfm.data.sfdc.net:2181",
-	},
+	    zookeeperip : {
+	        "prd" : "shared0-discovery1-0-sfm.data.sfdc.net:2181",
+	    },
 
     },
 
-    # Global
+    # Pass-through for the kingdom specific stuff above
 
-    # Frequently used volume: KubeConfig
+    smtpServer: self.perKingdom.smtpServer[kingdom],
+    momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
+    charonEndpoint: self.perKingdom.charonEndpoint[kingdom],
+    zookeeperip: self.perKingdom.zookeeperip[kingdom],
+
+    # Other discovery related things
+
+    funnelVIP:(if kingdom == "par" || kingdom == "frf" then "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080" else  "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80"),
+    tnrpArchiveEndpoint: (if kingdom == "par" || kingdom == "prd" || kingdom == "phx" then "https://ops0-piperepo1-0-"+kingdom+".data.sfdc.net/tnrp/content_repo/0/archive" else "https://ops0-piperepo1-1-"+kingdom+"."+engOrOps+".sfdc.net/tnrp/content_repo/0/archive"),
+    registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
+    rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://ops0-health1-1-"+kingdom+"."+engOrOps+".sfdc.net:18443/v1/bark"),
+
+    # === KUBERNETES ===
+
+    # Commonly used elements for kubernetes resources
+
+    # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         "name": "KUBECONFIG",
         "value": "/kubeconfig/kubeconfig"
@@ -66,7 +90,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         name: "kubeconfig"
     },
 
-    # Frequently used volume: Certs
+    # For use by apps that read the host's certs from Certificate Services
     cert_volume_mount: {
         "mountPath": "/data/certs",
         "name": "certs"
@@ -77,8 +101,11 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         },
         name: "certs"
     },
+    caFile: "/data/certs/ca.crt",
+    keyFile: "/data/certs/hostcert.key",
+    certFile: "/data/certs/hostcert.crt",
 
-    # Frequently used volume: Maddog certs
+    # For apps that read MadDog certs from the host
     maddog_cert_volume_mount: {
         "mountPath": "/etc/pki_service",
         "name": "maddog-certs"
@@ -104,7 +131,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             []
     ),
 
-    # Frequently used volume: config
+    # For apps that use liveConfig + configMap for configuration
     config_volume_mount: {
         "mountPath": "/config",
         "name": "config",
@@ -116,41 +143,11 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         }
     },
 
-    caFile: "/data/certs/ca.crt",
-    keyFile: "/data/certs/hostcert.key",
-    certFile: "/data/certs/hostcert.crt",
+    # === OTHER ===
 
-    k8sapiserver: "",
-    #kubeConfigPath: "/kubeconfig/kubeconfig",
-
-    watchdog_emailsender: "sam-alerts@salesforce.com",
-    # TODO: change prd to sam-test-alerts@salesforce.com when it is ready
-    watchdog_emailrec: (if estate == "prd-sdc" then "sdn@salesforce.com" else if estate == "prd-sam_storage" then "storagefoundation@salesforce.com" else if kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
-
-    statefulAppEnabled: (if kingdom == "prd" then "true" else "false"),
-
-    sdn_watchdog_emailsender: "sdn-alerts@salesforce.com",
-    sdn_watchdog_emailrec: (if estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sam_storage" || estate == "prd-sdc" then "sdn@salesforce.com" else "sdn-alerts@salesforce.com"),
-
-    # Computed values
-
-    funnelVIP:(if kingdom == "par" || kingdom == "frf" then "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080" else  "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80"),
-    tnrpArchiveEndpoint: (if kingdom == "par" || kingdom == "prd" || kingdom == "phx" then "https://ops0-piperepo1-0-"+kingdom+".data.sfdc.net/tnrp/content_repo/0/archive" else "https://ops0-piperepo1-1-"+kingdom+"."+engOrOps+".sfdc.net/tnrp/content_repo/0/archive"),
-    registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
-    rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://ops0-health1-1-"+kingdom+"."+engOrOps+".sfdc.net:18443/v1/bark"),
-
-    # Pass-through below here only
-
-    smtpServer: self.perKingdom.smtpServer[kingdom],
-    momCollectorEndpoint: self.perKingdom.momCollectorEndpoint[kingdom],
-    charonEndpoint: self.perKingdom.charonEndpoint[kingdom],
-    zookeeperip: self.perKingdom.zookeeperip[kingdom],
-    apiserver: self.perEstate.apiserver[estate],
+    # These are here so files that include this jsonnet can easily access estate/kingdom.
+    # Please dont add any more here.  We want to reduce coupling to this global config.
 
     estate: estate,
     kingdom: kingdom,
-
-    samcontrol_deployer_ObserveMode: false,
-    samcontrol_deployer_EmailNotify: true,
-    sam_secret_agent_ObserveMode: false,
 }
