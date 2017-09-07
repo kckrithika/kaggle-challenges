@@ -8,6 +8,14 @@ if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
+        strategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxSurge: 1,
+                maxUnavailable: 0,
+            },
+        },
+        minReadySeconds: 180,
         template: {
             spec: {
                 hostNetwork: true,
