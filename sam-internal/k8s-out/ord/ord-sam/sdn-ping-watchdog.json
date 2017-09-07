@@ -8,7 +8,15 @@
       "name": "sdn-ping-watchdog"
    },
    "spec": {
+      "minReadySeconds": 180,
       "replicas": 1,
+      "strategy": {
+         "rollingUpdate": {
+            "maxSurge": 1,
+            "maxUnavailable": 0
+         },
+         "type": "RollingUpdate"
+      },
       "template": {
          "metadata": {
             "labels": {
