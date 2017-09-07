@@ -10,7 +10,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: cbtest
-      image: tnrp/dci/chatbot-runtime:2
+      image: chatbots/chatbot-runtime:210.151-SNAPSHOT-313ee44
       livenessProbe:
         httpGet:
           path: /
