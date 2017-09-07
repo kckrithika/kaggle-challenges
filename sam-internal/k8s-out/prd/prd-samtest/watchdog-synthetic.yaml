@@ -36,6 +36,8 @@ spec:
         - containerPort: 8083
           name: synthetic
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /test
           name: test
         - mountPath: /_output
@@ -50,6 +52,9 @@ spec:
       nodeSelector:
         pool: prd-samtest
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

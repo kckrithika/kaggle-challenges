@@ -17,7 +17,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                            "-f ",
                            "/etc/haproxy/haproxy.cfg"
                         ],
-                        volumeMounts: [
+                        volumeMounts: configs.cert_volume_mounts + [
                             {
                                 name: "sfdc-volume",
                                 mountPath: "/etc/certs"
@@ -39,7 +39,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         },
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     {
                         hostPath: {
                             path: "/data/certs"

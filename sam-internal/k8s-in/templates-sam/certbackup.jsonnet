@@ -17,7 +17,7 @@ local wdconfig = import "samwdconfig.jsonnet";
                             "/sam/certbackup.sh"
                         ],
                         name: "certbackup",
-                        volumeMounts: [
+                        volumeMounts: configs.cert_volume_mounts + [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                        ],
@@ -26,7 +26,7 @@ local wdconfig = import "samwdconfig.jsonnet";
                        ]
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                     configs.kube_config_volume,
                 ]

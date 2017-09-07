@@ -14,7 +14,7 @@ if configs.kingdom == "prd" then {
                         command:[
                            "/sam/sam-deployment-portal",
                         ],
-                       volumeMounts: [
+                       volumeMounts: configs.cert_volume_mounts + [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                           { 
@@ -37,7 +37,7 @@ if configs.kingdom == "prd" then {
                        workingDir: "/sam"
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                     configs.kube_config_volume,
                     {

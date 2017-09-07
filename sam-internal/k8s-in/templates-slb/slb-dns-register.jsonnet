@@ -21,7 +21,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.cert_volumes + [
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
@@ -40,7 +40,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.cert_volume_mounts + [
                             configs.cert_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,

@@ -21,7 +21,7 @@ local samimages = import "samimages.jsonnet";
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=kubeApiChecker=2017/06/02" ] else  [])
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-                    "volumeMounts": [
+                    volumeMounts: configs.cert_volume_mounts + [
                         configs.cert_volume_mount,
                         configs.config_volume_mount,
                     ],
@@ -38,7 +38,7 @@ local samimages = import "samimages.jsonnet";
                         }
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
                 ],
