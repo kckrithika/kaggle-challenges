@@ -57,13 +57,15 @@ def run_jsonnet(item):
     appNameWithExt = os.path.basename(item.jsonnet_file)
     appName = os.path.splitext(appNameWithExt)[0]
     outfile = os.path.join(item.output_dir, appName + ".json")
+    includeDir = "./" + item.jsonnet_file.split("/")[0]
     cmd = "./jsonnet/jsonnet"
     cmd += " -V kingdom=" + item.kingdom
     cmd += " -V estate=" + item.estate
     cmd += " -V template=" + appName
     cmd += " " + item.jsonnet_file
     cmd += " -o " + outfile
-    cmd += " --jpath ."
+    cmd += " --jpath . "
+    cmd += " --jpath " + includeDir
     (passed, msg) = run_cmd(cmd)
     if passed:
         if delete_if_skip(outfile):

@@ -1,13 +1,14 @@
 local configs = import "config.jsonnet";
 
-{
+if configs.estate == "prd-sam" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "manifest-watcher",
+      name: "hosts",
       namespace: "sam-system",
     },
     data: {
-      "manifestwatcher.json": std.toString(import "../configs-sam/manifest-watcher-config.jsonnet")
+      "hosts.json": std.toString(import "configs/hosts.jsonnet")
     }
-}
+} else 
+  "SKIP"

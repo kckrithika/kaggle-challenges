@@ -4,10 +4,10 @@ local configs = import "config.jsonnet";
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "samcontrol-deployer",
+      name: "manifest-watcher",
       namespace: "sam-system",
     },
     data: {
-      "samcontroldeployer.json": std.toString(import "../configs-sam/samcontrol-deployer-config.jsonnet")
+      "manifestwatcher.json": std.toString(import "configs/manifest-watcher-config.jsonnet")
     }
 }
