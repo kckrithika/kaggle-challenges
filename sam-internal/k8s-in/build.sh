@@ -24,9 +24,9 @@ rm -rf ../k8s-out/**
 mkdir -p ../k8s-out/
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
-  docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl generate-pool-list --in /repo/sam-internal/pools/ --out  /repo/sam-internal/k8s-in/configs-sam/generated-pools.jsonnet
+  docker run --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl generate-pool-list --in /repo/sam-internal/pools/ --out  /repo/sam-internal/k8s-in/sam/configs/generated-pools.jsonnet
 else
-  /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/configs-sam/generated-pools.jsonnet
+  /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
 time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/

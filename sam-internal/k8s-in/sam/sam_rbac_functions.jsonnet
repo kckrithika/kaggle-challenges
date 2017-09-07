@@ -1,5 +1,5 @@
-local hosts = import "configs-sam/hosts.jsonnet";
-local pools = import "configs-sam/generated-pools.jsonnet";
+local hosts = import "configs/hosts.jsonnet";
+local pools = import "configs/generated-pools.jsonnet";
 
 {
     minionRole :: "samcompute",
