@@ -1,6 +1,9 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
+# This is a hack.  All watchdogs use the shared configMap, but hairpin had a duplicate set of flags
+# and is not wired up to the configMap.  We should either pass through flags or have it use the configMap
+local samwdconfigmap = import "configs/watchdog-config.jsonnet";
 {
     kind: "Deployment",
     spec: {
@@ -28,8 +31,9 @@ local samimages = import "samimages.jsonnet";
                             "-deployer-funnelEndpoint="+configs.funnelVIP,
                             "-deployer-rcImtEndpoint="+configs.rcImtEndpoint,
                             "-deployer-smtpServer="+configs.smtpServer,
-                            "-deployer-sender="+configs.watchdog_emailsender,
-                            "-deployer-recipient="+configs.watchdog_emailrec,
+                            "-deployer-sender=sam-alerts@salesforce.com",
+                            # TODO: We should kill these flags and use the value from liveConfig
+                            "-deployer-recipient="+samwdconfigmap.recipient,
                         ]
                         + samwdconfig.shared_args
                         # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down

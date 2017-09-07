@@ -24,8 +24,8 @@ local samimages = import "samimages.jsonnet";
   funnelEndpoint: configs.funnelVIP,
   rcImtEndpoint: configs.rcImtEndpoint,
   smtpServer: configs.smtpServer,
-  sender: configs.watchdog_emailsender,
-  recipient: configs.watchdog_emailrec,
+  sender: "sam-alerts@salesforce.com",
+  recipient: (if configs.estate == "prd-sdc" then "sdn@salesforce.com" else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com" else if configs.kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
 
   # K8s checker
   k8sproxyEndpoint: "http://localhost:40000",

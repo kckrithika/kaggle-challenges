@@ -18,7 +18,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                            "--logtostderr=true",
                            "--disableSecurityCheck=true",
                            "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
-                           "--observeMode="+configs.sam_secret_agent_ObserveMode,
+                           "--observeMode="+false,
                            "--delay=300s",
                            "--keyfile=/data/certs/hostcert.key",
                            "--certfile=/data/certs/hostcert.crt",

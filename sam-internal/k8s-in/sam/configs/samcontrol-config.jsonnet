@@ -4,7 +4,7 @@ local samimages = import "samimages.jsonnet";
 {
   debug: true,
   dockerregistry: configs.registry,
-  k8sapiserver: configs.k8sapiserver,
+  k8sapiserver: "",
   tlsEnabled: true,
   caFile: configs.caFile,
   keyFile: configs.keyFile,
