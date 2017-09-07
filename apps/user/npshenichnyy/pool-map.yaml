@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  tictactoe-server:
   - prd/prd-sam
+ tictactoe-client:
+  - prd/prd-sam
