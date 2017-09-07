@@ -1,12 +1,11 @@
-local rbacconfigs = import "rbacconfig.jsonnet";
 local configs = import "config.jsonnet";
+local rbac_utils = import "sam_rbac_functions.jsonnet";
 
 # The following ClusterRole & ClusterRoleBinding allows Minion Nodes to update their own status but not others. 
 if configs.estate == "prd-samtest" then {
   "apiVersion": "v1",
   "kind": "List",
   "metadata": {},
-  estateConfig:: rbacconfigs[configs.kingdom][configs.estate],
   createRoles(node):: {
       kind: "ClusterRole",
       apiVersion: "rbac.authorization.k8s.io/v1alpha1",
@@ -49,18 +48,15 @@ if configs.estate == "prd-samtest" then {
         } 
 
   },
+  local minionNodes = rbac_utils.get_Nodes(configs.kingdom, configs.estate, rbac_utils.minionRole),
+  
   local roles = std.join([], [
-            local minionNodes =  minionPool.hosts;
             [self.createRoles(node) for node in minionNodes]
-            for minionPool in self.estateConfig.minion
         ]),
   local rolesbindings = std.join([], [
-            local minionNodes =  minionPool.hosts;
             [self.createClusterRoleBindings(node) for node in minionNodes]
-            for minionPool in self.estateConfig.minion
         ]),
         
   local itemList = roles + rolesbindings,
   "items": itemList
 } else "SKIP" 
- 
