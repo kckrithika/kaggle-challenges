@@ -50,7 +50,7 @@ local samimages = import "samimages.jsonnet";
                   ],
                   "image": samimages.hypersam,
                   "name": "watchdog-synthetic",
-                  "volumeMounts": [
+                  "volumeMounts": configs.cert_volume_mounts + [
                      {
                         "mountPath": "/test",
                         "name": "test"
@@ -69,7 +69,7 @@ local samimages = import "samimages.jsonnet";
             "nodeSelector": {
                "pool": configs.estate
             },
-            "volumes": [
+            "volumes": configs.cert_volumes + [
                configs.cert_volume,
                {
                   "hostPath": {

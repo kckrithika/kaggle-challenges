@@ -20,7 +20,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
         "template": {
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.cert_volumes + [
                     slbconfigs.slb_volume,
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
@@ -47,7 +47,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--maxretries=2",
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.cert_volume_mounts + [
                             slbconfigs.slb_volume_mount,
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,

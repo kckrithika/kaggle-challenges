@@ -22,7 +22,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             initialDelaySeconds: 5,
                             periodSeconds: 10
                         },
-                        volumeMounts: [
+                        volumeMounts: configs.cert_volume_mounts + [
                             {
                                 name: "conf",
                                 mountPath: "/usr/local/etc",
@@ -67,7 +67,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        volumeMounts: [
+                        volumeMounts: configs.cert_volume_mounts + [
                             {
                                 name: "conf",
                                 mountPath: "/usr/local/etc",
@@ -88,7 +88,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         ],
                     },
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     {
                         name: "conf",
                         emptyDir: {},

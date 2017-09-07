@@ -21,7 +21,7 @@ local samimages = import "samimages.jsonnet";
                            "--defaultRecipient=",
                            "--namespacesToSkip=sam-watchdog",
                            ],
-                       volumeMounts: [
+                       volumeMounts: configs.cert_volume_mounts + [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                        ],
@@ -30,7 +30,7 @@ local samimages = import "samimages.jsonnet";
                        ]
                     }
                 ],
-                "volumes": [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                     configs.kube_config_volume,
                 ],

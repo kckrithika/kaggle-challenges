@@ -24,7 +24,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                            "--certfile=/data/certs/hostcert.crt",
                            "--cafile=/data/certs/ca.crt"
                          ],
-                         "volumeMounts": [
+                         volumeMounts: configs.cert_volume_mounts + [
                            configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                          ],
@@ -42,7 +42,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         }
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                     configs.kube_config_volume,
                 ],

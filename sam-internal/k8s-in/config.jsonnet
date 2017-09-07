@@ -78,6 +78,32 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         name: "certs"
     },
 
+    # Frequently used volume: Maddog certs
+    maddog_cert_volume_mount: {
+        "mountPath": "/etc/pki_service",
+        "name": "maddog-certs"
+    },
+    maddog_cert_volume: {
+        hostPath: {
+            path: "/etc/pki_service"
+        },
+        name: "maddog-certs"
+    },
+
+    # Cert volume list
+    cert_volume_mounts: (
+        if estate == "prd-samtest" then
+            [self.maddog_cert_volume_mount]
+        else
+            []
+    ),
+    cert_volumes: (
+        if estate == "prd-samtest" then
+            [self.maddog_cert_volume]
+        else
+            []
+    ),
+
     # Frequently used volume: config
     config_volume_mount: {
         "mountPath": "/config",

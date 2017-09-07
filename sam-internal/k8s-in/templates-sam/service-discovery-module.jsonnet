@@ -20,13 +20,13 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
 			    env: [
                           configs.kube_config_env
                         ],
-                        volumeMounts: [
+                        volumeMounts: configs.cert_volume_mounts + [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                        ],
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                     configs.kube_config_volume,
                 ],

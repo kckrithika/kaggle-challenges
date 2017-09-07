@@ -30,6 +30,8 @@ spec:
           timeoutSeconds: 10
         name: sam-deployment-portal
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -43,6 +45,9 @@ spec:
         master: "true"
         pool: prd-samtest
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

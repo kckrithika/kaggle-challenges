@@ -21,13 +21,13 @@ local samimages = import "samimages.jsonnet";
                            "--config=/config/manifestwatcher.json",
                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
                          ],
-                      "volumeMounts": [
+                      "volumeMounts": configs.cert_volume_mounts + [
                          configs.cert_volume_mount,
                          configs.config_volume_mount,
                        ],
                     }
                 ],
-                volumes: [
+                volumes: configs.cert_volumes + [
                     configs.cert_volume,
                      {
                         hostPath: {

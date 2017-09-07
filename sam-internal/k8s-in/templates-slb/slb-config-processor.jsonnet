@@ -22,7 +22,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.cert_volumes + [
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.host_volume,
@@ -53,7 +53,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                 "--sleepTime=100ms",
                             ] else []
                         ),
-                        "volumeMounts": [
+                        "volumeMounts": configs.cert_volume_mounts + [
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.host_volume_mount,

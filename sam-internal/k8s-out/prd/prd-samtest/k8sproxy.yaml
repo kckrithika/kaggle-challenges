@@ -32,6 +32,8 @@ spec:
         - containerPort: 5000
           name: k8sproxy
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /etc/certs
           name: sfdc-volume
       hostNetwork: true
@@ -39,6 +41,9 @@ spec:
         master: "true"
         pool: prd-samtest
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: sfdc-volume
