@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas-prd-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/awaterman/eaas:1.0.0-1504223839
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/awaterman/eaas:1.0.0-1504741069
       ports:
         - containerPort: 7021
         - containerPort: 15372
