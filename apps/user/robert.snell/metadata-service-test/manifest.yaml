@@ -11,18 +11,18 @@ system:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-07-112016
       args:
-      - --server.port=9090
-      - --management.port=15522
+      - --server.port=9091
+      - --management.port=15523
       ports:
-      - containerPort: 9090
-      - containerPort: 15522
+      - containerPort: 9091
+      - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15522
+          port: 15523
     initialDelaySeconds: 60
     timeoutSeconds: 10
   # TODO: volumes for logging 
@@ -31,5 +31,5 @@ system:
     function: metadata-service-test
     nodeExposed: true
     ports:
-    - port: 9090
-      targetport: 9090
+    - port: 9091
+      targetport: 9091
