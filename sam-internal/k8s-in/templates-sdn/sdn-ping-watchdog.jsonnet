@@ -26,7 +26,6 @@ if configs.kingdom == "prd" then {
                         command:[
                             "/sdn/sdn-ping-watchdog",
                             "--funnelEndpoint="+configs.funnelVIP,
-                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--smtpServer="+configs.smtpServer,
                             "--sender="+configs.sdn_watchdog_emailsender,
                             "--recipient="+configs.sdn_watchdog_emailrec,
