@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: cerberusservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yganji/cerberusservice:yganji-20170906
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yganji/cerberusservice:test-20170906
       ports:
       - containerPort: 7020
       - containerPort: 8080
