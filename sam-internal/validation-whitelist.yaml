@@ -39,3 +39,7 @@ PortCollisionExceptions:
   - "team/CSC_Sam/SamTestApp"
   - "user/dlucey/SamTestApp"
 PortsReserved: [0-1024, 32000-40000, 2379, 2380, 4194, 8000, 8002, 8080, 9099, 9100, 10250, 10251, 10252, 10255, 64121]
+imagePromotionPrefixRepl:
+  chatbots/: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/chatbots/
+  ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam
+  tnrp/: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/
