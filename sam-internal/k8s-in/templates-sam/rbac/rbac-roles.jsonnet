@@ -31,7 +31,8 @@ if configs.estate == "prd-samtest" then {
             "*"
           ],
           "resources": [
-            "secrets"
+            "secrets",
+            "configmaps"
           ],
           "verbs": [
             "get",
