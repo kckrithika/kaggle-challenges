@@ -1,0 +1,34 @@
+apiVersion: v1
+
+system:
+  notifications:
+  email:
+  - robert.snell@salesforce.com
+  functions:
+  - name: metadata-service-test
+    count: 2
+    containers:
+    - name: metadata-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-07-112016
+      args:
+      - --server.port=9090
+      - --management.port=15522
+      ports:
+      - containerPort: 9090
+      - containerPort: 15522
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: blitz
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15522
+    initialDelaySeconds: 60
+    timeoutSeconds: 10
+  # TODO: volumes for logging 
+  loadbalancers:
+  - lbname: metadata-servicelb
+    function: default
+    ports:
+    - port: 9090
+      targetport: 9090
