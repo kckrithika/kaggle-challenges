@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
         #
         "prd,prd-sdc,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
         "prd,prd-samtest,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
-	"prd,prd-samdev,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20170907_113545.3aefdeb.dirty.cbatra-ltm1",
+	"prd,prd-samdev,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20170907_134103.3aefdeb.dirty.cbatra-ltm1",
 	"prd,prd-samtest,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20170906_143330.3aefdeb.dirty.cbatra-ltm1",
         "prd,prd-sam,watchdog-pullrequest,hypersam": "sam-0001125-8748288b",
         "prd,prd-sam,service-discovery-module,hypersam": "sam-0001132-d806c518",
