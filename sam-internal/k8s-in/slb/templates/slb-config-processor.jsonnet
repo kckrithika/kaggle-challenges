@@ -37,7 +37,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         "command":[
                             "/sdn/slb-config-processor",
                             "--configDir="+slbconfigs.configDir,
-                            "--period="+slbconfigs.period,
+                            "--period=1800s",
                             "--namespace="+slbconfigs.namespace,
                             "--podstatus=running",
                             "--subnet="+slbconfigs.subnet,
@@ -47,12 +47,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--useProxyServicesList="+slbconfigs.useProxyServicesList,
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir,
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" then [
-                                "--sleepTime=100ms",
-                            ] else []
-                        ),
+                            "--sleepTime=100ms",
+                        ],
                         "volumeMounts": configs.cert_volume_mounts + [
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
