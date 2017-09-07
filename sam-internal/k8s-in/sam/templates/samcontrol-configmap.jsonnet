@@ -1,14 +1,13 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-sam" then {
+{
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "hosts",
+      name: "samcontrol",
       namespace: "sam-system",
     },
     data: {
-      "hosts.json": std.toString(import "../configs-sam/hosts.jsonnet")
+      "samcontrol.json": std.toString(import "configs/samcontrol-config.jsonnet")
     }
-} else 
-  "SKIP"
+}

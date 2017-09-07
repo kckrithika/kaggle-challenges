@@ -29,7 +29,7 @@ else
   /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/configs-sam/generated-pools.jsonnet
 fi
 
-time ./parallel_build.py templates-sam/,templates-sdn/,templates-slb/,templates-storage/ ../k8s-out/ ../pools/
+time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/
 
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
 # encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read 
