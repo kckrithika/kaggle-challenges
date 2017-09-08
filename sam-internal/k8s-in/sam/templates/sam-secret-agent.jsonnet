@@ -22,7 +22,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                            "--delay=300s",
                            "--keyfile=/data/certs/hostcert.key",
                            "--certfile=/data/certs/hostcert.crt",
-                           "--cafile=/data/certs/ca.crt"
+                           "--cafile="+configs.caFile
                          ],
                          volumeMounts: configs.cert_volume_mounts + [
                            configs.cert_volume_mount,
