@@ -7,7 +7,6 @@ system:
   - name: geoip-client
 
     count: 1
-    hostnetwork: true
     containers:
 
     - name: client
