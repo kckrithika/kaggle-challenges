@@ -14,7 +14,14 @@ if configs.estate == "prd-sdc" then {
         "namespace": "sam-system",
     },
     "spec": {
-        replicas: 1,
+        replicas: 0,
+        strategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxSurge: 1,
+                maxUnavailable: 0,
+            }
+        },
         "template": {
             "metadata": {
                 "labels": {
