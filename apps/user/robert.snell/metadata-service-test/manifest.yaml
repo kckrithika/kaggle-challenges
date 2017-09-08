@@ -21,11 +21,12 @@ system:
       - name: MANAGEMENT_PORT
         value: 15523
       livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 30
+        timeoutSeconds: 30
         httpGet:
           path: /manage/health
           port: 15523
-    initialDelaySeconds: 60
-    timeoutSeconds: 10
   # TODO: volumes for logging 
   loadbalancers:
   - lbname: metadata-servicelb
