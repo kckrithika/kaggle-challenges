@@ -19,7 +19,7 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
 
-    - name: sherpa-f
+    - name: sherpa-geoip
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
       env:
       - name: SFDC_ENVIRONMENT
@@ -29,7 +29,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7080
-        name: sherpa-f-adm
+        name: sherpa-geoip-adm
       livenessProbe:
         exec:
           command:
