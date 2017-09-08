@@ -25,8 +25,9 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                         command:[
                             "/sam/watchdog",
                             "-role=HAIRPINDEPLOYER",
-                            "-watchdogFrequency=120s",
-                            "-alertThreshold=300s",
+                            ]
+                            + (if configs.estate == "prd-samdev" then [ "-watchdogFrequency=121s" ] else [ "-watchdogFrequency=120s" ])
+                            +[ "-alertThreshold=300s",
                             "-deployer-imageName="+samimages.hypersam,
                             "-deployer-funnelEndpoint="+configs.funnelVIP,
                             "-deployer-rcImtEndpoint="+configs.rcImtEndpoint,
