@@ -6,19 +6,20 @@ system:
   - robert.snell@salesforce.com
   functions:
   - name: metadata-service-test
-    count: 2
+    count: 1
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-07-112016
-      args:
-      - --server.port=9091
-      - --management.port=15523
       ports:
       - containerPort: 9091
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: SERVER_PORT
+        value: 9091
+      - name: MANAGEMENT_PORT
+        value: 15523
       livenessProbe:
         httpGet:
           path: /manage/health
