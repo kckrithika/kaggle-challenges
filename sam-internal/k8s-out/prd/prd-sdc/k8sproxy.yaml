@@ -36,6 +36,7 @@ spec:
           name: sfdc-volume
       hostNetwork: true
       nodeSelector:
+        master: "true"
         pool: prd-sdc
       volumes:
       - hostPath:

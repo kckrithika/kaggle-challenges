@@ -42,6 +42,7 @@ spec:
         - containerPort: 9090
           name: estate-server
       nodeSelector:
+        master: "true"
         pool: prd-sdc
       securityContext:
         fsGroup: 0
