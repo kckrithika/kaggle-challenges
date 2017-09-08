@@ -8,23 +8,22 @@ system:
       - joslyn.esser@salesforce.com
   functions:
   - name: chatbot-runtime-production
-    count: 2
+    count: 4
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-chatbot/logs
     containers:
     - name: chatbot-runtime
-      image: tnrp/chatbots/chatbot-runtime:210.0-3a905b8
+      image: tnrp/chatbots/chatbot-runtime:210.0-46285fc
       ports:
       - containerPort: 7022
+      - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: METAMIND_PROXY
-        value: http://public0-proxy1-0-frf.data.sfdc.net:8080
       - name: METAMIND_EMAIL
         valueFrom:
           secretKeyRef:
@@ -62,3 +61,5 @@ system:
     ports:
       - port: 7022
         targetport: 7022
+      - port: 15372
+        targetport: 15372
