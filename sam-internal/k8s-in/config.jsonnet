@@ -101,7 +101,12 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         },
         name: "certs"
     },
-    caFile: "/data/certs/ca.crt",
+    caFile: (
+        if estate == "prd-samtest" then
+            "/etc/pki_service/ca/cabundle.pem"
+        else
+            "/data/certs/ca.crt"
+    ),
     keyFile: "/data/certs/hostcert.key",
     certFile: "/data/certs/hostcert.crt",
 

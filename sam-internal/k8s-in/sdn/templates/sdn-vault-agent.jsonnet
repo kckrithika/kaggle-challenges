@@ -20,7 +20,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
                             "--keyfile=/data/certs/hostcert.key",
                             "--certfile=/data/certs/hostcert.crt",
-                            "--cafile=/data/certs/ca.crt",
+                            "--cafile="+configs.caFile,
                             "--livenessProbePort="+portconfigs.sdn.sdn_vault_agent
                         ],
                         "livenessProbe": {
