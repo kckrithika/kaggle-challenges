@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: selenium-standalone-chrome
     count: 2
     containers:
     - name: selenium-standalone-chrome
@@ -21,7 +21,7 @@ system:
 
   loadbalancers:
   - lbname: selenium-standalone-chromelb
-    function: default
+    function: selenium-standalone-chrome
     nodeExposed: true
     ports:
       - port: 4444

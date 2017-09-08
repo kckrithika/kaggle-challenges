@@ -1,3 +1,5 @@
 apps:
  my-sam-test:
   - prd/prd-sam
+ selenium-standalone-chrome:
+  - prd/prd-sam
