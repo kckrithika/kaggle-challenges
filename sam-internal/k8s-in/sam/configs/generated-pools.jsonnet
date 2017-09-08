@@ -1059,7 +1059,7 @@
         "team/EmailInfra"
       ],
       "controlEstate": "prd-sam",
-      "estate": "prd-sp2-sam_eaas",
+      "estate": "prd-sp2-sam_eaas_sp",
       "kingdom": "prd",
       "superPod": "sp2"
     },
