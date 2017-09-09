@@ -1,0 +1,20 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: cre_cre-stream-processing_prd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:12
+      ports:
+      - containerPort: 8080
+  loadbalancers:
+  - lbname: cre_cre-stream-processing_prd_lb
+    function: default
+    ports:
+      - port: 8080
+        targetport: 8080
