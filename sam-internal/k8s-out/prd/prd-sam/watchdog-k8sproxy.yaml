@@ -33,7 +33,6 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        master: "true"
         pool: prd-sam
       volumes:
       - configMap:

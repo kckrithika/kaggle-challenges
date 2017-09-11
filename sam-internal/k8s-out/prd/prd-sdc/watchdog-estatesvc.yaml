@@ -32,7 +32,6 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        master: "true"
         pool: prd-sdc
       volumes:
       - configMap:
