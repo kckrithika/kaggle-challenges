@@ -45,7 +45,5 @@ system:
   - lbname: geoip-client-lb
     function: geoip-client
     ports:
-      - port: 9991
-        targetport: 9991
       - port: 7080
         targetport: 7080
