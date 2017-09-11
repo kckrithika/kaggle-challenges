@@ -38,7 +38,7 @@ system:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
+          initialDelaySeconds: 100
           periodSeconds: 5
 
     - name: linkerd
