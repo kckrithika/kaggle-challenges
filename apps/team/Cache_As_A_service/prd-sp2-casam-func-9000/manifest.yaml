@@ -58,7 +58,7 @@ system:
       readinessProbe:
         httpGet:
           path: /ready.jsp
-          port: 12100
+          port: 9000
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
