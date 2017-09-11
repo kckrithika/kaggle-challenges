@@ -27,7 +27,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7080
-        name: sherpa-geoip-adm
+        name: shp-geoip-adm
       livenessProbe:
         exec:
           command:
