@@ -43,3 +43,4 @@ imagePromotionPrefixRepl:
   chatbots/: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/chatbots/
   ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam
   tnrp/: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/
+  docker-sfci-rc/: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/
