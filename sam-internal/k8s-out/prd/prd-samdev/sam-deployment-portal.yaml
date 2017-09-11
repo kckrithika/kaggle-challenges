@@ -40,7 +40,6 @@ spec:
         workingDir: /sam
       hostNetwork: true
       nodeSelector:
-        master: "true"
         pool: prd-samdev
       volumes:
       - hostPath:

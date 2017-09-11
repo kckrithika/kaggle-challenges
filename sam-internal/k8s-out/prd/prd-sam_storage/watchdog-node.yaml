@@ -39,7 +39,6 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        master: "true"
         pool: prd-sam_storage
       volumes:
       - hostPath:

@@ -37,7 +37,6 @@ spec:
           name: kubeconfig
       hostNetwork: true
       nodeSelector:
-        master: "true"
         pool: prd-sdc
       volumes:
       - hostPath:
