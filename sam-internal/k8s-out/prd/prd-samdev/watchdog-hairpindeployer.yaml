@@ -52,7 +52,7 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: prd-samdev
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service

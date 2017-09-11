@@ -36,7 +36,7 @@ spec:
           name: sfdc-volume
       hostNetwork: true
       nodeSelector:
-        pool: prd-sam_storage
+        master: "true"
       volumes:
       - hostPath:
           path: /data/certs

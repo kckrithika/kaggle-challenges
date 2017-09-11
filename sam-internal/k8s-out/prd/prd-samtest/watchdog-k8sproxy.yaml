@@ -34,7 +34,6 @@ spec:
       hostNetwork: true
       nodeSelector:
         master: "true"
-        pool: prd-samtest
       volumes:
       - configMap:
           name: watchdog

@@ -66,8 +66,12 @@ local samimages = import "samimages.jsonnet";
                }
             ],
             "hostNetwork": true,
-            "nodeSelector": {
-               "pool": configs.estate
+            nodeSelector: {
+            } +
+            if configs.kingdom == "prd" then {
+                  master: "true"
+            } else {
+                  pool: configs.estate
             },
             "volumes": configs.cert_volumes + [
                configs.cert_volume,
