@@ -27,12 +27,12 @@ system:
           value: true
         # Matches the external port on the load balancer (9001 for SAM LB; 12100 for L4-SLB)
         - name: PUBLIC_PORT
-          value: 12100
+          value: 9001
         # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
         # "samcaas2-caasminion2-2-prd.eng.sfdc.net" for SAM LB,
         # "csrlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: csrlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
+          value: samcaas2-caasminion2-2-prd.eng.sfdc.net
         - name: PORT
           value: 12100
 
