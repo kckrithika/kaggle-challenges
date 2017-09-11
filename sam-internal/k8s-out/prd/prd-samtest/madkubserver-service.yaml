@@ -5,6 +5,7 @@ metadata:
   name: madkubserver
   namespace: sam-system
 spec:
+  clusterIP: 10.254.208.254
   ports:
   - name: madkubapitls
     port: 32007
