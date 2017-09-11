@@ -43,7 +43,6 @@ system:
 
     - name: linkerd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/geoip-linkerd:1.0
-      args: ["-s", "linkerd-client"]
       ports:
       - name: admin-port
         containerPort: 9991
