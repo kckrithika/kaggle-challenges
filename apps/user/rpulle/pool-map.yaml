@@ -8,3 +8,6 @@ apps:
  rpc-server:
   - prd/prd-sam
 
+ geoip-client:
+  - prd/prd-sam
+
