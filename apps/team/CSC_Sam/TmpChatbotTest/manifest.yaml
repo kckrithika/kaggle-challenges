@@ -17,7 +17,7 @@ system:
           path: /
           port: 8080
     - name: test2
-      image: sfci/dci/chatbot-runtime:2
+      image: docker-sfci-rc/sfci/dci/chatbot-runtime:2
       livenessProbe:
         initialDelaySeconds: 5
         httpGet:
