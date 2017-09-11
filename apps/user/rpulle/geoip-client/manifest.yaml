@@ -41,22 +41,6 @@ system:
           initialDelaySeconds: 100
           periodSeconds: 5
 
-    - name: linkerd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/geoip-linkerd:1.0
-      ports:
-      - name: admin-port
-        containerPort: 9991
-      - name: in-port
-        containerPort: 10003
-      - name: out-port
-        containerPort: 7020
-      livenessProbe:
-        exec:
-          command:
-            - "./is-alive.sh" 
-          initialDelaySeconds: 10
-          periodSeconds: 5
-
   loadbalancers:
   - lbname: geoip-client-lb
     function: geoip-client
