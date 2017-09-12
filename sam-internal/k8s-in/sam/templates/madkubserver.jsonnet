@@ -34,7 +34,7 @@ if configs.estate == "prd-samtest" then {
               "--token-folder", "/tokens/",
               "--service-hostname", "$(MADKUBSERVER_SERVICE_HOST)"
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-54795af-20170830-225547",
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-bf86658-20170912-161741",
             name: "madkubserver",
             ports: [
               {
