@@ -35,10 +35,10 @@ dfw,sp1,sp-na8-c1,dfw,sp1
 dfw,sp1,sp-na8-pc1,dfw,sp1
 ----------------------- dfw/sp1 End -----------------------
 ----------------------- dfw/sp2 Start -----------------------
-dfw,sp2,sp-cs60-c1,dfw,sp2
-dfw,sp2,sp-cs60-pc1,dfw,sp2
-dfw,sp2,sp-cs61-c1,dfw,sp2
-dfw,sp2,sp-cs61-pc1,dfw,sp2
+dfw,sp2,sp-cs60-c1,phx,sp2
+dfw,sp2,sp-cs60-pc1,phx,sp2
+dfw,sp2,sp-cs61-c1,phx,sp2
+dfw,sp2,sp-cs61-pc1,phx,sp2
 dfw,sp2,sp-cs62-c1,dfw,sp2
 dfw,sp2,sp-cs62-pc1,dfw,sp2
 dfw,sp2,sp-cs63-c1,dfw,sp2
@@ -47,8 +47,8 @@ dfw,sp2,sp-na35-c1,dfw,sp2
 dfw,sp2,sp-na35-pc1,dfw,sp2
 dfw,sp2,sp-na37-c1,dfw,sp2
 dfw,sp2,sp-na37-pc1,dfw,sp2
-dfw,sp2,sp-na38-c1,dfw,sp2
-dfw,sp2,sp-na38-pc1,dfw,sp2
+dfw,sp2,sp-na38-c1,phx,sp2
+dfw,sp2,sp-na38-pc1,phx,sp2
 dfw,sp2,sp-na42-c1,dfw,sp2
 dfw,sp2,sp-na42-pc1,dfw,sp2
 dfw,sp2,sp-na43-c1,dfw,sp2
@@ -129,6 +129,8 @@ frf,sp1,sp-cs89-c1,frf,sp1
 frf,sp1,sp-cs89-pc1,frf,sp1
 frf,sp1,sp-eu11-c1,par,sp1
 frf,sp1,sp-eu11-pc1,par,sp1
+frf,sp1,sp-eu2-c1,lon,sp9
+frf,sp1,sp-eu2-pc1,lon,sp9
 frf,sp1,sp-eu4-c1,lon,sp9
 frf,sp1,sp-eu4-pc1,lon,sp9
 frf,sp1,sp-eu6-c1,lon,sp9
@@ -228,17 +230,19 @@ phx,sp3,sp-cs58-pc1,phx,sp3
 ----------------------- phx/sp3 End -----------------------
 ----------------------- phx/sp4 Start -----------------------
 ----------------------- phx/sp4 End -----------------------
+----------------------- prd/sp2 Start -----------------------
+----------------------- prd/sp2 End -----------------------
 ----------------------- ukb/sp1 Start -----------------------
-ukb,sp1,sp-ap0-c1,tyo,Unknown
-ukb,sp1,sp-ap0-pc1,tyo,Unknown
-ukb,sp1,sp-ap1-c1,tyo,Unknown
-ukb,sp1,sp-ap1-pc1,tyo,Unknown
+ukb,sp1,sp-ap0-c1,hnd,sp1
+ukb,sp1,sp-ap0-pc1,hnd,sp1
+ukb,sp1,sp-ap1-c1,hnd,sp1
+ukb,sp1,sp-ap1-pc1,hnd,sp1
 ukb,sp1,sp-ap2-c1,tyo,Unknown
 ukb,sp1,sp-ap2-pc1,tyo,Unknown
-ukb,sp1,sp-cs31-c1,tyo,Unknown
-ukb,sp1,sp-cs31-pc1,tyo,Unknown
-ukb,sp1,sp-cs5-c1,tyo,Unknown
-ukb,sp1,sp-cs5-pc1,tyo,Unknown
-ukb,sp1,sp-cs6-c1,tyo,Unknown
-ukb,sp1,sp-cs6-pc1,tyo,Unknown
+ukb,sp1,sp-cs31-c1,hnd,sp1
+ukb,sp1,sp-cs31-pc1,hnd,sp1
+ukb,sp1,sp-cs5-c1,hnd,sp1
+ukb,sp1,sp-cs5-pc1,hnd,sp1
+ukb,sp1,sp-cs6-c1,hnd,sp1
+ukb,sp1,sp-cs6-pc1,hnd,sp1
 ----------------------- ukb/sp1 End -----------------------
