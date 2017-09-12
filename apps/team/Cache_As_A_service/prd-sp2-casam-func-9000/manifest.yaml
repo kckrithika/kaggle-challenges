@@ -9,13 +9,13 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.2-0000041-96edc671
+      image: tnrp/casam/coreapp:210.4-0000043-2629ea9f
 
       env:
         - name: DEPLOYMENT
-          value: A
+          value: B
         - name: DB_USER
-          value: bashful
+          value: happy
 
 
         # If the count is changed above, the same value must be set for the NODES env variable below
