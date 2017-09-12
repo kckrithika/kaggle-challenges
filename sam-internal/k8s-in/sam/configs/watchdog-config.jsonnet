@@ -14,8 +14,7 @@ local samimages = import "samimages.jsonnet";
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "deploymentChecker", until: "2017/09/15" },
-    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/1" },
-  ],
+  ] + if configs.kingdom == "prd" then [{ estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" }] else [{ estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/1" }],
 
   # Shared
   caFile: configs.caFile,
@@ -27,11 +26,11 @@ local samimages = import "samimages.jsonnet";
   smtpServer: configs.smtpServer,
   sender: "sam-alerts@salesforce.com",
   recipient: (
-	if configs.estate == "prd-sdc" then "sdn@salesforce.com" 
+	if configs.estate == "prd-sdc" then "sdn@salesforce.com"
 	else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
 	else if configs.estate == "prd-samdev" then ""
 	else if configs.estate == "prd-samtest" then ""
-	else if configs.kingdom == "prd" then "sam@salesforce.com" 
+	else if configs.kingdom == "prd" then "sam@salesforce.com"
 	else "sam-alerts@salesforce.com"),
 
   # K8s checker
@@ -39,16 +38,16 @@ local samimages = import "samimages.jsonnet";
   # Puppet
   maxUptimeSampleSize: 5,
   # Pod
-  podNamespacePrefixBlacklist: "sam-watchdog",  
+  podNamespacePrefixBlacklist: "sam-watchdog",
   # Sdp
   sdpEndpoint: "http://localhost:39999",
   # Synthetic
   laddr: "0.0.0.0:8083",
   imageName: samimages.hypersam,
-} + 
+} +
 (
   if configs.kingdom == "prd" then {
-    deploymentNamespacePrefixWhitelist: "sam-system,csc-sam" 
+    deploymentNamespacePrefixWhitelist: "sam-system,csc-sam"
   } else if configs.kingdom == "iad" then {
   } else {}
 )
