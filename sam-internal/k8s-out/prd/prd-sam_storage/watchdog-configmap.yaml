@@ -45,6 +45,15 @@ data:
             "iad-sam"
           ],
           "until": "2017/09/15"
+        },
+        {
+          "checker": "estatesvcChecker",
+          "estates": [
+            "prd-sam",
+            "prd-samtest",
+            "prd-samdev"
+          ],
+          "until": "2017/10/1"
         }
       ],
       "tlsEnabled": true
