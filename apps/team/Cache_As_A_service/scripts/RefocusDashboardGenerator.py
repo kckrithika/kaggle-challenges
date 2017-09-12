@@ -12,10 +12,17 @@ parser.add_argument('-metadata_dir', action='store', dest='metadata_dir',
                     help='Path of the directory where metadata is present.')
 parser.add_argument('-output_dir', action='store', dest='output_dir',
                     help='Path of the directory where manifest will be generated.')
+parser.add_argument('-auth_token', action='store', dest='auth_token',
+                    help='Auth Token for refocus.')
+parser.add_argument('-generate_only_config', action='store_false', dest='generate_only_config',
+                    help='Generate only refocus pyplyn config')
+
 
 arguments = parser.parse_args()
 metadata_dir = arguments.metadata_dir
 output_dir = arguments.output_dir
+auth_token = arguments.auth_token
+generate_only_config = arguments.generate_only_config
 
 def loadTemplates():
     refocusSubjectsTemplateFileName = "metadata/templates/refocus-subjects.yaml";
@@ -29,20 +36,21 @@ def loadTemplates():
     loadTemplates.refocusExpressionTemplate = Template(refocusSubjectsTemplateFile.read());
 
 def createSubject(subjectJson):
-    try:
+    if not generate_only_config:
+        try:
+            subjectJson = ast.literal_eval(subjectJson)
+            jsonVal = json.dumps(subjectJson)
+            req = urllib2.Request(url)
+            req.add_header('Content-Type', 'application/json')
+            req.add_header('Authorization', auth_token)
+            req.add_header('method', 'POST')
+            response = urllib2.urlopen(req, jsonVal)
+            print response
+        except Exception as ex:
+            print "Failed with exception " + ex.message + " for while processing : " + str(subjectJson)
+        else:
+            print "Success"
 
-        subjectJson = ast.literal_eval(subjectJson)
-        jsonVal = json.dumps(subjectJson)
-        req = urllib2.Request(url)
-        req.add_header('Content-Type', 'application/json')
-        req.add_header('Authorization', ' XXX ')
-        req.add_header('method', 'POST')
-        response = urllib2.urlopen(req, jsonVal)
-        print response
-    except Exception as ex:
-        print "Failed with exception " + ex.message + " for while processing : " + str(subjectJson)
-    else:
-        print "Success"
 
 
 def getRefocusSubjectJson(name, description, path):

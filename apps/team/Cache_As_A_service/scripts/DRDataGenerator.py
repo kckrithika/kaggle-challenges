@@ -221,15 +221,16 @@ def main():
                 if( podName not in podNames):
                     podNames.add(podName)
                     drSpodAndDC = getDRDCAndSpod(podName, pods)
-                    if drSpodAndDC.getSpodName() is None:
-                        drSpodName = 'Unknown'
-                    else:
-                        drSpodName = drSpodAndDC.getSpodName()
+                    if drSpodAndDC is not None:
+                        if drSpodAndDC.getSpodName() is None:
+                            drSpodName = 'Unknown'
+                        else:
+                            drSpodName = drSpodAndDC.getSpodName()
 
-                    drMapperFile.write(kingdomName + ',' + spodName + ',sp-' + podName \
-                              + '-c1,' + drSpodAndDC.getDcName() + ',' + drSpodName+"\n")
-                    drMapperFile.write(kingdomName + ',' + spodName + ',sp-' + podName \
-                              + '-pc1,' + drSpodAndDC.getDcName() + ',' + drSpodName+"\n")
+                        drMapperFile.write(kingdomName + ',' + spodName + ',sp-' + podName \
+                                  + '-c1,' + drSpodAndDC.getDcName() + ',' + drSpodName+"\n")
+                        drMapperFile.write(kingdomName + ',' + spodName + ',sp-' + podName \
+                                  + '-pc1,' + drSpodAndDC.getDcName() + ',' + drSpodName+"\n")
             drMapperFile.write("----------------------- " + kingdomName + "/" + spodName + " End -----------------------\n")
 
     drMapperFile.close()

@@ -23,6 +23,18 @@ POD sp-na32-c1 exist in Caas ClusterDetails
 POD sp-na32-pc1 exist in Caas ClusterDetails
 POD sp-na32-c1 exist in Caas ClusterDetails for DR
 POD sp-na32-pc1 exist in Caas ClusterDetails for DR
+POD sp-cs60-c1 exist in Caas ClusterDetails
+POD sp-cs60-pc1 exist in Caas ClusterDetails
+POD sp-cs60-c1 exist in Caas ClusterDetails for DR
+POD sp-cs60-pc1 exist in Caas ClusterDetails for DR
+POD sp-cs61-c1 exist in Caas ClusterDetails
+POD sp-cs61-pc1 exist in Caas ClusterDetails
+POD sp-cs61-c1 exist in Caas ClusterDetails for DR
+POD sp-cs61-pc1 exist in Caas ClusterDetails for DR
+POD sp-na38-c1 exist in Caas ClusterDetails
+POD sp-na38-pc1 exist in Caas ClusterDetails
+POD sp-na38-c1 exist in Caas ClusterDetails for DR
+POD sp-na38-pc1 exist in Caas ClusterDetails for DR
 POD sp-cs10-c1 exist in Caas ClusterDetails
 POD sp-cs10-pc1 exist in Caas ClusterDetails
 POD sp-cs10-c1 exist in Caas ClusterDetails for DR
@@ -111,8 +123,8 @@ POD sp-eu11-c1 exist in Caas ClusterDetails
 POD sp-eu11-pc1 exist in Caas ClusterDetails
 POD sp-eu11-c1 exist in Caas ClusterDetails for DR
 POD sp-eu11-pc1 exist in Caas ClusterDetails for DR
-ERROR: POD sp-eu2-c1 does not exist in Caas ClusterDetails
-ERROR: POD sp-eu2-pc1 does not exist in Caas ClusterDetails
+POD sp-eu2-c1 exist in Caas ClusterDetails
+POD sp-eu2-pc1 exist in Caas ClusterDetails
 ERROR: POD sp-eu2-c1 does not exist in Caas ClusterDetails for DR
 ERROR: POD sp-eu2-pc1 does not exist in Caas ClusterDetails for DR
 POD sp-eu4-c1 exist in Caas ClusterDetails
@@ -308,14 +320,6 @@ POD sp-na8-c1 exist in Caas ClusterDetails
 POD sp-na8-pc1 exist in Caas ClusterDetails
 POD sp-na8-c1 exist in Caas ClusterDetails for DR
 POD sp-na8-pc1 exist in Caas ClusterDetails for DR
-POD sp-cs60-c1 exist in Caas ClusterDetails
-POD sp-cs60-pc1 exist in Caas ClusterDetails
-POD sp-cs60-c1 exist in Caas ClusterDetails for DR
-POD sp-cs60-pc1 exist in Caas ClusterDetails for DR
-POD sp-cs61-c1 exist in Caas ClusterDetails
-POD sp-cs61-pc1 exist in Caas ClusterDetails
-POD sp-cs61-c1 exist in Caas ClusterDetails for DR
-POD sp-cs61-pc1 exist in Caas ClusterDetails for DR
 POD sp-cs62-c1 exist in Caas ClusterDetails
 POD sp-cs62-pc1 exist in Caas ClusterDetails
 POD sp-cs62-c1 exist in Caas ClusterDetails for DR
@@ -332,10 +336,6 @@ POD sp-na37-c1 exist in Caas ClusterDetails
 POD sp-na37-pc1 exist in Caas ClusterDetails
 POD sp-na37-c1 exist in Caas ClusterDetails for DR
 POD sp-na37-pc1 exist in Caas ClusterDetails for DR
-POD sp-na38-c1 exist in Caas ClusterDetails
-POD sp-na38-pc1 exist in Caas ClusterDetails
-POD sp-na38-c1 exist in Caas ClusterDetails for DR
-POD sp-na38-pc1 exist in Caas ClusterDetails for DR
 POD sp-na42-c1 exist in Caas ClusterDetails
 POD sp-na42-pc1 exist in Caas ClusterDetails
 POD sp-na42-c1 exist in Caas ClusterDetails for DR
