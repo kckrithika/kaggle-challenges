@@ -8,7 +8,7 @@ system:
   - name: default
     count: 2
     containers:
-    - name: cre-stream-processing-prd
+    - name: cre-sp-prd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:12
       ports:
       - containerPort: 8080
@@ -18,7 +18,7 @@ system:
           port: 8080
         initialDelaySeconds: 30
   loadbalancers:
-  - lbname: cre-stream-processing-prd-lb
+  - lbname: cre-sp-prd-lb
     function: default
     nodeExposed: true
     ports:
