@@ -14,7 +14,8 @@ local samimages = import "samimages.jsonnet";
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "deploymentChecker", until: "2017/09/15" },
-  ] + if configs.kingdom == "prd" then [{ estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" }] else [{ estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/1" }],
+    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" }
+  ],
 
   # Shared
   caFile: configs.caFile,
