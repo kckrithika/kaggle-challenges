@@ -36,7 +36,7 @@
                 "version": "2.4.6"
             }, 
             {
-                "splunkQueryEarliestTime": "24h"
+                "splunkQueryEarliestTime": "30d"
             }, 
             {
                 "announcerContainerMemoryRequest": "200M"
@@ -76,6 +76,12 @@
     }, 
     {
         "dc-cluster": [
+            {
+                "splunkQueryLatestTime": "5d"
+            }, 
+            {
+                "splunkQueryEarliestTime": "7d"
+            }, 
             {
                 "redisAnnouncerDockerImgVer": "2.4.6-0000010-14425579"
             }

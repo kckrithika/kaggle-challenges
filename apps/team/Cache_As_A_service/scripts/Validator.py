@@ -124,8 +124,11 @@ for groupDetail in groupDetails:
     else:
         redisCountStatus = textColors.WARNING + 'Unknown : No data found' + textColors.ENDC
 
+    latestTime = configMapForGrp['splunkQueryLatestTime']
+    if latestTime != 'now':
+        latestTime = "-" + latestTime;
     kwargsExport = {"earliest_time": "-" + configMapForGrp['splunkQueryEarliestTime'],
-                     "latest_time": configMapForGrp['splunkQueryLatestTime']}
+                     "latest_time": latestTime}
     splunkQueryTemplate = Template(configMapForGrp['spunkQuery'])
     querySubstitutes = {'ClusterName': clusterName}
     queryExport = splunkQueryTemplate.substitute(querySubstitutes)
