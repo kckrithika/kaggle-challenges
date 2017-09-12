@@ -13,7 +13,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                         command: [
                             "/bin/bash",
                             "-xe",
-                            "/config/fixkubeconfig.sh",
+                            "/config/ops-adhoc.sh",
                         ],
                         name: "watchdog",
                         resources: {

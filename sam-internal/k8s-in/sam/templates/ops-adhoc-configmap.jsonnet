@@ -11,11 +11,11 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     data: {} +
     if configs.estate == "prd-samtest" then 
     {
-      "ops-adhoc": std.toString(importstr "scripts/ops-adhoc-fixkubeconfig.sh")
+      "ops-adhoc.sh": std.toString(importstr "scripts/ops-adhoc-fixkubeconfig.sh")
     } 
     else
     {
-      "ops-adhoc": std.toString(importstr "scripts/ops-adhoc-nop.sh")
+      "ops-adhoc.sh": std.toString(importstr "scripts/ops-adhoc-nop.sh")
     }
 } else 
   "SKIP"

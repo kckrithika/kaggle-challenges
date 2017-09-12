@@ -15,7 +15,7 @@ spec:
       - command:
         - /bin/bash
         - -xe
-        - /config/fixkubeconfig.sh
+        - /config/ops-adhoc.sh
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001231-6ed4362c
         name: watchdog
         resources:
