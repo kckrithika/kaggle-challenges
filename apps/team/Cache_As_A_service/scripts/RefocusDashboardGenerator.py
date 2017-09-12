@@ -82,7 +82,7 @@ def createRefocusDashboard():
     kingdoms = getAllKingdoms(metadata_dir)
     baseName = 'CAAS'
     data = getRefocusSubjectJson(baseName, baseName, "")
-    #createSubject(data)
+    createSubject(data)
 
     for kingdomName in kingdoms:
         if kingdomName != 'prd':  #Ignore internal enviorment
