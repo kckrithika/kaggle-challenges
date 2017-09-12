@@ -36,7 +36,6 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                             # TODO: We should kill these flags and use the value from liveConfig
                             "-deployer-recipient="+samwdconfigmap.recipient,
                         ]
-                        + (if configs.estate == "prd-samdev" then ["-invalidFlag=validValue" ] else [])
                         + samwdconfig.shared_args
                         # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down
                         + (if configs.estate == "prd-samtest" then [ "-snoozedAlarms=hairpinChecker=2017/06/02" ] else [])
