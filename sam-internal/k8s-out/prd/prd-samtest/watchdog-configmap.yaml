@@ -13,7 +13,7 @@ data:
       "maxUptimeSampleSize": 5,
       "podNamespacePrefixBlacklist": "sam-watchdog",
       "rcImtEndpoint": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
-      "recipient": "sam@salesforce.com",
+      "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
       "sender": "sam-alerts@salesforce.com",
       "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
@@ -45,6 +45,15 @@ data:
             "iad-sam"
           ],
           "until": "2017/09/15"
+        },
+        {
+          "checker": "estatesvcChecker",
+          "estates": [
+            "prd-sam",
+            "prd-samtest",
+            "prd-samdev"
+          ],
+          "until": "2017/10/1"
         }
       ],
       "tlsEnabled": true

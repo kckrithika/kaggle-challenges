@@ -14,6 +14,7 @@ local samimages = import "samimages.jsonnet";
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "deploymentChecker", until: "2017/09/15" },
+    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/1" },
   ],
 
   # Shared
@@ -25,7 +26,13 @@ local samimages = import "samimages.jsonnet";
   rcImtEndpoint: configs.rcImtEndpoint,
   smtpServer: configs.smtpServer,
   sender: "sam-alerts@salesforce.com",
-  recipient: (if configs.estate == "prd-sdc" then "sdn@salesforce.com" else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com" else if configs.kingdom == "prd" then "sam@salesforce.com" else "sam-alerts@salesforce.com"),
+  recipient: (
+	if configs.estate == "prd-sdc" then "sdn@salesforce.com" 
+	else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
+	else if configs.estate == "prd-samdev" then ""
+	else if configs.estate == "prd-samtest" then ""
+	else if configs.kingdom == "prd" then "sam@salesforce.com" 
+	else "sam-alerts@salesforce.com"),
 
   # K8s checker
   k8sproxyEndpoint: "http://localhost:40000",
