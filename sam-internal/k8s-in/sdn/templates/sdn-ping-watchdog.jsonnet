@@ -53,7 +53,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        "volumeMounts": [
+                        "volumeMounts": configs.cert_volume_mounts + [
                             {
                                 "mountPath": "/data/certs",
                                 "name": "certs"
@@ -65,7 +65,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         ]
                     }
                 ],
-                "volumes": [
+                "volumes": configs.cert_volumes + [
                     {
                         "hostPath": {
                             "path": "/data/certs"
