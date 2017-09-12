@@ -11,6 +11,8 @@ if configs.estate == "prd-samtest" then {
     namespace: "sam-system"
   },
   spec: {
+    # Hardcoding the ClusterIp for now as we dont have DNS/SLB
+    clusterIP: "10.254.208.254",
     ports: [
       {
         name: "madkubapitls",
