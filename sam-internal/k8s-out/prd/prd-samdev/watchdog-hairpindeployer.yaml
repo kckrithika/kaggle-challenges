@@ -32,7 +32,6 @@ spec:
         - -deployer-smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
         - -deployer-sender=sam-alerts@salesforce.com
         - -deployer-recipient=
-        - -invalidFlag=validValue
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
