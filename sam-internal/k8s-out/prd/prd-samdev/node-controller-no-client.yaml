@@ -30,6 +30,8 @@ spec:
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yunfan.wang/hypersam:20170810_102853.d361163c.clean.c02sx27gg8wl
         name: node-controller-no-client
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -37,6 +39,9 @@ spec:
       nodeSelector:
         pool: prd-samdev
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

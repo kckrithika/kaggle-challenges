@@ -124,13 +124,13 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     # Cert volume list
     cert_volume_mounts: (
-        if estate == "prd-samtest" then
+        if estate == "prd-samtest" || estate == "prd-samdev" then
             [self.maddog_cert_volume_mount]
         else
             []
     ),
     cert_volumes: (
-        if estate == "prd-samtest" then
+        if estate == "prd-samtest" || estate == "prd-samdev" then
             [self.maddog_cert_volume]
         else
             []
