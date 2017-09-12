@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: ops-adhoc
+  name: ops-adhoc
+spec:
+  template:
+    metadata:
+      labels:
+        app: ops-adhoc
+        daemonset: "true"
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - -xe
+        - /config/fixkubeconfig.sh
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001231-6ed4362c
+        name: watchdog
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: watchdog
+        name: config
