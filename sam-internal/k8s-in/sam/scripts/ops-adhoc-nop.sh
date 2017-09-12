@@ -1,4 +1,4 @@
-#/bin/bash -xe
+#!/bin/bash -xe
 
 # This is a placeholder script when we dont want to use this feature.
 # Never add commands to this file.  When you want to use this feature, add a new script side-by-side, and tweak ops-adhoc-configmap.jsonnet in templates
