@@ -34,7 +34,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                 ],
                 volumes: [
                    configs.kube_config_volume,
-                   configs.config_volume("watchdog"),
+                   configs.config_volume("ops-adhoc"),
                 ]
             },
             metadata: {

@@ -36,5 +36,5 @@ spec:
           path: /etc/kubernetes
         name: kubeconfig
       - configMap:
-          name: watchdog
+          name: ops-adhoc
         name: config
