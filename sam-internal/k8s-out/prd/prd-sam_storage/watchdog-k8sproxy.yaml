@@ -33,7 +33,7 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: prd-sam_storage
+        master: "true"
       volumes:
       - configMap:
           name: watchdog

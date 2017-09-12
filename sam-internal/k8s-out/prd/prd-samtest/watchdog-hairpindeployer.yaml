@@ -54,7 +54,6 @@ spec:
       hostNetwork: true
       nodeSelector:
         master: "true"
-        pool: prd-samtest
       volumes:
       - hostPath:
           path: /etc/pki_service

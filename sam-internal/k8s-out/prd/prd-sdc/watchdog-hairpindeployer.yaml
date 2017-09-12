@@ -50,7 +50,7 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: prd-sdc
+        master: "true"
       volumes:
       - hostPath:
           path: /data/certs

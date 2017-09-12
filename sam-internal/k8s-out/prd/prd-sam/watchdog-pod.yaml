@@ -42,7 +42,7 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: prd-sam
+        master: "true"
       volumes:
       - hostPath:
           path: /data/certs
