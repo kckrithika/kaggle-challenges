@@ -15,7 +15,5 @@ system:
       - containerPort: 9000
       - containerPort: 15372
       livenessProbe:
-        initialDelaySeconds: 15
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command: ["true"]
