@@ -15,7 +15,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                             "-xe",
                             "/config/ops-adhoc.sh",
                         ],
-                        name: "watchdog",
+                        name: "ops-adhoc",
                         resources: {
                             requests: {
                                 cpu: "0.5",
