@@ -46,7 +46,7 @@ if configs.estate == "prd-sdc" then {
                                 "value": "/config/kubeconfig"
                             }
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.cert_volume_mounts + [
                             {
                                 "mountPath": "/data/certs",
                                 "name": "certs"
@@ -58,7 +58,7 @@ if configs.estate == "prd-sdc" then {
                         ]
                     }
                 ],
-                "volumes": [
+                "volumes": configs.cert_volumes + [
                     {
                         "hostPath": {
                             "path": "/data/certs"
