@@ -13,7 +13,7 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: B
+          value: A
         - name: DB_USER
           value: bashful
 
