@@ -8,13 +8,19 @@ system:
   - name: default
     count: 2
     containers:
-    - name: cre_cre-stream-processing_prd
+    - name: cre-stream-processing-prd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:12
       ports:
       - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /_health # root directory is 404ing for now so use this endpoint
+          port: 8080
+        initialDelaySeconds: 30
   loadbalancers:
-  - lbname: cre_cre-stream-processing_prd_lb
+  - lbname: cre-stream-processing-prd-lb
     function: default
+    nodeExposed: true
     ports:
-      - port: 8080
+      - port: 8081
         targetport: 8080
