@@ -31,6 +31,9 @@ spec:
         - mountPath: /config
           name: config
       hostNetwork: true
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
       volumes:
       - hostPath:
           path: /etc/kubernetes

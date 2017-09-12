@@ -6,6 +6,11 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     spec: {
         template: {
             spec: {
+                # We need this so we can mutate kubeconfig
+                securityContext: {
+                  runAsUser: 0,
+                  fsGroup: 0,
+                },
                 hostNetwork: true,
                 containers: [
                     {
