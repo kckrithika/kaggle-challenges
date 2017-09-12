@@ -20,7 +20,6 @@ if configs.kingdom == "prd" then {
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
                         ]
-                        + (if configs.estate == "prd-samdev" then ["-invalidFlag=validValue" ] else [])
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: [
