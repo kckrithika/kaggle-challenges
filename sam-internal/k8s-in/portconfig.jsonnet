@@ -27,6 +27,8 @@
         canaryServiceNodePort: 32136,
         alphaServiceNodePort: 32137,
         bravoServiceNodePort: 32138,
-        slbPortalServiceNodePort: 32139
+        slbPortalServiceNodePort: 32139,
+        bravoServiceNodePort1: 32140,
+        bravoServiceNodePort2: 32141,
     }
 }
