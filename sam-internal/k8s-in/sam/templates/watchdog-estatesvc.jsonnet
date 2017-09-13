@@ -11,7 +11,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "watchdog-estatesvc",
-                        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001248-9538cbb,
+                        image: samimages.hypersam,
                         command:[
                             "/sam/watchdog",
                             "-role=ESTATESVC",
