@@ -26,7 +26,7 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /certificates
+      - mountPath: /var/lib/report-collector/certificates/server/
         name: servercertvol
         readOnly: true
       env:
@@ -43,9 +43,9 @@ system:
       - name: ReportCollector_app_https_caCertificate
         value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
       - name: ReportCollector_app_https_certificate
-        value: /certificates/rc_server.crt
+        value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
-        value: /certificates/rc_server.key
+        value: /var/lib/report-collector/certificates/server/rc_server.key
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
