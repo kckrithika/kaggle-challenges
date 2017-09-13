@@ -13,6 +13,7 @@ apps:
   - yul/yul-sam
   - hnd/hnd-sam
   - cdu/cdu-sam
+  - syd/syd-sam
  TmpChatbotTest:
   - prd/prd-sam
   - frf/frf-sam
