@@ -13,9 +13,9 @@ system:
       ports:
       - containerPort: 8080
       livenessProbe:
-        httpGet:
-          path: /_health # root directory is 404ing for now so use this endpoint
-          port: 8080
+        exec:
+            command:
+            - ls
         initialDelaySeconds: 30
   loadbalancers:
   - lbname: cre-sp-prd-lb
