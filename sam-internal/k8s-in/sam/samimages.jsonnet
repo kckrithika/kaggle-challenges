@@ -30,6 +30,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,estate-server,hypersam": "sam-0001248-9538cbb8",
         "prd,prd-samdev,estate-server,hypersam": "sam-0001248-9538cbb8",
         "prd,prd-samtest,estate-server,hypersam": "sam-0001248-9538cbb8",
+        "prd,prd-sam_storage,estate-server,hypersam": "sam-0001248-9538cbb8",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
