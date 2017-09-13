@@ -14,7 +14,7 @@ if configs.kingdom == "prd" then {
                 containers: [
                     {
                         name: "estate-server",
-                        image: samimages.hypersam,
+                        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001248-9538cbb8,
                         command:[
                             "/sam/estatesvc/script/estatesvc-wrapper.sh",
                             configs.kingdom,
