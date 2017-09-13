@@ -5006,6 +5006,24 @@
       "superpod": "none"
     },
     {
+      "controlestate": "prd-sam_storage",
+      "estate": "prd-sam_storage",
+      "hostname": "shared0-storagetwosamcompute1-1-prd.eng.sfdc.net",
+      "kingdom": "prd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
+      "controlestate": "prd-sam_storage",
+      "estate": "prd-sam_storage",
+      "hostname": "shared0-storagetwosamcompute1-2-prd.eng.sfdc.net",
+      "kingdom": "prd",
+      "pod": "none",
+      "role": "samcompute",
+      "superpod": "none"
+    },
+    {
       "controlestate": "prd-sam",
       "estate": "prd-sam_warden",
       "hostname": "shared0-samminionwarden1-1-prd.eng.sfdc.net",
