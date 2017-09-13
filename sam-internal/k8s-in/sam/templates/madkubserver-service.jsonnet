@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
   kind: "Service",
   metadata: {
     labels: {

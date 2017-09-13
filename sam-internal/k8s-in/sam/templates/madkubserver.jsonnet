@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
   kind: "Deployment",
   metadata: {
     name: "madkubserver",
@@ -17,7 +17,7 @@ if configs.estate == "prd-samtest" then {
       },
       spec: {
         nodeSelector: {
-          "kubernetes.io/hostname": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net",
+          "master": "true",
         },
         containers: [
           {
