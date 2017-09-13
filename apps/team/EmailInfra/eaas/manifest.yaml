@@ -5,7 +5,7 @@ system:
     email:
       - emailinfrastructure@salesforce.com
   functions:
-  - name: eaas-test
+  - name: eaas
     count: 4 
     strategy:
       type: RollingUpdate
@@ -23,8 +23,8 @@ system:
           path: /manage/health
           port: 15372
   loadbalancers:
-  - lbname: eaas-test-lb
-    function: eaas-test
+  - lbname: eaas-lb
+    function: eaas
     ports:
       - port: 15372
         targetport: 15372
