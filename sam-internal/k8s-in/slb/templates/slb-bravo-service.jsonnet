@@ -27,14 +27,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                          "port": 9091,
                          "protocol": "TCP",
                          "targetPort": 9091,
-                         "nodePort": portconfigs.slb.bravoServiceNodePort
+                         "nodePort": portconfigs.slb.bravoServiceNodePort1
                      },
                      {
                          "name": "slb-bravo-port-2",
                          "port": 9092,
                          "protocol": "TCP",
                          "targetPort": 9092,
-                         "nodePort": portconfigs.slb.bravoServiceNodePort
+                         "nodePort": portconfigs.slb.bravoServiceNodePort2
                      },
             ] else [],
 

@@ -14,12 +14,12 @@ spec:
     protocol: TCP
     targetPort: 9090
   - name: slb-bravo-port-1
-    nodePort: 32138
+    nodePort: 32140
     port: 9091
     protocol: TCP
     targetPort: 9091
   - name: slb-bravo-port-2
-    nodePort: 32138
+    nodePort: 32141
     port: 9092
     protocol: TCP
     targetPort: 9092
