@@ -31,8 +31,8 @@ system:
       - name: LOGGING_DIR
         value: "/log"
       resources:
-        limits: { cpu: "1", memory: "750Mi" }
-        requests: { cpu: "1", memory: "750Mi" }
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
         - mountPath: /dw/data
           name: maxmind-volume
