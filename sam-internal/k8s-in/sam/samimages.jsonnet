@@ -27,6 +27,9 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,service-discovery-module,hypersam": "sam-0001132-d806c518",
         "prd,prd-samdev,service-discovery-module,hypersam": "sam-0001132-d806c518",
         "prd,prd-samtest,service-discovery-module,hypersam": "sam-0001132-d806c518",
+        "prd,prd-sam,estate-server,hypersam": "sam-0001248-9538cbb8",
+        "prd,prd-samdev,estate-server,hypersam": "sam-0001248-9538cbb8",
+        "prd,prd-samtest,estate-server,hypersam": "sam-0001248-9538cbb8",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
