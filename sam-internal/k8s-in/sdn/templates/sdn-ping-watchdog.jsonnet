@@ -51,18 +51,9 @@ if configs.estate == "prd-sdc" then {
                             "periodSeconds": 20
                         },
                         "volumeMounts": configs.cert_volume_mounts + [
-                            {
-                                "mountPath": "/data/certs",
-                                "name": "certs"
-                            },
-                            {
-                                "mountPath": "/kubeconfig",
-                                "name": "kubeconfig"
-                            }
-                            {
-                                "mountPath": "/config",
-                                "name": "config"
-                            }
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
                         ]
                     }
                 ],

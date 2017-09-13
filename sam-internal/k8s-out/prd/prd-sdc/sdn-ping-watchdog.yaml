@@ -48,6 +48,8 @@ spec:
         volumeMounts:
         - mountPath: /data/certs
           name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /config
           name: config
       hostNetwork: true
