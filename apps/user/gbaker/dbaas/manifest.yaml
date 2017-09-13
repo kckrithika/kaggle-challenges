@@ -1,0 +1,24 @@
+ 
+system:
+  functions:
+  - name: dbaas
+    count: 3
+    containers:
+    - name: dbaas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gbaker/dbaas:beta-20170912
+      ports:
+      - containerPort: 8080 
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        initialDelaySeconds: 120
+        timeoutSeconds: 120
+ 
+  loadbalancers:
+  - lbname: dbaaslb
+    function: dbaas
+    nodeExposed: true
+    ports:
+      - port: 48080
+        targetport: 8080
