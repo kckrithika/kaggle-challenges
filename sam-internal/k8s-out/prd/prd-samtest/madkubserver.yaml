@@ -20,9 +20,9 @@ spec:
         - --kubeconfig
         - /kubeconfig
         - --client-cert
-        - /maddog-certs/root/madkubtokenserver/certificates/client.pem
+        - /maddog-certs/root/madkubtokenserver/certificates/madkubtokenserver.pem
         - --client-key
-        - /maddog-certs/root/madkubtokenserver/keys/client-key.pem
+        - /maddog-certs/root/madkubtokenserver/keys/madkubtokenserver-key.pem
         - --maddog-server-ca
         - /maddog-certs/ca/security-ca.pem
         - --cert-folder
