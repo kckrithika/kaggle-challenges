@@ -37,7 +37,7 @@ local samimages = import "samimages.jsonnet";
                      "-laddr=0.0.0.0:8083",
                      "-imageName="+samimages.hypersam
                   ]
-                  + samwdconfig.shared_args,
+                  + samwdconfig.shared_args + (if configs.kingdom == "prd" then [ "-maxdeploymentduration=5m" ] else []),
                   # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                   "ports": [
                       {
