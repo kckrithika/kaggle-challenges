@@ -83,10 +83,10 @@ system:
         maxUnavailable: 0
 
   loadbalancers:
-  - lbname: csrlb
+  - lbname: csrlb-bg
     function: csr-bg
     nodeExposed: true
-    slbEnabled: true
+    slbEnabled: false
     ports:
     - port: 9002
       targetport: 9000
