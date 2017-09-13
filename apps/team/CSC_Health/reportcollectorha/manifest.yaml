@@ -4,9 +4,16 @@ system:
   functions:
   - name: report-collectorha
     count: 3
+    volumes:
+      - name: servercertvol
+        secret:
+          secretName: csc-rc-certificates
+      - name: logvol
+        hostPath:
+          path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.8.0-0000153-c69345fa
+      image: tnrp/csc-health/report-collector:1.9.0-0000161-95d31d29
       ports:
       - name: provider
         containerPort: 8080
@@ -19,11 +26,26 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
+      - mountPath: /var/lib/report-collector/certificates
+        name: servercertvol
+        readOnly: true
       env:
       - name: ReportCollector_redis_host
         value: $(REDISNOHALB_SERVICE_HOST)
       - name: ReportCollector_app_https_enabled
         value: true
+      - name: ReportCollector_app_https_providerPort
+        value: 8443
+      - name: ReportCollector_app_https_consumerPort
+        value: 8444
+      - name: ReportCollector_app_https_clientAuth
+        value: REQUEST
+      - name: ReportCollector_app_https_caCertificate
+        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
+      - name: ReportCollector_app_https_certificate
+        value: /var/lib/report-collector/certificates/rc_server.crt
+      - name: ReportCollector_app_https_privateKey
+        value: /var/lib/report-collector/certificates/rc_server.key
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
@@ -94,10 +116,6 @@ system:
               find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
           done
       ']
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /var/log/report-collector
   - name: redisnoha
     count: 1
     containers:
@@ -124,6 +142,10 @@ system:
       targetport: 8080
     - port: 18444
       targetport: 8081
+    - port: 8443
+      targetport: 8443
+    - port: 8444
+      targetport: 8444
   - lbname: redisnohalb
     function: redisnoha
     nodeExposed: true
