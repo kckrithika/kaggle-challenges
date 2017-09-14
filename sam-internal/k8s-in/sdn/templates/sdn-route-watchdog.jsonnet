@@ -4,7 +4,7 @@ local sdnimages = import "sdnimages.jsonnet";
 local sdnconfig = import "sdnconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
