@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: scone-dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/dfshello:apoorva-20170109
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/dfshello:dfs-20170913
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
