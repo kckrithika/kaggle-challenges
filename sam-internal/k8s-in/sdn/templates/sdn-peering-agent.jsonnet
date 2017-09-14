@@ -59,7 +59,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             
                         ]
                         + (if configs.kingdom == "prd" then [ "--controlEstate="+configs.estate ] else [ "--controlEndpoint="+configs.estate ])
-                        + (if configs.estate == "prd-sdc" then [ "--controlEndpoint="+configs.estate ] else []),
+                        + (if configs.estate == "prd-sdc" then [ "--controlEndpoint=http://10.254.219.222:9108" ] else []),
                         "livenessProbe": {
                             "httpGet": {
                                "path": "/liveness-probe",
