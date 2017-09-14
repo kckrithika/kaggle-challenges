@@ -5,7 +5,7 @@ system:
   functions:
 
   - name: geoip-client
-    count: 2
+    count: 8
     containers:
 
     - name: client
