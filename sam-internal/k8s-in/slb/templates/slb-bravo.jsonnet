@@ -38,13 +38,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         "command":[
                             "/sdn/slb-canary-service",
                             "--serviceName=slb-bravo-svc",
-                            "--port=9090",
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir,
-                            ] + 
-                            if configs.estate == "prd-sdc" then [
-                                "--multiPort=9090,9091,9092"
-                            ] else [],
+                        ] + 
+                        if configs.estate == "prd-sdc" then [
+                            "--ports=9090,9091,9092"
+                        ] else [
+                            "--port=9090",
+                        ],
                         "volumeMounts": [
                             {
                                 "name": "dev-volume",

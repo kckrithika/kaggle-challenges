@@ -17,7 +17,7 @@ spec:
         - --configDir=/host/var/slb/config
         - --templatePath=/sdn/webfiles
         - --port=9112
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000324-608d76f8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000328-eb83c7f6
         name: slb-portal
         volumeMounts:
         - mountPath: /host/var/slb
