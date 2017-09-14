@@ -1,5 +1,3 @@
 apps:
- docker-example-nodejs:
-  - prd/prd-sam
  node-tool-scone:
   - prd/prd-sam
