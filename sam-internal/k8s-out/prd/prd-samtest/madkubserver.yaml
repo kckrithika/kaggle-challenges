@@ -20,11 +20,11 @@ spec:
         - --kubeconfig
         - /kubeconfig
         - --client-cert
-        - /maddog-certs/root/madkubtokenserver/certificates/madkubtokenserver.pem
+        - /etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem
         - --client-key
-        - /maddog-certs/root/madkubtokenserver/keys/madkubtokenserver-key.pem
+        - /etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem
         - --maddog-server-ca
-        - /maddog-certs/ca/security-ca.pem
+        - /etc/pki_service/ca/security-ca.pem
         - --cert-folder
         - /certs/
         - --token-folder
@@ -54,8 +54,8 @@ spec:
           name: datacerts
         - mountPath: /tokens
           name: tokens
-        - mountPath: /maddog-certs/
-          name: maddog-certs
+        - mountPath: /etc/pki_service/
+          name: pki
       - args:
         - /sam/client
         - --madkub-endpoint
@@ -95,7 +95,7 @@ spec:
         - mountPath: /tokens
           name: tokens
         - mountPath: /maddog-certs/
-          name: maddog-certs
+          name: pki
       nodeSelector:
         master: "true"
       restartPolicy: Always
@@ -108,7 +108,7 @@ spec:
         name: kubeconfig-certs
       - hostPath:
           path: /etc/pki_service
-        name: maddog-certs
+        name: pki
       - emptyDir:
           medium: Memory
         name: datacerts
