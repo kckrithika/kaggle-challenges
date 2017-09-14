@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: ops-adhoc
+  name: ops-adhoc
+spec:
+  template:
+    metadata:
+      labels:
+        app: ops-adhoc
+        daemonset: "true"
+    spec:
+      containers:
+      - command:
+        - /bin/bash
+        - -xe
+        - /config/ops-adhoc.sh
+        image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b
+        name: ops-adhoc
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: ops-adhoc
+        name: config
