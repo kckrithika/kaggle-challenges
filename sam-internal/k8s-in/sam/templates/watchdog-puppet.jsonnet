@@ -28,9 +28,9 @@ local samimages = import "samimages.jsonnet";
                         command: [
                             "/sam/watchdog",
                             "-role=PUPPET",
-                            "-watchdogFrequency=5m",
-                            "-alertThreshold=48h",
-                            "-emailFrequency=168h",
+                            "-watchdogFrequency=15m",
+                            "-alertThreshold=1000h",
+                            "-emailFrequency=1000h",
                         ]
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet

@@ -9,12 +9,22 @@ local samimages = import "samimages.jsonnet";
   #
   # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
   snooze: [
-    # [thargrove] Example snoozes that existed previously as flags but are expired.  Can be removed next update
-    { estates: ["prd-samtest"], checker: "kubeApiChecker", until: "2017/06/02" },
+    # WARNING - Mistakes in this section will cause all watchdogs to go into a crash loop!
+    # We plan to fix this soon, but for now be careful and watch the rollout carefully
+    # To manually test parsing, run this from k8s-in folder and look at snooze output:
+    #
+    #  jsonnet/jsonnet sam/configs/watchdog-config.jsonnet -J . -J sam/ -V kingdom=prd -V estate=prd-sam -V template=watchdog-config > /tmp/wdconfig.json && ~/go/bin/watchdog -config /tmp/wdconfig.json
+    #
+ 
+    # Unknown - next time add comment
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "deploymentChecker", until: "2017/09/15" },
-    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" }
+    # [thargrove] Watchdog was crashing because of yaml pkg switch
+    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" },
+    # [thargrove] TNRP changed bot name
+    { estates: ["prd-sam"], checker: "prChecker", until: "2017/10/01" },
+    
   ],
 
   # Shared

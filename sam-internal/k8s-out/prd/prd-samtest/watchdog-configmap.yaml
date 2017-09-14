@@ -19,13 +19,6 @@ data:
       "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
       "snooze": [
         {
-          "checker": "kubeApiChecker",
-          "estates": [
-            "prd-samtest"
-          ],
-          "until": "2017/06/02"
-        },
-        {
           "checker": "nodeChecker",
           "estates": [
             "iad-sam"
@@ -52,6 +45,13 @@ data:
             "prd-sam",
             "prd-samtest",
             "prd-samdev"
+          ],
+          "until": "2017/10/01"
+        },
+        {
+          "checker": "prChecker",
+          "estates": [
+            "prd-sam"
           ],
           "until": "2017/10/01"
         }

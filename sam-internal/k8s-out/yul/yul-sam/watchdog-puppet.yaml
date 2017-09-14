@@ -16,9 +16,9 @@ spec:
       - command:
         - /sam/watchdog
         - -role=PUPPET
-        - -watchdogFrequency=5m
-        - -alertThreshold=48h
-        - -emailFrequency=168h
+        - -watchdogFrequency=15m
+        - -alertThreshold=1000h
+        - -emailFrequency=1000h
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-yul.data.sfdc.net:80
         - --config=/config/watchdog.json
