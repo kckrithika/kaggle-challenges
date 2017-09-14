@@ -31,8 +31,6 @@ system:
           timeoutSeconds: 10
       # expose redis outside the container
       env:
-       - name: SFDC_ENVIRONMENT
-         value: mist
        - name: SFDC_SUBENVIRONMENT
          value: mist30
       ports:
@@ -45,7 +43,7 @@ system:
         - --redisPort=12099
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/mist/prd/_
+        - --pathPrefix=/mist30/prd/sp2
       livenessProbe:
         initialDelaySeconds: 5
         exec:
