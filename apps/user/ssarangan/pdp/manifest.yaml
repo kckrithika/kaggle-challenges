@@ -13,8 +13,8 @@ system:
       - containerPort: 15373
       livenessProbe:
         httpGet:
-          path: /
-          port: 9090
+          path: /pdp?type=hb
+          port: 8080
 
   loadbalancers:
   - lbname: pdplb
