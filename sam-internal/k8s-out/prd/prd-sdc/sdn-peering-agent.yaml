@@ -27,6 +27,8 @@ spec:
           periodSeconds: 10
         name: sdn-bird
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /usr/local/etc
           name: conf
         - mountPath: /usr/local/var/run
@@ -53,6 +55,8 @@ spec:
           timeoutSeconds: 5
         name: sdn-peering-agent
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /usr/local/etc
           name: conf
         - mountPath: /usr/local/var/run
@@ -64,6 +68,9 @@ spec:
           readOnly: true
       hostNetwork: true
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - emptyDir: {}
         name: conf
       - emptyDir: {}

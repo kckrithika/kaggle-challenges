@@ -54,6 +54,8 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /host/var/slb
           name: var-slb-volume
         - mountPath: /host
@@ -68,6 +70,9 @@ spec:
       nodeSelector:
         pool: prd-sam
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /var/slb
         name: var-slb-volume

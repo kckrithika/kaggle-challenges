@@ -24,6 +24,8 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000330-4ecdd79c
         name: slb-dns-register-processor
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /host/var/slb/config
@@ -34,6 +36,9 @@ spec:
       nodeSelector:
         slb-dns-register: "true"
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs
