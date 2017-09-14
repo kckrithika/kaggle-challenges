@@ -33,7 +33,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-tictactoe-server
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000063-b28004ef
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000065-c3b1abc1
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -45,12 +45,12 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./output/is-alive.sh"
+          - "/home/sfdc-sherpa/bin/is-alive"
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./output/is-ready.sh"
+          - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 10
           periodSeconds: 5
