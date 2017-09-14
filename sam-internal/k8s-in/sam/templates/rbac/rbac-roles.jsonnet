@@ -31,8 +31,20 @@ if configs.estate == "prd-samtest" then {
             "*"
           ],
           "resources": [
+            "pods",
+          ],
+          "verbs": [
+            "delete" 
+          ]
+        },
+        {
+          "apiGroups": [
+            "*"
+          ],
+          "resources": [
             "secrets",
-            "configmaps"
+            "configmaps",
+            "persistentvolumeclaims"
           ],
           "verbs": [
             "get",
@@ -58,7 +70,8 @@ if configs.estate == "prd-samtest" then {
             "services",
             "endpoints",
             "nodes",
-            "pods"
+            "pods",
+            "persistentvolumes"
           ],
           "verbs": [
             "get",

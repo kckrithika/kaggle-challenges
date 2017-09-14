@@ -15,8 +15,15 @@ items:
   - apiGroups:
     - '*'
     resources:
+    - pods
+    verbs:
+    - delete
+  - apiGroups:
+    - '*'
+    resources:
     - secrets
     - configmaps
+    - persistentvolumeclaims
     verbs:
     - get
     - watch
@@ -33,6 +40,7 @@ items:
     - endpoints
     - nodes
     - pods
+    - persistentvolumes
     verbs:
     - get
     - list
