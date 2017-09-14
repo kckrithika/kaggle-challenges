@@ -13,7 +13,7 @@ local samimages = import "samimages.jsonnet";
     # We plan to fix this soon, but for now be careful and watch the rollout carefully
     # To manually test parsing, run this from k8s-in folder and look at snooze output:
     #
-    #  jsonnet/jsonnet sam/configs/watchdog-config.jsonnet -J . -J sam/ -V kingdom=prd -V estate=prd-sam -V template=watchdog-config > /tmp/wdconfig.json && ~/go/bin/watchdog -config /tmp/wdconfig.json
+    #  jsonnet/jsonnet sam/configs/watchdog-config.jsonnet -J . -J sam/ -V kingdom=prd -V estate=prd-sam -V template=watchdog-config > /tmp/wdconfig.json && ~/go/bin/watchdog -checkConfig -config /tmp/wdconfig.json
     #
  
     # Unknown - next time add comment
@@ -28,6 +28,7 @@ local samimages = import "samimages.jsonnet";
   ],
 
   # Shared
+  "email-subject-prefix": "SAMWD",
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
@@ -57,8 +58,9 @@ local samimages = import "samimages.jsonnet";
   imageName: samimages.hypersam,
 } +
 (
+  # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack
   if configs.kingdom == "prd" then {
-    deploymentNamespacePrefixWhitelist: "sam-system,csc-sam"
-  } else if configs.kingdom == "iad" then {
+    deploymentNamespacePrefixWhitelist: "sam-system",
+    podNamespacePrefixWhitelist: "sam-system"
   } else {}
 )
