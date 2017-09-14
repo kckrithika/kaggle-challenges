@@ -5,11 +5,11 @@ system:
   email:
   - robert.snell@salesforce.com
   functions:
-  - name: metadata-service-test
+  - name: metadata-service
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-08-163241
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-12-175411
       ports:
       - containerPort: 9091
       - containerPort: 15523
@@ -30,7 +30,7 @@ system:
   # TODO: volumes for logging 
   loadbalancers:
   - lbname: metadata-servicelb
-    function: metadata-service-test
+    function: metadata-service
     nodeExposed: true
     ports:
     - port: 9091
