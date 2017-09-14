@@ -36,8 +36,9 @@ if configs.kingdom == "prd" then {
                             "--pingCount=1",
                             "--pingInterval=1s",
                             "--pingTimeout=5s",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_ping_watchdog
-                        ] + (if configs.kingdom == "prd" then ["--controlEstate="+configs.estate] else ["--controlEndpoint="+configs.estate]),
+                            "--livenessProbePort="+portconfigs.sdn.sdn_ping_watchdog,
+                            "--controlEstate="+configs.estate
+                        ],
                         "env": [
                             configs.kube_config_env
                         ],
@@ -114,7 +115,7 @@ if configs.kingdom == "prd" then {
                             "--pingInterval=1s",
                             "--pingTimeout=5s",
                             "--livenessProbePort="+portconfigs.sdn.sdn_ping_watchdog
-                        ],
+                        ] + (if configs.estate == "frf-sam" then ["--controlEstate="+configs.estate] else []),
                         "env": [
                             {
                                 "name": "KUBECONFIG",
