@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
   "apiVersion": "v1",
   "kind": "List",
   "metadata": {},
@@ -31,8 +31,20 @@ if configs.estate == "prd-samtest" then {
             "*"
           ],
           "resources": [
+            "pods",
+          ],
+          "verbs": [
+            "delete" 
+          ]
+        },
+        {
+          "apiGroups": [
+            "*"
+          ],
+          "resources": [
             "secrets",
-            "configmaps"
+            "configmaps",
+            "persistentvolumeclaims"
           ],
           "verbs": [
             "get",
@@ -58,7 +70,8 @@ if configs.estate == "prd-samtest" then {
             "services",
             "endpoints",
             "nodes",
-            "pods"
+            "pods",
+            "persistentvolumes"
           ],
           "verbs": [
             "get",

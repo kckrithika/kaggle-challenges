@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 
 # The following ClusterRole & ClusterRoleBinding allows Minion Nodes to update their own status but not others. 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
   "apiVersion": "v1",
   "kind": "List",
   "metadata": {},
