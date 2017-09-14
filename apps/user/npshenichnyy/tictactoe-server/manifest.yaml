@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: tictactoe-server-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20170907-18
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20170914-09
       ports:
         - containerPort: 7020
         - containerPort: 15372
@@ -33,7 +33,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-tictactoe-server
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000062-1fdeff86
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
