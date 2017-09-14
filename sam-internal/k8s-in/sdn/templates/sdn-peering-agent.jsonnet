@@ -57,7 +57,9 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--bgpPasswordFile=/data/secrets/sambgppassword",
                             "--livenessProbePort="+portconfigs.sdn.sdn_peering_agent,
                             
-                        ] + (if configs.kingdom == "prd" then ["--controlEstate="+configs.estate] else ["--controlEndpoint="+configs.estate]),
+                        ]
+                        + (if configs.kingdom == "prd" then [ "--controlEstate="+configs.estate ] else [ "--controlEndpoint="+configs.estate ])
+                        + (if configs.estate == "prd-sdc" then [ "--controlEndpoint="+configs.estate ] else []),
                         "livenessProbe": {
                             "httpGet": {
                                "path": "/liveness-probe",
