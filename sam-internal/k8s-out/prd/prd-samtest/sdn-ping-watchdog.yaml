@@ -33,6 +33,7 @@ spec:
         - --pingInterval=1s
         - --pingTimeout=5s
         - --livenessProbePort=9102
+        - --controlEstate=prd-samtest
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
