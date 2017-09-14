@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - args:
-        - /sam/server
+        - /sam/madkub-server
         - --listen
         - 0.0.0.0:32007
         - -d
@@ -31,7 +31,7 @@ spec:
         - /tokens/
         - --service-hostname
         - $(MADKUBSERVER_SERVICE_HOST)
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-bf86658-20170912-161741
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-1f9f157-20170914-140609
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 20
@@ -57,7 +57,7 @@ spec:
         - mountPath: /etc/pki_service/
           name: pki
       - args:
-        - /sam/client
+        - /sam/madkub-client
         - --madkub-endpoint
         - ""
         - --maddog-endpoint
@@ -86,7 +86,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-54795af-20170830-225547
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-1f9f157-20170914-140609
         name: madkub-refresher
         resources: {}
         volumeMounts:

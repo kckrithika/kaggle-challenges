@@ -22,7 +22,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
         containers: [
           {
             args: [
-              "/sam/server",
+              "/sam/madkub-server",
               "--listen", "0.0.0.0:32007",
               "-d",
               "--maddog-endpoint", "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
@@ -34,7 +34,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
               "--token-folder", "/tokens/",
               "--service-hostname", "$(MADKUBSERVER_SERVICE_HOST)"
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-bf86658-20170912-161741",
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-1f9f157-20170914-140609",
             name: "madkubserver",
             ports: [
               {
@@ -81,7 +81,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
           {
             name: "madkub-refresher",
             args: [
-              "/sam/client",
+              "/sam/madkub-client",
               "--madkub-endpoint", "",
               "--maddog-endpoint", "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca", "/maddog-certs/ca/security-ca.pem",
@@ -91,7 +91,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
               "--refresher",
               "--refresher-token-grace-period", "30s"
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-54795af-20170830-225547",
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-1f9f157-20170914-140609",
             resources: {
             },
             volumeMounts: [
