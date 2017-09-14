@@ -4,6 +4,7 @@ data:
     {
       "caFile": "/data/certs/ca.crt",
       "certFile": "/data/certs/hostcert.crt",
+      "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-hnd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b",
       "k8sproxyEndpoint": "http://localhost:40000",
