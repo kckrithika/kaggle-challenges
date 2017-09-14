@@ -6,7 +6,7 @@ data:
       "certFile": "/data/certs/hostcert.crt",
       "deploymentNamespacePrefixWhitelist": "sam-system,csc-sam",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001231-6ed4362c",
+      "imageName": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/hypersam:20170914_154622.1f55e21.dirty.adhoot-ltm.reducealerts",
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/data/certs/hostcert.key",
       "laddr": "0.0.0.0:8083",
