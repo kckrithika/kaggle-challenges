@@ -27,9 +27,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
               "-d",
               "--maddog-endpoint", "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
               "--kubeconfig", "/kubeconfig",
-              "--client-cert", "/maddog-certs/root/madkubtokenserver/certificates/madkubtokenserver.pem",
-              "--client-key", "/maddog-certs/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
-              "--maddog-server-ca", "/maddog-certs/ca/security-ca.pem",
+              "--client-cert", "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+              "--client-key", "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
+              "--maddog-server-ca", "/etc/pki_service/ca/security-ca.pem",
               "--cert-folder", "/certs/",
               "--token-folder", "/tokens/",
               "--service-hostname", "$(MADKUBSERVER_SERVICE_HOST)"
@@ -59,8 +59,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                 name: "tokens"
               },
               {
-                mountPath: "/maddog-certs/",
-                name: "maddog-certs"
+                mountPath: "/etc/pki_service/",
+                name: "pki"
               }
             ],
             readinessProbe: {
@@ -105,7 +105,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
               },
               {
                 mountPath: "/maddog-certs/",
-                name: "maddog-certs"
+                name: "pki"
               }
             ],
             env: [
@@ -151,7 +151,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
             }
           },
           {
-            name: "maddog-certs",
+            name: "pki",
             hostPath: {
               path: "/etc/pki_service"
             }
