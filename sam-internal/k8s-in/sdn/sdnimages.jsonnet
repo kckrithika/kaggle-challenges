@@ -13,8 +13,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         # override sam-storage temporarily
-        "prd,prd-sam_storage,sdn-ping-watchdog,hypersdn": "v-0000308-a6dc7881",
-        "prd,prd-sam_storage,sdn-route-watchdog,hypersdn": "v-0000308-a6dc7881",
     },
 
     ### Per-phase image tags

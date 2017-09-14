@@ -34,8 +34,9 @@ if configs.kingdom == "prd" then {
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog
-                        ] + (if configs.kingdom == "prd" then ["--controlEstate="+configs.estate] else ["--controlEndpoint="+configs.estate]),
+                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog,
+                            "--controlEstate="+configs.estate
+                        ],
                         "env": [
                             configs.kube_config_env
                         ],
@@ -109,8 +110,8 @@ if configs.kingdom == "prd" then {
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog
-                        ],
+                            "--livenessProbePort="+portconfigs.sdn.sdn_route_watchdog,
+                        ] + (if configs.estate == "frf-sam" then ["--controlEstate="+configs.estate] else []),
                         "env": [
                             {
                                 "name": "KUBECONFIG",

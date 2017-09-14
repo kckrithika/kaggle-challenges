@@ -33,6 +33,7 @@ spec:
         - --pingInterval=1s
         - --pingTimeout=5s
         - --livenessProbePort=9102
+        - --controlEstate=frf-sam
         env:
         - name: KUBECONFIG
           value: /config/kubeconfig
