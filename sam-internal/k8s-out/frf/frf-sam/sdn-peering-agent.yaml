@@ -41,7 +41,7 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
-        - --controlEndpoint=frf-sam
+        - --controlEstate=frf-sam
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000319-368d0770
         livenessProbe:
           httpGet:
