@@ -41,9 +41,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         "command":[
                             "/sdn/slb-canary-service",
                             "--serviceName=slb-alpha-svc",
-                            "--port=9008",
                             "--metricsEndpoint="+configs.funnelVIP,
-                            "--log_dir="+slbconfigs.logsDir
+                            "--log_dir="+slbconfigs.logsDir,
+                        ] + 
+                        if configs.estate == "prd-sdc" then [
+                            "--ports=9008"
+                        ] else [
+                            "--port=9008",
                         ],
                         "volumeMounts": [
                             {
