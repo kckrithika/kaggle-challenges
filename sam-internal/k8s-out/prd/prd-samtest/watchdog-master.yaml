@@ -23,7 +23,7 @@ spec:
         - --config=/config/watchdog.json
         - -snoozedAlarms=kubeApiChecker=2017/06/02
         - -emailFrequency=48h
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/hypersam:20170914_154622.1f55e21.dirty.adhoot-ltm.reducealerts
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001263-d5b47592
         name: watchdog
         resources:
           limits:
