@@ -19,17 +19,9 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         "prd,prd-sdc,sam-secret-agent,hypersam": "sam-0001241-13b4b2a2",
-        "prd,prd-samtest,sam-secret-agent,hypersam": "sam-0000901-82ac08ff",
-	"prd,prd-samdev,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20170908_112826.3aefdeb.dirty.cbatra-ltm1",
-	"prd,prd-samtest,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20170906_143330.3aefdeb.dirty.cbatra-ltm1",
-	    "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20170911_175357.987160d.dirty.prahladjos-ltm",
         "prd,prd-sam,watchdog-pullrequest,hypersam": "sam-0001125-8748288b",
         "prd,prd-sam,service-discovery-module,hypersam": "sam-0001132-d806c518",
-        "prd,prd-samdev,service-discovery-module,hypersam": "sam-0001132-d806c518",
-        "prd,prd-samtest,service-discovery-module,hypersam": "sam-0001132-d806c518",
         "prd,prd-sam,estate-server,hypersam": "sam-0001248-9538cbb8",
-        "prd,prd-samdev,estate-server,hypersam": "sam-0001248-9538cbb8",
-        "prd,prd-samtest,estate-server,hypersam": "sam-0001248-9538cbb8",
         "prd,prd-sam_storage,estate-server,hypersam": "sam-0001248-9538cbb8",
     },
 
@@ -37,15 +29,18 @@ local utils = import "util_functions.jsonnet";
     # for temporary testing
     # While doing a new release this should be set to empty to deploy the official build
     #
-    privatebuildoverridetag:"ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/hypersam:20170914_154622.1f55e21.dirty.adhoot-ltm.reducealerts",
+    privatebuildoverridetag:"",
 
 
     ### Per-phase image tags
     per_phase: {
 
         ### Release Phase 1 - Test Beds
+        # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to quickly find latest image
+        # When rolling this phase, remove all overrides from test beds above
+        # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            "hypersam": "sam-0001231-6ed4362c",
+            "hypersam": "sam-0001263-d5b47592",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
