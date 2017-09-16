@@ -1,0 +1,25 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  # service name
+  - name: mgmt
+  
+    # number of instances ("kpods") to deploy and run
+    count: 2
+    
+    # Docker image(s) that make up one instance of the service
+    containers:
+    - name: mgmt-services
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:jsg-20170916-2
+      
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      
+      # SAM will bounce the container if this returns an HTTP response code other than 200-399
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+ 
