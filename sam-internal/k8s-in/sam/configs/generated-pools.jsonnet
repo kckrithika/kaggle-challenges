@@ -675,10 +675,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_gater",
