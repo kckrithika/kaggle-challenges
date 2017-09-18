@@ -18,11 +18,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
-        "prd,prd-sdc,sam-secret-agent,hypersam": "sam-0001241-13b4b2a2",
-        "prd,prd-sam,watchdog-pullrequest,hypersam": "sam-0001125-8748288b",
-        "prd,prd-sam,service-discovery-module,hypersam": "sam-0001132-d806c518",
-        "prd,prd-sam,estate-server,hypersam": "sam-0001248-9538cbb8",
-        "prd,prd-sam_storage,estate-server,hypersam": "sam-0001248-9538cbb8",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -45,7 +40,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            "hypersam": "sam-0001231-6ed4362c",
+            "hypersam": "sam-0001263-d5b47592",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
