@@ -25,10 +25,7 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: METAMIND_EMAIL
-        valueFrom:
-          secretKeyRef:
-            name: chatbot-runtime-metamind-secrets
-            key: email
+        value: "ylin+metamind+prod@salesforce.com"
       - name: METAMIND_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
