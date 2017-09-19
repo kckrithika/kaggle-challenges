@@ -40,11 +40,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--serviceName=slb-bravo-svc",
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir,
-                        ] + 
-                        if configs.estate == "prd-sdc" then [
-                            "--ports=9090,9091,9092"
-                        ] else [
-                            "--port=9090",
+                            "--ports=9090,9091,9092",
                         ],
                         "volumeMounts": [
                             {

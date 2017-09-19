@@ -42,11 +42,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--serviceName="+slbconfigs.canaryServiceName,
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir,
-                        ] + 
-                        if configs.estate == "prd-sdc" then [
                             "--ports="+portconfigs.slb.canaryServicePort,
-                        ] else [
-                            "--port="+portconfigs.slb.canaryServicePort,
                         ],
                         "volumeMounts": [
                             {
