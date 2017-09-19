@@ -48,6 +48,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
+            #Retrying PHASE 3 release. Docker image pull failed in frf,yul,yhu 
             "hypersam": "sam-0001263-d5b47592",
             },
 
