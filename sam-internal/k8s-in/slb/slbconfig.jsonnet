@@ -18,8 +18,9 @@ perCluster: {
 
     subnet: {
             "prd-sdc": "10.251.129.224-234",
-            "prd-samtest": "10.251.129.235-245",
-            "prd-samdev": "10.251.129.246-255",
+            "prd-samtest": "10.251.129.235-240",
+            "prd-samdev": "10.251.129.241-245",
+            "prd-sam_storage": "10.251.129.246-255",
             "prd-sam": "10.251.167.224/27"
     },
 
@@ -27,6 +28,7 @@ perCluster: {
         "prd-sdc": "",
         "prd-samtest": "",
         "prd-samdev": "",
+        "prd-sam_storage": "",
         "prd-sam": "csrlb,controlplane-ptest"
     },
 
@@ -34,6 +36,7 @@ perCluster: {
         "prd-sdc": "",
         "prd-samtest": "sam-system",
         "prd-samdev": "sam-system",
+        "prd-sam_storage": "",
         "prd-sam": ""
     },
 
@@ -41,6 +44,7 @@ perCluster: {
         "prd-sdc": "slb-bravo-svc",
         "prd-samtest": "",
         "prd-samdev": "",
+        "prd-sam_storage": "",
         "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest"
     },
 
@@ -48,6 +52,7 @@ perCluster: {
         "prd-sdc": "slb-sdc-svc",
         "prd-samtest": "slb-samtest-svc",
         "prd-samdev": "slb-samdev-svc",
+        "prd-sam_storage": "slb-sam-storage-svc",
         "prd-sam": "slb-sam-svc"
     },
 
@@ -55,6 +60,7 @@ perCluster: {
         "prd-sdc": true,
         "prd-samtest": true,
         "prd-samdev": true,
+        "prd-sam_storage": true,
         "prd-sam": true
     },
 },
