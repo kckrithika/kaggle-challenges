@@ -49,7 +49,7 @@ system:
     lbname: chatbot-runtime-staging-lb
     nodeExposed: true
     ports:
-    - port: 27022
+    - port: 7122
       targetport: 7022
   notifications:
     email:
