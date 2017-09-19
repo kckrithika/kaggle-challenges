@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+  apiVersion: "extensions/v1beta1",
   kind: "Deployment",
   metadata: {
     name: "madkubserver",
