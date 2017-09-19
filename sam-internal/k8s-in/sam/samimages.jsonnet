@@ -19,6 +19,8 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         "prd,prd-samdev,watchdog-kuberesources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20170918_171804.381012b.clean.prahladjos-ltm",
+        "prd,prd-samdev,watchdog-rbac,hypersam": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001270-f52e4116",
+        "prd,prd-samtest,watchdog-rbac,hypersam": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001270-f52e4116",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

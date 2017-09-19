@@ -1,0 +1,59 @@
+local configs = import "config.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
+local samimages = import "samimages.jsonnet";
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+    kind: "DaemonSet",
+    spec: {
+        template: {
+            spec: {
+                hostNetwork: true,
+                containers: [
+                    {
+                        name: "watchdog-rbac",
+                        image: samimages.hypersam,
+                        command:[
+                            "/sam/watchdog",
+                            "-role=RBAC",
+                            "-watchdogFrequency=60s",
+                            "-alertThreshold=300s",
+                            "-maxUptimeSampleSize=5",
+                        ]
+                        + samwdconfig.shared_args
+                        + [ "-emailFrequency=24h" ],
+                        volumeMounts: configs.cert_volume_mounts + [
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
+                        ],
+                        env: [
+                             configs.kube_config_env,
+                        ]
+                    }
+                ],
+                volumes: configs.cert_volumes + [
+                    configs.cert_volume,
+                    configs.kube_config_volume,
+                    configs.config_volume("watchdog"),
+                    ],
+            },
+            metadata: {
+                labels: {
+                    name: "watchdog-rbac",
+                    apptype: "monitoring"
+                }
+            }
+        },
+        selector: {
+            matchLabels: {
+                name: "watchdog-rbac"
+            }
+        }
+    },
+    apiVersion: "extensions/v1beta1",
+    metadata: {
+        labels: {
+            name: "watchdog-rbac"
+        },
+        name: "watchdog-rbac"
+    }
+} else "SKIP" 
