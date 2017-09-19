@@ -35,6 +35,8 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /host/var/slb
           name: var-slb-volume
         - mountPath: /host/var/slb/config
@@ -49,6 +51,9 @@ spec:
           name: kubeconfig
       hostNetwork: true
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /var/slb
         name: var-slb-volume
