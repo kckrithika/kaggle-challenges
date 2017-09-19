@@ -16,7 +16,7 @@ spec:
         - /bin/bash
         - -xe
         - /config/ops-adhoc.sh
-        image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b
+        image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0001263-d5b47592
         name: ops-adhoc
         resources:
           limits:
