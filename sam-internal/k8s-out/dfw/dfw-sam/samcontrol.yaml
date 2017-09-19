@@ -1,6 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
-metadata:
+me4tadata:
   labels:
     name: samcontrol
   name: samcontrol
