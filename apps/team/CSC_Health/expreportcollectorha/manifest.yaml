@@ -1,12 +1,25 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - cschealthcp@salesforce.com
   functions:
   - name: expreport-collectorha
     count: 3
+    volumes:
+      - name: servercertvol
+        secret:
+          secretName: csc-rc-certificates
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-auth-0
+      - name: logvol
+        hostPath:
+          path: /var/log/report-collector
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.4.0-0000106-22c71e3f
+      image: tnrp/csc-health/report-collector:1.9.0-0000161-95d31d29
       ports:
       - name: provider
         containerPort: 8080
@@ -16,25 +29,43 @@ system:
         containerPort: 8443
       - name: consumer-https
         containerPort: 8444
-      resources:
-        limits: { cpu: "10", memory: "20Gi" }
-        requests: { cpu: "10", memory: "20Gi" }
       volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
+      - mountPath: /var/lib/report-collector/certificates/server/
+        name: servercertvol
+        readOnly: true
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
       env:
       - name: ReportCollector_redis_host
         value: $(EXPREDISNOHALB_SERVICE_HOST)
       - name: ReportCollector_redis_port
         value: $(EXPREDISNOHALB_SERVICE_PORT)
+      - name: ReportCollector_app_redis_fullPathToAuthFile
+        value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
         value: true
-      - name: ReportCollector_ajna_publishEnabled
-        value: true
+      - name: ReportCollector_app_https_providerPort
+        value: 8443
+      - name: ReportCollector_app_https_consumerPort
+        value: 8444
+      - name: ReportCollector_app_https_clientAuth
+        value: REQUEST
+      - name: ReportCollector_app_https_caCertificate
+        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
+      - name: ReportCollector_app_https_certificate
+        value: /var/lib/report-collector/certificates/server/rc_server.crt
+      - name: ReportCollector_app_https_privateKey
+        value: /var/lib/report-collector/certificates/server/rc_server.key
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
-      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
-      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       ${JAVA_HOME}/bin/java
@@ -48,20 +79,51 @@ system:
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /var/log/report-collector
+  - name: csc-health-stale-log-cleaner
+    image: tnrp/csc-health/report-collector:1.9.0-0000161-95d31d29
+    volumeMounts:
+      - mountPath: /var/log/report-collector
+        name: logvol
+    env:
+      - name: CLEANUP_FOLDER
+        value: /var/log/report-collector
+      - name: CLEANUP_PERIOD_SECONDS
+        value: 1800
+      - name: CLEANUP_FILE_PATTERN
+        value: "*tmp*"
+      - name: CLEANUP_FILE_AGE_MINUTES
+        value: 30
+    livenessProbe:
+      exec:
+        command:
+        - echo
+        - always_healthy
+      initialDelaySeconds: 5
+      periodSeconds: 30
+    command: ["/bin/sh", "-c"]
+    args: ['
+        while sleep ${CLEANUP_PERIOD_SECONDS};
+        do
+            echo $(date) "Processing" $CLEANUP_FOLDER;
+            if [ ! -d "$CLEANUP_FOLDER" ]; then
+                echo $CLEANUP_FOLDER " doesn''t exist";
+                continue;
+            fi;
+
+            find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
+        done
+    ']
   - name: expredisnoha
     count: 1
     containers:
     - name: expredis
-      image: tnrp/p4tools/redis:3.0.2-01
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/tnrp/csc-health/redis-auth:3.2
+      volumeMounts:
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
       ports:
       - containerPort: 6379
-      resources:
-        limits: { cpu: "2", memory: "10Gi" }
-        requests: { cpu: "2", memory: "10Gi" }
       logs:
       - directory: /var/log/redis
       command: ["/bin/sh", "-c"]

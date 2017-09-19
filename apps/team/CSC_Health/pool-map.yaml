@@ -52,6 +52,7 @@ apps:
     - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
   expreportcollectorha:
+    - prd/prd-sam_report_collector
   exprepcollavailwd:
   cname-repcollavailwd:
     - prd/prd-sam_report_collector
