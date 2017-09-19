@@ -23,7 +23,7 @@ spec:
         - -alertThreshold=300s
         - -maxUptimeSampleSize=5
         - -kubeResourceNamespacePrefixBlacklist=sam-watchdog
-        - -kubeResourceNamespacePrefixWhitelist=sam-system
+        - -kubeResourceNamespacePrefixWhitelist=sam-system,user-cbatra
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

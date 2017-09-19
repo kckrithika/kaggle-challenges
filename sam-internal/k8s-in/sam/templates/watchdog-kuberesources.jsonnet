@@ -21,7 +21,7 @@ if configs.estate == "prd-samdev" then {
                             # We dont want to report on broken hairpin pods, since hairpin already alerts on those
                             "-kubeResourceNamespacePrefixBlacklist=sam-watchdog",
                         ]
-                        + (if configs.kingdom == "prd" then [ "-kubeResourceNamespacePrefixWhitelist=sam-system" ] else [])
+                        + (if configs.kingdom == "prd" then [ "-kubeResourceNamespacePrefixWhitelist=sam-system,user-cbatra" ] else [])
                         + samwdconfig.shared_args
                         + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
