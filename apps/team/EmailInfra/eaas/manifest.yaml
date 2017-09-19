@@ -6,12 +6,12 @@ system:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    count: 4 
+    count: 2 
     strategy:
       type: RollingUpdate
     containers:
     - name: eaas
-      image: tnrp/emailinfrastructure/eaas:1.0.0
+      image: tnrp/emailinfrastructure/eaas:1.0.0-17
       ports:
         - containerPort: 7021
         - containerPort: 15372
