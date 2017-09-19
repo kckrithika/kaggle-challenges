@@ -115,6 +115,10 @@ system:
     ']
   - name: expredisnoha
     count: 1
+    volumes:
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-auth-0
     containers:
     - name: expredis
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev-base/tnrp/csc-health/redis-auth:3.2
