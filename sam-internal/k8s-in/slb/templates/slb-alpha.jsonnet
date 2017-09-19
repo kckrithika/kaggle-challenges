@@ -43,11 +43,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--serviceName=slb-alpha-svc",
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir,
-                        ] + 
-                        if configs.estate == "prd-sdc" then [
-                            "--ports=9008"
-                        ] else [
-                            "--port=9008",
+                             "--ports=9008",
                         ],
                         "volumeMounts": [
                             {

@@ -37,8 +37,8 @@ spec:
         - --serviceName=slb-alpha-svc
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/var/slb/logs
-        - --port=9008
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000317-1150e681
+        - --ports=9008
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000330-4ecdd79c
         name: slb-alpha
         securityContext:
           capabilities:
