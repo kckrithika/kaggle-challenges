@@ -18,6 +18,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
+        "prd,prd-samdev,watchdog-kuberesources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20170918_120522.6248634.clean.prahladjos-ltm",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
