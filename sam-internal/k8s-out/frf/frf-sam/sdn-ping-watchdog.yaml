@@ -33,10 +33,11 @@ spec:
         - --pingInterval=1s
         - --pingTimeout=5s
         - --livenessProbePort=9102
+        - --controlEstate=frf-sam
         env:
         - name: KUBECONFIG
           value: /config/kubeconfig
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000308-a6dc7881
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000319-368d0770
         livenessProbe:
           httpGet:
             path: /liveness-probe
