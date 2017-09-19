@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: pdp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssarangan/pdp:pdp-20170914-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssarangan/pdp:pdp-sundar-2017-sep-19
       ports:
       - containerPort: 9090
       - containerPort: 8080
