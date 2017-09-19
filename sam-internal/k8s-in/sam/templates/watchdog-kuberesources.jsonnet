@@ -18,6 +18,7 @@ if configs.estate == "prd-samdev" then {
                             "-watchdogFrequency=60s",
                             "-alertThreshold=300s",
                             "-maxUptimeSampleSize=5",
+                            "-emailAdditionalRecipients=true",
                             # We dont want to report on broken hairpin pods, since hairpin already alerts on those
                             "-kubeResourceNamespacePrefixBlacklist=sam-watchdog",
                         ]
