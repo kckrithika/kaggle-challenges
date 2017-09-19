@@ -32,3 +32,6 @@ system:
     ports:
       - port: 9090
         targetport: 9090
+  notifications:
+    email:
+      - prahlad.joshi@salesforce.com
