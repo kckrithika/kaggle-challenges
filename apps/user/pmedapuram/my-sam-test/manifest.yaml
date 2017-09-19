@@ -1,0 +1,23 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: sfcihello
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/dci/chatbot-runtime:2
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+ 
+  loadbalancers:
+  - lbname: sfcihellolb
+    function: default
+    ports:
+      - port: 9090
+        targetport: 9090
+
