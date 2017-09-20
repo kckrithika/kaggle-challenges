@@ -6,7 +6,7 @@ data:
       "certFile": "/data/certs/hostcert.crt",
       "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-dfw.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001210-ef6a180b",
+      "imageName": "ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001263-d5b47592",
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/data/certs/hostcert.key",
       "laddr": "0.0.0.0:8083",
