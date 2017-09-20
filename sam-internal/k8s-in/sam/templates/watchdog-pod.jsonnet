@@ -16,7 +16,7 @@ local samimages = import "samimages.jsonnet";
                             "/sam/watchdog",
                             "-role=POD",
                             "-watchdogFrequency=60s",
-                            "-alertThreshold=600s",
+                            "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
                             # We dont want to report on broken hairpin pods, since hairpin already alerts on those
                             "-podNamespacePrefixBlacklist=sam-watchdog",

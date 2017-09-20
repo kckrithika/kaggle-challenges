@@ -16,7 +16,7 @@ local samimages = import "samimages.jsonnet";
                             "/sam/watchdog",
                             "-role=NODE",
                             "-watchdogFrequency=60s",
-                            "-alertThreshold=600s",
+                            "-alertThreshold=1h",
                         ]
                         + samwdconfig.shared_args
                         # [thargrove] 2017-05-05 We have minions down in the following 3 estates

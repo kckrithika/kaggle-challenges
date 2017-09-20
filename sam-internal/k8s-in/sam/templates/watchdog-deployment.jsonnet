@@ -16,7 +16,7 @@ local samimages = import "samimages.jsonnet";
                             "/sam/watchdog",
                             "-role=DEPLOYMENT",
                             "-watchdogFrequency=10s",
-                            "-alertThreshold=600s",
+                            "-alertThreshold=1h",
                         ]
                         + (if configs.kingdom == "prd" then [ "-deploymentNamespacePrefixWhitelist=sam-system,csc-sam" ] else [])
                         + samwdconfig.shared_args
