@@ -39,14 +39,14 @@ system:
       - mountPath: /home/sfdc-chatbot/logs
         name: logvol
     count: 4
-    name: chatbot-runtime-staging
+    name: chatbot-rt-staging
     volumes:
     - hostPath:
         path: /home/sfdc-chatbot/logs
       name: logvol
   loadbalancers:
-  - function: chatbot-runtime-staging
-    lbname: chatbot-runtime-staging-lb
+  - function: chatbot-rt-staging
+    lbname: chatbot-rt-staging-lb
     nodeExposed: true
     ports:
     - port: 7122
