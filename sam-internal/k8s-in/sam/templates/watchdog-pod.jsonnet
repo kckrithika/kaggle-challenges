@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-{
+if configs.estate != "prd-samdev" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -68,4 +68,4 @@ local samimages = import "samimages.jsonnet";
         },
         name: "watchdog-pod"
     }
-}
+} else "SKIP"
