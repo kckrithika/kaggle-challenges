@@ -52,7 +52,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-b
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000068-c5b8ec20
+      image: tnrp/sherpa:0.2.0-0000073-30d5eef8
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -112,7 +112,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-f
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000068-c5b8ec20
+      image: tnrp/sherpa:0.2.0-0000073-30d5eef8
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -142,7 +142,7 @@ system:
       ports:
       - containerPort: 8500
     - name: sherpa-xlt
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000068-c5b8ec20
+      image: tnrp/sherpa:0.2.0-0000073-30d5eef8
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -165,15 +165,7 @@ system:
   loadbalancers:
   - lbname: ccait-geoip-frontend-lb
     function: geoip-demo
+    nodeExposed: true
     ports:
-      - port: 7080
-        targetport: 7080
-      - port: 8080
+      - port: 45080
         targetport: 8080
-  - lbname: ccait-xlt-lb
-    function: geoip-xlt
-    ports:
-      - port: 7080
-        targetport: 7080
-      - port: 8500
-        targetport: 8500
