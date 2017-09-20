@@ -47,11 +47,11 @@ system:
       livenessProbe:
         exec:
           command:
-           - echo
-           - HEALTHY
-#           - "/bin/sh"
-#           - "-c"
-#           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+#           - echo
+#           - HEALTHY
+           - "/bin/sh"
+           - "-c"
+           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
         initialDelaySeconds: 360
         periodSeconds: 1
 
