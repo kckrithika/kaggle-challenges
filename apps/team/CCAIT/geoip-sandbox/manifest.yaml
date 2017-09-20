@@ -167,7 +167,5 @@ system:
     function: geoip-demo
     nodeExposed: true
     ports:
-      - port: 7080
-        targetport: 7080
-      - port: 8080
+      - port: 45080
         targetport: 8080
