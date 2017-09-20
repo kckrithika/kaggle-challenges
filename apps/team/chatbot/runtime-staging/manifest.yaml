@@ -46,7 +46,7 @@ system:
       name: logvol
   loadbalancers:
   - function: runtime-staging
-    lbname: runtime-staging-lb
+    lbname: runtime-staging
     nodeExposed: true
     ports:
     - port: 7122
