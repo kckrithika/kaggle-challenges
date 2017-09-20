@@ -1,5 +1,10 @@
 version: v2
 apps:
+  # PRD-Stage Proxy Nodes
+  test1shared0-samminionatlasfe1-1-prd:
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
   # PRD-Stage DS Nodes
   test1shared0-samminionatlasdir1-1-prd:
     - name: prd/prd-sam_cloudatlas_dir
@@ -14,6 +19,10 @@ apps:
       hostSubList:
       - test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
+  test0shared0-samminionatlasfe1-1-prd:
+    - name: prd/prd-sam_cloudatlas
+      hostSubList:
+      - test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
   # PRD-Dev DS Nodes
   test0shared0-samminionatlasdir1-1-prd:
     - name: prd/prd-sam_cloudatlas_dir
