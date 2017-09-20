@@ -32,7 +32,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20170918_171804.381012b.clean.prahladjos-ltm
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20170919_173325.0831c87.clean.prahladjos-ltm
         name: watchdog-kuberesources
         volumeMounts:
         - mountPath: /etc/pki_service
