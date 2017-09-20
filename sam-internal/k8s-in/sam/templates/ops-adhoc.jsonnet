@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
+# Turned off by default.  Enable only when needed for a prod issue
+if "0"=="1" then {
     kind: "DaemonSet",
     spec: {
         template: {
