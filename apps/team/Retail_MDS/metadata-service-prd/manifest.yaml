@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-20-125000
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-20-150000
       ports:
       - containerPort: 9532
       - containerPort: 9091
