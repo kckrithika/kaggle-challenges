@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 
-if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
+# Turned off by default.  Enable when needed
+if "0" == "1" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
