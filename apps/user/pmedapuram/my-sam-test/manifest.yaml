@@ -10,9 +10,11 @@ system:
       ports:
       - containerPort: 9090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        exec:
+          command:
+          - cat
+          - /proc/cpuinfo
+        initialDelaySeconds: 5
  
   loadbalancers:
   - lbname: sfcihellolb
