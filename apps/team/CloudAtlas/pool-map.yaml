@@ -1,2 +1,10 @@
 version: v2
 apps:
+  test1shared0-samminionatlasdir1-1-prd:
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+      - test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  test0shared0-samminionatlasdir1-1-prd:
+    - name: prd/prd-sam_cloudatlas_dir
+      hostSubList:
+      - test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
