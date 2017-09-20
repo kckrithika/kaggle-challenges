@@ -1,5 +1,5 @@
 apps:
-  chatbot-runtime-staging:
+  chatbot-rt-staging:
   - prd/prd-sp2-sam_chatbot
   chatbot-runtime-production:
   - frf/frf-sam_chatbot_kingdom
