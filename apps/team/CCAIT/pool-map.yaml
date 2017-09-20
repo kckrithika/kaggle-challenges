@@ -1,3 +1,5 @@
 apps:
+  geoip-prod:
+    - par/par-sam_gater
   geoip-sandbox:
     - prd/prd-sam_gater
