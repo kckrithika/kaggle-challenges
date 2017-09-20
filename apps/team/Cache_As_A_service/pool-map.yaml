@@ -7,8 +7,6 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-sp2-casam-func-12100:
     - prd/prd-sp2-sam_caas
-  prd-sp2-casam-memcached-11210:
-    - prd/prd-sp2-sam_caas
   prd-caas-redis-12099:
     - prd/prd-sp2-sam_caas
   prd-redis-metrics-publisher:
