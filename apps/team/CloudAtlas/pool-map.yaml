@@ -46,6 +46,12 @@ apps:
       hostSubList:
       - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
+  # DFW Proxy Nodes
+  shared0-samminionatlasfe1-1-dfw:
+    - name: dfw/dfw-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe1-1-dfw.ops.sfdc.net
+
   # DFW DS Nodes
   shared0-samminionatlasdir1-1-dfw:
     - name: dfw/dfw-sam_cloudatlas_dir
