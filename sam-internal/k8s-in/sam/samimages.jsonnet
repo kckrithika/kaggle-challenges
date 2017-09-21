@@ -34,7 +34,7 @@ local utils = import "util_functions.jsonnet";
     # for temporary testing
     # While doing a new release this should be set to empty to deploy the official build
     #
-    privatebuildoverridetag:"",
+    privatebuildoverridetag:"ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/hypersam:20170921_121953.3a0a14c.dirty.adhoot-ltm.hairpin",
 
 
     ### Per-phase image tags
