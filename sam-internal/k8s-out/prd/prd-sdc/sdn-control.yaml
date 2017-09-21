@@ -27,6 +27,13 @@ spec:
         - name: KUBECONFIG
           value: /config/kubeconfig
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000330-4ecdd79c
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9110
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
         name: sdn-control
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -36,13 +43,6 @@ spec:
         - mountPath: /config
           name: config
       hostNetwork: true
-      livenessProbe:
-        httpGet:
-          path: /liveness-probe
-          port: 9110
-        initialDelaySeconds: 30
-        periodSeconds: 30
-        timeoutSeconds: 5
       nodeSelector:
         pool: prd-sdc
       volumes:
