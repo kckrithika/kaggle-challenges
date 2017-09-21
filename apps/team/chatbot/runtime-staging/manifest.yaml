@@ -9,7 +9,7 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: METAMIND_EMAIL
-        value: "ylin@salesforce.com"
+        value: ylin@salesforce.com
       - name: METAMIND_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
@@ -17,7 +17,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: memory
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-aa28503
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-735e488
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -49,7 +49,7 @@ system:
     lbname: runtime-staging
     nodeExposed: true
     ports:
-    - port: 7122
+    - port: 7022
       targetport: 7022
   notifications:
     email:
