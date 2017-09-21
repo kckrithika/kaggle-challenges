@@ -36,6 +36,13 @@ spec:
         - mountPath: /config
           name: config
       hostNetwork: true
+      livenessProbe:
+        httpGet:
+          path: /liveness-probe
+          port: 9110
+        initialDelaySeconds: 30
+        periodSeconds: 30
+        timeoutSeconds: 5
       nodeSelector:
         pool: prd-sdc
       volumes:

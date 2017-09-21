@@ -18,12 +18,13 @@
         sdn_route_watchdog: 9104,
         sdn_vault_agent: 9106,
         sdn_control_service: 9108,
+        sdn_control: 9110
     },
     "slb":  {
         ipvsDataConnPort: 9107,
         canaryServicePort: 9111,
         slbPortalServicePort: 9112,
-        
+
         canaryServiceNodePort: 32136,
         alphaServiceNodePort: 32137,
         bravoServiceNodePort: 32138,
