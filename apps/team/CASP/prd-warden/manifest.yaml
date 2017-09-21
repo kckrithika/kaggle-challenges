@@ -33,7 +33,7 @@ system:
           httpGet:
             path: /manage/health
             port: 15372
-          initialDelaySeconds: 60
+          initialDelaySeconds: 120
       volumes:
       - name: casp-home-vol
         hostPath:
