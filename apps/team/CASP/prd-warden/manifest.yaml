@@ -27,6 +27,8 @@ system:
           name: casp-home-vol
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
+        - mountPath: /home/sfdc-casp/all-logs
+          name: all-logs-vol
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -39,6 +41,9 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
+      - name: all-logs-vol
+        hostPath:
+          path: /home/sfdc-casp/all-logs
 
     loadbalancers:
     - lbname: wardenlb
