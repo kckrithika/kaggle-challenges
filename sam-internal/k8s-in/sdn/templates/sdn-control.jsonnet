@@ -58,6 +58,15 @@ if configs.estate == "prd-sdc" then {
                         ]
                     }
                 ],
+                "livenessProbe": {
+                    "httpGet": {
+                       "path": "/liveness-probe",
+                       "port": portconfigs.sdn.sdn_control
+                    },
+                    "initialDelaySeconds": 30,
+                    "timeoutSeconds": 5,
+                    "periodSeconds": 30
+                },
                 "volumes": configs.cert_volumes + [
                     {
                         "hostPath": {
