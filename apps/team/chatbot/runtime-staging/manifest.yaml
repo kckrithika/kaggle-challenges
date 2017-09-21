@@ -17,7 +17,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: memory
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-cb86481
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-e620463
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -28,6 +28,9 @@ system:
       name: chatbot-runtime
       ports:
       - containerPort: 7022
+        name: apiport
+      - containerPort: 15372
+        name: managementport
       readinessProbe:
         httpGet:
           path: /manage/health
@@ -51,6 +54,8 @@ system:
     ports:
     - port: 7022
       targetport: 7022
+    - port: 15372
+      targetport: 15372
   notifications:
     email:
     - david.ji@salesforce.com
