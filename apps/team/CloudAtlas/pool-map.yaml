@@ -51,6 +51,10 @@ apps:
     - name: dfw/dfw-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-dfw.ops.sfdc.net
+  shared0-samminionatlasfe2-1-dfw:
+    - name: dfw/dfw-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe2-1-dfw.ops.sfdc.net
 
   # DFW DS Nodes
   shared0-samminionatlasdir1-1-dfw:
