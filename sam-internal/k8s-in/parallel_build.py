@@ -3,6 +3,7 @@
 import os
 import sys
 import subprocess
+import json
 from subprocess import Popen, PIPE, STDOUT
 if sys.version_info >= (3,0):
     from queue import Queue
@@ -131,10 +132,15 @@ def run_all_work_items(work_item_list):
     return ret
 
 # Returns a list of jsonnet_workitem
-def make_work_items(templates_dirs, output_root_dir, control_estates):
+def make_work_items(templates_args, output_root_dir, control_estates):
     ret = []
-    for template_dir in templates_dirs:
-      template_list = [os.path.join(dp, f) for dp, dn, filenames in os.walk(template_dir) for f in filenames if os.path.splitext(f)[1] == '.jsonnet']
+    for template_arg in templates_args:
+      if os.path.isdir(template_arg):
+          template_list = [os.path.join(dp, f) for dp, dn, filenames in os.walk(template_arg) for f in filenames if os.path.splitext(f)[1] == '.jsonnet']
+      elif os.path.isfile(template_arg):
+          template_list = [template_arg]
+      else:
+          template_list = []
       for ce in control_estates:
           for template in template_list:
               kingdom, estate = ce.split("/")
@@ -148,9 +154,9 @@ def make_work_items(templates_dirs, output_root_dir, control_estates):
 
 # Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
 # This is ugly right now, but it avoid an extra step each time we add a control estate.
-def find_control_estates(pools_dir):
+def find_control_estates(pools_arg):
     all_control_estates = {}
-    pool_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(pools_dir) for f in filenames if os.path.basename(f) == 'pool.yaml']
+    pool_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(pools_arg) for f in filenames if os.path.basename(f) == 'pool.yaml']
     for pool_file in pool_files:
         with open(pool_file, 'r') as poolfd:
             lines = poolfd.readlines()
@@ -172,14 +178,22 @@ def find_control_estates(pools_dir):
 def main():
     # Process arguments
     if len(sys.argv) != 4:
-        print("usage: parallel_run.py template_dir output_dir pools_dir")
+        print("usage: parallel_run.py template_dir output_dir pools_arg")
+        print("       template_dir: can be mutiply filename names and directory names")
+        print("       output_dir: can only be single directory name")
+        print("       pools_arg: can only be single directory name or single filename names")
         return
     template_dirs = sys.argv[1]
     output_dir = sys.argv[2]
-    pools_dir = sys.argv[3]
+    pools_arg = sys.argv[3]
 
     # Read control estates
-    control_estates = find_control_estates(pools_dir)
+    if os.path.isdir(pools_arg):
+        control_estates = find_control_estates(pools_arg)
+    elif os.path.isfile(pools_arg):
+        control_estates = json.load(open(pools_arg))["kingdomEstates"]
+    else:
+        print("\nwrong input,input have to be a filename or directory name.")
 
     # Do the work
     work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)

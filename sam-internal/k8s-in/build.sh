@@ -48,6 +48,8 @@ else
 fi
 
 time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/
+# time ./parallel_build.py flowsnake/templates,sdn/templates,sam/templates/samcontrol-deployer-configmap.jsonnet,sam/templates/samcontrol-deployer.jsonnet ../k8s-out/ flowsnakeEstates.json
+time ./parallel_build.py flowsnake/templates,sdn/templates ../k8s-out/ flowsnakeEstates.json
 
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
 # encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read 
