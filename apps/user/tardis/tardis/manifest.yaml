@@ -8,7 +8,7 @@ system:
     - name: tardis
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:latest
       env:
-      - name: git-token
+      - name: GIT_TOKEN
         valueFrom:
           secretKeyRef:
             name: tardis-secret
