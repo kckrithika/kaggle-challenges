@@ -23,8 +23,6 @@ system:
         - name: BRANCH
           value: "eng_production"
         volumeMounts:
-        - mountPath: /home/sfdc-casp/lib/warden/mysql
-          name: casp-home-vol
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
         livenessProbe:
@@ -33,9 +31,6 @@ system:
             port: 15372
           initialDelaySeconds: 120
       volumes:
-      - name: casp-home-vol
-        hostPath:
-          path: /home/sfdc-casp/lib/warden/mysql
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
