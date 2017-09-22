@@ -45,7 +45,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--connPort="+portconfigs.slb.ipvsDataConnPort,
                             "--retryPeriod=2m",
                             "--maxretries=2",
-                            "--log_dir="+slbconfigs.logsDir
+                            "--log_dir="+slbconfigs.logsDir,
+                            "--namespace=sam-system"
                         ],
                         "volumeMounts": configs.cert_volume_mounts + [
                             slbconfigs.slb_volume_mount,
