@@ -3,3 +3,6 @@ apps:
   - prd/prd-sp2-sam_chatbot
   runtime-production-1:
   - frf/frf-sam_chatbot_kingdom
+  runtime-production-all:
+  - dfw/dfw-sam_chatbot_kingdom
+  - phx/phx-sam_chatbot_kingdom
