@@ -41,7 +41,7 @@ system:
         # As of this manifest, sleepy=208.12 plsql 
 
       resources:
-        limits: { memory: "8292M" }
+        limits: { memory: "10240M" }
         requests: { memory: "8292M" }
  
       livenessProbe:
