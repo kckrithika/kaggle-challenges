@@ -32,12 +32,13 @@ local samimages = import "samimages.jsonnet";
                      "/sam/watchdog",
                      "-role=SYNTHETIC",
                      "-watchdogFrequency=60s",
-                     "-alertThreshold=300s",
+                     "-alertThreshold=1h",
                      "-emailFrequency=12h",
                      "-laddr=0.0.0.0:8083",
+                     "-maxdeploymentduration=5m",
                      "-imageName="+samimages.hypersam
                   ]
-                  + samwdconfig.shared_args + (if configs.kingdom == "prd" then [ "-maxdeploymentduration=5m" ] else []),
+                  + samwdconfig.shared_args,
                   # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                   "ports": [
                       {
