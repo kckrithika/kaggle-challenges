@@ -42,9 +42,6 @@ system:
       image: tnrp/csc-health/candidate-service:candidate-service-0000011-ed7a759b
       ports:
       - containerPort: 8888
-      resources:
-        limits: { cpu: "10", memory: "5Gi" }
-        requests: { cpu: "10", memory: "5Gi" }
       volumeMounts:
         - mountPath: /var/secrets
           name: secretvol
