@@ -30,6 +30,9 @@ apps:
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
+    - iad/iad-sam_report_collector
+    - ord/ord-sam_report_collector
+    - hnd/hnd-sam_report_collector
   observation-service-watchdog:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -37,6 +40,9 @@ apps:
     - frf/frf-sam_report_collector
     - par/par-sam_report_collector
     - ukb/ukb-sam_report_collector
+    - iad/iad-sam_report_collector
+    - ord/ord-sam_report_collector
+    - hnd/hnd-sam_report_collector
   candidate-service:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
