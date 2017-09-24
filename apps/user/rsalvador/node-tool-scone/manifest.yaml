@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: node-tool-scone
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsalvador/node-tool-scone-server:0.1.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsalvador/node-tool-scone-server:0.1.9
       ports:
       - name: service-port
         containerPort: 7020
