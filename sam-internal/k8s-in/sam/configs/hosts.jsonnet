@@ -5394,42 +5394,6 @@
     },
     {
       "controlestate": "prd-sam",
-      "estate": "prd-search_model_executor",
-      "hostname": "shared0-samminionsme1-1-prd.eng.sfdc.net",
-      "kingdom": "prd",
-      "pod": "none",
-      "role": "samcompute",
-      "superpod": "none"
-    },
-    {
-      "controlestate": "prd-sam",
-      "estate": "prd-search_model_executor",
-      "hostname": "shared0-samminionsme1-2-prd.eng.sfdc.net",
-      "kingdom": "prd",
-      "pod": "none",
-      "role": "samcompute",
-      "superpod": "none"
-    },
-    {
-      "controlestate": "prd-sam",
-      "estate": "prd-search_model_executor",
-      "hostname": "shared0-samminionsme2-1-prd.eng.sfdc.net",
-      "kingdom": "prd",
-      "pod": "none",
-      "role": "samcompute",
-      "superpod": "none"
-    },
-    {
-      "controlestate": "prd-sam",
-      "estate": "prd-search_model_executor",
-      "hostname": "shared0-samminionsme2-2-prd.eng.sfdc.net",
-      "kingdom": "prd",
-      "pod": "none",
-      "role": "samcompute",
-      "superpod": "none"
-    },
-    {
-      "controlestate": "prd-sam",
       "estate": "prd-sp1-sam_caas",
       "hostname": "samcaas1-caasminion1-1-prd.eng.sfdc.net",
       "kingdom": "prd",
