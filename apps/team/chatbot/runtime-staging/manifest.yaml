@@ -17,7 +17,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: memory
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-cc8d8e3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-4cce7a0
       livenessProbe:
         httpGet:
           path: /manage/health
