@@ -43,7 +43,7 @@ system:
         value: $(EXPREDISNOHALB_SERVICE_HOST)
       - name: ReportCollector_redis_port
         value: $(EXPREDISNOHALB_SERVICE_PORT)
-      - name: ReportCollector_app_redis_fullPathToAuthFile
+      - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
         value: true
