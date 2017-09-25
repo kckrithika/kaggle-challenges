@@ -15,18 +15,6 @@
     },
     {
       "namespaces": [
-        "gater"
-      ],
-      "access": [
-        "team/Gater"
-      ],
-      "controlEstate": "cdu-sam",
-      "estate": "cdu-sam_gater",
-      "kingdom": "cdu",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "csc-sam"
       ],
       "access": [
