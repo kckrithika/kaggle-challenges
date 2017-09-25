@@ -15,8 +15,9 @@ system:
           port: 9090
  
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: vyjsamhellolb
     function: default
+    slbenabled: true
     ports:
       - port: 9090
         targetport: 9090
