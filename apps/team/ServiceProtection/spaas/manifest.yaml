@@ -1,0 +1,35 @@
+# Manifest Syntax: https://sfdc.co/sam-manifest-format
+apiVersion: v1
+ 
+system:
+  functions:
+  # service name
+  - name: spaas
+    
+    # number of instances ("kpods") to deploy and run
+    count: 1
+    
+    # Docker image(s) that make up one instance of the service
+    containers:
+    - name: spaas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/serviceprotection/spaas:yganji-20170925
+      
+      # set container environment variables
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+        
+      # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      - containerPort: 7020
+      
+      # SAM will bounce the container if this returns an HTTP response code other than 200-399
+      livenessProbe:
+        # SAM will wait this long after starting the container before first checking
+        initialDelaySeconds: 15
+        httpGet:
+          path: /ping
+          port: 8080
+
