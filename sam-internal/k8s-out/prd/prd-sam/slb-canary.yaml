@@ -4,7 +4,7 @@ metadata:
   annotations:
     scheduler.alpha.kubernetes.io/affinity: |
       {
-        "podAntiAffinity": {
+        "nodeAffinity": {
           "requiredDuringSchedulingIgnoredDuringExecution": [
             {
               "labelSelector": {
