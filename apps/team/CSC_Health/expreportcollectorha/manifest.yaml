@@ -134,10 +134,6 @@ system:
         tcpSocket:
           port: 6379
         initialDelaySeconds: 5
-      command: ["/bin/sh", "-c"]
-      args: ["
-      echo save '' | redis-server -
-      "]
 
   loadbalancers:
   - lbname: expreportcollectorhalb
