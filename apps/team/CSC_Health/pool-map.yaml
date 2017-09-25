@@ -65,6 +65,7 @@ apps:
     - hnd/hnd-sam_report_collector
   expreportcollectorha:
     - prd/prd-sam_report_collector
+    - par/par-sam_report_collector
   exprepcollavailwd:
   cname-repcollavailwd:
     - prd/prd-sam_report_collector

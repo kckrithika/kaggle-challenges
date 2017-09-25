@@ -121,7 +121,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expredis
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/csc-health/redis-auth:3.2
+      image: tnrp/csc-health/redis-auth:3.2
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
