@@ -11,7 +11,7 @@ metadata:
                 "matchExpressions": [
                   {
                     "key": "name",
-                    "operator": "In",
+                    "operator": "NotIn",
                     "values": ["slb-ipvs"]
                   }
                 ]
