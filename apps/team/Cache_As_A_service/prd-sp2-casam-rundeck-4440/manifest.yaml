@@ -12,6 +12,9 @@ system:
 
       ports:
       - containerPort: 4440
+      # To avoid conflicts with CaaS perf hosts
+      - containerPort: 12000
+      - containerPort: 12015
 
       volumeMounts:
       - name: server
