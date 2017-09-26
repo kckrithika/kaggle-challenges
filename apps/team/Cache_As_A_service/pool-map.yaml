@@ -1,4 +1,6 @@
 apps:
+  prd-sp2-casam-rundeck-4440:
+    - prd/prd-sp2-sam_caas
   prd-sp2-casam-func-9000:
     - prd/prd-sp2-sam_caas
   prd-sp2-casam-metrics-publisher-c1:

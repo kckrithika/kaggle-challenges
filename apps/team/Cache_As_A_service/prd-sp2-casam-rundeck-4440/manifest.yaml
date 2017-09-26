@@ -1,0 +1,51 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: csrrundeck
+    type: stateful-set
+    hostnetwork: true
+    count: 1
+    containers:
+    - name: csrrundeck-sam
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/rundeck:1
+
+      ports:
+      - containerPort: 4440
+
+      volumeMounts:
+      - name: server
+        mountPath: /opt/rundeck/server
+      - name: projects
+        mountPath: /opt/rundeck/projects
+        
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 4440
+        initialDelaySeconds: 30
+        periodSeconds: 1
+
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 4440
+        initialDelaySeconds: 30
+        periodSeconds: 1
+
+    volumeClaimTemplates:
+    - name: server
+      storageClassName: standard
+      storageSizeRequest: 100Mb
+    - name: projects
+      storageClassName: standard
+      storageSizeRequest: 10Mb
+
+    loadbalancers:
+    - lbname: csrrundecklb
+      function: csrrundeck
+      nodeExposed: true
+      ports:
+      - port: 4440
+        targetport: 4440
+
