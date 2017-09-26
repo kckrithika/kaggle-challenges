@@ -36,6 +36,8 @@ system:
         initialDelaySeconds: 30
         periodSeconds: 1
 
+    lbname: csrrundecklb
+
     volumeClaimTemplates:
     - name: server
       storageClassName: standard
