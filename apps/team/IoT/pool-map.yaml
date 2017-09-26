@@ -9,3 +9,5 @@ apps:
     - prd/prd-sp2-sam_iot_test
   controlplane-ptest:
       - prd/prd-sp2-sam_iot_test
+  controlplane-scott:
+      - prd/prd-sp2-sam_iot_test

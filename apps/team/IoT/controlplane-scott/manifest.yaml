@@ -67,14 +67,3 @@ system:
         secretName: controlplane-config
     strategy:
       type: Recreate
-
-  loadbalancers:
-  - lbname: controlplane-ftest
-    function: controlplane-ftest
-    nodeExposed: true
-    ports:
-      - port: 10001
-        targetport: 7020
-      - port: 8090
-        targetport: 8080
-
