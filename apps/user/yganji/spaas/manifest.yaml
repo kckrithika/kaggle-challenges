@@ -32,4 +32,11 @@ system:
         httpGet:
           path: /ping
           port: 8080
-
+                 
+  loadbalancers:
+  - lbname: spaaslb
+    function: spaas
+    nodeExposed: true
+    ports:
+      - port: 7020
+        targetport: 7020
