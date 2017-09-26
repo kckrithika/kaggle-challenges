@@ -20,14 +20,14 @@ spec:
         - /sam/watchdog
         - -role=SYNTHETIC
         - -watchdogFrequency=60s
-        - -alertThreshold=300s
+        - -alertThreshold=1h
         - -emailFrequency=12h
         - -laddr=0.0.0.0:8083
+        - -maxdeploymentduration=5m
         - -imageName=ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/hypersam:20170921_121953.3a0a14c.dirty.adhoot-ltm.hairpin
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -maxdeploymentduration=5m
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig

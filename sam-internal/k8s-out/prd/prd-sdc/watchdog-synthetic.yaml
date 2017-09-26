@@ -20,14 +20,14 @@ spec:
         - /sam/watchdog
         - -role=SYNTHETIC
         - -watchdogFrequency=60s
-        - -alertThreshold=300s
+        - -alertThreshold=1h
         - -emailFrequency=12h
         - -laddr=0.0.0.0:8083
+        - -maxdeploymentduration=5m
         - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001263-d5b47592
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -maxdeploymentduration=5m
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
