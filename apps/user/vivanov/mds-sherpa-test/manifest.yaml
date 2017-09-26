@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-20-150000
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709250341
       ports:
       - containerPort: 7020
         name: local-grpc-port
@@ -29,27 +29,28 @@ system:
         httpGet:
           path: /manage/health
           port: 15523
-    - name: sherpa-mds
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000074-1d310b9f
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: sam
+# todo: uncomment sherpa. Change inbound port from 7012 to 9532
+#    - name: sherpa-mds
+#      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000074-1d310b9f
+#      env:
+#        - name: SFDC_ENVIRONMENT
+#          value: sam
 #      args: ['--incoming-http2', '9532']
-      ports:
-        - containerPort: 7012
-          name: inbound-grpc
-      livenessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 10
-          periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+#      ports:
+#        - containerPort: 7012
+#          name: inbound-grpc
+#      livenessProbe:
+#        exec:
+#          command:
+#          - "/home/sfdc-sherpa/bin/is-alive"
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
+#      readinessProbe:
+#        exec:
+#          command:
+#          - "/home/sfdc-sherpa/bin/is-ready"
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
 
   # TODO: volumes for logging
   loadbalancers:
@@ -59,5 +60,5 @@ system:
     ports:
     - port: 9091
       targetport: 9091
-    - port: 7012
-      targetport: 7012
+#    - port: 7012
+#      targetport: 7012
