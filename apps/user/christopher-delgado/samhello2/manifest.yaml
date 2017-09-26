@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: samhello2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/christopher.delgado/samhello2:delgadoexample2-20160630
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/christopher.delgado/samhello2:delgadoexample2-20160630
       ports:
       - containerPort: 9090
       livenessProbe:
