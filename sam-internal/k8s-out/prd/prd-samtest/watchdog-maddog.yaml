@@ -30,7 +30,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170921_013418.06dbe19.dirty.prabhsingh-ltm5
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5
         name: watchdog-maddog
         volumeMounts:
         - mountPath: /etc/pki_service
