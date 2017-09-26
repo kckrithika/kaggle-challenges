@@ -37,7 +37,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: sam
       args:
-        - --incoming_http2=9532
+        - --http2-in=9532
       ports:
         - containerPort: 9532
           name: inbound-grpc
