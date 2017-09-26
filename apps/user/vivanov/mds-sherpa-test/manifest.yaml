@@ -15,6 +15,9 @@ system:
         name: local-grpc-port
       - containerPort: 9091
       - containerPort: 15523
+
+# todo remove
+      - containerPort: 9532
       env:
       - name: SFDC_ENVIRONMENT
         value: dev
@@ -24,33 +27,33 @@ system:
         value: 15523
       livenessProbe:
         initialDelaySeconds: 60
-        periodSeconds: 30
-        timeoutSeconds: 30
+        periodSeconds: 120
+        timeoutSeconds: 120
         httpGet:
           path: /manage/health
           port: 15523
-    - name: sherpa-mds
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000074-1d310b9f
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: sam
-      args:
-        - --http2-in=9532
-      ports:
-        - containerPort: 9532
-          name: inbound-grpc
-      livenessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+#    - name: sherpa-mds
+#      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000074-1d310b9f
+#      env:
+#        - name: SFDC_ENVIRONMENT
+#          value: sam
+#      args:
+#        - --http2-in=9532
+#      ports:
+#        - containerPort: 9532
+#          name: inbound-grpc
+#      livenessProbe:
+#        exec:
+#          command:
+#          - "/home/sfdc-sherpa/bin/is-alive"
+#          initialDelaySeconds: 60
+#          periodSeconds: 120
+#      readinessProbe:
+#        exec:
+#          command:
+#          - "/home/sfdc-sherpa/bin/is-ready"
+#          initialDelaySeconds: 60
+#          periodSeconds: 120
 
   # TODO: volumes for logging
   loadbalancers:
