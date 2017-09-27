@@ -41,10 +41,10 @@ system:
     volumeClaimTemplates:
     - name: server
       storageClassName: standard
-      storageSizeRequest: 100Mb
+      storageSizeRequest: 100M
     - name: projects
       storageClassName: standard
-      storageSizeRequest: 10Mb
+      storageSizeRequest: 10M
 
     loadbalancers:
     - lbname: csrrundecklb
