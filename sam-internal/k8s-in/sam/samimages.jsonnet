@@ -40,22 +40,26 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
             "hypersam": "sam-0001302-4f86e9c4",
+            "madkub": "1.0.0-0000030-48d9cb58",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
             "hypersam": "sam-0001263-d5b47592",
+            "madkub": "1.0.0-0000030-48d9cb58",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
             "hypersam": "sam-0001263-d5b47592",
+            "madkub": "1.0.0-0000030-48d9cb58",
             },
 
 
         ### Release Phase 4 - Rest of Prod
         "4": {
             "hypersam": "sam-0001263-d5b47592",
+            "madkub": "1.0.0-0000030-48d9cb58",
             },
 
        ### For testing private bits from a developer's machine pre-checkin if
@@ -65,7 +69,8 @@ local utils = import "util_functions.jsonnet";
              if ($.privatebuildoverridetag != "") then
                 $.privatebuildoverridetag
              else $.per_phase["1"]["hypersam"]),
-           },
+           "madkub": $.per_phase["1"]["madkub"],
+        },
     },
 
     ### Phase kingdom/estate mapping
@@ -92,8 +97,9 @@ local utils = import "util_functions.jsonnet";
             else
                 "sam-1ebeb0ac-657"
         ),
+        # Move to phases when we roll to prod.
         "madkubSidecar": (
-            "cdebains/madkub:test-1f9f157-20170914-140609"
+            "1.0.0-0000030-48d9cb58"
         ),
     },
 
@@ -103,7 +109,10 @@ local utils = import "util_functions.jsonnet";
     hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
     k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static["k8sproxy"]),
     permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
+
+    madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase]["madkub"]),
+
     # TODO Change the registry org to sam as soon as built with tnrp
     # madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.static["madkubSidecar"]),
-    madkubSidecar: $.static["madkubSidecar"],
+    madkubSidecar: "sam/madkub/" + $.static["madkubSidecar"],
 }
