@@ -49,8 +49,7 @@ local samimages = import "samimages.jsonnet";
   k8sproxyEndpoint: "http://localhost:40000",
   # Puppet
   maxUptimeSampleSize: 5,
-  # Pod
-  podNamespacePrefixBlacklist: "sam-watchdog",
+
   # Sdp
   sdpEndpoint: "http://localhost:39999",
   # Synthetic
@@ -58,9 +57,19 @@ local samimages = import "samimages.jsonnet";
   imageName: samimages.hypersam,
 } +
 (
+  if configs.estate == "prd-samdev" || configs.estate == "prd-samtest"then {
+  # Kuberesource Checker
+  # We dont want to report on broken hairpin pods, since hairpin already alerts on those
+      kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
+      kubeResourceNamespacePrefixWhitelist: "sam-system",
+      deploymentNamespacePrefixWhitelist: "sam-system",
+  } else if configs.kingdom == "prd" then {
   # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack
-  if configs.kingdom == "prd" then {
     deploymentNamespacePrefixWhitelist: "sam-system",
-    podNamespacePrefixWhitelist: "sam-system"
-  } else {}
+    podNamespacePrefixWhitelist: "sam-system",
+    podNamespacePrefixBlacklist: "sam-watchdog",
+  } else {
+    podNamespacePrefixBlacklist: "sam-watchdog",
+  }
 )
+

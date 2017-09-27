@@ -23,8 +23,6 @@ spec:
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
         - -emailAdditionalRecipients=true
-        - -kubeResourceNamespacePrefixBlacklist=sam-watchdog
-        - -kubeResourceNamespacePrefixWhitelist=sam-system
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

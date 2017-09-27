@@ -19,10 +19,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                             "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
                             "-emailAdditionalRecipients=true",
-                            # We dont want to report on broken hairpin pods, since hairpin already alerts on those
-                            "-kubeResourceNamespacePrefixBlacklist=sam-watchdog",
                         ]
-                        + (if configs.kingdom == "prd" then [ "-kubeResourceNamespacePrefixWhitelist=sam-system" ] else [])
                         + samwdconfig.shared_args
                         + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
