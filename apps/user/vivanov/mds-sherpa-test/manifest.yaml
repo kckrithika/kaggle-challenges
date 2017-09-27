@@ -10,6 +10,9 @@ system:
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709250341
+      resources:
+          limits: {memory: "2Gi"}
+          requests: {memory: "2Gi"}
       ports:
       - containerPort: 7020
         name: local-grpc-port
@@ -60,5 +63,3 @@ system:
     ports:
     - port: 9091
       targetport: 9091
-    - port: 9532
-      targetport: 9532
