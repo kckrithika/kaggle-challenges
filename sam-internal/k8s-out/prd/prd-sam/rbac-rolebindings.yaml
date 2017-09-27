@@ -1,0 +1,1203 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: cluster-admin
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - kind: User
+    name: shared0-samkubeapi1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samkubeapi1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samkubeapi2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samkubeapi3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: minion:clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:clusterrole
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: update-secrets
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: update-secrets
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: samcompute:clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samcompute1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-10-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-11-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-12-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-13-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-14-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-15-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-16-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-7-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-8-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-9-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-10-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-11-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-12-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-13-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-14-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-15-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-16-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-4-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-5-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-6-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-7-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-8-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-9-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_chatbot_kingdom:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbotrt1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_chatbot_kingdom:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbotrt1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_cloudatlas:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_cloudatlas:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:prd-sam_cloudatlas:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_cloudatlas_dir:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_cloudatlas_dir:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:prd-sam_cloudatlas_dir:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_gater:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_gater:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: ccait:prd-sam_gater:rolebinding
+    namespace: ccait
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: gater:prd-sam_gater:rolebinding
+    namespace: gater
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_moderation_einstein:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_moderation_einstein:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: communities:prd-sam_moderation_einstein:rolebinding
+    namespace: communities
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_report_collector:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_report_collector:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: csc-health:prd-sam_report_collector:rolebinding
+    namespace: csc-health
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sam_warden:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sam_warden:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: casp:prd-sam_warden:rolebinding
+    namespace: casp
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-search_model_executor:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsme1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-search_model_executor:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsme1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp1-sam_caas:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp1-sam_caas:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp1-sdb_kube:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp1-sdb_kube:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sayonaradb:prd-sp1-sdb_kube:rolebinding
+    namespace: sayonaradb
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: user-sraspudic:prd-sp1-sdb_kube:rolebinding
+    namespace: user-sraspudic
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-sdbcompute3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_caas:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas2-caasminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_caas:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas2-caasminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service-sp2:prd-sp2-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas2-caasminion1-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-5-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-6-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-1-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-2-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-3-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-4-prd.eng.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_chatbot:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_chatbot:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: chatbot-sp2:prd-sp2-sam_chatbot:rolebinding
+    namespace: chatbot-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_eaas_sp:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminioneaassp1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_eaas_sp:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminioneaassp1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: emailinfra-sp2:prd-sp2-sam_eaas_sp:rolebinding
+    namespace: emailinfra-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminioneaassp1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminioneaassp2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_iot_test:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioniottest1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_iot_test:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioniottest1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: iot-sp2:prd-sp2-sam_iot_test:rolebinding
+    namespace: iot-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioniottest1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioniottest2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_retail_cre:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailcre1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcre2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcre3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_retail_cre:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailcre1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcre2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcre3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-cre-sp2:prd-sp2-sam_retail_cre:rolebinding
+    namespace: retail-cre-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailcre1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcre2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcre3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_retail_credata:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_retail_credata:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-credata-sp2:prd-sp2-sam_retail_credata:rolebinding
+    namespace: retail-credata-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_retail_dss:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretaildss1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_retail_dss:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretaildss1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-dss-sp2:prd-sp2-sam_retail_dss:rolebinding
+    namespace: retail-dss-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretaildss1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_retail_mds:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailmds1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailmds2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailmds3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_retail_mds:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailmds1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailmds2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailmds3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-mds-sp2:prd-sp2-sam_retail_mds:rolebinding
+    namespace: retail-mds-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailmds1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailmds2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailmds3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_retail_rsui:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailrsui1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailrsui2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_retail_rsui:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailrsui1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailrsui2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-rsui-sp2:prd-sp2-sam_retail_rsui:rolebinding
+    namespace: retail-rsui-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretailrsui1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailrsui2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
+kind: List
+metadata: {}
