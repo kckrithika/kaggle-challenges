@@ -87,10 +87,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_moderation_einstein",
@@ -231,10 +231,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_moderation_einstein",
@@ -339,10 +339,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_moderation_einstein",
@@ -447,10 +447,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_moderation_einstein",
@@ -567,10 +567,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_moderation_einstein",
@@ -689,10 +689,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_moderation_einstein",
@@ -799,10 +799,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_moderation_einstein",
@@ -1223,10 +1223,10 @@
     },
     {
       "namespaces": [
-        "csc-sam"
+        "communities"
       ],
       "access": [
-        "team/CSC_Sam"
+        "team/communities"
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_moderation_einstein",
