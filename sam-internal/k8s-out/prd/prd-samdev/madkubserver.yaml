@@ -32,7 +32,7 @@ spec:
         - /tokens/
         - --service-hostname
         - $(MADKUBSERVER_SERVICE_HOST)
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-4293c76-20170919-140438
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000030-48d9cb58
         livenessProbe:
           initialDelaySeconds: 20
           periodSeconds: 20
