@@ -21,7 +21,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 }
             },
             "spec": {
-                "hostNetwork": false,
                 "volumes": [
                     slbconfigs.slb_volume,
                     {

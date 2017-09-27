@@ -22,7 +22,6 @@ spec:
         volumeMounts:
         - mountPath: /host/var/slb
           name: var-slb-volume
-      hostNetwork: false
       nodeSelector:
         pool: prd-sdc
       volumes:
