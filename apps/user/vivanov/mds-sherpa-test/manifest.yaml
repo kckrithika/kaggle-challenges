@@ -24,11 +24,11 @@ system:
         value: 15523
 # todo: probe commented out for debug
       livenessProbe:
-          exec:
-              command: ["true"]
-#        initialDelaySeconds: 60
-#        periodSeconds: 120
-#        timeoutSeconds: 120
+        exec:
+          command: ["true"]
+          initialDelaySeconds: 600
+          periodSeconds: 600
+          timeoutSeconds: 600
 #        httpGet:
 #          path: /manage/health
 #          port: 15523
