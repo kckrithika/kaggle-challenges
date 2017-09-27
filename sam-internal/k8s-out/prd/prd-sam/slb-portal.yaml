@@ -1,26 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {
-        "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": [
-            {
-              "labelSelector": {
-                "matchExpressions": [
-                  {
-                    "key": "name",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs"]
-                  }
-                ]
-              },
-              "topologyKey": "kubernetes.io/hostname"
-           }
-          ]
-         }
-       }
   labels:
     name: slb-portal
   name: slb-portal

@@ -10,11 +10,10 @@ spec:
     metadata:
       annotations:
         scheduler.alpha.kubernetes.io/affinity: |
-          {
-            "nodeAffinity": {
-              "requiredDuringSchedulingIgnoredDuringExecution": [
-                {
-                  "labelSelector": {
+          {   "nodeAffinity": {
+              "requiredDuringSchedulingIgnoredDuringExecution": {
+                "nodeSelectorTerms": [
+                  {
                     "matchExpressions": [
                       {
                         "key": "name",
@@ -22,12 +21,11 @@ spec:
                         "values": ["slb-ipvs"]
                       }
                     ]
-                  },
-                  "topologyKey": "kubernetes.io/hostname"
-               }
-              ]
-             }
-           }
+                  }
+                ]
+              }
+            }
+          }
       labels:
         name: slb-bravo
     spec:
