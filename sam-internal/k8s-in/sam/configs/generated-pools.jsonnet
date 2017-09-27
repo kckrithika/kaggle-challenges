@@ -15,10 +15,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "cdu-sam",
       "estate": "cdu-sam_gater",
@@ -75,10 +77,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_gater",
@@ -219,10 +223,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_gater",
@@ -327,10 +333,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_gater",
@@ -435,10 +443,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_gater",
@@ -555,10 +565,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_gater",
@@ -785,10 +797,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_gater",
@@ -967,12 +981,10 @@
     },
     {
       "namespaces": [
-        "casp",
-        "ccait"
+        "casp"
       ],
       "access": [
-        "team/CASP",
-        "team/CCAIT"
+        "team/CASP"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_warden",
@@ -1151,10 +1163,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "syd-sam",
       "estate": "syd-sam_gater",
@@ -1211,10 +1225,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_gater",
@@ -1283,10 +1299,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "yhu-sam",
       "estate": "yhu-sam_gater",
@@ -1307,10 +1325,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_gater",
