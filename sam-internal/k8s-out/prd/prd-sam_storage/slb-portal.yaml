@@ -22,7 +22,7 @@ spec:
         volumeMounts:
         - mountPath: /host/var/slb
           name: var-slb-volume
-      hostNetwork: true
+      hostNetwork: false
       nodeSelector:
         pool: prd-sam_storage
       volumes:
