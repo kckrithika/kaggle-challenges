@@ -10,8 +10,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         "labels": {
             "name": "slb-canary"
         },
-        "name": "slb-canary"
-    },
+        "name": "slb-canary",
+    } + 
+        if configs.estate == "prd-sdc" then { 
+		    "annotations": {
+			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
+		    }
+            } else {},
     "spec": {
         replicas: 2,
         "template": {

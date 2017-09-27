@@ -8,6 +8,24 @@ spec:
   replicas: 1
   template:
     metadata:
+      annotations:
+        scheduler.alpha.kubernetes.io/affinity: |
+          {   "nodeAffinity": {
+              "requiredDuringSchedulingIgnoredDuringExecution": {
+                "nodeSelectorTerms": [
+                  {
+                    "matchExpressions": [
+                      {
+                        "key": "name",
+                        "operator": "NotIn",
+                        "values": ["slb-ipvs"]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
       labels:
         name: slb-bravo
     spec:
