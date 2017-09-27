@@ -2,17 +2,17 @@ local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
   "apiVersion": "v1",
   "kind": "List",
   "metadata": {},
-  createRoleBinding(namespace, hosts):: {
+  createRoleBinding(namespace, estate, hosts):: {
       #Gives permission to read secrets & update events & pod status in the rolebinding's namespace
       "kind": "RoleBinding",
       "apiVersion": "rbac.authorization.k8s.io/v1alpha1",
       "metadata": {
         #All the $namespaces deployed on the $pool the node is part of should have rolebinding to "minion:role"
-        "name": namespace + ":rolebinding",
+        "name": namespace + ":" + estate + ":rolebinding",
         "namespace": namespace
       },
       "subjects": [
@@ -51,7 +51,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
             local hosts =  rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
             # In Prod samcompute & samkubeapi nodes get admin access.
             # In PRD customer apps run on samcompute nodes. So samcompute nodes get restricted access but all the  permissions are across namespace(clusterRoleBinding)
-            if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [self.createClusterRoleBinding(hosts)] else [self.createRoleBinding(namespace, hosts) for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)]
+            if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [self.createClusterRoleBinding(hosts)] else [self.createRoleBinding(namespace, minionEstate, hosts) for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)]
             for minionEstate in rbac_utils.get_Minion_Estates(configs.kingdom, configs.estate)
         ]),
 
