@@ -19,13 +19,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         "prd,prd-samdev,watchdog-kuberesources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20170919_173325.0831c87.clean.prahladjos-ltm",
-        "prd,prd-samdev,watchdog-rbac,hypersam": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001270-f52e4116",
-        "prd,prd-samtest,watchdog-rbac,hypersam": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001270-f52e4116",
         "prd,prd-sam,node-controller,hypersam": "sam-0001276-d3013c69",
-        "prd,prd-samdev,node-controller,hypersam": "sam-0001276-d3013c69",
-        "prd,prd-samtest,node-controller,hypersam": "sam-0001276-d3013c69",
-        "prd,prd-sam_storage,node-controller,hypersam": "sam-0001276-d3013c69",
-        "prd,prd-sdc,node-controller,hypersam": "sam-0001276-d3013c69",
         "prd,prd-sam,watchdog-maddog,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5",
         "prd,prd-samtest,watchdog-maddog,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5",
         "prd,prd-samdev,watchdog-maddog,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5",
@@ -35,7 +29,7 @@ local utils = import "util_functions.jsonnet";
     # for temporary testing
     # While doing a new release this should be set to empty to deploy the official build
     #
-    privatebuildoverridetag:"ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/hypersam:20170921_121953.3a0a14c.dirty.adhoot-ltm.hairpin",
+    privatebuildoverridetag:"",
 
 
     ### Per-phase image tags
@@ -46,7 +40,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            "hypersam": "sam-0001263-d5b47592",
+            "hypersam": "sam-0001302-4f86e9c4",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
@@ -56,7 +50,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
-            #Retrying PHASE 3 release. Docker image pull failed in frf,yul,yhu 
             "hypersam": "sam-0001263-d5b47592",
             },
 
@@ -100,6 +93,9 @@ local utils = import "util_functions.jsonnet";
             else
                 "sam-1ebeb0ac-657"
         ),
+        "madkubSidecar": (
+            "cdebains/madkub:test-1f9f157-20170914-140609"
+        ),
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
@@ -108,4 +104,7 @@ local utils = import "util_functions.jsonnet";
     hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
     k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static["k8sproxy"]),
     permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
+    # TODO Change the registry org to sam as soon as built with tnrp
+    # madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.static["madkubSidecar"]),
+    madkubSidecar: $.static["madkubSidecar"],
 }

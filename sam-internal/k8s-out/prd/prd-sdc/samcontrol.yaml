@@ -23,9 +23,6 @@ spec:
         - --v=3
         - --logtostderr=true
         - --config=/config/samcontrol.json
-        - --deletionEnabled=true
-        - --deletionPercentageThreshold=10
-        - --statefulAppEnabled=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig

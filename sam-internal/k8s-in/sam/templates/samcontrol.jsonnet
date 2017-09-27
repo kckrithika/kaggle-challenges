@@ -19,8 +19,10 @@ local samimages = import "samimages.jsonnet";
                            "--v=3",
                            "--logtostderr=true",
                            "--config=/config/samcontrol.json",
-                        ] + (if configs.kingdom == "prd" then [ "--deletionEnabled=true", "--deletionPercentageThreshold=10"] else [])
-                        + (if configs.kingdom == "prd" then [ "--statefulAppEnabled=true" ] else []),
+                        ] + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" then [
+                        # Kept here because of the use of the envvar. Keep in sync with the config.
+                        "-maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
+                        ] else []),
                        volumeMounts: configs.cert_volume_mounts + [
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
