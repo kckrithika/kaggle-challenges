@@ -10,6 +10,9 @@ system:
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709250341
+      resources:
+          limits: {memory: "2Gi"}
+          requests: {memory: "2Gi"}
       ports:
       - containerPort: 7020
         name: local-grpc-port
@@ -55,7 +58,7 @@ system:
   # TODO: volumes for logging
   loadbalancers:
   - lbname: metadata-servicelb
-    function: metadata-service
+    function: metadata-service-lb
     nodeExposed: true
     ports:
     - port: 9091
