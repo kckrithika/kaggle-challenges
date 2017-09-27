@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            "hypersdn": "v-0000344-6be820bf",
+            "hypersdn": "v-0000350-0c94c1ac",
             "bird": "v-0000014-b0a5951d"
             },
 
