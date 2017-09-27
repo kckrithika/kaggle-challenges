@@ -58,10 +58,8 @@ system:
   # TODO: volumes for logging
   loadbalancers:
   - lbname: metadata-servicelb
-    function: metadata-service-lb
+    function: metadata-service
     nodeExposed: true
     ports:
     - port: 9091
       targetport: 9091
-    - port: 9532
-      targetport: 9532
