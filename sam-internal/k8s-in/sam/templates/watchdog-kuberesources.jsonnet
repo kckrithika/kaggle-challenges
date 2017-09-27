@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.estate == "prd-samdev" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -16,13 +16,13 @@ if configs.estate == "prd-samdev" then {
                             "/sam/watchdog",
                             "-role=KUBERESOURCES",
                             "-watchdogFrequency=60s",
-                            "-alertThreshold=300s",
+                            "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
                             "-emailAdditionalRecipients=true",
                             # We dont want to report on broken hairpin pods, since hairpin already alerts on those
                             "-kubeResourceNamespacePrefixBlacklist=sam-watchdog",
                         ]
-                        + (if configs.kingdom == "prd" then [ "-kubeResourceNamespacePrefixWhitelist=sam-system,user-cbatra" ] else [])
+                        + (if configs.kingdom == "prd" then [ "-kubeResourceNamespacePrefixWhitelist=sam-system" ] else [])
                         + samwdconfig.shared_args
                         + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
