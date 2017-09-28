@@ -11,12 +11,10 @@ if configs.estate == "prd-sdc" then {
             "name": "slb-canary-proxy-tcp"
         },
         "name": "slb-canary-proxy-tcp",
-    } +
-        if configs.estate == "prd-sdc" then {
-		    "annotations": {
-			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
-		    }
-            } else {},
+        "annotations": {
+                        			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
+        }
+    },
     "spec": {
         replicas: 2,
         "template": {

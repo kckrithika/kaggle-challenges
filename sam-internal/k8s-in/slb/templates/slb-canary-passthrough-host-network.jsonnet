@@ -11,12 +11,10 @@ if configs.estate == "prd-sdc" then {
             "name": "slb-canary-passthrough-host-network"
         },
         "name": "slb-canary-passthrough-host-network",
-    } + 
-        if configs.estate == "prd-sdc" then { 
-		    "annotations": {
+        "annotations": {
 			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
-		    }
-            } else {},
+		}
+	},
     "spec": {
         replicas: 2,
         "template": {
