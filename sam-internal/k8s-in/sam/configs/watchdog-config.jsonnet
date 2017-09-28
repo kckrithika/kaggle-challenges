@@ -15,7 +15,7 @@ local samimages = import "samimages.jsonnet";
     #
     #  jsonnet/jsonnet sam/configs/watchdog-config.jsonnet -J . -J sam/ -V kingdom=prd -V estate=prd-sam -V template=watchdog-config > /tmp/wdconfig.json && ~/go/bin/watchdog -checkConfig -config /tmp/wdconfig.json
     #
- 
+
     # Unknown - next time add comment
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
@@ -24,7 +24,11 @@ local samimages = import "samimages.jsonnet";
     { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" },
     # [thargrove] TNRP changed bot name
     { estates: ["prd-sam"], checker: "prChecker", until: "2017/10/01" },
-    
+
+    # cdebains - 1.7.4 update triggered veth problems. Disabling them until fixed. d.smith is spearheading investigation.
+    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "hairpinChecker", until: "2017/11/01" },
+    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "bridgeChecker", until: "2017/11/01" },
+
   ],
 
   # Shared
