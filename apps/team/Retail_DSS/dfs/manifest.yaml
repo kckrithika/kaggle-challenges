@@ -1,0 +1,19 @@
+# Manifest Syntax: https://sfdc.co/sam-manifest-format
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: scone-dfs
+    count: 1
+    containers:
+    - name: scone-dfs
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs:dfs-0.1.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      ports:
+      - containerPort: 9000
+      - containerPort: 15372
+      livenessProbe:
+        exec:
+          command: ["true"]
