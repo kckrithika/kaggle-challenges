@@ -33,7 +33,7 @@ spec:
         - /tokens/
         - --service-hostname
         - $(MADKUBSERVER_SERVICE_HOST)
-        - --datacenter
+        - --kingdom
         - prd
         - --estate
         - prd-samdev
@@ -76,7 +76,7 @@ spec:
         - --refresher
         - --refresher-token-grace-period
         - 30s
-        - --datacenter
+        - --kingdom
         - prd
         - --estate
         - prd-samdev
