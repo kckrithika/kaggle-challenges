@@ -4,57 +4,63 @@ data:
     {
       "hosts": [
         {
+          "bomrolename": "samdev_compute",
           "controlestate": "prd-samdev",
+          "devicerole": "samcompute",
           "estate": "prd-samdev",
           "hostname": "shared0-samdevcompute1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "samdev_compute",
           "controlestate": "prd-samdev",
+          "devicerole": "samcompute",
           "estate": "prd-samdev",
           "hostname": "shared0-samdevcompute1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "samdev_compute",
           "controlestate": "prd-samdev",
+          "devicerole": "samcompute",
           "estate": "prd-samdev",
           "hostname": "shared0-samdevcompute2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "samdev_kube_api",
           "controlestate": "prd-samdev",
+          "devicerole": "samkubeapi",
           "estate": "prd-samdev",
           "hostname": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "samdev_kube_api",
           "controlestate": "prd-samdev",
+          "devicerole": "samkubeapi",
           "estate": "prd-samdev",
           "hostname": "shared0-samdevkubeapi2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "samdev_kube_api",
           "controlestate": "prd-samdev",
+          "devicerole": "samkubeapi",
           "estate": "prd-samdev",
           "hostname": "shared0-samdevkubeapi3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         }
       ]
