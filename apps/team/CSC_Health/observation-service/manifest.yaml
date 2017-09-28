@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: tnrp/csc-health/observation-service:observation-service-0000020-530bf5c2
+      image: tnrp/csc-health/observation-service:observation-service-0000023-1b59155b
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000020-530bf5c2
+      image: tnrp/csc-health/observation-service:observation-service-0000023-1b59155b
       ports:
       - containerPort: 8080
       volumeMounts:
@@ -51,6 +51,8 @@ system:
       env:
       - name: OBS_AJNA_ENABLED
         value: true
+      - name: OBS_REPORTCOLLECTOR_MTLSENABLED
+        value: false
       - name: OBS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: OBS_GROK_KEYPATH
