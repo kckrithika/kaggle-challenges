@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/affinity: |
+      {   "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "name",
+                    "operator": "NotIn",
+                    "values": ["slb-ipvs"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+  labels:
+    name: slb-canary-proxy-tcp
+  name: slb-canary-proxy-tcp
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: slb-canary-proxy-tcp
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-proxy-tcp
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --log_dir=/host/var/slb/logs
+        - --ports=9115
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000349-241e53fd
+        name: slb-canary-proxy-tcp
+        volumeMounts:
+        - mountPath: /host
+          name: host-volume
+        - mountPath: /host/var/slb/logs
+          name: var-logs-volume
+      nodeSelector:
+        pool: prd-sdc
+      volumes:
+      - hostPath:
+          path: /
+        name: host-volume
+      - hostPath:
+          path: /var/slb/logs
+        name: var-logs-volume

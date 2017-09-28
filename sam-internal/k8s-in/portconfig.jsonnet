@@ -24,6 +24,10 @@
         ipvsDataConnPort: 9107,
         canaryServicePort: 9111,
         slbPortalServicePort: 9112,
+        canaryServicePassthroughHostNetworkPort: 9113,
+        canaryServicePassthroughTlsPort: 9114,
+        canaryServiceProxyTcpPort: 9115,
+        canaryServiceProxyHttpPort: 9116,
 
         canaryServiceNodePort: 32136,
         alphaServiceNodePort: 32137,
@@ -31,5 +35,9 @@
         slbPortalServiceNodePort: 32139,
         bravoServiceNodePort1: 32140,
         bravoServiceNodePort2: 32141,
+        canaryServicePassthroughHostNetworkNodePort: 32142,
+        canaryServicePassthroughTlsNodePort: 32143,
+        canaryServiceProxyTcpNodePort: 32144,
+        canaryServiceProxyHttpNodePort: 32145,
     }
 }
