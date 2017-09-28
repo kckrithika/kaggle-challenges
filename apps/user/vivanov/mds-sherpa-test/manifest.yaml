@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709280946
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709281126
       ports:
       - containerPort: 7020
         name: local-grpc-port
