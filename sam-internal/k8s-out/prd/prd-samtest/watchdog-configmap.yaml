@@ -62,7 +62,8 @@ data:
           "estates": [
             "prd-sam",
             "prd-samtest",
-            "prd-samdev"
+            "prd-samdev",
+            "prd-sam_storage"
           ],
           "until": "2017/11/01"
         },
@@ -71,7 +72,8 @@ data:
           "estates": [
             "prd-sam",
             "prd-samtest",
-            "prd-samdev"
+            "prd-samdev",
+            "prd-sam_storage"
           ],
           "until": "2017/11/01"
         }
