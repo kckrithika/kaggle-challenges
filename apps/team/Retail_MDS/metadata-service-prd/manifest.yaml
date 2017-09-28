@@ -9,9 +9,9 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robert.snell/metadata-service:rob-2017-09-20-150000
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:vlad-2017-09-29-100000
       ports:
-      - containerPort: 9532
+      - containerPort: 7020
       - containerPort: 9091
       - containerPort: 15523
       env:
@@ -28,7 +28,30 @@ system:
         httpGet:
           path: /manage/health
           port: 15523
-  # TODO: volumes for logging 
+
+  - name: sherpa-mds
+    image: tnrp/sherpa:0.2.0-0000076-47b587a5
+    env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+    args:
+      - --http2-in=9532
+    ports:
+      - containerPort: 9532
+    livenessProbe:
+      exec:
+        command:
+        - "/home/sfdc-sherpa/bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+    readinessProbe:
+      exec:
+        command:
+        - "/home/sfdc-sherpa/bin/is-ready"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+
+  # TODO: volumes for logging
   loadbalancers:
   - lbname: metadata-servicelb
     function: metadata-service
@@ -36,5 +59,3 @@ system:
     ports:
     - port: 9091
       targetport: 9091
-    - port: 9532
-      targetport: 9532
