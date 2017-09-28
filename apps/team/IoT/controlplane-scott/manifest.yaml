@@ -6,7 +6,7 @@ system:
       - iotenterprise@salesforce.com
   functions:
   - name: controlplane-scott
-    count: 1
+    count: 2
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
@@ -21,7 +21,29 @@ system:
           port: 8080
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      # TODO: arrange this with iot-ent team
+      env:
+        - name: grpc.server-port
+          value: 7020
+        - name: server.port
+          value: 8080
+        - name: logging.stderr.level
+          value: ALL
+        - name: phoenix.zookeeper.port
+          value: 2181
+        - name: phoenix.keytab.principal
+          value: controlplane@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
+        - name: phoenix.keytab.file
+          value: home/controlplane/controlplane-keytab/controlplane.keytab
+        - name: phoenix.kerberos.enabled
+          value: true
+        - name: phoenix.jaas.config.file
+          value: home/controlplane/controlplane-config/jaas.conf
+        - name: phoenix.krb5.config.file
+          value: home/controlplane/controlplane-config/krb5.conf
+        - name: phoenix.zookeeper.quorum
+          value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
+        - name: phoenix.hbase.regionserver.kerberos.principal
+          value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
       volumeMounts:
       - mountPath: /logs
         name: logvol
@@ -30,9 +52,6 @@ system:
         readOnly: true
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
-        readOnly: true
-      - mountPath: /home/controlplane/service-config
-        name: controlplaneproperties
         readOnly: true
       - mountPath: /home/controlplane/controlplane-config
         name: controlplaneconfig
@@ -44,15 +63,10 @@ system:
         limits:
           memory: '16G'
           cpu: 7
- 
-    # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
-    # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
-    # written to this directory.
-    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/iot
+        path: /data/log/iot
     - name: ajnaclientcert
       secret:
         secretName: iot-dva-kafka-prd-test
@@ -67,3 +81,4 @@ system:
         secretName: controlplane-config
     strategy:
       type: Recreate
+
