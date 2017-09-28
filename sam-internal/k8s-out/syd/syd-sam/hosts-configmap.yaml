@@ -4,57 +4,93 @@ data:
     {
       "hosts": [
         {
+          "bomrolename": "sam_kube_api",
           "controlestate": "syd-sam",
+          "devicerole": "samkubeapi",
           "estate": "syd-sam",
           "hostname": "shared0-samkubeapi1-1-syd.ops.sfdc.net",
           "kingdom": "syd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_kube_api",
           "controlestate": "syd-sam",
+          "devicerole": "samkubeapi",
           "estate": "syd-sam",
           "hostname": "shared0-samkubeapi2-1-syd.ops.sfdc.net",
           "kingdom": "syd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_kube_api",
           "controlestate": "syd-sam",
+          "devicerole": "samkubeapi",
           "estate": "syd-sam",
           "hostname": "shared0-samkubeapi3-1-syd.ops.sfdc.net",
           "kingdom": "syd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_gater",
           "controlestate": "syd-sam",
+          "devicerole": "samcompute",
           "estate": "syd-sam_gater",
           "hostname": "shared0-samminiongater1-1-syd.ops.sfdc.net",
           "kingdom": "syd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_gater",
           "controlestate": "syd-sam",
+          "devicerole": "samcompute",
           "estate": "syd-sam_gater",
           "hostname": "shared0-samminiongater1-2-syd.ops.sfdc.net",
           "kingdom": "syd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_gater",
           "controlestate": "syd-sam",
+          "devicerole": "samcompute",
           "estate": "syd-sam_gater",
           "hostname": "shared0-samminiongater2-1-syd.ops.sfdc.net",
           "kingdom": "syd",
           "pod": "none",
-          "role": "samcompute",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector1-1-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector2-1-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "syd-sam",
+          "devicerole": "samcompute",
+          "estate": "syd-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector3-1-syd.ops.sfdc.net",
+          "kingdom": "syd",
+          "pod": "none",
           "superpod": "none"
         }
       ]

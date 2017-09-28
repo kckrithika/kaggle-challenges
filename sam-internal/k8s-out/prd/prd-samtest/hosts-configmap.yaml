@@ -4,57 +4,63 @@ data:
     {
       "hosts": [
         {
+          "bomrolename": "samtest_compute",
           "controlestate": "prd-samtest",
+          "devicerole": "samcompute",
           "estate": "prd-samtest",
           "hostname": "shared0-samtestcompute1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "samtest_compute",
           "controlestate": "prd-samtest",
+          "devicerole": "samcompute",
           "estate": "prd-samtest",
           "hostname": "shared0-samtestcompute1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "samtest_compute",
           "controlestate": "prd-samtest",
+          "devicerole": "samcompute",
           "estate": "prd-samtest",
           "hostname": "shared0-samtestcompute2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samcompute",
           "superpod": "none"
         },
         {
+          "bomrolename": "samtest_kube_api",
           "controlestate": "prd-samtest",
+          "devicerole": "samkubeapi",
           "estate": "prd-samtest",
           "hostname": "shared0-samtestkubeapi1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "samtest_kube_api",
           "controlestate": "prd-samtest",
+          "devicerole": "samkubeapi",
           "estate": "prd-samtest",
           "hostname": "shared0-samtestkubeapi2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         },
         {
+          "bomrolename": "samtest_kube_api",
           "controlestate": "prd-samtest",
+          "devicerole": "samkubeapi",
           "estate": "prd-samtest",
           "hostname": "shared0-samtestkubeapi3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
-          "role": "samkubeapi",
           "superpod": "none"
         }
       ]
