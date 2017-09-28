@@ -18,12 +18,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 "labels": {
                     "name": "slb-bravo"
                 },
-            } + 
-            if configs.estate == "prd-sdc" then { 
-		    "annotations": {
-			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
-		    }
-            } else {},
+            },
             "spec": {
                 "volumes": [
                     slbconfigs.slb_volume,
