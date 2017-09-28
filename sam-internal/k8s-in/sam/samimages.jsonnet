@@ -18,10 +18,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
-        "prd,prd-sam,node-controller,hypersam": "sam-0001276-d3013c69",
-        "prd,prd-sam,watchdog-maddog,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5",
-        "prd,prd-samtest,watchdog-maddog,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5",
-        "prd,prd-samdev,watchdog-maddog,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20170925_094939.68f05d6.dirty.prabhsingh-ltm5",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -45,7 +41,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            "hypersam": "sam-0001263-d5b47592",
+            "hypersam": "sam-0001302-4f86e9c4",
             "madkub": "1.0.0-0000030-48d9cb58",
             },
 
