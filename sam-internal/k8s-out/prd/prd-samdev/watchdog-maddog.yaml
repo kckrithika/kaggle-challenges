@@ -35,8 +35,6 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /data/certs
-          name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /kubeconfig
@@ -50,9 +48,6 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - hostPath:
-          path: /data/certs
-        name: certs
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
