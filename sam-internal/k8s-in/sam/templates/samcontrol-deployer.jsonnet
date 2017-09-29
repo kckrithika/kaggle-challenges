@@ -60,6 +60,7 @@ local samimages = import "samimages.jsonnet";
         labels: {
             name: "samcontrol-deployer"
         },
-        name: "samcontrol-deployer"
+        name: "samcontrol-deployer",
+        namespace: "sam-system"
     }
 }
