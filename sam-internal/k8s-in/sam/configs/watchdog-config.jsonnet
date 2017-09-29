@@ -60,6 +60,8 @@ local samimages = import "samimages.jsonnet";
   # Synthetic
   laddr: "0.0.0.0:8083",
   imageName: samimages.hypersam,
+  # Maddog checker
+  maddogServerCAPath: configs.maddogServerCAPath,
 } +
 (
   # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack

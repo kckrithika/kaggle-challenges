@@ -107,6 +107,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         else
             "/data/certs/ca.crt"
     ),
+    maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
     keyFile: "/data/certs/hostcert.key",
     certFile: "/data/certs/hostcert.crt",
 
