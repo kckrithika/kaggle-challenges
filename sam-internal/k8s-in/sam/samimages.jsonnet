@@ -111,5 +111,5 @@ local utils = import "util_functions.jsonnet";
 
     # TODO Change the registry org to sam as soon as built with tnrp
     # madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.static["madkubSidecar"]),
-    madkubSidecar: "sam/madkub/" + $.static["madkubSidecar"],
+    madkubSidecar: "sam/madkub:" + $.static["madkubSidecar"],
 }

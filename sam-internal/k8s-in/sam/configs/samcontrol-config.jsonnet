@@ -24,5 +24,5 @@ local samimages = import "samimages.jsonnet";
     #maddogMadkubEndpoint: "https://10.254.208.254:32007",
     maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank."+configs.kingdom+".prod.non-estates.sfdcsd.net:8443",
     maddogMadkubImage: samimages.madkubSidecar,
-    maddogMadkubImageRegistry: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam",
+    maddogMadkubImageRegistry: configs.registry + "/docker-release-candidate/tnrp",
   } else {})
