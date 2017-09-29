@@ -1,24 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {   "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": {
-            "nodeSelectorTerms": [
-              {
-                "matchExpressions": [
-                  {
-                    "key": "name",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs"]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
   labels:
     name: slb-canary-proxy-tcp
   name: slb-canary-proxy-tcp

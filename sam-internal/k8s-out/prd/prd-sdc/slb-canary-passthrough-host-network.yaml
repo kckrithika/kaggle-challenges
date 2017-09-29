@@ -9,9 +9,9 @@ metadata:
               {
                 "matchExpressions": [
                   {
-                    "key": "name",
+                    "key": "slb-service",
                     "operator": "NotIn",
-                    "values": ["slb-ipvs"]
+                    "values": ["slb-ipvs", "slb-nginx"]
                   }
                 ]
               }

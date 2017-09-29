@@ -10,10 +10,7 @@ if configs.estate == "prd-sdc" then {
         "labels": {
             "name": "slb-canary-passthrough-tls"
         },
-        "name": "slb-canary-passthrough--tls",
-        "annotations": {
-        			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"name\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
-    	}
+        "name": "slb-canary-passthrough--tls"
     },
     "spec": {
         replicas: 2,
