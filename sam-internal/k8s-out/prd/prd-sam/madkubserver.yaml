@@ -4,6 +4,7 @@ metadata:
   name: madkubserver
   namespace: sam-system
 spec:
+  minReadySeconds: 45
   replicas: 3
   template:
     metadata:
@@ -32,20 +33,17 @@ spec:
         - /tokens/
         - --service-hostname
         - $(MADKUBSERVER_SERVICE_HOST)
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000030-48d9cb58
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000032-e330dc69
         livenessProbe:
-          initialDelaySeconds: 20
-          periodSeconds: 20
-          tcpSocket:
+          httpGet:
+            path: /healthz
             port: 32007
+            scheme: HTTPS
+          initialDelaySeconds: 30
+          periodSeconds: 10
         name: madkubserver
         ports:
         - containerPort: 3000
-        readinessProbe:
-          initialDelaySeconds: 5
-          periodSeconds: 20
-          tcpSocket:
-            port: 32007
         volumeMounts:
         - mountPath: /kubeconfig
           name: kubeconfig
