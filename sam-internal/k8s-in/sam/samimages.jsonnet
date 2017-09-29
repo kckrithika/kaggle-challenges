@@ -102,7 +102,7 @@ local utils = import "util_functions.jsonnet";
         ),
         # Move to phases when we roll to prod.
         "madkubSidecar": (
-            "1.0.0-0000030-48d9cb58"
+            "1.0.0-0000032-e330dc69"
         ),
     },
 
@@ -115,7 +115,6 @@ local utils = import "util_functions.jsonnet";
 
     madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase]["madkub"]),
 
-    # TODO Change the registry org to sam as soon as built with tnrp
     # madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.static["madkubSidecar"]),
     madkubSidecar: "sam/madkub:" + $.static["madkubSidecar"],
 }
