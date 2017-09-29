@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   watchdog.json: |-
     {
-      "caFile": "/data/certs/ca.crt",
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/data/certs/hostcert.crt",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000344-6be820bf",
