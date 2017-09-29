@@ -44,7 +44,7 @@ spec:
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
         - --controlEstate=prd-sam
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000344-6be820bf
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000350-0c94c1ac
         livenessProbe:
           httpGet:
             path: /liveness-probe
