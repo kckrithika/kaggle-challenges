@@ -10,14 +10,14 @@ if configs.estate == "prd-sdc" then {
         "labels": {
             "name": "slb-canary-passthrough-tls"
         },
-        "name": "slb-canary-passthrough--tls"
+        "name": "slb-canary-passthrough-tls"
     },
     "spec": {
         replicas: 2,
         "template": {
             "metadata": {
                 "labels": {
-                    "name": "slb-canary-passthrough--tls"
+                    "name": "slb-canary-passthrough-tls"
                 }
             },
             "spec": {
