@@ -10,6 +10,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
   },
   spec: {
     replicas: 3,
+    minReadySeconds: 45,
     template: {
       metadata: {
         labels: {
@@ -64,20 +65,15 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 name: "pki"
               }
             ],
-            readinessProbe: {
-              tcpSocket: {
-                port: 32007
-              },
-              initialDelaySeconds: 5,
-              periodSeconds: 20
-            },
             livenessProbe: {
-              tcpSocket: {
-                port: 32007
+              httpGet: {
+                path: "/healthz",
+                port: 32007,
+                scheme: "HTTPS",
               },
-              initialDelaySeconds: 20,
-              periodSeconds: 20
-            }
+              initialDelaySeconds: 30,
+              periodSeconds: 10,
+            },
           },
           {
             name: "madkub-refresher",
