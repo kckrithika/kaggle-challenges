@@ -10,6 +10,7 @@ data:
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/data/certs/hostcert.key",
       "laddr": "0.0.0.0:8083",
+      "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
       "podNamespacePrefixBlacklist": "sam-watchdog",
       "rcImtEndpoint": "https://ops0-health1-1-ord.ops.sfdc.net:18443/v1/bark",
