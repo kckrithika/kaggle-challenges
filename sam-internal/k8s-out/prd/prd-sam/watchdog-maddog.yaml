@@ -33,8 +33,8 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001315-989a91ed
         name: watchdog-maddog
         volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /kubeconfig
@@ -46,8 +46,8 @@ spec:
         master: "true"
       volumes:
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
+          path: /data/certs
+        name: certs
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
