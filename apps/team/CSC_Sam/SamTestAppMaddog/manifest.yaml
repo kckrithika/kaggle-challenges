@@ -44,7 +44,7 @@ system:
     - name: samtestwdwithmaddog
       image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/service-wd"]
-      args: ["-service=lb124"]
+      args: ["-service=lbappwithcert"]
   loadbalancers:
   - lbname: lbappwithcert
     nodeExposed: true
