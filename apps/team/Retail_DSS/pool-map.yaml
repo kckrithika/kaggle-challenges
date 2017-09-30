@@ -1,4 +1,4 @@
 apps:
- hellodfs:    # this must match the name of your application (it is case sensitive)
+ dfs:
   - prd/prd-sp2-sam_retail_dss
   - prd/prd-sam
