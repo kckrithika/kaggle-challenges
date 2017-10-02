@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/metadata-service:vlad-2017-09-29-100000
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.2-snapshot
       ports:
       - containerPort: 7020
       - containerPort: 9091
