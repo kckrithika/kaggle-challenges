@@ -13,8 +13,9 @@ local samimages = import "samimages.jsonnet";
     # We plan to fix this soon, but for now be careful and watch the rollout carefully
     # To manually test parsing, run this from k8s-in folder and look at snooze output:
     #
-    #  jsonnet/jsonnet sam/configs/watchdog-config.jsonnet -J . -J sam/ -V kingdom=prd -V estate=prd-sam -V template=watchdog-config > /tmp/wdconfig.json && ~/go/bin/watchdog -checkConfig -config /tmp/wdconfig.json
+    # ~/go/bin/manifestctl ~/go/bin/manifestctl validate-config-maps --in ~/manifests-th/sam-internal/k8s-out/
     #
+    # After next SMB release, this will be automated in build.sh
 
     # Unknown - next time add comment
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
@@ -40,13 +41,13 @@ local samimages = import "samimages.jsonnet";
   funnelEndpoint: configs.funnelVIP,
   rcImtEndpoint: configs.rcImtEndpoint,
   smtpServer: configs.smtpServer,
-  sender: "sam-alerts@salesforce.com",
+  sender: ( if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com" else "sam-alerts@salesforce.com" ),
   recipient: (
 	if configs.estate == "prd-sdc" then "sdn@salesforce.com"
 	else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
 	else if configs.estate == "prd-samdev" then ""
 	else if configs.estate == "prd-samtest" then ""
-	else if configs.kingdom == "prd" then "sam@salesforce.com"
+	else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
 	else "sam-alerts@salesforce.com"),
 
   # K8s checker
