@@ -18,7 +18,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/var/slb/logs
         - --ports=9090,9091,9092
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000349-241e53fd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000352-60488572
         name: slb-bravo
         volumeMounts:
         - mountPath: /dev
