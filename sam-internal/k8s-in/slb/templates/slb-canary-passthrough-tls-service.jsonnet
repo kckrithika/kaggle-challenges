@@ -18,8 +18,7 @@ if configs.estate == "prd-sdc" then {
                 "name": "slb-canary-passthrough-tls-port",
                 "port": portconfigs.slb.canaryServicePassthroughTlsPort,
                 "protocol": "TCP",
-                "targetPort": portconfigs.slb.canaryServicePassthroughTlsPort,
-                "nodePort": portconfigs.slb.canaryServicePassthroughTlsNodePort
+                "targetPort": portconfigs.slb.canaryServicePassthroughTlsPort
             }
             ],
             "selector": {
