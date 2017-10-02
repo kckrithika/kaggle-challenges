@@ -46,7 +46,7 @@ spec:
         name: certs
       - configMap:
           name: hosts
-        name: config
+        name: hosts
       - hostPath:
           path: /manifests
         name: sfdc-volume

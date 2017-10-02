@@ -162,7 +162,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         name: "hosts",
     } else {}),
     hosts_volume:  (if estate=="prd-samtest" then {
-        name: "config",
+        name: "hosts",
         configMap: {
             name: "hosts",
         }
