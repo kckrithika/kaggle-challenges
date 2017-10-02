@@ -72,6 +72,13 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     # === KUBERNETES ===
 
+    # For things like volumes, volume_mounts and args, we want to be able to define a new entry centrally (config.jsonnet)
+    # but to roll it out gradually.  Since each template has a list for these items, we have 2 bad options:
+    #  1) Add an if statement for each template (several dozen)
+    #  2) Add the items and a second list that conditionally contains those items centrally, then add them in the templates
+    # by using this helper function, the central config can define an item that is {} when not in use, and this will remove it from output list
+    filter_empty(in_list):: [i for i in in_list if i != {}],
+
     # Commonly used elements for kubernetes resources
 
     # For use by apps that talk to the Kube API server using the host's kubeConfig
@@ -148,6 +155,18 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             name: configMap,
         }
     },
+
+    # For apps that use sfdcLocation2
+    hosts_volume_mount: (if estate=="prd-samtest" then {
+        mountPath: "/sfdchosts",
+        name: "hosts",
+    } else {}),
+    hosts_volume:  (if estate=="prd-samtest" then {
+        name: "config",
+        configMap: {
+            name: "hosts",
+        }
+    } else {}),
 
     # === OTHER ===
 
