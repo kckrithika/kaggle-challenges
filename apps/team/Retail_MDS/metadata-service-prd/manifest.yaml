@@ -33,7 +33,7 @@ system:
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
-          value: sam
+          value: blitz
       args:
         - --http2-in=9532
       ports:
