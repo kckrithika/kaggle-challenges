@@ -44,7 +44,7 @@ spec:
         - --alertThreshold=300s
         - --vipLoop=100
         - --log_dir=/host/var/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000349-241e53fd
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000352-60488572
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/var/slb
