@@ -77,7 +77,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         "name": "KUBECONFIG",
-        "value": "/kubeconfig/kubeconfig"
+        "value": (if estate == "prd-samtest" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig")
     },
     kube_config_volume_mount: {
         "mountPath": "/kubeconfig",
