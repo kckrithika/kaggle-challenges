@@ -4,7 +4,7 @@ local configs = import "config.jsonnet";
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "hosts",
+      name: "sfdchosts",
       namespace: "sam-system",
     },
     data: {

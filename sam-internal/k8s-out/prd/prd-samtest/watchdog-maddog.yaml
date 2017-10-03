@@ -35,7 +35,7 @@ spec:
         name: watchdog-maddog
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /etc/pki_service
@@ -49,8 +49,8 @@ spec:
         master: "true"
       volumes:
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs

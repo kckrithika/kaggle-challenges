@@ -50,7 +50,7 @@ if configs.kingdom == "prd" then {
                             "periodSeconds": 20
                         },
                         "volumeMounts": configs.filter_empty([
-                            configs.hosts_volume_mount,
+                            configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
@@ -59,7 +59,7 @@ if configs.kingdom == "prd" then {
                     }
                 ],
                 "volumes": configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
@@ -134,7 +134,7 @@ if configs.kingdom == "prd" then {
                             "periodSeconds": 20
                         },
                         "volumeMounts": configs.filter_empty([
-                            configs.hosts_volume_mount,
+                            configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
                             {
                                 "mountPath": "/data/certs",
@@ -148,7 +148,7 @@ if configs.kingdom == "prd" then {
                     }
                 ],
                 "volumes": configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
                     {
                         "hostPath": {

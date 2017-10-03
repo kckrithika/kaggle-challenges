@@ -8,7 +8,7 @@ local samimages = import "samimages.jsonnet";
             spec: {
                 hostNetwork: true,
                 volumes: configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     {
                         "hostPath": {
                             "path": "/var/lib/puppet/state"
@@ -47,7 +47,7 @@ local samimages = import "samimages.jsonnet";
                             }
                         },
                          "volumeMounts": configs.filter_empty([
-                            configs.hosts_volume_mount,
+                            configs.sfdchosts_volume_mount,
                             {
                                "mountPath": "/var/lib/puppet/state",
                                "name": "last-run-summary"

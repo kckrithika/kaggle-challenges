@@ -15,7 +15,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                            "/sam/sam-deployment-portal",
                         ],
                        volumeMounts: configs.filter_empty([
-                          configs.hosts_volume_mount,
+                          configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
@@ -40,7 +40,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                     }
                 ],
                 volumes: configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,

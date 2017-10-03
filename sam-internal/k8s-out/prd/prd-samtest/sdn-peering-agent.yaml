@@ -30,7 +30,7 @@ spec:
         name: sdn-bird
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /usr/local/etc
@@ -59,7 +59,7 @@ spec:
         name: sdn-peering-agent
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /usr/local/etc
@@ -74,8 +74,8 @@ spec:
       hostNetwork: true
       volumes:
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

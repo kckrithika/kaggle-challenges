@@ -24,7 +24,7 @@ if configs.estate == "prd-sam" then {
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: configs.filter_empty([
-                          configs.hosts_volume_mount,
+                          configs.sfdchosts_volume_mount,
                           {
                              "mountPath": "/var/token",
                              "name": "token",
@@ -35,7 +35,7 @@ if configs.estate == "prd-sam" then {
                     }
                 ],
                 volumes: configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     {
                         secret: {
                             secretName: "git-token"

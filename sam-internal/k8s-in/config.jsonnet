@@ -145,14 +145,14 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     },
 
     # For apps that use sfdcLocation2
-    hosts_volume_mount: (if estate=="prd-samtest" then {
+    sfdchosts_volume_mount: (if estate=="prd-samtest" then {
         mountPath: "/sfdchosts",
-        name: "hosts",
+        name: "sfdchosts",
     } else {}),
-    hosts_volume:  (if estate=="prd-samtest" then {
-        name: "hosts",
+    sfdchosts_volume:  (if estate=="prd-samtest" then {
+        name: "sfdchosts",
         configMap: {
-            name: "hosts",
+            name: "sfdchosts",
         }
     } else {}),
 

@@ -22,13 +22,13 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
 
                         volumeMounts: configs.filter_empty([
-                            configs.hosts_volume_mount,
+                            configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                         ]),
                     }
                 ],
                 volumes: configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {

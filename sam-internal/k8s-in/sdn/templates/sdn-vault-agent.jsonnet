@@ -33,7 +33,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "periodSeconds": 20
                         },
                         volumeMounts: configs.filter_empty([
-                            configs.hosts_volume_mount,
+                            configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
                             {
                                 name: "certs",
@@ -43,7 +43,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     }
                 ],
                 volumes: configs.filter_empty([
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
                     {
                         name: "certs",

@@ -35,7 +35,7 @@ spec:
             memory: 300Mi
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -47,8 +47,8 @@ spec:
         master: "true"
       volumes:
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

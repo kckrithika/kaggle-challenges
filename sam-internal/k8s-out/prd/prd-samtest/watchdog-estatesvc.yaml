@@ -29,7 +29,7 @@ spec:
         name: watchdog-estatesvc
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /config
           name: config
       hostNetwork: true
@@ -37,8 +37,8 @@ spec:
         master: "true"
       volumes:
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - configMap:
           name: watchdog
         name: config

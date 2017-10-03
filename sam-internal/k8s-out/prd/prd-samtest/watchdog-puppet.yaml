@@ -34,7 +34,7 @@ spec:
             memory: 300Mi
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /var/lib/puppet/state
           name: last-run-summary
         - mountPath: /etc/puppet
@@ -44,8 +44,8 @@ spec:
       hostNetwork: true
       volumes:
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /var/lib/puppet/state
         name: last-run-summary

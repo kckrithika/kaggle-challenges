@@ -35,7 +35,7 @@ spec:
             memory: 300Mi
         volumeMounts:
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /hostproc
           name: procfs-volume
         - mountPath: /config
@@ -43,8 +43,8 @@ spec:
       hostNetwork: true
       volumes:
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /proc
         name: procfs-volume

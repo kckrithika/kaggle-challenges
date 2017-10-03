@@ -30,7 +30,7 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /sfdchosts
-          name: hosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /config
@@ -46,8 +46,8 @@ spec:
           path: /data/certs
         name: certs
       - configMap:
-          name: hosts
-        name: hosts
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /manifests
         name: sfdc-volume
