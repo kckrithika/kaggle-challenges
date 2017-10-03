@@ -47,7 +47,8 @@ local samimages = import "samimages.jsonnet";
 	else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
 	else if configs.estate == "prd-samdev" then ""
 	else if configs.estate == "prd-samtest" then ""
-	else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
+        # We want to switch this to sam-test-alerts once the whitelist is fixed from prd
+	else if configs.kingdom == "prd" then "sam@salesforce.com"
 	else "sam-alerts@salesforce.com"),
 
   # K8s checker
