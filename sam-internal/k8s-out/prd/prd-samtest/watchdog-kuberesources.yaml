@@ -14,6 +14,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-kuberesources
+      namespace: sam-system
     spec:
       containers:
       - command:

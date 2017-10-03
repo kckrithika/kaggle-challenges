@@ -14,6 +14,7 @@ spec:
       labels:
         apptype: control
         name: manifest-watcher
+      namespace: sam-system
     spec:
       containers:
       - command:

@@ -9,7 +9,8 @@ local samimages = import "samimages.jsonnet";
       "labels": {
          "name": "watchdog-synthetic"
       },
-      "name": "watchdog-synthetic"
+      "name": "watchdog-synthetic",
+      "namespace": "sam-system"
    },
    "spec": {
       "replicas": 1,

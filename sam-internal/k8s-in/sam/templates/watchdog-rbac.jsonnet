@@ -40,7 +40,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                 labels: {
                     name: "watchdog-rbac",
                     apptype: "monitoring"
-                }
+                },
+	        "namespace": "sam-system"
             }
         },
         selector: {

@@ -4,6 +4,7 @@ metadata:
   labels:
     name: watchdog-synthetic
   name: watchdog-synthetic
+  namespace: sam-system
 spec:
   replicas: 1
   selector:

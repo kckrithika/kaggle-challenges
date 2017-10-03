@@ -42,7 +42,8 @@ if configs.kingdom == "prd" then {
                 labels: {
                     name: "watchdog-proxy",
                     apptype: "monitoring"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
         selector: {

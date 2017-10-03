@@ -52,7 +52,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                 labels: {
                     name: "watchdog-maddog",
                     apptype: "monitoring"
-                }
+                },
+	       "namespace": "sam-system"
             }
         },
         selector: {

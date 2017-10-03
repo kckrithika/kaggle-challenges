@@ -64,7 +64,8 @@ local samimages = import "samimages.jsonnet";
                     app: "watchdog-puppet",
                     apptype: "monitoring",
                     daemonset: "true",
-                }
+                },
+		"namespace": "sam-system"
             }
         }
     },

@@ -11,6 +11,7 @@ spec:
         app: watchdog-common
         apptype: monitoring
         daemonset: "true"
+      namespace: sam-system
     spec:
       containers:
       - command:

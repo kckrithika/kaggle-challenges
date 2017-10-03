@@ -49,7 +49,8 @@ local samimages = import "samimages.jsonnet";
                     app: "watchdog-etcd",
                     apptype: "monitoring",
                     daemonset: "true",
-                }
+                },
+               "namespace": "sam-system"
             }
         }
     },

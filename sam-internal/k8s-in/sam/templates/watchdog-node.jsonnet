@@ -50,7 +50,8 @@ local samimages = import "samimages.jsonnet";
                 labels: {
                     name: "watchdog-node",
                     apptype: "monitoring"
-                }
+                },
+	        "namespace": "sam-system"
             }
         },
         selector: {
