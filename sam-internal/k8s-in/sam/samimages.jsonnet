@@ -50,7 +50,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
-            "hypersam": "sam-0001263-d5b47592",
+            "hypersam": "sam-0001302-4f86e9c4",
             "madkub": "1.0.0-0000032-e330dc69",
             },
 
@@ -80,7 +80,7 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf" || kingdom == "yhu" || kingdom == "yul") then
+        else if (kingdom == "frf" || kingdom == "yhu") then
             "3"
         else
             "4"
