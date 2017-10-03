@@ -32,6 +32,8 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001321-af27d7af
         name: watchdog-node-controller
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: hosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -44,6 +46,9 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
+      - configMap:
+          name: hosts
+        name: hosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

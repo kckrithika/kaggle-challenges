@@ -24,6 +24,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                         + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
+                          configs.hosts_volume_mount,
                           configs.cert_volume_mount,
                           configs.maddog_cert_volume_mount,
                           configs.kube_config_volume_mount,
@@ -35,6 +36,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                     }
                 ],
                 volumes: configs.filter_empty([
+                    configs.hosts_volume,
                     configs.cert_volume,
                     configs.maddog_cert_volume,
                     configs.kube_config_volume,

@@ -21,7 +21,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 }
             },
             "spec": {
-                "volumes": [
+                "volumes": configs.filter_empty([
                     slbconfigs.slb_volume,
                     {
                         "name": "dev-volume",
@@ -30,7 +30,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                          }
                     },
                     slbconfigs.host_volume,
-                ],
+                ]),
                 "containers": [
                     {
                        "name": "slb-portal",
@@ -41,9 +41,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            "--templatePath="+slbconfigs.slbPortalTemplatePath,
                            "--port="+portconfigs.slb.slbPortalServicePort
                        ],
-                       "volumeMounts": [
+                       "volumeMounts": configs.filter_empty([
                            slbconfigs.slb_volume_mount,
-                       ]
+                       ])
                     }
                 ],
                 nodeSelector:{

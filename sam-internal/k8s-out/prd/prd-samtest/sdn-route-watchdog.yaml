@@ -47,6 +47,8 @@ spec:
           timeoutSeconds: 5
         name: sdn-route-watchdog
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: hosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -59,6 +61,9 @@ spec:
       nodeSelector:
         pool: prd-samtest
       volumes:
+      - configMap:
+          name: hosts
+        name: hosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

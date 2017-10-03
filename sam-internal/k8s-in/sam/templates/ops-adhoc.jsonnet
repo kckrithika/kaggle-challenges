@@ -32,16 +32,16 @@ if "0"=="1" then {
                                 memory: "300Mi"
                             }
                           },
-                        volumeMounts: [
+                        volumeMounts: configs.filter_empty([
                              configs.kube_config_volume_mount,
                              configs.config_volume_mount,
-                        ]
+                        ])
                     }
                 ],
-                volumes: [
+                volumes: configs.filter_empty([
                    configs.kube_config_volume,
                    configs.config_volume("ops-adhoc"),
-                ]
+                ])
             },
             metadata: {
                 labels: {

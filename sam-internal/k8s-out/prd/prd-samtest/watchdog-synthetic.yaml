@@ -38,6 +38,8 @@ spec:
         - containerPort: 8083
           name: synthetic
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: hosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /test
@@ -54,6 +56,9 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
+      - configMap:
+          name: hosts
+        name: hosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

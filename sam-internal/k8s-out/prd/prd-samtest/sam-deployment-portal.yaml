@@ -31,6 +31,8 @@ spec:
           timeoutSeconds: 10
         name: sam-deployment-portal
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: hosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -45,6 +47,9 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
+      - configMap:
+          name: hosts
+        name: hosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

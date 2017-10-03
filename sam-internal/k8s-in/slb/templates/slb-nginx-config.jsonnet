@@ -21,7 +21,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.filter_empty([
                      slbconfigs.host_volume,
                      {
                         "name": "var-target-config-volume",
@@ -31,7 +31,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                      },
                      slbconfigs.slb_config_volume,
                      slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-nginx-config",
@@ -44,7 +44,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             slbconfigs.host_volume_mount,
                             {
                                 "name": "var-target-config-volume",
@@ -52,7 +52,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                         "securityContext": {
                             "privileged": true
                         }
@@ -62,12 +62,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         "name": "slb-nginx-proxy",
                         "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mpopov/slb_nginx:v-071220171147",
                         "command": [ "/runner.sh" ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                            {
                               "name": "var-target-config-volume",
                               "mountPath": "/etc/nginx/conf.d",
                            }
-                        ]
+                        ])
                     } 
                 ],
 

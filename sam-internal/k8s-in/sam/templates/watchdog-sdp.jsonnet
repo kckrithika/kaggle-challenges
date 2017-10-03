@@ -23,11 +23,13 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: configs.filter_empty([
+                            configs.hosts_volume_mount,
                             configs.config_volume_mount,
                         ]),
                     }
                 ],
                 volumes: configs.filter_empty([
+                    configs.hosts_volume,
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {

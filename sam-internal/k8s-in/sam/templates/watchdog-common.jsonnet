@@ -32,6 +32,7 @@ local samimages = import "samimages.jsonnet";
                             }
                           },
                         volumeMounts: configs.filter_empty([
+                             configs.hosts_volume_mount,
                              {
                                 "mountPath": "/hostproc",
                                 "name": "procfs-volume"
@@ -41,6 +42,7 @@ local samimages = import "samimages.jsonnet";
                     }
                 ],
                 volumes: configs.filter_empty([
+                   configs.hosts_volume,
                    {
                       "hostPath": {
                          "path": "/proc"

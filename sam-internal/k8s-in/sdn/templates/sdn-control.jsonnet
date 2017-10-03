@@ -57,6 +57,7 @@ if configs.estate == "prd-sdc" then {
                             "periodSeconds": 30
                         },
                         "volumeMounts": configs.filter_empty([
+                            configs.hosts_volume_mount,
                             configs.maddog_cert_volume_mount,
                             {
                                 "mountPath": "/data/certs",
@@ -70,6 +71,7 @@ if configs.estate == "prd-sdc" then {
                     }
                 ],
                 "volumes": configs.filter_empty([
+                    configs.hosts_volume,
                     configs.maddog_cert_volume,
                     {
                         "hostPath": {

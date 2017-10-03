@@ -43,7 +43,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 containerPort: 3000
               }
             ],
-            volumeMounts: [
+            volumes: configs.filter_empty([
               {
                 mountPath: "/kubeconfig",
                 name: "kubeconfig"
@@ -64,7 +64,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 mountPath: "/etc/pki_service/",
                 name: "pki"
               }
-            ],
+            ]),
             livenessProbe: {
               httpGet: {
                 path: "/healthz",
@@ -91,7 +91,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-1f9f157-20170914-140609",
             resources: {
             },
-            volumeMounts: [
+            volumeMounts: configs.filter_empty([
               {
                 mountPath: "/certs",
                 name: "datacerts"
@@ -104,7 +104,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 mountPath: "/maddog-certs/",
                 name: "pki"
               }
-            ],
+            ]),
             env: [
               {
                 name: "MADKUB_NODENAME",
@@ -134,7 +134,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
           }
         ],
         restartPolicy: "Always",
-        volumes: [
+        volumes: configs.filter_empty([
           {
             name: "kubeconfig",
             hostPath: {
@@ -165,7 +165,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
               medium: "Memory"
             }
           }
-        ]
+        ])
       }
     }
   }
