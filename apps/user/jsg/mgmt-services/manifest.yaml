@@ -6,7 +6,7 @@ system:
   - name: mgmt
   
     # number of instances ("kpods") to deploy and run
-    count: 2
+    count: 1
     
     # Docker image(s) that make up one instance of the service
     containers:
@@ -19,11 +19,10 @@ system:
       
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
-        tcpSocket:
+        initialDelaySeconds: 60
+        httpGet:
+          path: /ping.jsp
           port: 8080
-        #httpGet:
-        #  path: /
-        #  port: 8080
 
   loadbalancers:
   - lbname: mgmt-services
