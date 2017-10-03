@@ -22,4 +22,11 @@ system:
         httpGet:
           path: /
           port: 8080
+
+  loadbalancers:
+  - lbname: mgmt-services
+    function: mgmt
+    ports:
+      - port: 8080
+        targetport: 8080
  
