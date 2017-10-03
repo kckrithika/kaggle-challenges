@@ -19,8 +19,8 @@ spec:
       containers:
       - command:
         - /sam/estatesvc/script/estatesvc-wrapper.sh
-        - phx
-        - --funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - frf
+        - --funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         env:
         - name: NODE_NAME
           valueFrom:
@@ -30,7 +30,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001263-d5b47592
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001302-4f86e9c4
         livenessProbe:
           httpGet:
             path: /info
@@ -42,7 +42,7 @@ spec:
         - containerPort: 9090
           name: estate-server
       nodeSelector:
-        pool: phx-sam
+        pool: frf-sam
       securityContext:
         fsGroup: 0
         runAsUser: 0
