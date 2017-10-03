@@ -22,7 +22,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             initialDelaySeconds: 5,
                             periodSeconds: 10
                         },
-                        volumeMounts: configs.cert_volume_mounts + [
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             {
                                 name: "conf",
                                 mountPath: "/usr/local/etc",
@@ -31,7 +32,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 name: "socket",
                                 mountPath: "/usr/local/var/run",
                             },
-                        ],
+                        ]),
                         env: [
                             {
                                 name: "BIRD_CONF",
@@ -69,7 +70,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        volumeMounts: configs.cert_volume_mounts + [
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             {
                                 name: "conf",
                                 mountPath: "/usr/local/etc",
@@ -87,10 +89,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 mountPath: "/data/secrets",
                                 readOnly: true,
                             },
-                        ],
+                        ]),
                     },
                 ],
-                volumes: configs.cert_volumes + [
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     {
                         name: "conf",
                         emptyDir: {},
@@ -112,7 +115,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             secretName: "sdn",
                         },
                     },
-                ],
+                ]),
             },
             metadata: {
                 labels: {

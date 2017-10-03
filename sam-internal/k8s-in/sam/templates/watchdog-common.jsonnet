@@ -31,16 +31,16 @@ local samimages = import "samimages.jsonnet";
                                 memory: "300Mi"
                             }
                           },
-                        volumeMounts: [
+                        volumeMounts: configs.filter_empty([
                              {
                                 "mountPath": "/hostproc",
                                 "name": "procfs-volume"
                              },
                              configs.config_volume_mount,
-                        ]
+                        ])
                     }
                 ],
-                volumes: [
+                volumes: configs.filter_empty([
                    {
                       "hostPath": {
                          "path": "/proc"
@@ -48,7 +48,7 @@ local samimages = import "samimages.jsonnet";
                       "name": "procfs-volume"
                    },
                    configs.config_volume("watchdog"),
-                ]
+                ]),
             },
             metadata: {
                 labels: {

@@ -21,11 +21,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": configs.cert_volumes + [
+                "volumes": configs.filter_empty([
+                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-dns-register-processor",
@@ -40,11 +41,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": configs.cert_volume_mounts + [
+                        "volumeMounts": configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                     }
                 ],
                 "nodeSelector":{

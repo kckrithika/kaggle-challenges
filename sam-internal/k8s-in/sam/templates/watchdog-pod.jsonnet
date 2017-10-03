@@ -25,21 +25,23 @@ if configs.estate != "prd-samdev" && configs.estate != "prd-samtest" then {
                         + samwdconfig.shared_args
                         + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-                        volumeMounts: configs.cert_volume_mounts + [
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             configs.config_volume_mount,
-                        ],
+                        ]),
                         env: [
                              configs.kube_config_env,
                         ]
                     }
                 ],
-                volumes: configs.cert_volumes + [
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.config_volume("watchdog"),
-                    ],
+                    ]),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {

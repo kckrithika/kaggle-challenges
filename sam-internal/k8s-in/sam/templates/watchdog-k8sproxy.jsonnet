@@ -22,14 +22,14 @@ if configs.kingdom == "prd" then {
                         ]
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-                        volumeMounts: [
+                        volumeMounts: configs.filter_empty([
                             configs.config_volume_mount,
-                        ],
+                        ]),
                     }
                 ],
-                volumes: [
+                volumes: configs.filter_empty([
                     configs.config_volume("watchdog"),
-                ],
+                ]),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {

@@ -56,7 +56,8 @@ if configs.estate == "prd-sdc" then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 30
                         },
-                        "volumeMounts": configs.cert_volume_mounts + [
+                        "volumeMounts": configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             {
                                 "mountPath": "/data/certs",
                                 "name": "certs"
@@ -65,10 +66,11 @@ if configs.estate == "prd-sdc" then {
                                 "mountPath": "/config",
                                 "name": "config"
                             }
-                        ]
+                        ]),
                     }
                 ],
-                "volumes": configs.cert_volumes + [
+                "volumes": configs.filter_empty([
+                    configs.maddog_cert_volume,
                     {
                         "hostPath": {
                             "path": "/data/certs"
@@ -81,7 +83,7 @@ if configs.estate == "prd-sdc" then {
                         },
                         "name": "config"
                     }
-                ],
+                ]),
                 nodeSelector: {
                     pool: configs.estate
                 },

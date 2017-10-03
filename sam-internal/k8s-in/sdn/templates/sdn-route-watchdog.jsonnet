@@ -49,18 +49,20 @@ if configs.kingdom == "prd" then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        "volumeMounts": configs.cert_volume_mounts + [
+                        "volumeMounts": configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             configs.config_volume_mount,
-                        ]
+                        ]),
                     }
                 ],
-                "volumes": configs.cert_volumes + [
+                "volumes": configs.filter_empty([
+                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.config_volume("watchdog"),
-                ],
+                ]),
                 nodeSelector: {
                     pool: configs.estate
                 },
@@ -127,7 +129,8 @@ if configs.kingdom == "prd" then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        "volumeMounts": configs.cert_volume_mounts + [
+                        "volumeMounts": configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             {
                                 "mountPath": "/data/certs",
                                 "name": "certs"
@@ -136,10 +139,11 @@ if configs.kingdom == "prd" then {
                                 "mountPath": "/config",
                                 "name": "config"
                             }
-                        ]
+                        ])
                     }
                 ],
-                "volumes": configs.cert_volumes + [
+                "volumes": configs.filter_empty([
+                    configs.maddog_cert_volume,
                     {
                         "hostPath": {
                             "path": "/data/certs"
@@ -152,7 +156,7 @@ if configs.kingdom == "prd" then {
                         },
                         "name": "config"
                     }
-                ],
+                ]),
                 nodeSelector: {
                     pool: configs.estate
                 },

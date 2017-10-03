@@ -32,22 +32,24 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "timeoutSeconds": 5,
                             "periodSeconds": 20
                         },
-                        volumeMounts: configs.cert_volume_mounts + [
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             {
                                 name: "certs",
                                 mountPath: "/data/certs",
                             }
-                        ],
+                        ]),
                     }
                 ],
-                volumes: configs.cert_volumes + [
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     {
                         name: "certs",
                         hostPath: {
                             path: "/data/certs",
                         }
                     },
-                ],
+                ]),
                 nodeSelector: {
                     pool: configs.estate
                 },

@@ -7,7 +7,7 @@ local samimages = import "samimages.jsonnet";
         template: {
             spec: {
                 hostNetwork: true,
-                "volumes": [
+                "volumes": configs.filter_empty([
                     {
                         "hostPath": {
                             "path": "/var/lib/puppet/state"
@@ -21,7 +21,7 @@ local samimages = import "samimages.jsonnet";
                         "name": "afw-build"
                     },
                     configs.config_volume("watchdog"),
-                ],
+                ]),
                 containers: [
                     {
                         image: samimages.hypersam,
@@ -45,7 +45,7 @@ local samimages = import "samimages.jsonnet";
                                 memory: "300Mi"
                             }
                         },
-                         "volumeMounts": [
+                         "volumeMounts": configs.filter_empty([
                             {
                                "mountPath": "/var/lib/puppet/state",
                                "name": "last-run-summary"
@@ -55,7 +55,7 @@ local samimages = import "samimages.jsonnet";
                                "name": "afw-build"
                             },
                             configs.config_volume_mount,
-                         ]
+                         ]),
                     }
                 ],
             },

@@ -14,7 +14,8 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                         command:[
                            "/sam/sam-deployment-portal",
                         ],
-                       volumeMounts: configs.cert_volume_mounts + [
+                       volumeMounts: configs.filter_empty([
+                          configs.maddog_cert_volume_mount,
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                           { 
@@ -22,7 +23,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                              "name": "token",
                              "readOnly" : true
                           } 
-                       ],
+                       ]),
                        env: [
                           configs.kube_config_env,
                        ],
@@ -37,7 +38,8 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                        workingDir: "/sam"
                     }
                 ],
-                volumes: configs.cert_volumes + [
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                     {
@@ -46,7 +48,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                         },
                         name: "token"
                     }
-                ],
+                ]),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
