@@ -11,7 +11,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-services
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:20171002-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:20171002-5
       
       ports:
       - containerPort: 8080
@@ -19,9 +19,11 @@ system:
       
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
-        httpGet:
-          path: /
+        tcpSocket:
           port: 8080
+        #httpGet:
+        #  path: /
+        #  port: 8080
 
   loadbalancers:
   - lbname: mgmt-services
