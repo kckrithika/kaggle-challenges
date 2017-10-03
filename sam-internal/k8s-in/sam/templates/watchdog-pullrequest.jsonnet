@@ -50,7 +50,8 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "watchdog-pullrequest",
                     apptype: "monitoring"
-                }
+                },
+	        "namespace": "sam-system"
             }
         },
         selector: {

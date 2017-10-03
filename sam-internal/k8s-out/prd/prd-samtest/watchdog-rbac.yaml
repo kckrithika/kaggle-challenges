@@ -13,6 +13,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-rbac
+      namespace: sam-system
     spec:
       containers:
       - command:

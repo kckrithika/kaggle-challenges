@@ -47,7 +47,8 @@ if "0"=="1" then {
                 labels: {
                     app: "ops-adhoc",
                     daemonset: "true",
-                }
+                },
+               "namespace": "sam-system"
             }
         }
     },

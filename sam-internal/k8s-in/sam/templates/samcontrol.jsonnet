@@ -50,7 +50,8 @@ local samimages = import "samimages.jsonnet";
                 labels: {
                     name: "samcontrol",
                     apptype: "control"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
         selector: {

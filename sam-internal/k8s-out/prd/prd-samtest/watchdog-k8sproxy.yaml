@@ -14,6 +14,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-proxy
+      namespace: sam-system
     spec:
       containers:
       - command:

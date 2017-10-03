@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-node-controller
+      namespace: sam-system
     spec:
       containers:
       - command:

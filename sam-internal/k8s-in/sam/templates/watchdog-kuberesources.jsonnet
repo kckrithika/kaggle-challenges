@@ -53,7 +53,8 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                 labels: {
                     name: "watchdog-kuberesources",
                     apptype: "monitoring"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
         selector: {

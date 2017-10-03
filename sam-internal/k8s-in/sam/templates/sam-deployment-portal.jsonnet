@@ -59,7 +59,8 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                 labels: {
                     name: "sam-deployment-portal",
                     apptype: "control"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
         selector: {

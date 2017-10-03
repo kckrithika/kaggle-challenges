@@ -58,7 +58,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                 labels: {
                     name: "sam-secret-agent",
                     apptype: "control"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
     },

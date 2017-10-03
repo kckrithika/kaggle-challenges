@@ -14,6 +14,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-apiserverlb
+      namespace: sam-system
     spec:
       containers:
       - command:

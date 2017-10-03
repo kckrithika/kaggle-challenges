@@ -52,7 +52,8 @@ if configs.estate != "prd-samdev" && configs.estate != "prd-samtest" then {
                 labels: {
                     name: "watchdog-pod",
                     apptype: "monitoring"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
         selector: {

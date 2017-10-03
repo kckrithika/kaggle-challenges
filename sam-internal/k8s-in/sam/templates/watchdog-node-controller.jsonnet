@@ -47,7 +47,8 @@ if configs.kingdom == "prd" then {
                 labels: {
                     name: "watchdog-node-controller",
                     apptype: "monitoring"
-                }
+                },
+	       "namespace": "sam-system"
             }
         },
         selector: {

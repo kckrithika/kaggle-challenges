@@ -39,7 +39,8 @@ local samimages = import "samimages.jsonnet";
                 labels: {
                     name: "watchdog-etcd-quorum",
                     apptype: "monitoring"
-                }
+                },
+               "namespace": "sam-system"
             }
         },
         selector: {

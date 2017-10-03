@@ -55,7 +55,8 @@ local samimages = import "samimages.jsonnet";
                 labels: {
                     name: "manifest-watcher",
                     apptype: "control"
-                }
+                },
+                "namespace": "sam-system"
             }
         },
         selector: {

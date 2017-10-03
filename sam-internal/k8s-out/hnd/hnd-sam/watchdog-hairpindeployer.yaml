@@ -19,6 +19,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-hairpindeployer
+      namespace: sam-system
     spec:
       containers:
       - command:
