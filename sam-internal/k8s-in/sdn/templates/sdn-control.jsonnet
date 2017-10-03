@@ -45,11 +45,8 @@ if configs.estate == "prd-sdc" then {
                             "--sdncBootstrapTimer=45s"
                         ],
                         "env": [
-                            {
-                                "name": "KUBECONFIG",
-                                "value": "/config/kubeconfig"
-                            }
-                        ],
+                            configs.kube_config_env,
+                        ],    
                         "livenessProbe": {
                             "httpGet": {
                                 "path": "/liveness-probe",
