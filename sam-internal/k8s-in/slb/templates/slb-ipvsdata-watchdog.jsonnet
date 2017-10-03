@@ -20,13 +20,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         "template": {
             "spec": {
                 "hostNetwork": true,
-                "volumes": configs.cert_volumes + [
+                "volumes": configs.filter_empty([
+                    configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                 ],
+                 ]),
                 "containers": [
                     {
                         "name": "slb-ipvsdata-watchdog",
@@ -48,13 +49,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir="+slbconfigs.logsDir,
                             "--namespace=sam-system"
                         ],
-                        "volumeMounts": configs.cert_volume_mounts + [
+                        "volumeMounts": configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                         ],
+                         ]),
                          env: [
                             configs.kube_config_env,
                         ],

@@ -119,30 +119,18 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     certFile: "/data/certs/hostcert.crt",
 
     # For apps that read MadDog certs from the host
-    maddog_cert_volume_mount: {
+    maddog_cert_volume_mount: (if kingdom == "prd" then
+    {
         "mountPath": "/etc/pki_service",
         "name": "maddog-certs"
-    },
-    maddog_cert_volume: {
+    } else {}),
+    maddog_cert_volume: (if kingdom == "prd" then
+    {
         hostPath: {
             path: "/etc/pki_service"
         },
         name: "maddog-certs"
-    },
-
-    # Cert volume list
-    cert_volume_mounts: (
-        if kingdom == "prd" then
-            [self.maddog_cert_volume_mount]
-        else
-            []
-    ),
-    cert_volumes: (
-        if kingdom == "prd" then
-            [self.maddog_cert_volume]
-        else
-            []
-    ),
+    } else {}),
 
     # For apps that use liveConfig + configMap for configuration
     config_volume_mount: {

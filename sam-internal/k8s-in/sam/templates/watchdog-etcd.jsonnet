@@ -19,10 +19,11 @@ local samimages = import "samimages.jsonnet";
                         + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-                    volumeMounts: configs.cert_volume_mounts + [
+                    volumeMounts: configs.filter_empty([
+                        configs.maddog_cert_volume_mount,
                         configs.cert_volume_mount,
                         configs.config_volume_mount,
-                    ],
+                    ]),
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -36,10 +37,11 @@ local samimages = import "samimages.jsonnet";
                         }
                     }
                 ],
-                volumes: configs.cert_volumes + [
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
-                ],
+                ]),
                 nodeSelector: {
                     etcd_installed: "true",
                 }

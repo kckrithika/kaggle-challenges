@@ -17,12 +17,13 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                            "-f ",
                            "/etc/haproxy/haproxy.cfg"
                         ],
-                        volumeMounts: configs.cert_volume_mounts + [
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
                             {
                                 name: "sfdc-volume",
                                 mountPath: "/etc/certs"
                             }
-                        ],
+                        ]),
                         "ports": [
                         {
                             "containerPort": 5000,
@@ -39,14 +40,15 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         },
                     }
                 ],
-                volumes: configs.cert_volumes + [
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
                     {
                         hostPath: {
                             path: "/data/certs"
                         },
                         name: "sfdc-volume"
                     }
-                ],
+                ]),
                 nodeSelector: {
                 }
 		        + if configs.estate == "prd-sam" then {

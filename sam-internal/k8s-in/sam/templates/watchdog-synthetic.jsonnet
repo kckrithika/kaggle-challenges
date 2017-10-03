@@ -51,7 +51,8 @@ local samimages = import "samimages.jsonnet";
                   ],
                   "image": samimages.hypersam,
                   "name": "watchdog-synthetic",
-                  "volumeMounts": configs.cert_volume_mounts + [
+                  "volumeMounts": configs.filter_empty([
+                     configs.maddog_cert_volume_mount,
                      {
                         "mountPath": "/test",
                         "name": "test"
@@ -63,7 +64,7 @@ local samimages = import "samimages.jsonnet";
                      configs.kube_config_volume_mount,
                      configs.cert_volume_mount,
                      configs.config_volume_mount,
-                  ]
+                  ])
                }
             ],
             "hostNetwork": true,
@@ -74,7 +75,8 @@ local samimages = import "samimages.jsonnet";
             } else {
                   pool: configs.estate
             },
-            "volumes": configs.cert_volumes + [
+            "volumes": configs.filter_empty([
+               configs.maddog_cert_volume,
                configs.cert_volume,
                {
                   "hostPath": {
@@ -92,7 +94,7 @@ local samimages = import "samimages.jsonnet";
                },
                configs.kube_config_volume,
                configs.config_volume("watchdog"),
-            ]
+            ])
          }
       }
    }
