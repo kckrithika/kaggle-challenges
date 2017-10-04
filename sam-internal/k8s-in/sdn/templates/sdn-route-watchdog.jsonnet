@@ -70,17 +70,19 @@ if configs.kingdom == "prd" then {
             metadata: {
                 labels: {
                     name: "sdn-route-watchdog",
-                    apptype: "monitoring"
-                }
+                    apptype: "monitoring",
+                },
+		"namespace": "sam-system",
             }
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdn-route-watchdog"
+            name: "sdn-route-watchdog",
         },
-        name: "sdn-route-watchdog"
+        name: "sdn-route-watchdog",
+	"namespace": "sam-system",
     }
 } else if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
@@ -164,16 +166,18 @@ if configs.kingdom == "prd" then {
             metadata: {
                 labels: {
                     name: "sdn-route-watchdog",
-                    apptype: "monitoring"
-                }
+                    apptype: "monitoring",
+                },
+		"namespace": "sam-system",
             }
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdn-route-watchdog"
+            name: "sdn-route-watchdog",
         },
-        name: "sdn-route-watchdog"
+        name: "sdn-route-watchdog",
+	"namespace": "sam-system",
     }
 } else "SKIP"

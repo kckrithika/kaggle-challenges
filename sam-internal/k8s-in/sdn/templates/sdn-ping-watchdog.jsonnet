@@ -72,17 +72,19 @@ if configs.kingdom == "prd" then {
             metadata: {
                 labels: {
                     name: "sdn-ping-watchdog",
-                    apptype: "monitoring"
-                }
+                    apptype: "monitoring",
+                },
+		"namespace": "sam-system",
             }
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdn-ping-watchdog"
+            name: "sdn-ping-watchdog",
         },
-        name: "sdn-ping-watchdog"
+        name: "sdn-ping-watchdog",
+	"namespace": "sam-system",
     }
 } else if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
@@ -169,7 +171,8 @@ if configs.kingdom == "prd" then {
                 labels: {
                     name: "sdn-ping-watchdog",
                     apptype: "monitoring"
-                }
+                },
+	        "namespace": "sam-system",
             }
         },
     },
@@ -178,6 +181,7 @@ if configs.kingdom == "prd" then {
         labels: {
             name: "sdn-ping-watchdog"
         },
-        name: "sdn-ping-watchdog"
+        name: "sdn-ping-watchdog",
+	"namespace": "sam-system",
     }
 } else "SKIP"
