@@ -48,9 +48,9 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
       volumeMounts:
-      - name: client-cert
+      - name: time-tls-client-cert
         mountPath: /client-cert
-      - name: server-cert
+      - name: time-tls-server-cert
         mountPath: /server-cert
     volumes:
     - name: time-tls-client-cert
