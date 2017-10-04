@@ -19,6 +19,7 @@ local samimages = import "samimages.jsonnet";
   "resource-cooldown": 15000000000,
   "max-resource-time": 300000000000,
   "disable-rollback": true,
+  "delete-orphans": true,
 }
 + if configs.estate == "prd-sam_storage" then {
     "recipient": "storagefoundation@salesforce.com"
