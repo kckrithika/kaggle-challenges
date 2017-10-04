@@ -76,8 +76,8 @@ system:
         # Actually used by the container
         - containerPort: 12100
         - containerPort: 11211
-        - containerPort: 12199
-        - containerPort: 12198
+        - containerPort: 12099
+        - containerPort: 12098
         # To avoid conflicts with CaaS perf hosts
         - containerPort: 12000
         - containerPort: 12015
@@ -111,4 +111,4 @@ system:
     slbEnabled: true
     ports:
     - port: 9443
-      targetport: 12199
+      targetport: 12099
