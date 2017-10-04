@@ -11,6 +11,7 @@ if configs.estate == "prd-sdc" then {
             "name": "slb-canary-passthrough-host-network"
         },
         "name": "slb-canary-passthrough-host-network",
+	"namespace": "sam-system",
         "annotations": {
             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
         }
@@ -21,7 +22,8 @@ if configs.estate == "prd-sdc" then {
             "metadata": {
                 "labels": {
                     "name": "slb-canary-passthrough-host-network"
-                }
+                },
+	    "namespace": "sam-system",
             },
             "spec": {
                 "hostNetwork": true,

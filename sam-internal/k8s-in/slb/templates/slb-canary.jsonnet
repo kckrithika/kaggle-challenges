@@ -11,6 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             "name": "slb-canary"
         },
         "name": "slb-canary",
+	"namespace": "sam-system",
     } + 
         if configs.estate == "prd-sdc" then { 
 		    "annotations": {
@@ -23,7 +24,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             "metadata": {
                 "labels": {
                     "name": "slb-canary"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "hostNetwork": true,

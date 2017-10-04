@@ -9,7 +9,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
         "labels": {
             "name": "slb-alpha"
         },
-        "name": "slb-alpha"
+        "name": "slb-alpha",
+	"namespace": "sam-system",
     },
     "spec": {
         replicas: 1,
@@ -17,7 +18,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
             "metadata": {
                 "labels": {
                     "name": "slb-alpha"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "volumes": [

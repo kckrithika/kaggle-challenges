@@ -4,12 +4,14 @@ metadata:
   labels:
     name: slb-canary-proxy-tcp
   name: slb-canary-proxy-tcp
+  namespace: sam-system
 spec:
   replicas: 2
   template:
     metadata:
       labels:
         name: slb-canary-proxy-tcp
+      namespace: sam-system
     spec:
       containers:
       - command:

@@ -4,12 +4,14 @@ metadata:
   labels:
     name: slb-alpha
   name: slb-alpha
+  namespace: sam-system
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         name: slb-alpha
+      namespace: sam-system
     spec:
       containers:
       - command:

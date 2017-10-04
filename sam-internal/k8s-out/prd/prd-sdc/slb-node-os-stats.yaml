@@ -4,12 +4,14 @@ metadata:
   labels:
     name: slb-node-os-stats
   name: slb-node-os-stats
+  namespace: sam-system
 spec:
   replicas: 2
   template:
     metadata:
       labels:
         name: slb-node-os-stats
+      namespace: sam-system
     spec:
       containers:
       - command:

@@ -10,7 +10,8 @@ if configs.estate == "prd-sdc" then {
         "labels": {
             "name": "slb-canary-proxy-tcp"
         },
-        "name": "slb-canary-proxy-tcp"
+        "name": "slb-canary-proxy-tcp",
+	"namespace": "sam-system",
     },
     "spec": {
         replicas: 2,
@@ -18,7 +19,8 @@ if configs.estate == "prd-sdc" then {
             "metadata": {
                 "labels": {
                     "name": "slb-canary-proxy-tcp"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "volumes": [

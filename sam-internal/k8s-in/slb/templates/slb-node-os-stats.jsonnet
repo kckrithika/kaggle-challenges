@@ -9,7 +9,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         "labels": {
             "name": "slb-node-os-stats"
         },
-        "name": "slb-node-os-stats"
+        "name": "slb-node-os-stats",
+	"namespace": "sam-system",
     },
     "spec": {
         replicas: 2,
@@ -17,7 +18,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             "metadata": {
                 "labels": {
                     "name": "slb-node-os-stats"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "hostNetwork": true,
