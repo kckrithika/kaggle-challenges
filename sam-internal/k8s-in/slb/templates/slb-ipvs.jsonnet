@@ -10,7 +10,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         "labels": {
             "name": "slb-ipvs"
         },
-        "name": "slb-ipvs"
+        "name": "slb-ipvs",
+	"namespace": "sam-system",
     },
     "spec": {
         replicas: 2,
@@ -18,7 +19,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             "metadata": {
                 "labels": {
                     "name": "slb-ipvs"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "hostNetwork": true,

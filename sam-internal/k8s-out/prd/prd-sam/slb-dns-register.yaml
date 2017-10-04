@@ -4,12 +4,14 @@ metadata:
   labels:
     name: slb-dns-register
   name: slb-dns-register
+  namespace: sam-system
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         name: slb-dns-register
+      namespace: sam-system
     spec:
       containers:
       - command:

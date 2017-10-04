@@ -9,7 +9,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         "labels": {
             "name": "slb-iface-processor"
         },
-        "name": "slb-iface-processor"
+        "name": "slb-iface-processor",
+	"namespace": "sam-system",
     },
     "spec": {
         "template": {
@@ -18,7 +19,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     "name": "slb-iface-processor",
                     "apptype": "control",
                     "daemonset": "true"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "hostNetwork": true,

@@ -4,12 +4,14 @@ metadata:
   labels:
     name: slb-canary-passthrough-tls
   name: slb-canary-passthrough-tls
+  namespace: sam-system
 spec:
   replicas: 2
   template:
     metadata:
       labels:
         name: slb-canary-passthrough-tls
+      namespace: sam-system
     spec:
       containers:
       - command:

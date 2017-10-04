@@ -11,6 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             "name": "slb-portal"
         },
         "name": "slb-portal",
+	"namespace": "sam-system",
     },
     "spec": {
         replicas: 1,
@@ -18,7 +19,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             "metadata": {
                 "labels": {
                     "name": "slb-portal"
-                }
+                },
+		"namespace": "sam-system",
             },
             "spec": {
                 "volumes": [

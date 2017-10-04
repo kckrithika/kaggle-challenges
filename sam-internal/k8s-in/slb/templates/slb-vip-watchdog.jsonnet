@@ -10,6 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 "name": "slb-vip-watchdog"
             },
             "name": "slb-vip-watchdog",
+	   "namespace": "sam-system",
 		    "annotations": {
 			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
 		    }
@@ -57,7 +58,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 labels: {
                     name: "slb-vip-watchdog",
                     apptype: "monitoring"
-                }
+                },
+		"namespace": "sam-system",
             }
         }
     }

@@ -4,6 +4,7 @@ metadata:
   labels:
     name: slb-config-processor
   name: slb-config-processor
+  namespace: sam-system
 spec:
   template:
     metadata:
@@ -11,6 +12,7 @@ spec:
         apptype: control
         daemonset: "true"
         name: slb-config-processor
+      namespace: sam-system
     spec:
       containers:
       - command:

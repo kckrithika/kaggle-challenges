@@ -22,12 +22,14 @@ metadata:
   labels:
     name: slb-canary-passthrough-host-network
   name: slb-canary-passthrough-host-network
+  namespace: sam-system
 spec:
   replicas: 2
   template:
     metadata:
       labels:
         name: slb-canary-passthrough-host-network
+      namespace: sam-system
     spec:
       containers:
       - command:
