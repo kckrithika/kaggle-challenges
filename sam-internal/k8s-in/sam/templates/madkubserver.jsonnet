@@ -43,7 +43,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 containerPort: 3000
               }
             ],
-            volumes: configs.filter_empty([
+            volumeMounts: configs.filter_empty([
               {
                 mountPath: "/kubeconfig",
                 name: "kubeconfig"

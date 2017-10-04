@@ -44,7 +44,7 @@ spec:
         name: madkubserver
         ports:
         - containerPort: 3000
-        volumes:
+        volumeMounts:
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /data/certs
