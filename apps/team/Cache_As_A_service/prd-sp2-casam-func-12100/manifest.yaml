@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.4-0000045-86f8a22a
+      image: tnrp/casam/coreapp:210.4-0000046-2e43a58d
 
       env:
         - name: DEPLOYMENT
@@ -40,6 +40,10 @@ system:
           value: csrlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
         - name: PORT
           value: 12100
+        - name: SPORT
+          value: 12099
+        - name: S2PORT
+          value: 12098
 
         # For casam deployments, we can switch back and forth between sleepy and sneezy db users
         # MIST30 core app servers are currently using sneezy
@@ -72,6 +76,8 @@ system:
         # Actually used by the container
         - containerPort: 12100
         - containerPort: 11211
+        - containerPort: 12099
+        - containerPort: 12098
         # To avoid conflicts with CaaS perf hosts
         - containerPort: 12000
         - containerPort: 12015
@@ -99,3 +105,10 @@ system:
     ports:
     - port: 9001
       targetport: 12100
+  - lbname: csrlb-secure
+    function: csr
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+    - port: 9443
+      targetport: 12099
