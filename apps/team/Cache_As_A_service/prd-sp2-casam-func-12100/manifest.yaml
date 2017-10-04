@@ -41,9 +41,9 @@ system:
         - name: PORT
           value: 12100
         - name: SPORT
-          value: 12199
+          value: 12099
         - name: S2PORT
-          value: 12198
+          value: 12098
 
         # For casam deployments, we can switch back and forth between sleepy and sneezy db users
         # MIST30 core app servers are currently using sneezy
