@@ -1,12 +1,12 @@
 apiVersion: v1
- 
+
 system:
   functions:
   - name: scone-shipping
     count: 1
     containers:
     - name: scone-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:bbuxton-20170807
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:0.0.2-snapshot
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -36,12 +36,12 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive" 
+          - "./bin/is-alive"
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready" 
-          initialDelaySeconds: 5 
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
           periodSeconds: 5
