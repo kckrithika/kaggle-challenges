@@ -1,3 +1,5 @@
 apps:
   time:
     - prd/prd-sam
+  time-tls:
+    - prd/prd-sam
