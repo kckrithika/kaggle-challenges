@@ -4,6 +4,7 @@ metadata:
   name: sdn-control-svc
   namespace: sam-system
 spec:
+  clusterIP: 10.254.219.222
   ports:
   - name: sdn-control-port
     port: 9108

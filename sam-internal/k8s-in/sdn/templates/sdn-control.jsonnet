@@ -40,13 +40,13 @@ if configs.estate == "prd-sdc" then {
                             "--port="+portconfigs.sdn.sdn_control_service,
                             "--charonAgentEndpoint="+configs.charonEndpoint,
                             "--livenessProbePort="+portconfigs.sdn.sdn_control,
+                            "--charonPushInterval=30s",
+                            "--samUpdateInterval=30s",
+                            "--sdncBootstrapTimer=30s"
                         ],
                         "env": [
-                            {
-                                "name": "KUBECONFIG",
-                                "value": "/config/kubeconfig"
-                            }
-                        ],
+                            configs.kube_config_env,
+                        ],    
                         "livenessProbe": {
                             "httpGet": {
                                 "path": "/liveness-probe",
@@ -59,32 +59,16 @@ if configs.estate == "prd-sdc" then {
                         "volumeMounts": configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
-                            {
-                                "mountPath": "/data/certs",
-                                "name": "certs"
-                            },
-                            {
-                                "mountPath": "/config",
-                                "name": "config"
-                            }
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
                         ]),
                     }
                 ],
                 "volumes": configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
-                    {
-                        "hostPath": {
-                            "path": "/data/certs"
-                        },
-                        "name": "certs"
-                    },
-                    {
-                        "hostPath": {
-                            "path": "/etc/kubernetes"
-                        },
-                        "name": "config"
-                    }
+                    configs.cert_volume,
+                    configs.kube_config_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate

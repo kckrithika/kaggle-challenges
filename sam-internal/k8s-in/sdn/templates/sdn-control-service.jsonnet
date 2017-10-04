@@ -9,15 +9,16 @@ if configs.estate == "prd-sdc" then {
         },
         "spec": {
             "ports": [
-            {
-                "name": "sdn-control-port",
-                "port": portconfigs.sdn.sdn_control_service,
-                "protocol": "TCP",
-                "targetPort": portconfigs.sdn.sdn_control_service,
-            }
+                {
+                    "name": "sdn-control-port",
+                    "port": portconfigs.sdn.sdn_control_service,
+                    "protocol": "TCP",
+                    "targetPort": portconfigs.sdn.sdn_control_service
+                }
             ],
-                "selector": {
-                    "name": "sdn-control",
-                },
+            "clusterIP": "10.254.219.222",
+            "selector": {
+                "name": "sdn-control",
+            },
         },
 } else "SKIP"
