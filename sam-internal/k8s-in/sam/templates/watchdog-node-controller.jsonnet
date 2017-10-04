@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
