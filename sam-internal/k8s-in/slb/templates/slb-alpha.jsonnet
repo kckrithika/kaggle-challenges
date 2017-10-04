@@ -10,7 +10,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
             "name": "slb-alpha"
         },
         "name": "slb-alpha",
-	"namespace": "sam-system",
+	 "namespace": "sam-system",
     },
     "spec": {
         replicas: 1,
