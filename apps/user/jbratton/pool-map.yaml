@@ -1,3 +1,5 @@
 apps:
   geoip-xlt:
     - prd/prd-sam
+  time:
+    - prd/prd-sam
