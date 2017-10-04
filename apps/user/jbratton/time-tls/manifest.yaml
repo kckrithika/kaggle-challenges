@@ -48,14 +48,9 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
       volumeMounts:
-      - name: time-tls-client-cert
-        mountPath: /client-cert
       - name: time-tls-server-cert
         mountPath: /server-cert
     volumes:
-    - name: time-tls-client-cert
-      maddogCert:
-        type: client
     - name: time-tls-server-cert
       maddogCert:
         type: server
