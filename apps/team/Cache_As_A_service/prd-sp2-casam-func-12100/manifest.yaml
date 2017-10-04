@@ -6,6 +6,11 @@ system:
 
     count: 2
     
+    volumes:
+    - name: cert
+      maddogCert:
+        type: server
+    
     containers:
     - name: csr-sam
 
@@ -70,7 +75,11 @@ system:
         # To avoid conflicts with CaaS perf hosts
         - containerPort: 12000
         - containerPort: 12015
-        
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+                
     hostnetwork: true
 
     terminationGracePeriodSeconds: 500
