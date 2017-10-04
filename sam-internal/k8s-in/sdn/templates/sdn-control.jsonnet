@@ -40,9 +40,9 @@ if configs.estate == "prd-sdc" then {
                             "--port="+portconfigs.sdn.sdn_control_service,
                             "--charonAgentEndpoint="+configs.charonEndpoint,
                             "--livenessProbePort="+portconfigs.sdn.sdn_control,
-                            "--charonPushInterval=60s",
-                            "--samUpdateInterval=90s",
-                            "--sdncBootstrapTimer=45s"
+                            "--charonPushInterval=30s",
+                            "--samUpdateInterval=30s",
+                            "--sdncBootstrapTimer=30s"
                         ],
                         "env": [
                             configs.kube_config_env,

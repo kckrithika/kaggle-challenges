@@ -24,9 +24,9 @@ spec:
         - --port=9108
         - --charonAgentEndpoint=http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions
         - --livenessProbePort=9110
-        - --charonPushInterval=60s
-        - --samUpdateInterval=90s
-        - --sdncBootstrapTimer=45s
+        - --charonPushInterval=30s
+        - --samUpdateInterval=30s
+        - --sdncBootstrapTimer=30s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
