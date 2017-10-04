@@ -53,6 +53,7 @@ local samimages = import "samimages.jsonnet";
                   "image": samimages.hypersam,
                   "name": "watchdog-synthetic",
                   "volumeMounts": configs.filter_empty([
+                     configs.sfdchosts_volume_mount,
                      configs.maddog_cert_volume_mount,
                      {
                         "mountPath": "/test",
@@ -76,7 +77,8 @@ local samimages = import "samimages.jsonnet";
             } else {
                   pool: configs.estate
             },
-            "volumes": configs.filter_empty([
+            volumes: configs.filter_empty([
+               configs.sfdchosts_volume,
                configs.maddog_cert_volume,
                configs.cert_volume,
                {

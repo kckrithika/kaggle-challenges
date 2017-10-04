@@ -16,6 +16,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                            "--funnelEndpoint="+configs.funnelVIP,
                         ],
                         volumeMounts: configs.filter_empty([
+                          configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
@@ -34,6 +35,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                     }
                 ],
                 volumes: configs.filter_empty([
+                    configs.sfdchosts_volume,
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,

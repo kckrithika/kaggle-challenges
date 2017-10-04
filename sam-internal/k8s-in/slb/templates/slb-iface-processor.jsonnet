@@ -24,11 +24,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-iface-processor",
@@ -42,11 +42,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                         "securityContext": {
                             "privileged": true
                         }

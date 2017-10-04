@@ -22,7 +22,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
 		"namespace": "sam-system",
             },
             "spec": {
-                "volumes": [
+                "volumes": configs.filter_empty([
                     slbconfigs.slb_volume,
                     {
                         "name": "dev-volume",
@@ -32,7 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                     },
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-bravo",
@@ -44,14 +44,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--log_dir="+slbconfigs.logsDir,
                             "--ports=9090,9091,9092",
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             {
                                 "name": "dev-volume",
                                 "mountPath": "/dev"
                             },
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                     }
                 ],
                 nodeSelector: {

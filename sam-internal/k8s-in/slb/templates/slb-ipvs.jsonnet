@@ -24,7 +24,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     {
@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-ipvs-installer",
@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             {
                                 "name": "dev-volume",
                                 "mountPath": "/dev"
@@ -66,7 +66,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                         "securityContext": {
                             "privileged": true,
                             "capabilities": {
@@ -88,11 +88,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                         "securityContext": {
                             "privileged": true
                         }
@@ -106,10 +106,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            "--connPort="+portconfigs.slb.ipvsDataConnPort,
                            "--log_dir="+slbconfigs.logsDir
                        ],
-                       "volumeMounts": [
+                       "volumeMounts": configs.filter_empty([
                            slbconfigs.slb_volume_mount,
                            slbconfigs.logs_volume_mount,
-                       ],
+                       ]),
                        "securityContext": {
                            "privileged": true
                        }

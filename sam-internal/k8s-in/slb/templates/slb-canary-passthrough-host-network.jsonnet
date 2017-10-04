@@ -27,10 +27,10 @@ if configs.estate == "prd-sdc" then {
             },
             "spec": {
                 "hostNetwork": true,
-                "volumes": [
+                "volumes": configs.filter_empty([
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-canary-passthrough-host-network",
@@ -42,10 +42,10 @@ if configs.estate == "prd-sdc" then {
                             "--log_dir="+slbconfigs.logsDir,
                             "--ports="+portconfigs.slb.canaryServicePassthroughHostNetworkPort,
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                     }
                 ],
                 nodeSelector: {

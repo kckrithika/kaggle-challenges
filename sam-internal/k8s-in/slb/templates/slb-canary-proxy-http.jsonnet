@@ -23,10 +23,10 @@ if configs.estate == "prd-sdc" then {
 		"namespace": "sam-system",
             },
             "spec": {
-                "volumes": [
+                "volumes": configs.filter_empty([
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
-                ],
+                ]),
                 "containers": [
                     {
                         "name": "slb-canary-proxy-http",
@@ -38,10 +38,10 @@ if configs.estate == "prd-sdc" then {
                             "--log_dir="+slbconfigs.logsDir,
                             "--ports="+portconfigs.slb.canaryServiceProxyHttpPort,
                         ],
-                        "volumeMounts": [
+                        "volumeMounts": configs.filter_empty([
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ],
+                        ]),
                     }
                 ],
                 nodeSelector: {

@@ -858,5 +858,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: hosts
+  name: sfdchosts
   namespace: sam-system

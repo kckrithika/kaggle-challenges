@@ -23,7 +23,7 @@ local samimages = import "samimages.jsonnet";
                          ],
                       "volumeMounts": configs.filter_empty([
                           configs.maddog_cert_volume_mount,
-                          configs.hosts_volume_mount,
+                          configs.sfdchosts_volume_mount,
                           configs.cert_volume_mount,
                           configs.config_volume_mount,
                         ]),
@@ -32,7 +32,7 @@ local samimages = import "samimages.jsonnet";
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     configs.cert_volume,
-                    configs.hosts_volume,
+                    configs.sfdchosts_volume,
                      {
                         hostPath: {
                             path: "/manifests"

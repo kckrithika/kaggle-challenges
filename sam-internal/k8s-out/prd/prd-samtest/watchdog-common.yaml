@@ -34,12 +34,17 @@ spec:
             cpu: "0.5"
             memory: 300Mi
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /hostproc
           name: procfs-volume
         - mountPath: /config
           name: config
       hostNetwork: true
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /proc
         name: procfs-volume
