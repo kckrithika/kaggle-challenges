@@ -4,6 +4,7 @@ metadata:
   labels:
     name: sdn-peering-agent
   name: sdn-peering-agent
+  namespace: sam-system
 spec:
   template:
     metadata:
@@ -11,6 +12,7 @@ spec:
         apptype: control
         daemonset: "true"
         name: sdn-peering-agent
+      namespace: sam-system
     spec:
       containers:
       - env:

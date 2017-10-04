@@ -122,7 +122,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     name: "sdn-peering-agent",
                     apptype: "control",
                     daemonset: "true",
-                }
+                },
+		"namespace": "sam-system",
             }
         },
     },
@@ -132,5 +133,6 @@ if !utils.is_public_cloud(configs.kingdom) then {
             name: "sdn-peering-agent",
         },
         name: "sdn-peering-agent",
+	"namespace": "sam-system",
     }
 } else "SKIP"

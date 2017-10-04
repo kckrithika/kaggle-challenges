@@ -4,6 +4,7 @@ metadata:
   labels:
     name: sdn-vault-agent
   name: sdn-vault-agent
+  namespace: sam-system
 spec:
   replicas: 1
   template:
@@ -11,6 +12,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-vault-agent
+      namespace: sam-system
     spec:
       containers:
       - command:

@@ -57,16 +57,18 @@ if !utils.is_public_cloud(configs.kingdom) then {
             metadata: {
                 labels: {
                     name: "sdn-vault-agent",
-                    apptype: "monitoring"
-                }
+                    apptype: "monitoring",
+                },
+		"namespace": "sam-system",            
             }
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sdn-vault-agent"
+            name: "sdn-vault-agent",
         },
-        name: "sdn-vault-agent"
+        name: "sdn-vault-agent",
+	"namespace": "sam-system",
     }
 } else "SKIP"

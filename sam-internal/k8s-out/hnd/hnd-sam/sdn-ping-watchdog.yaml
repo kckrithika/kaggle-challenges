@@ -4,6 +4,7 @@ metadata:
   labels:
     name: sdn-ping-watchdog
   name: sdn-ping-watchdog
+  namespace: sam-system
 spec:
   minReadySeconds: 180
   replicas: 1
@@ -17,6 +18,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-ping-watchdog
+      namespace: sam-system
     spec:
       containers:
       - command:
