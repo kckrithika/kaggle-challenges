@@ -21,6 +21,9 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001314-b7ccac83",
         "prd,prd-sam,watchdog-maddog,hypersam": "sam-0001315-989a91ed",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001316-59ffdf58",
+        "prd,prd-sam,watchdog-deployment,hypersam": "sam-0001330-9bd96771",
+        "prd,prd-samdev,watchdog-deployment,hypersam": "sam-0001330-9bd96771",
+        "prd,prd-samtest,watchdog-deployment,hypersam": "sam-0001330-9bd96771",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
