@@ -29,7 +29,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001263-d5b47592
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001302-4f86e9c4
         name: watchdog-node
         volumeMounts:
         - mountPath: /data/certs

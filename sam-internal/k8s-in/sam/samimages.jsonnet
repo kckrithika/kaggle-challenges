@@ -57,7 +57,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod
         "4": {
-            "hypersam": "sam-0001263-d5b47592",
+            "hypersam": "sam-0001302-4f86e9c4",
             "madkub": "1.0.0-0000032-e330dc69",
             },
 
