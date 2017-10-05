@@ -11,7 +11,7 @@ system:
         type: server
     containers:
     - name: bf-docker
-      image: docker-sam/fluong/bf-docker:fluong-2017-1004-1740
+      image: docker-sam/fluong/bf-docker/fluong-2017-1004-1740/
       ports:
       - containerPort: 9090
       livenessProbe:
