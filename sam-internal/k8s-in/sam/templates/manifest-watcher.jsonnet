@@ -19,8 +19,10 @@ local samimages = import "samimages.jsonnet";
                            "--v=2",
                            "--logtostderr=true",
                            "--config=/config/manifestwatcher.json",
-                           "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive"
-                         ],
+                           "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
+                         ] + (if configs.estate == "prd-samtest" then [
+                           "--hostsConfigFile=/sfdclocation/hosts.json"
+                         ] else []),
                       "volumeMounts": configs.filter_empty([
                           configs.maddog_cert_volume_mount,
                           configs.sfdchosts_volume_mount,
