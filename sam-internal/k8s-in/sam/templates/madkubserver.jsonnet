@@ -34,7 +34,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
               "--maddog-server-ca", "/etc/pki_service/ca/security-ca.pem",
               "--cert-folder", "/certs/",
               "--token-folder", "/tokens/",
-              "--service-hostname", "$(MADKUBSERVER_SERVICE_HOST)"
+              "--service-hostname", "$(MADKUBSERVER_SERVICE_HOST)",
+              "--funnel-endpoint", "http://"+configs.funnelVIP,
+              "--kingdom", configs.kingdom
             ],
             image: samimages.madkub,
             name: "madkubserver",
@@ -86,9 +88,11 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
               "--cert-folder", "/certs/",
               "--token-folder", "/tokens/",
               "--refresher",
-              "--refresher-token-grace-period", "30s"
+              "--refresher-token-grace-period", "30s",
+              "--funnel-endpoint", "http://"+configs.funnelVIP,
+              "--kingdom", configs.kingdom
             ],
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/madkub:test-1f9f157-20170914-140609",
+            image: samimages.madkub,
             resources: {
             },
             volumeMounts: configs.filter_empty([

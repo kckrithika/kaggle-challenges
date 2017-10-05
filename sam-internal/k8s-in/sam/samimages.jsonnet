@@ -49,26 +49,26 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
             "hypersam": "sam-0001321-af27d7af",
-            "madkub": "1.0.0-0000032-e330dc69",
+            "madkub": "1.0.0-0000035-9241ed31",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
             "hypersam": "sam-0001302-4f86e9c4",
-            "madkub": "1.0.0-0000032-e330dc69",
+            "madkub": "1.0.0-0000035-9241ed31",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
             "hypersam": "sam-0001302-4f86e9c4",
-            "madkub": "1.0.0-0000032-e330dc69",
+            "madkub": "1.0.0-0000035-9241ed31",
             },
 
 
         ### Release Phase 4 - Rest of Prod
         "4": {
             "hypersam": "sam-0001302-4f86e9c4",
-            "madkub": "1.0.0-0000032-e330dc69",
+            "madkub": "1.0.0-0000035-9241ed31",
             },
 
        ### For testing private bits from a developer's machine pre-checkin if
