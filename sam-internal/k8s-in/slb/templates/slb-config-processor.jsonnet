@@ -54,7 +54,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
-                                "--cleanupOldConfig=true"
+                                "--kneConfigDir=/var/slb/testkneconfigs"
                             ] else []
                         ),
                         "volumeMounts": configs.filter_empty([
