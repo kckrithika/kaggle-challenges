@@ -14,14 +14,22 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         name: "k8sproxy",
                         image: samimages.k8sproxy,
                         args:[
-                           "-f ",
-                           "/etc/haproxy/haproxy.cfg"
-                        ],
+                        ] + (if configs.estate == "prd-samtest" then [
+                          "-f",
+                          "/k8sproxyconfig/haproxy-maddog.cfg"
+                        ] else [
+                          "-f",
+                          "/etc/haproxy/haproxy.cfg"
+                        ]),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             {
                                 name: "sfdc-volume",
                                 mountPath: "/etc/certs"
+                            },
+                            {
+                                name: "k8sproxyconfig",
+                                mountPath: "/k8sproxyconfig"
                             }
                         ]),
                         "ports": [
@@ -47,7 +55,13 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             path: "/data/certs"
                         },
                         name: "sfdc-volume"
-                    }
+                    },
+                    {
+                        configMap: {
+                            name: "k8sproxy",
+                        },
+                        name: "k8sproxyconfig"
+                    },
                 ]),
                 nodeSelector: {
                 }

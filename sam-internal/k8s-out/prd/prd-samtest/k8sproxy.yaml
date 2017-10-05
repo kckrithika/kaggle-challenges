@@ -18,8 +18,8 @@ spec:
     spec:
       containers:
       - args:
-        - '-f '
-        - /etc/haproxy/haproxy.cfg
+        - -f
+        - /k8sproxyconfig/haproxy-maddog.cfg
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1
         livenessProbe:
           httpGet:
@@ -36,6 +36,8 @@ spec:
           name: maddog-certs
         - mountPath: /etc/certs
           name: sfdc-volume
+        - mountPath: /k8sproxyconfig
+          name: k8sproxyconfig
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -46,3 +48,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: sfdc-volume
+      - configMap:
+          name: k8sproxy
+        name: k8sproxyconfig
