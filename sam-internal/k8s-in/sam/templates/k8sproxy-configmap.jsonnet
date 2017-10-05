@@ -8,6 +8,6 @@ if configs.kingdom == "prd" then {
       namespace: "sam-system",
     },
     data: {
-      "haproxy-maddog.cfg": std.toString(importstr "configs/haproxy-maddog.cfg"),
-    },
+      "haproxy-maddog.cfg": std.toString(importstr "configs/haproxy-maddog.cfg") + configs.chainFile
+    }
 } else "SKIP"

@@ -54,8 +54,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--birdconf=/usr/local/etc/bird.conf",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                            "--keyfile=/data/certs/hostcert.key",
-                            "--certfile=/data/certs/hostcert.crt",
+                            "--keyfile=" + configs.keyFile,
+                            "--certfile=" + configs.certFile,
                             "--bgpPasswordFile=/data/secrets/sambgppassword",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
 
