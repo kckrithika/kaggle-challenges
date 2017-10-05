@@ -31,7 +31,7 @@ system:
       export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export DATACENTER=${KINGDOM} ;
       export DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-      node --harmony ${APP_DIR}/lib/watchdog.js
+      node --harmony ${APP_DIR}/lib/watchdog.js ;
       "]
       livenessProbe:
         exec:

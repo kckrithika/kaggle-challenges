@@ -81,7 +81,7 @@ system:
           export ReportCollector_eventRecorder_port=${SERVICEEVENTRECORDERLB_SERVICE_PORT} ;
           ;;
         *)
-      esac ;
+      esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.disableFileCPResolving=true
