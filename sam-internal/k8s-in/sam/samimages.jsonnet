@@ -17,7 +17,7 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-	"prd,prd-samtest,samcontrol-deployer,hypersam":	"sam-0001329-829a1bf6",
+	"prd,prd-samtest,samcontrol-deployer,hypersam":	"sam-0001330-9bd96771",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001314-b7ccac83",
         "prd,prd-sam,watchdog-maddog,hypersam": "sam-0001315-989a91ed",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001316-59ffdf58",
