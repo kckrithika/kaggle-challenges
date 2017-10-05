@@ -37,8 +37,6 @@ spec:
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
         - prd
-        - --estate
-        - prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000035-9241ed31
         livenessProbe:
           httpGet:
@@ -82,8 +80,6 @@ spec:
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
         - prd
-        - --estate
-        - prd-samtest
         env:
         - name: MADKUB_NODENAME
           valueFrom:
