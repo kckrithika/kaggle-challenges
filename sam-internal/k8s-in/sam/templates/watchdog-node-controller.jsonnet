@@ -18,7 +18,8 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
-                        + samwdconfig.shared_args,
+                        + samwdconfig.shared_args
+                        + [ "-emailFrequency=24h" ],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
