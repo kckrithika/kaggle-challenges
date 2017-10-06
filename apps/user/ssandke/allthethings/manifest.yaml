@@ -12,7 +12,7 @@ system:
 
   #  A simple stateless app
   - name: hello
-    count: 2
+    count: 3
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/samhello:ssandke-171005
@@ -22,10 +22,18 @@ system:
         httpGet:
           path: /
           port: 9090
+      volumeMounts:
+      - mountPath: /certs
+        name: certs
+    volumes:
+    - name: certs
+      maddogCert:
+        type: client
+
  
   - name: redis
     type: stateful-set
-    count: 1
+    count: 2
     containers:
     - name: stateful-hello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20170723_115938.58ece62.dirty.mayankkuma-ltm3
