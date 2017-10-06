@@ -20,7 +20,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/var/slb/logs
         - --ports=9115
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000356-f4c73d2f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000361-8db068d3
         name: slb-canary-proxy-tcp
         volumeMounts:
         - mountPath: /host
