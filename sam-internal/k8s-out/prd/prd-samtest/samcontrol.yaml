@@ -28,7 +28,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20171006_135055.c8a43f8.dirty.cbatra-ltm1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20171006_152253.abbdb5d.clean.cbatra-ltm1
         name: sam-controller
         volumeMounts:
         - mountPath: /sfdchosts
