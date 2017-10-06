@@ -1,4 +1,7 @@
 apps:
   allthethings:
     - prd/prd-sam
+  gater-pv:
+    - prd/prd-sam
+    
 
