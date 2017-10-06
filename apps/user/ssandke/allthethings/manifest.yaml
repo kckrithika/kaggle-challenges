@@ -1,7 +1,16 @@
 apiVersion: v1
  
 system:
+
+  # Controls how SAM informs you about the progress of deployments of this manifest.
+  notifications:
+    email:
+      - ssandke@salesforce.com
+
+
   functions:
+
+  #  A simple stateless app
   - name: hello
     count: 2
     containers:
