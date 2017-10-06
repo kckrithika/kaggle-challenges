@@ -17,7 +17,6 @@ system:
   loadbalancers:
   - lbname: mickhellolb
     function: default
-    nodeExposed: true
     ports:
       - port: 9090
         targetport: 9090
