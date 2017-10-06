@@ -45,7 +45,7 @@ system:
         - name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
           value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
       volumeMounts:
-      - mountPath: /logs
+      - mountPath: /home/controlplane/logs
         name: logvol
       - mountPath: /home/controlplane/ajnaclientcert
         name: ajnaclientcert
