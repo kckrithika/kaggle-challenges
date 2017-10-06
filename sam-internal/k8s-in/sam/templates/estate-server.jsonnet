@@ -1,7 +1,9 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+# Only private PROD info is provided by estate server currently
+if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 3,
