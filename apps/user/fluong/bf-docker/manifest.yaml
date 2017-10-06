@@ -1,0 +1,20 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    # https://confluence.internal.salesforce.com/pages/viewpage.action?spaceKey=SAM&title=How+to+obtain+Certificates+for+your+kPods
+    volumes:
+    - name: cert
+      maddogCert:
+        type: server
+    containers:
+    - name: bf-docker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fluong/bf-docker:fluong-2017-1004-1421
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /status/sam
+          port: 9090
