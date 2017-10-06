@@ -5,7 +5,7 @@ metadata:
     name: sam-deployment-portal
   name: sam-deployment-portal
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       name: sam-deployment-portal

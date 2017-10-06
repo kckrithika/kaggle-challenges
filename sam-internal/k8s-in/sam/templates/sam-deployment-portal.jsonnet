@@ -3,7 +3,7 @@ local samimages = import "samimages.jsonnet";
 if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
     kind: "Deployment",
     spec: {
-        replicas: 1,
+        replicas: 3,
         template: {
             spec: {
                 hostNetwork: true,
