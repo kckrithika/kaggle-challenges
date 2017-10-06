@@ -66,16 +66,13 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/log/iot
+        path: /data/sam/iot/log/scott
     - name: ajnaclientcert
       secret:
         secretName: iot-dva-kafka-prd-test
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
-    - name: controlplaneproperties
-      secret:
-        secretName: controlplane-server-properties
     - name: controlplaneconfig
       secret:
         secretName: controlplane-config
