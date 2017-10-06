@@ -1,0 +1,52 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: hello
+    count: 2
+    containers:
+    - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/samhello:ssandke-171005
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+ 
+  - name: redis
+    type: stateful-set
+    count: 1
+    containers:
+    - name: stateful-hello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20170723_115938.58ece62.dirty.mayankkuma-ltm3
+      command:
+        - /sam/sam-test-app
+      ports:
+      - containerPort: 8000
+        name: web
+      volumeMounts:
+      - name: www
+        mountPath: /rbd/html
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+    lbname: stateful-lb
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: www
+      storageClassName: standard
+      storageSizeRequest: 3Gi
+
+  loadbalancers:
+  - lbname: samhellolb
+    function: hello
+    slbnenbled: true
+    ports:
+      - port: 8080
+        targetport: 9090
+
