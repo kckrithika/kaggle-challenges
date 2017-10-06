@@ -49,7 +49,7 @@ local samimages = import "samimages.jsonnet";
 } +
 (
   if configs.kingdom == "prd" then {
-    deploymentNamespacePrefixWhitelist: "sam-system,csc-sam",
+    kubeResourceNamespacePrefixWhitelist: "sam-system,csc-sam"
   } else if configs.kingdom == "iad" then {
   } else {}
 )

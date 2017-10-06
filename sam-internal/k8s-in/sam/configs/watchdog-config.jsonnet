@@ -70,7 +70,6 @@ local samimages = import "samimages.jsonnet";
   # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack
       kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
       kubeResourceNamespacePrefixWhitelist: "sam-system",
-      deploymentNamespacePrefixWhitelist: "sam-system",
   } else {
     podNamespacePrefixBlacklist: "sam-watchdog",
   }
