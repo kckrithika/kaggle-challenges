@@ -69,7 +69,8 @@ local samimages = import "samimages.jsonnet";
   # We dont want to report on broken hairpin pods, since hairpin already alerts on those
   # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack
       kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
-      kubeResourceNamespacePrefixWhitelist: "sam-system",
+      kubeResourceNamespacePrefixWhitelist: "sam-system,csc-sam",
+      deploymentNamespacePrefixWhitelist: "sam-system",
   } else {
     podNamespacePrefixBlacklist: "sam-watchdog",
   }

@@ -48,8 +48,6 @@ local samimages = import "samimages.jsonnet";
   imageName: samimages.hypersam,
 } +
 (
-  if configs.kingdom == "prd" then {
-    kubeResourceNamespacePrefixWhitelist: "sam-system,csc-sam"
-  } else if configs.kingdom == "iad" then {
-  } else {}
+  if configs.kingdom == "iad" then {
+  } else if configs.kingdom != "prd" {}
 )
