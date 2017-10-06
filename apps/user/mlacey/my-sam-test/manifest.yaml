@@ -18,5 +18,5 @@ system:
   - lbname: mickhellolb
     function: default
     ports:
-      - port: 9999
+      - port: 9090
         targetport: 9090
