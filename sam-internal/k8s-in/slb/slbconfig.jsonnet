@@ -55,13 +55,19 @@ perCluster: {
         "prd-sam_storage": "slb-sam-storage-svc",
         "prd-sam": "slb-sam-svc"
     },
-
     useVipLabelToSelectSvcs: {
         "prd-sdc": true,
         "prd-samtest": true,
         "prd-samdev": true,
         "prd-sam_storage": true,
         "prd-sam": true
+    },
+    kneDomainName:{
+        "prd-sdc": "prd-sdc.slb.sfdc.net",
+        "prd-samtest": "",
+        "prd-samdev": "",
+        "prd-sam_storage": "",
+        "prd-sam": "slb.sfdc.net"
     },
 },
 
@@ -121,6 +127,7 @@ ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
+kneDomainName: self.perCluster.kneDomainName[estate],
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
