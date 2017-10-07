@@ -42,14 +42,13 @@ system:
       - name: SFDC_ENVIRONMENT
         value: blitz
 
-      # Ask for 8 meg of RAM and 1 cpu to start, and make sure we don't go beyond 16mb/2cpu
-      resources:
-        requests:
-          memory: "8Mi"
-          cpu: "1"
-        limits:
-          memory: "16Mi"
-          cpu: "2"
+      # resources:
+      #   requests:
+      #     memory: "8Mi"
+      #     cpu: "1"
+      #   limits:
+      #     memory: "16Mi"
+      #     cpu: "2"
 
     volumeMounts:
     - mountPath: /certs
