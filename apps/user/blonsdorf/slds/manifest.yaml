@@ -1,0 +1,22 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: slds
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/blonsdorf/slds:v0.0.1
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+ 
+  loadbalancers:
+  - lbname: samhellolb
+    function: default
+    ports:
+      - port: 8080
+        targetport: 8080
