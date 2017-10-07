@@ -7,7 +7,7 @@ system:
   functions:
   - name: gater-pv    
     type: stateful-set
-    count: 1
+    count: 3
     containers:
     - name: gater
       image: tnrp/gater/gater:1.4.0-0000219-14573585
@@ -42,6 +42,15 @@ system:
       - name: SFDC_ENVIRONMENT
         value: blitz
 
+      # Ask for 8 meg of RAM and 1 cpu to start, and make sure we don't go beyond 16mb/2cpu
+      resources:
+        requests:
+          memory: "8Mi"
+          cpu: "1"
+        limits:
+          memory: "16Mi"
+          cpu: "2"
+
     volumes:
     - name: logvol
     # NOTE: commented out the the logs path for the moment
@@ -50,7 +59,7 @@ system:
       emptyDir: {}
 
     # TODO: concise explanation of why we need this LB
-    lbname: stateful-lb
+    lbname: gater-pv-lb
 
     # Give containers a bit of time to shut down, as they might be syncing 
     # state into the PV on shutdown
