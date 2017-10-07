@@ -29,10 +29,12 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/var/slb/logs
         - --sleepTime=100ms
+        - --kneConfigDir=/var/slb/testkneconfigs
+        - --kneDomainName=prd-sdc.slb.sfdc.net
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000356-f4c73d2f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000367-81d5f340
         name: slb-config-processor
         securityContext:
           privileged: true
