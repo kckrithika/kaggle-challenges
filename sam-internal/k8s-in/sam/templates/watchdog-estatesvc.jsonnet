@@ -1,7 +1,10 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+local utils = import "util_functions.jsonnet";
+
+# Only private PROD info is provided by estate server currently
+if !utils.is_public_cloud(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
