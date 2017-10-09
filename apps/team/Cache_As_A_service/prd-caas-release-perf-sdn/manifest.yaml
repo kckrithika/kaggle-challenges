@@ -7,13 +7,12 @@ system:
   functions:
   - name: caas-release-perf-sdn
     count: 1 
-    hostnetwork: true
     nodeSelector:
       kubernetes.io/hostname=samcaas2-caasminion1-1-prd.eng.sfdc.net    
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -39,7 +38,7 @@ system:
       - containerPort: 12015
     - name: caas-redis-announcer-12015
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12015
@@ -61,7 +60,7 @@ system:
           readOnly: true
     - name: caas-redis-12016 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -87,7 +86,7 @@ system:
       - containerPort: 12016
     - name: caas-redis-announcer-12016
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12016
@@ -109,7 +108,7 @@ system:
           readOnly: true
     - name: caas-redis-12017 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -135,7 +134,7 @@ system:
       - containerPort: 12017
     - name: caas-redis-announcer-12017
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12017
@@ -157,7 +156,7 @@ system:
           readOnly: true
     - name: caas-redis-12018 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -183,7 +182,7 @@ system:
       - containerPort: 12018
     - name: caas-redis-announcer-12018
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12018
@@ -205,7 +204,7 @@ system:
           readOnly: true
     - name: caas-redis-12019 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -231,7 +230,7 @@ system:
       - containerPort: 12019
     - name: caas-redis-announcer-12019
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12019
@@ -253,7 +252,7 @@ system:
           readOnly: true
     - name: caas-redis-12020 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -279,7 +278,7 @@ system:
       - containerPort: 12020
     - name: caas-redis-announcer-12020
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12020
@@ -301,7 +300,7 @@ system:
           readOnly: true
     - name: caas-redis-12021 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -327,7 +326,7 @@ system:
       - containerPort: 12021
     - name: caas-redis-announcer-12021
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12021
@@ -349,7 +348,7 @@ system:
           readOnly: true
     - name: caas-redis-12022 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -375,7 +374,7 @@ system:
       - containerPort: 12022
     - name: caas-redis-announcer-12022
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000040-14383075
+      image: tnrp/caas/caas-redis:0.1-0000041-14611552
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12022
