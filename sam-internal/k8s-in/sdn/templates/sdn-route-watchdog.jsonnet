@@ -54,7 +54,6 @@ if configs.kingdom == "prd" then {
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                            configs.config_volume_mount,
                         ]),
                     }
                 ],
@@ -63,7 +62,6 @@ if configs.kingdom == "prd" then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
                     pool: configs.estate
