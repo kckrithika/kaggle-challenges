@@ -1,0 +1,21 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: prabhstestapp2
+    count: 2
+    progressDeadlineSeconds: 120
+    containers:
+      - name: prabhstestapp
+        image: tnrp/sam/hypersam:sam-0000701-487f2675
+        command: ["/sam/sam-test-app"]
+        args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
+        env:
+          - name: El337
+            value: "10100111011"
+        ports:
+          - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
