@@ -5,7 +5,7 @@ system:
     email:
       - iotenterprise@salesforce.com
   functions:
-  - name: controlplane-itest
+  - name: controlplane-STdemo
     count: 2
     containers:
     - name: controlplane
@@ -65,16 +65,16 @@ system:
     - name: controlplaneconfig
       secret:
         secretName: controlplane-config
-
     strategy:
       type: Recreate
 
   loadbalancers:
-  - lbname: controlplane-itest
-    function: controlplane-itest
+  - lbname: controlplane-STdemo
+    function: controlplane-STdemo
     nodeExposed: true
     ports:
-      - port: 9094
+      - port: 9093
         targetport: 7020
-      - port: 8084
+      - port: 8083
         targetport: 8080
+

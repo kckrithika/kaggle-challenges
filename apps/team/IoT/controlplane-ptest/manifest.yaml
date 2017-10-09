@@ -11,10 +11,10 @@ system:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
       ports:
-        - name: server
-          containerPort: 8082
+        - name: mgmt
+          containerPort: 8095
         - name: grpc
-          containerPort: 9092
+          containerPort: 7020
       livenessProbe:
         httpGet:
           path: /ping
@@ -68,5 +68,7 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-      - port: 8082
-        targetport: 8082
+      - port: 8095
+        targetport: 8095
+      - port: 9105
+        targetport: 7020

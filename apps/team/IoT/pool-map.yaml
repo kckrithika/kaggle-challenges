@@ -1,11 +1,5 @@
 apps:
-  controlplane-ftest:
-    - prd/prd-sp2-sam_iot_test
-  aqueduct:
-    - prd/prd-sp2-sam_iot_test
-  hbase-test-client:
-    - prd/prd-sp2-sam_iot_test
-  ajna:
+  controlplane-STdemo:
     - prd/prd-sp2-sam_iot_test
   controlplane-ptest:
       - prd/prd-sp2-sam_iot_test
