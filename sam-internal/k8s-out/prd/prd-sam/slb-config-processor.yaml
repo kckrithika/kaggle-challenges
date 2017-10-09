@@ -21,7 +21,7 @@ spec:
         - --period=1800s
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.167.224/27
+        - --subnet=10.251.196.0/22
         - --k8sapiserver=
         - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true

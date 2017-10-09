@@ -21,7 +21,7 @@ perCluster: {
             "prd-samtest": "10.251.129.241-242",
             "prd-samdev": "10.251.129.243-245",
             "prd-sam_storage": "10.251.129.246-254",
-            "prd-sam": "10.251.167.224/27"
+            "prd-sam": "10.251.196.0/22"
     },
 
     serviceList: {
