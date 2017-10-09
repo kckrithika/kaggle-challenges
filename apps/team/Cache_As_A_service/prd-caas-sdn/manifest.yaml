@@ -6,7 +6,7 @@ system:
       - jayantk@salesforce.com
   functions:
   - name: caas-sdn
-    count: 1 
+    count:  20
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
