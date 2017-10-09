@@ -76,7 +76,14 @@ perCluster: {
         "prd-sam_storage": false,
         "prd-sam": true
 
-    }
+    },
+    kneConfigDir: {
+        "prd-sdc": "/var/slb/testkneconfigs",
+        "prd-samtest": "/var/slb/testkneconfigs",
+        "prd-samdev": "/var/slb/testkneconfigs",
+        "prd-sam_storage": "/var/slb/testkneconfigs",
+        "prd-sam": "/var/slb/kneconfig"
+    },
 },
 
 
@@ -137,6 +144,7 @@ useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
 kneDomainName: self.perCluster.kneDomainName[estate],
 processKnEConfigs: self.perCluster.processKnEConfigs[estate],
+kneConfigDir: self.perCluster.kneConfigDir[estate],
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
