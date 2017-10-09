@@ -75,6 +75,19 @@
         ]
     }, 
     {
+        "dfw-sp1-g1": [
+            {
+                "redisContainerMemoryRequest": "3Gi"
+            }, 
+            {
+                "redisMaxMemory": 3072.0
+            }, 
+            {
+                "redisContainerMaxMemory": "5Gi"
+            }
+        ]
+    }, 
+    {
         "dc-cluster": [
             {
                 "splunkQueryLatestTime": "5d"
