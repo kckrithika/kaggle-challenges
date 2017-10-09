@@ -51,13 +51,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint="+configs.funnelVIP,
                             "--log_dir="+slbconfigs.logsDir,
                             "--sleepTime=100ms",
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" then [
-                                "--kneConfigDir=/var/slb/testkneconfigs",
-                                "--kneDomainName="+slbconfigs.kneDomainName
-                            ] else []
-                        ),
+                            "--processKnEConfigs="+slbconfigs.processKnEConfigs,
+                            "--kneConfigDir=/var/slb/testkneconfigs",
+                            "--kneDomainName="+slbconfigs.kneDomainName,
+                        ],
                         "volumeMounts": configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,

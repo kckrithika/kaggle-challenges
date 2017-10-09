@@ -29,6 +29,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/var/slb/logs
         - --sleepTime=100ms
+        - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/testkneconfigs
         - --kneDomainName=prd-sdc.slb.sfdc.net
         env:
