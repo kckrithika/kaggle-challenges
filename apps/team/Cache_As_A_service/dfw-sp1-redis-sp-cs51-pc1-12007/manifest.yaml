@@ -6,7 +6,7 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: redis-sp-cs51-pc1-12007
-    count: 3
+    count: 4
     hostnetwork: true
     containers:
     - name: caas-redis
