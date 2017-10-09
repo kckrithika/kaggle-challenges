@@ -12,7 +12,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       ports:
-      - containerPort: 9000
+      - containerPort: 7021
       - containerPort: 15372
       livenessProbe:
         exec:
