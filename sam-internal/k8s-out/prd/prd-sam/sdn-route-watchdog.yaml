@@ -53,8 +53,6 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /config
-          name: config
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
@@ -68,6 +66,3 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
-      - configMap:
-          name: watchdog
-        name: config
