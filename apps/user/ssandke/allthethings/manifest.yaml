@@ -25,6 +25,9 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE"
     volumes:
     - name: certs
       maddogCert:
