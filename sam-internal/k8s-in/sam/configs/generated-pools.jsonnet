@@ -75,10 +75,12 @@
     },
     {
       "namespaces": [
-        "gater"
+        "gater",
+        "ccait"
       ],
       "access": [
-        "team/Gater"
+        "team/Gater",
+        "team/CCAIT"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_gater",
