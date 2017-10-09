@@ -4342,6 +4342,106 @@
       "superpod": "none"
     },
     {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme1-1-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme1-2-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme1-3-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme1-4-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme1-5-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme2-1-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme2-2-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme2-3-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme2-4-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
+      "bomrolename": "sam_minion_sme",
+      "controlestate": "phx-sam",
+      "devicerole": "samcompute",
+      "estate": "phx-search_model_executor",
+      "hostname": "shared0-samminionsme2-5-phx.ops.sfdc.net",
+      "kingdom": "phx",
+      "pod": "none",
+      "superpod": "none"
+    },
+    {
       "bomrolename": "sam_minion_caas",
       "controlestate": "phx-sam",
       "devicerole": "samcompute",
@@ -6167,16 +6267,6 @@
       "devicerole": "samcompute",
       "estate": "prd-sp1-sdb_kube",
       "hostname": "shared0-sdbcompute2-3-prd.eng.sfdc.net",
-      "kingdom": "prd",
-      "pod": "none",
-      "superpod": "sp1"
-    },
-    {
-      "bomrolename": "sdb_compute",
-      "controlestate": "prd-sam",
-      "devicerole": "samcompute",
-      "estate": "prd-sp1-sdb_kube",
-      "hostname": "shared0-sdbcompute3-1-prd.eng.sfdc.net",
       "kingdom": "prd",
       "pod": "none",
       "superpod": "sp1"

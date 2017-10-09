@@ -834,16 +834,6 @@ data:
           "superpod": "sp1"
         },
         {
-          "bomrolename": "sdb_compute",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sdb_kube",
-          "hostname": "shared0-sdbcompute3-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
           "bomrolename": "sam_minion_caas",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
