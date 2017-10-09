@@ -52,7 +52,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir="+slbconfigs.logsDir,
                             "--sleepTime=100ms",
                             "--processKnEConfigs="+slbconfigs.processKnEConfigs,
-                            "--kneConfigDir=/var/slb/testkneconfigs",
+                            "--kneConfigDir="+slbconfigs.kneConfigDir,
                             "--kneDomainName="+slbconfigs.kneDomainName,
                         ],
                         "volumeMounts": configs.filter_empty([

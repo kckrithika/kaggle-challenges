@@ -30,7 +30,7 @@ spec:
         - --log_dir=/host/var/slb/logs
         - --sleepTime=100ms
         - --processKnEConfigs=true
-        - --kneConfigDir=/var/slb/testkneconfigs
+        - --kneConfigDir=/var/slb/kneconfig
         - --kneDomainName=slb.sfdc.net
         env:
         - name: KUBECONFIG
