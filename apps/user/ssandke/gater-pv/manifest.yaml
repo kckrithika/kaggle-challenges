@@ -42,13 +42,13 @@ system:
       - name: SFDC_ENVIRONMENT
         value: blitz
 
-      # resources:
-      #   requests:
-      #     memory: "8Mi"
-      #     cpu: "1"
-      #   limits:
-      #     memory: "16Mi"
-      #     cpu: "2"
+      resources:
+        requests:
+          memory: "32Mi"
+          cpu: "1"
+        limits:
+          memory: "128Mi"
+          cpu: "2"
 
     volumeMounts:
     - mountPath: /certs
