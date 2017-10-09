@@ -18,6 +18,8 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
+      - mountPath: /certs
+        name: server-cert
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -29,3 +31,6 @@ system:
     - name: hosthomevol
       hostPath:
         path: /data/ca-cluster-a
+    - name: server-cert
+      maddogCert:
+        type: server
