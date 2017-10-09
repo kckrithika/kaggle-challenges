@@ -17,7 +17,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: tnrp/chatbots/chatbot-runtime:210.0-75a93fa
+      image: tnrp/chatbots/chatbot-runtime:210.0-6292b5d
       livenessProbe:
         httpGet:
           path: /manage/health
