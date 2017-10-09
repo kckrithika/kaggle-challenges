@@ -5,7 +5,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
 
     kind: "Deployment",
     spec: {
-        replicas: 1,
+        replicas: 3,
         template: {
             spec: {
                 hostNetwork: true,
