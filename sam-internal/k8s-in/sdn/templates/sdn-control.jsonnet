@@ -36,7 +36,7 @@ if configs.estate == "prd-sdc" then {
                         "image": sdnimages.hypersdn,
                         "command":[
                             "/sdn/sdn-control-service",
-                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--archiveSvcEndpoint=http://10.253.152.173:14431/tnrp/content_repo/0/archive",
                             "--port="+portconfigs.sdn.sdn_control_service,
                             "--charonAgentEndpoint="+configs.charonEndpoint,
                             "--livenessProbePort="+portconfigs.sdn.sdn_control,
