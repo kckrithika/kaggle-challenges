@@ -44,10 +44,10 @@ system:
 
       resources:
         requests:
-          memory: "32Mi"
+          memory: "8Gi"
           cpu: "1"
         limits:
-          memory: "128Mi"
+          memory: "12Gi"
           cpu: "2"
 
     volumeMounts:
