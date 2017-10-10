@@ -19,6 +19,8 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-caas-release-perf-sdn:
     - prd/prd-sp2-sam_caas
+  prd-caas-release-perf-endurance:
+    - prd/prd-sp2-sam_caas
   prd-caas-redis-sp-chatbot-c1-12000:
     - prd/prd-sp2-sam_caas
   phx-sp2-metrics-publisher-sp-na38-c1:
