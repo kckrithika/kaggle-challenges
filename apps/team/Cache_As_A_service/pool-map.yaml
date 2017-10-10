@@ -795,6 +795,8 @@ apps:
    - prd/prd-sp2-sam_caas
   prd-caas-benchmark-monitor-perf:
    - prd/prd-sp2-sam_caas
+  prd-caas-endurance-monitor-perf:
+   - prd/prd-sp2-sam_caas
   dfw-sp2-metrics-publisher-sp-cs60-c1:
     - dfw/dfw-sp2-sam_caas
   dfw-sp2-redis-sp-cs60-c1-12014:
