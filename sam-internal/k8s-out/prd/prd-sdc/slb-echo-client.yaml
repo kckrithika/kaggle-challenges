@@ -1,0 +1,72 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/affinity: |
+      {   "nodeAffinity": {
+
+                 "requiredDuringSchedulingIgnoredDuringExecution": {
+
+                 "nodeSelectorTerms": [
+              {
+                "matchExpressions":
+                 [
+                  {
+                    "key": "slb-service",
+
+                 "operator": "NotIn",
+                    "values": ["slb-ipvs",
+                 "slb-nginx", "slb-echo-server"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+  labels:
+    name: slb-echo-client
+  name: slb-echo-client
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: slb-echo-client
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-echo-service
+        - --serviceName=slb-echo-svc
+        - --log_dir=/host/var/slb/logs
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000381-6454804c
+        name: slb-echo-client
+        securityContext:
+          capabilities:
+            add:
+            - ALL
+          privileged: true
+        volumeMounts:
+        - mountPath: /dev
+          name: dev-volume
+        - mountPath: /host
+          name: host-volume
+        - mountPath: /host/var/slb/logs
+          name: var-logs-volume
+      nodeSelector:
+        pool: prd-sdc
+      volumes:
+      - hostPath:
+          path: /var/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /dev
+        name: dev-volume
+      - hostPath:
+          path: /
+        name: host-volume
+      - hostPath:
+          path: /var/slb/logs
+        name: var-logs-volume
