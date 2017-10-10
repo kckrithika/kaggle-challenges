@@ -99,7 +99,7 @@ local utils = import "util_functions.jsonnet";
         ),
         # Move to phases when we roll to prod.
         "madkubSidecar": (
-            "1.0.0-0000032-e330dc69"
+            "1.0.0-0000035-9241ed31"
         ),
     },
 
