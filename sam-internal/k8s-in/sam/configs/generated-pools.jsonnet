@@ -1019,6 +1019,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-search_model_executor",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "sayonaradb",
         "user-sraspudic"
       ],
