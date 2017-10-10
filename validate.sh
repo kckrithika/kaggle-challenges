@@ -1,2 +1,2 @@
 #!/bin/bash
-./sam-internal/validate.sh
+./sam-internal/validate_internal.sh
