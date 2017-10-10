@@ -5,14 +5,14 @@ system:
     email:
       - iotenterprise@salesforce.com
   functions:
-  - name: controlplane-ftest
+  - name: controlplane-itest-stable
     count: 2
     containers:
     - name: controlplane
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
       ports:
-        - name: server
-          containerPort: 8080
+        - name: mgmt
+          containerPort: 15372
         - name: grpc
           containerPort: 7020
       livenessProbe:
@@ -65,16 +65,16 @@ system:
     - name: controlplaneconfig
       secret:
         secretName: controlplane-config
+
     strategy:
       type: Recreate
 
   loadbalancers:
-  - lbname: controlplane-ftest
-    function: controlplane-ftest
+  - lbname: controlplane-itest-stable
+    function: controlplane-itest-stable
     nodeExposed: true
     ports:
-      - port: 9093
+      - port: 9095
         targetport: 7020
-      - port: 8083
-        targetport: 8080
-
+      - port: 8085
+        targetport: 15372
