@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     {
                         "ports": [
                              {
-                                "name": "slb-nginx-control-port",
+                                "name": "slb-nginx-port",
                                 "containerPort": portconfigs.slb.slbNginxControlPort
                              }
                         ],
