@@ -64,14 +64,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                     },
                 ]),
                 nodeSelector: {
-                }
-		        + if configs.estate == "prd-sam" then {
-                    hostname: "kube11"
-                } else {}
-                + if configs.kingdom == "prd" then {
                     master: "true",
-                } else {
-                    pool: configs.estate
                 }
             },
             metadata: {
