@@ -23,6 +23,9 @@ spec:
         - --log_dir=/host/var/slb/logs
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000373-1ea4ad1a
         name: slb-nginx-config
+        ports:
+        - containerPort: 32146
+          name: slb-nginx-control-port
         securityContext:
           privileged: true
         volumeMounts:

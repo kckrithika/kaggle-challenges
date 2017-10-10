@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     "apiVersion": "extensions/v1beta1",
@@ -36,6 +37,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 ]),
                 "containers": [
                     {
+                        "ports": [
+                             {
+                                "name": "slb-nginx-control-port",
+                                "containerPort": portconfigs.slb.slbNginxControlPort
+                             }
+                        ],
                         "name": "slb-nginx-config",
                         "image": slbimages.hypersdn,
                         "command":[
