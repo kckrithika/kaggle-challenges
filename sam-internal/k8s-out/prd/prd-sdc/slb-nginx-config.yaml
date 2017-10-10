@@ -25,7 +25,7 @@ spec:
         name: slb-nginx-config
         ports:
         - containerPort: 32146
-          name: slb-nginx-control-port
+          name: slb-nginx-port
         securityContext:
           privileged: true
         volumeMounts:
