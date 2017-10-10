@@ -40,7 +40,7 @@ spec:
           name: k8sproxyconfig
       hostNetwork: true
       nodeSelector:
-        hostname: kube11
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service
