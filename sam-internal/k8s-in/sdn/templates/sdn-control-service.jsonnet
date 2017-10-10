@@ -8,6 +8,7 @@ if configs.estate == "prd-sdc" then {
             "namespace": "sam-system",
         },
         "spec": {
+            "clusterIP": "10.254.219.222",
             "ports": [
                 {
                     "name": "sdn-control-port",
@@ -16,7 +17,6 @@ if configs.estate == "prd-sdc" then {
                     "targetPort": portconfigs.sdn.sdn_control_service
                 }
             ],
-            "clusterIP": "10.254.219.222",
             "selector": {
                 "name": "sdn-control",
             },
