@@ -1,5 +1,8 @@
 local configs = import "config.jsonnet";
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+local utils = import "util_functions.jsonnet";
+
+# Only private PROD info is provided by estate service currently
+if !utils.is_public_cloud(configs.kingdom) then {
     "kind": "Service",
         "apiVersion": "v1",
         "metadata": {
