@@ -30,6 +30,8 @@ spec:
           initialDelaySeconds: 15
           timeoutSeconds: 10
         name: sam-deployment-portal
+        ports:
+        - containerPort: 64121
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
