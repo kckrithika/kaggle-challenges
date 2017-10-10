@@ -6,3 +6,8 @@ apps:
   runtime-production-all:
   - dfw/dfw-sam_chatbot_kingdom
   - phx/phx-sam_chatbot_kingdom
+  - ord/ord-sam_chatbot_kingdom
+  - iad/iad-sam_chatbot_kingdom
+  - par/par-sam_chatbot_kingdom
+  - hnd/hnd-sam_chatbot_kingdom
+  - ukb/ukb-sam_chatbot_kingdom
