@@ -38,11 +38,19 @@ def queryPodtapData():
     pods = requests.get('https://podtap-dev.internal.salesforce.com/?format=json', verify=False).json()['pods']
     kingdoms = dict()
     drDetails = dict()
+
+    allPodsDetails = os.path.join(metadata_dir, 'metadata/config/AllPodList.txt');
+    allPodsDetailsFile = open(allPodsDetails,'w')
+
     for pod in pods:
         if pod['operational_status'] == 'active' and pod['build_type'] == 'released':
             kingdomName = pod['datacenter']
             spod = pod['superpod']
             clusterName = pod['name']
+
+            if spod is None:
+                spod = '*'
+            allPodsDetailsFile.write(clusterName+','+spod.upper()+','+kingdomName.upper()+"\n")
             dr = pod['dr']
             if pod['dr']:
                 if spod:
@@ -83,6 +91,7 @@ def queryPodtapData():
                     kingdom = Kingdom(kingdomName, spods)
                     kingdoms[kingdomName] = kingdom
 
+    allPodsDetailsFile.close()
 
     #Process the DR clusters
     for kingdomName in kingdoms:
