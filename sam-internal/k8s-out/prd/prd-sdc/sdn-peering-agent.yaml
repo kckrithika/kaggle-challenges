@@ -47,7 +47,7 @@ spec:
         - --livenessProbePort=9100
         - --controlEstate=prd-sdc
         - --controlEndpoint=http://10.254.219.222:9108
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000354-64f2d40a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000371-76a3b283
         livenessProbe:
           httpGet:
             path: /liveness-probe
