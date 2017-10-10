@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: node-controller
+  name: node-controller
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: node-controller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: node-controller
+    spec:
+      containers:
+      - command:
+        - /sam/node-controller
+        - --funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001302-4f86e9c4
+        name: node-controller
+        volumeMounts:
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      nodeSelector:
+        pool: iad-sam
+      volumes:
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
