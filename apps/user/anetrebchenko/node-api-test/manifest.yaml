@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: lpperf-node-api-test
+    count: 2
+    containers:
+    - name: node-api-test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anetrebchenko/node-api-test:1.1
+      ports:
+      - containerPort: 3000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 3000
+
+  loadbalancers:
+  - lbname: lpperf-lpperf-node-api-test-lb
+    function: lpperf-node-api-test
+    ports:
+      - port: 3000
+        targetport: 3000
