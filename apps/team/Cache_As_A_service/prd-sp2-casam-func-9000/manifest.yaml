@@ -100,9 +100,9 @@ system:
 
   loadbalancers:
   - lbname: csrlb-bg
-    function: csr-nginx
+    function: csr-bg
     nodeExposed: true
     slbEnabled: false
     ports:
     - port: 9002
-      targetport: 9003
+      targetport: 9000
