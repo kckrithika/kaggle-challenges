@@ -11,7 +11,7 @@ if  configs.estate == "prd-sam" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "k8sproxy",
+                        name: "iotk8sproxy",
                         image: samimages.k8sproxy,
                         args:[
                         ] + (if configs.estate == "prd-samtest" then [
@@ -70,23 +70,23 @@ if  configs.estate == "prd-sam" then {
             },
             metadata: {
                 labels: {
-                    name: "k8sproxy",
+                    name: "iotk8sproxy",
                     apptype: "proxy"
                 }
             }
         },
         selector: {
             matchLabels: {
-                name: "k8sproxy"
+                name: "iotk8sproxy"
             }
         }
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "k8sproxy"
+            name: "iotk8sproxy"
         },
-        name: "k8sproxy",
+        name: "iotk8sproxy",
         namespace: "sam-system"
     }
 } else "SKIP"
