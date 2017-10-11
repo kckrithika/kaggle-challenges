@@ -6,5 +6,5 @@ while true
 do
     # Cleanup SLB logs
     rm /slb/* | true
-    sleep 3600
+    sleep 1800
 done
