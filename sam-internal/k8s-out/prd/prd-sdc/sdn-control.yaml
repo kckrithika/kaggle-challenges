@@ -27,6 +27,7 @@ spec:
         - --charonPushInterval=30s
         - --samUpdateInterval=30s
         - --sdncBootstrapTimer=30s
+        - --ipamPullInterval=30s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
