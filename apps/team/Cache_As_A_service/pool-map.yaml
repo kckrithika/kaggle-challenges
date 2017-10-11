@@ -15,11 +15,7 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-caas-release-perf:
     - prd/prd-sp2-sam_caas
-  prd-caas-sdn:
-    - prd/prd-sp2-sam_caas
   prd-caas-release-perf-sdn:
-    - prd/prd-sp2-sam_caas
-  prd-caas-release-perf-endurance:
     - prd/prd-sp2-sam_caas
   prd-caas-redis-sp-chatbot-c1-12000:
     - prd/prd-sp2-sam_caas
@@ -791,10 +787,6 @@ apps:
     - par/par-sp1-sam_caas
   par-sp1-redis-sp-cs89-pc1-12023:
     - par/par-sp1-sam_caas
-  prd-caas-benchmark-perf:
-   - prd/prd-sp2-sam_caas
-  prd-caas-benchmark-monitor-perf:
-   - prd/prd-sp2-sam_caas
   prd-caas-endurance-monitor-perf:
    - prd/prd-sp2-sam_caas
   dfw-sp2-metrics-publisher-sp-cs60-c1:
@@ -1684,4 +1676,8 @@ apps:
   prd-sp2-metrics-publisher-sp-c1:
     - prd/prd-sp2-sam_caas
   prd-sp2-redis-sp-c1-12011:
+    - prd/prd-sp2-sam_caas
+  prd-sp2-metrics-publisher-sp-na45-c1:
+    - prd/prd-sp2-sam_caas
+  prd-sp2-redis-sp-na45-c1-12012:
     - prd/prd-sp2-sam_caas
