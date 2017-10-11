@@ -11,7 +11,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                     {
                         name: "sam-deployment-portal",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                            "/sam/sam-deployment-portal",
                         ],
                        volumeMounts: configs.filter_empty([
@@ -19,11 +19,11 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                           configs.maddog_cert_volume_mount,
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
-                          { 
-                             "mountPath": "/var/token",
-                             "name": "token",
-                             "readOnly" : true
-                          } 
+                          {
+                             mountPath: "/var/token",
+                             name: "token",
+                             readOnly: true,
+                          },
                        ]),
                        env: [
                           configs.kube_config_env,
@@ -32,12 +32,12 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                            initialDelaySeconds: 15,
                            httpGet: {
                                path: "/",
-                               port: 64121
+                               port: 64121,
                            },
-                           timeoutSeconds: 10
+                           timeoutSeconds: 10,
                        },
-                       workingDir: "/sam"
-                    }
+                       workingDir: "/sam",
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -46,38 +46,38 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                     configs.kube_config_volume,
                     {
                         secret: {
-                              secretName: "git-token"
+                              secretName: "git-token",
                         },
-                        name: "token"
-                    }
+                        name: "token",
+                    },
                 ]),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "sam-deployment-portal",
-                    apptype: "control"
+                    apptype: "control",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "sam-deployment-portal"
-            }
-        }
+                name: "sam-deployment-portal",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sam-deployment-portal"
+            name: "sam-deployment-portal",
         },
-        name: "sam-deployment-portal"
-    }
+        name: "sam-deployment-portal",
+    },
 } else "SKIP"

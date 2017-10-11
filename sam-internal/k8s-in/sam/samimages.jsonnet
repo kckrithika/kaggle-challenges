@@ -28,7 +28,7 @@ local utils = import "util_functions.jsonnet";
     # for temporary testing
     # While doing a new release this should be set to empty to deploy the official build
     #
-    privatebuildoverridetag:"",
+    privatebuildoverridetag: "",
 
 
     ### Per-phase image tags
@@ -39,37 +39,38 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            "hypersam": "sam-0001350-a80c794f",
-            "madkub": "1.0.0-0000035-9241ed31",
+            hypersam: "sam-0001350-a80c794f",
+            madkub: "1.0.0-0000035-9241ed31",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            "hypersam": "sam-0001302-4f86e9c4",
-            "madkub": "1.0.0-0000035-9241ed31",
+            hypersam: "sam-0001302-4f86e9c4",
+            madkub: "1.0.0-0000035-9241ed31",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
-            "hypersam": "sam-0001302-4f86e9c4",
-            "madkub": "1.0.0-0000035-9241ed31",
+            hypersam: "sam-0001302-4f86e9c4",
+            madkub: "1.0.0-0000035-9241ed31",
             },
 
 
         ### Release Phase 4 - Rest of Prod
         "4": {
-            "hypersam": "sam-0001302-4f86e9c4",
-            "madkub": "1.0.0-0000035-9241ed31",
+            hypersam: "sam-0001302-4f86e9c4",
+            madkub: "1.0.0-0000035-9241ed31",
             },
 
        ### For testing private bits from a developer's machine pre-checkin if
        ### privatebuildoverride overrides are defined, otherwise use phase 1
-       "privates": {
-           "hypersam": (
+       privates: {
+           hypersam: (
              if ($.privatebuildoverridetag != "") then
                 $.privatebuildoverridetag
-             else $.per_phase["1"]["hypersam"]),
-           "madkub": $.per_phase["1"]["madkub"],
+             else $.per_phase["1"].hypersam
+),
+           madkub: $.per_phase["1"].madkub,
         },
     },
 
@@ -89,16 +90,16 @@ local utils = import "util_functions.jsonnet";
 
     # Static images that do not go in phases
     static: {
-        "k8sproxy": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
+        k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
 
-        "permissionInitContainer": (
-            if (kingdom=="prd") then
+        permissionInitContainer: (
+            if (kingdom == "prd") then
                 "sam-c07d4afb-673"
             else
                 "sam-1ebeb0ac-657"
         ),
         # Move to phases when we roll to prod.
-        "madkubSidecar": (
+        madkubSidecar: (
             "1.0.0-0000035-9241ed31"
         ),
     },
@@ -106,12 +107,12 @@ local utils = import "util_functions.jsonnet";
     # ====== DO NOT EDIT BELOW HERE ======
 
     # These are the images used by the templates
-    hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase]["hypersam"]),
-    k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static["k8sproxy"]),
-    permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static["permissionInitContainer"]),
+    hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].hypersam),
+    k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
+    permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
 
-    madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase]["madkub"]),
+    madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
 
     # madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.static["madkubSidecar"]),
-    madkubSidecar: "sam/madkub:" + $.static["madkubSidecar"],
+    madkubSidecar: "sam/madkub:" + $.static.madkubSidecar,
 }

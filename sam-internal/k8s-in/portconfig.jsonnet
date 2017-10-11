@@ -8,19 +8,19 @@
     #     serviceB: portB
     # },
 
-    "sam": {
+    sam: {
         sam_secret_agent: "9098",
     },
 
-    "sdn": {
+    sdn: {
         sdn_peering_agent: 9100,
         sdn_ping_watchdog: 9102,
         sdn_route_watchdog: 9104,
         sdn_vault_agent: 9106,
         sdn_control_service: 9108,
-        sdn_control: 9110
+        sdn_control: 9110,
     },
-    "slb":  {
+    slb: {
         ipvsDataConnPort: 9107,
         canaryServicePort: 9111,
         slbPortalServicePort: 9112,
@@ -41,5 +41,5 @@
         canaryServiceProxyHttpNodePort: 32145,
 
         slbNginxControlPort: 32146,
-    }
+    },
 }

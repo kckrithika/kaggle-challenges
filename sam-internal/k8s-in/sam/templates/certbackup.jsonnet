@@ -14,7 +14,7 @@ local wdconfig = import "samwdconfig.jsonnet";
                         # Todo: switch to hypersam from tnrp when it is merged
                         image: samimages.hypersam,
                         command: [
-                            "/sam/certbackup.sh"
+                            "/sam/certbackup.sh",
                         ],
                         name: "certbackup",
                         volumeMounts: configs.filter_empty([
@@ -24,8 +24,8 @@ local wdconfig = import "samwdconfig.jsonnet";
                        ]),
                        env: [
                           configs.kube_config_env,
-                       ]
-                    }
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
@@ -37,15 +37,15 @@ local wdconfig = import "samwdconfig.jsonnet";
                 labels: {
                     name: "certbackup",
                     daemonset: "true",
-                }
-            }
-        }
+                },
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "certbackup"
+            name: "certbackup",
         },
-        name: "certbackup"
-    }
+        name: "certbackup",
+    },
 }

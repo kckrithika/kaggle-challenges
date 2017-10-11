@@ -17,9 +17,9 @@ local internal = {
     #
     add_tnrp_registry(tnrp_repo, image_name, tag):: (
         if (kingdom == "prd") then
-            configs.registry + "/" + "docker-release-candidate/tnrp/"+tnrp_repo+"/" + image_name + ":" + tag
+            configs.registry + "/" + "docker-release-candidate/tnrp/" + tnrp_repo + "/" + image_name + ":" + tag
         else
-            configs.registry + "/" + "tnrp/"+tnrp_repo+"/" + image_name + ":" + tag
+            configs.registry + "/" + "tnrp/" + tnrp_repo + "/" + image_name + ":" + tag
         ),
 
     # Check for an override based on kingdom,estate,template,image.  If not found return default_tag
@@ -29,8 +29,8 @@ local internal = {
     # default_tag - the docker tag to use when no override is found ("sam-0000934-6f12a434")
     #
     do_override(overrides, image_name, default_tag):: (
-        if ( std.objectHas(overrides, kingdom+","+estate+","+template+","+image_name) ) then
-            overrides[kingdom+","+estate+","+template+","+image_name]
+        if (std.objectHas(overrides, kingdom + "," + estate + "," + template + "," + image_name)) then
+            overrides[kingdom + "," + estate + "," + template + "," + image_name]
         else
             default_tag
     ),
@@ -70,7 +70,7 @@ local internal = {
     #
     do_override_based_on_tag(overrides, tnrp_repo, image_name, tag):: (
         local tagAfterOverride = internal.do_override(overrides, image_name, tag);
-        if ( std.startsWith(tagAfterOverride, "ops0-artifactrepo")) then
+        if (std.startsWith(tagAfterOverride, "ops0-artifactrepo")) then
           tagAfterOverride
         else
           internal.add_tnrp_registry(tnrp_repo, image_name, tagAfterOverride)

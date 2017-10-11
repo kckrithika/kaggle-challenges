@@ -13,9 +13,9 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "node-controller",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/node-controller",
-                           "--funnelEndpoint="+configs.funnelVIP,
+                           "--funnelEndpoint=" + configs.funnelVIP,
                         ],
                         volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -25,16 +25,16 @@ if !utils.is_public_cloud(configs.kingdom) then {
                        ]),
                        env: [
                           {
-                              "name": "NODE_NAME",
-                              "valueFrom": {
-                                  "fieldRef": {
-                                      "fieldPath": "spec.nodeName",
+                              name: "NODE_NAME",
+                              valueFrom: {
+                                  fieldRef: {
+                                      fieldPath: "spec.nodeName",
                                   },
                               },
                           },
                           configs.kube_config_env,
-                       ]
-                    }
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -45,30 +45,30 @@ if !utils.is_public_cloud(configs.kingdom) then {
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "node-controller",
-                    apptype: "control"
-                }
-            }
+                    apptype: "control",
+                },
+            },
         },
         selector: {
             matchLabels: {
-                name: "node-controller"
-            }
-        }
+                name: "node-controller",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "node-controller"
+            name: "node-controller",
         },
         name: "node-controller",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 } else "SKIP"

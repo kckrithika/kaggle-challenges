@@ -12,11 +12,11 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "sam-deployment-reporter",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                            "/sam/sam-deployment-reporter",
                            "--v=5",
                            "--k8sapiserver=",
-                           "--smtpServer="+configs.smtpServer,
+                           "--smtpServer=" + configs.smtpServer,
                            "--sender=sam@salesforce.com",
                            "--defaultRecipient=",
                            "--namespacesToSkip=sam-watchdog",
@@ -29,8 +29,8 @@ local samimages = import "samimages.jsonnet";
                        ]),
                        env: [
                           configs.kube_config_env,
-                       ]
-                    }
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -41,30 +41,30 @@ local samimages = import "samimages.jsonnet";
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "sam-deployment-reporter",
-                    apptype: "control"
-                }
-            }
+                    apptype: "control",
+                },
+            },
         },
         selector: {
             matchLabels: {
-                name: "sam-deployment-reporter"
-            }
-        }
+                name: "sam-deployment-reporter",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sam-deployment-reporter"
+            name: "sam-deployment-reporter",
         },
         name: "sam-deployment-reporter",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 }

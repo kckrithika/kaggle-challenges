@@ -5,7 +5,7 @@ local configs = import "config.jsonnet",
 
 shared_args: [
     "-timeout=2s",
-    "-funnelEndpoint="+configs.funnelVIP,
+    "-funnelEndpoint=" + configs.funnelVIP,
     "--config=/config/watchdog.json",
 ],
 }

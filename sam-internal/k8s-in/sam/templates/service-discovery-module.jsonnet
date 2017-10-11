@@ -11,14 +11,14 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                     {
                         name: "service-discovery-module",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/service-discovery-module",
-			                "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs",
-			                "-zkIP="+configs.zookeeperip,
-			                "-funnelEndpoint="+configs.funnelVIP,
+                                        "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs",
+                                        "-zkIP=" + configs.zookeeperip,
+                                        "-funnelEndpoint=" + configs.funnelVIP,
                         ],
-			    env: [
-                          configs.kube_config_env
+                            env: [
+                          configs.kube_config_env,
                         ],
                         volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -26,7 +26,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                           configs.cert_volume_mount,
                           configs.kube_config_volume_mount,
                        ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -37,31 +37,31 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
 
             },
             metadata: {
                 labels: {
                     name: "service-discovery-module",
-                    apptype: "control"
-                }
-            }
+                    apptype: "control",
+                },
+            },
         },
         selector: {
             matchLabels: {
-                name: "service-discovery-module"
-            }
-        }
+                name: "service-discovery-module",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "service-discovery-module"
+            name: "service-discovery-module",
         },
         name: "service-discovery-module",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 } else "SKIP"

@@ -14,7 +14,7 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 #Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."
-    git clone git@git.soma.salesforce.com:sam/jsonnet.git
+    git clone https://github.com/google/jsonnet.git
     pushd jsonnet
     make
     popd

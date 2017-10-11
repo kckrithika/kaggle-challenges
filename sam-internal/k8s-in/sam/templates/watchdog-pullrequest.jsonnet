@@ -12,61 +12,61 @@ if configs.estate == "prd-sam" then {
                     {
                         name: "watchdog-pullrequest",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=PULLREQUEST",
                             "-watchdogFrequency=3m",
                             "-alertThreshold=10s",
                             "-emailFrequency=1h",
                             # Snooze prChecker for 2 weeks, @Prahlad-Joshi is on it.
-                            "-snoozedAlarms=prChecker=2017/08/07"
+                            "-snoozedAlarms=prChecker=2017/08/07",
                         ]
                         + samwdconfig.shared_args,
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           {
-                             "mountPath": "/var/token",
-                             "name": "token",
-                             "readOnly" : true
+                             mountPath: "/var/token",
+                             name: "token",
+                             readOnly: true,
                           },
                           configs.config_volume_mount,
                        ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
                     {
                         secret: {
-                            secretName: "git-token"
+                            secretName: "git-token",
                           },
-                        name: "token"
+                        name: "token",
                     },
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                    pool: configs.estate
-                }
+                    pool: configs.estate,
+                },
             },
             metadata: {
                 labels: {
                     name: "watchdog-pullrequest",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-	        "namespace": "sam-system"
-            }
+                namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-pullrequest"
-            }
-        }
+                name: "watchdog-pullrequest",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-pullrequest"
+            name: "watchdog-pullrequest",
         },
-        name: "watchdog-pullrequest"
-    }
+        name: "watchdog-pullrequest",
+    },
 } else "SKIP"

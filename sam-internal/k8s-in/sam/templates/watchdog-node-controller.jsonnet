@@ -15,14 +15,14 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "watchdog-node-controller",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=NODECONTROLLER",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
                         + samwdconfig.shared_args
-                        + [ "-emailFrequency=24h" ],
+                        + ["-emailFrequency=24h"],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -33,8 +33,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                        ]),
                        env: [
                           configs.kube_config_env,
-                       ]
-                    }
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -46,31 +46,31 @@ if !utils.is_public_cloud(configs.kingdom) then {
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-node-controller",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-	       "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-node-controller"
-            }
-        }
+                name: "watchdog-node-controller",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-node-controller"
+            name: "watchdog-node-controller",
         },
         name: "watchdog-node-controller",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 } else "SKIP"

@@ -6,7 +6,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
   kind: "Deployment",
   metadata: {
     name: "madkubserver",
-    namespace: "sam-system"
+    namespace: "sam-system",
   },
   spec: {
     replicas: 3,
@@ -14,58 +14,69 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     template: {
       metadata: {
         labels: {
-          service: "madkubserver"
-        }
+          service: "madkubserver",
+        },
       },
       spec: {
         nodeSelector: {
-          "master": "true",
+          master: "true",
         },
         containers: [
           {
             args: [
               "/sam/madkub-server",
-              "--listen", "0.0.0.0:32007",
+              "--listen",
+"0.0.0.0:32007",
               "-d",
-              "--maddog-endpoint", "https://all.pkicontroller.pki.blank."+configs.kingdom+".prod.non-estates.sfdcsd.net:8443",
-              "--kubeconfig", "/kubeconfig",
-              "--client-cert", "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
-              "--client-key", "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
-              "--maddog-server-ca", "/etc/pki_service/ca/security-ca.pem",
-              "--cert-folder", "/certs/",
-              "--token-folder", "/tokens/",
-              "--service-hostname", "$(MADKUBSERVER_SERVICE_HOST)",
-              "--funnel-endpoint", "http://"+configs.funnelVIP,
-              "--kingdom", configs.kingdom
+              "--maddog-endpoint",
+"https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              "--kubeconfig",
+"/kubeconfig",
+              "--client-cert",
+"/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+              "--client-key",
+"/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
+              "--maddog-server-ca",
+"/etc/pki_service/ca/security-ca.pem",
+              "--cert-folder",
+"/certs/",
+              "--token-folder",
+"/tokens/",
+              "--service-hostname",
+"$(MADKUBSERVER_SERVICE_HOST)",
+              "--funnel-endpoint",
+"http://" + configs.funnelVIP,
+              "--kingdom",
+configs.kingdom,
             ],
             image: samimages.madkub,
             name: "madkubserver",
             ports: [
               {
-                containerPort: 3000
-              }
+                containerPort: 3000,
+              },
             ],
             volumeMounts: configs.filter_empty([
               {
                 mountPath: "/kubeconfig",
-                name: "kubeconfig"
+                name: "kubeconfig",
               },
               {
                 mountPath: "/data/certs",
-                name: "kubeconfig-certs"
+                name: "kubeconfig-certs",
               },
               {
                 mountPath: "/certs",
-                name: "datacerts"
+                name: "datacerts",
               },
               {
                 mountPath: "/tokens",
-                name: "tokens"
+                name: "tokens",
               },
               {
                 mountPath: "/etc/pki_service/",
-                name: "pki"
-              }
+                name: "pki",
+              },
             ]),
             livenessProbe: {
               httpGet: {
@@ -81,16 +92,25 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             name: "madkub-refresher",
             args: [
               "/sam/madkub-client",
-              "--madkub-endpoint", "",
-              "--maddog-endpoint", "https://all.pkicontroller.pki.blank."+configs.kingdom+".prod.non-estates.sfdcsd.net:8443",
-              "--maddog-server-ca", "/maddog-certs/ca/security-ca.pem",
-              "--madkub-server-ca", "/maddog-certs/ca/cacerts.pem",
-              "--cert-folder", "/certs/",
-              "--token-folder", "/tokens/",
+              "--madkub-endpoint",
+"",
+              "--maddog-endpoint",
+"https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              "--maddog-server-ca",
+"/maddog-certs/ca/security-ca.pem",
+              "--madkub-server-ca",
+"/maddog-certs/ca/cacerts.pem",
+              "--cert-folder",
+"/certs/",
+              "--token-folder",
+"/tokens/",
               "--refresher",
-              "--refresher-token-grace-period", "30s",
-              "--funnel-endpoint", "http://"+configs.funnelVIP,
-              "--kingdom", configs.kingdom
+              "--refresher-token-grace-period",
+"30s",
+              "--funnel-endpoint",
+"http://" + configs.funnelVIP,
+              "--kingdom",
+configs.kingdom,
             ],
             image: samimages.madkub,
             resources: {
@@ -98,79 +118,79 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             volumeMounts: configs.filter_empty([
               {
                 mountPath: "/certs",
-                name: "datacerts"
+                name: "datacerts",
               },
               {
                 mountPath: "/tokens",
-                name: "tokens"
+                name: "tokens",
               },
               {
                 mountPath: "/maddog-certs/",
-                name: "pki"
-              }
+                name: "pki",
+              },
             ]),
             env: [
               {
                 name: "MADKUB_NODENAME",
                 valueFrom: {
                   fieldRef: {
-                    fieldPath: "spec.nodeName"
-                  }
-                }
+                    fieldPath: "spec.nodeName",
+                  },
+                },
               },
               {
                 name: "MADKUB_NAME",
                 valueFrom: {
                   fieldRef: {
-                    fieldPath: "metadata.name"
-                  }
-                }
+                    fieldPath: "metadata.name",
+                  },
+                },
               },
               {
                 name: "MADKUB_NAMESPACE",
                 valueFrom: {
                   fieldRef: {
-                    fieldPath: "metadata.namespace"
-                  }
-                }
-              }
-            ]
-          }
+                    fieldPath: "metadata.namespace",
+                  },
+                },
+              },
+            ],
+          },
         ],
         restartPolicy: "Always",
         volumes: configs.filter_empty([
           {
             name: "kubeconfig",
             hostPath: {
-              path: "/etc/kubernetes/kubeconfig"
-            }
+              path: "/etc/kubernetes/kubeconfig",
+            },
           },
           {
             name: "kubeconfig-certs",
             hostPath: {
-              path: "/data/certs"
-            }
+              path: "/data/certs",
+            },
           },
           {
             name: "pki",
             hostPath: {
-              path: "/etc/pki_service"
-            }
+              path: "/etc/pki_service",
+            },
           },
           {
             name: "datacerts",
             emptyDir: {
-              medium: "Memory"
-            }
+              medium: "Memory",
+            },
           },
           {
             name: "tokens",
             emptyDir: {
-              medium: "Memory"
-            }
-          }
-        ])
-      }
-    }
-  }
+              medium: "Memory",
+            },
+          },
+        ]),
+      },
+    },
+  },
 } else "SKIP"

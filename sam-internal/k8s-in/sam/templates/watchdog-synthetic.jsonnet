@@ -3,33 +3,33 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
 
 {
-   "apiVersion": "extensions/v1beta1",
-   "kind": "Deployment",
-   "metadata": {
-      "labels": {
-         "name": "watchdog-synthetic"
+   apiVersion: "extensions/v1beta1",
+   kind: "Deployment",
+   metadata: {
+      labels: {
+         name: "watchdog-synthetic",
       },
-      "name": "watchdog-synthetic",
-      "namespace": "sam-system"
+      name: "watchdog-synthetic",
+      namespace: "sam-system",
    },
-   "spec": {
-      "replicas": 1,
-      "selector": {
-         "matchLabels": {
-            "name": "watchdog-synthetic"
-         }
-      },
-      "template": {
-         "metadata": {
-            "labels": {
-               "apptype": "monitoring",
-               "name": "watchdog-synthetic"
-            }
+   spec: {
+      replicas: 1,
+      selector: {
+         matchLabels: {
+            name: "watchdog-synthetic",
          },
-         "spec": {
-            "containers": [
+      },
+      template: {
+         metadata: {
+            labels: {
+               apptype: "monitoring",
+               name: "watchdog-synthetic",
+            },
+         },
+         spec: {
+            containers: [
                {
-                  "command": [
+                  command: [
                      "/sam/watchdog",
                      "-role=SYNTHETIC",
                      "-watchdogFrequency=60s",
@@ -37,69 +37,68 @@ local samimages = import "samimages.jsonnet";
                      "-emailFrequency=12h",
                      "-laddr=0.0.0.0:8083",
                      "-maxdeploymentduration=5m",
-                     "-imageName="+samimages.hypersam
+                     "-imageName=" + samimages.hypersam,
                   ]
                   + samwdconfig.shared_args,
                   # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-                  "ports": [
+                  ports: [
                       {
-                      "name": "synthetic",
-                      "containerPort": 8083
-                      }
+                      name: "synthetic",
+                      containerPort: 8083,
+                      },
                   ],
-                  "env": [
+                  env: [
                      configs.kube_config_env,
                   ],
-                  "image": samimages.hypersam,
-                  "name": "watchdog-synthetic",
-                  "volumeMounts": configs.filter_empty([
+                  image: samimages.hypersam,
+                  name: "watchdog-synthetic",
+                  volumeMounts: configs.filter_empty([
                      configs.sfdchosts_volume_mount,
                      configs.maddog_cert_volume_mount,
                      {
-                        "mountPath": "/test",
-                        "name": "test"
+                        mountPath: "/test",
+                        name: "test",
                      },
                      {
-                        "mountPath": "/_output",
-                        "name": "output"
+                        mountPath: "/_output",
+                        name: "output",
                      },
                      configs.kube_config_volume_mount,
                      configs.cert_volume_mount,
                      configs.config_volume_mount,
-                  ])
-               }
+                  ]),
+               },
             ],
-            "hostNetwork": true,
+            hostNetwork: true,
             nodeSelector: {
             } +
             if configs.kingdom == "prd" then {
-                  master: "true"
+                  master: "true",
             } else {
-                  pool: configs.estate
+                  pool: configs.estate,
             },
             volumes: configs.filter_empty([
                configs.sfdchosts_volume,
                configs.maddog_cert_volume,
                configs.cert_volume,
                {
-                  "hostPath": {
-                     "path": "/manifests"
+                  hostPath: {
+                     path: "/manifests",
                   },
-                  "name": "sfdc-volume"
+                  name: "sfdc-volume",
                },
                {
-                  "emptyDir": {},
-                  "name": "test"
+                  emptyDir: {},
+                  name: "test",
                },
                {
-                  "emptyDir": {},
-                  "name": "output"
+                  emptyDir: {},
+                  name: "output",
                },
                configs.kube_config_volume,
                configs.config_volume("watchdog"),
-            ])
-         }
-      }
-   }
-}   
-
+            ]),
+         },
+      },
+   },
+}

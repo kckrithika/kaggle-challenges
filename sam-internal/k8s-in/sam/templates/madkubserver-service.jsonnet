@@ -9,7 +9,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
       service: "madkubserver",
     },
     name: "madkubserver",
-    namespace: "sam-system"
+    namespace: "sam-system",
   },
   spec: {
     # Hardcoding the ClusterIp for now as we dont have DNS/SLB
@@ -19,13 +19,13 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         name: "madkubapitls",
         port: 32007,
         targetPort: 32007,
-      }
+      },
     ],
     selector: {
       service: "madkubserver",
-    }
+    },
   },
   status: {
     loadBalancer: {},
-  }
+  },
 } else "SKIP"

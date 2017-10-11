@@ -14,15 +14,15 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         image: samimages.hypersam,
                         command: [
                            "/sam/sam-secret-agent",
-                           "--funnelEndpoint="+configs.funnelVIP,
+                           "--funnelEndpoint=" + configs.funnelVIP,
                            "--logtostderr=true",
                            "--disableSecurityCheck=true",
-                           "--tnrpEndpoint="+configs.tnrpArchiveEndpoint,
-                           "--observeMode="+false,
+                           "--tnrpEndpoint=" + configs.tnrpArchiveEndpoint,
+                           "--observeMode=" + false,
                            "--delay=300s",
                            "--keyfile=/data/certs/hostcert.key",
                            "--certfile=/data/certs/hostcert.crt",
-                           "--cafile="+configs.caFile
+                           "--cafile=" + configs.caFile,
                          ],
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
@@ -34,15 +34,15 @@ if !utils.is_public_cloud(configs.kingdom) then {
                            configs.kube_config_env,
                          ],
                          livenessProbe: {
-                           "httpGet": {
-                             "path": "/",
-                             "port": 9098
+                           httpGet: {
+                             path: "/",
+                             port: 9098,
                            },
-                           "initialDelaySeconds": 2,
-                           "periodSeconds": 10,
-                           "timeoutSeconds": 10
-                        }
-                    }
+                           initialDelaySeconds: 2,
+                           periodSeconds: 10,
+                           timeoutSeconds: 10,
+                        },
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -53,25 +53,25 @@ if !utils.is_public_cloud(configs.kingdom) then {
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "sam-secret-agent",
-                    apptype: "control"
+                    apptype: "control",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "sam-secret-agent"
+            name: "sam-secret-agent",
         },
-        name: "sam-secret-agent"
-    }
+        name: "sam-secret-agent",
+    },
 } else "SKIP"

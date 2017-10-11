@@ -12,7 +12,7 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "watchdog-node",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=NODE",
                             "-watchdogFrequency=60s",
@@ -20,8 +20,8 @@ local samimages = import "samimages.jsonnet";
                         ]
                         + samwdconfig.shared_args
                         # [thargrove] 2017-05-05 We have minions down in the following 3 estates
-                        + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then [ "-snoozedAlarms=nodeChecker=2017/06/01" ] else  [])
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ]),
+                        + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then ["-snoozedAlarms=nodeChecker=2017/06/01"] else [])
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -32,8 +32,8 @@ local samimages = import "samimages.jsonnet";
                        ]),
                        env: [
                           configs.kube_config_env,
-                       ]
-                    }
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -45,30 +45,30 @@ local samimages = import "samimages.jsonnet";
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-node",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-	        "namespace": "sam-system"
-            }
+                namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-node"
-            }
-        }
+                name: "watchdog-node",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-node"
+            name: "watchdog-node",
         },
-        name: "watchdog-node"
-    }
+        name: "watchdog-node",
+    },
 }

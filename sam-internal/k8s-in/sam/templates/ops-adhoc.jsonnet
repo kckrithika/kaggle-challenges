@@ -25,39 +25,39 @@ if configs.kingdom == "prd" then {
                         resources: {
                             requests: {
                                 cpu: "0.5",
-                                memory: "300Mi"
+                                memory: "300Mi",
                             },
                             limits: {
                                 cpu: "0.5",
-                                memory: "300Mi"
-                            }
+                                memory: "300Mi",
+                            },
                           },
                         volumeMounts: configs.filter_empty([
                              configs.opsadhoc_volume_mount,
                              configs.config_volume_mount,
-                        ])
-                    }
+                        ]),
+                    },
                 ],
                 volumes: configs.filter_empty([
                    configs.opsadhoc_volume,
                    configs.config_volume("ops-adhoc"),
-                ])
+                ]),
             },
             metadata: {
                 labels: {
                     app: "ops-adhoc",
                     daemonset: "true",
                 },
-            }
-        }
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "ops-adhoc"
+            name: "ops-adhoc",
         },
         name: "ops-adhoc",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 } else
   "SKIP"

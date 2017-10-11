@@ -1,29 +1,28 @@
 local configs = import "config.jsonnet";
 if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
-    "kind": "Service",
-        "apiVersion": "v1",
-        "metadata": {
-            "name": "portal-svc",
-            "namespace": "sam-system",
-            "labels": {
-                "app": "sam-deployment-portal",
-                "slb.sfdc.net/name": "sdp"
+    kind: "Service",
+        apiVersion: "v1",
+        metadata: {
+            name: "portal-svc",
+            namespace: "sam-system",
+            labels: {
+                app: "sam-deployment-portal",
+                "slb.sfdc.net/name": "sdp",
             },
         },
-        "spec": {
-            "ports": [
+        spec: {
+            ports: [
             {
-                "name": "portal-port",
-                "port": 64121,
-                "protocol": "TCP",
-                "targetPort": 64121,
-                "nodePort": 39999
-            }
+                name: "portal-port",
+                port: 64121,
+                protocol: "TCP",
+                targetPort: 64121,
+                nodePort: 39999,
+            },
             ],
-                "selector": {
-                    "name": "sam-deployment-portal",
+                selector: {
+                    name: "sam-deployment-portal",
                 },
-                "type": "NodePort",
+                type: "NodePort",
         },
 } else "SKIP"
-
