@@ -12,14 +12,14 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "watchdog-apiserverlb",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=APISERVERLB",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=5m",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=12h" ]),
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -27,7 +27,7 @@ local samimages = import "samimages.jsonnet";
                           configs.cert_volume_mount,
                           configs.config_volume_mount,
                         ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -38,30 +38,30 @@ local samimages = import "samimages.jsonnet";
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-apiserverlb",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-apiserverlb"
-            }
-        }
+                name: "watchdog-apiserverlb",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-apiserverlb"
+            name: "watchdog-apiserverlb",
         },
-        name: "watchdog-apiserverlb"
-    }
+        name: "watchdog-apiserverlb",
+    },
 }

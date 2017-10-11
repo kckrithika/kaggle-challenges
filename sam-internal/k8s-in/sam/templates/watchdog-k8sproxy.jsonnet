@@ -12,7 +12,7 @@ if configs.kingdom == "prd" then {
                     {
                         name: "watchdog-proxy",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=K8SPROXY",
                             "-k8sproxyEndpoint=http://localhost:40000",
@@ -26,7 +26,7 @@ if configs.kingdom == "prd" then {
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                         ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -35,30 +35,30 @@ if configs.kingdom == "prd" then {
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-proxy",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-proxy"
-            }
-        }
+                name: "watchdog-proxy",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-proxy"
+            name: "watchdog-proxy",
         },
-        name: "watchdog-proxy"
-    }
+        name: "watchdog-proxy",
+    },
 } else "SKIP"

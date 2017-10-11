@@ -26,15 +26,15 @@ local samimages = import "samimages.jsonnet";
                            configs.kube_config_env,
                          ],
                          livenessProbe: {
-                           "httpGet": {
-                             "path": "/",
-                             "port": 9099
+                           httpGet: {
+                             path: "/",
+                             port: 9099,
                            },
-                           "initialDelaySeconds": 2,
-                           "periodSeconds": 10,
-                           "timeoutSeconds": 10
-                        }
-                    }
+                           initialDelaySeconds: 2,
+                           periodSeconds: 10,
+                           timeoutSeconds: 10,
+                        },
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -46,25 +46,25 @@ local samimages = import "samimages.jsonnet";
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "samcontrol-deployer",
-                    apptype: "control"
-                }
-            }
+                    apptype: "control",
+                },
+            },
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "samcontrol-deployer"
+            name: "samcontrol-deployer",
         },
         name: "samcontrol-deployer",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 }

@@ -12,16 +12,16 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                     {
                         name: "watchdog-maddog",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=MADDOG",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                             "-madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz",
-                            "-maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping"
+                            "-maddog-endpoint=https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping",
                         ]
                         + samwdconfig.shared_args
-                        + [ "-emailFrequency=24h" ],
+                        + ["-emailFrequency=24h"],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -31,9 +31,9 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                           configs.config_volume_mount,
                        ]),
                        env: [
-                          configs.kube_config_env
-                       ]
-                    }
+                          configs.kube_config_env,
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -45,30 +45,30 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-maddog",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-	       "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-maddog"
-            }
-        }
+                name: "watchdog-maddog",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-maddog"
+            name: "watchdog-maddog",
         },
-        name: "watchdog-maddog"
-    }
+        name: "watchdog-maddog",
+    },
 } else "SKIP"

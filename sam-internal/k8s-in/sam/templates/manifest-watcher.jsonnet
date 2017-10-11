@@ -15,21 +15,21 @@ local samimages = import "samimages.jsonnet";
                         image: samimages.hypersam,
                         command: [
                            "/sam/manifest-watcher",
-                           "--funnelEndpoint="+configs.funnelVIP,
+                           "--funnelEndpoint=" + configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
                            "--config=/config/manifestwatcher.json",
                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                          ] + (if configs.estate == "prd-samtest" then [
-                           "--hostsConfigFile=/sfdchosts/hosts.json"
+                           "--hostsConfigFile=/sfdchosts/hosts.json",
                          ] else []),
-                      "volumeMounts": configs.filter_empty([
+                      volumeMounts: configs.filter_empty([
                           configs.maddog_cert_volume_mount,
                           configs.sfdchosts_volume_mount,
                           configs.cert_volume_mount,
                           configs.config_volume_mount,
                         ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
@@ -37,39 +37,39 @@ local samimages = import "samimages.jsonnet";
                     configs.sfdchosts_volume,
                      {
                         hostPath: {
-                            path: "/manifests"
+                            path: "/manifests",
                         },
-                        name: "sfdc-volume"
+                        name: "sfdc-volume",
                     },
                     configs.config_volume("manifest-watcher"),
                 ]),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "manifest-watcher",
-                    apptype: "control"
+                    apptype: "control",
                 },
-                "namespace": "sam-system"
-            }
+                namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "manifest-watcher"
-            }
-        }
+                name: "manifest-watcher",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "manifest-watcher"
+            name: "manifest-watcher",
         },
-        name: "manifest-watcher"
-    }
+        name: "manifest-watcher",
+    },
 }

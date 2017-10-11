@@ -12,7 +12,7 @@ if configs.kingdom != "prd" then {
                     {
                         name: "watchdog-pod",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=POD",
                             "-watchdogFrequency=60s",
@@ -21,9 +21,9 @@ if configs.kingdom != "prd" then {
                             # We dont want to report on broken hairpin pods, since hairpin already alerts on those
                             "-podNamespacePrefixBlacklist=sam-watchdog",
                         ]
-                        + (if configs.kingdom == "prd" then [ "-podNamespacePrefixWhitelist=sam-system" ] else [])
+                        + (if configs.kingdom == "prd" then ["-podNamespacePrefixWhitelist=sam-system"] else [])
                         + samwdconfig.shared_args
-                        + [ "-emailFrequency=24h" ],
+                        + ["-emailFrequency=24h"],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
@@ -34,8 +34,8 @@ if configs.kingdom != "prd" then {
                         ]),
                         env: [
                              configs.kube_config_env,
-                        ]
-                    }
+                        ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -47,30 +47,30 @@ if configs.kingdom != "prd" then {
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-pod",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-pod"
-            }
-        }
+                name: "watchdog-pod",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-pod"
+            name: "watchdog-pod",
         },
-        name: "watchdog-pod"
-    }
+        name: "watchdog-pod",
+    },
 } else "SKIP"

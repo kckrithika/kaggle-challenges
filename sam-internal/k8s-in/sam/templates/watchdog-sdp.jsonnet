@@ -12,7 +12,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                     {
                         name: "watchdog-sdp",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=SDP",
                             "-sdpEndpoint=http://localhost:39999",
@@ -26,35 +26,35 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
                         ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                    pool: configs.estate
-                }
+                    pool: configs.estate,
+                },
             },
             metadata: {
                 labels: {
                     name: "watchdog-sdp",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-	        "namespace": "sam-system"
-            }
+                namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-sdp"
-            }
-        }
+                name: "watchdog-sdp",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-sdp"
+            name: "watchdog-sdp",
         },
-        name: "watchdog-sdp"
-    }
+        name: "watchdog-sdp",
+    },
 } else "SKIP"

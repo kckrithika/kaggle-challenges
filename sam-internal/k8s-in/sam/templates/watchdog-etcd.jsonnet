@@ -17,7 +17,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=150s",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=12h" ]),
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                     volumeMounts: configs.filter_empty([
                         configs.sfdchosts_volume_mount,
@@ -29,14 +29,14 @@ local samimages = import "samimages.jsonnet";
                         resources: {
                             requests: {
                                 cpu: "0.5",
-                                memory: "300Mi"
+                                memory: "300Mi",
                             },
                             limits: {
                                 cpu: "0.5",
-                                memory: "300Mi"
-                            }
-                        }
-                    }
+                                memory: "300Mi",
+                            },
+                        },
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -46,7 +46,7 @@ local samimages = import "samimages.jsonnet";
                 ]),
                 nodeSelector: {
                     etcd_installed: "true",
-                }
+                },
             },
             metadata: {
                 labels: {
@@ -54,15 +54,15 @@ local samimages = import "samimages.jsonnet";
                     apptype: "monitoring",
                     daemonset: "true",
                 },
-               "namespace": "sam-system"
-            }
-        }
+               namespace: "sam-system",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-etcd"
+            name: "watchdog-etcd",
         },
-        name: "watchdog-etcd"
-    }
+        name: "watchdog-etcd",
+    },
 }

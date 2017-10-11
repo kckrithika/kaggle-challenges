@@ -12,14 +12,14 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "watchdog-etcd-quorum",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=ETCDQUORUM",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=48h" ] else [ "-emailFrequency=6h" ]),
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=6h"]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -27,7 +27,7 @@ local samimages = import "samimages.jsonnet";
                           configs.cert_volume_mount,
                           configs.config_volume_mount,
                        ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -36,28 +36,28 @@ local samimages = import "samimages.jsonnet";
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                    pool: configs.estate
-                }
+                    pool: configs.estate,
+                },
             },
             metadata: {
                 labels: {
                     name: "watchdog-etcd-quorum",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-etcd-quorum"
-            }
-        }
+                name: "watchdog-etcd-quorum",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-etcd-quorum"
+            name: "watchdog-etcd-quorum",
         },
-        name: "watchdog-etcd-quorum"
-    }
+        name: "watchdog-etcd-quorum",
+    },
 }

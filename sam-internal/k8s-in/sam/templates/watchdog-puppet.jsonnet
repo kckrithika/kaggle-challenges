@@ -10,16 +10,16 @@ local samimages = import "samimages.jsonnet";
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
                     {
-                        "hostPath": {
-                            "path": "/var/lib/puppet/state"
+                        hostPath: {
+                            path: "/var/lib/puppet/state",
                         },
-                        "name": "last-run-summary"
+                        name: "last-run-summary",
                     },
                     {
-                        "hostPath": {
-                            "path": "/etc/puppet"
+                        hostPath: {
+                            path: "/etc/puppet",
                         },
-                        "name": "afw-build"
+                        name: "afw-build",
                     },
                     configs.config_volume("watchdog"),
                 ]),
@@ -39,26 +39,26 @@ local samimages = import "samimages.jsonnet";
                         resources: {
                             requests: {
                                 cpu: "0.5",
-                                memory: "300Mi"
+                                memory: "300Mi",
                             },
                             limits: {
                                 cpu: "0.5",
-                                memory: "300Mi"
-                            }
+                                memory: "300Mi",
+                            },
                         },
-                         "volumeMounts": configs.filter_empty([
+                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             {
-                               "mountPath": "/var/lib/puppet/state",
-                               "name": "last-run-summary"
+                               mountPath: "/var/lib/puppet/state",
+                               name: "last-run-summary",
                             },
                             {
-                               "mountPath": "/etc/puppet",
-                               "name": "afw-build"
+                               mountPath: "/etc/puppet",
+                               name: "afw-build",
                             },
                             configs.config_volume_mount,
                          ]),
-                    }
+                    },
                 ],
             },
             metadata: {
@@ -67,15 +67,15 @@ local samimages = import "samimages.jsonnet";
                     apptype: "monitoring",
                     daemonset: "true",
                 },
-		"namespace": "sam-system"
-            }
-        }
+                namespace: "sam-system",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-puppet"
+            name: "watchdog-puppet",
         },
-        name: "watchdog-puppet"
-    }
+        name: "watchdog-puppet",
+    },
 }

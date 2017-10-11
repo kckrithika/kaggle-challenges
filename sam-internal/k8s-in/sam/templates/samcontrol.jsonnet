@@ -12,10 +12,10 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "sam-controller",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                            "/sam/sam-controller",
-                           "--dockerregistry="+configs.registry,
-                           "--funnelEndpoint="+configs.funnelVIP,
+                           "--dockerregistry=" + configs.registry,
+                           "--funnelEndpoint=" + configs.funnelVIP,
                            "--v=3",
                            "--logtostderr=true",
                            "--config=/config/samcontrol.json",
@@ -32,8 +32,8 @@ local samimages = import "samimages.jsonnet";
                        ]),
                        env: [
                           configs.kube_config_env,
-                       ]
-                    }
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -45,30 +45,30 @@ local samimages = import "samimages.jsonnet";
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "samcontrol",
-                    apptype: "control"
+                    apptype: "control",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "samcontrol"
-            }
-        }
+                name: "samcontrol",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "samcontrol"
+            name: "samcontrol",
         },
-        name: "samcontrol"
-    }
+        name: "samcontrol",
+    },
 }

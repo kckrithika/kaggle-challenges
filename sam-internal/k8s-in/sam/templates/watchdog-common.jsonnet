@@ -17,37 +17,37 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=20m",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then [ "-emailFrequency=72h" ] else [ "-emailFrequency=24h" ])
-                        + [ "-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15" ],
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"])
+                        + ["-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15"],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         name: "watchdog",
                         resources: {
                             requests: {
                                 cpu: "0.5",
-                                memory: "300Mi"
+                                memory: "300Mi",
                             },
                             limits: {
                                 cpu: "0.5",
-                                memory: "300Mi"
-                            }
+                                memory: "300Mi",
+                            },
                           },
                         volumeMounts: configs.filter_empty([
                              configs.sfdchosts_volume_mount,
                              {
-                                "mountPath": "/hostproc",
-                                "name": "procfs-volume"
+                                mountPath: "/hostproc",
+                                name: "procfs-volume",
                              },
                              configs.config_volume_mount,
-                        ])
-                    }
+                        ]),
+                    },
                 ],
                 volumes: configs.filter_empty([
                    configs.sfdchosts_volume,
                    {
-                      "hostPath": {
-                         "path": "/proc"
+                      hostPath: {
+                         path: "/proc",
                       },
-                      "name": "procfs-volume"
+                      name: "procfs-volume",
                    },
                    configs.config_volume("watchdog"),
                 ]),
@@ -58,15 +58,15 @@ local samimages = import "samimages.jsonnet";
                     apptype: "monitoring",
                     daemonset: "true",
                 },
-               "namespace": "sam-system"
-            }
-        }
+               namespace: "sam-system",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-common"
+            name: "watchdog-common",
         },
-        name: "watchdog-common"
-    }
+        name: "watchdog-common",
+    },
 }

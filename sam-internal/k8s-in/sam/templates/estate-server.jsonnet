@@ -11,78 +11,78 @@ if !utils.is_public_cloud(configs.kingdom) then {
             spec: {
                 securityContext: {
                     runAsUser: 0,
-                    fsGroup: 0
+                    fsGroup: 0,
                 },
                 containers: [
                     {
                         name: "estate-server",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/estatesvc/script/estatesvc-wrapper.sh",
                             configs.kingdom,
-                           "--funnelEndpoint="+configs.funnelVIP,
+                           "--funnelEndpoint=" + configs.funnelVIP,
                         ],
-                        "ports": [
+                        ports: [
                         {
-                            "containerPort": 9090,
-                            "name": "estate-server",
-                        }
+                            containerPort: 9090,
+                            name: "estate-server",
+                        },
                         ],
                         livenessProbe: {
                            initialDelaySeconds: 15,
                            httpGet: {
                                path: "/info",
-                               port: 9090
+                               port: 9090,
                            },
-                           timeoutSeconds: 10
+                           timeoutSeconds: 10,
                         },
                         env: [
                             {
-                                "name": "NODE_NAME",
-                                "valueFrom": {
-                                    "fieldRef": {
-                                        "fieldPath": "spec.nodeName",
+                                name: "NODE_NAME",
+                                valueFrom: {
+                                    fieldRef: {
+                                        fieldPath: "spec.nodeName",
                                     },
                                 },
                             },
                             {
-                                "name": "POD_NAME",
-                                "valueFrom": {
-                                    "fieldRef": {
-                                        "fieldPath": "metadata.name",
+                                name: "POD_NAME",
+                                valueFrom: {
+                                    fieldRef: {
+                                        fieldPath: "metadata.name",
                                     },
                                 },
                             },
                         ],
-                    }
+                    },
                 ],
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "estate-server",
-                    apptype: "server"
-                }
-            }
+                    apptype: "server",
+                },
+            },
         },
         selector: {
             matchLabels: {
-                name: "estate-server"
-            }
-        }
+                name: "estate-server",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "estate-server"
+            name: "estate-server",
         },
         name: "estate-server",
-        namespace: "sam-system"
-    }
+        namespace: "sam-system",
+    },
 } else "SKIP"

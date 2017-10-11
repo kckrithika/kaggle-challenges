@@ -8,6 +8,6 @@ local configs = import "config.jsonnet";
       namespace: "sam-system",
     },
     data: {
-      "manifestwatcher.json": std.toString(import "configs/manifest-watcher-config.jsonnet")
-    }
+      "manifestwatcher.json": std.toString(import "configs/manifest-watcher-config.jsonnet"),
+    },
 }

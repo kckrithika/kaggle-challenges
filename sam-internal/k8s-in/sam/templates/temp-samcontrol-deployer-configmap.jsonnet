@@ -8,6 +8,6 @@ if configs.estate == "prd-samtest" then {
       namespace: "sam-system",
     },
     data: {
-      "tempsamcontroldeployer.json": std.toString(import "configs/temp-samcontrol-deployer-config.jsonnet")
-    }
+      "tempsamcontroldeployer.json": std.toString(import "configs/temp-samcontrol-deployer-config.jsonnet"),
+    },
 } else "SKIP"

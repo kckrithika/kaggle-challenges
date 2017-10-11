@@ -8,6 +8,6 @@ local configs = import "config.jsonnet";
       namespace: "sam-system",
     },
     data: {
-      "samcontrol.json": std.toString(import "configs/samcontrol-config.jsonnet")
-    }
+      "samcontrol.json": std.toString(import "configs/samcontrol-config.jsonnet"),
+    },
 }

@@ -12,15 +12,15 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "watchdog-deployment",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=DEPLOYMENT",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=1h",
                         ]
-                        + (if configs.kingdom == "prd" then [ "-deploymentNamespacePrefixWhitelist=sam-system,csc-sam" ] else [])
+                        + (if configs.kingdom == "prd" then ["-deploymentNamespacePrefixWhitelist=sam-system,csc-sam"] else [])
                         + samwdconfig.shared_args
-                        + [ "-emailFrequency=24h" ],
+                        + ["-emailFrequency=24h"],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
@@ -30,9 +30,9 @@ local samimages = import "samimages.jsonnet";
                           configs.config_volume_mount,
                        ]),
                        env: [
-                          configs.kube_config_env
-                       ]
-                    }
+                          configs.kube_config_env,
+                       ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -44,30 +44,30 @@ local samimages = import "samimages.jsonnet";
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {
-                    master: "true"
+                    master: "true",
                 } else {
-                     pool: configs.estate
+                     pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "watchdog-deployment",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-               "namespace": "sam-system"
-            }
+               namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-deployment"
-            }
-        }
+                name: "watchdog-deployment",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-deployment"
+            name: "watchdog-deployment",
         },
-        name: "watchdog-deployment"
-    }
+        name: "watchdog-deployment",
+    },
 }

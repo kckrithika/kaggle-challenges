@@ -18,41 +18,41 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         # Why are some of these 1-4, some 2-2, some 1-2, and others 2-1???
         # TODO: Clean this up
         smtpServer: {
-            "prd": "rd1-mta1-4-sfm.ops.sfdc.net:25",
-            "dfw": "ops0-mta2-2-dfw.ops.sfdc.net:25",
-            "phx": "ops0-mta1-2-phx.ops.sfdc.net:25",
-            "frf": "ops0-mta2-1-frf.ops.sfdc.net:25",
-            "par": "ops0-mta2-1-par.ops.sfdc.net:25",
-            "yul": "ops0-mta2-1-yul.ops.sfdc.net:25",
-            "yhu": "ops0-mta2-1-yhu.ops.sfdc.net:25",
-            "iad": "ops0-mta2-1-iad.ops.sfdc.net:25",
-            "ord": "ops0-mta2-1-ord.ops.sfdc.net:25",
-            "ukb": "ops0-mta2-1-ukb.ops.sfdc.net:25",
-            "hnd": "ops0-mta2-1-hnd.ops.sfdc.net:25",
-            "cdu": "ops0-mta2-1-cdu.ops.sfdc.net:25",
-            "syd": "ops0-mta2-1-syd.ops.sfdc.net:25",
+            prd: "rd1-mta1-4-sfm.ops.sfdc.net:25",
+            dfw: "ops0-mta2-2-dfw.ops.sfdc.net:25",
+            phx: "ops0-mta1-2-phx.ops.sfdc.net:25",
+            frf: "ops0-mta2-1-frf.ops.sfdc.net:25",
+            par: "ops0-mta2-1-par.ops.sfdc.net:25",
+            yul: "ops0-mta2-1-yul.ops.sfdc.net:25",
+            yhu: "ops0-mta2-1-yhu.ops.sfdc.net:25",
+            iad: "ops0-mta2-1-iad.ops.sfdc.net:25",
+            ord: "ops0-mta2-1-ord.ops.sfdc.net:25",
+            ukb: "ops0-mta2-1-ukb.ops.sfdc.net:25",
+            hnd: "ops0-mta2-1-hnd.ops.sfdc.net:25",
+            cdu: "ops0-mta2-1-cdu.ops.sfdc.net:25",
+            syd: "ops0-mta2-1-syd.ops.sfdc.net:25",
         },
 
         momCollectorEndpoint: {
-            "dfw": "http://ops0-mom2-1-dfw.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "frf": "http://ops0-mom2-1-frf.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "hnd": "http://ops0-mom2-1-hnd.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "iad": "http://ops0-mom2-1-iad.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "ord": "http://ops0-mom2-1-ord.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "par": "http://ops0-mom2-1-par.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "phx": "http://ops0-mom2-1-phx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "prd": "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            "ukb": "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            dfw: "http://ops0-mom2-1-dfw.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            frf: "http://ops0-mom2-1-frf.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            hnd: "http://ops0-mom2-1-hnd.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            iad: "http://ops0-mom2-1-iad.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            ord: "http://ops0-mom2-1-ord.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            par: "http://ops0-mom2-1-par.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            phx: "http://ops0-mom2-1-phx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            prd: "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            ukb: "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config
         charonEndpoint: {
-            "prd": "http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions",
+            prd: "http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions",
         },
 
-	    zookeeperip : {
-	        "prd" : "shared0-discovery1-0-sfm.data.sfdc.net:2181",
-	    },
+            zookeeperip: {
+                prd: "shared0-discovery1-0-sfm.data.sfdc.net:2181",
+            },
 
     },
 
@@ -65,10 +65,10 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     # Other discovery related things
 
-    funnelVIP:(if kingdom == "par" || kingdom == "frf" then "mandm-funnel-"+kingdom+"1.data.sfdc.net:8080" else  "ajna0-funnel1-0-"+kingdom+".data.sfdc.net:80"),
-    tnrpArchiveEndpoint: (if kingdom == "par" || kingdom == "prd" || kingdom == "phx" then "https://ops0-piperepo1-0-"+kingdom+".data.sfdc.net/tnrp/content_repo/0/archive" else "https://ops0-piperepo1-1-"+kingdom+"."+engOrOps+".sfdc.net/tnrp/content_repo/0/archive"),
-    registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-"+kingdom+".data.sfdc.net" else "ops0-artifactrepo1-0-"+kingdom+".data.sfdc.net"),
-    rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://ops0-health1-1-"+kingdom+"."+engOrOps+".sfdc.net:18443/v1/bark"),
+    funnelVIP: (if kingdom == "par" || kingdom == "frf" then "mandm-funnel-" + kingdom + "1.data.sfdc.net:8080" else "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net:80"),
+    tnrpArchiveEndpoint: (if kingdom == "par" || kingdom == "prd" || kingdom == "phx" then "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/tnrp/content_repo/0/archive" else "https://ops0-piperepo1-1-" + kingdom + "." + engOrOps + ".sfdc.net/tnrp/content_repo/0/archive"),
+    registry: (if kingdom == "prd" then "ops0-artifactrepo2-0-" + kingdom + ".data.sfdc.net" else "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"),
+    rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://ops0-health1-1-" + kingdom + "." + engOrOps + ".sfdc.net:18443/v1/bark"),
 
     # === KUBERNETES ===
 
@@ -83,42 +83,42 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
 
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
-        "name": "KUBECONFIG",
-        "value": (if estate == "prd-samtest" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig")
+        name: "KUBECONFIG",
+        value: (if estate == "prd-samtest" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
     },
     kube_config_volume_mount: {
-        "mountPath": "/kubeconfig",
-        "name": "kubeconfig"
+        mountPath: "/kubeconfig",
+        name: "kubeconfig",
     },
     kube_config_volume: {
         hostPath: {
-            path: "/etc/kubernetes"
+            path: "/etc/kubernetes",
         },
-        name: "kubeconfig"
+        name: "kubeconfig",
     },
- 
+
     # For Cleaning up SLB logs or other Random mounts to be used for ops-adhoc DaemonSet
     opsadhoc_volume_mount: {
-        "mountPath": "/slb",
-        "name": "slblogs"
+        mountPath: "/slb",
+        name: "slblogs",
     },
     opsadhoc_volume: {
         hostPath: {
-            path: "/var/slb/logs"
+            path: "/var/slb/logs",
         },
-        name: "slblogs"
+        name: "slblogs",
     },
 
     # For use by apps that read the host's certs from Certificate Services
     cert_volume_mount: {
-        "mountPath": "/data/certs",
-        "name": "certs"
+        mountPath: "/data/certs",
+        name: "certs",
     },
     cert_volume: {
         hostPath: {
-            path: "/data/certs"
+            path: "/data/certs",
         },
-        name: "certs"
+        name: "certs",
     },
     caFile: (
         if estate == "prd-samtest" || estate == "prd-sam" || estate == "prd-samdev" then
@@ -133,39 +133,39 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     # For apps that read MadDog certs from the host
     maddog_cert_volume_mount: (if kingdom == "prd" then
     {
-        "mountPath": "/etc/pki_service",
-        "name": "maddog-certs"
+        mountPath: "/etc/pki_service",
+        name: "maddog-certs",
     } else {}),
     maddog_cert_volume: (if kingdom == "prd" then
     {
         hostPath: {
-            path: "/etc/pki_service"
+            path: "/etc/pki_service",
         },
-        name: "maddog-certs"
+        name: "maddog-certs",
     } else {}),
 
     # For apps that use liveConfig + configMap for configuration
     config_volume_mount: {
-        "mountPath": "/config",
-        "name": "config",
+        mountPath: "/config",
+        name: "config",
     },
     config_volume(configMap):: {
         name: "config",
         configMap: {
             name: configMap,
-        }
+        },
     },
 
     # For apps that use sfdcLocation2
-    sfdchosts_volume_mount: (if estate=="prd-samtest" then {
+    sfdchosts_volume_mount: (if estate == "prd-samtest" then {
         mountPath: "/sfdchosts",
         name: "sfdchosts",
     } else {}),
-    sfdchosts_volume:  (if estate=="prd-samtest" then {
+    sfdchosts_volume: (if estate == "prd-samtest" then {
         name: "sfdchosts",
         configMap: {
             name: "sfdchosts",
-        }
+        },
     } else {}),
 
     # === OTHER ===

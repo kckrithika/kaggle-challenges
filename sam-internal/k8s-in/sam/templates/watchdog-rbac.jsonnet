@@ -11,7 +11,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                     {
                         name: "watchdog-rbac",
                         image: samimages.hypersam,
-                        command:[
+                        command: [
                             "/sam/watchdog",
                             "-role=RBAC",
                             "-watchdogFrequency=60s",
@@ -19,7 +19,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                             "-maxUptimeSampleSize=5",
                         ]
                         + samwdconfig.shared_args
-                        + [ "-emailFrequency=24h" ],
+                        + ["-emailFrequency=24h"],
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
@@ -29,8 +29,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                         ]),
                         env: [
                              configs.kube_config_env,
-                        ]
-                    }
+                        ],
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -43,22 +43,22 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
             metadata: {
                 labels: {
                     name: "watchdog-rbac",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-	        "namespace": "sam-system"
-            }
+                namespace: "sam-system",
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-rbac"
-            }
-        }
+                name: "watchdog-rbac",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-rbac"
+            name: "watchdog-rbac",
         },
-        name: "watchdog-rbac"
-    }
-} else "SKIP" 
+        name: "watchdog-rbac",
+    },
+} else "SKIP"
