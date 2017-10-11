@@ -1,0 +1,25 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: scan-client-demo
+    count: 1
+    containers:
+    - name: scan-client-demo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:snapshot-201710102233
+      ports:
+      - containerPort: 8082
+      resources:
+        limits: { cpu: ".5", memory: "500Mi" }
+        requests: { cpu: ".5", memory: "500Mi" }
+      livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8082
+
+  loadbalancers:
+  - lbname: scan-client-demo-lb
+    function: scan-client-demo
+    ports:
+      - port: 8082
+        targetport: 8082
