@@ -96,6 +96,18 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         },
         name: "kubeconfig"
     },
+ 
+    # For Cleaning up SLB logs or other Random mounts to be used for ops-adhoc DaemonSet
+    opsadhoc_volume_mount: {
+        "mountPath": "/slb",
+        "name": "slblogs"
+    },
+    opsadhoc_volume: {
+        hostPath: {
+            path: "/var/slb/logs"
+        },
+        name: "slblogs"
+    },
 
     # For use by apps that read the host's certs from Certificate Services
     cert_volume_mount: {

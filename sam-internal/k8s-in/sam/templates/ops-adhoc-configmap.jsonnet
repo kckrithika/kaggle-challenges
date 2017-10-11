@@ -1,7 +1,6 @@
 local configs = import "config.jsonnet";
 
-# Turned off by default.  Enable when needed
-if "0" == "1" then {
+if configs.kingdom == "prd" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
@@ -10,7 +9,7 @@ if "0" == "1" then {
     },
     # Always leave this point to ops-adhoc-nop when not in use.  To target one estate use an if statement here
     data: {
-      "ops-adhoc.sh": std.toString(importstr "scripts/ops-adhoc-fixkubeconfig.sh")
+      "ops-adhoc.sh": std.toString(importstr "scripts/ops-adhoc-fixlogs.sh")
     } 
 } else 
   "SKIP"
