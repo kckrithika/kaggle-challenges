@@ -50,7 +50,7 @@ system:
     # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
     # written to this directory.
-    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
+    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.#
     volumes:
     - name: logvol
       hostPath:
