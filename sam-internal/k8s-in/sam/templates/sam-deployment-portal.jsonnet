@@ -9,11 +9,16 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sam-deployment-portal",
-                        image: samimages.hypersam,
-                        command: [
-                           "/sam/sam-deployment-portal",
-                        ],
+                       name: "sam-deployment-portal",
+                       image: samimages.hypersam,
+                       command:[
+                          "/sam/sam-deployment-portal",
+                       ],
+                       ports: [
+                       {
+                           containerPort: 64121
+                       }
+                       ],
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,
