@@ -126,9 +126,25 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         else
             "/data/certs/ca.crt"
     ),
+    keyFile: (
+        if estate == "prd-samtest" then
+            "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
+        else
+            "/data/certs/hostcert.key"
+    ),
+    certFile: (
+        if estate == "prd-samtest" then
+            "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
+        else
+            "/data/certs/hostcert.crt"
+    ),
+    chainFile: (
+        if estate == "prd-samtest" then
+            "/etc/pki_service/kubernetes/chain-client.pem"
+        else
+            "/etc/certs/hostcert-chain.pem"
+    ),
     maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
-    keyFile: "/data/certs/hostcert.key",
-    certFile: "/data/certs/hostcert.crt",
 
     # For apps that read MadDog certs from the host
     maddog_cert_volume_mount: (if kingdom == "prd" then

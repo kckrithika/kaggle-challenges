@@ -20,8 +20,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                            "--tnrpEndpoint=" + configs.tnrpArchiveEndpoint,
                            "--observeMode=" + false,
                            "--delay=300s",
-                           "--keyfile=/data/certs/hostcert.key",
-                           "--certfile=/data/certs/hostcert.crt",
+                           "--keyfile=" + configs.keyFile,
+                           "--certfile=" + configs.certFile,
                            "--cafile=" + configs.caFile,
                          ],
                          volumeMounts: configs.filter_empty([
