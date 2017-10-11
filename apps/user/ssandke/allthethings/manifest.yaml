@@ -11,27 +11,27 @@ system:
   functions:
 
   #  A simple stateless app
-  - name: hello
-    count: 3
-    containers:
-    - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/samhello:ssandke-171005
-      ports:
-      - containerPort: 9090
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
-      volumeMounts:
-      - mountPath: /certs
-        name: certs
-      env:
-        - name: DUMMYENV
-          value: "SOMEVALUE"
-    volumes:
-    - name: certs
-      maddogCert:
-        type: client
+  # - name: hello
+  #   count: 3
+  #   containers:
+  #   - name: samhello
+  #     image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/samhello:ssandke-171005
+  #     ports:
+  #     - containerPort: 9090
+  #     livenessProbe:
+  #       httpGet:
+  #         path: /
+  #         port: 9090
+  #     volumeMounts:
+  #     - mountPath: /certs
+  #       name: certs
+  #     env:
+  #       - name: DUMMYENV
+  #         value: "SOMEVALUE"
+  #   volumes:
+  #   - name: certs
+  #     maddogCert:
+  #       type: client
 
  
   - name: redis
@@ -62,11 +62,11 @@ system:
       storageClassName: standard
       storageSizeRequest: 3Gi
 
-  loadbalancers:
-  - lbname: samhellolb
-    function: hello
-    slbEnabled: true
-    ports:
-      - port: 8080
-        targetport: 9090
+  # loadbalancers:
+  # - lbname: samhellolb
+  #   function: hello
+  #   slbEnabled: true
+  #   ports:
+  #     - port: 8080
+  #       targetport: 9090
 
