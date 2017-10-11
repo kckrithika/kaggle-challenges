@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
 # Turned off by default.  Enable only when needed for a prod issue
-if "0"=="1" then {
+if configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -33,13 +33,13 @@ if "0"=="1" then {
                             }
                           },
                         volumeMounts: configs.filter_empty([
-                             configs.kube_config_volume_mount,
+                             configs.opsadhoc_volume_mount,
                              configs.config_volume_mount,
                         ])
                     }
                 ],
                 volumes: configs.filter_empty([
-                   configs.kube_config_volume,
+                   configs.opsadhoc_volume,
                    configs.config_volume("ops-adhoc"),
                 ])
             },
@@ -48,7 +48,6 @@ if "0"=="1" then {
                     app: "ops-adhoc",
                     daemonset: "true",
                 },
-               "namespace": "sam-system"
             }
         }
     },
@@ -57,7 +56,8 @@ if "0"=="1" then {
         labels: {
             name: "ops-adhoc"
         },
-        name: "ops-adhoc"
+        name: "ops-adhoc",
+        namespace: "sam-system"
     }
 } else
   "SKIP"
