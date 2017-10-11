@@ -43,6 +43,7 @@ if configs.estate == "prd-sdc" then {
                             "--charonPushInterval=30s",
                             "--samUpdateInterval=30s",
                             "--sdncBootstrapTimer=30s",
+                            "--ipamPullInterval=30s",
                         ],
                         env: [
                             configs.kube_config_env,
