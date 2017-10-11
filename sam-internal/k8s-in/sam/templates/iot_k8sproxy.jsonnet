@@ -2,10 +2,10 @@ local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
 if  configs.estate == "prd-sam" then {
-
+# This is just to unblock IOT Team since their pipeline uses port 5000. Should be removed after they are able to access proxy at port 40000
     kind: "Deployment",
     spec: {
-        replicas: 3,
+        replicas: 1,
         template: {
             spec: {
                 hostNetwork: true,
@@ -64,7 +64,7 @@ if  configs.estate == "prd-sam" then {
                     },
                 ]),
                 nodeSelector: {
- 	           hostname: "compute11",                   
+                   "kubernetes.io/hostname": "shared0-samcompute1-1-prd.eng.sfdc.net",
                 }
  
             },

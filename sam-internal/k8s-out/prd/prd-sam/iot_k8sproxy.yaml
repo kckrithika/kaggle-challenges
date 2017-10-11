@@ -6,7 +6,7 @@ metadata:
   name: k8sproxy
   namespace: sam-system
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       name: k8sproxy
@@ -40,7 +40,7 @@ spec:
           name: k8sproxyconfig
       hostNetwork: true
       nodeSelector:
-        hostname: compute11
+        kubernetes.io/hostname: shared0-samcompute1-1-prd.eng.sfdc.net
       volumes:
       - hostPath:
           path: /etc/pki_service
