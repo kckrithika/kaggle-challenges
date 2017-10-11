@@ -1,29 +1,29 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "kind": "Service",
-        "apiVersion": "v1",
-        "metadata": {
-            "name": "slb-portal-service",
-            "namespace": "sam-system",
-            "labels": {
-                "app": "slb-portal-service",
-                "slb.sfdc.net/name": "slb-portal-service"
+    kind: "Service",
+        apiVersion: "v1",
+        metadata: {
+            name: "slb-portal-service",
+            namespace: "sam-system",
+            labels: {
+                app: "slb-portal-service",
+                "slb.sfdc.net/name": "slb-portal-service",
             },
         },
-        "spec": {
-            "ports": [
+        spec: {
+            ports: [
             {
-                "name": "slb-portal-port",
-                "port": portconfigs.slb.slbPortalServicePort,
-                "protocol": "TCP",
-                "targetPort": portconfigs.slb.slbPortalServicePort,
-                "nodePort": portconfigs.slb.slbPortalServiceNodePort
-            }
+                name: "slb-portal-port",
+                port: portconfigs.slb.slbPortalServicePort,
+                protocol: "TCP",
+                targetPort: portconfigs.slb.slbPortalServicePort,
+                nodePort: portconfigs.slb.slbPortalServiceNodePort,
+            },
             ],
-                "selector": {
-                    "name": "slb-portal",
+                selector: {
+                    name: "slb-portal",
                 },
-                "type": "NodePort",
+                type: "NodePort",
         },
 } else "SKIP"

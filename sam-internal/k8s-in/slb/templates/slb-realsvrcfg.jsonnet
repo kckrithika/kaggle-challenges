@@ -3,55 +3,54 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "DaemonSet",
-    "metadata": {
-        "labels": {
-            "name": "slb-realsvrcfg"
+    apiVersion: "extensions/v1beta1",
+    kind: "DaemonSet",
+    metadata: {
+        labels: {
+            name: "slb-realsvrcfg",
         },
-        "name": "slb-realsvrcfg",
-	"namespace": "sam-system",
+        name: "slb-realsvrcfg",
+        namespace: "sam-system",
     },
-    "spec": {
-        "template": {
-            "metadata": {
-                "labels": {
-                    "name": "slb-realsvrcfg",
-                    "apptype": "control",
-                    "daemonset": "true"
+    spec: {
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-realsvrcfg",
+                    apptype: "control",
+                    daemonset: "true",
                 },
-		"namespace": "sam-system",
+                namespace: "sam-system",
             },
-            "spec": {
-                "hostNetwork": true,
-                "volumes": configs.filter_empty([
+            spec: {
+                hostNetwork: true,
+                volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                  ]),
-                "containers": [
+                containers: [
                     {
-                        "name": "slb-realsvrcfg",
-                        "image": slbimages.hypersdn,
-                        "command":[
+                        name: "slb-realsvrcfg",
+                        image: slbimages.hypersdn,
+                        command: [
                             "/sdn/slb-realsvrcfg",
-                            "--configDir="+slbconfigs.configDir,
+                            "--configDir=" + slbconfigs.configDir,
                             "--period=5s",
                             "--netInterfaceName=eth0",
-                            "--log_dir="+slbconfigs.logsDir
+                            "--log_dir=" + slbconfigs.logsDir,
                         ],
-                        "volumeMounts": configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                          ]),
-                        "securityContext": {
-                            "privileged": true
-                        }
-                    }
-                ]
-            }
-        }
-    }
+                        securityContext: {
+                            privileged: true,
+                        },
+                    },
+                ],
+            },
+        },
+    },
 } else "SKIP"
-

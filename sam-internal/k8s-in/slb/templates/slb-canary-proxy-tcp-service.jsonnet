@@ -1,31 +1,30 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 if configs.estate == "prd-sdc" then {
-    "kind": "Service",
-        "apiVersion": "v1",
-        "metadata": {
-            "name": "slb-canary-proxy-tcp-service",
-            "namespace": "sam-system",
-            "labels": {
-                "app": "slb-canary-proxy-tcp-service",
+    kind: "Service",
+        apiVersion: "v1",
+        metadata: {
+            name: "slb-canary-proxy-tcp-service",
+            namespace: "sam-system",
+            labels: {
+                app: "slb-canary-proxy-tcp-service",
                 "slb.sfdc.net/name": "slb-canary-proxy-tcp",
-                "slb.sfdc.net/type": "tcp"
+                "slb.sfdc.net/type": "tcp",
             },
         },
-        "spec": {
-            "ports": [
+        spec: {
+            ports: [
             {
-                "name": "slb-canary-proxy-tcp-port",
-                "port": portconfigs.slb.canaryServiceProxyTcpPort,
-                "protocol": "TCP",
-                "targetPort": portconfigs.slb.canaryServiceProxyTcpPort,
-                "nodePort": portconfigs.slb.canaryServiceProxyTcpNodePort
-            }
-            ],
-            "selector": {
-                "name": "slb-canary-proxy-tcp",
+                name: "slb-canary-proxy-tcp-port",
+                port: portconfigs.slb.canaryServiceProxyTcpPort,
+                protocol: "TCP",
+                targetPort: portconfigs.slb.canaryServiceProxyTcpPort,
+                nodePort: portconfigs.slb.canaryServiceProxyTcpNodePort,
             },
-            "type": "NodePort",
+            ],
+            selector: {
+                name: "slb-canary-proxy-tcp",
+            },
+            type: "NodePort",
         },
 } else "SKIP"
-

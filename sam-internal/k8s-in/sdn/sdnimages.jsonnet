@@ -20,26 +20,26 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            "hypersdn": "v-0000371-76a3b283",
-            "bird": "v-0000014-b0a5951d"
+            hypersdn: "v-0000371-76a3b283",
+            bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            "hypersdn": "v-0000371-76a3b283",
-            "bird": "v-0000014-b0a5951d"
+            hypersdn: "v-0000371-76a3b283",
+            bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            "hypersdn": "v-0000350-0c94c1ac",
-            "bird": "v-0000014-b0a5951d"
+            hypersdn: "v-0000350-0c94c1ac",
+            bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 4 - All Prod
         "4": {
-            "hypersdn": "v-0000350-0c94c1ac",
-            "bird": "v-0000014-b0a5951d"
+            hypersdn: "v-0000350-0c94c1ac",
+            bird: "v-0000014-b0a5951d",
             },
     },
 
@@ -58,6 +58,6 @@ local utils = import "util_functions.jsonnet";
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
     # These are the images used by the templates
-    hypersdn: utils.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase]["hypersdn"]),
-    bird: utils.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase]["bird"]),
+    hypersdn: utils.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
+    bird: utils.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
 }

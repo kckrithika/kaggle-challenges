@@ -4,24 +4,24 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "Deployment",
-    "metadata": {
-            "labels": {
-                "name": "slb-ipvsdata-watchdog"
+    apiVersion: "extensions/v1beta1",
+    kind: "Deployment",
+    metadata: {
+            labels: {
+                name: "slb-ipvsdata-watchdog",
             },
-            "name": "slb-ipvsdata-watchdog",
-	    "namespace": "sam-system",
-		    "annotations": {
-			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
-		    }
+            name: "slb-ipvsdata-watchdog",
+            namespace: "sam-system",
+                    annotations: {
+                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
+                    },
      },
-    "spec": {
+    spec: {
         replicas: 1,
-        "template": {
-            "spec": {
-                "hostNetwork": true,
-                "volumes": configs.filter_empty([
+        template: {
+            spec: {
+                hostNetwork: true,
+                volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
                     slbconfigs.host_volume,
@@ -29,28 +29,28 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.cert_volume,
                     configs.kube_config_volume,
                  ]),
-                "containers": [
+                containers: [
                     {
-                        "name": "slb-ipvsdata-watchdog",
-                        "image": slbimages.hypersdn,
-                        "command":[
+                        name: "slb-ipvsdata-watchdog",
+                        image: slbimages.hypersdn,
+                        command: [
                             "/sdn/slb-ipvsdata-watchdog",
-                            "--funnelEndpoint="+configs.funnelVIP,
-                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
-                            "--smtpServer="+configs.smtpServer,
-                            "--sender="+slbconfigs.sdn_watchdog_emailsender,
-                            "--recipient="+slbconfigs.sdn_watchdog_emailrec,
+                            "--funnelEndpoint=" + configs.funnelVIP,
+                            "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
+                            "--smtpServer=" + configs.smtpServer,
+                            "--sender=" + slbconfigs.sdn_watchdog_emailsender,
+                            "--recipient=" + slbconfigs.sdn_watchdog_emailrec,
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
                             "--k8sapiserver=",
-                            "--connPort="+portconfigs.slb.ipvsDataConnPort,
+                            "--connPort=" + portconfigs.slb.ipvsDataConnPort,
                             "--retryPeriod=2m",
                             "--maxretries=2",
-                            "--log_dir="+slbconfigs.logsDir,
-                            "--namespace=sam-system"
+                            "--log_dir=" + slbconfigs.logsDir,
+                            "--namespace=sam-system",
                         ],
-                        "volumeMounts": configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.host_volume_mount,
@@ -61,22 +61,22 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                          env: [
                             configs.kube_config_env,
                         ],
-                        "securityContext": {
-                           "privileged": true
-                        }
-                    }
+                        securityContext: {
+                           privileged: true,
+                        },
+                    },
                 ],
                 nodeSelector: {
-                                    pool: configs.estate
+                                    pool: configs.estate,
                 },
             },
             metadata: {
                 labels: {
                     name: "slb-ipvsdata-watchdog",
-                    apptype: "monitoring"
+                    apptype: "monitoring",
                 },
-		"namespace": "sam-system",
-            }
-        }
-    }
+                namespace: "sam-system",
+            },
+        },
+    },
 } else "SKIP"
