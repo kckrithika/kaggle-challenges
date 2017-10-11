@@ -14,23 +14,23 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "sdn-vault-agent",
                         image: sdnimages.hypersdn,
-                        command:[
+                        command: [
                             "/sdn/sdn-vault-agent",
-                            "--funnelEndpoint="+configs.funnelVIP,
-                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--funnelEndpoint=" + configs.funnelVIP,
+                            "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--keyfile=/data/certs/hostcert.key",
                             "--certfile=/data/certs/hostcert.crt",
-                            "--cafile="+configs.caFile,
-                            "--livenessProbePort="+portconfigs.sdn.sdn_vault_agent
+                            "--cafile=" + configs.caFile,
+                            "--livenessProbePort=" + portconfigs.sdn.sdn_vault_agent,
                         ],
-                        "livenessProbe": {
-                            "httpGet": {
-                               "path": "/liveness-probe",
-                               "port": portconfigs.sdn.sdn_vault_agent
+                        livenessProbe: {
+                            httpGet: {
+                               path: "/liveness-probe",
+                               port: portconfigs.sdn.sdn_vault_agent,
                             },
-                            "initialDelaySeconds": 5,
-                            "timeoutSeconds": 5,
-                            "periodSeconds": 20
+                            initialDelaySeconds: 5,
+                            timeoutSeconds: 5,
+                            periodSeconds: 20,
                         },
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
@@ -38,9 +38,9 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             {
                                 name: "certs",
                                 mountPath: "/data/certs",
-                            }
+                            },
                         ]),
-                    }
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -49,11 +49,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         name: "certs",
                         hostPath: {
                             path: "/data/certs",
-                        }
+                        },
                     },
                 ]),
                 nodeSelector: {
-                    pool: configs.estate
+                    pool: configs.estate,
                 },
             },
             metadata: {
@@ -61,8 +61,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     name: "sdn-vault-agent",
                     apptype: "monitoring",
                 },
-		"namespace": "sam-system",            
-            }
+                namespace: "sam-system",
+            },
         },
     },
     apiVersion: "extensions/v1beta1",
@@ -71,6 +71,6 @@ if !utils.is_public_cloud(configs.kingdom) then {
             name: "sdn-vault-agent",
         },
         name: "sdn-vault-agent",
-	"namespace": "sam-system",
-    }
+        namespace: "sam-system",
+    },
 } else "SKIP"

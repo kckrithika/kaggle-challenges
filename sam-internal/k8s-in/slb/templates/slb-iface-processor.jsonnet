@@ -3,56 +3,56 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "DaemonSet",
-    "metadata": {
-        "labels": {
-            "name": "slb-iface-processor"
+    apiVersion: "extensions/v1beta1",
+    kind: "DaemonSet",
+    metadata: {
+        labels: {
+            name: "slb-iface-processor",
         },
-        "name": "slb-iface-processor",
-	"namespace": "sam-system",
+        name: "slb-iface-processor",
+        namespace: "sam-system",
     },
-    "spec": {
-        "template": {
-            "metadata": {
-                "labels": {
-                    "name": "slb-iface-processor",
-                    "apptype": "control",
-                    "daemonset": "true"
+    spec: {
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-iface-processor",
+                    apptype: "control",
+                    daemonset: "true",
                 },
-		"namespace": "sam-system",
+                namespace: "sam-system",
             },
-            "spec": {
-                "hostNetwork": true,
-                "volumes": configs.filter_empty([
+            spec: {
+                hostNetwork: true,
+                volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
                 ]),
-                "containers": [
+                containers: [
                     {
-                        "name": "slb-iface-processor",
-                        "image": slbimages.hypersdn,
-                        "command":[
+                        name: "slb-iface-processor",
+                        image: slbimages.hypersdn,
+                        command: [
                             "/sdn/slb-iface-processor",
-                            "--configDir="+slbconfigs.configDir,
+                            "--configDir=" + slbconfigs.configDir,
                             "--period=5s",
-                            "--marker="+slbconfigs.ipvsMarkerFile,
+                            "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--markerPeriod=10s",
-                            "--metricsEndpoint="+configs.funnelVIP,
-                            "--log_dir="+slbconfigs.logsDir
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--log_dir=" + slbconfigs.logsDir,
                         ],
-                        "volumeMounts": configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
-                        "securityContext": {
-                            "privileged": true
-                        }
-                    }
-                ]
-            }
-        }
-    }
+                        securityContext: {
+                            privileged: true,
+                        },
+                    },
+                ],
+            },
+        },
+    },
 } else "SKIP"

@@ -4,50 +4,50 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "Deployment",
-    "metadata": {
-        "labels": {
-            "name": "slb-canary-passthrough-tls"
+    apiVersion: "extensions/v1beta1",
+    kind: "Deployment",
+    metadata: {
+        labels: {
+            name: "slb-canary-passthrough-tls",
         },
-        "name": "slb-canary-passthrough-tls",
-	"namespace": "sam-system",
+        name: "slb-canary-passthrough-tls",
+        namespace: "sam-system",
     },
-    "spec": {
+    spec: {
         replicas: 2,
-        "template": {
-            "metadata": {
-                "labels": {
-                    "name": "slb-canary-passthrough-tls"
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-canary-passthrough-tls",
                 },
-		"namespace": "sam-system",
+                namespace: "sam-system",
             },
-            "spec": {
-                "volumes": configs.filter_empty([
+            spec: {
+                volumes: configs.filter_empty([
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                 ]),
-                "containers": [
+                containers: [
                     {
-                        "name": "slb-canary-passthrough-tls",
-                        "image": slbimages.hypersdn,
-                        "command":[
+                        name: "slb-canary-passthrough-tls",
+                        image: slbimages.hypersdn,
+                        command: [
                             "/sdn/slb-canary-service",
                             "--serviceName=slb-canary-passthrough-tls",
-                            "--metricsEndpoint="+configs.funnelVIP,
-                            "--log_dir="+slbconfigs.logsDir,
-                            "--ports="+portconfigs.slb.canaryServicePassthroughTlsPort,
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--log_dir=" + slbconfigs.logsDir,
+                            "--ports=" + portconfigs.slb.canaryServicePassthroughTlsPort,
                         ],
-                        "volumeMounts": configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
-                    }
+                    },
                 ],
                 nodeSelector: {
-                    pool: configs.estate
+                    pool: configs.estate,
                 },
-            }
-        }
-    }
+            },
+        },
+    },
 } else "SKIP"

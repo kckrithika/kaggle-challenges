@@ -16,11 +16,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         livenessProbe: {
                             exec: {
                                command: [
-                                    "/bird/sdn-bird-watcher"
-                               ]
+                                    "/bird/sdn-bird-watcher",
+                               ],
                             },
                             initialDelaySeconds: 5,
-                            periodSeconds: 10
+                            periodSeconds: 10,
                         },
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
@@ -37,11 +37,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         env: [
                             {
                                 name: "BIRD_CONF",
-                                value: "/usr/local/etc/bird.conf"
+                                value: "/usr/local/etc/bird.conf",
                             },
                             {
                                 name: "BIRD_SOCKET",
-                                value: "/usr/local/var/run/bird.ctl"
+                                value: "/usr/local/var/run/bird.ctl",
                             },
                         ],
                     },
@@ -52,24 +52,24 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
-                            "--funnelEndpoint="+configs.funnelVIP,
-                            "--archiveSvcEndpoint="+configs.tnrpArchiveEndpoint,
+                            "--funnelEndpoint=" + configs.funnelVIP,
+                            "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--keyfile=/data/certs/hostcert.key",
                             "--certfile=/data/certs/hostcert.crt",
                             "--bgpPasswordFile=/data/secrets/sambgppassword",
-                            "--livenessProbePort="+portconfigs.sdn.sdn_peering_agent,
-                            
+                            "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
+
                         ]
-                        + (if configs.kingdom == "prd" || configs.estate == "frf-sam" then [ "--controlEstate="+configs.estate ] else [ "--controlEndpoint="+configs.estate ])
-                        + (if configs.estate == "prd-sdc" then [ "--controlEndpoint=http://10.254.219.222:9108" ] else []),
-                        "livenessProbe": {
-                            "httpGet": {
-                               "path": "/liveness-probe",
-                               "port": portconfigs.sdn.sdn_peering_agent
+                        + (if configs.kingdom == "prd" || configs.estate == "frf-sam" then ["--controlEstate=" + configs.estate] else ["--controlEndpoint=" + configs.estate])
+                        + (if configs.estate == "prd-sdc" then ["--controlEndpoint=http://10.254.219.222:9108"] else []),
+                        livenessProbe: {
+                            httpGet: {
+                               path: "/liveness-probe",
+                               port: portconfigs.sdn.sdn_peering_agent,
                             },
-                            "initialDelaySeconds": 5,
-                            "timeoutSeconds": 5,
-                            "periodSeconds": 20
+                            initialDelaySeconds: 5,
+                            timeoutSeconds: 5,
+                            periodSeconds: 20,
                         },
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
@@ -109,7 +109,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         name: "certs",
                         hostPath: {
                             path: "/data/certs",
-                        }
+                        },
                     },
                     {
                         name: "secrets",
@@ -126,8 +126,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     apptype: "control",
                     daemonset: "true",
                 },
-		"namespace": "sam-system",
-            }
+                namespace: "sam-system",
+            },
         },
     },
     apiVersion: "extensions/v1beta1",
@@ -136,6 +136,6 @@ if !utils.is_public_cloud(configs.kingdom) then {
             name: "sdn-peering-agent",
         },
         name: "sdn-peering-agent",
-	"namespace": "sam-system",
-    }
+        namespace: "sam-system",
+    },
 } else "SKIP"

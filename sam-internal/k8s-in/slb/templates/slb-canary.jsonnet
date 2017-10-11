@@ -4,75 +4,75 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "Deployment",
-    "metadata": {
-        "labels": {
-            "name": "slb-canary"
+    apiVersion: "extensions/v1beta1",
+    kind: "Deployment",
+    metadata: {
+        labels: {
+            name: "slb-canary",
         },
-        "name": "slb-canary",
-	"namespace": "sam-system",
-    } + 
-        if configs.estate == "prd-sdc" then { 
-		    "annotations": {
-			     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n"
-		    }
+        name: "slb-canary",
+        namespace: "sam-system",
+    } +
+        if configs.estate == "prd-sdc" then {
+                    annotations: {
+                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
+                    },
             } else {},
-    "spec": {
+    spec: {
         replicas: 2,
-        "template": {
-            "metadata": {
-                "labels": {
-                    "name": "slb-canary"
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-canary",
                 },
-		"namespace": "sam-system",
+                namespace: "sam-system",
             },
-            "spec": {
-                "hostNetwork": true,
-                "volumes": configs.filter_empty([
+            spec: {
+                hostNetwork: true,
+                volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     {
-                        "name": "dev-volume",
-                        "hostPath": {
-                            "path": "/dev"
-                         }
+                        name: "dev-volume",
+                        hostPath: {
+                            path: "/dev",
+                         },
                     },
                     slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                 ]),
-                "containers": [
+                containers: [
                     {
-                        "name": "slb-canary",
-                        "image": slbimages.hypersdn,
-                        "command":[
+                        name: "slb-canary",
+                        image: slbimages.hypersdn,
+                        command: [
                             "/sdn/slb-canary-service",
-                            "--serviceName="+slbconfigs.canaryServiceName,
-                            "--metricsEndpoint="+configs.funnelVIP,
-                            "--log_dir="+slbconfigs.logsDir,
-                            "--ports="+portconfigs.slb.canaryServicePort,
+                            "--serviceName=" + slbconfigs.canaryServiceName,
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--log_dir=" + slbconfigs.logsDir,
+                            "--ports=" + portconfigs.slb.canaryServicePort,
                         ],
-                        "volumeMounts": configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             {
-                                "name": "dev-volume",
-                                "mountPath": "/dev"
+                                name: "dev-volume",
+                                mountPath: "/dev",
                             },
                             slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
-                        "securityContext": {
-                            "privileged": true,
-                            "capabilities": {
-                                "add": [
-                                    "ALL"
-                                ]
-                            }
-                        }
-                    }
+                        securityContext: {
+                            privileged: true,
+                            capabilities: {
+                                add: [
+                                    "ALL",
+                                ],
+                            },
+                        },
+                    },
                 ],
                 nodeSelector: {
-                    pool: configs.estate
+                    pool: configs.estate,
                 },
-            }
-        }
-    }
+            },
+        },
+    },
 } else "SKIP"

@@ -4,54 +4,54 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "Deployment",
-    "metadata": {
-        "labels": {
-            "name": "slb-portal"
+    apiVersion: "extensions/v1beta1",
+    kind: "Deployment",
+    metadata: {
+        labels: {
+            name: "slb-portal",
         },
-        "name": "slb-portal",
-	"namespace": "sam-system",
+        name: "slb-portal",
+        namespace: "sam-system",
     },
-    "spec": {
+    spec: {
         replicas: 1,
-        "template": {
-            "metadata": {
-                "labels": {
-                    "name": "slb-portal"
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-portal",
                 },
-		"namespace": "sam-system",
+                namespace: "sam-system",
             },
-            "spec": {
-                "volumes": configs.filter_empty([
+            spec: {
+                volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     {
-                        "name": "dev-volume",
-                        "hostPath": {
-                            "path": "/dev"
-                         }
+                        name: "dev-volume",
+                        hostPath: {
+                            path: "/dev",
+                         },
                     },
                     slbconfigs.host_volume,
                 ]),
-                "containers": [
+                containers: [
                     {
-                       "name": "slb-portal",
-                       "image": slbimages.hypersdn,
-                       "command":[
+                       name: "slb-portal",
+                       image: slbimages.hypersdn,
+                       command: [
                            "/sdn/slb-portal",
-                           "--configDir="+slbconfigs.configDir,
-                           "--templatePath="+slbconfigs.slbPortalTemplatePath,
-                           "--port="+portconfigs.slb.slbPortalServicePort
+                           "--configDir=" + slbconfigs.configDir,
+                           "--templatePath=" + slbconfigs.slbPortalTemplatePath,
+                           "--port=" + portconfigs.slb.slbPortalServicePort,
                        ],
-                       "volumeMounts": configs.filter_empty([
+                       volumeMounts: configs.filter_empty([
                            slbconfigs.slb_volume_mount,
-                       ])
-                    }
+                       ]),
+                    },
                 ],
-                nodeSelector:{
-                    pool: configs.estate
-                }
-            }
-        }
-    }
+                nodeSelector: {
+                    pool: configs.estate,
+                },
+            },
+        },
+    },
 } else "SKIP"

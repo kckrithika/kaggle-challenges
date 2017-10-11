@@ -3,28 +3,28 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
-    "apiVersion": "extensions/v1beta1",
-    "kind": "DaemonSet",
-    "metadata": {
-        "labels": {
-            "name": "slb-config-processor"
+    apiVersion: "extensions/v1beta1",
+    kind: "DaemonSet",
+    metadata: {
+        labels: {
+            name: "slb-config-processor",
         },
-        "name": "slb-config-processor",
-	"namespace": "sam-system",
+        name: "slb-config-processor",
+        namespace: "sam-system",
     },
-    "spec": {
-        "template": {
-            "metadata": {
-                "labels": {
-                    "name": "slb-config-processor",
-                    "apptype": "control",
-                    "daemonset": "true"
+    spec: {
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-config-processor",
+                    apptype: "control",
+                    daemonset: "true",
                 },
-		"namespace": "sam-system",
+                namespace: "sam-system",
             },
-            "spec": {
-                "hostNetwork": true,
-                "volumes": configs.filter_empty([
+            spec: {
+                hostNetwork: true,
+                volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
@@ -33,29 +33,29 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.cert_volume,
                     configs.kube_config_volume,
                  ]),
-                "containers": [
+                containers: [
                     {
-                        "name": "slb-config-processor",
-                        "image": slbimages.hypersdn,
-                        "command":[
+                        name: "slb-config-processor",
+                        image: slbimages.hypersdn,
+                        command: [
                             "/sdn/slb-config-processor",
-                            "--configDir="+slbconfigs.configDir,
+                            "--configDir=" + slbconfigs.configDir,
                             "--period=1800s",
-                            "--namespace="+slbconfigs.namespace,
+                            "--namespace=" + slbconfigs.namespace,
                             "--podstatus=running",
-                            "--subnet="+slbconfigs.subnet,
+                            "--subnet=" + slbconfigs.subnet,
                             "--k8sapiserver=",
-                            "--serviceList="+slbconfigs.serviceList,
-                            "--useVipLabelToSelectSvcs="+slbconfigs.useVipLabelToSelectSvcs,
-                            "--useProxyServicesList="+slbconfigs.useProxyServicesList,
-                            "--metricsEndpoint="+configs.funnelVIP,
-                            "--log_dir="+slbconfigs.logsDir,
+                            "--serviceList=" + slbconfigs.serviceList,
+                            "--useVipLabelToSelectSvcs=" + slbconfigs.useVipLabelToSelectSvcs,
+                            "--useProxyServicesList=" + slbconfigs.useProxyServicesList,
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--log_dir=" + slbconfigs.logsDir,
                             "--sleepTime=100ms",
-                            "--processKnEConfigs="+slbconfigs.processKnEConfigs,
-                            "--kneConfigDir="+slbconfigs.kneConfigDir,
-                            "--kneDomainName="+slbconfigs.kneDomainName,
+                            "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
+                            "--kneConfigDir=" + slbconfigs.kneConfigDir,
+                            "--kneDomainName=" + slbconfigs.kneDomainName,
                         ],
-                        "volumeMounts": configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
@@ -67,12 +67,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                          env: [
                             configs.kube_config_env,
                         ],
-                        "securityContext": {
-                            "privileged": true
-                        }
-                    }
-                ]
-            }
-        }
-    }
+                        securityContext: {
+                            privileged: true,
+                        },
+                    },
+                ],
+            },
+        },
+    },
 } else "SKIP"
