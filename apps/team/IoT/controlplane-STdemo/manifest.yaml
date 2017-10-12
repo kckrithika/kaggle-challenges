@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:96d9413
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:d9e4408
       ports:
         - name: server
           containerPort: 8080
@@ -50,7 +50,7 @@ system:
     # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
     # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
     # written to this directory.
-    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
+    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.#
     volumes:
     - name: logvol
       hostPath:
