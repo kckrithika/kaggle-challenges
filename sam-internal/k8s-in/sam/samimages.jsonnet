@@ -42,19 +42,22 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
             hypersam: "sam-0001355-581a778b",
-            madkub: "1.0.0-0000035-9241ed31",
+            madkub: "1.0.0-0000038-b211df9b",
+            madkubSidecar: "1.0.0-0000038-b211df9b",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
             hypersam: "sam-0001355-581a778b",
             madkub: "1.0.0-0000035-9241ed31",
+            madkubSidecar: "1.0.0-0000035-9241ed31",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
         "3": {
             hypersam: "sam-0001302-4f86e9c4",
             madkub: "1.0.0-0000035-9241ed31",
+            madkubSidecar: "1.0.0-0000035-9241ed31",
             },
 
 
@@ -62,6 +65,7 @@ local utils = import "util_functions.jsonnet";
         "4": {
             hypersam: "sam-0001302-4f86e9c4",
             madkub: "1.0.0-0000035-9241ed31",
+            madkubSidecar: "1.0.0-0000035-9241ed31",
             },
 
        ### For testing private bits from a developer's machine pre-checkin if
@@ -73,6 +77,7 @@ local utils = import "util_functions.jsonnet";
              else $.per_phase["1"].hypersam
 ),
            madkub: $.per_phase["1"].madkub,
+           madkubSidecar: $.per_phase["1"].madkubSidecar,
         },
     },
 
@@ -100,10 +105,6 @@ local utils = import "util_functions.jsonnet";
             else
                 "sam-1ebeb0ac-657"
         ),
-        # Move to phases when we roll to prod.
-        madkubSidecar: (
-            "1.0.0-0000035-9241ed31"
-        ),
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
@@ -113,8 +114,11 @@ local utils = import "util_functions.jsonnet";
     k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
     permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
 
+    # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
+    # of all containers
     madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
 
-    # madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.static["madkubSidecar"]),
-    madkubSidecar: "sam/madkub:" + $.static.madkubSidecar,
+    # For now we pass the image and registry separately. so not doing overrides.
+    #madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
+    madkubSidecar: "sam/madkub:" + $.per_phase[$.phase].madkubSidecar,
 }
