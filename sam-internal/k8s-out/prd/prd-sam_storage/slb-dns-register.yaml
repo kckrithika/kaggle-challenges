@@ -16,23 +16,23 @@ spec:
       containers:
       - command:
         - /sdn/slb-dns-register
-        - --path=/host/var/slb/config
+        - --path=/host/data/slb/config
         - --ddi=https://ddi-api-prd.data.sfdc.net
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt
         - --cafile=/data/certs/ca.crt
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/var/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000381-6454804c
+        - --log_dir=/host/data/slb/logs
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000386-20510057
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-        - mountPath: /host/var/slb/config
+        - mountPath: /host/data/slb/config
           name: var-config-volume
-        - mountPath: /host/var/slb/logs
+        - mountPath: /host/data/slb/logs
           name: var-logs-volume
       hostNetwork: true
       nodeSelector:
@@ -45,8 +45,8 @@ spec:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /var/slb/config
+          path: /data/slb/config
         name: var-config-volume
       - hostPath:
-          path: /var/slb/logs
+          path: /data/slb/logs
         name: var-logs-volume
