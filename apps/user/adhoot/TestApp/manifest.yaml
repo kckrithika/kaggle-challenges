@@ -7,7 +7,9 @@ system:
     count: 1
     containers:
     - name: statefulhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/adhoot/samhello:bob-20160908
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
+      command: ["/sam/sam-test-app"]
+      args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       ports:
       - containerPort: 9090
         name: testportname
