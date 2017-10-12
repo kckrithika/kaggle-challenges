@@ -18,14 +18,14 @@ spec:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-passthrough-tls
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/var/slb/logs
+        - --log_dir=/host/data/slb/logs
         - --ports=9114
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000386-20510057
         name: slb-canary-passthrough-tls
         volumeMounts:
         - mountPath: /host
           name: host-volume
-        - mountPath: /host/var/slb/logs
+        - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
         pool: prd-sdc
@@ -34,5 +34,5 @@ spec:
           path: /
         name: host-volume
       - hostPath:
-          path: /var/slb/logs
+          path: /data/slb/logs
         name: var-logs-volume
