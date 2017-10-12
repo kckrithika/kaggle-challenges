@@ -1679,3 +1679,7 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-sp2-redis-sp-na45-c1-12012:
     - prd/prd-sp2-sam_caas
+  prd-sp2-metrics-publisher-sp-na45-pc1:
+    - prd/prd-sp2-sam_caas
+  prd-sp2-redis-sp-na45-pc1-12013:
+    - prd/prd-sp2-sam_caas
