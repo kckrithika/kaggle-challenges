@@ -50,7 +50,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
                             "--host=/host",
-                            "--marker=/host/var/slb/ipvs.marker",
+                            "--marker=" + slbconfigs.slbDir + "/ipvs.marker",
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,

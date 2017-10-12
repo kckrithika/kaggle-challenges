@@ -17,7 +17,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/var/slb/config
+        - --configDir=/host/data/slb/config
         - --period=1800s
         - --namespace=
         - --podstatus=running
@@ -27,7 +27,7 @@ spec:
         - --useVipLabelToSelectSvcs=true
         - --useProxyServicesList=slb-bravo-svc
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/var/slb/logs
+        - --log_dir=/host/data/slb/logs
         - --sleepTime=100ms
         - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/testkneconfigs
@@ -42,13 +42,13 @@ spec:
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /host/var/slb
+        - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/var/slb/config
+        - mountPath: /host/data/slb/config
           name: var-config-volume
         - mountPath: /host
           name: host-volume
-        - mountPath: /host/var/slb/logs
+        - mountPath: /host/data/slb/logs
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -60,16 +60,16 @@ spec:
           path: /etc/pki_service
         name: maddog-certs
       - hostPath:
-          path: /var/slb
+          path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /var/slb/config
+          path: /data/slb/config
         name: var-config-volume
       - hostPath:
           path: /
         name: host-volume
       - hostPath:
-          path: /var/slb/logs
+          path: /data/slb/logs
         name: var-logs-volume
       - hostPath:
           path: /data/certs

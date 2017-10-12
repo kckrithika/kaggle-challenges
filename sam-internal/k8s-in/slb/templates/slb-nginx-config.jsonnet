@@ -48,7 +48,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                             "/sdn/slb-nginx-config",
                             "--configDir=" + slbconfigs.configDir,
-                            "--target=/host/var/slb/nginx/config",
+                            "--target=" + slbconfigs.slbDir + "/nginx/config",
                             "--netInterfaceName=eth0",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
@@ -57,7 +57,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.host_volume_mount,
                             {
                                 name: "var-target-config-volume",
-                                mountPath: "/host/var/slb/nginx/config",
+                                mountPath: slbconfigs.slbDir + "/nginx/config",
                             },
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
