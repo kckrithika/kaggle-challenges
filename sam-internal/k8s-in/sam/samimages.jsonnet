@@ -17,11 +17,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001314-b7ccac83",
-        "prd,prd-sam,watchdog-maddog,hypersam": "sam-0001315-989a91ed",
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001316-59ffdf58",
-        "prd,prd-sam,watchdog-deployment,hypersam": "sam-0001333-b19b98e7",
-        "prd,prd-sam,watchdog-kuberesources,hypersam": "sam-0001333-b19b98e7",
         "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001359-ea84f2a8",
         "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001359-ea84f2a8",
     },
