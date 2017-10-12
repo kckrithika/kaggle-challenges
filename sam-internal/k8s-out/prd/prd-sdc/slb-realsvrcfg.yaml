@@ -21,7 +21,7 @@ spec:
         - --period=5s
         - --netInterfaceName=eth0
         - --log_dir=/host/var/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000381-6454804c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000386-20510057
         name: slb-realsvrcfg
         securityContext:
           privileged: true
