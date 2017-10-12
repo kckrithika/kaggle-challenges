@@ -4,7 +4,7 @@ metadata:
   labels:
     app: slb-canary-passthrough-host-network-service
     slb.sfdc.net/name: slb-canary-pt-host-nw
-    slb.sfdc.net/type: passthrough
+    slb.sfdc.net/type: none
   name: slb-canary-passthrough-host-network-service
   namespace: sam-system
 spec:
