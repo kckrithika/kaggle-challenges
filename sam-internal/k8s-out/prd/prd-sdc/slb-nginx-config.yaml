@@ -52,7 +52,7 @@ spec:
           path: /
         name: host-volume
       - hostPath:
-          path: /var/slb/nginx/config
+          path: /data/slb/nginx/config
         name: var-target-config-volume
       - hostPath:
           path: /data/slb/config
