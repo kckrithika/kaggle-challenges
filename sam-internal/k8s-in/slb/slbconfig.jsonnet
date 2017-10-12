@@ -1,7 +1,8 @@
 {
 local estate = std.extVar("estate"),
 
-slbDir: self.perCluster.slbDir[estate],
+slbDir: "/host/data/slb",
+slbDockerDir: "/data/slb",
 configDir: self.slbDir + "/config",
 logsDir: self.slbDir + "/logs",
 ipvsMarkerFile: self.slbDir + "/ipvs.marker",
@@ -84,144 +85,56 @@ perCluster: {
         "prd-sam_storage": "/var/slb/testkneconfigs",
         "prd-sam": "/var/slb/kneconfig",
     },
-
-    # we should move config below out of per estate section once we have shipped to phase-II
-    slbDir: {
-        "prd-sdc": "/host/data/slb",
-        "prd-samtest": "/host/var/slb",
-        "prd-samdev": "/host/var/slb",
-        "prd-sam": "/host/var/slb",
-        "prd-sam_storage": "/host/var/slb",
-    },
-
-    slb_volume: {
-        "prd-sdc": {
-            name: "var-slb-volume",
-            hostPath: {
-                path: "/data/slb",
-            },
-        },
-        "prd-sam": {
-            name: "var-slb-volume",
-            hostPath: {
-                path: "/var/slb",
-            },
-        },
-        "prd-sam_storage": {
-            name: "var-slb-volume",
-            hostPath: {
-                path: "/var/slb",
-            },
-        },
-    },
-    slb_volume_mount: {
-        "prd-sdc": {
-            name: "var-slb-volume",
-            mountPath: "/host/data/slb",
-        },
-        "prd-sam": {
-            name: "var-slb-volume",
-            mountPath: "/host/var/slb",
-        },
-        "prd-sam_storage": {
-            name: "var-slb-volume",
-            mountPath: "/host/var/slb",
-        },
-    },
-    slb_config_volume: {
-        "prd-sdc": {
-            name: "var-config-volume",
-            hostPath: {
-                path: "/data/slb/config",
-            },
-        },
-        "prd-sam": {
-            name: "var-config-volume",
-            hostPath: {
-                path: "/var/slb/config",
-            },
-        },
-        "prd-sam_storage": {
-            name: "var-config-volume",
-            hostPath: {
-                path: "/var/slb/config",
-            },
-        },
-    },
-    slb_config_volume_mount: {
-        "prd-sdc": {
-             name: "var-config-volume",
-             mountPath: "/host/data/slb/config",
-        },
-        "prd-sam": {
-             name: "var-config-volume",
-             mountPath: "/host/var/slb/config",
-        },
-        "prd-sam_storage": {
-             name: "var-config-volume",
-             mountPath: "/host/var/slb/config",
-        },
-    },
-    logs_volume: {
-        "prd-sdc": {
-            name: "var-logs-volume",
-            hostPath: {
-                path: "/data/slb/logs",
-            },
-        },
-        "prd-sam": {
-            name: "var-logs-volume",
-            hostPath: {
-                path: "/var/slb/logs",
-            },
-        },
-        "prd-sam_storage": {
-            name: "var-logs-volume",
-            hostPath: {
-                path: "/var/slb/logs",
-            },
-        },
-    },
-    logs_volume_mount: {
-        "prd-sdc": {
-             name: "var-logs-volume",
-             mountPath: "/host/data/slb/logs",
-        },
-        "prd-sam": {
-             name: "var-logs-volume",
-             mountPath: "/host/var/slb/logs",
-        },
-        "prd-sam_storage": {
-             name: "var-logs-volume",
-             mountPath: "/host/var/slb/logs",
-        },
-    },
 },
 
 
 # Frequently used volume: slb
-    slb_volume: self.perCluster.slb_volume[estate],
-    slb_volume_mount: self.perCluster.slb_volume_mount[estate],
+    slb_volume: {
+        name: "var-slb-volume",
+        hostPath: {
+            "path": "/data/slb"
+        }
+    },
+    slb_volume_mount: {
+        "name": "var-slb-volume",
+        "mountPath": "/host/data/slb"
+    },
 
 # Frequently used volume: slb-config
-    slb_config_volume: self.perCluster.slb_config_volume[estate],
-    slb_config_volume_mount: self.perCluster.slb_config_volume_mount[estate],
+    slb_config_volume: {
+        name: "var-config-volume",
+        hostPath: {
+            "path": "/data/slb/config"
+        }
+    },
+    slb_config_volume_mount: {
+        "name": "var-config-volume",
+        "mountPath": "/host/data/slb/config"
+    },
 
 # Frequently used volume: host
     host_volume: {
         name: "host-volume",
         hostPath: {
-            path: "/",
-        },
+            "path": "/"
+        }
     },
     host_volume_mount: {
-        name: "host-volume",
-        mountPath: "/host",
+        "name": "host-volume",
+        "mountPath": "/host"
     },
 
 # Frequently used volume: logs
-    logs_volume: self.perCluster.logs_volume[estate],
-    logs_volume_mount: self.perCluster.logs_volume_mount[estate],
+    logs_volume: {
+        name: "var-logs-volume",
+        hostPath: {
+            "path": "/data/slb/logs"
+        }
+    },
+    logs_volume_mount: {
+        "name": "var-logs-volume",
+        "mountPath": "/host/data/slb/logs"
+    },
 
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
