@@ -9,7 +9,7 @@ if configs.estate == "prd-sdc" then {
             labels: {
                 app: "slb-canary-passthrough-tls-service",
                 "slb.sfdc.net/name": "slb-canary-pt-tls",
-                "slb.sfdc.net/type": "passthrough",
+                "slb.sfdc.net/type": "none",
             },
         },
         spec: {
