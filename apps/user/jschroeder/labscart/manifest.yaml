@@ -10,12 +10,12 @@ system:
       livenessProbe:
         exec:
           command:
-          - /app/liveness_check.sh
+          - /usr/bin/true
         initialDelaySeconds: 5
-        periodSeconds: 5
+        periodSeconds: 60
       readinessProbe:
         exec:
           command:
-          - /app/liveness_check.sh
+          - /usr/bin/true
         initialDelaySeconds: 5
-        periodSeconds: 5
+        periodSeconds: 60
