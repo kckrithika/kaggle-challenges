@@ -46,10 +46,4 @@ local samimages = import "samimages.jsonnet";
   # Synthetic
   laddr: "0.0.0.0:8083",
   imageName: samimages.hypersam,
-} +
-(
-  if configs.kingdom == "prd" then {
-    deploymentNamespacePrefixWhitelist: "sam-system,csc-sam",
-  } else if configs.kingdom == "iad" then {
-  } else {}
-)
+}

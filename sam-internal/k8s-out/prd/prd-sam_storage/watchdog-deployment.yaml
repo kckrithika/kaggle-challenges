@@ -22,7 +22,6 @@ spec:
         - -role=DEPLOYMENT
         - -watchdogFrequency=10s
         - -alertThreshold=1h
-        - -deploymentNamespacePrefixWhitelist=sam-system,csc-sam
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

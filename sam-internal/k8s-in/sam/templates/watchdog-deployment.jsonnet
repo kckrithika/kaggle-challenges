@@ -18,7 +18,6 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=10s",
                             "-alertThreshold=1h",
                         ]
-                        + (if configs.kingdom == "prd" then ["-deploymentNamespacePrefixWhitelist=sam-system,csc-sam"] else [])
                         + samwdconfig.shared_args
                         + ["-emailFrequency=24h"],
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet

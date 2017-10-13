@@ -11,7 +11,7 @@ data:
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
-      "kubeResourceNamespacePrefixWhitelist": "sam-system",
+      "kubeResourceNamespacePrefixWhitelist": "sam-system,csc-sam",
       "laddr": "0.0.0.0:8083",
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
