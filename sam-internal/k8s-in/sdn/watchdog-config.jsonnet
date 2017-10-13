@@ -46,8 +46,4 @@ local samimages = import "samimages.jsonnet";
   # Synthetic
   laddr: "0.0.0.0:8083",
   imageName: samimages.hypersam,
-} +
-(
-  if configs.kingdom == "iad" then {
-  } else if configs.kingdom != "prd" {}
-)
+}
