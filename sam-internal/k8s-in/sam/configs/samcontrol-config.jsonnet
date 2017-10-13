@@ -9,14 +9,16 @@ local samimages = import "samimages.jsonnet";
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
-  checkImageExistsFlag: true,
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
+  checkImageExistsFlag: true,
 }
 + (if (configs.kingdom == "prd") then {
   deletionEnabled: true,
   deletionPercentageThreshold: 10,
   statefulAppEnabled: true,
+} else if configs.kingdom == "frf" then {
+  checkImageExistsFlag: false,
 } else {})
 + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
     enableMaddog: true,
