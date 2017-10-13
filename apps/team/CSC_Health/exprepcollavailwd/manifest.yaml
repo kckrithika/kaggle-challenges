@@ -44,6 +44,11 @@ system:
       export DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
+      livenessProbe:
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 5
     volumes:
     - name: logvol
       hostPath:
