@@ -10,7 +10,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: samtestapp
-      image: tnrp/sam/hypersam:sam-0001363-838d5c6a
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       env:
