@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: labscart
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/labscart:20171013
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/labscart:20171013.1
       livenessProbe:
         exec:
           command:
