@@ -23,7 +23,7 @@ local samimages = import "samimages.jsonnet";
     enableMaddog: true,
     # This is kept as a flag to use the service envvar,
     #maddogMadkubEndpoint: "https://10.254.208.254:32007",
-    maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank."+configs.kingdom+".prod.non-estates.sfdcsd.net:8443",
+    maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
     maddogMadkubImage: samimages.madkubSidecar,
     maddogMadkubImageRegistry: configs.registry + "/docker-release-candidate/tnrp",
   } else {})

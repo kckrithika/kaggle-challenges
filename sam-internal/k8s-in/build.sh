@@ -11,6 +11,18 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
 
+# Make sure we are on the right version of jsonnet (0.9.5 needed for fmt)
+# If we use an older verion of jsonnet the script will fail.
+EXPECTED_JSONNET_VER="Jsonnet commandline interpreter v0.9.5"
+if [ -f jsonnet/jsonnet ]; then
+  ACTUAL_JSONNET_VER=$(jsonnet/jsonnet -version || true)
+  echo "Running jsonnet version '$ACTUAL_JSONNET_VER'."
+  if [[ "$EXPECTED_JSONNET_VER" != "$ACTUAL_JSONNET_VER" ]]; then
+    echo "Local jsonnet is not expected version '$EXPECTED_JSONNET_VER'.  Deleting folder."
+    rm -rf jsonnet/
+  fi
+fi
+
 #Check if jsonnet is available, if not get it.
 if [ ! -f jsonnet/jsonnet ]; then
     echo "Getting jsonnet..."
@@ -20,8 +32,14 @@ if [ ! -f jsonnet/jsonnet ]; then
     popd
 fi
 
+# Nuke output folder to ensure we dont keep around stale output files
 rm -rf ../k8s-out/**
 mkdir -p ../k8s-out/
+
+# Format input jsonnet files.  TODO: Auto-compute these directories
+for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates; do
+  jsonnet/jsonnet fmt -i $jdir/*.jsonnet
+done
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
   docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl generate-pool-list --in /repo/sam-internal/pools/ --out  /repo/sam-internal/k8s-in/sam/configs/generated-pools.jsonnet

@@ -1,126 +1,126 @@
 local configs = import "config.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
-  "apiVersion": "v1",
-  "kind": "List",
-  "metadata": {},
-  "items": [
+  apiVersion: "v1",
+  kind: "List",
+  metadata: {},
+  items: [
     {
-      "kind": "ClusterRole",
-      "apiVersion": "rbac.authorization.k8s.io/v1alpha1",
-      "metadata": {
+      kind: "ClusterRole",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
         #When used in a ClusterRoleBinding, it gives permission to read secrets & update events &pod status in the cluster and in all namespaces. When used in a RoleBinding, it gives permission to read secrets & update events & pod status in the rolebinding's namespace.
         # Refer to "samcompute:clusterrolebinding" & "$namespace:rolebinding"
-        "name": "minion:role"
+        name: "minion:role",
       },
-      "rules": [
+      rules: [
         {
-          "apiGroups": [
-            "*"
+          apiGroups: [
+            "*",
           ],
-          "resources": [
+          resources: [
             "pods/status",
-            "events"
+            "events",
           ],
-          "verbs": [
-            "*"
-          ]
+          verbs: [
+            "*",
+          ],
         },
         {
-          "apiGroups": [
-            "*"
+          apiGroups: [
+            "*",
           ],
-          "resources": [
+          resources: [
             "pods",
           ],
-          "verbs": [
-            "delete" 
-          ]
+          verbs: [
+            "delete",
+          ],
         },
         {
-          "apiGroups": [
-            "*"
+          apiGroups: [
+            "*",
           ],
-          "resources": [
+          resources: [
             "secrets",
             "configmaps",
-            "persistentvolumeclaims"
+            "persistentvolumeclaims",
           ],
-          "verbs": [
+          verbs: [
             "get",
             "watch",
-            "list"
-          ]
-        }
-      ]
+            "list",
+          ],
+        },
+      ],
     },
     {
-      "kind": "ClusterRole",
-      "apiVersion": "rbac.authorization.k8s.io/v1alpha1",
-      "metadata": {
+      kind: "ClusterRole",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
         # When used in a ClusterRoleBinding, gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces. Used in "minion:clusterrolebinding".
-        "name": "minion:clusterrole"
+        name: "minion:clusterrole",
       },
-      "rules": [
+      rules: [
         {
-          "apiGroups": [
-            "*"
+          apiGroups: [
+            "*",
           ],
-          "resources": [
+          resources: [
             "services",
             "endpoints",
             "nodes",
             "pods",
-            "persistentvolumes"
+            "persistentvolumes",
           ],
-          "verbs": [
+          verbs: [
             "get",
             "list",
-            "watch"
-          ]
+            "watch",
+          ],
         },
         {
-          "apiGroups": [
-            "*"
+          apiGroups: [
+            "*",
           ],
-          "resources": [
-            "nodes"
+          resources: [
+            "nodes",
           ],
-          "verbs": [
+          verbs: [
             # Required for node registration
-            "create"
-          ]
+            "create",
+          ],
         },
         {
-          "nonResourceURLs": [
-            "*"
+          nonResourceURLs: [
+            "*",
           ],
-          "verbs": [
-            "*"
-          ]
-        }
-      ]
+          verbs: [
+            "*",
+          ],
+        },
+      ],
     },
     {
-     "kind": "Role",
-      "apiVersion": "rbac.authorization.k8s.io/v1alpha1",
-      "metadata": {
-         "name": "update-secrets",
-         "namespace": "sam-system"
+     kind: "Role",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
+         name: "update-secrets",
+         namespace: "sam-system",
       },
-      "rules": [
+      rules: [
         {
-          "apiGroups": [
-             "*"
+          apiGroups: [
+             "*",
           ],
-          "resources": [
-             "secrets"
+          resources: [
+             "secrets",
           ],
-          "verbs": [
-             "*"
-          ]
-       }
+          verbs: [
+             "*",
+          ],
+       },
       ],
-    }
-  ]
-} else "SKIP" 
+    },
+  ],
+} else "SKIP"
