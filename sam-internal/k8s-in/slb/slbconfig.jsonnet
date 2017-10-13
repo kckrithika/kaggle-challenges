@@ -75,7 +75,7 @@ perCluster: {
         "prd-samtest": false,
         "prd-samdev": false,
         "prd-sam_storage": false,
-        "prd-sam": false,
+        "prd-sam": true,
 
     },
     kneConfigDir: {
