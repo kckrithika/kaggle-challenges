@@ -92,48 +92,48 @@ perCluster: {
     slb_volume: {
         name: "var-slb-volume",
         hostPath: {
-            "path": "/data/slb"
-        }
+            path: "/data/slb",
+        },
     },
     slb_volume_mount: {
-        "name": "var-slb-volume",
-        "mountPath": "/host/data/slb"
+        name: "var-slb-volume",
+        mountPath: "/host/data/slb",
     },
 
 # Frequently used volume: slb-config
     slb_config_volume: {
         name: "var-config-volume",
         hostPath: {
-            "path": "/data/slb/config"
-        }
+            path: "/data/slb/config",
+        },
     },
     slb_config_volume_mount: {
-        "name": "var-config-volume",
-        "mountPath": "/host/data/slb/config"
+        name: "var-config-volume",
+        mountPath: "/host/data/slb/config",
     },
 
 # Frequently used volume: host
     host_volume: {
         name: "host-volume",
         hostPath: {
-            "path": "/"
-        }
+            path: "/",
+        },
     },
     host_volume_mount: {
-        "name": "host-volume",
-        "mountPath": "/host"
+        name: "host-volume",
+        mountPath: "/host",
     },
 
 # Frequently used volume: logs
     logs_volume: {
         name: "var-logs-volume",
         hostPath: {
-            "path": "/data/slb/logs"
-        }
+            path: "/data/slb/logs",
+        },
     },
     logs_volume_mount: {
-        "name": "var-logs-volume",
-        "mountPath": "/host/data/slb/logs"
+        name: "var-logs-volume",
+        mountPath: "/host/data/slb/logs",
     },
 
 subnet: self.perCluster.subnet[estate],

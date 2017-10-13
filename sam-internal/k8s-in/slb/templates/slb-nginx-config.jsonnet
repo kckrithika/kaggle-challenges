@@ -29,7 +29,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                      {
                         name: "var-target-config-volume",
                         hostPath: {
-                            path: slbconfigs.slbDockerDir + "/nginx/config"
+                            path: slbconfigs.slbDockerDir + "/nginx/config",
                          },
                      },
                      slbconfigs.slb_config_volume,

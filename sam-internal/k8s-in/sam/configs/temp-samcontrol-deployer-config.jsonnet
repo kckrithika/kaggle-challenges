@@ -1,16 +1,16 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 {
-  "funnelEndpoint": configs.funnelVIP,
+  funnelEndpoint: configs.funnelVIP,
   "disable-security-check": true,
   "tnrp-endpoint": configs.tnrpArchiveEndpoint,
   "dry-run": false,
   "poll-delay": 30000000000,
-  "email": true,
+  email: true,
   "email-delay": 0,
   "smtp-server": configs.smtpServer,
-  "sender": "sam@salesforce.com",
-  "recipient": "cbatra@salesforce.com",
+  sender: "sam@salesforce.com",
+  recipient: "cbatra@salesforce.com",
   "ca-file": configs.caFile,
   "key-file": configs.keyFile,
   "cert-file": configs.certFile,
@@ -18,7 +18,7 @@ local samimages = import "samimages.jsonnet";
   "resource-cooldown": 15000000000,
   "max-resource-time": 300000000000,
   "disable-rollback": true,
-  "etcd-directory":"/temp/secrets/",
+  "etcd-directory": "/temp/secrets/",
   "src-root": "temp-secrets/",
   "delete-orphans": false,
 }
