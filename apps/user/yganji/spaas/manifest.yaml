@@ -12,7 +12,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/serviceprotection/spaas:yganji-20170925
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/serviceprotection/spaas:yganji-20171012
       
       # set container environment variables
       env:
