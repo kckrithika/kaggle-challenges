@@ -1683,3 +1683,8 @@ apps:
     - prd/prd-sp2-sam_caas
   prd-sp2-redis-sp-na45-pc1-12013:
     - prd/prd-sp2-sam_caas
+
+  prd-caas-endurance-monitor-perf:
+    - prd/prd-sp2-sam_caas
+  prd-caas-release-perf-endurance:
+    - prd/prd-sp2-sam_caas
