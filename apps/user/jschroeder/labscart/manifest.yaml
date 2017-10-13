@@ -1,0 +1,21 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: labscart
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/labscart:20171013
+      livenessProbe:
+        exec:
+          command:
+          - /app/liveness_check.sh
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - /app/liveness_check.sh
+        initialDelaySeconds: 5
+        periodSeconds: 5
