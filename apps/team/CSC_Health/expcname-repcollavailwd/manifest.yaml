@@ -2,35 +2,30 @@ apiVersion: v1
 
 system:
   functions:
-  - name: exprepcollavailwd
+  - name: expcname-repcollavailwd
     count: 1
     containers:
-    - name: exprepcollavailwd
+    - name: cname-repcollavailwd
       image: tnrp/csc-health/report-collector-availability-watchdog:2.5.0-0000075-ee70e5b8
       resources:
-        limits: { cpu: "2", memory: "10Gi" }
-        requests: { cpu: "2", memory: "10Gi" }
+        requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
-      - mountPath: /var/log/report-collector-availability-watchdog
-        name: logvol
       - mountPath: /var/lib/report-collector-availability-watchdog/certificates/client/
         name: clientcertvol
         readOnly: true
       env:
-      - name: REPORT_COLLECTOR_HOST
-        value: $(EXPREPORTCOLLECTORHALB_SERVICE_HOST)
       - name: REPORT_COLLECTOR_PROVIDER_PORT
-        value: $(EXPREPORTCOLLECTORHALB_SERVICE_PORT_TCP28443)
+        value: 18443
       - name: REPORT_COLLECTOR_CONSUMER_PORT
-        value: $(EXPREPORTCOLLECTORHALB_SERVICE_PORT_TCP28444)
-      - name: LOG_DIR
-        value: /var/log/report-collector-availability-watchdog
+        value: 18444
+      - name: REPORT_COLLECTOR_PROTOCOL
+        value: https
       - name: DEBUG_ENABLED
         value: true
       - name: HTTP_OPTIONS_STRICTSSL
         value: true
       - name: HTTP_OPTIONS_VERIFYSERVERIDENTITY
-        value: false
+        value: true
       - name: HTTP_OPTIONS_PATHTOCACERTIFICATE
         value: /var/lib/report-collector-availability-watchdog/certificates/sfdc-internal-ca.crt
       - name: HTTP_OPTIONS_PATHTOCLIENTCERTIFICATE
@@ -40,14 +35,18 @@ system:
       command: ["/bin/sh", "-c"]
       args: ["
       export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
-      export DATACENTER=${KINGDOM} ;
+      export REPORT_COLLECTOR_HOST=reportcollector-${KINGDOM}.data.sfdc.net ;
       export DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      export DATACENTER=${KINGDOM} ;
+      export SHOULD_PUBLISH_PROD_METRICS=`[ \"${KINGDOM}\" != \"prd\" ] && echo true || echo false` ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
+      livenessProbe:
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 5
     volumes:
-    - name: logvol
-      hostPath:
-        path: /var/log/report-collector-availability-watchdog
     - name: clientcertvol
       secret:
         secretName: csc-rc-avail-wd-certificates
