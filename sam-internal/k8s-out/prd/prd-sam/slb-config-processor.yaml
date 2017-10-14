@@ -35,7 +35,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000390-2cca8dfb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000392-2f8a6d68
         name: slb-config-processor
         securityContext:
           privileged: true
