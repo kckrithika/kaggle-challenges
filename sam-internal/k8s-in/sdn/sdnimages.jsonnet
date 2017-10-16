@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000371-76a3b283",
+            hypersdn: "v-0000394-4e124105",
             bird: "v-0000014-b0a5951d",
             },
 
@@ -38,7 +38,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - All Prod
         "4": {
-            hypersdn: "v-0000350-0c94c1ac",
+            hypersdn: "v-0000371-76a3b283",
             bird: "v-0000014-b0a5951d",
             },
     },
