@@ -16,6 +16,8 @@ system:
       volumeMounts:
       - name: statevolume
         mountPath: /test/state
+      - name: server-cert
+        mountPath: /cert
       livenessProbe:
         httpGet:
           path: /
@@ -25,3 +27,7 @@ system:
       - name: statevolume
         storageClassName: standard
         storageSizeRequest: 3Gi
+    volumes:
+      - name: server-cert
+        maddogCert:
+          type: server
