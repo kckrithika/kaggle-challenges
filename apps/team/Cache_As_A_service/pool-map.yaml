@@ -1692,3 +1692,7 @@ apps:
   - name: prd/prd-sp2-sam_caas
  prd-caas-redis-sp-chatbot-c1-12000:
   - name: prd/prd-sp2-sam_caas
+ prd-caas-redis-12099:
+  - name: prd/prd-sp2-sam_caas
+ prd-redis-metrics-publisher
+  - name: prd/prd-sp2-sam_caas
