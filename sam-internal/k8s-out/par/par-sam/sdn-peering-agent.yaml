@@ -44,7 +44,7 @@ spec:
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
         - --controlEndpoint=par-sam
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000350-0c94c1ac
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000371-76a3b283
         livenessProbe:
           httpGet:
             path: /liveness-probe
