@@ -21,9 +21,8 @@ system:
           port: 8082
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      # TODO: arrange this with iot-ent team
       volumeMounts:
-      - mountPath: /logs
+      - mountPath: /home/controlplane/logs
         name: logvol
       - mountPath: /home/controlplane/ajnaclientcert
         name: ajnaclientcert
@@ -37,15 +36,10 @@ system:
       - mountPath: /home/controlplane/controlplane-config
         name: controlplaneconfig
         readOnly: true
- 
-    # maps the logval volumeMount to a directory on the host machine. Logs in this directory will be available
-    # for a shart time after a docker image is shut down. The SAM splunk forwarders will handle the logs being
-    # written to this directory.
-    # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
     volumes:
     - name: logvol
       hostPath:
-        path: /var/log/iot
+        path: /data/sam/iot/log/ptest
     - name: ajnaclientcert
       secret:
         secretName: iot-dva-kafka-prd-test
