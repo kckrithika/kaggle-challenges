@@ -23,6 +23,7 @@
     slb: {
         ipvsDataConnPort: 9107,
         canaryServicePort: 9111,
+        canaryServiceTlsPort: 8443,
         slbPortalServicePort: 9112,
         canaryServicePassthroughHostNetworkPort: 9113,
         canaryServicePassthroughTlsPort: 9114,
