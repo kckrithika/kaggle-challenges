@@ -13,6 +13,11 @@ spec:
     port: 9111
     protocol: TCP
     targetPort: 9111
+  - name: slb-canary-tls
+    nodePort: 32135
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
   selector:
     name: slb-canary
   type: NodePort
