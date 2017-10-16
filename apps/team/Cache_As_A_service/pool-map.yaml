@@ -1682,3 +1682,13 @@ apps:
     hostSubList:
     - samcaas2-caasminion2-1-prd.eng.sfdc.net
 
+ prd-sp2-metrics-publisher-sp-na45-c1:
+  - name: prd/prd-sp2-sam_caas
+ prd-sp2-redis-sp-na45-c1-12012:
+  - name: prd/prd-sp2-sam_caas
+ prd-sp2-metrics-publisher-sp-na45-pc1:
+  - name: prd/prd-sp2-sam_caas
+ prd-sp2-redis-sp-na45-pc1-12013:
+  - name: prd/prd-sp2-sam_caas
+ prd-caas-redis-sp-chatbot-c1-12000:
+  - name: prd/prd-sp2-sam_caas
