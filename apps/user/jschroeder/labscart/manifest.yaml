@@ -19,3 +19,8 @@ system:
           - /usr/bin/true
         initialDelaySeconds: 5
         periodSeconds: 60
+    env:
+    - name: HTTPS_PROXY
+      value: public0-proxy1-0-prd.data.sfdc.net:8080
+    - name: NO_PROXY
+      value: .ops.sfdc.net,.internal.salesforce.com
