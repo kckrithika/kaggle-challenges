@@ -50,7 +50,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--ports=" + portconfigs.slb.canaryServicePort,
-                        ],
+                        ]
+                        + (
+                           if configs.estate == "prd-sdc" then [
+                            "--tlsPorts=" + portconfigs.slb.canaryServiceTlsPort,
+                            "--publicKey=/var/slb/canarycerts/sdc.crt",
+                            "--privateKey=/var/slb/canarycerts/secret.key",
+                           ] else []
+                          ),
+
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "dev-volume",
