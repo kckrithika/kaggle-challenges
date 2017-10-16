@@ -5,7 +5,7 @@ system:
   - name: default
     count: 2
     containers:
-    - name:rsui
+    - name: rsui
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:rsui-test
       ports:
       - containerPort: 8080
