@@ -1694,5 +1694,5 @@ apps:
   - name: prd/prd-sp2-sam_caas
  prd-caas-redis-12099:
   - name: prd/prd-sp2-sam_caas
- prd-redis-metrics-publisher
+ prd-redis-metrics-publisher:
   - name: prd/prd-sp2-sam_caas
