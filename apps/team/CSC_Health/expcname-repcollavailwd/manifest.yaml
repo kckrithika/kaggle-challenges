@@ -38,7 +38,7 @@ system:
       export REPORT_COLLECTOR_HOST=reportcollector-${KINGDOM}.data.sfdc.net ;
       export DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       export DATACENTER=${KINGDOM} ;
-      export SHOULD_PUBLISH_PROD_METRICS=`[ \"${KINGDOM}\" != \"prd\" ] && echo true || echo false` ;
+      export SHOULD_PUBLISH_PROD_METRICS=false ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
       livenessProbe:
