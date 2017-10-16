@@ -30,6 +30,7 @@
         canaryServiceProxyTcpPort: 9115,
         canaryServiceProxyHttpPort: 9116,
 
+        canaryServiceTlsNodePort: 32135,
         canaryServiceNodePort: 32136,
         alphaServiceNodePort: 32137,
         bravoServiceNodePort: 32138,
