@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            if configs.estate == "prd-sdc" then [
                             "--tlsPorts=" + portconfigs.slb.canaryServiceTlsPort,
                             "--publicKey=/var/slb/canarycerts/sdc.crt",
-                            "--privateKey=/var/slb/canarycerts/secret.key",
+                            "--privateKey=/var/slb/canarycerts/server.key",
                            ] else []
                           ),
 
