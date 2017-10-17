@@ -11,7 +11,7 @@ system:
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
       ports:
-      - containerPort: 9090
+      - containerPort: 8000
         name: testportname
       volumeMounts:
       - name: statevolume
@@ -21,7 +21,7 @@ system:
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 8000
     lbname: statefulhellolb
     volumeClaimTemplates:
       - name: statevolume
