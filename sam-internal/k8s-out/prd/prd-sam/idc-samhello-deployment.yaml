@@ -21,6 +21,5 @@ spec:
         name: idc-samhello
         ports:
         - containerPort: 9078
-      hostNetwork: true
       nodeSelector:
         pool: prd-sam
