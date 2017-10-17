@@ -20,27 +20,27 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 0 - prd-sam_storage
         "0": {
-            fdscontroller: "base-0000115-3cbd7831"
+            default_tag: "base-0000121-40530dde"
         },
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            fdscontroller: "",
+            default_tag: "",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            fdscontroller: "",
+            default_tag: "",
             },
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            fdscontroller: "",
+            default_tag: "",
             },
 
         ### Release Phase 3 - All Prod
         "4": {
-            fdscontroller: "",
+            default_tag: "",
             },
     },
 
@@ -61,5 +61,5 @@ local utils = import "util_functions.jsonnet";
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
     # These are the images used by the templates.
-    fdscontroller: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].fdscontroller),
+    fdscontroller: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].default_tag),
 }

@@ -32,15 +32,6 @@ if configs.estate == "prd-sam_storage" then {
                     {
                         name: "fds-controller",
                         image: storageimages.fdscontroller,
-                        command: [
-                            "/fds/fdsctl",
-                            "controller",
-                            "--logtostderr",
-                            "-v",
-                            "9",
-                            "--kubeconfig",
-                            "/kubeconfig/kubeconfig",
-                        ],
                         ports: [
                             {
                                 containerPort: 8080,
