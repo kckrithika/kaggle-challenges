@@ -38,6 +38,7 @@ system:
         - --http2-in=9532
       ports:
         - containerPort: 9532
+        - containerPort: 7080
       livenessProbe:
         exec:
           command:
