@@ -6,13 +6,14 @@ system:
     count: 1
     containers:
     - name: scone-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:bzimmerman-20171011-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:bzimmerman-20171017
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
       ports:
       - containerPort: 7020
       - containerPort: 15372
+      - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
