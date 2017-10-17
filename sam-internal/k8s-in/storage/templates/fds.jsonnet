@@ -38,6 +38,8 @@ if configs.estate == "prd-sam_storage" then {
                             "--logtostderr",
                             "-v",
                             "9",
+                            "--kubeconfig",
+                            "/kubeconfig/kubeconfig",
                         ],
                         ports: [
                             {
@@ -50,8 +52,21 @@ if configs.estate == "prd-sam_storage" then {
                                 port: 8080,
                             },
                         },
+                       volumeMounts: configs.filter_empty([
+                          configs.maddog_cert_volume_mount,
+                          configs.cert_volume_mount,
+                          configs.kube_config_volume_mount,
+                       ]),
+                       env: [
+                          configs.kube_config_env,
+                       ],
                     },
                 ],
+                volumes: configs.filter_empty([
+                    configs.maddog_cert_volume,
+                    configs.cert_volume,
+                    configs.kube_config_volume,
+                ]),
                 nodeSelector: {
                     pool: configs.estate,
                 },

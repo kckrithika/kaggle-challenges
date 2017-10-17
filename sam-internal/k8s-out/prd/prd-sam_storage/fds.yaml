@@ -24,6 +24,11 @@ spec:
         - --logtostderr
         - -v
         - "9"
+        - --kubeconfig
+        - /kubeconfig/kubeconfig
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000115-3cbd7831
         livenessProbe:
           httpGet:
@@ -32,5 +37,22 @@ spec:
         name: fds-controller
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
       nodeSelector:
         pool: prd-sam_storage
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
