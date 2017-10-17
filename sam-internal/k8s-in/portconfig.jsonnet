@@ -29,7 +29,6 @@
         canaryServicePassthroughTlsPort: 9114,
         canaryServiceProxyTcpPort: 9115,
         canaryServiceProxyHttpPort: 9116,
-        slbEchoServicePort: 9117,
 
         canaryServiceTlsNodePort: 32135,
         canaryServiceNodePort: 32136,
@@ -44,5 +43,6 @@
         canaryServiceProxyHttpNodePort: 32145,
         slbNginxControlPort: 32146,
         bravoServiceNodePort3: 32147,
+        slbEchoServicePort: 32148,
     },
 }

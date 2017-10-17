@@ -36,9 +36,9 @@ spec:
         - /sdn/slb-echo-service
         - --serviceName=slb-echo-svc
         - --runAsServer
-        - --port=9117
+        - --port=32148
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000402-db341fc5
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000403-426f0c72
         name: slb-echo-server
         securityContext:
           capabilities:
