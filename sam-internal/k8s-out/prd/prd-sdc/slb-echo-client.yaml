@@ -40,26 +40,25 @@ spec:
       - command:
         - /sdn/slb-echo-service
         - --serviceName=slb-echo-svc
-        - --log_dir=/host/var/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000381-6454804c
+        - --log_dir=/host/data/slb/logs
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000402-db341fc5
         name: slb-echo-client
         securityContext:
           capabilities:
             add:
             - ALL
-          privileged: true
         volumeMounts:
         - mountPath: /dev
           name: dev-volume
         - mountPath: /host
           name: host-volume
-        - mountPath: /host/var/slb/logs
+        - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
         pool: prd-sdc
       volumes:
       - hostPath:
-          path: /var/slb
+          path: /data/slb
         name: var-slb-volume
       - hostPath:
           path: /dev
@@ -68,5 +67,5 @@ spec:
           path: /
         name: host-volume
       - hostPath:
-          path: /var/slb/logs
+          path: /data/slb/logs
         name: var-logs-volume
