@@ -19,7 +19,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
                 },
             },
             spec: {
-                hostNetwork: true,
                 containers: [
                     {
                         name: "idc-samhello",
