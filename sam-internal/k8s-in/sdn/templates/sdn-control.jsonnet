@@ -44,6 +44,7 @@ if configs.estate == "prd-sdc" then {
                             "--samUpdateInterval=30s",
                             "--sdncBootstrapTimer=30s",
                             "--ipamPullInterval=30s",
+                            "--archiveSvcPullInterval=30s",
                         ],
                         env: [
                             configs.kube_config_env,
