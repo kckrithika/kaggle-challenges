@@ -11,7 +11,7 @@ system:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /
+          path: /static/index.html
           port: 8080
  
   loadbalancers:
