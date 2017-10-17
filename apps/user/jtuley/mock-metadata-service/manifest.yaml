@@ -59,3 +59,9 @@ system:
     ports:
     - port: 2017
       targetport: 9091
+    - port: 2018
+      targetport: 7020
+    - port: 2019
+      targetport: 15523
+    - port: 2020
+      targetport: 9532
