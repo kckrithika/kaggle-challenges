@@ -57,5 +57,5 @@ system:
     function: mock-metadata-service
     nodeExposed: true
     ports:
-    - port: 9091
+    - port: 2017
       targetport: 9091
