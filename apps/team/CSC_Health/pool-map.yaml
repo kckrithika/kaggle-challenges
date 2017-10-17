@@ -85,5 +85,6 @@ apps:
     - ukb/ukb-sam_report_collector
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
+    - hnd/hnd-sam_report_collector
   service-event-recorder:
     - prd/prd-sam_report_collector
