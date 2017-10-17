@@ -22,14 +22,21 @@ if configs.estate == "prd-sam_storage" then {
         template: {
             metadata: {
                 labels: {
-                    name: "fds-deployment",
+                    name: "fds-controller",
                 },
             },
             spec: {
                 containers: [
                     {
-                        name: "fds-deployment",
+                        name: "fds-controller",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/faultdomainset:base-0000115-3cbd7831",
+                        command: [
+                            "/fds/fdsctl",
+                            "controller",
+                            "--logtostderr",
+                            "-v",
+                            "9",
+                        ],
                         ports: [
                             {
                                 containerPort: 8080,
