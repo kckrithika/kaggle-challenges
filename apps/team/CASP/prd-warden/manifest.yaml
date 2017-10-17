@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: tnrp/casp/warden:0.0.1-0000150-47e0c7bf
+        image: tnrp/casp/warden:0.0.1-0000152-052f586e
         ports:
         - name: warden
           containerPort: 8889
