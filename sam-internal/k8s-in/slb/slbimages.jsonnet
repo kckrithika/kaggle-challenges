@@ -20,22 +20,26 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000395-495d6a07",
+            hypersdn: "v-0000402-db341fc5",
+            slbnginx: "v-0000004-d69f7abb",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
             hypersdn: "v-0000392-2f8a6d68",
+            slbnginx: "v-0000004-d69f7abb",
             },
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
             hypersdn: "v-0000149-6e609e0f",
+            slbnginx: "v-0000004-d69f7abb",
             },
 
         ### Release Phase 3 - All Prod
         "4": {
             hypersdn: "v-0000149-6e609e0f",
+            slbnginx: "v-0000004-d69f7abb",
             },
     },
 
@@ -55,4 +59,5 @@ local utils = import "util_functions.jsonnet";
 
     # These are the images used by the templates
     hypersdn: utils.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
+    slbnginx: utils.do_override_for_tnrp_image($.overrides, "sdn", "slb-nginx", $.per_phase[$.phase].slbnginx),
 }

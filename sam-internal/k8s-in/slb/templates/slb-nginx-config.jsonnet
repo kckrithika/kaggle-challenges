@@ -69,7 +69,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
 
                     {
                         name: "slb-nginx-proxy",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mpopov/slb_nginx:v-071220171147",
+                        image: if configs.estate == "prd-sdc" then slbimages.slbnginx else "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mpopov/slb_nginx:v-071220171147",
                         command: ["/runner.sh"],
                         volumeMounts: configs.filter_empty([
                            {
