@@ -1,4 +1,6 @@
 local configs = import "config.jsonnet";
+local storageimages = import "storageimages.jsonnet";
+local storageconfigs = import "storageconfig.jsonnet";
 
 if configs.estate == "prd-sam_storage" then {
     apiVersion: "extensions/v1beta1",
@@ -29,7 +31,7 @@ if configs.estate == "prd-sam_storage" then {
                 containers: [
                     {
                         name: "fds-controller",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/faultdomainset:base-0000115-3cbd7831",
+                        image: storageimages.fdscontroller,
                         command: [
                             "/fds/fdsctl",
                             "controller",
