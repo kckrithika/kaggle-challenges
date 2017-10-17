@@ -9,10 +9,10 @@ metadata:
 spec:
   ports:
   - name: slb-echo-port
-    nodePort: 9117
-    port: 9117
+    nodePort: 32148
+    port: 32148
     protocol: TCP
-    targetPort: 9117
+    targetPort: 32148
   selector:
     name: slb-echo-server
   type: NodePort
