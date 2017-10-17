@@ -18,7 +18,7 @@ spec:
         name: fds-deployment
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/faultdomainset:base-0000115-3cbd783
+      - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/faultdomainset:base-0000115-3cbd7831
         livenessProbe:
           httpGet:
             path: /healthz

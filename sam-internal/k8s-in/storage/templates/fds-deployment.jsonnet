@@ -29,7 +29,7 @@ if configs.estate == "prd-sam_storage" then {
                 containers: [
                     {
                         name: "fds-deployment",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/faultdomainset:base-0000115-3cbd783",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/faultdomainset:base-0000115-3cbd7831",
                         ports: [
                             {
                                 containerPort: 8080,
