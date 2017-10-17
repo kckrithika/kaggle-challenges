@@ -15,8 +15,8 @@ if configs.estate == "prd-sam_storage" then {
         strategy: {
             type: "RollingUpdate",
             rollingUpdate: {
-                maxUnavailable: "1",
-                maxSurge: "0",
+                maxUnavailable: 1,
+                maxSurge: 0,
             },
         },
         template: {
