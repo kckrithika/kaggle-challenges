@@ -28,6 +28,7 @@ spec:
         - --samUpdateInterval=30s
         - --sdncBootstrapTimer=30s
         - --ipamPullInterval=30s
+        - --archiveSvcPullInterval=30s
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
