@@ -27,7 +27,7 @@ spec:
         - -role=HAIRPINDEPLOYER
         - -watchdogFrequency=120s
         - -alertThreshold=1h
-        - -deployer-imageName=ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001302-4f86e9c4
+        - -deployer-imageName=ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         - -deployer-funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - -deployer-rcImtEndpoint=https://ops0-health1-1-iad.ops.sfdc.net:18443/v1/bark
         - -deployer-smtpServer=ops0-mta2-1-iad.ops.sfdc.net:25
@@ -40,7 +40,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001302-4f86e9c4
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-hairpindeployer
         volumeMounts:
         - mountPath: /data/certs
