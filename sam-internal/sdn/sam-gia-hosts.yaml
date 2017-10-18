@@ -1,6 +1,7 @@
 --- 
     - kingdom: chx
       estate: chx-sam
+      control-estate: chx-sam
       vmIPRange: 10.251.128.0/23
       hosts: 
         - hostIp: 10.250.30.2/28
@@ -23,6 +24,7 @@
           rack: F08-2
     - kingdom: chx
       estate: chx-sam_gater
+      control-estate: chx-sam
       vmIPRange: 10.251.130.0/23
       hosts:
         - hostIp: 10.250.30.6/28
@@ -42,6 +44,7 @@
           rack: F08-4
     - kingdom: wax
       estate: wax-sam
+      control-estate: wax-sam
       vmIPRange: 10.251.128.0/23
       hosts: 
         - hostIp: 10.250.38.2/28
@@ -64,6 +67,7 @@
           rack: C01-2
     - kingdom: wax
       estate: wax-sam_gater
+      control-estate: wax-sam
       vmIPRange: 10.251.130.0/23
       hosts:
         - hostIp: 10.250.38.6/28
