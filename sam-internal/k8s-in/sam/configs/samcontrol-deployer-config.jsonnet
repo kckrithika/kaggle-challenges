@@ -1,6 +1,12 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
+# Please check this config before merge using:
+#
+# ~/go/bin/manifestctl validate-config-maps --in ~/manifests/sam-internal/k8s-out/
+#
+# This will be automated soon
+
 {
   funnelEndpoint: configs.funnelVIP,
   "disable-security-check": true,

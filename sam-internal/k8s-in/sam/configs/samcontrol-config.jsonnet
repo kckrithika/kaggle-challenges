@@ -1,6 +1,12 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
+# Please check this config before merge using:
+#
+# ~/go/bin/manifestctl validate-config-maps --in ~/manifests/sam-internal/k8s-out/
+#
+# This will be automated soon
+
 {
   debug: true,
   dockerregistry: configs.registry,
@@ -11,8 +17,11 @@ local samimages = import "samimages.jsonnet";
   certFile: configs.certFile,
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
-  checkImageExistsFlag: false,
+  checkImageExistsFlag: (if configs.estate == "prd-samdev" then true else false),
 }
++ (if (configs.estate == "prd-samdev") then {
+  imageCheckV2: true,
+} else {})
 + (if (configs.kingdom == "prd") then {
   deletionEnabled: true,
   deletionPercentageThreshold: 10,
