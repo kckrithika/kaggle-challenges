@@ -13,7 +13,7 @@ local samimages = import "samimages.jsonnet";
     # We plan to fix this soon, but for now be careful and watch the rollout carefully
     # To manually test parsing, run this from k8s-in folder and look at snooze output:
     #
-    # ~/go/bin/manifestctl ~/go/bin/manifestctl validate-config-maps --in ~/manifests-th/sam-internal/k8s-out/
+    # ~/go/bin/manifestctl validate-config-maps --in ~/manifests/sam-internal/k8s-out/
     #
     # After next SMB release, this will be automated in build.sh
 
