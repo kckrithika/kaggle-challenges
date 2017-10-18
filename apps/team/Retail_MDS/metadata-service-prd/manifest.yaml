@@ -7,6 +7,10 @@ system:
   functions:
   - name: metadata-service
     count: 1
+    volumes:
+    - name: certificates
+      maddogCert:
+        type: client
     containers:
     - name: metadata-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.5.0
@@ -28,6 +32,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15523
+      volumeMounts:
+        - name: certificates
+          mountPath: /certificates
 
     - name: sherpa-mds
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
