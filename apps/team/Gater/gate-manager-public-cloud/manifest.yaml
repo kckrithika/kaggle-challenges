@@ -11,11 +11,9 @@ system:
     containers:
     - name: gate-manager
       # container image/version to run. published separately.
-      image: tnrp/gater/gater:1.4.0-0000034-14483589
+      image: tnrp/gater/gater:1.5.0-0000035-14648966
       args:
         - --server.port=9090
-        - --tnrp.port=443
-        - --dt.tnrp-endpoint-type=tnrp-vip
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: gater/app, gater/jvm, gater/json. 
