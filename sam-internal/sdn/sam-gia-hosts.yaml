@@ -1,6 +1,6 @@
 --- 
-    - estate: chx-sam
-      kingdom: chx
+    - kingdom: chx
+      estate: chx-sam
       vmIPRange: 10.251.128.0/23
       hosts: 
         - hostIp: 10.250.30.2/28
@@ -21,8 +21,8 @@
         - hostIp: 10.250.30.19/28
           hostname: shared0-samcompute2-1-chx.ops.sfdc.net
           rack: F08-2
-    - estate: chx-sam_gater
-      kingdom: chx
+    - kingdom: chx
+      estate: chx-sam_gater
       vmIPRange: 10.251.130.0/23
       hosts:
         - hostIp: 10.250.30.6/28
@@ -40,8 +40,8 @@
         - hostIp: 10.250.30.21/28
           hostname: shared0-samminiongater2-2-chx.ops.sfdc.net
           rack: F08-4
-    - estate: wax-sam
-      kingdom: wax
+    - kingdom: wax
+      estate: wax-sam
       vmIPRange: 10.251.128.0/23
       hosts: 
         - hostIp: 10.250.38.2/28
@@ -62,8 +62,8 @@
         - hostIp: 10.250.38.19/28
           hostname: shared0-samcompute2-1-wax.ops.sfdc.net
           rack: C01-2
-    - estate: wax-sam_gater
-      kingdom: wax
+    - kingdom: wax
+      estate: wax-sam_gater
       vmIPRange: 10.251.130.0/23
       hosts:
         - hostIp: 10.250.38.6/28
