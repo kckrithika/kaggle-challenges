@@ -17,7 +17,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-aeeef34
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-cf82a0d
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -43,6 +43,96 @@ system:
         name: logvol
     count: 4
     name: runtime-staging
+    volumes:
+    - hostPath:
+        path: /home/sfdc-chatbot/logs
+      name: logvol
+  - containers:
+    - env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: METAMIND_EMAIL
+        value: ylin@salesforce.com
+      - name: METAMIND_PRIVATE_KEY
+        valueFrom:
+          secretKeyRef:
+            key: private_key
+            name: chatbot-runtime-metamind-secrets
+      - name: CACHE_PROVIDER
+        value: none
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-cf82a0d
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 5
+      name: chatbot-runtime
+      ports:
+      - containerPort: 7022
+        name: apiport
+      - containerPort: 15372
+        name: managementport
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc-chatbot/logs
+        name: logvol
+    count: 4
+    name: runtime-staging-blue
+    volumes:
+    - hostPath:
+        path: /home/sfdc-chatbot/logs
+      name: logvol
+  - containers:
+    - env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: METAMIND_EMAIL
+        value: ylin@salesforce.com
+      - name: METAMIND_PRIVATE_KEY
+        valueFrom:
+          secretKeyRef:
+            key: private_key
+            name: chatbot-runtime-metamind-secrets
+      - name: CACHE_PROVIDER
+        value: none
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-cf82a0d
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 5
+      name: chatbot-runtime
+      ports:
+      - containerPort: 7022
+        name: apiport
+      - containerPort: 15372
+        name: managementport
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 30
+        periodSeconds: 5
+        timeoutSeconds: 5
+      volumeMounts:
+      - mountPath: /home/sfdc-chatbot/logs
+        name: logvol
+    count: 4
+    name: runtime-staging-green
     volumes:
     - hostPath:
         path: /home/sfdc-chatbot/logs
