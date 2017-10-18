@@ -9,23 +9,38 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.2.3-0000065-8d9c1a0f
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.5.0-0000075-ee70e5b8
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
       - mountPath: /var/log/report-collector-availability-watchdog
         name: logvol
+      - mountPath: /var/lib/report-collector-availability-watchdog/certificates/client/
+        name: clientcertvol
+        readOnly: true
       env:
       - name: REPORT_COLLECTOR_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
       - name: REPORT_COLLECTOR_PROVIDER_PORT
-        value: $(REPORTCOLLECTORHALB_SERVICE_PORT_TCP18443)
+        value: $(REPORTCOLLECTORHALB_SERVICE_PORT_TCP8443)
       - name: REPORT_COLLECTOR_CONSUMER_PORT
-        value: $(REPORTCOLLECTORHALB_SERVICE_PORT_TCP18444)
+        value: $(REPORTCOLLECTORHALB_SERVICE_PORT_TCP8444)
+      - name: REPORT_COLLECTOR_PROTOCOL
+        value: https
       - name: LOG_DIR
         value: /var/log/report-collector-availability-watchdog
       - name: DEBUG_ENABLED
         value: true
+      - name: HTTP_OPTIONS_STRICTSSL
+        value: true
+      - name: HTTP_OPTIONS_VERIFYSERVERIDENTITY
+        value: false
+      - name: HTTP_OPTIONS_PATHTOCACERTIFICATE
+        value: /var/lib/report-collector-availability-watchdog/certificates/sfdc-internal-ca.crt
+      - name: HTTP_OPTIONS_PATHTOCLIENTCERTIFICATE
+        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_avail_wd_client.crt
+      - name: HTTP_OPTIONS_PATHTOCLIENTCERTIFICATEKEY
+        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_avail_wd_client.key
       command: ["/bin/sh", "-c"]
       args: ["
       export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
@@ -42,3 +57,6 @@ system:
     - name: logvol
       hostPath:
         path: /var/log/report-collector-availability-watchdog
+    - name: clientcertvol
+      secret:
+        secretName: csc-rc-avail-wd-certificates
