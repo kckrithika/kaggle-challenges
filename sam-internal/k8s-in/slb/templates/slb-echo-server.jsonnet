@@ -45,7 +45,7 @@ if configs.estate == "prd-sdc" then {
                             "/sdn/slb-echo-service",
                             "--serviceName=slb-echo-svc",
                             "--runAsServer",
-                            "--port=" + portconfigs.slb.slbEchoServicePort,
+                            "--servicePort=" + portconfigs.slb.slbEchoServicePort,
                             "--log_dir=" + slbconfigs.logsDir,
                         ],
                         volumeMounts: configs.filter_empty([
