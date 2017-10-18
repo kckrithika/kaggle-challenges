@@ -9,14 +9,14 @@ system:
     count: 1
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.4-snapshot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.5.0
       ports:
       - containerPort: 7020
       - containerPort: 9091
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
-        value: blitz
+        value: stmfa
       - name: SERVER_PORT
         value: 9091
       - name: MANAGEMENT_PORT
@@ -33,7 +33,7 @@ system:
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
-          value: blitz
+          value: stmfa
       args:
         - --http2-in=9532
       ports:
