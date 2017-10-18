@@ -7,7 +7,7 @@ system:
       - xiao.zhou@salesforce.com
   functions:
   - name: dr-fn
-    count: 3
+    count: 2
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
