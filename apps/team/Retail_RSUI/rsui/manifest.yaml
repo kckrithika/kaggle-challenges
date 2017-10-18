@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: rsui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:rsui-test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:retail-setup-test2
       ports:
       - containerPort: 8080
       livenessProbe:
