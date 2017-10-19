@@ -14,8 +14,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fluong/bf-docker:fluong-2017-1019-1044
       ports:
       - containerPort: 9090
+      # https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
       livenessProbe:
         httpGet:
           path: /status/sam
           port: 9090
-        initialDelaySeconds: 20
+        initialDelaySeconds: 60
