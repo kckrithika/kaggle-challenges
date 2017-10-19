@@ -11,7 +11,7 @@ system:
         type: server
     containers:
     - name: bf-docker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fluong/bf-docker:fluong-2017-1004-1421
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/fluong/bf-docker:fluong-2017-1019-1044
       ports:
       - containerPort: 9090
       livenessProbe:
