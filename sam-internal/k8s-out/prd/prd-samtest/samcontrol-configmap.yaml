@@ -11,6 +11,7 @@ data:
       "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "enableMaddog": true,
       "httpsDisableCertsCheck": true,
+      "imageCheckV2": true,
       "k8sapiserver": "",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",

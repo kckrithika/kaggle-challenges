@@ -17,11 +17,9 @@ local samimages = import "samimages.jsonnet";
   certFile: configs.certFile,
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
-  checkImageExistsFlag: (if configs.estate == "prd-samdev" then true else false),
-}
-+ (if (configs.estate == "prd-samdev") then {
+  checkImageExistsFlag: (if configs.kingdom == "prd" then true else false),
   imageCheckV2: true,
-} else {})
+}
 + (if (configs.kingdom == "prd") then {
   deletionEnabled: true,
   deletionPercentageThreshold: 10,
