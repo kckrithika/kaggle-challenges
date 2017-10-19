@@ -18,3 +18,4 @@ system:
         httpGet:
           path: /status/sam
           port: 9090
+      initialDelaySeconds: 20
