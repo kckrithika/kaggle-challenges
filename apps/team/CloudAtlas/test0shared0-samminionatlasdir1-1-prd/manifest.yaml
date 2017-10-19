@@ -7,6 +7,8 @@ system:
   functions:
   - name: cloudatlas-prd-dev-dir1-1
     count: 1
+    strategy:
+      type: Recreate
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
