@@ -4,11 +4,18 @@ system:
   functions:
   - name: tictactoe-server-service
     count: 1
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-tictactoe/logs
     containers:
     - name: tictactoe-server-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20171018-18
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20171019-15
       args:
       - --metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvol
       ports:
         - containerPort: 7020
         - containerPort: 15372
