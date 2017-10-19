@@ -39,6 +39,8 @@ system:
         name: redisauthvol
         readOnly: true
       env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 1
       - name: ReportCollector_redis_host
         value: $(REDISNOHALB_SERVICE_HOST)
       - name: ReportCollector_redis_fullPathToAuthFile
