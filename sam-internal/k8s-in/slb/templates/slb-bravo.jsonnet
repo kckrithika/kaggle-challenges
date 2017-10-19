@@ -44,13 +44,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--ports=9090,9091,9092",
+                            "--tlsPorts=" + portconfigs.slb.canaryServiceTlsPort,
+                            "--privateKey=/var/slb/canarycerts/server.key",
                         ]
                         + (
                            if configs.estate == "prd-sdc" then [
-                            "--tlsPorts=" + portconfigs.slb.canaryServiceTlsPort,
                             "--publicKey=/var/slb/canarycerts/sdc.crt",
-                            "--privateKey=/var/slb/canarycerts/server.key",
-                           ] else []
+                           ] else [
+                            "--publicKey=/var/slb/canarycerts/sam.crt",
+                           ]
                           ),
 
                         volumeMounts: configs.filter_empty([

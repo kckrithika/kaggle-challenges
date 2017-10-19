@@ -34,9 +34,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                     targetPort: 9092,
                     nodePort: portconfigs.slb.bravoServiceNodePort2,
                 },
-            ]
-            + (
-              if configs.estate == "prd-sdc" then [
               {
                 name: "slb-canary-tls",
                 port: portconfigs.slb.canaryServiceTlsPort,
@@ -44,8 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 targetPort: portconfigs.slb.canaryServiceTlsPort,
                 nodePort: portconfigs.slb.bravoServiceNodePort3,
               },
-              ] else []
-            ),
+              ],
             selector: {
                     name: "slb-bravo",
             },

@@ -20,9 +20,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 targetPort: portconfigs.slb.canaryServicePort,
                 nodePort: portconfigs.slb.canaryServiceNodePort,
             },
-            ]
-            + (
-              if configs.estate == "prd-sdc" then [
               {
                 name: "slb-canary-tls",
                 port: portconfigs.slb.canaryServiceTlsPort,
@@ -30,8 +27,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 targetPort: portconfigs.slb.canaryServiceTlsPort,
                 nodePort: portconfigs.slb.canaryServiceTlsNodePort,
               },
-              ] else []
-            ),
+            ],
                 selector: {
                     name: "slb-canary",
                 },
