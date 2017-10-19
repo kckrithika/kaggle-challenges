@@ -1,0 +1,28 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: default
+    count: 5
+    containers:
+    - name: tls
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000405-ebefe616
+
+      command: ["/sdn/slb-canary-service"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=6789", "--tlsPorts=9443", "--privateKey=/var/slb/canarycerts/server.key","--publicKey=/var/slb/canarycerts/sdc.crt"]
+      ports:
+      - containerPort: 6789
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 6789
+ 
+  loadbalancers:
+  - lbname: tlslb 
+    function: default
+    slbenabled: true
+    ports:
+      - port: 6789
+        targetport: 6789
+      - port: 9443
+        targetport: 9443
