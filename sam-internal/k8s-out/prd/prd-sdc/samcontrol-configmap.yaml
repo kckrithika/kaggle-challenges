@@ -10,6 +10,7 @@ data:
       "deletionPercentageThreshold": 10,
       "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
       "httpsDisableCertsCheck": true,
+      "imageCheckV2": true,
       "k8sapiserver": "",
       "keyFile": "/data/certs/hostcert.key",
       "statefulAppEnabled": true,
