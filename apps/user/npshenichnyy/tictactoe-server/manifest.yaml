@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: tictactoe-server-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20170914-09
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20171018-18
       ports:
         - containerPort: 7020
         - containerPort: 15372
