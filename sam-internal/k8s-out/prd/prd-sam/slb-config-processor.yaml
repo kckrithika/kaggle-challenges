@@ -34,7 +34,7 @@ spec:
         - --kneDomainName=slb.sfdc.net
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000405-ebefe616
         name: slb-config-processor
         securityContext:

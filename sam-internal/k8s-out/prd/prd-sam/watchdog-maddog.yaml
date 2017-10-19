@@ -30,7 +30,7 @@ spec:
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-maddog
         volumeMounts:
