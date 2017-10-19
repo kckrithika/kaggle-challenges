@@ -44,7 +44,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-      hostNetwork: true
+      hostNetwork: false
       nodeSelector:
         slb-service: slb-nginx
       volumes:
