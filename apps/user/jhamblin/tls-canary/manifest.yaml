@@ -7,7 +7,6 @@ system:
     containers:
     - name: tls
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
-#      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000405-ebefe616
 
       command: ["/sdn/slb-canary-service"]
       args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133"]
