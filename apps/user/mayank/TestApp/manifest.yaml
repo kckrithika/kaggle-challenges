@@ -16,7 +16,13 @@ system:
       env:
         - name: DUMMYENV
           value: "SOMEVALUE"
-
+      volumeMounts:
+      - name: certs
+        mountPath: /certs
+    volumes:
+     - name: certs
+       maddogCert:
+         type: client
   loadbalancers:
   - lbname: samhellolb
     function: mayank-fn
