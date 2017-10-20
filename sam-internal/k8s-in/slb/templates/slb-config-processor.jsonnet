@@ -34,7 +34,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.kube_config_volume,
                  ]),
                 containers: [
-                   {
+                    {
                         name: "slb-config-processor",
                         image: slbimages.hypersdn,
                         command: [
@@ -72,7 +72,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         },
                     },
                 ],
-             },
+            },
         },
     },
 } else "SKIP"
