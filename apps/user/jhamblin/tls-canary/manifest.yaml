@@ -4,6 +4,10 @@ system:
   functions:
   - name: default
     count: 2
+    volumes:
+    - name: cert
+      maddogCert:
+        type: server
     containers:
     - name: tls
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
@@ -17,6 +21,9 @@ system:
         httpGet:
           path: /
           port: 3133
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
  
   loadbalancers:
   - lbname: tlslb 
