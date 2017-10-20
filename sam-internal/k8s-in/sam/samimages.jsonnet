@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [thargrove]This contains imageCheckV2, needed for artifactory
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001388-8522f76c",
-        "prd,prd-samtest,samcontrol,hypersam": "sam-0001388-8522f76c",
+        "prd,prd-samtest,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20171019_174418.1ce81d2.dirty.cbatra-ltm1",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sam_storage,samcontrol,hypersam": "sam-0001388-8522f76c",
