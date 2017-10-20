@@ -29,6 +29,7 @@
         canaryServicePassthroughTlsPort: 9114,
         canaryServiceProxyTcpPort: 9115,
         canaryServiceProxyHttpPort: 9116,
+        slbConfigDataPort: 9117,
 
         canaryServiceTlsNodePort: 32135,
         canaryServiceNodePort: 32136,

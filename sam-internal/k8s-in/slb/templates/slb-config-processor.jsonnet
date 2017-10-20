@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
@@ -34,7 +35,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.kube_config_volume,
                  ]),
                 containers: [
-                    {
+                   {
                         name: "slb-config-processor",
                         image: slbimages.hypersdn,
                         command: [
@@ -71,8 +72,24 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             privileged: true,
                         },
                     },
-                ],
-            },
+                ]
+                + (
+                    if configs.estate == "prd-sdc" then [
+                        {
+                            name: "slb-config-data",
+                            image: slbimages.hypersdn,
+                            command: [
+                                "/sdn/slb-config-processor",
+                                "--slbDir=" + slbconfigs.slbDir,
+                                "--port=" + portconfigs.slb.slbConfigDataPort,
+                            ],
+                            volumeMounts: configs.filter_empty([
+                                slbconfigs.slb_volume_mount,
+                             ]),
+                        },
+                    ] else []
+                ),
+             },
         },
     },
 } else "SKIP"
