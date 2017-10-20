@@ -1,3 +1,4 @@
 apps:
-  sample:
+  tls-canary:
   - prd/prd-sam
+
