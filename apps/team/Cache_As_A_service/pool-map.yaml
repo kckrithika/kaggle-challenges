@@ -1686,14 +1686,6 @@ apps:
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
 
- prd-sp2-casam-func-9000:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
  prd-sp2-casam-metrics-publisher-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
