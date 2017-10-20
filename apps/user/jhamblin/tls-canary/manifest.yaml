@@ -3,26 +3,26 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 5
+    count: 2
     containers:
     - name: tls
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000405-ebefe616
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
+#      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000405-ebefe616
 
       command: ["/sdn/slb-canary-service"]
-      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=6789", "--tlsPorts=9443", "--privateKey=/var/slb/canarycerts/server.key","--publicKey=/var/slb/canarycerts/sdc.crt"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133"]
+#, "--tlsPorts=9443", "--privateKey=/var/slb/canarycerts/server.key","--publicKey=/var/slb/canarycerts/sdc.crt"]
       ports:
-      - containerPort: 6789
+      - containerPort: 3133
       livenessProbe:
         httpGet:
           path: /
-          port: 6789
+          port: 3133
  
   loadbalancers:
   - lbname: tlslb 
     function: default
     slbenabled: true
     ports:
-      - port: 6789
-        targetport: 6789
-      - port: 9443
-        targetport: 9443
+      - port: 3133
+        targetport: 3133
