@@ -4,7 +4,7 @@ metadata:
   labels:
     app: sam-deployment-portal
     slb.sfdc.net/name: sdp
-  name: portal-svc
+  name: sdp
   namespace: sam-system
 spec:
   ports:
