@@ -9,10 +9,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
 
       command: ["/sdn/slb-canary-service"]
-      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133"]
-#, "--tlsPorts=9443", "--privateKey=/var/slb/canarycerts/server.key","--publicKey=/var/slb/canarycerts/sdc.crt"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133", "--tlsPorts=3134", "--privateKey=/var/slb/canarycerts/server.key","--publicKey=/var/slb/canarycerts/sdc.crt"]
       ports:
       - containerPort: 3133
+      - containerPort: 3134
       livenessProbe:
         httpGet:
           path: /
@@ -25,3 +25,5 @@ system:
     ports:
       - port: 3133
         targetport: 3133
+      - port: 3134
+        targetport: 3134
