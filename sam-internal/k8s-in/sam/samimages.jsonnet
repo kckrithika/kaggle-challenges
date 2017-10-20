@@ -17,23 +17,14 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        # [thargrove]This contains imageCheckV2, needed for artifactory
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-samtest,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20171019_194800.cf831eb.clean.cbatra-ltm1",
+        # [thargrove]This contains imageCheckV2, needed for artifactory
         "prd,prd-sam,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sam_storage,samcontrol,hypersam": "sam-0001388-8522f76c",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001387-af0a5544",
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001387-af0a5544",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001387-af0a5544",
-        "prd,prd-samtest,sam-deployment-portal,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-samdev,sam-deployment-portal,hypersam": "sam-0001360-99d775ff",
         "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-samtest,watchdog-deployment,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-samdev,watchdog-deployment,hypersam": "sam-0001360-99d775ff",
         "prd,prd-sam,watchdog-deployment,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-samtest,watchdog-kuberesources,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-samdev,watchdog-kuberesources,hypersam": "sam-0001360-99d775ff",
         "prd,prd-sam,watchdog-kuberesources,hypersam": "sam-0001360-99d775ff",
     },
 
@@ -52,7 +43,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001355-581a778b",
+            hypersam: "sam-0001391-35a0d810",
             madkub: "1.0.0-0000038-b211df9b",
             madkubSidecar: "1.0.0-0000038-b211df9b",
             },
