@@ -4,55 +4,105 @@ system:
   notifications:
     email:
       - ssandke@salesforce.com
+
   functions:
-  - name: etcd-pv    
-    type: stateful-set
-    count: 3
+  - name: etcd-transient
+    count: 1
     containers:
     - name: etcd
-      image: tnrp/gater/gater:1.4.0-0000219-14573585
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/etcd:3.2.0
 
+      args:
+      - --datadir=/etcd-data/data
+      - --waldir=/etcd-data/wal
+      
       volumeMounts:
-      - mountPath: /etcd/data
+      - mountPath: /etcd-data
         name: datavol
-      # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
-      livenessProbe:
-        YO YO YO        
-        initialDelaySeconds: 10
-        timeoutSeconds: 10
-
+      - mountPath: /certs
+        name: certs
+      
       ports:
       - containerPort: 2379
-      - containerPort: 2380 
-
 
       resources:
         requests:
           memory: "4Gi"
           cpu: "1"
         limits:
-          memory: "8Gi"
+          memory: "16Gi"
           cpu: "2"
 
-    volumeMounts:
-    - mountPath: /certs
-      name: certs
+      livenessProbe:
+        exec:
+          command:
+          - "echo 0"
+          initialDelaySeconds: 15
+          periodSeconds: 5
 
     volumes:
+    - name: datavol
+      emptyDir: {}
     - name: certs
       maddogCert:
         type: server
 
-    lbname: etcd-headless-lb
+  loadbalancers:
+  - lbname: etcd-transient
+    function: etcd-transient
+    slbEnabled: true
+    ports:
+      - targetport: 2379
+        # targetport: 9090
 
-    # Give containers a bit of time to shut down, as they might be syncing 
-    # state into the PV on shutdown
-    terminationGracePeriodSeconds: 12
+  # - name: etcd-pv    
+    # type: stateful-set
+    # count: 3
+    # containers:
+    # - name: etcd
+    #   image: tnrp/gater/gater:1.4.0-0000219-14573585
 
-    volumeClaimTemplates:
-    - name: datavol
-      storageClassName: standard
-      storageSizeRequest: 8Gi
+    #   volumeMounts:
+    #   - mountPath: /etcd/data
+    #     name: datavol
+    #   # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
+    #   livenessProbe:
+    #     YO YO YO        
+    #     initialDelaySeconds: 10
+    #     timeoutSeconds: 10
+
+    #   ports:
+    #   - containerPort: 2379
+    #   - containerPort: 2380 
+
+
+    #   resources:
+    #     requests:
+    #       memory: "4Gi"
+    #       cpu: "1"
+    #     limits:
+    #       memory: "8Gi"
+    #       cpu: "2"
+
+    # volumeMounts:
+    # - mountPath: /certs
+    #   name: certs
+
+    # volumes:
+    # - name: certs
+    #   maddogCert:
+    #     type: server
+
+    # lbname: etcd-headless-lb
+
+    # # Give containers a bit of time to shut down, as they might be syncing 
+    # # state into the PV on shutdown
+    # terminationGracePeriodSeconds: 12
+
+    # volumeClaimTemplates:
+    # - name: datavol
+    #   storageClassName: standard
+      # storageSizeRequest: 8Gi
 
     # Updates aren't supported by stateful sets until Kubernetes 1.7
     # strategy:
