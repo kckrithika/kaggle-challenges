@@ -14,7 +14,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         name: "k8sproxy",
                         image: samimages.k8sproxy,
                         args: [
-                        ] + (if configs.estate == "prd-samtest" then [
+                        ] + (if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then [
                           "-f",
                           "/k8sproxyconfig/haproxy-maddog.cfg",
                         ] else [
