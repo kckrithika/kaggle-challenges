@@ -6,21 +6,16 @@ system:
     count: 1
     containers:
     - name: labscart
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/labscart:20171014.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/labscart:20171021.0
       livenessProbe:
         exec:
           command:
           - /usr/bin/true
-        initialDelaySeconds: 5
+        initialDelaySeconds: 60
         periodSeconds: 60
       readinessProbe:
         exec:
           command:
           - /usr/bin/true
-        initialDelaySeconds: 5
+        initialDelaySeconds: 60
         periodSeconds: 60
-    env:
-    - name: HTTPS_PROXY
-      value: public0-proxy1-0-prd.data.sfdc.net:8080
-    - name: NO_PROXY
-      value: .ops.sfdc.net,.internal.salesforce.com
