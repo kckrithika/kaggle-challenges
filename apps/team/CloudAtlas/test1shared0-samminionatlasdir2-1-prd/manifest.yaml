@@ -7,10 +7,12 @@ system:
   functions:
   - name: cloudatlas-prd-stage-dir2-1
     count: 1
+    strategy:
+      type: Recreate
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: tnrp/cloud-atlas/cloudatlas:a808fa8
+      image: sfci/cloud-atlas/cloudatlas:1.1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -18,6 +20,8 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
+      - mountPath: /certs
+        name: server-cert
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -29,3 +33,6 @@ system:
     - name: hosthomevol
       hostPath:
         path: /data/ca-cluster-a
+    - name: server-cert
+      maddogCert:
+        type: server
