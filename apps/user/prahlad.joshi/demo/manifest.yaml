@@ -22,7 +22,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: myenv
     volumes:
-      - name: my-cert
+      - name: cert
         maddogCert:
           type: client
   loadbalancers:
