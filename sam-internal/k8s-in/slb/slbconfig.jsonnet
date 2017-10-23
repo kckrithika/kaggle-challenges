@@ -136,6 +136,18 @@ perCluster: {
         mountPath: "/host/data/slb/logs",
     },
 
+# Frequently used volume: host/sbin
+    sbin_volume: {
+        name: "sbin-volume",
+        hostPath: {
+            path: "/sbin",
+        },
+    },
+    sbin_volume_mount: {
+        name: "sbin-volume",
+        mountPath: "/host/sbin",
+    },
+
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
 namespace: self.perCluster.namespace[estate],

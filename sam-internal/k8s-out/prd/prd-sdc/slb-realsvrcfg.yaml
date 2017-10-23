@@ -28,8 +28,8 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host
-          name: host-volume
+        - mountPath: /host/sbin
+          name: sbin-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       hostNetwork: true
@@ -38,8 +38,8 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /
-        name: host-volume
+          path: /sbin
+        name: sbin-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
