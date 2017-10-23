@@ -37,7 +37,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                             "/sdn/slb-cleanup",
                             "--period=1800s",
-                            "--logsMaxAge=2d",
+                            "--logsMaxAge=48h",
                             "--log_dir=" + slbconfigs.logsDir,
                         ],
                         volumeMounts: configs.filter_empty([
