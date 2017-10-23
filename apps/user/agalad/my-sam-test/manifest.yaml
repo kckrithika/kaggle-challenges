@@ -22,7 +22,8 @@ system:
   loadbalancers:
   - lbname: samhellolb
     function: default
-    slbExposed: true
+    nodeExposed: true
+    slbEnabled: true
     ports:
       - port: 9092
         targetport: 9090
