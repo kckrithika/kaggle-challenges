@@ -22,7 +22,8 @@ system:
   loadbalancers:
   - lbname: selenium-standalone-chromelb
     function: selenium-standalone-chrome
-    slbExposed: true
+    nodeExposed: true
+    slbEnabled: true
     ports:
       - port: 4444
         targetport: 4444
