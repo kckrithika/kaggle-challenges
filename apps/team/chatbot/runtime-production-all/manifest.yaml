@@ -17,7 +17,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: sfci/chatbots/chatbot-runtime:210.0-99c9461
+      image: sfci/chatbots/chatbot-runtime:210.0-8c1c822
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -62,7 +62,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: sfci/chatbots/chatbot-runtime:210.0-99c9461
+      image: sfci/chatbots/chatbot-runtime:210.0-8c1c822
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -107,7 +107,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: sfci/chatbots/chatbot-runtime:210.0-99c9461
+      image: sfci/chatbots/chatbot-runtime:210.0-8c1c822
       livenessProbe:
         httpGet:
           path: /manage/health
