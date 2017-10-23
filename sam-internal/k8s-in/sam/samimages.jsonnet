@@ -44,8 +44,8 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
             hypersam: "sam-0001391-35a0d810",
-            madkub: "1.0.0-0000038-b211df9b",
-            madkubSidecar: "1.0.0-0000038-b211df9b",
+            madkub: "1.0.0-0000039-f298467c",
+            madkubSidecar: "1.0.0-0000039-f298467c",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
