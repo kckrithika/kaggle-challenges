@@ -23,16 +23,11 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000408-89d7f73f
         name: slb-canary-proxy-tcp
         volumeMounts:
-        - mountPath: /host
-          name: host-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
         pool: prd-sdc
       volumes:
-      - hostPath:
-          path: /
-        name: host-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume

@@ -30,14 +30,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             spec: {
                 hostNetwork: true,
                 volumes: configs.filter_empty([
-                    slbconfigs.slb_volume,
-                    {
-                        name: "dev-volume",
-                        hostPath: {
-                            path: "/dev",
-                         },
-                    },
-                    slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
@@ -62,11 +54,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           ),
 
                         volumeMounts: configs.filter_empty([
-                            {
-                                name: "dev-volume",
-                                mountPath: "/dev",
-                            },
-                            slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
                         securityContext: {
