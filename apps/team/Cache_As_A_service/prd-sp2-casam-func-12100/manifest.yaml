@@ -14,11 +14,11 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.4-0000046-2e43a58d
+      image: tnrp/casam/coreapp:210.4-0000048-b21f0078
 
       env:
         - name: DEPLOYMENT
-          value: G
+          value: H
         - name: DB_USER
           value: grumpy
 
@@ -78,9 +78,6 @@ system:
         - containerPort: 11211
         - containerPort: 12099
         - containerPort: 12098
-        # To avoid conflicts with CaaS perf hosts
-        - containerPort: 12000
-        - containerPort: 12015
 
       volumeMounts:
         - name: cert
