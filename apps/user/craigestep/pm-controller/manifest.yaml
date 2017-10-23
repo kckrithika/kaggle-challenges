@@ -1,0 +1,23 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: default
+      count: 1
+      volumes:
+        - name: pmc-cert
+          maddogCert:
+            type: client
+      containers:
+        - name: pm-controller
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/craigestep/pm-controller:craigestep-2017-1023-1344
+          ports:
+            - containerPort: 9090
+          livenessProbe:
+            httpGet:
+              path: /status/sam
+              port: 9090
+            initialDelaySeconds: 60
+          volumeMounts:
+            - name: pmc-cert
+              mountPath: /certs
