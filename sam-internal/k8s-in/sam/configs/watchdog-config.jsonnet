@@ -9,14 +9,6 @@ local samimages = import "samimages.jsonnet";
   #
   # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
   snooze: [
-    # WARNING - Mistakes in this section will cause all watchdogs to go into a crash loop!
-    # We plan to fix this soon, but for now be careful and watch the rollout carefully
-    # To manually test parsing, run this from k8s-in folder and look at snooze output:
-    #
-    # ~/go/bin/manifestctl validate-config-maps --in ~/manifests/sam-internal/k8s-out/
-    #
-    # After next SMB release, this will be automated in build.sh
-
     # Unknown - next time add comment
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
