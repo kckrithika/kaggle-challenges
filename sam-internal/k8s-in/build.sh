@@ -60,6 +60,14 @@ else
   /opt/sam/manifestctl kube-json-to-yaml --in ../k8s-out/ --rm
 fi
 
+# Validate configMaps
+
+if [ -z "$GO_PIPELINE_LABEL" ]; then
+  docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl validate-config-maps --in /repo/sam-internal/k8s-out/
+else
+  /opt/sam/manifestctl validate-config-maps --in ../k8s-out/ 
+fi
+
 # TODO: Add warning when running against out-of-sync git repo
 
 # TODO: Add some basic validations
