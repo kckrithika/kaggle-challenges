@@ -28,7 +28,6 @@ if configs.estate == "prd-sdc" then {
             spec: {
                 hostNetwork: true,
                 volumes: configs.filter_empty([
-                    slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
@@ -43,7 +42,6 @@ if configs.estate == "prd-sdc" then {
                             "--ports=" + portconfigs.slb.canaryServicePassthroughHostNetworkPort,
                         ],
                         volumeMounts: configs.filter_empty([
-                            slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
                     },
