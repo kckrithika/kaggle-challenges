@@ -25,10 +25,8 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                         command: [
                             "/sam/watchdog",
                             "-role=HAIRPINDEPLOYER",
-                            ]
-                            + (if configs.estate == "prd-samdev" then ["-watchdogFrequency=121s"] else ["-watchdogFrequency=120s"])
-                            + [
-"-alertThreshold=1h",
+                            "-alertThreshold=1h",
+                            "-watchdogFrequency=120s",
                             "-deployer-imageName=" + samimages.hypersam,
                             "-deployer-funnelEndpoint=" + configs.funnelVIP,
                             "-deployer-rcImtEndpoint=" + configs.rcImtEndpoint,
@@ -36,12 +34,10 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                             "-deployer-sender=sam-alerts@salesforce.com",
                             # TODO: We should kill these flags and use the value from liveConfig
                             "-deployer-recipient=" + samwdconfigmap.recipient,
+                            "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
+                            "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
                         ]
-                        + samwdconfig.shared_args
-                        # [thargrove] 2017-05-05 shared0-samtestkubeapi2-1-prd.eng.sfdc.net is down
-                        + (if configs.estate == "prd-samtest" then ["-snoozedAlarms=hairpinChecker=2017/06/02"] else [])
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
-                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
+                        + samwdconfig.shared_args,
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,
