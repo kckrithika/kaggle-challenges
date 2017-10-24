@@ -156,7 +156,7 @@ perCluster: {
     },
     usr_sbin_volume_mount: {
         name: "usr_sbin-volume",
-        mountPath: "/usr/sbin",
+        mountPath: "/host/usr/sbin",
     },
 
 subnet: self.perCluster.subnet[estate],
