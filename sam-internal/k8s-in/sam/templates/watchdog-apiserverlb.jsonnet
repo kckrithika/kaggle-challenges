@@ -12,12 +12,12 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "watchdog-apiserverlb",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                             "/sam/watchdog",
                             "-role=APISERVERLB",
                             "-watchdogFrequency=60s",
                             "-alertThreshold=5m",
-                        ]
+                        ])
                         + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
                         # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet

@@ -17,6 +17,7 @@ spec:
       - command:
         - /sam/samcontrol-deployer
         - --config=/config/tempsamcontroldeployer.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

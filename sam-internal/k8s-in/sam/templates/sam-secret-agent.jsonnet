@@ -12,7 +12,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "sam-secret-agent",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                            "/sam/sam-secret-agent",
                            "--funnelEndpoint=" + configs.funnelVIP,
                            "--logtostderr=true",
@@ -23,7 +23,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                            "--keyfile=" + configs.keyFile,
                            "--certfile=" + configs.certFile,
                            "--cafile=" + configs.caFile,
-                         ],
+                           configs.sfdchosts_arg,
+                         ]),
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
                            configs.maddog_cert_volume_mount,

@@ -12,14 +12,15 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "sam-controller",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                            "/sam/sam-controller",
                            "--dockerregistry=" + configs.registry,
                            "--funnelEndpoint=" + configs.funnelVIP,
                            "--v=3",
                            "--logtostderr=true",
                            "--config=/config/samcontrol.json",
-                        ] + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then [
+                           configs.sfdchosts_arg,
+                        ]) + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then [
                         # Kept here because of the use of the envvar. Keep in sync with the config.
                         "-maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
                         ] else []),
