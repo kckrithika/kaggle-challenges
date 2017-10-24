@@ -25,7 +25,7 @@ system:
         initialDelaySeconds: 360
         periodSeconds: 60
       ports:
-        - containerPort: 8081
+        - containerPort: 8080
 
   - name: csr-kaiju-agent
     count: 1
@@ -58,7 +58,7 @@ system:
     nodeExposed: true
     ports:
     - port: 8081
-      targetport: 8081
+      targetport: 8080
   - lbname: csrkaijuagent
     function: csr-kaiju-agent
     nodeExposed: true
