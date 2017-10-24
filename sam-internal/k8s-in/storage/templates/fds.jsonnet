@@ -21,6 +21,7 @@ if configs.estate == "prd-sam_storage" then {
                 maxSurge: 0,
             },
         },
+        minReadySeconds: 30,
         template: {
             metadata: {
                 labels: {
@@ -43,14 +44,20 @@ if configs.estate == "prd-sam_storage" then {
                                 port: 8080,
                             },
                         },
-                       volumeMounts: configs.filter_empty([
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                        readinessProbe: {
+                            httpGet: {
+                                path: "/healthz",
+                                port: 8080,
+                            },
+                        },
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
