@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: agalad-default
     count: 2
     containers:
     - name: samhello
@@ -20,8 +20,8 @@ system:
         maxUnavailable: 25%
 
   loadbalancers:
-  - lbname: samhellolb
-    function: default
+  - lbname: agalad-samhellolb
+    function: agalad-default
     nodeExposed: true
     slbEnabled: true
     ports:
