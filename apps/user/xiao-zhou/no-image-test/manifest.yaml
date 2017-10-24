@@ -20,7 +20,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: myenv
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: noimagelb
     function: noimage-fn
     ports:
       - port: 9087
