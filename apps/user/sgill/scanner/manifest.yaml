@@ -1,0 +1,42 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: file-inspection
+    count: 1
+    containers:
+    - name: scanner
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner:20171024_0958
+      ports:
+      - name: web
+        containerPort: 8084
+      - name: service
+        containerPort: 7020
+      livenessProbe:
+          httpGet:
+            path: /ping
+            port: 8084
+          initialDelaySeconds: 30
+          periodSeconds: 5
+    - name: sherpa-b
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
