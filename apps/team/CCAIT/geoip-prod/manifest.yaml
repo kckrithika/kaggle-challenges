@@ -52,7 +52,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-b
-      image: tnrp/sherpa:0.0.1-0000039-4d80a889
+      image: tnrp/sherpa:0.2.0-0000097-594964a3
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
