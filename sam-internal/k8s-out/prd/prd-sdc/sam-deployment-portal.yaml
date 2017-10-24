@@ -33,6 +33,8 @@ spec:
         ports:
         - containerPort: 64121
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -47,6 +49,9 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

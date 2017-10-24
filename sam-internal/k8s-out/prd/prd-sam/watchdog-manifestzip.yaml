@@ -29,6 +29,8 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-manifestzip
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /var/token
           name: token
           readOnly: true
@@ -38,6 +40,9 @@ spec:
       nodeSelector:
         pool: prd-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - name: token
         secret:
           secretName: git-token
