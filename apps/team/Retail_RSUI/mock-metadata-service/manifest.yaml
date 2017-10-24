@@ -32,9 +32,9 @@ system:
     function: mock-metadata-service
     nodeExposed: true
     ports:
-    - port: 27020       # gRPC port
+    - port: 17020       # gRPC port
       targetport: 7020
-    - port: 27021       # REST port (dev/testing use only)
+    - port: 17021       # REST port (dev/testing use only)
       targetport: 7021
-    - port: 27023       # Management (health check) port
+    - port: 17023       # Management (health check) port
       targetport: 7023
