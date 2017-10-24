@@ -17,7 +17,6 @@ docker run \
   -it \
   -u 0 \
   -v ${PWD}:/repo \
-  -w /repo \
   ${HYPERSAM} \
   sam-manifest-builder \
   --root='/repo/' \
