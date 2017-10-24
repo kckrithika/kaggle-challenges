@@ -7,7 +7,7 @@ data:
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001391-35a0d810",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001408-441a28db",
       "k8sproxyEndpoint": "http://localhost:40000",
       "keyFile": "/data/certs/hostcert.key",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
