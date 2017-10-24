@@ -149,13 +149,13 @@ perCluster: {
     },
 # Frequently used volume: /usr/sbin
     usr_sbin_volume: {
-        name: "usr_sbin-volume",
+        name: "usr-sbin-volume",
         hostPath: {
             path: "/usr/sbin",
         },
     },
     usr_sbin_volume_mount: {
-        name: "usr_sbin-volume",
+        name: "usr-sbin-volume",
         mountPath: "/host/usr/sbin",
     },
 
