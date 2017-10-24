@@ -22,12 +22,14 @@ system:
       - name: MANAGEMENT_PORT
         value: 15523
       livenessProbe:
-        initialDelaySeconds: 60
-        periodSeconds: 30
-        timeoutSeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15523
+        exec:
+          command: ['true']
+        # initialDelaySeconds: 60
+        # periodSeconds: 30
+        # timeoutSeconds: 30
+        # httpGet:
+        #   path: /manage/health
+        #   port: 15523
 
     # - name: sherpa-mds
     #   image: tnrp/sherpa:0.2.0-0000076-47b587a5
