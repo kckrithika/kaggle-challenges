@@ -32,10 +32,10 @@ spec:
         volumeMounts:
         - mountPath: /dev
           name: dev-volume
-        - mountPath: /lib/modules
+        - mountPath: /host/lib/modules
           name: lib-modules-volume
-        - mountPath: /host
-          name: host-volume
+        - mountPath: /host/tmp
+          name: tmp-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       - command:
@@ -86,8 +86,8 @@ spec:
           path: /lib/modules
         name: lib-modules-volume
       - hostPath:
-          path: /
-        name: host-volume
+          path: /tmp
+        name: tmp-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume

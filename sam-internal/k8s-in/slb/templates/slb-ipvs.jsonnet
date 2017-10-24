@@ -39,7 +39,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             path: "/lib/modules",
                          },
                     },
-                    slbconfigs.host_volume,
+                    (if configs.estate == "prd-sdc" then
+                    {
+                        name: "tmp-volume",
+                        hostPath: {
+                            path: "/tmp",
+                         },
+                    }
+                    else slbconfigs.host_volume),
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
@@ -62,9 +69,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                             {
                                 name: "lib-modules-volume",
-                                mountPath: "/lib/modules",
+                                mountPath: (if configs.estate == "prd-sdc" then "/host/lib/modules" else "/lib/modules"),
                             },
-                            slbconfigs.host_volume_mount,
+                            (if configs.estate == "prd-sdc" then
+                            {
+                                name: "tmp-volume",
+                                mountPath: "/host/tmp",
+                            }
+                            else slbconfigs.host_volume_mount),
                             slbconfigs.logs_volume_mount,
                         ]),
                         securityContext: {
