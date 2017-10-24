@@ -1,0 +1,76 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cschealthcp@salesforce.com
+  functions:
+  - name: expcandidate-service
+    count: 1
+    containers:
+    - name: expcandidate-service
+      image: tnrp/csc-health/candidate-service:candidate-service-0000015-278a68b1
+      ports:
+      - containerPort: 8888
+      volumeMounts:
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      env:
+      - name: CHS_AJNA_ENABLED
+        value: true
+      - name: CHS_REPORTCOLLECTOR_MTLSENABLED
+        value: false
+      - name: CHS_REPORTCOLLECTOR_POLLPERIOD
+        value: 180s
+      - name: CHS_REPORTCOLLECTORALTERNATE_ENABLED
+        value: true
+      - name: CHS_REPORTCOLLECTORALTERNATE_POLLPERIOD
+        value: 180s
+      - name: CHS_REPORTCOLLECTORALTERNATE_MTLSENABLED
+        value: true
+      - name: CHS_REPORTCOLLECTORALTERNATE_CERTPATH
+        value: /var/secrets/grok-client.crt.pem
+      - name: CHS_REPORTCOLLECTORALTERNATE_KEYPATH
+        value: /var/secrets/grok-client.key
+      - name: CHS_GROK_CERTPATH
+        value: /var/secrets/grok-client.crt.pem
+      - name: CHS_GROK_KEYPATH
+        value: /var/secrets/grok-client.key
+      - name: CHS_HEALTH_PORT
+        value: 8888
+      - name: CHS_LOG_FILE
+        value: /home/sfdc-csc-health/candidate-service/candidate-service-app.log
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8888
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+        export CHS_AJNA_FUNNELENDPOINT=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+        export CHS_AJNA_DATACENTER=${KINGDOM} ;
+        export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+        export CHS_GROK_ENDPOINT=dead-end ;
+        export CHS_REPORTCOLLECTORALTERNATE_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
+        case ${KINGDOM} in
+          prd)
+            export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
+            ;;
+          *)
+            export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.ops.sfdc.net:18444
+            ;;
+        esac ;
+        /candidateservice
+      "]
+    volumes:
+      - name: secretvol
+        secret:
+          secretName: csc-health-secret
+
+  loadbalancers:
+  - lbname: expcandidateservicelb
+    function: expcandidate-service
+    ports:
+    - port: 80
+      targetport: 8888
