@@ -13,19 +13,19 @@ system:
       ports:
       - containerPort: 7020
       - containerPort: 7021
-      - containerPort: 7023
+      - containerPort: 7022
       env:
       - name: SERVER_PORT
-        value: 7020
-      - name: MANAGEMENT_PORT
         value: 7021
+      - name: MANAGEMENT_PORT
+        value: 7022
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
         timeoutSeconds: 30
         httpGet:
           path: /manage/health
-          port: 7023
+          port: 7022
 
   loadbalancers:
   - lbname: mock-metadata-servicelb
@@ -36,5 +36,5 @@ system:
       targetport: 7020
     - port: 27021       # REST port (dev/testing use only)
       targetport: 7021
-    - port: 27023       # Management (health check) port
-      targetport: 7023
+    - port: 27022       # Management (health check) port
+      targetport: 7022
