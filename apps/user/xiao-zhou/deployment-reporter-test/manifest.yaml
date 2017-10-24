@@ -24,7 +24,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: myenv
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: deploymentreporterlb
     function: dr-fn
     ports:
       - port: 9088
