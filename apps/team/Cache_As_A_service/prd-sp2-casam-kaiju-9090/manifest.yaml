@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: kaiju-master
+  - name: csr-kaiju-master
     count: 1
     containers:
     - name: csr-kaiju-master
@@ -27,7 +27,7 @@ system:
       ports:
         - containerPort: 8081
 
-  - name: kaiju-agent
+  - name: csr-kaiju-agent
     count: 1
     containers:
     - name: csr-kaiju-agent
@@ -54,13 +54,13 @@ system:
 
   loadbalancers:
   - lbname: csrkaijumaster
-    function: kaiju-master
+    function: csr-kaiju-master
     nodeExposed: true
     ports:
     - port: 8081
       targetport: 8081
   - lbname: csrkaijuagent
-    function: kaiju-agent
+    function: csr-kaiju-agent
     nodeExposed: true
     ports:
     - port: 9090
