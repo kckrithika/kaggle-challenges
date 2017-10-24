@@ -18,7 +18,7 @@ if configs.estate == "prd-sdc" then {
                 port: portconfigs.slb.slbEchoServicePort,
                 protocol: "TCP",
                 targetPort: portconfigs.slb.slbEchoServicePort,
-                nodePort: portconfigs.slb.slbEchoServicePort,
+                nodePort: portconfigs.slb.slbEchoServiceNodePort,
             },
             ],
                 selector: {
