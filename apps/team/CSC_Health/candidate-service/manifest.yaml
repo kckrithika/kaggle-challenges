@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000013-7d33b724
+      image: tnrp/csc-health/candidate-service:candidate-service-0000015-278a68b1
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000013-7d33b724
+      image: tnrp/csc-health/candidate-service:candidate-service-0000015-278a68b1
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -53,6 +53,14 @@ system:
         value: true
       - name: CHS_REPORTCOLLECTOR_MTLSENABLED
         value: false
+      - name: CHS_REPORTCOLLECTORALTERNATE_ENABLED
+        value: true
+      - name: CHS_REPORTCOLLECTORALTERNATE_MTLSENABLED
+        value: true
+      - name: CHS_REPORTCOLLECTORALTERNATE_CERTPATH
+        value: /var/secrets/grok-client.crt.pem
+      - name: CHS_REPORTCOLLECTORALTERNATE_KEYPATH
+        value: /var/secrets/grok-client.key
       - name: CHS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: CHS_GROK_KEYPATH
@@ -72,6 +80,7 @@ system:
         export CHS_AJNA_DATACENTER=${KINGDOM} ;
         export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
+        export CHS_REPORTCOLLECTORALTERNATE_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
         case ${KINGDOM} in
           prd)
             export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
