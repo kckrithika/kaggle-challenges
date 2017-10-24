@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: alex-pdpfunction
+  - name: caas
     count: 2
     containers:
     - name: pdp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-70978d5ef21e465adc4740e99ef21bf382ea39b3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-791b66e5dcc0185d7e23024bc88815181f697360
       ports:
       - containerPort: 9090
       - containerPort: 8080
@@ -15,10 +15,15 @@ system:
         httpGet:
           path: /pdp?type=hb
           port: 8080
+    env:
+    - name: SFDC_ENVIRONMENT
+      value: dev
+    - name: SFDC_SUBENVIRONMENT
+      value: prd
 
   loadbalancers:
   - lbname: alex-pdplb
-    function: alex-pdpfunction
+    function: caas
     ports:
       - port: 9090
         targetport: 9090
