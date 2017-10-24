@@ -47,6 +47,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                          },
                     }
                     else slbconfigs.host_volume),
+                    (if configs.estate == "prd-sdc" then slbconfigs.usr_sbin_volume else {}),
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
@@ -77,6 +78,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 mountPath: "/host/tmp",
                             }
                             else slbconfigs.host_volume_mount),
+                            (if configs.estate == "prd-sdc" then slbconfigs.usr_sbin_volume_mount else {}),
                             slbconfigs.logs_volume_mount,
                         ]),
                         securityContext: {
@@ -104,6 +106,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
+                            (if configs.estate == "prd-sdc" then slbconfigs.usr_sbin_volume_mount else {}),
                         ]),
                         securityContext: {
                             privileged: true,
@@ -121,6 +124,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        volumeMounts: configs.filter_empty([
                            slbconfigs.slb_volume_mount,
                            slbconfigs.logs_volume_mount,
+                           (if configs.estate == "prd-sdc" then slbconfigs.usr_sbin_volume_mount else {}),
                        ]),
                        securityContext: {
                            privileged: true,

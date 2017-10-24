@@ -147,6 +147,17 @@ perCluster: {
         name: "sbin-volume",
         mountPath: "/host/sbin",
     },
+# Frequently used volume: /usr/sbin
+    usr_sbin_volume: {
+        name: "usr_sbin-volume",
+        hostPath: {
+            path: "/usr/sbin",
+        },
+    },
+    usr_sbin_volume_mount: {
+        name: "usr_sbin-volume",
+        mountPath: "/usr/sbin",
+    },
 
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
