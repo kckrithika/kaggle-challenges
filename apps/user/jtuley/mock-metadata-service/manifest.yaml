@@ -15,8 +15,6 @@ system:
       - containerPort: 9091
       - containerPort: 15523
       env:
-      - name: SFDC_ENVIRONMENT
-        value: blitz
       - name: SERVER_PORT
         value: 9091
       - name: MANAGEMENT_PORT
