@@ -17,7 +17,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        "prd,prd-samtest,samcontrol,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/hypersam:20171020_123241.cf831eb.dirty.cbatra-ltm1",
         # [thargrove]This contains imageCheckV2, needed for artifactory
         "prd,prd-sam,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001388-8522f76c",
@@ -43,7 +42,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001391-35a0d810",
+            hypersam: "sam-0001408-441a28db",
             madkub: "1.0.0-0000039-f298467c",
             madkubSidecar: "1.0.0-0000039-f298467c",
             },
