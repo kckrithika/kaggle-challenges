@@ -48,6 +48,7 @@ if configs.estate == "prd-sdc" then {
                         command: [
                             "/sdn/slb-echo-service",
                             "--serviceName=slb-echo-svc",
+                            "--dataSize=1073741824",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                         ],

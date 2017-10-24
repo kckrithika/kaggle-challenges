@@ -10,9 +10,9 @@ spec:
   ports:
   - name: slb-echo-port
     nodePort: 32148
-    port: 32148
+    port: 9118
     protocol: TCP
-    targetPort: 32148
+    targetPort: 9118
   selector:
     name: slb-echo-server
   type: NodePort
