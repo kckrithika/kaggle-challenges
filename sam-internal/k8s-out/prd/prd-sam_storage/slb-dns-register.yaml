@@ -23,7 +23,7 @@ spec:
         - --cafile=/data/certs/ca.crt
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000405-ebefe616
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000415-074ae555
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
