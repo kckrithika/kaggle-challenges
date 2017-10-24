@@ -6,6 +6,7 @@ metadata:
   name: fds-controller-deployment
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   replicas: 1
   strategy:
     rollingUpdate:
@@ -29,6 +30,10 @@ spec:
         name: fds-controller
         ports:
         - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
