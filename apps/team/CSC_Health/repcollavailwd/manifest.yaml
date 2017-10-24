@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.5.0-0000075-ee70e5b8
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.6.0-0000078-18ab110f
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
@@ -41,6 +41,8 @@ system:
         value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_avail_wd_client.crt
       - name: HTTP_OPTIONS_PATHTOCLIENTCERTIFICATEKEY
         value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_avail_wd_client.key
+      - name: VERIFY_REPORT_IS_TRUSTED
+        value: true
       command: ["/bin/sh", "-c"]
       args: ["
       export FUNNEL_VIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
