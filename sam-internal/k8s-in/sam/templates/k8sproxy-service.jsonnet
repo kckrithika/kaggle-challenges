@@ -3,7 +3,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
     kind: "Service",
         apiVersion: "v1",
         metadata: {
-            name: "k8sproxy-service",
+            name: "k8sproxy",
             namespace: "sam-system",
             labels: {
                 app: "k8sproxy",

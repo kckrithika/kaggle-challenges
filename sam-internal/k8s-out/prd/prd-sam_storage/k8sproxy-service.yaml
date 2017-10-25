@@ -4,7 +4,7 @@ metadata:
   labels:
     app: k8sproxy
     slb.sfdc.net/name: k8sproxy
-  name: k8sproxy-service
+  name: k8sproxy
   namespace: sam-system
 spec:
   ports:

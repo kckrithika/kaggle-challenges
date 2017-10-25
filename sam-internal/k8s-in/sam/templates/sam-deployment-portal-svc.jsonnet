@@ -3,7 +3,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
-            name: "portal-svc",
+            name: "sdp",
             namespace: "sam-system",
             labels: {
                 app: "sam-deployment-portal",
