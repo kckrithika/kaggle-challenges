@@ -1737,11 +1737,11 @@ apps:
  prd-caas-release-perf:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion1-1-prd.eng.sfdc.net
+    - samcaas2-caasminion2-1-prd.eng.sfdc.net
  prd-caas-release-perf-sdn:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion2-1-prd.eng.sfdc.net
+    - samcaas2-caasminion1-1-prd.eng.sfdc.net
 
  prd-sp2-metrics-publisher-sp-na45-c1:
   - name: prd/prd-sp2-sam_caas
