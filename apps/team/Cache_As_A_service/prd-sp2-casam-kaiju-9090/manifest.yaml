@@ -15,14 +15,12 @@ system:
           command:
            - echo
            - HEALTHY
-        initialDelaySeconds: 360
         periodSeconds: 60
       readinessProbe:
         exec:
           command:
            - echo
            - HEALTHY
-        initialDelaySeconds: 360
         periodSeconds: 60
       ports:
         - containerPort: 8080
@@ -40,14 +38,12 @@ system:
           command:
            - echo
            - HEALTHY
-        initialDelaySeconds: 360
         periodSeconds: 60
       readinessProbe:
         exec:
           command:
            - echo
            - HEALTHY
-        initialDelaySeconds: 360
         periodSeconds: 60
       ports:
         - containerPort: 9090
