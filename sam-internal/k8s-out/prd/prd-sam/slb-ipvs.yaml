@@ -34,8 +34,14 @@ spec:
           name: dev-volume
         - mountPath: /lib/modules
           name: lib-modules-volume
-        - mountPath: /host
-          name: host-volume
+        - mountPath: /host/tmp
+          name: tmp-volume
+        - mountPath: /host/lib/modules
+          name: lib-modules-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /host/data/slb
+          name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       - command:
@@ -56,6 +62,8 @@ spec:
           name: var-config-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
       - command:
         - /sdn/slb-ipvs-data
         - --connPort=9107
@@ -69,6 +77,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
       hostNetwork: true
       nodeSelector:
         slb-service: slb-ipvs
@@ -86,8 +96,11 @@ spec:
           path: /lib/modules
         name: lib-modules-volume
       - hostPath:
-          path: /
-        name: host-volume
+          path: /tmp
+        name: tmp-volume
+      - hostPath:
+          path: /usr/sbin
+        name: usr-sbin-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume

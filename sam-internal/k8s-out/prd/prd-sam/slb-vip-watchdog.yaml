@@ -51,8 +51,6 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host
-          name: host-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       hostNetwork: true
@@ -62,9 +60,6 @@ spec:
       - hostPath:
           path: /data/slb
         name: var-slb-volume
-      - hostPath:
-          path: /
-        name: host-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
