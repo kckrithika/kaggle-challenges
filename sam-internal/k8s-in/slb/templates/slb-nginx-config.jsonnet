@@ -25,7 +25,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             spec: {
                 hostNetwork: true,
                 volumes: configs.filter_empty([
-                     slbconfigs.host_volume,
+                     (if configs.estate == "prd-sdc" then {} else slbconfigs.host_volume),
                      {
                         name: "var-target-config-volume",
                         hostPath: {
@@ -54,7 +54,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                         ],
                         volumeMounts: configs.filter_empty([
-                            slbconfigs.host_volume_mount,
+                            (if configs.estate == "prd-sdc" then {} else slbconfigs.host_volume_mount),
                             {
                                 name: "var-target-config-volume",
                                 mountPath: slbconfigs.slbDir + "/nginx/config",

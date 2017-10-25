@@ -27,7 +27,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
-                    slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                  ]),
                 containers: [
@@ -43,7 +42,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
-                            slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                          ]),
                          env: [
