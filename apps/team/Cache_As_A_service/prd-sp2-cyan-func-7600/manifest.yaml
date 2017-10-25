@@ -14,7 +14,7 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171022
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171024-2
 
       resources:
         limits: { memory: "1024M" }
@@ -22,23 +22,24 @@ system:
 
       livenessProbe:
         httpGet:
-          path: /__cyan_admin__
-          port: 7599
+          path: /ping.jsp
+          port: 12050
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
 
       readinessProbe:
         httpGet:
-          path: /__cyan_admin__
-          port: 7599
+          path: /ping.jsp
+          port: 12050
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
 
       ports:
         # Actually used by the container
-        - containerPort: 7599
+        - containerPort: 12050
+        - containerPort: 12051
 
       volumeMounts:
         - name: cert
@@ -61,5 +62,7 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-    - port: 7600
-      targetport: 7599
+    - port: 12052
+      targetport: 12050
+    - port: 12053
+      targetport: 12051
