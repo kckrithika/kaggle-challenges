@@ -16,10 +16,6 @@ system:
 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171024-2
 
-      resources:
-        limits: { memory: "1024M" }
-        requests: { memory: "1024M" }
-
       livenessProbe:
         httpGet:
           path: /ping.jsp
