@@ -24,7 +24,7 @@ if configs.estate == "prd-sam_storage" then {
                     {
                         name: "localdisks",
                         hostPath: {
-                            path: "/mnt/disks",
+                            path: "/mnt/lvhdd",
                         },
                     },
                     {
@@ -53,7 +53,7 @@ if configs.estate == "prd-sam_storage" then {
                              configs.kube_config_volume_mount,
                              {
                                  name: "localdisks",
-                                 mountPath: "/mnt/disks",
+                                 mountPath: "/mnt/lvhdd",
                              },
                              {
                                  name: "homedir",
@@ -80,7 +80,7 @@ if configs.estate == "prd-sam_storage" then {
 
                              {
                                  name: "LV_ROOT_PATH",
-                                 value: "/mnt/disks",
+                                 value: "/mnt/lvhdd",
                              },
                           ],
                     },
