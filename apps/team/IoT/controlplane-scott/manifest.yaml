@@ -63,6 +63,28 @@ system:
         limits:
           memory: '16G'
           cpu: 7
+    - name: sherpa
+      image: tnrp/sherpa:0.2.0-0000095-6e15fb11
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7080
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
     volumes:
     - name: logvol
       hostPath:
@@ -78,4 +100,3 @@ system:
         secretName: controlplane-config
     strategy:
       type: Recreate
-
