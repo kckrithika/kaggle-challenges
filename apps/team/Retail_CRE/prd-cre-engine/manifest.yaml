@@ -1,0 +1,26 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-engine
+    count: 2
+    containers:
+    - name: cre-engine-prd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:hbase-test
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
+  loadbalancers:
+  - lbname: cre-engine-prd-lb
+    function: cre-engine
+    nodeExposed: true
+    ports:
+      - port: 8082
+        targetport: 8080
