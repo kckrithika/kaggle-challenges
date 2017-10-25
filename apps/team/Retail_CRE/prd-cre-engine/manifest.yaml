@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-engine-prd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:hbase-test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-engine:hbase-test-2
       ports:
       - containerPort: 8080
       livenessProbe:
