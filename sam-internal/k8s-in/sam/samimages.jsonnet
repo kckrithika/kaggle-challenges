@@ -18,6 +18,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [thargrove]This contains imageCheckV2, needed for artifactory
+        "prd,prd-samtest,samcontrol,hypersam": "sam-0001414-0ccb82f3",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
