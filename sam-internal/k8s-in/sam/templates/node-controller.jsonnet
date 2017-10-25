@@ -13,10 +13,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "node-controller",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                             "/sam/node-controller",
                            "--funnelEndpoint=" + configs.funnelVIP,
-                        ],
+                           configs.sfdchosts_arg,
+                        ]),
                         volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,

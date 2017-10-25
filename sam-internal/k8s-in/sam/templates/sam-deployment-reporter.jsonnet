@@ -12,7 +12,7 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "sam-deployment-reporter",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                            "/sam/sam-deployment-reporter",
                            "--v=5",
                            "--k8sapiserver=",
@@ -20,7 +20,8 @@ local samimages = import "samimages.jsonnet";
                            "--sender=sam@salesforce.com",
                            "--defaultRecipient=",
                            "--namespacesToSkip=sam-watchdog",
-                           ],
+                           configs.sfdchosts_arg,
+                           ]),
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,

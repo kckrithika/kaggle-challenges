@@ -13,16 +13,15 @@ local samimages = import "samimages.jsonnet";
                     {
                         name: "manifest-watcher",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                            "/sam/manifest-watcher",
                            "--funnelEndpoint=" + configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
                            "--config=/config/manifestwatcher.json",
                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
-                         ] + (if configs.estate == "prd-samtest" then [
-                           "--hostsConfigFile=/sfdchosts/hosts.json",
-                         ] else []),
+                           configs.sfdchosts_arg,
+                         ]),
                       volumeMounts: configs.filter_empty([
                           configs.maddog_cert_volume_mount,
                           configs.sfdchosts_volume_mount,

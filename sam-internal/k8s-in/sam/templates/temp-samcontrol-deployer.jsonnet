@@ -12,10 +12,11 @@ if configs.estate == "prd-samtest" then
                     {
                         name: "temp-samcontrol-deployer",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                            "/sam/samcontrol-deployer",
                            "--config=/config/tempsamcontroldeployer.json",
-                           ],
+                           configs.sfdchosts_arg,
+                           ]),
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
                            configs.maddog_cert_volume_mount,

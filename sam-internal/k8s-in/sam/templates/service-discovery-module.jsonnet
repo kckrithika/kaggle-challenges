@@ -11,12 +11,13 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                     {
                         name: "service-discovery-module",
                         image: samimages.hypersam,
-                        command: [
+                        command: configs.filter_empty([
                             "/sam/service-discovery-module",
-                                        "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs",
-                                        "-zkIP=" + configs.zookeeperip,
-                                        "-funnelEndpoint=" + configs.funnelVIP,
-                        ],
+                            "-namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs",
+                            "-zkIP=" + configs.zookeeperip,
+                            "-funnelEndpoint=" + configs.funnelVIP,
+                            configs.sfdchosts_arg,
+                        ]),
                             env: [
                           configs.kube_config_env,
                         ],
