@@ -61,8 +61,6 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host
-          name: host-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
         - mountPath: /data/certs
@@ -79,9 +77,6 @@ spec:
       - hostPath:
           path: /data/slb
         name: var-slb-volume
-      - hostPath:
-          path: /
-        name: host-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume

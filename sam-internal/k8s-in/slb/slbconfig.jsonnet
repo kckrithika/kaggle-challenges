@@ -112,18 +112,6 @@ perCluster: {
         mountPath: "/host/data/slb/config",
     },
 
-# Frequently used volume: host
-    host_volume: {
-        name: "host-volume",
-        hostPath: {
-            path: "/",
-        },
-    },
-    host_volume_mount: {
-        name: "host-volume",
-        mountPath: "/host",
-    },
-
 # Frequently used volume: logs
     logs_volume: {
         name: "var-logs-volume",

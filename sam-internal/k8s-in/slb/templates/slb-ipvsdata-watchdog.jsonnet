@@ -24,7 +24,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
-                    (if configs.estate == "prd-sdc" then {} else slbconfigs.host_volume),
                     slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
@@ -53,7 +52,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
-                            (if configs.estate == "prd-sdc" then {} else slbconfigs.host_volume_mount),
                             slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
