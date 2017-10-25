@@ -23,9 +23,8 @@ system:
       - mountPath: /certs
         name: server-cert
       ports:
-      - containerPort: 1389
-      - containerPort: 1636
-      - containerPort: 8989
+      - containerPort: 7032
+      - containerPort: 8890
       livenessProbe:
         exec:
           command: ["true"]
