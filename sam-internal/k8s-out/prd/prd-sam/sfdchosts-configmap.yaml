@@ -3184,56 +3184,6 @@ data:
           "superpod": "none"
         },
         {
-          "bomrolename": "sam_minion_caas",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_caas",
-          "hostname": "samcaas1-caasminion1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
-          "bomrolename": "sam_minion_caas",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_caas",
-          "hostname": "samcaas1-caasminion1-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
-          "bomrolename": "sam_minion_caas",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_caas",
-          "hostname": "samcaas1-caasminion2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
-          "bomrolename": "sam_minion_caas",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_caas",
-          "hostname": "samcaas1-caasminion2-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
-          "bomrolename": "sam_minion_caas",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_caas",
-          "hostname": "samcaas1-caasminion3-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
           "bomrolename": "sdb_compute",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -3358,6 +3308,26 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-sp2-sam_caas",
+          "hostname": "samcaas2-caasminion1-7-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-sam_caas",
+          "hostname": "samcaas2-caasminion1-8-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-sam_caas",
           "hostname": "samcaas2-caasminion2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -3418,6 +3388,26 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-sp2-sam_caas",
+          "hostname": "samcaas2-caasminion2-7-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-sam_caas",
+          "hostname": "samcaas2-caasminion2-8-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-sam_caas",
           "hostname": "samcaas2-caasminion3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -3459,6 +3449,16 @@ data:
           "devicerole": "samcompute",
           "estate": "prd-sp2-sam_caas",
           "hostname": "samcaas2-caasminion3-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-sam_caas",
+          "hostname": "samcaas2-caasminion3-6-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "superpod": "sp2"
