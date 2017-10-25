@@ -18,6 +18,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [thargrove]This contains imageCheckV2, needed for artifactory
+        "prd,prd-samtest,samcontrol,hypersam": "sam-0001414-0ccb82f3",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001388-8522f76c",
         "prd,prd-sam_storage,samcontrol,hypersam": "sam-0001388-8522f76c",
