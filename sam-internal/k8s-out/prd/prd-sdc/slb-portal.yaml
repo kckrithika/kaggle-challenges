@@ -30,9 +30,3 @@ spec:
       - hostPath:
           path: /data/slb
         name: var-slb-volume
-      - hostPath:
-          path: /dev
-        name: dev-volume
-      - hostPath:
-          path: /
-        name: host-volume

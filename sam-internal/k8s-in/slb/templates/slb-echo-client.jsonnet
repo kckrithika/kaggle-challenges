@@ -31,14 +31,6 @@ if configs.estate == "prd-sdc" then {
             },
             spec: {
                 volumes: configs.filter_empty([
-                    slbconfigs.slb_volume,
-                    {
-                        name: "dev-volume",
-                        hostPath: {
-                            path: "/dev",
-                         },
-                    },
-                    slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
@@ -53,11 +45,6 @@ if configs.estate == "prd-sdc" then {
                             "--log_dir=" + slbconfigs.logsDir,
                         ],
                         volumeMounts: configs.filter_empty([
-                            {
-                                name: "dev-volume",
-                                mountPath: "/dev",
-                            },
-                            slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
                         securityContext: {

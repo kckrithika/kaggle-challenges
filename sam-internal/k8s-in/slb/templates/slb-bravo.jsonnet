@@ -48,7 +48,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                           ),
 
                         volumeMounts: configs.filter_empty([
-                            slbconfigs.host_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
                     },

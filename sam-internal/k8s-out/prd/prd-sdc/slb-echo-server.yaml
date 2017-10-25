@@ -45,10 +45,6 @@ spec:
             add:
             - ALL
         volumeMounts:
-        - mountPath: /dev
-          name: dev-volume
-        - mountPath: /host
-          name: host-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
@@ -57,12 +53,6 @@ spec:
       - hostPath:
           path: /data/slb
         name: var-slb-volume
-      - hostPath:
-          path: /dev
-        name: dev-volume
-      - hostPath:
-          path: /
-        name: host-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume

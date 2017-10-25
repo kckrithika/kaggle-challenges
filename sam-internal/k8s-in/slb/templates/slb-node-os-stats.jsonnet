@@ -25,13 +25,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 hostNetwork: true,
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
-                    {
-                        name: "dev-volume",
-                        hostPath: {
-                            path: "/dev",
-                         },
-                    },
-                    slbconfigs.host_volume,
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
