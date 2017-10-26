@@ -32,5 +32,5 @@ system:
     ports:
       - port: 3133
         targetport: 3133
-#      - port: 3134
-#        targetport: 3134
+      - port: 3134
+        targetport: 3134
