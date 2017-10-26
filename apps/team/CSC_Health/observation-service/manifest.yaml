@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: tnrp/csc-health/observation-service:observation-service-0000023-1b59155b
+      image: tnrp/csc-health/observation-service:observation-service-0000025-03ac4b89
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000023-1b59155b
+      image: tnrp/csc-health/observation-service:observation-service-0000025-03ac4b89
       ports:
       - containerPort: 8080
       volumeMounts:
@@ -53,6 +53,14 @@ system:
         value: true
       - name: OBS_REPORTCOLLECTOR_MTLSENABLED
         value: false
+      - name: OBS_REPORTCOLLECTORALTERNATE_ENABLED
+        value: true
+      - name: OBS_REPORTCOLLECTORALTERNATE_MTLSENABLED
+        value: true
+      - name: OBS_REPORTCOLLECTORALTERNATE_CERTPATH
+        value: /var/secrets/grok-client.crt.pem
+      - name: OBS_REPORTCOLLECTORALTERNATE_KEYPATH
+        value: /var/secrets/grok-client.key
       - name: OBS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: OBS_GROK_KEYPATH
@@ -72,6 +80,7 @@ system:
         export OBS_AJNA_DATACENTER=${KINGDOM} ;
         export OBS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export OBS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
+        export OBS_REPORTCOLLECTORALTERNATE_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
         case ${KINGDOM} in
           prd)
             export OBS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
