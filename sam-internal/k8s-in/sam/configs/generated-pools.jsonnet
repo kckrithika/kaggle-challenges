@@ -39,6 +39,18 @@
     },
     {
       "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_ceph",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "chatbot"
       ],
       "access": [
@@ -108,6 +120,18 @@
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_report_collector",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_storage",
       "kingdom": "dfw",
       "superPod": "None"
     },
@@ -185,6 +209,18 @@
     },
     {
       "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_ceph",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "chatbot"
       ],
       "access": [
@@ -257,6 +293,18 @@
     },
     {
       "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_storage",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
@@ -288,6 +336,18 @@
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_ceph",
       "kingdom": "hnd",
       "superPod": "None"
     },
@@ -365,6 +425,18 @@
     },
     {
       "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "hnd-sam",
+      "estate": "hnd-sam_storage",
+      "kingdom": "hnd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
@@ -396,6 +468,18 @@
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_ceph",
       "kingdom": "iad",
       "superPod": "None"
     },
@@ -473,6 +557,18 @@
     },
     {
       "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_storage",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
@@ -516,6 +612,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_ceph",
       "kingdom": "ord",
       "superPod": "None"
     },
@@ -593,6 +701,18 @@
     },
     {
       "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_storage",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
@@ -636,6 +756,18 @@
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_ceph",
       "kingdom": "par",
       "superPod": "None"
     },
@@ -710,6 +842,18 @@
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_report_collector",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_storage",
       "kingdom": "par",
       "superPod": "None"
     },
@@ -820,6 +964,18 @@
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_report_collector",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_storage",
       "kingdom": "phx",
       "superPod": "None"
     },
@@ -1201,6 +1357,18 @@
     },
     {
       "namespaces": [
+        "legostore"
+      ],
+      "access": [
+        "team/LegoStore"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_ceph",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "chatbot"
       ],
       "access": [
@@ -1268,6 +1436,18 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_report_collector",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-sam_storage",
       "kingdom": "ukb",
       "superPod": "None"
     },
