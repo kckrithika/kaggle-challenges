@@ -25,6 +25,11 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
         "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
+
+        # [prabhs] Synthetic Timeout increased from 30s to 300s
+        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
+        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
