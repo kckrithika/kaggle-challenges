@@ -52,9 +52,19 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
       nodeSelector:
         pool: prd-sdc
       volumes:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config
+        name: var-config-volume
