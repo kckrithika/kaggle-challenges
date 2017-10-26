@@ -19,13 +19,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [thargrove]This contains imageCheckV2, needed for artifactory
         "prd,prd-samtest,samcontrol,hypersam": "sam-0001414-0ccb82f3",
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001388-8522f76c",
-        "prd,prd-sdc,samcontrol,hypersam": "sam-0001388-8522f76c",
-        "prd,prd-sam_storage,samcontrol,hypersam": "sam-0001388-8522f76c",
-        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001387-af0a5544",
-        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-sam,watchdog-deployment,hypersam": "sam-0001360-99d775ff",
-        "prd,prd-sam,watchdog-kuberesources,hypersam": "sam-0001360-99d775ff",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -50,7 +43,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001355-581a778b",
+            hypersam: "sam-0001408-441a28db",
             madkub: "1.0.0-0000039-f298467c",
             madkubSidecar: "1.0.0-0000039-f298467c",
             },
