@@ -107,6 +107,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
               "--refresher",
               "--refresher-token-grace-period",
               "30s",
+              "--requested-cert-type",
+"server",
               "--funnel-endpoint",
               "http://" + configs.funnelVIP,
               "--kingdom",
