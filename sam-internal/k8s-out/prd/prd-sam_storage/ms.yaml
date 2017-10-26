@@ -21,7 +21,7 @@ spec:
         - "10"
         command:
         - /opt/sfms/bin/sfms
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/sfms-image:latest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000047-f46de00d
         imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:

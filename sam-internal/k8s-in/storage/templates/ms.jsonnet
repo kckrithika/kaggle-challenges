@@ -43,7 +43,7 @@ if configs.estate == "prd-sam_storage" then {
             containers: [
                {
                   name: "sfms",
-                  image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/sfms-image:latest",
+                  image: storageimages.sfms,
                   imagePullPolicy: "IfNotPresent",
                   command: [
                      "/opt/sfms/bin/sfms",
