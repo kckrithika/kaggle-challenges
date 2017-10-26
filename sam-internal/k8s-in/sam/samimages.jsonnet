@@ -115,6 +115,8 @@ local utils = import "util_functions.jsonnet";
     k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
     permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
 
+    #Image to use for k4a. Will change to appropiate tags later.
+    k4aInitContainerImage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/k4a:1028",
     # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
     # of all containers
     madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
