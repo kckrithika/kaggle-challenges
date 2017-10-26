@@ -22,6 +22,7 @@ local utils = import "util_functions.jsonnet";
         "0": {
             default_tag: "base-0000121-40530dde",
             configwatcher_tag: "base-0000159-1239a96f",
+            sfms_tag: "latest-0000047-f46de00d",
         },
 
         ### Release Phase 1 - prd-sdc
@@ -64,4 +65,5 @@ local utils = import "util_functions.jsonnet";
     # These are the images used by the templates.
     fdscontroller: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].default_tag),
     configwatcher: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "configwatcher", $.per_phase[$.phase].configwatcher_tag),
+    sfms: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
 }
