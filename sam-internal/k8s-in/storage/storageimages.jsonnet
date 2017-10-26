@@ -66,4 +66,6 @@ local utils = import "util_functions.jsonnet";
     fdscontroller: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].default_tag),
     configwatcher: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "configwatcher", $.per_phase[$.phase].configwatcher_tag),
     sfms: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
+    sfstore: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfstore", $.per_phase[$.phase].default_tag),
+    ceph: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].default_tag),
 }
