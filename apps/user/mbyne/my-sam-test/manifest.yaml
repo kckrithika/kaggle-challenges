@@ -2,21 +2,91 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
-    count: 2
+  - name: testserver
+    count: 1
     containers:
-    - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/enterprise-provisioning:test-1
+    - name: testserver
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/testservice:test-2
+      env:
+      - name: grpc.host
+        value: provisioning-in-a-container.localhost.mesh.force.com
+      - name: grpc.port
+        value: 7020
       ports:
       - containerPort: 8080
+        name: test-http
+      - containerPort: 15372
+        name: test-mgmnt
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
+    - name: sherpa-a
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7020
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5        
+ 
+  - name: server
+    count: 1
+    containers:
+    - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/enterprise-provisioning:test-2
+      ports:
+      - containerPort: 8080
+        name: rest
+      - containerPort: 7020
+        name: grpc
+      - containerPort: 15372
+        name: manage
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+          
+    - name: sherpa-b
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5        
  
   loadbalancers:
-  - lbname: samhellolb
-    function: default
+  - lbname: testserverlb
+    function: testserver
     ports:
       - port: 8080
         targetport: 8080
