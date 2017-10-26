@@ -76,6 +76,8 @@ spec:
         - --refresher
         - --refresher-token-grace-period
         - 30s
+        - --requested-cert-type
+        - server
         - --funnel-endpoint
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
