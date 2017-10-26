@@ -4,6 +4,8 @@ data:
     {
       "caFile": "/data/certs/ca.crt",
       "certFile": "/data/certs/hostcert.crt",
+      "deployer-recipient": "sam-alerts@salesforce.com",
+      "deployer-sender": "sam-alerts@salesforce.com",
       "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-syd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b",
