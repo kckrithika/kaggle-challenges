@@ -34,7 +34,7 @@ system:
           command:
             - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000038-81596870
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000095-6e15fb11
       args: ["--service", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
