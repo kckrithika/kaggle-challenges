@@ -17,8 +17,14 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        # [thargrove]This contains imageCheckV2, needed for artifactory
+
+        # [cbatra] Trying out working K4A
         "prd,prd-samtest,samcontrol,hypersam": "sam-0001414-0ccb82f3",
+
+        # [thargrove] This build of autodeployer has timeout changed from 1s to 30s
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
+        "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
+        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
