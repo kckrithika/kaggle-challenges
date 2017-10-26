@@ -28,3 +28,6 @@ local samimages = import "samimages.jsonnet";
     maddogMadkubImage: samimages.madkubSidecar,
     maddogMadkubImageRegistry: configs.registry + "/docker-release-candidate/tnrp",
   } else {})
++ (if configs.estate == "prd-samtest" then {
+    k4aInitContainerImage: samimages.k4aInitContainerImage,
+  } else {})
