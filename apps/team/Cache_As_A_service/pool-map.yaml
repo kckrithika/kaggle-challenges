@@ -1806,3 +1806,7 @@ apps:
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ prd-sp2-metrics-publisher-sp-cs2-c1:
+  - name: prd/prd-sp2-sam_caas
+ prd-sp2-redis-sp-cs2-c1-12014:
+  - name: prd/prd-sp2-sam_caas
