@@ -29,6 +29,7 @@ if configs.estate == "prd-sdc" then {
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
+                    slbconfigs.slb_config_volume,
                 ]),
                 containers: [
                     {
@@ -43,6 +44,8 @@ if configs.estate == "prd-sdc" then {
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.slb_config_volume_mount,
                         ]),
                         securityContext: {
                             capabilities: {
