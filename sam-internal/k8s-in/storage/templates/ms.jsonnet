@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local storageimages = import "storageimages.jsonnet";
 
 if configs.estate == "prd-sam_storage" then {
    apiVersion: "extensions/v1beta1",
@@ -79,7 +80,7 @@ if configs.estate == "prd-sam_storage" then {
                },
                {
                   name: "configwatcher",
-                  image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/ms-config-reloader:latest",
+                  image: storageimages.configwatcher,
                   args: [
                      "-key-config-dir=/etc/metric-streamer/key-config",
                      "-ceph-cluster-config-dir=/etc/metric-streamer/ceph-cluster-config",
