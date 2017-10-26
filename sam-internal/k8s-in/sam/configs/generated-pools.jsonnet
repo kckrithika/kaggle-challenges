@@ -981,9 +981,13 @@
     },
     {
       "namespaces": [
+        "legostore",
+        "sf-store",
         "storage-foundation"
       ],
       "access": [
+        "team/LegoStore",
+        "team/SF_Store",
         "team/Storage_Foundation"
       ],
       "controlEstate": "phx-sam",
@@ -1077,10 +1081,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_ceph",
@@ -1089,10 +1095,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "prd-sam_storage",
       "estate": "prd-sam_cephdev",
