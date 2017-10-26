@@ -33,7 +33,7 @@ local samimages = import "samimages.jsonnet";
   funnelEndpoint: configs.funnelVIP,
   rcImtEndpoint: configs.rcImtEndpoint,
   smtpServer: configs.smtpServer,
-  sender: (if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com" else "sam-alerts@salesforce.com"),
+  sender: $.recipient,
   recipient: (
         if configs.estate == "prd-sdc" then "sdn@salesforce.com"
         else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
@@ -41,7 +41,9 @@ local samimages = import "samimages.jsonnet";
         else if configs.estate == "prd-samtest" then ""
         else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
         else "sam-alerts@salesforce.com"
-),
+  ),
+  "deployer-sender": $.recipient,
+  "deployer-recipient": $.recipient,
 
   # K8s checker
   k8sproxyEndpoint: "http://localhost:40000",

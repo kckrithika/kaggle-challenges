@@ -4,6 +4,8 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "deployer-recipient": "",
+      "deployer-sender": "",
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
@@ -18,7 +20,7 @@ data:
       "rcImtEndpoint": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
       "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
-      "sender": "sam-test-alerts@salesforce.com",
+      "sender": "",
       "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
       "snooze": [
         {

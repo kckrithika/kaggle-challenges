@@ -4,6 +4,8 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "deployer-recipient": "sam-test-alerts@salesforce.com",
+      "deployer-sender": "sam-test-alerts@salesforce.com",
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
