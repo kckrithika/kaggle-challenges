@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: testserver
+  - name: default
     count: 1
     containers:
     - name: testserver
@@ -49,6 +49,9 @@ system:
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/enterprise-provisioning:test-2
+      env:
+      - name: grpc.announced.port
+        value: 7012
       ports:
       - containerPort: 8080
         name: rest
@@ -86,7 +89,7 @@ system:
  
   loadbalancers:
   - lbname: testserverlb
-    function: testserver
+    function: default
     ports:
       - port: 8080
         targetport: 8080
