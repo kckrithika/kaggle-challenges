@@ -19,10 +19,10 @@ system:
           path: /pdp?type=hb
           port: 8080
       env:
-      - name: SFDC_ENVIRONMENT
-        value: dev
-      - name: SFDC_SUBENVIRONMENT
-        value: prd
+        - name: SFDC_ENVIRONMENT
+          value: dev
+        - name: SFDC_SUBENVIRONMENT
+          value: prd
 
   loadbalancers:
   - lbname: alex-pdplb
