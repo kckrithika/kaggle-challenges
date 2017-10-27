@@ -88,6 +88,12 @@ system:
         - name: cert
           mountPath: /certs
                 
+
+  - name: csr-seq
+
+    count: 1
+    
+    containers:
     - name: csr-seq-sam
 
       # docker image for minor release
@@ -119,18 +125,13 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 12062
-
-    hostnetwork: true
-
+ 
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
     
     strategy:
       type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 200%
-        maxUnavailable: 0
-
+  
   loadbalancers:
   - lbname: csrlb
     function: csr
@@ -141,5 +142,10 @@ system:
       targetport: 12100
     - port: 9443
       targetport: 12099
-    - port: 9200
+  - lbname: csrseqlb
+    function: csr-seq
+    nodeExposed: true
+    slbEnabled: false
+    ports:
+    - port: 12062
       targetport: 12062
