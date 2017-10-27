@@ -20,7 +20,6 @@ if configs.estate == "prd-sam" then {
                             "-emailFrequency=1h",
                         ]
                         + samwdconfig.shared_args,
-                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                         volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           {

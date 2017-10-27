@@ -19,10 +19,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=1h",
                         ]
                         + samwdconfig.shared_args
-                        # [thargrove] 2017-05-05 We have minions down in the following 3 estates
-                        + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then ["-snoozedAlarms=nodeChecker=2017/06/01"] else [])
                         + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
-                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,

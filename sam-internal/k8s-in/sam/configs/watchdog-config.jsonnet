@@ -42,8 +42,14 @@ local samimages = import "samimages.jsonnet";
         else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
         else "sam-alerts@salesforce.com"
   ),
+
+  # Hairpin deployer
   "deployer-sender": $.recipient,
   "deployer-recipient": $.recipient,
+  "deployer-imageName": samimages.hypersam,
+  "deployer-funnelEndpoint": configs.funnelVIP,
+  "deployer-rcImtEndpoint": configs.rcImtEndpoint,
+  "deployer-smtpServer": configs.smtpServer,
 
   # K8s checker
   k8sproxyEndpoint: "http://localhost:40000",

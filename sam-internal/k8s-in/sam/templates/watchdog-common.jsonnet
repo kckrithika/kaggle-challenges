@@ -17,9 +17,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=20m",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"])
-                        + ["-snoozedAlarms=kubeletChecker=2017/06/15&kubeProxyChecker=2017/06/15"],
-                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                         name: "watchdog",
                         resources: {
                             requests: {

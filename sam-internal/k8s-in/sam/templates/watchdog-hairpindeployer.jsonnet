@@ -27,13 +27,6 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                             "-role=HAIRPINDEPLOYER",
                             "-alertThreshold=1h",
                             "-watchdogFrequency=120s",
-                            "-deployer-imageName=" + samimages.hypersam,
-                            "-deployer-funnelEndpoint=" + configs.funnelVIP,
-                            "-deployer-rcImtEndpoint=" + configs.rcImtEndpoint,
-                            "-deployer-smtpServer=" + configs.smtpServer,
-                            "-deployer-sender=sam-alerts@salesforce.com",
-                            # TODO: We should kill these flags and use the value from liveConfig
-                            "-deployer-recipient=" + samwdconfigmap.recipient,
                             "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
                             "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
                         ]
