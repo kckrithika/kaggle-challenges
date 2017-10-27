@@ -5,7 +5,7 @@ system:
     email:
       - alex.kaufman@salesforce.com
   functions:
-  - name: alex-pdpfunction
+  - name: alexpdpfunction
     count: 2
     containers:
     - name: pdp
