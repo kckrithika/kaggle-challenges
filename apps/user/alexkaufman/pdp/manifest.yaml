@@ -15,9 +15,9 @@ system:
         httpGet:
           path: /pdp?type=hb
           port: 8080
-    env:
-    - name: SFDC_ENVIRONMENT
-      value: dev-prd
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: dev-prd
 
   loadbalancers:
   - lbname: alex-pdplb
