@@ -42,14 +42,14 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-tictactoe-server
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000092-4aea58e0
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       ports:
       - containerPort: 7012
         name: sherpa-in
-      - containerPort: 7080
+      - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
         exec:
