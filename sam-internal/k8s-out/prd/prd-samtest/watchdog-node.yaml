@@ -26,7 +26,6 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -snoozedAlarms=nodeChecker=2017/06/01
         - -emailFrequency=72h
         env:
         - name: KUBECONFIG

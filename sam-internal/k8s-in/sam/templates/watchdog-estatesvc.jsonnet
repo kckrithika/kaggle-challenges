@@ -23,8 +23,6 @@ if !utils.is_public_cloud(configs.kingdom) then {
                         ]
                         + samwdconfig.shared_args
                         + ["-emailFrequency=24h"],
-                        # Please add all new flags and snooze instances to ../configs-sam/watchdog-config.jsonnet
-
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
