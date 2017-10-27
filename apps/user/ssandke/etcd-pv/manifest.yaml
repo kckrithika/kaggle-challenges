@@ -34,10 +34,10 @@ system:
           cpu: "2"
 
       livenessProbe:
-        exec:
-          command: ["true"]
-          initialDelaySeconds: 15
-          periodSeconds: 5
+        tcpSocket:
+          port: 2379
+        initialDelaySeconds: 5
+        periodSeconds: 10
 
     volumes:
     - name: datavol
