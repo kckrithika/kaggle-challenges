@@ -13,7 +13,7 @@ system:
         httpGet:
           path: /
           port: 8000
-     strategy: 
+      strategy: 
         type: rollingUpdate
         rollingUpdate:
           maxSurge: 1
