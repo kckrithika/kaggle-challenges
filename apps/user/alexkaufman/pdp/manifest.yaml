@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: caas
+  - name: alex-pdpfunction
     count: 2
     containers:
     - name: pdp
@@ -21,7 +21,7 @@ system:
 
   loadbalancers:
   - lbname: alex-pdplb
-    function: caas
+    function: alex-pdpfunction
     ports:
       - port: 9090
         targetport: 9090
