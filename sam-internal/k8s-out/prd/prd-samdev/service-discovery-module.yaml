@@ -22,6 +22,7 @@ spec:
         - -namespaceFilter=user-kdhabalia,cache-as-a-service-sp2,gater,user-prabhs
         - -zkIP=shared0-discovery1-0-sfm.data.sfdc.net:2181
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig

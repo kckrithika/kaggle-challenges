@@ -24,6 +24,7 @@ spec:
         - --v=3
         - --logtostderr=true
         - --config=/config/samcontrol.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig

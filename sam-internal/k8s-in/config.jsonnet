@@ -183,7 +183,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             name: "sfdchosts",
         },
     } else {}),
-    sfdchosts_arg: (if estate == "prd-samtest" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
+    sfdchosts_arg: (if kingdom == "prd" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
 
     # === OTHER ===
 
