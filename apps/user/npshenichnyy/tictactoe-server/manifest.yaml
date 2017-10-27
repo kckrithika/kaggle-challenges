@@ -52,14 +52,16 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
-        initialDelaySeconds: 10
-        periodSeconds: 5
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-alive"
       readinessProbe:
-        initialDelaySeconds: 10
-        periodSeconds: 5
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
