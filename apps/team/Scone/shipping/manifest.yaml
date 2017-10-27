@@ -30,7 +30,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-shipping
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000095-6e15fb11
+      image: tnrp/sherpa:0.2.0-0000099-7cf33a3f
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
