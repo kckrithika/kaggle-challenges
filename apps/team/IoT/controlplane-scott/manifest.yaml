@@ -116,3 +116,13 @@ system:
         secretName: controlplane-config
     strategy:
       type: Recreate
+
+  loadbalancers:
+  - lbname: hbase-one-three-test
+    function: hbase-one-three-test
+    nodeExposed: true
+    ports:
+      - port: 11002
+        targetport: 15372
+      - port: 11001
+        targetport: 8080
