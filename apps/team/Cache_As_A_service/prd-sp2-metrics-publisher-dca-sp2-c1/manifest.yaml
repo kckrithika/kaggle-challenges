@@ -10,7 +10,7 @@ system:
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.4.6-0000015-14691321
+      image: tnrp/caas/caas-monitor-prod:2.4.6-0000016-14730209
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
@@ -37,7 +37,7 @@ system:
       - containerPort: 7511
       env:
        - name: SFDC_ENVIRONMENT
-         value: _
+         value: dev-prd
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
