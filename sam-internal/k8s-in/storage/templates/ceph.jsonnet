@@ -42,12 +42,12 @@ if configs.estate == "prd-sam_storage" then {
                             configs.kube_config_env,
                             {
                                 name: "K8S_PLATFORM",
-                                value: "prd-sam_storage",
-                                 },
+                                value: configs.estate,
+                            },
                             {
                                 name: "K8S_NETWORK",
-                                value: "10.231.165.0/24",
-                                 },
+                                value: storageconfigs.k8s_subnet,
+                            },
                         ],
                     },
                 ],

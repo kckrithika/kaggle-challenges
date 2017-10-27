@@ -25,7 +25,7 @@ spec:
         - name: K8S_PLATFORM
           value: prd-sam_storage
         - name: K8S_NETWORK
-          value: 10.231.165.0/24
+          value: 10.251.0.0./16
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000121-40530dde
         name: ceph-operator
         volumeMounts:
