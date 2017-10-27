@@ -35,7 +35,7 @@ system:
             - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
       image: tnrp/sherpa:0.2.0-0000099-7cf33a3f
-      args: ["--service", "localhost:7021"]
+      args: ["--http2-origin", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
