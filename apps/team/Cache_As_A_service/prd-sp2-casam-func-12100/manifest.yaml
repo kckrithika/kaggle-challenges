@@ -88,6 +88,38 @@ system:
         - name: cert
           mountPath: /certs
                 
+    - name: csr-seq-sam
+
+      # docker image for minor release
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:1 
+
+      env:
+        # 
+        - name: CYAN
+          value: http://samcaas2-caasminion3-3-prd.eng.sfdc.net:12052 
+        - name: K4A
+          value: have_to_get_this
+
+      livenessProbe:
+        httpGet:
+          path: /login
+          port: 12062
+        initialDelaySeconds: 60
+        periodSeconds: 1
+        failureThreshold: 10
+
+      readinessProbe:
+        httpGet:
+          path: /login
+          port: 12062
+        initialDelaySeconds: 60
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 12062
+
     hostnetwork: true
 
     terminationGracePeriodSeconds: 500
@@ -109,3 +141,5 @@ system:
       targetport: 12100
     - port: 9443
       targetport: 12099
+    - port: 9200
+      targetport: 12062
