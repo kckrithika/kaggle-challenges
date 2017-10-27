@@ -15,7 +15,7 @@ data:
       "k8sapiserver": "",
       "keyFile": "/data/certs/hostcert.key",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
-      "maddogMadkubImage": "sam/madkub:1.0.0-0000041-d903c148",
+      "maddogMadkubImage": "sam/madkub:1.0.0-0000042-8cf4deae",
       "maddogMadkubImageRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp",
       "statefulAppEnabled": true,
       "tlsEnabled": true,
