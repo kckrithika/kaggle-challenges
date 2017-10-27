@@ -53,7 +53,7 @@ system:
           initialDelaySeconds: 5
           periodSeconds: 10
   - name: search-model-executor-test
-    count: 16
+    count: 1
     containers:
     - name: search-model-executor-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-model-executor:20171026183908
