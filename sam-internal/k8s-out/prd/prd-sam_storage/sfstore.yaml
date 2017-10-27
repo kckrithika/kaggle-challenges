@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: fds-controller
-  name: fds-controller-deployment
+    name: sfstore-operator
+  name: sfstore-operator-deployment
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -16,24 +16,14 @@ spec:
   template:
     metadata:
       labels:
-        name: fds-controller
+        name: sfstore-operator
     spec:
       containers:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000167-7361c94d
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-        name: fds-controller
-        ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstore:base-0000167-7361c94d
+        name: sfstore-operator
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
