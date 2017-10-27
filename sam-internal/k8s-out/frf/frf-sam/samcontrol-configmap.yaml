@@ -7,10 +7,14 @@ data:
       "checkImageExistsFlag": false,
       "debug": true,
       "dockerregistry": "ops0-artifactrepo1-0-frf.data.sfdc.net",
+      "enableMaddog": true,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,
       "k8sapiserver": "",
       "keyFile": "/data/certs/hostcert.key",
+      "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443",
+      "maddogMadkubImage": "sam/madkub:1.0.0-0000035-9241ed31",
+      "maddogMadkubImageRegistry": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp",
       "tlsEnabled": true,
       "volPermissionInitContainerImage": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }
