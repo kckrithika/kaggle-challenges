@@ -108,7 +108,7 @@ system:
         periodSeconds: 1
         failureThreshold: 10
 
-       readinessProbe:
+      readinessProbe:
         httpGet:
           path: /login
           port: 12062
@@ -141,3 +141,5 @@ system:
       targetport: 12100
     - port: 9443
       targetport: 12099
+    - port: 9200
+      targetport: 12062
