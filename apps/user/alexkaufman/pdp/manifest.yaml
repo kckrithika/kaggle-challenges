@@ -20,9 +20,7 @@ system:
           port: 8080
       env:
         - name: SFDC_ENVIRONMENT
-          value: dev
-        - name: SFDC_SUBENVIRONMENT
-          value: prd
+          value: dev-prd
 
   loadbalancers:
   - lbname: alex-pdplb
