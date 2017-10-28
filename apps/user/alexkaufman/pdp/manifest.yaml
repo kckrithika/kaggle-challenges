@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: pdp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-9d45367135fbd68a4a243f1d7fec147fdb507528
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-25a08c1269f4e110b413a3b03338a3718aa476cc
       ports:
       - containerPort: 9090
       - containerPort: 8080
