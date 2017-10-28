@@ -13,7 +13,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20171019-15
       args:
       - --metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
-      - --server.port=15372
+      - --server.port=15371
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvol
