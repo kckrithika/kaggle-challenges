@@ -14,7 +14,13 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171027
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:kviphong-20171030
+
+      env:
+        - name: cyan.liveVersion
+          value: 210.11
+        - name: cyan.testVersion
+          value: 210.11.1
 
       livenessProbe:
         httpGet:
@@ -45,12 +51,6 @@ system:
 
     terminationGracePeriodSeconds: 100
     progressDeadlineSeconds: 120
-
-    strategy:
-      type: RollingUpdate
-      rollingUpdate:
-        maxSurge: 200%
-        maxUnavailable: 0
 
   loadbalancers:
   - lbname: cyanlb
