@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 0 - prd-sam_storage
         "0": {
-            default_tag: "base-0000167-7361c94d",
+            default_tag: "base-0000174-d5bdd70e",
             sfms_tag: "latest-0000047-f46de00d",
         },
 
