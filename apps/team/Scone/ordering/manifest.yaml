@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: scone-ordering
+  - name: ordering-service
     count: 1
     containers:
-    - name: scone-ordering
+    - name: ordering-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:bzimmerman-20171017
       env:
       - name: SFDC_ENVIRONMENT
