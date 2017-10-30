@@ -1814,3 +1814,7 @@ apps:
   - name: prd/prd-sp2-sam_caas
  prd-sp2-redis-dca-sp2-c1-12015:
   - name: prd/prd-sp2-sam_caas
+ prd-sp2-metrics-publisher-stmfa-sp-c1:
+  - name: prd/prd-sp2-sam_caas
+ prd-sp2-redis-stmfa-sp-c1-12015:
+  - name: prd/prd-sp2-sam_caas
