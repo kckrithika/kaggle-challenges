@@ -39,7 +39,7 @@ spec:
         - -key-config-dir=/etc/metric-streamer/key-config
         - -ceph-cluster-config-dir=/etc/metric-streamer/ceph-cluster-config
         - -ceph-config-dir=/etc/ceph
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000167-7361c94d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000174-d5bdd70e
         name: configwatcher
         resources:
           limits:
