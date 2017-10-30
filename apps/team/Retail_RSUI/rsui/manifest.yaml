@@ -21,5 +21,5 @@ system:
     ports:
       - port: 18080	# HTTP listening port
         targetport: 8080 
-      - port: 15372	# Health check port (Management)
+      - port: 15372	# Management (health check) port
 	targetport: 15372
