@@ -21,7 +21,7 @@ spec:
       containers:
       - env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         - name: K8S_PLATFORM
           value: prd-sam_storage
         - name: K8S_NETWORK
