@@ -19,7 +19,7 @@ spec:
       containers:
       - args:
         - -f
-        - /etc/haproxy/haproxy.cfg
+        - /k8sproxyconfig/haproxy-maddog.cfg
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1
         livenessProbe:
           httpGet:

@@ -84,7 +84,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         name: "KUBECONFIG",
-        value: (if estate == "prd-samtest" || estate == "prd-sam" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
+        value: (if kingdom == "prd" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
     },
     kube_config_volume_mount: {
         mountPath: "/kubeconfig",
@@ -121,7 +121,7 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
         name: "certs",
     },
     caFile: (
-        if estate == "prd-samtest" || estate == "prd-sam" || estate == "prd-samdev" then
+        if kingdom == "prd" then
             "/etc/pki_service/ca/cabundle.pem"
         else
             "/data/certs/ca.crt"

@@ -12,7 +12,7 @@ spec:
       containers:
       - env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         - name: LV_NODE_NAME
           valueFrom:
             fieldRef:
