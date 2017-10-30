@@ -14,7 +14,7 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:kviphong-20171030-3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:kviphong-20171030-final
 
       env:
         - name: CYAN_LIVE_VERSION
