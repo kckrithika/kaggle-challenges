@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: scone-shipping
+  - name: shipping-service
     count: 1
     containers:
-    - name: scone-shipping
+    - name: scone-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:bzimmerman-20171017
       env:
       - name: SFDC_ENVIRONMENT
