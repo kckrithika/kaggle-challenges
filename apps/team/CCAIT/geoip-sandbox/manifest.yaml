@@ -154,7 +154,7 @@ system:
           command:
           - "./bin/is-alive"
         initialDelaySeconds: 10
-          periodSeconds: 5
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
