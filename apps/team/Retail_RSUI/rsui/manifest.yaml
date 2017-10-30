@@ -19,7 +19,7 @@ system:
   - lbname: rsui-lb
     function: default
     ports:
-      - port: 18080	# HTTP listening port
-        targetport: 8080 
-      - port: 15372	# Management (health check) port
-	targetport: 15372
+      - port: 8080
+        targetport: 8080
+      - port: 15372
+        targetport: 15372
