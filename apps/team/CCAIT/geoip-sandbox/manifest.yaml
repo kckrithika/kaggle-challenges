@@ -68,14 +68,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        initialDelaySeconds: 110
+        periodSeconds: 5
     volumes:
     - name: maxmind-volume
       emptyDir: {}
@@ -126,14 +126,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        initialDelaySeconds: 110
+        periodSeconds: 5
   - name: geoip-xlt
     count: 1
     containers:
@@ -153,14 +153,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
 
   loadbalancers:
   - lbname: ccait-geoip-frontend-lb
