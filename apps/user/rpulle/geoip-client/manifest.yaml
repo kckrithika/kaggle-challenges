@@ -19,7 +19,6 @@ system:
 
     - name: sherpa-geoip
       image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-dev/tnrp/sherpa:2.0.2
-      args: ["--max-concurrent-requests-in=1000"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
