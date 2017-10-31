@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
