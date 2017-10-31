@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  data: '["Flowsnake_Ops_Platform", "IoT-RM-Flowsnake", "CRE_AD"]'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: auth-groups
+  namespace: flowsnake

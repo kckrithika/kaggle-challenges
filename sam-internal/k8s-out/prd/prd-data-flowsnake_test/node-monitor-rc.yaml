@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: node-monitor
+  name: node-monitor
+  namespace: default
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node-monitor
+        name: node-monitor
+    spec:
+      containers:
+      - env:
+        - name: CANARY_INTERVAL_SECONDS
+          value: "60"
+        - name: CANARY_UNHEALTHY_THRESHOLD_SECONDS
+          value: "60"
+        - name: CANARY_HEALTH_REJOIN_THRESHOLD_SECONDS
+          value: "300"
+        - name: FLEET_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: name
+              name: fleet-config
+        - name: KUBECONFIG
+          valueFrom:
+            configMapKeyRef:
+              key: kubeconfig
+              name: fleet-config
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:345
+        imagePullPolicy: IfNotPresent
+        name: node-monitor
+        volumeMounts:
+        - mountPath: /etc/kubernetes/kubeconfig
+          name: kubeconfig
+          readOnly: true
+        - mountPath: /data/certs
+          name: certs
+          readOnly: true
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
