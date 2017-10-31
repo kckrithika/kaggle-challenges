@@ -117,7 +117,7 @@ system:
         - name: K4A
           value: have_to_get_this
         - name: RELEASE_VERSION
-          value: 210.11.1
+          value: 210.11.2
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
