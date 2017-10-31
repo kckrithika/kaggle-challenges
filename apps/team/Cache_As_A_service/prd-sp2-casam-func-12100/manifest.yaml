@@ -91,7 +91,7 @@ system:
     - name: csr-seq-sam
 
       # docker image for minor release
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:1 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:2
 
       env:
         # 
@@ -99,6 +99,12 @@ system:
           value: http://samcaas2-caasminion3-3-prd.eng.sfdc.net:12052 
         - name: K4A
           value: have_to_get_this
+        - name: RELEASE_VERSION
+          value: 210.11.1
+        # Min number of ready servers for cyan to indicate the new pod is ready
+        - name: READY_SERVER_COUNT
+          value: 3
+
 
       livenessProbe:
         httpGet:
