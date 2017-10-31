@@ -18,7 +18,7 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: K
+          value: L
         - name: DB_USER
           value: happy
         - name: CASAM_CYAN_PATH
