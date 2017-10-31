@@ -21,6 +21,8 @@ system:
           value: K
         - name: DB_USER
           value: happy
+        - name: CASAM_CYAN_PATH
+          value: casam/casam-210-11-1
 
 
         # If the count is changed above, the same value must be set for the NODES env variable below
@@ -72,7 +74,7 @@ system:
       readinessProbe:
         httpGet:
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
-          path: /__cyan_admin__/app/health?version=210.11
+          path: /__cyan_admin__/app/health?version=210.11.1
           port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
