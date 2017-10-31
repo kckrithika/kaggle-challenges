@@ -22,7 +22,7 @@ system:
         - name: DB_USER
           value: happy
         - name: CASAM_CYAN_PATH
-          value: casam/casam-210-11-1
+          value: casam/casam-210-11-2
 
 
         # If the count is changed above, the same value must be set for the NODES env variable below
@@ -74,7 +74,7 @@ system:
       readinessProbe:
         httpGet:
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
-          path: /__cyan_admin__/app/health?version=210.11.1
+          path: /__cyan_admin__/app/health?version=210.11.2
           port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -108,7 +108,7 @@ system:
     - name: csr-seq-sam
 
       # docker image for minor release
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:3
 
       env:
         # 
