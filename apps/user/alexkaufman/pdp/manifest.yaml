@@ -24,7 +24,7 @@ system:
 
   loadbalancers:
   - lbname: alex-pdplb
-    function: alexpdpfunction
+    function: alexpdpfunctiondemo
     ports:
       - port: 9090
         targetport: 9090
