@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.11-0000054-91d41bff
+      image: tnrp/casam/coreapp:210.11-0000055-8c12af1c
 
       env:
         - name: DEPLOYMENT
@@ -71,8 +71,9 @@ system:
 
       readinessProbe:
         httpGet:
-          path: /ready.jsp
-          port: 12100
+          host: samcaas2-caasminion3-3-prd.eng.sfdc.net
+          path: /__cyan_admin__/app/health?version=210.11
+          port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
