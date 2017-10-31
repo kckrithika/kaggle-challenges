@@ -75,7 +75,7 @@ if configs.estate == "prd-sam_storage" then {
 
                              {
                                  name: "LV_STORAGE_CLASS_NAME",
-                                 value: "ssd",
+                                 value: "hdd",
                              },
 
                              {
