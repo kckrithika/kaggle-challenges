@@ -2,7 +2,6 @@
 # List of teams that can deploy apps to this pool.
 # Team name must match GUS scrum team with spaces converted to underscore
 access:
-  - 'team/LegoStore'
   - 'team/SF_Store'
   - 'team/Storage_Foundation'
 
