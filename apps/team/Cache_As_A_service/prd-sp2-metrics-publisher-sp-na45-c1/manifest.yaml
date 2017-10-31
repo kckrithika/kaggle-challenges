@@ -15,8 +15,8 @@ system:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args:
-        - --server.port=7504
-        - --management.port=7505
+        - --server.port=7512
+        - --management.port=7513
         - --cluster.name=sp-na45-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
@@ -28,13 +28,13 @@ system:
       livenessProbe:
         httpGet:
           path: /manage/config
-          port: 7505
+          port: 7513
         initialDelaySeconds: 60
         timeoutSeconds: 10
       # expose redis outside the container
       ports:
-      - containerPort: 7504
-      - containerPort: 7505
+      - containerPort: 7512
+      - containerPort: 7513
       env:
        - name: SFDC_ENVIRONMENT
          value: stmfa
