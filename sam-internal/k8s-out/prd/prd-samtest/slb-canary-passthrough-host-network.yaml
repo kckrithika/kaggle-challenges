@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/affinity: |
+      {   "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "slb-service",
+                    "operator": "NotIn",
+                    "values": ["slb-ipvs", "slb-nginx"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+  labels:
+    name: slb-canary-passthrough-host-network
+  name: slb-canary-passthrough-host-network
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: slb-canary-passthrough-host-network
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-passthrough-host-network
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs
+        - --ports=9113
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000420-9798c2c5
+        name: slb-canary-passthrough-host-network
+        volumeMounts:
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-samtest
+      volumes:
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume

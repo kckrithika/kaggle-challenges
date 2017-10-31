@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: 2,
+        replicas: if configs.estate == "prd-samtest" then 1 else 2,
         template: {
             metadata: {
                 labels: {
