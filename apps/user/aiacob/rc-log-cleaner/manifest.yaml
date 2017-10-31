@@ -24,6 +24,8 @@ system:
         name: logvol
       - mountPath: /etc/maddog/certs
         name: rc-cert
+      - mountPath: /etc/maddog/server-certs
+        name: rc-cert-server
       env:
       - name: ReportCollector_redis_host
         value: $(REDISNOHALB_SERVICE_HOST)
@@ -98,6 +100,9 @@ system:
     - name: rc-cert
       maddogCert:
         type: client
+    - name: rc-cert-server
+      maddogCert:
+        type: server
   - name: redisnoha
     count: 1
     containers:
