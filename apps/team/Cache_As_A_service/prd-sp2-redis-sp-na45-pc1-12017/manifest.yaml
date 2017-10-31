@@ -5,12 +5,12 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: redis-sp-na45-c1-12012
+  - name: redis-sp-na45-pc1-12017
     count: 5
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000012-14656018
+      image: tnrp/caas/caas-redis:2.4.6-0000016-14737962
       resources:
         limits: { memory: "2Gi" }
         requests: { memory: "1Gi" }
@@ -21,24 +21,25 @@ system:
           name: secretvol
           readOnly: true
       args:
-        - --port=12012
+        - --port=12017
         - --maxMemoryMB=1024
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12012
+           - --port=12017
           initialDelaySeconds: 15
           timeoutSeconds: 10
       ports:
-      - containerPort: 12012
+      - containerPort: 12017
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.4.6-0000012-14656018
+      image: tnrp/caas/caas-redis:2.4.6-0000016-14737962
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
-        - --redisPort=12012
-        - --cluster.name=sp-na45-c1
+        - --redisPort=12017
+        - --cluster.name=sp-na45-pc1
         - --logDir=/home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
@@ -63,4 +64,4 @@ system:
         path: /home/caas/logs
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-na45-c1
+         secretName: caas-secret-sp-na45-pc1
