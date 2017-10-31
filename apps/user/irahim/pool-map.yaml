@@ -1,4 +1,6 @@
 apps:
+ search-model-executor:
+  - prd/prd-sam
  search-model-executor-proxy:
   - prd/prd-sam
  search-model-executor-xlt:
