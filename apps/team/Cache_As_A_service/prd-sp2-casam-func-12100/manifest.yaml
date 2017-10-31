@@ -90,7 +90,15 @@ system:
       volumeMounts:
         - name: cert
           mountPath: /certs
-                
+    
+    terminationGracePeriodSeconds: 500
+    progressDeadlineSeconds: 300
+
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0            
 
   - name: csr-seq
 
