@@ -103,7 +103,7 @@ system:
           value: 210.11.1
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
-          value: 3
+          value: 2
 
 
       livenessProbe:
