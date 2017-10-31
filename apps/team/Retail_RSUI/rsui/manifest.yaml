@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: rsui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:retail-setup-test2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:latest
       ports:
       - containerPort: 8080
       - containerPort: 15372
