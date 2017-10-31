@@ -18,7 +18,7 @@ spec:
             fieldRef:
               fieldPath: spec.nodeName
         - name: LV_STORAGE_CLASS_NAME
-          value: ssd
+          value: hdd
         - name: LV_ROOT_PATH
           value: /mnt/lvhdd
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/local_pv_provisioner:0.1
