@@ -19,6 +19,9 @@ samcaas2-caasminion2-3-iad.ops.sfdc.net,10.222.223.186/29,10.213.149.32/27,j18-0
 samcaas2-caasminion3-1-iad.ops.sfdc.net,10.222.223.162/29,10.213.148.64/27,c10-01,iad-sp2-sam_caas
 samcaas2-caasminion3-2-iad.ops.sfdc.net,10.222.223.154/29,10.213.148.160/27,j05-02,iad-sp2-sam_caas
 samcaas2-caasminion3-3-iad.ops.sfdc.net,10.222.223.146/29,10.213.148.128/27,g11-03,iad-sp2-sam_caas
+sfstorezk0-dnds1-1-iad.ops.sfdc.net,10.222.229.194/29,10.213.156.192/27,g14-02,iad-sam_sfstore
+sfstorezk0-dnds1-2-iad.ops.sfdc.net,10.222.229.202/29,10.213.156.128/27,g11-03,iad-sam_sfstore
+sfstorezk0-dnds2-1-iad.ops.sfdc.net,10.222.229.234/29,10.213.156.0/27,c11-01,iad-sam_sfstore
 shared0-samcompute1-1-iad.ops.sfdc.net,10.222.222.18/28,10.213.130.64/27,d10-02,iad-sam
 shared0-samcompute1-2-iad.ops.sfdc.net,10.222.222.34/28,10.213.130.128/27,d12-02,iad-sam
 shared0-samcompute2-1-iad.ops.sfdc.net,10.222.222.10/28,10.213.130.0/27,d09-02,iad-sam
@@ -61,6 +64,12 @@ shared0-samminionmoderationeinstein2-1-iad.ops.sfdc.net,10.222.223.202/29,10.213
 shared0-samminionreportcollector1-1-iad.ops.sfdc.net,10.222.224.18/28,10.213.144.0/27,b10-01,iad-sam_report_collector
 shared0-samminionreportcollector2-1-iad.ops.sfdc.net,10.222.224.10/28,10.213.144.64/27,j10-03,iad-sam_report_collector
 shared0-samminionreportcollector3-1-iad.ops.sfdc.net,10.222.224.34/28,10.213.144.32/27,g11-03,iad-sam_report_collector
+shared0-samminionsfstore1-1-iad.ops.sfdc.net,10.222.229.195/29,10.213.156.224/27,g14-02,iad-sam_sfstore
+shared0-samminionsfstore1-2-iad.ops.sfdc.net,10.222.229.235/29,10.213.156.32/27,c11-01,iad-sam_sfstore
+shared0-samminionsfstore2-1-iad.ops.sfdc.net,10.222.229.226/29,10.213.156.64/27,d04-02,iad-sam_sfstore
+shared0-samminionsfstore2-2-iad.ops.sfdc.net,10.222.229.203/29,10.213.156.160/27,g11-03,iad-sam_sfstore
+shared0-samminionsfstore3-1-iad.ops.sfdc.net,10.222.229.210/29,10.213.157.0/27,h18-01,iad-sam_sfstore
+shared0-samminionsfstore3-2-iad.ops.sfdc.net,10.222.229.218/29,10.213.156.96/27,f09-02,iad-sam_sfstore
 shared0-samminionwarden1-1-iad.ops.sfdc.net,10.222.221.130/29,10.213.138.32/27,d12-02,iad-sam_warden
 shared0-samminionwarden1-2-iad.ops.sfdc.net,10.222.221.146/29,10.213.138.0/27,d02-02,iad-sam_warden
 shared0-samminionwarden2-1-iad.ops.sfdc.net,10.222.221.138/29,10.213.138.64/27,g14-02,iad-sam_warden

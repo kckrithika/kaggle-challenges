@@ -26,6 +26,9 @@ samcaas2-caasminion3-3-prd.eng.sfdc.net,10.231.71.58/29,10.251.188.32/27,d38-02,
 samcaas2-caasminion3-4-prd.eng.sfdc.net,10.231.134.82/29,10.251.189.160/27,v07-02,prd-sp2-sam_caas
 samcaas2-caasminion3-5-prd.eng.sfdc.net,10.231.134.114/29,10.251.190.0/27,w03-02,prd-sp2-sam_caas
 samcaas2-caasminion3-6-prd.eng.sfdc.net,10.253.231.3/29,10.251.190.64/27,k23-02,prd-sp2-sam_caas
+sfstorezk0-dnds1-1-prd.eng.sfdc.net,10.231.173.18/28,10.251.213.32/27,w35-02,prd-sam_sfstore
+sfstorezk0-dnds1-2-prd.eng.sfdc.net,10.231.173.82/28,10.251.213.0/27,w03-02,prd-sam_sfstore
+sfstorezk0-dnds2-1-prd.eng.sfdc.net,10.231.173.98/28,10.251.212.32/27,e31-02,prd-sam_sfstore
 shared0-samcompute1-1-prd.eng.sfdc.net,10.253.213.2/29,10.251.160.160/27,e41-02,prd-sam
 shared0-samcompute1-10-prd.eng.sfdc.net,10.253.213.34/29,10.251.164.96/27,k07-02,prd-sam
 shared0-samcompute1-11-prd.eng.sfdc.net,10.253.213.18/29,10.251.160.0/27,a38-02,prd-sam
@@ -117,6 +120,13 @@ shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net,10.231.101.130/29,10.251
 shared0-samminionreportcollector1-1-prd.eng.sfdc.net,10.253.232.10/29,10.251.132.32/27,k10-02,prd-sam_report_collector
 shared0-samminionreportcollector2-1-prd.eng.sfdc.net,10.253.232.2/29,10.251.132.0/27,h10-02,prd-sam_report_collector
 shared0-samminionreportcollector3-1-prd.eng.sfdc.net,10.253.232.18/29,10.251.132.64/27,m37-02,prd-sam_report_collector
+shared0-samminionsfstore1-1-prd.eng.sfdc.net,10.231.173.2/28,10.251.212.0/27,d38-02,prd-sam_sfstore
+shared0-samminionsfstore1-2-prd.eng.sfdc.net,10.231.173.114/28,10.251.212.160/27,p31-02,prd-sam_sfstore
+shared0-samminionsfstore1-3-prd.eng.sfdc.net,10.231.173.66/28,10.251.212.128/27,n09-02,prd-sam_sfstore
+shared0-samminionsfstore2-1-prd.eng.sfdc.net,10.231.173.34/28,10.251.212.96/27,m40-02,prd-sam_sfstore
+shared0-samminionsfstore2-2-prd.eng.sfdc.net,10.231.173.130/28,10.251.212.224/27,v10-02,prd-sam_sfstore
+shared0-samminionsfstore3-1-prd.eng.sfdc.net,10.231.173.146/28,10.251.212.64/27,l41-02,prd-sam_sfstore
+shared0-samminionsfstore3-2-prd.eng.sfdc.net,10.231.173.50/28,10.251.212.192/27,p32-02,prd-sam_sfstore
 shared0-samminionsme1-1-prd.eng.sfdc.net,10.231.167.202/29,10.251.149.0/27,n02-02,prd-search_model_executor
 shared0-samminionsme1-2-prd.eng.sfdc.net,10.231.167.194/29,10.251.149.64/27,n11-02,prd-search_model_executor
 shared0-samminionsme2-1-prd.eng.sfdc.net,10.231.167.218/29,10.251.149.96/27,z31-02,prd-search_model_executor

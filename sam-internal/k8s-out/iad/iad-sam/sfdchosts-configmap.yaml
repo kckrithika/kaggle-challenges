@@ -424,6 +424,96 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sfstorezk",
+          "controlestate": "iad-sam",
+          "devicerole": "dnds",
+          "estate": "iad-sam_sfstore",
+          "hostname": "sfstorezk0-dnds1-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sfstorezk",
+          "controlestate": "iad-sam",
+          "devicerole": "dnds",
+          "estate": "iad-sam_sfstore",
+          "hostname": "sfstorezk0-dnds1-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sfstorezk",
+          "controlestate": "iad-sam",
+          "devicerole": "dnds",
+          "estate": "iad-sam_sfstore",
+          "hostname": "sfstorezk0-dnds2-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sfstore",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_sfstore",
+          "hostname": "shared0-samminionsfstore1-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sfstore",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_sfstore",
+          "hostname": "shared0-samminionsfstore1-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sfstore",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_sfstore",
+          "hostname": "shared0-samminionsfstore2-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sfstore",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_sfstore",
+          "hostname": "shared0-samminionsfstore2-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sfstore",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_sfstore",
+          "hostname": "shared0-samminionsfstore3-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sfstore",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_sfstore",
+          "hostname": "shared0-samminionsfstore3-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_warden",
           "controlestate": "iad-sam",
           "devicerole": "samcompute",
