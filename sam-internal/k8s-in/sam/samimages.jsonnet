@@ -18,17 +18,10 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [cbatra] Trying out working K4A
-        "prd,prd-samtest,samcontrol,hypersam": "sam-0001414-0ccb82f3",
-
         # [thargrove] This build of autodeployer has timeout changed from 1s to 30s
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
 
         # [prabhs] Synthetic Timeout increased from 30s to 300s
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
     },
 
@@ -47,7 +40,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001408-441a28db",
+            hypersam: "sam-0001439-847d889b",
             madkub: "1.0.0-0000043-0500ad27",
             madkubSidecar: "1.0.0-0000043-0500ad27",
             },
