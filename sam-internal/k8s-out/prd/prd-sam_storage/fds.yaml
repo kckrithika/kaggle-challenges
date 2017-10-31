@@ -22,7 +22,11 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000174-d5bdd70e
+        - name: FDS_ASSUMED_CAPACITY_PER_POD
+          value: 5720584Mi
+        - name: FDS_PROFILING
+          value: "true"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000177-8fca3ecb
         livenessProbe:
           httpGet:
             path: /healthz

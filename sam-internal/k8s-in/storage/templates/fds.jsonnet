@@ -57,6 +57,14 @@ if configs.estate == "prd-sam_storage" then {
                         ]),
                         env: [
                             configs.kube_config_env,
+                            {
+                                name: "FDS_ASSUMED_CAPACITY_PER_POD",
+                                value: storageconfigs.fds_per_pod_capacity,
+                            },
+                            {
+                                name: "FDS_PROFILING",
+                                value: storageconfigs.fds_profiling,
+                            },
                         ],
                     },
                 ],
