@@ -18,7 +18,7 @@ system:
           periodSeconds: 5
 
     - name: sherpa-geoip
-      image:  ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/tnrp/sherpa:2.0.2
+      image:  tnrp/sherpa:0.2.0-0000100-8b64e2f2 
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
