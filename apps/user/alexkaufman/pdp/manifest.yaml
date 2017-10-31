@@ -5,11 +5,11 @@ system:
     email:
       - alex.kaufman@salesforce.com
   functions:
-  - name: alexpdpfunction
+  - name: alexpdpfunctiondemo
     count: 2
     containers:
     - name: pdp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-25a08c1269f4e110b413a3b03338a3718aa476cc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-a00835115c1c9f399ac80cf3e5449495c24be725
       ports:
       - containerPort: 9090
       - containerPort: 8080
