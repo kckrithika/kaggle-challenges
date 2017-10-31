@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: retail-mc-event-handler-prd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-mc-event-handler:retail-mc-event-handler-20171005
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-mc-event-handler:retail-mc-event-handler-20171031
       ports:
       - containerPort: 8080
       livenessProbe:
