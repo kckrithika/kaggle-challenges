@@ -26,12 +26,12 @@ system:
           periodSeconds: 5
 
       ports:
-        - containerPort: 8900
+        - containerPort: 8800
         
   loadbalancers:
   - lbname: hellolb
     function: hello
     nodeExposed: true
     ports:
-    - port: 18900
-      targetport: 8900
+    - port: 18800
+      targetport: 8800
