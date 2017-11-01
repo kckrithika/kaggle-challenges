@@ -2,12 +2,12 @@ apiVersion: v1
  
 system:
   functions:
-  - name: csrold
-    count: 2
+  - name: hello
+    count: 1
 
     containers:
-    - name: csrold-sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:208.3.5-8
+    - name: helloc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/hello:1
  
       livenessProbe:
         exec:
@@ -26,19 +26,12 @@ system:
           periodSeconds: 5
 
       ports:
-        - containerPort: 9000
+        - containerPort: 8900
         
-      env:
-        - name: PUBLIC_HOST_NAME
-          value: shared0-samcompute1-1-prd.eng.sfdc.net
-        - name: DEPLOYMENT
-          value: L
-
-
   loadbalancers:
-  - lbname: csroldlb
-    function: csrold
+  - lbname: hellolb
+    function: hello
     nodeExposed: true
     ports:
-    - port: 9000
-      targetport: 9000
+    - port: 18900
+      targetport: 8900
