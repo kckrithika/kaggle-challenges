@@ -33,5 +33,5 @@ system:
     function: hello
     nodeExposed: true
     ports:
-    - port: 18900
-      targetport: 8900
+    - port: 18800
+      targetport: 8800
