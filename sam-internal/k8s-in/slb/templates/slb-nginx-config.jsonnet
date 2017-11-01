@@ -75,7 +75,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               mountPath: "/etc/nginx/conf.d",
                            },
                         ]),
-                    },
+                    }
+                    + (
+                        if configs.estate == "prd-sdc" then {
+                            livenessProbe: {
+                                httpGet: {
+                                    path: "/",
+                                    port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 3,
+                            },
+                        }
+                        else {}
+                       ),
                 ],
 
                 nodeSelector: {
