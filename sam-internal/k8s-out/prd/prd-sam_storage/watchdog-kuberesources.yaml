@@ -23,7 +23,7 @@ spec:
         - -watchdogFrequency=60s
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
-        - -emailAdditionalRecipients=true
+        - -shouldBatchMetrics=true
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

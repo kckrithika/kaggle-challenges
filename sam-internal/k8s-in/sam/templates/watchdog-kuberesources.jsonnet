@@ -18,7 +18,7 @@ if configs.kingdom == "prd" then {
                             "-watchdogFrequency=60s",
                             "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
-                            "-emailAdditionalRecipients=true",
+                            "-shouldBatchMetrics=true",
                         ]
                         + samwdconfig.shared_args
                         + ["-emailFrequency=24h"],

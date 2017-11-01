@@ -23,6 +23,9 @@ local utils = import "util_functions.jsonnet";
 
         # [prabhs] Synthetic Timeout increased from 30s to 300s
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
+
+        # [hari.udhayakumar] This build has metrics batching to publish Argus metrics
+        "prd,prd-sam,watchdog-kuberesources,hypersam": "sam-0001436-9544270a",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
