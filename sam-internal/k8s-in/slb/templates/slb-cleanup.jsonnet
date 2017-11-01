@@ -24,11 +24,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             spec: {
                 hostNetwork: true,
+                [if configs.estate == "prd-sdc" then "minReadySeconds" else null]: 30,
+                [if configs.estate == "prd-sdc" then "strategy" else null]: {
+                    type: "RollingUpdate",
+                    rollingUpdate: {
+                        maxUnavailable: '10%',
+                        maxSurge: '10%',
+                    },
+                },
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
-                 ]),
+                ]),
                 containers: [
                     {
                         name: "slb-cleanup",
@@ -50,7 +58,22 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         securityContext: {
                             privileged: true,
                         },
+                    }
+                    + (
+                    if configs.estate == "prd-sdc" then {
+                    livenessProbe: {
+                      exec: {
+                            command: [
+                                       "test",
+                                       "find /slb-cleanup-heartbeat -mmin -.5",
+                                     ],
+                      },
+                      initialDelaySeconds: 15,
+                      periodSeconds: 15,
                     },
+                    }
+                    else {}
+                    ),
                 ],
             },
         },
