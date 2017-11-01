@@ -82,6 +82,7 @@ system:
       livenessProbe:
         tcpSocket:
           port: 2379
+        failureThreshold: 1000000
         initialDelaySeconds: 5
         periodSeconds: 10
 
