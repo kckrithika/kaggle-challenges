@@ -26,7 +26,7 @@ system:
           periodSeconds: 5
 
       ports:
-        - containerPort: 8900
+        - containerPort: 8800
         
   loadbalancers:
   - lbname: hellolb
