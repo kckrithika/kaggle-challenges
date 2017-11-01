@@ -12,8 +12,8 @@ system:
       - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /static/index.html
-          port: 8080
+          path: /manage/health
+          port: 15372
 
     - name: sherpa-rsui
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
