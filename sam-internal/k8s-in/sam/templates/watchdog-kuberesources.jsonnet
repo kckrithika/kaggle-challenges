@@ -18,8 +18,12 @@ if configs.kingdom == "prd" then {
                             "-watchdogFrequency=60s",
                             "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
-                            "-shouldBatchMetrics=true",
                         ]
+                        + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then [
+                            "-shouldBatchMetrics=true",
+                        ] else [
+                            "-emailAdditionalRecipients=true",
+                        ])
                         + samwdconfig.shared_args
                         + ["-emailFrequency=24h"],
                         volumeMounts: configs.filter_empty([
