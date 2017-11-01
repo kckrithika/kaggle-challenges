@@ -104,20 +104,20 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             {
                                 mountPath: "/es-data",
                                 name: "storage"
-                            },
-                            flowsnakeconfigmapmount.kubeconfig_volumeMounts,
-                            flowsnakeconfigmapmount.cert_volumeMounts
-                        ]
+                            }
+                        ] +
+                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                        flowsnakeconfigmapmount.cert_volumeMounts
                     }
                 ],
                 volumes: [
                     {
                         name: "storage",
                         emptyDir: {}
-                    },
-                    flowsnakeconfigmapmount.kubeconfig_volume,
-                    flowsnakeconfigmapmount.cert_volume
-                ]
+                    }
+                ] +
+                flowsnakeconfigmapmount.kubeconfig_volume +
+                flowsnakeconfigmapmount.cert_volume
             }
         }
     }

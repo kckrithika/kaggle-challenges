@@ -104,10 +104,10 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                 mountPath: "/etc/flowsnake/config/auth-groups",
                                 name: "auth-groups",
                                 readOnly: true
-                            },
-                            flowsnakeconfigmapmount.kubeconfig_volumeMounts,
-                            flowsnakeconfigmapmount.cert_volumeMounts
-                        ]
+                            }
+                        ] +
+                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                        flowsnakeconfigmapmount.cert_volumeMounts
                     }
                 ],
                 volumes: [
@@ -128,10 +128,10 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         configMap: {
                             name: "auth-groups"
                         }
-                    },
-                    flowsnakeconfigmapmount.kubeconfig_volume,
-                    flowsnakeconfigmapmount.cert_volume
-                ]
+                    }
+                ] +
+                flowsnakeconfigmapmount.kubeconfig_volume +
+                flowsnakeconfigmapmount.cert_volume
             }
         }
     }
