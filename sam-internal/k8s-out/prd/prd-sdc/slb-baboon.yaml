@@ -1,0 +1,71 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-baboon
+  name: slb-baboon
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: slb-baboon
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-baboon
+        - --period=1h
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --slbPodLabel=name=slb-realsvrcfg, name=slb-dns-register, name=slb-node-os-stats,
+          name=slb-vip-watchdog, name=slb-nginx-config, name=slb-ipvsdata-watchdog,
+          name=slb-iface-processor, name=slb-echo-client, name=slb-echo-server, name=slb-config-processor,
+          name=slb-cleanup, name=slb-canary-proxy-tcp, name=slb-canary-proxy-http,
+          name=slb-canary-passthrough-tls, name=slb-canary-passthrough-host-network,
+          name=slb-canary, name=slb-bravo, name=slb-alpha
+        - --k8sapiserver=
+        - --namespace=sam-system
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000433-d9189985
+        name: slb-baboon
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-sdc
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig

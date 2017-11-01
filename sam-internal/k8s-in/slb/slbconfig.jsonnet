@@ -49,6 +49,10 @@ perCluster: {
         "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest",
     },
 
+    podLabelList: {
+        "prd-sdc": "name=slb-realsvrcfg, name=slb-dns-register, name=slb-node-os-stats, name=slb-vip-watchdog, name=slb-nginx-config, name=slb-ipvsdata-watchdog, name=slb-iface-processor, name=slb-echo-client, name=slb-echo-server, name=slb-config-processor, name=slb-cleanup, name=slb-canary-proxy-tcp, name=slb-canary-proxy-http, name=slb-canary-passthrough-tls, name=slb-canary-passthrough-host-network, name=slb-canary, name=slb-bravo, name=slb-alpha",
+    },
+
     canaryServiceName: {
         "prd-sdc": "slb-sdc-svc",
         "prd-samtest": "slb-samtest-svc",
@@ -153,6 +157,7 @@ namespace: self.perCluster.namespace[estate],
 ddiService: self.perCluster.ddiService[estate],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
+podLabelList: self.perCluster.podLabelList[estate],
 useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
 kneDomainName: self.perCluster.kneDomainName[estate],
 processKnEConfigs: self.perCluster.processKnEConfigs[estate],
