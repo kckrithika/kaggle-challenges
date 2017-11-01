@@ -5,11 +5,11 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: default
+  - name: cre-stream-processing
     count: 2
     containers:
     - name: cre-sp-prd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:10
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -19,7 +19,7 @@ system:
         initialDelaySeconds: 30
   loadbalancers:
   - lbname: cre-sp-prd-lb
-    function: default
+    function: cre-stream-processing
     nodeExposed: true
     ports:
       - port: 8081
