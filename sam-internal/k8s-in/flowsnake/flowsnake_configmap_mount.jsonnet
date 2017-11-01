@@ -1,24 +1,54 @@
 {
-    cert_volume: {
-        name: "certs",
-        hostPath: {
-            path: "/data/certs"
-        }
-    },
-    cert_volumeMounts: {
-        mountPath: "/data/certs",
-        name: "certs",
-        readOnly: true
-    },
-    kubeconfig_volumeMounts: {
-       mountPath: "/etc/kubernetes/kubeconfig",
-       name: "kubeconfig",
-       readOnly: true
-    },
-    kubeconfig_volume: {
-        hostPath: {
-          path: "/etc/kubernetes/kubeconfig"
+    cert_volume: [
+        {
+            name: "certificate-authority",
+            hostPath: {
+                path: "/etc/pki_service/ca/"
+            }
         },
-        name: "kubeconfig"
-    }
+        {
+            name: "client-certificate",
+            hostPath: {
+                path: "/etc/pki_service/kubernetes/k8s-client/certificates/"
+            }
+        },
+        {
+            name: "client-key",
+            hostPath: {
+                path: "/etc/pki_service/kubernetes/k8s-client/keys/"
+            }
+        },
+    ],
+    cert_volumeMounts: [
+        {
+            mountPath: "/etc/pki_service/ca/",
+            name: "certificate-authority",
+            readOnly: true
+        },
+        {
+            mountPath: "/etc/pki_service/kubernetes/k8s-client/certificates/",
+            name: "client-certificate",
+            readOnly: true
+        },
+        {
+            mountPath: "/etc/pki_service/kubernetes/k8s-client/keys/",
+            name: "client-key",
+            readOnly: true
+        },
+    ],
+    kubeconfig_volumeMounts: [
+        {
+           mountPath: "/etc/kubernetes/kubeconfig",
+           name: "kubeconfig",
+           readOnly: true
+        },
+    ],
+    kubeconfig_volume: [
+        {
+            hostPath: {
+              path: "/etc/kubernetes/kubeconfig"
+            },
+            name: "kubeconfig"
+        },
+    ]
 }

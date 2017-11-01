@@ -67,8 +67,14 @@ spec:
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
-        - mountPath: /data/certs
-          name: certs
+        - mountPath: /etc/pki_service/ca/
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates/
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/kubernetes/k8s-client/keys/
+          name: client-key
           readOnly: true
       volumes:
       - name: flowsnake-ldap
@@ -84,5 +90,11 @@ spec:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
       - hostPath:
-          path: /data/certs
-        name: certs
+          path: /etc/pki_service/ca/
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/kubernetes/k8s-client/certificates/
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/kubernetes/k8s-client/keys/
+        name: client-key

@@ -86,15 +86,37 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             "--sync-period=5s"
                         ],
                         volumeMounts: [
-                            flowsnakeconfigmapmount.kubeconfig_volumeMounts,
-                            flowsnakeconfigmapmount.cert_volumeMounts
-                        ]
+                            {
+                                mountPath: "/etc/ssl/certs/ssl-cert-snakeoil.pem",
+                                name: "server-certificate",
+                                readOnly: true
+                            },
+                            {
+                                mountPath: "/etc/ssl/private/ssl-cert-snakeoil.key",
+                                name: "server-key",
+                                readOnly: true
+                            }
+                        ] +
+                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                        flowsnakeconfigmapmount.cert_volumeMounts
                     }
                 ],
                 volumes: [
-                    flowsnakeconfigmapmount.kubeconfig_volume,
-                    flowsnakeconfigmapmount.cert_volume
-                ],
+                    {
+                        name: "server-certificate",
+                        hostPath: {
+                            path: "/etc/pki_service/platform/platform-server/certificates/platform-server.pem"
+                        }
+                    },
+                    {
+                        name: "server-key",
+                        hostPath: {
+                            path: "/etc/pki_service/platform/platform-server/keys/platform-server-key.pem"
+                        }
+                    } 
+                ] +
+                flowsnakeconfigmapmount.kubeconfig_volume +
+                flowsnakeconfigmapmount.cert_volume,
                 nodeSelector: {
                     vippool: "true"
                 }
