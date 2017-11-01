@@ -28,8 +28,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 [if configs.estate == "prd-sdc" then "strategy" else null]: {
                     type: "RollingUpdate",
                     rollingUpdate: {
-                        maxUnavailable: '10%',
-                        maxSurge: '10%',
+                        maxUnavailable: "10%",
+                        maxSurge: "10%",
                     },
                 },
                 volumes: configs.filter_empty([
@@ -65,7 +65,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                       exec: {
                             command: [
                                        "test",
-                                       "find /slb-cleanup-heartbeat -mmin -.5",
+                                       "`find /slb-cleanup-heartbeat -mmin -.5`",
                                      ],
                       },
                       initialDelaySeconds: 15,
