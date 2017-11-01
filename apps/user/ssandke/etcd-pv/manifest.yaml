@@ -49,62 +49,57 @@ system:
       maddogCert:
         type: server
 
-  loadbalancers:
-  - lbname: etcd-transient
-    function: etcd-transient
-    slbEnabled: true
-    ports:
-      - targetport: 2379
-        # targetport: 9090
+  - name: etcd-pv
+    count: 1
+    type: stateful-set
+    containers:
+    - name: etcd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/etcd:3.2.0
 
-  # - name: etcd-pv    
-    # type: stateful-set
-    # count: 3
-    # containers:
-    # - name: etcd
-    #   image: tnrp/gater/gater:1.4.0-0000219-14573585
+      env:
+      - name: ETCD_DATA_DIR
+        value: /etcd-data/data
+      - name: ETCD_WAL_DIR
+        value: /etcd-data/wal
+      
+      volumeMounts:
+      - mountPath: /etcd-data
+        name: datavol
+      - mountPath: /certs
+        name: certs
+      
+      ports:
+      - containerPort: 2379
 
-    #   volumeMounts:
-    #   - mountPath: /etcd/data
-    #     name: datavol
-    #   # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
-    #   livenessProbe:
-    #     YO YO YO        
-    #     initialDelaySeconds: 10
-    #     timeoutSeconds: 10
+      resources:
+        requests:
+          memory: "4Gi"
+          cpu: "1"
+        limits:
+          memory: "16Gi"
+          cpu: "2"
 
-    #   ports:
-    #   - containerPort: 2379
-    #   - containerPort: 2380 
+      livenessProbe:
+        tcpSocket:
+          port: 2379
+        initialDelaySeconds: 5
+        periodSeconds: 10
 
+    volumes:
+    - name: certs
+      maddogCert:
+        type: server
 
-    #   resources:
-    #     requests:
-    #       memory: "4Gi"
-    #       cpu: "1"
-    #     limits:
-    #       memory: "8Gi"
-    #       cpu: "2"
+    lbname: etcd-headless-lb
 
-    # volumeMounts:
-    # - mountPath: /certs
-    #   name: certs
+    # Give containers a bit of time to shut down, as they might be syncing 
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 12
 
-    # volumes:
-    # - name: certs
-    #   maddogCert:
-    #     type: server
-
-    # lbname: etcd-headless-lb
-
-    # # Give containers a bit of time to shut down, as they might be syncing 
-    # # state into the PV on shutdown
-    # terminationGracePeriodSeconds: 12
-
-    # volumeClaimTemplates:
-    # - name: datavol
-    #   storageClassName: standard
-      # storageSizeRequest: 8Gi
+    volumeClaimTemplates:
+    - name: datavol
+      storageClassName: standard
+      storageSizeRequest: 100Gi
 
     # Updates aren't supported by stateful sets until Kubernetes 1.7
     # strategy:
@@ -112,3 +107,15 @@ system:
     #   rollingUpdate:
     #     maxSurge: 0
     #     maxUnavailable: 1
+
+  loadbalancers:
+  - lbname: etcd-transient
+    function: etcd-transient
+    slbEnabled: true
+    ports:
+      - targetport: 2379
+  - lbname: etcd-pv
+    function: etcd-pv
+    slbEnabled: true
+    ports:
+      - targetport: 2379
