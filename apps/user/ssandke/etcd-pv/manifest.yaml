@@ -12,9 +12,11 @@ system:
     - name: etcd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/etcd:3.2.0
 
-      args:
-      - "--datadir=/etcd-data/data"
-      - "--waldir=/etcd-data/wal"
+      env:
+      - name: ETCD_DATA_DIR
+        value: /etcd-data/data
+      - name: ETCD_WAL_DIR
+        value: /etcd-data/wal
       
       volumeMounts:
       - mountPath: /etcd-data
@@ -36,6 +38,7 @@ system:
       livenessProbe:
         tcpSocket:
           port: 2379
+        failureThreshold: 1000000
         initialDelaySeconds: 5
         periodSeconds: 10
 
