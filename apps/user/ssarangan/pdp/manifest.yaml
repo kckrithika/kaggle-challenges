@@ -1,12 +1,15 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - ssarangan@salesforce.com
   functions:
   - name: pdpfunction
     count: 2
     containers:
     - name: pdp
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssarangan/pdp:pdp-sundar-2017-sep-20-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/acs/pdp:acs-xacml-pdp-a00835115c1c9f399ac80cf3e5449495c24be725
       ports:
       - containerPort: 9090
       - containerPort: 8080
@@ -15,6 +18,9 @@ system:
         httpGet:
           path: /pdp?type=hb
           port: 8080
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: dev-prd
 
   loadbalancers:
   - lbname: pdplb
