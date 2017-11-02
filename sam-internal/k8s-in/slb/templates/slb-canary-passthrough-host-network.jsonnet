@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -17,7 +17,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
         },
         },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 2,
+        replicas: if configs.estate == "prd-samtest" then 1 else 2,
         template: {
             metadata: {
                 labels: {
