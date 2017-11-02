@@ -19,7 +19,7 @@ system:
         value: /etcd-data/wal
       - name: ETCD_LISTEN_CLIENT_URLS
         value: http://0.0.0.0:2379
-      - name: ETC_ADVERTISE_CLIENT_URLS
+      - name: ETCD_ADVERTISE_CLIENT_URLS
         value: http://etcd-transient.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
       
       volumeMounts:
@@ -67,7 +67,7 @@ system:
         value: /etcd-data/wal
       - name: ETCD_LISTEN_CLIENT_URLS
         value: http://0.0.0.0:2379
-      - name: ETC_ADVERTISE_CLIENT_URLS
+      - name: ETCD_ADVERTISE_CLIENT_URLS
         value: http://etcd-pv.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
       
       volumeMounts:
