@@ -27,6 +27,7 @@ spec:
           name=slb-canary, name=slb-bravo, name=slb-alpha
         - --k8sapiserver=
         - --namespace=sam-system
+        - --log_dir=/host/data/slb/logs
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
