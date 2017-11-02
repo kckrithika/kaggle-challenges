@@ -49,13 +49,13 @@ system:
         - name: PHOENIX_KEYTAB_PRINCIPAL
           value: controlplane@ICEBD11HBASE2A-PRD_APP_ENG_SFDC_NET
         - name: PHOENIX_KEYTAB_FILE
-          value: home/controlplane/controlplane-keytab/controlplane.keytab
+          value: /home/controlplane/controlplane-keytab/controlplane.keytab
         - name: PHOENIX_KERBEROS_ENABLED
           value: true
         - name: PHOENIX_JAAS_CONFIG_FILE
-          value: home/controlplane/controlplane-config/jaas.conf
+          value: /home/controlplane/controlplane-config/jaas.conf
         - name: PHOENIX_KRB5_CONFIG_FILE
-          value: home/controlplane/controlplane-config/krb5.conf
+          value: /home/controlplane/controlplane-config/krb5.conf
         - name: PHOENIX_ZOOKEEPER_QUORUM
           value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
         - name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
