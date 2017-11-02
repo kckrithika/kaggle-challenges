@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - ssandke@salesforce.com
+    - ssandke@salesforce.com
 
   functions:
   - name: etcd-transient
@@ -17,6 +17,10 @@ system:
         value: /etcd-data/data
       - name: ETCD_WAL_DIR
         value: /etcd-data/wal
+      - name: ETCD_LISTEN_CLIENT_URLS
+        value: http://0.0.0.0:2379
+      - name: ETC_ADVERTISE_CLIENT_URLS
+        value: http://etcd-transient.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
       
       volumeMounts:
       - mountPath: /etcd-data
@@ -61,6 +65,10 @@ system:
         value: /etcd-data/data
       - name: ETCD_WAL_DIR
         value: /etcd-data/wal
+      - name: ETCD_LISTEN_CLIENT_URLS
+        value: http://0.0.0.0:2379
+      - name: ETC_ADVERTISE_CLIENT_URLS
+        value: http://etcd-pv.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
       
       volumeMounts:
       - mountPath: /etcd-data
@@ -82,20 +90,20 @@ system:
       livenessProbe:
         tcpSocket:
           port: 2379
-        failureThreshold: 1000000
-        initialDelaySeconds: 5
+        initialDelaySeconds: 15
         periodSeconds: 10
+        failureThreshold: 1000000
 
     volumes:
     - name: certs
       maddogCert:
         type: server
 
-    lbname: etcd-headless-lb
+    lbname: etcd-pv-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing 
     # state into the PV on shutdown
-    terminationGracePeriodSeconds: 12
+    terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
     - name: datavol
