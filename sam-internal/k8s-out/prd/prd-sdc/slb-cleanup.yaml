@@ -18,8 +18,8 @@ spec:
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
-        - --logsMaxAge=48h
         - --log_dir=/host/data/slb/logs
+        - --logsMaxAge=2d
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
