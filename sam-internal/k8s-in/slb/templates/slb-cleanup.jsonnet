@@ -13,6 +13,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
+        [if configs.estate == "prd-sdc" then "minReadySeconds" else null]: 30,
+        [if configs.estate == "prd-sdc" then "strategy" else null]: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: "10%",
+                maxSurge: "10%",
+            },
+        },
         template: {
             metadata: {
                 labels: {
@@ -24,15 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             spec: {
                 hostNetwork: true,
-                [if configs.estate == "prd-sdc" then "minReadySeconds" else null]: 30,
-                [if configs.estate == "prd-sdc" then "strategy" else null]: {
-                    type: "RollingUpdate",
-                    rollingUpdate: {
-                        maxUnavailable: "10%",
-                        maxSurge: "10%",
-                    },
-                },
-                volumes: configs.filter_empty([
+               volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,

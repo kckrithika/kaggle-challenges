@@ -6,6 +6,12 @@ metadata:
   name: slb-cleanup
   namespace: sam-system
 spec:
+  minReadySeconds: 30
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 10%
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -42,12 +48,6 @@ spec:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       hostNetwork: true
-      minReadySeconds: 30
-      strategy:
-        rollingUpdate:
-          maxSurge: 10%
-          maxUnavailable: 10%
-        type: RollingUpdate
       volumes:
       - hostPath:
           path: /data/slb
