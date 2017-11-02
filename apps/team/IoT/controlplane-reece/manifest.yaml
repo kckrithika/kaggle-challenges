@@ -9,10 +9,10 @@ system:
     count: 1
     containers:
     - name: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:24
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:cb7c8e5
       ports:
-        - name: mgmt
-          containerPort: 15372
+        - name: server
+          containerPort: 8080
         - name: grpc
           containerPort: 7020
       livenessProbe:
@@ -31,19 +31,19 @@ system:
         - name: PHOENIX_ZOOKEEPER_PORT
           value: 2181
         - name: PHOENIX_KEYTAB_PRINCIPAL
-          value: controlplane@ICEBD11HBASE2A-PRD_APP_ENG_SFDC_NET
+          value: controlplane@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
         - name: PHOENIX_KEYTAB_FILE
-          value: home/controlplane/controlplane-keytab/controlplane.keytab
+          value: /home/controlplane/controlplane-keytab/controlplane.keytab
         - name: PHOENIX_KERBEROS_ENABLED
           value: true
         - name: PHOENIX_JAAS_CONFIG_FILE
-          value: home/controlplane/controlplane-config/jaas.conf
+          value: /home/controlplane/controlplane-config/jaas.conf
         - name: PHOENIX_KRB5_CONFIG_FILE
-          value: home/controlplane/controlplane-config/krb5.conf
+          value: /home/controlplane/controlplane-config/krb5.conf
         - name: PHOENIX_ZOOKEEPER_QUORUM
           value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
-        - name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
-          value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
+        #@- name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
+        #@- value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
       volumeMounts:
       - mountPath: /home/controlplane/logs
         name: logvol
@@ -84,7 +84,7 @@ system:
     function: controlplane-reece
     nodeExposed: true
     ports:
-      - port: 8060
+      - port: 8100
+        targetport: 8080
+      - port: 9110
         targetport: 7020
-      - port: 8065
-        targetport: 15372
