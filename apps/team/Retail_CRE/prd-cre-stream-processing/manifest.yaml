@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:13
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -23,7 +23,7 @@ system:
     volumes:
     - name: certs
       hostPath:
-        path: /home/fiaz/keystores      
+        path: /home/sfdc-retail/keystores     
   loadbalancers:
   - lbname: cre-sp-prd-lb
     function: cre-stream-processing
