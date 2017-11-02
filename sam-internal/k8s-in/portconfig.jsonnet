@@ -48,6 +48,7 @@
         slbNginxControlPort: 32146,
         bravoServiceNodePort3: 32147,
         slbEchoServiceNodePort: 32148,
+        slbIpvsControlPort: 32149,
     },
     flowsnake: {
         nginx_ingress_http: 32080,

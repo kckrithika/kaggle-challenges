@@ -130,7 +130,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        securityContext: {
                            privileged: true,
                        },
-                    },
+                       ports: [
+                             {
+                                containerPort: portconfigs.slb.slbIpvsControlPort,
+                             },
+                       ],
+                     },
                 ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
