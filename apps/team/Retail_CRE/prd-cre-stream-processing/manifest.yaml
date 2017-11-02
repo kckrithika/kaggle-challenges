@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:10
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:12
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -17,6 +17,13 @@ system:
             command:
             - ls
         initialDelaySeconds: 30
+    volumeMounts:
+      - mountPath: /certs
+        name: certs
+    volumes:
+    - name: certs
+      hostPath:
+        path: /home/fiaz/keystores      
   loadbalancers:
   - lbname: cre-sp-prd-lb
     function: cre-stream-processing
