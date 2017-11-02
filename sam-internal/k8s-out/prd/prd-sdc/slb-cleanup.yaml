@@ -6,12 +6,6 @@ metadata:
   name: slb-cleanup
   namespace: sam-system
 spec:
-  minReadySeconds: 30
-  strategy:
-    rollingUpdate:
-      maxSurge: 10%
-      maxUnavailable: 10%
-    type: RollingUpdate
   template:
     metadata:
       labels:

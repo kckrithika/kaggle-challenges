@@ -13,14 +13,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        [if configs.estate == "prd-sdc" then "minReadySeconds" else null]: 30,
-        [if configs.estate == "prd-sdc" then "strategy" else null]: {
-            type: "RollingUpdate",
-            rollingUpdate: {
-                maxUnavailable: "10%",
-                maxSurge: "10%",
-            },
-        },
         template: {
             metadata: {
                 labels: {
