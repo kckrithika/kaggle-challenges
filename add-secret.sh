@@ -1,12 +1,12 @@
-#/bin/bash
+#!/bin/bash -e
 
 display_usage() {
   echo 'Usage : ./add-secret.sh [arguments]'
-  echo '-n|-name : <secretName>'
-  echo '-o|-org : <team/teamName> or <user/user-name>'
-  echo '-k|-kingdom : <kingdomList>'
-  echo '-g|-global'
-  echo '-ff|-from-file : <pathToFile>'
+  echo '-n|--name : <secretName>'
+  echo '-o|--org : <team/teamName> or <user/user-name>'
+  echo '-k|--kingdom : <kingdomList>'
+  echo '-g|--global'
+  echo '-f|--from-file : <pathToFile>'
 }
 
 # if no argument supplied, display usage
@@ -18,27 +18,28 @@ fi
 
 index=0
 GLOBAL=false
+FROM_FILE_ARG="--fromFile="
 for i in "$@"
 do
 case $i in
-    -n=*|-name=*)
+    --name=*|-n=*)
     NAME="${i#*=}"
     shift # past argument=value
     ;;
-    -o=*|-org=*)
+    --org=*|-o=*)
     ORG="${i#*=}"
     shift # past argument=value
     ;;
-    -k=*|-kingdom=*)
+    --kingdom=*|-k=*)
     KINGDOM="${i#*=}"
     shift # past argument=value
     ;;
-    -g*|-global*)
+    --global*|-g*)
     GLOBAL=true
     shift # past argument=value
     ;;
-    -ff*|-from-file*)
-    FROM_FILE[index]="${i#*=}"
+    --from-file=*|-f=*)
+    FROM_FILE[index]="$FROM_FILE_ARG${i#*=}"
     ((index++))	
     shift # past argument=value
     ;;
@@ -63,9 +64,8 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/sam-internal/hypersam.sh"
 
 #Remove next line after moratorium. This is just to use the updated hypersam image
-HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001451-cff3beb4
+HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001453-5ae40f36
 
-echo ${PWD}
 docker run \
   --rm \
   -it \
@@ -81,5 +81,4 @@ docker run \
   --teamOrUserName=${ORG}\
   --kingdomList=${KINGDOM}\
   --global=${GLOBAL}\
-  --fromFile=${FROM_FILE[*]}\  
-
+  ${FROM_FILE[*]}
