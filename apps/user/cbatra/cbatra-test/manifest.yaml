@@ -21,7 +21,7 @@ system:
     volumes:
      - name: secretvol
        k4aSecret:
-         secretName: argus12
+         secretName: argus123
     env:
       - name: TEST_ENV
         value: test_val_new
