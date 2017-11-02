@@ -47,7 +47,7 @@ system:
         - name: PHOENIX_ZOOKEEPER_PORT
           value: 2181
         - name: PHOENIX_KEYTAB_PRINCIPAL
-          value: controlplane@ICEBD11HBASE2A-PRD_APP_ENG_SFDC_NET
+          value: controlplane@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
         - name: PHOENIX_KEYTAB_FILE
           value: /home/controlplane/controlplane-keytab/controlplane.keytab
         - name: PHOENIX_KERBEROS_ENABLED
@@ -58,8 +58,8 @@ system:
           value: /home/controlplane/controlplane-config/krb5.conf
         - name: PHOENIX_ZOOKEEPER_QUORUM
           value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
-        - name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
-          value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
+        #@- name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
+        #@- value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
       volumeMounts:
       - mountPath: /home/controlplane/logs
         name: logvol
