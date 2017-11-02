@@ -63,7 +63,7 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/sam-internal/hypersam.sh"
 
 #Remove next line after moratorium. This is just to use the updated hypersam image
-HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001450-629cb713
+HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001451-cff3beb4
 
 echo ${PWD}
 docker run \
@@ -71,12 +71,15 @@ docker run \
   -it \
   -u 0 \
   -v ${PWD}:/repo \
+  -v /:/hostroot \
   ${HYPERSAM} \
   manifestctl \
   encrypt \
   --manifestRepoRoot='/repo/' \
+  --hostRoot='/hostroot/' \
   --secretName=${NAME}\
   --teamOrUserName=${ORG}\
   --kingdomList=${KINGDOM}\
   --global=${GLOBAL}\
   --fromFile=${FROM_FILE[*]}\  
+
