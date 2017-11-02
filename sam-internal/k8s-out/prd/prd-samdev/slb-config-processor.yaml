@@ -19,7 +19,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config
         - --period=1800s
-        - --namespace=sam-system
+        - --namespace=
         - --podstatus=running
         - --subnet=10.251.129.243-245
         - --k8sapiserver=

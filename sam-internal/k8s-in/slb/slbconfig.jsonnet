@@ -36,7 +36,7 @@ perCluster: {
     namespace: {
         "prd-sdc": "",
         "prd-samtest": "",
-        "prd-samdev": "sam-system",
+        "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "",
     },
