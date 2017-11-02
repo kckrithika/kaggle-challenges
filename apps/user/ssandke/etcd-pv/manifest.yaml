@@ -110,12 +110,55 @@ system:
       storageClassName: standard
       storageSizeRequest: 100Gi
 
-    # Updates aren't supported by stateful sets until Kubernetes 1.7
-    # strategy:
-    #   type: RollingUpdate
-    #   rollingUpdate:
-    #     maxSurge: 0
-    #     maxUnavailable: 1
+  - name: etcd-pvnc
+    count: 1
+    type: stateful-set
+    containers:
+    - name: etcd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssandke/etcd:3.2.0
+
+      env:
+      - name: ETCD_DATA_DIR
+        value: /etcd-data/data
+      - name: ETCD_WAL_DIR
+        value: /etcd-data/wal
+      - name: ETCD_LISTEN_CLIENT_URLS
+        value: http://0.0.0.0:2379
+      - name: ETCD_ADVERTISE_CLIENT_URLS
+        value: http://etcd-pvnc.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
+      
+      volumeMounts:
+      - mountPath: /etcd-data
+        name: datavol
+      
+      ports:
+      - containerPort: 2379
+
+      resources:
+        requests:
+          memory: "4Gi"
+          cpu: "1"
+        limits:
+          memory: "16Gi"
+          cpu: "2"
+
+      livenessProbe:
+        tcpSocket:
+          port: 2379
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 1000000
+
+    lbname: etcd-pvnc-headless-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing 
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 20
+
+    volumeClaimTemplates:
+    - name: datavol
+      storageClassName: standard
+      storageSizeRequest: 100Gi
 
   loadbalancers:
   - lbname: etcd-transient
@@ -125,6 +168,11 @@ system:
       - targetport: 2379
   - lbname: etcd-pv
     function: etcd-pv
+    slbEnabled: true
+    ports:
+      - targetport: 2379
+  - lbname: etcd-pvnc
+    function: etcd-pvnc
     slbEnabled: true
     ports:
       - targetport: 2379
