@@ -165,14 +165,17 @@ system:
     function: etcd-transient
     slbEnabled: true
     ports:
-      - targetport: 2379
+      - port: 2379
+        targetport: 2379
   - lbname: etcd-pv
     function: etcd-pv
     slbEnabled: true
     ports:
-      - targetport: 2379
+      - port: 2379
+        targetport: 2379
   - lbname: etcd-pvnc
     function: etcd-pvnc
     slbEnabled: true
     ports:
-      - targetport: 2379
+      - port: 2379
+        targetport: 2379
