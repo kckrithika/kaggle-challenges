@@ -35,6 +35,7 @@ if configs.estate == "prd-sdc" then {
                             "--slbPodLabel=" + slbconfigs.podLabelList,
                             "--k8sapiserver=",
                             "--namespace=sam-system",
+                            "--log_dir=" + slbconfigs.logsDir,
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
