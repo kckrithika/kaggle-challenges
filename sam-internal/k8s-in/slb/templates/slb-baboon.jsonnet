@@ -36,6 +36,7 @@ if configs.estate == "prd-sdc" then {
                             "--k8sapiserver=",
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
+                            "--hostnameoverride=$(NODE_NAME)",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -46,6 +47,14 @@ if configs.estate == "prd-sdc" then {
                             configs.kube_config_volume_mount,
                         ]),
                         env: [
+                            {
+                               name: "NODE_NAME",
+                               valueFrom: {
+                                   fieldRef: {
+                                       fieldPath: "spec.nodeName",
+                                   },
+                               },
+                            },
                            configs.kube_config_env,
                         ],
                         securityContext: {
