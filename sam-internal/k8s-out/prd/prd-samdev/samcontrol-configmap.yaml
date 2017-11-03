@@ -18,6 +18,7 @@ data:
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
       "maddogMadkubImage": "sam/madkub:1.0.0-0000043-0500ad27",
       "maddogMadkubImageRegistry": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp",
+      "slbConfigInLabels": true,
       "statefulAppEnabled": true,
       "tlsEnabled": true,
       "volPermissionInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673"

@@ -34,3 +34,6 @@ local samimages = import "samimages.jsonnet";
 + (if configs.estate == "prd-samtest" then {
     livenessProbePort: "22545",
   } else {})
++ (if configs.kingdom == "prd" then {
+    slbConfigInLabels: true,
+  } else {})
