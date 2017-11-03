@@ -56,7 +56,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-scale-safely/search-model-executor-test:20171102152823
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711030849
       ports:
       - name: service-port
         containerPort: 7020
