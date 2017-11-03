@@ -12,18 +12,19 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: tnrp/cloud-atlas/cloudatlas:ab01479
+      image: sfci/cloud-atlas/cloudatlas:1.3
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
+      - name: UBID_REMOVE_EXISTING
+        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
       ports:
-      - containerPort: 1389
-      - containerPort: 1636
-      - containerPort: 8989
+      - containerPort: 7032
+      - containerPort: 8090
       livenessProbe:
         exec:
           command: ["true"]
