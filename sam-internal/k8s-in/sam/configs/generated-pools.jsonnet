@@ -837,6 +837,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-search_model_executor",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
