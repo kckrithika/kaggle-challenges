@@ -25,7 +25,6 @@ spec:
         - --sender=sam@salesforce.com
         - --defaultRecipient=
         - --namespacesToSkip=sam-watchdog
-        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

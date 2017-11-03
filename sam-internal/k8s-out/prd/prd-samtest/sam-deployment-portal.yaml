@@ -19,7 +19,6 @@ spec:
       containers:
       - command:
         - /sam/sam-deployment-portal
-        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
