@@ -55,7 +55,7 @@ system:
         - name: PHOENIX_ZOOKEEPER_QUORUM
           value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
         - name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
-        - value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
+          value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
       volumeMounts:
       - mountPath: /home/controlplane/logs
         name: logvol
