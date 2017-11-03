@@ -39,10 +39,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_ceph",
@@ -125,12 +127,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -213,10 +213,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_ceph",
@@ -297,12 +299,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -349,10 +349,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "hnd-sam",
       "estate": "hnd-sam_ceph",
@@ -433,12 +435,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -485,10 +485,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_ceph",
@@ -569,12 +571,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -633,10 +633,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_ceph",
@@ -717,12 +719,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -781,10 +781,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_ceph",
@@ -867,12 +869,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -919,10 +919,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_ceph",
@@ -1005,12 +1007,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -1195,12 +1195,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
@@ -1211,11 +1209,11 @@
     },
     {
       "namespaces": [
-        "legostore",
+        "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
+        "team/SF_Store",
         "team/Storage_Foundation"
       ],
       "controlEstate": "prd-sam_storage",
@@ -1225,10 +1223,14 @@
     },
     {
       "namespaces": [
-        "storage-foundation"
+        "storage-foundation",
+        "sf-store",
+        "legostore"
       ],
       "access": [
-        "team/Storage_Foundation"
+        "team/Storage_Foundation",
+        "team/SF_Store",
+        "team/LegoStore"
       ],
       "controlEstate": "prd-sam_storage",
       "estate": "prd-sam_storage",
@@ -1455,10 +1457,12 @@
     },
     {
       "namespaces": [
-        "legostore"
+        "legostore",
+        "storage-foundation"
       ],
       "access": [
-        "team/LegoStore"
+        "team/LegoStore",
+        "team/Storage_Foundation"
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_ceph",
@@ -1539,12 +1543,10 @@
     },
     {
       "namespaces": [
-        "legostore",
         "sf-store",
         "storage-foundation"
       ],
       "access": [
-        "team/LegoStore",
         "team/SF_Store",
         "team/Storage_Foundation"
       ],
