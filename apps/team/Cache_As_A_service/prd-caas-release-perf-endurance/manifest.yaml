@@ -38,7 +38,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12015
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -86,7 +86,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12016
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -134,7 +134,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12017
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -182,7 +182,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12018
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -230,7 +230,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12019
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -278,7 +278,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12020
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -326,7 +326,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12021
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -374,7 +374,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12022
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -422,7 +422,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12023
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -470,7 +470,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12024
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -518,7 +518,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12025
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -566,7 +566,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12026
-        - --cluster.name=sp-c7
+        - --cluster.name=sp-c9
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
