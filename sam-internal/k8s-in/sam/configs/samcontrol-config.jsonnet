@@ -31,3 +31,6 @@ local samimages = import "samimages.jsonnet";
 + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     k4aInitContainerImage: samimages.k4aInitContainerImage,
   } else {})
++ (if configs.estate == "prd-samtest" then {
+    livenessProbePort: "22545",
+  } else {})
