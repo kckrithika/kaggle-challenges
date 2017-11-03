@@ -7,5 +7,7 @@ apps:
         - prd/prd-sam
     bazel-spike:
         - prd/prd-sam
+    scone-go:
+        - prd/prd-sam
     basic-rest-service-pki:
         - prd/prd-sam
