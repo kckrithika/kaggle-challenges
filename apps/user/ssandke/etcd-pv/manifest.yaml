@@ -66,9 +66,15 @@ system:
       - name: ETCD_WAL_DIR
         value: /etcd-data/wal
       - name: ETCD_LISTEN_CLIENT_URLS
-        value: http://0.0.0.0:2379
+        value: https://0.0.0.0:2379
       - name: ETCD_ADVERTISE_CLIENT_URLS
-        value: http://etcd-pv.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
+        value: https://etcd-pv.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
+      - name: ETCD_CERT_FILE
+        value: /certs/server/certificates/server.pem
+      - name: ETCD_KEY_FILE
+        value: /certs/server/keys/server-key.pem
+      - name: ETCD_TRUSTED_CA
+        value: /certs/ca.pem
       
       volumeMounts:
       - mountPath: /etcd-data
