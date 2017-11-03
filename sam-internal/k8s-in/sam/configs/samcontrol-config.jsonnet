@@ -13,6 +13,7 @@ local samimages = import "samimages.jsonnet";
   volPermissionInitContainerImage: samimages.permissionInitContainer,
   checkImageExistsFlag: (if configs.kingdom == "prd" then true else false),
   imageCheckV2: true,
+  slbConfigInLabels: true,
 }
 + (if (configs.kingdom == "prd") then {
   deletionEnabled: true,
