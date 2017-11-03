@@ -183,7 +183,8 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
             name: "sfdchosts",
         },
     } else {}),
-    sfdchosts_arg: (if kingdom == "prd" && estate != "prd-sam" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
+    # [thargrove] I will turn this back on for a test bed when the deadlock is tested, merged and deployed
+    sfdchosts_arg: (if kingdom == "disabled" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
 
     # === OTHER ===
 
