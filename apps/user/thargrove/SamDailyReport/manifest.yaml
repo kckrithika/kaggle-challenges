@@ -28,8 +28,8 @@ system:
           readOnly: true
     volumes:
     - name: argusvol
-      secret:
-        secretName: argus
+      k4aSecret:
+        secretName: argusk4a
     - name: gitvol
       secret:
         secretName: git-token
