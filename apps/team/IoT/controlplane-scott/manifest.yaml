@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - iotenterprise@salesforce.com
+      - sarthur@salesforce.com
   functions:
   - name: hbase-one-three-test
     count: 1
@@ -52,10 +52,10 @@ system:
           value: /home/controlplane/controlplane-config/jaas.conf
         - name: PHOENIX_KRB5_CONFIG_FILE
           value: /home/controlplane/controlplane-config/krb5.conf
-        - name: PHOENIX_ZOOKEEPER_QUORUM
-          value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
         - name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
           value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
+        - name: PHOENIX_ZOOKEEPER_QUORUM
+          value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
       volumeMounts:
       - mountPath: /home/controlplane/logs
         name: logvol
