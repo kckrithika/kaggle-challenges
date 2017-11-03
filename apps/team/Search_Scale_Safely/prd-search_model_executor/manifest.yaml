@@ -22,13 +22,13 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 240
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 240
         timeoutSeconds: 10
     - name: sherpa-b
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
