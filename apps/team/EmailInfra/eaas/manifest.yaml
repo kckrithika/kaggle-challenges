@@ -6,7 +6,7 @@ system:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    count: 2 
+    count: 4 
     strategy:
       type: RollingUpdate
     containers:
