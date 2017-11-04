@@ -30,6 +30,9 @@ system:
           port: 15372
         initialDelaySeconds: 240
         timeoutSeconds: 10
+      volumeMounts:
+      - mountPath: /home/search-model-executor/logs
+        name: logvol
     - name: sherpa-b
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
       env:
@@ -52,6 +55,10 @@ system:
           - "./bin/is-ready"
           initialDelaySeconds: 5
           periodSeconds: 10
+    volumes:
+    - name: logvol
+      hostpath:
+        path: /data/sam/search-model-executor/log/search-model-executor
   - name: search-model-executor-test
     count: 1
     containers:
