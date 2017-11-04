@@ -18,7 +18,7 @@ system:
           periodSeconds: 5
 
     - name: sherpa-geoip
-      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug:20171103-10 
+      image:  ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug:20171103-16 
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
