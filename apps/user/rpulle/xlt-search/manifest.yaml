@@ -1,0 +1,49 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: search-model-executor-xlt
+    count: 9
+    containers:
+    - name: search-model-executor-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:20171010
+      ports:
+      - containerPort: 8500
+        name: sme-xlt-port
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - ./bin/agentcontroller.sh
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - ./bin/agentcontroller.sh
+          initialDelaySeconds: 5
+          periodSeconds: 5
+    - name: sherpa-xlt
+      image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      # No incoming
+      # - containerPort: 7012
+      #   name: sherpa-xlt-in
+      - containerPort: 7080
+        name: sherpa-xlt-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
