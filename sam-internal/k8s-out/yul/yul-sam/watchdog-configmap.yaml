@@ -65,22 +65,10 @@ data:
         {
           "checker": "hairpinChecker",
           "estates": [
-            "prd-sam",
-            "prd-samtest",
-            "prd-samdev",
-            "prd-sam_storage"
+            "prd-sam_cloudatlas",
+            "prd-sam_cloudatlas_dir"
           ],
-          "until": "2017/11/01"
-        },
-        {
-          "checker": "bridgeChecker",
-          "estates": [
-            "prd-sam",
-            "prd-samtest",
-            "prd-samdev",
-            "prd-sam_storage"
-          ],
-          "until": "2017/11/01"
+          "until": "2017/11/21"
         }
       ],
       "tlsEnabled": true
