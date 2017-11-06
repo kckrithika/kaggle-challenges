@@ -11,3 +11,6 @@ apps:
  geoip-client:
   - prd/prd-sam
 
+ xlt-search:
+  - prd/prd-sam
+
