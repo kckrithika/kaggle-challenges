@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-go-app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/shipping-service-go:4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/shipping-service-go:5
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
