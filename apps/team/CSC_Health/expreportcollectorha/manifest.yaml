@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.9.0-0000161-95d31d29
+      image: tnrp/csc-health/report-collector:1.10.0-0000164-cb866aba
       ports:
       - name: provider
         containerPort: 8080
