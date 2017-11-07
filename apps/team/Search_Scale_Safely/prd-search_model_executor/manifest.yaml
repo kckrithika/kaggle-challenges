@@ -58,7 +58,7 @@ system:
     volumes:
     - name: logvol
       hostpath:
-        path: /data/sam/search-model-executor/log/search-model-executor
+        path: /data/sam/search-model-executor/log
   - name: search-model-executor-test
     count: 1
     containers:
