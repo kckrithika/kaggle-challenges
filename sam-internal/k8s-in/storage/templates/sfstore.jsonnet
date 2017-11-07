@@ -6,11 +6,11 @@ if configs.estate == "prd-sam_storage" then {
     apiVersion: "storage.salesforce.com/v1beta1",
     kind: "SfstoreCluster",
     metadata: {
-      name: "prdsam",
+      name: configs.estate,
       namespace: "sfstore",
     },
     spec: {
-      version: 1.10,
+      version: "1.10",
       faultDomainBoundary: "rack",
       aggregateStorage: "300Gi",
     },
