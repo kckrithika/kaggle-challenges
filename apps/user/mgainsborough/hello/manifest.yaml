@@ -14,16 +14,12 @@ system:
           command:
            - echo
            - HEALTHY
-          initialDelaySeconds: 5
-          periodSeconds: 5
 
       readinessProbe:
         exec:
           command:
            - echo
            - HEALTHY
-          initialDelaySeconds: 5
-          periodSeconds: 5
 
       ports:
         - containerPort: 8800
