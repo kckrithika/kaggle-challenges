@@ -83,6 +83,14 @@ data:
             "prd-sam_storage"
           ],
           "until": "2017/11/01"
+        },
+        {
+          "checker": "hairpinChecker",
+          "estates": [
+            "prd-sam_cloudatlas",
+            "prd-sam_cloudatlas_dir"
+          ],
+          "until": "2017/11/21"
         }
       ],
       "tlsEnabled": true
