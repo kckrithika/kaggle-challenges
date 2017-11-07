@@ -1,3 +1,5 @@
+PLEASE NOTE: NO DEPLOYMENTS ANYWHERE OTHER THAN PRD ARE PERMITTED DURING THE DREAMFORCE MORATORIUM, WHICH IS IN PLACE AT PRESENT (10/30 - 11/10)
+
 <!-- Instructions for submitting a PR to sam/manifests:
 Remember to run validate.sh before creating a PR to catch changes early.
 
