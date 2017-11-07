@@ -47,7 +47,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                 ],
                             },
                         },
-                    },
+                    }
+                    + (
+                        if configs.estate == "prd-sdc" then {
+                            livenessProbe: {
+                                httpGet: {
+                                    path: "/",
+                                    port: 9008,
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 3,
+                            },
+                        }
+                        else {}
+                       ),
                 ],
                 nodeSelector: {
                     "slb-service": "alpha",
