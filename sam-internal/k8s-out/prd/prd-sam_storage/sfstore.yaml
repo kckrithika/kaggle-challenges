@@ -1,9 +1,0 @@
-apiVersion: storage.salesforce.com/v1beta1
-kind: SfstoreCluster
-metadata:
-  name: prd-sam_storage
-  namespace: sfstore
-spec:
-  aggregateStorage: 300Gi
-  faultDomainBoundary: rack
-  version: "1.10"
