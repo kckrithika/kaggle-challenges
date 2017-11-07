@@ -25,7 +25,7 @@ spec:
         - mountPath: /host/data/slb
           name: var-slb-volume
       nodeSelector:
-        pool: prd-samtest
+        pool: prd-samdev
       volumes:
       - hostPath:
           path: /data/slb

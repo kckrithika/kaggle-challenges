@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
+if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.estate != "prd-samtest" then {
     kind: "Deployment",
     spec: {
         replicas: 3,
