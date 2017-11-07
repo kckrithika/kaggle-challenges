@@ -17,11 +17,11 @@ local samimages = import "samimages.jsonnet";
     { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" },
     # [thargrove] TNRP changed bot name
     { estates: ["prd-sam"], checker: "prChecker", until: "2017/10/01" },
-
-    # cdebains - 1.7.4 update triggered veth problems. Fixed in all non-flannel estates. Pending fix for flannel estates
+    ] + (
+if configs.kingdom == "prd" then [
     { estates: ["prd-sam_cloudatlas", "prd-sam_cloudatlas_dir"], checker: "hairpinChecker", until: "2017/11/21" },
-
-  ],
+    ] else []
+    ),
 
   # Shared
   "email-subject-prefix": "SAMWD",
