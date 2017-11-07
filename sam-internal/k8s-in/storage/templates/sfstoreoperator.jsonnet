@@ -7,9 +7,9 @@ if configs.estate == "prd-sam_storage" then {
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "sfstore-operator",
+            name: "sfstoreoperator",
         },
-        name: "sfstore-operator-deployment",
+        name: "sfstoreoperator-deployment",
         namespace: "sam-system",
     },
     spec: {
@@ -25,13 +25,13 @@ if configs.estate == "prd-sam_storage" then {
         template: {
             metadata: {
                 labels: {
-                    name: "sfstore-operator",
+                    name: "sfstoreoperator",
                 },
             },
             spec: {
                 containers: [
                     {
-                        name: "sfstore-operator",
+                        name: "sfstoreoperator",
                         image: storageimages.sfstore,
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
