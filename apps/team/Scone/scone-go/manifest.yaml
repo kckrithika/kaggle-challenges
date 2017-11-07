@@ -13,6 +13,10 @@ system:
       ports:
       - containerPort: 9090
       - containerPort: 15372
+      args:
+      - settings.path=sconex.-.prd.-.shipping-service-go
+      - settings.superPod=-
+      - log.file=/home/scone/logs/shipping-service-go/json/shipping-service-go.json
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
