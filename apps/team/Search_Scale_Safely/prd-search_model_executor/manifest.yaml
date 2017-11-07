@@ -6,7 +6,7 @@ system:
     count: 8
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711061626
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711071112
       ports:
       - name: service-port
         containerPort: 7020
@@ -20,8 +20,6 @@ system:
         value: search-model-executor
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
-      - name: METRICS_FUNNELENDPOINTURL
-        value: http://ajna0-funnel1-0-prd.data.sfdc.net/
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -60,7 +58,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/search-scale-safely/search-model-executor-test:20171102152823
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711071112
       ports:
       - name: service-port
         containerPort: 7020
