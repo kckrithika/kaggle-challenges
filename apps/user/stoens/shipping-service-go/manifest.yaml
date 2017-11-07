@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-go-app
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/shipping-service-go:5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/shipping-service-go:6
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -16,8 +16,8 @@ system:
       args:
       - settings.path=sconex.-.prd.-.shipping-service-go
       - settings.superPod=-
-      - metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
-      - testarg1=testvalue1
+      - log.file=/home/scone/logs/shipping-service-go/json/shipping-service-go.json
+      - testarg2=testvalue2
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
