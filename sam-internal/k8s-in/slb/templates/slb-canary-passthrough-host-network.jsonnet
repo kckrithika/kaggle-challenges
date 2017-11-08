@@ -44,7 +44,20 @@ if configs.estate == "prd-sdc" then {
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
-                    },
+                    }
+                    + (
+                        if configs.estate == "prd-sdc" then {
+                            livenessProbe: {
+                                httpGet: {
+                                    path: "/",
+                                    port: portconfigs.slb.canaryServicePassthroughHostNetworkPort,
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 3,
+                            },
+                        }
+                        else {}
+                       ),
                 ],
                 nodeSelector: {
                     pool: configs.estate,

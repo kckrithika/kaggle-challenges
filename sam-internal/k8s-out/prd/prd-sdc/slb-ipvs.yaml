@@ -69,6 +69,12 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000444-c2d8a28e
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9107
+          initialDelaySeconds: 5
+          periodSeconds: 3
         name: slb-ipvs-data
         ports:
         - containerPort: 32149

@@ -39,7 +39,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                             volumeMounts: configs.filter_empty([
                                 slbconfigs.slb_volume_mount,
                              ]),
-                        },
+                        }
+                        + (
+                            if configs.estate == "prd-sdc" then {
+                                livenessProbe: {
+                                    httpGet: {
+                                        path: "/",
+                                        port: portconfigs.slb.slbConfigDataPort,
+                                    },
+                                    initialDelaySeconds: 5,
+                                    periodSeconds: 3,
+                                },
+                            }
+                            else {}
+                          ),
                 ],
              },
         },
