@@ -16,8 +16,9 @@ system:
       args:
       - settings.path=sconex.-.prd.-.shipping-service-go
       - settings.superPod=-
-      - log.file=/home/scone/logs/shipping-service-go/json/shipping-service-go.json
-      - testarg1=value1
+      - log.file.enabled=true
+      - log.file.json=true
+      - log.file.path=/home/sfdc-sconego/logs/shipping-service-go/json/shipping-service-go.json
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
