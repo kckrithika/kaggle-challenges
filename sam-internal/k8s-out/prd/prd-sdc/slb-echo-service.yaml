@@ -1,9 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    slb.sfdc.net/name: slb-echo-svc
+    slb.sfdc.net/portconfigurations: '[{"port":9118,"targetport":9118,"lbtype":"tcp"}]'
   labels:
     app: slb-echo-svc
     slb.sfdc.net/name: slb-echo-svc
+    slb.sfdc.net/type: tcp
   name: slb-echo-svc
   namespace: sam-system
 spec:
