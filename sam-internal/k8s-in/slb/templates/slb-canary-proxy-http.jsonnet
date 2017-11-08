@@ -40,7 +40,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
-                    },
+                    }
+                    + (
+                        if configs.estate == "prd-sdc" then {
+                            livenessProbe: {
+                                httpGet: {
+                                    path: "/",
+                                    port: portconfigs.slb.canaryServiceProxyHttpPort,
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 3,
+                            },
+                        }
+                        else {}
+                       ),
                 ],
                 nodeSelector: {
                     pool: configs.estate,
