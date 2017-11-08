@@ -9,8 +9,15 @@ if configs.estate == "prd-sdc" then {
             labels: {
                 app: "slb-echo-svc",
                 "slb.sfdc.net/name": "slb-echo-svc",
+                "slb.sfdc.net/type": "tcp",
             },
-        },
+        } +
+                      if configs.estate == "prd-sdc" then {
+                          annotations: {
+                                           "slb.sfdc.net/name": "slb-echo-svc",
+                                           "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.slbEchoServicePort + ",\"targetport\":" + portconfigs.slb.slbEchoServicePort + ",\"lbtype\":\"tcp\"}]",
+                          },
+                      } else {},
         spec: {
             ports: [
             {
