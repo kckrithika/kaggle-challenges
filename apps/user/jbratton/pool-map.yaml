@@ -1,4 +1,6 @@
 apps:
+  geoip:
+    - prd/prd-sam
   time:
     - prd/prd-sam
   time-tls:
