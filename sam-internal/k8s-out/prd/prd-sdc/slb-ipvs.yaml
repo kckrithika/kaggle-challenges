@@ -51,6 +51,7 @@ spec:
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
+        - --configurePerPort=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000444-c2d8a28e
         name: slb-ipvs-processor
         securityContext:

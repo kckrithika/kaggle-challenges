@@ -11,7 +11,13 @@ if configs.estate == "prd-sdc" then {
                 "slb.sfdc.net/name": "slb-canary-proxy-tcp",
                 "slb.sfdc.net/type": "tcp",
             },
-        },
+        } +
+                      if configs.estate == "prd-sdc" then {
+                          annotations: {
+                                           "slb.sfdc.net/name": "slb-canary-proxy-tcp",
+                                           "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\"}]",
+                          },
+                      } else {},
         spec: {
             ports: [
             {

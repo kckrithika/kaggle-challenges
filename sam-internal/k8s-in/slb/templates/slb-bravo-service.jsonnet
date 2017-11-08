@@ -10,7 +10,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 app: "slb-bravo-svc",
                 "slb.sfdc.net/name": "slb-bravo-svc",
             },
-        },
+        } +
+                     if configs.estate == "prd-sdc" then {
+                        annotations: {
+                                        "slb.sfdc.net/name": "slb-bravo-svc",
+                                        "slb.sfdc.net/portconfigurations": "[{\"port\":9090,\"targetport\":9090,\"lbtype\":\"tcp\"},{\"port\":9091,\"targetport\":9091,\"lbtype\":\"tcp\"},{\"port\":9092,\"targetport\":9092,\"lbtype\":\"tcp\"}]",
+                                    },
+                     } else {},
         spec: {
             ports: [
                 {

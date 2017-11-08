@@ -89,6 +89,13 @@ perCluster: {
         "prd-sam_storage": "/var/slb/testkneconfigs",
         "prd-sam": "/var/slb/kneconfig",
     },
+    configurePerPort: {
+        "prd-sdc": true,
+        "prd-samtest": false,
+        "prd-samdev": false,
+        "prd-sam_storage": false,
+        "prd-sam": false,
+    },
 },
 
 
@@ -162,6 +169,7 @@ useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],
 kneDomainName: self.perCluster.kneDomainName[estate],
 processKnEConfigs: self.perCluster.processKnEConfigs[estate],
 kneConfigDir: self.perCluster.kneConfigDir[estate],
+configurePerPort: self.perCluster.configurePerPort[estate],
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
