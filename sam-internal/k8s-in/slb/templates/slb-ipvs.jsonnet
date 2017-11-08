@@ -135,7 +135,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 containerPort: portconfigs.slb.slbIpvsControlPort,
                              },
                        ],
-                     },
+                     }
+                     + (
+                        if configs.estate == "prd-sdc" then {
+                            livenessProbe: {
+                                httpGet: {
+                                    path: "/",
+                                    port: portconfigs.slb.ipvsDataConnPort,
+                                },
+                                initialDelaySeconds: 5,
+                                periodSeconds: 3,
+                            },
+                        }
+                        else {}
+                      ),
                 ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
