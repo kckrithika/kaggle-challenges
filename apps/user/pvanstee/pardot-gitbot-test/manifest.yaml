@@ -18,8 +18,8 @@ system:
           path: /
           port: 8080
       env:
-        - name: GITHUB_ORG
-          value: pardot
+        - name: GITHUB_BASE_URL
+          value: https://git.soma.salesforce.com/api/v3
         - name: GITHUB_USER
           value: svc-gitbot
         - name: GITHUB_API_TOKEN
@@ -27,6 +27,8 @@ system:
             secretKeyRef:
               name: gitbot
               key: github-api-token
+        - name: GITHUB_ORG
+          value: pardot
     volumes:
     - name: secretvol
       secret:
