@@ -132,6 +132,8 @@ system:
         value: http://0.0.0.0:2379
       - name: ETCD_ADVERTISE_CLIENT_URLS
         value: http://etcd-pvnc.user-ssandke.prd-sam.prd.slb.sfdc.net:2379
+      - name: TICK
+        value: 2
       
       volumeMounts:
       - mountPath: /etcd-data
