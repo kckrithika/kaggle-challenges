@@ -12,6 +12,7 @@ data:
       "deployer-smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
+      "enableStatefulChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001408-441a28db",
       "k8sproxyEndpoint": "http://localhost:40000",

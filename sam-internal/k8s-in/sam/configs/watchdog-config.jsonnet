@@ -78,4 +78,6 @@ local samimages = import "samimages.jsonnet";
   } else {
     podNamespacePrefixBlacklist: "sam-watchdog",
   }
-)
+) + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+    enableStatefulChecks: true,
+  } else {})
