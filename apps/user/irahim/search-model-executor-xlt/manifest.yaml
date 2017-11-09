@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: search-model-executor-xlt
+  - name: sme-xlt-irahim
     count: 9
     containers:
-    - name: search-model-executor-xlt
+    - name: sme-xlt-irahim
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:20171010
       ports:
       - containerPort: 8500
