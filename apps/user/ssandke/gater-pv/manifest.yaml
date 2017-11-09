@@ -36,6 +36,7 @@ system:
       ports:
       - containerPort: 9522
       - containerPort: 9523 
+      - containerPort: 9524
       - containerPort: 9090
       - containerPort: 15372
       env:
@@ -82,3 +83,19 @@ system:
     #   rollingUpdate:
     #     maxSurge: 0
     #     maxUnavailable: 1
+
+  loadbalancers:
+  - lbname: gater-pv
+    function: gater-pv
+    slbEnabled: true
+    ports:
+      - port: 9522
+        targetport: 9522
+      - port: 9523
+        targetport: 9523
+      - port: 9524
+        targetport: 9524
+      - port: 15372
+        targetport: 15372
+      - port: 80
+        targetport: 9090
