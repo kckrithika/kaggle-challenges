@@ -35,7 +35,7 @@
         volumeMounts:
         - mountPath: /home/controlplane/logs
           name: logvol
-                  - mountPath: /home/controlplane/ajna-certs
+        - mountPath: /home/controlplane/ajna-certs
           name: ajnacerts
           readOnly: true
         - mountPath: /home/controlplane/controlplane-keytab
