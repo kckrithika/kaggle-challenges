@@ -67,6 +67,8 @@ system:
       ports:
       - containerPort: 7012
         name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
@@ -111,6 +113,6 @@ system:
       - port: 11005
         targetport: 15373
       - port: 9109
-        targetport: 7020
+        targetport: 7443
       - port: 8099
         targetport: 7012
