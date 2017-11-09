@@ -17,20 +17,20 @@ system:
         httpGet:
           path: /
           port: 8080
+      env:
+        - name: GITHUB_ORG
+          value: pardot
+        - name: GITHUB_USER
+          value: svc-gitbot
+        - name: GITHUB_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: gitbot
+              key: github-api-token
     volumes:
     - name: secretvol
       secret:
         secretName: gitbot
-    env:
-      - name: GITHUB_ORG
-        value: pardot
-      - name: GITHUB_USER
-        value: svc-gitbot
-      - name: GITHUB_API_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: gitbot
-            key: github-api-token
   loadbalancers:
   - lbname: gitbotlb
     function: default
