@@ -9,11 +9,28 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/pvanstee/gitbotd_app:20170830-dev
       ports:
       - containerPort: 8080
+      volumeMounts:
+      - mountPath: /var/secrets
+        name: secretvol
+        readOnly: true
       livenessProbe:
         httpGet:
           path: /
           port: 8080
- 
+    volumes:
+    - name: secretvol
+      secret:
+        secretName: gitbot
+    env:
+      - name: GITHUB_ORG
+        value: pardot
+      - name: GITHUB_USER
+        value: svc-gitbot
+      - name: GITHUB_API_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: gitbot
+            key: github-api-token
   loadbalancers:
   - lbname: gitbotlb
     function: default
