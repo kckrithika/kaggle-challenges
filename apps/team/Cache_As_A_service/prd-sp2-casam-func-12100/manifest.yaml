@@ -18,11 +18,11 @@ system:
 
       env:
         - name: DEPLOYMENT
-          value: M
+          value: N
         - name: DB_USER
-          value: sleepy
+          value: sneezy
         - name: CASAM_CYAN_PATH
-          value: casam/casam-210-11-1
+          value: casam/casam-210-11-2
 
 
         # If the count is changed above, the same value must be set for the NODES env variable below
@@ -74,7 +74,7 @@ system:
       readinessProbe:
         httpGet:
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
-          path: /__cyan_admin__/app/health?version=210.11.1
+          path: /__cyan_admin__/app/health?version=210.11.2
           port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -117,7 +117,7 @@ system:
         - name: K4A
           value: have_to_get_this
         - name: RELEASE_VERSION
-          value: 210.11.1
+          value: 210.11.2
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
