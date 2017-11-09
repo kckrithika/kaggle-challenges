@@ -7,12 +7,12 @@ metadata:
 spec:
   ports:
   - name: alert-hook
-    nodePort: 30501
+    nodePort: 35001
     port: 5001
     protocol: TCP
     targetPort: 5001
   - name: alert-publisher
-    nodePort: 30502
+    nodePort: 35002
     port: 5002
     protocol: TCP
     targetPort: 5002
