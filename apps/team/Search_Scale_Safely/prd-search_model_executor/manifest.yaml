@@ -6,7 +6,7 @@ system:
     count: 8
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711082148
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
       ports:
       - name: service-port
         containerPort: 7020
@@ -65,7 +65,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711082148
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
       ports:
       - name: service-port
         containerPort: 7020
