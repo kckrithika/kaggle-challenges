@@ -1,76 +1,76 @@
 apiVersion: v1
-  system:
-    functions:
-    - containers:
-      - env:
-        - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
-          value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
-        - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
-          value: /opt/java/jdk1.8.0_121/jre/lib/security/cacerts
-        - name: GRPC_SERVER_PORT
-          value: '9105'
-        - name: LOGGING_STDERR_LEVEL
-          value: ALL
-        - name: MANAGEMENT_PORT
-          value: '8095'
-        - name: PHOENIX_KEYTABPATH
-          value: /home/controlplane/controlplane-keytab/controlplane.keytab
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:e684fa6
-        livenessProbe:
-          httpGet:
-            path: /manage/info
-            port: 8095
-          initialDelaySeconds: 120
-          timeoutSeconds: 120
-        name: controlplane-ptest
-        ports:
-        - containerPort: 8095
-          name: mgmt
-        - containerPort: 9105
-          name: grpc
-        resources:
-          requests:
-            cpu: 2
-            memory: 2G
-        volumeMounts:
-        - mountPath: /home/controlplane/logs
-          name: logvol
-        - mountPath: /home/controlplane/ajna-certs
-          name: ajnacerts
-          readOnly: true
-        - mountPath: /home/controlplane/controlplane-keytab
-          name: controlplanekeytab
-          readOnly: true
-        - mountPath: /home/controlplane/controlplane-config
-          name: controlplaneconfig
-          readOnly: true
-      count: 4
+system:
+  functions:
+  - containers:
+    - env:
+      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
+        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
+      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
+        value: /opt/java/jdk1.8.0_121/jre/lib/security/cacerts
+      - name: GRPC_SERVER_PORT
+        value: '9105'
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: MANAGEMENT_PORT
+        value: '8095'
+      - name: PHOENIX_KEYTABPATH
+        value: /home/controlplane/controlplane-keytab/controlplane.keytab
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:e684fa6
+      livenessProbe:
+        httpGet:
+          path: /manage/info
+          port: 8095
+        initialDelaySeconds: 120
+        timeoutSeconds: 120
       name: controlplane-ptest
-      strategy:
-        type: Recreate
-      volumes:
-      - hostPath:
-          path: /data/sam/iot/log/controlplane-ptest
-        name: logvol
-      - name: ajnacerts
-        secret:
-          secretName: ajna-certs
-      - name: controlplanekeytab
-        secret:
-          secretName: controlplane-keytab
-      - name: controlplaneconfig
-        secret:
-          secretName: controlplane-config
-    loadbalancers:
-    - function: controlplane-ptest
-      lbname: controlplane-ptest-lb
-      nodeExposed: true
-      slbEnabled: true
       ports:
-      - port: 9105
-        targetport: 9105
-      - port: 8095
-        targetport: 8095
-    notifications:
-      email:
-      - iotenterprise@salesforce.com
+      - containerPort: 8095
+        name: mgmt
+      - containerPort: 9105
+        name: grpc
+      resources:
+        requests:
+          cpu: 2
+          memory: 2G
+      volumeMounts:
+      - mountPath: /home/controlplane/logs
+        name: logvol
+      - mountPath: /home/controlplane/ajna-certs
+        name: ajnacerts
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-keytab
+        name: controlplanekeytab
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-config
+        name: controlplaneconfig
+        readOnly: true
+    count: 4
+    name: controlplane-ptest
+    strategy:
+      type: Recreate
+    volumes:
+    - hostPath:
+        path: /data/sam/iot/log/controlplane-ptest
+      name: logvol
+    - name: ajnacerts
+      secret:
+        secretName: ajna-certs
+    - name: controlplanekeytab
+      secret:
+        secretName: controlplane-keytab
+    - name: controlplaneconfig
+      secret:
+        secretName: controlplane-config
+  loadbalancers:
+  - function: controlplane-ptest
+    lbname: controlplane-ptest-lb
+    ports:
+    - port: 9105
+      targetport: 9105
+    - port: 8095
+      targetport: 8095
+    slbEnabled: true
+  notifications:
+    email:
+    - iotenterprise@salesforce.com
+
