@@ -19,7 +19,7 @@ system:
           port: 8080
       env:
         - name: GITHUB_BASE_URL
-          value: https://git.soma.salesforce.com/api/v3
+          value: https://git.soma.salesforce.com/api/v3/
         - name: GITHUB_USER
           value: svc-gitbot
         - name: GITHUB_API_TOKEN
