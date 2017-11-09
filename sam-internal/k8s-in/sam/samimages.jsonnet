@@ -17,14 +17,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-
-        #[cbatra] This is to test out k4a secrets
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001453-5ae40f36",
-        # [thargrove] This build of autodeployer has timeout changed from 1s to 30s
-        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001419-636a3f7d",
-
-        # [prabhs] Synthetic Timeout increased from 30s to 300s
-        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001423-ee310fbc",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
