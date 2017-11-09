@@ -5,22 +5,6 @@ system:
     email:
       - sarthur@salesforce.com
   functions:
-  - name: hbase-one-three-test
-    count: 1
-    containers:
-    - name: hbase-one-three-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/hbase-one-three-test:alpha
-      ports:
-        - name: server
-          containerPort: 8080
-        - name: management
-          containerPort: 15372
-      livenessProbe:
-        httpGet:
-          path: /manage/info
-          port: 15372
-        initialDelaySeconds: 120
-        timeoutSeconds: 120
   - name: controlplane-sarthur
     count: 1
     containers:
@@ -85,6 +69,9 @@ system:
         name: sherpa-in
       - containerPort: 15373
         name: sherpa-adm
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
       livenessProbe:
         exec:
           command:
@@ -110,6 +97,9 @@ system:
     - name: controlplaneconfig
       secret:
         secretName: controlplane-config
+    - name: server-certs
+      maddogCert:
+        type: server
     strategy:
       type: Recreate
 
@@ -124,11 +114,3 @@ system:
         targetport: 7020
       - port: 8099
         targetport: 7012
-  - lbname: hbase-one-three-test
-    function: hbase-one-three-test
-    nodeExposed: true
-    ports:
-      - port: 11002
-        targetport: 15372
-      - port: 11001
-        targetport: 8080
