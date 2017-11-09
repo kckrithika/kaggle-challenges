@@ -49,9 +49,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001408-441a28db",
-            madkub: "1.0.0-0000043-0500ad27",
-            madkubSidecar: "1.0.0-0000043-0500ad27",
+            hypersam: "sam-0001459-4c561cad",
+            madkub: "1.0.0-0000048-4daa9234",
+            madkubSidecar: "1.0.0-0000048-4daa9234",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
