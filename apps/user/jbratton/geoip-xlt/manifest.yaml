@@ -11,7 +11,7 @@ system:
       - containerPort: 8500
     - name: sherpa-xlt
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa:envoy
-      command:
+      args:
         - "--destinations"
         - "geoip:10.251.161.138:7080,geoip:10.251.164.134:7080,geoip:10.251.160.135:7080"
       env:
