@@ -71,6 +71,6 @@
         targetport: 9105
       - port: 8095
         targetport: 8095
-            notifications:
+    notifications:
       email:
       - iotenterprise@salesforce.com
