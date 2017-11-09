@@ -70,6 +70,7 @@ system:
     - port: 8095
       targetport: 8095
     slbEnabled: true
+    nodeExposed: true
   notifications:
     email:
     - iotenterprise@salesforce.com
