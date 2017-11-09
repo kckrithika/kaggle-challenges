@@ -37,6 +37,7 @@ system:
       - containerPort: 9522
       - containerPort: 9523 
       - containerPort: 9524
+      - containerPort: 9090
       - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
@@ -96,3 +97,5 @@ system:
         targetport: 9524
       - port: 15372
         targetport: 15372
+      - port: 80
+        targetport: 9090
