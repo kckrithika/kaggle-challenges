@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -32,7 +32,7 @@ if configs.estate == "prd-sam_storage" then {
                 containers: [
                     {
                         name: "sfstoreoperator",
-                        image: storageimages.sfstore,
+                        image: storageimages.sfstoreoperator,
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,

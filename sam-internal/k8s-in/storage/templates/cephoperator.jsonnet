@@ -2,14 +2,14 @@ local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "ceph-operator",
+            name: "cephoperator",
         },
-        name: "ceph-operator-deployment",
+        name: "cephoperator-deployment",
         namespace: "sam-system",
     },
     spec: {
@@ -25,14 +25,14 @@ if configs.estate == "prd-sam_storage" then {
         template: {
             metadata: {
                 labels: {
-                    name: "ceph-operator",
+                    name: "cephoperator",
                 },
             },
             spec: {
                 containers: [
                     {
-                        name: "ceph-operator",
-                        image: storageimages.ceph,
+                        name: "cephoperator",
+                        image: storageimages.cephoperator,
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
