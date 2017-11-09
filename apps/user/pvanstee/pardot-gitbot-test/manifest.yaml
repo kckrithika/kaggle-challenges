@@ -15,7 +15,7 @@ system:
         readOnly: true
       livenessProbe:
         httpGet:
-          path: /
+          path: /boomtown
           port: 8080
       env:
         - name: GITHUB_BASE_URL
