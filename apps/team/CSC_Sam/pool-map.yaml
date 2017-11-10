@@ -19,3 +19,7 @@ apps:
   - prd/prd-samtest
   - prd/prd-samdev
   - frf/frf-sam
+ SamTestAppSecret:
+  - prd/prd-samtest
+  - prd/prd-samdev
+
