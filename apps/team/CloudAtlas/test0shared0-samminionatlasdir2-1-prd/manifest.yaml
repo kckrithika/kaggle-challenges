@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:a2838ec
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:ccc4259
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -20,6 +20,10 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
+      - mountPath: /home/sfdc-atlas/servers/ds/logs
+        name: pinglogvol
+      - mountPath: /log
+        name: logvol
       - mountPath: /certs
         name: server-cert
       ports:
@@ -33,6 +37,12 @@ system:
     - name: hosthomevol
       hostPath:
         path: /data/ca-cluster-a
+    - name: pinglogvol
+      hostPath:
+        path: /home/sfdc-atlas/logs/pingserver
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
     - name: server-cert
       maddogCert:
         type: server
