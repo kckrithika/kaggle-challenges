@@ -10,6 +10,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 app: "fds-controller",
                 "slb.sfdc.net/name": "fds",
             },
+            annotations: {
+                "slb.sfdc.net/name": "fds",
+            },
         },
         spec: {
             ports: [
