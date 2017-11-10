@@ -8,11 +8,20 @@ system:
     # number of instances ("kpods") to deploy and run
     count: 1
     
+    volumes:
+    - name: cert
+      maddogCert:
+        type: server
+
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-services
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:20171002-5
       
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+        
       ports:
       - containerPort: 8080
       - containerPort: 15372
