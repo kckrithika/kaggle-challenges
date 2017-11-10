@@ -10,6 +10,9 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
                 app: "idc-samhello",
                 "slb.sfdc.net/name": "idc",
             },
+            annotations: {
+                "slb.sfdc.net/name": "idc",
+            },
         },
         spec: {
             ports: [
