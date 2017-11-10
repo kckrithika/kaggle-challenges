@@ -17,6 +17,9 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+        # [mayank] Stateful synthetic
+        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001470-24fdca31",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001470-24fdca31",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
