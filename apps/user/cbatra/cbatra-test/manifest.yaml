@@ -13,6 +13,9 @@ system:
       - mountPath : /secrets/
         name: secretvol
         readOnly: true
+      - mountPath : /testsecrets/
+        name: testvol
+        readOnly: true
       livenessProbe:
         httpGet:
           path: /
@@ -21,6 +24,9 @@ system:
      - name: secretvol
        k4aSecret:
          secretName: argusk4a
+     - name: testvol
+       k4aSecret:
+         secretName: secretname
     env:
       - name: TEST_ENV
         value: test_val_new
