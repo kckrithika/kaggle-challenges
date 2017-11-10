@@ -9,6 +9,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 app: "k8sproxy",
                 "slb.sfdc.net/name": "k8sproxy",
             },
+            annotations: {
+                "slb.sfdc.net/name": "k8sproxy",
+            },
         },
         spec: {
             ports: [

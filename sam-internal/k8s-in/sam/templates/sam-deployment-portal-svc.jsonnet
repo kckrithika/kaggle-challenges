@@ -9,6 +9,9 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
                 app: "sam-deployment-portal",
                 "slb.sfdc.net/name": "sdp",
             },
+            annotations: {
+                "slb.sfdc.net/name": "sdp",
+            },
         },
         spec: {
             ports: [
