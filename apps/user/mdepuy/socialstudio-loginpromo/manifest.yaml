@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: socialstudio-loginpromo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mdepuy/socialloginpromo:sprintboot1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mdepuy/socialloginpromo:201711101
       ports:
       - containerPort: 8080
       livenessProbe:
