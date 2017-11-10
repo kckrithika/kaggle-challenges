@@ -24,7 +24,6 @@ system:
      - name: secretvol
        k4aSecret:
          secretName: argusk4a
-    volumes:
      - name: testvol
        k4aSecret:
          secretName: secretname
