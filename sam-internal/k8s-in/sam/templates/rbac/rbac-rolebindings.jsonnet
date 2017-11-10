@@ -58,27 +58,6 @@ for minionnode in hosts
         ]),
 
   local clusterRoleBindings = [
-     {
-      kind: "ClusterRoleBinding",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
-      metadata: {
-        name: "cluster-admin",
-      },
-      subjects: [
-        {
-          kind: "User",
-          name: masterNode,
-        }
-for masterNode in rbac_utils.get_Nodes(configs.kingdom, configs.estate, rbac_utils.masterRole)
-      ],
-      roleRef: {
-        kind: "ClusterRole",
-        #cluster-admin role is created by k8s API server
-        #Allows super-user access to perform any action on any resource. When used in a ClusterRoleBinding, it gives full control over every resource in the cluster and in all namespaces.
-        name: "cluster-admin",
-        apiGroup: "rbac.authorization.k8s.io",
-      },
-    },
     {
       #Gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces.
       kind: "ClusterRoleBinding",

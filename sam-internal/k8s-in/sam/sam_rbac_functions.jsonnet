@@ -23,4 +23,7 @@ local pools = import "configs/generated-pools.jsonnet";
 if pool.kingdom == kingdom && pool.estate == estate
         ]))),
 
+    # In production DC SAM control estate nodes get cluster-admin permission
+    # In PRD only kubeapi nodes get cluster-admin permission
+    getMasterNodes(kingdom, controlestate):: if kingdom == "prd" then $.get_Nodes(kingdom, controlestate, $.masterRole) else [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.estate == controlestate],
   }
