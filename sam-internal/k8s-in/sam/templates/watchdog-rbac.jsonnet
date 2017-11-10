@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -15,7 +15,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
                             "/sam/watchdog",
                             "-role=RBAC",
                             "-watchdogFrequency=60s",
-                            "-alertThreshold=300s",
+                            "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
                         ]
                         + samwdconfig.shared_args

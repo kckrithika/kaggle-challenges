@@ -72,6 +72,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             "nodes",
             "pods",
             "persistentvolumes",
+            "statefulsets",
           ],
           verbs: [
             "get",
