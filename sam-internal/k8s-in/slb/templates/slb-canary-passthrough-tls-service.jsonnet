@@ -11,6 +11,9 @@ if configs.estate == "prd-sdc" then {
                 "slb.sfdc.net/name": "slb-canary-pt-tls",
                 "slb.sfdc.net/type": "none",
             },
+            annotations: {
+                "slb.sfdc.net/name": "slb-canary-pt-tls",
+            },
         },
         spec: {
             ports: [

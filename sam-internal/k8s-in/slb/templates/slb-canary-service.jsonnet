@@ -10,6 +10,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 app: "slb-canary-service",
                 "slb.sfdc.net/name": "slb-canary-service",
             },
+            annotations: {
+                "slb.sfdc.net/name": "slb-canary-service",
+            },
         },
         spec: {
             ports: [
