@@ -46,7 +46,7 @@ spec:
         - mountPath: /kubeconfig
           name: kubeconfig
       nodeSelector:
-        pool: prd-sam
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service
