@@ -27,7 +27,7 @@ system:
         name: datavol
       # - mountPath: /certs
       #   name: certs
-      - mountPath: /secrets/
+      - mountPath: /secrets
         name: secretvol
         readOnly: true
 
