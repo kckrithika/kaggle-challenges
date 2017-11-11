@@ -5,7 +5,7 @@ system:
   - name: default
     count: 2
     containers:
-    - name: samhello
+    - name: samhello1
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vyjayanthi.raja/samhello:vyj-20170925
       ports:
       - containerPort: 9090
@@ -13,11 +13,23 @@ system:
         httpGet:
           path: /
           port: 9090
- 
+    - name: samhello2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vyjayanthi.raja/samhello:vyj-20170925
+      ports:
+      - containerPort: 9091
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9091
+
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: vyj-samhellolb
     function: default
     slbenabled: true
     ports:
-      - port: 9090
+      - port: 80
         targetport: 9090
+        lbtype: dsr
+      - port: 81
+        targetport: 9091
+        lbtype: tcp
