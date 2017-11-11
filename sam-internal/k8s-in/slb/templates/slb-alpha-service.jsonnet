@@ -10,6 +10,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 app: "slb-alpha-svc",
                 "slb.sfdc.net/name": "slb-alpha-svc",
             },
+            annotations: {
+                "slb.sfdc.net/name": "slb-alpha-svc",
+            },
         },
         spec: {
             ports: [

@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    slb.sfdc.net/name: slb-canary-pt-tls
   labels:
     app: slb-canary-passthrough-tls-service
     slb.sfdc.net/name: slb-canary-pt-tls

@@ -11,13 +11,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 "slb.sfdc.net/name": "slb-canary-proxy-http",
                 "slb.sfdc.net/type": "http",
             },
-        } +
-                      if configs.estate == "prd-sdc" then {
-                          annotations: {
-                                          "slb.sfdc.net/name": "slb-canary-proxy-http",
-                                          "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"}]",
-                          },
-                      } else {},
+            annotations: {
+                "slb.sfdc.net/name": "slb-canary-proxy-http",
+                "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"}]",
+            },
+        },
         spec: {
             ports: [
             {
