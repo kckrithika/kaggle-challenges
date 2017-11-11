@@ -24,6 +24,7 @@ system:
         name: logvol
       - mountPath: /fastdata/gater
         name: dbvol
+
       # Specify a liveness probe pod will be restarted if this returns a status outside the range of 200-399
       livenessProbe:
         httpGet:
@@ -50,17 +51,10 @@ system:
         limits:
           memory: "12Gi"
 
-    volumeMounts:
-    - mountPath: /certs
-      name: certs
-
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-gater/logs
-    - name: certs
-      maddogCert:
-        type: server
 
     lbname: gater-pv-lb
 
