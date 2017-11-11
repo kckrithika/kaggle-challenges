@@ -13,6 +13,7 @@ data:
       "imageCheckV2": true,
       "k8sapiserver": "",
       "keyFile": "/data/certs/hostcert.key",
+      "slbConfigInAnnotations": true,
       "slbConfigInLabels": true,
       "statefulAppEnabled": true,
       "tlsEnabled": true,
