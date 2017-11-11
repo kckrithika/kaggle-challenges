@@ -25,8 +25,8 @@ system:
       volumeMounts:
       - mountPath: /etcd-data
         name: datavol
-      - mountPath: /certs
-        name: certs
+      # - mountPath: /certs
+      #   name: certs
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
@@ -55,9 +55,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: k4a
-    - name: certs
-      maddogCert:
-        type: server
+    # - name: certs
+    #   maddogCert:
+    #     type: server
 
   - name: etcd-pv
     count: 1
