@@ -39,13 +39,6 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: test-secret
-  - name: samtestwd
-    count: 1
-    containers:
-    - name: samtestwd
-      image: tnrp/sam/hypersam:sam-0000701-487f2675
-      command: ["/sam/service-wd"]
-      args: ["-service=lb124"]
   loadbalancers:
   - lbname: samtestsecretlb
     nodeExposed: true
