@@ -32,7 +32,7 @@ spec:
               fieldPath: metadata.namespace
         - name: KUBECONFIG
           value: /etc/kubernetes/kubeconfig
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:344
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:427
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -65,11 +65,14 @@ spec:
         - mountPath: /etc/pki_service/ca/
           name: certificate-authority
           readOnly: true
-        - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates/
+        - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates
           name: client-certificate
           readOnly: true
-        - mountPath: /etc/pki_service/kubernetes/k8s-client/keys/
+        - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
           name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
           readOnly: true
       nodeSelector:
         vippool: "true"
@@ -85,11 +88,14 @@ spec:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
       - hostPath:
-          path: /etc/pki_service/ca/
+          path: /etc/pki_service/ca
         name: certificate-authority
       - hostPath:
-          path: /etc/pki_service/kubernetes/k8s-client/certificates/
+          path: /etc/pki_service/kubernetes/k8s-client/certificates
         name: client-certificate
       - hostPath:
-          path: /etc/pki_service/kubernetes/k8s-client/keys/
+          path: /etc/pki_service/kubernetes/k8s-client/keys
         name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert

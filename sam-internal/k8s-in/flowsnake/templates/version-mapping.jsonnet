@@ -7,6 +7,6 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
         namespace: "flowsnake"
     },
     data: {
-        "version-mapping.properties": std.manifestPythonVars(flowsnakeimage.version_mapping)
+        "version-mapping.properties": std.manifestIni(flowsnakeimage.version_mapping)
     }
 }

@@ -18,6 +18,12 @@
                 path: "/etc/pki_service/kubernetes/k8s-client/keys"
             }
         },
+        {
+            name: "data-cert",
+            hostPath: {
+                path: "/data/certs"
+            }
+        },
     ],
     cert_volumeMounts: [
         {
@@ -33,6 +39,11 @@
         {
             mountPath: "/etc/pki_service/kubernetes/k8s-client/keys",
             name: "client-key",
+            readOnly: true
+        },
+        {
+            mountPath: "/data/certs",
+            name: "data-cert",
             readOnly: true
         },
     ],

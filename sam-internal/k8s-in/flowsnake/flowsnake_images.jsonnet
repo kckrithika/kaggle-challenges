@@ -8,14 +8,22 @@ local kingdom = std.extVar("kingdom");
         "1": {
             "image_tag": "427",
             "version_mapping": {
-                "0.9.1": 377,
-                "0.9.2": 403,
-                "0.9.3": 427
-            }
-        # These are for developer testing only
-        # only copy above to phase 2
-            + {
-                "0.0.1": 1
+                main: { 
+                  "0.9.1": 377,
+                  "0.9.2": 403,
+                  "0.9.3": 427,
+                  "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
+                  "carl-zk-test": "zk-service-extirpation-itest-ready"
+                } 
+                + 
+                # These are for developer testing only
+                # only copy above to phase 2
+                {
+                  "0.0.1": 1
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                }
             }
         },
 
@@ -23,9 +31,16 @@ local kingdom = std.extVar("kingdom");
         "2": {
             "image_tag": "427",
             "version_mapping": {
-                "0.9.1": 377,
-                "0.9.2": 403,
-                "0.9.3": 427
+                main: { 
+                  "0.9.1": 377,
+                  "0.9.2": 403,
+                  "0.9.3": 427,
+                  "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
+                  "carl-zk-test": "zk-service-extirpation-itest-ready"
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                }
             }
         },
 
