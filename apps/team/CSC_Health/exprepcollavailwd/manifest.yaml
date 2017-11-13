@@ -45,6 +45,8 @@ system:
         value: /var/log/report-collector-availability-watchdog
       - name: RC_WD_LOGGER_LEVEL
         value: debug
+      - name: RC_WD_LOGGER_WRITETOCONSOLE
+        value: true
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
