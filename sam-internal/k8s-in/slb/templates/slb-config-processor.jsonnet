@@ -53,7 +53,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
                             "--kneConfigDir=" + slbconfigs.kneConfigDir,
                             "--kneDomainName=" + slbconfigs.kneDomainName,
-                        ],
+                        ] + if configs.estate == "prd-sdc" then ["--slbConfigInAnnotations=true"] else [],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
