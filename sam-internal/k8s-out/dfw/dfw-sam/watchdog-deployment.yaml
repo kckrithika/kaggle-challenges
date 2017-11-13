@@ -32,6 +32,8 @@ spec:
         image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-deployment
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -42,6 +44,9 @@ spec:
       nodeSelector:
         pool: dfw-sam
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs
