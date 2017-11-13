@@ -18,6 +18,7 @@ system:
   loadbalancers:
   - lbname: socialstudio-loginpromolb
     function: mc-social-socialstudio-loginpromo
+    slbEnabled: true
     ports:
       - port: 8080
         targetport: 8080
