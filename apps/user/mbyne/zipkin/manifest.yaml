@@ -2,14 +2,28 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+
+  - name: zipkin
     count: 1
     containers:
-    - name: testserver
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/testservice:test-2
+    - name: zipkin
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/zipkin:test-3
+      ports:
+      - containerPort: 9411
+        name: zipkin-http
+      livenessProbe:
+        httpGet:
+          path: /zipkin
+          port: 9411
+
+  - name: tester
+    count: 1
+    containers:
+    - name: tester
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/tester:test-3
       env:
       - name: GRPC_HOST
-        value: provisioning-in-a-container.localhost.mesh.force.com
+        value: mbyne-server.localhost.mesh.force.com
       - name: GRPC_PORT
         value: 7011
       ports:
@@ -47,11 +61,13 @@ system:
   - name: server
     count: 1
     containers:
-    - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/enterprise-provisioning:test-2
+    - name: server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/server:test-3
       env:
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
+      - name: SCONE_SERVICE_NAME
+        value: mbyne-server
       ports:
       - containerPort: 8080
         name: rest
@@ -88,8 +104,13 @@ system:
           periodSeconds: 5        
  
   loadbalancers:
-  - lbname: testserverlb
-    function: default
+  - lbname: testerlb
+    function: tester
     ports:
-      - port: 8080
+      - port: 9678
         targetport: 8080
+  - lbname: zipkinlb
+    function: zipkin
+    ports:
+      - port: 9411
+        targetport: 9411
