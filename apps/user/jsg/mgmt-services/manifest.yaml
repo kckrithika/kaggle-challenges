@@ -11,13 +11,18 @@ system:
     volumes:
     - name: cert
       maddogCert:
-        type: server
+        type: client
 
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-services
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:mgmt-20171110-0
-      
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:mgmt-20171113-0
+      env:
+      - name: PKI_CA_DIR
+        value: /certs
+      - name: PKI_MONITORDIR
+        value: /certs/client
+
       volumeMounts:
       - name: cert
         mountPath: /certs
