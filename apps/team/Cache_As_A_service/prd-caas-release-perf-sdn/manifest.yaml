@@ -9,6 +9,7 @@ system:
     count: 1 
     nodeSelector:
       kubernetes.io/hostname=samcaas2-caasminion1-1-prd.eng.sfdc.net    
+    hostnetwork: true
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
@@ -25,6 +26,7 @@ system:
       args: 
         - --port=12015
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -42,7 +44,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12015
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -73,6 +75,7 @@ system:
       args: 
         - --port=12016
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -90,7 +93,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12016
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -121,6 +124,7 @@ system:
       args: 
         - --port=12017
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -138,7 +142,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12017
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -169,6 +173,7 @@ system:
       args: 
         - --port=12018
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -186,7 +191,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12018
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -217,6 +222,7 @@ system:
       args: 
         - --port=12019
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -234,7 +240,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12019
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -265,6 +271,7 @@ system:
       args: 
         - --port=12020
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -282,7 +289,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12020
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -313,6 +320,7 @@ system:
       args: 
         - --port=12021
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -330,7 +338,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12021
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -361,6 +369,7 @@ system:
       args: 
         - --port=12022
         - --maxMemoryMB=5120
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -378,7 +387,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12022
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logDir=/home/caas/logs
         - --pathPrefix=/mistperf2/prd/sp2
       livenessProbe:
@@ -401,7 +410,7 @@ system:
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
-        - --cluster.name=sp-c2
+        - --cluster.name=sp-pc2
         - --logging.level.minimum=FINE
         - --logDir=/home/caas/logs/caas
         - --metrics-publisher-mode=true
