@@ -6,22 +6,41 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - image tags from strata build
         "1": {
-            "image_tag": "345",
+            "image_tag": "427",
             "version_mapping": {
-                "0.9.1_SNAPSHOT": 345
-            }
-        # These are for developer testing only
-        # only copy above to phase 2
-            + {
-                "0.9.3": 346
+                main: { 
+                  "0.9.1": 377,
+                  "0.9.2": 403,
+                  "0.9.3": 427,
+                  "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
+                  "carl-zk-test": "zk-service-extirpation-itest-ready"
+                } 
+                + 
+                # These are for developer testing only
+                # only copy above to phase 2
+                {
+                  "0.0.1": 1
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                }
             }
         },
 
         ### Release Phase 2
         "2": {
-            "image_tag": "344",
+            "image_tag": "427",
             "version_mapping": {
-                "0.9.1_SNAPSHOT": 344
+                main: { 
+                  "0.9.1": 377,
+                  "0.9.2": 403,
+                  "0.9.3": 427,
+                  "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
+                  "carl-zk-test": "zk-service-extirpation-itest-ready"
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                }
             }
         },
 
@@ -53,11 +72,11 @@ local kingdom = std.extVar("kingdom");
         watchdogImage: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4",
 
         # WARNING: changing these image tags will result in data loss
-        esImage: "344",
-        kibanaImage: "344",
-        zookeeperImage: "344",
-        glokImage: "344",
-        canaryImage: "344",
+        esImage: "345",
+        kibanaImage: "345",
+        zookeeperImage: "345",
+        glokImage: "345",
+        canaryImage: "345",
     },
 
     # These are the images used by the templates
