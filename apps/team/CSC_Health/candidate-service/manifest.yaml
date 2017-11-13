@@ -23,7 +23,7 @@ system:
       command: ["/bin/sh", "-c"]
       args: ['
         printf "compress\n
-        /home/sfdc-csc-health/candidate-service/candidate-service-app.log {\n
+        /home/sfdc-csc-health/candidate-service/candidate-service.log {\n
           rotate 30\n
           daily\n
           copytruncate\n
@@ -68,7 +68,7 @@ system:
       - name: CHS_HEALTH_PORT
         value: 8888
       - name: CHS_LOG_FILE
-        value: /home/sfdc-csc-health/candidate-service/candidate-service-app.log
+        value: /home/sfdc-csc-health/candidate-service/candidate-service.log
       livenessProbe:
         httpGet:
           path: /healthz
