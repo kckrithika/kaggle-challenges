@@ -1,0 +1,33 @@
+apiVersion: v1
+
+system:
+  functions:
+  # service name
+  - name: comms-bot
+
+    # number of instances ("kpods") to deploy and run
+    count: 1
+
+    # Docker image(s) that make up one instance of the service
+    containers:
+    - name: comms-bot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ksmuga/comms-bot:comms-bot-20171113
+
+      ports:
+      - containerPort: 5000
+      - containerPort: 15372
+
+      SAM will bounce the container if this returns an HTTP response code other than 200-399
+      livenessProbe:
+        initialDelaySeconds: 5
+        httpGet:
+          path: /
+          port: 5000
+
+  # loadbalancers:
+  # - lbname: mgmt-services
+  #   function: mgmt
+  #   ports:
+  #     - port: 8080
+  #       targetport: 8080
+
