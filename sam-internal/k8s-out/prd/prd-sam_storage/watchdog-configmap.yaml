@@ -85,6 +85,13 @@ data:
           "until": "2017/11/01"
         },
         {
+          "checker": "nodeChecker",
+          "estates": [
+            "phx-sam"
+          ],
+          "until": "2017/11/30"
+        },
+        {
           "checker": "hairpinChecker",
           "estates": [
             "prd-sam_cloudatlas",
