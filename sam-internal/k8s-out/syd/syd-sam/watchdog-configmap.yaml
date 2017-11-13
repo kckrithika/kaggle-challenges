@@ -81,6 +81,13 @@ data:
             "prd-sam_storage"
           ],
           "until": "2017/11/01"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "phx-sam"
+          ],
+          "until": "2017/11/30"
         }
       ],
       "tlsEnabled": true
