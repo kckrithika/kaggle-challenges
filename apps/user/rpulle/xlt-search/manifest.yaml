@@ -32,7 +32,7 @@ system:
           - ./bin/agentcontroller.sh
           initialDelaySeconds: 5
           periodSeconds: 5
-    - name: sherpa-xlt
+    - name: sherpa-geoip
       image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
