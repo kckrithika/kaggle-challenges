@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: cname-repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.0-0000083-f2416978
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.3-0000085-b2995890
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
@@ -36,8 +36,6 @@ system:
         value: /var/lib/report-collector-availability-watchdog/certificates/sfdc-internal-ca.crt
       - name: RC_WD_LOGGER_LEVEL
         value: debug
-      - name: RC_WD_LOGGER_WRITETOCONSOLE
-        value: true
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_REPORTCOLLECTOR_PROVIDER_HOST=reportcollector-${KINGDOM}.data.sfdc.net ;
