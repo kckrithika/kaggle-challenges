@@ -1,24 +1,64 @@
- 
+apiVersion: v1
+
 system:
+  notifications:
+    email:
+    - gbaker@salesforce.com
+
   functions:
   - name: dbaas
-    count: 3
+    type: stateful-set
+    count: 1
     containers:
     - name: dbaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gbaker/dbaas:beta-20170912
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sayonara/dbaas:beta-20171113
+
+      env:
+      - name: DK_SRVR_DIR
+        value: /certs/server
+      - name: DK_MON_DIR
+        value: /tmp/dktool_repo/dbaas/client
+      - name: DK_CA_DIR
+        value: /tmp/dktool_repo/ca
+      - name: ADMINDB_CLUSTERNAME
+        value: sdblsdb2
+      - name: ZK_CONNECT_STRING
+        value: sayonara1a-mnds1-3-prd.eng.sfdc.net:2181,sayonara1a-mnds1-1-prd.eng.sfdc.net:2181,sayonara1a-mnds1-2-prd.eng.sfdc.net:2181
+
+      volumeMounts:
+      - mountPath: /certs
+        name: certs
+
       ports:
-      - containerPort: 8080 
+      - containerPort: 8080
+
+      resources:
+        requests:
+          memory: "4Gi"
+          cpu: "1"
+        limits:
+          memory: "16Gi"
+          cpu: "2"
+
       livenessProbe:
-        httpGet:
-          path: /
+        tcpSocket:
           port: 8080
-        initialDelaySeconds: 120
-        timeoutSeconds: 120
- 
+          port: 8080
+        failureThreshold: 1000000
+        initialDelaySeconds: 5
+        periodSeconds: 10
+
+    volumes:
+    - name: certs
+      maddogCert:
+        type: server
+
+    lbname: dbaas-headless-lb
+
   loadbalancers:
-  - lbname: dbaaslb
+  - lbname: dbaas-lb
     function: dbaas
-    nodeExposed: true
+    slbEnabled: true
     ports:
-      - port: 48080
+      - port: 8080
         targetport: 8080
