@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: exprepcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.0-0000083-f2416978
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.3-0000085-b2995890
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
@@ -45,8 +45,6 @@ system:
         value: /var/log/report-collector-availability-watchdog
       - name: RC_WD_LOGGER_LEVEL
         value: debug
-      - name: RC_WD_LOGGER_WRITETOCONSOLE
-        value: true
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
