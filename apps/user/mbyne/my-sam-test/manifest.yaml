@@ -8,9 +8,9 @@ system:
     - name: testserver
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/testservice:test-2
       env:
-      - name: grpc.host
+      - name: GRPC_HOST
         value: provisioning-in-a-container.localhost.mesh.force.com
-      - name: grpc.port
+      - name: GRPC_PORT
         value: 7011
       ports:
       - containerPort: 8080
@@ -50,7 +50,7 @@ system:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/enterprise-provisioning:test-2
       env:
-      - name: grpc.announced.port
+      - name: GRPC_ANNOUNCED_PORT
         value: 7012
       ports:
       - containerPort: 8080

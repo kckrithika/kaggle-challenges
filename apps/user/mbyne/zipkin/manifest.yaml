@@ -8,9 +8,13 @@ system:
     containers:
     - name: zipkin
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/zipkin:test-3
-    ports:
-    - containerPort: 9411
-      name: zipkin-http
+      ports:
+      - containerPort: 9411
+        name: zipkin-http
+      livenessProbe:
+        httpGet:
+          path: /zipkin
+          port: 9411
 
   - name: tester
     count: 1
@@ -18,9 +22,9 @@ system:
     - name: tester
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/tester:test-3
       env:
-      - name: grpc.host
+      - name: GRPC_HOST
         value: mbyne-server.localhost.mesh.force.com
-      - name: grpc.port
+      - name: GRPC_PORT
         value: 7011
       ports:
       - containerPort: 8080
@@ -60,9 +64,9 @@ system:
     - name: server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/server:test-3
       env:
-      - name: grpc.announced.port
+      - name: GRPC_ANNOUNCED_PORT
         value: 7012
-      - name: scone.service.name
+      - name: SCONE_SERVICE_NAME
         value: mbyne-server
       ports:
       - containerPort: 8080
