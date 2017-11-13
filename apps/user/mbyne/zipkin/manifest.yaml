@@ -13,7 +13,7 @@ system:
         name: zipkin-http
       livenessProbe:
         httpGet:
-          path: /zipkin
+          path: /health
           port: 9411
 
   - name: tester
