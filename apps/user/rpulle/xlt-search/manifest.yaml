@@ -3,8 +3,16 @@ apiVersion: v1
 system:
   functions:
   - name: search-model-executor-xlt
-    count: 9
+    count: 1
     containers:
+    - name: client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/geoip-client:1.0
+      livenessProbe:
+        exec:
+          command:
+            - "./is-alive.sh"
+          initialDelaySeconds: 10
+          periodSeconds: 5
     - name: search-model-executor-xlt
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:20171010
       ports:
