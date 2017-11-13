@@ -14,7 +14,9 @@ system:
           path: /
           port: 9090
     - name: samhello2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vyjayanthi.raja/samhello:vyj-20170925
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
+      command: ["/sdn/slb-canary-service"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=9091"]
       ports:
       - containerPort: 9091
       livenessProbe:
