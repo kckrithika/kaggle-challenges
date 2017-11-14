@@ -10,6 +10,8 @@ system:
     - name: cert
       maddogCert:
         type: server
+        lbnames:
+          - cyanlb
 
     containers:
     - name: cyan-sam
