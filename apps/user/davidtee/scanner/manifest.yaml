@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: scanner
+  - name: default
     count: 1
     containers:
     - name: scanner
@@ -19,11 +19,3 @@ system:
             port: 8080
           initialDelaySeconds: 30
           periodSeconds: 5
-  loadbalancers:
-  - lbname: scannerb
-    function: scanner
-    nodeExposed: true
-    slbEnabled: true
-    ports:
-      - port: 7020
-        targetport: 7020
