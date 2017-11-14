@@ -33,12 +33,17 @@ spec:
           timeoutSeconds: 5
         name: sdn-vault-agent
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
       hostNetwork: true
       nodeSelector:
         pool: hnd-sam
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

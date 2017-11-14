@@ -27,6 +27,8 @@ spec:
         image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         name: manifest-watcher
         volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /config
@@ -35,6 +37,9 @@ spec:
       nodeSelector:
         pool: phx-sam
       volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs
