@@ -9,11 +9,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 app: "k8sproxy",
                 "slb.sfdc.net/name": "k8sproxy",
             },
-        } + if configs.estate == "prd-samtest" then {
-                annotations: {
-                   "slb.sfdc.net/name": "k8sproxy",
-                },
-        } else {},
+            annotations: {
+                "slb.sfdc.net/name": "k8sproxy",
+            },
+        },
         spec: {
             ports: [
             {
