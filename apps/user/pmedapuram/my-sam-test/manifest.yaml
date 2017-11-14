@@ -5,8 +5,8 @@ system:
   - name: default
     count: 2
     containers:
-    - name: sfcihello
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/dci/chatbot-runtime:2
+    - name: sfciatftestservice
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/dci/atf-test-service:0.1.1-snapshot
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -17,7 +17,7 @@ system:
         initialDelaySeconds: 5
  
   loadbalancers:
-  - lbname: sfcihellolb
+  - lbname: sfciatftestservicelb
     function: default
     ports:
       - port: 9090
