@@ -52,6 +52,9 @@ system:
       - mountPath: /home/controlplane/controlplane-config
         name: controlplaneconfig
         readOnly: true
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
       resources:
         requests:
           memory: '2G'
@@ -102,6 +105,9 @@ system:
     - name: server-certs
       maddogCert:
         type: server
+    - name: client-certs
+      maddogCert:
+        type: client
     strategy:
       type: Recreate
 
