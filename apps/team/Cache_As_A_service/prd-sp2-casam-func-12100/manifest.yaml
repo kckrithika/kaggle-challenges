@@ -9,7 +9,7 @@ system:
     volumes:
     - name: cert
       maddogCert:
-        type: server
+        type: client
     
     containers:
     - name: csr-sam
