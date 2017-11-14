@@ -11,6 +11,28 @@ system:
       type: Recreate
     hostnetwork: true
     containers:
+    - name: sherpa-cloudatlas-client-prd-dev-dir2-1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 10
+          periodSeconds: 5
     - name: cloudatlas-pdm-install
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:ccc4259
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
@@ -46,25 +68,3 @@ system:
     - name: server-cert
       maddogCert:
         type: server
-  - name: sherpa-cloudatlas-client-prd-dev-dir2-1
-    image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
-    env:
-    - name: SFDC_ENVIRONMENT
-      value: "sam"
-    ports:
-    - containerPort: 7012
-      name: sherpa-in
-    - containerPort: 15373
-      name: sherpa-adm
-    livenessProbe:
-      exec:
-        command:
-        - "/home/sfdc-sherpa/bin/is-alive"
-        initialDelaySeconds: 10
-        periodSeconds: 5
-    readinessProbe:
-      exec:
-        command:
-        - "/home/sfdc-sherpa/bin/is-ready"
-        initialDelaySeconds: 10
-        periodSeconds: 5
