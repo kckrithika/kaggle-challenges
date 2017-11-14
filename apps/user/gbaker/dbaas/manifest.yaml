@@ -11,7 +11,7 @@ system:
     count: 1
     containers:
     - name: dbaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sayonara/dbaas:beta-20171113
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sayonara/dbaas:beta-20171114
 
       env:
       - name: DK_SRVR_DIR
@@ -41,12 +41,13 @@ system:
           cpu: "2"
 
       livenessProbe:
-        tcpSocket:
-          port: 8080
-          port: 8080
-        failureThreshold: 1000000
-        initialDelaySeconds: 5
-        periodSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+          failureThreshold: 1000000
+          initialDelaySeconds: 180
+          periodSeconds: 10
+
 
     volumes:
     - name: certs
@@ -56,9 +57,15 @@ system:
     lbname: dbaas-headless-lb
 
   loadbalancers:
-  - lbname: dbaas-lb
+  - lbname: dbaaslb
+    function: dbaas
+    nodeExposed: true
+    ports:
+    - port: 48080
+      targetport: 8080
+  - lbname: dbaas-slb
     function: dbaas
     slbEnabled: true
     ports:
-      - port: 8080
-        targetport: 8080
+    - port: 8080
+      targetport: 8080
