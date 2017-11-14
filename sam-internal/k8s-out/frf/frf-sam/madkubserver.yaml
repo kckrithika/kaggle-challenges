@@ -69,19 +69,19 @@ spec:
         - /maddog-certs/ca/security-ca.pem
         - --madkub-server-ca
         - /maddog-certs/ca/cacerts.pem
-        - --cert-folder
-        - /certs/
         - --token-folder
         - /tokens/
         - --refresher
         - --refresher-token-grace-period
         - 30s
-        - --requested-cert-type
-        - server
         - --funnel-endpoint
         - http://mandm-funnel-frf1.data.sfdc.net:8080
         - --kingdom
         - frf
+        - --cert-folder
+        - /certs/
+        - --requested-cert-type
+        - server
         env:
         - name: MADKUB_NODENAME
           valueFrom:

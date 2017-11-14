@@ -100,20 +100,26 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
               "/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca",
               "/maddog-certs/ca/cacerts.pem",
-              "--cert-folder",
-              "/certs/",
               "--token-folder",
               "/tokens/",
               "--refresher",
               "--refresher-token-grace-period",
               "30s",
-              "--requested-cert-type",
-"server",
+
               "--funnel-endpoint",
               "http://" + configs.funnelVIP,
               "--kingdom",
               configs.kingdom,
-            ],
+            ] +
+            if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then [
+              "--cert-folders",
+              "madkubInternalCert:/certs/",
+              ] else [
+              "--cert-folder",
+              "/certs/",
+              "--requested-cert-type",
+              "server",
+              ],
             image: samimages.madkub,
             resources: {
             },
