@@ -14,13 +14,13 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.12-0000062-7b20a7c8
+      image: tnrp/casam/coreapp:210.11-0000058-a6a67469 
 
       env:
         - name: DEPLOYMENT
-          value: T
+          value: S
         - name: DB_USER
-          value: grumpy
+          value: happy
         # Only needed if desire to override ZK registration value
         #- name: CASAM_CYAN_PATH
         #  value: casam/casam-210-11-2
@@ -75,7 +75,7 @@ system:
       readinessProbe:
         httpGet:
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
-          path: /__cyan_admin__/app/health?version=210.12
+          path: /__cyan_admin__/app/health?version=210.11
           port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -118,7 +118,7 @@ system:
         - name: K4A
           value: have_to_get_this
         - name: RELEASE_VERSION
-          value: 210.12
+          value: 210.11
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
