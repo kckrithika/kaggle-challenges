@@ -4,13 +4,13 @@ system:
   functions:
   - name: default
     count: 1
-    hostnetwork: true
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171113
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171106
+      hostnetwork: true
       ports:
       - name: web
-        containerPort: 8084
+        containerPort: 8080
       - name: service
         containerPort: 7020
       livenessProbe:
