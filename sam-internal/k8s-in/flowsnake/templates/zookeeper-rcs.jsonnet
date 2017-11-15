@@ -36,6 +36,10 @@ if (false) then {
                             {
                                 name: "ZOOKEEPER_HEADLESS_SERVICE",
                                 value: "zookeeper-set"
+                            },
+                            {
+                                name: "ZOOKEEPER_AUTOPURGE_HOURS",
+                                value: "24"
                             }
                         ],
                         ports: [
