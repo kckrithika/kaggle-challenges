@@ -37,6 +37,6 @@ local samimages = import "samimages.jsonnet";
 + (if configs.kingdom == "prd" then {
     slbConfigInLabels: true,
   } else {})
-+ (if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
++ (if configs.kingdom == "prd" then {
       slbConfigInAnnotations: true,
     } else {})
