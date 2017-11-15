@@ -6,6 +6,7 @@
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
 local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
+local utils = import "util_functions.jsonnet",
 
     # === DISCOVERY ===
 
@@ -147,12 +148,12 @@ local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
     maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
 
     # For apps that read MadDog certs from the host
-    maddog_cert_volume_mount: (if (kingdom == "prd" || kingdom == "frf" || kingdom == "dfw" || kingdom == "hnd" || kingdom == "iad" || kingdom == "ord" || kingdom == "par" || kingdom == "phx" || kingdom == "ukb") then
+    maddog_cert_volume_mount: (if !utils.is_public_cloud(kingdom) then
     {
         mountPath: "/etc/pki_service",
         name: "maddog-certs",
     } else {}),
-    maddog_cert_volume: (if (kingdom == "prd" || kingdom == "frf" || kingdom == "dfw" || kingdom == "hnd" || kingdom == "iad" || kingdom == "ord" || kingdom == "par" || kingdom == "phx" || kingdom == "ukb") then
+    maddog_cert_volume: (if !utils.is_public_cloud(kingdom) then
     {
         hostPath: {
             path: "/etc/pki_service",
