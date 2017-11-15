@@ -70,6 +70,21 @@ local samimages = import "samimages.jsonnet";
   maddogServerCAPath: configs.maddogServerCAPath,
 } +
 (
+  if configs.estate == "prd-samtest" then {
+  # processstarttime checker
+  monitoredProcessesDefault: {
+    "hyperkube.*kubelet": "age.kubelet",
+    "hyperkube.*proxy": "age.kubeproxy",
+    "hyperkube.*controller-manager": "age.kubecontrollermanager",
+    "hyperkube.*apiserver": "age.kubeapiserver",
+    "hyperkube.*scheduler": "age.kubescheduler",
+    "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+    "dockerd.*docker.sock": "age.dockermain",
+    processmonitor: "age.processmonitor",
+  },
+  } else {}
+) +
+(
   if configs.kingdom == "prd" then {
   # Kuberesource Checker
   # We dont want to report on broken hairpin pods, since hairpin already alerts on those
