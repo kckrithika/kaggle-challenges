@@ -20,13 +20,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, and prd-sam_sfstoredev
         "0": {
-            default_tag: "base-0000224-b6829996",
+            default_tag: "base-0000227-c8d6ba78",
             sfms_tag: "latest-0000047-f46de00d",
         },
 
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "1": {
-            default_tag: "base-0000224-b6829996",
+            default_tag: "base-0000227-c8d6ba78",
             },
 
         ### Release Phase 2 - TBD
