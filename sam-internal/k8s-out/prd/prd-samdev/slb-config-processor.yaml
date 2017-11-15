@@ -32,6 +32,7 @@ spec:
         - --processKnEConfigs=false
         - --kneConfigDir=/var/slb/testkneconfigs
         - --kneDomainName=
+        - --slbConfigInAnnotations=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
