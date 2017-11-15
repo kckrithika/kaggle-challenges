@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sammon
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sammon:20171115-12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sammon:20171115-14
       ports:
         - containerPort: 3000
         - containerPort: 4200
@@ -32,3 +32,5 @@ system:
     ports:
       - port: 64133
         targetport: 4200
+      - port: 64134
+        targetport: 3000
