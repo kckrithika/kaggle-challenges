@@ -91,8 +91,8 @@ perCluster: {
     },
     configurePerPort: {
         "prd-sdc": true,
-        "prd-samtest": false,
-        "prd-samdev": false,
+        "prd-samtest": true,
+        "prd-samdev": true,
         "prd-sam_storage": false,
         "prd-sam": false,
     },

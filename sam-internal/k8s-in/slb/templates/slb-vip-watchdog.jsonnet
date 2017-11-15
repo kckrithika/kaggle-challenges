@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--alertThreshold=300s",
                             "--vipLoop=100",
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + if configs.estate == "prd-sdc" then ["--configurePerPort=" + slbconfigs.configurePerPort] else [],
+                        ] + if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then ["--configurePerPort=" + slbconfigs.configurePerPort] else [],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
