@@ -19,7 +19,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [mayank] Stateful synthetic
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001470-24fdca31",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001470-24fdca31",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -37,9 +36,9 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001459-4c561cad",
+            hypersam: "sam-0001489-165e1293",
             madkub: "1.0.0-0000052-70c3fbc4",
-            madkubSidecar: "1.0.0-0000048-4daa9234",
+            madkubSidecar: "1.0.0-0000052-70c3fbc4",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
@@ -112,11 +111,15 @@ local utils = import "util_functions.jsonnet";
 
     #Image to use for k4a. Will change to appropiate tags later.
     k4aInitContainerImage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/k4a:1101",
+
     # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
     # of all containers
     madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
 
-    # For now we pass the image and registry separately. so not doing overrides.
-    #madkubSidecar: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
-    madkubSidecar: "sam/madkub:" + $.per_phase[$.phase].madkubSidecar,
+    # override need to follow the phase as we are changing the format.
+    madkubSidecar: if $.per_phase[$.phase].hypersam == "sam-0001459-4c561cad" || $.per_phase[$.phase].hypersam == "sam-0001355-581a778b" then
+                "sam/madkub:" + $.per_phase[$.phase].madkubSidecar
+            else
+                utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
+
 }
