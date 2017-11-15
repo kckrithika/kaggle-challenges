@@ -21,6 +21,16 @@ data:
       "laddr": "0.0.0.0:8083",
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
+      "monitoredProcessesDefault": {
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler",
+        "processmonitor": "age.processmonitor"
+      },
       "rcImtEndpoint": "https://ops0-health1-1-prd.eng.sfdc.net:18443/v1/bark",
       "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
