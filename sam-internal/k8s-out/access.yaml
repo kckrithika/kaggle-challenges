@@ -1,0 +1,59 @@
+#Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
+#If you are updating it, there is a high chance you need to update k8s-out/access.yaml
+#and tnrp/access.yaml
+users:
+  #SAM team members
+  - adhoot
+  - cbatra
+  - cdebains
+  - d.smith
+  - jiayi.yan
+  - keith.smith
+  - mayank.kumar
+  - prabh.singh
+  - prahlad.joshi
+  - rbhat
+  - ssandke
+  - thargrove
+  - xiao.zhou
+  - lizhang.li
+  #SDC/SLB team members
+  - pporwal
+  - amushtaq
+  - jhamblin
+  - agajjala
+  - nagareddy-reddy
+  - ndzhumakaliev
+  - nkatta
+  - dlucey
+  - vkarnati
+  - mpopov
+  - yunzhao.li
+  - min.wang
+  - vyjayanthi.raja
+  #Storage Foundation team members
+  - ichakeres
+  - azwiegincew
+  - dcastor
+  - dhegde
+  - jisaac
+  - mgrass
+  - prabhdeep.gill
+  - rohit.shekhar
+  - ramie.raufdeen
+  - a.goyal
+  - rghose
+  #Flowsnake team members
+  - khogeland
+  - mgilham
+  - lorrin.nelson
+  - cmeister
+  - jgruenberg
+  - jinxing.wang
+  - vgiridaran
+  - robert.reid
+  #SF Store
+  - efox
+  - vjujjuri
+  #LegoStore team members
+  - prashant.murthy
