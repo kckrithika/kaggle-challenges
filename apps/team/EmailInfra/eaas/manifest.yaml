@@ -13,7 +13,7 @@ system:
     - name: eaas
       image: tnrp/emailinfrastructure/eaas:1.0.0-0000017-acb91dfb
       ports:
-        - containerPort: 7021
+        - containerPort: 7020
         - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 90
@@ -28,5 +28,5 @@ system:
     ports:
       - port: 15372
         targetport: 15372
-      - port: 7021 
-        targetport: 7021
+      - port: 7020 
+        targetport: 7020
