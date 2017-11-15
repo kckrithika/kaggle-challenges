@@ -1,0 +1,1138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b310a314-b7c2-4466-b5fc-3337a3102064" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/cdu/cdu-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/dfw/dfw-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/madkubserver-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/madkubserver.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-maddog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/frf/frf-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/hnd/hnd-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/iad/iad-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ord/ord-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/par/par-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/phx/phx-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/_flowsnake-ns.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/auth-groups-cm.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/canary-ds.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/deepsea-kdc-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/es-discovery-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/es-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/es-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/fleet-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/flowsnake-api-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/flowsnake-api-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/flowsnake-api-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/flowsnake-sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/funnel-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/ingress-controller-default-backend-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/ingress-controller-default-backend.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/kibana-api-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/kibana-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/kibana-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/kibana-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/logloader-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/logstash-env-events-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/nginx-ingress-controller-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/nginx-ingress-controller-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/node-monitor-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/topic-grants-cm.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/version-mapping.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/_flowsnake-ns.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/auth-groups-cm.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/canary-ds.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/deepsea-kdc-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/es-discovery-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/es-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/es-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/fleet-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/flowsnake-api-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/flowsnake-api-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/flowsnake-api-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/flowsnake-sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/funnel-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/ingress-controller-default-backend-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/ingress-controller-default-backend.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/kibana-api-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/kibana-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/kibana-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/kibana-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/logloader-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/logstash-env-events-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/nginx-ingress-controller-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/nginx-ingress-controller-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/node-monitor-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/topic-grants-cm.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/version-mapping.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-data-flowsnake_test/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/_flowsnake-ns.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/auth-groups-cm.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/canary-ds.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/es-discovery-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/es-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/es-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/fleet-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/flowsnake-api-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/flowsnake-api-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/flowsnake-api-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/flowsnake-sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/funnel-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/ingress-controller-default-backend-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/ingress-controller-default-backend.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/kibana-api-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/kibana-ingress.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/kibana-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/kibana-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/logloader-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/logstash-env-events-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/nginx-ingress-controller-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/nginx-ingress-controller-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/node-monitor-rc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/topic-grants-cm.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/version-mapping.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-dev-flowsnake_iot_test/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/cephoperator.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/fds-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/fds.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/idc-samhello-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/idc-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/iot_k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/k8sproxy-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/k8sproxy-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/madkubserver-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/madkubserver.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/ops-adhoc-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/ops-adhoc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/rbac-cluster-admin.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/rbac-node-policies.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/rbac-rolebindings.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/rbac-roles.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-app.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-deployment-portal-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-deployment-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/service-discovery-module.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/sfstoreoperator.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-alpha-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-alpha.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-bravo-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-bravo.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-canary-proxy-http-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-canary-proxy-http.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-canary-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-canary.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-cleanup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-config-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-dns-register.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-iface-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-ipvs.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-ipvsdata-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-nginx-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-node-os-stats.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-portal-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-realsvrcfg.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/slb-vip-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/temp-samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/temp-samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-kuberesources.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-maddog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-manifestzip.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-pullrequest.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-rbac.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-sdp.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/alerthandler-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/alerthandler.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/cephoperator.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/fds-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/fds.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/idc-samhello-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/idc-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/k8sproxy-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/k8sproxy-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/lvprovisioner.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/ms-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/ms.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/ops-adhoc-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/ops-adhoc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/rbac-cluster-admin.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sam-app.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/sfstoreoperator.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-cleanup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-config-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-dns-register.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-iface-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-ipvs.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-ipvsdata-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-nginx-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-node-os-stats.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-portal-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-realsvrcfg.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/slb-vip-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-kuberesources.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sam_storage/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/k8sproxy-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/k8sproxy-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/madkubserver-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/madkubserver.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/ops-adhoc-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/ops-adhoc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/rbac-cluster-admin.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/rbac-node-policies.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/rbac-rolebindings.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/rbac-roles.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-app.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-deployment-portal-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-deployment-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/service-discovery-module.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-cleanup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-config-data.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-config-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-dns-register.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-iface-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-ipvs.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-nginx-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-portal-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-realsvrcfg.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/slb-vip-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/temp-samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/temp-samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-kuberesources.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-maddog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-rbac.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samdev/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/k8sproxy-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/k8sproxy-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/madkubserver-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/madkubserver.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/ops-adhoc-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/ops-adhoc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/rbac-cluster-admin.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/rbac-node-policies.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/rbac-rolebindings.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/rbac-roles.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sam-app.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/service-discovery-module.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-cleanup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-config-data.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-config-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-dns-register.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-iface-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-ipvs.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-nginx-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-realsvrcfg.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/slb-vip-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/temp-samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/temp-samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-kuberesources.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-maddog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-rbac.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-sdp.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-samtest/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/k8sproxy-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/k8sproxy-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/ops-adhoc-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/ops-adhoc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/rbac-cluster-admin.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-app.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-deployment-portal-svc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-deployment-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-control-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-control.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-alpha-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-alpha.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-baboon.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-bravo-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-bravo.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-passthrough-host-network-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-passthrough-host-network.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-passthrough-tls-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-passthrough-tls.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-proxy-http-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-proxy-http.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-proxy-tcp-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-proxy-tcp.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-canary.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-cleanup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-config-data.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-config-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-dns-register.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-echo-client.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-echo-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-echo-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-iface-processor.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-ipvs.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-ipvsdata-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-nginx-config.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-node-os-stats.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-portal-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-portal.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-realsvrcfg.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/slb-vip-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-k8sproxy.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-kuberesources.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-sdp.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/prd/prd-sdc/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/syd/syd-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/estate-server.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/estate-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sam-secret-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sdn-peering-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sdn-ping-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sdn-route-watchdog.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sdn-secret.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sdn-vault-agent.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-estatesvc.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-node-controller.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/ukb/ukb-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yhu/yhu-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/certbackup.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/manifest-watcher-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/manifest-watcher.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/sam-app-status.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/sam-deployment-log.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/sam-deployment-reporter.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/samcontrol-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/samcontrol.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/sfdchosts-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-apiserverlb.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-common.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-configmap.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-deployment.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-etcd-quorum.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-etcd.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-hairpindeployer.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-master.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-node.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-pod.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-puppet.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-synthetic-service.yaml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sam-internal/k8s-out/yul/yul-sam/watchdog-synthetic.yaml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-sdn-secret.jsonnet" afterPath="$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-sdn-secret.jsonnet" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="util_functions.jsonnet" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/util_functions.jsonnet">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="672">
+              <caret line="88" column="1" lean-forward="false" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowsnake-sdn-secret.jsonnet" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-sdn-secret.jsonnet">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowsnake-api-ingress.jsonnet" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-api-ingress.jsonnet">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowsnake-api-svc.jsonnet" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-api-svc.jsonnet">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowsnakeEstates.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnakeEstates.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/sam-internal/k8s-in/util_functions.jsonnet" />
+        <option value="$PROJECT_DIR$/sam-internal/k8s-in/sdn/templates/sdn-secret.jsonnet" />
+        <option value="$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-sdn-secret.jsonnet" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="944" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="sam-internal" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="sam-internal" type="462c0819:PsiDirectoryNode" />
+              <item name="k8s-in" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="sam-internal" type="462c0819:PsiDirectoryNode" />
+              <item name="k8s-in" type="462c0819:PsiDirectoryNode" />
+              <item name="flowsnake" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="sam-internal" type="462c0819:PsiDirectoryNode" />
+              <item name="k8s-in" type="462c0819:PsiDirectoryNode" />
+              <item name="flowsnake" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="manifests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="manifests" type="462c0819:PsiDirectoryNode" />
+              <item name="sam-internal" type="462c0819:PsiDirectoryNode" />
+              <item name="k8s-in" type="462c0819:PsiDirectoryNode" />
+              <item name="sdn" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b310a314-b7c2-4466-b5fc-3337a3102064" name="Default" comment="" />
+      <created>1510722170360</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1510722170360</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1680" height="944" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/sam/templates/madkubserver.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnakeEstates.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/sam/templates/ops-adhoc.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/sam/samimages.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-709">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/sam/templates/watchdog-rbac.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/sdn/templates/sdn-secret.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/util_functions.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="88" column="1" lean-forward="false" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-api-ingress.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-api-svc.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sam-internal/k8s-in/flowsnake/templates/flowsnake-sdn-secret.jsonnet">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
