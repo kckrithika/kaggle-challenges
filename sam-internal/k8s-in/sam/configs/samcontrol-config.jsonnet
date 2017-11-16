@@ -27,7 +27,7 @@ local samimages = import "samimages.jsonnet";
     maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
     maddogMadkubImage: samimages.madkubSidecar,
   } else {})
-  + (if configs.kingdom == "frf" then {
+  + (if samimages.per_phase[samimages.phase].hypersam == "sam-0001355-581a778b" && (configs.kingdom == "prd" || configs.kingdom == "frf") then {
     maddogMadkubImageRegistry: configs.registry + (if configs.kingdom == "prd" then "/docker-release-candidate/tnrp" else "/tnrp"),
   } else {})
 + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {

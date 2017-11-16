@@ -111,14 +111,14 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
               "--kingdom",
               configs.kingdom,
             ] +
-            if configs.kingdom == "prd" then [
-              "--cert-folders",
-              "madkubInternalCert:/certs/",
-              ] else [
+            if samimages.per_phase[samimages.phase].madkub == "1.0.0-0000035-9241ed31" then [
               "--cert-folder",
               "/certs/",
               "--requested-cert-type",
               "server",
+              ] else [
+              "--cert-folders",
+              "madkubInternalCert:/certs/",
               ],
             image: samimages.madkub,
             resources: {
