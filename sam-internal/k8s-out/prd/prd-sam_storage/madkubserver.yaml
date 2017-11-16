@@ -78,10 +78,8 @@ spec:
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
         - prd
-        - --cert-folder
-        - /certs/
-        - --requested-cert-type
-        - server
+        - --cert-folders
+        - madkubInternalCert:/certs/
         env:
         - name: MADKUB_NODENAME
           valueFrom:

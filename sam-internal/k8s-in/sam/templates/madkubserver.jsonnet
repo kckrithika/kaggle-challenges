@@ -111,7 +111,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
               "--kingdom",
               configs.kingdom,
             ] +
-            if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then [
+            if configs.kingdom == "prd" then [
               "--cert-folders",
               "madkubInternalCert:/certs/",
               ] else [
