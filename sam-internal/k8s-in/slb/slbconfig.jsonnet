@@ -46,7 +46,7 @@ perCluster: {
         "prd-samtest": "",
         "prd-samdev": "",
         "prd-sam_storage": "",
-        "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb",
+        "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
     },
 
     podLabelList: {

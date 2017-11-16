@@ -25,7 +25,7 @@ spec:
         - --k8sapiserver=
         - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true
-        - --useProxyServicesList=slb-bravo-svc,csrlb,controlplane-ptest,cyanlb
+        - --useProxyServicesList=slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --sleepTime=100ms
