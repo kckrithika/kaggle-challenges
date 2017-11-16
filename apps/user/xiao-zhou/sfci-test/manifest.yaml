@@ -10,7 +10,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/chatbots/chatbot-runtime:210.0-0fb9758
+      image: /sfci/chatbots/chatbot-runtime:210.0-0fb9758
       ports:
       - containerPort: 9095
       livenessProbe:
