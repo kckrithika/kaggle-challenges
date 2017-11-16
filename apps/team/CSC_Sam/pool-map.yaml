@@ -22,6 +22,7 @@ apps:
  SamTestAppMaddogMultiCert:
   - prd/prd-samdev
   - prd/prd-samtest
+  - prd/prd-sam
  SamTestAppSecret:
   - prd/prd-samtest
   - prd/prd-samdev
