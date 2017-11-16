@@ -93,8 +93,8 @@ perCluster: {
         "prd-sdc": true,
         "prd-samtest": true,
         "prd-samdev": true,
-        "prd-sam_storage": false,
-        "prd-sam": false,
+        "prd-sam_storage": true,
+        "prd-sam": true,
     },
 },
 

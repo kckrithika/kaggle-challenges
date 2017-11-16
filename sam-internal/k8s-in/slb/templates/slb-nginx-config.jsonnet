@@ -51,7 +51,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--netInterfaceName=eth0",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then ["--configurePerPort=" + slbconfigs.configurePerPort] else [],
+                            "--configurePerPort=" + slbconfigs.configurePerPort,
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
