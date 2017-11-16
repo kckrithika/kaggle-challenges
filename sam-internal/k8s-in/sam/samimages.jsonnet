@@ -17,8 +17,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        # [mayank] Stateful synthetic
-        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001470-24fdca31",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -43,9 +41,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001459-4c561cad",
-            madkub: "1.0.0-0000048-4daa9234",
-            madkubSidecar: "1.0.0-0000048-4daa9234",
+            hypersam: "sam-0001489-165e1293",
+            madkub: "1.0.0-0000052-70c3fbc4",
+            madkubSidecar: "1.0.0-0000052-70c3fbc4",
             },
 
         ### Release Phase 3 - Canary Prod FRF and public-cloud
@@ -117,7 +115,7 @@ local utils = import "util_functions.jsonnet";
     madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
 
     # override need to follow the phase as we are changing the format.
-    madkubSidecar: if $.per_phase[$.phase].hypersam == "sam-0001459-4c561cad" || $.per_phase[$.phase].hypersam == "sam-0001355-581a778b" then
+    madkubSidecar: if $.per_phase[$.phase].hypersam == "sam-0001355-581a778b" then
                 "sam/madkub:" + $.per_phase[$.phase].madkubSidecar
             else
                 utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
