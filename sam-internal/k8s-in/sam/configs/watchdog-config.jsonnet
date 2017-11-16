@@ -72,7 +72,7 @@ local samimages = import "samimages.jsonnet";
 (
   if configs.estate == "prd-samtest" then {
   # processstarttime checker
-  monitoredProcessesDefault: {
+  monitoredProcesses: {
     "hyperkube.*kubelet": "age.kubelet",
     "hyperkube.*proxy": "age.kubeproxy",
     "hyperkube.*controller-manager": "age.kubecontrollermanager",

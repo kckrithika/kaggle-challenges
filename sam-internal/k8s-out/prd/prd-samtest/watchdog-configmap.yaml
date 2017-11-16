@@ -21,7 +21,7 @@ data:
       "laddr": "0.0.0.0:8083",
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
-      "monitoredProcessesDefault": {
+      "monitoredProcesses": {
         "dockerd.*docker-bootstrap": "age.dockerbootstrap",
         "dockerd.*docker.sock": "age.dockermain",
         "hyperkube.*apiserver": "age.kubeapiserver",
