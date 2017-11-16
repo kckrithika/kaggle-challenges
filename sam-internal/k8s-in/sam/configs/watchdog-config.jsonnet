@@ -98,3 +98,6 @@ local samimages = import "samimages.jsonnet";
 ) + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     enableStatefulChecks: true,
   } else {})
+  + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+    enableMaddogCertChecks: true,
+  } else {})
