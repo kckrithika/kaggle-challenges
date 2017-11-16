@@ -16,7 +16,7 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:kviphong-20171113-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171116
 
       env:
         - name: CYAN_LIVE_VERSION
@@ -26,6 +26,7 @@ system:
 
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /ping.jsp
           port: 12050
         initialDelaySeconds: 120
@@ -34,6 +35,7 @@ system:
 
       readinessProbe:
         httpGet:
+          scheme: HTTPS
           path: /ping.jsp
           port: 12050
         initialDelaySeconds: 120
