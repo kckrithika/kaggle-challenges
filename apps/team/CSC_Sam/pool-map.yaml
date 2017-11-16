@@ -19,6 +19,9 @@ apps:
   - prd/prd-samtest
   - prd/prd-samdev
   - frf/frf-sam
+ SamTestAppMaddogMultiCert:
+  - prd/prd-samdev
+  - prd/prd-samtest
  SamTestAppSecret:
   - prd/prd-samtest
   - prd/prd-samdev
