@@ -7,3 +7,5 @@ apps:
   - prd/prd-sam
  deployment-latency-reporter:
   - prd/prd-samdev
+ sfci-test:
+  - prd/prd-samdev
