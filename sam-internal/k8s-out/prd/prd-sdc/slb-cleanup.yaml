@@ -18,12 +18,14 @@ spec:
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
-        - --log_dir=/host/data/slb/logs
         - --logsMaxAge=48h
+        - --filesDirToCleanup=/host/data/slb/logs
+        - --shouldSkipServiceRecords=false
+        - --defaultShouldNotDeleteAllFiles=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000455-1c30ceb5
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000462-43bf6b29
         livenessProbe:
           exec:
             command:
