@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: dummy-sfstore-bookie
+  name: dummy-sfstore-bookie
+  namespace: storage
+spec:
+  replicas: 0
+  template:
+    spec:
+      containers:
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/bookie:base-0000021-f9f2ef07
+        name: sfstore-bookie
