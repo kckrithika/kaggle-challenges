@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "dfw" then {
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",
   metadata: {

@@ -20,14 +20,14 @@ local samimages = import "samimages.jsonnet";
   statefulAppEnabled: true,
   checkImageExistsFlag: true,
 } else {})
-+ (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
++ (if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "dfw" then {
     enableMaddog: true,
     # This is kept as a flag to use the service envvar,
     #maddogMadkubEndpoint: "https://10.254.208.254:32007",
     maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
     maddogMadkubImage: samimages.madkubSidecar,
   } else {})
-  + (if samimages.per_phase[samimages.phase].hypersam == "sam-0001355-581a778b" && (configs.kingdom == "prd" || configs.kingdom == "frf") then {
+  + (if samimages.per_phase[samimages.phase].hypersam == "sam-0001355-581a778b" && (configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "dfw") then {
     maddogMadkubImageRegistry: configs.registry + (if configs.kingdom == "prd" then "/docker-release-candidate/tnrp" else "/tnrp"),
   } else {})
 + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
