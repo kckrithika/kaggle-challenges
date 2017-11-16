@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: tardis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20171116_800040d4
       env:
       - name: GIT_TOKEN
         valueFrom:
