@@ -2,6 +2,5 @@
 set -e
 
 REPO_OWNER=sam
-REPO_NAME=manifests
 
-/opt/sam/evaluate-pr --repo-owner="$REPO_OWNER" --repo-name="$REPO_NAME" --pr="$STAGE_PULL_REQUEST_ID" --authorizer="$STAGE_GO_TRIGGER_USER" --debug
+/opt/sam/evaluate-pr --repo-owner="$REPO_OWNER" --repo-name="$TNRP_PRODUCT" --pr="$STAGE_PULL_REQUEST_ID" --authorizer="$STAGE_GO_TRIGGER_USER" --debug
