@@ -6,16 +6,16 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - image tags from strata build
         "1": {
-            "image_tag": "427",
+            "image_tag": "453",
             "version_mapping": {
-                main: { 
+                main: {
                   "0.9.1": 377,
                   "0.9.2": 403,
                   "0.9.3": 427,
                   "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
                   "carl-zk-test": "zk-service-extirpation-itest-ready"
-                } 
-                + 
+                }
+                +
                 # These are for developer testing only
                 # only copy above to phase 2
                 {
@@ -31,7 +31,7 @@ local kingdom = std.extVar("kingdom");
         "2": {
             "image_tag": "427",
             "version_mapping": {
-                main: { 
+                main: {
                   "0.9.1": 377,
                   "0.9.2": 403,
                   "0.9.3": 427,
