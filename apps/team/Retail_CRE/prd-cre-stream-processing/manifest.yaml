@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:23
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc-impl
       ports:
       - containerPort: 8080
       livenessProbe:
