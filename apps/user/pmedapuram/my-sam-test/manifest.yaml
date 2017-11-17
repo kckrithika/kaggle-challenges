@@ -5,8 +5,8 @@ system:
   - name: default
     count: 2
     containers:
-    - name: sfciatftestservice
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/dci/atf-test-service:0.1.1-snapshot
+    - name: sfcitestservice
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/dci/sfci-pipeline-sharedlib-test:1510941549
       ports:
       - containerPort: 9090
       livenessProbe:
