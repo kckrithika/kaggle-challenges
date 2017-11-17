@@ -21,7 +21,7 @@ spec:
         - --logsMaxAge=48h
         - --filesDirToCleanup=/host/data/slb/logs
         - --shouldSkipServiceRecords=false
-        - --defaultShouldNotDeleteAllFiles=false
+        - --shouldNotDeleteAllFiles=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

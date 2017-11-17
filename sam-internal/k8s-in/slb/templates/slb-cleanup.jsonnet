@@ -42,7 +42,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                              if configs.estate == "prd-sdc" then [
                                  "--filesDirToCleanup=" + slbconfigs.logsDir,
                                  "--shouldSkipServiceRecords=false",
-                                 "--defaultShouldNotDeleteAllFiles=false",
+                                 "--shouldNotDeleteAllFiles=false",
                              ] else [
                                 "--log_dir=" + slbconfigs.logsDir,
                              ]
