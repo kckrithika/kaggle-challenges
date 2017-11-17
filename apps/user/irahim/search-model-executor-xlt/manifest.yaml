@@ -25,25 +25,25 @@ system:
           initialDelaySeconds: 5
           periodSeconds: 5
     - name: sherpa-xlt
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      image: tnrp/sherpa:0.2.0-0000097-594964a3
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
-      # No incoming
-      # - containerPort: 7012
-      #   name: sherpa-xlt-in
       - containerPort: 7080
         name: sherpa-xlt-adm
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 5
