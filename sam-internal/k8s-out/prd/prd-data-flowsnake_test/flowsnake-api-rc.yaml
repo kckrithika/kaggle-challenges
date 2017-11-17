@@ -67,7 +67,7 @@ spec:
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
-        - mountPath: /etc/pki_service/ca/
+        - mountPath: /etc/pki_service/ca
           name: certificate-authority
           readOnly: true
         - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates
