@@ -10,7 +10,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
-      image: /sfci/chatbots/chatbot-runtime:210.0-0fb9758
+      image: docker-sfci-rc/servicelibs/sherpa:2.0.9
       ports:
       - containerPort: 9095
       livenessProbe:
