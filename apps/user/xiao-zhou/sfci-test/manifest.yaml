@@ -10,7 +10,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
-      image: sfci/dci/sfci-pipeline-sharedlib-test:1510941549
+      image: sfci/dci/sfci-pipeline-sharedlib-test:1510877885
       ports:
       - containerPort: 9095
       livenessProbe:
