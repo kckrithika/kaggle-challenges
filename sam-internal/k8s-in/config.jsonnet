@@ -184,8 +184,9 @@ local utils = import "util_functions.jsonnet",
             name: "sfdchosts",
         },
     } else {}),
-    # [thargrove] I will turn this back on for a test bed when the deadlock is tested, merged and deployed
-    sfdchosts_arg: (if kingdom == "disabled" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
+    # [thargrove] New build has the deadlock fix.  Starting the slow roll again
+    # NOTE: Before rolling to production, first remove the if statements above on the volume and volume mount!
+    sfdchosts_arg: (if estate == "prd-samtest" || estate == "prd-samdev" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
 
     # === OTHER ===
 
