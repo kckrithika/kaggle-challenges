@@ -27,7 +27,7 @@
     ],
     cert_volumeMounts: [
         {
-            mountPath: "/etc/pki_service/ca/",
+            mountPath: "/etc/pki_service/ca",
             name: "certificate-authority",
             readOnly: true
         },
