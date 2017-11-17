@@ -45,7 +45,7 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
-        - --controlEndpoint=dfw-sam
+        - --controlEstate=dfw-sam
         image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000394-4e124105
         livenessProbe:
           httpGet:
