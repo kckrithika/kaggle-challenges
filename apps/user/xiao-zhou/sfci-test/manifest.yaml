@@ -10,13 +10,13 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: samhello
-      image: docker-sfci-rc/servicelibs/sherpa:2.0.9
+      image: docker-sfci-rc/sfci/dci/sfci-pipeline-sharedlib-test:1510877885
       ports:
       - containerPort: 9095
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9095
+        exec:
+          command:
+          - pwd
   loadbalancers:
   - lbname: sfcifnlb
     function: sfci-fn
