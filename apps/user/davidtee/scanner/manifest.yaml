@@ -19,24 +19,24 @@ system:
           initialDelaySeconds: 30
           periodSeconds: 5
     - name: pd-scanner-service-sherpa
-      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       ports:
       - containerPort: 7012
-        name: inbound-grpc
-      - containerPort: 7080
-        name: sherpa-b-adm
+        name: sherpa-in
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - "/home/sfdc-sherpa/bin/is-alive"
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
-          initialDelaySeconds: 5
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 10
           periodSeconds: 5
