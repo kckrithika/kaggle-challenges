@@ -20,7 +20,7 @@ local samimages = import "samimages.jsonnet";
                            "--logtostderr=true",
                            "--config=/config/samcontrol.json",
                            configs.sfdchosts_arg,
-                        ]) + (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.kingdom == "frf" then [
+                        ]) + (if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "dfw" then [
                         # Kept here because of the use of the envvar. Keep in sync with the config.
                         "-maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
                         ] else []),
