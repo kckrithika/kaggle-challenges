@@ -25,7 +25,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                            "-sender=vgiridaran@salesforce.com",
                            "-recipient=vgiridaran@salesforce.com",
                            "-email-subject-prefix=FLOWSNAKEWD",
-                           "-hostsConfigFile=/data/hosts/flowsnakehosts",
+                           "-hostsConfigFile=/data/hosts/hosts.json",
                            "-metricsService=flowsnake",
                            "-tlsEnabled=true",
                            "-caFile=/data/certs/ca.crt",
@@ -69,7 +69,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                    },
                    {
                        configMap: {
-                           name: "hosts"
+                           name: "sfdchosts"
                        },
                        name: "hosts"
                    }

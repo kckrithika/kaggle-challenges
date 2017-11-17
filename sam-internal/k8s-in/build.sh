@@ -48,11 +48,10 @@ else
 fi
 
 time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/
-# time ./parallel_build.py flowsnake/templates,sdn/templates,sam/templates/samcontrol-deployer-configmap.jsonnet,sam/templates/samcontrol-deployer.jsonnet ../k8s-out/ flowsnakeEstates.json
-time ./parallel_build.py flowsnake/templates,sdn/templates ../k8s-out/ flowsnakeEstates.json
+time ./parallel_build.py flowsnake/templates,sdn/templates,sam/templates/samcontrol-deployer-configmap.jsonnet,sam/templates/samcontrol-deployer.jsonnet ../k8s-out/ flowsnakeEstates.json
 
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
-# encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read 
+# encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read
 # or review.
 # This tool converts everything to yaml, and for configMaps it pretty prints the inner config entries
 
@@ -67,7 +66,7 @@ fi
 if [ -z "$GO_PIPELINE_LABEL" ]; then
   docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl validate-config-maps --in /repo/sam-internal/k8s-out/
 else
-  /opt/sam/manifestctl validate-config-maps --in ../k8s-out/ 
+  /opt/sam/manifestctl validate-config-maps --in ../k8s-out/
 fi
 
 # TODO: Add warning when running against out-of-sync git repo

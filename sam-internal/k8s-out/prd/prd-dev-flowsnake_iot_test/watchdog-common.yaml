@@ -27,7 +27,7 @@ spec:
         - -sender=vgiridaran@salesforce.com
         - -recipient=vgiridaran@salesforce.com
         - -email-subject-prefix=FLOWSNAKEWD
-        - -hostsConfigFile=/data/hosts/flowsnakehosts
+        - -hostsConfigFile=/data/hosts/hosts.json
         - -metricsService=flowsnake
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4
         name: watchdog
@@ -49,5 +49,5 @@ spec:
           path: /proc
         name: procfs-volume
       - configMap:
-          name: hosts
+          name: sfdchosts
         name: hosts
