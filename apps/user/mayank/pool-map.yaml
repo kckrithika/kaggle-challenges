@@ -3,6 +3,5 @@ apps:
   - prd/prd-sam
   #- prd/prd-samdev
  StatefulDemoApp:
-  - prd/prd-samdev
   - prd/prd-samtest
   - prd/prd-sam
