@@ -19,6 +19,7 @@
         sdn_vault_agent: 9106,
         sdn_control_service: 9108,
         sdn_control: 9110,
+        sdn_secret_agent: 9119,
     },
     slb: {
         ipvsDataConnPort: 9107,

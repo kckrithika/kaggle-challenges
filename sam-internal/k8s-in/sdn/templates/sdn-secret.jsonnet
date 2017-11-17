@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
-if !utils.is_public_cloud(configs.kingdom) then {
+if (!utils.is_public_cloud(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate)) then {
   apiVersion: "v1",
   kind: "Secret",
   metadata: {

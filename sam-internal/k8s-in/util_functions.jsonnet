@@ -86,4 +86,9 @@ local internal = {
     is_test_cluster(estate):: (
         estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" || estate == "prd-sam"
     ),
+
+    # This is for filtering flowsnake clusters.
+    is_flowsnake_cluster(estate):: (
+        estate == "prd-data-flowsnake" || estate == "prd-data-flowsnake_test" || estate == "prd-dev-flowsnake_iot_test"
+    ),
 }
