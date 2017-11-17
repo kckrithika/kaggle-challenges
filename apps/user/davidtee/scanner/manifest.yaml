@@ -6,23 +6,37 @@ system:
     count: 1
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171114
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171117
       ports:
       - name: web
         containerPort: 8084
       - name: service
-        containerPort: 7120
+        containerPort: 7020
       livenessProbe:
           httpGet:
             path: /ping
             port: 8084
           initialDelaySeconds: 30
           periodSeconds: 5
-  loadbalancers:
-  - lbname: pd-scanner-service
-    function: pd-scanner-service
-    nodeExposed: true
-    slbEnabled: true
-    ports:
-      - port: 7120
-        targetport: 7120
+    - name: pd-scanner-service-sherpa
+      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 7012
+        name: inbound-grpc
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
