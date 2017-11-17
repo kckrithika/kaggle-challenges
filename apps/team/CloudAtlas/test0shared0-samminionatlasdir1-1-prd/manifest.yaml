@@ -39,10 +39,6 @@ system:
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
-      - name: UBID_NODE_ROLE
-        value: TOPOMASTER
-      - name: UBID_NODE_TYPE
-        value: DS
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
