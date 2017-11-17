@@ -36,10 +36,13 @@ system:
       - mountPath: /home/search-model-executor/logs
         name: logvol
     - name: sherpa-b
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      image: tnrp/sherpa:0.2.0-0000097-594964a3
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-in
@@ -49,14 +52,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 110
+          periodSeconds: 5
     volumes:
     - name: logvol
       hostpath:
@@ -92,10 +95,13 @@ system:
         initialDelaySeconds: 240
         timeoutSeconds: 10
     - name: sherpa-t
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+      image: tnrp/sherpa:0.2.0-0000097-594964a3
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-t-in
@@ -105,14 +111,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          initialDelaySeconds: 110
+          periodSeconds: 5
   - name: search-model-executor-xlt
     count: 8
     containers:
