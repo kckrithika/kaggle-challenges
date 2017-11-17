@@ -2,39 +2,42 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: samcontrol
-  name: samcontrol
+    name: watchdog-maddog
+  name: watchdog-maddog
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: samcontrol
+      name: watchdog-maddog
   template:
     metadata:
       labels:
-        apptype: control
-        name: samcontrol
+        apptype: monitoring
+        name: watchdog-maddog
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sam/sam-controller
-        - --dockerregistry=ops0-artifactrepo1-0-hnd.data.sfdc.net
-        - --funnelEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
-        - --v=3
-        - --logtostderr=true
-        - --config=/config/samcontrol.json
-        - -maddogMadkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - /sam/watchdog
+        - -role=MADDOG
+        - -watchdogFrequency=10s
+        - -alertThreshold=300s
+        - -madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz
+        - -maddog-endpoint=https://all.pkicontroller.pki.blank.hnd.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - -emailFrequency=24h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
-        name: sam-controller
+        name: watchdog-maddog
         volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /data/certs
           name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /config
@@ -44,14 +47,14 @@ spec:
         pool: hnd-sam
       volumes:
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
           path: /data/certs
         name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
       - configMap:
-          name: samcontrol
+          name: watchdog
         name: config

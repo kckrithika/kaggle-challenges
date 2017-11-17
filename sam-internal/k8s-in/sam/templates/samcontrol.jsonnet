@@ -1,5 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
+local utils = import "util_functions.jsonnet";
+
 {
 
     kind: "Deployment",
@@ -20,7 +22,7 @@ local samimages = import "samimages.jsonnet";
                            "--logtostderr=true",
                            "--config=/config/samcontrol.json",
                            configs.sfdchosts_arg,
-                        ]) + (if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "dfw" then [
+                        ]) + (if !utils.is_public_cloud(configs.kingdom) then [
                         # Kept here because of the use of the envvar. Keep in sync with the config.
                         "-maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
                         ] else []),

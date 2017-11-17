@@ -122,7 +122,7 @@ local utils = import "util_functions.jsonnet",
         name: "certs",
     },
     caFile: (
-        if kingdom == "prd" || kingdom == "frf" || kingdom == "dfw" then
+        if !utils.is_public_cloud(kingdom) then
             "/etc/pki_service/ca/cabundle.pem"
         else
             "/data/certs/ca.crt"
