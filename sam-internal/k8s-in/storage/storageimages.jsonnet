@@ -22,24 +22,32 @@ local utils = import "util_functions.jsonnet";
         "0": {
             default_tag: "base-0000227-c8d6ba78",
             sfms_tag: "latest-0000047-f46de00d",
+            cephdaemon_tag: "jewel-0000047-859f50b7",
+            sfstorebookie_tag: "base-0000021-f9f2ef07",
         },
 
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "1": {
             default_tag: "base-0000227-c8d6ba78",
+            cephdaemon_tag: "jewel-0000047-859f50b7",
+            sfstorebookie_tag: "base-0000021-f9f2ef07",
             },
 
         ### Release Phase 2 - TBD
         "2": {
             default_tag: "",
+            cephdaemon_tag: "jewel-0000047-859f50b7",
+            sfstorebookie_tag: "base-0000021-f9f2ef07",
             },
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
             default_tag: "",
+            cephdaemon_tag: "jewel-0000047-859f50b7",
+            sfstorebookie_tag: "base-0000021-f9f2ef07",
             },
 
-        ### Release Phase 3 - All Prod
+        ### Release Phase 4 - All Prod
         "4": {
             default_tag: "",
             },
@@ -53,7 +61,7 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf") then
+        else if (kingdom == "phx") then
             "3"
         else
             "4"
@@ -72,4 +80,10 @@ local utils = import "util_functions.jsonnet";
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.
     sfms: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
+
+    # The ceph daemon image is maintained in the https://git.soma.salesforce.com/SFStorage/ceph-docker repo.
+    cephdaemon: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph-daemon", $.per_phase[$.phase].cephdaemon_tag),
+
+    # The sfstore bookie image is maintained in the https://git.soma.salesforce.com/SFStorage/bookkeeper repo.
+    sfstorebookie: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "bookie", $.per_phase[$.phase].sfstorebookie_tag),
 }
