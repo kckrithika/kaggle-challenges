@@ -60,8 +60,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
 
                         ]
-                        + (if configs.kingdom == "prd" || configs.estate == "frf-sam" then ["--controlEstate=" + configs.estate] else ["--controlEndpoint=" + configs.estate])
-                        + (if configs.estate == "prd-sdc" then ["--controlEndpoint=http://10.254.219.222:9108"] else []),
+                        + (if configs.estate == "prd-sdc" then [] else if configs.kingdom == "prd" || configs.estate == "frf-sam" then ["--controlEstate=" + configs.estate] else ["--controlEndpoint=" + configs.estate]),
                         livenessProbe: {
                             httpGet: {
                                path: "/liveness-probe",
