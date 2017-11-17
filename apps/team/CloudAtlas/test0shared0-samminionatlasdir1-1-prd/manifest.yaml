@@ -42,7 +42,7 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
-      - mountPath: /home/sfdc-atlas/servers/ds/logs
+      - mountPath: /home/sfdc-atlas/logs/servers/ds
         name: pinglogvol
       - mountPath: /log
         name: logvol
