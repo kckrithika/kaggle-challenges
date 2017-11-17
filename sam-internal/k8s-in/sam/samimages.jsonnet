@@ -46,8 +46,15 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000052-70c3fbc4",
             },
 
-        ### Release Phase 3 - Canary Prod FRF and public-cloud
+        ### Release Phase 3 - Canary Prod FRF
         "3": {
+            hypersam: "sam-0001489-165e1293",
+            madkub: "1.0.0-0000052-70c3fbc4",
+            madkubSidecar: "1.0.0-0000052-70c3fbc4",
+            },
+
+        ### Release Phase 3-public - Canary Prod Public Cloud
+        "3-pub": {
             hypersam: "sam-0001355-581a778b",
             madkub: "1.0.0-0000035-9241ed31",
             madkubSidecar: "1.0.0-0000035-9241ed31",
@@ -56,6 +63,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod
         "4": {
+            hypersam: "sam-0001355-581a778b",
+            madkub: "1.0.0-0000035-9241ed31",
+            madkubSidecar: "1.0.0-0000035-9241ed31",
+            },
+
+        ### Release Phase 3-public - Canary Prod Public Cloud
+        "4-pub": {
             hypersam: "sam-0001355-581a778b",
             madkub: "1.0.0-0000035-9241ed31",
             madkubSidecar: "1.0.0-0000035-9241ed31",
@@ -82,8 +96,12 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf" || kingdom == "yhu") then
+        else if (kingdom == "frf") then
             "3"
+        else if (kingdom == "yhu") then
+            "3-pub"
+        else if utils.is_public_cloud(kingdom) then
+            "4-pub"
         else
             "4"
         ),
