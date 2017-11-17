@@ -1,4 +1,4 @@
-local zookeeper = import "zookeeper-rcs.jsonnet";
+local zookeeper = import "_zookeeper-rcs.jsonnet";
 if (false) then {
     apiVersion: "v1",
     kind: "Service",
