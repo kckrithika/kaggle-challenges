@@ -47,7 +47,6 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
-        - --controlEstate=prd-sdc
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000465-4ae3116d
         livenessProbe:
           httpGet:
