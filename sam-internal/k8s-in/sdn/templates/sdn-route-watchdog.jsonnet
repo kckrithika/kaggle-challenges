@@ -36,7 +36,17 @@ if configs.kingdom == "prd" then {
                             "--alertThreshold=300s",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_route_watchdog,
                             "--controlEstate=" + configs.estate,
-                        ],
+
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                            "--sdncServiceName=sdn-control-svc",
+                            "--sdncNamespace=sam-system",
+                            "--rootPath=/etc/pki_service",
+                            "--userName=kubernetes",
+                            "--clientServiceName=k8s-client",
+                            ] else []
+                        ),
                         env: [
                             configs.kube_config_env,
                         ],

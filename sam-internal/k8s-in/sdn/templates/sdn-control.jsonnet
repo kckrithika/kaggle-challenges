@@ -45,6 +45,12 @@ if configs.estate == "prd-sdc" then {
                             "--sdncBootstrapTimer=30s",
                             "--ipamPullInterval=30s",
                             "--archiveSvcPullInterval=30s",
+                            "--sdncServiceName=sdn-control-svc",
+                            "--sdncNamespace=sam-system",
+                            "--rootPath=/etc/pki_service",
+                            "--userName=kubernetes",
+                            "--serverServiceName=k8s-server",
+                            "--clientServiceName=k8s-client",
                         ],
                         env: [
                             configs.kube_config_env,
