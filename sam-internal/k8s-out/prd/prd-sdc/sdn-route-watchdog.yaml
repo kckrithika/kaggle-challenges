@@ -34,6 +34,11 @@ spec:
         - --alertThreshold=300s
         - --livenessProbePort=9104
         - --controlEstate=prd-sdc
+        - --sdncServiceName=sdn-control-svc
+        - --sdncNamespace=sam-system
+        - --rootPath=/etc/pki_service
+        - --userName=kubernetes
+        - --clientServiceName=k8s-client
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
