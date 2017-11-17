@@ -1,5 +1,5 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
-local zookeeper = import "zookeeper-rcs.jsonnet";
+local zookeeper = import "_zookeeper-rcs.jsonnet";
 if (false) then {
     apiVersion: "apps/v1beta1",
     kind: "StatefulSet",
