@@ -1,0 +1,33 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - npshenichnyy@salesforce.com
+  functions:
+  - name: sfdc-grafana
+    count: 1
+    containers:
+    - name: sfdc-grafana
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sfdc-grafana:20171117-16
+      ports:
+        - containerPort: 3000
+      livenessProbe:
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+        httpGet:
+          path: /
+          port: 3000
+      readinessProbe:
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+        httpGet:
+          path: /
+          port: 3000
+  loadbalancers:
+  - lbname: sfdc-grafanalb
+    function: sfdc-grafana
+    nodeExposed: true
+    ports:
+      - port: 64135
+        targetport: 3000
