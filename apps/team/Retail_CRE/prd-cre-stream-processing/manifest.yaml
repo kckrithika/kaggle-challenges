@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-stream-processing
-    count: 2
+    count: 3
     containers:
     - name: cre-sp-prd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc-impl
@@ -16,7 +16,7 @@ system:
         exec:
             command:
             - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 31
     volumeMounts:
       - mountPath: /certs
         name: certs
