@@ -97,7 +97,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 mountPath: "/data/secrets",
                                 readOnly: true,
                             },
-                        ]),
+
+                        ])
+                        + (if configs.estate == "prd-sdc" then [
+                            configs.kube_config_volume_mount,
+                        ] else []),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -124,7 +128,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             secretName: "sdn",
                         },
                     },
-                ]),
+
+                ])
+                + (if configs.estate == "prd-sdc" then [
+                    configs.kube_config_volume,
+                ] else []),
             },
             metadata: {
                 labels: {

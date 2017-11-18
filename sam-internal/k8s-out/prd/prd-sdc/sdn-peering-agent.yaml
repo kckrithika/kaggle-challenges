@@ -75,6 +75,8 @@ spec:
         - mountPath: /data/secrets
           name: secrets
           readOnly: true
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       volumes:
       - configMap:
@@ -94,3 +96,6 @@ spec:
         secret:
           defaultMode: 256
           secretName: sdn
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
