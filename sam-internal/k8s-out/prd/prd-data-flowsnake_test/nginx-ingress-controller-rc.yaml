@@ -74,8 +74,6 @@ spec:
         - mountPath: /data/certs
           name: data-cert
           readOnly: true
-      nodeSelector:
-        vippool: "true"
       terminationGracePeriodSeconds: 60
       volumes:
       - hostPath:
