@@ -37,21 +37,23 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "2", memory: "2Gi" }
+        requests: { cpu: "2", memory: "2Gi" }
       ports:
-      # No incoming
-      # - containerPort: 7012
-      #   name: sherpa-xlt-in
+      - containerPort: 7012
+        name: sherpa-b-in
       - containerPort: 7080
-        name: sherpa-xlt-adm
+        name: sherpa-b-adm
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 5
