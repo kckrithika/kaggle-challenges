@@ -33,11 +33,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 name: "socket",
                                 mountPath: "/usr/local/var/run",
                             },
-
-                        ])
-                        + (if configs.estate == "prd-sdc" then [
-                            configs.kube_config_volume_mount,
-                        ] else []),
+                        ]),
                         env: [
                             {
                                 name: "BIRD_CONF",
@@ -104,7 +100,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
 
                         ])
                         + (if configs.estate == "prd-sdc" then [
-                            configs.kube_config_volume,
+                            configs.kube_config_volume_mount,
                         ] else []),
                     },
                 ],
@@ -132,7 +128,11 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             secretName: "sdn",
                         },
                     },
-                ]),
+
+                ])
+                + (if configs.estate == "prd-sdc" then [
+                    configs.kube_config_volume,
+                ] else []),
             },
             metadata: {
                 labels: {
