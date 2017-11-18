@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sfdc-grafana
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sfdc-grafana:20171117-16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sfdc-grafana:latest
       ports:
         - containerPort: 3000
       livenessProbe:
