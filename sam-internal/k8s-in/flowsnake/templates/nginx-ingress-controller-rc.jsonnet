@@ -116,10 +116,11 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                     } 
                 ] +
                 flowsnakeconfigmapmount.kubeconfig_volume +
-                flowsnakeconfigmapmount.cert_volume,
-                nodeSelector: {
-                    vippool: "true"
-                }
+                flowsnakeconfigmapmount.cert_volume
+		# this is need by prd-data because our F5 overlords configured the wrong host pool
+                # nodeSelector: {
+                #     vippool: "true"
+                # }
             }
         }
     }
