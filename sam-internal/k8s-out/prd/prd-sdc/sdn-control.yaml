@@ -29,16 +29,14 @@ spec:
         - --sdncBootstrapTimer=30s
         - --ipamPullInterval=30s
         - --archiveSvcPullInterval=30s
-        - --sdncServiceName=sdn-control-svc
-        - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
-        - --serverServiceName=k8s-server
-        - --clientServiceName=k8s-client
+        - --pkiServerServiceName=k8s-server
+        - --pkiClientServiceName=k8s-client
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000465-4ae3116d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000469-26b3b57f
         livenessProbe:
           httpGet:
             path: /liveness-probe

@@ -44,7 +44,7 @@ if configs.kingdom == "prd" then {
                             "--sdncNamespace=sam-system",
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
-                            "--clientServiceName=k8s-client",
+                            "--pkiClientServiceName=k8s-client",
                             ] else []
                         ),
                         env: [
