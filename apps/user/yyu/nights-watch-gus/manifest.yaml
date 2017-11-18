@@ -7,14 +7,20 @@ system:
       - name: nights-watch-gus
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171113
         ports:
-        - containerPort: 9090
+        - containerPort: 8091
         livenessProbe:
-          httpGet:
-            path: /
-            port: 9090
+          initialDelaySeconds: 60
+          periodSeconds: 5
+          exec:
+            command:
+            - ls
+            - /
+          #httpGet:
+          #  path: /
+          #  port: 8091
   loadbalancers:
   - lbname: nights-watch-gus-lb
     function: default
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 8091
+        targetport: 8091
