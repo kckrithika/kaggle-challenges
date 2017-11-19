@@ -27,6 +27,7 @@ system:
   loadbalancers:
   - lbname: sfdc-grafanalb
     function: sfdc-grafana
+    slbEnabled: true
     nodeExposed: true
     ports:
       - port: 64135
