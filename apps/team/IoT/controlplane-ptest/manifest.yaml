@@ -3,16 +3,14 @@ system:
   functions:
   - containers:
     - env:
+      - name: COMPILER_ENDPOINT_URI
+        value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net/iotrm-ptest/services/matrix-compiler-server
       - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
         value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
         value: /opt/java/jdk1.8.0_121/jre/lib/security/cacerts
-      - name: GRPC_SERVER_PORT
-        value: '9105'
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: MANAGEMENT_PORT
-        value: '8095'
       - name: PHOENIX_KEYTABPATH
         value: /home/controlplane/controlplane-keytab/controlplane.keytab
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:e684fa6
@@ -24,9 +22,9 @@ system:
         timeoutSeconds: 120
       name: controlplane-ptest
       ports:
-      - containerPort: 8095
+      - containerPort: 15372
         name: mgmt
-      - containerPort: 9105
+      - containerPort: 7020
         name: grpc
       resources:
         requests:
@@ -44,6 +42,33 @@ system:
       - mountPath: /home/controlplane/controlplane-config
         name: controlplaneconfig
         readOnly: true
+    - env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      name: sherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
     count: 4
     name: controlplane-ptest
     strategy:
@@ -61,16 +86,19 @@ system:
     - name: controlplaneconfig
       secret:
         secretName: controlplane-config
+    - maddogCert:
+        type: server
+      name: server-certs
   loadbalancers:
   - function: controlplane-ptest
     lbname: controlplane-ptest-lb
+    nodeExposed: true
     ports:
     - port: 9105
-      targetport: 9105
+      targetport: 7012
     - port: 8095
-      targetport: 8095
+      targetport: 15372
     slbEnabled: true
-    nodeExposed: true
   notifications:
     email:
     - iotenterprise@salesforce.com
