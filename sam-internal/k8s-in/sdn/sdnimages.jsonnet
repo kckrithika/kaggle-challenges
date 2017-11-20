@@ -38,7 +38,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - All Prod
         "4": {
-            hypersdn: "v-0000394-4e124105",
+            hypersdn: "v-0000454-b6c294bb",
             bird: "v-0000014-b0a5951d",
             },
     },
