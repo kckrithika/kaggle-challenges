@@ -34,7 +34,7 @@ system:
         # Matches the external port on the load balancer
         # (9001 for SAM LB direct to container; 12052 for SAM LB to Cyan ; 12100 for L4-SLB)
         - name: PUBLIC_PORT
-          value: 13000
+          value: 7600
 
         # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
         # "samcaas2-caasminion3-3-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
@@ -43,11 +43,11 @@ system:
           value: csr212lb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
 
         - name: PORT
-          value: 13000
+          value: 7600
         - name: SPORT
-          value: 13001
+          value: 7601
         - name: S2PORT
-          value: 13002
+          value: 7602
 
         # For casam deployments, we can switch back and forth between sleepy and sneezy db users
         # MIST30 core app servers are currently using sneezy
@@ -69,16 +69,16 @@ system:
       readinessProbe:
         httpGet:
           path: /ready.jsp
-          port: 13000
+          port: 7600
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
 
       ports:
         # Actually used by the container
-        - containerPort: 13000
-        - containerPort: 13001
-        - containerPort: 13002
+        - containerPort: 7600
+        - containerPort: 7601
+        - containerPort: 7602
 
       volumeMounts:
         - name: cert
@@ -99,7 +99,7 @@ system:
     nodeExposed: false
     slbEnabled: true
     ports:
-    - port: 13000
-      targetport: 13000
-    - port: 13001
-      targetport: 13001
+    - port: 7600
+      targetport: 7600
+    - port: 7601
+      targetport: 7601
