@@ -16,7 +16,7 @@ system:
         exec:
             command:
             - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 31
       volumeMounts:
       - mountPath: /certs
         name: certs
