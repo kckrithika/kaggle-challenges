@@ -180,11 +180,11 @@ local utils = import "util_functions.jsonnet",
     ),
 
     # For apps that use sfdcLocation2
-    sfdchosts_volume_mount: (if kingdom == "prd" then {
+    sfdchosts_volume_mount: (if kingdom == "prd" || kingdom == "frf" then {
         mountPath: "/sfdchosts",
         name: "sfdchosts",
     } else {}),
-    sfdchosts_volume: (if kingdom == "prd" then {
+    sfdchosts_volume: (if kingdom == "prd" || kingdom == "frf" then {
         name: "sfdchosts",
         configMap: {
             name: "sfdchosts",
@@ -192,7 +192,7 @@ local utils = import "util_functions.jsonnet",
     } else {}),
     # [thargrove] New build has the deadlock fix.  Starting the slow roll again
     # NOTE: Before rolling to production, first remove the if statements above on the volume and volume mount!
-    sfdchosts_arg: (if estate == "prd-samtest" || estate == "prd-samdev" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
+    sfdchosts_arg: (if kingdom == "prd" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
 
     # === OTHER ===
 
