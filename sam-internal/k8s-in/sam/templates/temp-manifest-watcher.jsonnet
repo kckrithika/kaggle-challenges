@@ -18,7 +18,7 @@ if configs.estate == "prd-samtest" then
                            "--funnelEndpoint=" + configs.funnelVIP,
                            "--v=2",
                            "--logtostderr=true",
-                           "--config=/config/manifestwatcher.json",
+                           "--config=/config/tempmanifestwatcher.json",
                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                            configs.sfdchosts_arg,
                          ]),
@@ -40,7 +40,7 @@ if configs.estate == "prd-samtest" then
                         },
                         name: "sfdc-volume",
                     },
-                    configs.config_volume("manifest-watcher"),
+                    configs.config_volume("temp-manifest-watcher"),
                 ]),
                 nodeSelector: {
                 } +
@@ -52,7 +52,7 @@ if configs.estate == "prd-samtest" then
             },
             metadata: {
                 labels: {
-                    name: "manifest-watcher",
+                    name: "temp-manifest-watcher",
                     apptype: "control",
                 },
                 namespace: "sam-system",
@@ -60,15 +60,15 @@ if configs.estate == "prd-samtest" then
         },
         selector: {
             matchLabels: {
-                name: "manifest-watcher",
+                name: "temp-manifest-watcher",
             },
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "manifest-watcher",
+            name: "temp-manifest-watcher",
         },
-        name: "manifest-watcher",
+        name: "temp-manifest-watcher",
     },
 } else "SKIP"
