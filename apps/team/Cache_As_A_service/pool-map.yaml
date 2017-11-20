@@ -1842,3 +1842,11 @@ apps:
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ dfw-sp3-metrics-publisher-sp-c1:
+  - name: dfw/dfw-sp3-sam_caas
+ dfw-sp3-redis-sp-c1-12050:
+  - name: dfw/dfw-sp3-sam_caas
+ phx-sp3-metrics-publisher-sp-c1:
+  - name: phx/phx-sp3-sam_caas
+ phx-sp3-redis-sp-c1-12036:
+  - name: phx/phx-sp3-sam_caas
