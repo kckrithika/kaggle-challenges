@@ -3,9 +3,23 @@ system:
   functions:
     - name: default
       count: 1
+      env:
+      - name: CERTS_HOSTCERT
+        value: /certs/client/certificates/client.pem
+      - name: CERTS_HOSTKEY
+        value: /certs/client/keys/client-key.pem
+      - name: CERTS_CACERT
+        value: /certs/ca.pem
+      volumes:
+      - name: cert
+        maddogCert:
+          type: client
       containers:
       - name: nights-watch-gus
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171120
+        volumeMounts:
+        - name: cert
+          mountPath: /certs
         ports:
         - containerPort: 8091
         livenessProbe:
