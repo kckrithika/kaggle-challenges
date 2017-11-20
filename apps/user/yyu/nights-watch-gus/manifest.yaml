@@ -5,7 +5,7 @@ system:
       count: 1
       containers:
       - name: nights-watch-gus
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171113
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171120
         ports:
         - containerPort: 8091
         livenessProbe:
