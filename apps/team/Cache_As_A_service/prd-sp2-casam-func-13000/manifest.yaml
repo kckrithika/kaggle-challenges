@@ -22,7 +22,7 @@ system:
         - name: DB_USER
           value: sleepy
         - name: DB_SID
-          value: mist30a212utf
+          value: mist30b212utf
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
