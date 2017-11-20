@@ -54,7 +54,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--kneConfigDir=" + slbconfigs.kneConfigDir,
                             "--kneDomainName=" + slbconfigs.kneDomainName,
                             "--slbConfigInAnnotations=true",
-                        ],
+                        ]
+                        + (
+                        if configs.estate == "prd-sdc" then [
+                            "--cleanupOldConfig=false",
+                        ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -70,7 +75,31 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             privileged: true,
                         },
                     },
-                ],
+                ]
+                + (
+                if configs.estate == "prd-sdc" then [
+                {
+                    name: "slb-cleanup",
+                    image: slbimages.hypersdn,
+                    command: [
+                        "/sdn/slb-cleanup",
+                        "--period=1800s",
+                        "--logsMaxAge=1h",
+                        "--filesDirToCleanup=" + slbconfigs.configDir,
+                        "--shouldSkipServiceRecords=true",
+                        "--shouldNotDeleteAllFiles=true",
+                    ],
+                    volumeMounts: configs.filter_empty([
+                        slbconfigs.slb_volume_mount,
+                        slbconfigs.slb_config_volume_mount,
+                        slbconfigs.logs_volume_mount,
+                    ]),
+                    securityContext: {
+                        privileged: true,
+                    },
+                },
+                ] else []
+                ),
             },
         },
     },
