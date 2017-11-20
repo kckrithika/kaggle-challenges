@@ -37,9 +37,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      resources:
-        limits: { cpu: "2", memory: "2Gi" }
-        requests: { cpu: "2", memory: "2Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-in
