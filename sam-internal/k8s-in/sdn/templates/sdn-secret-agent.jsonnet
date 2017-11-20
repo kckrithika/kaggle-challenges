@@ -35,15 +35,6 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                          env: [
                            configs.kube_config_env,
                          ],
-                         livenessProbe: {
-                           httpGet: {
-                             path: "/",
-                             port: portconfigs.sdn.sdn_secret_agent,
-                           },
-                           initialDelaySeconds: 2,
-                           periodSeconds: 10,
-                           timeoutSeconds: 10,
-                        },
                     },
                 ],
                 volumes: configs.filter_empty([
