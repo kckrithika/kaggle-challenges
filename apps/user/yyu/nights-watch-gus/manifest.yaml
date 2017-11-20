@@ -21,6 +21,8 @@ system:
   loadbalancers:
   - lbname: nights-watch-gus-lb
     function: default
+    nodeExposed: true
+    slbEnabled: true
     ports:
       - port: 8091
         targetport: 8091
