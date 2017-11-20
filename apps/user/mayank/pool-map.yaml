@@ -6,3 +6,4 @@ apps:
   #- prd/prd-samdev
  StatefulDemoApp:
   - prd/prd-samtest
+  - prd/prd-sam
