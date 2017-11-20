@@ -49,6 +49,25 @@ for minionnode in hosts
         apiGroup: "rbac.authorization.k8s.io",
       },
   },
+  createClusterRoleBindingForLocalPV(hosts):: {
+      kind: "ClusterRoleBinding",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
+        name: "local-pv-create",
+      },
+      subjects: [
+        {
+          kind: "User",
+          name: minionnode,
+        }
+for minionnode in hosts
+      ],
+      roleRef: {
+        kind: "ClusterRole",
+        name: "local-pv-create",
+        apiGroup: "rbac.authorization.k8s.io",
+      },
+  },
    local roleBindings = std.join([], [
             local hosts = rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
             # In Prod samcompute & samkubeapi nodes get admin access.
@@ -56,7 +75,11 @@ for minionnode in hosts
             if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [self.createClusterRoleBinding(hosts)] else [self.createRoleBinding(namespace, minionEstate, hosts) for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)]
             for minionEstate in rbac_utils.get_Minion_Estates(configs.kingdom, configs.estate)
         ]),
-
+   local localPVRoleBindings = std.join([], [
+            local hosts = rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
+            if configs.kingdom == "prd" && minionEstate == "prd-sam_ceph" then [self.createClusterRoleBindingForLocalPV(hosts)]
+            for minionEstate in rbac_utils.get_Minion_Estates(configs.kingdom, configs.estate)
+        ]),
   local clusterRoleBindings = [
     {
       #Gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces.
@@ -103,5 +126,5 @@ for minionnode in hosts
 
   ],
 
-  items: clusterRoleBindings + roleBindings,
+  items: clusterRoleBindings + roleBindings + localPVRoleBindings,
 } else "SKIP"

@@ -123,5 +123,26 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
        },
       ],
     },
+    {
+     kind: "ClusterRole",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
+         name: "local-pv-create",
+      },
+      rules: [
+        {
+          apiGroups: [
+             "*",
+          ],
+          resources: [
+             "persistentvolumes",
+          ],
+          verbs: [
+             "*",
+          ],
+       },
+      ],
+    },
+
   ],
 } else "SKIP"
