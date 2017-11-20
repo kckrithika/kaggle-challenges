@@ -18,8 +18,15 @@ apps:
   - prd/prd-sam
   - prd/prd-samtest
   - prd/prd-samdev
-  - frf/frf-sam
+  - prd/prd-sdc
   - dfw/dfw-sam
+  - frf/frf-sam
+  - iad/iad-sam
+  - ord/ord-sam
+  - par/par-sam
+  - phx/phx-sam
+  - ukb/ukb-sam
+  - hnd/hnd-sam
  SamTestAppMaddogMultiCert:
   - prd/prd-samdev
   - prd/prd-samtest

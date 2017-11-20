@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "dfw" then {
+if !utils.is_public_cloud(configs.kingdom) then {
   apiVersion: "v1",
   kind: "Service",
   metadata: {
