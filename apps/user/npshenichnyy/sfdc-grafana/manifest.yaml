@@ -32,3 +32,4 @@ system:
     ports:
       - port: 64135
         targetport: 3000
+        lbtype: http
