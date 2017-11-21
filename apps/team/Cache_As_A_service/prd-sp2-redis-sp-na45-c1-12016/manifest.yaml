@@ -6,11 +6,11 @@ system:
       - rpragada@salesforce.com
   functions:
   - name: redis-sp-na45-c1-12016
-    count: 5
+    count: 2
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000016-14737962
+      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       resources:
         limits: { memory: "2Gi" }
         requests: { memory: "1Gi" }
@@ -34,7 +34,7 @@ system:
       ports:
       - containerPort: 12016
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.4.6-0000016-14737962
+      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12016
