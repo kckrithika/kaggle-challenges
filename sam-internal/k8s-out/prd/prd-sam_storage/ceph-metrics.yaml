@@ -1,64 +1,59 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: metric-streamer
+  name: ceph-metrics
+  namespace: ceph
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: metric-streamer
+        app: ceph-metrics
     spec:
       containers:
       - args:
         - -m
         - snapshot_for_cephmon
         - -t
-        - prometheus
+        - ajna_with_tags
         - -s
         - cephmon
         - -i
-        - "10"
+        - "60"
         command:
         - /opt/sfms/bin/sfms
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000047-f46de00d
+        env:
+        - name: SFDC_FUNNEL_VIP
+          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000078-d7170050
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8001
         name: sfms
         ports:
         - containerPort: 8001
-          name: http-metrics
+          name: ceph-metrics
           protocol: TCP
         volumeMounts:
         - mountPath: /etc/ceph
           name: ceph-conf
       - args:
-        - -key-config-dir=/etc/metric-streamer/key-config
-        - -ceph-cluster-config-dir=/etc/metric-streamer/ceph-cluster-config
+        - -ceph-key-config-dir=/etc/ceph-metrics/key-config
+        - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
         - -ceph-config-dir=/etc/ceph
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000239-5dbbbc3e
         name: configwatcher
-        resources:
-          limits:
-            cpu: 100m
-            memory: 32Mi
-          requests:
-            cpu: 50m
-            memory: 16Mi
         volumeMounts:
         - mountPath: /etc/ceph
           name: ceph-conf
-        - mountPath: /etc/metric-streamer/key-config
+        - mountPath: /etc/ceph-metrics/key-config
           name: key-conf
           readOnly: true
-        - mountPath: /etc/metric-streamer/ceph-cluster-config
+        - mountPath: /etc/ceph-metrics/ceph-cluster-config
           name: ceph-cluster-conf
           readOnly: true
         - mountPath: /etc/kubernetes
           name: kubernetes
+      nodeSelector:
+        pool: prd-sam_storage
       volumes:
       - hostPath:
           path: /etc/kubernetes

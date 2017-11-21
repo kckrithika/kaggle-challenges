@@ -4,23 +4,26 @@ if configs.estate == "prd-sam_storage" then {
    apiVersion: "v1",
    kind: "Service",
    metadata: {
-      name: "metric-streamer",
+      name: "ceph-metrics",
+      namespace: "ceph",
       labels: {
-         app: "metric-streamer",
+         app: "ceph-metrics",
+         "slb.sfdc.net/name": "ceph-metrics",
       },
    },
    spec: {
-      clusterIP: "None",
       ports: [
          {
-            name: "http-metrics",
+            name: "ceph-metrics",
             port: 8001,
             protocol: "TCP",
             targetPort: 8001,
+            nodePort: 38001,
          },
       ],
       selector: {
-         app: "metric-streamer",
+         app: "ceph-metrics",
       },
+      type: "NodePort",
    },
 } else "SKIP"
