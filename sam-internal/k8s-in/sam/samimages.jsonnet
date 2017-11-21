@@ -56,14 +56,6 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000052-70c3fbc4",
             },
 
-        ### Release Phase 3-public - Canary Prod Public Cloud
-        "3-pub": {
-            hypersam: "sam-0001355-581a778b",
-            madkub: "1.0.0-0000035-9241ed31",
-            madkubSidecar: "1.0.0-0000035-9241ed31",
-            },
-
-
         ### Release Phase 4 - Rest of Prod
         "4": {
             hypersam: "sam-0001489-165e1293",
@@ -71,8 +63,12 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000052-70c3fbc4",
             },
 
-        ### Release Phase 3-public - Canary Prod Public Cloud
-        "4-pub": {
+        ### Temporary phase just for public cloud
+        # We are keeping this on an old build until we upgrade to k8s 1.7
+        # (which is blocked on the hairpin fix)
+        # After that, we will eliminate this phase and re-add these kingdoms
+        # phases 1-4
+        pub: {
             hypersam: "sam-0001355-581a778b",
             madkub: "1.0.0-0000035-9241ed31",
             madkubSidecar: "1.0.0-0000035-9241ed31",
@@ -101,10 +97,8 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (kingdom == "frf") then
             "3"
-        else if (kingdom == "yhu") then
-            "3-pub"
         else if utils.is_public_cloud(kingdom) then
-            "4-pub"
+            "pub"
         else
             "4"
         ),
