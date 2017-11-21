@@ -95,7 +95,7 @@ system:
         initialDelaySeconds: 240
         timeoutSeconds: 10
     - name: sherpa-t
-      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/sherpa-zipkin:1.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
