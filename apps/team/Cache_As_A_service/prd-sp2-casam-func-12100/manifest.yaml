@@ -116,12 +116,14 @@ system:
     - name: csr-seq-sam
 
       # docker image for minor release
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:9
 
       env:
         # 
         - name: CYAN
-          value: http://samcaas2-caasminion3-3-prd.eng.sfdc.net:12052 
+          value: https://samcaas2-caasminion3-3-prd.eng.sfdc.net:12052 
+        - name: CURL_GLOBAL_OPTS
+          value: -k
         - name: K4A
           value: have_to_get_this
         - name: RELEASE_VERSION
