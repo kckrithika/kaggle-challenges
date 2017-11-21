@@ -7,6 +7,8 @@ system:
   functions:
   - name: caas-release-perf
     count: 1 
+    strategy:
+      type: Recreate
     hostnetwork: true
     nodeSelector:
       kubernetes.io/hostname=samcaas2-caasminion1-1-prd.eng.sfdc.net    
