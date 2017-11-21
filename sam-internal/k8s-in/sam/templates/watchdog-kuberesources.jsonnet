@@ -15,7 +15,7 @@ if configs.kingdom == "prd" then {
                         command: [
                             "/sam/watchdog",
                             "-role=KUBERESOURCES",
-                            "-watchdogFrequency=60s",
+                            "-watchdogFrequency=120s",
                             "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
                             "-shouldBatchMetrics=true",
