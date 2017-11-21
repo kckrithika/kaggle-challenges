@@ -26,7 +26,7 @@ spec:
           value: prd-sam_storage
         - name: K8S_NETWORK
           value: 10.251.0.0./16
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000236-1f026192
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000237-0723606a
         name: cephoperator
         volumeMounts:
         - mountPath: /etc/pki_service
