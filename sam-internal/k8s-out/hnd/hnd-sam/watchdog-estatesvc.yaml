@@ -29,12 +29,17 @@ spec:
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
         name: watchdog-estatesvc
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /config
           name: config
       hostNetwork: true
       nodeSelector:
         pool: hnd-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - configMap:
           name: watchdog
         name: config

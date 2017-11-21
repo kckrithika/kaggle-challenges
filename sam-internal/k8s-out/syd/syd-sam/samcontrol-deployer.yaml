@@ -30,6 +30,8 @@ spec:
           timeoutSeconds: 10
         name: samcontrol-deployer
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -40,6 +42,9 @@ spec:
       nodeSelector:
         pool: syd-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs

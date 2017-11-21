@@ -29,6 +29,8 @@ spec:
         image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-etcd-quorum
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /config
@@ -37,6 +39,9 @@ spec:
       nodeSelector:
         pool: yul-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs

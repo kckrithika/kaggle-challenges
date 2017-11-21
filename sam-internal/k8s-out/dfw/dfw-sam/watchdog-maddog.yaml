@@ -34,6 +34,8 @@ spec:
         image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
         name: watchdog-maddog
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /etc/pki_service
@@ -46,6 +48,9 @@ spec:
       nodeSelector:
         pool: dfw-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs
