@@ -30,7 +30,7 @@ spec:
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
         name: watchdog-pod
         volumeMounts:
