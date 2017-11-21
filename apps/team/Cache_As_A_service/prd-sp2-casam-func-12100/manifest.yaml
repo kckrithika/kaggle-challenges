@@ -80,7 +80,7 @@ system:
 
       readinessProbe:
         httpGet:
-          scheme: https
+          scheme: HTTPS
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
           path: /__cyan_admin__/app/health?version=210.12
           port: 12052
