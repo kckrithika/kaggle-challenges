@@ -38,6 +38,8 @@ spec:
         - containerPort: 8083
           name: synthetic
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /test
           name: test
         - mountPath: /_output
@@ -52,6 +54,9 @@ spec:
       nodeSelector:
         pool: syd-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs

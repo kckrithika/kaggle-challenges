@@ -32,6 +32,8 @@ spec:
         image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-deployment
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -42,6 +44,9 @@ spec:
       nodeSelector:
         pool: yhu-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /data/certs
         name: certs

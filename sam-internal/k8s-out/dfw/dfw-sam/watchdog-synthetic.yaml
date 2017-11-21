@@ -38,6 +38,8 @@ spec:
         - containerPort: 8083
           name: synthetic
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /test
@@ -54,6 +56,9 @@ spec:
       nodeSelector:
         pool: dfw-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
