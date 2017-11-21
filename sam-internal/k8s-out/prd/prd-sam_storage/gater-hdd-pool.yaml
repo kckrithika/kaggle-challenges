@@ -1,0 +1,10 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: gater-hdd-pool
+  namespace: gater-apps
+spec:
+  size: 500Gi
+  storageTier: hdd
