@@ -43,8 +43,8 @@ spec:
         - --birdconf=/usr/local/etc/bird.conf
         - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
-        - --keyfile=/data/certs/hostcert.key
-        - --certfile=/data/certs/hostcert.crt
+        - --keyfile=/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem
+        - --certfile=/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
         - --controlEstate=prd-data-flowsnake
