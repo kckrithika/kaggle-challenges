@@ -30,8 +30,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12017
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       ports:
       - containerPort: 12017
     - name: caas-redis-announcer
