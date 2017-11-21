@@ -11,7 +11,7 @@ data:
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "lockName": "/locks/tempmanifestwatcher",
       "tlsEnabled": true,
-      "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive/test-manifests"
+      "tnrpArchiveEndpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:
