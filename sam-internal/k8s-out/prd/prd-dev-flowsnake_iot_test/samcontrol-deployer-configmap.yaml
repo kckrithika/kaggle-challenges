@@ -13,13 +13,15 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": 300000000000,
+      "orphan-namespace": "flowsnake",
       "override-control-estate": "/prd/prd-sam",
       "poll-delay": 30000000000,
       "recipient": "flowsnake@salesforce.com",
       "resource-cooldown": 15000000000,
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
-        "_flowsnake-sdn-secret.yaml"
+        "_flowsnake-sdn-secret.yaml",
+        "samcontrol-deployer.yaml"
       ],
       "sender": "flowsnake@salesforce.com",
       "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",

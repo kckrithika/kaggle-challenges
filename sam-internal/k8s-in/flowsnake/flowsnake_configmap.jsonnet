@@ -143,11 +143,13 @@ local kingdom = std.extVar("kingdom");
         "resource-cooldown": 15000000000,
         "resource-progression-timeout": 120000000000,
         "resources-to-skip": [
-          "_flowsnake-sdn-secret.yaml"
+          "_flowsnake-sdn-secret.yaml",
+          "samcontrol-deployer.yaml"
         ],
         "sender": "flowsnake@salesforce.com",
         "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
         "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
-        "override-control-estate": "/prd/prd-sam"
+        "override-control-estate": "/prd/prd-sam",
+        "orphan-namespace": "flowsnake"
     }
 }

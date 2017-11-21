@@ -1,5 +1,5 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
-if (false) then {
+{
     connection_string::std.join(",", ["zookeeper-" + ri + ".zookeeper-set" + ":" + $.zk_port for ri in std.range(0, $.zk_replicas - 1)]),
     zk_port::2181,
     zk_replicas::3,
@@ -80,4 +80,4 @@ if (false) then {
             }
         }
     }
-} else "SKIP"
+}

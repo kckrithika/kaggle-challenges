@@ -1,5 +1,5 @@
 local zookeeper = import "_zookeeper-rcs.jsonnet";
-if (false) then {
+{
     apiVersion: "v1",
     kind: "Service",
     metadata: {
@@ -26,4 +26,4 @@ if (false) then {
             }
         ]
     }
-} else "SKIP"
+}
