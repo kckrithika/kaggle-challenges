@@ -14,30 +14,36 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:210.12-0000062-7b20a7c8
+      image: tnrp/casam/coreapp:210.12-0000070-815ed2b0
 
       env:
         - name: DEPLOYMENT
           value: T
         - name: DB_USER
           value: grumpy
+
         # Only needed if desire to override ZK registration value
         #- name: CASAM_CYAN_PATH
         #  value: casam/casam-210-11-2
 
-
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
           value: 2
+
         # The flag below configs the app to use a single shared memcached running in SAM
         # To revert to standard local container memcached comment out the 2 lines below
         - name: USE_SAM_MCD
           value: true
+
         # Matches the external port on the load balancer
         # (9001 for SAM LB direct to container; 12052 for SAM LB to Cyan ; 12100 for L4-SLB)
         - name: PUBLIC_PORT
 #          value: 12100
           value: 12052
+
+        # Set to true it PUBLIC_PORT is an https endpoint
+        - name: PUBLIC_PORT_IS_SECURE
+          value: true
 
         # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
         # "samcaas2-caasminion3-3-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
@@ -53,9 +59,9 @@ system:
         - name: S2PORT
           value: 12098
 
-        # For casam deployments, we can switch back and forth between sleepy and sneezy db users
-        # MIST30 core app servers are currently using sneezy
-        # As of this manifest, sleepy=208.12 plsql 
+        # Set to true to trigger a plsql stats load during startup
+        - name: PLSQL_UPDATE_RUNSTATS
+          value: false
 
       resources:
         limits: { memory: "10240M" }
@@ -74,6 +80,7 @@ system:
 
       readinessProbe:
         httpGet:
+          scheme: https
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
           path: /__cyan_admin__/app/health?version=210.12
           port: 12052
