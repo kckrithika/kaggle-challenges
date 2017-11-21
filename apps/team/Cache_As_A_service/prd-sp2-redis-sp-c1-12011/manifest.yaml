@@ -5,8 +5,8 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: redis-sp-c1-12011
-    count: 2
+  - name: redis-sp-pc1-12011
+    count: 5
     hostnetwork: true
     containers:
     - name: caas-redis
@@ -23,6 +23,7 @@ system:
       args:
         - --port=12011
         - --maxMemoryMB=6144
+        - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
@@ -38,7 +39,8 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12011
-        - --cluster.name=sp-c1
+        - --cluster.name=sp-pc1
+        - --pathPrefix=/mist43/prd/sp2
         - --logDir=/home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
