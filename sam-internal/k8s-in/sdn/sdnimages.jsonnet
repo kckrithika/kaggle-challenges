@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
             bird: "v-0000014-b0a5951d",
             },
 
-        ### Release Phase 2 - PRD-SAMTEST
+        ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
             hypersdn: "v-0000474-00f1f63f",
             bird: "v-0000014-b0a5951d",
@@ -53,7 +53,7 @@ local utils = import "util_functions.jsonnet";
     phase: (
         if (estate == "prd-sdc") then
             "1"
-        else if (estate == "prd-samtest") || (estate == "prd-samdev") then
+        else if (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then
             "2"
         else if (kingdom == "prd") then
             "3"

@@ -48,7 +48,7 @@ spec:
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
         - --controlEstate=prd-data-flowsnake_test
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000454-b6c294bb
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000474-00f1f63f
         livenessProbe:
           httpGet:
             path: /liveness-probe
