@@ -41,6 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--configDir=" + slbconfigs.configDir,
                             "--period=1800s",
                             "--namespace=" + slbconfigs.namespace,
+                            "--proxyServerNameSpace=" + slbconfigs.namespace,
                             "--podstatus=running",
                             "--subnet=" + slbconfigs.subnet,
                             "--k8sapiserver=",
