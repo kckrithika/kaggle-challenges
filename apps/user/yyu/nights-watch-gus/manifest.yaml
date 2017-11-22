@@ -20,7 +20,7 @@ system:
         - name: PKI_CA_DIR
           value: /certs
         - name: PKI_MONITORDIR
-          value: /certs/client
+          value: /certs/server
         volumeMounts:
         - name: cert
           mountPath: /certs
