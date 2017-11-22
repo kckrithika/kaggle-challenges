@@ -6,7 +6,7 @@ system:
       volumes:
       - name: cert
         maddogCert:
-          type: client
+          type: server
       containers:
       - name: nights-watch-gus
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171121
