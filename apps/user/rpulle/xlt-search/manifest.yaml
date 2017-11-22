@@ -33,7 +33,7 @@ system:
           initialDelaySeconds: 5
           periodSeconds: 5
     - name: sherpa-geoip
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/sherpa-zipkin:2.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/sherpa-zipkin:1.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
