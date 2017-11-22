@@ -18,8 +18,13 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [xiao] Test temp manifest watcher for test manifest pipelien
+        # [xiao] Test temp manifest watcher for test manifest pipelie
         "prd,prd-samtest,temp-manifest-watcher,hypersam": "sam-0001501-6ebd0f4f",
+
+        # [xiao] Fix for k4a
+        "prd,prd-samtest,samcontrol,hypersam": "sam-0001509-89b08315",
+        "prd,prd-samdev,samcontrol,hypersam": "sam-0001509-89b08315",
+        "prd,prd-sam,samcontrol,hypersam": "sam-0001509-89b08315",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
