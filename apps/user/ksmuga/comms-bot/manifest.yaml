@@ -11,7 +11,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: comms-bot
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ksmuga/comms-bot:comms-bot-20171113
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ksmuga/comms-bot:comms-bot-20171122
 
       ports:
       - containerPort: 5000
@@ -23,11 +23,3 @@ system:
         httpGet:
           path: /
           port: 5000
-
-  # loadbalancers:
-  # - lbname: mgmt-services
-  #   function: mgmt
-  #   ports:
-  #     - port: 8080
-  #       targetport: 8080
-
