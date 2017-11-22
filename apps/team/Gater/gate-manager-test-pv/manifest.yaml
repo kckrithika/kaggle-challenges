@@ -11,7 +11,7 @@ system:
     count: 3
     containers:
     - name: gater
-      image: tnrp/gater/gater:1.6.0-SNAPSHOT-0000273-14820649
+      image: tnrp/gater/gater:1.6.0-0000036-14884199
       args:
         - --server.port=9090
 #        - --scone.srpc.announcing-enabled=false   # Don't announce into Scone, as we're not a live service install
