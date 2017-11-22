@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-    - name: default
+    - name: nights-watch-gus-func
       count: 1
       volumes:
       - name: cert
@@ -38,7 +38,7 @@ system:
           #  port: 8091
   loadbalancers:
   - lbname: nights-watch-gus-lb
-    function: default
+    function: nights-watch-gus-func
     nodeExposed: true
     slbEnabled: true
     ports:
