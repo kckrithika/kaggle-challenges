@@ -56,7 +56,7 @@ system:
       emptyDir: {}
     - name: secretvol
       k4aSecret:
-        secretName: secrets
+        secretName: newsecrets
     - name: certs
       maddogCert:
         type: server
