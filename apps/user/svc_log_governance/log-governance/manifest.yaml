@@ -3,18 +3,23 @@ system:
   functions:
   - name: default
     count: 1
+
     containers:
     - name: log-governance
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/svc_log_governance/log-governance:dhacker-20171121
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/svc_log_governance/log-governance:dhacker-20171122-19a
+
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+        
       ports:
-      - containerPort: 9090
+      - containerPort: 8080
+      - containerPort: 15372
+      
+      # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
+        # SAM will wait this long after starting the container before first checking
+        initialDelaySeconds: 15
         httpGet:
-          path: /
-          port: 9090
-  loadbalancers:
-  - lbname: loggovernancelb
-    function: default
-    ports:
-      - port: 9090
-        targetport: 9090
+          path: /manage/health
+          port: 15372
