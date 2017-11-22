@@ -5,17 +5,25 @@ if configs.estate == "prd-sam_storage" then {
    apiVersion: "extensions/v1beta1",
    kind: "Deployment",
    metadata: {
-      name: "metric-streamer",
+      name: "ceph-metrics",
+      namespace: "ceph",
    },
    spec: {
       replicas: 1,
       template: {
          metadata: {
             labels: {
-               app: "metric-streamer",
+               app: "ceph-metrics",
             },
          },
          spec: {
+            nodeSelector: {
+            } +
+            if configs.estate == "prd-sam" then {
+                  master: "true",
+            } else {
+                  pool: configs.estate,
+            },
             volumes: [
                {
                   name: "kubernetes",
@@ -52,50 +60,41 @@ if configs.estate == "prd-sam_storage" then {
                      "-m",
                      "snapshot_for_cephmon",
                      "-t",
-                     "prometheus",
+                     "ajna_with_tags",
                      "-s",
                      "cephmon",
                      "-i",
-                     '10',
+                     '60',
                   ],
                   ports: [
                      {
-                        name: "http-metrics",
+                        name: "ceph-metrics",
                         containerPort: 8001,
                         protocol: "TCP",
                      },
                   ],
-                  livenessProbe: {
-                     httpGet: {
-                        path: "/healthz",
-                           port: 8001,
-                     },
-                  },
                   volumeMounts: [
                      {
                         name: "ceph-conf",
                         mountPath: "/etc/ceph",
                      },
                   ],
+                  env: [
+                     {
+                        name: "SFDC_FUNNEL_VIP",
+                        value: configs.funnelVIP,
+                     },
+                  ],
+
                },
                {
                   name: "configwatcher",
                   image: storageimages.configwatcher,
                   args: [
-                     "-key-config-dir=/etc/metric-streamer/key-config",
-                     "-ceph-cluster-config-dir=/etc/metric-streamer/ceph-cluster-config",
+                     "-ceph-key-config-dir=/etc/ceph-metrics/key-config",
+                     "-ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config",
                      "-ceph-config-dir=/etc/ceph",
                   ],
-                  resources: {
-                     requests: {
-                        memory: "16Mi",
-                        cpu: "50m",
-                     },
-                     limits: {
-                        memory: "32Mi",
-                        cpu: "100m",
-                     },
-                  },
                   volumeMounts: [
                      {
                         name: "ceph-conf",
@@ -103,12 +102,12 @@ if configs.estate == "prd-sam_storage" then {
                      },
                      {
                         name: "key-conf",
-                        mountPath: "/etc/metric-streamer/key-config",
+                        mountPath: "/etc/ceph-metrics/key-config",
                         readOnly: true,
                      },
                      {
                         name: "ceph-cluster-conf",
-                        mountPath: "/etc/metric-streamer/ceph-cluster-config",
+                        mountPath: "/etc/ceph-metrics/ceph-cluster-config",
                         readOnly: true,
                      },
                      {
