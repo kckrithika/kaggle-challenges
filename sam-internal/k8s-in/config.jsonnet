@@ -85,7 +85,7 @@ local utils = import "util_functions.jsonnet",
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         name: "KUBECONFIG",
-        value: (if kingdom == "prd" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
+        value: (if kingdom == "prd" || kingdom == "frf" then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
     },
     kube_config_volume_mount: {
         mountPath: "/kubeconfig",

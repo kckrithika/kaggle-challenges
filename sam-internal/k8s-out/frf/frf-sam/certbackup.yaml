@@ -16,7 +16,7 @@ spec:
         - /sam/certbackup.sh
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
         name: certbackup
         volumeMounts:
