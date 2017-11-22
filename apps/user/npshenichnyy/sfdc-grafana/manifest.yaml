@@ -10,6 +10,9 @@ system:
     containers:
     - name: sfdc-grafana
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sfdc-grafana:latest
+      env:
+      - name: GF_SERVER_ROOT_URL
+        value: "http://sfdc-grafanalb.user-npshenichnyy.prd-sam.prd.slb.sfdc.net:64135/"
       ports:
         - containerPort: 3000
       livenessProbe:
