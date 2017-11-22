@@ -35,4 +35,5 @@ apps:
  SamTestAppSecret:
   - prd/prd-samtest
   - prd/prd-samdev
+  - prd/prd-sam
 
