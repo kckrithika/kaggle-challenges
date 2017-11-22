@@ -24,6 +24,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                            "--keyfile=" + configs.keyFile,
                            "--certfile=" + configs.certFile,
                            "--cafile=" + configs.caFile,
+                           "--livenessProbePort=" + portconfigs.sdn.sdn_secret_agent,
                            configs.sfdchosts_arg,
                          ]),
                          volumeMounts: configs.filter_empty([
@@ -35,6 +36,15 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                          env: [
                            configs.kube_config_env,
                          ],
+                         livenessProbe: {
+                            httpGet: {
+                                path: "/liveness-probe",
+                                port: portconfigs.sdn.sdn_secret_agent,
+                            },
+                            initialDelaySeconds: 10,
+                            timeoutSeconds: 5,
+                            periodSeconds: 30,
+                        },
                     },
                 ],
                 volumes: configs.filter_empty([
