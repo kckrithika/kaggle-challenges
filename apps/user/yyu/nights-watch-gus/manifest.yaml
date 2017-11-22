@@ -4,12 +4,15 @@ system:
     - name: nights-watch-gus-func
       count: 1
       volumes:
-      - name: cert
+      - name: certserv
         maddogCert:
           type: server
+      - name: certcli
+        maddogCert:
+          type: client
       containers:
       - name: nights-watch-gus
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171121
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dataprotection/nights-watch-gus:20171122
         env:
         #- name: CERTS_HOSTCERT
         #  value: /certs/client/certificates/client.pem
@@ -18,12 +21,14 @@ system:
         #- name: CERTS_CACERT
         #  value: /certs/ca.pem
         - name: PKI_CA_DIR
-          value: /certs
+          value: /certs-serv
         - name: PKI_MONITORDIR
-          value: /certs/server
+          value: /certs-serv/server
         volumeMounts:
-        - name: cert
-          mountPath: /certs
+        - name: certserv
+          mountPath: /certs-serv
+        - name: certcli
+          mountPath: /certs-cli
         ports:
         - containerPort: 8091
         livenessProbe:
