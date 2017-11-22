@@ -1,0 +1,40 @@
+apiVersion: v1
+items:
+- apiVersion: storage.salesforce.com/v1beta1
+  kind: CephCluster
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: ceph-prd-sam-cephdev
+    namespace: ceph-prd-sam-cephdev
+  spec:
+    K8S_NETWORK: 10.231.172.0/24
+    cephVersion: latest
+    faultDomainBoundary: node.sam.sfdc.net/rack
+    metadata:
+      name: ceph-prd-sam-cephdev
+      namespace: ceph-prd-sam-cephdev
+    pool: prd-sam_cephdev
+    storageClassAllocations:
+    - aggregateStorage: 1Ti
+      name: hdd
+- apiVersion: storage.salesforce.com/v1beta1
+  kind: CephCluster
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: ceph-prd-sam-storage
+    namespace: ceph-prd-sam-storage
+  spec:
+    K8S_NETWORK: 10.231.165.0/24
+    cephVersion: latest
+    faultDomainBoundary: node.sam.sfdc.net/rack
+    metadata:
+      name: ceph-prd-sam-storage
+      namespace: ceph-prd-sam-storage
+    pool: prd-sam_storage
+    storageClassAllocations:
+    - aggregateStorage: 1Ti
+      name: hdd
+kind: List
+metadata: {}

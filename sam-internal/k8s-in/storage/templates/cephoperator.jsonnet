@@ -44,10 +44,6 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                                 name: "K8S_PLATFORM",
                                 value: configs.estate,
                             },
-                            {
-                                name: "K8S_NETWORK",
-                                value: storageconfigs.k8s_subnet,
-                            },
                         ],
                     },
                 ],
