@@ -113,6 +113,11 @@ local utils = import "util_functions.jsonnet";
             else
                 "sam-1ebeb0ac-657"
         ),
+
+        k4aInitContainerImage: (
+            if (kingdom == "prd") then
+               "sam-0001509-89b08315"
+        ),
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
@@ -121,9 +126,7 @@ local utils = import "util_functions.jsonnet";
     hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].hypersam),
     k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
     permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
-
-    #Image to use for k4a. Will change to appropiate tags later.
-    k4aInitContainerImage: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/k4a:1101",
+    k4aInitContainerImage: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.k4aInitContainerImage),
 
     # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
     # of all containers
