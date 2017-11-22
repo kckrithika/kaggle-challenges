@@ -24,20 +24,26 @@ local utils = import "util_functions.jsonnet";
             bird: "v-0000014-b0a5951d",
             },
 
-        ### Release Phase 2 - Rest of the SAM clusters in PRD
+        ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
-            hypersdn: "v-0000454-b6c294bb",
+            hypersdn: "v-0000474-00f1f63f",
             bird: "v-0000014-b0a5951d",
             },
 
-        ### Release Phase 3 - Canary sites in Prod
+        ### Release Phase 3 - Rest of the SAM clusters in PRD
         "3": {
             hypersdn: "v-0000454-b6c294bb",
             bird: "v-0000014-b0a5951d",
             },
 
-        ### Release Phase 4 - All Prod
+        ### Release Phase 4 - Canary sites in Prod
         "4": {
+            hypersdn: "v-0000454-b6c294bb",
+            bird: "v-0000014-b0a5951d",
+            },
+
+        ### Release Phase 5 - All Prod
+        "5": {
             hypersdn: "v-0000454-b6c294bb",
             bird: "v-0000014-b0a5951d",
             },
@@ -47,12 +53,14 @@ local utils = import "util_functions.jsonnet";
     phase: (
         if (estate == "prd-sdc") then
             "1"
-        else if (kingdom == "prd") then
+        else if (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then
             "2"
-        else if (kingdom == "frf") then
+        else if (kingdom == "prd") then
             "3"
-        else
+        else if (kingdom == "frf") then
             "4"
+        else
+            "5"
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
