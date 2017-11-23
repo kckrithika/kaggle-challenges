@@ -47,9 +47,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-64-in
+        name: s-b-64-in
       - containerPort: 7080
-        name: sherpa-b-64-adm
+        name: s-b-64-adm
       livenessProbe:
         exec:
           command:
@@ -111,9 +111,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-128-in
+        name: s-b-128-in
       - containerPort: 7080
-        name: sherpa-b-128-adm
+        name: s-b-128-adm
       livenessProbe:
         exec:
           command:
@@ -175,9 +175,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-1-in
+        name: s-b-1-in
       - containerPort: 7080
-        name: sherpa-b-1-adm
+        name: s-b-1-adm
       livenessProbe:
         exec:
           command:
@@ -239,9 +239,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-256-in
+        name: s-b-256-in
       - containerPort: 7080
-        name: sherpa-b-256-adm
+        name: s-b-256-adm
       livenessProbe:
         exec:
           command:
@@ -303,9 +303,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-512-in
+        name: s-b-512-in
       - containerPort: 7080
-        name: sherpa-b-512-adm
+        name: s-b-512-adm
       livenessProbe:
         exec:
           command:
@@ -367,9 +367,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-1024-in
+        name: s-b-1024-in
       - containerPort: 7080
-        name: sherpa-b-1024-adm
+        name: s-b-1024-adm
       livenessProbe:
         exec:
           command:
@@ -431,9 +431,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-b-2048-in
+        name: s-b-2048-in
       - containerPort: 7080
-        name: sherpa-b-2048-adm
+        name: s-b-2048-adm
       livenessProbe:
         exec:
           command:
@@ -524,16 +524,3 @@ system:
           - ./bin/agentcontroller.sh
           initialDelaySeconds: 5
           periodSeconds: 5
-  loadbalancers:
-  - lbname: search-model-executor-lb
-    function: search-model-executor
-    nodeExposed: true
-    ports:
-    - port: 7020
-      targetport: 7020
-  - lbname: search-model-executor-test-lb
-    function: search-model-executor-test
-    nodeExposed: true
-    ports:
-    - port: 7021
-      targetport: 7020
