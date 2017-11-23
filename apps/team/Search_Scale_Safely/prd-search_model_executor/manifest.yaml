@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-64
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
@@ -70,7 +70,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-128
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
@@ -130,11 +130,11 @@ system:
     - name: logvol-128
       hostpath:
         path: /data/sam/search-model-executor/log
-  - name: search-model-executor-1
+  - name: search-model-executor-192
     count: 1
     containers:
-    - name: search-model-executor-1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+    - name: search-model-executor-192
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
@@ -149,7 +149,7 @@ system:
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
       - name: EXECUTORS_THREADPOOLSIZE
-        value: 1
+        value: 192
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -164,8 +164,8 @@ system:
         timeoutSeconds: 10
       volumeMounts:
       - mountPath: /home/search-model-executor/logs
-        name: logvol-1
-    - name: sherpa-b-1
+        name: logvol-192
+    - name: sherpa-b-192
       image: tnrp/sherpa:0.2.0-0000097-594964a3
       env:
       - name: SFDC_ENVIRONMENT
@@ -175,9 +175,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: s-b-1-in
+        name: s-b-192-in
       - containerPort: 7080
-        name: s-b-1-adm
+        name: s-b-192-adm
       livenessProbe:
         exec:
           command:
@@ -191,14 +191,14 @@ system:
           initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
-    - name: logvol-1
+    - name: logvol-192
       hostpath:
         path: /data/sam/search-model-executor/log
   - name: search-model-executor-256
     count: 1
     containers:
     - name: search-model-executor-256
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
@@ -262,7 +262,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-512
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
@@ -326,7 +326,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-1024
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
@@ -390,7 +390,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-2048
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
       ports:
       - name: service-port
         containerPort: 7020
