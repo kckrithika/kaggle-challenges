@@ -42,6 +42,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-64-in
@@ -103,6 +106,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-128-in
@@ -164,6 +170,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-192-in
@@ -225,6 +234,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-256-in
@@ -286,6 +298,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-512-in
@@ -347,6 +362,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-1024-in
@@ -408,6 +426,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
         name: sherpa-b-2048-in
