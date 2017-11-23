@@ -51,13 +51,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-64
@@ -112,13 +112,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-128
@@ -173,13 +173,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-192
@@ -234,13 +234,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-256
@@ -295,13 +295,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-512
@@ -356,13 +356,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-1024
@@ -417,13 +417,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 120
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 5
+          initialDelaySeconds: 110
           periodSeconds: 10
     volumes:
     - name: logvol-2048
