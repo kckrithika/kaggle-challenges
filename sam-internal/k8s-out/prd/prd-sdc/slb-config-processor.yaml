@@ -20,7 +20,6 @@ spec:
         - --configDir=/host/data/slb/config
         - --period=1800s
         - --namespace=
-        - --proxyServerNameSpace=
         - --podstatus=running
         - --subnet=10.251.129.224-240
         - --k8sapiserver=
