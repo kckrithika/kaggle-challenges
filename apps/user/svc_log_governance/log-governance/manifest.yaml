@@ -6,7 +6,7 @@ system:
 
     containers:
     - name: log-governance
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/svc_log_governance/log-governance:dhacker-20171124-19a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/svc_log_governance/log-governance:dhacker-20171125-19c
 
       env:
       - name: SFDC_ENVIRONMENT
