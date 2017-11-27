@@ -37,15 +37,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-cleanup",
                             "--period=1800s",
                             "--logsMaxAge=48h",
+                            "--log_dir=" + slbconfigs.logsDir,
                           ]
                          + (
                              if configs.estate == "prd-sdc" then [
                                  "--filesDirToCleanup=" + slbconfigs.logsDir,
                                  "--shouldSkipServiceRecords=false",
                                  "--shouldNotDeleteAllFiles=false",
-                             ] else [
-                                "--log_dir=" + slbconfigs.logsDir,
-                             ]
+                             ] else []
                          ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,

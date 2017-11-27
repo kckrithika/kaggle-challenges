@@ -19,6 +19,7 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs
         - --filesDirToCleanup=/host/data/slb/logs
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
