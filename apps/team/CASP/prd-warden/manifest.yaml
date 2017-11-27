@@ -36,9 +36,9 @@ system:
           path: /home/sfdc-casp/logs
 
     loadbalancers:
-    - lbname: wardenlb
+    - lbname: warden
       function: warden-func
-      nodeExposed: true
+      slbEnabled: true
       ports:
-        - port: 8889
+        - port: 80
           targetport: 8889
