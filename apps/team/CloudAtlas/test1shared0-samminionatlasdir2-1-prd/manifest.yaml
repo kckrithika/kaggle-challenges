@@ -48,6 +48,9 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -68,3 +71,6 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
