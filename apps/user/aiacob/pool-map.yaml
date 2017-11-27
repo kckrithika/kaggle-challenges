@@ -1,7 +1,2 @@
 apps:
- redis-testing:
-  - prd/prd-sam
- rc-log-cleaner:
-  - prd/prd-sam
  report-collector:
-  - prd/prd-sam
