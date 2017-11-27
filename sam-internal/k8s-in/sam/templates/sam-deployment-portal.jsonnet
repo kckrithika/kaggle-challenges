@@ -14,6 +14,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
                        command: configs.filter_empty([
                           "/sam/sam-deployment-portal",
                           configs.sfdchosts_arg,
+                          "--alsologtostderr",
                        ]),
                        ports: [
                        {

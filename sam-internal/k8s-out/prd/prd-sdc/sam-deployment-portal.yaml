@@ -20,6 +20,7 @@ spec:
       - command:
         - /sam/sam-deployment-portal
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --alsologtostderr
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
