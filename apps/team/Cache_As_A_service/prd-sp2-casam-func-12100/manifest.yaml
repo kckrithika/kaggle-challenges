@@ -20,7 +20,7 @@ system:
         - name: DEPLOYMENT
           value: S
         - name: DB_USER
-          value: happy
+          value: grumpy
         - name: DB_SID
           value: mist30b212utf
 
@@ -76,7 +76,7 @@ system:
            - "/bin/sh"
            - "-c"
            - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
-        initialDelaySeconds: 360
+        initialDelaySeconds: 480
         periodSeconds: 1
 
       readinessProbe:
