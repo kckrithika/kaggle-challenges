@@ -18,12 +18,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [xiao] Test temp manifest watcher for test manifest pipelie
-        "prd,prd-samtest,temp-manifest-watcher,hypersam": "sam-0001501-6ebd0f4f",
-
         # [xiao] Fix for k4a
-        "prd,prd-samtest,samcontrol,hypersam": "sam-0001509-89b08315",
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001509-89b08315",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001509-89b08315",
     },
 
@@ -42,9 +37,9 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001489-165e1293",
-            madkub: "1.0.0-0000052-70c3fbc4",
-            madkubSidecar: "1.0.0-0000052-70c3fbc4",
+            hypersam: "sam-0001518-2e736076",
+            madkub: "1.0.0-0000053-f7dc2302",
+            madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
