@@ -3,7 +3,9 @@ local samimages = import "samimages.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
 
-{
+# We dont need cert backup in PRD because it is all maddog, and it is crashing
+# because of a perms issue with kubectl
+if configs.kingdom != "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -48,4 +50,4 @@ local wdconfig = import "samwdconfig.jsonnet";
         },
         name: "certbackup",
     },
-}
+} else "SKIP"
