@@ -91,6 +91,7 @@ system:
 
       ports:
         # Actually used by the container
+        - containerPort: 8998
         - containerPort: 12100
         - containerPort: 11211
         - containerPort: 12099
