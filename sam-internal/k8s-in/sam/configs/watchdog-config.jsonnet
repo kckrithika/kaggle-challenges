@@ -101,3 +101,6 @@ local samimages = import "samimages.jsonnet";
   + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
     enableMaddogCertChecks: true,
   } else {})
+  + (if configs.estate == "prd-sam" then {
+    storageClassName: "synthetic-hdd-pool",
+  } else {})
