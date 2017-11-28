@@ -11,6 +11,7 @@ data:
       "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "ops0-mta2-1-hnd.ops.sfdc.net:25",
       "email-subject-prefix": "SAMWD",
+      "enableMaddogCertChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-hnd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293",
       "k8sproxyEndpoint": "http://localhost:40000",
