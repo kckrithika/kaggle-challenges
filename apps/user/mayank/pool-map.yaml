@@ -1,6 +1,7 @@
 apps:
  StatefulApp:
   - prd/prd-sam
+  - prd/prd-samdev
  TestApp:
   - prd/prd-sam
   #- prd/prd-samdev
