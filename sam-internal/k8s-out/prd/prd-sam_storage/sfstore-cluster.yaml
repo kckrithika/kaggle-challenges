@@ -5,7 +5,7 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: prd-sam-sfstoredev
+    name: prdsam
     namespace: sfstore
   spec:
     aggregateStorage: 500Gi
