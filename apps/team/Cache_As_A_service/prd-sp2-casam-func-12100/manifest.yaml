@@ -91,6 +91,7 @@ system:
 
       ports:
         # Actually used by the container
+        - containerPort: 8998
         - containerPort: 12100
         - containerPort: 11211
         - containerPort: 12099
@@ -166,6 +167,8 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
+    - port: 8998
+      targetport: 8998
     - port: 9001
       targetport: 12100
     - port: 9443
