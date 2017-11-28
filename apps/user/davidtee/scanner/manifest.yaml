@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171117
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171128
       ports:
       - name: web
         containerPort: 8084
