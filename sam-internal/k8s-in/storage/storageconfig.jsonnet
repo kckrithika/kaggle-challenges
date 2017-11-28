@@ -1,10 +1,17 @@
 {
     local estate = std.extVar("estate"),
 
+    // Map of Ceph control estate -> cluster estate.
     cephEstates: {
         "prd-sam": ["prd-sam_ceph"],
         "prd-sam_storage": ["prd-sam_cephdev", "prd-sam_storage"],
         // "phx-sam": ["phx-sam_ceph"], # Do Not uncomment until you deploy Ceph Cluster to Prod
+    },
+
+    // Map of SFStore control estate -> cluster estate.
+    sfstoreEstates: {
+        "prd-sam": ["prd-sam_sfstore"],
+        "prd-sam_storage": ["prd-sam_sfstoredev"],
     },
 
     perEstate: {
@@ -33,6 +40,17 @@
                 "phx-sam": {
                     "phx-sam_ceph": "180Ti",
                 },
+            },
+        },
+        sfstore: {
+            aggregateStorage: {
+                "prd-sam_sfstoredev": "500Gi",
+            },
+            boundary: {
+                "prd-sam_sfstoredev": "kubernetes.io/hostname",
+            },
+            version: {
+                "prd-sam_sfstoredev": "1.10",
             },
         },
     },
