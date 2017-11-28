@@ -7,7 +7,7 @@ system:
     count: 2
     containers:
     - name: stateful-hello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20170723_115938.58ece62.dirty.mayankkuma-ltm3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171127_135121.2e73607.dirty.mayankkuma-ltm3
       command:
         - /sam/sam-test-app
       ports:
