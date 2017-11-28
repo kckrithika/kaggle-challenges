@@ -1,10 +1,11 @@
 apps:
  StatefulApp:
   - prd/prd-sam
-  - prd/prd-samdev
  TestApp:
   - prd/prd-sam
   #- prd/prd-samdev
  StatefulDemoApp:
   - prd/prd-samtest
   - prd/prd-sam
+ StatefulAppOnRdi:
+  - prd/prd-samdev

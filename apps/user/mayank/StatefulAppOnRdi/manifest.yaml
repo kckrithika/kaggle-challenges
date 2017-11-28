@@ -1,0 +1,31 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: stateful-func2
+    type: stateful-set
+    count: 2
+    containers:
+    - name: stateful-hello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171127_135121.2e73607.dirty.mayankkuma-ltm3
+      command:
+        - /sam/sam-test-app
+      ports:
+      - containerPort: 8000
+        name: web
+      volumeMounts:
+      - name: www
+        mountPath: /rbd/html
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+    lbname: stateful-lb2
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: www
+      storageClassName: standard
+      storageSizeRequest: 3Gi
