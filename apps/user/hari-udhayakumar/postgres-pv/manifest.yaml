@@ -22,6 +22,8 @@ system:
       volumeMounts:
       - mountPath: /sam/postgresql/data
         name: datavol
+      - mountPath: /certs
+        name: certs
       
       ports:
       - containerPort: 5432
@@ -40,6 +42,11 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 10
         failureThreshold: 1000000
+        
+    volumes:
+    - name: certs
+      maddogCert:
+        type: server
 
     lbname: postgres-pv-stateful-lb
 
