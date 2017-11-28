@@ -23,10 +23,8 @@ system:
 
   loadbalancers:
   - lbname: tardis
-    slbEnabled: true
     function: default
     ports:
-      - port: 38571
+      - port: 9090
         targetport: 9090
-        lbtype: http
 
