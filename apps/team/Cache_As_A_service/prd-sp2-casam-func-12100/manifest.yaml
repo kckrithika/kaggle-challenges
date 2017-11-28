@@ -178,6 +178,8 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
+    - port: 8998
+      targetport: 8998
     - port: 9001
       targetport: 12100
     - port: 9443
