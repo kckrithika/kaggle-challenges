@@ -19,6 +19,15 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 15372
+      volumeMounts:
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+        
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: pddb
 
     strategy:
       type: RollingUpdate
