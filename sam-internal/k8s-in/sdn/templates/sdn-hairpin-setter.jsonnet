@@ -15,17 +15,7 @@ if configs.kingdom == "prd" then {
                         image: sdnimages.hypersdn,
                         command: [
                             "/sdn/sdn-hairpin-setter",
-                            "--livenessProbePort=" + portconfigs.sdn.sdn_hairpin_setter,
-                        ]
-                        livenessProbe: {
-                            httpGet: {
-                               path: "/liveness-probe",
-                               port: portconfigs.sdn.sdn_hairpin_setter,
-                            },
-                            initialDelaySeconds: 5,
-                            timeoutSeconds: 5,
-                            periodSeconds: 20,
-                        },
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sys-mount",
@@ -33,7 +23,7 @@ if configs.kingdom == "prd" then {
                             },
                         ]),
                         securityContext: {
-                            privileged: true
+                            privileged: true,
                         },
                     },
                 ],
@@ -42,7 +32,7 @@ if configs.kingdom == "prd" then {
                         name: "sys-mount",
                         hostPath: {
                             path: "/sys",
-                        }
+                        },
                     },
                 ],
             },
