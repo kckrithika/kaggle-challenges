@@ -10,7 +10,7 @@ if configs.estate == "prd-sam_storage" then
         items: [
             {
                 local escapedMinionEstate = utils.string_replace(minionEstate, "_", "-"),
-                local sfstoreClusterName = escapedMinionEstate,  // Alternatively, this could come from per-estate config.
+                local sfstoreClusterName = "prdsam",  // Alternatively, this could come from per-estate config.
                 local sfstoreClusterNamespace = "sfstore",  // Alternatively, this could come from per-estate config.
 
                 kind: "SfstoreCluster",
