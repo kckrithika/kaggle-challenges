@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 {
   # Snoozes - This is a central list of all snoozed watchdogs.  For each snooze, please add a comment explaining the reason
@@ -98,7 +99,7 @@ local samimages = import "samimages.jsonnet";
 ) + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     enableStatefulChecks: true,
   } else {})
-  + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+  + (if !utils.is_public_cloud(configs.kingdom) then {
     enableMaddogCertChecks: true,
   } else {})
   + (if configs.estate == "prd-sam" then {
