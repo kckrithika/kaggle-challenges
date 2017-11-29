@@ -23,15 +23,15 @@ system:
       - name: METRICS_FUNNELENDPOINTURL
         value: http://ajna0-funnel1-0-prd.data.sfdc.net/
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - "./runcheck.sh"
         initialDelaySeconds: 240
         timeoutSeconds: 10
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - "./runcheck.sh"
         initialDelaySeconds: 240
         timeoutSeconds: 10
     - name: sherpa-b
