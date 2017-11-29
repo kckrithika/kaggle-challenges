@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711061626
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.nyayapati/search-model-executor:latest
       ports:
       - name: service-port
         containerPort: 7020
@@ -23,15 +23,14 @@ system:
       - name: METRICS_FUNNELENDPOINTURL
         value: http://ajna0-funnel1-0-prd.data.sfdc.net/
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command: ["./runcheck.sh"]
         initialDelaySeconds: 240
         timeoutSeconds: 10
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - "./runcheck.sh"
         initialDelaySeconds: 240
         timeoutSeconds: 10
     - name: sherpa-b
