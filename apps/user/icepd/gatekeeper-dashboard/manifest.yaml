@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gatekeeper-dashboard
-      image: tnrp/ice-pd/gatekeeper-dashboard:1.0.0-0000009-a8976cca
+      image: tnrp/ice-pd/gatekeeper-dashboard:1.0.0-0000011-4177908e
       livenessProbe:
         httpGet:
           path: /manage/health
