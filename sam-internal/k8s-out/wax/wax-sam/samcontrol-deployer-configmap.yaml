@@ -21,7 +21,7 @@ data:
         "sdn-secret.yaml"
       ],
       "sender": "sam@salesforce.com",
-      "smtp-server": "ops0-mta2-1-wax.ops.sfdc.net:25",
+      "smtp-server": "ops-mta1-4-wax.ops.sfdc.net:25",
       "tnrp-endpoint": "https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap

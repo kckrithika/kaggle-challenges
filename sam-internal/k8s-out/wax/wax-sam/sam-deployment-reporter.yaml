@@ -21,7 +21,7 @@ spec:
         - /sam/sam-deployment-reporter
         - --v=5
         - --k8sapiserver=
-        - --smtpServer=ops0-mta2-1-wax.ops.sfdc.net:25
+        - --smtpServer=ops-mta1-4-wax.ops.sfdc.net:25
         - --sender=sam@salesforce.com
         - --defaultRecipient=
         - --namespacesToSkip=sam-watchdog

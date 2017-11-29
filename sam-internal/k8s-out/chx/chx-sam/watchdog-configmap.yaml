@@ -9,7 +9,7 @@ data:
       "deployer-rcImtEndpoint": "https://ops0-health1-1-chx.ops.sfdc.net:18443/v1/bark",
       "deployer-recipient": "sam-alerts@salesforce.com",
       "deployer-sender": "sam-alerts@salesforce.com",
-      "deployer-smtpServer": "ops0-mta2-1-chx.ops.sfdc.net:25",
+      "deployer-smtpServer": "ops-mta1-4-chx.ops.sfdc.net:25",
       "email-subject-prefix": "SAMWD",
       "funnelEndpoint": "ajna0-funnel1-0-chx.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b",
@@ -23,7 +23,7 @@ data:
       "recipient": "sam-alerts@salesforce.com",
       "sdpEndpoint": "http://localhost:39999",
       "sender": "sam-alerts@salesforce.com",
-      "smtpServer": "ops0-mta2-1-chx.ops.sfdc.net:25",
+      "smtpServer": "ops-mta1-4-chx.ops.sfdc.net:25",
       "snooze": [
         {
           "checker": "nodeChecker",

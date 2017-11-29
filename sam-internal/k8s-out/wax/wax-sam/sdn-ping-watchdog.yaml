@@ -25,7 +25,7 @@ spec:
         - /sdn/sdn-ping-watchdog
         - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
         - --archiveSvcEndpoint=https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive
-        - --smtpServer=ops0-mta2-1-wax.ops.sfdc.net:25
+        - --smtpServer=ops-mta1-4-wax.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
         - --recipient=sdn-alerts@salesforce.com
         - --emailFrequency=12h
