@@ -29,8 +29,7 @@ data:
         "hyperkube.*controller-manager": "age.kubecontrollermanager",
         "hyperkube.*kubelet": "age.kubelet",
         "hyperkube.*proxy": "age.kubeproxy",
-        "hyperkube.*scheduler": "age.kubescheduler",
-        "processmonitor": "age.processmonitor"
+        "hyperkube.*scheduler": "age.kubescheduler"
       },
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "",
