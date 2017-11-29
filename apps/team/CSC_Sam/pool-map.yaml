@@ -36,4 +36,7 @@ apps:
   - prd/prd-samtest
   - prd/prd-samdev
   - prd/prd-sam
-
+ mysql:
+  - prd/prd-sam
+  - prd/prd-samdev
+  - prd/prd-samtest
