@@ -3,3 +3,5 @@ apps:
   - prd/prd-sam
  SamDailyReport:
   - prd/prd-sam
+ mysql:
+  - prd/prd-sam
