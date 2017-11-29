@@ -14,19 +14,22 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:212_patch__14874576-0000074-7dc23669
+      image: tnrp/casam/coreapp:210.12-0000073-8b9c3e27
+#212#      image: tnrp/casam/coreapp:212_patch__14874576-0000074-7dc23669
 
       env:
         - name: DEPLOYMENT
-          value: T
+          value: S
+#212#          value: T
         - name: DB_USER
-          value: happy
+          value: GRUMPY
+#212#          value: happy
         - name: DB_SID
           value: mist30b212utf
 
         # Only needed if desire to override ZK registration value
-        - name: CASAM_CYAN_PATH
-          value: casam/casam-212
+#212#        - name: CASAM_CYAN_PATH
+#212#          value: casam/casam-212
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
@@ -82,8 +85,13 @@ system:
       readinessProbe:
         httpGet:
           scheme: HTTPS
-          host: cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
-          path: /__cyan_admin__/app/health?version=212
+          # Note: host here should really be the cyanlb VIP that is commented out. However
+          # there are some routing problems on our minions currently so we have to revert
+          # back to nodeport for now
+#          host: cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
+          host: samcaas2-caasminion3-3-prd.eng.sfdc.net
+          path: /__cyan_admin__/app/health?version=210.12
+#212#          path: /__cyan_admin__/app/health?version=212
           port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -117,13 +125,17 @@ system:
     containers:
     - name: csr-seq-sam
 
-      # docker image for minor release
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:9
+#212#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:7
 
       env:
         # 
         - name: CYAN
-          value: https://cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net:12052 
+          # Note: value here should really be the cyanlb VIP that is commented out. However
+          # there are some routing problems on our minions currently so we have to revert
+          # back to nodeport for now
+          value: https://samcaas2-caasminion3-3-prd.eng.sfdc.net:12052 
+#          value: https://cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net:12052 
         - name: CURL_GLOBAL_OPTS
           value: -k
         - name: K4A
@@ -137,15 +149,18 @@ system:
         - name: SNOWWHITE_PWD
           value: rotate
         - name: OLD_DWARF
-          value: grumpy
+          value: happy
+#212#          value: grumpy
         - name: RELEASE_VERSION
-          value: 212
+          value: 210.12
+#212#          value: 212
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
         - name: DB_SID
           value: mist30b212utf
-
+        - name: UNLOCK_DWARF
+          value: y
 
       livenessProbe:
         httpGet:
