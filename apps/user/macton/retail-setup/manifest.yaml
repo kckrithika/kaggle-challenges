@@ -7,6 +7,9 @@ system:
     - name: retailclientcert
       maddogCert:
         type: client
+    - name: retailservercert
+      maddogCert:
+        type: server
     containers:
     - name: retail-setup
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201711181523
@@ -22,7 +25,9 @@ system:
           port: 8080
       volumeMounts:
       - name: retailclientcert
-        mountPath: /clientcert
+        mountPath: /cilentcerts
+      - name: retailservercert
+        mountPath: /servercerts
   loadbalancers:
   - lbname: retail-setuplb
     function: retail-setup
