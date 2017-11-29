@@ -32,7 +32,7 @@ local samimages = import "samimages.jsonnet";
                   command: [
                      "/sam/watchdog",
                      "-role=SYNTHETIC",
-                     "-watchdogFrequency=" + (if configs.kingdom == "prd" then "180s" else "60s"),
+                     "-watchdogFrequency=" + (if configs.kingdom == "prd" || configs.kingdom == "frf" then "180s" else "60s"),
                      "-alertThreshold=1h",
                      "-emailFrequency=12h",
                      "-laddr=0.0.0.0:8083",
