@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         # [xiao] Fix for k4a
         "prd,prd-sam,samcontrol,hypersam": "sam-0001509-89b08315",
         # [pjoshi]
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20171128_125807.37fe209.dirty.prahladjos-ltm",
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20171128_170838.0ed6503.dirty.prahladjos-ltm",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

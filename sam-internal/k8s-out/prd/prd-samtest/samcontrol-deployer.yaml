@@ -21,7 +21,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20171128_125807.37fe209.dirty.prahladjos-ltm
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20171128_170838.0ed6503.dirty.prahladjos-ltm
         livenessProbe:
           httpGet:
             path: /
