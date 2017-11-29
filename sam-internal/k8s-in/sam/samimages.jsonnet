@@ -18,8 +18,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [xiao] Fix for k4a
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001509-89b08315",
         # [pjoshi]
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20171128_170838.0ed6503.dirty.prahladjos-ltm",
     },
@@ -46,9 +44,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001489-165e1293",
-            madkub: "1.0.0-0000052-70c3fbc4",
-            madkubSidecar: "1.0.0-0000052-70c3fbc4",
+            hypersam: "sam-0001518-2e736076",
+            madkub: "1.0.0-0000053-f7dc2302",
+            madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
 
         ### Release Phase 3 - Canary Prod FRF
