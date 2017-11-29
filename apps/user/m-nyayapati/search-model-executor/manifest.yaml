@@ -24,8 +24,7 @@ system:
         value: http://ajna0-funnel1-0-prd.data.sfdc.net/
       livenessProbe:
         exec:
-          command:
-          - "./runcheck.sh"
+          command: ["./runcheck.sh"]
         initialDelaySeconds: 240
         timeoutSeconds: 10
       readinessProbe:
