@@ -21,8 +21,8 @@ system:
       - name: MYSQL_ROOT_PASSWORD
         valueFrom:
           secretKeyRef:
-            name: mysqlpass
-            key: mysqlpass.txt
+            name: mysql
+            key: rootpassword
  
       volumeMounts:
       - mountPath: /var/lib/mysql
