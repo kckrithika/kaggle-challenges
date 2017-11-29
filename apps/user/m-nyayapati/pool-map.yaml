@@ -1,5 +1,3 @@
 apps:
- search-model-executor-xlt:
-  - prd/prd-sam
  search-model-executor:
   - prd/prd-sam
