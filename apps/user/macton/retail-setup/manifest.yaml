@@ -4,12 +4,11 @@ system:
   - name: retail-setup
     count: 1
     volumes:
-    - name: retailclientcert
-      maddogCert:
-        type: client
     - name: retailservercert
       maddogCert:
         type: server
+        lbnames:
+        - retail-setuplb
     containers:
     - name: retail-setup
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201711181523
@@ -25,15 +24,14 @@ system:
           path: /
           port: 8080
       volumeMounts:
-      - name: retailclientcert
-        mountPath: /cilentcerts
       - name: retailservercert
         mountPath: /servercerts
   loadbalancers:
   - lbname: retail-setuplb
     function: retail-setup
+    nodeExposed: true
     ports:
-      - port: 8080
+      - port: 18880
         targetport: 8080
-      - port: 15372
+      - port: 18872
         targetport: 15372
