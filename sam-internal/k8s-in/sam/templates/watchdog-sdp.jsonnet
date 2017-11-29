@@ -18,7 +18,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                             "-sdpEndpoint=http://localhost:39999",
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
-                            "-emailFrequency=h22h",
+                            "-emailFrequency=22h",
                         ]
                         + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
