@@ -40,3 +40,5 @@ apps:
   - prd/prd-sam
   - prd/prd-samdev
   - prd/prd-samtest
+ SamDailyReport:
+  - prd/prd-sam

@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - thargrove@salesforce.com
+  functions:
+  - name: samreport
+    count: 1
+    containers:
+    - name: samreport
+      image: tnrp/sam/hypersam:sam-0001505-870d3449
+      command: ["/sam/sam-daily-report"]
+      args: ["-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password", "-smtp-server", "rd1-mta1-4-sfm.ops.sfdc.net:25", "-sender", "thargrove@salesforce.com", "-default-recipient", "sam@salesforce.com", "-email-hour", "12"]
+      ports:
+      - containerPort: 64122
+      livenessProbe:
+        httpGet:
+          path: /probe
+          port: 64122
+      volumeMounts:
+        - mountPath: /var/secrets/git
+          name: gitvol
+          readOnly: true
+        - mountPath: /var/secrets/argus
+          name: argusvol
+          readOnly: true
+    volumes:
+    - name: argusvol
+      k4aSecret:
+        secretName: argusk4a
+    - name: gitvol
+      k4aSecret:
+        secretName: git-token
+  loadbalancers:
+  - lbname: samdrlb
+    function: samreport
+    slbEnabled: true
+    ports:
+      - port: 64122
+        targetport: 64122
