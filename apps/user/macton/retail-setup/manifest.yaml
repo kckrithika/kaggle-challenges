@@ -3,9 +3,21 @@ system:
   functions:
   - name: default
     count: 1
+    volumes:
+    - name: retailclientcert
+      maddogCert:
+        type: client
+    - name: retailservercert
+      maddogCert:
+        type: server
     containers:
     - name: retail-setup
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201711181523
+      volumeMounts:
+      - name: retailclientcert
+        mountPath: /clientcert
+      - name: retailservercert
+        mountPath: /servercert
       ports:
       - containerPort: 8080
       - containerPort: 15372
