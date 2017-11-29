@@ -1,113 +1,113 @@
 apps:
- ed-redis:
-  - prd/prd-sam
- ed-mariadb:
-  - prd/prd-sam
- ed-h2o:
-  - prd/prd-sam
- ed-sdd:
-  - prd/prd-sam
- ed-h2o-60100:
-  - prd/prd-sam
- ed-h2o-60101:
-  - prd/prd-sam
- ed-h2o-60102:
-  - prd/prd-sam
- ed-h2o-60103:
-  - prd/prd-sam
- ed-h2o-60104:
-  - prd/prd-sam
- ed-h2o-60105:
-  - prd/prd-sam
- ed-h2o-60106:
-  - prd/prd-sam
- ed-h2o-60107:
-  - prd/prd-sam
- ed-h2o-60108:
-  - prd/prd-sam
- ed-h2o-60109:
-  - prd/prd-sam
- ed-h2o-60110:
-  - prd/prd-sam
- ed-h2o-60111:
-  - prd/prd-sam
- ed-h2o-60112:
-  - prd/prd-sam
- ed-h2o-60113:
-  - prd/prd-sam
- ed-h2o-60114:
-  - prd/prd-sam
- ed-h2o-60115:
-  - prd/prd-sam
- ed-h2o-60116:
-  - prd/prd-sam
- ed-h2o-60117:
-  - prd/prd-sam
- ed-h2o-60118:
-  - prd/prd-sam
- ed-h2o-60119:
-  - prd/prd-sam
- ed-h2o-60120:
+# ed-redis:
+#  - prd/prd-sam
+# ed-mariadb:
+#  - prd/prd-sam
+# ed-h2o:
+#  - prd/prd-sam
+# ed-sdd:
+#  - prd/prd-sam
+# ed-h2o-60100:
+#  - prd/prd-sam
+# ed-h2o-60101:
+#  - prd/prd-sam
+# ed-h2o-60102:
+#  - prd/prd-sam
+# ed-h2o-60103:
+#  - prd/prd-sam
+# ed-h2o-60104:
+#  - prd/prd-sam
+# ed-h2o-60105:
+#  - prd/prd-sam
+# ed-h2o-60106:
+#  - prd/prd-sam
+# ed-h2o-60107:
+#  - prd/prd-sam
+# ed-h2o-60108:
+#  - prd/prd-sam
+# ed-h2o-60109:
+#  - prd/prd-sam
+# ed-h2o-60110:
+#  - prd/prd-sam
+# ed-h2o-60111:
+#  - prd/prd-sam
+# ed-h2o-60112:
+#  - prd/prd-sam
+# ed-h2o-60113:
+#  - prd/prd-sam
+# ed-h2o-60114:
+#  - prd/prd-sam
+# ed-h2o-60115:
+#  - prd/prd-sam
+# ed-h2o-60116:
+#  - prd/prd-sam
+# ed-h2o-60117:
+#  - prd/prd-sam
+# ed-h2o-60118:
+#  - prd/prd-sam
+# ed-h2o-60119:
+#  - prd/prd-sam
+# ed-h2o-60120:
 #   - prd/prd-sam
- ed-h2o-60121:
+# ed-h2o-60121:
 #   - prd/prd-sam
- ed-h2o-60122:
+# ed-h2o-60122:
 #   - prd/prd-sam
- ed-h2o-60123:
+# ed-h2o-60123:
 #   - prd/prd-sam
- ed-h2o-60124:
+# ed-h2o-60124:
 #   - prd/prd-sam
- ed-h2o-60125:
+# ed-h2o-60125:
 #   - prd/prd-sam
- ed-h2o-60126:
+# ed-h2o-60126:
 #   - prd/prd-sam
- ed-h2o-60127:
+# ed-h2o-60127:
 #   - prd/prd-sam
- ed-h2o-60128:
+# ed-h2o-60128:
 #   - prd/prd-sam
- ed-h2o-60129:
+# ed-h2o-60129:
 #   - prd/prd-sam
- ed-h2o-60130:
+# ed-h2o-60130:
 #   - prd/prd-sam
- ed-h2o-60131:
+# ed-h2o-60131:
 #   - prd/prd-sam
- ed-h2o-60132:
+# ed-h2o-60132:
 #   - prd/prd-sam
- ed-h2o-60133:
+# ed-h2o-60133:
 #   - prd/prd-sam
- ed-h2o-60134:
+# ed-h2o-60134:
 #   - prd/prd-sam
- ed-h2o-60135:
+# ed-h2o-60135:
 #   - prd/prd-sam
- ed-h2o-60136:
+# ed-h2o-60136:
 #   - prd/prd-sam
- ed-h2o-60137:
+# ed-h2o-60137:
 #   - prd/prd-sam
- ed-h2o-60138:
+# ed-h2o-60138:
 #   - prd/prd-sam
- ed-h2o-60139:
+# ed-h2o-60139:
 #   - prd/prd-sam
- ed-h2o-60140:
+# ed-h2o-60140:
 #   - prd/prd-sam
- ed-h2o-60141:
+# ed-h2o-60141:
 #   - prd/prd-sam
- ed-h2o-60142:
+# ed-h2o-60142:
 #   - prd/prd-sam
- ed-h2o-60143:
+# ed-h2o-60143:
 #   - prd/prd-sam
- ed-h2o-60144:
+# ed-h2o-60144:
 #   - prd/prd-sam
- ed-h2o-60145:
+# ed-h2o-60145:
 #   - prd/prd-sam
- ed-h2o-60146:
+# ed-h2o-60146:
 #   - prd/prd-sam
- ed-h2o-60147:
+# ed-h2o-60147:
 #   - prd/prd-sam
- ed-h2o-60148:
+# ed-h2o-60148:
 #   - prd/prd-sam
- ed-h2o-60149:
+# ed-h2o-60149:
 #   - prd/prd-sam
- ed-h2o-60150:
+# ed-h2o-60150:
 #   - prd/prd-sam
 #  ed-h2o-60151:
 #   - prd/prd-sam
