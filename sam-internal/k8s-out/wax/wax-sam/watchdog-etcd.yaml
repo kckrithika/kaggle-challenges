@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: watchdog-etcd
+  name: watchdog-etcd
+spec:
+  template:
+    metadata:
+      labels:
+        app: watchdog-etcd
+        apptype: monitoring
+        daemonset: "true"
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=ETCD
+        - -watchdogFrequency=5s
+        - -alertThreshold=150s
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - -emailFrequency=12h
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
+        name: watchdog
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        etcd_installed: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: watchdog
+        name: config

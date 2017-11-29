@@ -32,6 +32,8 @@ local utils = import "util_functions.jsonnet",
             hnd: "ops0-mta2-1-hnd.ops.sfdc.net:25",
             cdu: "ops0-mta2-1-cdu.ops.sfdc.net:25",
             syd: "ops0-mta2-1-syd.ops.sfdc.net:25",
+            chx: "ops0-mta2-1-chx.ops.sfdc.net:25",
+            wax: "ops0-mta2-1-wax.ops.sfdc.net:25",
         },
 
         momCollectorEndpoint: {

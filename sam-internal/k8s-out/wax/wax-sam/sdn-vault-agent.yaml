@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-vault-agent
+  name: sdn-vault-agent
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-vault-agent
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-vault-agent
+        - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --keyfile=/data/certs/hostcert.key
+        - --certfile=/data/certs/hostcert.crt
+        - --cafile=/data/certs/ca.crt
+        - --livenessProbePort=9106
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000394-4e124105
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9106
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-vault-agent
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs

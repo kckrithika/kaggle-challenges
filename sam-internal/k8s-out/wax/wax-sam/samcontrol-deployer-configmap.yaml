@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  samcontroldeployer.json: |-
+    {
+      "ca-file": "/data/certs/ca.crt",
+      "cert-file": "/data/certs/hostcert.crt",
+      "delete-orphans": true,
+      "disable-rollback": true,
+      "disable-security-check": true,
+      "dry-run": false,
+      "email": true,
+      "email-delay": 0,
+      "funnelEndpoint": "ajna0-funnel1-0-wax.data.sfdc.net:80",
+      "key-file": "/data/certs/hostcert.key",
+      "max-resource-time": 300000000000,
+      "poll-delay": 30000000000,
+      "recipient": "sam@salesforce.com",
+      "resource-cooldown": 15000000000,
+      "resource-progression-timeout": 120000000000,
+      "resources-to-skip": [
+        "sdn-secret.yaml"
+      ],
+      "sender": "sam@salesforce.com",
+      "smtp-server": "ops0-mta2-1-wax.ops.sfdc.net:25",
+      "tnrp-endpoint": "https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: samcontrol-deployer
+  namespace: sam-system

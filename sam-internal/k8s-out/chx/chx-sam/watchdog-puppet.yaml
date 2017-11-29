@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: watchdog-puppet
+  name: watchdog-puppet
+spec:
+  template:
+    metadata:
+      labels:
+        app: watchdog-puppet
+        apptype: monitoring
+        daemonset: "true"
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=PUPPET
+        - -watchdogFrequency=15m
+        - -alertThreshold=1000h
+        - -emailFrequency=1000h
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
+        name: watchdog
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 300Mi
+          requests:
+            cpu: "0.5"
+            memory: 300Mi
+        volumeMounts:
+        - mountPath: /var/lib/puppet/state
+          name: last-run-summary
+        - mountPath: /etc/puppet
+          name: afw-build
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /var/lib/puppet/state
+        name: last-run-summary
+      - hostPath:
+          path: /etc/puppet
+        name: afw-build
+      - configMap:
+          name: watchdog
+        name: config

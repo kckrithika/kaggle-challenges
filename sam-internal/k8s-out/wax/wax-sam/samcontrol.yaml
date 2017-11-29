@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: samcontrol
+  name: samcontrol
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: samcontrol
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: samcontrol
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/sam-controller
+        - --dockerregistry=ops0-artifactrepo1-0-wax.data.sfdc.net
+        - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --v=3
+        - --logtostderr=true
+        - --config=/config/samcontrol.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
+        name: sam-controller
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: samcontrol
+        name: config

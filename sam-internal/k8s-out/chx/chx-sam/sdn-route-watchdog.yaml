@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-route-watchdog
+  name: sdn-route-watchdog
+  namespace: sam-system
+spec:
+  minReadySeconds: 180
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-route-watchdog
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-route-watchdog
+        - --funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-1-chx.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --momCollectorEndpoint=http://ops0-mom2-1-chx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes
+        - --smtpServer=ops0-mta2-1-chx.ops.sfdc.net:25
+        - --sender=sdn-alerts@salesforce.com
+        - --recipient=sdn-alerts@salesforce.com
+        - --emailFrequency=12h
+        - --watchdogFrequency=180s
+        - --alertThreshold=300s
+        - --livenessProbePort=9104
+        env:
+        - name: KUBECONFIG
+          value: /config/kubeconfig
+        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000394-4e124105
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9104
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-route-watchdog
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: chx-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: config
