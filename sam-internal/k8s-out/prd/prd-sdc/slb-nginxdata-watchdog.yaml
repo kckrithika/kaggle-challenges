@@ -1,0 +1,67 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-nginxdata-watchdog
+  name: slb-nginxdata-watchdog
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: slb-nginxdata-watchdog
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-nginxdata-watchdog
+        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
+        - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
+        - --sender=sam-alerts@salesforce.com
+        - --recipient=slb@salesforce.com
+        - --emailFrequency=12h
+        - --watchdogFrequency=180s
+        - --alertThreshold=300s
+        - --k8sapiserver=
+        - --connPort=9117
+        - --retryPeriod=2m
+        - --maxretries=2
+        - --log_dir=/host/data/slb/logs
+        - --namespace=sam-system
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000475-9a7fd185
+        name: slb-nginxdata-watchdog
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      nodeSelector:
+        pool: prd-sdc
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
