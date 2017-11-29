@@ -35,6 +35,7 @@ local utils = import "util_functions.jsonnet",
         },
 
         momCollectorEndpoint: {
+            chx: "http://ops0-mom2-1-chx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             dfw: "http://ops0-mom2-1-dfw.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             frf: "http://ops0-mom2-1-frf.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             hnd: "http://ops0-mom2-1-hnd.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
@@ -44,6 +45,7 @@ local utils = import "util_functions.jsonnet",
             phx: "http://ops0-mom2-1-phx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             prd: "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             ukb: "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            wax: "http://ops0-mom2-1-wax.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config

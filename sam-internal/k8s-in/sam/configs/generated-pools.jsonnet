@@ -32,6 +32,30 @@
       "access": [
         "team/CSC_Sam"
       ],
+      "controlEstate": "chx-sam",
+      "estate": "chx-sam",
+      "kingdom": "chx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater"
+      ],
+      "access": [
+        "team/Gater"
+      ],
+      "controlEstate": "chx-sam",
+      "estate": "chx-sam_gater",
+      "kingdom": "chx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam",
       "kingdom": "dfw",
@@ -1578,6 +1602,30 @@
       "estate": "ukb-sp1-sam_caas",
       "kingdom": "ukb",
       "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "wax-sam",
+      "estate": "wax-sam",
+      "kingdom": "wax",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater"
+      ],
+      "access": [
+        "team/Gater"
+      ],
+      "controlEstate": "wax-sam",
+      "estate": "wax-sam_gater",
+      "kingdom": "wax",
+      "superPod": "None"
     },
     {
       "namespaces": [
