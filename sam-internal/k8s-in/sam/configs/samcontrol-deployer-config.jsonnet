@@ -18,7 +18,6 @@ local samimages = import "samimages.jsonnet";
   "resource-progression-timeout": 120000000000,
   "resource-cooldown": 15000000000,
   "max-resource-time": 300000000000,
-  "disable-rollback": true,
   "delete-orphans": true,
   "resources-to-skip": ["sdn-secret.yaml"],
 }
@@ -28,3 +27,8 @@ local samimages = import "samimages.jsonnet";
     recipient: "sam@salesforce.com,slb@salesforce.com",
   } else {
 }
++ if configs.estate != "prd-samtest" then {
+    "disable-rollback": true,
+  } else {
+    "disable-rollback": false,
+  }
