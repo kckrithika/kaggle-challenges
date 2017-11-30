@@ -25,6 +25,7 @@ system:
         name: certs
       - mountPath: /secrets
         name: mysql-pass
+        readOnly: true
       
       ports:
       - containerPort: 3306
