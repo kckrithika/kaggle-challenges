@@ -5,19 +5,32 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-dfw-fe1-2
+  - name: cloudatlas-dfw-fe2-1
     count: 1
+    strategy:
+      type: Recreate
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: tnrp/cloud-atlas/cloudatlas:a808fa8
+      image: sfci/cloud-atlas/cloudatlas:2.2rc4
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
+      - name: UBID_REMOVE_EXISTING
+        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
+      - mountPath: /home/sfdc-atlas/logs/servers/proxy
+        name: pinglogvol
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -29,3 +42,15 @@ system:
     - name: hosthomevol
       hostPath:
         path: /data/ca-cluster-a
+    - name: pinglogvol
+      hostPath:
+        path: /home/sfdc-atlas/logs/pingserver
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
