@@ -12,6 +12,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
             },
             annotations: {
                 "slb.sfdc.net/name": "fds",
+                "slb.sfdc.net/portconfigurations": '[{"port":8080,"targetport":8080,"lbtype":"dsr"}]',
             },
         },
         spec: {
