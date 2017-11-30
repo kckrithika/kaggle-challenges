@@ -2,26 +2,28 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: watchdog-deployment
-  name: watchdog-deployment
+    name: watchdog-maddog
+  name: watchdog-maddog
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: watchdog-deployment
+      name: watchdog-maddog
   template:
     metadata:
       labels:
         apptype: monitoring
-        name: watchdog-deployment
+        name: watchdog-maddog
       namespace: sam-system
     spec:
       containers:
       - command:
         - /sam/watchdog
-        - -role=DEPLOYMENT
+        - -role=MADDOG
         - -watchdogFrequency=10s
-        - -alertThreshold=1h
+        - -alertThreshold=300s
+        - -madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz
+        - -maddog-endpoint=https://all.pkicontroller.pki.blank.chx.prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
         - --config=/config/watchdog.json
@@ -30,14 +32,14 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
         image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
-        name: watchdog-deployment
+        name: watchdog-maddog
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /data/certs
           name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /config
@@ -50,11 +52,11 @@ spec:
           name: sfdchosts
         name: sfdchosts
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
           path: /data/certs
         name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig

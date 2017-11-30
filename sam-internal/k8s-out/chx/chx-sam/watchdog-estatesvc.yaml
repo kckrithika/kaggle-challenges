@@ -26,15 +26,20 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
         - --config=/config/watchdog.json
         - -emailFrequency=24h
-        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
+        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
         name: watchdog-estatesvc
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /config
           name: config
       hostNetwork: true
       nodeSelector:
         pool: chx-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - configMap:
           name: watchdog
         name: config

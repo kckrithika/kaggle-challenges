@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   samcontroldeployer.json: |-
     {
-      "ca-file": "/data/certs/ca.crt",
+      "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/data/certs/hostcert.crt",
       "delete-orphans": true,
       "disable-rollback": true,

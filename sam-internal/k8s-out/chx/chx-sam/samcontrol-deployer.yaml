@@ -20,7 +20,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
+        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
         livenessProbe:
           httpGet:
             path: /
@@ -30,6 +30,8 @@ spec:
           timeoutSeconds: 10
         name: samcontrol-deployer
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -42,6 +44,9 @@ spec:
       nodeSelector:
         pool: chx-sam
       volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
