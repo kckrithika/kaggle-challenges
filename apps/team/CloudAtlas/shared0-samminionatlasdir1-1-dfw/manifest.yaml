@@ -7,6 +7,8 @@ system:
   functions:
   - name: cloudatlas-dfw-dir1-1
     count: 1
+    strategy:
+      type: Recreate
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client-dfw-dir1-1
@@ -32,7 +34,7 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.2rc3
+      image: sfci/cloud-atlas/cloudatlas:2.2rc4
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_REMOVE_EXISTING
