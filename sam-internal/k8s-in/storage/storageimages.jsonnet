@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, and prd-sam_sfstoredev
         "0": {
             default_tag: "base-0000248-ce04676c",
-            sfms_tag: "latest-0000078-d7170050",
+            sfms_tag: "latest-0000082-2e9cb777",
             cephdaemon_tag: "jewel-0000047-859f50b7",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
         },
@@ -29,6 +29,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "1": {
             default_tag: "base-0000248-ce04676c",
+            sfms_tag: "latest-0000082-2e9cb777",
             cephdaemon_tag: "jewel-0000047-859f50b7",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
             },
@@ -36,6 +37,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - TBD
         "2": {
             default_tag: "",
+            sfms_tag: "latest-0000082-2e9cb777",
             cephdaemon_tag: "jewel-0000047-859f50b7",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
             },
