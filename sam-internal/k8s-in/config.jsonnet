@@ -132,7 +132,7 @@ local utils = import "util_functions.jsonnet",
         name: "certs",
     },
     caFile: (
-        if !utils.is_public_cloud(kingdom) then
+        if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
             "/etc/pki_service/ca/cabundle.pem"
         else
             "/data/certs/ca.crt"
@@ -162,12 +162,12 @@ local utils = import "util_functions.jsonnet",
     maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
 
     # For apps that read MadDog certs from the host
-    maddog_cert_volume_mount: (if !utils.is_public_cloud(kingdom) then
+    maddog_cert_volume_mount: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
     {
         mountPath: "/etc/pki_service",
         name: "maddog-certs",
     } else {}),
-    maddog_cert_volume: (if !utils.is_public_cloud(kingdom) then
+    maddog_cert_volume: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
     {
         hostPath: {
             path: "/etc/pki_service",

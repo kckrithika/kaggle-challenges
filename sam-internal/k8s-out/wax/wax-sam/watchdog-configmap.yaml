@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   watchdog.json: |-
     {
-      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "caFile": "/data/certs/ca.crt",
       "certFile": "/data/certs/hostcert.crt",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-wax.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293",
@@ -11,7 +11,6 @@ data:
       "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "ops-mta1-4-wax.ops.sfdc.net:25",
       "email-subject-prefix": "SAMWD",
-      "enableMaddogCertChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-wax.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293",
       "k8sproxyEndpoint": "http://localhost:40000",

@@ -94,7 +94,7 @@ local utils = import "util_functions.jsonnet";
 ) + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     enableStatefulChecks: true,
   } else {})
-  + (if !utils.is_public_cloud(configs.kingdom) then {
+  + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     enableMaddogCertChecks: true,
   } else {})
   + (if configs.estate == "prd-sam" then {

@@ -14,6 +14,8 @@ apps:
   - hnd/hnd-sam
   - cdu/cdu-sam
   - syd/syd-sam
+  - chx/chx-sam
+  - wax/wax-sam
  SamTestAppMaddog:
   - prd/prd-sam
   - prd/prd-samtest
