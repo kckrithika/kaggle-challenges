@@ -1,25 +1,25 @@
 apiVersion: v1
 system:
   functions:
-  - name: retail-setup
+  - name: retailsetup
     count: 1
     volumes:
     - name: retailservercert
       maddogCert:
         type: server
         lbnames:
-        - retail-setuplb
+        - retailsetuplb
     containers:
-    - name: retail-setup
+    - name: retailsetup
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201711181523
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201711291359
       ports:
       - containerPort: 8080
       - containerPort: 15372
       livenessProbe:
-        initialDelaySeconds: 60
-        periodSeconds: 30
-        timeoutSeconds: 30
+        initialDelaySeconds: 120
+#        periodSeconds: 30
+#        timeoutSeconds: 30
         httpGet:
           path: /
           port: 8080
@@ -27,9 +27,10 @@ system:
       - name: retailservercert
         mountPath: /servercerts
   loadbalancers:
-  - lbname: retail-setuplb
-    function: retail-setup
-    nodeExposed: true
+  - lbname: retailsetuplb
+    function: retailsetup
+#    nodeExposed: true
+    slbEnabled: true
     ports:
       - port: 18880
         targetport: 8080
