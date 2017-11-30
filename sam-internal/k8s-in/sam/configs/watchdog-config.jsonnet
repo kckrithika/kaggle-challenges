@@ -69,9 +69,6 @@ local utils = import "util_functions.jsonnet";
   imageName: samimages.hypersam,
   # Maddog checker
   maddogServerCAPath: configs.maddogServerCAPath,
-} +
-(
-  if configs.estate == "prd-samtest" then {
   # processstarttime checker
   monitoredProcesses: {
     "hyperkube.*kubelet": "age.kubelet",
@@ -81,10 +78,8 @@ local utils = import "util_functions.jsonnet";
     "hyperkube.*scheduler": "age.kubescheduler",
     "dockerd.*docker-bootstrap": "age.dockerbootstrap",
     "dockerd.*docker.sock": "age.dockermain",
-    processmonitor: "age.processmonitor",
   },
-  } else {}
-) +
+} +
 (
   if configs.kingdom == "prd" then {
   # Kuberesource Checker
