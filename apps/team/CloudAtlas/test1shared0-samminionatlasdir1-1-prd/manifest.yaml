@@ -34,7 +34,7 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.2rc1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:3d13a3a
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
