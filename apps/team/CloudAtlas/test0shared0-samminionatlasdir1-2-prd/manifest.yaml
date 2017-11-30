@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client-prd-dev-dir1-2
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
+      image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -34,7 +34,7 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:721ebcd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:8f3f6e6
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -48,6 +48,9 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -68,3 +71,6 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
