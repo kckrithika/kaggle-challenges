@@ -3,7 +3,7 @@ local samimages = import "samimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
 # Only private PROD info is provided for node-controller currently
-if !utils.is_public_cloud(configs.kingdom) then {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,

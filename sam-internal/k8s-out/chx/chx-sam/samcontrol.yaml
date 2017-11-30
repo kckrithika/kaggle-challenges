@@ -24,7 +24,6 @@ spec:
         - --v=3
         - --logtostderr=true
         - --config=/config/samcontrol.json
-        - -maddogMadkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
@@ -33,8 +32,6 @@ spec:
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -48,9 +45,6 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

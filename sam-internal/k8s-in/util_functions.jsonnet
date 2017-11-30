@@ -82,6 +82,11 @@ local internal = {
         kingdom == "cdu" || kingdom == "syd" || kingdom == "yhu" || kingdom == "yul"
     ),
 
+    # This is for filtering GIA
+    is_gia(kingdom):: (
+        kingdom == "chx" || kingdom == "wax"
+    ),
+
     # This is for filtering in, or out, testing clusters.
     is_test_cluster(estate):: (
         estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" || estate == "prd-sam"

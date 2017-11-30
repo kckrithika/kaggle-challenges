@@ -31,8 +31,6 @@ spec:
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /usr/local/etc
           name: conf
         - mountPath: /usr/local/var/run
@@ -60,8 +58,6 @@ spec:
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /usr/local/etc
           name: conf
         - mountPath: /usr/local/var/run
@@ -76,9 +72,6 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - emptyDir: {}
         name: conf
       - emptyDir: {}

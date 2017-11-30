@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
   statefulAppEnabled: true,
   checkImageExistsFlag: true,
 } else {})
-+ (if !utils.is_public_cloud(configs.kingdom) then {
++ (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     enableMaddog: true,
     # This is kept as a flag to use the service envvar,
     #maddogMadkubEndpoint: "https://10.254.208.254:32007",

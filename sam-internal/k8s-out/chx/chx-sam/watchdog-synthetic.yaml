@@ -40,8 +40,6 @@ spec:
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
         - mountPath: /test
           name: test
         - mountPath: /_output
@@ -59,9 +57,6 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs
