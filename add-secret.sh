@@ -4,7 +4,7 @@ display_usage() {
   echo 'Usage : ./add-secret.sh [argument=value]'
   echo '-n|--name : <secretName>'
   echo '-o|--org : <team/teamName> or <user/user-name>'
-  echo '-k|--kingdom : <kingdomList>'
+  echo '-k|--kingdom : <kingdom>[,<otherKingdom>]'
   echo '-g|--global'
   echo '-f|--from-file : <pathToFile>'
   echo ''
