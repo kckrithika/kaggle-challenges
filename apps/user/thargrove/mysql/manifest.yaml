@@ -15,20 +15,16 @@ system:
     containers:
     - name: mysql
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/mysql:5.6
-
-      # TODO: Use a k4a secret
       env:
       - name: MYSQL_ROOT_PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: mysql
-            key: rootpassword
- 
+        value: /secrets/rootpassword
       volumeMounts:
       - mountPath: /var/lib/mysql
         name: mysql-persistent-storage
       - mountPath: /certs
         name: certs
+      - mountPath: /secrets
+        name: mysql-pass
       
       ports:
       - containerPort: 3306
@@ -45,6 +41,9 @@ system:
     - name: certs
       maddogCert:
         type: server
+    - name: mysql-pass
+      secret:
+        secretName: mysql
 
     lbname: mysql-stateful-lb
 
