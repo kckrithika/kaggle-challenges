@@ -33,11 +33,10 @@ spec:
         - --kneConfigDir=/var/slb/testkneconfigs
         - --kneDomainName=prd-sdc.slb.sfdc.net
         - --slbConfigInAnnotations=true
-        - --cleanupOldConfig=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000475-9a7fd185
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000481-01860c6f
         name: slb-config-processor
         securityContext:
           privileged: true
@@ -62,7 +61,7 @@ spec:
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000475-9a7fd185
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000481-01860c6f
         name: slb-cleanup
         securityContext:
           privileged: true
