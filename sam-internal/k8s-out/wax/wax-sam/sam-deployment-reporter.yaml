@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sam-deployment-reporter
+  name: sam-deployment-reporter
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: sam-deployment-reporter
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: sam-deployment-reporter
+    spec:
+      containers:
+      - command:
+        - /sam/sam-deployment-reporter
+        - --v=5
+        - --k8sapiserver=
+        - --smtpServer=ops-mta1-4-wax.ops.sfdc.net:25
+        - --sender=sam@salesforce.com
+        - --defaultRecipient=
+        - --namespacesToSkip=sam-watchdog
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
+        name: sam-deployment-reporter
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig

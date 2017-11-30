@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: samcontrol-deployer
+  name: samcontrol-deployer
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: samcontrol-deployer
+    spec:
+      containers:
+      - command:
+        - /sam/samcontrol-deployer
+        - --config=/config/samcontroldeployer.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9099
+          initialDelaySeconds: 2
+          periodSeconds: 10
+          timeoutSeconds: 10
+        name: samcontrol-deployer
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: samcontrol-deployer
+        name: config

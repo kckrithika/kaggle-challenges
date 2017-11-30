@@ -1,0 +1,24 @@
+apiVersion: v1
+data:
+  samcontrol.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/data/certs/hostcert.crt",
+      "checkImageExistsFlag": false,
+      "debug": true,
+      "dockerregistry": "ops0-artifactrepo1-0-wax.data.sfdc.net",
+      "enableMaddog": true,
+      "httpsDisableCertsCheck": true,
+      "imageCheckV2": true,
+      "k8sapiserver": "",
+      "keyFile": "/data/certs/hostcert.key",
+      "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.wax.prod.non-estates.sfdcsd.net:8443",
+      "maddogMadkubImage": "ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000052-70c3fbc4",
+      "tlsEnabled": true,
+      "volPermissionInitContainerImage": "ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: samcontrol
+  namespace: sam-system

@@ -1,0 +1,9 @@
+---
+# List of teams that can deploy apps to this pool.
+# # Team name must match GUS scrum team with spaces converted to underscore
+access:
+  - 'team/Gater'
+
+# Each pool is managed by a SAM control stack running in one estate
+# Name here is an exact match on a file under estates/estates repo
+controlEstate: wax/wax-sam

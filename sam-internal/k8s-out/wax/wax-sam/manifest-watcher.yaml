@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: manifest-watcher
+  name: manifest-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: manifest-watcher
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: manifest-watcher
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/manifest-watcher
+        - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --v=2
+        - --logtostderr=true
+        - --config=/config/manifestwatcher.json
+        - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
+        name: manifest-watcher
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /manifests
+        name: sfdc-volume
+      - configMap:
+          name: manifest-watcher
+        name: config

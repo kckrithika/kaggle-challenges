@@ -1,0 +1,74 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-ping-watchdog
+  name: sdn-ping-watchdog
+  namespace: sam-system
+spec:
+  minReadySeconds: 180
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-ping-watchdog
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-ping-watchdog
+        - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --smtpServer=ops-mta1-4-wax.ops.sfdc.net:25
+        - --sender=sdn-alerts@salesforce.com
+        - --recipient=sdn-alerts@salesforce.com
+        - --emailFrequency=12h
+        - --watchdogFrequency=180s
+        - --alertThreshold=300s
+        - --pingCount=1
+        - --pingInterval=1s
+        - --pingTimeout=5s
+        - --livenessProbePort=9102
+        env:
+        - name: KUBECONFIG
+          value: /config/kubeconfig
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000454-b6c294bb
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9102
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-ping-watchdog
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: wax-sam
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: config

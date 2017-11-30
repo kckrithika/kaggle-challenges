@@ -1,0 +1,92 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-peering-agent
+  name: sdn-peering-agent
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sdn-peering-agent
+      namespace: sam-system
+    spec:
+      containers:
+      - env:
+        - name: BIRD_CONF
+          value: /usr/local/etc/bird.conf
+        - name: BIRD_SOCKET
+          value: /usr/local/var/run/bird.ctl
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/bird:v-0000014-b0a5951d
+        livenessProbe:
+          exec:
+            command:
+            - /bird/sdn-bird-watcher
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        name: sdn-bird
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /usr/local/etc
+          name: conf
+        - mountPath: /usr/local/var/run
+          name: socket
+      - command:
+        - /sdn/sdn-peering-agent
+        - --birdsock=/usr/local/var/run/bird.ctl
+        - --birdconf=/usr/local/etc/bird.conf
+        - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --keyfile=/data/certs/hostcert.key
+        - --certfile=/data/certs/hostcert.crt
+        - --bgpPasswordFile=/data/secrets/sambgppassword
+        - --livenessProbePort=9100
+        - --controlEndpoint=wax-sam
+        image: ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000454-b6c294bb
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9100
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-peering-agent
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /usr/local/etc
+          name: conf
+        - mountPath: /usr/local/var/run
+          name: socket
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /data/secrets
+          name: secrets
+          readOnly: true
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - emptyDir: {}
+        name: conf
+      - emptyDir: {}
+        name: socket
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - name: secrets
+        secret:
+          defaultMode: 256
+          secretName: sdn

@@ -32,6 +32,8 @@ local utils = import "util_functions.jsonnet",
             hnd: "ops0-mta2-1-hnd.ops.sfdc.net:25",
             cdu: "ops0-mta2-1-cdu.ops.sfdc.net:25",
             syd: "ops0-mta2-1-syd.ops.sfdc.net:25",
+            chx: "ops-mta1-4-chx.ops.sfdc.net:25",
+            wax: "ops-mta1-4-wax.ops.sfdc.net:25",
         },
 
         momCollectorEndpoint: {
@@ -44,6 +46,14 @@ local utils = import "util_functions.jsonnet",
             phx: "http://ops0-mom2-1-phx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             prd: "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
             ukb: "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
+            # TODO: SDN support in public cloud
+            cdu: "",
+            syd: "",
+            yhu: "",
+            yul: "",
+            # No momCollector support in GIA
+            chx: "",
+            wax: "",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config
