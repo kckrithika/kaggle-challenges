@@ -6,7 +6,7 @@ system:
         - paul.howden@salesforce.com
     functions:
     - name: warden-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -14,11 +14,17 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: tnrp/casp/warden:0.0.1-0000166-c8a81e17
+        image: tnrp/casp/warden:0.0.1-0000178-0604884e
         ports:
         - name: warden
           containerPort: 8889
           hostPort: 18889
+        - name: es-es
+          containerPort: 9300
+          hostPort: 9300
+        - name: es-http
+          containerPort: 9200
+          hostPort: 9200
         env:
         - name: BRANCH
           value: "eng_production"
@@ -42,3 +48,7 @@ system:
       ports:
         - port: 80
           targetport: 8889
+        - port: 9200
+          targetport: 9200
+        - port: 9300
+          targetport: 9300
