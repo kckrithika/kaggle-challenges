@@ -29,7 +29,7 @@ system:
     count: 1
     containers:
     - name: csr-kaiju-agent
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/kaiju-agent:3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/kaiju-agent:4
       env:
         - name: ENV
           value: docker
