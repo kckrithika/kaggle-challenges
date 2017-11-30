@@ -4,10 +4,10 @@
         std.join("", std.map(function(x) if x == to_replace then replace_with else x, std.stringChars(str)))
     ),
     // image_name: name of the loginitcontainer docker image.
-    // pod_log_path: log dir for logs from the pod.
+    // pod_log_path: log path (relative to /var/log/) for logs from the pod.
     // uid: userid for the process writing logs.
     // gid: groupid for the process writing logs.
-    // username: username corresponding to uid
+    // username: username corresponding to uid.
     log_init_container(image_name, pod_log_path, uid, gid, username):: {
         command: [
             "sh",
@@ -21,7 +21,7 @@
         },
         volumeMounts: [
             {
-                mountPath: pod_log_path,
+                mountPath: "/var/log/" + pod_log_path,
                 name: "container-log-vol"
             },
             {

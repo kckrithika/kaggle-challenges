@@ -34,7 +34,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                     {} +
                     storageutils.log_init_container(
                         storageimages.loginit,
-                        "/var/log/fds",
+                        "fds",
                         0,
                         0,
                         "root"

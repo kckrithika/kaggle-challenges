@@ -49,7 +49,7 @@ spec:
       - command:
         - sh
         - -c
-        - /entrypoint.sh -g 0 -u 0 -s root -l /var/log/fds
+        - /entrypoint.sh -g 0 -u 0 -s root -l fds
         env:
         - name: KUBEVAR_POD_NAME
           valueFrom:
