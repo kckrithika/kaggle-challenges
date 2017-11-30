@@ -6,7 +6,7 @@ data:
       "certFile": "/data/certs/hostcert.crt",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-wax.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293",
-      "deployer-rcImtEndpoint": "https://ops0-health1-1-wax.ops.sfdc.net:18443/v1/bark",
+      "deployer-rcImtEndpoint": "https://reportcollector-wax.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "sam-alerts@salesforce.com",
       "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "ops-mta1-4-wax.ops.sfdc.net:25",
@@ -29,7 +29,7 @@ data:
         "hyperkube.*scheduler": "age.kubescheduler"
       },
       "podNamespacePrefixBlacklist": "sam-watchdog",
-      "rcImtEndpoint": "https://ops0-health1-1-wax.ops.sfdc.net:18443/v1/bark",
+      "rcImtEndpoint": "https://reportcollector-wax.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-alerts@salesforce.com",
       "sdpEndpoint": "http://localhost:39999",
       "sender": "sam-alerts@salesforce.com",
