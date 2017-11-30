@@ -48,6 +48,9 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
+      - configMap:
+          name: fds-sfms
+        name: fds-sfms-config
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

@@ -67,8 +67,46 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             },
                         ],
                     },
-                ],
-                volumes: configs.filter_empty([
+                ] + if configs.estate == "prd-sam_storage" then [{
+                // Pump prometheus metrics to argus. Start out in prd-sam_storage only for now --
+                // the DCCoordinates aren't correctly being set yet for fds, so the metrics from two
+                // different estates would all funnel into one bucket.
+                // TODO: remove this condition once sfms supports environment variable overrides for DCCoordinates.
+                    name: "sfms",
+                    image: storageimages.sfms,
+                    command: [
+                        "/opt/sfms/bin/sfms",
+                    ],
+                    args: [
+                        "-t",
+                        "ajna_with_tags",
+                        "-s",
+                        "fds",
+                        "-i",
+                        '60',
+                    ],
+                    volumeMounts: [
+                        {
+                            name: "fds-sfms-config",
+                            mountPath: "/opt/sfms/config/endpoints/sources/fds.json",
+                            subPath: "fds.json",
+                        },
+                    ],
+                    env: [
+                        {
+                            name: "SFDC_FUNNEL_VIP",
+                            value: configs.funnelVIP,
+                        },
+                    ],
+                }] else [],
+                volumes: [
+                    {
+                        name: "fds-sfms-config",
+                        configMap: {
+                            name: "fds-sfms",
+                        },
+                    },
+                ] + configs.filter_empty([
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,

@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  fds.json: |-
+    {
+      "metricPrefix": "fds",
+      "product": "FaultDomainSet",
+      "role": "fds",
+      "type": "Prometheus",
+      "url": "http://localhost:8080/metrics",
+      "version": "1.0"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: fds-sfms
+  namespace: sam-system
