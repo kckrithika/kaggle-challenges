@@ -1,12 +1,16 @@
 #!/bin/bash -e
 
 display_usage() {
-  echo 'Usage : ./add-secret.sh [arguments]'
+  echo 'Usage : ./add-secret.sh [argument=value]'
   echo '-n|--name : <secretName>'
   echo '-o|--org : <team/teamName> or <user/user-name>'
   echo '-k|--kingdom : <kingdomList>'
   echo '-g|--global'
   echo '-f|--from-file : <pathToFile>'
+  echo ''
+  echo 'Example: ./add-secret.sh -n=mysecret -o=team/CSC_SAM -k=prd -f=$(pwd)/token.txt'
+  echo 'This will create a K8S secret called "mysecret" which will contain a key "token.txt" with value from the file'
+  echo 'See https://confluence.internal.salesforce.com/display/SAM/Using+K4A+for+your+SAM+Secrets'
 }
 
 # if no argument supplied, display usage
