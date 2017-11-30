@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
@@ -29,6 +30,16 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 },
             },
             spec: {
+                initContainers: [
+                    {} +
+                    storageutils.log_init_container(
+                        storageimages.loginit,
+                        "/var/log/fds",
+                        0,
+                        0,
+                        "root"
+                    ),
+                ],
                 containers: [
                     {
                         name: "fds-controller",
@@ -106,11 +117,13 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             name: "fds-sfms",
                         },
                     },
-                ] + configs.filter_empty([
-                    configs.maddog_cert_volume,
-                    configs.cert_volume,
-                    configs.kube_config_volume,
-                ]),
+		]
+                + storageutils.log_init_volumes()
+		+ configs.filter_empty([
+                        configs.maddog_cert_volume,
+                        configs.cert_volume,
+                        configs.kube_config_volume,
+                    ]),
                 nodeSelector: {
                 } +
                 if configs.estate == "prd-sam" then {
