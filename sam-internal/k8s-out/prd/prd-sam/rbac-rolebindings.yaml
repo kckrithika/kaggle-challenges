@@ -375,9 +375,13 @@ items:
   - kind: User
     name: shared0-samminionchatbotrt1-2-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionchatbotrt1-3-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionchatbotrt2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -393,9 +397,13 @@ items:
   - kind: User
     name: shared0-samminionchatbotrt1-2-prd.eng.sfdc.net
   - kind: User
+    name: shared0-samminionchatbotrt1-3-prd.eng.sfdc.net
+  - kind: User
     name: shared0-samminionchatbotrt2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1638,6 +1646,38 @@ items:
     name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:prd-sp2-sam_retail_eventlistener:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:prd-sp2-sam_retail_eventlistener:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
