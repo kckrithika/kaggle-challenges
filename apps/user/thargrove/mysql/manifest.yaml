@@ -43,7 +43,7 @@ system:
       maddogCert:
         type: server
     - name: mysql-pass
-      secret:
+      k4aSecret:
         secretName: mysql
 
     lbname: mysql-stateful-lb
