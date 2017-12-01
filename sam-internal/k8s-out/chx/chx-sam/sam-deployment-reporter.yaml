@@ -28,7 +28,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001518-2e736076
+        image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001518-2e736076
         name: sam-deployment-reporter
         volumeMounts:
         - mountPath: /sfdchosts

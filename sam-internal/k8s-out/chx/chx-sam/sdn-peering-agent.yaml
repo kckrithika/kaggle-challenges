@@ -20,7 +20,7 @@ spec:
           value: /usr/local/etc/bird.conf
         - name: BIRD_SOCKET
           value: /usr/local/var/run/bird.ctl
-        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/bird:v-0000014-b0a5951d
+        image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/bird:v-0000014-b0a5951d
         livenessProbe:
           exec:
             command:
@@ -46,7 +46,7 @@ spec:
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
         - --controlEndpoint=chx-sam
-        image: ops0-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000454-b6c294bb
+        image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000454-b6c294bb
         livenessProbe:
           httpGet:
             path: /liveness-probe
