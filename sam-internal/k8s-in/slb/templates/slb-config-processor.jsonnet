@@ -71,7 +71,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         },
                     },
                     {
-                        name: "slb-cleanup-configProcessor",
+                        name: "slb-cleanup-config-processor",
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-cleanup",
