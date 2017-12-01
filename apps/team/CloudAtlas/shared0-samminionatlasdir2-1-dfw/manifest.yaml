@@ -48,6 +48,8 @@ system:
         name: pinglogvol
       - mountPath: /log
         name: logvol
+      - mountPath: /certs
+        name: server-cert
       - mountPath: /secrets
         name: secretsvol
         readOnly: true
