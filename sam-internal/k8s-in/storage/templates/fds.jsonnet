@@ -42,7 +42,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 ],
                 containers: [
                     {
-                        name: "fds-controller",
+                        name: "fds",
                         image: storageimages.fdscontroller,
                         ports: [
                             {
@@ -61,11 +61,13 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                                 port: 8080,
                             },
                         },
-                        volumeMounts: configs.filter_empty([
-                            configs.maddog_cert_volume_mount,
-                            configs.cert_volume_mount,
-                            configs.kube_config_volume_mount,
-                        ]),
+                        volumeMounts:
+                            storageutils.log_init_volume_mounts()
+                            + configs.filter_empty([
+                                configs.maddog_cert_volume_mount,
+                                configs.cert_volume_mount,
+                                configs.kube_config_volume_mount,
+                            ]),
                         env: [
                             configs.kube_config_env,
                             {
@@ -117,9 +119,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             name: "fds-sfms",
                         },
                     },
-		]
+                ]
                 + storageutils.log_init_volumes()
-		+ configs.filter_empty([
+                + configs.filter_empty([
                         configs.maddog_cert_volume,
                         configs.cert_volume,
                         configs.kube_config_volume,

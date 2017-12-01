@@ -24,7 +24,7 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         - name: K8S_PLATFORM
           value: prd-sam_storage
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000251-12e872ba
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000259-3add2d99
         name: cephoperator
         volumeMounts:
         - mountPath: /etc/pki_service
