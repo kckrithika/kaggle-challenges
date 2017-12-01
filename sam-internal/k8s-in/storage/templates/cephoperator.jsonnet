@@ -44,6 +44,10 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                                 name: "K8S_PLATFORM",
                                 value: configs.estate,
                             },
+                            {
+                                name: "CEPH_INIT_CONTAINER",
+                                value: storageimages.loginit,
+                            },
                         ],
                     },
                 ],
