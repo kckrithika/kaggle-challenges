@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: ceph-metrics
-  namespace: ceph
+  namespace: ceph-test
 spec:
   replicas: 1
   template:
