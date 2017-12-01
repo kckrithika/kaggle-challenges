@@ -5,7 +5,7 @@ if configs.estate == "prd-sam_storage" then {
    kind: "Service",
    metadata: {
       name: "ceph-metrics",
-      namespace: "ceph",
+      namespace: "ceph-test",
       labels: {
          app: "ceph-metrics",
          "slb.sfdc.net/name": "ceph-metrics",
