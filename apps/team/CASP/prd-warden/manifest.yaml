@@ -4,9 +4,10 @@ system:
     notifications:
       email:
         - paul.howden@salesforce.com
+        - pteyer@salesforce.com
     functions:
     - name: warden-func
-      count: 3
+      count: 1
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -14,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: tnrp/casp/warden:0.0.1-0000180-482acbde
+        image: tnrp/casp/warden:0.0.1-0000182-f9433eac
         ports:
         - name: warden
           containerPort: 8889
@@ -31,6 +32,10 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
+        - mountPath: /home/sfdc-casp/lib/warden/mysql
+          name: mysql-vol
+        - mountPath: /home/sfdc-casp/elasticsearch/data
+          name: es-vol
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -40,6 +45,12 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
+      - name: mysql-vol
+        hostPath:
+          path: /home/sfdc-casp/lib/warden/mysql
+      - name: es-vol
+        hostPath:
+          path: /home/sfdc-casp/elasticsearch/data
 
     loadbalancers:
     - lbname: warden
