@@ -6,7 +6,7 @@ system:
     count: 8
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:20171122180320
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.0-RC.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -33,7 +33,7 @@ system:
         initialDelaySeconds: 240
         timeoutSeconds: 10
       volumeMounts:
-      - mountPath: /home/search-model-executor/logs
+      - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: sherpa-b
       image: tnrp/sherpa:0.2.0-0000097-594964a3
@@ -63,12 +63,12 @@ system:
     volumes:
     - name: logvol
       hostpath:
-        path: /data/sam/search-model-executor/log
+        path: /home/sfdc-search-model-executor/logs
   - name: search-model-executor-test
     count: 1
     containers:
     - name: search-model-executor-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:1.0-RC.1
       ports:
       - name: service-port
         containerPort: 7020
