@@ -54,7 +54,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      image: tnrp/sherpa:2-0000127-5d8bf4ab
       livenessProbe:
         exec:
           command:
