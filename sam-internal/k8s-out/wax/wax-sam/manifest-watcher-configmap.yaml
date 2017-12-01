@@ -7,7 +7,7 @@ data:
       "disableCertsCheck": true,
       "keyFile": "/data/certs/hostcert.key",
       "tlsEnabled": true,
-      "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrpArchiveEndpoint": "https://ops-piperepo1-0-wax.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:

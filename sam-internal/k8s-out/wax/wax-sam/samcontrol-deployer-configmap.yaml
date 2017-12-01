@@ -22,7 +22,7 @@ data:
       ],
       "sender": "sam@salesforce.com",
       "smtp-server": "ops-mta1-4-wax.ops.sfdc.net:25",
-      "tnrp-endpoint": "https://ops0-piperepo1-1-wax.ops.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrp-endpoint": "https://ops-piperepo1-0-wax.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:
