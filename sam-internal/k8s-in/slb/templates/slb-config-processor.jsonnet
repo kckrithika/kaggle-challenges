@@ -70,32 +70,28 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             privileged: true,
                         },
                     },
-                ]
-                + (
-                if configs.estate == "prd-sdc" then [
-                {
-                    name: "slb-cleanup",
-                    image: slbimages.hypersdn,
-                    command: [
-                        "/sdn/slb-cleanup",
-                        "--period=1800s",
-                        "--logsMaxAge=1h",
-                        "--filesDirToCleanup=" + slbconfigs.configDir,
-                        "--shouldSkipServiceRecords=true",
-                        "--shouldNotDeleteAllFiles=true",
-                        "--log_dir=" + slbconfigs.logsDir,
-                    ],
-                    volumeMounts: configs.filter_empty([
-                        slbconfigs.slb_volume_mount,
-                        slbconfigs.slb_config_volume_mount,
-                        slbconfigs.logs_volume_mount,
-                    ]),
-                    securityContext: {
-                        privileged: true,
+                    {
+                        name: "slb-cleanup-configProcessor",
+                        image: slbimages.hypersdn,
+                        command: [
+                            "/sdn/slb-cleanup",
+                            "--period=1800s",
+                            "--logsMaxAge=1h",
+                            "--filesDirToCleanup=" + slbconfigs.configDir,
+                            "--shouldSkipServiceRecords=true",
+                            "--shouldNotDeleteAllFiles=true",
+                            "--log_dir=" + slbconfigs.logsDir,
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.slb_config_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                        ]),
+                        securityContext: {
+                            privileged: true,
+                        },
                     },
-                },
-                ] else []
-                ),
+                ],
             },
         },
     },
