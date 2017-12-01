@@ -21,10 +21,10 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
-        - mountPath: /sys
+        - mountPath: /sys/devices/virtual/net
           name: sys-mount
       hostNetwork: true
       volumes:
       - hostPath:
-          path: /sys
+          path: /sys/devices/virtual/net
         name: sys-mount

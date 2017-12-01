@@ -19,7 +19,7 @@ if configs.kingdom == "prd" || configs.kingdom == "yhu" || configs.kingdom == "d
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sys-mount",
-                                mountPath: "/sys",
+                                mountPath: "/sys/devices/virtual/net",
                             },
                         ]),
                         securityContext: {
@@ -31,7 +31,7 @@ if configs.kingdom == "prd" || configs.kingdom == "yhu" || configs.kingdom == "d
                     {
                         name: "sys-mount",
                         hostPath: {
-                            path: "/sys",
+                            path: "/sys/devices/virtual/net",
                         },
                     },
                 ],
