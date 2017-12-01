@@ -25,14 +25,14 @@ spec:
         - -emailFrequency=12h
         - -laddr=0.0.0.0:8083
         - -maxdeploymentduration=5m
-        - -imageName=ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
+        - -imageName=ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001518-2e736076
         - -timeout=2s
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001518-2e736076
         name: watchdog-synthetic
         ports:
         - containerPort: 8083
