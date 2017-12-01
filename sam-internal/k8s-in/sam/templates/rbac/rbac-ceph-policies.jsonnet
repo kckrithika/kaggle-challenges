@@ -45,7 +45,7 @@ if configs.estate == "prd-sam" then {
             node,
           ],
           verbs: [
-            "update",
+            "patch",
           ],
         },
       ],
