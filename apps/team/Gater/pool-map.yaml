@@ -14,6 +14,9 @@ apps:
   - syd/syd-sam_gater
   - yhu/yhu-sam_gater
   - yul/yul-sam_gater
+ gate-manager-gia:
+  - chx/chx-sam_gater
+  - wax/wax-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
  gate-manager-test-pv:
