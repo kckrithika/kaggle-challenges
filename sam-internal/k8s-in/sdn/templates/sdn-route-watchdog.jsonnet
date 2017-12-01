@@ -27,7 +27,6 @@ if configs.kingdom == "prd" then {
                             "/sdn/sdn-route-watchdog",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                            "--momCollectorEndpoint=" + configs.momCollectorEndpoint,
                             "--smtpServer=" + configs.smtpServer,
                             "--sender=" + sdnconfig.sdn_watchdog_emailsender,
                             "--recipient=" + sdnconfig.sdn_watchdog_emailrec,
@@ -45,7 +44,10 @@ if configs.kingdom == "prd" then {
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
-                            ] else []
+                            "--momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/api/v1/network/device?key=host-bgp-routes",
+                            ] else [
+                            "--momCollectorEndpoint=" + configs.momCollectorEndpoint,
+                            ]
                         ),
                         env: [
                             configs.kube_config_env,

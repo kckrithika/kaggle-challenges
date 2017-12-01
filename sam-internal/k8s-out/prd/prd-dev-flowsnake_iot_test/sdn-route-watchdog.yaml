@@ -25,7 +25,6 @@ spec:
         - /sdn/sdn-route-watchdog
         - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
-        - --momCollectorEndpoint=http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes
         - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
         - --recipient=sdn-alerts@salesforce.com
@@ -34,6 +33,7 @@ spec:
         - --alertThreshold=300s
         - --livenessProbePort=9104
         - --controlEstate=prd-dev-flowsnake_iot_test
+        - --momCollectorEndpoint=http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
