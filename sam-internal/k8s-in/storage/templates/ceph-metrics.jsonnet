@@ -6,7 +6,7 @@ if configs.estate == "prd-sam_storage" then {
    kind: "Deployment",
    metadata: {
       name: "ceph-metrics",
-      namespace: "ceph",
+      namespace: "ceph-test",
    },
    spec: {
       replicas: 1,

@@ -5,7 +5,7 @@ metadata:
     app: ceph-metrics
     slb.sfdc.net/name: ceph-metrics
   name: ceph-metrics
-  namespace: ceph
+  namespace: ceph-test
 spec:
   ports:
   - name: ceph-metrics
