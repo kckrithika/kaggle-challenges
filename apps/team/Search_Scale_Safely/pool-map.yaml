@@ -1,3 +1,5 @@
 apps:
  prd-search_model_executor:
   - prd/prd-search_model_executor
+ phx-search_model_executor:
+  - phx/phx-search_model_executor
