@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "yhu" || configs.kingdom == "dfw" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -19,7 +19,7 @@ if configs.kingdom == "prd" then {
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sys-mount",
-                                mountPath: "/sys",
+                                mountPath: "/sys/devices/virtual/net",
                             },
                         ]),
                         securityContext: {
@@ -31,7 +31,7 @@ if configs.kingdom == "prd" then {
                     {
                         name: "sys-mount",
                         hostPath: {
-                            path: "/sys",
+                            path: "/sys/devices/virtual/net",
                         },
                     },
                 ],
