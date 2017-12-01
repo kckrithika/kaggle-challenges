@@ -21,10 +21,10 @@ system:
         value: 'true'
       - name: METRICS_LOG_ONLY_PUBLISHER
         value: 'false'
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-556bf6c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-8538202
       livenessProbe:
         httpGet:
-          path: "/manage/health"
+          path: /manage/health
           port: 15372
         initialDelaySeconds: 30
         periodSeconds: 5
@@ -37,19 +37,19 @@ system:
         name: managementport
       readinessProbe:
         httpGet:
-          path: "/manage/health"
+          path: /manage/health
           port: 15372
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 5
       volumeMounts:
-      - mountPath: "/home/sfdc-chatbot/logs"
+      - mountPath: /home/sfdc-chatbot/logs
         name: logvol
     count: 4
     name: runtime-staging
     volumes:
     - hostPath:
-        path: "/home/sfdc-chatbot/logs"
+        path: /home/sfdc-chatbot/logs
       name: logvol
   - containers:
     - env:
@@ -66,10 +66,10 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-556bf6c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-8538202
       livenessProbe:
         httpGet:
-          path: "/manage/health"
+          path: /manage/health
           port: 15372
         initialDelaySeconds: 30
         periodSeconds: 5
@@ -82,19 +82,19 @@ system:
         name: managementport
       readinessProbe:
         httpGet:
-          path: "/manage/health"
+          path: /manage/health
           port: 15372
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 5
       volumeMounts:
-      - mountPath: "/home/sfdc-chatbot/logs"
+      - mountPath: /home/sfdc-chatbot/logs
         name: logvol
     count: 4
     name: runtime-staging-blue
     volumes:
     - hostPath:
-        path: "/home/sfdc-chatbot/logs"
+        path: /home/sfdc-chatbot/logs
       name: logvol
   - containers:
     - env:
@@ -111,10 +111,10 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: memory
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-556bf6c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-8538202
       livenessProbe:
         httpGet:
-          path: "/manage/health"
+          path: /manage/health
           port: 15372
         initialDelaySeconds: 30
         periodSeconds: 5
@@ -127,19 +127,19 @@ system:
         name: managementport
       readinessProbe:
         httpGet:
-          path: "/manage/health"
+          path: /manage/health
           port: 15372
         initialDelaySeconds: 30
         periodSeconds: 5
         timeoutSeconds: 5
       volumeMounts:
-      - mountPath: "/home/sfdc-chatbot/logs"
+      - mountPath: /home/sfdc-chatbot/logs
         name: logvol
     count: 4
     name: runtime-staging-green
     volumes:
     - hostPath:
-        path: "/home/sfdc-chatbot/logs"
+        path: /home/sfdc-chatbot/logs
       name: logvol
   loadbalancers:
   - function: runtime-staging
