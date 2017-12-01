@@ -18,7 +18,7 @@ spec:
       - command:
         - /sdn/sdn-vault-agent
         - --funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
-        - --archiveSvcEndpoint=https://ops0-piperepo1-1-chx.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --archiveSvcEndpoint=https://ops-piperepo1-0-chx.data.sfdc.net/tnrp/content_repo/0/archive
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt
         - --cafile=/data/certs/ca.crt
