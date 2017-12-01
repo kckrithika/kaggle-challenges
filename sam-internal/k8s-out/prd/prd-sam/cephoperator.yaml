@@ -24,6 +24,8 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         - name: K8S_PLATFORM
           value: prd-sam
+        - name: CEPH_INIT_CONTAINER
+          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000259-3add2d99
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000259-3add2d99
         name: cephoperator
         volumeMounts:
