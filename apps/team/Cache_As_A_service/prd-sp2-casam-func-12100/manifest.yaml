@@ -14,23 +14,23 @@ system:
     containers:
     - name: csr-sam
 
-#210#      image: tnrp/casam/coreapp:210.12-0000073-8b9c3e27
-      image: tnrp/casam/coreapp:212_patch__14874576-0000079-b5e65861
+      image: tnrp/casam/coreapp:210.12-0000073-8b9c3e27
+#212#      image: tnrp/casam/coreapp:212_patch__14874576-0000079-b5e65861
 
       env:
         - name: DEPLOYMENT
-#210#          value: S
-          value: T
+          value: S
+#212#          value: T
         - name: DB_USER
-#210#          value: GRUMPY
-          value: happy
+          value: GRUMPY
+#212#          value: happy
         - name: DB_SID
           value: mist30b212utf
 
         # Only needed if desire to override ZK registration value
         - name: CASAM_CYAN_PATH
-#210#          value: casam/casam-210.12
-          value: casam/casam-212
+          value: casam/casam-210.12
+#212#          value: casam/casam-212
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
@@ -91,8 +91,8 @@ system:
           # back to nodeport for now
 #          host: cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
           host: samcaas2-caasminion3-3-prd.eng.sfdc.net
-#210#          path: /__cyan_admin__/app/health?version=210.12
-          path: /__cyan_admin__/app/health?version=212
+          path: /__cyan_admin__/app/health?version=210.12
+#212#          path: /__cyan_admin__/app/health?version=212
           port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -126,8 +126,8 @@ system:
     containers:
     - name: csr-seq-sam
 
-#210#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:9
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:9
+#212#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:7
 
       env:
         # 
@@ -150,11 +150,11 @@ system:
         - name: SNOWWHITE_PWD
           value: rotate
         - name: OLD_DWARF
-#210#          value: happy
-          value: grumpy
+          value: happy
+#212#          value: grumpy
         - name: RELEASE_VERSION
-#210#          value: 210.12
-          value: 212
+          value: 210.12
+#212#          value: 212
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
