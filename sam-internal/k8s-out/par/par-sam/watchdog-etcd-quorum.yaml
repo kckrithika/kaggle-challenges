@@ -26,7 +26,7 @@ spec:
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - -emailFrequency=6h
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001489-165e1293
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sam/hypersam:sam-0001518-2e736076
         name: watchdog-etcd-quorum
         volumeMounts:
         - mountPath: /sfdchosts
