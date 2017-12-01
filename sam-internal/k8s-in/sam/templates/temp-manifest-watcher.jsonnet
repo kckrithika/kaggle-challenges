@@ -19,7 +19,6 @@ if configs.estate == "prd-samtest" then
                            "--v=2",
                            "--logtostderr=true",
                            "--config=/config/tempmanifestwatcher.json",
-                           "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
                            configs.sfdchosts_arg,
                          ]),
                       volumeMounts: configs.filter_empty([
@@ -27,7 +26,11 @@ if configs.estate == "prd-samtest" then
                           configs.sfdchosts_volume_mount,
                           configs.cert_volume_mount,
                           configs.config_volume_mount,
+                          configs.kube_config_volume_mount,
                         ]),
+                      env: [
+                          configs.kube_config_env,
+                      ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -41,6 +44,7 @@ if configs.estate == "prd-samtest" then
                         name: "sfdc-volume",
                     },
                     configs.config_volume("temp-manifest-watcher"),
+                    configs.kube_config_volume,
                 ]),
                 nodeSelector: {
                 } +

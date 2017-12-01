@@ -23,8 +23,10 @@ spec:
         - --v=2
         - --logtostderr=true
         - --config=/config/tempmanifestwatcher.json
-        - --syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive
         - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001518-2e736076
         name: temp-manifest-watcher
         volumeMounts:
@@ -36,6 +38,8 @@ spec:
           name: certs
         - mountPath: /config
           name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -55,3 +59,6 @@ spec:
       - configMap:
           name: temp-manifest-watcher
         name: config
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
