@@ -191,7 +191,7 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "sdn-peering-agent",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: configs.filter_empty([
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
@@ -201,7 +201,8 @@ if configs.estate == "prd-sdc" then {
                             "--certfile=" + configs.certFile,
                             "--bgpPasswordFile=/data/secrets/sambgppassword",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
-                        ]
+                            configs.sfdchosts_arg,
+                        ])
                         + (if configs.kingdom == "prd" || configs.estate == "frf-sam" then ["--controlEstate=" + configs.estate] else ["--controlEndpoint=" + configs.estate]),
                         livenessProbe: {
                             httpGet: {
