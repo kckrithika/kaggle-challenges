@@ -26,10 +26,6 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
-        - mountPath: /home/sfdc-casp/lib/warden/mysql
-          name: mysql-vol
-        - mountPath: /home/sfdc-casp/elasticsearch/data
-          name: es-vol
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -39,12 +35,6 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
-      - name: mysql-vol
-        hostPath:
-          path: /home/sfdc-casp/lib/warden/mysql
-      - name: es-vol
-        hostPath:
-          path: /home/sfdc-casp/elasticsearch/data
     - name: zipkin-func
       count: 1
       strategy:
@@ -58,7 +48,7 @@ system:
         ports:
         - name: zipkin
           containerPort: 8080
-          hostPort: 8081
+          hostPort: 8888
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
@@ -67,7 +57,7 @@ system:
         livenessProbe:
           httpGet:
             path: /
-            port: 8081
+            port: 8888
           initialDelaySeconds: 120
       volumes:
       - name: log-vol
@@ -88,5 +78,5 @@ system:
       function: zipkin-func
       slbEnabled: true
       ports:
-        - port: 80
+        - port: 8888
           targetport: 8080
