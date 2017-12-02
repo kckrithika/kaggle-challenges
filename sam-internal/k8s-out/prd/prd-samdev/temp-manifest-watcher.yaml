@@ -1,0 +1,64 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: temp-manifest-watcher
+  name: temp-manifest-watcher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: temp-manifest-watcher
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: temp-manifest-watcher
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/manifest-watcher
+        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --v=2
+        - --logtostderr=true
+        - --config=/config/tempmanifestwatcher.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001518-2e736076
+        name: temp-manifest-watcher
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /config
+          name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /manifests
+        name: sfdc-volume
+      - configMap:
+          name: temp-manifest-watcher
+        name: config
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
