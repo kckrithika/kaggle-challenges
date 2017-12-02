@@ -7,7 +7,7 @@ system:
         - pteyer@salesforce.com
     functions:
     - name: warden-func
-      count: 1
+      count: 3
       strategy:
         type: RollingUpdate
         rollingUpdate:
@@ -15,17 +15,11 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden
-        image: tnrp/casp/warden:0.0.1-0000182-f9433eac
+        image: tnrp/casp/warden:0.0.1-0000183-061cc14d
         ports:
         - name: warden
           containerPort: 8889
           hostPort: 18889
-        - name: es-es
-          containerPort: 9300
-          hostPort: 9300
-        - name: es-http
-          containerPort: 9200
-          hostPort: 9200
         env:
         - name: BRANCH
           value: "eng_production"
@@ -51,6 +45,37 @@ system:
       - name: es-vol
         hostPath:
           path: /home/sfdc-casp/elasticsearch/data
+    - name: zipkin-func
+      count: 1
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-zipkin
+        image: tnrp/casp/zipkin:0.0.1-0000187-dfe232c0
+        ports:
+        - name: zipkin
+          containerPort: 8080
+          hostPort: 8081
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/logs
+          name: log-vol
+        - mountPath: /home/sfdc-casp/elasticsearch/data
+          name: es-vol
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 120
+      volumes:
+      - name: log-vol
+        hostPath:
+          path: /home/sfdc-casp/logs
+      - name: es-vol
+        hostPath:
+          path: /home/sfdc-casp/elasticsearch/data
 
     loadbalancers:
     - lbname: warden
@@ -59,7 +84,9 @@ system:
       ports:
         - port: 80
           targetport: 8889
-        - port: 9200
-          targetport: 9200
-        - port: 9300
-          targetport: 9300
+    - lbname: zipkin
+      function: zipkin-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8080
