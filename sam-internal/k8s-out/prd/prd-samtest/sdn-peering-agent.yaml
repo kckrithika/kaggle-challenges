@@ -47,6 +47,7 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --controlEstate=prd-samtest
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000475-9a7fd185
         livenessProbe:
