@@ -23,7 +23,7 @@ spec:
         - -sdpEndpoint=http://localhost:39999
         - -watchdogFrequency=10s
         - -alertThreshold=300s
-        - -emailFrequency=h22h
+        - -emailFrequency=24h
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
