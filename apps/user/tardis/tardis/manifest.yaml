@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: tardis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20171130_f0d55b2c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20171127_72de472c
       env:
       - name: GIT_TOKEN
         valueFrom:
@@ -20,11 +20,35 @@ system:
           path: /
           port: 9090
           scheme: HTTPS
-
+  - name: dev
+    count: 2
+    containers:
+    - name: tardis-dev
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20171130_f0d55b2c
+      env:
+      - name: GIT_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: tardis-secret
+            key: git-token
+      ports:
+      - containerPort: 9091
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9091
+          scheme: HTTPS
   loadbalancers:
   - lbname: tardis
     function: default
     ports:
       - port: 9090
         targetport: 9090
+  - lbname: tardisdev
+    function: dev
+    slbenabled: true
+    ports:
+      - port: 9091
+        targetport: 9091
+        lbtype: dsr
 
