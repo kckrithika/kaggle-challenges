@@ -15,6 +15,9 @@ system:
       ports:
         - containerPort: 7020
         - containerPort: 15372
+      volumeMounts:
+      - mountPath: /home/eaas/logs
+        name: logvol
       livenessProbe:
         initialDelaySeconds: 90
         periodSeconds: 60
@@ -22,6 +25,10 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /data/sam/eaas/logs
   loadbalancers:
   - lbname: eaas-lb
     function: eaas
