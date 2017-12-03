@@ -37,10 +37,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:450fe84
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
-      - NAME: UBID_REMOVE_EXISTING
-        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: NONE
+        value: ALL
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
