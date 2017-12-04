@@ -23,7 +23,7 @@ system:
       - name: ENDPOINTS_BINDINGS_NAMES
         value: /s/ajnafunnel
       - name: SFDC_ENVIRONMENT
-        value: prod
+        value: sam
       livenessProbe:
         httpGet:
           path: /manage/health
