@@ -3,15 +3,19 @@ local node = |||
         - failure-domain.beta.kubernetes.io/zone
         - failure-domain.beta.kubernetes.io/region
         - kubernetes.io/hostname
+        - node.sam.sfdc.net/pool
+        - pool
+        - node.sam.sfdc.net/rack
+        - node.sam.sfdc.net/role
 |||;
 
 local storclass = |||
          ssd:
-           hostDir: "/mnt/lvssds"
-           mountDir: /local-ssds
+           hostDir: "/mnt/lvssd"
+           mountDir: /local-ssd
          hdd:
-           hostDir: "/mnt/lvhdds"
-           mountDir: /local-hdds
+           hostDir: "/mnt/lvhdd"
+           mountDir: /local-hdd
 |||;
 
 if configs.estate == "prd-sam_storage" then {
@@ -19,7 +23,7 @@ if configs.estate == "prd-sam_storage" then {
     apiVersion: "v1",
     metadata: {
       name: "local-volume-sfdc-config",
-      namespace: "sam-system",
+      namespace: "lvns",
     },
     data: {
       storageClassMap: storclass,
