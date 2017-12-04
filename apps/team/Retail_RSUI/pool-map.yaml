@@ -1,13 +1,14 @@
+version: v2
 apps:
-rsui:    # fuctional test env instance
-  - name: prd/prd-sp2-sam_retail_rsui
-    hostSubList:
-    - shared2-samminionretailrsui1-1-prd.eng.sfdc.net
-    - shared2-samminionretailrsui2-1-prd.eng.sfdc.net
-rsui-perf: # performance test env instance
-  - name: prd/prd-sp2-sam_retail_rsui
-    hostSubList:
-    - shared2-samminionretailrsui3-1-prd.eng.sfdc.net   
-mock-metadata-service:
-    - prd/prd-sp2-sam_retail_rsui
-    - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+  rsui:	    	# fuctional test env instance
+    - name: prd/prd-sp2-sam_retail_rsui
+      hostSubList:
+        - shared2-samminionretailrsui1-1-prd.eng.sfdc.net
+        - shared2-samminionretailrsui2-1-prd.eng.sfdc.net
+  rsui-perf: 
+# performance test env instance
+    - name: prd/prd-sp2-sam_retail_rsui
+      hostSubList:
+        - shared2-samminionretailrsui3-1-prd.eng.sfdc.net
+  mock-metadata-service:
+    - name: prd/prd-sp2-sam_retail_rsui
