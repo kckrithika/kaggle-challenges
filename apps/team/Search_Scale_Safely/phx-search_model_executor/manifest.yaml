@@ -6,7 +6,7 @@ system:
     count: 20
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:1.0
+      image: sfci/searchdev/smt-search-model-executor:1.0.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -18,6 +18,10 @@ system:
       env:
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
+      - name: ENDPOINTS_BINDINGS_NAMES
+        value: /s/ajnafunnel
+      - name: SFDC_ENVIRONMENT
+        value: prod
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -34,10 +38,10 @@ system:
       - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: sherpa-b
-      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      image: tnrp/sherpa:2-0000127-5d8bf4ab
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: prod
       ports:
       - containerPort: 7012
         name: sherpa-b-in
