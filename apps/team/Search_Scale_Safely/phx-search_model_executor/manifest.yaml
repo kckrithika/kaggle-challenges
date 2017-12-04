@@ -38,10 +38,10 @@ system:
       - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: sherpa-b
-      image: tnrp/sherpa:2-0000127-5d8bf4a
+      image: tnrp/sherpa:2-0000127-5d8bf4ab
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: prod
       ports:
       - containerPort: 7012
         name: sherpa-b-in
