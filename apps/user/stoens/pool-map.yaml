@@ -3,4 +3,5 @@ apps:
   - prd/prd-sam
  shipping-service-go:
   - prd/prd-sam
-
+ foo27-service:
+  - prd/prd-sam
