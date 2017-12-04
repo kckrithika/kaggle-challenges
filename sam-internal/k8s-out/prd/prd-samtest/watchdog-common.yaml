@@ -24,7 +24,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=72h
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001518-2e736076
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001540-4ca4dfcb
         name: watchdog
         resources:
           limits:

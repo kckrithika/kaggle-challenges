@@ -18,8 +18,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [pjoshi]
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20171129_154847.bf155aa.dirty.prahladjos-ltm",
         # [mgrass] - flight samcontrol-deployer with custom resource deployment support in prd-sam_storage.
         "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0001539-7c1c6790",
     },
@@ -39,7 +37,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001518-2e736076",
+            hypersam: "sam-0001540-4ca4dfcb",
             madkub: "1.0.0-0000053-f7dc2302",
             madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
