@@ -20,6 +20,8 @@ system:
         value: search-model-executor
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
+      - name: ENDPOINTS_BINDINGS_NAMES
+        value: /s/ajnafunnel
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -36,10 +38,10 @@ system:
       - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: sherpa-b
-      image: tnrp/sherpa:0.2.0-0000097-594964a3
+      image: tnrp/sherpa:2-0000118-83476125
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: prod
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
