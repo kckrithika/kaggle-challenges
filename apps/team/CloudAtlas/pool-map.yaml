@@ -94,7 +94,7 @@ apps:
       hostSubList:
       - shared0-samminionatlasdir2-1-iad.ops.sfdc.net
 
-  # frf DS Nodes
+  # FRF DS Nodes
   shared0-samminionatlasdir1-1-frf:
     - name: frf/frf-sam_cloudatlas_dir
       hostSubList:
@@ -107,3 +107,15 @@ apps:
     - name: frf/frf-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir2-1-frf.ops.sfdc.net
+
+  # FRF Proxy Nodes
+  shared0-samminionatlasfe1-1-frf:
+    - name: frf/frf-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe1-1-frf.ops.sfdc.net
+
+  # ORD DS Nodes
+  shared0-samminionatlasdir1-1-ord:
+    - name: ord/ord-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-ord.ops.sfdc.net
