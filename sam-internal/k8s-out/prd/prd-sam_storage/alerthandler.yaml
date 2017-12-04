@@ -10,7 +10,10 @@ spec:
         app: alerthandler
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/alerthandler:latest
+      - env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/alerthandler:latest
         name: alerthandler
         ports:
         - containerPort: 5001
@@ -20,9 +23,19 @@ spec:
           name: alert-publisher
           protocol: TCP
         volumeMounts:
-        - mountPath: /etc/kubernetes
-          name: kubernetes
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
       volumes:
       - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
           path: /etc/kubernetes
-        name: kubernetes
+        name: kubeconfig
