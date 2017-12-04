@@ -40,7 +40,7 @@ system:
       - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: sherpa-b
-      image: tnrp/sherpa:2-0000118-83476125
+      image: tnrp/sherpa:2-0000127-5d8bf4ab
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
