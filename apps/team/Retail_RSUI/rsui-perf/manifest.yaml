@@ -2,24 +2,24 @@ apiVersion: v1
  
 system:
   functions:
-  - name: rsui
+  - name: rsui-perf
     count: 1
     containers:
-    - name: rsui
+    - name: rsui-perf
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:latest
       ports:
       - containerPort: 8080
       - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /manage/health
-          port: 15372
+          path: /static/index.html
+          port: 8080
 
-    - name: sherpa-rsui
+    - name: sherpa-rsui-perf
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
-          value: CCP_Integration_Functional
+          value: CCP_Integration_Performance
       args:
         - --http2-in=9532
       ports:
@@ -38,11 +38,3 @@ system:
           initialDelaySeconds: 60
           periodSeconds: 120
 
-  loadbalancers:
-  - lbname: rsui-lb
-    function: rsui
-    ports:
-      - port: 8080
-        targetport: 8080
-      - port: 15372
-        targetport: 15372
