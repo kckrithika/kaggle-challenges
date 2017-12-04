@@ -6,7 +6,7 @@ system:
     count: 8
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.0-RC.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.0.1-RC-1
       ports:
       - name: service-port
         containerPort: 7020
@@ -22,6 +22,8 @@ system:
         value: 7012
       - name: ENDPOINTS_BINDINGS_NAMES
         value: /s/ajnafunnel
+      - name: SFDC_ENVIRONMENT
+        value: prod
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -41,7 +43,7 @@ system:
       image: tnrp/sherpa:2-0000118-83476125
       env:
       - name: SFDC_ENVIRONMENT
-        value: prod
+        value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
