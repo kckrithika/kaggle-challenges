@@ -44,6 +44,8 @@ if configs.estate == "prd-sdc" then {
                             "--maxretries=2",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--namespace=sam-system",
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--hostnameoverride=$(NODE_NAME)",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -53,6 +55,14 @@ if configs.estate == "prd-sdc" then {
                             configs.kube_config_volume_mount,
                          ]),
                          env: [
+                            {
+                               name: "NODE_NAME",
+                               valueFrom: {
+                                   fieldRef: {
+                                       fieldPath: "spec.nodeName",
+                                   },
+                               },
+                            },
                             configs.kube_config_env,
                         ],
                     },
