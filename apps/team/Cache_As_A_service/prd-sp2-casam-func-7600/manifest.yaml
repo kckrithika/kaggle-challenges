@@ -15,7 +15,9 @@ system:
     - name: csr212-bash
       image: tnrp/casam/coreapp:212_patch__14874576-0000067-1a24fddc
       command: 
-        - /usr/bin/bash
+        - "/usr/bin/bash"
+        - "-c"
+        - "tail -f /dev/null"
       livenessProbe:
         exec:
           command:
