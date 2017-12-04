@@ -14,13 +14,13 @@ system:
             name: tardis-secret
             key: git-token
       - name: SERVER_PORT
-        value: 9090
+        value: 10443
       ports:
-      - containerPort: 9090
+      - containerPort: 10443
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 10443
           scheme: HTTPS
   - name: dev
     count: 2
@@ -45,9 +45,11 @@ system:
   loadbalancers:
   - lbname: tardis
     function: default
+    slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 10443
+        targetport: 10443
+        lbtype: dsr
   - lbname: tardisdev
     function: dev
     slbenabled: true
