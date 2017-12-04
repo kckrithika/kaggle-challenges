@@ -24,6 +24,8 @@ local utils = import "util_functions.jsonnet";
             sfms_tag: "latest-0000082-2e9cb777",
             cephdaemon_tag: "jewel-0000047-859f50b7",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
+            lvprovisioner_tag: "v1.0-0000009-9eb12162",
+            sfnodeprep_tag: "base-0000010-23073e8d",
         },
 
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
@@ -32,6 +34,8 @@ local utils = import "util_functions.jsonnet";
             sfms_tag: "latest-0000082-2e9cb777",
             cephdaemon_tag: "jewel-0000047-859f50b7",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
+            lvprovisioner_tag: "v1.0-0000009-9eb12162",
+            sfnodeprep_tag: "base-0000010-23073e8d",
             },
 
         ### Release Phase 2 - TBD
@@ -40,6 +44,8 @@ local utils = import "util_functions.jsonnet";
             sfms_tag: "latest-0000082-2e9cb777",
             cephdaemon_tag: "jewel-0000047-859f50b7",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
+            lvprovisioner_tag: "v1.0-0000009-9eb12162",
+            sfnodeprep_tag: "base-0000010-23073e8d",
             },
 
         ### Release Phase 3 - Canary sites in Prod
@@ -89,4 +95,10 @@ local utils = import "util_functions.jsonnet";
 
     # The sfstore bookie image is maintained in the https://git.soma.salesforce.com/SFStorage/bookkeeper repo.
     sfstorebookie: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "bookie", $.per_phase[$.phase].sfstorebookie_tag),
+
+    # The sfstore lvprovisioner image is maintained in the https://git.soma.salesforce.com/SFStorage/lvprovisioner repo.
+    lvprovisioner: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "lvprovisioner", $.per_phase[$.phase].lvprovisioner_tag),
+
+    # The sfstore nodeprep image is maintained in the https://git.soma.salesforce.com/SFStorage/nodeprep repo.
+    sfnodeprep: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfnodeprep", $.per_phase[$.phase].sfnodeprep_tag),
 }
