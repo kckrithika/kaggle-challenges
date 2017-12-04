@@ -113,6 +113,10 @@ apps:
     - name: frf/frf-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-frf.ops.sfdc.net
+  shared0-samminionatlasfe2-1-frf:
+    - name: frf/frf-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe2-1-frf.ops.sfdc.net
 
   # ORD DS Nodes
   shared0-samminionatlasdir1-1-ord:
