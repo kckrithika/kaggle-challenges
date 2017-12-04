@@ -12,6 +12,18 @@ system:
         type: client
     
     containers:
+    - name: csr212-bash
+      image: tnrp/casam/coreapp:212_patch__14874576-0000067-1a24fddc
+      command: 
+        - bash
+      livenessProbe:
+        exec:
+          command:
+            - /usr/bin/true
+        initialDelaySeconds: 360
+        periodSeconds: 1
+      
+
     - name: csr212-sam
 
       image: tnrp/casam/coreapp:212_patch__14874576-0000067-1a24fddc
