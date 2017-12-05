@@ -12,7 +12,7 @@ system:
       - containerPort: 15372
       livenessProbe:
         httpGet:
-          path: /static/index.html
+          path: /manage/health
           port: 15372
 
     - name: sherpa-rsui-perf
