@@ -8,22 +8,20 @@ system:
         value: prod
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: METAMIND_API_DOMAIN
-        value: api.stg.einstein.ai
       - name: METAMIND_EMAIL
         value: ylin@salesforce.com
       - name: METAMIND_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
             key: private_key
-            name: chatbot-runtime-metamind-secrets-new
+            name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
       - name: METRICS_START_PUBLISHER
         value: 'true'
       - name: METRICS_LOG_ONLY_PUBLISHER
         value: 'false'
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-14dea27
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-dffe285
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -59,18 +57,16 @@ system:
         value: prod
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: METAMIND_API_DOMAIN
-        value: api.stg.einstein.ai
       - name: METAMIND_EMAIL
         value: ylin@salesforce.com
       - name: METAMIND_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
             key: private_key
-            name: chatbot-runtime-metamind-secrets-new
+            name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-14dea27
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-dffe285
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -106,18 +102,16 @@ system:
         value: prod
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: METAMIND_API_DOMAIN
-        value: api.stg.einstein.ai
       - name: METAMIND_EMAIL
         value: ylin@salesforce.com
       - name: METAMIND_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
             key: private_key
-            name: chatbot-runtime-metamind-secrets-new
+            name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: memory
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-14dea27
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-dffe285
       livenessProbe:
         httpGet:
           path: /manage/health
