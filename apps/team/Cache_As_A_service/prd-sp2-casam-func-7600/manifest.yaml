@@ -12,20 +12,6 @@ system:
         type: client
     
     containers:
-    - name: csr212-bash
-      image: tnrp/casam/coreapp:212_patch__14874576-0000067-1a24fddc
-      command: 
-        - "/usr/bin/bash"
-        - "-c"
-        - "tail -f /dev/null"
-      livenessProbe:
-        exec:
-          command:
-            - /usr/bin/true
-        initialDelaySeconds: 360
-        periodSeconds: 1
-      
-
     - name: csr212-sam
 
       image: tnrp/casam/coreapp:212_patch__14874576-0000067-1a24fddc
@@ -106,6 +92,23 @@ system:
       rollingUpdate:
         maxSurge: 200%
         maxUnavailable: 0            
+
+  - name: csr212b
+    count: 1
+    containers:
+    - name: csr212b-bash
+      image: tnrp/casam/coreapp:212_patch__14874576-0000067-1a24fddc
+      command: 
+        - "/usr/bin/bash"
+        - "-c"
+        - "tail -f /dev/null"
+      livenessProbe:
+        exec:
+          command:
+            - /usr/bin/true
+        initialDelaySeconds: 360
+        periodSeconds: 1
+      
 
   loadbalancers:
   - lbname: csr212lb
