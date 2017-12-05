@@ -7,7 +7,7 @@ system:
   functions:
   - name: samtestsecretfn
     count: 3
-    progressDeadlineSeconds: 120
+    progressDeadlineSeconds: 600
     containers:
     - name: samtestsecretapp
       image: tnrp/sam/hypersam:sam-0000701-487f2675
