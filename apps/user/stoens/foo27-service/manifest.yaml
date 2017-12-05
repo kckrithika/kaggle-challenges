@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: foo27-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/stoens/foo27:0.0.2-snapshot
+      image: stoens/foo27:0.0.2-snapshot
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
