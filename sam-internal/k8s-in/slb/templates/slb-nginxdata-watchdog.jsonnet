@@ -45,7 +45,7 @@ if configs.estate == "prd-sdc" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--namespace=sam-system",
                             "--metricsEndpoint=" + configs.funnelVIP,
-                            "--hostnameoverride=$(NODE_NAME)",
+                            "--hostname=$(NODE_NAME)",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
