@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: foo27-service
-      image: tnrp/sherpa:2-0000118-83476125
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/stoens/weather:1 
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
