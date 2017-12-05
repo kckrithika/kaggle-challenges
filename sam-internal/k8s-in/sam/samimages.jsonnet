@@ -37,7 +37,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001540-4ca4dfcb",
+            hypersam: "sam-0001544-436776df",
             madkub: "1.0.0-0000053-f7dc2302",
             madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
