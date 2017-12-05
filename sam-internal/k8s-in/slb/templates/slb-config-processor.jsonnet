@@ -81,6 +81,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--shouldSkipServiceRecords=true",
                             "--shouldNotDeleteAllFiles=true",
                             "--log_dir=" + slbconfigs.logsDir,
+                            "--skipFilesWithSuffix=slb.block",
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
