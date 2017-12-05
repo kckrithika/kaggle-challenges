@@ -116,7 +116,7 @@ local utils = import "util_functions.jsonnet";
 
         k4aInitContainerImage: (
             if (estate == "prd-samtest" || estate == "prd-samdev") then
-                "sam-0001540-4ca4dfcb"
+                "sam-0001544-436776df"
             else if (kingdom == "prd") then
                 "sam-0001509-89b08315"
         ),
