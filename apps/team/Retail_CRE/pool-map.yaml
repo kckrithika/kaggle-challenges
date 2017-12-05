@@ -1,4 +1,4 @@
 apps:
-  prd-cre-stream-processing:
+  prd.CCP_Shared_Dev.cre-stream-processing:
   - prd/prd-sp2-sam_retail_cre
 
