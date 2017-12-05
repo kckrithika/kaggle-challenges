@@ -76,7 +76,7 @@ system:
           targetport: 8889
     - lbname: zipkin
       function: zipkin-func
-      slbEnabled: true
+      nodeExposed: true
       ports:
         - port: 80
           targetport: 8887
