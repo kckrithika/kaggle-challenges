@@ -10,7 +10,7 @@ system:
   - containers:
     - env:
       - name: COMPILER_ENDPOINT_URI
-        value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net/iotrm-ptest/services/matrix-compiler-server
+        value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net/iotrm-sarthur/services/matrix-compiler-server
       - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
         value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
@@ -19,7 +19,7 @@ system:
         value: ALL
       - name: PHOENIX_KEYTABPATH
         value: /home/controlplane/controlplane-keytab/controlplane.keytab
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:809ab80
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:73baad5
       livenessProbe:
         httpGet:
           path: /manage/info
