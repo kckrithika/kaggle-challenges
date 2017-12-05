@@ -37,4 +37,11 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
-
+  loadbalancers:
+  - lbname: rsui-lb-perf
+    function: rsui-perf
+    ports:
+      - port: 8080
+        targetport: 8080
+      - port: 15372
+        targetport: 15372
