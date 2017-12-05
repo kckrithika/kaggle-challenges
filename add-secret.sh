@@ -44,7 +44,7 @@ case $i in
     ;;
     --from-file=*|-f=*)
     FROM_FILE[index]="$FROM_FILE_ARG${i#*=}"
-    ((index++))	
+    ((++index))
     shift # past argument=value
     ;;
     --default)
@@ -73,7 +73,7 @@ HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001477-36
 docker run \
   --rm \
   -it \
-  -u 0 \
+  -u $(id -u):$(id -g) \
   -v ${PWD}:/repo \
   -v /:/hostroot \
   ${HYPERSAM} \
