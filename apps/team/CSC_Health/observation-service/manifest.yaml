@@ -53,6 +53,8 @@ system:
         value: true
       - name: OBS_REPORTCOLLECTOR_MTLSENABLED
         value: false
+      - name: OBS_REPORTCOLLECTOR_WHITELIST
+        value: net,sandman
       - name: OBS_REPORTCOLLECTORALTERNATE_ENABLED
         value: true
       - name: OBS_REPORTCOLLECTORALTERNATE_MTLSENABLED
@@ -61,7 +63,7 @@ system:
         value: /var/secrets/grok-client.crt.pem
       - name: OBS_REPORTCOLLECTORALTERNATE_KEYPATH
         value: /var/secrets/grok-client.key
-      - name: OBS_REPORTCOLLECTOR_WHITELIST
+      - name: OBS_REPORTCOLLECTORALTERNATE_WHITELIST
         value: net,sandman
       - name: OBS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
