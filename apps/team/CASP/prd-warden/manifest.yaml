@@ -46,9 +46,12 @@ system:
       - name: prd-zipkin
         image: tnrp/casp/zipkin:0.0.1-0000188-f036b4ee
         ports:
-        - name: zipkin
+        - name: nginx
           containerPort: 8887
           hostPort: 8887
+        - name: zipkin
+          containerPort: 9411
+          hostPort: 9411
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
@@ -78,5 +81,13 @@ system:
       function: zipkin-func
       nodeExposed: true
       ports:
-        - port: 8887
+        - port: 9410
+          targetport: 9411
+        - port: 8886
+          targetport: 8887
+    - lbname: zipkinlb
+      function: zipkin-func
+      slbEnabled: true
+      ports:
+        - port: 80
           targetport: 8887
