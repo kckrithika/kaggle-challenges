@@ -29,7 +29,7 @@ system:
           initialDelaySeconds: 120
 
     loadbalancers:
-    - lbname: zipkin
+    - lbname: zipkin-node
       function: zipkin-func
       nodeExposed: true
       ports:
@@ -37,7 +37,7 @@ system:
           targetport: 9411
         - port: 8886
           targetport: 8887
-    - lbname: zipkinlb
+    - lbname: zipkin
       function: zipkin-func
       slbEnabled: true
       ports:
