@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: foo27-service
-      image: stoens/foo27:0.0.2-snapshot
+      image: tnrp/sherpa:2-0000118-83476125
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
