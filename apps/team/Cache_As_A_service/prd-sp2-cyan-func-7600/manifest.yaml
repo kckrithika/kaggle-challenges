@@ -16,7 +16,7 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171129
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171204
 
       env:
         - name: CYAN_LIVE_VERSION
@@ -29,13 +29,10 @@ system:
           value: /certs/server
 
       livenessProbe:
-        httpGet:
-          scheme: HTTPS
-          path: /ping.jsp
-          port: 12050
-        initialDelaySeconds: 120
-        periodSeconds: 1
-        failureThreshold: 10
+        exec:
+          command:
+            - echo
+            - HEALTHY
 
       readinessProbe:
         httpGet:
@@ -50,6 +47,7 @@ system:
         # Actually used by the container
         - containerPort: 12050
         - containerPort: 12051
+        - containerPort: 12055
 
       volumeMounts:
         - name: cert
@@ -70,3 +68,5 @@ system:
       targetport: 12050
     - port: 12053
       targetport: 12051
+    - port: 12056
+      targetport: 12055
