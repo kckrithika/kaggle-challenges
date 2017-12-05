@@ -44,11 +44,11 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-zipkin
-        image: tnrp/casp/zipkin:0.0.1-0000187-dfe232c0
+        image: tnrp/casp/zipkin:0.0.1-0000188-f036b4ee
         ports:
         - name: zipkin
-          containerPort: 8080
-          hostPort: 8888
+          containerPort: 8887
+          hostPort: 8887
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
@@ -56,8 +56,8 @@ system:
           name: es-vol
         livenessProbe:
           httpGet:
-            path: /
-            port: 8888
+            path: /zipkin
+            port: 8887
           initialDelaySeconds: 120
       volumes:
       - name: log-vol
@@ -78,5 +78,5 @@ system:
       function: zipkin-func
       slbEnabled: true
       ports:
-        - port: 8888
-          targetport: 8080
+        - port: 80
+          targetport: 8887
