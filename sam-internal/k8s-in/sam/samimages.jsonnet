@@ -17,9 +17,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-
-        # [mgrass] - flight samcontrol-deployer with custom resource deployment support in prd-sam_storage.
-        "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0001539-7c1c6790",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -44,7 +41,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001518-2e736076",
+            hypersam: "sam-0001544-436776df",
             madkub: "1.0.0-0000053-f7dc2302",
             madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
