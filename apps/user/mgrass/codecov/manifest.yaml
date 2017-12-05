@@ -41,7 +41,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 10
 
-    lbname: postgres-headless-lb
+    lbname: postgres
 
     # Give containers a bit of time to shut down, as they might be syncing
     # state into the PV on shutdown
@@ -81,7 +81,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 10
 
-    lbname: redis-headless-lb
+    lbname: redis
 
     # Give containers a bit of time to shut down, as they might be syncing
     # state into the PV on shutdown
@@ -122,7 +122,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 10
 
-    lbname: monitor-nodeport-lb
+    lbname: codecov-monitor-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
     # state into the PV on shutdown
@@ -132,6 +132,16 @@ system:
     - name: datavol
       storageClassName: standard
       storageSizeRequest: 100Gi
+
+    volumes:
+    - name: certs
+      maddogCert:
+        type: server
+        lbnames:
+        - codecov-monitor
+    - name: codecov-config
+      k4aSecret:
+        secretName: codecov
 
   - name: core
     count: 1
@@ -149,6 +159,12 @@ system:
         readOnly: true
       - name: datavol
         mountPath: /archive
+      livenessProbe:
+        tcpSocket:
+          port: 5000
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 10
     # web container
     - name: web
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/codecov/enterprise:v4.3.9-1
@@ -164,6 +180,12 @@ system:
         mountPath: /archive
       ports:
       - containerPort: 5000
+      livenessProbe:
+        tcpSocket:
+          port: 5000
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 10
     # nginx container
     - name: nginx
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:stable-alpine
@@ -190,12 +212,12 @@ system:
 
       livenessProbe:
         tcpSocket:
-          port: 5000
+          port: 80
         failureThreshold: 3
         initialDelaySeconds: 5
         periodSeconds: 10
 
-    lbname: codecov
+    lbname: codecov-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
     # state into the PV on shutdown
@@ -217,19 +239,20 @@ system:
         secretName: codecov
 
   loadbalancers:
-  - lbname: postgres-headless-lb
-    function: postgres
-    slbEnabled: false
-    ports:
-      - port: 5432
-        targetport: 5432
-  - lbname: redis-headless-lb
-    function: redis
-    slbEnabled: false
-    ports:
-      - port: 6379
-        targetport: 6379
-  - lbname: monitor-lb
+  # TODO: not sure if the headless-lb that gets created for a stateful-set type will use the correct container port.
+  # - lbname: postgres
+  #   function: postgres
+  #   slbEnabled: false
+  #   ports:
+  #     - port: 5432
+  #       targetport: 5432
+  # - lbname: redis
+  #   function: redis
+  #   slbEnabled: false
+  #   ports:
+  #     - port: 6379
+  #       targetport: 6379
+  - lbname: codecov-monitor
     function: monitor
     slbEnabled: true
     ports:
