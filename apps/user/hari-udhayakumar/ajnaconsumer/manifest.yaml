@@ -10,7 +10,7 @@ system:
         type: client
     containers:
     - name: ajnaconsumer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171205_190936.9e2e7894.dirty.hariudhayak-ltm /sam/ajnaconsumer
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171205_190936.9e2e7894.dirty.hariudhayak-ltm
       command:
         - /sam/ajnaconsumer
         - -v=3
