@@ -3,9 +3,9 @@ kind: CustomerStoragePool
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
-  name: gater-hdd-pool
+  name: gater-hdd-pool-2
   namespace: gater-apps
 spec:
   clusterNamespace: ceph-test
-  size: 750Gi
+  size: 500Gi
   storageTier: hdd

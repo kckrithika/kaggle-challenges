@@ -3,9 +3,9 @@ kind: CustomerStoragePool
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
-  name: gater-hdd-pool
-  namespace: gater-apps
+  name: gater-hdd-pool-2
+  namespace: user-jisaac-gater-apps
 spec:
-  clusterNamespace: ceph-test
-  size: 750Gi
+  clusterNamespace: legostore
+  size: 500Gi
   storageTier: hdd
