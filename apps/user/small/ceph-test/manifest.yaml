@@ -15,6 +15,7 @@ system:
   loadbalancers:
   - lbname: cephtestlb
     function: default
+    slbenabled: true
     ports:
       - port: 9090
         targetport: 9090
