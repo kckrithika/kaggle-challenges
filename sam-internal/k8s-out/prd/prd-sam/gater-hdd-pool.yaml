@@ -7,5 +7,5 @@ metadata:
   namespace: user-jisaac-gater-apps
 spec:
   clusterNamespace: legostore
-  size: 500Gi
+  size: 750Gi
   storageTier: hdd

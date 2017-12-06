@@ -7,7 +7,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
-        "name": "gater-hdd-pool",
+        "name": "gater-hdd-pool-2",
         "namespace": appNamespace,
         "annotations": {
             "manifestctl.sam.data.sfdc.net/swagger": "disable",
@@ -15,7 +15,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     },
     "spec": {
         "clusterNamespace": clusterNamespace,
-        "size": "750Gi",
+        "size": "500Gi",
         "storageTier": "hdd" ,
     }
 } else "SKIP"
