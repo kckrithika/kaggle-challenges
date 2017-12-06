@@ -16,14 +16,14 @@ system:
         exec:
             command:
             - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 31
       volumeMounts:
       - mountPath: /certs
         name: certs
     volumes:
     - name: certs
       hostPath:
-        path: /home/sfdc-retail/keystores     
+        path: /home/sfdc-retail/keystores
   loadbalancers:
   - lbname: cre-sp-prd-lb
     function: cre-stream-processing
