@@ -1,13 +1,13 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "disable" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
       name: "lv-os-provisioner",
-      namespace: "lvns",
+      namespace: "storage-foundation",
     },
     spec: {
       template: {
