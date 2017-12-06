@@ -5,7 +5,7 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: prd.CCP_Integration_Functional.cre-api
+  - name: cre-api-prd-ccp-integration-functional
     count: 2
     containers:
     - name: cre-api-prd-ccp-integration-functional
