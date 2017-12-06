@@ -26,13 +26,23 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
-                        ]),
+                        ])
+                        + (
+                            if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                                [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
+                            else []
+                        ),
                     },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.config_volume("watchdog"),
-                ]),
+                ])
+                + (
+                    if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                        [configs.cert_volume, configs.maddog_cert_volume]
+                    else []
+                ),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {

@@ -36,7 +36,12 @@ local samimages = import "samimages.jsonnet";
                                 name: "procfs-volume",
                              },
                              configs.config_volume_mount,
-                        ]),
+                        ])
+                        + (
+                            if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                                [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
+                            else []
+                        ),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -48,7 +53,12 @@ local samimages = import "samimages.jsonnet";
                       name: "procfs-volume",
                    },
                    configs.config_volume("watchdog"),
-                ]),
+                ])
+                + (
+                    if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                        [configs.cert_volume, configs.maddog_cert_volume]
+                    else []
+                ),
             },
             metadata: {
                 labels: {
