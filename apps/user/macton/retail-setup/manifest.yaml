@@ -11,8 +11,8 @@ system:
         - retailsetuplb
     containers:
     - name: retailsetup
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712011002
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712011145
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712011145
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-2017121611
       env:
       - name: PKI_CA_DIR
         value: /servercerts
