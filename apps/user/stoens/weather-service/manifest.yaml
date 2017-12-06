@@ -2,11 +2,11 @@ apiVersion: v1
 
 system:
   functions:
-  - name: foo27-service
+  - name: weather-service
     count: 1
     containers:
-    - name: foo27-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/stoens/weather:1 
+    - name: weather-service
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/stoens/weather:2
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
