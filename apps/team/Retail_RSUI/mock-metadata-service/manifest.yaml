@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: mock-metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jtuley/mock-metadata-service:0.0.4-2017-10-20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jtuley/mock-metadata-service:0.0.5-2017-12-6
       ports:
       - containerPort: 7020
       - containerPort: 7021
@@ -24,7 +24,7 @@ system:
         periodSeconds: 30
         timeoutSeconds: 30
         httpGet:
-          path: /manage/health
+          path: /health
           port: 7022
 
   loadbalancers:
