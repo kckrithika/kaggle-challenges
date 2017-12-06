@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
+local portconfigs = import "slbports.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     apiVersion: "extensions/v1beta1",
@@ -54,7 +55,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--kneConfigDir=" + slbconfigs.kneConfigDir,
                             "--kneDomainName=" + slbconfigs.kneDomainName,
                             "--slbConfigInAnnotations=true",
-                        ],
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                              "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
+                            ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -69,7 +75,21 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         securityContext: {
                             privileged: true,
                         },
-                    },
+                    }
+                    + (
+                        if configs.estate == "prd-sdc" then {
+                          livenessProbe: {
+                            httpGet: {
+                               path: "/liveness-probe",
+                               port: portconfigs.slb.slbConfigProcessorLivenessProbePort,
+                            },
+                            initialDelaySeconds: 5,
+                            timeoutSeconds: 5,
+                            periodSeconds: 20,
+                          },
+                        }
+                        else {}
+                    ),
                     {
                         name: "slb-cleanup-config-processor",
                         image: slbimages.hypersdn,
