@@ -19,4 +19,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: local-volume-sfdc-config
-  namespace: lvns
+  namespace: storage-foundation

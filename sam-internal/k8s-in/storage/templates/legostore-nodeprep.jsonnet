@@ -7,7 +7,7 @@ if configs.estate == "prd-sam_storage" then {
     kind: "DaemonSet",
     metadata: {
       name: "legostore-nodeprep",
-      namespace: "lvns",
+      namespace: "storage-foundation",
     },
     spec: {
       template: {

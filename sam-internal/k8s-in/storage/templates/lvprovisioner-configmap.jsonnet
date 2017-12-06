@@ -23,7 +23,7 @@ if configs.estate == "prd-sam_storage" then {
     apiVersion: "v1",
     metadata: {
       name: "local-volume-sfdc-config",
-      namespace: "lvns",
+      namespace: "storage-foundation",
     },
     data: {
       storageClassMap: storclass,

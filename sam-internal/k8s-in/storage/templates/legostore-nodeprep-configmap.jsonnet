@@ -21,7 +21,7 @@ if configs.estate == "prd-sam_storage" then {
     kind: "ConfigMap",
     metadata: {
       name: "legostore-nodeprep-config",
-      namespace: "lvns",
+      namespace: "storage-foundation",
     },
     data: {
       discoveryConfig: discoveryCfg,

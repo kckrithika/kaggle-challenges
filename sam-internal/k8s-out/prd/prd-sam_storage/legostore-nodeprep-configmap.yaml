@@ -19,4 +19,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: legostore-nodeprep-config
-  namespace: lvns
+  namespace: storage-foundation
