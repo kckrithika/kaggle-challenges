@@ -33,10 +33,18 @@ spec:
         - --kneConfigDir=/var/slb/testkneconfigs
         - --kneDomainName=prd-sdc.slb.sfdc.net
         - --slbConfigInAnnotations=true
+        - --livenessProbePort=9876
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000491-0729052c
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9876
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
         name: slb-config-processor
         securityContext:
           privileged: true
