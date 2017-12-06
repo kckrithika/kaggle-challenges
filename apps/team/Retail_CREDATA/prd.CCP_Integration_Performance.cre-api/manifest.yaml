@@ -49,7 +49,7 @@ system:
         path: /home/sfdc-retail/keystores
   loadbalancers:
   - lbname: cre-api-prd-ccp-integration-performance-lb
-    function: cre-api
+    function: cre-api-prd-ccp-integration-performance
     nodeExposed: true
     ports:
       - port: 8083
