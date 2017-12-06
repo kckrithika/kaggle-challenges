@@ -21,6 +21,28 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+    - name: sherpa-rsui
+      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: CCP_Integration_Performance
+      args:
+        - --http2-in=9532
+      ports:
+        - containerPort: 9532
+        - containerPort: 7080
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
     volumes:
     - name: certs
       hostPath:
