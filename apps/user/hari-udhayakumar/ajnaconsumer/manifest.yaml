@@ -1,0 +1,27 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: ajnaconsumer
+    count: 1
+    volumes:
+    - name: myclientcert
+      maddogCert:
+        type: client
+    containers:
+    - name: ajnaconsumer
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171205_190936.9e2e7894.dirty.hariudhayak-ltm /sam/ajnaconsumer
+      command:
+        - /sam/ajnaconsumer
+        - -v=3
+        - -caFile=/clientcert/client/certificates/client.pem
+      volumeMounts:
+      - name: myclientcert
+        mountPath: /clientcert
+      livenessProbe:
+        exec:
+          command:
+          - bash
+          - ls
+        initialDelaySeconds: 5
+        periodSeconds: 5
