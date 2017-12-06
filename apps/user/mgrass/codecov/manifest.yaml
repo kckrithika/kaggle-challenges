@@ -11,7 +11,7 @@ system:
     type: stateful-set
     containers:
     - name: postgres
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/postgres:9.3-sfdc
 
       env:
       # Set PGDATA to a subdir, since postgres doesn't like being at a mountpoint.
@@ -41,7 +41,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 10
 
-    lbname: postgres
+    lbname: postgres-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
     # state into the PV on shutdown
@@ -81,7 +81,7 @@ system:
         initialDelaySeconds: 5
         periodSeconds: 10
 
-    lbname: redis
+    lbname: redis-headless-lb
 
     # Give containers a bit of time to shut down, as they might be syncing
     # state into the PV on shutdown
@@ -174,7 +174,6 @@ system:
       volumeMounts:
       - name: codecov-config
         mountPath: /config
-        subPath: codecov.yml
         readOnly: true
       - name: datavol
         mountPath: /archive
@@ -191,8 +190,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:stable-alpine
       volumeMounts:
       - name: codecov-config
-        mountPath: /etc/nginx/nginx.conf
-        subPath: nginx.conf
+        mountPath: /etc/nginx
         readOnly: true
       - name: datavol
         mountPath: /archive
@@ -239,19 +237,18 @@ system:
         secretName: codecov
 
   loadbalancers:
-  # TODO: not sure if the headless-lb that gets created for a stateful-set type will use the correct container port.
-  # - lbname: postgres
-  #   function: postgres
-  #   slbEnabled: false
-  #   ports:
-  #     - port: 5432
-  #       targetport: 5432
-  # - lbname: redis
-  #   function: redis
-  #   slbEnabled: false
-  #   ports:
-  #     - port: 6379
-  #       targetport: 6379
+  - lbname: postgres
+    function: postgres
+    slbEnabled: false
+    ports:
+      - port: 5432
+        targetport: 5432
+  - lbname: redis
+    function: redis
+    slbEnabled: false
+    ports:
+      - port: 6379
+        targetport: 6379
   - lbname: codecov-monitor
     function: monitor
     slbEnabled: true
