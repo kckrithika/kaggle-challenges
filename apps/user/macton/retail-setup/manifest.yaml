@@ -12,7 +12,7 @@ system:
     containers:
     - name: retailsetup
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712011145
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-2017121611
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712061332
       env:
       - name: PKI_CA_DIR
         value: /servercerts
@@ -25,7 +25,7 @@ system:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 18872
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
