@@ -49,7 +49,7 @@ system:
         path: /home/sfdc-retail/keystores
   loadbalancers:
   - lbname: cre-api-prd-ccp-shared-dev-lb
-    function: cre-api
+    function: cre-api-prd-ccp-shared-dev
     nodeExposed: true
     ports:
       - port: 8081
