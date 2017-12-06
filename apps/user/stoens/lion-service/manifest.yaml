@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: lion-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/stoens/lion:1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/stoens/lion:2
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
