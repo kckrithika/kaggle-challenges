@@ -20,8 +20,6 @@ system:
         value: 7012
       - name: ENDPOINTS_BINDINGS_NAMES
         value: /s/ajnafunnel
-      - name: SFDC_ENVIRONMENT
-        value: prod
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -41,7 +39,7 @@ system:
       image: sfci/servicelibs/sherpa:2.0.13
       env:
       - name: SFDC_ENVIRONMENT
-        value: prod
+        value: sam
       ports:
       - containerPort: 7012
         name: sherpa-b-in
