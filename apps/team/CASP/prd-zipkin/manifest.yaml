@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-zipkin
-        image: tnrp/casp/zipkin:0.0.1-0000191-f410231f
+        image: tnrp/casp/zipkin:0.0.1-0000195-122ac2df
         ports:
         - name: nginx
           containerPort: 8889
