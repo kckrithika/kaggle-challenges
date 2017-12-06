@@ -5,7 +5,7 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-api
+  - name: prd.CCP_Shared_Dev.cre-api
     count: 2
     containers:
     - name: cre-api-prd-ccp-shared-dev
