@@ -25,7 +25,7 @@ system:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 18872
+          port: 15272
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
