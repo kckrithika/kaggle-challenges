@@ -17,3 +17,5 @@ apps:
  search-model:
   - prd/prd-sam
 
+ perf-client:
+  - prd/prd-sam
