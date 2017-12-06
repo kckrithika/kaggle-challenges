@@ -21,7 +21,6 @@ system:
       livenessProbe:
         exec:
           command:
-          - bash
           - ls
         initialDelaySeconds: 5
         periodSeconds: 5
