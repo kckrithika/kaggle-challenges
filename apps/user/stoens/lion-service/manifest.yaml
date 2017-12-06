@@ -1,0 +1,20 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: lion-service
+    count: 1
+    containers:
+    - name: lion-service
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/stoens/lion:1
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 60
+        httpGet:
+          path: /manage/health
+          port: 15372
