@@ -15,7 +15,7 @@ system:
     - name: csr-sam
 
 #210#      image: tnrp/casam/coreapp:210.12-0000073-8b9c3e27
-      image: tnrp/casam/coreapp:212_patch__14933562-0000081-b11d68c7
+      image: tnrp/casam/coreapp:212.0.2-0000082-336c7c94
 
       env:
         - name: DEPLOYMENT
@@ -162,6 +162,9 @@ system:
           value: mist30b212utf
         - name: UNLOCK_DWARF
           value: y
+        # Can increment value below to force restart of sequencer container
+        - name: RESTART
+          value: 1
 
       livenessProbe:
         httpGet:
