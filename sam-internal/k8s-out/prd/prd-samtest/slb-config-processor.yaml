@@ -33,7 +33,7 @@ spec:
         - --kneConfigDir=/var/slb/testkneconfigs
         - --kneDomainName=
         - --slbConfigInAnnotations=true
-        - --livenessProbePort=9876
+        - null
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
