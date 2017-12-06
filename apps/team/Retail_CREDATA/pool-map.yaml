@@ -1,3 +1,7 @@
 apps:
   prd.CCP_Shared_Dev.cre-api:
   - prd/prd-sp2-sam_retail_credata
+  prd.CCP_Integration_Functional.cre-api:
+  - prd/prd-sp2-sam_retail_credata
+  prd.CCP_Integration_Performance.cre-api:
+  - prd/prd-sp2-sam_retail_credata

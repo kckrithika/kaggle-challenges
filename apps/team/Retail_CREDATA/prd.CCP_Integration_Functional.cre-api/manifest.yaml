@@ -5,10 +5,10 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-api-prd-ccp-shared-dev
+  - name: cre-api-prd-ccp-integration-functional
     count: 2
     containers:
-    - name: cre-api-prd-ccp-shared-dev
+    - name: cre-api-prd-ccp-integration-functional
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:latest
       ports:
       - containerPort: 8080
@@ -25,7 +25,7 @@ system:
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
-          value: CCP_Shared_Dev
+          value: CCP_Integration_Functional
       args:
         - --http2-in=9532
       ports:
@@ -48,9 +48,9 @@ system:
       hostPath:
         path: /home/sfdc-retail/keystores
   loadbalancers:
-  - lbname: cre-api-prd-ccp-shared-dev-lb
-    function: cre-api-prd-ccp-shared-dev
+  - lbname: cre-api-prd-ccp-integration-functional-lb
+    function: cre-api-prd-ccp-integration-functional
     nodeExposed: true
     ports:
-      - port: 8081
+      - port: 8082
         targetport: 8080
