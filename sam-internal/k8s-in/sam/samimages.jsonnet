@@ -34,7 +34,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001544-436776df",
+            hypersam: "sam-0001548-81d3b9bd",
             madkub: "1.0.0-0000053-f7dc2302",
             madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
@@ -113,7 +113,7 @@ local utils = import "util_functions.jsonnet";
 
         k4aInitContainerImage: (
             if (estate == "prd-samtest" || estate == "prd-samdev") then
-                "sam-0001544-436776df"
+                "sam-0001548-81d3b9bd"
             else if (kingdom == "prd") then
                 "sam-0001509-89b08315"
         ),
