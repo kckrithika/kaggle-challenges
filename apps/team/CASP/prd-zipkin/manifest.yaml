@@ -14,18 +14,18 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-zipkin
-        image: tnrp/casp/zipkin:0.0.1-0000195-122ac2df
+        image: tnrp/casp/zipkin:0.0.1-0000199-ffd5986f
         ports:
         - name: nginx
-          containerPort: 8889
-          hostPort: 8889
+          containerPort: 8887
+          hostPort: 8887
         - name: zipkin
           containerPort: 9411
           hostPort: 9411
         livenessProbe:
           httpGet:
             path: /zipkin
-            port: 8889
+            port: 8887
           initialDelaySeconds: 120
 
     loadbalancers:
@@ -36,10 +36,10 @@ system:
         - port: 9410
           targetport: 9411
         - port: 8886
-          targetport: 8889
+          targetport: 8887
     - lbname: zipkin
       function: zipkin-func
       slbEnabled: true
       ports:
         - port: 80
-          targetport: 8889
+          targetport: 8887
