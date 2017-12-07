@@ -12,7 +12,7 @@ system:
     - name: samreport
       image: tnrp/sam/hypersam:sam-0001505-870d3449
       command: ["/sam/sam-daily-report"]
-      args: ["-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password", "-smtp-server", "rd1-mta1-4-sfm.ops.sfdc.net:25", "-sender", "thargrove@salesforce.com", "-default-recipient", "sam@salesforce.com", "-email-hour", "12"]
+      args: ["-disableargus=true", "-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password", "-smtp-server", "rd1-mta1-4-sfm.ops.sfdc.net:25", "-sender", "thargrove@salesforce.com", "-default-recipient", "sam@salesforce.com", "-email-hour", "12"]
       ports:
       - containerPort: 64122
       livenessProbe:
