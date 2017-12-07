@@ -12,7 +12,7 @@ data:
       "enableMaddog": true,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,
-      "k4aInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001509-89b08315",
+      "k4aInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001548-81d3b9bd",
       "k8sapiserver": "",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
