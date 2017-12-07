@@ -18,9 +18,9 @@ system:
       - containerPort: 15372
       env:
       - name: MDS_HOST
-        value: shared0-samcompute1-1-prd.eng.sfdc.net
+        value: mock-metadata-servicelb.retail-rsui-sp2.prd-sam.prd.slb.sfdc.net
       - name: MDS_PORT
-        value: 36184
+        value: 32093
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
@@ -60,6 +60,7 @@ system:
   loadbalancers:
   - lbname: rsui-lb
     function: rsui
+    slbEnabled: true
     ports:
       - port: 8080
         targetport: 8080
