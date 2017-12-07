@@ -23,7 +23,7 @@ system:
         value: 'true'
       - name: METRICS_LOG_ONLY_PUBLISHER
         value: 'false'
-      image: sfci/chatbots/chatbot-runtime:210.0-744c457
+      image: sfci/chatbots/chatbot-runtime:210.0-f4a4fcd
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -70,7 +70,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: none
-      image: sfci/chatbots/chatbot-runtime:210.0-744c457
+      image: sfci/chatbots/chatbot-runtime:210.0-f4a4fcd
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -117,7 +117,7 @@ system:
             name: chatbot-runtime-metamind-secrets
       - name: CACHE_PROVIDER
         value: memory
-      image: sfci/chatbots/chatbot-runtime:210.0-744c457
+      image: sfci/chatbots/chatbot-runtime:210.0-f4a4fcd
       livenessProbe:
         httpGet:
           path: /manage/health
