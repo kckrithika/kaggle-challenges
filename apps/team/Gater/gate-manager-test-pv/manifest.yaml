@@ -60,7 +60,7 @@ system:
 
     # Give containers a bit of time to shut down, as they might be syncing 
     # state into the PV on shutdown
-    terminationGracePeriodSeconds: 12
+    terminationGracePeriodSeconds: 15
 
     volumeClaimTemplates:
     - name: dbvol
