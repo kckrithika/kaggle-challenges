@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: zipkin
-      image: tnrp/casp/zipkin:0.0.1-0000199-ffd5986f
+      image: tnrp/casp/zipkin:0.0.1-0000200-faf0d4fd
 
       volumeMounts:
       - mountPath: /home/sfdc-casp/elasticsearch/data
