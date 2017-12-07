@@ -19,7 +19,9 @@ system:
         value: ALL
       - name: PHOENIX_KEYTABPATH
         value: /home/controlplane/controlplane-keytab/controlplane.keytab
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:73baad5
+      - name: SFDC_ENVIRONMENT
+        value: scott-test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:alpha
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -53,7 +55,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: sam
+        value: scott-test
       image: tnrp/sherpa:2-0000127-5d8bf4ab
       livenessProbe:
         exec:
