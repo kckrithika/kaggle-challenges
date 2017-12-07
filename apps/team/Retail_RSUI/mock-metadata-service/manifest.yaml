@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: mock-metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jtuley/mock-metadata-service:0.0.5-2017-12-6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/mock-mds:b963fa2
       ports:
       - containerPort: 7020
       - containerPort: 7021
