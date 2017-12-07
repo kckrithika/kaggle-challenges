@@ -102,6 +102,14 @@ data:
           "until": "2017/11/30"
         },
         {
+          "checker": "syntheticChecker",
+          "estates": [
+            "chx-sam",
+            "wax-sam"
+          ],
+          "until": "2017/12/31"
+        },
+        {
           "checker": "hairpinChecker",
           "estates": [
             "prd-sam_cloudatlas",

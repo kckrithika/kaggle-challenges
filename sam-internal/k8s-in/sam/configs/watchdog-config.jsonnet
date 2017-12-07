@@ -22,6 +22,8 @@ local utils = import "util_functions.jsonnet";
     { estates: ["prd-sam", "prd-samtest", "prd-samdev", "prd-sam_storage"], checker: "bridgeChecker", until: "2017/11/01" },
     # [xiao] Pending hypsersam prod release
     { estates: ["phx-sam"], checker: "nodeChecker", until: "2017/11/30" },
+    # [rbhat] Debuy why synthetic is failing in GIA
+    { estates: ["chx-sam", "wax-sam"], checker: "syntheticChecker", until: "2017/12/31" },
     ] + (
     # Dont change prod
     # 1.7.4 update triggered veth problems. Fixed in all non-flannel estates. Pending fix for flannel estates
