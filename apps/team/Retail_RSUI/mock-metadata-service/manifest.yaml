@@ -30,7 +30,7 @@ system:
   loadbalancers:
   - lbname: mock-metadata-servicelb
     function: mock-metadata-service
-    nodeExposed: true
+    slbEnabled: true
     ports:
     - port: 17020       # gRPC port
       targetport: 7020
