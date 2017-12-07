@@ -24,16 +24,16 @@ system:
           - "/bin/true"
         initialDelaySeconds: 5
     - name: sherpa-b
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa:tls-dev
+      image: sfci/servicelibs/sherpa:2.0.13
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       ports:
       - containerPort: 7012
         name: sherpa-b-in
-      - containerPort: 7016
+      - containerPort: 7443
         name: sherpa-b-tls-in
-      - containerPort: 7080
+      - containerPort: 15373
         name: sherpa-b-adm
       livenessProbe:
         exec:
@@ -48,9 +48,14 @@ system:
           initialDelaySeconds: 10
           periodSeconds: 5
       volumeMounts:
+      - name: time-tls-client-cert
+        mountPath: /client-certs
       - name: time-tls-server-cert
-        mountPath: /server-cert
+        mountPath: /server-certs
     volumes:
+    - name: time-tls-client-cert
+      maddogCert:
+        type: client
     - name: time-tls-server-cert
       maddogCert:
         type: server
