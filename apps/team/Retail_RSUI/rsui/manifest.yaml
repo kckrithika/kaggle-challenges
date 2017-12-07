@@ -4,16 +4,35 @@ system:
   functions:
   - name: rsui
     count: 1
+    volumes:
+    - name: retailservercert
+      maddogCert:
+        type: server
+        lbnames:
+        - rsui-lb
     containers:
     - name: rsui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:e006c8e
       ports:
       - containerPort: 8080
       - containerPort: 15372
+      env:
+      - name: MDS_HOST
+        value: shared0-samcompute1-1-prd.eng.sfdc.net
+      - name: MDS_PORT
+        value: 36184
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
+          scheme: HTTPS
+      volumeMounts:
+      - name: retailservercert
+        mountPath: /servercerts
 
     - name: sherpa-rsui
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
