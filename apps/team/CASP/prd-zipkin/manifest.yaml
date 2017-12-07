@@ -33,7 +33,7 @@ system:
         limits:
           memory: "12Gi"
 
-    lbname: zipkin
+    lbname: zipkinlb
 
     terminationGracePeriodSeconds: 12
 
