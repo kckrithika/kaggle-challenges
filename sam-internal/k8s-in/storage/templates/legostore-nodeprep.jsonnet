@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -27,13 +27,17 @@ if configs.estate == "prd-sam_storage" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["prd-sam_cephdev"],
+                          values: ["prd-sam_cephdev", "phx-sam_ceph"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
                           operator: "DoesNotExist",
                        },
-                     ],
+                     ] + if configs.estate == "phx-sam" then [{
+key: "kubernetes.io/hostname",
+                                                            operator: "In",
+                                                            values: ["shared0-samminionceph1-1-phx.ops.sfdc.net"],
+}] else [],
                   },
                 ],
               },

@@ -21,6 +21,10 @@ spec:
                 - phx-sam_ceph
               - key: storage.salesforce.com/nodeprep
                 operator: DoesNotExist
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - shared0-samminionceph1-1-phx.ops.sfdc.net
       containers:
       - env:
         - name: MY_NODE_NAME
@@ -33,7 +37,7 @@ spec:
           value: /hostfs
         - name: DELETE_DISCOVERY
           value: "no"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfnodeprep:base-0000011-d29e198a
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfnodeprep:base-0000011-d29e198a
         imagePullPolicy: Always
         name: nodeprep
         securityContext:
