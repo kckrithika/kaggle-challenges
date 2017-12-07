@@ -47,7 +47,7 @@ system:
     function: zipkin-func
     nodeExposed: true
     ports:
-      - port: 9410
+      - port: 9411
         targetport: 9411
       - port: 8887
         targetport: 8887
