@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
+local portconfigs = import "slbports.jsonnet";
 
 if configs.estate == "prd-sdc" then {
     apiVersion: "extensions/v1beta1",
@@ -30,13 +31,23 @@ if configs.estate == "prd-sdc" then {
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-baboon",
-                            "--period=1h",
+                            "--deletePodPeriod=1h",
+                            "--deletePodFlag=true",
+                            "--deleteIpvsStatePeriod=4h",
+                            "--deleteIpvsStateFlag=true",
+                            "--deleteConfigFilePeriod=8h",
+                            "--deleteConfigFileFlag=true",
+                            "--deleteNginxTunnelIntfPeriod=12h",
+                            "--deleteNginxTunnelIntfFlag=true",
+                            "--deleteIpvsIntfPeriod=15h",
+                            "--deleteIpvsIntfFlag=true",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--slbPodLabel=" + slbconfigs.podLabelList,
                             "--k8sapiserver=",
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
+                            "--livenessProbePort=" + portconfigs.slb.slbBaboonLivenessProbePort,
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -57,6 +68,15 @@ if configs.estate == "prd-sdc" then {
                             },
                            configs.kube_config_env,
                         ],
+                        livenessProbe: {
+                            httpGet: {
+                               path: "/liveness-probe",
+                               port: portconfigs.slb.slbBaboonLivenessProbePort,
+                            },
+                            initialDelaySeconds: 5,
+                            timeoutSeconds: 5,
+                            periodSeconds: 20,
+                        },
                         securityContext: {
                             privileged: true,
                         },
