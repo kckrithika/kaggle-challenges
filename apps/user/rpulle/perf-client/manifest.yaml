@@ -1,0 +1,49 @@
+apiVersion: v1
+
+system:
+
+  functions:
+
+  - name: perf-client
+    count: 8
+    containers:
+
+    - name: perfclient
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/perfclient:1.0
+      livenessProbe:
+        exec:
+          command:
+            - "./is-alive.sh"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+    - name: sherpa-geoip
+      image:   ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug:20171103-16
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7080
+        name: shp-geoip-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 100
+          periodSeconds: 5
+
+  loadbalancers:
+  - lbname: perf-client-lb
+    function: perf-client
+    ports:
+      - port: 7080
+        targetport: 7080
