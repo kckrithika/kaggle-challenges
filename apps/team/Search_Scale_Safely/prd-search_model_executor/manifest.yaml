@@ -1,12 +1,15 @@
 apiVersion: v1
 
 system:
+  notifications:
+      email:
+        - searchscalesafely@salesforce.com
   functions:
   - name: search-model-executor
     count: 8
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.0.2-RC.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.0.3-RC.1
       ports:
       - name: service-port
         containerPort: 7020
