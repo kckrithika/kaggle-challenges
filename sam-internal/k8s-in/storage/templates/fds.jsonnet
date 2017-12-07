@@ -105,12 +105,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             subPath: "fds.json",
                         },
                     ],
-                    env: [
-                        {
-                            name: "SFDC_FUNNEL_VIP",
-                            value: configs.funnelVIP,
-                        },
-                    ],
+                    env: storageutils.sfms_environment_vars("fds"),
                 }] else [],
                 volumes: [
                     {
