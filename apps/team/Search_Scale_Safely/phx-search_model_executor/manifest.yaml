@@ -1,12 +1,15 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+    - searchscalesafely@salesforce.com
   functions:
   - name: search-model-executor
     count: 10
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:1.0.2
+      image: sfci/searchdev/smt-search-model-executor:1.0.3
       ports:
       - name: service-port
         containerPort: 7020
@@ -49,13 +52,13 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 10
-        periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 10
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 5
+        initialDelaySeconds: 120
         periodSeconds: 10
     volumes:
     - name: logvol
