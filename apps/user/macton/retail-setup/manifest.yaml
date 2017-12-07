@@ -33,7 +33,7 @@ system:
   loadbalancers:
   - lbname: retailsetuplb
     function: retailsetup
-    slbEnabled: true
+    #slbEnabled: true
     ports:
       - port: 18880
         targetport: 8080
