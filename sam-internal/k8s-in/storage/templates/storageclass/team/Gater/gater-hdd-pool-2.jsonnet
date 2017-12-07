@@ -3,7 +3,7 @@ local storageimages = import "storageimages.jsonnet";
 local clusterNamespace = (if configs.estate == "prd-sam_storage"  then "ceph-test" else if configs.estate == "prd-sam" then "legostore" else "ceph");
 local appNamespace = (if configs.estate == "prd-sam_storage"  then "gater-apps" else if configs.estate == "prd-sam" then "user-jisaac-gater-apps" else "gater");
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam_storage" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
