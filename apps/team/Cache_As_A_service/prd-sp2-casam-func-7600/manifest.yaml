@@ -45,9 +45,9 @@ system:
         - name: PORT
           value: 7600
         - name: SPORT
-          value: 7601
+          value: 7599
         - name: S2PORT
-          value: 7602
+          value: 7598
 
         # For casam deployments, we can switch back and forth between sleepy and sneezy db users
         # MIST30 core app servers are currently using sneezy
@@ -77,8 +77,8 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 7600
-        - containerPort: 7601
-        - containerPort: 7602
+        - containerPort: 7599
+        - containerPort: 7598
 
       volumeMounts:
         - name: cert
@@ -118,5 +118,5 @@ system:
     ports:
     - port: 7600
       targetport: 7600
-    - port: 7601
-      targetport: 7601
+    - port: 7599
+      targetport: 7599
