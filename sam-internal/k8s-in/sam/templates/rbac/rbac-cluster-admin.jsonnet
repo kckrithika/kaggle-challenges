@@ -1,7 +1,7 @@
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local configs = import "config.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" then {
     kind: "ClusterRoleBinding",
     apiVersion: "rbac.authorization.k8s.io/v1alpha1",
     metadata: {
