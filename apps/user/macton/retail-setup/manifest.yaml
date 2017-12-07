@@ -8,11 +8,11 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - retailsetuplbal
+        - retailsetuplb
     containers:
     - name: retailsetup
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712011145
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712061332
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712062031
       env:
       - name: PKI_CA_DIR
         value: /servercerts
@@ -23,17 +23,19 @@ system:
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
         httpGet:
           path: /manage/health
-          port: 15272
+          port: 15372
           scheme: HTTPS
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
   loadbalancers:
-  - lbname: retailsetuplbal
+  - lbname: retailsetuplb
     function: retailsetup
-    #slbEnabled: true
+    slbEnabled: true
     ports:
       - port: 18880
         targetport: 8080
