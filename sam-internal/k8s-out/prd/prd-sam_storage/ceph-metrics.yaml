@@ -25,7 +25,7 @@ spec:
         env:
         - name: SFDC_FUNNEL_VIP
           value: ajna0-funnel1-0-prd.data.sfdc.net:80
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000082-2e9cb777
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000085-4415e2f3
         imagePullPolicy: IfNotPresent
         name: sfms
         ports:

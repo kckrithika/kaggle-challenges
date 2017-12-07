@@ -1,3 +1,5 @@
+local configs = import "config.jsonnet";
+
 // Public functions
 {
     string_replace(str, to_replace, replace_with):: (
@@ -64,4 +66,48 @@
             },
         ],
     },
+
+    // sfms_environment_vars returns the set of environment variables to pass to an sfms container.
+    sfms_environment_vars(serviceName):: [
+        {
+            name: "SFDC_FUNNEL_VIP",
+            value: configs.funnelVIP,
+        },
+        {
+            name: "MC_KINGDOM",
+            value: configs.kingdom,
+        },
+        {
+            name: "MC_ESTATE",
+            value: configs.estate,
+        },
+        {
+            name: "MC_NAME",
+            value: serviceName,
+        },
+        {
+            name: "MC_NAMESPACE",
+            valueFrom: {
+                fieldRef: {
+                    fieldPath: "metadata.namespace",
+                },
+            },
+        },
+        {
+            name: "MC_NODE",
+            valueFrom: {
+                fieldRef: {
+                    fieldPath: "spec.nodeName",
+                },
+            },
+        },
+        {
+            name: "MC_DEVICE",
+            valueFrom: {
+                fieldRef: {
+                    fieldPath: "metadata.name",
+                },
+            },
+        },
+    ],
 }
