@@ -8,7 +8,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-        - retailsetuplb
+        - retailsetuplbal
     containers:
     - name: retailsetup
       #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/macton/retail-setup:matt-201712011145
@@ -31,7 +31,7 @@ system:
       - name: retailservercert
         mountPath: /servercerts
   loadbalancers:
-  - lbname: retailsetuplb
+  - lbname: retailsetuplbal
     function: retailsetup
     #slbEnabled: true
     ports:
