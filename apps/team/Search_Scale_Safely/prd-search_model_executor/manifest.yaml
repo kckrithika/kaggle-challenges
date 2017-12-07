@@ -2,8 +2,8 @@ apiVersion: v1
 
 system:
   notifications:
-      email:
-        - searchscalesafely@salesforce.com
+    email:
+    - searchscalesafely@salesforce.com
   functions:
   - name: search-model-executor
     count: 8
