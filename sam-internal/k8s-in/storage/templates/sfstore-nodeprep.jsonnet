@@ -1,19 +1,19 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
-      name: "lv-os-provisioner",
+      name: "sfstore-nodeprep",
       namespace: "storage-foundation",
     },
     spec: {
       template: {
         metadata: {
           labels: {
-            app: "lv-os-provisioner",
+            app: "sfstore-nodeprep",
           },
         },
         spec: {
@@ -27,12 +27,11 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["prd-sam_cephdev", "prd-sam_sfstore"],
+                          values: ["prd-sam_sfstore"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
-                          operator: "In",
-                          values: ["mounted"],
+                          operator: "DoesNotExist",
                        },
                      ],
                   },
@@ -42,8 +41,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
           },
           containers: [
             {
-              name: "provisioner",
-              image: storageimages.lvprovisioner,
+              name: "nodeprep",
+              image: storageimages.sfnodeprep,
               imagePullPolicy: "Always",
               securityContext: {
                 privileged: true,
@@ -51,15 +50,19 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
               volumeMounts: configs.filter_empty([
                 {
                   name: "hdd-vols",
-                  mountPath: "/local-hdd",
+                  mountPath: "/local-hdds",
                 },
                 {
                   name: "ssd-vols",
-                  mountPath: "/local-ssd",
+                  mountPath: "/local-ssds",
                 },
                 {
-                  name: "local-volume-sfdc-config",
-                  mountPath: "/etc/provisioner/config",
+                  name: "hostfs",
+                  mountPath: "/hostfs",
+                },
+                {
+                  name: "nodeprep-config",
+                  mountPath: "/etc/node-config",
                 },
                 configs.maddog_cert_volume_mount,
                 configs.cert_volume_mount,
@@ -75,12 +78,16 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                   },
                 },
                 {
-                  name: "MY_NAMESPACE",
-                  value: "lvns",
-                },
-                {
                   name: "KUBECONFIG",
                   value: "/kubeconfig/kubeconfig",
+                },
+                {
+                  name: "HOST_FS",
+                  value: "/hostfs",
+                },
+                {
+                  name: "DELETE_DISCOVERY",
+                  value: "no",
                 },
               ],
             },
@@ -89,19 +96,25 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
             {
               name: "hdd-vols",
               hostPath: {
-                 path: "/mnt/lvhdd",
+                 path: "/mnt/lvhdds",
               },
             },
             {
               name: "ssd-vols",
               hostPath: {
-                path: "/mnt/lvssd",
+                path: "/mnt/lvssds",
               },
             },
             {
-               name: "local-volume-sfdc-config",
+              name: "hostfs",
+              hostPath: {
+                path: "/",
+              },
+            },
+            {
+               name: "nodeprep-config",
                configMap: {
-                 name: "local-volume-sfdc-config",
+                 name: "sfstore-nodeprep-config",
                },
             },
             configs.maddog_cert_volume,
