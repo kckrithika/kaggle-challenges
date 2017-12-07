@@ -14,6 +14,30 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: sam-system:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: update-secrets
     namespace: sam-system
   roleRef:

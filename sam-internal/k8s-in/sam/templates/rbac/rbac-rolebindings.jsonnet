@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.kingdom == "prd" then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
@@ -78,6 +78,48 @@ for minionnode in hosts
         name: "minion:clusterrole",
         apiGroup: "rbac.authorization.k8s.io",
 
+      },
+    },
+    {
+     #Gives permission to read secrets & update events & pod status in the sam-system namespace
+      kind: "RoleBinding",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
+        name: "sam-system:rolebinding",
+        namespace: "sam-system",
+      },
+      subjects: [
+        {
+          kind: "Group",
+          # system:authenticated has list of all authenticated users
+          name: "system:authenticated",
+        },
+      ],
+      roleRef: {
+        kind: "ClusterRole",
+        name: "minion:role",
+        apiGroup: "rbac.authorization.k8s.io",
+      },
+    },
+    {
+     #Gives permission to read secrets & update events & pod status in the sam-watchdog namespace
+      kind: "RoleBinding",
+      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      metadata: {
+        name: "sam-watchdog:rolebinding",
+        namespace: "sam-watchdog",
+      },
+      subjects: [
+        {
+          kind: "Group",
+          # system:authenticated has list of all authenticated users
+          name: "system:authenticated",
+        },
+      ],
+      roleRef: {
+        kind: "ClusterRole",
+        name: "minion:role",
+        apiGroup: "rbac.authorization.k8s.io",
       },
     },
     {

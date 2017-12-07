@@ -1,0 +1,1204 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph1-7-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph1-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph2-7-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph2-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph3-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph3-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph3-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph3-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph3-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph3-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph3-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph3-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph3-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph3-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionceph3-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionceph3-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminioncephtwo1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminioncephtwo1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminioncephtwo1-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminioncephtwo1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminioncephtwo1-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminioncephtwo1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute1-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute1-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute1-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute1-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute1-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute1-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute1-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute1-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute2-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute2-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute2-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute2-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute2-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute2-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute2-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute2-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute2-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute2-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute2-6-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute2-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute3-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute3-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute3-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute3-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute3-3-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute3-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute3-4-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute3-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagesamcompute3-5-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagesamcompute3-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph1-7-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph1-7-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph1-7-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph2-7-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph2-7-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph2-7-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph3-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph3-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph3-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph3-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph3-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph3-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph3-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph3-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph3-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph3-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph3-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph3-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph3-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionceph3-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionceph3-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionceph3-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminioncephtwo1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminioncephtwo1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminioncephtwo1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminioncephtwo1-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminioncephtwo1-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminioncephtwo1-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminioncephtwo1-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminioncephtwo1-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminioncephtwo1-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute1-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute1-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute1-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute1-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute1-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute1-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute1-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute1-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute1-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute1-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute1-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute1-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute1-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute1-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute1-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute2-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute2-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute2-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute2-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute2-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute2-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute2-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute2-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute2-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute2-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute2-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute2-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute2-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute2-6-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute2-6-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute2-6-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute3-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute3-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute3-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute3-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute3-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute3-3-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute3-3-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute3-4-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute3-4-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute3-4-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagesamcompute3-5-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagesamcompute3-5-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagesamcompute3-5-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
+kind: List
+metadata: {}
