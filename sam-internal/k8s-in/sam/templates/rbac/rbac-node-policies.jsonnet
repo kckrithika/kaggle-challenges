@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 
 # The following ClusterRole & ClusterRoleBinding allows Minion Nodes to update their own status but not others.
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.kingdom == "prd" then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
@@ -10,7 +10,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
       kind: "ClusterRole",
       apiVersion: "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
-        name: "update-node-status:" + node,
+        name: "role:" + node,
       },
       rules: [
         {
@@ -34,7 +34,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         kind: "ClusterRoleBinding",
         apiVersion: "rbac.authorization.k8s.io/v1alpha1",
         metadata: {
-          name: "update-node-status-binding:" + node,
+          name: "rolebinding:" + node,
         },
         subjects: [{
            kind: "User",
@@ -43,7 +43,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         ,
         roleRef: {
            kind: "ClusterRole",
-           name: "update-node-status:" + node,
+           name: "role:" + node,
            apiGroup: "rbac.authorization.k8s.io",
         },
 

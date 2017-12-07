@@ -82,7 +82,7 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -92,10 +92,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -105,10 +113,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-3-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -118,10 +134,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-4-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-4-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -131,10 +155,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-5-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-5-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -144,10 +176,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-6-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-6-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -157,10 +197,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-7-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-7-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -170,10 +218,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-8-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-8-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -183,10 +239,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-8-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd1-9-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-9-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -196,10 +260,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd1-9-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -209,10 +281,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -222,10 +302,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-3-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -235,10 +323,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-4-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-4-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -248,10 +344,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-5-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-5-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -261,10 +365,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-6-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-6-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -274,10 +386,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-7-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-7-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -287,10 +407,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd2-8-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-8-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -300,10 +428,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd2-8-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -313,10 +449,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -326,10 +470,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-3-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -339,10 +491,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-4-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-4-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -352,10 +512,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-4-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-5-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-5-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -365,10 +533,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-5-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-6-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-6-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -378,10 +554,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-6-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-7-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-7-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -391,10 +575,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-7-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrd3-8-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-8-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -404,10 +596,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrd3-8-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -417,10 +617,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -430,10 +638,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -443,10 +659,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore1-1-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -456,10 +680,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore1-2-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore1-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -469,10 +701,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore1-3-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore1-3-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -482,10 +722,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore1-3-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore2-1-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore2-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -495,10 +743,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore2-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore2-2-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore2-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -508,10 +764,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore2-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore3-1-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore3-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -521,10 +785,18 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore3-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: update-node:shared0-samminionsfstore3-2-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore3-2-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
@@ -534,388 +806,396 @@ items:
     - nodes
     verbs:
     - patch
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionsfstore3-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-3-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-3-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-3-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-4-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-4-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-4-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-4-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-4-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-5-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-5-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-5-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-5-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-5-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-6-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-6-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-6-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-6-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-6-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-7-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-7-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-7-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-7-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-7-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-8-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-8-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-8-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-8-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-8-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd1-9-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd1-9-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd1-9-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd1-9-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd1-9-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-3-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-3-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-3-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-4-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-4-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-4-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-4-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-4-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-5-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-5-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-5-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-5-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-5-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-6-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-6-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-6-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-6-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-6-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-7-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-7-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-7-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-7-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-7-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd2-8-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd2-8-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd2-8-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd2-8-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd2-8-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-3-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-3-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-3-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-4-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-4-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-4-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-4-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-4-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-5-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-5-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-5-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-5-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-5-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-6-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-6-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-6-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-6-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-6-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-7-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-7-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-7-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-7-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-7-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrd3-8-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrd3-8-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrd3-8-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrd3-8-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrd3-8-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
+    name: role:shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore1-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore1-1-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore1-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore1-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore1-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore1-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore1-2-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore1-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore1-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore1-3-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore1-3-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore1-3-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore1-3-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore1-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore2-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore2-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore2-1-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore2-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore2-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore2-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore2-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore2-2-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore2-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore2-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore3-1-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore3-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore3-1-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore3-1-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: update-node-binding:shared0-samminionsfstore3-2-prd.eng.sfdc.net
+    name: rolebinding:shared0-samminionsfstore3-2-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
     kind: ClusterRole
-    name: update-node:shared0-samminionsfstore3-2-prd.eng.sfdc.net
+    name: role:shared0-samminionsfstore3-2-prd.eng.sfdc.net
   subjects:
   - kind: User
     name: shared0-samminionsfstore3-2-prd.eng.sfdc.net

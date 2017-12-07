@@ -14,6 +14,30 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: sam-system:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: update-secrets
     namespace: sam-system
   roleRef:
@@ -96,138 +120,6 @@ items:
     name: shared0-samcompute2-8-prd.eng.sfdc.net
   - kind: User
     name: shared0-samcompute2-9-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_ceph:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminioncephrd1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-9-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_ceph:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminioncephrd1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd1-9-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd2-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-6-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-7-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrd3-8-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrdtwo1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -363,86 +255,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sam_chatbot_kingdom:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbotrt1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_chatbot_kingdom:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbotrt1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbotrt2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_cloudatlas:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_cloudatlas:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: test0shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test0shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: cloudatlas:prd-sam_cloudatlas:rolebinding
     namespace: cloudatlas
   roleRef:
@@ -458,50 +270,6 @@ items:
     name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
   - kind: User
     name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_cloudatlas_dir:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-  - kind: User
-    name: test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_cloudatlas_dir:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: test0shared0-samminionatlasdir1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-  - kind: User
-    name: test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasdir1-1-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
-  - kind: User
-    name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -524,46 +292,6 @@ items:
     name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
   - kind: User
     name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_gater:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiongater1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_gater:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiongater1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiongater2-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -607,38 +335,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sam_moderation_einstein:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionmoderationeinstein1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_moderation_einstein:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionmoderationeinstein1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: communities:prd-sam_moderation_einstein:rolebinding
     namespace: communities
   roleRef:
@@ -655,38 +351,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sam_report_collector:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionreportcollector1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_report_collector:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionreportcollector1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: csc-health:prd-sam_report_collector:rolebinding
     namespace: csc-health
   roleRef:
@@ -700,54 +364,6 @@ items:
     name: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_sfstore:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionsfstore1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_sfstore:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionsfstore1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -799,134 +415,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sam_tnrp_merger:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiontnrpmerger1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_tnrp_merger:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiontnrpmerger1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_tnrp_promoter:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiontnrppromoter1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_tnrp_promoter:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiontnrppromoter1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_tnrp_signer:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiontnrpsigner1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpsigner1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpsigner2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_tnrp_signer:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminiontnrpsigner1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpsigner1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminiontnrpsigner2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sam_warden:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionwarden1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionwarden1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionwarden2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sam_warden:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionwarden1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionwarden1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionwarden2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: casp:prd-sam_warden:rolebinding
     namespace: casp
   roleRef:
@@ -940,86 +428,6 @@ items:
     name: shared0-samminionwarden1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionwarden2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sampool:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-sampool1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool4-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool5-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool6-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sampool:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-sampool1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool3-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool4-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool5-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sampool6-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-search_model_executor:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionsme1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsme1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsme2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsme2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-search_model_executor:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionsme1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsme1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsme2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionsme2-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1038,102 +446,6 @@ items:
     name: shared0-samminionsme2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionsme2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-slb:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-slbminion1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion1-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-slb:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-slbminion1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion1-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-slbminion2-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp1-sdb_kube:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp1-sdb_kube:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-sdbcompute1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1178,114 +490,6 @@ items:
     name: shared0-sdbcompute2-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-sdbcompute2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp2-sam_caas:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: samcaas2-caasminion1-1-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-2-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-3-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-4-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-5-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-6-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-7-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-8-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-1-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-2-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-3-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-4-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-5-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-6-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-7-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-8-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-1-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-2-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-3-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-4-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-5-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-6-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_caas:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: samcaas2-caasminion1-1-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-2-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-3-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-4-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-5-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-6-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-7-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion1-8-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-1-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-2-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-3-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-4-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-5-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-6-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-7-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion2-8-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-1-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-2-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-3-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-4-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-5-prd.eng.sfdc.net
-  - kind: User
-    name: samcaas2-caasminion3-6-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1343,42 +547,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sp2-sam_chatbot:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_chatbot:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: chatbot-sp2:prd-sp2-sam_chatbot:rolebinding
     namespace: chatbot-sp2
   roleRef:
@@ -1394,42 +562,6 @@ items:
     name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp2-sam_eaas_sp:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminioneaassp1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminioneaassp1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminioneaassp2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminioneaassp2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_eaas_sp:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminioneaassp1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminioneaassp1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminioneaassp2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminioneaassp2-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1451,42 +583,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sp2-sam_iot_test:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminioniottest1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioniottest1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioniottest2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioniottest2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_iot_test:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared0-samminioniottest1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioniottest1-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioniottest2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-samminioniottest2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: iot-sp2:prd-sp2-sam_iot_test:rolebinding
     namespace: iot-sp2
   roleRef:
@@ -1502,38 +598,6 @@ items:
     name: shared0-samminioniottest2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioniottest2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp2-sam_retail_cre:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailcre1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcre2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcre3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_retail_cre:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailcre1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcre2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcre3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1553,38 +617,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sp2-sam_retail_credata:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_retail_credata:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: retail-credata-sp2:prd-sp2-sam_retail_credata:rolebinding
     namespace: retail-credata-sp2
   roleRef:
@@ -1598,38 +630,6 @@ items:
     name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp2-sam_retail_dss:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretaildss1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_retail_dss:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretaildss1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1649,70 +649,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: sam-system:prd-sp2-sam_retail_eventlistener:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_retail_eventlistener:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp2-sam_retail_mds:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailmds1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailmds2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailmds3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_retail_mds:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailmds1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailmds2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailmds3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: retail-mds-sp2:prd-sp2-sam_retail_mds:rolebinding
     namespace: retail-mds-sp2
   roleRef:
@@ -1726,38 +662,6 @@ items:
     name: shared2-samminionretailmds2-1-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminionretailmds3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-system:prd-sp2-sam_retail_rsui:rolebinding
-    namespace: sam-system
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailrsui1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailrsui2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: sam-watchdog:prd-sp2-sam_retail_rsui:rolebinding
-    namespace: sam-watchdog
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailrsui1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailrsui2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
