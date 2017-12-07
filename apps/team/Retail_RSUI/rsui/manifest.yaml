@@ -20,7 +20,7 @@ system:
       - name: MDS_HOST
         value: mock-metadata-servicelb.retail-rsui-sp2.prd-sam.prd.slb.sfdc.net
       - name: MDS_PORT
-        value: 32093
+        value: 36184
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
