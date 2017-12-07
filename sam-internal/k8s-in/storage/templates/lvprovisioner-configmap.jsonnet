@@ -18,7 +18,7 @@ local storclass = |||
            mountDir: /local-hdd
 |||;
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

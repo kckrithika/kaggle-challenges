@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  name: lv-os-provisioner
+  name: sfstore-nodeprep
   namespace: storage-foundation
 spec:
   template:
     metadata:
       labels:
-        app: lv-os-provisioner
+        app: sfstore-nodeprep
     spec:
       affinity:
         nodeAffinity:
@@ -17,34 +17,35 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - prd-sam_cephdev
                 - prd-sam_sfstore
               - key: storage.salesforce.com/nodeprep
-                operator: In
-                values:
-                - mounted
+                operator: DoesNotExist
       containers:
       - env:
         - name: MY_NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        - name: MY_NAMESPACE
-          value: lvns
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/lvprovisioner:v1.0-0000009-9eb12162
+        - name: HOST_FS
+          value: /hostfs
+        - name: DELETE_DISCOVERY
+          value: "no"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfnodeprep:base-0000011-d29e198a
         imagePullPolicy: Always
-        name: provisioner
+        name: nodeprep
         securityContext:
           privileged: true
         volumeMounts:
-        - mountPath: /local-hdd
+        - mountPath: /local-hdds
           name: hdd-vols
-        - mountPath: /local-ssd
+        - mountPath: /local-ssds
           name: ssd-vols
-        - mountPath: /etc/provisioner/config
-          name: local-volume-sfdc-config
+        - mountPath: /hostfs
+          name: hostfs
+        - mountPath: /etc/node-config
+          name: nodeprep-config
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -54,14 +55,17 @@ spec:
       hostNetwork: true
       volumes:
       - hostPath:
-          path: /mnt/lvhdd
+          path: /mnt/lvhdds
         name: hdd-vols
       - hostPath:
-          path: /mnt/lvssd
+          path: /mnt/lvssds
         name: ssd-vols
+      - hostPath:
+          path: /
+        name: hostfs
       - configMap:
-          name: local-volume-sfdc-config
-        name: local-volume-sfdc-config
+          name: sfstore-nodeprep-config
+        name: nodeprep-config
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
