@@ -24,7 +24,7 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: test-hdd-pool
+      storageClassName: standard
       storageSizeRequest: 500Gi
   loadbalancers:
   - lbname: cephlb
