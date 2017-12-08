@@ -1,3 +1,5 @@
 apps:
   mock-metadata-service:
     - prd/prd-sam
+  rsui:
+    - prd/prd-sam
