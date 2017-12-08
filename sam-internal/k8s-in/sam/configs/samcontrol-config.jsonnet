@@ -31,7 +31,7 @@ local utils = import "util_functions.jsonnet";
   + (if samimages.per_phase[samimages.phase].hypersam == "sam-0001355-581a778b" && (!utils.is_public_cloud(configs.kingdom)) then {
     maddogMadkubImageRegistry: configs.registry + (if configs.kingdom == "prd" then "/docker-release-candidate/tnrp" else "/tnrp"),
   } else {})
-+ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
++ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then {
     k4aInitContainerImage: samimages.k4aInitContainerImage,
   } else {})
 + (if configs.estate == "prd-samtest" then {
