@@ -23,10 +23,10 @@ system:
           path: /manage/health
           port: 15372
     - name: sherpa-tictactoe-client
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
+      image: sfci/servicelibs/sherpa:2.0.13
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sam
       ports:
       - containerPort: 7012
         name: sherpa-in
