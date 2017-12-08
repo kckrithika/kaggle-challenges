@@ -18,7 +18,7 @@ if configs.estate == "prd-sam" then {
           kind: "User",
           name: minionnode,
         }
-                for minionnode in hosts
+for minionnode in hosts
       ],
       roleRef: {
         kind: "ClusterRole",
@@ -31,7 +31,7 @@ if configs.estate == "prd-sam" then {
       kind: "ClusterRole",
       apiVersion: "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
-        name: "role:" + node,
+        name: "ceph-role:" + node,
       },
       rules: [
         {
@@ -48,20 +48,6 @@ if configs.estate == "prd-sam" then {
             "patch",
           ],
         },
-        {
-          apiGroups: [
-            "*",
-          ],
-          resources: [
-            "nodes/status",
-          ],
-          resourceNames: [
-            node,
-          ],
-          verbs: [
-            "*",
-          ],
-        },
       ],
    },
 
@@ -69,7 +55,7 @@ if configs.estate == "prd-sam" then {
         kind: "ClusterRoleBinding",
         apiVersion: "rbac.authorization.k8s.io/v1alpha1",
         metadata: {
-          name: "rolebinding:" + node,
+          name: "ceph-rolebinding:" + node,
         },
         subjects: [{
            kind: "User",
@@ -78,7 +64,7 @@ if configs.estate == "prd-sam" then {
         ,
         roleRef: {
            kind: "ClusterRole",
-           name: "role:" + node,
+           name: "ceph-role:" + node,
            apiGroup: "rbac.authorization.k8s.io",
         },
 
