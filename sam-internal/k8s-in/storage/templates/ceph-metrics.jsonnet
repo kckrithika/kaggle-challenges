@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 
 if configs.estate == "prd-sam_storage" then {
    apiVersion: "extensions/v1beta1",
@@ -79,13 +80,7 @@ if configs.estate == "prd-sam_storage" then {
                         mountPath: "/etc/ceph",
                      },
                   ],
-                  env: [
-                     {
-                        name: "SFDC_FUNNEL_VIP",
-                        value: configs.funnelVIP,
-                     },
-                  ],
-
+                  env: storageutils.sfms_environment_vars("ceph"),
                },
                {
                   name: "configwatcher",
