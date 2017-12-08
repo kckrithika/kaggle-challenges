@@ -27,7 +27,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["prd-sam_cephdev", "prd-sam_sfstore", "phx-sam_ceph"],
+                          values: ["prd-sam_cephdev", "prd-sam_ceph", "prd-sam_sfstore", "phx-sam_ceph"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",

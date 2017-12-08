@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -27,7 +27,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["prd-sam_cephdev", "phx-sam_ceph"],
+                          values: ["prd-sam_cephdev", "prd-sam_ceph", "phx-sam_ceph"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
