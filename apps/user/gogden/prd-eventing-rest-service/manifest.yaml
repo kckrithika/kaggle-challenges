@@ -6,7 +6,7 @@ system:
       - gogden@salesforce.com
   functions:
   - name: default
-    count: 2
+    count: 3
     containers:
     - name: eventing-rest-service-prd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/eventing-scone-rest-service:eventing-scone-rest-service-20171114
