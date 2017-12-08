@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
+if configs.estate == "prd-sam_storage" then
     {
         apiVersion: "v1",
         kind: "List",
