@@ -36,26 +36,6 @@ local utils = import "util_functions.jsonnet",
             wax: "ops-mta1-4-wax.ops.sfdc.net:25",
         },
 
-        momCollectorEndpoint: {
-            dfw: "http://ops0-mom2-1-dfw.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            frf: "http://ops0-mom2-1-frf.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            hnd: "http://ops0-mom2-1-hnd.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            iad: "http://ops0-mom2-1-iad.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            ord: "http://ops0-mom2-1-ord.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            par: "http://ops0-mom2-1-par.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            phx: "http://ops0-mom2-1-phx.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            prd: "http://ops0-mom2-1-prd.eng.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            ukb: "http://ops0-mom2-1-ukb.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes",
-            # TODO: SDN support in public cloud
-            cdu: "",
-            syd: "",
-            yhu: "",
-            yul: "",
-            # No momCollector support in GIA
-            chx: "",
-            wax: "",
-        },
-
         # TODO: remove mom and charon endpoint to sdn-config
         charonEndpoint: {
             prd: "http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions",
@@ -94,6 +74,13 @@ local utils = import "util_functions.jsonnet",
         "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     ),
     rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://reportcollector-" + kingdom + ".data.sfdc.net:18443/v1/bark"),
+
+    momVIP: (
+    if kingdom == "prd" then
+      "https://ops0-momapi1-0-" + kingdom + ".data.sfdc.net/api/v1/network/device?key=host-bgp-routes"
+    else
+      "http://ops0-mom2-1-" + kingdom + ".ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes"
+    ),
 
     # === KUBERNETES ===
 

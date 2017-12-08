@@ -35,19 +35,16 @@ if configs.kingdom == "prd" then {
                             "--alertThreshold=300s",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_route_watchdog,
                             "--controlEstate=" + configs.estate,
-
+                            "--rootPath=/etc/pki_service",
+                            "--userName=kubernetes",
+                            "--pkiClientServiceName=k8s-client",
+                            "--momCollectorEndpoint=" + configs.momVIP,
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
                             "--sdncServiceName=sdn-control-svc",
                             "--sdncNamespace=sam-system",
-                            "--rootPath=/etc/pki_service",
-                            "--userName=kubernetes",
-                            "--pkiClientServiceName=k8s-client",
-                            "--momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/api/v1/network/device?key=host-bgp-routes",
-                            ] else [
-                            "--momCollectorEndpoint=" + configs.momCollectorEndpoint,
-                            ]
+                            ] else []
                         ),
                         env: [
                             configs.kube_config_env,
@@ -96,7 +93,7 @@ if configs.kingdom == "prd" then {
         name: "sdn-route-watchdog",
         namespace: "sam-system",
     },
-} else if !utils.is_public_cloud(configs.kingdom) then {
+} else if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -119,7 +116,7 @@ if configs.kingdom == "prd" then {
                             "/sdn/sdn-route-watchdog",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                            "--momCollectorEndpoint=" + configs.momCollectorEndpoint,
+                            "--momCollectorEndpoint=" + configs.momVIP,
                             "--smtpServer=" + configs.smtpServer,
                             "--sender=" + sdnconfig.sdn_watchdog_emailsender,
                             "--recipient=" + sdnconfig.sdn_watchdog_emailrec,
