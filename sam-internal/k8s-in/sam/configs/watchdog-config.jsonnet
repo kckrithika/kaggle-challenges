@@ -110,3 +110,15 @@ local utils = import "util_functions.jsonnet";
   + (if configs.estate == "prd-sam" then {
     storageClassName: "synthetic-hdd-pool",
   } else {})
+  + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+    maddogCommonCerts: [
+      "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
+      "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+      "/etc/pki_service/etcd/etcd-client/certificates/etcd-client.pem",
+      "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+    ],
+    maddogEtcdCerts: [
+      "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
+      "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
+    ],
+  } else {})
