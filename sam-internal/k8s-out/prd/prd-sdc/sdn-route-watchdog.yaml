@@ -33,12 +33,12 @@ spec:
         - --alertThreshold=300s
         - --livenessProbePort=9104
         - --controlEstate=prd-sdc
-        - --sdncServiceName=sdn-control-svc
-        - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
         - --momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/api/v1/network/device?key=host-bgp-routes
+        - --sdncServiceName=sdn-control-svc
+        - --sdncNamespace=sam-system
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
