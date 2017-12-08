@@ -29,10 +29,13 @@ system:
           value: /certs/server
 
       livenessProbe:
-        exec:
-          command:
-            - echo
-            - HEALTHY
+        httpGet:
+          scheme: HTTPS
+          path: /ping.jsp
+          port: 12050
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 10
 
       readinessProbe:
         httpGet:
