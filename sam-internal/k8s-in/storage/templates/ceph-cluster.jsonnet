@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storage" then
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
     {
         apiVersion: "v1",
         kind: "List",
@@ -14,7 +14,7 @@ if configs.estate == "prd-sam_storage" then
 
                 // TODO: In prd-sam, RBAC rules prevent pods from running if they are created in a namespace other than `legostore`
                 //       or `storage-foundation`. Use the `legostore` namespace for now.
-                local cephClusterNamespace = (if configs.estate == "prd-sam_ceph" then "legostore" else cephClusterName),
+                local cephClusterNamespace = (if minionEstate == "prd-sam_ceph" then "legostore" else cephClusterName),
 
                 kind: "CephCluster",
                 apiVersion: "storage.salesforce.com/v1beta1",
