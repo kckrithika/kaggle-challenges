@@ -38,7 +38,6 @@ spec:
         - --namespace=sam-system
         - --log_dir=/host/data/slb/logs
         - --hostnameoverride=$(NODE_NAME)
-        - --livenessProbePort=9877
         env:
         - name: NODE_NAME
           valueFrom:
@@ -46,14 +45,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000499-6f25e803
-        livenessProbe:
-          httpGet:
-            path: /liveness-probe
-            port: 9877
-          initialDelaySeconds: 5
-          periodSeconds: 20
-          timeoutSeconds: 5
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000501-c72d57de
         name: slb-baboon
         securityContext:
           privileged: true

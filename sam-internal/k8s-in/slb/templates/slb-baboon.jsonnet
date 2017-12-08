@@ -47,7 +47,6 @@ if configs.estate == "prd-sdc" then {
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
-                            "--livenessProbePort=" + portconfigs.slb.slbBaboonLivenessProbePort,
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -68,15 +67,6 @@ if configs.estate == "prd-sdc" then {
                             },
                            configs.kube_config_env,
                         ],
-                        livenessProbe: {
-                            httpGet: {
-                               path: "/liveness-probe",
-                               port: portconfigs.slb.slbBaboonLivenessProbePort,
-                            },
-                            initialDelaySeconds: 5,
-                            timeoutSeconds: 5,
-                            periodSeconds: 20,
-                        },
                         securityContext: {
                             privileged: true,
                         },

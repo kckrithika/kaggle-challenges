@@ -23,7 +23,7 @@ spec:
         - --tlsPorts=9443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sdc.crt
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000499-6f25e803
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000501-c72d57de
         livenessProbe:
           httpGet:
             path: /
