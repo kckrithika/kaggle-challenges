@@ -27,7 +27,7 @@ local samimages = import "samimages.jsonnet";
     recipient: "sam@salesforce.com,slb@salesforce.com",
   } else {
 }
-+ if configs.estate != "prd-samtest" then {
++ if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
     "disable-rollback": true,
   } else {
     "disable-rollback": false,

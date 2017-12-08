@@ -5,7 +5,7 @@ data:
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/data/certs/hostcert.crt",
       "delete-orphans": true,
-      "disable-rollback": true,
+      "disable-rollback": false,
       "disable-security-check": true,
       "dry-run": false,
       "email": true,
