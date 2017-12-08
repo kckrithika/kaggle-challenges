@@ -84,4 +84,3 @@ apps:
   maddog-repcollavailwd:
     - prd/prd-sam_report_collector
   service-event-recorder:
-    - prd/prd-sam_report_collector

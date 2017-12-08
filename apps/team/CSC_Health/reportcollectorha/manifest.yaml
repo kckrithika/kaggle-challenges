@@ -76,14 +76,6 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-      case ${KINGDOM} in
-        prd)
-          export ReportCollector_eventRecorder_enabled=true ;
-          export ReportCollector_eventRecorder_host=${SERVICEEVENTRECORDERLB_SERVICE_HOST} ;
-          export ReportCollector_eventRecorder_port=${SERVICEEVENTRECORDERLB_SERVICE_PORT} ;
-          ;;
-        *)
-      esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.disableFileCPResolving=true
