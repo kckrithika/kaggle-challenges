@@ -54,7 +54,7 @@ system:
           value: true
 
         # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
-        # "samcaas2-caasminion2-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
+        # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
           value: cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
@@ -91,7 +91,7 @@ system:
           # there are some routing problems on our minions currently so we have to revert
           # back to nodeport for now
 #          host: cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
-          host: samcaas2-caasminion2-2-prd.eng.sfdc.net
+          host: samcaas2-caasminion1-2-prd.eng.sfdc.net
 #210#          path: /__cyan_admin__/app/health?version=210.12
           path: /__cyan_admin__/app/health?version=212
           port: 12052
@@ -138,7 +138,7 @@ system:
           # Note: value here should really be the cyanlb VIP that is commented out. However
           # there are some routing problems on our minions currently so we have to revert
           # back to nodeport for now
-          value: https://samcaas2-caasminion2-2-prd.eng.sfdc.net:12052 
+          value: https://samcaas2-caasminion1-2-prd.eng.sfdc.net:12052 
 #          value: https://cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net:12052 
         - name: CURL_GLOBAL_OPTS
           value: -k
@@ -147,7 +147,7 @@ system:
         - name: WAITTIME_PD
           value: 60
         - name: JMX_HOST
-          value: samcaas2-caasminion2-2-prd.eng.sfdc.net 
+          value: samcaas2-caasminion1-2-prd.eng.sfdc.net 
         # to enable host networking, the targerPort exposed by the LB needs to different than what the host is using
         - name: JMX_PORT
           # value: 8998
