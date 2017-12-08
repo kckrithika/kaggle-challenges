@@ -6,8 +6,6 @@ system:
 
     count: 2
     
-    hostnetwork: true
-    
     volumes:
     - name: cert
       maddogCert:
@@ -129,8 +127,6 @@ system:
       maddogCert:
         type: client
     
-    hostnetwork: true
-    
     containers:
     - name: csr-seq-sam
 
@@ -153,10 +149,8 @@ system:
           value: 60
         - name: JMX_HOST
           value: samcaas2-caasminion1-2-prd.eng.sfdc.net 
-        # to enable host networking, the targerPort exposed by the LB needs to different than what the host is using
         - name: JMX_PORT
-          # value: 8998
-          value: 8999
+          value: 8998
         - name: OLD_DWARF
 #210#          value: happy
           value: grumpy
@@ -215,9 +209,7 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-    # to enable host networking, we need port values to be different for port/targetport
-    #- port: 8998
-    - port: 8999
+    - port: 8998
       targetport: 8998
     - port: 9001
       targetport: 12100
@@ -228,7 +220,5 @@ system:
     nodeExposed: true
     slbEnabled: false
     ports:
-    # to enable host networking, we need port values to be different for port/targetport
-    #- port: 12062
-    - port: 12063
+    - port: 12062
       targetport: 12062
