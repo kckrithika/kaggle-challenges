@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
