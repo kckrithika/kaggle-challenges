@@ -25,8 +25,8 @@ spec:
         - name: K8S_PLATFORM
           value: prd-sam
         - name: CEPH_INIT_CONTAINER
-          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000267-d9d9d00b
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000267-d9d9d00b
+          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000269-cc215596
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000269-cc215596
         name: cephoperator
         volumeMounts:
         - mountPath: /etc/pki_service
