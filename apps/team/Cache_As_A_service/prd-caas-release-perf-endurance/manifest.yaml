@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: prd-caas-release-perf-endurance
-    count: 3 
+    count: 2 
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
