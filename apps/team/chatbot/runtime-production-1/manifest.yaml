@@ -8,6 +8,8 @@ system:
         value: prod
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+      - name: LOGGING_JSON_LOG_STALE_AGE_DAYS
+        value: 0
       - name: METAMIND_API_DOMAIN
         value: api.einstein.ai
       - name: METAMIND_EMAIL
@@ -23,7 +25,7 @@ system:
         value: 'true'
       - name: METRICS_LOG_ONLY_PUBLISHER
         value: 'false'
-      image: sfci/chatbots/chatbot-runtime:210.0-f4a4fcd
+      image: sfci/chatbots/chatbot-runtime:210.0-ff37dc2
       livenessProbe:
         httpGet:
           path: /manage/health
