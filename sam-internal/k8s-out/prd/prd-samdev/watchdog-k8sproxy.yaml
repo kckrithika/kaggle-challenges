@@ -35,6 +35,10 @@ spec:
           name: sfdchosts
         - mountPath: /config
           name: config
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -45,3 +49,9 @@ spec:
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

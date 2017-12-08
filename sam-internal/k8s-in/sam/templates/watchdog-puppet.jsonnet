@@ -22,7 +22,12 @@ local samimages = import "samimages.jsonnet";
                         name: "afw-build",
                     },
                     configs.config_volume("watchdog"),
-                ]),
+                ])
+                + (
+                    if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                        [configs.cert_volume, configs.maddog_cert_volume]
+                    else []
+                ),
                 containers: [
                     {
                         image: samimages.hypersam,
@@ -56,7 +61,12 @@ local samimages = import "samimages.jsonnet";
                                name: "afw-build",
                             },
                             configs.config_volume_mount,
-                         ]),
+                         ])
+                        + (
+                            if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                                [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
+                            else []
+                        ),
                     },
                 ],
             },
