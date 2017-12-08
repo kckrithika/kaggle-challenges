@@ -19,7 +19,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=1h",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then ["-publishAllReportsToKafka=true"] else [])
+                        + (if configs.kingdom == "prd" then ["-publishAllReportsToKafka=true"] else [])
                         + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
