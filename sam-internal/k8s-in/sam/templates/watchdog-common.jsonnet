@@ -38,7 +38,7 @@ local samimages = import "samimages.jsonnet";
                              configs.config_volume_mount,
                         ])
                         + (
-                            if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                            if configs.kingdom == "prd" then
                                 [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
                             else []
                         ),
@@ -55,7 +55,7 @@ local samimages = import "samimages.jsonnet";
                    configs.config_volume("watchdog"),
                 ])
                 + (
-                    if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                    if configs.kingdom == "prd" then
                         [configs.cert_volume, configs.maddog_cert_volume]
                     else []
                 ),

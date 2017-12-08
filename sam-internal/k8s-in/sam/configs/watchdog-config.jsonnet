@@ -83,8 +83,8 @@ local utils = import "util_functions.jsonnet";
   },
 } +
 (
-  if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
-  # Publish email alerts in Phase 1 to Kafka.
+  if configs.kingdom == "prd" then {
+  # Publish email alerts in Phase 2 to Kafka.
       kafkaProducerEndpoint: "ajna0-broker1-0-prd.data.sfdc.net:9093",
       kafkaTopic: "sfdc.prod.sam__prd.ajna_local__opevents",
       publishAlertsToKafka: true,
