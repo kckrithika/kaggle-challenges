@@ -4,7 +4,7 @@ metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
   name: small-hdd-pool
-  namespace: csc-sam
+  namespace: user-small
 spec:
   clusterNamespace: legostore
   size: 500Gi

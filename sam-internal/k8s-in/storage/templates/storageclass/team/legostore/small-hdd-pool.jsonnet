@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local clusterNamespace = (if configs.estate == "prd-sam_storage" then "ceph-test" else "legostore");
-local appNamespace = "csc-sam";
+local appNamespace = "user-small";
 
 if configs.estate == "prd-sam" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
