@@ -123,6 +123,11 @@ system:
   - name: csr-seq
 
     count: 1
+
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
     
     hostnetwork: true
     
@@ -130,7 +135,7 @@ system:
     - name: csr-seq-sam
 
 #210#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:9
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:9
 
       env:
         # 
@@ -152,8 +157,6 @@ system:
         - name: JMX_PORT
           # value: 8998
           value: 8999
-        - name: SNOWWHITE_PWD
-          value: rotate
         - name: OLD_DWARF
 #210#          value: happy
           value: grumpy
@@ -170,6 +173,11 @@ system:
         # Can increment value below to force restart of sequencer container
         - name: RESTART
           value: 1
+        - name: K4A_OUTPUT
+          value: /tmp/files/repo/user.properties
+        - name: MADDOG_CLIENT
+          value: /certs
+
 
       livenessProbe:
         httpGet:
@@ -190,6 +198,10 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 12062
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
  
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
