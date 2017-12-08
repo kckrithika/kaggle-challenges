@@ -21,7 +21,7 @@ system:
         value: /home/controlplane/controlplane-keytab/controlplane.keytab
       - name: SFDC_ENVIRONMENT
         value: scott-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:gamma
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:delta
       livenessProbe:
         httpGet:
           path: /manage/info
