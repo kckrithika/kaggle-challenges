@@ -37,6 +37,10 @@ spec:
           readOnly: true
         - mountPath: /config
           name: config
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
@@ -50,3 +54,9 @@ spec:
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
