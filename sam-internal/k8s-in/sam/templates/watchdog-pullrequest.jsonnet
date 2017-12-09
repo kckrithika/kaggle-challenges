@@ -28,7 +28,12 @@ if configs.estate == "prd-sam" then {
                              readOnly: true,
                           },
                           configs.config_volume_mount,
-                       ]),
+                       ])
+                       + (
+                            if configs.kingdom == "prd" then
+                                [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
+                            else []
+                        ),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -40,7 +45,12 @@ if configs.estate == "prd-sam" then {
                         name: "token",
                     },
                     configs.config_volume("watchdog"),
-                ]),
+                ])
+                + (
+                    if configs.kingdom == "prd" then
+                        [configs.cert_volume, configs.maddog_cert_volume]
+                    else []
+                ),
                 nodeSelector: {
                     pool: configs.estate,
                 },
