@@ -69,4 +69,5 @@
 
     fds_per_pod_capacity: self.perCluster.fds_per_pod_capacity[estate],
     fds_profiling: self.perCluster.fds_profiling[estate],
+    cephMetricsNamespace: (if estate == "prd-sam_storage" then "ceph-test" else "legostore"),
 }

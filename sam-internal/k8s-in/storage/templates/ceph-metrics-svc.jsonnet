@@ -1,11 +1,12 @@
 local configs = import "config.jsonnet";
+local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
    apiVersion: "v1",
    kind: "Service",
    metadata: {
       name: "ceph-metrics",
-      namespace: "ceph-test",
+      namespace: storageconfigs.cephMetricsNamespace,
       labels: {
          app: "ceph-metrics",
          "slb.sfdc.net/name": "ceph-metrics",
