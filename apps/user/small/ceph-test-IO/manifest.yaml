@@ -6,7 +6,7 @@ system:
     type: stateful-set
     count: 2
     containers:
-    - name: stateful-hello
+    - name: stateful-small
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1 
       command:
         - /bin/ceph-test
@@ -24,8 +24,8 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: standard
-      storageSizeRequest: 500Gi
+      storageClassName: small-hdd-pool
+      storageSizeRequest: 5Gi
   loadbalancers:
   - lbname: cephlb
     function: stateful-func
