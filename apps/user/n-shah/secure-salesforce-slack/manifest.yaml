@@ -1,0 +1,9 @@
+apiVersion: v0.1
+system:
+        functions:
+                - name: default
+                  count: 1
+                  containers:
+                        - name: secure-salesforce-slack
+                          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/n.shah/secure-salesforce-slack:0.1
+
