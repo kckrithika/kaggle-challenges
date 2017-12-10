@@ -1738,6 +1738,7 @@ apps:
     hostSubList:
     - samcaas2-caasminion3-1-prd.eng.sfdc.net
     - samcaas2-caasminion3-2-prd.eng.sfdc.net
+    - samcaas2-caasminion1-1-prd.eng.sfdc.net
  prd-caas-release-perf:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
