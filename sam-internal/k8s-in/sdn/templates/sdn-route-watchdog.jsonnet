@@ -38,7 +38,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
-                            "--momCollectorEndpoint=" + configs.momVIP,
+                            "--momCollectorEndpoint=" + sdnconfig.momVIP,
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
@@ -116,7 +116,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             "/sdn/sdn-route-watchdog",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                            "--momCollectorEndpoint=" + configs.momVIP,
+                            "--momCollectorEndpoint=" + sdnconfig.momVIP,
                             "--smtpServer=" + configs.smtpServer,
                             "--sender=" + sdnconfig.sdn_watchdog_emailsender,
                             "--recipient=" + sdnconfig.sdn_watchdog_emailrec,
