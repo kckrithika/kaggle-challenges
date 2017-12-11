@@ -1,0 +1,45 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: rsui-func
+    count: 1
+    containers:
+    - name: rsui-func
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:latest
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      livenessProbe:
+        exec:
+          command: ["true"]
+    - name: sherpa-rsui-func
+      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: CCP_Integration_Functional
+      args:
+        - --http2-in=9532
+      ports:
+        - containerPort: 9532
+        - containerPort: 7080
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+  loadbalancers:
+  - lbname: rsui-lb-func
+    function: rsui-func
+    ports:
+      - port: 18080
+        targetport: 8080
+      - port: 25372
+        targetport: 15372
