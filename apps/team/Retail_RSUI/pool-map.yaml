@@ -1,12 +1,16 @@
 version: v2
 apps:
-  rsui:	    	# fuctional test env instance
+  rsui:	    	# shared dev env instance
     - name: prd/prd-sp2-sam_retail_rsui
       hostSubList:
         - shared2-samminionretailrsui1-1-prd.eng.sfdc.net
         - shared2-samminionretailrsui2-1-prd.eng.sfdc.net
-  rsui-perf: 
-# performance test env instance
+  rsui-func:         # fuctional test env instance
+    - name: prd/prd-sp2-sam_retail_rsui
+      hostSubList:
+        - shared2-samminionretailrsui1-1-prd.eng.sfdc.net
+        - shared2-samminionretailrsui2-1-prd.eng.sfdc.net
+  rsui-perf: 	# perf test env instance
     - name: prd/prd-sp2-sam_retail_rsui
       hostSubList:
         - shared2-samminionretailrsui3-1-prd.eng.sfdc.net

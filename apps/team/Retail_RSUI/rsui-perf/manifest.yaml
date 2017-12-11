@@ -39,7 +39,7 @@ system:
   - lbname: rsui-lb-perf
     function: rsui-perf
     ports:
-      - port: 18080
+      - port: 28080
         targetport: 8080
-      - port: 25372
+      - port: 35372
         targetport: 15372
