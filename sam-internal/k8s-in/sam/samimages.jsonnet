@@ -17,6 +17,9 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+        # [mayank] adding overrides for storage team's ceph cluster availability testing
+        "prd,prd-sam,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
