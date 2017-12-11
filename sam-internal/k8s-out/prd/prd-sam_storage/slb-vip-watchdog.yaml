@@ -42,12 +42,13 @@ spec:
         - --sender=sam-alerts@salesforce.com
         - --recipient=slb@salesforce.com
         - --emailFrequency=12h
-        - --watchdogFrequency=180s
-        - --alertThreshold=300s
+        - --watchdogFrequency=600s
+        - --alertThreshold=700s
         - --vipLoop=50
         - --log_dir=/host/data/slb/logs
         - --configurePerPort=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000491-0729052c
+        - --optOutNamespace=kne
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000501-c72d57de
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
