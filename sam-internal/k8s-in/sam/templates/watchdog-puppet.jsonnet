@@ -24,7 +24,7 @@ local samimages = import "samimages.jsonnet";
                     configs.config_volume("watchdog"),
                 ])
                 + (
-                    if configs.kingdom == "prd" then
+                    if configs.kingdom == "prd" || configs.kingdom == "frf" then
                         [configs.cert_volume, configs.maddog_cert_volume]
                     else []
                 ),
@@ -63,7 +63,7 @@ local samimages = import "samimages.jsonnet";
                             configs.config_volume_mount,
                          ])
                         + (
-                            if configs.kingdom == "prd" then
+                            if configs.kingdom == "prd" || configs.kingdom == "frf" then
                                 [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
                             else []
                         ),

@@ -88,6 +88,10 @@ local utils = import "util_functions.jsonnet";
       kafkaProducerEndpoint: "ajna0-broker1-0-prd.data.sfdc.net:9093",
       kafkaTopic: "sfdc.prod.sam__prd.ajna_local__opevents",
       publishAlertsToKafka: true,
+  } else if configs.kingdom == "frf" then {
+    kafkaProducerEndpoint: "ajna0-broker1-0-frf.data.sfdc.net:9093",
+    kafkaTopic: "sfdc.prod.sam__prd.ajna_local__opevents",
+    publishAlertsToKafka: true,
   } else {}
 ) +
 (
