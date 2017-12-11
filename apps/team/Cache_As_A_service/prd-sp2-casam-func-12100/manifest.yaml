@@ -15,7 +15,7 @@ system:
     - name: csr-sam
 
 #210#      image: tnrp/casam/coreapp:210.12-0000073-8b9c3e27
-      image: tnrp/casam/coreapp:212.0.2-0000083-b6d30441
+      image: tnrp/casam/coreapp:212.0.2-0000086-8053fff6
 
       env:
         - name: DEPLOYMENT
@@ -131,7 +131,7 @@ system:
     - name: csr-seq-sam
 
 #210#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:9
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:10
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:11
 
       env:
         # 
