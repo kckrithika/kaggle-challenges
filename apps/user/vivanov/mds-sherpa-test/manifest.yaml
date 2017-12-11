@@ -3,42 +3,62 @@ apiVersion: v1
 system:
   notifications:
   email:
-  - vivanov@salesforce.com
+  - robert.snell@salesforce.com
   functions:
   - name: metadata-service
     count: 1
+    volumes:
+    - name: certificates
+      maddogCert:
+        type: client
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709281408
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.18.0
       ports:
       - containerPort: 7020
-        name: local-grpc-port
       - containerPort: 9091
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
-        value: dev
+        value: stmfa
       - name: SERVER_PORT
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
-# todo: probe commented out for debug
+      - name: GDOT_KEYSTORE_PASS
+        valueFrom:
+          secretKeyRef:
+            name: metadata-service-secrets-v1
+            key: gdot-storepass
+      - name: GDOT_PROVISIONING_USER_KEYPASS
+        valueFrom:
+          secretKeyRef:
+            name: metadata-service-secrets-v1
+            key: gdot-provisioning-keypass
+      - name: GDOT_TENANT_MASTER_KEYPASS
+        valueFrom:
+          secretKeyRef:
+            name: metadata-service-secrets-v1
+            key: gdot-tenant-master-keypass
       livenessProbe:
-        exec:
-          command: ["true"]
-#        httpGet:
-#          path: /manage/health
-#          port: 15523
+        initialDelaySeconds: 60
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15523
+      volumeMounts:
+        - name: certificates
+          mountPath: /certificates
+
     - name: sherpa-mds
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000074-1d310b9f
+      image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
-          value: "sam"
-      args:
-        - --http2-in=9532
+          value: stmfa
       ports:
-        - containerPort: 9532
-          name: inbound-grpc
+        - containerPort: 7012
+        - containerPort: 7080
       livenessProbe:
         exec:
           command:
