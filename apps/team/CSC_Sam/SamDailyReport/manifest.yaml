@@ -9,9 +9,9 @@ system:
     count: 1
     containers:
     - name: samreport
-      image: tnrp/sam/hypersam:sam-0001505-870d3449
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20171211_135142.695fc0c.dirty.thargrove-ltm1
       command: ["/sam/sam-daily-report"]
-      args: ["-disableargus=true", "-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password", "-smtp-server", "rd1-mta1-4-sfm.ops.sfdc.net:25", "-sender", "sam@salesforce.com", "-default-recipient", "sam@salesforce.com", "-email-hour", "12"]
+      args: ["-missing-host-filter=flowsnake,ip-10-", "-tokenfile", "/var/secrets/git/token.txt", "-argususerfile", "/var/secrets/argus/argus-username", "-arguspasswordfile", "/var/secrets/argus/argus-password", "-smtp-server", "rd1-mta1-4-sfm.ops.sfdc.net:25", "-sender", "sam@salesforce.com", "-default-recipient", "sam@salesforce.com", "-email-hour", "12"]
       ports:
       - containerPort: 64122
       livenessProbe:
