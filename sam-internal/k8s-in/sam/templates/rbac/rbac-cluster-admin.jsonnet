@@ -1,7 +1,8 @@
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local configs = import "config.jsonnet";
+local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     kind: "ClusterRoleBinding",
     apiVersion: "rbac.authorization.k8s.io/v1alpha1",
     metadata: {
