@@ -25,7 +25,6 @@ spec:
         - /sdn/sdn-route-watchdog
         - --funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --archiveSvcEndpoint=https://ops0-piperepo1-1-frf.ops.sfdc.net/tnrp/content_repo/0/archive
-        - --momCollectorEndpoint=http://ops0-mom2-1-frf.ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes
         - --smtpServer=ops0-mta2-1-frf.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
         - --recipient=sdn-alerts@salesforce.com
@@ -34,9 +33,13 @@ spec:
         - --alertThreshold=300s
         - --livenessProbePort=9104
         - --controlEstate=frf-sam
+        - --rootPath=/etc/pki_service
+        - --userName=kubernetes
+        - --pkiClientServiceName=k8s-client
+        - --momCollectorEndpoint=https://ops0-momapi1-0-frf.data.sfdc.net/api/v1/network/device?key=host-bgp-routes
         env:
         - name: KUBECONFIG
-          value: /config/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000475-9a7fd185
         livenessProbe:
           httpGet:
@@ -53,8 +56,8 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-        - mountPath: /config
-          name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         pool: frf-sam
@@ -70,4 +73,4 @@ spec:
         name: certs
       - hostPath:
           path: /etc/kubernetes
-        name: config
+        name: kubeconfig

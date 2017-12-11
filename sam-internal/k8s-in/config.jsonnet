@@ -76,7 +76,7 @@ local utils = import "util_functions.jsonnet",
     rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://reportcollector-" + kingdom + ".data.sfdc.net:18443/v1/bark"),
 
     momVIP: (
-    if kingdom == "prd" then
+    if kingdom == "prd" || kingdom == "frf" then
       "https://ops0-momapi1-0-" + kingdom + ".data.sfdc.net/api/v1/network/device?key=host-bgp-routes"
     else
       "http://ops0-mom2-1-" + kingdom + ".ops.sfdc.net:8080/api/v1/network/device?key=host-bgp-routes"
