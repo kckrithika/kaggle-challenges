@@ -5,7 +5,7 @@ system:
     email:
       - caas-dev@salesforce.com
   functions:
-  - name: prd-sp2-redis-sp-ist17-c1-perf
+  - name: prd-sp2-redis-sp-ist18-c1-perf
     count: 6 
     hostnetwork: true
     containers:
@@ -41,9 +41,9 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12073
-        - --cluster.name=sp-ist17-c1
+        - --cluster.name=sp-ist18-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/ist17/prd/sp2
+        - --pathPrefix=/ist18/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -89,9 +89,9 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12074
-        - --cluster.name=sp-ist17-c1
+        - --cluster.name=sp-ist18-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/ist17/prd/sp2
+        - --pathPrefix=/ist18/prd/sp2
       livenessProbe:
         exec:
           command:
@@ -137,9 +137,9 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12075
-        - --cluster.name=sp-ist17-c1
+        - --cluster.name=sp-ist18-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/ist17/prd/sp2
+        - --pathPrefix=/ist18/prd/sp2
       livenessProbe:
         exec:
           command:
