@@ -42,7 +42,7 @@ spec:
           httpGet:
             path: /liveness-probe
             port: 9876
-          initialDelaySeconds: 30
+          initialDelaySeconds: 60
           periodSeconds: 20
           timeoutSeconds: 5
         name: slb-config-processor
