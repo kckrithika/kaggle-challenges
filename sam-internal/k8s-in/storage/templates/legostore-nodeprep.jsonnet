@@ -34,11 +34,7 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "phx-sam" then {
                           key: "storage.salesforce.com/nodeprep",
                           operator: "DoesNotExist",
                        },
-                     ] + if configs.estate == "phx-sam" then [{
-                                                                key: "kubernetes.io/hostname",
-                                                                operator: "In",
-                                                                values: ["shared0-samminionceph1-1-phx.ops.sfdc.net", "shared0-samminionceph1-2-phx.ops.sfdc.net", "shared0-samminionceph1-3-phx.ops.sfdc.net", "shared0-samminionceph1-4-phx.ops.sfdc.net", "shared0-samminionceph1-5-phx.ops.sfdc.net"],
-                                                             }] else [],
+                     ],
                   },
                 ],
               },
