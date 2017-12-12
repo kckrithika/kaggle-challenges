@@ -45,6 +45,7 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --controlEndpoint=chx-sam
         image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000475-9a7fd185
         livenessProbe:

@@ -198,8 +198,7 @@ local utils = import "util_functions.jsonnet",
             name: "sfdchosts",
         },
     },
-    # [thargrove] New build has the deadlock fix.  Starting the slow roll again
-    sfdchosts_arg: (if kingdom == "prd" || kingdom == "frf" || kingdom == "ord" then "--hostsConfigFile=/sfdchosts/hosts.json" else {}),
+    sfdchosts_arg: "--hostsConfigFile=/sfdchosts/hosts.json",
 
     # === OTHER ===
 

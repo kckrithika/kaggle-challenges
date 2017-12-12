@@ -20,6 +20,7 @@ spec:
       - command:
         - /sam/node-controller
         - --funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
           valueFrom:

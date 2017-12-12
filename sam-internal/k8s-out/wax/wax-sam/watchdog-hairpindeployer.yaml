@@ -32,6 +32,7 @@ spec:
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
         - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
