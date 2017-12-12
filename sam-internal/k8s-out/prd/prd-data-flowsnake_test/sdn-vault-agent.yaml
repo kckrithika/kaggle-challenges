@@ -23,7 +23,7 @@ spec:
         - --certfile=/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000475-9a7fd185
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000503-8a8b2d31
         livenessProbe:
           httpGet:
             path: /liveness-probe
