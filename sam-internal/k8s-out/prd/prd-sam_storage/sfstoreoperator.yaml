@@ -22,7 +22,7 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000271-fc8fbd76
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000275-ac73d680
         name: sfstoreoperator
         volumeMounts:
         - mountPath: /etc/pki_service

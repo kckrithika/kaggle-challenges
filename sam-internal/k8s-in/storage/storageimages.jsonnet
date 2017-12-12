@@ -6,13 +6,20 @@ local utils = import "util_functions.jsonnet";
     overrides: {
         #
         # This section lets you override any storage image for a given kingdom,estate,template,image.
-        # Template is the short name of the template. For k8s-in/storage/templates/fds-deployment.jsonnet use "fds-deployment"
+        # Template is the short name of the template. For k8s-in/storage/templates/fds.jsonnet use "fds"
         # Image name
         #
         # Example:
-        #   "prd,prd-sam_storage,fds-deployment,fdscontroller": "faultdomainset-0000123-deadbeef",
+        #   "prd,prd-sam_storage,fds,fdscontroller": "faultdomainset-0000123-deadbeef",
         #
+        # Ceph daemon image override example:
+        #   "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "jewel-0000050-9308fbd0"
 
+        // TODO: The SAM deployer currently clobbers custom resource status on updates. Keep the version fixed at `latest` in existing
+        //       clusters until either the SAM deployer is fixed to not clobber the status of custom resources or the ceph operator
+        //       is fixed to move the cluster state to a separate object.
+        "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "latest",
+        "prd,prd-sam_ceph,ceph-cluster,ceph-daemon": "latest",
     },
 
     ### Per-phase image tags
@@ -20,9 +27,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, and prd-sam_sfstoredev
         "0": {
-            default_tag: "base-0000271-fc8fbd76",
+            default_tag: "base-0000275-ac73d680",
             sfms_tag: "latest-0000087-bb6bfdee",
-            cephdaemon_tag: "jewel-0000047-859f50b7",
+            cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
@@ -30,9 +37,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "1": {
-            default_tag: "base-0000271-fc8fbd76",
+            default_tag: "base-0000275-ac73d680",
             sfms_tag: "latest-0000087-bb6bfdee",
-            cephdaemon_tag: "jewel-0000047-859f50b7",
+            cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
@@ -40,9 +47,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - TBD
         "2": {
-            default_tag: "base-0000271-fc8fbd76",
+            default_tag: "base-0000275-ac73d680",
             sfms_tag: "latest-0000087-bb6bfdee",
-            cephdaemon_tag: "jewel-0000047-859f50b7",
+            cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
@@ -52,7 +59,7 @@ local utils = import "util_functions.jsonnet";
         "3": {
             default_tag: "base-0000271-fc8fbd76",
             sfms_tag: "latest-0000087-bb6bfdee",
-            cephdaemon_tag: "jewel-0000047-859f50b7",
+            cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000021-f9f2ef07",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
@@ -66,9 +73,9 @@ local utils = import "util_functions.jsonnet";
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-sam_storage" || estate == "prd-sam_cephdev" || estate == "prd-sam_sfstoredev") then
+        if (estate == "prd-sam_storage") then
             "0"
-        else if (estate == "prd-sam" || estate == "prd-sam_ceph" || estate == "prd-sam_sfstore") then
+        else if (estate == "prd-sam") then
             "1"
         else if (kingdom == "prd") then
             "2"
@@ -95,6 +102,11 @@ local utils = import "util_functions.jsonnet";
 
     # The ceph daemon image is maintained in the https://git.soma.salesforce.com/SFStorage/ceph-docker repo.
     cephdaemon: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph-daemon", $.per_phase[$.phase].cephdaemon_tag),
+    # cephdaemon_image_path is the base path for daemon images. The tag for the daemon image will come from the ceph cluster spec itself.
+    cephdaemon_image_path: std.split($.cephdaemon, ":")[0],
+    # ceph_daemon_tag is the tag used for daemon images. This is populated in the ceph cluster spec, and can be overridden per-minion estate
+    # via $.overrides (see do_cephdaemon_tag_override in ceph-cluster.jsonnet).
+    cephdaemon_tag: $.per_phase[$.phase].cephdaemon_tag,
 
     # The sfstore bookie image is maintained in the https://git.soma.salesforce.com/SFStorage/bookkeeper repo.
     sfstorebookie: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "bookie", $.per_phase[$.phase].sfstorebookie_tag),
