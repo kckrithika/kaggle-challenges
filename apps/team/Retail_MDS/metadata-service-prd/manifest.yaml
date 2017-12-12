@@ -13,7 +13,7 @@ system:
         type: client
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.18.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.19.0
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -56,10 +56,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
-      args:
-        - --http2-in=9532
       ports:
-        - containerPort: 9532
+        - containerPort: 7012
+        - containerPort: 7016
         - containerPort: 7080
       livenessProbe:
         exec:
