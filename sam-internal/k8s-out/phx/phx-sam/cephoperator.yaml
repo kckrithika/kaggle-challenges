@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: fds-controller
-  name: fds-controller-deployment
+    name: cephoperator
+  name: cephoperator-deployment
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -16,28 +16,20 @@ spec:
   template:
     metadata:
       labels:
-        name: fds-controller
+        name: cephoperator
     spec:
       containers:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        - name: FDS_ASSUMED_CAPACITY_PER_POD
-          value: 5586Gi
-        - name: FDS_PROFILING
-          value: "false"
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/faultdomainset:base-0000275-ac73d680
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-        name: fds
-        ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
+        - name: K8S_PLATFORM
+          value: phx-sam
+        - name: CEPH_INIT_CONTAINER
+          value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000275-ac73d680
+        - name: CEPH_DAEMON_IMAGE_PATH
+          value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph:base-0000275-ac73d680
+        name: cephoperator
         volumeMounts:
         - mountPath: /var/log
           name: container-log-vol
@@ -49,47 +41,11 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
-      - args:
-        - -t
-        - ajna_with_tags
-        - -s
-        - fds
-        - -i
-        - "60"
-        command:
-        - /opt/sfms/bin/sfms
-        env:
-        - name: SFDC_FUNNEL_VIP
-          value: ajna0-funnel1-0-phx.data.sfdc.net:80
-        - name: MC_KINGDOM
-          value: phx
-        - name: MC_ESTATE
-          value: phx-sam
-        - name: MC_NAME
-          value: fds
-        - name: MC_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: MC_NODE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: MC_DEVICE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000087-bb6bfdee
-        name: sfms
-        volumeMounts:
-        - mountPath: /opt/sfms/config/endpoints/sources/fds.json
-          name: fds-sfms-config
-          subPath: fds.json
       initContainers:
       - command:
         - sh
         - -c
-        - /entrypoint.sh -g 7337 -u 7337 -s sfdc -l fds
+        - /entrypoint.sh -g 0 -u 0 -s root -l ceph-operator
         env:
         - name: KUBEVAR_POD_NAME
           valueFrom:
@@ -109,11 +65,8 @@ spec:
         - mountPath: /var/log-mounted
           name: host-log-vol
       nodeSelector:
-        master: "true"
+        pool: phx-sam
       volumes:
-      - configMap:
-          name: fds-sfms
-        name: fds-sfms-config
       - emptyDir: {}
         name: container-log-vol
       - hostPath:
