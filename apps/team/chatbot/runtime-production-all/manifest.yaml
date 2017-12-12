@@ -25,7 +25,7 @@ system:
         value: 'true'
       - name: METRICS_LOG_ONLY_PUBLISHER
         value: 'false'
-      image: sfci/chatbots/chatbot-runtime:210.0-ff37dc2
+      image: sfci/chatbots/chatbot-runtime:210.0-c17c04b
       livenessProbe:
         httpGet:
           path: /manage/health
