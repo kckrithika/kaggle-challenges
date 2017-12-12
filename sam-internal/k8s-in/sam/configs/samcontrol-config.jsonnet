@@ -17,7 +17,7 @@ local utils = import "util_functions.jsonnet";
 }
 + (if (configs.kingdom == "prd") then {
   deletionEnabled: true,
-  deletionPercentageThreshold: 10,
+  deletionPercentageThreshold: 20,
   statefulAppEnabled: true,
   checkImageExistsFlag: true,
 } else {})
