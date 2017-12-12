@@ -53,7 +53,34 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
       hostNetwork: true
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - /entrypoint.sh -g 0 -u 0 -s root -l localvol
+        env:
+        - name: KUBEVAR_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KUBEVAR_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000271-fc8fbd76
+        name: log-init
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
       volumes:
       - hostPath:
           path: /mnt/lvhdd
@@ -73,3 +100,8 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - emptyDir: {}
+        name: container-log-vol
+      - hostPath:
+          path: /var/log
+        name: host-log-vol

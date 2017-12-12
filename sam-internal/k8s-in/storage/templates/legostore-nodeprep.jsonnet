@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "phx-sam" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -27,7 +28,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["prd-sam_cephdev", "prd-sam_ceph", "phx-sam_ceph"],
+                          values: [/*"prd-sam_cephdev", "prd-sam_ceph",*/ "phx-sam_ceph"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
@@ -43,6 +44,16 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
               },
             },
           },
+          initContainers: [
+            {} +
+            storageutils.log_init_container(
+              storageimages.loginit,
+              "localvol",
+              0,
+              0,
+              "root"
+            ),
+          ],
           containers: [
             {
               name: "nodeprep",
@@ -71,7 +82,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                 configs.maddog_cert_volume_mount,
                 configs.cert_volume_mount,
                 configs.kube_config_volume_mount,
-              ]),
+              ] + storageutils.log_init_volume_mounts()),
               env: [
                 {
                   name: "MY_NODE_NAME",
@@ -124,7 +135,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
             configs.maddog_cert_volume,
             configs.cert_volume,
             configs.kube_config_volume,
-          ]),
+          ] + storageutils.log_init_volumes()),
         },
       },
    },
