@@ -65,7 +65,7 @@ spec:
         - mountPath: /var/log-mounted
           name: host-log-vol
       nodeSelector:
-        pool: prd-sam_storage
+        master: "true"
       volumes:
       - emptyDir: {}
         name: container-log-vol
