@@ -76,11 +76,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                         configs.kube_config_volume,
                     ]),
                 nodeSelector: {
-                } +
-                if configs.estate == "prd-sam" then {
                     master: "true",
-                } else {
-                    pool: configs.estate,
                 },
             },
         },
