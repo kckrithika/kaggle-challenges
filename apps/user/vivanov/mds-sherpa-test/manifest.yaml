@@ -25,21 +25,6 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
-      - name: GDOT_KEYSTORE_PASS
-        valueFrom:
-          secretKeyRef:
-            name: metadata-service-secrets-v1
-            key: gdot-storepass
-      - name: GDOT_PROVISIONING_USER_KEYPASS
-        valueFrom:
-          secretKeyRef:
-            name: metadata-service-secrets-v1
-            key: gdot-provisioning-keypass
-      - name: GDOT_TENANT_MASTER_KEYPASS
-        valueFrom:
-          secretKeyRef:
-            name: metadata-service-secrets-v1
-            key: gdot-tenant-master-keypass
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
