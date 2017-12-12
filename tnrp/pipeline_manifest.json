@@ -9,7 +9,7 @@
          "filename":"golang-1.6-2.x86_64.rpm",
          "version":"1.6-2.x86_64",
          "scope":[
-
+         "7"
          ],
          "group_id":"golang",
          "type":"rpm",
@@ -22,7 +22,7 @@
          "filename":"dca-python-cffi-0.8.6-22.x86_64.rpm",
          "version":"0.8.6-22.x86_64",
          "scope":[
-
+         "7"
          ],
          "group_id":"python",
          "type":"rpm",
@@ -35,12 +35,13 @@
          "filename": "sammanifestbuilder-20171116_234700.a622d46.clean.ops_pipebuild1_1_prd-1.x86_64.rpm",
          "version": "20171116_234700.a622d46.clean.ops_pipebuild1_1_prd-1.x86_64",
          "scope":[
-
+         "7"
          ],
          "group_id": "rpm-sam",
          "type":"rpm",
          "repo_path":"rpm-sam"
       }
    ],
+   "os_release": [ "7" ],
    "snapshot_id":""
 }
