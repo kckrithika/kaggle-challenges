@@ -1,18 +1,44 @@
 apiVersion: v1
- 
+
 system:
   functions:
   - name: rsui
     count: 1
+    volumes:
+    - name: retailservercert
+      maddogCert:
+        type: server
+        lbnames:
+        - rsui-lb
     containers:
     - name: rsui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rsui/rsui:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:9474a46
       ports:
       - containerPort: 8080
       - containerPort: 15372
+      env:
+      - name: MDS_HOST
+        value: mock-metadata-servicelb.retail-rsui-sp2.prd-sam.prd.slb.sfdc.net
+      - name: MDS_PORT
+        value: 36184
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
+      - name: SFDC_ENVIRONMENT
+        value: CCP_Shared_Dev
       livenessProbe:
-        exec:
-          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
+      volumeMounts:
+      - name: retailservercert
+        mountPath: /servercerts
+
     - name: sherpa-rsui
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
@@ -35,9 +61,11 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
+
   loadbalancers:
   - lbname: rsui-lb
     function: rsui
+    slbEnabled: true
     ports:
       - port: 8080
         targetport: 8080
