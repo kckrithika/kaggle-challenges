@@ -25,6 +25,7 @@ spec:
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-yul.data.sfdc.net:80
         - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=12h
         image: ops0-artifactrepo1-0-yul.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         name: watchdog-apiserverlb
