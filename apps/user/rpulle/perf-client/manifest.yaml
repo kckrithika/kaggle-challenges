@@ -8,7 +8,7 @@ system:
     count: 8
     containers:
 
-    - name: perfclient
+    - name: client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/perfclient:1.0
       livenessProbe:
         exec:
@@ -26,7 +26,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7080
+      - containerPort: 15373
         name: shp-sm-adm
       livenessProbe:
         exec:
@@ -45,5 +45,5 @@ system:
   - lbname: perf-client-lb
     function: perf-client
     ports:
-      - port: 7080
-        targetport: 7080
+      - port: 15373
+        targetport: 15373
