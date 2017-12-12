@@ -35,7 +35,7 @@ spec:
           value: lvns
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/lvprovisioner:v1.0-0000009-9eb12162
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/lvprovisioner:v1.0-0000015-0ba0b53a
         imagePullPolicy: Always
         name: provisioner
         securityContext:
