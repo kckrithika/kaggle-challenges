@@ -13,9 +13,9 @@ spec:
         name: dummy-storageservice-deployment
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph-daemon:jewel-0000047-859f50b7
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph-daemon:jewel-0000052-36e8b39d
         name: cephdaemon
       - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000021-f9f2ef07
         name: sfstore-bookie
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000271-fc8fbd76
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000275-ac73d680
         name: loginit
