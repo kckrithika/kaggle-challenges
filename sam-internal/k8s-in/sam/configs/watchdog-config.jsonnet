@@ -83,10 +83,10 @@ local utils = import "util_functions.jsonnet";
   },
 } +
 (
-  if configs.kingdom == "prd" then {
-  # Publish email alerts in Phase 2 to Kafka.
-      kafkaProducerEndpoint: "ajna0-broker1-0-prd.data.sfdc.net:9093",
-      kafkaTopic: "sfdc.prod.sam__prd.ajna_local__opevents",
+  # Publish email alerts for Phase 3 to Kafka.
+  if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+      kafkaProducerEndpoint: "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093",
+      kafkaTopic: "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__opevents",
       publishAlertsToKafka: true,
   } else {}
 ) +

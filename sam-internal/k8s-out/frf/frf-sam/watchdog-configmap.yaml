@@ -15,6 +15,8 @@ data:
       "funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",
       "imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001548-81d3b9bd",
       "k8sproxyEndpoint": "http://localhost:40000",
+      "kafkaProducerEndpoint": "ajna0-broker1-0-frf.data.sfdc.net:9093",
+      "kafkaTopic": "sfdc.prod.sam__frf.ajna_local__opevents",
       "keyFile": "/data/certs/hostcert.key",
       "laddr": "0.0.0.0:8083",
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
@@ -29,6 +31,7 @@ data:
         "hyperkube.*scheduler": "age.kubescheduler"
       },
       "podNamespacePrefixBlacklist": "sam-watchdog",
+      "publishAlertsToKafka": true,
       "rcImtEndpoint": "https://reportcollector-frf.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-alerts@salesforce.com",
       "sdpEndpoint": "http://localhost:39999",
