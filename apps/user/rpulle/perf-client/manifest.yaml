@@ -18,7 +18,7 @@ system:
           periodSeconds: 5
 
     - name: sherpa-sm
-      image:   ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug:20171103-16
+      image:  tnrp/sherpa:2-0000118-83476125
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
