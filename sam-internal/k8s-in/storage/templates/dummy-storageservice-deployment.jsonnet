@@ -34,6 +34,10 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                         name: "sfstore-bookie",
                         image: storageimages.sfstorebookie,
                     },
+                    {
+                        name: "loginit",
+                        image: storageimages.loginit,
+                    },
                 ],
             },
         },
