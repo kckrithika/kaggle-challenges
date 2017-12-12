@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: fds
+    slb.sfdc.net/portconfigurations: '[{"port":8080,"targetport":8080,"lbtype":"dsr"}]'
+  labels:
+    app: fds-controller
+    slb.sfdc.net/name: fds
+  name: fds-svc
+  namespace: sam-system
+spec:
+  ports:
+  - name: fds-controller-port
+    nodePort: 32100
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    name: fds-controller
+  type: NodePort
