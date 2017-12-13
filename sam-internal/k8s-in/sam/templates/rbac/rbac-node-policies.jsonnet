@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 # The following ClusterRole & ClusterRoleBinding allows Minion Nodes to update their own status but not others.
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
