@@ -28,9 +28,12 @@ system:
   loadbalancers:
   - lbname: sammonlb
     function: sammon
+    slbEnabled: true
     nodeExposed: true
     ports:
       - port: 64133
         targetport: 4200
+        lbtype: http
       - port: 64134
         targetport: 3000
+        lbtype: http
