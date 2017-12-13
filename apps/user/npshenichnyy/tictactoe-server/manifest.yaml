@@ -10,7 +10,7 @@ system:
         path: /home/sfdc-tictactoe/logs
     containers:
     - name: tictactoe-server-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:20171019-15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:latest
       args:
       - --metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
       - --server.port=15371
@@ -33,7 +33,7 @@ system:
           path: /manage/health
           port: 15372
     - name: beacon-tictactoe-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/beacon:20170921-12-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
       - tictactoe-server-service:DATACENTER:7012
@@ -43,7 +43,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-tictactoe-server
-      image: tnrp/sherpa:2-0000118-83476125
+      image: sfci/servicelibs/sherpa:2.0.14
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
