@@ -40,6 +40,8 @@ spec:
           name: procfs-volume
         - mountPath: /config
           name: config
+        - mountPath: /data/certs
+          name: certs
       hostNetwork: true
       volumes:
       - configMap:
@@ -51,3 +53,6 @@ spec:
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /data/certs
+        name: certs

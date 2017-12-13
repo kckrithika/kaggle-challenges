@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
                             "-alertThreshold=1h",
                         ]
                         + samwdconfig.shared_args
-                        + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then ["-publishAllReportsToKafka=true"] else [])
+                        + (if !utils.is_public_cloud(configs.kingdom) then ["-publishAllReportsToKafka=true"] else [])
                         + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,

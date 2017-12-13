@@ -1,7 +1,6 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-local utils = import "util_functions.jsonnet";
 {
     kind: "DaemonSet",
     spec: {
@@ -37,12 +36,9 @@ local utils = import "util_functions.jsonnet";
                                 name: "procfs-volume",
                              },
                              configs.config_volume_mount,
-                        ])
-                        + (
-                            if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then
-                                [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
-                            else []
-                        ),
+                             configs.cert_volume_mount,
+                             configs.maddog_cert_volume_mount,
+                        ]),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -54,12 +50,9 @@ local utils = import "util_functions.jsonnet";
                       name: "procfs-volume",
                    },
                    configs.config_volume("watchdog"),
-                ])
-                + (
-                    if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then
-                        [configs.cert_volume, configs.maddog_cert_volume]
-                    else []
-                ),
+                   configs.cert_volume,
+                   configs.maddog_cert_volume,
+                ]),
             },
             metadata: {
                 labels: {
