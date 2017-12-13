@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:test-20171212
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.10.0-20171213
       ports:
       - name: provider
         containerPort: 8080
