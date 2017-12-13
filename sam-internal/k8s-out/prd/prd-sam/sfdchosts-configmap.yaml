@@ -278,16 +278,6 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-sam",
-          "hostname": "shared0-samcompute1-16-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_compute",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sam",
           "hostname": "shared0-samcompute1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -438,16 +428,6 @@ data:
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
           "estate": "prd-sam",
-          "hostname": "shared0-samcompute2-16-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_compute",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sam",
           "hostname": "shared0-samcompute2-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
@@ -524,61 +504,11 @@ data:
           "superpod": "none"
         },
         {
-          "bomrolename": "sam_control",
-          "controlestate": "prd-sam",
-          "devicerole": "samcontrol",
-          "estate": "prd-sam",
-          "hostname": "shared0-samcontrol1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_control",
-          "controlestate": "prd-sam",
-          "devicerole": "samcontrol",
-          "estate": "prd-sam",
-          "hostname": "shared0-samcontrol1-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_control",
-          "controlestate": "prd-sam",
-          "devicerole": "samcontrol",
-          "estate": "prd-sam",
-          "hostname": "shared0-samcontrol2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_control",
-          "controlestate": "prd-sam",
-          "devicerole": "samcontrol",
-          "estate": "prd-sam",
-          "hostname": "shared0-samcontrol2-2-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
           "bomrolename": "sam_kube_api",
           "controlestate": "prd-sam",
           "devicerole": "samkubeapi",
           "estate": "prd-sam",
           "hostname": "shared0-samkubeapi1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_kube_api",
-          "controlestate": "prd-sam",
-          "devicerole": "samkubeapi",
-          "estate": "prd-sam",
-          "hostname": "shared0-samkubeapi1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"
@@ -1044,6 +974,186 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform2-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform3-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudsetup",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudsetup",
+          "hostname": "shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudsetup",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudsetup",
+          "hostname": "shared0-samminioncrosscloudsetup2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudsetup",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_crosscloudsetup",
+          "hostname": "shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_customerresolutionengine",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_customerresolutionengine",
+          "hostname": "shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -1374,6 +1484,36 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "samdevpool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-samdevpool",
+          "hostname": "shared0-samdevpool1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samdevpool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-samdevpool",
+          "hostname": "shared0-samdevpool2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samdevpool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-samdevpool",
+          "hostname": "shared0-samdevpool3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sampool",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -1429,6 +1569,46 @@ data:
           "devicerole": "samcompute",
           "estate": "prd-sampool",
           "hostname": "shared0-sampool6-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sampool",
+          "hostname": "shared0-sampool7-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtestpool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-samtestpool",
+          "hostname": "shared0-samtestpool1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtestpool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-samtestpool",
+          "hostname": "shared0-samtestpool2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtestpool",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-samtestpool",
+          "hostname": "shared0-samtestpool3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"
