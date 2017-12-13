@@ -1,0 +1,12 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute1-1-chx.ops.sfdc.net,10.250.30.4/28,10.250.40.96/27,F07-4,chx-sam
+shared0-samcompute1-2-chx.ops.sfdc.net,10.250.30.5/28,10.250.40.128/27,F07-3,chx-sam
+shared0-samcompute2-1-chx.ops.sfdc.net,10.250.30.19/28,10.250.40.160/27,F08-2,chx-sam
+shared0-samkubeapi1-1-chx.ops.sfdc.net,10.250.30.2/28,10.250.40.0/27,F07-1,chx-sam
+shared0-samkubeapi2-1-chx.ops.sfdc.net,10.250.30.18/28,10.250.40.32/27,F08-1,chx-sam
+shared0-samkubeapi3-1-chx.ops.sfdc.net,10.250.30.3/28,10.250.40.64/27,F07-2,chx-sam
+shared0-samminiongater1-1-chx.ops.sfdc.net,10.250.30.6/28,10.250.40.192/27,F07-5,chx-sam_gater
+shared0-samminiongater1-2-chx.ops.sfdc.net,10.250.30.7/28,10.250.40.224/27,F07-6,chx-sam_gater
+shared0-samminiongater1-3-chx.ops.sfdc.net,10.250.30.8/28,10.250.41.0/27,F07-7,chx-sam_gater
+shared0-samminiongater2-1-chx.ops.sfdc.net,10.250.30.20/28,10.250.41.32/27,F08-3,chx-sam_gater
+shared0-samminiongater2-2-chx.ops.sfdc.net,10.250.30.21/28,10.250.41.64/27,F08-4,chx-sam_gater

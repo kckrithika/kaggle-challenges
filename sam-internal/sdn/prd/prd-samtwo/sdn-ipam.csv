@@ -1,0 +1,7 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samtwocompute1-1-prd.eng.sfdc.net,10.231.184.2/29,10.251.214.0/27,d38-02,prd-samtwo
+shared0-samtwocompute1-2-prd.eng.sfdc.net,10.231.184.34/29,10.251.214.64/27,n09-02,prd-samtwo
+shared0-samtwocompute2-1-prd.eng.sfdc.net,10.231.184.10/29,10.251.214.128/27,w03-02,prd-samtwo
+shared0-samtwokubeapi1-1-prd.eng.sfdc.net,10.231.184.26/29,10.251.214.96/27,p32-02,prd-samtwo
+shared0-samtwokubeapi2-1-prd.eng.sfdc.net,10.231.184.18/29,10.251.214.160/27,w35-02,prd-samtwo
+shared0-samtwokubeapi3-1-prd.eng.sfdc.net,10.231.184.42/29,10.251.214.32/27,m40-02,prd-samtwo

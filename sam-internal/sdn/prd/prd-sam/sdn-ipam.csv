@@ -36,7 +36,6 @@ shared0-samcompute1-12-prd.eng.sfdc.net,10.253.213.35/29,10.251.164.128/27,k07-0
 shared0-samcompute1-13-prd.eng.sfdc.net,10.253.213.3/29,10.251.160.192/27,e41-02,prd-sam
 shared0-samcompute1-14-prd.eng.sfdc.net,10.253.213.4/29,10.251.160.224/27,e41-02,prd-sam
 shared0-samcompute1-15-prd.eng.sfdc.net,10.253.213.50/29,10.251.161.224/27,f35-02,prd-sam
-shared0-samcompute1-16-prd.eng.sfdc.net,10.253.213.51/29,10.251.162.0/27,f35-02,prd-sam
 shared0-samcompute1-2-prd.eng.sfdc.net,10.253.213.52/29,10.251.162.32/27,f35-02,prd-sam
 shared0-samcompute1-3-prd.eng.sfdc.net,10.253.213.53/29,10.251.162.64/27,f35-02,prd-sam
 shared0-samcompute1-4-prd.eng.sfdc.net,10.253.213.19/29,10.251.160.32/27,a38-02,prd-sam
@@ -52,7 +51,6 @@ shared0-samcompute2-12-prd.eng.sfdc.net,10.253.213.26/29,10.251.162.128/27,h11-0
 shared0-samcompute2-13-prd.eng.sfdc.net,10.253.213.43/29,10.251.161.96/27,f34-02,prd-sam
 shared0-samcompute2-14-prd.eng.sfdc.net,10.253.213.11/29,10.251.163.64/27,h21-02,prd-sam
 shared0-samcompute2-15-prd.eng.sfdc.net,10.253.213.27/29,10.251.162.160/27,h11-02,prd-sam
-shared0-samcompute2-16-prd.eng.sfdc.net,10.253.213.12/29,10.251.163.96/27,h21-02,prd-sam
 shared0-samcompute2-2-prd.eng.sfdc.net,10.253.213.28/29,10.251.162.192/27,h11-02,prd-sam
 shared0-samcompute2-3-prd.eng.sfdc.net,10.253.213.13/29,10.251.163.128/27,h21-02,prd-sam
 shared0-samcompute2-4-prd.eng.sfdc.net,10.253.213.59/29,10.251.163.224/27,j07-02,prd-sam
@@ -61,12 +59,7 @@ shared0-samcompute2-6-prd.eng.sfdc.net,10.253.213.44/29,10.251.161.128/27,f34-02
 shared0-samcompute2-7-prd.eng.sfdc.net,10.253.213.45/29,10.251.161.160/27,f34-02,prd-sam
 shared0-samcompute2-8-prd.eng.sfdc.net,10.253.213.29/29,10.251.162.224/27,h11-02,prd-sam
 shared0-samcompute2-9-prd.eng.sfdc.net,10.253.213.61/29,10.251.164.32/27,j07-02,prd-sam
-shared0-samcontrol1-1-prd.eng.sfdc.net,10.253.213.22/29,10.251.160.128/27,a38-02,prd-sam
-shared0-samcontrol1-2-prd.eng.sfdc.net,10.253.213.54/29,10.251.162.96/27,f35-02,prd-sam
-shared0-samcontrol2-1-prd.eng.sfdc.net,10.253.213.30/29,10.251.163.0/27,h11-02,prd-sam
-shared0-samcontrol2-2-prd.eng.sfdc.net,10.253.213.62/29,10.251.164.64/27,j07-02,prd-sam
 shared0-samkubeapi1-1-prd.eng.sfdc.net,10.253.213.6/29,10.251.161.32/27,e41-02,prd-sam
-shared0-samkubeapi1-2-prd.eng.sfdc.net,10.253.213.38/29,10.251.164.224/27,k07-02,prd-sam
 shared0-samkubeapi2-1-prd.eng.sfdc.net,10.253.213.14/29,10.251.163.160/27,h21-02,prd-sam
 shared0-samkubeapi3-1-prd.eng.sfdc.net,10.253.213.46/29,10.251.161.192/27,f34-02,prd-sam
 shared0-samminioncephrd1-1-prd.eng.sfdc.net,10.231.171.98/28,10.251.200.224/27,k21-02,prd-sam_ceph
@@ -151,12 +144,6 @@ shared0-sampool3-1-prd.eng.sfdc.net,10.231.185.34/29,10.251.210.64/27,n09-02,prd
 shared0-sampool4-1-prd.eng.sfdc.net,10.231.185.26/29,10.251.210.96/27,p32-02,prd-sampool
 shared0-sampool5-1-prd.eng.sfdc.net,10.231.185.10/29,10.251.210.128/27,w03-02,prd-sampool
 shared0-sampool6-1-prd.eng.sfdc.net,10.231.185.18/29,10.251.210.160/27,w35-02,prd-sampool
-shared0-samtwocompute1-1-prd.eng.sfdc.net,10.231.184.2/29,10.251.214.0/27,d38-02,prd-samtwo
-shared0-samtwocompute1-2-prd.eng.sfdc.net,10.231.184.34/29,10.251.214.64/27,n09-02,prd-samtwo
-shared0-samtwocompute2-1-prd.eng.sfdc.net,10.231.184.10/29,10.251.214.128/27,w03-02,prd-samtwo
-shared0-samtwokubeapi1-1-prd.eng.sfdc.net,10.231.184.26/29,10.251.214.96/27,p32-02,prd-samtwo
-shared0-samtwokubeapi2-1-prd.eng.sfdc.net,10.231.184.18/29,10.251.214.160/27,w35-02,prd-samtwo
-shared0-samtwokubeapi3-1-prd.eng.sfdc.net,10.231.184.42/29,10.251.214.32/27,m40-02,prd-samtwo
 shared0-sdbcompute1-1-prd.eng.sfdc.net,10.253.100.18/29,10.251.144.0/27,s10-02,prd-sp1-sdb_kube
 shared0-sdbcompute1-2-prd.eng.sfdc.net,10.253.100.21/29,10.251.144.32/27,s10-02,prd-sp1-sdb_kube
 shared0-sdbcompute1-3-prd.eng.sfdc.net,10.253.100.22/29,10.251.144.64/27,s10-02,prd-sp1-sdb_kube
