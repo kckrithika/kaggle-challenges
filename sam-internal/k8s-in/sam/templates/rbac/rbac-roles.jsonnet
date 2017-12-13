@@ -45,6 +45,9 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
             "secrets",
             "configmaps",
             "persistentvolumeclaims",
+            "pods/log",
+            "deployments",
+            "replicasets",
           ],
           verbs: [
             "get",
@@ -73,6 +76,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
             "pods",
             "persistentvolumes",
             "statefulsets",
+            "namespaces",
           ],
           verbs: [
             "get",

@@ -24,6 +24,9 @@ items:
     - secrets
     - configmaps
     - persistentvolumeclaims
+    - pods/log
+    - deployments
+    - replicasets
     verbs:
     - get
     - watch
@@ -42,6 +45,7 @@ items:
     - pods
     - persistentvolumes
     - statefulsets
+    - namespaces
     verbs:
     - get
     - list
