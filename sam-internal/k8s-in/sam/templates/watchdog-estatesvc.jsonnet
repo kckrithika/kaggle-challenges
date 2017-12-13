@@ -26,23 +26,17 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
-                        ])
-                        + (
-                            if configs.kingdom == "prd" || configs.kingdom == "frf" then
-                                [configs.cert_volume_mount, configs.maddog_cert_volume_mount]
-                            else []
-                        ),
+                            configs.cert_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                        ]),
                     },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
                     configs.config_volume("watchdog"),
-                ])
-                + (
-                    if configs.kingdom == "prd" || configs.kingdom == "frf" then
-                        [configs.cert_volume, configs.maddog_cert_volume]
-                    else []
-                ),
+                    configs.cert_volume,
+                    configs.maddog_cert_volume,
+                ]),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {

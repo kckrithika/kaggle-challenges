@@ -83,8 +83,8 @@ local utils = import "util_functions.jsonnet";
   },
 } +
 (
-  # Publish email alerts for Phase 3 to Kafka.
-  if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+  # Publish email alerts for Phase 4 to Kafka.
+  if !utils.is_public_cloud(configs.kingdom) then {
       kafkaProducerEndpoint: "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093",
       kafkaTopic: "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__opevents",
       publishAlertsToKafka: true,

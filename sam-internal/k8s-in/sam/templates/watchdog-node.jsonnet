@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
+local utils = import "util_functions.jsonnet";
 {
     kind: "Deployment",
     spec: {
@@ -19,7 +20,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=1h",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" || configs.kingdom == "frf" then ["-publishAllReportsToKafka=true"] else [])
+                        + (if !utils.is_public_cloud(configs.kingdom) then ["-publishAllReportsToKafka=true"] else [])
                         + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,

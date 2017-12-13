@@ -26,6 +26,7 @@ spec:
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -publishAllReportsToKafka=true
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
