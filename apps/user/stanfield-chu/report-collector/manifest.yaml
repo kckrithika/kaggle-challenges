@@ -9,19 +9,16 @@ system:
     count: 3
     volumes:
       - name: servercertvol
-        maddogCert:
-          type: server
+        secret:
+          secretName: csc-rc-certificates
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
-      - name: certvol
-        secret:
-          secretName: rc-certs
       - name: logvol
         hostPath:
           path: /var/log/report-collector
     containers:
-    - name: report-collectorha
+    - name: testreport-collector
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.10.0-20171213
       ports:
       - name: provider
@@ -33,13 +30,11 @@ system:
       - name: consumer-https
         containerPort: 8444
       volumeMounts:
-      - mountPath: /var/lib/report-collector/certificates
-        name: certvol
-        readOnly: true
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /var/lib/report-collector/pki
+      - mountPath: /var/lib/report-collector/certificates/server/
         name: servercertvol
+        readOnly: true
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
@@ -47,7 +42,9 @@ system:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 1
       - name: ReportCollector_redis_host
-        value: $(REDISNOHALB_SERVICE_HOST)
+        value: $(REDISLB_SERVICE_HOST)
+      - name: ReportCollector_redis_port
+        value: $(REDISLB_SERVICE_PORT)
       - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
@@ -79,7 +76,6 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.disableFileCPResolving=true
@@ -155,18 +151,17 @@ system:
       # LB was supposed to allow SSL on the backend, but its not currently
       # supported, so we will use non SSL but on these node ports (18443, 18444)
       # since its the one exposed in estates for sam_minionreportcollector
-    - port: 18448
+    - port: 18443
       targetport: 8080
-    - port: 18449
+    - port: 18444
       targetport: 8081
-    - port: 8448
+    - port: 8443
       targetport: 8443
-    - port: 8449
+    - port: 8444
       targetport: 8444
   - lbname: redislb
     function: redis
     nodeExposed: true
     ports:
-      - port: 6382
+      - port: 6379
         targetport: 6379
-
