@@ -1,0 +1,22 @@
+apiVersion: v1
+items:
+- apiVersion: storage.salesforce.com/v1beta1
+  kind: CephCluster
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: ceph-phx-sam-ceph
+    namespace: legostore
+  spec:
+    K8S_NETWORK: 10.220.25.128/25
+    cephVersion: jewel-0000052-36e8b39d
+    faultDomainBoundary: node.sam.sfdc.net/rack
+    metadata:
+      name: ceph-phx-sam-ceph
+      namespace: legostore
+    pool: phx-sam_ceph
+    storageClassAllocations:
+    - aggregateStorage: 273Ti
+      name: hdd
+kind: List
+metadata: {}

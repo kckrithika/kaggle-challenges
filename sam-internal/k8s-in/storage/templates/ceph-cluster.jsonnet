@@ -21,7 +21,7 @@ local internal = {
     ),
 };
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then
     {
         apiVersion: "v1",
         kind: "List",
@@ -31,9 +31,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
                 local escapedMinionEstate = utils.string_replace(minionEstate, "_", "-"),
                 local cephClusterName = "ceph-" + escapedMinionEstate,
 
-                // TODO: In prd-sam, RBAC rules prevent pods from running if they are created in a namespace other than `legostore`
-                //       or `storage-foundation`. Use the `legostore` namespace for now.
-                local cephClusterNamespace = (if minionEstate == "prd-sam_ceph" then "legostore" else cephClusterName),
+                // TODO: In prd-sam_storage, multiple ceph clusters are defined. Other control estates only use one ceph cluster for
+                // now, and RBAC rules in those estates require the cluster to be in the legostore namespace.
+                local cephClusterNamespace = (if configs.estate == "prd-sam_storage" then cephClusterName else "legostore"),
 
                 kind: "CephCluster",
                 apiVersion: "storage.salesforce.com/v1beta1",

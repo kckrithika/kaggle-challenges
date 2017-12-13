@@ -5,7 +5,7 @@
     cephEstates: {
         "prd-sam": ["prd-sam_ceph"],
         "prd-sam_storage": ["prd-sam_cephdev", "prd-sam_storage"],
-        // "phx-sam": ["phx-sam_ceph"], # Do Not uncomment until you deploy Ceph Cluster to Prod
+        "phx-sam": ["phx-sam_ceph"], # Do Not uncomment until you deploy Ceph Cluster to Prod
     },
 
     // Map of SFStore control estate -> cluster estate.
@@ -38,7 +38,7 @@
                     "prd-sam_ceph": "180Ti",
                 },
                 "phx-sam": {
-                    "phx-sam_ceph": "180Ti",
+                    "phx-sam_ceph": "273Ti",
                 },
             },
         },
