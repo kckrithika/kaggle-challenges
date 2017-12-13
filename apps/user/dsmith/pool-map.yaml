@@ -1,4 +1,4 @@
 apps:
-  deployment-reporter-test:
+  virtual-api:
     - prd/prd-samdev
     - prd/prd-sam
