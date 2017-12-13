@@ -76,9 +76,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                              path: "/liveness-probe",
                              port: portconfigs.slb.slbConfigProcessorLivenessProbePort,
                           },
-                          initialDelaySeconds: 60,
+                          initialDelaySeconds: 300,
                           timeoutSeconds: 5,
-                          periodSeconds: 20,
+                          periodSeconds: 30,
                         },
                     },
                     {
