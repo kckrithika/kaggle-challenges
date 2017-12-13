@@ -1,157 +1,163 @@
 ---
 -
   kingdom: chx
-  vmIPRange: 10.251.128.0/23
+  vmIPRange:
+  - 10.250.40.0/21
+  - 10.250.48.0/22
+  - 10.250.64.0/19
   control-estate: chx-sam
-  estate: chx-sam
-  hosts:
-    -
-      bomrolename: sam_kube_api
-      devicerole: samkubeapi
-      hostIp: 10.250.30.2/28
-      hostname: shared0-samkubeapi1-1-chx.ops.sfdc.net
-      rack: F07-1
-    -
-      bomrolename: sam_kube_api
-      devicerole: samkubeapi
-      hostIp: 10.250.30.18/28
-      hostname: shared0-samkubeapi2-1-chx.ops.sfdc.net
-      rack: F08-1
-    -
-      bomrolename: sam_kube_api
-      devicerole: samkubeapi
-      hostIp: 10.250.30.3/28
-      hostname: shared0-samkubeapi3-1-chx.ops.sfdc.net
-      rack: F07-2
-    -
-      bomrolename: sam_compute
-      devicerole: samcompute
-      hostIp: 10.250.30.4/28
-      hostname: shared0-samcompute1-1-chx.ops.sfdc.net
-      rack: F07-4
-    -
-      bomrolename: sam_compute
-      devicerole: samcompute
-      hostIp: 10.250.30.5/28
-      hostname: shared0-samcompute1-2-chx.ops.sfdc.net
-      rack: F07-3
-    -
-      bomrolename: sam_compute
-      devicerole: samcompute
-      hostIp: 10.250.30.19/28
-      hostname: shared0-samcompute2-1-chx.ops.sfdc.net
-      rack: F08-2
--
-  kingdom: chx
-  vmIPRange: 10.251.130.0/23
-  control-estate: chx-sam
-  estate: chx-sam_gater
-  hosts:
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.30.6/28
-      hostname: shared0-samminiongater1-1-chx.ops.sfdc.net
-      rack: F07-5
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.30.7/28
-      hostname: shared0-samminiongater1-2-chx.ops.sfdc.net
-      rack: F07-6
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.30.8/28
-      hostname: shared0-samminiongater1-3-chx.ops.sfdc.net
-      rack: F07-7
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.30.20/28
-      hostname: shared0-samminiongater2-1-chx.ops.sfdc.net
-      rack: F08-3
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.30.21/28
-      hostname: shared0-samminiongater2-2-chx.ops.sfdc.net
-      rack: F08-4
+  estateList:
+  - chx-sam
+  - chx-sam_gater
+  estates:
+    chx-sam:
+      hosts:
+        -
+            bomrolename: sam_kube_api
+            devicerole: samkubeapi
+            hostIp: 10.250.30.2/28
+            hostname: shared0-samkubeapi1-1-chx.ops.sfdc.net
+            rack: F07-1
+        -
+            bomrolename: sam_kube_api
+            devicerole: samkubeapi
+            hostIp: 10.250.30.18/28
+            hostname: shared0-samkubeapi2-1-chx.ops.sfdc.net
+            rack: F08-1
+        -
+            bomrolename: sam_kube_api
+            devicerole: samkubeapi
+            hostIp: 10.250.30.3/28
+            hostname: shared0-samkubeapi3-1-chx.ops.sfdc.net
+            rack: F07-2
+        -
+            bomrolename: sam_compute
+            devicerole: samcompute
+            hostIp: 10.250.30.4/28
+            hostname: shared0-samcompute1-1-chx.ops.sfdc.net
+            rack: F07-4
+        -
+            bomrolename: sam_compute
+            devicerole: samcompute
+            hostIp: 10.250.30.5/28
+            hostname: shared0-samcompute1-2-chx.ops.sfdc.net
+            rack: F07-3
+        -
+            bomrolename: sam_compute
+            devicerole: samcompute
+            hostIp: 10.250.30.19/28
+            hostname: shared0-samcompute2-1-chx.ops.sfdc.net
+            rack: F08-2
+    chx-sam_gater:
+      hosts:
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.30.6/28
+            hostname: shared0-samminiongater1-1-chx.ops.sfdc.net
+            rack: F07-5
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.30.7/28
+            hostname: shared0-samminiongater1-2-chx.ops.sfdc.net
+            rack: F07-6
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.30.8/28
+            hostname: shared0-samminiongater1-3-chx.ops.sfdc.net
+            rack: F07-7
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.30.20/28
+            hostname: shared0-samminiongater2-1-chx.ops.sfdc.net
+            rack: F08-3
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.30.21/28
+            hostname: shared0-samminiongater2-2-chx.ops.sfdc.net
+            rack: F08-4
 -
   kingdom: wax
-  vmIPRange: 10.251.128.0/23
+  vmIPRange:
+  - 10.250.52.0/22
+  - 10.250.56.0/21
+  - 10.250.96.0/19
   control-estate: wax-sam
-  estate: wax-sam
-  hosts:
-    -
-      bomrolename: sam_kube_api
-      devicerole: samkubeapi
-      hostIp: 10.250.38.2/28
-      hostname: shared0-samkubeapi1-1-wax.ops.sfdc.net
-      rack: B01-1
-    -
-      bomrolename: sam_kube_api
-      devicerole: samkubeapi
-      hostIp: 10.250.38.18/28
-      hostname: shared0-samkubeapi2-1-wax.ops.sfdc.net
-      rack: C01-1
-    -
-      bomrolename: sam_kube_api
-      devicerole: samkubeapi
-      hostIp: 10.250.38.3/28
-      hostname: shared0-samkubeapi3-1-wax.ops.sfdc.net
-      rack: B01-2
-    -
-      bomrolename: sam_compute
-      devicerole: samcompute
-      hostIp: 10.250.38.4/28
-      hostname: shared0-samcompute1-1-wax.ops.sfdc.net
-      rack: B01-3
-    -
-      bomrolename: sam_compute
-      devicerole: samcompute
-      hostIp: 10.250.38.5/28
-      hostname: shared0-samcompute1-2-wax.ops.sfdc.net
-      rack: B01-4
-    -
-      bomrolename: sam_compute
-      devicerole: samcompute
-      hostIp: 10.250.38.19/28
-      hostname: shared0-samcompute2-1-wax.ops.sfdc.net
-      rack: C01-2
--
-  kingdom: wax
-  vmIPRange: 10.251.130.0/23
-  control-estate: wax-sam
-  estate: wax-sam_gater
-  hosts:
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.38.6/28
-      hostname: shared0-samminiongater1-1-wax.ops.sfdc.net
-      rack: B01-5
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.38.7/28
-      hostname: shared0-samminiongater1-2-wax.ops.sfdc.net
-      rack: B01-6
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.38.8/28
-      hostname: shared0-samminiongater1-3-wax.ops.sfdc.net
-      rack: B01-7
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.38.20/28
-      hostname: shared0-samminiongater2-1-wax.ops.sfdc.net
-      rack: C01-3
-    -
-      bomrolename: sam_minion_gater
-      devicerole: samcompute
-      hostIp: 10.250.38.21/28
-      hostname: shared0-samminiongater2-2-wax.ops.sfdc.net
-      rack: C01-4
+  estateList:
+  - wax-sam
+  - wax-sam_gater
+  estates:
+    wax-sam:
+      hosts:
+        -
+            bomrolename: sam_kube_api
+            devicerole: samkubeapi
+            hostIp: 10.250.38.2/28
+            hostname: shared0-samkubeapi1-1-wax.ops.sfdc.net
+            rack: B01-1
+        -
+            bomrolename: sam_kube_api
+            devicerole: samkubeapi
+            hostIp: 10.250.38.18/28
+            hostname: shared0-samkubeapi2-1-wax.ops.sfdc.net
+            rack: C01-1
+        -
+            bomrolename: sam_kube_api
+            devicerole: samkubeapi
+            hostIp: 10.250.38.3/28
+            hostname: shared0-samkubeapi3-1-wax.ops.sfdc.net
+            rack: B01-2
+        -
+            bomrolename: sam_compute
+            devicerole: samcompute
+            hostIp: 10.250.38.4/28
+            hostname: shared0-samcompute1-1-wax.ops.sfdc.net
+            rack: B01-3
+        -
+            bomrolename: sam_compute
+            devicerole: samcompute
+            hostIp: 10.250.38.5/28
+            hostname: shared0-samcompute1-2-wax.ops.sfdc.net
+            rack: B01-4
+        -
+            bomrolename: sam_compute
+            devicerole: samcompute
+            hostIp: 10.250.38.19/28
+            hostname: shared0-samcompute2-1-wax.ops.sfdc.net
+            rack: C01-2
+    wax-sam_gater:
+      hosts:
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.38.6/28
+            hostname: shared0-samminiongater1-1-wax.ops.sfdc.net
+            rack: B01-5
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.38.7/28
+            hostname: shared0-samminiongater1-2-wax.ops.sfdc.net
+            rack: B01-6
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.38.8/28
+            hostname: shared0-samminiongater1-3-wax.ops.sfdc.net
+            rack: B01-7
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.38.20/28
+            hostname: shared0-samminiongater2-1-wax.ops.sfdc.net
+            rack: C01-3
+        -
+            bomrolename: sam_minion_gater
+            devicerole: samcompute
+            hostIp: 10.250.38.21/28
+            hostname: shared0-samminiongater2-2-wax.ops.sfdc.net
+            rack: C01-4
