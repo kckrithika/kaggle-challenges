@@ -64,8 +64,6 @@ system:
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
         value: /var/lib/report-collector/certificates/server/rc_server.key
-      - name: ReportCollector_ajna_publishEnabled
-        value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
