@@ -3,9 +3,9 @@ kind: CustomerStoragePool
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
-  name: gater-hdd-pool
-  namespace: gater-apps
+  name: mayank-hdd-pool
+  namespace: user-mayank
 spec:
-  clusterNamespace: ceph-test
-  size: 750Gi
+  clusterNamespace: legostore
+  size: 50Gi
   storageTier: hdd

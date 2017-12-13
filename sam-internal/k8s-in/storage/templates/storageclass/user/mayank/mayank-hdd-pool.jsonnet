@@ -1,21 +1,20 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
-local clusterNamespace = (if configs.estate == "prd-sam_storage"  then "ceph-test" else if configs.estate == "prd-sam" then "legostore" else "ceph");
-local appNamespace = (if configs.estate == "prd-sam_storage"  then "gater-apps" else if configs.estate == "prd-sam" then "gater");
+local appNamespace = (if configs.estate == "prd-sam" then "user-mayank");
 
 if configs.estate == "prd-sam" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
-        "name": "gater-hdd-pool",
+        "name": "mayank-hdd-pool",
         "namespace": appNamespace,
         "annotations": {
             "manifestctl.sam.data.sfdc.net/swagger": "disable",
         },
     },
     "spec": {
-        "clusterNamespace": clusterNamespace,
-        "size": "750Gi",
+        "clusterNamespace": "legostore",
+        "size": "50Gi",
         "storageTier": "hdd" ,
     }
 } else "SKIP"
