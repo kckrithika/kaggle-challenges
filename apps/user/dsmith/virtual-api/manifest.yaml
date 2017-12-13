@@ -6,6 +6,10 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: virtual-api
+      command:
+        - /sam/manifest-watcher
+        - --v=2
+        - --logtostderr=true
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:latest
       ports:
       - containerPort: 7002
