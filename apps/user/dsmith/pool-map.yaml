@@ -2,3 +2,6 @@ apps:
   virtual-api:
     - prd/prd-samdev
     - prd/prd-sam
+  dashboard:
+    - prd/prd-samdev
+    - prd/prd-sam
