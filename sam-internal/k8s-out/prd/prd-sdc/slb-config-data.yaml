@@ -30,6 +30,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
+      hostNetwork: true
       volumes:
       - hostPath:
           path: /data/slb

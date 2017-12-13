@@ -24,6 +24,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 namespace: "sam-system",
             },
             spec: {
+                hostNetwork: true,
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                  ]),
