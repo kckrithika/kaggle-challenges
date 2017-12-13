@@ -18,10 +18,9 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [mayank] adding overrides for storage team's ceph cluster availability testing
+        # [thargrove] Leaving this in by special request from Mayank
         "prd,prd-sam,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
         "prd,prd-samdev,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
-        # [thargrove] Dummy entry just to test the new sam/manifest warm VM thing.  Remove this next phase
-        "a,b,c,d": "e",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -46,7 +45,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001548-81d3b9bd",
+            hypersam: "sam-0001556-b9349d35",
             madkub: "1.0.0-0000053-f7dc2302",
             madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
