@@ -40,8 +40,14 @@ if configs.estate == "prd-sdc" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--ports=" + portconfigs.slb.canaryServicePassthroughHostNetworkPort,
-                        ],
-                        volumeMounts: configs.filter_empty([
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                                "--healthPort=" + portconfigs.slb.canaryServiceHealthPort,
+                                "--markerPath=" + slbconfigs.logsDir,
+                            ] else []
+                        ),
+                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
                     }

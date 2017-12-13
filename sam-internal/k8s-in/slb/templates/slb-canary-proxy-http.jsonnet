@@ -36,7 +36,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--ports=" + portconfigs.slb.canaryServiceProxyHttpPort,
-                        ],
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                                "--healthPort=" + portconfigs.slb.canaryServiceHealthPort,
+                                "--markerPath=" + slbconfigs.logsDir,
+                            ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
