@@ -1,0 +1,3 @@
+apps:
+ my-sam-test:    # this must match the name of your application (the folder you created above). It is case sensitive
+  - prd/prd-sam  
