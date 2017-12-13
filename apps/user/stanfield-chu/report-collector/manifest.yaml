@@ -47,9 +47,7 @@ system:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 1
       - name: ReportCollector_redis_host
-        value: $(REDISLB_SERVICE_HOST)
-      - name: ReportCollector_redis_port
-        value: $(REDISLB_SERVICE_PORT)
+        value: $(REDISNOHALB_SERVICE_HOST)
       - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
@@ -60,13 +58,14 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificates
-        value: "[\"/var/lib/report-collector/pki/ca.pem\",
-                 \"/var/lib/report-collector/certificates/ca.crt\"]"
+      - name: ReportCollector_app_https_caCertificate
+        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
       - name: ReportCollector_app_https_certificate
-        value: /var/lib/report-collector/pki/server/certificates/server.pem
+        value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
-        value: /var/lib/report-collector/pki/server/keys/server-key.pem
+        value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_ajna_publishEnabled
+        value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
