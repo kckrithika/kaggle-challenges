@@ -16,7 +16,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-services
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:mgmt-2017-12-13-08-20-40
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgmt/mgmt-services:mgmt-2017-12-13-09-09-36
       env:
       - name: PKI_CA_DIR
         value: /certs
