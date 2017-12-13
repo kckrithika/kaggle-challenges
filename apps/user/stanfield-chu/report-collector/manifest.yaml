@@ -151,17 +151,17 @@ system:
       # LB was supposed to allow SSL on the backend, but its not currently
       # supported, so we will use non SSL but on these node ports (18443, 18444)
       # since its the one exposed in estates for sam_minionreportcollector
-    - port: 18443
+    - port: 78080
       targetport: 8080
-    - port: 18444
+    - port: 78081
       targetport: 8081
-    - port: 8443
+    - port: 78443
       targetport: 8443
-    - port: 8444
+    - port: 78444
       targetport: 8444
   - lbname: redislb
     function: redis
     nodeExposed: true
     ports:
-      - port: 6379
+      - port: 76379
         targetport: 6379
