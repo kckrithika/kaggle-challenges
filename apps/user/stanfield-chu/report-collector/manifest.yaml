@@ -1,0 +1,175 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - stanfield.chu@salesforce.com
+  functions:
+  - name: testreport-collector
+    count: 3
+    volumes:
+      - name: servercertvol
+        maddogCert:
+          type: server
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-auth-0
+      - name: certvol
+        secret:
+          secretName: rc-certs
+      - name: logvol
+        hostPath:
+          path: /var/log/report-collector
+    containers:
+    - name: report-collectorha
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:test-20171212
+      ports:
+      - name: provider
+        containerPort: 8080
+      - name: consumer
+        containerPort: 8081
+      - name: provider-https
+        containerPort: 8443
+      - name: consumer-https
+        containerPort: 8444
+      volumeMounts:
+      - mountPath: /var/lib/report-collector/certificates
+        name: certvol
+        readOnly: true
+      - mountPath: /var/log/report-collector
+        name: logvol
+      - mountPath: /var/lib/report-collector/pki
+        name: servercertvol
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 1
+      - name: ReportCollector_redis_host
+        value: $(REDISLB_SERVICE_HOST)
+      - name: ReportCollector_redis_port
+        value: $(REDISLB_SERVICE_PORT)
+      - name: ReportCollector_redis_fullPathToAuthFile
+        value: /var/secrets/redis/auth
+      - name: ReportCollector_app_https_enabled
+        value: true
+      - name: ReportCollector_app_https_providerPort
+        value: 8443
+      - name: ReportCollector_app_https_consumerPort
+        value: 8444
+      - name: ReportCollector_app_https_clientAuth
+        value: REQUEST
+      - name: ReportCollector_app_https_caCertificates
+        value: "[\"/var/lib/report-collector/pki/ca.pem\",
+                 \"/var/lib/report-collector/certificates/ca.crt\"]"
+      - name: ReportCollector_app_https_certificate
+        value: /var/lib/report-collector/pki/server/certificates/server.pem
+      - name: ReportCollector_app_https_privateKey
+        value: /var/lib/report-collector/pki/server/keys/server-key.pem
+      - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
+        value: 10
+      - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
+        value: 10
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+        initialDelaySeconds: 5
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
+      export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
+      export ReportCollector_ajna_datacenter=${KINGDOM} ;
+      export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+
+      ${JAVA_HOME}/bin/java
+        -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
+        -Dvertx.disableFileCPResolving=true
+        -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
+        -Dvertx.metrics.options.enabled=true
+        -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.disableDnsResolver=true
+        -Dlog_dir=${LOG_DIR}
+        -Dinstance=${FUNCTION_INSTANCE_NAME}
+        -jar ${JAR_PATH}
+      "]
+    - name: csc-health-stale-log-cleaner
+      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      volumeMounts:
+        - mountPath: /var/log/report-collector
+          name: logvol
+      env:
+        - name: CLEANUP_FOLDER
+          value: /var/log/report-collector
+        - name: CLEANUP_PERIOD_SECONDS
+          value: 1800
+        - name: CLEANUP_FILE_PATTERN
+          value: "*tmp*"
+        - name: CLEANUP_FILE_AGE_MINUTES
+          value: 30
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
+      command: ["/bin/sh", "-c"]
+      args: ['
+          while sleep ${CLEANUP_PERIOD_SECONDS};
+          do
+              echo $(date) "Processing" $CLEANUP_FOLDER;
+              if [ ! -d "$CLEANUP_FOLDER" ]; then
+                  echo $CLEANUP_FOLDER " doesn''t exist";
+                  continue;
+              fi;
+
+              find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
+          done
+      ']
+  - name: redis
+    count: 1
+    volumes:
+      - name: redisauthvol
+        secret:
+          secretName: csc-redis-auth-0
+    containers:
+    - name: redis
+      image: tnrp/csc-health/redis-auth:3.2
+      volumeMounts:
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      ports:
+      - containerPort: 6379
+      logs:
+      - directory: /var/log/redis
+      livenessProbe:
+        tcpSocket:
+          port: 6379
+        initialDelaySeconds: 5
+
+  loadbalancers:
+  - lbname: reportcollectorlb
+    function: testreport-collector
+    nodeExposed: true
+    ports:
+      # LB was supposed to allow SSL on the backend, but its not currently
+      # supported, so we will use non SSL but on these node ports (18443, 18444)
+      # since its the one exposed in estates for sam_minionreportcollector
+    - port: 18448
+      targetport: 8080
+    - port: 18449
+      targetport: 8081
+    - port: 8448
+      targetport: 8443
+    - port: 8449
+      targetport: 8444
+  - lbname: redislb
+    function: redis
+    nodeExposed: true
+    ports:
+      - port: 6382
+        targetport: 6379
+
