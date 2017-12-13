@@ -67,6 +67,11 @@ system:
         - name: PLSQL_UPDATE_RUNSTATS
           value: false
 
+        # By default we patch server to NOT expire sessions across major release bounday.
+        # Comment out this name/value pair to revert back to normal session invalidation.
+        - name: DISABLE_AUTH_RELEASE_CHECK
+          value: true
+
       resources:
         limits: { memory: "10240M" }
         requests: { memory: "8292M" }
