@@ -21,6 +21,25 @@ local utils = import "util_functions.jsonnet";
         # [thargrove] Leaving this in by special request from Mayank
         "prd,prd-sam,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
         "prd,prd-samdev,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
+
+        # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+        "prd,prd-samtest,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "prd,prd-samdev,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "prd,prd-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "frf,frf-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "chx,chx-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "dfw,dfw-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "hnd,hnd-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "iad,iad-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "ord,ord-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "par,par-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "phx,phx-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "ukb,ukb-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "wax,wax-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+        "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

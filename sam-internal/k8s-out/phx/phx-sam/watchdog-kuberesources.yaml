@@ -25,14 +25,14 @@ spec:
         - -maxUptimeSampleSize=5
         - -shouldBatchMetrics=true
         - -timeout=2s
-        - -funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - -funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001565-24339c86
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001565-24339c86
         name: watchdog-kuberesources
         volumeMounts:
         - mountPath: /sfdchosts
@@ -47,7 +47,7 @@ spec:
           name: config
       hostNetwork: true
       nodeSelector:
-        pool: frf-sam
+        pool: phx-sam
       volumes:
       - configMap:
           name: sfdchosts
