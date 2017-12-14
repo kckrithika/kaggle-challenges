@@ -20,7 +20,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001548-81d3b9bd
         livenessProbe:
           httpGet:

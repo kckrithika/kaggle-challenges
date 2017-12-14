@@ -21,7 +21,7 @@ spec:
       containers:
       - env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         - name: FDS_ASSUMED_CAPACITY_PER_POD
           value: 5586Gi
         - name: FDS_PROFILING
