@@ -91,7 +91,8 @@ system:
       esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
-        -Dvertx.disableFileCPResolving=false
+        -Dvertx.disableFileCPResolving=DISABLE_FILE_CP_RESOLVING
+        -Dvertx.cacheDirBase=${CACHE_DIR}
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
