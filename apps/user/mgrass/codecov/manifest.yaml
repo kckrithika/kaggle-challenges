@@ -190,13 +190,12 @@ system:
         periodSeconds: 60
     # nginx container
     - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:stable-alpine
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:1-sleep.1
       volumeMounts:
       - name: datavol
         mountPath: /archive
       - name: certs
         mountPath: /certs
-      command: ["sh"]
       ports:
         - containerPort: 80
         - containerPort: 443
