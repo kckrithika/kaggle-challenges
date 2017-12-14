@@ -137,14 +137,9 @@ system:
       storageSizeRequest: 100Gi
 
     volumes:
-    - name: certs
-      maddogCert:
-        type: server
-        lbnames:
-        - codecov-monitor
     - name: codecov-config
       k4aSecret:
-        secretName: codecov
+        secretName: codecov-new
 
   - name: core
     count: 1
@@ -190,20 +185,22 @@ system:
         periodSeconds: 60
     # nginx container
     - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:1-sleep.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:2-nossl
       volumeMounts:
       - name: datavol
         mountPath: /archive
-      - name: certs
-        mountPath: /certs
+      # TODO: maddog certs are good for service-service communication, but not trusted by default from dev boxes.
+      # Acquire real certs.
+      #- name: certs
+      #  mountPath: /certs
       ports:
-        - containerPort: 80
-        - containerPort: 443
+        - containerPort: 8080
+        - containerPort: 8443
       livenessProbe:
         tcpSocket:
-          port: 80
+          port: 8080
         failureThreshold: 3
-        initialDelaySeconds: 600000
+        initialDelaySeconds: 60
         periodSeconds: 60
 
     lbname: codecov-headless-lb
@@ -218,14 +215,16 @@ system:
       storageSizeRequest: 100Gi
 
     volumes:
-    - name: certs
-      maddogCert:
-        type: server
-        lbnames:
-        - codecov
+    # TODO: maddog certs are good for service-service communication, but not trusted by default from dev boxes.
+    # Acquire real certs.
+    # - name: certs
+    #   maddogCert:
+    #     type: server
+    #     lbnames:
+    #     - codecov
     - name: codecov-config
       k4aSecret:
-        secretName: codecov
+        secretName: codecov-new
 
   loadbalancers:
   - lbname: postgres
@@ -253,8 +252,8 @@ system:
     nodeExposed: false
     ports:
       - port: 80
-        targetport: 80
-        lbtype: dsr
+        targetport: 8080
+        lbtype: tcp
       - port: 443
-        targetport: 443
-        lbtype: dsr
+        targetport: 8443
+        lbtype: tcp
