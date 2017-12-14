@@ -1,6 +1,5 @@
 local configs = import "config.jsonnet";
-local storageimages = import "storageimages.jsonnet";
-local appNamespace = (if configs.estate == "prd-sam" then "user-mayank");
+local appNamespace = (if configs.estate == "prd-sam" then "user-mayank" else "");
 
 if configs.estate == "prd-sam" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
