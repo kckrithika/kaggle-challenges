@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.2rc6
+      image: sfci/cloud-atlas/cloudatlas:2.4rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
