@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.nyayapati/search-model-executor:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.nyayapati/search-model-executor:20171213
       ports:
       - name: service-port
         containerPort: 7020
@@ -27,6 +27,7 @@ system:
           command: ["./runcheck.sh"]
         initialDelaySeconds: 240
         timeoutSeconds: 10
+        periodSeconds: 60
       readinessProbe:
         exec:
           command:
