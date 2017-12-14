@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: testreport-collector
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hansen.wang/test:0.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.11.0-20171214
       ports:
       - name: provider
         containerPort: 8080
@@ -81,7 +81,7 @@ system:
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       case ${KINGDOM} in
-        unk)
+        prd)
           export ReportCollector_adminInterface_enabled=true ;
           export ReportCollector_adminInterface_port=8082 ;
           ;;
