@@ -25,16 +25,16 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./runcheck.sh
-          - 5
+          - "./runcheck.sh"
+          - "5"
         initialDelaySeconds: 240
         timeoutSeconds: 10
         periodSeconds: 60
       readinessProbe:
         exec:
           command:
-          - ./runcheck.sh
-          - 5
+          - "./runcheck.sh"
+          - "5"
         initialDelaySeconds: 240
         timeoutSeconds: 10
     - name: sherpa-b
