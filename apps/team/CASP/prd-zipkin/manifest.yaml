@@ -18,10 +18,8 @@ system:
         ports:
         - name: nginx
           containerPort: 8887
-          hostPort: 8887
         - name: zipkin
           containerPort: 9411
-          hostPort: 9411
         livenessProbe:
           httpGet:
             path: /zipkin
@@ -33,9 +31,9 @@ system:
       function: zipkin-func
       nodeExposed: true
       ports:
-        - port: 9410
+        - port: 9411
           targetport: 9411
-        - port: 8886
+        - port: 8887
           targetport: 8887
     - lbname: zipkin
       function: zipkin-func
