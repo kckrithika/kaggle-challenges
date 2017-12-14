@@ -8,5 +8,5 @@ local kingdom = std.extVar("kingdom");
     momVIP: "https://ops0-momapi1-0-" + kingdom + ".data.sfdc.net/api/v1/network/device?key=host-bgp-routes",
 
     # Charon/Nyx Endpoints
-    charonEndpoint: "http://sds2-polcore2-2-" + kingdom + ".eng.sfdc.net:9443/minions",
+    charonEndpoint: "https://sds2-polcore2-2-" + kingdom + ".eng.sfdc.net:9443/minions",
 }
