@@ -22,7 +22,7 @@ spec:
         - /sdn/sdn-control-service
         - --archiveSvcEndpoint=http://10.253.152.173:14431/tnrp/content_repo/0/archive
         - --port=9108
-        - --charonAgentEndpoint=http://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions
+        - --charonAgentEndpoint=https://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions
         - --livenessProbePort=9110
         - --charonPushInterval=30s
         - --samUpdateInterval=30s
@@ -33,6 +33,7 @@ spec:
         - --userName=kubernetes
         - --pkiServerServiceName=k8s-server
         - --pkiClientServiceName=k8s-client
+        - --enableNyxMtls
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
