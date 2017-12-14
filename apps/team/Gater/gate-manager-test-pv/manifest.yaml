@@ -43,6 +43,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: blitz
+      - name: TICK
+        value: tock
 
       resources:
         requests:
