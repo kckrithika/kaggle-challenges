@@ -6,7 +6,7 @@ system:
     progressDeadlineSeconds: 120
     containers:
     - name: dashboard-phx
-      command:
+      args:
         - --v=2
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
@@ -19,7 +19,7 @@ system:
           path: /healthz
           port: 9090
     - name: dashboard-dfw
-      command:
+      args:
         - --v=2
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
@@ -32,7 +32,7 @@ system:
           path: /healthz
           port: 9091
     - name: dashboard-frf
-      command:
+      args:
         - --v=2
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/frf

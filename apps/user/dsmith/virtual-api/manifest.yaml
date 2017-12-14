@@ -7,7 +7,7 @@ system:
     containers:
     - name: virtual-api
       command:
-        - /sam/manifest-watcher
+        - /sam/virtual-api
         - --v=2
         - --logtostderr=true
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:latest
