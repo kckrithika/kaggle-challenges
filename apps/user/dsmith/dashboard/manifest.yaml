@@ -59,6 +59,42 @@ system:
       volumeMounts:
       - name: temp
         mountPath: /tmp
+    - name: dashboard-iad
+      args:
+        - --v=8
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/iad
+        - --insecure-port=9093
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from IAD"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9093
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9093
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-cdu
+      args:
+        - --v=8
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/cdu
+        - --insecure-port=9094
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from CDU"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9094
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9094
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -72,3 +108,7 @@ system:
         targetport: 9091
       - port: 9092
         targetport: 9092
+      - port: 9093
+        targetport: 9093
+      - port: 9094
+        targetport: 9094
