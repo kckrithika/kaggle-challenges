@@ -27,5 +27,5 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: test-hdd-pool
+      storageClassName: mayank-hdd-pool
       storageSizeRequest: 3Gi
