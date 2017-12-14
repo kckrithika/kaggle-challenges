@@ -25,7 +25,7 @@ system:
     volumeClaimTemplates:
     - name: www
       storageClassName: small-hdd-pool
-      storageSizeRequest: 5Gi
+      storageSizeRequest: 500Gi
   loadbalancers:
   - lbname: cephlb
     function: stateful-func
