@@ -7,9 +7,9 @@ system:
     containers:
     - name: dashboard-phx
       args:
-        - --v=2
+        - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/phx
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -23,7 +23,7 @@ system:
         name: temp
     - name: dashboard-dfw
       args:
-        - --v=2
+        - --v=8
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
         - --insecure-port=9091
@@ -39,7 +39,7 @@ system:
         name: temp
     - name: dashboard-frf
       args:
-        - --v=2
+        - --v=8
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/frf
         - --insecure-port=9092
