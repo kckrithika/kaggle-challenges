@@ -185,7 +185,7 @@ system:
         periodSeconds: 60
     # nginx container
     - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:2-nossl
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:2-nossl-cap
       volumeMounts:
       - name: datavol
         mountPath: /archive
@@ -194,11 +194,11 @@ system:
       #- name: certs
       #  mountPath: /certs
       ports:
-        - containerPort: 8080
-        - containerPort: 8443
+        - containerPort: 80
+        - containerPort: 443
       livenessProbe:
         tcpSocket:
-          port: 8080
+          port: 80
         failureThreshold: 3
         initialDelaySeconds: 60
         periodSeconds: 60
@@ -252,8 +252,8 @@ system:
     nodeExposed: false
     ports:
       - port: 80
-        targetport: 8080
-        lbtype: tcp
+        targetport: 80
+        lbtype: dsr
       - port: 443
-        targetport: 8443
-        lbtype: tcp
+        targetport: 443
+        lbtype: dsr
