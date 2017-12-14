@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: search-model-executor
+  - name: search-model-executor-maya
     count: 3
     containers:
-    - name: search-model-executor
+    - name: search-model-executor-maya
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.nyayapati/search-model-executor:20171213
       ports:
       - name: service-port
@@ -24,7 +24,7 @@ system:
         value: http://ajna0-funnel1-0-prd.data.sfdc.net/
       livenessProbe:
         exec:
-          command: ["./runcheck.sh"]
+          command: ["./runcheck.sh 5"]
         initialDelaySeconds: 240
         timeoutSeconds: 10
         periodSeconds: 60
