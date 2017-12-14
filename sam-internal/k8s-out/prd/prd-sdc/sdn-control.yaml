@@ -33,6 +33,7 @@ spec:
         - --userName=kubernetes
         - --pkiServerServiceName=k8s-server
         - --pkiClientServiceName=k8s-client
+        - --enableNyxMtls
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

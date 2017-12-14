@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" then {
                             "/sdn/sdn-control-service",
                             "--archiveSvcEndpoint=http://10.253.152.173:14431/tnrp/content_repo/0/archive",
                             "--port=" + portconfigs.sdn.sdn_control_service,
-                            "--charonAgentEndpoint=" + configs.charonEndpoint,
+                            "--charonAgentEndpoint=" + sdnconfigs.charonEndpoint,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_control,
                             "--charonPushInterval=30s",
                             "--samUpdateInterval=30s",
@@ -49,6 +49,7 @@ if configs.estate == "prd-sdc" then {
                             "--userName=kubernetes",
                             "--pkiServerServiceName=k8s-server",
                             "--pkiClientServiceName=k8s-client",
+                            "--enableNyxMtls",
                         ],
                         env: [
                             configs.kube_config_env,
