@@ -19,6 +19,18 @@ data:
       "kafkaTopic": "sfdc.prod.sam__par.ajna_local__opevents",
       "keyFile": "/data/certs/hostcert.key",
       "laddr": "0.0.0.0:8083",
+      "maddogCommonCerts": [
+        "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
+        "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+        "/etc/pki_service/etcd/etcd-client/certificates/etcd-client.pem",
+        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+        "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+        "/data/certs/hostcert.crt"
+      ],
+      "maddogEtcdCerts": [
+        "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
+        "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem"
+      ],
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
       "monitoredProcesses": {
