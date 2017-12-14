@@ -1,59 +1,46 @@
 apiVersion: v1
 
 system:
-  notifications:
-    email:
-      - pteyer@salesforce.com
-  functions:
-  - name: zipkin-func
-    type: stateful-set
-    count: 1
-    containers:
-    - name: zipkin
-      image: tnrp/casp/zipkin:0.0.1-0000202-4c18a3f8
+    notifications:
+      email:
+        - pteyer@salesforce.com
+    functions:
+    - name: zipkin-func
+      count: 1
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-zipkin
+        image: tnrp/casp/zipkin:0.0.1-0000202-4c18a3f8
+        ports:
+        - name: nginx
+          containerPort: 8887
+          hostPort: 8887
+        - name: zipkin
+          containerPort: 9411
+          hostPort: 9411
+        livenessProbe:
+          httpGet:
+            path: /zipkin
+            port: 8887
+          initialDelaySeconds: 120
 
-      volumeMounts:
-      - mountPath: /home/sfdc-casp/elasticsearch/data
-        name: dbvol
-
-      livenessProbe:
-        httpGet:
-          path: /zipkin
-          port: 8887
-        initialDelaySeconds: 60 
-        timeoutSeconds: 10
-
+    loadbalancers:
+    - lbname: zipkin-node
+      function: zipkin-func
+      nodeExposed: true
       ports:
-      - containerPort: 8887
-      - containerPort: 9411 
+        - port: 9410
+          targetport: 9411
+        - port: 8886
+          targetport: 8887
+    - lbname: zipkin
+      function: zipkin-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8887
 
-      resources:
-        requests:
-          memory: "8Gi"
-        limits:
-          memory: "12Gi"
-
-    lbname: zipkinlb
-
-    terminationGracePeriodSeconds: 12
-
-    volumeClaimTemplates:
-    - name: dbvol
-      storageClassName: standard
-      storageSizeRequest: 8Gi
-
-  loadbalancers:
-  - lbname: zipkin-node
-    function: zipkin-func
-    nodeExposed: true
-    ports:
-      - port: 9411
-        targetport: 9411
-      - port: 8887
-        targetport: 8887
-  - lbname: zipkin
-    function: zipkin-func
-    slbEnabled: true
-    ports:
-      - port: 80
-        targetport: 8887
