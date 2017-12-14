@@ -129,3 +129,7 @@ apps:
     - name: phx/phx-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-phx.ops.sfdc.net
+  shared0-samminionatlasdir1-2-phx:
+    - name: phx/phx-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-2-phx.ops.sfdc.net

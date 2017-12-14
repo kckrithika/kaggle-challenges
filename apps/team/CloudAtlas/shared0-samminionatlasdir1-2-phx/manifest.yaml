@@ -5,13 +5,13 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-iad-dir1-2
+  - name: cloudatlas-phx-dir1-2
     count: 1
     strategy:
       type: Recreate
     hostnetwork: true
     containers:
-    - name: sherpa-cloudatlas-client-iad-dir1-2
+    - name: sherpa-cloudatlas-client
       image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
