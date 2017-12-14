@@ -6,7 +6,7 @@ system:
       - stanfield.chu@salesforce.com
   functions:
   - name: testreport-collector
-    count: 3
+    count: 1
     volumes:
       - name: servercertvol
         secret:
@@ -19,12 +19,14 @@ system:
           path: /var/log/report-collector
     containers:
     - name: testreport-collector
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.10.0-20171213
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hansen.wang/test:0.1
       ports:
       - name: provider
         containerPort: 8080
       - name: consumer
         containerPort: 8081
+      - name: admin
+        containerPort: 8082
       - name: provider-https
         containerPort: 8443
       - name: consumer-https
@@ -55,8 +57,8 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificate
-        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
+      - name: ReportCollector_app_https_caCertificates
+        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
       - name: ReportCollector_app_https_certificate
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
@@ -78,9 +80,18 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      DISABLE_FILE_CP_RESOLVING=true ;
+      case ${KINGDOM} in
+        prd)
+          export ReportCollector_adminInterface_enabled=true ;
+          export ReportCollector_adminInterface_port=8082 ;
+          DISABLE_FILE_CP_RESOLVING=false ;
+          ;;
+        *)
+      esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
-        -Dvertx.disableFileCPResolving=true
+        -Dvertx.disableFileCPResolving=${DISABLE_FILE_CP_RESOLVING}
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
@@ -157,6 +168,8 @@ system:
       targetport: 8080
     - port: 28081
       targetport: 8081
+    - port: 28082
+      targetport: 8082
     - port: 28443
       targetport: 8443
     - port: 28444
