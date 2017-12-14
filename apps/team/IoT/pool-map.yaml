@@ -1,8 +1,6 @@
 apps:
   controlplane-STdemo:
     - prd/prd-sp2-sam_iot_test
-  controlplane-ptest:
-      - prd/prd-sp2-sam_iot_test
   controlplane-sarthur:
       - prd/prd-sp2-sam_iot_test
   controlplane-reece:
