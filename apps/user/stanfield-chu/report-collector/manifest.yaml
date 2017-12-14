@@ -83,7 +83,7 @@ system:
       DISABLE_FILE_CP_RESOLVING=true ;
       case ${KINGDOM} in
         prd)
-          export ReportCollector_adminInterface_enabled=false ;
+          export ReportCollector_adminInterface_enabled=true ;
           export ReportCollector_adminInterface_port=8082 ;
           DISABLE_FILE_CP_RESOLVING=false ;
           ;;
