@@ -6,7 +6,7 @@ data:
       "certFile": "/data/certs/hostcert.crt",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-yhu.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b",
-      "deployer-rcImtEndpoint": "https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark",
+      "deployer-rcImtEndpoint": "https://reportcollector-yhu.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "sam-alerts@salesforce.com",
       "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "ops0-mta2-1-yhu.ops.sfdc.net:25",
@@ -18,8 +18,17 @@ data:
       "laddr": "0.0.0.0:8083",
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
+      "monitoredProcesses": {
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler"
+      },
       "podNamespacePrefixBlacklist": "sam-watchdog",
-      "rcImtEndpoint": "https://ops0-health1-1-yhu.ops.sfdc.net:18443/v1/bark",
+      "rcImtEndpoint": "https://reportcollector-yhu.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-alerts@salesforce.com",
       "sdpEndpoint": "http://localhost:39999",
       "sender": "sam-alerts@salesforce.com",
@@ -88,6 +97,14 @@ data:
             "phx-sam"
           ],
           "until": "2017/11/30"
+        },
+        {
+          "checker": "syntheticChecker",
+          "estates": [
+            "chx-sam",
+            "wax-sam"
+          ],
+          "until": "2017/12/31"
         }
       ],
       "tlsEnabled": true

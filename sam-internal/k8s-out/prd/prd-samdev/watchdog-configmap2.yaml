@@ -5,7 +5,7 @@ data:
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001518-2e736076",
+      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001556-b9349d35",
       "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "",
       "deployer-sender": "",
@@ -15,14 +15,37 @@ data:
       "enableMaddogCertChecks": true,
       "enableStatefulChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001518-2e736076",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001556-b9349d35",
       "k8sproxyEndpoint": "http://localhost:40000",
+      "kafkaProducerEndpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
+      "kafkaTopic": "sfdc.prod.sam__prd.ajna_local__opevents",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "sam-system,csc-sam",
       "laddr": "0.0.0.0:8083",
+      "maddogCommonCerts": [
+        "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
+        "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+        "/etc/pki_service/etcd/etcd-client/certificates/etcd-client.pem",
+        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+        "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem"
+      ],
+      "maddogEtcdCerts": [
+        "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
+        "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem"
+      ],
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
+      "monitoredProcesses": {
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler"
+      },
+      "publishAlertsToKafka": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
@@ -92,6 +115,14 @@ data:
             "phx-sam"
           ],
           "until": "2017/11/30"
+        },
+        {
+          "checker": "syntheticChecker",
+          "estates": [
+            "chx-sam",
+            "wax-sam"
+          ],
+          "until": "2017/12/31"
         },
         {
           "checker": "hairpinChecker",
