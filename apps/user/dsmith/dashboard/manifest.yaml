@@ -18,6 +18,9 @@ system:
         httpGet:
           path: /healthz
           port: 9090
+      volumesMounts:
+      - mountPath: /tmp
+        name: temp
     - name: dashboard-dfw
       args:
         - --v=2
@@ -31,6 +34,9 @@ system:
         httpGet:
           path: /healthz
           port: 9091
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     - name: dashboard-frf
       args:
         - --v=2
@@ -44,6 +50,12 @@ system:
         httpGet:
           path: /healthz
           port: 9092
+      volumeMounts:
+      - name: temp
+        mountPath: /tmp
+    volumes:
+    - name: temp
+      emptyDir: {}
   loadbalancers:
   - lbname: dashboard-lb
     function: dashboard
