@@ -193,6 +193,7 @@ system:
         mountPath: /archive
       - name: certs
         mountPath: /certs
+      command: ["sh"]
       ports:
         - containerPort: 80
         - containerPort: 443
@@ -200,7 +201,7 @@ system:
         tcpSocket:
           port: 80
         failureThreshold: 3
-        initialDelaySeconds: 5
+        initialDelaySeconds: 600000
         periodSeconds: 60
 
     lbname: codecov-headless-lb
@@ -228,12 +229,14 @@ system:
   - lbname: postgres
     function: postgres
     slbEnabled: false
+    nodeExposed: true
     ports:
       - port: 5432
         targetport: 5432
   - lbname: redis
     function: redis
     slbEnabled: false
+    nodeExposed: true
     ports:
       - port: 6379
         targetport: 6379
