@@ -155,3 +155,9 @@ apps:
     - name: phx/phx-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe2-1-phx.ops.sfdc.net
+
+  # PAR DS Nodes
+  shared0-samminionatlasdir1-1-par:
+    - name: par/par-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-par.ops.sfdc.net
