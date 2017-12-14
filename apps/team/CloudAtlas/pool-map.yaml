@@ -137,3 +137,13 @@ apps:
     - name: phx/phx-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir2-1-phx.ops.sfdc.net
+ 
+  # PHX Proxy Nodes
+  shared0-samminionatlasfe1-1-phx:
+    - name: phx/phx-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe1-1-phx.ops.sfdc.net
+  shared0-samminionatlasfe2-1-phx:
+    - name: phx/phx-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe2-1-phx.ops.sfdc.net
