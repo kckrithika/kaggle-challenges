@@ -5,7 +5,7 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-dfw-dir1-2
+  - name: cloudatlas-ord-dir2-1
     count: 1
     strategy:
       type: Recreate
