@@ -16,7 +16,7 @@ system:
       - containerPort: 9090
       livenessProbe:
         httpGet:
-          path: /healthz
+          path: /
           port: 9090
       volumesMounts:
       - mountPath: /tmp
@@ -32,7 +32,7 @@ system:
       - containerPort: 9091
       livenessProbe:
         httpGet:
-          path: /healthz
+          path: /
           port: 9091
       volumeMounts:
       - mountPath: /tmp
@@ -48,7 +48,7 @@ system:
       - containerPort: 9092
       livenessProbe:
         httpGet:
-          path: /healthz
+          path: /
           port: 9092
       volumeMounts:
       - name: temp
