@@ -98,6 +98,9 @@ system:
     containers:
     - name: monitor
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/codecov/enterprise:v4.3.9-1
+      args:
+      - /bin/run
+      - monitor
 
       volumeMounts:
       - name: codecov-config
