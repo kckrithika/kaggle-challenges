@@ -40,6 +40,25 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
         "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001565-24339c86",
+
+        # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to all kingdoms. This will correctly deploy hairpin watchdogs with correct role info.
+        "prd,prd-samtest,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "prd,prd-samdev,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "prd,prd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "frf,frf-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "cdu,cdu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "chx,chx-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "dfw,dfw-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "hnd,hnd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "iad,iad-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "ord,ord-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "par,par-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "phx,phx-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "syd,syd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "ukb,ukb-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "wax,wax-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
+        "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
