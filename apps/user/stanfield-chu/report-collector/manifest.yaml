@@ -83,7 +83,7 @@ system:
       DISABLE_FILE_CP_RESOLVING=true ;
       case ${KINGDOM} in
         prd)
-          export ReportCollector_adminInterface_enabled=true ;
+          export ReportCollector_adminInterface_enabled=false ;
           export ReportCollector_adminInterface_port=8082 ;
           DISABLE_FILE_CP_RESOLVING=false ;
           ;;
@@ -91,7 +91,7 @@ system:
       esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
-        -Dvertx.disableFileCPResolving=${DISABLE_FILE_CP_RESOLVING}
+        -Dvertx.disableFileCPResolving=true
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
