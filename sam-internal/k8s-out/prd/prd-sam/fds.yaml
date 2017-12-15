@@ -53,7 +53,7 @@ spec:
         - -t
         - ajna_with_tags
         - -s
-        - fds
+        - prometheus
         - -i
         - "60"
         command:
@@ -79,12 +79,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000087-bb6bfdee
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000089-2f101be4
         name: sfms
-        volumeMounts:
-        - mountPath: /opt/sfms/config/endpoints/sources/fds.json
-          name: fds-sfms-config
-          subPath: fds.json
       initContainers:
       - command:
         - sh
@@ -111,9 +107,6 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
-      - configMap:
-          name: fds-sfms
-        name: fds-sfms-config
       - emptyDir: {}
         name: container-log-vol
       - hostPath:
