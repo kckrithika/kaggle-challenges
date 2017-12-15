@@ -33,7 +33,15 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                     {
                         name: "sfstoreoperator",
                         image: storageimages.sfstoreoperator,
-                        volumeMounts: configs.filter_empty([
+                        volumeMounts: []
+                        + if configs.estate == "prd-sam" then [
+                            {
+                                name: "sfstore-config",
+                                mountPath: "/sfo/configs/sf-store-prdsam-1.10.json",
+                                subPath: "sf-store-prdsam-1.10.json",
+                            },
+                        ] else []
+                        + configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
@@ -43,17 +51,22 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                         ],
                     },
                 ],
-                volumes: configs.filter_empty([
+                volumes: []
+                + if configs.estate == "prd-sam" then [
+                    {
+                        name: "sfstore-config",
+                        configMap: {
+                            name: "sfstore-configmap",
+                        },
+                    },
+                ] else []
+                + configs.filter_empty([
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.estate == "prd-sam" then {
                     master: "true",
-                } else {
-                    pool: configs.estate,
                 },
             },
         },

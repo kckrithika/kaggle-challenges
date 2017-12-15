@@ -22,24 +22,15 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000276-0d0bc5c0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000281-92b9b996
         name: sfstoreoperator
         volumeMounts:
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /data/certs
-          name: certs
-        - mountPath: /kubeconfig
-          name: kubeconfig
+        - mountPath: /sfo/configs/sf-store-prdsam-1.10.json
+          name: sfstore-config
+          subPath: sf-store-prdsam-1.10.json
       nodeSelector:
         master: "true"
       volumes:
-      - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/certs
-        name: certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
+      - configMap:
+          name: sfstore-configmap
+        name: sfstore-config
