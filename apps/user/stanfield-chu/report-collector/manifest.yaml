@@ -81,7 +81,7 @@ system:
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       case ${KINGDOM} in
-        unk)
+        prd)
           export ReportCollector_adminInterface_enabled=true ;
           export ReportCollector_adminInterface_port=8082 ;
           ;;
