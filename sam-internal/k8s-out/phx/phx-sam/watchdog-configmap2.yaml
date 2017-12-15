@@ -1,0 +1,132 @@
+apiVersion: v1
+data:
+  watchdog.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/data/certs/hostcert.crt",
+      "deployer-funnelEndpoint": "ajna0-funnel1-0-phx.data.sfdc.net:80",
+      "deployer-imageName": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001548-81d3b9bd",
+      "deployer-rcImtEndpoint": "https://reportcollector-phx.data.sfdc.net:18443/v1/bark",
+      "deployer-recipient": "sam-alerts@salesforce.com",
+      "deployer-sender": "sam-alerts@salesforce.com",
+      "deployer-smtpServer": "ops0-mta1-2-phx.ops.sfdc.net:25",
+      "email-subject-prefix": "SAMWD",
+      "enableMaddogCertChecks": true,
+      "funnelEndpoint": "ajna0-funnel1-0-phx.data.sfdc.net:80",
+      "imageName": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001548-81d3b9bd",
+      "k8sproxyEndpoint": "http://localhost:40000",
+      "kafkaProducerEndpoint": "ajna0-broker1-0-phx.data.sfdc.net:9093",
+      "kafkaTopic": "sfdc.prod.sam__phx.ajna_local__opevents",
+      "keyFile": "/data/certs/hostcert.key",
+      "laddr": "0.0.0.0:8083",
+      "maddogCommonCerts": [
+        "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
+        "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+        "/etc/pki_service/etcd/etcd-client/certificates/etcd-client.pem",
+        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+        "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+        "/data/certs/hostcert.crt"
+      ],
+      "maddogEtcdCerts": [
+        "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
+        "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem"
+      ],
+      "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
+      "maxUptimeSampleSize": 5,
+      "monitoredProcesses": {
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler"
+      },
+      "podNamespacePrefixBlacklist": "sam-watchdog",
+      "publishAlertsToKafka": true,
+      "rcImtEndpoint": "https://reportcollector-phx.data.sfdc.net:18443/v1/bark",
+      "recipient": "sam-alerts@salesforce.com",
+      "sdpEndpoint": "http://localhost:39999",
+      "sender": "sam-alerts@salesforce.com",
+      "smtpServer": "ops0-mta1-2-phx.ops.sfdc.net:25",
+      "snooze": [
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "iad-sam"
+          ],
+          "until": "2017/09/15"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "iad-sam"
+          ],
+          "until": "2017/09/15"
+        },
+        {
+          "checker": "deploymentChecker",
+          "estates": [
+            "iad-sam"
+          ],
+          "until": "2017/09/15"
+        },
+        {
+          "checker": "estatesvcChecker",
+          "estates": [
+            "prd-sam",
+            "prd-samtest",
+            "prd-samdev"
+          ],
+          "until": "2017/10/01"
+        },
+        {
+          "checker": "prChecker",
+          "estates": [
+            "prd-sam"
+          ],
+          "until": "2017/10/01"
+        },
+        {
+          "checker": "hairpinChecker",
+          "estates": [
+            "prd-sam",
+            "prd-samtest",
+            "prd-samdev",
+            "prd-sam_storage"
+          ],
+          "until": "2017/11/01"
+        },
+        {
+          "checker": "bridgeChecker",
+          "estates": [
+            "prd-sam",
+            "prd-samtest",
+            "prd-samdev",
+            "prd-sam_storage"
+          ],
+          "until": "2017/11/01"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "phx-sam"
+          ],
+          "until": "2017/11/30"
+        },
+        {
+          "checker": "syntheticChecker",
+          "estates": [
+            "chx-sam",
+            "wax-sam"
+          ],
+          "until": "2017/12/31"
+        }
+      ],
+      "tlsEnabled": true
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: watchdog
+  namespace: sam-watchdog
