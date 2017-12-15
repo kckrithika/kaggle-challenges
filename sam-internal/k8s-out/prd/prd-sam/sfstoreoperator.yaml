@@ -28,9 +28,24 @@ spec:
         - mountPath: /sfo/configs/sf-store-prdsam-1.10.json
           name: sfstore-config
           subPath: sf-store-prdsam-1.10.json
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
       nodeSelector:
         master: "true"
       volumes:
       - configMap:
           name: sfstore-configmap
         name: sfstore-config
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
