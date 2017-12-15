@@ -1,0 +1,319 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: minion:clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:clusterrole
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: update-secrets
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: update-secrets
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: csc-sam:iad-sam:rolebinding
+    namespace: csc-sam
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samcompute1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-1-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: chatbot:iad-sam_chatbot_kingdom:rolebinding
+    namespace: chatbot
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbotrt1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-10-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-3-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-4-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-5-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-6-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-7-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-8-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-9-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-10-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-3-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-4-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-5-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-6-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-7-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-8-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-9-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:iad-sam_cloudatlas:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionatlasfe1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasfe2-1-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:iad-sam_cloudatlas_dir:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionatlasdir1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasdir1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasdir2-1-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: gater:iad-sam_gater:rolebinding
+    namespace: gater
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: communities:iad-sam_moderation_einstein:rolebinding
+    namespace: communities
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein2-1-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: csc-health:iad-sam_report_collector:rolebinding
+    namespace: csc-health
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sf-store:iad-sam_sfstore:rolebinding
+    namespace: sf-store
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsfstore1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-2-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: storage-foundation:iad-sam_sfstore:rolebinding
+    namespace: storage-foundation
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsfstore1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-2-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: casp:iad-sam_warden:rolebinding
+    namespace: casp
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden1-2-iad.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service-sp1:iad-sp1-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp1
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-1-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-2-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-3-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-4-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-1-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-2-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-3-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-1-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-2-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-3-iad.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service-sp2:iad-sp2-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas2-caasminion1-1-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-2-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-3-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-4-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-1-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-2-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-3-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-1-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-2-iad.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-3-iad.ops.sfdc.net
+kind: List
+metadata: {}

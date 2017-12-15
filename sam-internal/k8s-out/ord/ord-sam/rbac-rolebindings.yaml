@@ -1,0 +1,639 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: minion:clusterrolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:clusterrole
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-system:rolebinding
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sam-watchdog:rolebinding
+    namespace: sam-watchdog
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: update-secrets
+    namespace: sam-system
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: update-secrets
+  subjects:
+  - kind: Group
+    name: system:authenticated
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: csc-sam:ord-sam:rolebinding
+    namespace: csc-sam
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samcompute1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samcompute1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samcompute2-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: legostore:ord-sam_ceph:rolebinding
+    namespace: legostore
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-11-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-12-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-13-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-14-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-15-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-16-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-17-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-18-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-19-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-20-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-21-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-22-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-23-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-24-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-25-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-9-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-11-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-12-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-13-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-14-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-15-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-16-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-17-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-18-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-19-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-20-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-21-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-22-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-23-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-24-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-25-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-9-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-11-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-12-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-13-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-14-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-15-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-16-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-17-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-18-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-19-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-20-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-21-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-22-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-23-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-24-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-25-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-9-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: storage-foundation:ord-sam_ceph:rolebinding
+    namespace: storage-foundation
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-11-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-12-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-13-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-14-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-15-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-16-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-17-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-18-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-19-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-20-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-21-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-22-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-23-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-24-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-25-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-9-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-11-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-12-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-13-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-14-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-15-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-16-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-17-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-18-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-19-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-20-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-21-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-22-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-23-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-24-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-25-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-9-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-11-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-12-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-13-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-14-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-15-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-16-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-17-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-18-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-19-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-20-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-21-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-22-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-23-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-24-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-25-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-9-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: chatbot:ord-sam_chatbot_kingdom:rolebinding
+    namespace: chatbot
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbotrt1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt1-9-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbotrt2-9-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:ord-sam_cloudatlas:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionatlasfe1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasfe2-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:ord-sam_cloudatlas_dir:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionatlasdir1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasdir1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionatlasdir2-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: gater:ord-sam_gater:rolebinding
+    namespace: gater
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-2-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: communities:ord-sam_moderation_einstein:rolebinding
+    namespace: communities
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionmoderationeinstein2-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: csc-health:ord-sam_report_collector:rolebinding
+    namespace: csc-health
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionreportcollector1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: sf-store:ord-sam_sfstore:rolebinding
+    namespace: sf-store
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsfstore1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-2-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: storage-foundation:ord-sam_sfstore:rolebinding
+    namespace: storage-foundation
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsfstore1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsfstore3-2-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: casp:ord-sam_warden:rolebinding
+    namespace: casp
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionwarden1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionwarden2-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service-sp1:ord-sp1-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp1
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas1-caasminion1-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-2-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-3-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-4-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-2-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-3-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-2-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-3-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cache-as-a-service-sp2:ord-sp2-sam_caas:rolebinding
+    namespace: cache-as-a-service-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samcaas2-caasminion1-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-2-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-3-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-4-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-2-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-3-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-2-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-3-ord.ops.sfdc.net
+kind: List
+metadata: {}
