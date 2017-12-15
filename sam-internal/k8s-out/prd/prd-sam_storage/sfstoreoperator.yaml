@@ -22,7 +22,7 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000276-0d0bc5c0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000281-92b9b996
         name: sfstoreoperator
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -32,7 +32,7 @@ spec:
         - mountPath: /kubeconfig
           name: kubeconfig
       nodeSelector:
-        pool: prd-sam_storage
+        master: "true"
       volumes:
       - hostPath:
           path: /etc/pki_service

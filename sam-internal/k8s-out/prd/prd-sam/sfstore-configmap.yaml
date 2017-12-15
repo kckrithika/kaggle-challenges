@@ -1,0 +1,99 @@
+apiVersion: v1
+data:
+  sf-store-prdsam-1.10.json: |-
+    {
+      "persistentVolumeClaim": {
+        "metadata": {
+          "name": "sfstore"
+        },
+        "spec": {
+          "Resources": {
+            "Requests": {
+              "storage": "440Gi"
+            }
+          },
+          "StorageClassName": "ssd",
+          "accessModes": [
+            "ReadWriteOnce"
+          ],
+          "name": "ssd"
+        }
+      },
+      "podConfig": {
+        "DNSPolicy": "ClusterFirstWithHostNet",
+        "containers": [
+          {
+            "Env": [
+              {
+                "name": "BOOKIE_LOG_DIR",
+                "value": "/sfs/sfslogs"
+              },
+              {
+                "name": "sf_zkServers",
+                "value": "sayonara1a-mnds2-1-prd.eng.sfdc.net:2181,sayonara1a-mnds2-2-prd.eng.sfdc.net:2181,sayonara1a-mnds2-3-prd.eng.sfdc.net:2181"
+              }
+            ],
+            "args": [
+              "bookie"
+            ],
+            "command": [
+              "/sfs/sfsbuild/bin/k8sstartup.py"
+            ],
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/bookie:base-0000031-8791cfb6",
+            "imagePullPolicy": "Always",
+            "name": "bookie",
+            "ports": [
+              {
+                "containerPort": 3181,
+                "name": "bookieport"
+              }
+            ]
+          },
+          {
+            "Env": [
+              {
+                "name": "BOOKIE_LOG_DIR",
+                "value": "/sfs/sfslogs"
+              },
+              {
+                "name": "sf_zkServers",
+                "value": "sayonara1a-mnds2-1-prd.eng.sfdc.net:2181,sayonara1a-mnds2-2-prd.eng.sfdc.net:2181,sayonara1a-mnds2-3-prd.eng.sfdc.net:2181"
+              }
+            ],
+            "args": [
+              "autorecovery"
+            ],
+            "command": [
+              "/sfs/sfsbuild/bin/k8sstartup.py"
+            ],
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/bookie:base-0000031-8791cfb6",
+            "imagePullPolicy": "Always",
+            "name": "autorecovery"
+          },
+          {
+            "args": [
+              "-t",
+              "ajna",
+              "-s",
+              "sfstore",
+              "-i",
+              "60"
+            ],
+            "command": [
+              "/bin/bash",
+              "/opt/sfms/bin/sfms"
+            ],
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-all/tnrp/storagecloud/sfms:latest-0000047-f46de00d",
+            "imagePullPolicy": "Always",
+            "name": "sfms"
+          }
+        ],
+        "hostNetwork": true
+      },
+      "version": "1.10"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfstore-configmap
+  namespace: sam-system
