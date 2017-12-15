@@ -146,22 +146,51 @@ system:
     - name: temp
       emptyDir: {}
   loadbalancers:
-  - lbname: dashboard-lb
+  - lbname: dashboard-phx
     function: dashboard
+    slbEnabled: true
     ports:
       - port: 9090
         targetport: 9090
+  - lbname: dashboard-dfw
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9091
         targetport: 9091
+  - lbname: dashboard-frf
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9092
         targetport: 9092
+  - lbname: dashboard-iad
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9093
         targetport: 9093
+  - lbname: dashboard-ord
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9094
         targetport: 9094
+  - lbname: dashboard-par
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9095
         targetport: 9095
+  - lbname: dashboard-hnd
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9096
         targetport: 9096
+  - lbname: dashboard-ukb
+    function: dashboard
+    slbEnabled: true
+    ports:
       - port: 9097
         targetport: 9097
