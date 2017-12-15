@@ -7,7 +7,6 @@ system:
     containers:
     - name: dashboard-phx
       args:
-        - --v=8
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/phx
         - --insecure-port=9090
@@ -25,7 +24,6 @@ system:
         name: temp
     - name: dashboard-dfw
       args:
-        - --v=8
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
         - --insecure-port=9091
@@ -43,7 +41,6 @@ system:
         name: temp
     - name: dashboard-frf
       args:
-        - --v=8
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/frf
         - --insecure-port=9092
@@ -61,7 +58,6 @@ system:
         mountPath: /tmp
     - name: dashboard-iad
       args:
-        - --v=8
         - --logtostderr=true
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/iad
         - --insecure-port=9093
@@ -77,14 +73,13 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
-    - name: dashboard-cdu
+    - name: dashboard-ord
       args:
-        - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/cdu
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/ord
         - --insecure-port=9094
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from CDU"
-        - --system-banner-severity=WARNING
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from ORD"
+        - --system-banner-severity="WARNING"
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9094
@@ -92,6 +87,58 @@ system:
         httpGet:
           path: /
           port: 9094
+      volumesMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-par
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/par
+        - --insecure-port=9095
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from PAR"
+        - --system-banner-severity="WARNING"
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9095
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9095
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-hnd
+      args:
+        - --v=8
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/hnd
+        - --insecure-port=9096
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from HND"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9096
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9096
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-ukb
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/ukb
+        - --insecure-port=9097
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from UKB"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9097
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9097
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -112,3 +159,9 @@ system:
         targetport: 9093
       - port: 9094
         targetport: 9094
+      - port: 9095
+        targetport: 9095
+      - port: 9096
+        targetport: 9096
+      - port: 9097
+        targetport: 9097
