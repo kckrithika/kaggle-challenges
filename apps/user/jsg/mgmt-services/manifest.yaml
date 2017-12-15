@@ -1,6 +1,9 @@
 apiVersion: v1
  
 system:
+  notifications:
+         email:
+            - jsanzgonzalez@salesforce.com (mailto:jsanzgonzalez@salesforce.com)
   functions:
   # service name
   - name: mgmt
@@ -12,6 +15,9 @@ system:
     - name: cert
       maddogCert:
         type: client
+    - name: secretvol
+      k4aSecret:
+        secretName: coreapp
 
     # Docker image(s) that make up one instance of the service
     containers:
@@ -26,6 +32,9 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
+      - name: secretvol
+        mountPath: /secrets/
+        readOnly: true
         
       ports:
       - containerPort: 8080
