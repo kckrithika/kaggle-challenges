@@ -118,15 +118,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             "-i",
                             '60',
                         ],
-                        volumeMounts: [
-                            {
-                                name: "fds-sfms-config",
-                                mountPath: "/opt/sfms/config/endpoints/sources/fds.json",
-                                subPath: "fds.json",
-                            },
-                        ],
                         env: storageutils.sfms_environment_vars("fds"),
-
                     },
                 ],
                 volumes: configs.filter_empty([
