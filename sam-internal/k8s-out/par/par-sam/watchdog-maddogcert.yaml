@@ -19,7 +19,7 @@ spec:
         - -role=MADDOGCERT
         - -watchdogFrequency=10m
         - -alertThreshold=30m
-        - -emailFrequency=1h
+        - -emailFrequency=24h
         - -timeout=2s
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json

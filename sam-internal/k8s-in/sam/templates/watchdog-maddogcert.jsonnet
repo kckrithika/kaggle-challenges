@@ -17,7 +17,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "-role=MADDOGCERT",
                             "-watchdogFrequency=10m",
                             "-alertThreshold=30m",
-                            "-emailFrequency=1h",
+                            "-emailFrequency=24h",
                         ]
                         + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
