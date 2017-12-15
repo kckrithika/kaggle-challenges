@@ -13,7 +13,7 @@ system:
         type: client
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.20.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.21.0
       ports:
       - containerPort: 7020
       - containerPort: 9091
