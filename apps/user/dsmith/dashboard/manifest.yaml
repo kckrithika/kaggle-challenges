@@ -142,6 +142,23 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-prd-samtest
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/prd-samtest
+        - --insecure-port=9098
+        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from prd-samtest"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9098
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9098
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -194,3 +211,9 @@ system:
     ports:
       - port: 9097
         targetport: 9097
+  - lbname: dashboard-prd-samtest
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 9098
+        targetport: 9098
