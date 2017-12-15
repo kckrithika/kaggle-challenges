@@ -1157,6 +1157,18 @@
     },
     {
       "namespaces": [
+        "chatbot"
+      ],
+      "access": [
+        "team/chatbot"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_chatbot_kingdom",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cloudatlas"
       ],
       "access": [
