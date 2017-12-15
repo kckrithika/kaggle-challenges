@@ -14,6 +14,8 @@ system:
         value: shipping.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
         value: 7011
+      - name: scone.service.name
+        value: ordering-service-alt
       ports:
       - containerPort: 7021
       - containerPort: 15373
