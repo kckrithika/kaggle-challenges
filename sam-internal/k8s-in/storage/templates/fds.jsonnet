@@ -80,7 +80,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             },
                         ],
                     },
-                    {
+                    if configs.estate == "phx-sam" then {
                         // Pump prometheus metrics to argus.
                         name: "sfms",
                         image: storageimages.sfms,
@@ -103,16 +103,40 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             },
                         ],
                         env: storageutils.sfms_environment_vars("fds"),
+                    } else {
+                        // Pump prometheus metrics to argus.
+                        name: "sfms",
+                        image: storageimages.sfms,
+                        command: [
+                            "/opt/sfms/bin/sfms",
+                        ],
+                        args: [
+                            "-t",
+                            "ajna_with_tags",
+                            "-s",
+                            "prometheus",
+                            "-i",
+                            '60',
+                        ],
+                        volumeMounts: [
+                            {
+                                name: "fds-sfms-config",
+                                mountPath: "/opt/sfms/config/endpoints/sources/fds.json",
+                                subPath: "fds.json",
+                            },
+                        ],
+                        env: storageutils.sfms_environment_vars("fds"),
+
                     },
                 ],
-                volumes: [
-                    {
-                        name: "fds-sfms-config",
-                        configMap: {
-                            name: "fds-sfms",
-                        },
-                    },
-                ]
+                volumes: configs.filter_empty([
+                    if configs.estate == "phx-sam" then {
+                         name: "fds-sfms-config",
+                         configMap: {
+                             name: "fds-sfms",
+                         },
+                    } else {},
+                ])
                 + storageutils.log_init_volumes()
                 + configs.filter_empty([
                         configs.maddog_cert_volume,

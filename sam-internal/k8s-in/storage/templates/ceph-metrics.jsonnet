@@ -22,10 +22,10 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
          spec: {
             nodeSelector: {
             } +
-            if configs.estate == "prd-sam" then {
-                  master: "true",
-            } else {
+            if configs.estate == "phx-sam" then {
                   pool: configs.estate,
+            } else {
+                  pool: storageconfigs.cephMetricsPool,
             },
             volumes: [
                {
