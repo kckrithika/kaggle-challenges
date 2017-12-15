@@ -6,7 +6,7 @@ system:
       - stanfield.chu@salesforce.com
   functions:
   - name: testreport-collector
-    count: 1
+    count: 3
     volumes:
       - name: servercertvol
         secret:
