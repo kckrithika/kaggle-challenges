@@ -167,53 +167,53 @@ system:
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9090
+      - port: 80
         targetport: 9090
   - lbname: dashboard-dfw
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9091
+      - port: 80
         targetport: 9091
   - lbname: dashboard-frf
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9092
+      - port: 80
         targetport: 9092
   - lbname: dashboard-iad
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9093
+      - port: 80
         targetport: 9093
   - lbname: dashboard-ord
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9094
+      - port: 80
         targetport: 9094
   - lbname: dashboard-par
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9095
+      - port: 80
         targetport: 9095
   - lbname: dashboard-hnd
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9096
+      - port: 80
         targetport: 9096
   - lbname: dashboard-ukb
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9097
+      - port: 80
         targetport: 9097
   - lbname: dashboard-prd-samtest
     function: dashboard
     slbEnabled: true
     ports:
-      - port: 9098
+      - port: 80
         targetport: 9098
