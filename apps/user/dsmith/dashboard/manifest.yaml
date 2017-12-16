@@ -11,7 +11,7 @@ system:
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/phx
         - --insecure-port=9090
         - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from PHX"
-        - --system-banner-severity="WARNING"
+        - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9090
@@ -28,7 +28,7 @@ system:
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
         - --insecure-port=9091
         - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from DFW"
-        - --system-banner-severity="WARNING"
+        - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9091
@@ -45,7 +45,7 @@ system:
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/frf
         - --insecure-port=9092
         - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from FRF"
-        - --system-banner-severity="WARNING"
+        - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9092
@@ -79,7 +79,7 @@ system:
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/ord
         - --insecure-port=9094
         - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from ORD"
-        - --system-banner-severity="WARNING"
+        - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9094
@@ -96,7 +96,7 @@ system:
         - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/par
         - --insecure-port=9095
         - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from PAR"
-        - --system-banner-severity="WARNING"
+        - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9095
@@ -159,6 +159,23 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-prd-samtest
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/prd-samtest
+        - --insecure-port=9099
+        - --system-banner="Dashboard for PRD is in Alpha - some features may be slow or not working. Dashboard is set to read only"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9099
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9099
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
@@ -217,3 +234,9 @@ system:
     ports:
       - port: 80
         targetport: 9098
+  - lbname: dashboard-prd
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9099
