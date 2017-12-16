@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: gatekeeper-dashboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gatekeeper-dashboard:1.1.0-13
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ice-pd/gatekeeper-dashboard:1.1.0-17
       livenessProbe:
         httpGet:
           path: /manage/health
