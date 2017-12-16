@@ -12,8 +12,11 @@
     sfstoreEstates: {
         "prd-sam": ["prd-sam_sfstore"],
         "prd-sam_storage": ["prd-sam_sfstoredev"],
+        "phx-sam": [],
     },
 
+    // Aggregate all the storage related minion estates in the control plane.
+    storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate] if minion != "prd-sam_sfstoredev"],
     perEstate: {
         ceph: {
             // host subnets from git.soma.salesforce.com/estates/estates/tree/master/kingdoms/prd
@@ -75,4 +78,5 @@
     fds_profiling: self.perCluster.fds_profiling[estate],
     cephMetricsNamespace: (if estate == "prd-sam_storage" then "ceph-test" else "legostore"),
     cephMetricsPool: (if estate == "prd-sam_storage" then self.cephEstates[estate][1] else self.cephEstates[estate][0]),    
+    
 }

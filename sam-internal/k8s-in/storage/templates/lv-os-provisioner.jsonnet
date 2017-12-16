@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 local storageutils = import "storageutils.jsonnet";
+local storageconfigs = import "storageconfig.jsonnet";
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
 
@@ -28,7 +29,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["prd-sam_cephdev", "prd-sam_ceph", "prd-sam_sfstore", "phx-sam_ceph"],
+                          values: storageconfigs.storageEstates,
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
