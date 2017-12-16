@@ -3,7 +3,7 @@ local storageimages = import "storageimages.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+if configs.estate == "phx-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -81,7 +81,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
             },
         },
     },
-} else if configs.estate == "prd-sam_storage" then {
+} else if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
