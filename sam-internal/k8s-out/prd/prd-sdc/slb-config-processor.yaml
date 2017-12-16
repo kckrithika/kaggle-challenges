@@ -37,7 +37,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000508-6cc3a4d2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000516-ba216828
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -70,7 +70,7 @@ spec:
         - --shouldNotDeleteAllFiles=true
         - --log_dir=/host/data/slb/logs
         - --skipFilesWithSuffix=slb.block
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000508-6cc3a4d2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000516-ba216828
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
