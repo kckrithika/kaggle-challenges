@@ -159,10 +159,10 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
-    - name: dashboard-prd-samtest
+    - name: dashboard-prd-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/prd-samtest
+        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/prd
         - --insecure-port=9099
         - --system-banner="Dashboard for PRD is in Alpha - some features may be slow or not working. Dashboard is set to read only"
         - --system-banner-severity=WARNING
