@@ -33,7 +33,7 @@ data:
         # Connect to local HAProxy, preferring the one on this host
         # TODO: The below host specific cert will be called hostcert-chain.pem and will work on any host
         # Change this after the filename is available through puppet.
-        server proxy localhost:8000 ssl ca-file /etc/pki_service/ca/cabundle.pem crt /etc/certs/hostcert-chain.pem
+        server proxy localhost:8000 ssl ca-file /etc/pki_service/ca/cabundle.pem crt /etc/pki_service/kubernetes/chain-client.pem
 kind: ConfigMap
 metadata:
   creationTimestamp: null

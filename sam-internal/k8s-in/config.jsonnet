@@ -139,23 +139,23 @@ local utils = import "util_functions.jsonnet",
             "/data/certs/ca.crt"
     ),
     keyFile: (
-        if estate == "prd-samtest" || estate == "prd-samdev" || estate == "prd-sam" then
-            "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
-        else if utils.is_flowsnake_cluster(estate) then
+        if utils.is_flowsnake_cluster(estate) then
             "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
+        else if kingdom == "prd" then
+            "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
         else
             "/data/certs/hostcert.key"
     ),
     certFile: (
-        if estate == "prd-samtest" || estate == "prd-samdev" || estate == "prd-sam" then
-            "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
-        else if utils.is_flowsnake_cluster(estate) then
+        if utils.is_flowsnake_cluster(estate) then
             "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem"
+        else if kingdom == "prd" then
+            "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
         else
             "/data/certs/hostcert.crt"
     ),
     chainFile: (
-        if estate == "prd-samtest" || estate == "prd-samdev" || estate == "prd-sam" then
+        if kingdom == "prd" then
             "/etc/pki_service/kubernetes/chain-client.pem"
         else
             "/etc/certs/hostcert-chain.pem"

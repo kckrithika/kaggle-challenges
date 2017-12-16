@@ -18,8 +18,8 @@ spec:
         - /sdn/slb-dns-register
         - --path=/host/data/slb/config
         - --ddi=https://ddi-api-prd.data.sfdc.net
-        - --keyfile=/data/certs/hostcert.key
-        - --certfile=/data/certs/hostcert.crt
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
