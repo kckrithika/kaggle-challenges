@@ -51,6 +51,13 @@ fi
 time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/
 time ./parallel_build.py flowsnake/templates,sdn/templates ../k8s-out/ flowsnakeEstates.json
 
+# Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
+# by the Storage Foundation team.
+# https://git.soma.salesforce.com/SFStorage/skipper
+# The line below creates k8s-out yaml files from jsonnet from storage templates
+# that are appropriate for this environment.
+time ./parallel_build.py storage/templates/ ../k8s-out/ skipperEstates.json
+
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
 # encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read
 # or review.

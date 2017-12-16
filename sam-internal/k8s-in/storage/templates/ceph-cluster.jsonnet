@@ -21,7 +21,7 @@ local internal = {
     ),
 };
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate == "prd-skipper" then
     {
         apiVersion: "v1",
         kind: "List",

@@ -25,7 +25,7 @@ local utils = import "util_functions.jsonnet";
     ### Per-phase image tags
     per_phase: {
 
-        ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, and prd-sam_sfstoredev
+        ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "0": {
             default_tag: "base-0000284-989c85c6",
             ceph_operator_tag: "base-0000285-7ad9ed5d",
@@ -77,7 +77,7 @@ local utils = import "util_functions.jsonnet";
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-sam_storage") then
+        if (estate == "prd-sam_storage" || estate == "prd-skipper") then
             "0"
         else if (estate == "prd-sam") then
             "1"
