@@ -93,7 +93,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--shouldNotDeleteAllFiles=true",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--skipFilesWithSuffix=slb.block",
-                        ],
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                            "--maxDeleteFileCount=3",
+                            ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
