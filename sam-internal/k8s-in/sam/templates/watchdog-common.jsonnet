@@ -17,8 +17,7 @@ local samimages = import "samimages.jsonnet";
                             "-alertThreshold=20m",
                         ]
                         + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"])
-                        + (if configs.estate == "prd-samtest" then ["-test=xx2h"] else []),
+                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                         name: "watchdog",
                         resources: {
                             requests: {
