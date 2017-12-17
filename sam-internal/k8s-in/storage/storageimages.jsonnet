@@ -18,7 +18,6 @@ local utils = import "util_functions.jsonnet";
         // TODO: The SAM deployer currently clobbers custom resource status on updates. Keep the version fixed at `latest` in existing
         //       clusters until either the SAM deployer is fixed to not clobber the status of custom resources or the ceph operator
         //       is fixed to move the cluster state to a separate object.
-        "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "latest",
         "prd,prd-sam_ceph,ceph-cluster,ceph-daemon": "latest",
     },
 
