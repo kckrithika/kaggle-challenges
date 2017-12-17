@@ -28,7 +28,7 @@ spec:
           value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000284-989c85c6
         - name: CEPH_DAEMON_IMAGE_PATH
           value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph:base-0000276-0d0bc5c0
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph:base-0000285-7ad9ed5d
         name: cephoperator
         volumeMounts:
         - mountPath: /var/log
@@ -41,6 +41,38 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+      - args:
+        - -t
+        - ajna_with_tags
+        - -s
+        - prometheus
+        - -i
+        - "60"
+        command:
+        - /opt/sfms/bin/sfms
+        env:
+        - name: SFDC_FUNNEL_VIP
+          value: ajna0-funnel1-0-phx.data.sfdc.net:80
+        - name: MC_KINGDOM
+          value: phx
+        - name: MC_ESTATE
+          value: phx-sam
+        - name: MC_NAME
+          value: ceph-operator
+        - name: MC_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MC_NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MC_DEVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000087-bb6bfdee
+        name: sfms
       initContainers:
       - command:
         - sh
