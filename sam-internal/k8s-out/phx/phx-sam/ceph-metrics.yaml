@@ -43,7 +43,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000087-bb6bfdee
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000089-2f101be4
         imagePullPolicy: IfNotPresent
         name: sfms
         ports:
