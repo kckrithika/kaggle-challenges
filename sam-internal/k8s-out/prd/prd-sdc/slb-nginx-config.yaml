@@ -22,7 +22,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --configurePerPort=true
-        - --maxDeleteServiceCount=3
+        - --maxDeleteServiceCount=4
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000516-ba216828
         name: slb-nginx-config
         ports:
