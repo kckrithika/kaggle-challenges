@@ -55,7 +55,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
-                            "--maxDeleteServiceCount=3",
+                            "--maxDeleteServiceCount=4",
                             ] else []
                         ),
                         volumeMounts: configs.filter_empty([
