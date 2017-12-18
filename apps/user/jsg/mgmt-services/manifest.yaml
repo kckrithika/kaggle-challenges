@@ -17,7 +17,7 @@ system:
         type: client
     - name: secretvol
       k4aSecret:
-        secretName: coreapp
+        secretName: coreappjmx
 
     # Docker image(s) that make up one instance of the service
     containers:
