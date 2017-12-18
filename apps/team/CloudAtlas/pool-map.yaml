@@ -165,3 +165,7 @@ apps:
     - name: par/par-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-2-par.ops.sfdc.net
+  shared0-samminionatlasdir2-1-par:
+    - name: par/par-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir2-1-par.ops.sfdc.net
