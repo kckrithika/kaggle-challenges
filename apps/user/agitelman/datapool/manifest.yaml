@@ -1,0 +1,36 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - agitelman@salesforce.com
+  functions:
+  - name: datapool-service
+    count: 2
+    containers:
+    - name: datapool-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/agitelman/datapool-server:214.0.2-SNAPSHOT
+      ports:
+      - containerPort: 7021
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 90
+        periodSeconds: 60
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+#    volumes:
+#    - name: logvol
+#      hostPath:
+#        path: /data/sam/eaas/logs
+  loadbalancers:
+  - lbname: datapool-lb
+    function: datapool-service
+#    slbenabled: true
+    ports:
+      - port: 7020
+        targetport: 7021
+      - port: 15372
+        targetport: 15372
+
+
