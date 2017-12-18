@@ -56,7 +56,14 @@ local utils = import "util_functions.jsonnet",
 
     # Other discovery related things
 
-    funnelVIP: (if kingdom == "par" || kingdom == "frf" then "mandm-funnel-" + kingdom + "1.data.sfdc.net:8080" else "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net:80"),
+    funnelVIP: (
+    if kingdom == "par" || kingdom == "frf" then
+        "mandm-funnel-" + kingdom + "1.data.sfdc.net:8080"
+    else if utils.is_gia(kingdom) then
+        "mandm-funnel-" + kingdom + ".data.sfdc.net:8080"
+    else
+        "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net:80"
+    ),
     tnrpArchiveEndpoint: (
     if kingdom == "par" || kingdom == "prd" || kingdom == "phx" then
         "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/tnrp/content_repo/0/archive"

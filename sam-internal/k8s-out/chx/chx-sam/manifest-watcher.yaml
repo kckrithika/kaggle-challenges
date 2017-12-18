@@ -19,7 +19,7 @@ spec:
       containers:
       - command:
         - /sam/manifest-watcher
-        - --funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - --funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
         - --v=2
         - --logtostderr=true
         - --config=/config/manifestwatcher.json

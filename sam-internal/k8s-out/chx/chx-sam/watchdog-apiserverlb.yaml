@@ -23,7 +23,7 @@ spec:
         - -watchdogFrequency=60s
         - -alertThreshold=5m
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - -funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=12h

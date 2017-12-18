@@ -21,7 +21,7 @@ spec:
         - -alertThreshold=1000h
         - -emailFrequency=1000h
         - -timeout=2s
-        - -funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - -funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001556-b9349d35

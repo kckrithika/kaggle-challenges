@@ -10,7 +10,7 @@ data:
       "dry-run": false,
       "email": true,
       "email-delay": 0,
-      "funnelEndpoint": "ajna0-funnel1-0-wax.data.sfdc.net:80",
+      "funnelEndpoint": "mandm-funnel-wax.data.sfdc.net:8080",
       "key-file": "/data/certs/hostcert.key",
       "max-resource-time": 300000000000,
       "poll-delay": 30000000000,
