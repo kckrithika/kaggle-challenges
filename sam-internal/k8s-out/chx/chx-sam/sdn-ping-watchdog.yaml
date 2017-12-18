@@ -23,7 +23,7 @@ spec:
       containers:
       - command:
         - /sdn/sdn-ping-watchdog
-        - --funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - --funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
         - --archiveSvcEndpoint=https://ops-piperepo1-0-chx.data.sfdc.net/tnrp/content_repo/0/archive
         - --smtpServer=ops-mta1-4-chx.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com

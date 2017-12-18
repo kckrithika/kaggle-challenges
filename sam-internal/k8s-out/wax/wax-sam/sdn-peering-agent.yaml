@@ -39,7 +39,7 @@ spec:
         - /sdn/sdn-peering-agent
         - --birdsock=/usr/local/var/run/bird.ctl
         - --birdconf=/usr/local/etc/bird.conf
-        - --funnelEndpoint=ajna0-funnel1-0-wax.data.sfdc.net:80
+        - --funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --archiveSvcEndpoint=https://ops-piperepo1-0-wax.data.sfdc.net/tnrp/content_repo/0/archive
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt

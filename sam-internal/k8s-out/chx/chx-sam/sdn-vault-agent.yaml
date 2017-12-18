@@ -17,7 +17,7 @@ spec:
       containers:
       - command:
         - /sdn/sdn-vault-agent
-        - --funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - --funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
         - --archiveSvcEndpoint=https://ops-piperepo1-0-chx.data.sfdc.net/tnrp/content_repo/0/archive
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt

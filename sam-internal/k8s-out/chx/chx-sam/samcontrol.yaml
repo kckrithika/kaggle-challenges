@@ -20,7 +20,7 @@ spec:
       - command:
         - /sam/sam-controller
         - --dockerregistry=ops-artifactrepo1-0-chx.data.sfdc.net
-        - --funnelEndpoint=ajna0-funnel1-0-chx.data.sfdc.net:80
+        - --funnelEndpoint=mandm-funnel-chx.data.sfdc.net:8080
         - --v=3
         - --logtostderr=true
         - --config=/config/samcontrol.json
