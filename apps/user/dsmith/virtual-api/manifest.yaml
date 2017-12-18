@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: pseudo-k8s-api
+  - name: pseudo-kubeapi
     count: 5
     progressDeadlineSeconds: 120
     containers:
@@ -27,7 +27,7 @@ system:
           port: 7002
   loadbalancers:
   - lbname: pseudo-kubeapi
-    function: virtual-api
+    function: pseudo-kubeapi
     slbEnabled: true
     ports:
       - port: 40000
