@@ -27,7 +27,7 @@ system:
           port: 7002
   loadbalancers:
   - lbname: pseudo-kubeapi
-    function: pseudo-kubeapi
+    function: virtual-api
     slbEnabled: true
     ports:
       - port: 40000
