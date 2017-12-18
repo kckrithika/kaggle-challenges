@@ -52,12 +52,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--configurePerPort=" + slbconfigs.configurePerPort,
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" then [
-                            "--maxDeleteServiceCount=4",
-                            ] else []
-                        ),
+                            "--maxDeleteServiceCount=3",
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
