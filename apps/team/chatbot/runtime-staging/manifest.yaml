@@ -25,7 +25,7 @@ system:
         value: 'true'
       - name: METRICS_LOG_ONLY_PUBLISHER
         value: 'false'
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-ba64b57
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/chatbots/chatbot-runtime:210.0-3467446
       livenessProbe:
         httpGet:
           path: /manage/health
