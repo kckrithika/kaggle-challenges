@@ -2,15 +2,15 @@ apiVersion: v1
 system:
   functions:
   - name: dashboard
-    count: 1
+    count: 3
     progressDeadlineSeconds: 120
     containers:
     - name: dashboard-phx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/phx
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/phx
         - --insecure-port=9090
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from PHX"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PHX</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -25,9 +25,9 @@ system:
     - name: dashboard-dfw
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/dfw
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/dfw
         - --insecure-port=9091
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from DFW"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>DFW</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -42,9 +42,9 @@ system:
     - name: dashboard-frf
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/frf
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/frf
         - --insecure-port=9092
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from FRF"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -59,9 +59,9 @@ system:
     - name: dashboard-iad
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/iad
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/iad
         - --insecure-port=9093
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from IAD"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>IAD</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -76,9 +76,9 @@ system:
     - name: dashboard-ord
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/ord
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/ord
         - --insecure-port=9094
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from ORD"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>ORD</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -93,9 +93,9 @@ system:
     - name: dashboard-par
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/par
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/par
         - --insecure-port=9095
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from PAR"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PAR</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -111,9 +111,9 @@ system:
       args:
         - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/hnd
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/hnd
         - --insecure-port=9096
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from HND"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>HND</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -128,9 +128,9 @@ system:
     - name: dashboard-ukb
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/ukb
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/ukb
         - --insecure-port=9097
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from UKB"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>UKB</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -145,9 +145,9 @@ system:
     - name: dashboard-prd-samtest
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/prd-samtest
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/prd-samtest
         - --insecure-port=9098
-        - --system-banner="DASHBOARD IS IN ALPHA - DATA PRESENTED IS DELAYED AND NOT CURRENT - Viewing time delayed and incomplete information from prd-samtest"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMTEST</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -162,9 +162,9 @@ system:
     - name: dashboard-prd-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://shared0-samkubeapi1-1-prd.eng.sfdc.net:32115/prd
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/prd-sam
         - --insecure-port=9099
-        - --system-banner="Dashboard for PRD is in Alpha - some features may be slow or not working. Dashboard is set to read only"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAM</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -176,53 +176,70 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-prd-samdev
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/prd-samdev
+        - --insecure-port=9100
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9100
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9100
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
   loadbalancers:
-  - lbname: dashboard-phx
+  - lbname: dashboard-phx-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9090
-  - lbname: dashboard-dfw
+  - lbname: dashboard-dfw-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9091
-  - lbname: dashboard-frf
+  - lbname: dashboard-frf-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9092
-  - lbname: dashboard-iad
+  - lbname: dashboard-iad-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9093
-  - lbname: dashboard-ord
+  - lbname: dashboard-ord-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9094
-  - lbname: dashboard-par
+  - lbname: dashboard-par-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9095
-  - lbname: dashboard-hnd
+  - lbname: dashboard-hnd-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9096
-  - lbname: dashboard-ukb
+  - lbname: dashboard-ukb-sam
     function: dashboard
     slbEnabled: true
     ports:
@@ -234,9 +251,15 @@ system:
     ports:
       - port: 80
         targetport: 9098
-  - lbname: dashboard-prd
+  - lbname: dashboard-prd-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9099
+  - lbname: dashboard-prd-samdev
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9100
