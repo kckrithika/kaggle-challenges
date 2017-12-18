@@ -33,7 +33,7 @@ system:
       - name: cert
         mountPath: /certs
       - name: secretvol
-        mountPath: /secrets/
+        mountPath: /secrets/service-config/
         readOnly: true
         
       ports:
