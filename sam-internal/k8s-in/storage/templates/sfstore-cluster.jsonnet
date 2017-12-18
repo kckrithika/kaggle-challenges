@@ -3,7 +3,7 @@ local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
 
 // Disable sfstore cluster manifest in prd-sam_storage for now.
-if configs.estate == "TODO: prd-sam_storage" then
+if configs.estate == "TODO: prd-sam_storage" || configs.estate == "prd-skipper" then
     {
         apiVersion: "v1",
         kind: "List",
