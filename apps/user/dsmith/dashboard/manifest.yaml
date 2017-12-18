@@ -8,7 +8,7 @@ system:
     - name: dashboard-phx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/phx
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/phx
         - --insecure-port=9090
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PHX</h3>"
         - --system-banner-severity=WARNING
@@ -25,7 +25,7 @@ system:
     - name: dashboard-dfw
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/dfw
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/dfw
         - --insecure-port=9091
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>DFW</h3>"
         - --system-banner-severity=WARNING
@@ -42,7 +42,7 @@ system:
     - name: dashboard-frf
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/frf
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/frf
         - --insecure-port=9092
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
         - --system-banner-severity=WARNING
@@ -59,7 +59,7 @@ system:
     - name: dashboard-iad
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/iad
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/iad
         - --insecure-port=9093
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>IAD</h3>"
         - --system-banner-severity=WARNING
@@ -76,7 +76,7 @@ system:
     - name: dashboard-ord
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/ord
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/ord
         - --insecure-port=9094
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>ORD</h3>"
         - --system-banner-severity=WARNING
@@ -93,7 +93,7 @@ system:
     - name: dashboard-par
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/par
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/par
         - --insecure-port=9095
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PAR</h3>"
         - --system-banner-severity=WARNING
@@ -111,7 +111,7 @@ system:
       args:
         - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/hnd
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/hnd
         - --insecure-port=9096
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>HND</h3>"
         - --system-banner-severity=WARNING
@@ -128,7 +128,7 @@ system:
     - name: dashboard-ukb
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/ukb
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/ukb
         - --insecure-port=9097
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>UKB</h3>"
         - --system-banner-severity=WARNING
@@ -145,7 +145,7 @@ system:
     - name: dashboard-prd-samtest
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/prd-samtest
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/prd-samtest
         - --insecure-port=9098
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMTEST</h3>"
         - --system-banner-severity=WARNING
@@ -162,9 +162,9 @@ system:
     - name: dashboard-prd-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-k8s-api.csc-sam.prd-sam.prd.slb.sfdc.net/prd-sam
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/prd-sam
         - --insecure-port=9099
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAM</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -176,53 +176,70 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-prd-samdev
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-k8s-api.user-dsmith.prd-sam.prd.slb.sfdc.net:40000/prd-samdev
+        - --insecure-port=9100
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>"
+        - --system-banner-severity=WARNING
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9100
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9100
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
   loadbalancers:
-  - lbname: dashboard-phx
+  - lbname: dashboard-phx-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9090
-  - lbname: dashboard-dfw
+  - lbname: dashboard-dfw-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9091
-  - lbname: dashboard-frf
+  - lbname: dashboard-frf-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9092
-  - lbname: dashboard-iad
+  - lbname: dashboard-iad-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9093
-  - lbname: dashboard-ord
+  - lbname: dashboard-ord-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9094
-  - lbname: dashboard-par
+  - lbname: dashboard-par-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9095
-  - lbname: dashboard-hnd
+  - lbname: dashboard-hnd-sam
     function: dashboard
     slbEnabled: true
     ports:
       - port: 80
         targetport: 9096
-  - lbname: dashboard-ukb
+  - lbname: dashboard-ukb-sam
     function: dashboard
     slbEnabled: true
     ports:
@@ -240,3 +257,9 @@ system:
     ports:
       - port: 80
         targetport: 9099
+  - lbname: dashboard-prd-samdev
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9100

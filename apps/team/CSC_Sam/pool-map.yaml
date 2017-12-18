@@ -44,5 +44,3 @@ apps:
   - prd/prd-samtest
  SamDailyReport:
   - prd/prd-sam
- k8s-dashboards:
-  - prd/prd-sam

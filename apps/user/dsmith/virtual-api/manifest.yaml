@@ -1,8 +1,8 @@
 apiVersion: v1
 system:
   functions:
-  - name: virtual-api-test
-    count: 1
+  - name: pseudo-k8s-api
+    count: 5
     progressDeadlineSeconds: 120
     containers:
     - name: virtual-api
@@ -17,6 +17,7 @@ system:
         - --alsologtostderr
         - --insecure-port=7002
         - --passthrough-api-server=shared0-samkubeapi1-1-prd.eng.sfdc.net
+        - --passthrough-all-cluster=prd-sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:latest
       ports:
       - containerPort: 7002
@@ -25,8 +26,9 @@ system:
           path: /healthz
           port: 7002
   loadbalancers:
-  - lbname: v-api-lb
-    function: virtual-api-test
+  - lbname: pseudo-kubeapi
+    function: pseudo-kubeapi
+    slbEnabled: true
     ports:
-      - port: 7002
+      - port: 40000
         targetport: 7002
