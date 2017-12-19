@@ -25,7 +25,7 @@ system:
           INTID=0
           while sleep ${POST_DELAY_PERIOD};
           do
-              ./${SCRIPT_PATH} $INTID
-              let INTID+=1
+              ./${SCRIPT_PATH} $INTID;
+              let INTID+=1;
           done
       "]
