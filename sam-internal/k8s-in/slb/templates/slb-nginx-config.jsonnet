@@ -71,12 +71,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         name: "slb-nginx-proxy",
                         image: slbimages.slbnginx,
                         command: ["/runner.sh"],
-                        volumeMounts: configs.filter_empty([
-                           {
-                              name: "var-target-config-volume",
-                              mountPath: "/etc/nginx/conf.d",
-                           },
-                        ]),
                     }
                     + (
                         if configs.estate == "prd-sdc" then {
@@ -88,8 +82,23 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 initialDelaySeconds: 5,
                                 periodSeconds: 3,
                             },
+                            volumeMounts: configs.filter_empty([
+                                {
+                                    name: "var-target-config-volume",
+                                    mountPath: "/etc/nginx/conf.d",
+                                },
+                                slbconfigs.logs_volume_mount,
+                            ]),
+
                         }
-                        else {}
+                        else {
+                            volumeMounts: configs.filter_empty([
+                                {
+                                    name: "var-target-config-volume",
+                                    mountPath: "/etc/nginx/conf.d",
+                                },
+                            ]),
+                        }
                        ),
                 ],
 
