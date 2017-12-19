@@ -21,7 +21,7 @@ system:
         - --management.port=7522
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs/caas
-        - --settings.path=mist30.-.prd.-.caas
+        - --settings.path=mist42.-.prd.-.caas
         - --metrics.maxNumberOfCollectedMetrics=5000
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -37,7 +37,7 @@ system:
       - containerPort: 7522
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist30
+         value: mist42
        - name: CAAS_ENV
          value: 12
       # expose redis outside the container

@@ -32,7 +32,7 @@ system:
       # expose redis outside the container
       env:
        - name: SFDC_SUBENVIRONMENT
-         value: mist30
+         value: mist42
       ports:
       - containerPort: 12098
         name: caas-cluster
@@ -43,7 +43,7 @@ system:
         - --redisPort=12098
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/mist30/prd/sp2
+        - --pathPrefix=/mist42/prd/sp2
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -51,7 +51,7 @@ system:
             - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist30
+         value: mist42
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
