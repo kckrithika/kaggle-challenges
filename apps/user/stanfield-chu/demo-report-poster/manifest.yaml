@@ -26,6 +26,6 @@ system:
       args: ["
           while sleep ${POST_DELAY_PERIOD};
           do
-              ./${SCRIPT_PATH} $DUMMY_ID;
+              ./${SCRIPT_PATH} ${DUMMY_ID};
           done
       "]
