@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: ordering-service-ms1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/scone-ordering:stoens-ms1-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/scone-ordering:stoens-ms1-2
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
