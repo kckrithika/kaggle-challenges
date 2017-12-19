@@ -13,7 +13,7 @@ system:
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
         - --management.port=7522
-        - --cluster.name=sp-c1
+        - --cluster.name=sp-nightly
         - --logDir=/home/caas/logs/caas
         - --settings.path=mistperf2.-.prd.-.caas
         - --metrics.maxNumberOfCollectedMetrics=5000
