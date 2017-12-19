@@ -22,7 +22,7 @@ system:
         periodSeconds: 30
       command: ["/bin/sh", "-c"]
       args: ["
-          INTID=0
+          INTID=0;
           while sleep ${POST_DELAY_PERIOD};
           do
               ./${SCRIPT_PATH} $INTID;
