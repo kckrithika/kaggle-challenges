@@ -21,6 +21,7 @@ system:
         - --management.port=7522
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs/caas
+        - --settings.path=mist30.-.prd.-.caas
         - --metrics.maxNumberOfCollectedMetrics=5000
       volumeMounts:
         - mountPath: /home/caas/logs/caas
