@@ -1,0 +1,45 @@
+apiVersion: v1
+
+system:
+    notifications:
+      email:
+        - paul.howden@salesforce.com
+        - pteyer@salesforce.com
+    functions:
+    - name: warden-stage-func
+      count: 3
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 0
+          maxUnavailable: 1
+      containers:
+      - name: prd-warden-stage
+        image: tnrp/casp/warden:0.0.1-0000196-cab1167b
+        ports:
+        - name: warden-stage
+          containerPort: 8882
+          hostPort: 8882
+        env:
+        - name: BRANCH
+          value: "eng_production"
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/logs
+          name: log-vol
+        livenessProbe:
+          httpGet:
+            path: /manage/health
+            port: 15372
+          initialDelaySeconds: 120
+      volumes:
+      - name: log-vol
+        hostPath:
+          path: /home/sfdc-casp/logs
+
+    loadbalancers:
+    - lbname: warden-stage
+      function: warden-stage-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 8882
