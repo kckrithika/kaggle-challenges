@@ -1194,11 +1194,13 @@
     {
       "namespaces": [
         "gater",
-        "ccait"
+        "ccait",
+        "service-mesh"
       ],
       "access": [
         "team/Gater",
-        "team/CCAIT"
+        "team/CCAIT",
+        "team/Service_Mesh"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
