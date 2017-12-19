@@ -13,6 +13,8 @@ system:
       env:
       - name: POST_DELAY_PERIOD
         value: 10
+      - name: DUMMY_ID
+        value: 123
       livenessProbe:
         exec:
           command:
@@ -22,10 +24,8 @@ system:
         periodSeconds: 30
       command: ["/bin/sh", "-c"]
       args: ["
-          INTID=0;
           while sleep ${POST_DELAY_PERIOD};
           do
-              ./${SCRIPT_PATH} $INTID;
-              let INTID+=1;
+              ./${SCRIPT_PATH} $DUMMY_ID;
           done
       "]
