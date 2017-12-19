@@ -10,9 +10,6 @@ apps:
  sfci-test:
   - prd/prd-samdev
   - prd/prd-sam
-  - frf/frf-sam
-  - dfw/dfw-sam
-  - ord/ord-sam
  test-secret-app:
   - prd/prd-samdev
   - prd/prd-sam
