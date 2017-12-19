@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: prd-caas-release-monitor-perf 
+    count: 1 
+    hostnetwork: true
+    containers:
+    - name: caas-metrics-publisher 
+      # container image/version to  run
+      image: tnrp/caas/caas-monitor-prod:2.4.6-0000016-14730209
+      args: 
+        - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
+        - --server.port=7521 
+        - --management.port=7522
+        - --cluster.name=sp-c1
+        - --logDir=/home/caas/logs/caas
+        - --settings.path=mistperf2.-.prd.-.caas
+        - --metrics.maxNumberOfCollectedMetrics=5000
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7522
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mistperf2
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-c1
