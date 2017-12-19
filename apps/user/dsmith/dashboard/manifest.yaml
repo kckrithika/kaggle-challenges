@@ -10,7 +10,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/phx
         - --insecure-port=9090
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PHX</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PHX</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -27,7 +27,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/dfw
         - --insecure-port=9091
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>DFW</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>DFW</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -44,7 +44,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/frf
         - --insecure-port=9092
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -61,7 +61,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/iad
         - --insecure-port=9093
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>IAD</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>IAD</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -78,7 +78,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/ord
         - --insecure-port=9094
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>ORD</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>ORD</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -95,7 +95,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/par
         - --insecure-port=9095
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PAR</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PAR</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -113,7 +113,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/hnd
         - --insecure-port=9096
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>HND</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>HND</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -130,7 +130,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/ukb
         - --insecure-port=9097
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>UKB</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>UKB</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -147,7 +147,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/prd-samtest
         - --insecure-port=9098
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMTEST</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMTEST</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -164,7 +164,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAM</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAM</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -181,7 +181,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.user-dsmith.prd-sam.prd.slb.sfdc.net:40001/prd-samdev
         - --insecure-port=9100
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a target="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>"
+        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>"
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
