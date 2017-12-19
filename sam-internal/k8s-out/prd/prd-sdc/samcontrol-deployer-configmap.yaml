@@ -3,14 +3,14 @@ data:
   samcontroldeployer.json: |-
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
-      "cert-file": "/data/certs/hostcert.crt",
+      "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "delete-orphans": true,
       "disable-security-check": true,
       "dry-run": false,
       "email": true,
       "email-delay": 0,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "key-file": "/data/certs/hostcert.key",
+      "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": 300000000000,
       "poll-delay": 30000000000,
       "recipient": "sam@salesforce.com,slb@salesforce.com",
