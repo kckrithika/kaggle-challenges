@@ -14,7 +14,7 @@ system:
       - name: POST_DELAY_PERIOD
         value: 10
       - name: DUMMY_ID
-        value: 123
+        value: 1234
       livenessProbe:
         exec:
           command:
