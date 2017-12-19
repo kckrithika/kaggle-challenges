@@ -12,9 +12,6 @@ system:
         containerPort: 7020
       - name: admin-port
         containerPort: 15372
-      volumeMounts:
-      - mountPath: /logs
-        name: logs-vol
       resources:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
@@ -23,15 +20,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 60 
         timeoutSeconds: 10
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 60 
         timeoutSeconds: 10
-    volumes:
-      - name: logs-vol
-        hostPath:
-          path: /data/logs
