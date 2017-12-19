@@ -10,9 +10,16 @@ system:
     containers:
     - name: demo-report-poller
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/demo-report-poster:0.0.0-20171219
-       env:
-        - name: POST_DELAY_PERIOD
-          value: 10
+      env:
+      - name: POST_DELAY_PERIOD
+        value: 10
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
       command: ["/bin/sh", "-c"]
       args: ['
           INTID=0
