@@ -12,8 +12,8 @@ system:
     - name: caas-redis
       image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       resources:
-        limits: { memory: "10Gi" }
-        requests: { memory: "6Gi" }
+        limits: { memory: "5Gi" }
+        requests: { memory: "3Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -22,7 +22,7 @@ system:
           readOnly: true
       args:
         - --port=12038
-        - --maxMemoryMB=6144
+        - --maxMemoryMB=3072
         - --maxMemoryPolicy=noeviction
         - --logDir=/home/caas/logs
       livenessProbe:
