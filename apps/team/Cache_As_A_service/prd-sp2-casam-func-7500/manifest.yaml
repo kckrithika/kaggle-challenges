@@ -121,12 +121,8 @@ system:
       readinessProbe:
         httpGet:
           scheme: HTTPS
-          # Note: host here should really be the cyanlb VIP that is commented out. However
-          # there are some routing problems on our minions currently so we have to revert
-          # back to nodeport for now
-          host: csr214lb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
           path: /ping.jsp
-          port: 7500
+          port: 7502
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
