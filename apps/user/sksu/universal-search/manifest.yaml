@@ -20,11 +20,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
-        timeoutSeconds: 10
+        initialDelaySeconds: 300 
+        timeoutSeconds: 60
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60 
-        timeoutSeconds: 10
+        initialDelaySeconds: 300
+        timeoutSeconds: 60
