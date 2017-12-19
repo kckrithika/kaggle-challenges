@@ -16,7 +16,7 @@ system:
         - containerPort: 7020
         - containerPort: 15372
       volumeMounts:
-      - mountPath: /home/eaas/logs
+      - mountPath: /home/sfdc-eaas/logs
         name: logvol
       livenessProbe:
         initialDelaySeconds: 90
@@ -28,7 +28,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/sam/eaas/logs
+        path: /home/sfdc-eaas/logs
   loadbalancers:
   - lbname: eaas-lb
     function: eaas
