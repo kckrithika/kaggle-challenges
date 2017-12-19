@@ -1,0 +1,66 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: geoip-nk
+    count: 3
+    containers:
+    - name: geoip-nk-backend
+      image: sfci/servicelibs/geoip-nk:1.0.1
+      env:
+      - name: JAVA_OPTS
+        value: "-Xms512m -Xmx512m"
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
+      - name: LOGGING_DIR
+        value: "/log"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: log-volume
+      ports:
+        - containerPort: 7020
+          name: grpc
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
+    - name: sherpa-b
+      image: sfci/servicelibs/sherpa:2.0.14
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: log-volume
+      hostPath:
+        path: /home/sfdc-geoip/logs
