@@ -30,5 +30,5 @@ system:
     function: pseudo-kubeapi
     slbEnabled: true
     ports:
-      - port: 40000
+      - port: 40001
         targetport: 7002
