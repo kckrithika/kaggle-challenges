@@ -1,7 +1,3 @@
 apps:
  scone-shipping-test:
   - prd/prd-sam
- shipping-service-go:
-  - prd/prd-sam
- lion-service:
-  - prd/prd-sam
