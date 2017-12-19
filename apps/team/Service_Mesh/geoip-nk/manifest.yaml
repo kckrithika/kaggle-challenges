@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: geoip-nk-backend
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicelibs/geoip-nk:1.0.1
+      image: sfci/servicelibs/geoip-nk:1.0.1
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
@@ -36,7 +36,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-b
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-dev/sfci/servicelibs/sherpa:2.0.14
+      image: sfci/servicelibs/sherpa:2.0.14
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
