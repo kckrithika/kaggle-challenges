@@ -43,7 +43,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-tictactoe-server
-      image: sfci/servicelibs/sherpa:2.0.14
+      image: tnrp/sherpa:2-0000133-953ab7a7
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
