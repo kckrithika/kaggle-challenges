@@ -50,6 +50,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
       hostNetwork: true
       nodeSelector:
         slb-service: slb-nginx
