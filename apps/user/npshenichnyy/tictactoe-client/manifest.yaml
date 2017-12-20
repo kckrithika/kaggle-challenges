@@ -23,7 +23,7 @@ system:
           path: /manage/health
           port: 15372
     - name: sherpa-tictactoe-client
-      image: sfci/servicelibs/sherpa:2.0.14
+      image: tnrp/sherpa:2-0000133-953ab7a7
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
