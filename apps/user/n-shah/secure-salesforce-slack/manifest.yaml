@@ -6,4 +6,11 @@ system:
                   containers:
                         - name: secure-salesforce-slack
                           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/n.shah/secure-salesforce-slack:0.1
-
+                          volumeMounts:
+                                  - mountPath: /secrets/
+                                    name: secretvol
+                                    readOnly: true
+        volumes:
+                - name: secretvol
+                  k4aSecret:
+                          secretName: oauth-token
