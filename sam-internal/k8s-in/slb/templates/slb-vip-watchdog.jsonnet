@@ -37,7 +37,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--sender=" + slbconfigs.sdn_watchdog_emailsender,
                             "--recipient=" + slbconfigs.sdn_watchdog_emailrec,
                             "--emailFrequency=12h",
-                            "--watchdogFrequency=600s",
+                            "--watchdogFrequency=60s",
                             "--alertThreshold=700s",
                             "--vipLoop=50",
                             "--log_dir=" + slbconfigs.logsDir,
