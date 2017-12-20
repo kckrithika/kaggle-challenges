@@ -86,6 +86,11 @@ local utils = import "util_functions.jsonnet";
   kafkaTopic: "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__opevents",
 } +
 (
+  if configs.estate == "prd-samdev" then {
+      publishAllReportsToKafka: true,
+  } else {}
+) +
+(
   if configs.kingdom == "prd" then {
   # Kuberesource Checker
   # We dont want to report on broken hairpin pods, since hairpin already alerts on those

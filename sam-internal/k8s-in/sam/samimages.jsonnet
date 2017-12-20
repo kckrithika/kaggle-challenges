@@ -23,8 +23,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
-        "prd,prd-samtest,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "prd,prd-samdev,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "prd,prd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "frf,frf-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -42,8 +40,6 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
         # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to all kingdoms. This will correctly deploy hairpin watchdogs with correct role info.
-        "prd,prd-samtest,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "prd,prd-samdev,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "prd,prd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "frf,frf-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "cdu,cdu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
@@ -76,7 +72,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001556-b9349d35",
+            hypersam: "sam-0001574-f5484cba",
             madkub: "1.0.0-0000053-f7dc2302",
             madkubSidecar: "1.0.0-0000053-f7dc2302",
             },
