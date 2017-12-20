@@ -2,7 +2,7 @@ apps:
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
-  - prd/prd-sam_warden-stage
+  - prd/prd-sam_warden
  prd-zipkin:
   - prd/prd-sam_warden
  prod-warden:
