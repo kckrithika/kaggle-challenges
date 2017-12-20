@@ -18,7 +18,7 @@ system:
           periodSeconds: 5
 
     - name: sherpa-sm
-      image:  tnrp/sherpa:2-0000118-83476125
+      image:  tnrp/sherpa:2-0000133-953ab7a7
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
