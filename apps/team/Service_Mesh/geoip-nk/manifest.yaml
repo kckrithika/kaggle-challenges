@@ -7,7 +7,7 @@ system:
     count: 3
     containers:
     - name: geoip-nk-backend
-      image: sfci/servicelibs/geoip-nk:1.0.1
+      image: sfci/servicelibs/geoip-nk:1.0.2
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
