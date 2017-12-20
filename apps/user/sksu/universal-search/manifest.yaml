@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sunil.kksubramanyam/universal-search:version2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sunil.kksubramanyam/universal-search:v01
       ports:
       - name: service-port
         containerPort: 7020
@@ -20,11 +20,11 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 300 
+        initialDelaySeconds: 600 
         timeoutSeconds: 60
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 300
+        initialDelaySeconds: 600
         timeoutSeconds: 60
