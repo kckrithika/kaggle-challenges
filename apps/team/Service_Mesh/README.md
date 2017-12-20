@@ -1,7 +1,7 @@
 # Service Mesh
 SAM Services owned by the [Service Mesh](https://gus.lightning.force.com/one/one.app#/sObject/0F9B0000000Cgm7KAC/view) team.
 
-## geoip-nk
+## [geoip-nk](https://git.soma.salesforce.com/sam/manifests/blob/master/apps/team/Service_Mesh/geoip-nk/manifest.yaml)
 An implementation of the GeoIP service that always thinks the requester is from North Korea.
 
 *But why?* For testing Dynamic Request Routing. GeoIP-NK announces itself under a different name. Using the dynamic request
