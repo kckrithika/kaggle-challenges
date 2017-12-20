@@ -9,7 +9,7 @@ local storageimages = import "storageimages.jsonnet";
 		"spec": {
 			"Resources": {
 				"Requests": {
-					"storage": "440Gi"
+					"storage": "750Gi"
 				}
 			},
 			"accessModes": [
