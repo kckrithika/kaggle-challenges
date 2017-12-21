@@ -29,7 +29,7 @@ system:
         initialDelaySeconds: 600
         timeoutSeconds: 60
       volumeMounts:
-      - mountPath: ./logs
+      - mountPath: /home/sfdc-universal-search/logs
         name: logvol
     volumes:
     - name: logvol
