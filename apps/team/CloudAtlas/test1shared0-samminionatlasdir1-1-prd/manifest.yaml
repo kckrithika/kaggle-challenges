@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - cloudatlas@salesfocce.com
+      - cloudatlas@salesforce.com
   functions:
   - name: cloudatlas-prd-stage-dir1-1
     count: 1
