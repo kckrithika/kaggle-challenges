@@ -11,7 +11,7 @@ system:
       # associate the log directory to a logical volume.
       volumeMounts:
       - mountPath: /log
-        name: dfs-log
+        name: dfslogvol
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -21,8 +21,8 @@ system:
       livenessProbe:
         exec:
           command: ["true"]
-      # maps the dfslogvol volumnMount to a directory on the host machine
+    # maps the dfslogvol volumnMount to a directory on the host machine
     volumes:
-    - name: dfs-log
+    - name: dfslogvol
       hostPath:
         path: /var/log/dfs
