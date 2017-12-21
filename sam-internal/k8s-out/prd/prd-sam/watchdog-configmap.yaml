@@ -14,6 +14,7 @@ data:
       "email-subject-prefix": "SAMWD",
       "enableMaddogCertChecks": true,
       "enableStatefulChecks": true,
+      "enableStatefulPVChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001574-f5484cba",
       "k8sproxyEndpoint": "http://localhost:40000",
@@ -35,7 +36,9 @@ data:
         "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem"
       ],
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
+      "maxPVCAge": 420000000000,
       "maxUptimeSampleSize": 5,
+      "maxdeploymentduration": 420000000000,
       "monitoredProcesses": {
         "dockerd.*docker-bootstrap": "age.dockerbootstrap",
         "dockerd.*docker.sock": "age.dockermain",
@@ -134,6 +137,8 @@ data:
         }
       ],
       "storageClassName": "synthetic-hdd-pool",
+      "syntheticPVRetrytimeout": 420000000000,
+      "syntheticretrytimeout": 420000000000,
       "tlsEnabled": true
     }
 kind: ConfigMap

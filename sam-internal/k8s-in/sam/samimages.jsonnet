@@ -19,8 +19,8 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         # [mayank] adding overrides for storage team's ceph cluster availability testing
         # [thargrove] Leaving this in by special request from Mayank
-        "prd,prd-sam,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171211_132647.1344032.dirty.mayankkuma-ltm3",
+        "prd,prd-sam,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171220_145616.ee9ed3b.dirty.mayankkuma-ltm3",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171220_145616.ee9ed3b.dirty.mayankkuma-ltm3",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "frf,frf-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",

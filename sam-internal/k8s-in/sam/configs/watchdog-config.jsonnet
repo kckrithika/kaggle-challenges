@@ -109,6 +109,11 @@ local utils = import "util_functions.jsonnet";
   } else {})
   + (if configs.estate == "prd-sam" then {
     storageClassName: "synthetic-hdd-pool",
+    enableStatefulPVChecks: true,
+    maxPVCAge: 420000000000,
+    syntheticPVRetrytimeout: 420000000000,
+    syntheticretrytimeout: 420000000000,
+    maxdeploymentduration: 420000000000,
   } else {})
   + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     # Maddog(cert) checker
