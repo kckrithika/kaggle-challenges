@@ -43,7 +43,7 @@ system:
         - --redisPort=12098
         - --cluster.name=sp-na1-c1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/mist42/prd/sp2
+        - --pathPrefix=/mist30/prd/sp2
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -51,7 +51,7 @@ system:
             - "/opt/caas/redis/is-alive.sh"
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist42
+         value: mist30
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
