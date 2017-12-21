@@ -1,0 +1,26 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - nelson.wolf@salesforce.com
+  functions:
+  - name: nelsonwolf-dva-synthetics-idbconnector
+    count: 1
+    containers:
+    - name: idbconnector
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:3
+      ports:
+      - containerPort: 9095
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 9095
+          initialDelaySeconds: 30
+          periodSeconds: 10
+  loadbalancers:
+  - lbname: idbconnector-lb 
+    function: nelsonwolf-dva-synthetics-idbconnector
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 9095
