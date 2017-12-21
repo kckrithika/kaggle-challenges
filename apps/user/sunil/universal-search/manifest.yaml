@@ -28,3 +28,10 @@ system:
           port: 15372
         initialDelaySeconds: 600
         timeoutSeconds: 60
+      volumeMounts:
+      - mountPath: ./logs
+        name: logvol
+    volumes:
+    - name: logvol
+      hostpath:
+        path: /home/sfdc-universal-search/logs
