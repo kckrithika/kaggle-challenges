@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: samreport
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171221_133007.9b032e91.dirty.hariudhayak-ltm
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171221_153117.9b032e91.dirty.hariudhayak-ltm
       env:
         - name: TEST
           value: "123"
