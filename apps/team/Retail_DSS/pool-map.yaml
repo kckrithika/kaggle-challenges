@@ -1,4 +1,17 @@
+version: v2
 apps:
- dfs:
-  - prd/prd-sp2-sam_retail_dss
-  - prd/prd-sam
+  dfs:	    	# shared dev env instance
+    - name: prd/prd-sp2-sam_retail_dss
+      hostSubList:
+        - shared2-samminionretaildss1-1-prd.eng.sfdc.net
+        - shared2-samminionretaildss2-1-prd.eng.sfdc.net
+    - name: prd/prd-sam
+  dfs-func:         # fuctional test env instance
+    - name: prd/prd-sp2-sam_retail_dss
+      hostSubList:
+        - shared2-samminionretaildss1-1-prd.eng.sfdc.net
+        - shared2-samminionretaildss2-1-prd.eng.sfdc.net
+  dfs-perf: 	# perf test env instance
+    - name: prd/prd-sp2-sam_retail_dss
+      hostSubList:
+        - shared2-samminionretaildss3-1-prd.eng.sfdc.net
