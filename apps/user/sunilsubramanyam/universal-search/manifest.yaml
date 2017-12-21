@@ -20,14 +20,14 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 600 
-        timeoutSeconds: 60
+        initialDelaySeconds: 120
+        timeoutSeconds: 30
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 600
-        timeoutSeconds: 60
+        initialDelaySeconds: 120
+        timeoutSeconds: 30
       volumeMounts:
       - mountPath: /home/sfdc-universal-search/logs
         name: logvol
