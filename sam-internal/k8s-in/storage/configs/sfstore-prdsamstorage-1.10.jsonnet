@@ -1,4 +1,7 @@
 local storageimages = import "storageimages.jsonnet";
+local storageconfig = import "storageconfig.jsonnet";
+local configs = import "config.jsonnet";
+
 
 {
 	"version": "1.10",
@@ -35,7 +38,7 @@ local storageimages = import "storageimages.jsonnet";
 					},
 					{
 						"name" : "sf_zkServers",
-						"value" : "sayonara1a-mnds2-1-prd.eng.sfdc.net:2181,sayonara1a-mnds2-2-prd.eng.sfdc.net:2181,sayonara1a-mnds2-3-prd.eng.sfdc.net:2181"
+						"value" : storageconfig.perEstate.sfstore.zkServer[configs.estate]
 					}
 				],
 				"command": ["/sfs/sfsbuild/bin/k8sstartup.py"],
@@ -51,7 +54,7 @@ local storageimages = import "storageimages.jsonnet";
 					},
 					{
 						"name" : "sf_zkServers",
-						"value" : "sayonara1a-mnds2-1-prd.eng.sfdc.net:2181,sayonara1a-mnds2-2-prd.eng.sfdc.net:2181,sayonara1a-mnds2-3-prd.eng.sfdc.net:2181"
+						"value" : storageconfig.perEstate.sfstore.zkServer[configs.estate]
 					}
 				],
 				"command": ["/sfs/sfsbuild/bin/k8sstartup.py"],
