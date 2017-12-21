@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: idbconnector
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector/dva-synthetics-idbconnector:3
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:3
       ports:
       - containerPort: 9095
       livenessProbe:
