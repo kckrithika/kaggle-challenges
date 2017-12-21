@@ -1,0 +1,20 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: alligator-service
+    count: 1
+    containers:
+    - name: alligator-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/alligator:1
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      ports:
+      - containerPort: 8080
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 60
+        httpGet:
+          path: /manage/health
+          port: 15372
