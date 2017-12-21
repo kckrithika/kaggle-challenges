@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
