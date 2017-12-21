@@ -17,7 +17,7 @@ system:
       args:
         - --server.port=7510
         - --management.port=7511
-        - --cluster.name=stmfa-sp-c1
+        - --cluster.name=sp-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
