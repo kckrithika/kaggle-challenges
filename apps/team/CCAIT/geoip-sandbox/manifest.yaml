@@ -53,7 +53,7 @@ system:
         initialDelaySeconds: 115
     - name: sherpa-b
       image: sfci/servicelibs/sherpa:2.0.14
-      args: ["--zipkin-rate=0.01"]
+      args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -114,7 +114,7 @@ system:
         initialDelaySeconds: 115
     - name: sherpa-f
       image: sfci/servicelibs/sherpa:2.0.14
-      args: ["--zipkin-rate=0.01"]
+      args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
