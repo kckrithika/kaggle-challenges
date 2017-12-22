@@ -11,41 +11,6 @@ if configs.estate == "prd-sdc" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdn-bird",
-                        image: sdnimages.bird,
-                        livenessProbe: {
-                            exec: {
-                               command: [
-                                    "/bird/sdn-bird-watcher",
-                               ],
-                            },
-                            initialDelaySeconds: 5,
-                            periodSeconds: 10,
-                        },
-                        volumeMounts: configs.filter_empty([
-                            configs.sfdchosts_volume_mount,
-                            configs.maddog_cert_volume_mount,
-                            {
-                                name: "conf",
-                                mountPath: "/usr/local/etc",
-                            },
-                            {
-                                name: "socket",
-                                mountPath: "/usr/local/var/run",
-                            },
-                        ]),
-                        env: [
-                            {
-                                name: "BIRD_CONF",
-                                value: "/usr/local/etc/bird.conf",
-                            },
-                            {
-                                name: "BIRD_SOCKET",
-                                value: "/usr/local/var/run/bird.ctl",
-                            },
-                        ],
-                    },
-                    {
                         name: "sdn-peering-agent",
                         image: sdnimages.hypersdn,
                         command: [
@@ -106,11 +71,15 @@ if configs.estate == "prd-sdc" then {
                     configs.maddog_cert_volume,
                     {
                         name: "conf",
-                        emptyDir: {},
+                        hostPath: {
+                            path: "/etc/kubernetes",
+                        },
                     },
                     {
                         name: "socket",
-                        emptyDir: {},
+                        hostPath: {
+                            path: "/etc/kubernetes",
+                        },
                     },
                     {
                         name: "certs",
