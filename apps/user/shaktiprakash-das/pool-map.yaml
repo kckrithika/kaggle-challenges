@@ -1,3 +1,7 @@
 apps:
- my-sam-test:
-  - prd/prd-sam
+  my-sam-test:
+    - prd/prd-sam
+  shipping-tls:
+    - prd/prd-sam
+  ordering-tls:
+    - prd/prd-sam
