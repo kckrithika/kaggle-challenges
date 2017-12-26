@@ -1932,6 +1932,10 @@ apps:
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ prd-caas-release-perf-sdn:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-7-prd.eng.sfdc.net
  phx-sp3-metrics-publisher-sp-gs0-pc1:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-gs0-pc1-12038:
