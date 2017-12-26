@@ -28,6 +28,7 @@ if configs.estate == "prd-sdc" then {
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
+                            "--buggySpa=Hi-there",
                         ],
                         env: [
                             configs.kube_config_env,
