@@ -30,7 +30,6 @@ spec:
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
-        - --buggySpa=Hi-there
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
