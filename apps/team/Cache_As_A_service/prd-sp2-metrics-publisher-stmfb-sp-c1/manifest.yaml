@@ -1,0 +1,49 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: metrics-publisher-stmfb-sp-c1
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: metrics-publisher
+      image: tnrp/caas/caas-monitor-prod:2.5.3-0000017-14897003
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "1536M" }
+      args:
+        - --server.port=7510
+        - --management.port=7511
+        - --cluster.name=sp-c1
+        - --logDir=/home/caas/logs/caas
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7511
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 7510
+      - containerPort: 7511
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: stmfb
+       - name: CAAS_ENVIRONMENT
+         value: none
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-stmfa-sp-c1
