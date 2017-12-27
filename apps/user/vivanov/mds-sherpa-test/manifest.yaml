@@ -3,61 +3,35 @@ apiVersion: v1
 system:
   notifications:
   email:
-  - robert.snell@salesforce.com
+  - vivanov@salesforce.com
   functions:
   - name: metadata-service
     count: 1
-    volumes:
-    - name: certificates
-      maddogCert:
-        type: client
     containers:
     - name: metadata-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.18.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/vivanov/mds-sherpa:vivanov-201709281408
       ports:
       - containerPort: 7020
+        name: local-grpc-port
       - containerPort: 9091
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: dev
       - name: SERVER_PORT
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
       livenessProbe:
-        initialDelaySeconds: 60
-        periodSeconds: 30
-        timeoutSeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15523
+        exec:
+          command: ["true"]
       volumeMounts:
-        - name: certificates
-          mountPath: /certificates
-
-    - name: sherpa-mds
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: stmfa
-      ports:
-        - containerPort: 7012
-        - containerPort: 7080
-      livenessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
-      readinessProbe:
-        exec:
-          command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
-
-  # TODO: volumes for logging
+        - mountPath: /home/mds/logs
+          name: logvol
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/mds
   loadbalancers:
   - lbname: metadata-servicelb
     function: metadata-service
