@@ -26,7 +26,7 @@ system:
         exec:
           command: ["true"]
       volumeMounts:
-        - mountPath: /home/mds/logs
+        - mountPath: /home/sfdc-mds/logs/
           name: logvol
     volumes:
     - name: logvol
