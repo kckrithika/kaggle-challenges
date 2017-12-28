@@ -144,7 +144,12 @@ local kingdom = std.extVar("kingdom");
         "resource-progression-timeout": 120000000000,
         "resources-to-skip": [
           "_flowsnake-sdn-secret.yaml",
-          "samcontrol-deployer.yaml"
+          "samcontrol-deployer.yaml",
+          "watchdog-common.yaml",
+          "watchdog-etcd.yaml",
+          "watchdog-master.yaml",
+          "watchdog-node.yaml",
+          "watchdog-pod.yaml"
         ],
         "sender": "flowsnake@salesforce.com",
         "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
