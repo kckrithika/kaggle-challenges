@@ -1,0 +1,66 @@
+apiVersion: v1
+
+# Based on https://kubernetes.io/docs/tasks/run-application/run-single-instance-stateful-application/
+# and also on https://git.soma.salesforce.com/sam/manifests/blob/master/apps/user/hari-udhayakumar/postgres-pv/manifest.yaml
+
+system:
+  notifications:
+    email:
+    - thargrove@salesforce.com
+
+  functions:
+  - name: mysql
+    count: 1
+    type: stateful-set
+    containers:
+    - name: mysql
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dsmith/mysql:5.7
+      env:
+      - name: MYSQL_ROOT_PASSWORD_FILE
+        value: /secrets/rootpassword
+      volumeMounts:
+      - mountPath: /var/lib/mysql
+        name: mysql-persistent-storage
+      - mountPath: /certs
+        name: certs
+      - mountPath: /secrets
+        name: mysql-pass
+        readOnly: true
+      
+      ports:
+      - containerPort: 3306
+        name: mysql
+
+      livenessProbe:
+        tcpSocket:
+          port: 3306
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
+        
+    volumes:
+    - name: certs
+      maddogCert:
+        type: server
+    - name: mysql-pass
+      k4aSecret:
+        secretName: mysql
+
+    lbname: mysql-stateful-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing 
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 20
+
+    volumeClaimTemplates:
+    - name: mysql-persistent-storage
+      storageClassName: standard
+      storageSizeRequest: 100Gi
+
+  loadbalancers:
+  - lbname: mysql
+    function: mysql
+    slbEnabled: true
+    ports:
+      - port: 3306
+        targetport: 3306
