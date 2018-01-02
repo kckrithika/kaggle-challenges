@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - image tags from strata build
         "1": {
-            "image_tag": "453",
+            "image_tag": "468",
             "version_mapping": {
                 main: {
                   "0.9.1": 377,
@@ -75,7 +75,7 @@ local kingdom = std.extVar("kingdom");
         esImage: "345",
         kibanaImage: "345",
         zookeeperImage: "345",
-        glokImage: "345",
+        glokImage: "472",
         canaryImage: "345",
     },
 
