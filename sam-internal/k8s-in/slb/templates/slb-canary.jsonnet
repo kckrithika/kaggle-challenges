@@ -58,14 +58,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
-                        securityContext: {
-                            privileged: true,
-                            capabilities: {
-                                add: [
-                                    "ALL",
-                                ],
-                            },
-                        },
                     }
                     + (
                         if configs.estate == "prd-sdc" then {
@@ -78,7 +70,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                 periodSeconds: 3,
                             },
                         }
-                        else {}
+                        else {
+                            securityContext: {
+                                privileged: true,
+                                capabilities: {
+                                    add: [
+                                        "ALL",
+                                    ],
+                                },
+                            },
+                        }
                        ),
                 ],
                 nodeSelector: {

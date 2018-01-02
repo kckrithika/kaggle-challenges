@@ -51,13 +51,6 @@ if configs.estate == "prd-sdc" then {
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                         ]),
-                        securityContext: {
-                            capabilities: {
-                                add: [
-                                    "ALL",
-                                ],
-                            },
-                        },
                     },
                 ],
                 nodeSelector: {

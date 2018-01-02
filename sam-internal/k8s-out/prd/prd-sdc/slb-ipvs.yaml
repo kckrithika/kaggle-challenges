@@ -25,9 +25,6 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000523-f136fe4f
         name: slb-ipvs-installer
         securityContext:
-          capabilities:
-            add:
-            - ALL
           privileged: true
         volumeMounts:
         - mountPath: /dev

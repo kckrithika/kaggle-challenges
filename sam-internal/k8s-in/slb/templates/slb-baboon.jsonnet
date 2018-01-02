@@ -67,9 +67,6 @@ if configs.estate == "prd-sdc" then {
                             },
                            configs.kube_config_env,
                         ],
-                        securityContext: {
-                            privileged: true,
-                        },
                     },
                 ],
                 nodeSelector: {
