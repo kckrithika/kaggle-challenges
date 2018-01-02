@@ -1,6 +1,9 @@
 apps:
+  pki:
+   - prd/prd-sam
+
 # my-sam-test:    # this must match the name of your application (it is case sensitive)
 #  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
 
-  zipkin:
-    - prd/prd-sam
+#  zipkin:
+#    - prd/prd-sam

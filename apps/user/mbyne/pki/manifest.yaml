@@ -1,0 +1,35 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: tester
+    count: 1
+    containers:
+    - name: testserver
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/hello-server:1
+      env:
+      - name: GRPC_HOST
+        value: provisioning-in-a-container.localhost.mesh.force.com
+      - name: GRPC_PORT
+        value: 7011
+      ports:
+      - containerPort: 8080
+        name: test-http
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - name: certs
+        mountPath: /certs
+    volumes:
+      - name: certs
+        maddogCert:
+          type: client
+  
+  loadbalancers:
+  - lbname: testserverlb
+    function: tester
+    ports:
+      - port: 8080
+        targetport: 8080
