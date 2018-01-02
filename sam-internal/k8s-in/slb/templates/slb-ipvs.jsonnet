@@ -82,6 +82,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                         ]),
+                    }
+                    + (
+                    if configs.estate == "prd-sdc" then {
+                        securityContext: {
+                            privileged: true,
+                        },
+                    } else {
                         securityContext: {
                             privileged: true,
                             capabilities: {
@@ -90,7 +97,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 ],
                             },
                         },
-                    },
+                    }
+                    ),
 
                     {
                         name: "slb-ipvs-processor",

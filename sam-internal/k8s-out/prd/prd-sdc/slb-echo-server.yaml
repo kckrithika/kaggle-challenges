@@ -40,10 +40,6 @@ spec:
         - --log_dir=/host/data/slb/logs
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000523-f136fe4f
         name: slb-echo-server
-        securityContext:
-          capabilities:
-            add:
-            - ALL
         volumeMounts:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume

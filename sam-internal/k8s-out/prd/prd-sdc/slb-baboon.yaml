@@ -47,8 +47,6 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000523-f136fe4f
         name: slb-baboon
-        securityContext:
-          privileged: true
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
