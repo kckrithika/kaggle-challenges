@@ -83,7 +83,9 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
-                            "--sync-period=5s"
+                            "--annotations-prefix=ingress.kubernetes.io",
+                            "--sync-period=30s",
+                            "--kubeconfig=/etc/kubernetes/kubeconfig"
                         ],
                         volumeMounts: [
                             {
