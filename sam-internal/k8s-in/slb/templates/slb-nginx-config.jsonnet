@@ -51,7 +51,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--netInterfaceName=eth0",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--configurePerPort=" + slbconfigs.configurePerPort,
+                        ] + (if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [
+                                                        "--configurePerPort=" + slbconfigs.configurePerPort,
+                                                      ] else []) +
+                        [
                             "--maxDeleteServiceCount=3",
                         ],
                         volumeMounts: configs.filter_empty([
