@@ -47,14 +47,20 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--k8sapiserver=",
                             "--serviceList=" + slbconfigs.serviceList,
                             "--useVipLabelToSelectSvcs=" + slbconfigs.useVipLabelToSelectSvcs,
-                            "--useProxyServicesList=" + slbconfigs.useProxyServicesList,
+                        ] + (if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [
+                              "--useProxyServicesList=" + slbconfigs.useProxyServicesList,
+                                                ] else []) +
+                        [
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--sleepTime=100ms",
                             "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
                             "--kneConfigDir=" + slbconfigs.kneConfigDir,
                             "--kneDomainName=" + slbconfigs.kneDomainName,
-                            "--slbConfigInAnnotations=true",
+                        ] + (if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [
+                                "--slbConfigInAnnotations=true",
+                        ] else []) +
+                        [
                             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
                         ],
                         volumeMounts: configs.filter_empty([
