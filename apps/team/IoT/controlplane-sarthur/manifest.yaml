@@ -110,9 +110,9 @@ system:
     lbname: controlplane-sarthur-lb
     nodeExposed: true
     ports:
-    - port: 9109
+    - port: 7120
       targetport: 7443
-    - port: 8099
+    - port: 15472
       targetport: 15372
     slbEnabled: true
   notifications:
