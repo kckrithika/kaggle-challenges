@@ -1,5 +1,6 @@
 local storageimages = import "storageimages.jsonnet";
 local storageconfig = import "storageconfig.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 local configs = import "config.jsonnet";
 
 
@@ -25,6 +26,16 @@ local configs = import "config.jsonnet";
 	"podConfig": {
 		"hostNetwork": true,
 		"DNSPolicy": "ClusterFirstWithHostNet",
+		"initContainers" : [
+			{} + 
+			storageutils.log_init_container(
+				storageimages.loginit,
+				"sfstore-operator",
+				7447,
+				7447,
+				"sfstore"
+			),
+		],
 		"containers": [{
 				"name": "bookie",
 				"image": storageimages.sfstorebookie,
