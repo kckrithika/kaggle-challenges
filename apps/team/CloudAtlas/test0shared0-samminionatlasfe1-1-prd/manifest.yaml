@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:cb9a695
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:5610005
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -43,8 +43,9 @@ system:
           command:
           - cat
           - /tmp/ready
-        initialDelaySeconds: 10
+        initialDelaySeconds: 60
         periodSeconds: 5
+        failureThreshold: 24
     volumes:
     - name: hosthomevol
       hostPath:
