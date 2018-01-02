@@ -31,7 +31,7 @@ spec:
             configMapKeyRef:
               key: kubeconfig
               name: fleet-config
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:453
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:468
         imagePullPolicy: IfNotPresent
         name: node-monitor
         volumeMounts:
