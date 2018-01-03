@@ -20,6 +20,7 @@ docker run \
   ${HYPERSAM} \
   sam-manifest-builder \
   --root='/repo/' \
-  --swaggerspecdir='/sam/swagger-spec' \
   -validateonly \
-  -validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml
+  -validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml \
+  -FullSchemaValidation \
+  -skip-sam-internals
