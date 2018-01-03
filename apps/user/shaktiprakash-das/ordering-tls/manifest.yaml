@@ -13,7 +13,7 @@ system:
       - name: SCONE_SHIPPING_HOST
         value: shipping.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
-        value: 7011
+        value: 5443
       ports:
       - containerPort: 7021
       - containerPort: 15372
@@ -27,7 +27,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
-      - ordering:DATACENTER:7012
+      - ordering:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
