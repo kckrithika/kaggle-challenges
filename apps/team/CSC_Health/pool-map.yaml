@@ -68,6 +68,7 @@ apps:
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
   expreportcollectorha:
+    - prd/prd-sam_report_collector
   exprepcollavailwd:
   expcname-repcollavailwd:
   expmaddog-repcollavailwd:
