@@ -7,6 +7,7 @@ system:
     containers:
     - name: ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:shaktiprakash.das-20180103
+      env:      
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: SCONE_SHIPPING_HOST
