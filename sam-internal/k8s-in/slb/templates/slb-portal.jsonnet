@@ -47,7 +47,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                     path: "/",
                                     port: portconfigs.slb.slbPortalServicePort,
                                 },
-                                initialDelaySeconds: 5,
+                                initialDelaySeconds: 30,
                                 periodSeconds: 3,
                             },
                         }
