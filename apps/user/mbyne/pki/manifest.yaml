@@ -6,12 +6,12 @@ system:
     count: 1
     containers:
     - name: testserver
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/hello-server:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/pki:1
       env:
-      - name: GRPC_HOST
-        value: provisioning-in-a-container.localhost.mesh.force.com
-      - name: GRPC_PORT
-        value: 7011
+      - name: PKI_CA_DIR
+        value: /certs/ca
+      - name: PKI_MONITORDIR
+        value: /certs
       ports:
       - containerPort: 8080
         name: test-http
