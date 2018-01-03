@@ -6,7 +6,7 @@ system:
   - robert.snell@salesforce.com
   functions:
   - name: metadata-service
-    count: 1
+    count: 2
     volumes:
     - name: certificates
       maddogCert:
