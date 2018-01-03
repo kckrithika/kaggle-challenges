@@ -19,12 +19,14 @@ system:
           path: /var/log/report-collector
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.10.0-0000164-cb866aba
+      image: tnrp/csc-health/report-collector:1.11.0-0000179-e6701b31
       ports:
       - name: provider
         containerPort: 8080
       - name: consumer
         containerPort: 8081
+      - name: admin
+        containerPort: 8082
       - name: provider-https
         containerPort: 8443
       - name: consumer-https
@@ -51,8 +53,8 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificate
-        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
+      - name: ReportCollector_app_https_caCertificates
+        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
       - name: ReportCollector_app_https_certificate
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
@@ -66,19 +68,27 @@ system:
       args: ["
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      case ${KINGDOM} in
+        prd)
+          export ReportCollector_adminInterface_enabled=true ;
+          export ReportCollector_adminInterface_port=8082 ;
+          ;;
+        *)
+      esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
-        -Dvertx.disableFileCPResolving=true
+        -Dvertx.cacheDirBase=${CACHE_DIR}
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.metrics.options.configPath=metric-options.json
         -Dvertx.disableDnsResolver=true
         -Dlog_dir=${LOG_DIR}
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
   - name: csc-health-stale-log-cleaner
-    image: tnrp/csc-health/report-collector:1.9.0-0000161-95d31d29
+    image: tnrp/csc-health/report-collector:1.11.0-0000179-e6701b31
     volumeMounts:
       - mountPath: /var/log/report-collector
         name: logvol
@@ -145,6 +155,8 @@ system:
       targetport: 8080
     - port: 28444
       targetport: 8081
+    - port: 28447
+      targetport: 8082
     - port: 28445
       targetport: 8443
     - port: 28446
