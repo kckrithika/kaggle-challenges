@@ -6,6 +6,8 @@ data:
       "certFile": "/data/certs/hostcert.crt",
       "checkImageExistsFlag": false,
       "debug": true,
+      "deletionEnabled": false,
+      "deletionPercentageThreshold": 20,
       "dockerregistry": "ops0-artifactrepo1-0-iad.data.sfdc.net",
       "enableMaddog": true,
       "httpsDisableCertsCheck": true,
@@ -14,6 +16,9 @@ data:
       "keyFile": "/data/certs/hostcert.key",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.iad.prod.non-estates.sfdcsd.net:8443",
       "maddogMadkubImage": "ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000053-f7dc2302",
+      "slbConfigInAnnotations": false,
+      "slbConfigInLabels": false,
+      "statefulAppEnabled": false,
       "tlsEnabled": true,
       "volPermissionInitContainerImage": "ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }

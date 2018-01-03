@@ -12,34 +12,31 @@ local utils = import "util_functions.jsonnet";
   certFile: configs.certFile,
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
-  checkImageExistsFlag: (if configs.kingdom == "prd" then true else false),
-  imageCheckV2: true,
-}
-+ (if (configs.kingdom == "prd") then {
-  deletionEnabled: true,
+
+  # Delete
   deletionPercentageThreshold: 20,
-  statefulAppEnabled: true,
-  checkImageExistsFlag: true,
-} else {})
-+ (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
-    enableMaddog: true,
-    # This is kept as a flag to use the service envvar,
-    #maddogMadkubEndpoint: "https://10.254.208.254:32007",
-    maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
-    maddogMadkubImage: samimages.madkubSidecar,
-  } else {})
-  + (if samimages.per_phase[samimages.phase].hypersam == "sam-0001355-581a778b" && (!utils.is_public_cloud(configs.kingdom)) then {
-    maddogMadkubImageRegistry: configs.registry + (if configs.kingdom == "prd" then "/docker-release-candidate/tnrp" else "/tnrp"),
-  } else {})
+  deletionEnabled: (if configs.kingdom == "prd" then true else false),
+
+  # Stateful
+  statefulAppEnabled: (if configs.kingdom == "prd" then true else false),
+
+  # Image check
+  imageCheckV2: true,
+  checkImageExistsFlag: (if configs.kingdom == "prd" then true else false),
+
+  # MadDog
+  enableMaddog: (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then true else false),
+  maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
+  maddogMadkubImage: samimages.madkubSidecar,
+
+  # SLB
+  slbConfigInLabels: (if configs.kingdom == "prd" then true else false),
+  slbConfigInAnnotations: (if configs.kingdom == "prd" then true else false),
+
+}
 + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then {
     k4aInitContainerImage: samimages.k4aInitContainerImage,
   } else {})
 + (if configs.estate == "prd-samtest" then {
     livenessProbePort: "22545",
   } else {})
-+ (if configs.kingdom == "prd" then {
-    slbConfigInLabels: true,
-  } else {})
-+ (if configs.kingdom == "prd" then {
-      slbConfigInAnnotations: true,
-    } else {})
