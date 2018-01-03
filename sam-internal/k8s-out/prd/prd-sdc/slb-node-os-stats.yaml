@@ -18,7 +18,7 @@ spec:
         - /sdn/slb-node-os-stats
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000527-68926de1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000528-bcf4a68b
         name: slb-node-os-stats
         securityContext:
           privileged: true
