@@ -1,6 +1,7 @@
 ---
 # List of teams that can deploy apps to this pool.
 # Team name must match GUS scrum team with spaces converted to underscore
+# Run k8s-in/build.sh after updating pools
 access:
   - 'team/Search_Scale_Safely'
 
