@@ -8,7 +8,7 @@ system:
     - name: ordering-service
       # the image below is built at this commit:
       # https://git.soma.salesforce.com/servicelibs/scone-ms-examples/commit/ba75674c97fec87b035923bcfff3eb995abf0044
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:stoens-20180103
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:bzimmerman-20180103
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
