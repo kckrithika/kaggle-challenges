@@ -9,51 +9,42 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:shaktiprakash.das-20180103
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sconex
       ports:
-        - containerPort: 7020
-          name: shipping-grpc
+      - containerPort: 7020
+      - containerPort: 15372
+      - containerPort: 9010
       livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - name: beacon-shipping
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - shipping:DATACENTER:7012
+      livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-          - "./bin/is-alive"
-          initialDelaySeconds: 30
-          periodSeconds: 5
+          - "/home/scone/is-alive.sh"          
     - name: sherpa-shipping
       image: sfci/servicelibs/sherpa:2.0.15
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
-      ports:
-      - containerPort: 7012
-        name: sherpa-in2
-      - containerPort: 7443
-        name: sherpa-tlsin2
-      - containerPort: 7011
-        name: sherpa-out2
-      - containerPort: 5443
-        name: sherpa-tlsout2
-      - containerPort: 7014
-        name: sherpa-in1
-      - containerPort: 7442
-        name: sherpa-tlsin1
-      - containerPort: 7013
-        name: sherpa-out1
-      - containerPort: 5442
-        name: sherpa-tlsout1
-      - containerPort: 15373
-        name: sherpa-admin
+        value: sconex
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 30
+          initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 10
+          initialDelaySeconds: 5
           periodSeconds: 5
       volumeMounts:
       - name: shipping-tls-client-cert
