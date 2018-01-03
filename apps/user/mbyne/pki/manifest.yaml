@@ -9,9 +9,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/pki:1
       env:
       - name: PKI_CA_DIR
-        value: /certs/ca
+        value: /home/scone/certs/ca
       - name: PKI_MONITORDIR
-        value: /certs
+        value: /home/scone/certs
       ports:
       - containerPort: 8080
         name: test-http
@@ -23,7 +23,7 @@ system:
           port: 15372
       volumeMounts:
       - name: certs
-        mountPath: /certs
+        mountPath: /home/scone/certs
     volumes:
       - name: certs
         maddogCert:
