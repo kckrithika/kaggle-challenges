@@ -15,10 +15,12 @@ system:
       ports:
       - containerPort: 8080
         name: test-http
+      - containerPort: 15372
+        name: test-mgmnt
       livenessProbe:
         httpGet:
-          path: /
-          port: 8080
+          path: /manage/health
+          port: 15372
       volumeMounts:
       - name: certs
         mountPath: /certs
