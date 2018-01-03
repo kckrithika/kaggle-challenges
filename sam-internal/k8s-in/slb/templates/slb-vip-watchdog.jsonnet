@@ -41,10 +41,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--alertThreshold=700s",
                             "--vipLoop=50",
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + (if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [
-                                                                                 "--configurePerPort=" + slbconfigs.configurePerPort,
-                                                                               ] else []) +
-                        [
                             "--optOutNamespace=kne",
                         ],
                         volumeMounts: configs.filter_empty([
