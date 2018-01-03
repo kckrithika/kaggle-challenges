@@ -17,9 +17,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        # [mayank] adding overrides for storage team's ceph cluster availability testing
-        # [thargrove] Leaving this in by special request from Mayank
-        "prd,prd-sam,watchdog-synthetic,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171220_145616.ee9ed3b.dirty.mayankkuma-ltm3",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "frf,frf-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -76,9 +73,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001574-f5484cba",
-            madkub: "1.0.0-0000053-f7dc2302",
-            madkubSidecar: "1.0.0-0000053-f7dc2302",
+            hypersam: "sam-0001585-fdaa5a39",
+            madkub: "1.0.0-0000056-f3539b1a",
+            madkubSidecar: "1.0.0-0000056-f3539b1a",
             },
 
         ### Release Phase 3 - Canary Prod FRF
