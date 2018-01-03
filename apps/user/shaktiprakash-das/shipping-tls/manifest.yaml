@@ -23,7 +23,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
-      - shipping:DATACENTER:7012
+      - shipping:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
