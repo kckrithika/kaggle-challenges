@@ -1,4 +1,16 @@
+version: v2
 apps:
-  prd.CCP_Shared_Dev.cre-stream-processing:
-  - prd/prd-sp2-sam_retail_cre
-
+  prd.CCP_Shared_Dev.cre-stream-processing: # shared dev env instance
+  - name: prd/prd-sp2-sam_retail_cre
+    hostSubList:
+        - shared2-samminionretailcre1-1-prd.eng.sfdc.net
+        - shared2-samminionretailcre2-1-prd.eng.sfdc.net
+  prd.CCP_Integration_Functional.cre-stream-processing: # functional test env instance
+  - name: prd/prd-sp2-sam_retail_cre
+    hostSubList:
+        - shared2-samminionretailcre1-1-prd.eng.sfdc.net
+        - shared2-samminionretailcre2-1-prd.eng.sfdc.net
+  prd.CCP_Integration_Performance.cre-stream-processing: # perf test env instance
+  - name: prd/prd-sp2-sam_retail_cre
+    hostSubList:
+        - shared2-samminionretailcre3-1-prd.eng.sfdc.net
