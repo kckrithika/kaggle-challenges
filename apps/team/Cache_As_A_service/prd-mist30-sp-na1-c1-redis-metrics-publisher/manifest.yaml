@@ -5,7 +5,7 @@ system:
     email:
       - rpragada@salesforce.com
   functions:
-  - name: prd-redis-metrics-publisher
+  - name: prd-mist30-redis-metrics-publisher
     count: 1 
     hostnetwork: true
     containers:
