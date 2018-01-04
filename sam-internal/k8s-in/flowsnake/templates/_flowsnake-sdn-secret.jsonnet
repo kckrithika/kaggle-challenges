@@ -4,7 +4,7 @@ local configs = import "config.jsonnet";
   kind: "Secret",
   metadata: {
     name: "sdn",
-    namespace: "flowsnake",
+    namespace: "sam-system",
   },
   type: "Opaque",
 
