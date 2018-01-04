@@ -86,7 +86,7 @@ system:
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
         # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
         - name: PUBLIC_HOST_NAME
-          value: csr214lb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
+          value: csr212alb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
         - name: PORT
           value: 7551
         - name: SPORT
@@ -148,7 +148,7 @@ system:
         maxUnavailable: 0            
 
   loadbalancers:
-  - lbname: csr212mist61lb
+  - lbname: csr212alb
     function: csr212mist61
     slbEnabled: true
     ports:
