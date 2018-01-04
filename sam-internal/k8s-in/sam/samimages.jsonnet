@@ -19,7 +19,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
-        "frf,frf-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "chx,chx-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "dfw,dfw-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -35,7 +34,6 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
         # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to all kingdoms. This will correctly deploy hairpin watchdogs with correct role info.
-        "frf,frf-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "cdu,cdu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "chx,chx-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "dfw,dfw-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
@@ -80,9 +78,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF
         "3": {
-            hypersam: "sam-0001556-b9349d35",
-            madkub: "1.0.0-0000053-f7dc2302",
-            madkubSidecar: "1.0.0-0000053-f7dc2302",
+            hypersam: "sam-0001585-fdaa5a39",
+            madkub: "1.0.0-0000056-f3539b1a",
+            madkubSidecar: "1.0.0-0000056-f3539b1a",
             },
 
         ### Release Phase 4 - Rest of Prod
