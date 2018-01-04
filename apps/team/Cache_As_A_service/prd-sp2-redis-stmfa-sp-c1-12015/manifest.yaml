@@ -33,7 +33,7 @@ system:
         timeoutSeconds: 10
       ports:
       - containerPort: 12015
-    - name: caas-redis-announcer
+    - name: caas-redis-announcer-1
       image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
@@ -53,14 +53,41 @@ system:
         requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
-          name: logvol
+          name: logvol1
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+    - name: caas-redis-announcer-2
+      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12015
+        - --cluster.name=sp-c1
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/opt/caas/redis/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: stmfa-gus
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol2
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
     volumes:
-    - name: logvol
+    - name: logvol1
       hostPath:
-        path: /home/caas/logs
+        path: /home/caas1/logs
+    - name: logvol2
+      hostPath:
+        path: /home/caas2/logs
     - name: secretvol
       secret:
          secretName: caas-secret-stmfa-sp-c1
