@@ -25,16 +25,16 @@ system:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.6rc1
+      image: sfci/cloud-atlas/cloudatlas:2.6rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -57,7 +57,18 @@ system:
       - containerPort: 8989
       livenessProbe:
         exec:
-          command: ["true"]
+          command:
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
+        initialDelaySeconds: 60
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 24
     volumes:
     - name: hosthomevol
       hostPath:
