@@ -53,7 +53,7 @@ system:
         requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
-          name: logvol1
+          name: logvol
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
@@ -77,17 +77,14 @@ system:
         requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
-          name: logvol2
+          name: logvol
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
     volumes:
-    - name: logvol1
+    - name: logvol
       hostPath:
-        path: /home/caas1/logs
-    - name: logvol2
-      hostPath:
-        path: /home/caas2/logs
+        path: /home/caas/logs
     - name: secretvol
       secret:
          secretName: caas-secret-stmfa-sp-c1
