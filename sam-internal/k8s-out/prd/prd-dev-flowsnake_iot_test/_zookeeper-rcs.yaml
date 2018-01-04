@@ -47,3 +47,5 @@ spec:
             - -c
             - '[ $(exec 5<>/dev/tcp/localhost/2181 && echo ruok >&5 && cat <&5) ==
               imok ]'
+  updateStrategy:
+    type: RollingUpdate

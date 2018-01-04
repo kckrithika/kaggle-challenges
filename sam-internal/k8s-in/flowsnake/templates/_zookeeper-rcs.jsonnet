@@ -13,6 +13,9 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
         namespace: "flowsnake"
     },
     spec: {
+        updateStrategy: {
+            type: "RollingUpdate"
+        },
         replicas: $.zk_replicas,
         serviceName: "zookeeper-set",
         template: {

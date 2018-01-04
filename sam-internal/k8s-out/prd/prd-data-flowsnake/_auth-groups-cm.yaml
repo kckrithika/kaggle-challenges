@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   data: '["Flowsnake_Ops_Platform", "Security-Analytics", "alerting_flowsnake", "dbvisibility",
     "IoT-RM-Flowsnake", "FS_Rackbot", "MCeventing", "Analytics Service Ownership",
-    "CRE_AD", "Lightning_Instrumentation"]'
+    "CRE_AD", "Lightning_Instrumentation", "Analytics-DataPool", "DSS_FLOWSNAKE_SERVICE"]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
