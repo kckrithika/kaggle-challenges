@@ -1,6 +1,5 @@
 local storageimages = import "storageimages.jsonnet";
 local storageconfig = import "storageconfig.jsonnet";
-local storageutils = import "storageutils.jsonnet";
 local configs = import "config.jsonnet";
 
 {
@@ -12,7 +11,7 @@ local configs = import "config.jsonnet";
 		"spec": {
 			"Resources": {
 				"Requests": {
-					"storage": "440Gi"
+					"storage": "17Gi"
 				}
 			},
 			"accessModes": [
@@ -25,19 +24,9 @@ local configs = import "config.jsonnet";
 	"podConfig": {
 		"hostNetwork": true,
 		"DNSPolicy": "ClusterFirstWithHostNet",
-        "initContainers" : [
-			{} + 
-			storageutils.log_init_container(
-				storageimages.loginit,
-				"sfstore-operator",
-				7447,
-				7447,
-				"sfstore"
-			),
-		],
 		"containers": [{
 				"name": "bookie",
-				"image": storageimages.sfstorebookie,
+				"image": storageimages.sfstorebookie, 
 				"ports": [{
 					"name": "bookieport",
 					"containerPort": 3181
@@ -57,14 +46,14 @@ local configs = import "config.jsonnet";
 			},
 			{
 				"name": "autorecovery",
-				"image": storageimages.sfstorebookie,
+				"image": storageimages.sfstorebookie, 
 				"Env": [{
 						"name": "BOOKIE_LOG_DIR",
 						"value": "/var/log/sfslogs"
 					},
 					{
 						"name" : "sf_zkServers",
-						"value" : storageconfig.perEstate.sfstore.zkServer[configs.estate]
+						"value" : storageconfig.perEstate.sfstore.zkServer[configs.estate] 
 					}
 				],
 				"command": ["/sfs/sfsbuild/bin/k8sstartup.py"],
@@ -75,7 +64,7 @@ local configs = import "config.jsonnet";
 				"name": "sfms",
 				"image": storageimages.sfms,
 				"command": ["/bin/bash", "/opt/sfms/bin/sfms"],
-				"args": ["-t", "ajna", "-s", "sfstore", "-i", "60"],
+				"args": ["-t", "json", "-s", "sfstore", "-i", "180"],
 				"imagePullPolicy": "Always"
 			}
 		]

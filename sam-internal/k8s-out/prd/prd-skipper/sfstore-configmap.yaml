@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  sf-store-prdsam-1.10.json: |-
+  sfstore-skipper-1.10.json: |-
     {
       "persistentVolumeClaim": {
         "metadata": {
@@ -9,7 +9,7 @@ data:
         "spec": {
           "Resources": {
             "Requests": {
-              "storage": "440Gi"
+              "storage": "17Gi"
             }
           },
           "StorageClassName": "ssd",
@@ -30,7 +30,7 @@ data:
               },
               {
                 "name": "sf_zkServers",
-                "value": "sayonara1a-mnds2-1-prd.eng.sfdc.net:2181,sayonara1a-mnds2-2-prd.eng.sfdc.net:2181,sayonara1a-mnds2-3-prd.eng.sfdc.net:2181"
+                "value": "zk-external.zookeeper.svc.cluster.local:2181"
               }
             ],
             "args": [
@@ -57,7 +57,7 @@ data:
               },
               {
                 "name": "sf_zkServers",
-                "value": "sayonara1a-mnds2-1-prd.eng.sfdc.net:2181,sayonara1a-mnds2-2-prd.eng.sfdc.net:2181,sayonara1a-mnds2-3-prd.eng.sfdc.net:2181"
+                "value": "zk-external.zookeeper.svc.cluster.local:2181"
               }
             ],
             "args": [
@@ -73,11 +73,11 @@ data:
           {
             "args": [
               "-t",
-              "ajna",
+              "json",
               "-s",
               "sfstore",
               "-i",
-              "60"
+              "180"
             ],
             "command": [
               "/bin/bash",
@@ -88,49 +88,7 @@ data:
             "name": "sfms"
           }
         ],
-        "hostNetwork": true,
-        "initContainers": [
-          {
-            "command": [
-              "sh",
-              "-c",
-              "/entrypoint.sh -g 7447 -u 7447 -s sfstore -l sfstore-operator"
-            ],
-            "env": [
-              {
-                "name": "KUBEVAR_POD_NAME",
-                "valueFrom": {
-                  "fieldRef": {
-                    "fieldPath": "metadata.name"
-                  }
-                }
-              },
-              {
-                "name": "KUBEVAR_POD_NAMESPACE",
-                "valueFrom": {
-                  "fieldRef": {
-                    "fieldPath": "metadata.namespace"
-                  }
-                }
-              }
-            ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000287-054eac70",
-            "name": "log-init",
-            "securityContext": {
-              "privileged": true
-            },
-            "volumeMounts": [
-              {
-                "mountPath": "/var/log",
-                "name": "container-log-vol"
-              },
-              {
-                "mountPath": "/var/log-mounted",
-                "name": "host-log-vol"
-              }
-            ]
-          }
-        ]
+        "hostNetwork": true
       },
       "version": "1.10"
     }

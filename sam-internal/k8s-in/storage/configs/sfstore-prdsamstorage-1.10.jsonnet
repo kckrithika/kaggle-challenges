@@ -3,6 +3,7 @@ local storageconfig = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
 local configs = import "config.jsonnet";
 
+
 {
 	"version": "1.10",
 	"persistentVolumeClaim": {
@@ -12,7 +13,7 @@ local configs = import "config.jsonnet";
 		"spec": {
 			"Resources": {
 				"Requests": {
-					"storage": "440Gi"
+					"storage": "750Gi"
 				}
 			},
 			"accessModes": [
@@ -25,7 +26,7 @@ local configs = import "config.jsonnet";
 	"podConfig": {
 		"hostNetwork": true,
 		"DNSPolicy": "ClusterFirstWithHostNet",
-        "initContainers" : [
+		"initContainers" : [
 			{} + 
 			storageutils.log_init_container(
 				storageimages.loginit,

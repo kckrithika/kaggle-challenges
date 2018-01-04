@@ -15,7 +15,7 @@ spec:
       containers:
       - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph-daemon:jewel-0000052-36e8b39d
         name: cephdaemon
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000021-f9f2ef07
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000031-8791cfb6
         name: sfstore-bookie
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000284-989c85c6
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000287-054eac70
         name: loginit
