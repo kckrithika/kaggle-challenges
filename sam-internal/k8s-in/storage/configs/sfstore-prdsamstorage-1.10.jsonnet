@@ -45,7 +45,7 @@ local configs = import "config.jsonnet";
 				}],
 				"Env": [{
 						"name": "BOOKIE_LOG_DIR",
-						"value": "/sfs/sfslogs"
+						"value": "/var/log/sfslogs"
 					},
 					{
 						"name" : "sf_zkServers",
@@ -61,7 +61,7 @@ local configs = import "config.jsonnet";
 				"image": storageimages.sfstorebookie,
 				"Env": [{
 						"name": "BOOKIE_LOG_DIR",
-						"value": "/sfs/sfslogs"
+						"value": "/var/log/sfslogs"
 					},
 					{
 						"name" : "sf_zkServers",
