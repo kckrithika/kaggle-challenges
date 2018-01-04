@@ -26,7 +26,7 @@ system:
       - name: PKI_MONITORDIR
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
-        value: CCP_Integration_Performance
+        value: mist
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -43,7 +43,7 @@ system:
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
-          value: CCP_Integration_Performance
+          value: mist
       args:
         - --http2-in=9532
       ports:
