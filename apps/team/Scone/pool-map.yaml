@@ -1,8 +1,6 @@
 apps:
     ordering:
         - prd/prd-sam
-#    ordering-alt:
-#        - prd/prd-sam
     shipping:
         - prd/prd-sam
     examples-xlt:

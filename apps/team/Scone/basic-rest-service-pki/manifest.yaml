@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: scone-basic-rest-pki
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-basic-rest-pki:plaird-20180102
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-basic-rest-pki:plaird-20180104-dddfc516
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
