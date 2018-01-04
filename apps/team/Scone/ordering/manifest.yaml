@@ -8,7 +8,7 @@ system:
     - name: ordering-service
       # the image below is built at this commit:
       # https://git.soma.salesforce.com/servicelibs/scone-ms-examples/commit/ba75674c97fec87b035923bcfff3eb995abf0044
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:bzimmerman-20180103-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:stoens-20180104-a4525c5
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -16,6 +16,8 @@ system:
         value: shipping.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
         value: 7011
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
       ports:
       - containerPort: 7021
       - containerPort: 15373
