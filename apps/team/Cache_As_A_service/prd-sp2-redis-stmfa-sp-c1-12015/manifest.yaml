@@ -87,10 +87,10 @@ system:
         path: /home/caas/logs
     - name: logvol1
       hostPath:
-        path: /home/caas/logs1
+        path: /home/caas/logsa
     - name: logvol2
       hostPath:
-        path: /home/caas/logs2
+        path: /home/caas/logsb
     - name: secretvol
       secret:
          secretName: caas-secret-stmfa-sp-c1
