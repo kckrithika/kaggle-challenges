@@ -41,7 +41,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12078
-        - --cluster.name=sp-na1-c1
+        - --cluster.name=sp-mist30-c1
         - --logDir=/home/caas/logs
         - --pathPrefix=/mist30/prd/sp2
       livenessProbe:
