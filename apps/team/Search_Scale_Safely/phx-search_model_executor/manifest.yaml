@@ -9,7 +9,7 @@ system:
     count: 10
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:1.0.4
+      image: sfci/searchdev/smt-search-model-executor:1.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -24,16 +24,19 @@ system:
       - name: ENDPOINTS_BINDINGS_NAMES
         value: /s/ajnafunnel
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 60
+        exec:
+          command:
+          - "./runcheck.sh"
+          - "5"
+        initialDelaySeconds: 240
         timeoutSeconds: 10
+        periodSeconds: 60
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 60
+        exec:
+          command:
+          - "./runcheck.sh"
+          - "5"
+        initialDelaySeconds: 240
         timeoutSeconds: 10
       volumeMounts:
       - mountPath: /home/sfdc-search-model-executor/logs
