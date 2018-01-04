@@ -25,6 +25,8 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfstoreoperator:base-0000287-054eac70
         name: sfstoreoperator
         volumeMounts:
+        - mountPath: /sfo/configs
+          name: sfstore-config
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -34,6 +36,9 @@ spec:
       nodeSelector:
         master: "true"
       volumes:
+      - configMap:
+          name: sfstore-configmap
+        name: sfstore-config
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
