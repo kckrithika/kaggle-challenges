@@ -11,6 +11,9 @@ local zookeeper = import "_zookeeper-rcs.jsonnet";
         namespace: "flowsnake"
     },
     spec: {
+        updateStrategy: {
+            type: "RollingUpdate"
+        },      
         replicas: 3,
         serviceName: "glok-set",
         template: {

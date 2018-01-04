@@ -14,7 +14,9 @@ local kingdom = std.extVar("kingdom");
             "MCeventing",
             "Analytics Service Ownership",
             "CRE_AD",
-            "Lightning_Instrumentation"
+            "Lightning_Instrumentation",
+            "Analytics-DataPool",
+            "DSS_FLOWSNAKE_SERVICE"
         ],
         "prd/prd-data-flowsnake_test": [
             "Flowsnake_Ops_Platform"

@@ -12,6 +12,7 @@ local kingdom = std.extVar("kingdom");
                   "0.9.1": 377,
                   "0.9.2": 403,
                   "0.9.3": 427,
+                  "0.9.4": 447,
                   "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
                   "carl-zk-test": "zk-service-extirpation-itest-ready"
                 }
@@ -35,6 +36,7 @@ local kingdom = std.extVar("kingdom");
                   "0.9.1": 377,
                   "0.9.2": 403,
                   "0.9.3": 427,
+                  "0.9.4": 447,
                   "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
                   "carl-zk-test": "zk-service-extirpation-itest-ready"
                 },
