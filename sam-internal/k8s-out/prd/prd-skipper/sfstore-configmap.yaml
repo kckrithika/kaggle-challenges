@@ -9,7 +9,7 @@ data:
         "spec": {
           "Resources": {
             "Requests": {
-              "storage": "17Gi"
+              "storage": "15Gi"
             }
           },
           "StorageClassName": "ssd",

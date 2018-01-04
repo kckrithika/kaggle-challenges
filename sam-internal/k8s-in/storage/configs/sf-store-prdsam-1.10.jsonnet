@@ -12,7 +12,7 @@ local configs = import "config.jsonnet";
 		"spec": {
 			"Resources": {
 				"Requests": {
-					"storage": "440Gi"
+					"storage": "50Gi"
 				}
 			},
 			"accessModes": [
