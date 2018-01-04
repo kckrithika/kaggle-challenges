@@ -1,0 +1,158 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: csr212mist61
+
+    count: 1
+    
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    
+    containers:
+    - name: csr-sam
+
+      image: tnrp/casam/coreapp:212.0.2-0000086-8053fff6
+
+      env:
+        - name: DEPLOYMENT
+          value: T
+        - name: DB_USER
+          value: happy
+
+        - name: DB_SID
+          value: mist61c214utf
+
+        - name: IP_DB
+          value: mist61ice1-db1-1-prd.eng.sfdc.net
+
+#### For now, we'll operate in mixed mode, using MIST30 for aux services
+#### and just the DB from mist61.
+####
+#        - name: IP_APP1
+#          value: mist61ice1-app1-1-prd.eng.sfdc.net
+#        - name: IP_APP2
+#          value: mist61ice1-app2-1-prd.eng.sfdc.net
+#        - name: IP_ACS1
+#          value: mist61ice1-acs1-1-prd.eng.sfdc.net
+#        - name: IP_ACS2
+#          value: mist61ice1-acs2-1-prd.eng.sfdc.net
+#        - name: IP_QPID1
+#          value: mist61ice1-mq1-1-prd.eng.sfdc.net
+#        - name: IP_QPID2
+#          value: mist61ice1-mq2-1-prd.eng.sfdc.net
+#        - name: IP_FFX1
+#          value: mist61ice1-ffx1-1-prd.eng.sfdc.net
+#        - name: IP_FFX2
+#          value: mist61ice1-ffx2-1-prd.eng.sfdc.net
+#        - name: IP_SEARCH1
+#          value: mist61ice1-search41-1-prd.eng.sfdc.net
+#        - name: IP_SEARCH2
+#          value: mist61ice1-search41-2-prd.eng.sfdc.net
+#        - name: IP_SEARCH3
+#          value: mist61ice1-search41-3-prd.eng.sfdc.net
+#        - name: IP_SEARCH4
+#          value: mist61ice1-search41-4-prd.eng.sfdc.net
+#        - name: IP_SEARCH5
+#          value: mist61ice1-search41-5-prd.eng.sfdc.net
+#        - name: IP_SEARCH6
+#          value: mist61ice1-search41-6-prd.eng.sfdc.net
+
+        # Only needed if desire to override ZK registration value
+        - name: CASAM_CYAN_PATH
+          value: casam/casam-212
+
+        # If the count is changed above, the same value must be set for the NODES env variable below
+        - name: NODES
+          value: 1
+
+        # The flag below configs the app to use a single shared memcached running in SAM
+        # To revert to standard local container memcached comment out the 2 lines below
+        - name: USE_SAM_MCD
+          value: true
+
+        # Matches the external port on the load balancer
+        # (9001 for SAM LB direct to container; 12052 for SAM LB to Cyan ; 12100 for L4-SLB)
+        - name: PUBLIC_PORT
+          value: 7550
+
+        # Set to true it PUBLIC_PORT is an https endpoint
+        - name: PUBLIC_PORT_IS_SECURE
+          value: true
+
+        # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+        # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
+        # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
+        - name: PUBLIC_HOST_NAME
+          value: csr214lb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
+        - name: PORT
+          value: 7551
+        - name: SPORT
+          value: 7552
+        - name: S2PORT
+          value: 7553
+
+        # Set to true to trigger a plsql stats load during startup
+        - name: PLSQL_UPDATE_RUNSTATS
+          value: false
+
+        # By default we patch server to NOT expire sessions across major release bounday.
+        # Comment out this name/value pair to revert back to normal session invalidation.
+        - name: DISABLE_AUTH_RELEASE_CHECK
+          value: true
+
+      resources:
+        limits: { memory: "10240M" }
+        requests: { memory: "8292M" }
+ 
+      livenessProbe:
+        exec:
+          command:
+#           - echo
+#           - HEALTHY
+           - "/bin/sh"
+           - "-c"
+           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+        initialDelaySeconds: 480
+        periodSeconds: 1
+
+      readinessProbe:
+        httpGet:
+          scheme: HTTPS
+          path: /ping.jsp
+          port: 7552
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 8998
+        - containerPort: 7551
+        - containerPort: 7552
+        - containerPort: 7553
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+    
+    terminationGracePeriodSeconds: 500
+    progressDeadlineSeconds: 300
+
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0            
+
+  loadbalancers:
+  - lbname: csr212mist61lb
+    function: csr212mist61
+    slbEnabled: true
+    ports:
+    - port: 8998
+      targetport: 8998
+    - port: 7550
+      targetport: 7552
