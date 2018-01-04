@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:shaktiprakash.das-201801041236
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:shaktiprakash.das-201801041448
       env:      
       - name: SFDC_ENVIRONMENT
         value: sconex
