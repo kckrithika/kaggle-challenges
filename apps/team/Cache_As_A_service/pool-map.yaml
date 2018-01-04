@@ -1816,6 +1816,33 @@ apps:
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ prd-caas-redis-12078:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
+    - samcaas2-caasminion1-6-prd.eng.sfdc.net
+    - samcaas2-caasminion2-5-prd.eng.sfdc.net
+    - samcaas2-caasminion2-6-prd.eng.sfdc.net
+    - samcaas2-caasminion3-4-prd.eng.sfdc.net
+    - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ prd-caas-redis-12079:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
+    - samcaas2-caasminion1-6-prd.eng.sfdc.net
+    - samcaas2-caasminion2-5-prd.eng.sfdc.net
+    - samcaas2-caasminion2-6-prd.eng.sfdc.net
+    - samcaas2-caasminion3-4-prd.eng.sfdc.net
+    - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ prd-mist30-sp-na1-c1-redis-metrics-publisher:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+    - samcaas2-caasminion1-5-prd.eng.sfdc.net
+    - samcaas2-caasminion1-6-prd.eng.sfdc.net
+    - samcaas2-caasminion2-5-prd.eng.sfdc.net
+    - samcaas2-caasminion2-6-prd.eng.sfdc.net
+    - samcaas2-caasminion3-4-prd.eng.sfdc.net
+    - samcaas2-caasminion3-5-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-sp-cs2-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:

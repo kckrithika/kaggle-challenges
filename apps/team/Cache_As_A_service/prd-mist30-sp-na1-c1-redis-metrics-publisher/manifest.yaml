@@ -1,0 +1,47 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: prd-mist30-redis-metrics-publisher
+    count: 1 
+    hostnetwork: true
+    containers:
+    - name: caas-metrics-publisher 
+      # container image/version to  run
+      image: tnrp/caas/caas-monitor-prod:2.4.6-0000016-14730209
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "1536M" }
+      args: 
+        - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
+        - --server.port=7521 
+        - --management.port=7522
+        - --cluster.name=sp-na1-c1
+        - --logDir=/home/caas/logs/caas
+        - --settings.path=mist30.-.prd.-.caas
+        - --metrics.maxNumberOfCollectedMetrics=5000
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7522
+        initialDelaySeconds: 60 
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 7521
+      - containerPort: 7522
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: mist30
+       - name: CAAS_ENV
+         value: 12
+      # expose redis outside the container
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
