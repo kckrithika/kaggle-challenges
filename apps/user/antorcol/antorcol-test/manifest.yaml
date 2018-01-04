@@ -1,22 +1,22 @@
 apiVersion: v1
-# adding a comment line
+# this manifest is to test the SAM Beginner Walkthrough
 system:
   functions:
-  - name: antorcol-test-fn
-    count: 1
+  - name: default
+    count: 2
     containers:
-    - name: samhello
-      image: samhello:atc-20160701
+    - name: sam-adveture
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/antorcol/my-sam-adventure:dunnet-20190230 
       ports:
       - containerPort: 9090
       livenessProbe:
         httpGet:
           path: /
           port: 9090
-
-    loadbalancers:
-    - lbname: samhellolb
-      function: antorcol-test-fn
-      ports:
+  loadbalancers:
+  - lbname: sam-adveture-lb
+    function: default
+    slbenabled: true
+    ports:
       - port: 9090
         targetport: 9090
