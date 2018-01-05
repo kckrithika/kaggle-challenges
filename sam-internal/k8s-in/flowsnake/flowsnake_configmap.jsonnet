@@ -132,7 +132,7 @@ local kingdom = std.extVar("kingdom");
         "delete-orphans": true,
         "disable-rollback": true,
         "disable-security-check": true,
-        "dry-run": false,
+        "dry-run": true,
         "email": true,
         "email-delay": 0,
         "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
