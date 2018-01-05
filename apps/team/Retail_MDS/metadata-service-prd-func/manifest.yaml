@@ -5,14 +5,14 @@ system:
   email:
   - robert.snell@salesforce.com
   functions:
-  - name: metadata-service
+  - name: metadata-service-prd-func
     count: 2
     volumes:
     - name: certificates
       maddogCert:
         type: client
     containers:
-    - name: metadata-service
+    - name: metadata-service-prd-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.34.0
       ports:
       - containerPort: 7020
@@ -51,7 +51,7 @@ system:
         - name: certificates
           mountPath: /certificates
 
-    - name: sherpa-mds
+    - name: sherpa-mds-prd-func
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
         - name: SFDC_ENVIRONMENT
@@ -75,8 +75,8 @@ system:
 
   # TODO: volumes for logging
   loadbalancers:
-  - lbname: metadata-servicelb
-    function: metadata-service
+  - lbname: metadata-service-prd-func-lb
+    function: metadata-service-prd-func
     nodeExposed: true
     ports:
     - port: 9091
