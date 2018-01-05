@@ -145,7 +145,6 @@ local kingdom = std.extVar("kingdom");
         "resource-cooldown": 15000000000,
         "resource-progression-timeout": 120000000000,
         "resources-to-skip": [
-          "_flowsnake-sdn-secret.yaml",
           "samcontrol-deployer.yaml",
           "watchdog-common.yaml",
           "watchdog-etcd.yaml",
