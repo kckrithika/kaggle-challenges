@@ -23,7 +23,7 @@ local configs = import "config.jsonnet";
 		}
 	},
 	"podConfig": {
-		"volumeMounts": [
+		"volumes": [
 	    	{
                 "mountPath": "/var/log",
                 "name": "container-log-vol"
