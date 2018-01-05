@@ -1,0 +1,47 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: time
+    count: 1
+    containers:
+    - name: time
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/time:dev
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20
+    - name: time-beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - -endpoint
+      - time:DATACENTER:7014
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+    - name: time-sherpa
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa-envoy:dev
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - --switchboard-addr
+      - switchboard.mesh.prd-sam.prd.slb.sfdc.net
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 15373
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 15373
+        initialDelaySeconds: 15
