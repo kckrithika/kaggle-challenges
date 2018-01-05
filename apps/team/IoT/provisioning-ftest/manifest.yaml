@@ -36,7 +36,6 @@ system:
       volumeMounts:
       - mountPath: /home/provisioning/certs
         name: certs
-        readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
         value: sam
