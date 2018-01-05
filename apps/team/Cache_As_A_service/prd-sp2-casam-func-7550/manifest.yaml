@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:212.0.2-0000086-8053fff6
+      image: tnrp/casam/coreapp:212.0.2-0000092-4c4b7c93
 
       env:
         - name: DEPLOYMENT
