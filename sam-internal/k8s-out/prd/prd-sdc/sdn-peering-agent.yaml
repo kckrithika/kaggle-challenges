@@ -28,8 +28,8 @@ spec:
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
-        - --userName=kubernetes
-        - --pkiClientServiceName=k8s-client
+        - --userName=sdn
+        - --pkiClientServiceName=sdn-client
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -67,10 +67,10 @@ spec:
           path: /etc/pki_service
         name: maddog-certs
       - hostPath:
-          path: /etc/kubernetes
+          path: /etc/kubernetes/sdn
         name: conf
       - hostPath:
-          path: /etc/kubernetes
+          path: /etc/kubernetes/sdn
         name: socket
       - hostPath:
           path: /data/certs

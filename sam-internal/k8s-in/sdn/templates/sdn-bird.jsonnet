@@ -48,13 +48,13 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "conf",
                         hostPath: {
-                            path: "/etc/kubernetes",
+                            path: "/etc/kubernetes/sdn",
                         },
                     },
                     {
                         name: "socket",
                         hostPath: {
-                            path: "/etc/kubernetes",
+                            path: "/etc/kubernetes/sdn",
                         },
                     },
                 ]),

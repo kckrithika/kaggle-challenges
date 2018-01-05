@@ -36,8 +36,8 @@ spec:
       hostNetwork: true
       volumes:
       - hostPath:
-          path: /etc/kubernetes
+          path: /etc/kubernetes/sdn
         name: conf
       - hostPath:
-          path: /etc/kubernetes
+          path: /etc/kubernetes/sdn
         name: socket
