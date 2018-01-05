@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - nelson.wolf@salesforce.com
+      - dvasynthetics@salesforce.com
   functions:
   - name: dva-synthetics-idbconnector
     count: 1
