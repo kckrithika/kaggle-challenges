@@ -1,0 +1,19 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: switchboard
+    count: 1
+    containers:
+    - name: switchboard
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/switchboard:dev
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
