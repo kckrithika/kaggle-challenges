@@ -30,6 +30,7 @@ spec:
         - --rootPath=/etc/pki_service
         - --userName=sdn
         - --pkiClientServiceName=sdn-client
+        - --sdadasd=dasdas
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
