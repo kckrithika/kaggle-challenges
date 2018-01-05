@@ -7,6 +7,11 @@ system:
     containers:
     - name: switchboard
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/switchboard:dev
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      ports:
+      - containerPort: 15001
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -17,3 +22,11 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 15
+  loadbalancers:
+  - lbname: switchboard-lb
+    function: switchboard
+    slbenabled: true
+    ports:
+      - port: 15001
+        targetport: 15001
+        lbtype: dsr
