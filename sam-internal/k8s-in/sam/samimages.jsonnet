@@ -20,31 +20,13 @@ local utils = import "util_functions.jsonnet";
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "chx,chx-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "dfw,dfw-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "hnd,hnd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "iad,iad-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "ord,ord-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "par,par-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "phx,phx-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "ukb,ukb-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "wax,wax-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
         # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to all kingdoms. This will correctly deploy hairpin watchdogs with correct role info.
         "cdu,cdu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "chx,chx-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "dfw,dfw-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "hnd,hnd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "iad,iad-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "ord,ord-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "par,par-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "phx,phx-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "syd,syd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "ukb,ukb-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "wax,wax-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
     },
@@ -85,9 +67,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod
         "4": {
-            hypersam: "sam-0001556-b9349d35",
-            madkub: "1.0.0-0000053-f7dc2302",
-            madkubSidecar: "1.0.0-0000053-f7dc2302",
+            hypersam: "sam-0001585-fdaa5a39",
+            madkub: "1.0.0-0000056-f3539b1a",
+            madkubSidecar: "1.0.0-0000056-f3539b1a",
             },
 
         ### Temporary phase just for public cloud
