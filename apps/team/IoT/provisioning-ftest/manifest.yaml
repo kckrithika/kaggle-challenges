@@ -25,8 +25,7 @@ system:
       - containerPort: 7020
         name: grpc
       - containerPort: 8080
-        name: grpc
-
+        name: http
       resources:
         limits:
           cpu: 2
