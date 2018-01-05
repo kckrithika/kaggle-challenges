@@ -1,0 +1,83 @@
+apiVersion: v1
+
+system:
+  notifications:
+  email:
+  - robert.snell@salesforce.com
+  functions:
+  - name: metadata-service-prd-perf
+    count: 1
+    volumes:
+    - name: certificates
+      maddogCert:
+        type: client
+    containers:
+    - name: metadata-service-prd-perf
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.34.0
+      ports:
+      - containerPort: 7020
+      - containerPort: 9091
+      - containerPort: 15523
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      - name: SERVER_PORT
+        value: 9091
+      - name: MANAGEMENT_PORT
+        value: 15523
+      - name: GDOT_KEYSTORE_PASS
+        valueFrom:
+          secretKeyRef:
+            name: metadata-service-secrets-v1
+            key: gdot-storepass
+      - name: GDOT_PROVISIONING_USER_KEYPASS
+        valueFrom:
+          secretKeyRef:
+            name: metadata-service-secrets-v1
+            key: gdot-provisioning-keypass
+      - name: GDOT_TENANT_MASTER_KEYPASS
+        valueFrom:
+          secretKeyRef:
+            name: metadata-service-secrets-v1
+            key: gdot-tenant-master-keypass
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15523
+      volumeMounts:
+        - name: certificates
+          mountPath: /certificates
+
+    - name: sherpa-mds-prd-perf
+      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: mist
+      ports:
+        - containerPort: 7012
+        - containerPort: 7016
+        - containerPort: 7080
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+
+  # TODO: volumes for logging
+  loadbalancers:
+  - lbname: metadata-service-prd-perf-lb
+    function: metadata-service-prd-perf
+    nodeExposed: true
+    ports:
+    - port: 9092
+      targetport: 9091
