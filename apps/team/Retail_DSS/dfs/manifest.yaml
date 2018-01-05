@@ -10,7 +10,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.5
       # associate the log directory to a logical volume.
       volumeMounts:
-      - mountPath: /log
+      - mountPath: /home/dfs/logs
         name: dfslogvol
       env:
       - name: SFDC_ENVIRONMENT
@@ -25,4 +25,4 @@ system:
     volumes:
     - name: dfslogvol
       hostPath:
-        path: /var/log/dfs
+        path: /home/dfs/logs
