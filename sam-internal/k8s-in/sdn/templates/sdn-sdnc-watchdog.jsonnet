@@ -26,6 +26,7 @@ if configs.estate == "prd-sdc" then {
                         command: [
                             "/sdn/sdn-sdnc-watchdog",
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
+                            "--funnelEndpoint=" + configs.funnelVIP,
                             "--watchdogFrequency=10s",
                             "--alertThreshold=150s",
                             "--errorTransient=600s",

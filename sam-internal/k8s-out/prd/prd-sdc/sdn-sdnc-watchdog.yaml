@@ -24,6 +24,7 @@ spec:
       - command:
         - /sdn/sdn-sdnc-watchdog
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
+        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --watchdogFrequency=10s
         - --alertThreshold=150s
         - --errorTransient=600s
