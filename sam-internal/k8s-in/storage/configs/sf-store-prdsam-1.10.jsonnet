@@ -23,6 +23,16 @@ local configs = import "config.jsonnet";
 		}
 	},
 	"podConfig": {
+		"volumeMounts": [
+	    	{
+                "mountPath": "/var/log",
+                "name": "container-log-vol"
+            },
+            {
+                "mountPath": "/var/log-mounted",
+                "name": "host-log-vol"
+            }
+        ],
 		"hostNetwork": true,
 		"DNSPolicy": "ClusterFirstWithHostNet",
         "initContainers" : [
@@ -38,11 +48,24 @@ local configs = import "config.jsonnet";
 		"containers": [{
 				"name": "bookie",
 				"image": storageimages.sfstorebookie,
-				"ports": [{
-					"name": "bookieport",
-					"containerPort": 3181
-				}],
-				"Env": [{
+				"volumeMounts": [
+					{
+                        "mountPath": "/var/log",
+                        "name": "container-log-vol"
+                    },
+                    {
+                        "mountPath": "/var/log-mounted",
+                        "name": "host-log-vol"
+                    }
+                ],
+				"ports": [
+					{
+						"name": "bookieport",
+						"containerPort": 3181
+					}
+				],
+				"Env": [
+					{
 						"name": "BOOKIE_LOG_DIR",
 						"value": "/var/log/sfslogs"
 					},
@@ -58,7 +81,18 @@ local configs = import "config.jsonnet";
 			{
 				"name": "autorecovery",
 				"image": storageimages.sfstorebookie,
-				"Env": [{
+				"volumeMounts": [
+					{
+                        "mountPath": "/var/log",
+                        "name": "container-log-vol"
+                    },
+                    {
+                        "mountPath": "/var/log-mounted",
+                        "name": "host-log-vol"
+                    }
+                ],
+				"Env": [
+					{
 						"name": "BOOKIE_LOG_DIR",
 						"value": "/var/log/sfslogs"
 					},
