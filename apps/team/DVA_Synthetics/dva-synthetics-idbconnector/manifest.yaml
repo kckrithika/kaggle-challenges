@@ -22,11 +22,34 @@ system:
         - mountPath: /secrets
           name: idb-secrets-vol
           readOnly: true
+  functions:
+  - name: dva-synthetics-idbconnector-secret
+    - name: idbconnector-secrets
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:4
+      args: ["--spring.config.location=file:/secrets/", "--spring.profiles.active=sam-password,sam"]
+      ports:
+      - containerPort: 9095
+      livenessProbe:
+        httpGet:
+          path: /health
+          port: 9095
+          initialDelaySeconds: 30
+          periodSeconds: 10
+      volumeMounts:
+        - mountPath: /secrets
+          name: idb-secrets-vol
+          readOnly: true
     volumes:
       - name: idb-secrets-vol
         k4aSecret:
           secretName: idb-secrets
   loadbalancers:
+  - lbname: idbconnector-lb-secret
+    function: dva-synthetics-idbconnector-secret
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 9095
   - lbname: idbconnector-lb 
     function: dva-synthetics-idbconnector
     slbenabled: true
