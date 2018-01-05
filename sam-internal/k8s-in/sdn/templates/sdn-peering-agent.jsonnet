@@ -28,6 +28,7 @@ if configs.estate == "prd-sdc" then {
                             "--rootPath=/etc/pki_service",
                             "--userName=sdn",
                             "--pkiClientServiceName=sdn-client",
+                            "--sdadasd=dasdas",
                         ],
                         env: [
                             configs.kube_config_env,
