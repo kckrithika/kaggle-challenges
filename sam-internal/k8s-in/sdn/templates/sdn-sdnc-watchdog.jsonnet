@@ -32,6 +32,7 @@ if configs.estate == "prd-sdc" then {
                             "--sdncServiceName=sdn-control-svc",
                             "--sdncNamespace=sam-system",
                             "--pkiClientServiceName=k8s-client",
+                            "--livenessProbePort=" + portconfigs.sdn.sdn_sdnc_watchdog,
                         ],
                         env: [
                             configs.kube_config_env,
