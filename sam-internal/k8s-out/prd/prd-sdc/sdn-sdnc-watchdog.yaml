@@ -30,6 +30,7 @@ spec:
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --pkiClientServiceName=k8s-client
+        - --livenessProbePort=9121
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
