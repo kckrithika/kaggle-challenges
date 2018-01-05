@@ -2,43 +2,46 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: sdn-secret-agent
-  name: sdn-secret-agent
+    name: sdn-sdnc-watchdog
+  name: sdn-sdnc-watchdog
+  namespace: sam-system
 spec:
+  minReadySeconds: 180
   replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
   template:
     metadata:
       labels:
-        apptype: control
-        name: sdn-secret-agent
+        apptype: monitoring
+        name: sdn-sdnc-watchdog
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/sdn-secret-agent
-        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --logtostderr=true
-        - --disableSecurityCheck=true
-        - --tnrpEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
-        - --observeMode=false
-        - --delay=300s
-        - --keyfile=/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem
-        - --certfile=/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem
-        - --cafile=/etc/pki_service/ca/cabundle.pem
-        - --livenessProbePort=9120
-        - --hostsConfigFile=/sfdchosts/hosts.json
+        - /sdn/sdn-sdnc-watchdog
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
+        - --watchdogFrequency=10s
+        - --alertThreshold=150s
+        - --errorTransient=600s
+        - --sdncServiceName=sdn-control-svc
+        - --sdncNamespace=sam-system
+        - --pkiClientServiceName=k8s-client
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000503-8a8b2d31
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000526-ced853e6
         livenessProbe:
           httpGet:
             path: /liveness-probe
-            port: 9120
-          initialDelaySeconds: 10
-          periodSeconds: 30
+            port: 9121
+          initialDelaySeconds: 5
+          periodSeconds: 20
           timeoutSeconds: 5
-        name: sdn-secret-agent
+        name: sdn-sdnc-watchdog
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -50,7 +53,7 @@ spec:
           name: kubeconfig
       hostNetwork: true
       nodeSelector:
-        master: "true"
+        pool: prd-sdc
       volumes:
       - configMap:
           name: sfdchosts
