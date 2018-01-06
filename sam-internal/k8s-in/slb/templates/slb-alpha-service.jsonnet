@@ -12,7 +12,6 @@ if configs.estate == "prd-sam" then {
             },
             annotations: {
                 "slb.sfdc.net/name": "slb-alpha-svc",
-                "slb.sfdc.net/health": "9119:health",
             },
         },
         spec: {
