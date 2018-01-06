@@ -1,0 +1,33 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 2
+    volumes:
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+    containers:
+    - name: keytabcontainer
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:20180106
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+    volumeMounts:
+      - name: myclientcert
+        mountPath: /clientcert
+      - name: myservercert
+        mountPath: /servercert
+  loadbalancers:
+  - lbname: keytablb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
