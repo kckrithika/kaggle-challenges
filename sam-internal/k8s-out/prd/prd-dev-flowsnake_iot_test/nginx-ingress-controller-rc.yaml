@@ -34,7 +34,7 @@ spec:
               fieldPath: metadata.namespace
         - name: KUBECONFIG
           value: /etc/kubernetes/kubeconfig
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:427
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:345
         imagePullPolicy: Always
         livenessProbe:
           httpGet:

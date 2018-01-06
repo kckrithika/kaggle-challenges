@@ -24,7 +24,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                  containers: [
                      {
                         name: "node-monitor",
-                        image: flowsnakeconfig.registry + "/flowsnake-node-monitor:" + flowsnakeimage.fleet_image_tag,
+                        image: flowsnakeimage.node_monitor,
                         imagePullPolicy: "IfNotPresent",
                         env: [
                             {
