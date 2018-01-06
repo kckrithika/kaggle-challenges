@@ -16,11 +16,15 @@ system:
       ports:
       - containerPort: 8080
       livenessProbe:
-        httpGet:
-          path: /
-          port: 8080
           initialDelaySeconds: 60
-          timeoutSeconds: 10
+          periodSeconds: 5
+          exec:
+            command:
+            - ls
+            - /
+          #httpGet:
+          #  path: /
+          #  port: 8080
     volumeMounts:
       - name: myclientcert
         mountPath: /clientcert
