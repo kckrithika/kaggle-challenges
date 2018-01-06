@@ -1,6 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local estate = std.extVar("estate");
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -118,11 +119,10 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                     } 
                 ] +
                 flowsnakeconfigmapmount.kubeconfig_volume +
-                flowsnakeconfigmapmount.cert_volume
-		# this is need by prd-data because our F5 overlords configured the wrong host pool
-                # nodeSelector: {
-                #     vippool: "true"
-                # }
+                flowsnakeconfigmapmount.cert_volume,
+                [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
+                    vippool: "true"
+                }
             }
         }
     }

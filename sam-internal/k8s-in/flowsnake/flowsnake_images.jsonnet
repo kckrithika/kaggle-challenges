@@ -7,6 +7,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - image tags from strata build
         "1": {
             "image_tag": "468",
+            "apiServiceImage": "468",
             "version_mapping": {
                 main: {
                   "0.9.1": 377,
@@ -14,7 +15,10 @@ local kingdom = std.extVar("kingdom");
                   "0.9.3": 427,
                   "0.9.4": 447,
                   "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
-                  "carl-zk-test": "zk-service-extirpation-itest-ready"
+                  "khtest": "disable-core-dumps-itest-ready",
+                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
+                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
+                  "release-095-retry-itest-ready": "release-095-retry-itest-ready"
                 }
                 +
                 # These are for developer testing only
@@ -30,7 +34,8 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2
         "2": {
-            "image_tag": "427",
+            "image_tag": "345",
+            "apiServiceImage": "cascading-bullshit-fiasco-itest-ready",
             "version_mapping": {
                 main: {
                   "0.9.1": 377,
@@ -38,7 +43,10 @@ local kingdom = std.extVar("kingdom");
                   "0.9.3": 427,
                   "0.9.4": 447,
                   "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
-                  "carl-zk-test": "zk-service-extirpation-itest-ready"
+                  "khtest": "disable-core-dumps-itest-ready",
+                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
+                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
+                  "release-095-retry-itest-ready": "release-095-retry-itest-ready"
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -72,7 +80,8 @@ local kingdom = std.extVar("kingdom");
     # Only change when needed
     static: {
         watchdogImage: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4",
-
+        nodeMonitorImage: "403",
+        
         # WARNING: changing these image tags will result in data loss
         esImage: "345",
         kibanaImage: "345",
@@ -84,6 +93,8 @@ local kingdom = std.extVar("kingdom");
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
     fleet_image_tag: $.per_phase[$.phase]["image_tag"],
+    api_service: "dva-registry.internal.salesforce.com/dva/flowsnake-fleet-service:" + $.per_phase[$.phase]["apiServiceImage"],
+    node_monitor: "dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:" + $.static["nodeMonitorImage"],
     version_mapping: $.per_phase[$.phase]["version_mapping"],
     es: "dva-registry.internal.salesforce.com/dva/flowsnake-elasticsearch:" + $.static["esImage"],
     kibana: "dva-registry.internal.salesforce.com/dva/flowsnake-kibana:" + $.static["kibanaImage"],

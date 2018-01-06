@@ -6,7 +6,10 @@ data:
     0.9.3 = 427
     0.9.4 = 447
     094-snapshot-phoenix-fix = spark-phoenix-fix-itest-ready
-    carl-zk-test = zk-service-extirpation-itest-ready
+    add-hive-to-spark-4-itest-ready = add-hive-to-spark-4-itest-ready
+    kafka-one-test = cm201711-kafka-one-upgrade-itest-ready
+    khtest = disable-core-dumps-itest-ready
+    release-095-retry-itest-ready = release-095-retry-itest-ready
 kind: ConfigMap
 metadata:
   creationTimestamp: null

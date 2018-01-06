@@ -30,6 +30,6 @@ spec:
               name: fleet-config
         - name: KUBERNETES_IMAGE_PULL_POLICY
           value: Always
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-logloader:427
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-logloader:345
         imagePullPolicy: Always
         name: flowsnake-logloader
