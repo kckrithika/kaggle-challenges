@@ -13,7 +13,7 @@ system:
           path: /
           port: 9090
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: samhellolb2
     function: default
     slbenabled: true
     ports:
