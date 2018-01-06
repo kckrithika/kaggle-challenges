@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: default
-    count: 2
+    count: 1
     volumes:
     - name: myclientcert
       maddogCert:
@@ -19,6 +19,8 @@ system:
         httpGet:
           path: /
           port: 8080
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
     volumeMounts:
       - name: myclientcert
         mountPath: /clientcert
