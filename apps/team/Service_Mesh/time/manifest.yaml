@@ -34,14 +34,14 @@ system:
         value: mesh
       args:
       - --switchboard-addr
-      - switchboard.mesh.prd-sam.prd.slb.sfdc.net
+      - switchboard-lb.service-mesh.prd-sam.prd.slb.sfdc.net
       livenessProbe:
         httpGet:
-          path: /
+          path: /listeners
           port: 15373
         initialDelaySeconds: 20
       readinessProbe:
         httpGet:
-          path: /
+          path: /listeners
           port: 15373
         initialDelaySeconds: 15
