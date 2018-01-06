@@ -16,9 +16,12 @@ system:
       ports:
       - containerPort: 8080
       livenessProbe:
-        httpGet:
-          path: /
-          port: 8080
+	command:
+            - ls
+            - /
+        #httpGet:
+        #  path: /
+        #  port: 8080
           initialDelaySeconds: 60
           timeoutSeconds: 10
     volumeMounts:
