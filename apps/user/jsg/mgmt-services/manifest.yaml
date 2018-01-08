@@ -38,6 +38,8 @@ system:
         
       ports:
       - containerPort: 8080
+      - containerPort: 8081
+      - containerPort: 8082
       - containerPort: 15372
       
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
