@@ -5,7 +5,7 @@ system:
   - name: default
     count: 2
     containers:
-    - name: sam-adveture
+    - name: sam-adventure
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/antorcol/my-sam-adventure:dunnet-20190230 
       ports:
       - containerPort: 9090
@@ -14,7 +14,7 @@ system:
           path: /
           port: 9090
   loadbalancers:
-  - lbname: sam-adveture-lb
+  - lbname: sam-adventure-lb
     function: default
     slbenabled: true
     ports:
