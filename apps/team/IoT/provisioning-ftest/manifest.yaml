@@ -11,7 +11,7 @@ system:
     - env:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:inttest_w-4541361-9b5baa2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mbyne/provisioning_test:1
       livenessProbe:
         httpGet:
           path: /manage/health
