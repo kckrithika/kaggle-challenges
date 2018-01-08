@@ -31,7 +31,7 @@ local zookeeper = import "zookeeper-rcs.jsonnet";
                 containers: [
                     {
                         name: "logstash",
-                        image: flowsnakeconfig.registry + "/flowsnake-logstash:" + flowsnakeimage.fleet_image_tag,
+                        image: flowsnakeimage.logstash,
                         imagePullPolicy: "Always",
                         env: [
                             {

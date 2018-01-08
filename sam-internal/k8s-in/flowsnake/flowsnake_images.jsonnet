@@ -6,8 +6,18 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - image tags from strata build
         "1": {
-            "image_tag": "468",
-            "apiServiceImage": "468",
+            "fleetService_image_tag": "468",
+            "watchdog_image_tag": "sam-0001027-676096c4",
+            "nodeMonitor_image_tag": "403",
+            "ingressDefaultBackend_image_tag": "468",
+            "ingressControllerNginx_image_tag" : "468",
+            "logloader_image_tag": "468",
+            "logstash_image_tag": "468",
+            "es_image_tag": "345",
+            "kibana_image_tag": "345",
+            "zookeeper_image_tag": "345",
+            "glok_image_tag": "472",
+            "canary_image_tag": "345",
             "version_mapping": {
                 main: {
                   "0.9.1": 377,
@@ -34,8 +44,18 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2
         "2": {
-            "image_tag": "345",
-            "apiServiceImage": "cascading-bullshit-fiasco-itest-ready",
+            "fleetService_image_tag": "cascading-bullshit-fiasco-itest-ready",
+            "watchdog_image_tag": "sam-0001027-676096c4",
+            "nodeMonitor_image_tag": "403",
+            "ingressDefaultBackend_image_tag": "345",
+            "ingressControllerNginx_image_tag" : "345",
+            "logloader_image_tag": "345",
+            "logstash_image_tag": "345",
+            "es_image_tag": "345",
+            "kibana_image_tag": "345",
+            "zookeeper_image_tag": "345",
+            "glok_image_tag": "472",
+            "canary_image_tag": "345",
             "version_mapping": {
                 main: {
                   "0.9.1": 377,
@@ -75,31 +95,19 @@ local kingdom = std.extVar("kingdom");
             "4"
         ),
 
-    # Static images that do not go in phases
-    # These fleet components don't need to change when deploying new version of flowsnake
-    # Only change when needed
-    static: {
-        watchdogImage: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4",
-        nodeMonitorImage: "403",
-        
-        # WARNING: changing these image tags will result in data loss
-        esImage: "345",
-        kibanaImage: "345",
-        zookeeperImage: "345",
-        glokImage: "472",
-        canaryImage: "345",
-    },
-
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
-    fleet_image_tag: $.per_phase[$.phase]["image_tag"],
-    api_service: "dva-registry.internal.salesforce.com/dva/flowsnake-fleet-service:" + $.per_phase[$.phase]["apiServiceImage"],
-    node_monitor: "dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:" + $.static["nodeMonitorImage"],
     version_mapping: $.per_phase[$.phase]["version_mapping"],
-    es: "dva-registry.internal.salesforce.com/dva/flowsnake-elasticsearch:" + $.static["esImage"],
-    kibana: "dva-registry.internal.salesforce.com/dva/flowsnake-kibana:" + $.static["kibanaImage"],
-    glok: "dva-registry.internal.salesforce.com/dva/flowsnake-kafka:" + $.static["glokImage"],
-    zookeeper: "dva-registry.internal.salesforce.com/dva/flowsnake-zookeeper:" + $.static["zookeeperImage"],
-    canary: "dva-registry.internal.salesforce.com/dva/flowsnake-canary:" + $.static["canaryImage"],
-    watchdog: $.static["watchdogImage"],
+    ingress_controller_nginx: "dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase]["ingressControllerNginx_image_tag"],
+    ingress_default_backend: "dva-registry.internal.salesforce.com/dva/flowsnake-ingress-default-backend:" + $.per_phase[$.phase]["ingressDefaultBackend_image_tag"],
+    logloader: "dva-registry.internal.salesforce.com/dva/flowsnake-logloader:" + $.per_phase[$.phase]["logloader_image_tag"],
+    logstash: "dva-registry.internal.salesforce.com/dva/flowsnake-logstash:" + $.per_phase[$.phase]["logstash_image_tag"],
+    fleet_service: "dva-registry.internal.salesforce.com/dva/flowsnake-fleet-service:" + $.per_phase[$.phase]["fleetService_image_tag"],
+    node_monitor: "dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:" + $.per_phase[$.phase]["nodeMonitor_image_tag"],
+    es: "dva-registry.internal.salesforce.com/dva/flowsnake-elasticsearch:" + $.per_phase[$.phase]["es_image_tag"],
+    kibana: "dva-registry.internal.salesforce.com/dva/flowsnake-kibana:" + $.per_phase[$.phase]["kibana_image_tag"],
+    glok: "dva-registry.internal.salesforce.com/dva/flowsnake-kafka:" + $.per_phase[$.phase]["glok_image_tag"],
+    zookeeper: "dva-registry.internal.salesforce.com/dva/flowsnake-zookeeper:" + $.per_phase[$.phase]["zookeeper_image_tag"],
+    canary: "dva-registry.internal.salesforce.com/dva/flowsnake-canary:" + $.per_phase[$.phase]["canary_image_tag"],
+    watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase]["watchdog_image_tag"],
 }
