@@ -18,7 +18,7 @@ system:
         - mountPath: /database
           name: maxmind-volume
     - name: ccait-geoip-backend
-      image: tnrp/ccait/geoip2:1.0.7
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:5d0ba381e1643aeefb4cb1f7586736fb37a939b6
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
@@ -52,7 +52,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-b
-      image: tnrp/sherpa:2-0000118-83476125
+      image: sfci/servicelibs/sherpa:2.0.15
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -68,14 +68,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        initialDelaySeconds: 110
+        periodSeconds: 5
     volumes:
     - name: maxmind-volume
       emptyDir: {}
