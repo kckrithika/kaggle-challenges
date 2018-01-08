@@ -80,7 +80,7 @@ system:
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
-          value: true
+          value: false
 
         # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
         # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
@@ -155,4 +155,4 @@ system:
     - port: 8998
       targetport: 8998
     - port: 7500
-      targetport: 7502
+      targetport: 7501
