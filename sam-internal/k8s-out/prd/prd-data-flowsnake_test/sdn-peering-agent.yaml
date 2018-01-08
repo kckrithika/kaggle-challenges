@@ -49,7 +49,7 @@ spec:
         - --livenessProbePort=9100
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --controlEstate=prd-data-flowsnake_test
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000503-8a8b2d31
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000535-3fefd72e
         livenessProbe:
           httpGet:
             path: /liveness-probe

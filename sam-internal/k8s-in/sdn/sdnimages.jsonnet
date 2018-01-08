@@ -26,7 +26,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
-            hypersdn: "v-0000503-8a8b2d31",
+            hypersdn: "v-0000535-3fefd72e",
             bird: "v-0000014-b0a5951d",
             },
 
