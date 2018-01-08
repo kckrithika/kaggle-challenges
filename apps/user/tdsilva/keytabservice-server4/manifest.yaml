@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: keytabservice
+    count: 1
+    volumes:
+      - name: cert
+        maddogCert:
+          type: server
+    containers:
+    - name: keytabservice
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:tdsilva-20180108_2
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /
+          port: 8080
+    volumeMounts:
+      - mountPath: /cert
+        name: cert

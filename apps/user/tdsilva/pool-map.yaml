@@ -1,3 +1,5 @@
 apps:
- keytabservice-server3:
+ keytabservice-server4:
+  - prd/prd-sam 
+ scone-basic-rest-pki:
   - prd/prd-sam 
