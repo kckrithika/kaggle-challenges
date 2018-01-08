@@ -12,28 +12,16 @@ system:
         type: server
     containers:
     - name: keytabcontainer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:20180106
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:20180107
       ports:
       - containerPort: 8080
       livenessProbe:
-          initialDelaySeconds: 60
-          periodSeconds: 5
-          exec:
-            command:
-            - ls
-            - /
-          #httpGet:
-          #  path: /
-          #  port: 8080
+        initialDelaySeconds: 120
+        httpGet:
+          path: /
+          port: 8080
     volumeMounts:
       - name: myclientcert
         mountPath: /clientcert
       - name: myservercert
         mountPath: /servercert
-  loadbalancers:
-  - lbname: keytablb
-    function: default
-    slbenabled: true
-    ports:
-      - port: 8080
-        targetport: 8080
