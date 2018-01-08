@@ -22,7 +22,7 @@ system:
       - mountPath: /certs
         name: certs
     - name: sherpa-cre-api
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      image: sfci/servicelibs/sherpa:2.0.15
       env:
         - name: SFDC_ENVIRONMENT
           value: CCP_Shared_Dev
