@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc-impl
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:latest
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -17,7 +17,7 @@ system:
         exec:
             command:
             - ls
-        initialDelaySeconds: 31
+        initialDelaySeconds: 30
       volumeMounts:
       - mountPath: /certs
         name: certs
