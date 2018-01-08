@@ -47,10 +47,9 @@ system:
           path: /ping.jsp
           port: 8080
 
-  loadbalancers:
-  - lbname: mgmt-services
-    function: mgmt
-    ports:
-      - port: 8080
-        targetport: 8080
+    lbName: mgmt-services
+    #function: mgmt
+    #  ports:
+    #    - port: 8080
+    #      targetport: 8080
  
