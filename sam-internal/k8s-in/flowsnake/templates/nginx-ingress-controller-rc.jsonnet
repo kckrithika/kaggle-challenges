@@ -32,7 +32,7 @@ local estate = std.extVar("estate");
                 containers: [
                     {
                         name: "nginx-ingress-lb",
-                        image: flowsnakeconfig.registry + "/flowsnake-ingress-controller-nginx:" + flowsnakeimage.fleet_image_tag,
+                        image: flowsnakeimage.ingress_controller_nginx,
                         imagePullPolicy: "Always",
                         readinessProbe: {
                             httpGet: {

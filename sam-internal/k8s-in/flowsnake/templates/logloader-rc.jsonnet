@@ -28,7 +28,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                 containers: [
                     {
                         name: "flowsnake-logloader",
-                        image: flowsnakeconfig.registry + "/flowsnake-logloader:" + flowsnakeimage.fleet_image_tag,
+                        image: flowsnakeimage.logloader,
                         imagePullPolicy: "Always",
                         env: [
                             {

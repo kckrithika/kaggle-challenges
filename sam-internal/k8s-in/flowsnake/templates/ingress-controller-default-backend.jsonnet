@@ -29,7 +29,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                 containers: [
                     {
                         name: "default-http-backend",
-                        image: flowsnakeconfig.registry + "/flowsnake-ingress-default-backend:" + flowsnakeimage.fleet_image_tag,
+                        image: flowsnakeimage.ingress_default_backend,
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",

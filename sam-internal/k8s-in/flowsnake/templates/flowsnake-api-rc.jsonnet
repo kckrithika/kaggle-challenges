@@ -29,7 +29,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                 containers: [
                     {
                         name: "flowsnake-fleet-service",
-                        image: flowsnakeimage.api_service,
+                        image: flowsnakeimage.fleet_service,
                         imagePullPolicy: "Always",
                         ports: [
                             {
