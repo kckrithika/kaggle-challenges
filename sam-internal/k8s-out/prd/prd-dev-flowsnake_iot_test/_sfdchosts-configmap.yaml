@@ -2,7 +2,208 @@ apiVersion: v1
 data:
   hosts.json: |-
     {
-      "hosts": []
+      "hosts": [
+        {
+          "bomrolename": "flowsnake_master_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_master_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakemasteriottest1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_master_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakemasteriottest1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_master_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakemasteriottest1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_master_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakemasteriottest1-4-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_master_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_master_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakemasteriottest1-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-10-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-11-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-12-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-13-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-14-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-15-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-4-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-5-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-6-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-7-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-8-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "flowsnake_worker_test",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-9-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        }
+      ]
     }
 kind: ConfigMap
 metadata:

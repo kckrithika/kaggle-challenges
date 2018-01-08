@@ -1932,6 +1932,206 @@ data:
           "kingdom": "dfw",
           "pod": "none",
           "superpod": "sp4"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-4-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-5-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-6-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-7-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx1-8-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-4-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-5-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-6-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchidx",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchidx",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchidx2-7-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchtla",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchtla",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchtla1-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchtla",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchtla",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchtla1-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchtla",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchtla",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchtla1-3-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchtla",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchtla",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchtla2-1-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "searchtla",
+          "controlestate": "dfw-sam",
+          "devicerole": "searchtla",
+          "estate": "dfw-universalsearch_svc",
+          "hostname": "shared0-searchtla2-2-dfw.ops.sfdc.net",
+          "kingdom": "dfw",
+          "pod": "none",
+          "superpod": "none"
         }
       ]
     }
