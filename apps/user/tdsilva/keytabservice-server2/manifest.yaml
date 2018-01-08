@@ -12,7 +12,7 @@ system:
         type: server
     containers:
     - name: keytabcontainer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:20180107
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:20180107_2
       ports:
       - containerPort: 8080
       livenessProbe:
