@@ -24,7 +24,7 @@ local kingdom = std.extVar("kingdom");
                   "0.9.2": 403,
                   "0.9.3": 427,
                   "0.9.4": 447,
-                  "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
+                  "0.9.5": 487,
                   "khtest": "disable-core-dumps-itest-ready",
                   "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
                   "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
@@ -44,7 +44,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2
         "2": {
-            "fleetService_image_tag": "cascading-bullshit-fiasco-itest-ready",
+            "fleetService_image_tag": "487",
             "watchdog_image_tag": "sam-0001027-676096c4",
             "nodeMonitor_image_tag": "403",
             "ingressDefaultBackend_image_tag": "345",
@@ -62,7 +62,7 @@ local kingdom = std.extVar("kingdom");
                   "0.9.2": 403,
                   "0.9.3": 427,
                   "0.9.4": 447,
-                  "094-snapshot-phoenix-fix": "spark-phoenix-fix-itest-ready",
+                  "0.9.5": 487,
                   "khtest": "disable-core-dumps-itest-ready",
                   "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
                   "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
