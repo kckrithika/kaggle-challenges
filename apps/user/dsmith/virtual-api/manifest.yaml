@@ -18,6 +18,7 @@ system:
         - --insecure-port=7002
         - --passthrough-api-server=shared0-samkubeapi1-1-prd.eng.sfdc.net:40000
         - --passthrough-all-cluster=prd-sam
+        - --secret-passthrough-namespace=kube-system
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:latest
       ports:
       - containerPort: 7002
