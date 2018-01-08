@@ -1,0 +1,32 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: scone-basic-rest-pki
+    volumes:
+      - name: certs
+        maddogCert:
+          type: server
+    count: 1
+    containers:
+    - name: scone-basic-rest-pki
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-basic-rest-pki:tdsilva-1
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: PKI_CA_DIR
+        value: /certs
+      - name: PKI_MONITORDIR
+        value: /certs/server
+      ports:
+      - containerPort: 7021
+      - containerPort: 15372
+      - containerPort: 9010
+      volumeMounts:
+      - mountPath: /certs
+        name: certs
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
