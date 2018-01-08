@@ -39,7 +39,7 @@ system:
       args:
         - --redisPort=12015
         - --cluster.name=sp-c1
-        - --logDir=/home/caas/logs
+        - --logDir=/home/caas/logs/caas-redis-announcer-1
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -53,7 +53,7 @@ system:
         requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
-          name: logvol1
+          name: logvol
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
@@ -63,7 +63,7 @@ system:
       args:
         - --redisPort=12015
         - --cluster.name=sp-c1
-        - --logDir=/home/caas/logs
+        - --logDir=/home/caas/logs/caas-redis-announcer-2
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -77,7 +77,7 @@ system:
         requests: { memory: "200M" }
       volumeMounts:
         - mountPath: /home/caas/logs
-          name: logvol2
+          name: logvol
         - mountPath: /var/secrets
           name: secretvol
           readOnly: true
@@ -85,12 +85,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/caas/logs
-    - name: logvol1
-      hostPath:
-        path: /home/caas/logsa
-    - name: logvol2
-      hostPath:
-        path: /home/caas/logsb
     - name: secretvol
       secret:
          secretName: caas-secret-stmfa-sp-c1
