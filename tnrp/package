@@ -30,7 +30,7 @@ done
 #Generate git history file
 /opt/sam/manifestctl manifest-git-info --inputDir . -outputPath ${OUTPUT_DIR}/git-info.yaml -gitHistoryMode lib -alsologtostderr
  # Disable estates check for now until we work out the access token stuff
-/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -validationExceptionsFile=./sam-internal/validation-whitelist.yaml --swaggerspecdir=/opt/sam/swagger-spec -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer -gitHistoryInfoFile ${OUTPUT_DIR}/git-info.yaml -alsologtostderr
+/opt/sam/sam-manifest-builder -logtostderr -output ${OUTPUT_DIR} -estatescheck=false -tnrppipelinelabel ${TNRP_PIPELINE_LABEL} -root . -validationExceptionsFile=./sam-internal/validation-whitelist.yaml --swaggerspecdir=/opt/sam/swagger-spec -imagefileoutdir . -internalpassthrough k8s-out,sdn,authorizer -gitHistoryInfoFile ${OUTPUT_DIR}/git-info.yaml -skip-sam-internals -alsologtostderr
 
 cp ./image-promotion.yaml ${OUTPUT_DIR}
 
