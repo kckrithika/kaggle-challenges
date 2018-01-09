@@ -110,4 +110,23 @@ local configs = import "config.jsonnet";
             },
         },
     ],
+
+    // This is WIP and slowly we will call this to generate storageclass
+    // per request
+    make_storage_class(estate,name,namespace,clusters,size) :: {
+    "apiVersion": "csp.storage.salesforce.com/v1",
+    "kind": "CustomerStoragePool",
+    "metadata": {
+        "name": "someName",
+        "namespace": "someNamespace",
+        "annotations": {
+            "manifestctl.sam.data.sfdc.net/swagger": "disable",
+        },
+    },
+    "spec": {
+        "clusterNamespace": "legostore",
+        "size": "50Gi",
+        "storageTier": "hdd" ,
+    }
+}
 }
