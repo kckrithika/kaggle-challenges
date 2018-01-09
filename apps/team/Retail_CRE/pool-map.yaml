@@ -14,3 +14,8 @@ apps:
   - name: prd/prd-sp2-sam_retail_cre
     hostSubList:
         - shared2-samminionretailcre3-1-prd.eng.sfdc.net
+  prd.CCP_Demo.cre-stream-processing: # demo env instance
+  - name: prd/prd-sp2-sam_retail_cre
+    hostSubList:
+        - shared2-samminionretailcre1-1-prd.eng.sfdc.net
+        - shared2-samminionretailcre2-1-prd.eng.sfdc.net
