@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  sfstore-skipper-1.10.json: |-
+  1.10.json: |-
     {
       "persistentVolumeClaim": {
         "metadata": {
