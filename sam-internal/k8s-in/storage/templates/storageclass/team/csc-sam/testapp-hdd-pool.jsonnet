@@ -7,7 +7,7 @@ if utils.is_cephstorage_supported(configs.estate) then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
-        "name": "synthetic-hdd-pool",
+        "name": "testapp-hdd-pool",
         "namespace": appNamespace,
         "annotations": {
             "manifestctl.sam.data.sfdc.net/swagger": "disable",

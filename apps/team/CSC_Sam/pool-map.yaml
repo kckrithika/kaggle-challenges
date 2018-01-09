@@ -1,4 +1,7 @@
 apps:
+ SamTestAppStateful:
+  - prd/prd-sam
+  - phx/phx-sam
  SamTestApp:
   - prd/prd-sam
   - prd/prd-sdc
