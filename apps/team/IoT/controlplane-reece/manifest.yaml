@@ -10,6 +10,10 @@ system:
     containers:
     - name: iot-refocus
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/iot-enterprise-refocus:latest
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 2
       volumeMounts:
       - mountPath: /home/controlplane/ajnaclientcert
         name: ajnaclientcert
