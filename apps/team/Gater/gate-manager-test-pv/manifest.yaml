@@ -11,7 +11,7 @@ system:
     count: 3
     containers:
     - name: gater
-      image: tnrp/gater/gater:1.6.0-0000290-15092974
+      image: tnrp/gater/gater:1.6.0-0000295-15101962
       args:
         - --server.port=9090
 
