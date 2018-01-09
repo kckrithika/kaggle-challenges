@@ -3,7 +3,7 @@ data:
   watchdog.json: |-
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
-      "certFile": "/data/certs/hostcert.crt",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "deployer-funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",
       "deployer-imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001585-fdaa5a39",
       "deployer-rcImtEndpoint": "https://reportcollector-frf.data.sfdc.net:18443/v1/bark",
@@ -17,7 +17,7 @@ data:
       "k8sproxyEndpoint": "http://localhost:40000",
       "kafkaProducerEndpoint": "ajna0-broker1-0-frf.data.sfdc.net:9093",
       "kafkaTopic": "sfdc.prod.sam__frf.ajna_local__opevents",
-      "keyFile": "/data/certs/hostcert.key",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "laddr": "0.0.0.0:8083",
       "maddogCommonCerts": [
         "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
