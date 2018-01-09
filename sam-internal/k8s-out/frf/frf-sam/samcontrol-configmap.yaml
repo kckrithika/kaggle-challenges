@@ -3,7 +3,7 @@ data:
   samcontrol.json: |-
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
-      "certFile": "/data/certs/hostcert.crt",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "checkImageExistsFlag": false,
       "debug": true,
       "deletionEnabled": false,
@@ -14,7 +14,7 @@ data:
       "imageCheckV2": true,
       "k4aInitContainerImage": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001548-81d3b9bd",
       "k8sapiserver": "",
-      "keyFile": "/data/certs/hostcert.key",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443",
       "maddogMadkubImage": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000056-f3539b1a",
       "slbConfigInAnnotations": false,

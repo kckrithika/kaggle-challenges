@@ -3,7 +3,7 @@ data:
   tempsamcontroldeployer.json: |-
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
-      "cert-file": "/data/certs/hostcert.crt",
+      "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "delete-orphans": false,
       "disable-rollback": true,
       "disable-security-check": true,
@@ -12,7 +12,7 @@ data:
       "email-delay": 0,
       "etcd-directory": "/temp/secrets/",
       "funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",
-      "key-file": "/data/certs/hostcert.key",
+      "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "max-resource-time": 300000000000,
       "poll-delay": 30000000000,
       "recipient": "cbatra@salesforce.com",
