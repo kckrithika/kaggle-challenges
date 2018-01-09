@@ -22,7 +22,7 @@ spec:
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000540-febd7bfe
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000543-2ab52db8
         name: slb-ipvs-installer
         securityContext:
           privileged: true
@@ -48,7 +48,7 @@ spec:
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000540-febd7bfe
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000543-2ab52db8
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -65,7 +65,7 @@ spec:
         - /sdn/slb-ipvs-data
         - --connPort=9107
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000540-febd7bfe
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000543-2ab52db8
         livenessProbe:
           httpGet:
             path: /
