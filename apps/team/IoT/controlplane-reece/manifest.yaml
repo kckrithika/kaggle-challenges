@@ -3,58 +3,20 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - iotenterprise@salesforce.com
+      - rmarkowsky@salesforce.com
   functions:
-  - name: controlplane-reece
+  - name: iot-refocus 
     count: 1
     containers:
-    - name: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:cb7c8e5
-      ports:
-        - name: server
-          containerPort: 8080
-        - name: grpc
-          containerPort: 7020
+    - name: iot-refocus
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/iot-enterprise-refocus:latest
       livenessProbe:
-        httpGet:
-          path: /ping
-          port: 8080
-        initialDelaySeconds: 120
-        timeoutSeconds: 120
-      env:
-        - name: GRPC_SERVER_PORT
-          value: 7020
-        - name: SERVER_PORT
-          value: 8080
-        - name: LOGGING_STDERR_LEVEL
-          value: ALL
-        - name: PHOENIX_ZOOKEEPER_PORT
-          value: 2181
-        - name: PHOENIX_KEYTAB_PRINCIPAL
-          value: controlplane@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
-        - name: PHOENIX_KEYTAB_FILE
-          value: /home/controlplane/controlplane-keytab/controlplane.keytab
-        - name: PHOENIX_KERBEROS_ENABLED
-          value: true
-        - name: PHOENIX_JAAS_CONFIG_FILE
-          value: /home/controlplane/controlplane-config/jaas.conf
-        - name: PHOENIX_KRB5_CONFIG_FILE
-          value: /home/controlplane/controlplane-config/krb5.conf
-        - name: PHOENIX_ZOOKEEPER_QUORUM
-          value: icebd11hbase2a-mnds1-1-prd.eng.sfdc.net
-        #@- name: PHOENIX_HBASE_REGIONSERVER_KERBEROS_PRINCIPAL
-        #@- value: hbase/_HOST@ICEBD11HBASE2A-PRD.APP.ENG.SFDC.NET
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 2
       volumeMounts:
-      - mountPath: /home/controlplane/logs
-        name: logvol
       - mountPath: /home/controlplane/ajnaclientcert
         name: ajnaclientcert
-        readOnly: true
-      - mountPath: /home/controlplane/controlplane-keytab
-        name: controlplanekeytab
-        readOnly: true
-      - mountPath: /home/controlplane/controlplane-config
-        name: controlplaneconfig
         readOnly: true
       resources:
         requests:
@@ -64,27 +26,8 @@ system:
           memory: '16G'
           cpu: 7
     volumes:
-    - name: logvol
-      hostPath:
-        path: /data/sam/iot/log/reece
     - name: ajnaclientcert
       secret:
         secretName: iot-dva-kafka-prd-test
-    - name: controlplanekeytab
-      secret:
-        secretName: controlplane-keytab
-    - name: controlplaneconfig
-      secret:
-        secretName: controlplane-config
     strategy:
       type: Recreate
-
-  loadbalancers:
-  - lbname: controlplane-reece
-    function: controlplane-reece
-    nodeExposed: true
-    ports:
-      - port: 8100
-        targetport: 8080
-      - port: 9110
-        targetport: 7020
