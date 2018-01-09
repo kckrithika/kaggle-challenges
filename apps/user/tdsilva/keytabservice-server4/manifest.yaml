@@ -4,7 +4,7 @@ system:
   - name: keytabservice
     count: 1
     volumes:
-      - name: cert
+      - name: cert123
         maddogCert:
           type: server
     containers:
@@ -18,5 +18,5 @@ system:
           path: /
           port: 8080
     volumeMounts:
-      - mountPath: /cert
-        name: cert
+      - mountPath: /cert123
+        name: cert123
