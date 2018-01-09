@@ -54,9 +54,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--kneConfigDir=" + slbconfigs.kneConfigDir,
                             "--kneDomainName=" + slbconfigs.kneDomainName,
                             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
-                        ] + if configs.estate == "prd-sdc" then [
-                           "--shouldRemoveConfig=true",
-                        ] else [],
+                            "--shouldRemoveConfig=true",
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
