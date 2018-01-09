@@ -17,6 +17,7 @@ if configs.estate == "prd-sdc" then {
         replicas: 1,
         template: {
             spec: {
+                hostNetwork: true,
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
@@ -24,6 +25,12 @@ if configs.estate == "prd-sdc" then {
                     slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    {
+                       hostPath: {
+                          path: "/usr/bin/kubectl",
+                       },
+                       name: "kubectl",
+                    },
                 ]),
                 containers: [
                     {
@@ -33,7 +40,7 @@ if configs.estate == "prd-sdc" then {
                             "/sdn/slb-baboon",
                             "--deletePodPeriod=1h",
                             "--deletePodFlag=true",
-                            "--deleteIpvsStatePeriod=4h",
+                            "--deleteIpvsStatePeriod=10h",
                             "--deleteIpvsStateFlag=true",
                             "--deleteConfigFilePeriod=8h",
                             "--deleteConfigFileFlag=true",
@@ -55,6 +62,10 @@ if configs.estate == "prd-sdc" then {
                             slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            {
+                                name: "kubectl",
+                                mountPath: "/usr/bin/kubectl",
+                            },
                         ]),
                         env: [
                             {
@@ -67,6 +78,9 @@ if configs.estate == "prd-sdc" then {
                             },
                            configs.kube_config_env,
                         ],
+                        securityContext: {
+                           privileged: true,
+                        },
                     },
                 ],
                 nodeSelector: {
