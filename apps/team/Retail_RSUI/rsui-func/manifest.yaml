@@ -12,7 +12,7 @@ system:
         - rsui-func-lb
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.5
       ports:
       - containerPort: 8080
       - containerPort: 15372
