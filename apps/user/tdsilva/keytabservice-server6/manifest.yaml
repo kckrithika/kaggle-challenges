@@ -1,0 +1,29 @@
+apiVersion: v1
+system:
+  functions:
+  - name: keytabservice
+    count: 1
+    volumes:
+      - name: certs
+        maddogCert:
+          type: server
+    containers:
+    - name: keytabservice
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:tdsilva-20180108_last
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: PKI_CA_DIR
+        value: /certs
+      - name: PKI_MONITORDIR
+        value: /certs/server
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /
+          port: 8080
+    volumeMounts:
+      - mountPath: /certs
+        name: certs
