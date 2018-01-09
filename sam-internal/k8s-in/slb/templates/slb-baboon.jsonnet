@@ -40,7 +40,7 @@ if configs.estate == "prd-sdc" then {
                             "/sdn/slb-baboon",
                             "--deletePodPeriod=1h",
                             "--deletePodFlag=true",
-                            "--deleteIpvsStatePeriod=10h",
+                            "--deleteIpvsStatePeriod=4h",
                             "--deleteIpvsStateFlag=true",
                             "--deleteConfigFilePeriod=8h",
                             "--deleteConfigFileFlag=true",
@@ -78,9 +78,6 @@ if configs.estate == "prd-sdc" then {
                             },
                            configs.kube_config_env,
                         ],
-                        securityContext: {
-                           privileged: true,
-                        },
                     },
                 ],
                 nodeSelector: {
