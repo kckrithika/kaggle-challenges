@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
-
+local sdnconfig = import "sdnconfig.jsonnet";
 if configs.estate == "prd-sdc" then {
     kind: "DaemonSet",
     spec: {
@@ -21,7 +21,7 @@ if configs.estate == "prd-sdc" then {
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--keyfile=" + configs.keyFile,
                             "--certfile=" + configs.certFile,
-                            "--bgpPasswordFile=/data/secrets/sambgppassword",
+                            "--bgpPasswordFile=" + sdnconfig.bgpPasswordFilePath,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
                             "--sdncServiceName=sdn-control-svc",
                             "--sdncNamespace=sam-system",
@@ -168,7 +168,7 @@ if configs.estate == "prd-sdc" then {
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--keyfile=" + configs.keyFile,
                             "--certfile=" + configs.certFile,
-                            "--bgpPasswordFile=/data/secrets/sambgppassword",
+                            "--bgpPasswordFile=" + sdnconfig.bgpPasswordFilePath,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
                             configs.sfdchosts_arg,
                         ])

@@ -45,7 +45,7 @@ spec:
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
         - --keyfile=/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem
         - --certfile=/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem
-        - --bgpPasswordFile=/data/secrets/sambgppassword
+        - --bgpPasswordFile=/data/secrets/flowsnakebgppassword
         - --livenessProbePort=9100
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --controlEstate=prd-dev-flowsnake_iot_test
