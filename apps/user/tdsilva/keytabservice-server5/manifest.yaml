@@ -4,12 +4,12 @@ system:
   - name: keytabservice
     count: 1
     volumes:
-      - name: cert123
+      - name: certs
         maddogCert:
           type: server
     containers:
     - name: keytabservice
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:tdsilva-20180108_2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tdsilva/keytabservice:tdsilva-20180108_last
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -18,5 +18,5 @@ system:
           path: /
           port: 8080
     volumeMounts:
-      - mountPath: /cert123
-        name: cert123
+      - mountPath: /certs
+        name: certs
