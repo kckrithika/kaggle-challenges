@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" then {
       namespace: "sam-system",
     },
     data: {
-      "sf-store-prdsam-1.10.json": std.toString(import "configs/sf-store-prdsam-1.10.jsonnet"),
+      "prd-1.10.json": std.toString(import "configs/prd-1.10.jsonnet"),
     },
 } else if configs.estate == "prd-sam_storage" then {
     kind: "ConfigMap",
@@ -18,7 +18,7 @@ if configs.estate == "prd-sam" then {
       namespace: "sam-system",
     },
     data: {
-      "sfstore-prdsamstorage-1.10.json": std.toString(import "configs/sfstore-prdsamstorage-1.10.jsonnet"),
+      "prddev-1.10.json": std.toString(import "configs/prddev-1.10.jsonnet"),
     },
 } else if configs.estate == "prd-skipper" then {
         kind: "ConfigMap",
@@ -28,6 +28,6 @@ if configs.estate == "prd-sam" then {
                 namespace: "sam-system",
         },
         data: {
-                "sfstore-skipper-1.10.json": std.toString(import "configs/sfstore-skipper-1.10.jsonnet"),
+                "skpr-1.10.json": std.toString(import "configs/skpr-1.10.jsonnet"),
         },
 } else "SKIP"
