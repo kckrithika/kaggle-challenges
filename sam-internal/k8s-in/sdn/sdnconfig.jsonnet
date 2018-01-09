@@ -12,7 +12,7 @@ local utils = import "util_functions.jsonnet";
     charonEndpoint: "https://sds2-polcore2-2-" + kingdom + ".eng.sfdc.net:9443/minions",
 
     # SDN K8S Secret File path
-    bgpPasswordFile: (
+    bgpPasswordFilePath: (
         if utils.is_flowsnake_cluster(estate) then
             "/data/secrets/flowsnakebgppassword"
         else

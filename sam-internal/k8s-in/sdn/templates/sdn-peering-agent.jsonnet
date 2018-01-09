@@ -21,7 +21,7 @@ if configs.estate == "prd-sdc" then {
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--keyfile=" + configs.keyFile,
                             "--certfile=" + configs.certFile,
-                            "--bgpPasswordFile=" + sdnconfig.bgpPasswordFile,
+                            "--bgpPasswordFile=" + sdnconfig.bgpPasswordFilePath,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
                             "--sdncServiceName=sdn-control-svc",
                             "--sdncNamespace=sam-system",
@@ -168,7 +168,7 @@ if configs.estate == "prd-sdc" then {
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--keyfile=" + configs.keyFile,
                             "--certfile=" + configs.certFile,
-                            "--bgpPasswordFile=" + sdnconfig.bgpPasswordFile,
+                            "--bgpPasswordFile=" + sdnconfig.bgpPasswordFilePath,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_peering_agent,
                             configs.sfdchosts_arg,
                         ])
