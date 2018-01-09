@@ -32,10 +32,11 @@ spec:
         - --kneConfigDir=/var/slb/testkneconfigs
         - --kneDomainName=prd-sdc.slb.sfdc.net
         - --livenessProbePort=9876
+        - --shouldRemoveConfig=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000538-2e49f1b2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000539-970f9ebf
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -69,7 +70,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=3
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000538-2e49f1b2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000539-970f9ebf
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
