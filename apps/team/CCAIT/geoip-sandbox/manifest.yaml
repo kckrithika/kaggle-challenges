@@ -18,7 +18,7 @@ system:
         - mountPath: /database
           name: maxmind-volume
     - name: ccait-geoip-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:5d0ba381e1643aeefb4cb1f7586736fb37a939b6
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:049a201e1066a6773f5a4a9cacce1c45806a0637
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
