@@ -23,7 +23,7 @@ spec:
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000532-9d1547da
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000538-2e49f1b2
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
