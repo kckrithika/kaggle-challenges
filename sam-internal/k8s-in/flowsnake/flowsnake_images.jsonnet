@@ -50,7 +50,7 @@ local kingdom = std.extVar("kingdom");
             "ingressDefaultBackend_image_tag": "345",
             "ingressControllerNginx_image_tag" : "345",
             "logloader_image_tag": "345",
-            "logstash_image_tag": "345",
+            "logstash_image_tag": "468",
             "es_image_tag": "345",
             "kibana_image_tag": "345",
             "zookeeper_image_tag": "345",

@@ -28,6 +28,6 @@ spec:
           value: event
         - name: ZOOKEEPER_CONNECTION_STRING
           value: zookeeper-0.zookeeper-set:2181,zookeeper-1.zookeeper-set:2181,zookeeper-2.zookeeper-set:2181
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-logstash:345
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-logstash:468
         imagePullPolicy: Always
         name: logstash
