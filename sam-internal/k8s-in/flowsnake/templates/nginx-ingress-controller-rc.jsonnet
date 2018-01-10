@@ -66,10 +66,6 @@ local estate = std.extVar("estate");
                                         fieldPath: "metadata.namespace"
                                     }
                                 }
-                            },
-                            {
-                                name: "KUBECONFIG",
-                                "value": "/etc/kubernetes/kubeconfig"
                             }
                         ],
                         ports: [
