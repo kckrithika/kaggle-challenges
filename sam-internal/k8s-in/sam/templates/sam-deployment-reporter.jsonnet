@@ -31,7 +31,16 @@ local samimages = import "samimages.jsonnet";
                        env: [
                           configs.kube_config_env,
                        ],
-                    },
+                    } + (if configs.estate == "prd-samtest" then {
+                        livenessProbe: {
+                           httpGet: {
+                             path: "/healthz",
+                             port: 9023,
+                           },
+                           initialDelaySeconds: 30,
+                           periodSeconds: 5,
+                        },
+                    } else {}),
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
