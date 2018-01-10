@@ -128,34 +128,56 @@ local kingdom = std.extVar("kingdom");
             ]
         },
     },
-    samcontroldeployer: {
-        "ca-file": "/etc/pki_service/ca/cabundle.pem",
-        "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-        "delete-orphans": true,
-        "disable-rollback": true,
-        "disable-security-check": true,
-        "dry-run": true,
-        "email": true,
-        "email-delay": 0,
-        "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-        "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-        "max-resource-time": 300000000000,
-        "poll-delay": 30000000000,
-        "recipient": "flowsnake@salesforce.com",
-        "resource-cooldown": 15000000000,
-        "resource-progression-timeout": 120000000000,
-        "resources-to-skip": [
-          "samcontrol-deployer.yaml",
-          "watchdog-common.yaml",
-          "watchdog-etcd.yaml",
-          "watchdog-master.yaml",
-          "watchdog-node.yaml",
-          "watchdog-pod.yaml"
-        ],
-        "sender": "flowsnake@salesforce.com",
-        "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
-        "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
-        "override-control-estate": "/prd/prd-sam",
-        "orphan-namespace": "flowsnake"
-    }
+    samcontroldeployer:
+        {
+            "email": true,
+            "email-delay": 0,
+            "delete-orphans": false,
+            "disable-rollback": true,
+            "disable-security-check": true,
+            "override-control-estate": "/prd/prd-sam",
+            "orphan-namespace": "flowsnake",
+            "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+            "max-resource-time": 300000000000,
+            "poll-delay": 30000000000,
+            "recipient": "flowsnake@salesforce.com",
+            "resource-cooldown": 15000000000,
+            "resource-progression-timeout": 120000000000,
+            "sender": "flowsnake@salesforce.com",
+            "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+            "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
+        } + 
+        if estate == "prd-data-flowsnake_test" then 
+        {
+            "ca-file": "/etc/pki_service/ca/cabundle.pem",
+            "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+            "dry-run": false,
+            "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+            "resources-to-skip": [
+              "samcontrol-deployer.yaml",
+              "_flowsnake-sdn-secret.yaml",
+              "watchdog-common.yaml",
+              "watchdog-etcd.yaml",
+              "watchdog-master.yaml",
+              "watchdog-node.yaml",
+              "watchdog-pod.yaml"
+            ],
+        }
+        else
+        {
+            "ca-file": "/data/certs/ca.crt",
+            "cert-file": "/data/certs/hostcert.crt",
+            "dry-run": false,
+            "key-file": "/data/certs/hostcert.key",
+            "resources-to-skip": [
+              "sdn-hairpin-setter.yaml",
+              "sdn-peering-agent.yaml",
+              "sdn-ping-watchdog.yaml",
+              "sdn-route-watchdog.yaml",
+              "sdn-secret-agent.yaml",
+              "sdn-vault-agent.yaml",
+              "_flowsnake-sdn-secret.yaml",
+              "samcontrol-deployer.yaml",
+            ],
+        }
 }

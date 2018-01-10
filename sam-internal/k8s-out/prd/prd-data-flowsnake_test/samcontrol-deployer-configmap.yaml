@@ -4,10 +4,10 @@ data:
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "delete-orphans": true,
+      "delete-orphans": false,
       "disable-rollback": true,
       "disable-security-check": true,
-      "dry-run": true,
+      "dry-run": false,
       "email": true,
       "email-delay": 0,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
@@ -21,6 +21,7 @@ data:
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
         "samcontrol-deployer.yaml",
+        "_flowsnake-sdn-secret.yaml",
         "watchdog-common.yaml",
         "watchdog-etcd.yaml",
         "watchdog-master.yaml",
