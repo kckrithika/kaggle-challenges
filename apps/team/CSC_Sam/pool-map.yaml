@@ -47,3 +47,9 @@ apps:
   - prd/prd-samtest
  SamDailyReport:
   - prd/prd-sam
+ pseudo-api:
+  - prd/prd-sam
+ pseudo-api-test:
+  - prd/prd-sam
+ kubernetes-dashboard:
+  - prd/prd-sam
