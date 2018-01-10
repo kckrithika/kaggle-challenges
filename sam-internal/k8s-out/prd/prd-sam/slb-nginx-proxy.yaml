@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-nginx-proxy
+  name: slb-nginx-proxy
+  namespace: sam-system
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: slb-nginx-proxy
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /runner.sh
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000011-91f79527
+        name: slb-nginx-proxy
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: var-target-config-volume
+      hostNetwork: true
+      nodeSelector:
+        slb-service: slb-nginx
+      volumes:
+      - hostPath:
+          path: /data/slb/nginx/config
+        name: var-target-config-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
