@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
 local storageutils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam" then {
+if configs.estate == "disable" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
