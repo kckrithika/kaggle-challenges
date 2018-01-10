@@ -1,7 +1,1 @@
 apps:
-  virtual-api:
-    - prd/prd-sam
-  dashboard:
-    - prd/prd-sam
-  mysql:
-    - prd/prd-sam
