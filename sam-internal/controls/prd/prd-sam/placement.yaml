@@ -1,0 +1,15 @@
+nodes:
+  - hostname: shared0-sampool1-1-prd.eng.sfdc.net
+    pool: prd-samspare
+  - hostname: shared0-sampool2-1-prd.eng.sfdc.net
+    pool: prd-samspare
+  - hostname: shared0-sampool3-1-prd.eng.sfdc.net
+    pool: prd-samspare
+  - hostname: shared0-sampool4-1-prd.eng.sfdc.net
+    pool: prd-samspare
+  - hostname: shared0-sampool5-1-prd.eng.sfdc.net
+    pool: prd-samspare
+  - hostname: shared0-sampool6-1-prd.eng.sfdc.net
+    pool: prd-samspare
+  - hostname: shared0-sampool7-1-prd.eng.sfdc.net
+    pool: prd-samspare

@@ -1,0 +1,7 @@
+nodes:
+  - hostname: shared0-samtestpool1-1-prd.eng.sfdc.net
+    pool: prd-samtestspare
+  - hostname: shared0-samtestpool2-1-prd.eng.sfdc.net
+    pool: prd-samtestspare
+  - hostname: shared0-samtestpool3-1-prd.eng.sfdc.net
+    pool: prd-samtestspare
