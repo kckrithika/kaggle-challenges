@@ -49,6 +49,7 @@ data:
         "hyperkube.*scheduler": "age.kubescheduler"
       },
       "publishAlertsToKafka": true,
+      "publishAllReportsToKafka": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-test-alerts@salesforce.com",
       "sdpEndpoint": "http://localhost:39999",
