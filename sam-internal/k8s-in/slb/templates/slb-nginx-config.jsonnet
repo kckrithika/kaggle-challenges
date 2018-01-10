@@ -65,41 +65,43 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             privileged: true,
                         },
                    },
+                   ]
++ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam_storage" then
+                       [
+                           {
+                                                   name: "slb-nginx-proxy",
+                                                   image: slbimages.slbnginx,
+                                                   command: ["/runner.sh"],
+                                               }
+                                               + (
+                                                   if configs.estate == "prd-sdc" then {
+                                                       livenessProbe: {
+                                                           httpGet: {
+                                                               path: "/",
+                                                               port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                                                           },
+                                                           initialDelaySeconds: 5,
+                                                           periodSeconds: 3,
+                                                       },
+                                                       volumeMounts: configs.filter_empty([
+                                                           {
+                                                               name: "var-target-config-volume",
+                                                               mountPath: "/etc/nginx/conf.d",
+                                                           },
+                                                           slbconfigs.logs_volume_mount,
+                                                       ]),
 
-                    {
-                        name: "slb-nginx-proxy",
-                        image: slbimages.slbnginx,
-                        command: ["/runner.sh"],
-                    }
-                    + (
-                        if configs.estate == "prd-sdc" then {
-                            livenessProbe: {
-                                httpGet: {
-                                    path: "/",
-                                    port: portconfigs.slb.slbNginxProxyLivenessProbePort,
-                                },
-                                initialDelaySeconds: 5,
-                                periodSeconds: 3,
-                            },
-                            volumeMounts: configs.filter_empty([
-                                {
-                                    name: "var-target-config-volume",
-                                    mountPath: "/etc/nginx/conf.d",
-                                },
-                                slbconfigs.logs_volume_mount,
-                            ]),
-
-                        }
-                        else {
-                            volumeMounts: configs.filter_empty([
-                                {
-                                    name: "var-target-config-volume",
-                                    mountPath: "/etc/nginx/conf.d",
-                                },
-                            ]),
-                        }
-                       ),
-                ],
+                                                   }
+                                                   else {
+                                                       volumeMounts: configs.filter_empty([
+                                                           {
+                                                               name: "var-target-config-volume",
+                                                               mountPath: "/etc/nginx/conf.d",
+                                                           },
+                                                       ]),
+                                                   }
+                                                  ),
+                       ] else [],
 
                 nodeSelector: {
                     "slb-service": "slb-nginx",
