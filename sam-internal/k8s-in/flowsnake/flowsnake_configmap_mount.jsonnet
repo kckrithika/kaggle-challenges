@@ -61,5 +61,31 @@
             },
             name: "kubeconfig"
         },
-    ]
+    ],
+    nginx_volumeMounts: [
+        {
+            mountPath: "/etc/ssl/certs/ssl-cert-snakeoil.pem",
+            name: "server-certificate",
+            readOnly: true
+        },
+        {
+            mountPath: "/etc/ssl/private/ssl-cert-snakeoil.key",
+            name: "server-key",
+            readOnly: true
+        },
+    ],
+    nginx_volume: [
+        {
+            name: "server-certificate",
+            hostPath: {
+                path: "/etc/pki_service/platform/platform-server/certificates/platform-server.pem"
+            }
+        },
+        {
+            name: "server-key",
+            hostPath: {
+                path: "/etc/pki_service/platform/platform-server/keys/platform-server-key.pem"
+            }
+        },
+    ],
 }

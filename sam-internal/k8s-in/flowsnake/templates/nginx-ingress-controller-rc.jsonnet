@@ -66,6 +66,10 @@ local estate = std.extVar("estate");
                                         fieldPath: "metadata.namespace"
                                     }
                                 }
+                            },
+                            {
+                                name: "KUBECONFIG",
+                                value: "/etc/kubernetes/kubeconfig"
                             }
                         ],
                         ports: [
@@ -80,42 +84,26 @@ local estate = std.extVar("estate");
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
-                            "--annotations-prefix=ingress.kubernetes.io",
-                            "--sync-period=30s",
-                            "--kubeconfig=/etc/kubernetes/kubeconfig"
+                            "--sync-period=5s"
                         ],
-                        volumeMounts: [
-                            {
-                                mountPath: "/etc/ssl/certs/ssl-cert-snakeoil.pem",
-                                name: "server-certificate",
-                                readOnly: true
-                            },
-                            {
-                                mountPath: "/etc/ssl/private/ssl-cert-snakeoil.key",
-                                name: "server-key",
-                                readOnly: true
-                            }
-                        ] +
-                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                        flowsnakeconfigmapmount.cert_volumeMounts
+                        volumeMounts: (
+                            if estate == "prd-data-flowsnake_test" then 
+                                flowsnakeconfigmapmount.nginx_volumeMounts +
+                                flowsnakeconfigmapmount.kubeconfig_volumeMounts + 
+                                flowsnakeconfigmapmount.cert_volumeMounts
+                            else flowsnakeconfigmapmount.kubeconfig_volumeMounts + 
+                                flowsnakeconfigmapmount.cert_volumeMounts
+                        )
                     }
                 ],
-                volumes: [
-                    {
-                        name: "server-certificate",
-                        hostPath: {
-                            path: "/etc/pki_service/platform/platform-server/certificates/platform-server.pem"
-                        }
-                    },
-                    {
-                        name: "server-key",
-                        hostPath: {
-                            path: "/etc/pki_service/platform/platform-server/keys/platform-server-key.pem"
-                        }
-                    } 
-                ] +
-                flowsnakeconfigmapmount.kubeconfig_volume +
-                flowsnakeconfigmapmount.cert_volume,
+                volumes: (
+                    if estate == "prd-data-flowsnake_test" then 
+                        flowsnakeconfigmapmount.nginx_volume +
+                        flowsnakeconfigmapmount.kubeconfig_volume + 
+                        flowsnakeconfigmapmount.cert_volume
+                    else flowsnakeconfigmapmount.kubeconfig_volume + 
+                        flowsnakeconfigmapmount.cert_volume
+                ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true"
                 }
