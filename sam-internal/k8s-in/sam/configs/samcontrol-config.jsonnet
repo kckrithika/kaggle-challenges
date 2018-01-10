@@ -18,7 +18,7 @@ local utils = import "util_functions.jsonnet";
   deletionEnabled: (if configs.kingdom == "prd" then true else false),
 
   # Stateful
-  statefulAppEnabled: (if configs.kingdom == "prd" then true else false),
+  statefulAppEnabled: (if configs.kingdom == "prd" || configs.kingdom == "phx" then true else false),
 
   # Image check
   imageCheckV2: true,

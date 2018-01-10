@@ -18,7 +18,7 @@ data:
       "maddogMadkubImage": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000056-f3539b1a",
       "slbConfigInAnnotations": false,
       "slbConfigInLabels": false,
-      "statefulAppEnabled": false,
+      "statefulAppEnabled": true,
       "tlsEnabled": true,
       "volPermissionInitContainerImage": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-1ebeb0ac-657"
     }

@@ -107,7 +107,7 @@ local utils = import "util_functions.jsonnet";
   + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     enableMaddogCertChecks: true,
   } else {})
-  + (if configs.estate == "prd-sam" then {
+  + (if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
     storageClassName: "synthetic-hdd-pool",
     enableStatefulPVChecks: true,
     maxPVCAge: 420000000000,
