@@ -63,6 +63,7 @@ if configs.kingdom == "prd" then {
                                                                                name: "var-target-config-volume",
                                                                                mountPath: "/etc/nginx/conf.d",
                                                                            },
+                                                                           slbconfigs.logs_volume_mount,
                                                                        ]),
                                                                    }
                                                                   ),
