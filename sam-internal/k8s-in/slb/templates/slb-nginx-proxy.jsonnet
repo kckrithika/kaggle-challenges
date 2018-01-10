@@ -2,8 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-
-if configs.estate == "prd-sdc" then {
+if configs.kingdom == "prd" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
