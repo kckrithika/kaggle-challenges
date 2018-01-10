@@ -26,13 +26,14 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "0": {
-            default_tag: "base-0000287-054eac70",
+            default_tag: "base-0000312-7c61b80c",
             ceph_operator_tag: "base-0000288-360ffd18",
             sfms_tag: "latest-0000089-2f101be4",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
+            loginit_tag: "base-0000287-054eac70",
         },
 
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
@@ -44,6 +45,7 @@ local utils = import "util_functions.jsonnet";
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
+            loginit_tag: "base-0000287-054eac70",
             },
 
         ### Release Phase 2 - TBD
@@ -55,6 +57,7 @@ local utils = import "util_functions.jsonnet";
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
+            loginit_tag: "base-0000284-989c85c6",
             },
 
         ### Release Phase 3 - Canary sites in Prod
@@ -66,6 +69,7 @@ local utils = import "util_functions.jsonnet";
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000016-45146d1d",
+            loginit_tag: "base-0000284-989c85c6",
             },
 
         ### Release Phase 4 - All Prod
@@ -98,7 +102,7 @@ local utils = import "util_functions.jsonnet";
     sfstoreoperator: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfstoreoperator", $.per_phase[$.phase].default_tag),
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
     cephoperator: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
-    loginit: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].default_tag),
+    loginit: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.
     sfms: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
