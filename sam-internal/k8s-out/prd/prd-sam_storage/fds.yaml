@@ -26,7 +26,7 @@ spec:
           value: 3813545Mi
         - name: FDS_PROFILING
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000287-054eac70
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000312-7c61b80c
         livenessProbe:
           httpGet:
             path: /healthz
