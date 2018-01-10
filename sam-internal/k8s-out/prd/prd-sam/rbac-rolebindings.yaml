@@ -313,6 +313,150 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: retail-dfs:prd-sam_crosscloudplatform:rolebinding
+    namespace: retail-dfs
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-eventlistener:prd-sam_crosscloudplatform:rolebinding
+    namespace: retail-eventlistener
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-mds:prd-sam_crosscloudplatform:rolebinding
+    namespace: retail-mds
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform1-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-rsui:prd-sam_crosscloudsetup:rolebinding
+    namespace: retail-rsui
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-cre:prd-sam_customerresolutionengine:rolebinding
+    namespace: retail-cre
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-credata:prd-sam_customerresolutionengine:rolebinding
+    namespace: retail-credata
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: ccait:prd-sam_gater:rolebinding
     namespace: ccait
   roleRef:
@@ -684,6 +828,22 @@ items:
     name: shared2-samminionretaildss2-1-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminionretaildss3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: retail-eventlistener-sp2:prd-sp2-sam_retail_eventlistener:rolebinding
+    namespace: retail-eventlistener-sp2
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
