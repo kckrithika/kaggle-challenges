@@ -13,6 +13,7 @@ system:
         - --sql-db-name=duncan
         - --sql-db-pass=pass
         - --sql-db-user=root
+        - --sql-db-resources-table=k8s_resource_sqls
         - --v=4
         - --alsologtostderr
         - --insecure-port=7002
