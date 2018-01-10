@@ -8,7 +8,7 @@ system:
     - name: dashboard-phx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/phx
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx
         - --insecure-port=9090
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PHX</h3>"
         - --system-banner-severity=WARNING
@@ -25,7 +25,7 @@ system:
     - name: dashboard-dfw
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/dfw
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw
         - --insecure-port=9091
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>DFW</h3>"
         - --system-banner-severity=WARNING
@@ -42,7 +42,7 @@ system:
     - name: dashboard-frf
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/frf
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf
         - --insecure-port=9092
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
         - --system-banner-severity=WARNING
@@ -59,7 +59,7 @@ system:
     - name: dashboard-iad
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/iad
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad
         - --insecure-port=9093
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>IAD</h3>"
         - --system-banner-severity=WARNING
@@ -76,7 +76,7 @@ system:
     - name: dashboard-ord
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/ord
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord
         - --insecure-port=9094
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>ORD</h3>"
         - --system-banner-severity=WARNING
@@ -93,7 +93,7 @@ system:
     - name: dashboard-par
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/par
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par
         - --insecure-port=9095
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PAR</h3>"
         - --system-banner-severity=WARNING
@@ -111,7 +111,7 @@ system:
       args:
         - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/hnd
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd
         - --insecure-port=9096
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>HND</h3>"
         - --system-banner-severity=WARNING
@@ -128,7 +128,7 @@ system:
     - name: dashboard-ukb
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/ukb
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb
         - --insecure-port=9097
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>UKB</h3>"
         - --system-banner-severity=WARNING
@@ -145,7 +145,7 @@ system:
     - name: dashboard-prd-samtest
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtest
+        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtest
         - --insecure-port=9098
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMTEST</h3>"
         - --system-banner-severity=WARNING
@@ -162,7 +162,7 @@ system:
     - name: dashboard-prd-sam
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAM</h3>"
         - --system-banner-severity=WARNING
@@ -179,7 +179,7 @@ system:
     - name: dashboard-prd-samdev
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.team-csc_sam.prd-sam.prd.slb.sfdc.net:40001/prd-samdev
+        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samdev
         - --insecure-port=9100
         - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>"
         - --system-banner-severity=WARNING
