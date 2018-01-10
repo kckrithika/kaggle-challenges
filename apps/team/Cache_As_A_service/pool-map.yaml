@@ -1987,3 +1987,7 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-gs0-c1-12037:
   - name: phx/phx-sp3-sam_caas
+ phx-sp3-metrics-publisher-sp-gus-c1:
+  - name: phx/phx-sp3-sam_caas
+ phx-sp3-redis-sp-gus-c1-12039:
+  - name: phx/phx-sp3-sam_caas
