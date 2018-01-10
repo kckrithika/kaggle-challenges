@@ -1193,6 +1193,48 @@
     },
     {
       "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_crosscloudplatform",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui"
+      ],
+      "access": [
+        "team/Retail_RSUI"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_crosscloudsetup",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_customerresolutionengine",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh"
@@ -1430,6 +1472,18 @@
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sp2-sam_retail_dss",
+      "kingdom": "prd",
+      "superPod": "sp2"
+    },
+    {
+      "namespaces": [
+        "retail-eventlistener-sp2"
+      ],
+      "access": [
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sp2-sam_retail_eventlistener",
       "kingdom": "prd",
       "superPod": "sp2"
     },
