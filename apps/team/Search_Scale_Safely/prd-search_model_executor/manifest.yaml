@@ -126,25 +126,3 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-  - name: search-model-executor-xlt
-    count: 8
-    containers:
-    - name: search-model-executor-xlt
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:20171010
-      ports:
-      - containerPort: 8500
-        name: sme-xlt-port
-      livenessProbe:
-        exec:
-          command:
-          - cat
-          - ./bin/agentcontroller.sh
-        initialDelaySeconds: 10
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - ./bin/agentcontroller.sh
-        initialDelaySeconds: 5
-        periodSeconds: 5
