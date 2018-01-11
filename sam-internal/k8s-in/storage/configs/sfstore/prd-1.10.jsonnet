@@ -41,7 +41,7 @@ local configs = import "config.jsonnet";
 			{} + 
 			storageutils.log_init_container(
 				storageimages.loginit,
-				"sfstore",
+				"sfslogs",
 				7447,
 				7447,
 				"sfstore"
@@ -61,9 +61,7 @@ local configs = import "config.jsonnet";
                     },
                     {
                     	"name" : "sfstore",
-                    	"persistentVolumeClaim" : {
-                    		"claimName" : "sfstore"
-                    	}
+                    	"mountPath" : "/sfs"
                     }
                 ],
 				"ports": [
@@ -100,9 +98,7 @@ local configs = import "config.jsonnet";
                     },
                      {
                     	"name" : "sfstore",
-                    	"persistentVolumeClaim" : {
-                    		"claimName" : "sfstore"
-                    	}
+                    	"mountPath" : "/sfs"
                     }
                 ],
 				"Env": [
