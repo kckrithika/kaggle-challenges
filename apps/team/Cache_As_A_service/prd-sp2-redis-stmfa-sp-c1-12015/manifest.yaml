@@ -3,14 +3,14 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - rpragada@salesforce.com
+      - caas-dev@salesforce.com
   functions:
   - name: redis-stmfa-sp-c1-12015
     count: 2
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:2.4.6-0000018-15121426
       resources:
         limits: { memory: "2Gi" }
         requests: { memory: "1Gi" }
@@ -33,13 +33,13 @@ system:
         timeoutSeconds: 10
       ports:
       - containerPort: 12015
-    - name: caas-redis-announcer-1
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+    - name: caas-redis-announcer
+      image: tnrp/caas/caas-redis:2.4.6-0000018-15121426
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12015
         - --cluster.name=sp-c1
-        - --logDir=/home/caas/logs/caas-redis-announcer-1
+        - --logDir=/home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -48,30 +48,6 @@ system:
       env:
        - name: SFDC_ENVIRONMENT
          value: stmfa
-      resources:
-        limits: { memory: "500M" }
-        requests: { memory: "200M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-    - name: caas-redis-announcer-2
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
-      command: ["/opt/caas/redis/announcer-startup.sh"]
-      args:
-        - --redisPort=12015
-        - --cluster.name=sp-c1
-        - --logDir=/home/caas/logs/caas-redis-announcer-2
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/opt/caas/redis/is-alive.sh"
-      env:
-       - name: SFDC_ENVIRONMENT
-         value: stmfa-gus
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
