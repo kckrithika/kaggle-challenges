@@ -64,7 +64,7 @@ system:
         maddogCert:
           type: server
           lbnames:
-            - tardis
+            - tardisdev
       volumeMounts:
             - name: cert
               mountPath: /certs
