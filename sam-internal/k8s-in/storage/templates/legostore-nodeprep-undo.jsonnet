@@ -28,7 +28,7 @@ if configs.estate == "disabled" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: [/*"prd-sam_cephdev", "prd-sam_ceph",*/ "phx-sam_ceph"],
+                          values: ["prd-sam_ceph"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
