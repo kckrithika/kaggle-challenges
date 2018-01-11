@@ -24,6 +24,9 @@ local configs = import "config.jsonnet";
 		}
 	},
 	"podConfig": {
+		"securityContext" : {
+            "fsGroup" : 7447
+		},
 	    "volumes": [
 	    	{
                 "mountPath": "/var/log",
@@ -42,7 +45,7 @@ local configs = import "config.jsonnet";
 			{} + 
 			storageutils.log_init_container(
 				storageimages.loginit,
-				"sfstore",
+				"sfslogs",
 				7447,
 				7447,
 				"sfstore"
@@ -59,12 +62,6 @@ local configs = import "config.jsonnet";
                     {
                         "mountPath": "/var/log-mounted",
                         "name": "host-log-vol"
-                    },
-                     {
-                    	"name" : "sfstore",
-                    	"persistentVolumeClaim" : {
-                    		"claimName" : "sfstore"
-                    	}
                     }
                 ],
 				"ports": [
@@ -84,9 +81,7 @@ local configs = import "config.jsonnet";
 					},
 					 {
                     	"name" : "sfstore",
-                    	"persistentVolumeClaim" : {
-                    		"claimName" : "sfstore"
-                    	}
+                    	"mountPath" : "/sfs"
                     }
 				],
 				"command": ["/sfs/sfsbuild/bin/k8sstartup.py"],
@@ -104,7 +99,11 @@ local configs = import "config.jsonnet";
                     {
                         "mountPath": "/var/log-mounted",
                         "name": "host-log-vol"
-                    }
+                    },
+                    {
+		                "mountPath": "/sfs/sfsdata",
+		                "name": "sfstore"
+		            }
                 ],
 				"Env": [
 					{

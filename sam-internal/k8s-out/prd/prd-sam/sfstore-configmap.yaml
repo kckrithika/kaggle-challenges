@@ -58,10 +58,8 @@ data:
                 "name": "host-log-vol"
               },
               {
-                "name": "sfstore",
-                "persistentVolumeClaim": {
-                  "claimName": "sfstore"
-                }
+                "mountPath": "/sfs/sfsdata",
+                "name": "sfstore"
               }
             ]
           },
@@ -95,10 +93,8 @@ data:
                 "name": "host-log-vol"
               },
               {
-                "name": "sfstore",
-                "persistentVolumeClaim": {
-                  "claimName": "sfstore"
-                }
+                "mountPath": "/sfs/sfsdata",
+                "name": "sfstore"
               }
             ]
           },
@@ -126,7 +122,7 @@ data:
             "command": [
               "sh",
               "-c",
-              "/entrypoint.sh -g 7447 -u 7447 -s sfstore -l sfstore"
+              "/entrypoint.sh -g 7447 -u 7447 -s sfstore -l sfslogs"
             ],
             "env": [
               {
@@ -163,6 +159,9 @@ data:
             ]
           }
         ],
+        "securityContext": {
+          "fsGroup": 7447
+        },
         "volumes": [
           {
             "mountPath": "/var/log",
