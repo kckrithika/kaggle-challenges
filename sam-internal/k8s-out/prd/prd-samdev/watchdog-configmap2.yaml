@@ -14,6 +14,7 @@ data:
       "email-subject-prefix": "SAMWD",
       "enableMaddogCertChecks": true,
       "enableStatefulChecks": true,
+      "enableStatefulPVChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001600-33884860",
       "k8sproxyEndpoint": "http://localhost:40000",
@@ -134,6 +135,7 @@ data:
           "until": "2017/11/21"
         }
       ],
+      "storageClassName": "standard",
       "tlsEnabled": true
     }
 kind: ConfigMap

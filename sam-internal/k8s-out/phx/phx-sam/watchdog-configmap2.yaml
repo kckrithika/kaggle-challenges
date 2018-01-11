@@ -12,6 +12,7 @@ data:
       "deployer-smtpServer": "ops0-mta1-2-phx.ops.sfdc.net:25",
       "email-subject-prefix": "SAMWD",
       "enableMaddogCertChecks": true,
+      "enableStatefulChecks": true,
       "enableStatefulPVChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-phx.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001585-fdaa5a39",
