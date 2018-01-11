@@ -7,8 +7,6 @@ system:
   functions:
   - name: caas-release-perf-sdn
     count: 1 
-    nodeSelector:
-      kubernetes.io/hostname=samcaas2-caasminion1-1-prd.eng.sfdc.net    
     hostnetwork: true
     containers:
     - name: caas-redis-12015 
