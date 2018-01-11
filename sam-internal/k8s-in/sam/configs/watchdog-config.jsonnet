@@ -86,7 +86,7 @@ local utils = import "util_functions.jsonnet";
   kafkaTopic: "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__opevents",
 } +
 (
-  if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+  if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "frf-sam" then {
       publishAllReportsToKafka: true,
   } else {}
 ) +
