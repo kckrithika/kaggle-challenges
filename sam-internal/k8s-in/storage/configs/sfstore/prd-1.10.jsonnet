@@ -23,6 +23,9 @@ local configs = import "config.jsonnet";
 		}
 	},
 	"podConfig": {
+		"securityContext" : {
+            "fsGroup" : 7447
+        },
 		"volumes": [
 	    	{
                 "mountPath": "/var/log",
@@ -60,9 +63,9 @@ local configs = import "config.jsonnet";
                         "name": "host-log-vol"
                     },
                     {
-                    	"name" : "sfstore",
-                    	"mountPath" : "/sfs"
-                    }
+		                "mountPath": "/sfs/sfsdata",
+		                "name": "sfstore"
+		            }
                 ],
 				"ports": [
 					{
@@ -96,10 +99,10 @@ local configs = import "config.jsonnet";
                         "mountPath": "/var/log-mounted",
                         "name": "host-log-vol"
                     },
-                     {
-                    	"name" : "sfstore",
-                    	"mountPath" : "/sfs"
-                    }
+                    {
+		                "mountPath": "/sfs/sfsdata",
+		                "name": "sfstore"
+		            }
                 ],
 				"Env": [
 					{

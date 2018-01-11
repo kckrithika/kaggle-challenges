@@ -58,7 +58,7 @@ data:
                 "name": "host-log-vol"
               },
               {
-                "mountPath": "/sfs",
+                "mountPath": "/sfs/sfsdata",
                 "name": "sfstore"
               }
             ]
@@ -93,7 +93,7 @@ data:
                 "name": "host-log-vol"
               },
               {
-                "mountPath": "/sfs",
+                "mountPath": "/sfs/sfsdata",
                 "name": "sfstore"
               }
             ]
@@ -159,6 +159,9 @@ data:
             ]
           }
         ],
+        "securityContext": {
+          "fsGroup": 7447
+        },
         "volumes": [
           {
             "mountPath": "/var/log",

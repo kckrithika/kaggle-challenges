@@ -60,10 +60,6 @@ data:
               {
                 "mountPath": "/var/log-mounted",
                 "name": "host-log-vol"
-              },
-              {
-                "mountPath": "/sfs",
-                "name": "sfstore"
               }
             ]
           },
@@ -95,6 +91,10 @@ data:
               {
                 "mountPath": "/var/log-mounted",
                 "name": "host-log-vol"
+              },
+              {
+                "mountPath": "/sfs/sfsdata",
+                "name": "sfstore"
               }
             ]
           },
@@ -159,6 +159,9 @@ data:
             ]
           }
         ],
+        "securityContext": {
+          "fsGroup": 7447
+        },
         "volumes": [
           {
             "mountPath": "/var/log",
