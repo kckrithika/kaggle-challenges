@@ -66,9 +66,6 @@
           }
         ],
         "hostNetwork": true,
-        "nodeSelector": {
-          "master": "true"
-        },
         "volumes": [
           {
             "configMap": {
