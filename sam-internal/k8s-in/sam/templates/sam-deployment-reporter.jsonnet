@@ -35,7 +35,7 @@ local samimages = import "samimages.jsonnet";
                         livenessProbe: {
                            httpGet: {
                              path: "/healthz",
-                             port: 9023,
+                             port: 9029,
                            },
                            initialDelaySeconds: 30,
                            periodSeconds: 5,

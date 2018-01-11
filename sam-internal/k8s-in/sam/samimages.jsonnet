@@ -31,7 +31,7 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
         # [xiao.zhou] Adding liveness probe to deployment reporter.
-        "prd,prd-samtest,sam-deployment-reporter,hypersam": "sam-0001604-1f29b816",
+        "prd,prd-samtest,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

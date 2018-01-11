@@ -29,11 +29,11 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001604-1f29b816
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001608-4004980a
         livenessProbe:
           httpGet:
             path: /healthz
-            port: 9023
+            port: 9029
           initialDelaySeconds: 30
           periodSeconds: 5
         name: sam-deployment-reporter
