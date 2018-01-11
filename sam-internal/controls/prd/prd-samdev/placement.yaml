@@ -1,0 +1,7 @@
+nodes:
+  - hostname: shared0-samdevpool1-1-prd.eng.sfdc.net
+    pool: prd-samdevspare
+  - hostname: shared0-samdevpool2-1-prd.eng.sfdc.net
+    pool: prd-samdevspare
+  - hostname: shared0-samdevpool3-1-prd.eng.sfdc.net
+    pool: prd-samdevspare
