@@ -63,7 +63,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF
         "3": {
-            hypersam: "sam-0001585-fdaa5a39",
+            hypersam: "sam-0001600-33884860",
             madkub: "1.0.0-0000056-f3539b1a",
             madkubSidecar: "1.0.0-0000056-f3539b1a",
             },
