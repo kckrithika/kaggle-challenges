@@ -178,6 +178,7 @@ local kingdom = std.extVar("kingdom");
               "sdn-vault-agent.yaml",
               "_flowsnake-sdn-secret.yaml",
               "samcontrol-deployer.yaml",
+              "deepsea-kdc-svc.yaml",
             ],
         }
 }
