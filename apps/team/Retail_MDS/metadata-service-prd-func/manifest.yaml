@@ -42,8 +42,8 @@ system:
             key: gdot-tenant-master-keypass
       livenessProbe:
         initialDelaySeconds: 60
-        periodSeconds: 30
-        timeoutSeconds: 30
+        periodSeconds: 900
+        timeoutSeconds: 90
         httpGet:
           path: /manage/health
           port: 15523
