@@ -23,7 +23,7 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
-        image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sdn/hypersdn:v-0000503-8a8b2d31
+        image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sdn/hypersdn:v-0000542-5a3bab56
         livenessProbe:
           httpGet:
             path: /liveness-probe
