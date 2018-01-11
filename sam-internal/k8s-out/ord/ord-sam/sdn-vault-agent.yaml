@@ -19,8 +19,8 @@ spec:
         - /sdn/sdn-vault-agent
         - --funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --archiveSvcEndpoint=https://ops0-piperepo1-1-ord.ops.sfdc.net/tnrp/content_repo/0/archive
-        - --keyfile=/data/certs/hostcert.key
-        - --certfile=/data/certs/hostcert.crt
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
         image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000542-5a3bab56
