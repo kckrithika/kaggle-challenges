@@ -32,7 +32,7 @@ local utils = import "util_functions.jsonnet";
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000016-45146d1d",
+            sfnodeprep_tag: "base-0000017-c6de7b57",
             loginit_tag: "base-0000287-054eac70",
         },
 
@@ -44,7 +44,7 @@ local utils = import "util_functions.jsonnet";
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000016-45146d1d",
+            sfnodeprep_tag: "base-0000017-c6de7b57",
             loginit_tag: "base-0000287-054eac70",
             },
 

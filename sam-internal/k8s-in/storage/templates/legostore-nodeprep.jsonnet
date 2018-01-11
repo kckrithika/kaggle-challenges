@@ -68,8 +68,16 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
                   mountPath: "/local-ssds",
                 },
                 {
-                  name: "hostfs",
-                  mountPath: "/hostfs",
+                  name: "procpath",
+                  mountPath: "/hostroot/proc",
+                },
+                {
+                  name: "discoverypath",
+                  mountPath: "/hostroot/mnt",
+                },
+                {
+                  name: "fstabpath",
+                  mountPath: "/hostroot/etc",
                 },
                 {
                   name: "nodeprep-config",
@@ -93,8 +101,16 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
                   value: "/kubeconfig/kubeconfig",
                 },
                 {
-                  name: "HOST_FS",
-                  value: "/hostfs",
+                  name: "PROC_PATH",
+                  value: "/hostroot/proc",
+                },
+                {
+                  name: "DISCOVERY_PATH",
+                  value: "/hostroot/mnt",
+                },
+                {
+                  name: "FSTAB_PATH",
+                  value: "/hostroot/etc",
                 },
                 {
                   name: "DELETE_DISCOVERY",
@@ -117,9 +133,21 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
               },
             },
             {
-              name: "hostfs",
+              name: "procpath",
               hostPath: {
-                path: "/",
+                path: "/proc",
+              },
+            },
+            {
+              name: "fstabpath",
+              hostPath: {
+                path: "/etc",
+              },
+            },
+            {
+              name: "discoverypath",
+              hostPath: {
+                path: "/mnt",
               },
             },
             {
