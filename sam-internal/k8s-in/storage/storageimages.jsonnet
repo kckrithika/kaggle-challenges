@@ -26,9 +26,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "0": {
-            default_tag: "base-0000312-7c61b80c",
+            default_tag: "base-0000314-8d9eaec0",
             ceph_operator_tag: "base-0000288-360ffd18",
-            sfms_tag: "latest-0000089-2f101be4",
+            sfms_tag: "latest-0000102-addfc459",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
@@ -38,9 +38,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "1": {
-            default_tag: "base-0000287-054eac70",
+            default_tag: "base-0000314-8d9eaec0",
             ceph_operator_tag: "base-0000285-7ad9ed5d",
-            sfms_tag: "latest-0000089-2f101be4",
+            sfms_tag: "latest-0000102-addfc459",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
@@ -52,7 +52,7 @@ local utils = import "util_functions.jsonnet";
         "2": {
             default_tag: "base-0000284-989c85c6",
             ceph_operator_tag: "base-0000285-7ad9ed5d",
-            sfms_tag: "latest-0000089-2f101be4",
+            sfms_tag: "latest-0000102-addfc459",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
@@ -64,7 +64,7 @@ local utils = import "util_functions.jsonnet";
         "3": {
             default_tag: "base-0000284-989c85c6",
             ceph_operator_tag: "base-0000285-7ad9ed5d",
-            sfms_tag: "latest-0000089-2f101be4",
+            sfms_tag: "latest-0000102-addfc459",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",

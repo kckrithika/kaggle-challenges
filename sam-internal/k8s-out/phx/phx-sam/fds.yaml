@@ -50,12 +50,8 @@ spec:
         - mountPath: /kubeconfig
           name: kubeconfig
       - args:
-        - -t
-        - ajna_with_tags
-        - -s
+        - -j
         - prometheus
-        - -i
-        - "60"
         command:
         - /opt/sfms/bin/sfms
         env:
@@ -79,7 +75,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000089-2f101be4
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000102-addfc459
         name: sfms
       initContainers:
       - command:

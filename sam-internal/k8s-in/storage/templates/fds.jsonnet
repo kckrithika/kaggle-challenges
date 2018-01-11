@@ -88,12 +88,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             "/opt/sfms/bin/sfms",
                         ],
                         args: [
-                            "-t",
-                            "ajna_with_tags",
-                            "-s",
+                            "-j",
                             "prometheus",
-                            "-i",
-                            '60',
                         ],
                         env: storageutils.sfms_environment_vars("fds"),
 

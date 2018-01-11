@@ -83,7 +83,7 @@ data:
               "/bin/bash",
               "/opt/sfms/bin/sfms"
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000089-2f101be4",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000102-addfc459",
             "imagePullPolicy": "Always",
             "name": "sfms"
           }
