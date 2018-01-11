@@ -7,14 +7,14 @@ if configs.estate == "disabled" then {
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
-      name: "legostore-nodeprep",
+      name: "legostore-nodeprep-undo",
       namespace: "storage-foundation",
     },
     spec: {
       template: {
         metadata: {
           labels: {
-            app: "legostore-nodeprep",
+            app: "legostore-nodeprep-undo",
           },
         },
         spec: {
