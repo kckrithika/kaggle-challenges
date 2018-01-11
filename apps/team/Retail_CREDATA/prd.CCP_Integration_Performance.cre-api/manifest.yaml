@@ -25,7 +25,7 @@ system:
       image: sfci/servicelibs/sherpa:2.0.15
       env:
         - name: SFDC_ENVIRONMENT
-          value: CCP_Integration_Performance
+          value: mist
       args:
         - --http2-in=9532
       ports:
