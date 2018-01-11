@@ -30,8 +30,10 @@ local configs = import "config.jsonnet";
                 "name": "container-log-vol"
             },
             {
-                "mountPath": "/var/log-mounted",
-                "name": "host-log-vol"
+                "name": "host-log-vol",
+                "hostPath" : {
+                	"path" : "/var/log"
+                }
             }
         ],
 		"hostNetwork": true,
@@ -40,7 +42,7 @@ local configs = import "config.jsonnet";
 			{} + 
 			storageutils.log_init_container(
 				storageimages.loginit,
-				"sfstore-operator",
+				"sfstore",
 				7447,
 				7447,
 				"sfstore"
@@ -57,6 +59,12 @@ local configs = import "config.jsonnet";
                     {
                         "mountPath": "/var/log-mounted",
                         "name": "host-log-vol"
+                    },
+                     {
+                    	"name" : "sfstore",
+                    	"persistentVolumeClaim" : {
+                    		"claimName" : "sfstore"
+                    	}
                     }
                 ],
 				"ports": [
@@ -73,7 +81,13 @@ local configs = import "config.jsonnet";
 					{
 						"name" : "sf_zkServers",
 						"value" : storageconfig.perEstate.sfstore.zkServer[configs.estate]
-					}
+					},
+					 {
+                    	"name" : "sfstore",
+                    	"persistentVolumeClaim" : {
+                    		"claimName" : "sfstore"
+                    	}
+                    }
 				],
 				"command": ["/sfs/sfsbuild/bin/k8sstartup.py"],
 				"args": ["bookie"],
