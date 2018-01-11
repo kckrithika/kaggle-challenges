@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local storageimages = import "storageimages.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 
 if configs.estate == "disabled" then {
 
@@ -34,16 +35,22 @@ if configs.estate == "disabled" then {
                           operator: "In",
                           values: ["cleanup"],
                        },
-                     ] + if configs.estate == "phx-sam" then [{
-                                                                key: "kubernetes.io/hostname",
-                                                                operator: "In",
-                                                                values: ["shared0-samminionceph1-1-phx.ops.sfdc.net"],
-                                                             }] else [],
+                     ],
                   },
                 ],
               },
             },
           },
+          initContainers: [
+            {} +
+            storageutils.log_init_container(
+              storageimages.loginit,
+              "localvol",
+              0,
+              0,
+              "root"
+            ),
+          ],
           containers: [
             {
               name: "nodeprep",
@@ -62,8 +69,16 @@ if configs.estate == "disabled" then {
                   mountPath: "/local-ssds",
                 },
                 {
-                  name: "hostfs",
-                  mountPath: "/hostfs",
+                  name: "procpath",
+                  mountPath: "/hostroot/proc",
+                },
+                {
+                  name: "discoverypath",
+                  mountPath: "/hostroot/mnt",
+                },
+                {
+                  name: "fstabpath",
+                  mountPath: "/hostroot/etc",
                 },
                 {
                   name: "nodeprep-config",
@@ -72,7 +87,7 @@ if configs.estate == "disabled" then {
                 configs.maddog_cert_volume_mount,
                 configs.cert_volume_mount,
                 configs.kube_config_volume_mount,
-              ]),
+              ] + storageutils.log_init_volume_mounts()),
               env: [
                 {
                   name: "MY_NODE_NAME",
@@ -87,8 +102,16 @@ if configs.estate == "disabled" then {
                   value: "/kubeconfig/kubeconfig",
                 },
                 {
-                  name: "HOST_FS",
-                  value: "/hostfs",
+                  name: "PROC_PATH",
+                  value: "/hostroot/proc",
+                },
+                {
+                  name: "DISCOVERY_PATH",
+                  value: "/hostroot/mnt",
+                },
+                {
+                  name: "FSTAB_PATH",
+                  value: "/hostroot/etc",
                 },
                 {
                   name: "DELETE_DISCOVERY",
@@ -111,9 +134,21 @@ if configs.estate == "disabled" then {
               },
             },
             {
-              name: "hostfs",
+              name: "procpath",
               hostPath: {
-                path: "/",
+                path: "/proc",
+              },
+            },
+            {
+              name: "fstabpath",
+              hostPath: {
+                path: "/etc",
+              },
+            },
+            {
+              name: "discoverypath",
+              hostPath: {
+                path: "/mnt",
               },
             },
             {
@@ -125,7 +160,7 @@ if configs.estate == "disabled" then {
             configs.maddog_cert_volume,
             configs.cert_volume,
             configs.kube_config_volume,
-          ]),
+          ] + storageutils.log_init_volumes()),
         },
       },
    },
