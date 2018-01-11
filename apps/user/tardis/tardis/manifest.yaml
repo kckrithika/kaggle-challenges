@@ -6,7 +6,7 @@ system:
     count: 3
     containers:
     - name: tardis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20171127_72de472c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180110_157c351d
       env:
       - name: GIT_TOKEN
         valueFrom:
@@ -15,8 +15,21 @@ system:
             key: git-token
       - name: SERVER_PORT
         value: 10443
+      - name: SSL_CERT_KEY_PATH
+        value: /certs/server/keys/server-key.pem
+      - name: SSL_CERT_PATH
+        value: /certs/server/certificates/server.pem
       ports:
       - containerPort: 10443
+      volumes:
+      - name: cert
+        maddogCert:
+          type: server
+          lbnames:
+          - tardis
+      volumeMounts:
+            - name: cert
+              mountPath: /certs
       livenessProbe:
         httpGet:
           path: /
@@ -26,7 +39,7 @@ system:
     count: 2
     containers:
     - name: tardis-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20171220_9dfd76a2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180110_157c351d
       env:
       - name: GIT_TOKEN
         valueFrom:
@@ -35,6 +48,10 @@ system:
             key: git-token
       - name: SERVER_PORT
         value: 9091
+      - name: SSL_CERT_KEY_PATH
+        value: /certs/server/keys/server-key.pem
+      - name: SSL_CERT_PATH
+        value: /certs/server/certificates/server.pem
       ports:
       - containerPort: 9091
       livenessProbe:
@@ -42,6 +59,16 @@ system:
           path: /
           port: 9091
           scheme: HTTPS
+      volumes:
+      - name: cert
+        maddogCert:
+          type: server
+          lbnames:
+            - tardis
+      volumeMounts:
+            - name: cert
+              mountPath: /certs
+
   loadbalancers:
   - lbname: tardis
     function: default
@@ -57,4 +84,3 @@ system:
       - port: 9091
         targetport: 9091
         lbtype: dsr
-
