@@ -25,7 +25,7 @@ local configs = import "config.jsonnet";
 	"podConfig": {
 		"securityContext" : {
             "fsGroup" : 7447
-        },
+		},
 		"volumes": [
 	    	{
                 "mountPath": "/var/log",
