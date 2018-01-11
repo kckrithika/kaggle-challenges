@@ -1,6 +1,6 @@
 apps:
  prd-search_model_executor_xlt:
-  - prd/prd-search_model_executor
+  - prd/prd-sam
  prd-search_model_executor:
   - prd/prd-search_model_executor
  phx-search_model_executor:
