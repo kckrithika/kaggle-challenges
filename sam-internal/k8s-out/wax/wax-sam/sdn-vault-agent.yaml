@@ -23,7 +23,7 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --cafile=/data/certs/ca.crt
         - --livenessProbePort=9106
-        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000503-8a8b2d31
+        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000542-5a3bab56
         livenessProbe:
           httpGet:
             path: /liveness-probe
