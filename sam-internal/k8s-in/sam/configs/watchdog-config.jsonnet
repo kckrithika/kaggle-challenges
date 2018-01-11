@@ -101,14 +101,19 @@ local utils = import "util_functions.jsonnet";
   } else {
     podNamespacePrefixBlacklist: "sam-watchdog",
   }
-) + (if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+) + (if configs.estate == "prd-samdev" then {
+    # This is special as in only  RDI Ceph Is supported
+    # This will goaway slowly
     enableStatefulChecks: true,
+    enableStatefulPVChecks: true,
+    storageClassName: "standard",
   } else {})
   + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     enableMaddogCertChecks: true,
   } else {})
-  + (if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+  + (if utils.is_cephstorage_supported(configs.estate) then {
     storageClassName: "synthetic-hdd-pool",
+    enableStatefulChecks: true,
     enableStatefulPVChecks: true,
     maxPVCAge: 420000000000,
     syntheticPVRetrytimeout: 420000000000,
