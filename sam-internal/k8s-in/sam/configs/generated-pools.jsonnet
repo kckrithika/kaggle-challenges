@@ -1427,6 +1427,18 @@
     },
     {
       "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-samtwo",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "*"
       ],
       "access": [
