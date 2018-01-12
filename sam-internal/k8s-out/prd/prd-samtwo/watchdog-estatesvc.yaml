@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-estatesvc
+  name: watchdog-estatesvc
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchdog-estatesvc
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: watchdog-estatesvc
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=ESTATESVC
+        - -watchdogFrequency=10s
+        - -alertThreshold=300s
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - -emailFrequency=24h
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001600-33884860
+        name: watchdog-estatesvc
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - configMap:
+          name: watchdog
+        name: config
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

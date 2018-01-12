@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  samcontrol.json: |-
+    {
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "checkImageExistsFlag": true,
+      "debug": true,
+      "deletionEnabled": true,
+      "deletionPercentageThreshold": 20,
+      "dockerregistry": "ops0-artifactrepo2-0-prd.data.sfdc.net",
+      "enableMaddog": true,
+      "httpsDisableCertsCheck": true,
+      "imageCheckV2": true,
+      "k8sapiserver": "",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
+      "maddogMadkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000056-f3539b1a",
+      "slbConfigInAnnotations": true,
+      "slbConfigInLabels": true,
+      "statefulAppEnabled": true,
+      "tlsEnabled": true,
+      "volPermissionInitContainerImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: samcontrol
+  namespace: sam-system

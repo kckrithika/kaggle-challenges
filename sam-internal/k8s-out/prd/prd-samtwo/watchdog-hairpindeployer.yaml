@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-hairpindeployer
+  name: watchdog-hairpindeployer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchdog-hairpindeployer
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: watchdog-hairpindeployer
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=HAIRPINDEPLOYER
+        - -alertThreshold=1h
+        - -watchdogFrequency=120s
+        - -emailFrequency=72h
+        - -deployer-emailFrequency=72h
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001600-33884860
+        name: watchdog-hairpindeployer
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: watchdog
+        name: config
