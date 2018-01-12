@@ -1,0 +1,60 @@
+# Manifest Syntax: https://sfdc.co/sam-manifest-format
+apiVersion: v1
+ 
+system:
+  functions:
+  # service name
+  - name: spaas
+    
+    # number of instances ("kpods") to deploy and run
+    count: 1
+    
+    # Docker image(s) that make up one instance of the service
+    containers:
+    - name: spaas
+      #Prod image cannot be used directly in sam sandbox?
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci-docker-rc/sfci/service-protection/sps:0.0.2.8
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.8
+      # set container environment variables
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+        
+      # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
+      ports:
+      - name: rest-port
+        containerPort: 8080
+      - name: management-port
+        containerPort: 15372
+      - name: grpc-port 
+        containerPort: 7022
+
+     # In your startup script, set logging.dir to this location
+      # /log is mapped outside the container to the host's filesystem
+      volumeMounts:
+      - mountPath: /log
+        name: logvol      
+
+      # SAM will bounce the container if this returns an HTTP response code other than 200-399
+      #replace with standard scone health monitoring
+      livenessProbe:
+        # SAM will wait this long after starting the container before first checking
+        initialDelaySeconds: 15
+        httpGet:
+          path: /ping
+          port: 8080
+
+    # Maps volumeMounts from containers to volumes (which map to host filesystem locations)
+    # This is used for sending logs to Splunk until SAM/DVA logging pipeline is up
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-spaas/logs
+                 
+  loadbalancers:
+  - lbname: spaaslb
+    function: spaas
+    nodeExposed: true
+    ports:
+      - port: 7022
+        targetport: 7022
