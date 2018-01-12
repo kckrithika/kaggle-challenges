@@ -8,6 +8,8 @@ system:
     - name: cert
       maddogCert:
         type: server
+        lbnames:
+        - tlslb
     containers:
     - name: tls
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
@@ -17,6 +19,7 @@ system:
       ports:
       - containerPort: 3133
       - containerPort: 3135
+      - containerPort: 3136
       livenessProbe:
         httpGet:
           path: /
