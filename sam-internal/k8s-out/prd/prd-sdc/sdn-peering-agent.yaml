@@ -28,8 +28,8 @@ spec:
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
-        - --userName=sdn
-        - --pkiClientServiceName=sdn-client
+        - --userName=kubernetes
+        - --pkiClientServiceName=k8s-client
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
