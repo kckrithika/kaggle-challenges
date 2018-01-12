@@ -1,0 +1,7 @@
+apiVersion: extensions/v1beta1
+description: A specification of SAM Controller run log
+kind: ThirdPartyResource
+metadata:
+  name: sam-deployment-log.samlogs.salesforce.com
+versions:
+- name: v1

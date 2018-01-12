@@ -1,0 +1,76 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-route-watchdog
+  name: sdn-route-watchdog
+  namespace: sam-system
+spec:
+  minReadySeconds: 180
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-route-watchdog
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-route-watchdog
+        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
+        - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
+        - --sender=sdn-alerts@salesforce.com
+        - --recipient=sdn-alerts@salesforce.com
+        - --emailFrequency=12h
+        - --watchdogFrequency=180s
+        - --alertThreshold=300s
+        - --livenessProbePort=9104
+        - --controlEstate=prd-samtwo
+        - --rootPath=/etc/pki_service
+        - --userName=kubernetes
+        - --pkiClientServiceName=k8s-client
+        - --momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/api/v1/network/device?key=host-bgp-routes
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000542-5a3bab56
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9104
+          initialDelaySeconds: 5
+          periodSeconds: 20
+          timeoutSeconds: 5
+        name: sdn-route-watchdog
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-samtwo
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig

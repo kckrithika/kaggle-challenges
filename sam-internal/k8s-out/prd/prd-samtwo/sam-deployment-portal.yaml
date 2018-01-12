@@ -1,0 +1,68 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sam-deployment-portal
+  name: sam-deployment-portal
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: sam-deployment-portal
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: sam-deployment-portal
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/sam-deployment-portal
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --alsologtostderr
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001600-33884860
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 64121
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+        name: sam-deployment-portal
+        ports:
+        - containerPort: 64121
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /var/token
+          name: token
+          readOnly: true
+        workingDir: /sam
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - name: token
+        secret:
+          secretName: git-token
