@@ -8,15 +8,18 @@ system:
     - name: cert
       maddogCert:
         type: server
+        lbnames:
+        - tlslb
     containers:
     - name: tls
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
 
       command: ["/sdn/slb-canary-service"]
-      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133", "--tlsPorts=3135", "--privateKey=/certs/server/keys/server-key.pem", "--publicKey=/certs/server/certificates/server.pem"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133", "--tlsPorts=3135,3136", "--privateKey=/certs/server/keys/server-key.pem", "--publicKey=/certs/server/certificates/server.pem"]
       ports:
       - containerPort: 3133
       - containerPort: 3135
+      - containerPort: 3136
       livenessProbe:
         httpGet:
           path: /
@@ -34,3 +37,6 @@ system:
         targetport: 3133
       - port: 3135
         targetport: 3135
+        lbtype: dsr
+      - port: 3136
+        targetport: 3136
