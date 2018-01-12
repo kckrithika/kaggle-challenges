@@ -23,6 +23,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1",
         "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
+        # [jiayi] Deploying snapshotconsumer to prd-samdev & prd-sam
+        "prd,prd-samdev,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
+        "prd,prd-sam,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
+
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
