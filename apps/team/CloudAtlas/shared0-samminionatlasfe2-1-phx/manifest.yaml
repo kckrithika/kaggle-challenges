@@ -15,8 +15,10 @@ system:
       image: sfci/cloud-atlas/cloudatlas:2.6rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
+      - name: UBID_REMOVE_EXISTING
+        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
@@ -36,14 +38,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - cat
-          - /tmp/ready
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 24
