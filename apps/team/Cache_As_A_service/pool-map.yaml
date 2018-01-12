@@ -1991,3 +1991,11 @@ apps:
   - name: phx/phx-sp3-sam_caas
  phx-sp3-redis-sp-gus-c1-12039:
   - name: phx/phx-sp3-sam_caas
+ dfw-sp3-metrics-publisher-sp-gus-c1:
+  - name: dfw/dfw-sp3-sam_caas
+ dfw-sp3-redis-sp-gus-c1-12053:
+  - name: dfw/dfw-sp3-sam_caas
+ dfw-sp1-metrics-publisher-sp-c1:
+  - name: dfw/dfw-sp1-sam_caas
+ dfw-sp1-redis-sp-c1-12034:
+  - name: dfw/dfw-sp1-sam_caas
