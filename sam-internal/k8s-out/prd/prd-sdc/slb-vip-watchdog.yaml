@@ -44,7 +44,7 @@ spec:
         - --emailFrequency=12h
         - --watchdogFrequency=60s
         - --alertThreshold=700s
-        - --vipLoop=50
+        - --vipLoop=10
         - --log_dir=/host/data/slb/logs
         - --optOutNamespace=kne
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000543-2ab52db8
