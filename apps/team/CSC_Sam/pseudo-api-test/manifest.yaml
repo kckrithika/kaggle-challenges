@@ -13,7 +13,7 @@ system:
         - --sql-db-name=sdp
         - --sql-db-pass=pass
         - --sql-db-user=root
-        - --sql-db-resources-table=k8s_resource_sqls_test
+        - --sql-db-resources-table=k8s_resource_test
         - --v=4
         - --alsologtostderr
         - --insecure-port=7002
