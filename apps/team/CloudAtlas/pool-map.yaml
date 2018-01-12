@@ -137,6 +137,10 @@ apps:
     - name: ord/ord-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-ord.ops.sfdc.net
+  shared0-samminionatlasfe2-1-ord:
+    - name: ord/ord-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe2-1-ord.ops.sfdc.net
 
   # PHX DS Nodes
   shared0-samminionatlasdir1-1-phx:
