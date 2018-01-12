@@ -21,6 +21,11 @@ system:
     containers:
     - name: gatewayconfig
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2018-01-15a
+      env:
+      - name: PKI_CA_DIR
+        value: /gwcertserver
+      - name: PKI_MONITORDIR
+        value: /gwcertserver/server
       volumeMounts:
       - name: gwcertclient
         mountPath: /gwcertclient
