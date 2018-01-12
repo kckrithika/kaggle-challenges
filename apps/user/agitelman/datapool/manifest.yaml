@@ -23,7 +23,7 @@ system:
           port: 15372
       env:
       - name: SFDC_ENVIRONMENT
-        value: kingdom-test
+        value: datapool-service
       - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
         value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
@@ -44,6 +44,37 @@ system:
       - mountPath: /home/datapool/datapool-config
         name: datapoolconfig
         readOnly: true
+
+    - env:
+      - name: SFDC_ENVIRONMENT
+        value: datapool-service
+      image: tnrp/sherpa:2-0000127-5d8bf4ab
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      name: sherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /client-certs
+        name: client-certs
+    count: 2
 
 
     volumes:
@@ -84,8 +115,8 @@ system:
     nodeExposed: true
     slbenabled: true
     ports:
-      - port: 7020
+      - port: 7025
         targetport: 7020
-      - port: 15372
+      - port: 15375
         targetport: 15372
 
