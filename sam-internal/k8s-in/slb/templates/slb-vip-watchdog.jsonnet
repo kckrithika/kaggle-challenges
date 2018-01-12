@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--emailFrequency=12h",
                             "--watchdogFrequency=60s",
                             "--alertThreshold=700s",
-                            "--vipLoop=50",
+                            "--vipLoop=10",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
                         ],
