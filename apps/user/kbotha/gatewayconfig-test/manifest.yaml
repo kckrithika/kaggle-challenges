@@ -16,11 +16,11 @@ system:
     - name: gwcertserver
       maddogCert:
         type: server
-	lbnames:
-	- gatewayconfiglb
+        lbnames:
+        - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2017-07-11a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2018-01-15a
       volumeMounts:
       - name: gwcertclient
         mountPath: /gwcertclient
