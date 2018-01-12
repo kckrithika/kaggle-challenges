@@ -3,9 +3,9 @@ data:
   manifestwatcher.json: |-
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
-      "certFile": "/data/certs/hostcert.crt",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "disableCertsCheck": true,
-      "keyFile": "/data/certs/hostcert.key",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-iad.ops.sfdc.net/tnrp/content_repo/0/archive"
     }
