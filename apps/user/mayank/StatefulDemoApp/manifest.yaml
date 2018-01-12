@@ -1,6 +1,9 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - mayank.kumar@salesforce.com
   functions:
   - name: stateful-func
     type: stateful-set
