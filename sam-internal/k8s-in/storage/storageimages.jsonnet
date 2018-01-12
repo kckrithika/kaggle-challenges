@@ -50,7 +50,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - TBD
         "2": {
-            default_tag: "base-0000284-989c85c6",
+            default_tag: "base-0000314-8d9eaec0",
             ceph_operator_tag: "base-0000285-7ad9ed5d",
             sfms_tag: "latest-0000102-addfc459",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
@@ -62,7 +62,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            default_tag: "base-0000284-989c85c6",
+            default_tag: "base-0000314-8d9eaec0",
             ceph_operator_tag: "base-0000285-7ad9ed5d",
             sfms_tag: "latest-0000102-addfc459",
             cephdaemon_tag: "jewel-0000052-36e8b39d",
