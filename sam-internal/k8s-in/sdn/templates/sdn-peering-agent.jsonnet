@@ -26,8 +26,8 @@ if configs.estate == "prd-sdc" then {
                             "--sdncServiceName=sdn-control-svc",
                             "--sdncNamespace=sam-system",
                             "--rootPath=/etc/pki_service",
-                            "--userName=sdn",
-                            "--pkiClientServiceName=sdn-client",
+                            "--userName=kubernetes",
+                            "--pkiClientServiceName=k8s-client",
                         ],
                         env: [
                             configs.kube_config_env,
