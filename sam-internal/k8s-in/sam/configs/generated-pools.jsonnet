@@ -1432,7 +1432,7 @@
       "access": [
         "team/CSC_Sam"
       ],
-      "controlEstate": "prd-sam",
+      "controlEstate": "prd-samtwo",
       "estate": "prd-samtwo",
       "kingdom": "prd",
       "superPod": "None"
