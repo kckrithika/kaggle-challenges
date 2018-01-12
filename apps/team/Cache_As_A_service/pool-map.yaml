@@ -1999,3 +1999,51 @@ apps:
   - name: dfw/dfw-sp1-sam_caas
  dfw-sp1-redis-sp-c1-12034:
   - name: dfw/dfw-sp1-sam_caas
+ phx-sp1-metrics-publisher-sp-c1:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp1-redis-sp-c1-12058:
+  - name: phx/phx-sp1-sam_caas
+ phx-sp2-metrics-publisher-sp-c1:
+  - name: phx/phx-sp2-sam_caas
+ phx-sp2-redis-sp-c1-12020:
+  - name: phx/phx-sp2-sam_caas
+ phx-sp4-metrics-publisher-sp-c1:
+  - name: phx/phx-sp4-sam_caas
+ phx-sp4-redis-sp-c1-12046:
+  - name: phx/phx-sp4-sam_caas
+ dfw-sp2-metrics-publisher-sp-c1:
+  - name: dfw/dfw-sp2-sam_caas
+ dfw-sp2-redis-sp-c1-12021:
+  - name: dfw/dfw-sp2-sam_caas
+ dfw-sp4-metrics-publisher-sp-c1:
+  - name: dfw/dfw-sp4-sam_caas
+ dfw-sp4-redis-sp-c1-12046:
+  - name: dfw/dfw-sp4-sam_caas
+ frf-sp1-metrics-publisher-sp-c1:
+  - name: frf/frf-sp1-sam_caas
+ frf-sp1-redis-sp-c1-12042:
+  - name: frf/frf-sp1-sam_caas
+ par-sp1-metrics-publisher-sp-c1:
+  - name: par/par-sp1-sam_caas
+ par-sp1-redis-sp-c1-12036:
+  - name: par/par-sp1-sam_caas
+ iad-sp1-metrics-publisher-sp-c1:
+  - name: iad/iad-sp1-sam_caas
+ iad-sp1-redis-sp-c1-12038:
+  - name: iad/iad-sp1-sam_caas
+ iad-sp2-metrics-publisher-sp-c1:
+  - name: iad/iad-sp2-sam_caas
+ iad-sp2-redis-sp-c1-12022:
+  - name: iad/iad-sp2-sam_caas
+ ord-sp1-metrics-publisher-sp-c1:
+  - name: ord/ord-sp1-sam_caas
+ ord-sp1-redis-sp-c1-12038:
+  - name: ord/ord-sp1-sam_caas
+ ord-sp2-metrics-publisher-sp-c1:
+  - name: ord/ord-sp2-sam_caas
+ ord-sp2-redis-sp-c1-12022:
+  - name: ord/ord-sp2-sam_caas
+ ukb-sp1-metrics-publisher-sp-c1:
+  - name: ukb/ukb-sp1-sam_caas
+ ukb-sp1-redis-sp-c1-12022:
+  - name: ukb/ukb-sp1-sam_caas
