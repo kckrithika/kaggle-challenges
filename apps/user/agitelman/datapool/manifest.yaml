@@ -10,8 +10,10 @@ system:
     - name: datapool-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/agitelman/datapool-server:214.0.2-SNAPSHOT
       ports:
-      - containerPort: 7021
+      - containerPort: 7020
+        name: grpc
       - containerPort: 15372
+        name: mgmt
       livenessProbe:
         initialDelaySeconds: 90
         periodSeconds: 60
@@ -19,18 +21,71 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: kingdom-test
+      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
+        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
+      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
+        value: /opt/java/jdk1.8.0_121/jre/lib/security/cacerts
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: PHOENIX_KEYTABPATH
+        value: /home/datapool/datapool-keytab/datapool.keytab
+      volumeMounts:
+      - mountPath: /home/datapool/logs
+        name: logvol
+      - mountPath: /home/datapool/ajna-certs
+        name: ajnacerts
+        readOnly: true
+      - mountPath: /home/datapool/datapool-keytab
+        name: datapoolkeytab
+        readOnly: true
+      - mountPath: /home/datapool/datapool-config
+        name: datapoolconfig
+        readOnly: true
+
+
+    volumes:
+    - hostPath:
+        path: /data/sam/wave/log/datapool
+      name: logvol
+
+    - name: ajnacerts
+      secret:
+        secretName: ajna-certs
+
+    - name: datapoolkeytab
+      secret:
+        secretName: datapool-keytab
+
+    - name: datapoolconfig
+      secret:
+        secretName: datapool-config
+
+    - maddogCert:
+        type: server
+      name: server-certs
+      
+    - maddogCert:
+        type: client
+      name: client-certs
+
+
 #    volumes:
 #    - name: logvol
 #      hostPath:
 #        path: /data/sam/eaas/logs
+
+
   loadbalancers:
   - lbname: datapool-lb
     function: datapool-service
-#    slbenabled: true
+    nodeExposed: true
+    slbenabled: true
     ports:
       - port: 7020
-        targetport: 7021
+        targetport: 7020
       - port: 15372
         targetport: 15372
-
 
