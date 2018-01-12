@@ -32,6 +32,8 @@ local utils = import "util_functions.jsonnet";
 
         # [xiao.zhou] Adding liveness probe to deployment reporter.
         "prd,prd-samtest,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
+        "prd,prd-samdev,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
+        "prd,prd-sam,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

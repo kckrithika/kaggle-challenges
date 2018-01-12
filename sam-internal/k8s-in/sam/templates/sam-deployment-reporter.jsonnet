@@ -31,7 +31,7 @@ local samimages = import "samimages.jsonnet";
                        env: [
                           configs.kube_config_env,
                        ],
-                    } + (if configs.estate == "prd-samtest" then {
+                    } + (if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                         livenessProbe: {
                            httpGet: {
                              path: "/healthz",
