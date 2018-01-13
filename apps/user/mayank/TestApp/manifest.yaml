@@ -1,31 +1,49 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+      - mayank@salesforce.com
   functions:
   - name: mayank-fn
-    count: 1
+    count: 2
+    progressDeadlineSeconds: 120
     containers:
-    - name: samhello
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20170723_115938.58ece62.dirty.mayankkuma-ltm3
+    - name: mayankapp
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
+      command: ["/sam/sam-test-app"]
+      args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
+      env:
+        - name: El337
+          value: "30100111012"
       ports:
-      - containerPort: 9090
+      - containerPort: 8000
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
-      env:
-        - name: DUMMYENV
-          value: "SOMEVALUE"
+          port: 8000
       volumeMounts:
-      - name: certs
-        mountPath: /certs
+      - mountPath: /log
+        name: logvol
+      - mountPath: /tmp
+        name: amagicvolumethatvanishes
     volumes:
-     - name: certs
-       maddogCert:
-         type: client
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/apps
+    - name: amagicvolumethatvanishes
+      emptyDir: {}
+  - name: samtestwd
+    count: 1
+    containers:
+    - name: samtestwd
+      image: tnrp/sam/hypersam:sam-0000701-487f2675
+      command: ["/sam/service-wd"]
+      args: ["-service=lb124"]
   loadbalancers:
-  - lbname: samhellolb
+  - lbname: lb124
+    nodeExposed: true
     function: mayank-fn
     ports:
-      - port: 9098
-        targetport: 9090
+      - port: 8689
+        targetport: 8000
