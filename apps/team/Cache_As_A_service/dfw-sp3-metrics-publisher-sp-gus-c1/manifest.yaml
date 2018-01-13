@@ -17,7 +17,7 @@ system:
       args:
         - --server.port=7576
         - --management.port=7577
-        - --cluster.name=sp-gus-c1
+        - --cluster.name=sp-c1
         - --logDir=/home/caas/logs/caas
         - --metrics.container=caas.sp-gus-c1
       volumeMounts:

@@ -38,7 +38,7 @@ system:
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12053
-        - --cluster.name=sp-gus-c1
+        - --cluster.name=sp-c1
         - --logDir=/home/caas/logs
       livenessProbe:
         initialDelaySeconds: 5
