@@ -44,6 +44,9 @@ system:
           initialDelaySeconds: 60
           periodSeconds: 120
     volumes:
+    - name: logvol
+      hostPath:
+        path: /data/sam/cre/log/prd-ccp_integration_performance/cre-api    
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
