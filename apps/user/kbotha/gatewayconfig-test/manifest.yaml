@@ -9,9 +9,28 @@ system:
   - name: default
     count: 2
     hostnetwork: true
+    volumes: 
+    - name: gwcertclient
+      maddogCert:
+        type: client
+    - name: gwcertserver
+      maddogCert:
+        type: server
+        lbnames:
+        - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2017-07-11a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2018-01-15a
+      env:
+      - name: PKI_CA_DIR
+        value: /gwcertserver
+      - name: PKI_MONITORDIR
+        value: /gwcertserver/server
+      volumeMounts:
+      - name: gwcertclient
+        mountPath: /gwcertclient
+      - name: gwcertserver
+        mountPath: /gwcertserver
       args:
         - start
         - --settings.path=-.-.sfm.-.gatewayconfig
