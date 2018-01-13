@@ -21,6 +21,9 @@ system:
       - mountPath: /certs
         name: certs
     volumes:
+    - name: logvol
+      hostPath:
+        path: /data/sam/cre/log/prd-ccp_demo/cre-stream-processing  
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
