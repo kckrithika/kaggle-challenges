@@ -47,8 +47,12 @@ system:
           port: 8080
     lbName: mgmt-services-lb
     terminationGracePeriodSeconds: 33
-    #function: mgmt
-    #  ports:
-    #    - port: 8080
-    #      targetport: 8080
+    function: mgmt
+      ports:
+        - port: 8080
+          targetport: 8080
+          lbtype: tcp
+        - port: 8081
+          targetport: 8081
+          lbtype: tcp
  
