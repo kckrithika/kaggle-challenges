@@ -35,15 +35,14 @@ system:
         mountPath: /secrets/service-config/secure/
         readOnly: true
       ports:
-        - name: mgmt-services-lb
-          containerPort: 8080
-      - containerPort: 15372
+        - name: mgmt-services
+          containerPort: 8889
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
         initialDelaySeconds: 60
         httpGet:
           path: /ping.jsp
-          port: 8080
+          port: 15372
     #lbName: mgmt-services-lb
     #terminationGracePeriodSeconds: 33
     loadbalancers:
@@ -52,5 +51,5 @@ system:
       slbenabled: true
       ports:
         - port: 80
-          targetport: 8080
+          targetport: 8889
  
