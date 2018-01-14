@@ -44,7 +44,7 @@ system:
         httpGet:
           path: /ping.jsp
           port: 8080
-    #lbName: mgmt-services-lb
+    lbName: mgmt-services-lb
     #terminationGracePeriodSeconds: 33
     loadbalancers:
     - lbname: mgmt-services-lb
