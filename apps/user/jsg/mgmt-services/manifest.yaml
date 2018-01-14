@@ -7,7 +7,7 @@ system:
   functions:
   # service name
   - name: mgmt
-    #type: stateful-set
+    type: stateful-set
     # number of instances ("kpods") to deploy and run
     count: 3
     volumes:
@@ -39,18 +39,22 @@ system:
         - containerPort: 15372
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
-        initialDelaySeconds: 60
+        initialDelaySeconds: 600
         httpGet:
           path: /ping.jsp
-          port: 8000
-    #lbName: mgmtserviceslb
-    #terminationGracePeriodSeconds: 33
-  loadbalancers:
-  - lbname: mgmtserviceslb
+          port: 15372
+    lbName: mgmtserviceslb
     nodeExposed: true
-    function: mgmt
-    #slbenabled: true
     ports:
       - port: 9999
         targetport: 8000
+    #terminationGracePeriodSeconds: 33
+  #loadbalancers:
+  #- lbname: mgmtserviceslb
+  #  nodeExposed: true
+  #  function: mgmt
+    #slbenabled: true
+  #  ports:
+  #    - port: 9999
+  #      targetport: 8000
  
