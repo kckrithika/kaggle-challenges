@@ -7,7 +7,7 @@ system:
   functions:
   # service name
   - name: mgmt
-    #type: stateful-set
+    type: stateful-set
     # number of instances ("kpods") to deploy and run
     count: 2
     volumes:
