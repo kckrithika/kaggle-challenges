@@ -48,7 +48,7 @@ system:
     loadbalancers:
     - lbname: mgmt-services-lb
       function: mgmt
-      slbenabled: true
+      nodeExposed: true
       ports:
         - port: 80
           targetport: 8889
