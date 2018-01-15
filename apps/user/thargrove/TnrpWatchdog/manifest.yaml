@@ -10,23 +10,15 @@ system:
 #    hostnetwork: true
     containers:
     - name: tnrpwd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/tnrpwd:thargrove-20170329_161129-693e7ee
-      command: ["/bin/tnrpWatchdog"]
-      args: ["-tokenfile", "/var/secrets/token.txt"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/redirect:latest
+      command: ["/redirect"]
+      args: ["-port=64132", "-message", "Moved to ADD"]
       ports:
       - containerPort: 64132
       livenessProbe:
         httpGet:
           path: /probe
           port: 64132
-      volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
-    volumes:
-    - name: secretvol
-      secret:
-        secretName: git-token
   loadbalancers:
   - lbname: tnrpwdlb
     function: tnrpwd
