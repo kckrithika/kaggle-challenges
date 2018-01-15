@@ -7,3 +7,5 @@ apps:
     - prd/prd-sam
   demo-geoip:
     - prd/prd-sam
+  zipkin-prd-ryan:
+    - prd/prd-sam

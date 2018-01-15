@@ -1,0 +1,21 @@
+apiVersion: v1
+
+# This manifest announces a Zipkin server running on Ryan Michela's linux desktop, under his desk.
+system:
+  functions:
+  - name: zipkin-prd-ryan
+    count: 1
+    containers:
+    - name: zipkin-prd-ryan
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - -endpoint
+      - zipkin:DATACENTER:9411:10.0.90.172
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
