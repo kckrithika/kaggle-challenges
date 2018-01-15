@@ -9,7 +9,7 @@ items:
     namespace: legostore
   spec:
     K8S_NETWORK: 10.231.171.0/24
-    cephVersion: latest
+    cephVersion: jewel-0000052-36e8b39d
     faultDomainBoundary: node.sam.sfdc.net/rack
     metadata:
       name: ceph-prd-sam-ceph
