@@ -21,7 +21,6 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
           ],
           resources: [
             "pods/status",
-            "events",
           ],
           verbs: [
             "*",
@@ -95,6 +94,17 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
           verbs: [
             # Required for node registration
             "create",
+          ],
+        },
+        {
+          apiGroups: [
+            "*",
+          ],
+          resources: [
+            "events",
+          ],
+          verbs: [
+            "*",
           ],
         },
         {
