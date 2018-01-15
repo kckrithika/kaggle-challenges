@@ -31,10 +31,7 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
         # [xiao.zhou] Adding liveness probe to deployment reporter.
-        "prd,prd-samtest,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
-        "prd,prd-samdev,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
         "prd,prd-sam,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
-        "prd,prd-samdev,snapshoter,hypersam": "sam-0001618-9b64acaa",
 
         # [rbhat] Fix synthetic watchdog in GIA
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
@@ -57,9 +54,9 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001600-33884860",
-            madkub: "1.0.0-0000056-f3539b1a",
-            madkubSidecar: "1.0.0-0000056-f3539b1a",
+            hypersam: "sam-0001622-cbc44617",
+            madkub: "1.0.0-0000058-3855b6fd",
+            madkubSidecar: "1.0.0-0000058-3855b6fd",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
