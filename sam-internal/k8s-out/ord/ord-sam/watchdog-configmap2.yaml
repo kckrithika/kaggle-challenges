@@ -44,6 +44,7 @@ data:
       },
       "podNamespacePrefixBlacklist": "sam-watchdog",
       "publishAlertsToKafka": false,
+      "publishAllReportsToKafka": true,
       "rcImtEndpoint": "https://reportcollector-ord.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-alerts@salesforce.com",
       "sdpEndpoint": "http://localhost:39999",
