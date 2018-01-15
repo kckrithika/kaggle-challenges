@@ -68,17 +68,18 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                                 configs.cert_volume_mount,
                                 configs.kube_config_volume_mount,
                             ]),
-                        env: [
+                        env: configs.filter_empty([
                             configs.kube_config_env,
+                            if configs.estate == "phx-sam" then
                             {
                                 name: "FDS_ASSUMED_CAPACITY_PER_POD",
                                 value: storageconfigs.fds_per_pod_capacity,
-                            },
+                            } else {},
                             {
                                 name: "FDS_PROFILING",
                                 value: storageconfigs.fds_profiling,
                             },
-                        ],
+                        ]),
                     },
                     {
                         // Pump prometheus metrics to argus.
