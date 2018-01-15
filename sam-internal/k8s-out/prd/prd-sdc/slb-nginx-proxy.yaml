@@ -21,8 +21,8 @@ spec:
           httpGet:
             path: /
             port: 12080
-          initialDelaySeconds: 5
-          periodSeconds: 3
+          initialDelaySeconds: 15
+          periodSeconds: 10
         name: slb-nginx-proxy
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
