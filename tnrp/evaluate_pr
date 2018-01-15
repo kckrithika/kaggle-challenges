@@ -4,3 +4,51 @@ set -e
 REPO_OWNER=sam
 
 /opt/sam/evaluate-pr --repo-owner="$REPO_OWNER" --repo-name="$TNRP_PRODUCT" --pr="$STAGE_PULL_REQUEST_ID" --authorizer="$STAGE_GO_TRIGGER_USER" --debug
+
+
+#Don't exit on error
+set +e
+#Print each command
+set -x
+
+#exitIfMergeCommitFound checks if there are any
+#merge commits introduced by the current branch
+#which are not present in the origin/master.
+#If it finds any merge commits, it calls exit.
+exitIfMergeCommitFound() {
+    GIT_CURRENT_BRANCH=$(git name-rev --name-only HEAD)
+    tnrpBotName='tnrp-ro@salesforce.com'
+    #Find count of all the merge commits that are
+    #present in the current branch but not in origin/master.
+    #Merge commits by tnrp bot are ignored.
+    key="commit"
+    mergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --merges --pretty=format:"$key %H %P %an" |grep -v $tnrpBotName | grep -c $key) || true
+    #Find count of all non merge commits that are
+    #present in the current branch but not in origin/master.
+    #Commits by tnrp bot are ignored.
+    nonMergeCommits=$(git log origin/master..$GIT_CURRENT_BRANCH --no-merges --pretty=format:"$key %H %P %an" |grep -v $tnrpBotName | grep -c $key) || true
+    echo "PR has ${mergeCommits} merge commits and ${nonMergeCommits} normal commits"
+    if [ "$mergeCommits" -ne "0" ]
+    then
+        echo "Merge commits are not allowed in PRs"
+        echo "For help removing them see http://stackoverflow.com/questions/21115596/remove-a-merge-commit-keeping-current-changes"
+        #we don't exit 1 if evaluate-pr has passed already
+        exit 0
+        #exit 1
+    fi
+}
+
+exitIfMergeCommitFound
+
+/opt/sam/aclrepo  --repo manifests --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
+
+cd /tmp
+rm -rf manifests || true
+git clone git@git.soma.salesforce.com:sam/manifests.git
+
+cd -
+
+/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder  -debug -repo-name manifests
+
+#we don't exit 1 if evaluate-pr has passed already
+exit 0
