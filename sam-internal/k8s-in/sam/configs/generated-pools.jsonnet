@@ -1348,80 +1348,8 @@
       "access": [
         "*"
       ],
-      "controlEstate": "prd-samdev",
-      "estate": "prd-samdevsandbox",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "*"
-      ],
-      "access": [
-        "*"
-      ],
-      "controlEstate": "prd-samdev",
-      "estate": "prd-samdevspare",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "*"
-      ],
-      "access": [
-        "*"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-samsandbox",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "*"
-      ],
-      "access": [
-        "*"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-samspare",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "*"
-      ],
-      "access": [
-        "*"
-      ],
       "controlEstate": "prd-samtest",
       "estate": "prd-samtest",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "*"
-      ],
-      "access": [
-        "*"
-      ],
-      "controlEstate": "prd-samtest",
-      "estate": "prd-samtestsandbox",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
-        "*"
-      ],
-      "access": [
-        "*"
-      ],
-      "controlEstate": "prd-samtest",
-      "estate": "prd-samtestspare",
       "kingdom": "prd",
       "superPod": "None"
     },
