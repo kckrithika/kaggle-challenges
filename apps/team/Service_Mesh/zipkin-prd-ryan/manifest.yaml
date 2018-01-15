@@ -13,7 +13,7 @@ system:
         value: mesh
       args:
       - -endpoint
-      - zipkin:DATACENTER:9411:10.0.90.172
+      - zipkin:DATACENTER_ALLENV:9411:10.0.90.172
       livenessProbe:
         initialDelaySeconds: 5
         exec:
