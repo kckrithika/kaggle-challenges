@@ -24,6 +24,8 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      - mountPath: /opt/cre/logs
+        name: logvol  
     - name: sherpa-cre-stream-processing
       image: sfci/servicelibs/sherpa:2.0.15
       env:
