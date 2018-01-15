@@ -53,3 +53,5 @@ apps:
   - prd/prd-sam
  kubernetes-dashboard:
   - prd/prd-sam
+ TnrpMonitor:
+  - prd/prd-sam

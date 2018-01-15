@@ -1,0 +1,35 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - sam@salesforce.com
+  functions:
+  - name: tnrpwd
+    count: 1
+    containers:
+    - name: tnrpwd
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/tnrpwd:thargrove-20170329_161129-693e7ee
+      command: ["/bin/tnrpWatchdog"]
+      args: ["-tokenfile", "/var/secrets/git/token.txt"]
+      ports:
+      - containerPort: 64132
+      livenessProbe:
+        httpGet:
+          path: /probe
+          port: 64132
+      volumeMounts:
+        - mountPath: /var/secrets/git
+          name: gitvol
+          readOnly: true
+    volumes:
+    - name: gitvol
+      secret:
+        secretName: git-token
+  loadbalancers:
+  - lbname: tnrpwdlb
+    function: tnrpwd
+    slbEnabled: true
+    ports:
+      - port: 64132
+        targetport: 64132
