@@ -10,6 +10,9 @@ system:
     containers:
     - name: cre-sp-prd-ccp-demo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc-impl
+      env:
+        - name: logDir
+          value: /data/sam/cre/log/prd-ccp_demo/cre-stream-processing
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -23,7 +26,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/sam/cre/log/prd-ccp_demo/cre-stream-processing  
+        path: /data/sam/cre/log/prd-ccp_demo/cre-stream-processing
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
