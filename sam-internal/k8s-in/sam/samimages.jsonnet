@@ -35,6 +35,11 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
         "prd,prd-sam,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
         "prd,prd-samdev,snapshoter,hypersam": "sam-0001618-9b64acaa",
+
+        # [rbhat] Fix synthetic watchdog in GIA
+        "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
+        "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
+
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
