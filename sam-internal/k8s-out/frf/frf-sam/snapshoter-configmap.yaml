@@ -4,8 +4,8 @@ data:
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "kafka-topic": "sfdc.prod.sam__prd.ajna_local__resourcestatus",
-      "kafkaEndpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
+      "kafka-topic": "sfdc.prod.sam__frf.ajna_local__resourcestatus",
+      "kafkaEndpoint": "ajna0-broker1-0-frf.data.sfdc.net:9093",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "recipient": "sam@salesforce.com"
     }
