@@ -7,9 +7,9 @@ system:
   functions:
   # service name
   - name: mgmt
-    type: stateful-set
+    #type: stateful-set
     # number of instances ("kpods") to deploy and run
-    count: 3
+    count: 4
     volumes:
     - name: cert
       maddogCert:
@@ -27,7 +27,7 @@ system:
       - name: PKI_MONITORDIR
         value: /certs/client
       - name: KPODS_COUNT
-        value: 3
+        value: 4
       volumeMounts:
       - name: cert
         mountPath: /certs
@@ -35,23 +35,23 @@ system:
         mountPath: /secrets/service-config/secure/
         readOnly: true
       ports:
-        - containerPort: 8889
+        - containerPort: 8080
         - containerPort: 15372
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       livenessProbe:
         initialDelaySeconds: 60
         httpGet:
           path: /ping.jsp
-          port: 8889
-    lbName: mgmtserviceslb
+          port: 8080
+    #lbName: mgmtserviceslb
 
     #terminationGracePeriodSeconds: 33
   loadbalancers:
   - lbname: mgmt-services-lb
     function: mgmt
-    #nodeExposed: true
+    nodeExposed: false
     slbenabled: true
     ports:
       - port: 8889
-        targetport: 8889
+        targetport: 8080
  
