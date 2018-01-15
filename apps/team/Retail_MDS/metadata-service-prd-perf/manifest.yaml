@@ -11,9 +11,12 @@ system:
     - name: certificates
       maddogCert:
         type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-mds/logs
     containers:
     - name: metadata-service-prd-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.40.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.41.0
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -50,6 +53,8 @@ system:
       volumeMounts:
         - name: certificates
           mountPath: /certificates
+        - name: logvol
+          mountPath: /home/sfdc-mds/logs
 
     - name: sherpa-mds-prd-perf
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
@@ -72,8 +77,6 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
-
-  # TODO: volumes for logging
   loadbalancers:
   - lbname: metadata-service-prd-perf-lb
     function: metadata-service-prd-perf
