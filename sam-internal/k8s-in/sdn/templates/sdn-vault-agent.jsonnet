@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
@@ -14,7 +15,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "sdn-vault-agent",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: std.prune([
                             "/sdn/sdn-vault-agent",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
@@ -22,7 +23,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--certfile=" + configs.certFile,
                             "--cafile=" + configs.caFile,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_vault_agent,
-                        ],
+                            (if configs.estate == "prd-sdc" then ("--log_dir=" + sdnconfigs.logFilePath)),
+                        ]),
                         livenessProbe: {
                             httpGet: {
                                path: "/liveness-probe",
