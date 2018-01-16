@@ -137,7 +137,7 @@ local kingdom = std.extVar("kingdom");
             "disable-rollback": true,
             "disable-security-check": true,
             "override-control-estate": "/prd/prd-sam",
-            "orphan-namespace": "flowsnake",
+            "orphan-namespaces": "flowsnake",
             "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
             "max-resource-time": 300000000000,
             "poll-delay": 30000000000,

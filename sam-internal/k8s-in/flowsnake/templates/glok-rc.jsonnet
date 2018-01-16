@@ -1,7 +1,6 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local zookeeper = import "_zookeeper-rcs.jsonnet";
-local estate = std.extVar("estate");
-if (estate != "prd-data-flowsnake_test") then {
+{
     apiVersion: "apps/v1beta1",
     kind: "StatefulSet",
     metadata: {
@@ -75,4 +74,4 @@ if (estate != "prd-data-flowsnake_test") then {
             }
         }
     }
-} else "SKIP"
+}
