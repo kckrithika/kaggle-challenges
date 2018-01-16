@@ -30,9 +30,6 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
-        # [xiao.zhou] Adding liveness probe to deployment reporter.
-        "prd,prd-sam,sam-deployment-reporter,hypersam": "sam-0001608-4004980a",
-
         # [rbhat] Fix synthetic watchdog in GIA
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
@@ -61,9 +58,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001600-33884860",
-            madkub: "1.0.0-0000056-f3539b1a",
-            madkubSidecar: "1.0.0-0000056-f3539b1a",
+            hypersam: "sam-0001622-cbc44617",
+            madkub: "1.0.0-0000058-3855b6fd",
+            madkubSidecar: "1.0.0-0000058-3855b6fd",
             },
 
         ### Release Phase 3 - Canary Prod FRF
