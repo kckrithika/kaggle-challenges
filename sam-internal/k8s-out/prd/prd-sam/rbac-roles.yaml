@@ -9,7 +9,6 @@ items:
     - '*'
     resources:
     - pods/status
-    - events
     verbs:
     - '*'
   - apiGroups:
@@ -56,6 +55,12 @@ items:
     - nodes
     verbs:
     - create
+  - apiGroups:
+    - '*'
+    resources:
+    - events
+    verbs:
+    - '*'
   - nonResourceURLs:
     - '*'
     verbs:
