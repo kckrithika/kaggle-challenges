@@ -41,6 +41,7 @@ system:
       livenessProbe:
         initialDelaySeconds: 20
         periodSeconds: 15
+        scheme: HTTPS
         httpGet:
           path: /manage/health
           port: 15372
