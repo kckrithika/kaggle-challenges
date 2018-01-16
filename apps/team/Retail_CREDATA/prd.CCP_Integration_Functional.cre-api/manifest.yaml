@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-api-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:9d95ae9
       ports:
       - containerPort: 8080
       - containerPort: 7020
