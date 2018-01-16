@@ -25,7 +25,8 @@ local kingdom = std.extVar("kingdom");
         "prd/prd-dev-flowsnake_iot_test": [
             "Flowsnake_Ops_Platform",
             "IoT-RM-Flowsnake",
-            "CRE_AD"
+            "CRE_AD",
+            "Analytics-DataPool"
         ],
     },
     topic_grants_map: {
