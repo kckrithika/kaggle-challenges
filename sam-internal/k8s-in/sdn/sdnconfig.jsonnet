@@ -18,4 +18,7 @@ local utils = import "util_functions.jsonnet";
         else
             "/data/secrets/sambgppassword"
     ),
+
+    # File path for logs
+    logFilePath: "/data/logs/sdn/",
 }
