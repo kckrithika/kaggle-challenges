@@ -40,5 +40,5 @@ system:
       function: warden-stage-func
       nodeExposed: true
       ports:
-        - port: 8882
+        - port: 8881
           targetport: 8882
