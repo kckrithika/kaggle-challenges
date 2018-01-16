@@ -54,8 +54,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                     path: "/",
                                     port: portconfigs.slb.canaryServiceProxyHttpPort,
                                 },
-                                initialDelaySeconds: 5,
-                                periodSeconds: 3,
+                                initialDelaySeconds: 15,
+                                periodSeconds: 10,
                             },
                         }
                         else {}
