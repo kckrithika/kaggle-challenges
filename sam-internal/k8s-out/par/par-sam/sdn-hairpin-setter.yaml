@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-hairpin-setter
+  name: sdn-hairpin-setter
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        daemonset: "true"
+        name: sdn-hairpin-setter
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-hairpin-setter
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000542-5a3bab56
+        name: sdn-hairpin-setter
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /sys/devices/virtual/net
+          name: sys-mount
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /sys/devices/virtual/net
+        name: sys-mount
