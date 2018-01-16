@@ -13,6 +13,10 @@ system:
       env:        
         - name: logDir
           value: /data/sam/cre/log/prd-ccp_integration_functional/cre-stream-processing
+        - name: metrics.kafka.topic
+          value: sfdc.prod.cre__prd.ajna_local__cre_audit
+        - name: metrics.kafka.server
+          value: ajna0-brokeragg1-0-prd.data.sfdc.net:6667
       ports:
       - containerPort: 8080
       - containerPort: 7020
