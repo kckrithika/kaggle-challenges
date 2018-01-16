@@ -35,11 +35,10 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
-
     loadbalancers:
-    - lbname: warden-stage
+    - lbname: warden-stage-node
       function: warden-stage-func
-      slbEnabled: true
+      nodeExposed: true
       ports:
-        - port: 80
+        - port: 8882
           targetport: 8882
