@@ -7,7 +7,7 @@ system:
       - gateway@salesforce.com
   functions:
   - name: default
-    count: 2
+    count: 1
     hostnetwork: true
     volumes: 
     - name: gwcertclient
@@ -41,10 +41,13 @@ system:
       livenessProbe:
         initialDelaySeconds: 20
         periodSeconds: 15
-        scheme: HTTPS
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - "/bin/true"
+        #scheme: HTTPS
+        #httpGet:
+        #  path: /manage/health
+        #  port: 15372
   loadbalancers:
   - lbname: gatewayconfiglb
     #nodeexposed: true
