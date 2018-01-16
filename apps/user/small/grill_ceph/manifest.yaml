@@ -7,7 +7,7 @@ system:
     count: 2
     containers:
     - name: stateful-small
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/grill_ceph:v1 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1 
       command:
         - /bin/grill_ceph
       ports:
