@@ -40,6 +40,8 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: prd-sdc
@@ -53,3 +55,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

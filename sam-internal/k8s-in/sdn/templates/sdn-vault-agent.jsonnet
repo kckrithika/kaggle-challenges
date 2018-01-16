@@ -41,6 +41,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 name: "certs",
                                 mountPath: "/data/certs",
                             },
+                            (if configs.estate == "prd-sdc" then sdnconfigs.logs_volume_mount else {}),
                         ]),
                     },
                 ],
@@ -53,6 +54,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             path: "/data/certs",
                         },
                     },
+                    (if configs.estate == "prd-sdc" then sdnconfigs.logs_volume else {}),
+
                 ]),
                 nodeSelector: {
                     pool: configs.estate,
