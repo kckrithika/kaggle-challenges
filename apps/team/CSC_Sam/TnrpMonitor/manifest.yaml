@@ -11,7 +11,7 @@ system:
     - name: tnrpwd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/tnrpwd:thargrove-20170329_161129-693e7ee
       command: ["/bin/tnrpWatchdog"]
-      args: ["-tokenfile", "/var/secrets/git/token"]
+      args: ["-tokenfile", "/var/secrets/git/token.txt"]
       ports:
       - containerPort: 64132
       livenessProbe:
@@ -24,7 +24,7 @@ system:
           readOnly: true
     volumes:
     - name: gitvol
-      secret:
+      k4aSecret:
         secretName: git-token
   loadbalancers:
   - lbname: tnrpwdlb
