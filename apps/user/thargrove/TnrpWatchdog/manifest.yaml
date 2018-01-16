@@ -12,7 +12,7 @@ system:
     - name: tnrpwd
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/redirect:latest
       command: ["/redirect"]
-      args: ["-port=64132", "-message", "Moved to ADD"]
+      args: ["-port=64132", "-message", "Moved to https://sfdc.co/tnrpmonitor"]
       ports:
       - containerPort: 64132
       livenessProbe:
