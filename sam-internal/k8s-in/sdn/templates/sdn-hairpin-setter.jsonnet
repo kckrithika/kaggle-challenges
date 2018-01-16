@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "yhu" || configs.kingdom == "dfw" then {
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -53,4 +53,4 @@ if configs.kingdom == "prd" || configs.kingdom == "yhu" || configs.kingdom == "d
         name: "sdn-hairpin-setter",
         namespace: "sam-system",
     },
-} else "SKIP"
+}
