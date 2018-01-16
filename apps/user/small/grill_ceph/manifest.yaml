@@ -2,16 +2,16 @@ apiVersion: v1
 
 system:
   functions:
-  - name: stateful-func
+  - name: stateful-grill-ceph
     type: stateful-set
     count: 2
     containers:
     - name: stateful-small
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/grill_ceph:v1 
       command:
-        - /bin/ceph-test
+        - /bin/grill_ceph
       ports:
-      - containerPort: 9090
+      - containerPort: 9099
         name: web
       volumeMounts:
       - name: www
@@ -19,17 +19,17 @@ system:
       livenessProbe:
           httpGet:
             path: /
-            port: 9090
+            port: 9098
     lbname: stateful-lb1
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
       storageClassName: small-hdd-pool
-      storageSizeRequest: 5Gi
+      storageSizeRequest: 500Gi
   loadbalancers:
   - lbname: cephlb
-    function: stateful-func
+    function: stateful-grill-ceph
     slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 9099
+        targetport: 9099
