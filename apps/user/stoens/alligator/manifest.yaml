@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: my-container
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/alligator:3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/alligator:stoens-20180116-df7bee7
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
