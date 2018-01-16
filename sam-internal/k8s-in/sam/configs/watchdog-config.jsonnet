@@ -128,7 +128,7 @@ local utils = import "util_functions.jsonnet";
       "/etc/pki_service/etcd/etcd-client/certificates/etcd-client.pem",
       "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
-    ] + (if configs.kingdom != "prd" then ["/data/certs/hostcert.crt"] else []),
+    ],
     maddogEtcdCerts: [
       "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
       "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
