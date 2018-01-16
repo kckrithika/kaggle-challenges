@@ -17,6 +17,7 @@ system:
       volumeMounts:
         - mountPath: /database
           name: maxmind-volume
+
     - name: ccait-geoip-backend
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:049a201e1066a6773f5a4a9cacce1c45806a0637
       env:
@@ -37,7 +38,7 @@ system:
         - mountPath: /dw/data
           name: maxmind-volume
         - mountPath: /log
-          name: log-volume
+          name: geoip-log-volume
       ports:
         - containerPort: 7020
           name: grpc
@@ -51,8 +52,9 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa:2.0.17
+      image: sfci/servicelibs/sherpa:2.0.18
       args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -60,6 +62,9 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
       ports:
       - containerPort: 7012
         name: sherpa-b-in
@@ -77,12 +82,18 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+
+
     volumes:
     - name: maxmind-volume
       emptyDir: {}
-    - name: log-volume
+    - name: geoip-log-volume
       hostPath:
         path: /home/sfdc-geoip/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+
   - name: geoip-demo
     count: 1
     containers:
@@ -112,8 +123,9 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+
     - name: sherpa-f
-      image: sfci/servicelibs/sherpa:2.0.17
+      image: sfci/servicelibs/sherpa:2.0.18
       args: ["--zipkin-rate", "1.0"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -121,6 +133,9 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
       ports:
       - containerPort: 15373
         name: sherpa-f-adm
@@ -136,6 +151,12 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+
   - name: geoip-xlt
     count: 1
     containers:
@@ -144,10 +165,13 @@ system:
       ports:
       - containerPort: 8500
     - name: sherpa-xlt
-      image: sfci/servicelibs/sherpa:2.0.17
+      image: sfci/servicelibs/sherpa:2.0.18
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
       ports:
       - containerPort: 15373
         name: sherpa-xlt-adm
@@ -163,6 +187,12 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 5
         periodSeconds: 5
+
+
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
 
   loadbalancers:
   - lbname: ccait-geoip-frontend-lb
