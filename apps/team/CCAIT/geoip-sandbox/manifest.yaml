@@ -55,7 +55,7 @@ system:
 
     - name: sherpa-b
 #      image: sfci/servicelibs/sherpa:2.0.19
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sherpa-dlr:a0b4e80
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a0b4e80
       args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -127,7 +127,7 @@ system:
 
     - name: sherpa-f
 #      image: sfci/servicelibs/sherpa:2.0.19
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sherpa-dlr:a0b4e80
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a0b4e80
       args: ["--zipkin-rate", "1.0"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -168,7 +168,7 @@ system:
       - containerPort: 8500
     - name: sherpa-xlt
 #      image: sfci/servicelibs/sherpa:2.0.19
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sherpa-dlr:a0b4e80
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a0b4e80
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
