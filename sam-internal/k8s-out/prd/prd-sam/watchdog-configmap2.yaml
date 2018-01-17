@@ -23,7 +23,7 @@ data:
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "sam-system,csc-sam",
-      "laddr": "0.0.0.0:8083",
+      "laddr": "0.0.0.0:8063",
       "maddogCommonCerts": [
         "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
         "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",

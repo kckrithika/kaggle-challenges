@@ -67,7 +67,7 @@ local utils = import "util_functions.jsonnet";
   # Sdp
   sdpEndpoint: "http://localhost:39999",
   # Synthetic
-  laddr: "0.0.0.0:8083",
+  laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
   imageName: samimages.hypersam,
   # Maddog checker
   maddogServerCAPath: configs.maddogServerCAPath,

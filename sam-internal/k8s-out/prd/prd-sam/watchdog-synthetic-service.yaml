@@ -11,7 +11,7 @@ spec:
     nodePort: 32001
     port: 9090
     protocol: TCP
-    targetPort: 8083
+    targetPort: 8063
   selector:
     name: watchdog-synthetic
   type: NodePort

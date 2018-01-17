@@ -15,7 +15,7 @@ local configs = import "config.jsonnet";
                 name: "watchdog-synthetic-service-port",
                 port: 9090,
                 protocol: "TCP",
-                targetPort: 8083,
+                targetPort: (if configs.estate == "prd-sam" then 8063 else 8083),
                 nodePort: 32001,
             },
             ],
