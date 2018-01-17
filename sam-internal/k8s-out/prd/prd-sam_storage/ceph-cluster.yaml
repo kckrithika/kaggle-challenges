@@ -9,7 +9,7 @@ items:
     namespace: ceph-prd-sam-cephdev
   spec:
     K8S_NETWORK: 10.231.172.0/24
-    cephVersion: jewel-0000052-36e8b39d
+    cephVersion: jewel-0000056-50bd0816
     faultDomainBoundary: node.sam.sfdc.net/rack
     metadata:
       name: ceph-prd-sam-cephdev
@@ -27,7 +27,7 @@ items:
     namespace: ceph-prd-sam-storage
   spec:
     K8S_NETWORK: 10.231.165.0/24
-    cephVersion: jewel-0000052-36e8b39d
+    cephVersion: jewel-0000056-50bd0816
     faultDomainBoundary: node.sam.sfdc.net/rack
     metadata:
       name: ceph-prd-sam-storage
