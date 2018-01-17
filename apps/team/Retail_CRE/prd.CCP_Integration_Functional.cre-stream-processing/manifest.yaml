@@ -16,7 +16,7 @@ system:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
         - name: METRICS_KAFKA_SERVER
-          value: ajna0-brokeragg1-0-prd.data.sfdc.net:6667
+          value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       ports:
       - containerPort: 8080
       - containerPort: 7020
