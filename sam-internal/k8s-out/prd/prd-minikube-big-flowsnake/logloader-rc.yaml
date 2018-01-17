@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: flowsnake-logloader
+  name: flowsnake-logloader
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowsnake-logloader
+  template:
+    metadata:
+      labels:
+        app: flowsnake-logloader
+        name: flowsnake-logloader
+    spec:
+      containers:
+      - env:
+        - name: FLOWSNAKE_FLEET
+          valueFrom:
+            configMapKeyRef:
+              key: name
+              name: fleet-config
+        - name: DOCKER_REGISTRY_URL
+          valueFrom:
+            configMapKeyRef:
+              key: registry
+              name: fleet-config
+        - name: KUBERNETES_IMAGE_PULL_POLICY
+          value: Always
+        image: minikube/flowsnake-logloader:minikube
+        imagePullPolicy: Never
+        name: flowsnake-logloader

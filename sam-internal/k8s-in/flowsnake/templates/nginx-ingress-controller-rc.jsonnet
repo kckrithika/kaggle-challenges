@@ -33,7 +33,7 @@ local estate = std.extVar("estate");
                     {
                         name: "nginx-ingress-lb",
                         image: flowsnakeimage.ingress_controller_nginx,
-                        imagePullPolicy: "Always",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
                         readinessProbe: {
                             httpGet: {
                                 path: "/healthz",
@@ -67,6 +67,7 @@ local estate = std.extVar("estate");
                                     },
                                 },
                             },
+                            # Remove after upgrade to future version of ingress controller that uses --kubeconfig arg instead
                             {
                                 name: "KUBECONFIG",
                                 value: "/etc/kubernetes/kubeconfig",
@@ -79,15 +80,26 @@ local estate = std.extVar("estate");
                             },
                             {
                                 containerPort: 443,
-                                hostPort: 8443,
+                                # NodePort allowed range is different in Minikube; compensate accordingly.
+                                hostPort: if flowsnakeconfig.is_minikube then 443 else 8443,
                             },
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
+                            # Future ingress controller expects annotations-prefix
+                            # "--annotations-prefix=ingress.kubernetes.io",
+                            # Future ingress controller version uses 30s
+                            #"--sync-period=30s",
                             "--sync-period=5s",
-                        ],
+                        ] + if !flowsnakeconfig.is_minikube then
+                        [
+                            # Future ingress controller versions use this argument instead of KUBECONFIG env var.
+                            # "--kubeconfig=/etc/kubernetes/kubeconfig",
+                        ] else [],
                         volumeMounts: (
-                            if estate == "prd-data-flowsnake_test" then
+                            if flowsnakeconfig.is_minikube then
+                                []
+                            else if flowsnakeconfig.maddog_enabled then
                                 flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
@@ -97,7 +109,9 @@ local estate = std.extVar("estate");
                     },
                 ],
                 volumes: (
-                    if estate == "prd-data-flowsnake_test" then
+                    if flowsnakeconfig.is_minikube then
+                        []
+                    else if flowsnakeconfig.maddog_enabled then
                         flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume

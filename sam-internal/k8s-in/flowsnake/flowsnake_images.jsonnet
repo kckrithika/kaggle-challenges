@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {
     ### Per-phase image tags
     per_phase: {
@@ -138,11 +139,35 @@ local kingdom = std.extVar("kingdom");
                 },
             },
         },
+
+        minikube: {
+            canary_image_tag: "minikube",
+            es_image_tag: "minikube",
+            fleetService_image_tag: "minikube",
+            glok_image_tag: "minikube",
+            ingressControllerNginx_image_tag: "minikube",
+            ingressDefaultBackend_image_tag: "minikube",
+            kibana_image_tag: "minikube",
+            logloader_image_tag: "minikube",
+            logstash_image_tag: "minikube",
+            nodeMonitor_image_tag: "minikube",
+            zookeeper_image_tag: "minikube",
+            version_mapping: {
+                main: {
+                  minikube: "minikube",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
     },
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-data-flowsnake_test") then
+        if flowsnakeconfig.is_minikube then
+            "minikube"
+        else if estate == "prd-data-flowsnake_test" then
             "1"
         else if (kingdom == "prd") then
             "2"
@@ -154,18 +179,21 @@ local kingdom = std.extVar("kingdom");
 
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
-    canary: "dva-registry.internal.salesforce.com/dva/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
-    es: "dva-registry.internal.salesforce.com/dva/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
-    fleet_service: "dva-registry.internal.salesforce.com/dva/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
-    glok: "dva-registry.internal.salesforce.com/dva/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
-    ingress_controller_nginx: "dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
-    ingress_default_backend: "dva-registry.internal.salesforce.com/dva/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
-    kibana: "dva-registry.internal.salesforce.com/dva/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
-    logloader: "dva-registry.internal.salesforce.com/dva/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
-    logstash: "dva-registry.internal.salesforce.com/dva/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
-    node_monitor: "dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
-    version_mapping: $.per_phase[$.phase].version_mapping,
+    canary: flowsnakeconfig.registry + "/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
+    es: flowsnakeconfig.registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
+    fleet_service: flowsnakeconfig.registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
+    glok: flowsnakeconfig.registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
+    ingress_controller_nginx: flowsnakeconfig.registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
+    ingress_default_backend: flowsnakeconfig.registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
+    kibana: flowsnakeconfig.registry + "/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
+    logloader: flowsnakeconfig.registry + "/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
+    logstash: flowsnakeconfig.registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
+    node_monitor: flowsnakeconfig.registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
+    zookeeper: flowsnakeconfig.registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
+
+    # Non-Flowsnake images
     /* watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].watchdog_image_tag, */
     watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm",
-    zookeeper: "dva-registry.internal.salesforce.com/dva/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
+
+    version_mapping: $.per_phase[$.phase].version_mapping,
 }

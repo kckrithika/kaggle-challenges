@@ -1,4 +1,8 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube_small then
+"SKIP"
+else
 {
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -21,7 +25,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                 containers: [
                     {
                         image: flowsnakeimage.canary,
-                        imagePullPolicy: "IfNotPresent",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "IfNotPresent",
                         resources: {
                             requests: {
                                 cpu: 0.1,

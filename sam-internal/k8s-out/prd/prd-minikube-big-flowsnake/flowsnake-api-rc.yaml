@@ -1,0 +1,106 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: flowsnake-fleet-service
+  name: flowsnake-fleet-service
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowsnake-fleet-service
+  template:
+    metadata:
+      labels:
+        app: flowsnake-fleet-service
+        name: flowsnake-fleet-service
+    spec:
+      containers:
+      - env:
+        - name: FLOWSNAKE_FLEET
+          valueFrom:
+            configMapKeyRef:
+              key: name
+              name: fleet-config
+        - name: DOCKER_REGISTRY_URL
+          valueFrom:
+            configMapKeyRef:
+              key: registry
+              name: fleet-config
+        - name: KUBERNETES_IMAGE_PULL_POLICY
+          value: Always
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
+        - name: KUBECONFIG
+          valueFrom:
+            configMapKeyRef:
+              key: kubeconfig
+              name: fleet-config
+        image: minikube/flowsnake-fleet-service:minikube
+        imagePullPolicy: Never
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 180
+        name: flowsnake-fleet-service
+        ports:
+        - containerPort: 8080
+          name: fs30000
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+            scheme: HTTP
+        volumeMounts:
+        - mountPath: /etc/flowsnake/version-mapping
+          name: version-mapping
+          readOnly: true
+        - mountPath: /etc/flowsnake/secrets/flowsnake-ldap
+          name: flowsnake-ldap
+          readOnly: true
+        - mountPath: /etc/flowsnake/config/auth-groups
+          name: auth-groups
+          readOnly: true
+        - mountPath: /etc/kubernetes/kubeconfig
+          name: kubeconfig
+          readOnly: true
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
+      volumes:
+      - name: flowsnake-ldap
+        secret:
+          secretName: flowsnake-ldap
+      - configMap:
+          name: version-mapping
+        name: version-mapping
+      - configMap:
+          name: auth-groups
+        name: auth-groups
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig-platform
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert

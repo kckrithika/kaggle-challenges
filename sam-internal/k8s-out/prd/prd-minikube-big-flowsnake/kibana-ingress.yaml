@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  name: kibana-ingress
+  namespace: flowsnake
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: kibana
+          servicePort: 5601
+        path: /kibana-logs

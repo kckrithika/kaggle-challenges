@@ -1,5 +1,9 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube_small then
+"SKIP"
+else
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -33,7 +37,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             },
                         },
                         image: flowsnakeimage.es,
-                        imagePullPolicy: "Always",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
                         env: [
                             {
                                 name: "NAMESPACE",
@@ -67,7 +71,10 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                 name: "HTTP_ENABLE",
                                 value: "true",
                             },
-                            {
+                            if flowsnakeconfig.is_minikube then {
+                                name: "KUBERNETES_CA_CERTIFICATE_FILE",
+                                value: "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt",
+                            } else {
                                 name: "KUBECONFIG",
                                 valueFrom: {
                                     configMapKeyRef: {

@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  version-mapping.properties: |
+    minikube = minikube
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: version-mapping
+  namespace: flowsnake

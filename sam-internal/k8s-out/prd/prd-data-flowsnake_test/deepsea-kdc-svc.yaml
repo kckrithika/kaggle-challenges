@@ -4,9 +4,9 @@ metadata:
   name: deepsea-kdc
   namespace: default
 spec:
-  externalName: hdaas-mnds4-1-prd.eng.sfdc.net
+  clusterIP: 10.254.209.167
   ports:
   - port: 88
     protocol: UDP
     targetPort: 9089
-  type: ExternalName
+  type: ClusterIP

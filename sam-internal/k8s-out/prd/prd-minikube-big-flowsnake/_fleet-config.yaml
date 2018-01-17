@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  kubeconfig: /etc/kubernetes/kubeconfig
+  name: minikube
+  registry: minikube
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: fleet-config
+  namespace: flowsnake

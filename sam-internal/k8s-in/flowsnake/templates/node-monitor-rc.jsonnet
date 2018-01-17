@@ -1,6 +1,10 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube_small then
+"SKIP"
+else
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -25,7 +29,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                      {
                         name: "node-monitor",
                         image: flowsnakeimage.node_monitor,
-                        imagePullPolicy: "IfNotPresent",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "IfNotPresent",
                         env: [
                             {
                                 name: "CANARY_INTERVAL_SECONDS",

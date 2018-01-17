@@ -1,0 +1,44 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  labels:
+    name: glok
+  name: glok
+  namespace: flowsnake
+spec:
+  replicas: 3
+  serviceName: glok-set
+  template:
+    metadata:
+      labels:
+        app: glok
+        name: glok
+    spec:
+      containers:
+      - env:
+        - name: ZOOKEEPER_CONNECTION_STRING
+          value: zookeeper-0.zookeeper-set:2181,zookeeper-1.zookeeper-set:2181,zookeeper-2.zookeeper-set:2181
+        - name: KAFKA_PORT
+          value: "9092"
+        - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+          value: "true"
+        - name: FLOWSNAKE_FLEET
+          valueFrom:
+            configMapKeyRef:
+              key: name
+              name: fleet-config
+        image: minikube/flowsnake-kafka:minikube
+        imagePullPolicy: Never
+        livenessProbe:
+          initialDelaySeconds: 180
+          tcpSocket:
+            port: 9092
+        name: glok
+        ports:
+        - containerPort: 9092
+          name: k9092
+        readinessProbe:
+          tcpSocket:
+            port: 9092
+  updateStrategy:
+    type: RollingUpdate

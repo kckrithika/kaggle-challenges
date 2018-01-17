@@ -30,6 +30,12 @@ local kingdom = std.extVar("kingdom");
             "CRE_AD",
             "Analytics-DataPool",
         ],
+        "prd/prd-minikube-small-flowsnake": [
+            "Flowsnake_Ops_Platform",
+        ],
+        "prd/prd-minikube-big-flowsnake": [
+            "Flowsnake_Ops_Platform",
+        ],
     },
     topic_grants_map: {
         "prd/prd-data-flowsnake": {
@@ -126,6 +132,18 @@ local kingdom = std.extVar("kingdom");
             ],
         },
         "prd/prd-dev-flowsnake_iot_test": {
+            Flowsnake_Ops_Platform: [
+                "sfdc.test.flowsnake__prd.ajna_local__logs",
+                "sfdc.prod.flowsnake__prd.ajna_local__logs",
+            ],
+        },
+        "prd/prd-minikube-small-flowsnake": {
+            Flowsnake_Ops_Platform: [
+                "sfdc.test.flowsnake__prd.ajna_local__logs",
+                "sfdc.prod.flowsnake__prd.ajna_local__logs",
+            ],
+        },
+        "prd/prd-minikube-big-flowsnake": {
             Flowsnake_Ops_Platform: [
                 "sfdc.test.flowsnake__prd.ajna_local__logs",
                 "sfdc.prod.flowsnake__prd.ajna_local__logs",

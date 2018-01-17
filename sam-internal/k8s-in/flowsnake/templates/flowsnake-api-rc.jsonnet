@@ -30,7 +30,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                     {
                         name: "flowsnake-fleet-service",
                         image: flowsnakeimage.fleet_service,
-                        imagePullPolicy: "Always",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
                         ports: [
                             {
                                 containerPort: 8080,

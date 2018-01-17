@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+  name: fleet-service-ingress
+  namespace: flowsnake
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: flowsnake-fleet-service
+          servicePort: 8080
+        path: /flowsnake
