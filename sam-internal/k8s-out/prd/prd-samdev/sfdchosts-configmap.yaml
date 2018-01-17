@@ -62,6 +62,36 @@ data:
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"
+        },
+        {
+          "bomrolename": "samdevpool",
+          "controlestate": "prd-samdev",
+          "devicerole": "samcompute",
+          "estate": "prd-samdevpool",
+          "hostname": "shared0-samdevpool1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samdevpool",
+          "controlestate": "prd-samdev",
+          "devicerole": "samcompute",
+          "estate": "prd-samdevpool",
+          "hostname": "shared0-samdevpool2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samdevpool",
+          "controlestate": "prd-samdev",
+          "devicerole": "samcompute",
+          "estate": "prd-samdevpool",
+          "hostname": "shared0-samdevpool3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
         }
       ]
     }
