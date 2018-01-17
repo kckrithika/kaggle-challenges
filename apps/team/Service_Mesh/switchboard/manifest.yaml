@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: switchboard
-    count: 4
+    count: 2
     containers:
     - name: switchboard
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/switchboard:dev
