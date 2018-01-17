@@ -54,9 +54,9 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa-b
-#      image: sfci/servicelibs/sherpa:2.0.19
+      image: sfci/servicelibs/sherpa:2.0.21
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a6b9d0e
-      args: ["--zipkin-rate", "0.01"]
+      args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -126,9 +126,8 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa-f
-#      image: sfci/servicelibs/sherpa:2.0.19
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a6b9d0e
-      args: ["--zipkin-rate", "1.0"]
+      image: sfci/servicelibs/sherpa:2.0.21
+      args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -167,8 +166,7 @@ system:
       ports:
       - containerPort: 8500
     - name: sherpa-xlt
-#      image: sfci/servicelibs/sherpa:2.0.19
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a6b9d0e
+      image: sfci/servicelibs/sherpa:2.0.21
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
