@@ -24,6 +24,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--cafile=" + configs.caFile,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_vault_agent,
                             (if configs.estate == "prd-sdc" then ("--log_dir=" + sdnconfigs.logFilePath)),
+                            (if configs.estate == "prd-sdc" then "--logtostderr=false"),
                         ]),
                         livenessProbe: {
                             httpGet: {
