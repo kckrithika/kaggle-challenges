@@ -32,28 +32,18 @@ system:
           - ./bin/agentcontroller.sh
           initialDelaySeconds: 5
           periodSeconds: 5
-    - name: sherpa-geoip
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/sherpa-zipkin:1.0
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7012
-        name: sherpa-b-in
-      - containerPort: 7080
-        name: sherpa-b-adm
+    - name: envoy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa-envoy:dev
+      args:
+      - --switchboard-addr
+      - switchboard-lb.service-mesh.prd-sam.prd.slb.sfdc.net
       livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
       readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
