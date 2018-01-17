@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.estate == "frf-sam" || configs.estate == "prd-samdev" then {
+if configs.estate == "dfw-sam" || configs.estate == "phx-sam" || configs.estate == "frf-sam" || configs.estate == "prd-samdev" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
