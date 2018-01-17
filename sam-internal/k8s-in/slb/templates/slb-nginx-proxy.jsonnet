@@ -33,27 +33,51 @@ if configs.kingdom == "prd" then {
                      slbconfigs.logs_volume,
                 ]),
                 containers: [
-                {
-                    name: "slb-nginx-proxy",
-                    image: slbimages.slbnginx,
-                    command: ["/runner.sh"],
-                livenessProbe: {
-                    httpGet: {
-                        path: "/",
-                        port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                    {
+                        name: "slb-nginx-proxy",
+                        image: slbimages.slbnginx,
+                        command: ["/runner.sh"],
+                        livenessProbe: {
+                        httpGet: {
+                            path: "/",
+                            port: portconfigs.slb.slbNginxProxyLivenessProbePort,
+                        },
+                        initialDelaySeconds: 15,
+                        periodSeconds: 10,
+                        },
+                        volumeMounts: configs.filter_empty([
+                        {
+                            name: "var-target-config-volume",
+                            mountPath: "/etc/nginx/conf.d",
+                        },
+                        slbconfigs.logs_volume_mount,
+                        ]),
                     },
-                    initialDelaySeconds: 15,
-                    periodSeconds: 10,
-                },
-                volumeMounts: configs.filter_empty([
+                ]
+                + if configs.estate == "prd-sdc" then
+                [
                 {
-                    name: "var-target-config-volume",
-                    mountPath: "/etc/nginx/conf.d",
-                },
-                slbconfigs.logs_volume_mount,
+                    name: "slb-file-watcher",
+                    image: slbimages.hypersdn,
+                    command: [
+                        "/sdn/slb-file-watcher",
+                        "--filePath=/host/data/slb/logs/slb-nginx-proxy.emerg.log",
+                        "--metricName=nginx-emergency",
+                        "--lastModReportTime=120s",
+                        "--scanPeriod=10s",
+                        "--skipZeroLengthFiles=true",
+                        "--metricsEndpoint=" + configs.funnelVIP,
+                        "--log_dir=" + slbconfigs.logsDir,
+                    ],
+                volumeMounts: configs.filter_empty([
+                    {
+                        name: "var-target-config-volume",
+                        mountPath: "/etc/nginx/conf.d",
+                    },
+                    slbconfigs.logs_volume_mount,
                 ]),
-},
-                ],
+                },
+                ] else [],
 
                 nodeSelector: {
                     "slb-service": "slb-nginx",
