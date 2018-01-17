@@ -3,13 +3,13 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - cre@salesforce.com
+      - frecio@salesforce.com
   functions:
   - name: cre-stream-processing-prd-ccp-integration-functional
     count: 2
     containers:
     - name: cre-sp-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:frecio-metrics.1d867fd.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:frecio-metrics.74aa49e.13
       env:        
         - name: logDir
           value: /data/sam/cre/log/prd-ccp_integration_functional/cre-stream-processing
