@@ -28,7 +28,7 @@ spec:
           value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000287-054eac70
         - name: CEPH_DAEMON_IMAGE_PATH
           value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph-daemon
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000288-360ffd18
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000320-403b5b92
         name: cephoperator
         volumeMounts:
         - mountPath: /var/log

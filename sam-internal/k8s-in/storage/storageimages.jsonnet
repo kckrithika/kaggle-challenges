@@ -28,9 +28,9 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 0 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "0": {
             default_tag: "base-0000314-8d9eaec0",
-            ceph_operator_tag: "base-0000288-360ffd18",
+            ceph_operator_tag: "base-0000320-403b5b92",
             sfms_tag: "latest-0000102-addfc459",
-            cephdaemon_tag: "jewel-0000052-36e8b39d",
+            cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000017-c6de7b57",

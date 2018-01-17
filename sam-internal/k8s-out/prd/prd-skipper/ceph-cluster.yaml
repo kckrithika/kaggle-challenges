@@ -9,7 +9,7 @@ items:
     namespace: legostore
   spec:
     K8S_NETWORK: 10.248.0.0/13
-    cephVersion: jewel-0000052-36e8b39d
+    cephVersion: jewel-0000056-50bd0816
     faultDomainBoundary: node.sam.sfdc.net/rack
     metadata:
       name: ceph-prd-skipper
