@@ -25,7 +25,15 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      env:
+      - name: KUBECONFIG
+        value: /kubeconfig/kubeconfig-platform
       volumes:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig

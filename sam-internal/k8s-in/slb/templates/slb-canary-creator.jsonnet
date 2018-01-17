@@ -25,7 +25,11 @@ if configs.estate == "prd-sdc" then {
             spec: {
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
+                    configs.kube_config_volume,
                 ]),
+                env: [
+                    configs.kube_config_env,
+                ],
                 containers: [
                     {
                         name: "slb-canary-creator",
@@ -39,6 +43,7 @@ if configs.estate == "prd-sdc" then {
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
+                            configs.kube_config_volume_mount,
                         ]),
                     },
                 ],
