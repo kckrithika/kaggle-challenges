@@ -33,7 +33,7 @@ system:
         mountPath: /gwcertserver
       args:
         - start
-	- --debug
+        - --debug
         - --settings.path=-.-.sfm.-.gatewayconfig
         - --superpod.name=-
       ports:
