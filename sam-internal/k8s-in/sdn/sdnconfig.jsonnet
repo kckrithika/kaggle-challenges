@@ -21,4 +21,18 @@ local utils = import "util_functions.jsonnet";
 
     # File path for logs
     logFilePath: "/data/logs/sdn/",
+
+    # Volume for logs
+    logs_volume: {
+        name: "sdnlogs",
+        hostPath: {
+            path: "/data/logs/sdn",
+        },
+    },
+
+    # Volume mount for logs
+    logs_volume_mount: {
+        mountPath: "/data/logs/sdn",
+        name: "sdnlogs",
+    },
 }
