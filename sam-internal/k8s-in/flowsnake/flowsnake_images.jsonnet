@@ -77,10 +77,66 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 3
         "3": {
+            canary_image_tag: "345",
+            es_image_tag: "345",
+            fleetService_image_tag: "487",
+            glok_image_tag: "472",
+            ingressControllerNginx_image_tag: "345",
+            ingressDefaultBackend_image_tag: "345",
+            kibana_image_tag: "345",
+            logloader_image_tag: "345",
+            logstash_image_tag: "468",
+            nodeMonitor_image_tag: "403",
+            watchdog_image_tag: "sam-0001027-676096c4",
+            zookeeper_image_tag: "345",
+            version_mapping: {
+                main: {
+                  "0.9.1": 377,
+                  "0.9.2": 403,
+                  "0.9.3": 427,
+                  "0.9.4": 447,
+                  "0.9.5": 487,
+                  khtest: "disable-core-dumps-itest-ready",
+                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
+                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
+                  "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
         },
 
         ### Release Phase 4
         "4": {
+            canary_image_tag: "345",
+            es_image_tag: "345",
+            fleetService_image_tag: "487",
+            glok_image_tag: "472",
+            ingressControllerNginx_image_tag: "345",
+            ingressDefaultBackend_image_tag: "345",
+            kibana_image_tag: "345",
+            logloader_image_tag: "345",
+            logstash_image_tag: "468",
+            nodeMonitor_image_tag: "403",
+            watchdog_image_tag: "sam-0001027-676096c4",
+            zookeeper_image_tag: "345",
+            version_mapping: {
+                main: {
+                  "0.9.1": 377,
+                  "0.9.2": 403,
+                  "0.9.3": 427,
+                  "0.9.4": 447,
+                  "0.9.5": 487,
+                  khtest: "disable-core-dumps-itest-ready",
+                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
+                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
+                  "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
         },
     },
 
@@ -90,7 +146,7 @@ local kingdom = std.extVar("kingdom");
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf" || kingdom == "yhu" || kingdom == "yul") then
+        else if (kingdom == "phx") then
             "3"
         else
             "4"
