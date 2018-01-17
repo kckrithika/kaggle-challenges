@@ -17,7 +17,7 @@ system:
         requests: { cpu: "12", memory: "10Gi" }
       env:
       - name: GRPC_ANNOUNCED_PORT
-        value: 7012
+        value: 7014
       - name: GRPC_ANNOUNCED_NAME
         value: search-model-executor-rpulle
       livenessProbe:
@@ -32,31 +32,21 @@ system:
           port: 15372
         initialDelaySeconds: 240
         timeoutSeconds: 10
-    - name: sherpa-t
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/sherpa-zipkin:1.0
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7012
-        name: sherpa-t-in
-      - containerPort: 7080
-        name: sherpa-t-adm
+    - name: envoy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa-envoy:dev
+      args:
+      - --switchboard-addr
+      - switchboard-lb.service-mesh.prd-sam.prd.slb.sfdc.net
       livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
       readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
   loadbalancers:
   - lbname: search-model-executor-rpulle-lb
     function: search-model-executor-rpulle
