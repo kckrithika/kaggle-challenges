@@ -4,9 +4,9 @@ local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
     kind: "ConfigMap",
     metadata: {
         name: "auth-groups",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeauthtopic.auth_groups)
-    }
+        data: std.toString(flowsnakeauthtopic.auth_groups),
+    },
 }

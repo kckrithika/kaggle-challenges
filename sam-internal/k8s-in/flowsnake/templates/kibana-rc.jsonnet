@@ -7,8 +7,8 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
         namespace: "flowsnake",
         labels: {
             name: "kibana",
-            component: "kibana"
-        }
+            component: "kibana",
+        },
     },
     spec: {
         replicas: 3,
@@ -17,8 +17,8 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                 namespace: "flowsnake",
                 labels: {
                     name: "kibana",
-                    component: "kibana"
-                }
+                    component: "kibana",
+                },
             },
             spec: {
                 containers: [
@@ -30,27 +30,27 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             {
                                 containerPort: 5601,
                                 name: "http",
-                                protocol: "TCP"
-                            }
+                                protocol: "TCP",
+                            },
                         ],
                         readinessProbe: {
                             httpGet: {
                                 path: "/",
                                 port: 5601,
-                                scheme: "HTTP"
-                            }
+                                scheme: "HTTP",
+                            },
                         },
                         livenessProbe: {
                             httpGet: {
                                 path: "/",
                                 port: 5601,
-                                scheme: "HTTP"
+                                scheme: "HTTP",
                             },
-                            initialDelaySeconds: 180
-                        }
-                    }
-                ]
-            }
-        }
-    }
+                            initialDelaySeconds: 180,
+                        },
+                    },
+                ],
+            },
+        },
+    },
 }

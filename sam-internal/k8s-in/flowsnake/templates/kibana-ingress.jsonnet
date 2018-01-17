@@ -5,8 +5,8 @@
         name: "kibana-ingress",
         namespace: "flowsnake",
         annotations: {
-            "ingress.kubernetes.io/rewrite-target": "/"
-        }
+            "ingress.kubernetes.io/rewrite-target": "/",
+        },
     },
     spec: {
         rules: [
@@ -17,12 +17,12 @@
                             path: "/kibana-logs",
                             backend: {
                                 serviceName: "kibana",
-                                servicePort: 5601
-                            }
-                        }
-                    ]
-                }
-            }
-        ]
-    }
+                                servicePort: 5601,
+                            },
+                        },
+                    ],
+                },
+            },
+        ],
+    },
 }

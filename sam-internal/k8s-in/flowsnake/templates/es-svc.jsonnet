@@ -5,24 +5,24 @@
         name: "elasticsearch",
         namespace: "flowsnake",
         labels: {
-            component: "elasticsearch"
-        }
+            component: "elasticsearch",
+        },
     },
     spec: {
         selector: {
-            component: "elasticsearch"
+            component: "elasticsearch",
         },
         ports: [
             {
                 port: 9200,
                 name: "http",
-                protocol: "TCP"
+                protocol: "TCP",
             },
             {
                 port: 9300,
                 name: "transport",
-                protocol: "TCP"
-            }
-        ]
-    }
+                protocol: "TCP",
+            },
+        ],
+    },
 }

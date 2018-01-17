@@ -17,21 +17,21 @@ local kingdom = std.extVar("kingdom");
             "Lightning_Instrumentation",
             "Analytics-DataPool",
             "DSS_FLOWSNAKE_SERVICE",
-            "ServiceProtection"
+            "ServiceProtection",
         ],
         "prd/prd-data-flowsnake_test": [
-            "Flowsnake_Ops_Platform"
+            "Flowsnake_Ops_Platform",
         ],
         "prd/prd-dev-flowsnake_iot_test": [
             "Flowsnake_Ops_Platform",
             "IoT-RM-Flowsnake",
             "CRE_AD",
-            "Analytics-DataPool"
+            "Analytics-DataPool",
         ],
     },
     topic_grants_map: {
         "prd/prd-data-flowsnake": {
-            "alerting_flowsnake": [
+            alerting_flowsnake: [
                 "com.salesforce.prod.dva.alert",
                 "com.salesforce.test.dva.alert",
                 "sfdc.test.dvasyslog__chi.ajna_local__trap",
@@ -106,50 +106,50 @@ local kingdom = std.extVar("kingdom");
                 "sfdc.prod.dvasyslog__prd.ajna_local__syslog.network",
                 "sfdc.prod.dvasyslog__chx.ajna-chx-spx__trap",
                 "sfdc.prod.dvasyslog__wax.ajna_local__trap",
-                "sfdc.prod.dvasyslog__chx.ajna_local__trap"
+                "sfdc.prod.dvasyslog__chx.ajna_local__trap",
             ],
             "Security-Analytics": [
                 "sfdc.prod.flowsnake__prd.ajna_agg__logs.dffpg",
-                "sfdc.prod.securityanalytics__prd.ajna_agg__logs.egress"
+                "sfdc.prod.securityanalytics__prd.ajna_agg__logs.egress",
             ],
-            "Flowsnake_Ops_Platform": [
+            Flowsnake_Ops_Platform: [
                 "sfdc.test.flowsnake__prd.ajna_local__logs",
-                "sfdc.prod.flowsnake__prd.ajna_local__logs"
-            ]
+                "sfdc.prod.flowsnake__prd.ajna_local__logs",
+            ],
         },
         "prd/prd-data-flowsnake_test": {
-            "Flowsnake_Ops_Platform": [
+            Flowsnake_Ops_Platform: [
                 "sfdc.test.flowsnake__prd.ajna_local__logs",
-                "sfdc.prod.flowsnake__prd.ajna_local__logs"
-            ]
+                "sfdc.prod.flowsnake__prd.ajna_local__logs",
+            ],
         },
         "prd/prd-dev-flowsnake_iot_test": {
-            "Flowsnake_Ops_Platform": [
+            Flowsnake_Ops_Platform: [
                 "sfdc.test.flowsnake__prd.ajna_local__logs",
-                "sfdc.prod.flowsnake__prd.ajna_local__logs"
-            ]
+                "sfdc.prod.flowsnake__prd.ajna_local__logs",
+            ],
         },
     },
     samcontroldeployer:
         {
-            "email": true,
+            email: true,
             "email-delay": 0,
             "delete-orphans": false,
             "disable-rollback": true,
             "disable-security-check": true,
             "override-control-estate": "/prd/prd-sam",
             "orphan-namespaces": "flowsnake",
-            "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+            funnelEndpoint: "ajna0-funnel1-0-prd.data.sfdc.net:80",
             "max-resource-time": 300000000000,
             "poll-delay": 30000000000,
-            "recipient": "flowsnake@salesforce.com",
+            recipient: "flowsnake@salesforce.com",
             "resource-cooldown": 15000000000,
             "resource-progression-timeout": 120000000000,
-            "sender": "flowsnake@salesforce.com",
+            sender: "flowsnake@salesforce.com",
             "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
             "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
-        } + 
-        if estate == "prd-data-flowsnake_test" then 
+        } +
+        if estate == "prd-data-flowsnake_test" then
         {
             "ca-file": "/etc/pki_service/ca/cabundle.pem",
             "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
@@ -162,7 +162,7 @@ local kingdom = std.extVar("kingdom");
               "watchdog-etcd.yaml",
               "watchdog-master.yaml",
               "watchdog-node.yaml",
-              "watchdog-pod.yaml"
+              "watchdog-pod.yaml",
             ],
         }
         else
@@ -182,5 +182,5 @@ local kingdom = std.extVar("kingdom");
               "samcontrol-deployer.yaml",
               "deepsea-kdc-svc.yaml",
             ],
-        }
+        },
 }

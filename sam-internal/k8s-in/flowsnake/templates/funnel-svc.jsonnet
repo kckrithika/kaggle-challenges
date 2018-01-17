@@ -3,7 +3,7 @@
     kind: "Service",
     metadata: {
         name: "funnel",
-        namespace: "default"
+        namespace: "default",
     },
     spec: {
         type: "ExternalName",
@@ -12,8 +12,8 @@
             {
                 protocol: "TCP",
                 port: 8080,
-                targetPort: 8080
-            }
-        ]
-    }
+                targetPort: 8080,
+            },
+        ],
+    },
 }

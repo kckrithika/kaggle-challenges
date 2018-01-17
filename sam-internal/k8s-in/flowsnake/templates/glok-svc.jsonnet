@@ -3,17 +3,17 @@
     kind: "Service",
     metadata: {
         name: "glok",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     spec: {
         ports: [
             {
                 name: "k9092",
-                port: 9092
-            }
+                port: 9092,
+            },
         ],
         selector: {
-            app: "glok"
-        }
-    }
+            app: "glok",
+        },
+    },
 }

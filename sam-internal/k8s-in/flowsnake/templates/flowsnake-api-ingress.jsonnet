@@ -5,8 +5,8 @@
         name: "fleet-service-ingress",
         namespace: "flowsnake",
         annotations: {
-            "ingress.kubernetes.io/rewrite-target": "/"
-        }
+            "ingress.kubernetes.io/rewrite-target": "/",
+        },
     },
     spec: {
         rules: [
@@ -17,12 +17,12 @@
                             path: "/flowsnake",
                             backend: {
                                 serviceName: "flowsnake-fleet-service",
-                                servicePort: 8080
-                            }
-                        }
-                    ]
-                }
-            }
-        ]
-    }
+                                servicePort: 8080,
+                            },
+                        },
+                    ],
+                },
+            },
+        ],
+    },
 }

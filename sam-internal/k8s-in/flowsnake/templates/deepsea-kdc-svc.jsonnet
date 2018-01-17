@@ -6,7 +6,7 @@ if (std.count(flowsnakeconfig.deepsea_enabled, kingdom + "/" + estate) > 0) then
     kind: "Service",
     metadata: {
         name: "deepsea-kdc",
-        namespace: "default"
+        namespace: "default",
     },
     spec: {
         type: "ExternalName",
@@ -15,8 +15,8 @@ if (std.count(flowsnakeconfig.deepsea_enabled, kingdom + "/" + estate) > 0) then
             {
                 protocol: "UDP",
                 port: 88,
-                targetPort: 9089
-            }
-        ]
-    }
+                targetPort: 9089,
+            },
+        ],
+    },
 } else "SKIP"

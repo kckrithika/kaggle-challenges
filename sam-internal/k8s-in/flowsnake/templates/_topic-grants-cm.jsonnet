@@ -4,9 +4,9 @@ local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
     kind: "ConfigMap",
     metadata: {
         name: "ajna-topic-grants",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeauthtopic.topic_grants)
-    }
+        data: std.toString(flowsnakeauthtopic.topic_grants),
+    },
 }

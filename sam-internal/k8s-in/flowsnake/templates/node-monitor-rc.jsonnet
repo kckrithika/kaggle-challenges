@@ -6,10 +6,10 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "node-monitor"
+            name: "node-monitor",
         },
         name: "node-monitor",
-        namespace: "default"
+        namespace: "default",
     },
     spec: {
         replicas: 3,
@@ -17,8 +17,8 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
             metadata: {
                 labels: {
                     name: "node-monitor",
-                    app: "node-monitor"
-                }
+                    app: "node-monitor",
+                },
             },
             spec: {
                  containers: [
@@ -29,42 +29,42 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         env: [
                             {
                                 name: "CANARY_INTERVAL_SECONDS",
-                                value: "60"
+                                value: "60",
                             },
                             {
                                 name: "CANARY_UNHEALTHY_THRESHOLD_SECONDS",
-                                value: "60"
+                                value: "60",
                             },
                             {
                                 name: "CANARY_HEALTH_REJOIN_THRESHOLD_SECONDS",
-                                value: "300"
+                                value: "300",
                             },
                             {
                                 name: "FLEET_NAME",
                                 valueFrom: {
                                     configMapKeyRef: {
                                         name: "fleet-config",
-                                        key: "name"
-                                    }
-                                }
+                                        key: "name",
+                                    },
+                                },
                             },
                             {
                                 name: "KUBECONFIG",
                                 valueFrom: {
                                     configMapKeyRef: {
                                         name: "fleet-config",
-                                        key: "kubeconfig"
-                                    }
-                                }
-                            }
+                                        key: "kubeconfig",
+                                    },
+                                },
+                            },
                         ],
                         volumeMounts: flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                            flowsnakeconfigmapmount.cert_volumeMounts
-                     }
+                            flowsnakeconfigmapmount.cert_volumeMounts,
+                     },
                  ],
                  volumes: flowsnakeconfigmapmount.kubeconfig_volume +
-                     flowsnakeconfigmapmount.cert_volume
-            }
-        }
-    }
+                     flowsnakeconfigmapmount.cert_volume,
+            },
+        },
+    },
 }

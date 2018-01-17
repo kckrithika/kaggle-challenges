@@ -17,78 +17,78 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             "-alertThreshold=150s",
                             "-emailFrequency=5m",
                             "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
+                            "-funnelEndpoint=" + configs.funnelVIP,
+                            "-rcImtEndpoint=" + configs.rcImtEndpoint,
+                            "-smtpServer=" + configs.smtpServer,
                             "-sender=vgiridaran@salesforce.com",
                             "-recipient=vgiridaran@salesforce.com",
                             "-email-subject-prefix=FLOWSNAKEWD",
                             "-hostsConfigFile=/data/hosts/hosts.json",
-                            "-metricsService=flowsnake"
+                            "-metricsService=flowsnake",
                         ],
                         volumeMounts: [
                             {
                                 mountPath: "/data/certs",
-                                name: "certs"
+                                name: "certs",
                             },
                             {
-                                mountPath:"/config",
-                                name:"config"
+                                mountPath: "/config",
+                                name: "config",
                             },
                             {
                                 mountPath: "/data/hosts",
-                                name: "hosts"
-                            }
+                                name: "hosts",
+                            },
                         ],
                         name: "watchdog-node",
                         env: [
                             {
-                                name:"KUBECONFIG",
-                                value:"/config/kubeconfig"
-                            }
-                        ]
-                    }
+                                name: "KUBECONFIG",
+                                value: "/config/kubeconfig",
+                            },
+                        ],
+                    },
                 ],
                 volumes: [
                     {
                         hostPath: {
-                            path: "/data/certs"
+                            path: "/data/certs",
                         },
-                        name: "certs"
+                        name: "certs",
                     },
                     {
-                        hostPath:{
-                            path:"/etc/kubernetes"
+                        hostPath: {
+                            path: "/etc/kubernetes",
                         },
-                        name:"config"
+                        name: "config",
                     },
                     {
                         configMap: {
-                            name: "sfdchosts"
+                            name: "sfdchosts",
                         },
-                        name: "hosts"
-                    }
-                ]
+                        name: "hosts",
+                    },
+                ],
             },
             metadata: {
                 labels: {
                     apptype: "monitoring",
-                    name: "watchdog-node"
-                }
-            }
+                    name: "watchdog-node",
+                },
+            },
         },
         selector: {
             matchLabels: {
-                name: "watchdog-node"
-            }
-        }
+                name: "watchdog-node",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-node"
+            name: "watchdog-node",
         },
         name: "watchdog-node",
-        namespace: "flowsnake"
-    }
+        namespace: "flowsnake",
+    },
 }

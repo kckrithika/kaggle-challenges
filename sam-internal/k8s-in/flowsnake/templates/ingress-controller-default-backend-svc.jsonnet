@@ -3,20 +3,20 @@
     kind: "Service",
     metadata: {
         name: "default-http-backend",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     spec: {
         ports: [
             {
                 port: 80,
                 protocol: "TCP",
-                targetPort: 8080
-            }
+                targetPort: 8080,
+            },
         ],
         selector: {
-            app: "default-http-backend"
+            app: "default-http-backend",
         },
         sessionAffinity: "None",
-        type: "ClusterIP"
-    }
+        type: "ClusterIP",
+    },
 }

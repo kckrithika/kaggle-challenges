@@ -9,23 +9,23 @@ local zookeeper = import "zookeeper-rcs.jsonnet";
         namespace: "flowsnake",
         labels: {
             name: "logstash-env-events",
-            app: "logstash-env-events"
-        }
+            app: "logstash-env-events",
+        },
     },
     spec: {
         replicas: 1,
         selector: {
             matchLabels: {
-                app: "logstash-env-events"
-            }
+                app: "logstash-env-events",
+            },
         },
         template: {
             metadata: {
                 labels: {
                     name: "logstash-env-events",
-                    app: "logstash-env-events"
+                    app: "logstash-env-events",
                 },
-                namespace: "flowsnake"
+                namespace: "flowsnake",
             },
             spec: {
                 containers: [
@@ -36,25 +36,25 @@ local zookeeper = import "zookeeper-rcs.jsonnet";
                         env: [
                             {
                                 name: "KAFKA_TOPIC",
-                                value: "flowsnake-environment-events"
+                                value: "flowsnake-environment-events",
                             },
                             {
                                 name: "ELASTICSEARCH_INDEX",
-                                value: "flowsnake-environment-events"
+                                value: "flowsnake-environment-events",
                             },
                             {
                                 name: "ELASTICSEARCH_DOCUMENT_TYPE",
-                                value: "event"
+                                value: "event",
                             },
                             {
                                 name: "ZOOKEEPER_CONNECTION_STRING",
                                 /*value: zookeeper.connection_string*/
-                                value: "zookeeper-0.zookeeper-set:2181,zookeeper-1.zookeeper-set:2181,zookeeper-2.zookeeper-set:2181"
-                            }
-                        ]
-                    }
-                ]
-            }
-        }
-    }
+                                value: "zookeeper-0.zookeeper-set:2181,zookeeper-1.zookeeper-set:2181,zookeeper-2.zookeeper-set:2181",
+                            },
+                        ],
+                    },
+                ],
+            },
+        },
+    },
 }

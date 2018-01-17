@@ -4,9 +4,9 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
     kind: "ConfigMap",
     metadata: {
         name: "version-mapping",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     data: {
-        "version-mapping.properties": std.manifestIni(flowsnakeimage.version_mapping)
-    }
+        "version-mapping.properties": std.manifestIni(flowsnakeimage.version_mapping),
+    },
 }
