@@ -1,0 +1,26 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - steve.crouse@salesforce.com
+  functions:
+  - name: commercejourneys-mc-handler-prd-ccp-integration-functional
+    count: 1
+    containers: 
+    - name: commercejourneys-sp-prd-ccp-integration-functional
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-mc-event-handler:retail-mc-event-handler-20171110
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
+  loadbalancers:
+  - lbname: commercejourneys-retail-event-handler-prd-lb
+    function: commercejourneys-mc-handler-prd-ccp-integration-functional
+    nodeExposed: true
+    ports:
+      - port: 8081
+        targetport: 8080
