@@ -38,6 +38,7 @@ if configs.kingdom == "prd" then {
                             "--pingTimeout=5s",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_ping_watchdog,
                             "--controlEstate=" + configs.estate,
+                            configs.sfdchosts_arg,
 
                         ]
                         + (
@@ -129,6 +130,7 @@ if configs.kingdom == "prd" then {
                             "--pingInterval=1s",
                             "--pingTimeout=5s",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_ping_watchdog,
+                            configs.sfdchosts_arg,
                         ] + (if configs.estate == "frf-sam" then ["--controlEstate=" + configs.estate] else []),
                         env: [
                             {

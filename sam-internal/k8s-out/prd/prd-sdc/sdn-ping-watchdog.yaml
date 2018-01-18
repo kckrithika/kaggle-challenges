@@ -36,6 +36,7 @@ spec:
         - --pingTimeout=5s
         - --livenessProbePort=9102
         - --controlEstate=prd-sdc
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service

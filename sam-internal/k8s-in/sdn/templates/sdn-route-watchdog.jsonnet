@@ -39,6 +39,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
                             "--momCollectorEndpoint=" + sdnconfig.momVIP,
+                            configs.sfdchosts_arg,
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [

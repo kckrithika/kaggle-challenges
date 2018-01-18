@@ -37,6 +37,7 @@ spec:
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
         - --momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/api/v1/network/device?key=host-bgp-routes
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

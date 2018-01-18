@@ -36,6 +36,7 @@ spec:
         - --pingTimeout=5s
         - --livenessProbePort=9102
         - --controlEstate=prd-data-flowsnake_test
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
