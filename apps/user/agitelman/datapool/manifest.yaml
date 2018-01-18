@@ -5,10 +5,10 @@ system:
       - agitelman@salesforce.com
   functions:
   - name: datapool-service
-    count: 2
+    count: 1
     containers:
     - name: datapool-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wave/datapool-server:c6b3659
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wave/datapool-server:b32d7d5
       ports:
       - containerPort: 7020
         name: grpc
@@ -36,7 +36,6 @@ system:
       - name: logvol
         mountPath: /home/datapool/logs
 
-
       - name: datapoolkeytab
         mountPath: /home/datapool/datapool-keytab
         readOnly: true
@@ -48,36 +47,38 @@ system:
 #        name: datapoolconfig
 #        readOnly: true
 
-    - env:
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
-      image: tnrp/sherpa:2-0000127-5d8bf4ab
-      livenessProbe:
-        exec:
-          command:
-          - ./bin/is-alive
-          initialDelaySeconds: 10
-          periodSeconds: 5
-      name: sherpa
-      ports:
-      - containerPort: 7012
-        name: sherpa-in
-      - containerPort: 7443
-        name: sherpa-tls
-      - containerPort: 15373
-        name: sherpa-adm
-      readinessProbe:
-        exec:
-          command:
-          - ./bin/is-ready
-          initialDelaySeconds: 5
-          periodSeconds: 5
-      volumeMounts:
-      - mountPath: /server-certs
-        name: server-certs
-      - mountPath: /client-certs
-        name: client-certs
-    count: 2
+#    - name: sherpa
+#      image: tnrp/sherpa:2-0000127-5d8bf4ab
+#      env:
+#      - name: SFDC_ENVIRONMENT
+#        value: kingdom-test
+#
+#      livenessProbe:
+#        exec:
+#          command:
+#          - ./bin/is-alive
+#          initialDelaySeconds: 10
+#          periodSeconds: 5
+#
+#      ports:
+#      - containerPort: 7012
+#        name: sherpa-in
+#      - containerPort: 7443
+#        name: sherpa-tls
+#      - containerPort: 15373
+#        name: sherpa-adm
+#      readinessProbe:
+#        exec:
+#          command:
+#          - ./bin/is-ready
+#          initialDelaySeconds: 5
+#          periodSeconds: 5
+#      volumeMounts:
+#      - mountPath: /server-certs
+#        name: server-certs
+#      - mountPath: /client-certs
+#        name: client-certs
+    count: 1
 
 
     volumes:
@@ -97,19 +98,13 @@ system:
 #      secret:
 #        secretName: datapool-config
 
-    - maddogCert:
-        type: server
-      name: server-certs
-      
-    - maddogCert:
-        type: client
-      name: client-certs
-
-
-#    volumes:
-#    - name: logvol
-#      hostPath:
-#        path: /data/sam/eaas/logs
+#    - maddogCert:
+#        type: server
+#      name: server-certs
+#
+#    - maddogCert:
+#        type: client
+#      name: client-certs
 
 
   loadbalancers:
