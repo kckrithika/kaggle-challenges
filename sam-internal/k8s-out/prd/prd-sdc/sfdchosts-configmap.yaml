@@ -114,36 +114,6 @@ data:
           "superpod": "none"
         },
         {
-          "bomrolename": "sdc_samcompute",
-          "controlestate": "prd-sdc",
-          "devicerole": "samcompute",
-          "estate": "prd-sdc",
-          "hostname": "shared0-sdcsamcompute2-6-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sdc_samcompute",
-          "controlestate": "prd-sdc",
-          "devicerole": "samcompute",
-          "estate": "prd-sdc",
-          "hostname": "shared0-sdcsamcompute2-7-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "sdc_samcompute",
-          "controlestate": "prd-sdc",
-          "devicerole": "samcompute",
-          "estate": "prd-sdc",
-          "hostname": "shared0-sdcsamcompute2-8-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
           "bomrolename": "sdc_samkubeapi",
           "controlestate": "prd-sdc",
           "devicerole": "samkubeapi",
