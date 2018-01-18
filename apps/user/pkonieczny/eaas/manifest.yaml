@@ -1,0 +1,88 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - emailinfrastructure@salesforce.com
+  functions:
+  - name: eaas
+    count: 4 
+    strategy:
+      type: RollingUpdate
+    containers:
+    - name: eaas
+      image: tnrp/emailinfrastructure/eaas:1.0.0-0000017-acb91dfb
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7443
+      - name: SCONE_SERVICE_NAME
+        value: eaas
+      ports:
+        - name: grpc
+          containerPort: 7020
+        - containerPort: 15372
+      volumeMounts:
+      - mountPath: /home/sfdc-eaas/logs
+        name: logvol
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 120
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 110
+    - name: sherpa-eaas
+      image: sfci/servicelibs/sherpa:2.0.17
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-eaas-in
+      - containerPort: 7443
+        name: sherpa-eaas-tls
+      - containerPort: 15373
+        name: sherpa-eaas-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      volumeMounts:
+      - name: eaas-client-cert
+        mountPath: /client-certs
+      - name: eaas-server-cert
+        mountPath: /server-certs
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-eaas/logs
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
+    - name: eaas-server-cert
+      maddogCert:
+        type: server
+  loadbalancers:
+  - lbname: eaas-lb
+    function: eaas
+    ports:
+      - port: 15372
+        targetport: 15372
+      - port: 7020 
+        targetport: 7020
