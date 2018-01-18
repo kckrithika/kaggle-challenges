@@ -18,7 +18,7 @@ local utils = import "util_functions.jsonnet";
         // TODO: The SAM deployer currently clobbers custom resource status on updates. Keep the version fixed in existing
         //       clusters until either the SAM deployer is fixed to not clobber the status of custom resources or the ceph operator
         //       is fixed to move the cluster state to a separate object.
-        "prd,prd-sam_ceph,ceph-cluster,ceph-daemon": "jewel-0000052-36e8b39d",
+        "prd,prd-sam_ceph,ceph-cluster,ceph-daemon": "jewel-0000056-50bd0816",
         "phx,phx-sam_ceph,ceph-cluster,ceph-daemon": "jewel-0000052-36e8b39d",
     },
 
@@ -40,9 +40,9 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "1": {
             default_tag: "base-0000314-8d9eaec0",
-            ceph_operator_tag: "base-0000285-7ad9ed5d",
+            ceph_operator_tag: "base-0000320-403b5b92",
             sfms_tag: "latest-0000102-addfc459",
-            cephdaemon_tag: "jewel-0000052-36e8b39d",
+            cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000017-c6de7b57",
