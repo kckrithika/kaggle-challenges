@@ -19,6 +19,7 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 15372
+      - containerPort: 7020
       volumeMounts:
       - mountPath: /secrets/
         name: secretvol
@@ -45,4 +46,7 @@ system:
         lbtype: tcp
       - port: 15372
         targetport: 15372
+        lbtype: tcp
+      - port: 7020
+        targetport: 7020
         lbtype: tcp
