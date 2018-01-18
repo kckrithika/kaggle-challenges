@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mds/logs
     containers:
     - name: metadata-service-prd-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.41.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/metadata-cannon/metadata-service:0.0.42.0
       ports:
       - containerPort: 7020
       - containerPort: 9091
