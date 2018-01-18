@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sdc" then {
     kind: "DaemonSet",
     spec: {
         template: {
