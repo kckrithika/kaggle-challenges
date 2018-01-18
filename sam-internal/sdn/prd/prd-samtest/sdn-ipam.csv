@@ -5,3 +5,6 @@ shared0-samtestcompute2-1-prd.eng.sfdc.net,10.231.100.34/29,10.251.158.160/27,w3
 shared0-samtestkubeapi1-1-prd.eng.sfdc.net,10.231.100.42/29,10.251.158.64/27,n40-02,prd-samtest
 shared0-samtestkubeapi2-1-prd.eng.sfdc.net,10.231.100.2/29,10.251.158.32/27,m38-02,prd-samtest
 shared0-samtestkubeapi3-1-prd.eng.sfdc.net,10.231.100.10/29,10.251.158.96/27,u40-02,prd-samtest
+shared0-samtestpool1-1-prd.eng.sfdc.net,10.231.188.130/29,10.231.188.128/28,f35-02,prd-samtestspare
+shared0-samtestpool2-1-prd.eng.sfdc.net,10.231.188.138/29,10.231.188.144/28,j07-02,prd-samtestspare
+shared0-samtestpool3-1-prd.eng.sfdc.net,10.231.188.146/29,10.231.188.160/28,k07-02,prd-samtestspare
