@@ -954,6 +954,206 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-10-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-4-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-5-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-6-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-7-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-8-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion1-9-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-1-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-10-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-2-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-3-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-4-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-5-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-6-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-7-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-8-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "frf-sam",
+          "devicerole": "samcompute",
+          "estate": "frf-slb",
+          "hostname": "shared0-slbminion2-9-frf.ops.sfdc.net",
+          "kingdom": "frf",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_caas",
           "controlestate": "frf-sam",
           "devicerole": "samcompute",

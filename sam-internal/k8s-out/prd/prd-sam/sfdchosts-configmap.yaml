@@ -1344,36 +1344,6 @@ data:
           "superpod": "none"
         },
         {
-          "bomrolename": "samdevpool",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-samdevpool",
-          "hostname": "shared0-samdevpool1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "samdevpool",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-samdevpool",
-          "hostname": "shared0-samdevpool2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "samdevpool",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-samdevpool",
-          "hostname": "shared0-samdevpool3-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
           "bomrolename": "sampool",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -1439,36 +1409,6 @@ data:
           "devicerole": "samcompute",
           "estate": "prd-sampool",
           "hostname": "shared0-sampool7-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "samtestpool",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-samtestpool",
-          "hostname": "shared0-samtestpool1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "samtestpool",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-samtestpool",
-          "hostname": "shared0-samtestpool2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "none"
-        },
-        {
-          "bomrolename": "samtestpool",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-samtestpool",
-          "hostname": "shared0-samtestpool3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"
