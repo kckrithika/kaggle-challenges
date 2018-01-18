@@ -10,22 +10,22 @@ local estate = std.extVar("estate");
         namespace: "flowsnake",
         labels: {
             name: "nginx-ingress-lb",
-            "k8s-app": "nginx-ingress-lb"
-        }
+            "k8s-app": "nginx-ingress-lb",
+        },
     },
     spec: {
         replicas: 1,
         selector: {
             matchLabels: {
-                "k8s-app": "nginx-ingress-lb"
-            }
+                "k8s-app": "nginx-ingress-lb",
+            },
         },
         template: {
             metadata: {
                 labels: {
                     name: "nginx-ingress-lb",
-                    "k8s-app": "nginx-ingress-lb"
-                }
+                    "k8s-app": "nginx-ingress-lb",
+                },
             },
             spec: {
                 terminationGracePeriodSeconds: 60,
@@ -38,76 +38,76 @@ local estate = std.extVar("estate");
                             httpGet: {
                                 path: "/healthz",
                                 port: 80,
-                                scheme: "HTTP"
-                            }
+                                scheme: "HTTP",
+                            },
                         },
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",
                                 port: 80,
-                                scheme: "HTTP"
+                                scheme: "HTTP",
                             },
                             initialDelaySeconds: 10,
-                            timeoutSeconds: 1
+                            timeoutSeconds: 1,
                         },
                         env: [
                             {
                                 name: "POD_NAME",
                                 valueFrom: {
                                     fieldRef: {
-                                        fieldPath: "metadata.name"
-                                    }
-                                }
+                                        fieldPath: "metadata.name",
+                                    },
+                                },
                             },
                             {
                                 name: "POD_NAMESPACE",
                                 valueFrom: {
                                     fieldRef: {
-                                        fieldPath: "metadata.namespace"
-                                    }
-                                }
+                                        fieldPath: "metadata.namespace",
+                                    },
+                                },
                             },
                             {
                                 name: "KUBECONFIG",
-                                value: "/etc/kubernetes/kubeconfig"
-                            }
+                                value: "/etc/kubernetes/kubeconfig",
+                            },
                         ],
                         ports: [
                             {
                                 containerPort: 80,
-                                hostPort: 80
+                                hostPort: 80,
                             },
                             {
                                 containerPort: 443,
                                 hostPort: 8443,
-                            }
+                            },
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
-                            "--sync-period=5s"
+                            "--sync-period=5s",
                         ],
                         volumeMounts: (
-                            if estate == "prd-data-flowsnake_test" then 
+                            if estate == "prd-data-flowsnake_test" then
                                 flowsnakeconfigmapmount.nginx_volumeMounts +
-                                flowsnakeconfigmapmount.kubeconfig_volumeMounts + 
+                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.cert_volumeMounts
-                            else flowsnakeconfigmapmount.kubeconfig_volumeMounts + 
+                            else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.cert_volumeMounts
-                        )
-                    }
+                        ),
+                    },
                 ],
                 volumes: (
-                    if estate == "prd-data-flowsnake_test" then 
+                    if estate == "prd-data-flowsnake_test" then
                         flowsnakeconfigmapmount.nginx_volume +
-                        flowsnakeconfigmapmount.kubeconfig_volume + 
+                        flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.cert_volume
-                    else flowsnakeconfigmapmount.kubeconfig_volume + 
+                    else flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.cert_volume
                 ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
-                    vippool: "true"
-                }
-            }
-        }
-    }
+                    vippool: "true",
+                },
+            },
+        },
+    },
 }

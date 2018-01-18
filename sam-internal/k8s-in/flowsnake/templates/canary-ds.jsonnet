@@ -7,14 +7,14 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
         namespace: "default",
         labels: {
             name: "canary",
-        }
+        },
     },
     spec: {
         template: {
             metadata: {
                 labels: {
                     name: "canary",
-                    app: "canary"
+                    app: "canary",
                 },
             },
             spec: {
@@ -25,8 +25,8 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                         resources: {
                             requests: {
                                 cpu: 0.1,
-                                memory: "5M"
-                            }
+                                memory: "5M",
+                            },
                         },
                         name: "canary",
                         readinessProbe: {
@@ -34,36 +34,36 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             exec: {
                                 command: [
                                     "bash",
-                                    "/run-checks.sh"
+                                    "/run-checks.sh",
                                 ],
                             },
                         },
                         volumeMounts: [
                             {
                                 name: "empty",
-                                mountPath: "/empty"
+                                mountPath: "/empty",
                             },
                             {
                                 name: "proc",
                                 mountPath: "/proc-host",
-                                readOnly: true
-                            }
-                        ]
-                    }
+                                readOnly: true,
+                            },
+                        ],
+                    },
                 ],
                 volumes: [
                     {
                         name: "empty",
-                        emptyDir: {}
+                        emptyDir: {},
                     },
                     {
                         name: "proc",
                         hostPath: {
-                            path: "/proc"
-                        }
-                    }
-                ]
-            }
-        }
-    }
+                            path: "/proc",
+                        },
+                    },
+                ],
+            },
+        },
+    },
 }

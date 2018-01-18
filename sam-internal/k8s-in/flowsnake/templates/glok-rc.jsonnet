@@ -5,23 +5,23 @@ local zookeeper = import "_zookeeper-rcs.jsonnet";
     kind: "StatefulSet",
     metadata: {
         labels: {
-            name: "glok"
+            name: "glok",
         },
         name: "glok",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     spec: {
         updateStrategy: {
-            type: "RollingUpdate"
-        },      
+            type: "RollingUpdate",
+        },
         replicas: 3,
         serviceName: "glok-set",
         template: {
             metadata: {
                 labels: {
                     name: "glok",
-                    app: "glok"
-                }
+                    app: "glok",
+                },
             },
             spec: {
                 containers: [
@@ -32,46 +32,46 @@ local zookeeper = import "_zookeeper-rcs.jsonnet";
                         env: [
                             {
                                 name: "ZOOKEEPER_CONNECTION_STRING",
-                                value: zookeeper.connection_string
+                                value: zookeeper.connection_string,
                             },
                             {
                                 name: "KAFKA_PORT",
-                                value: "9092"
+                                value: "9092",
                             },
                             {
                                 name: "KAFKA_AUTO_CREATE_TOPICS_ENABLE",
-                                value: "true"
+                                value: "true",
                             },
                             {
                                 name: "FLOWSNAKE_FLEET",
                                 valueFrom: {
                                     configMapKeyRef: {
                                         name: "fleet-config",
-                                        key: "name"
-                                    }
-                                }
-                            }
+                                        key: "name",
+                                    },
+                                },
+                            },
                         ],
                         ports: [
                             {
                                 containerPort: 9092,
-                                name: "k9092"
-                            }
+                                name: "k9092",
+                            },
                         ],
                         readinessProbe: {
                             tcpSocket: {
-                                port: 9092
-                            }
+                                port: 9092,
+                            },
                         },
                         livenessProbe: {
                             tcpSocket: {
-                                port: 9092
+                                port: 9092,
                             },
-                            initialDelaySeconds: 180
-                        }
-                    }
-                ]
-            }
-        }
-    }
+                            initialDelaySeconds: 180,
+                        },
+                    },
+                ],
+            },
+        },
+    },
 }

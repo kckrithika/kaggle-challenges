@@ -4,9 +4,9 @@ local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
     kind: "ConfigMap",
     metadata: {
         name: "samcontrol-deployer",
-        namespace: "sam-system"
+        namespace: "sam-system",
     },
     data: {
-        "samcontroldeployer.json": std.toString(flowsnakeauthtopic.samcontroldeployer)
-    }
+        "samcontroldeployer.json": std.toString(flowsnakeauthtopic.samcontroldeployer),
+    },
 }

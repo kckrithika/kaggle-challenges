@@ -3,18 +3,18 @@
     kind: "Service",
     metadata: {
         name: "flowsnake-fleet-service",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     spec: {
         ports: [
             {
                 name: "fs30001",
-                port: 8080
-            }
+                port: 8080,
+            },
         ],
         selector: {
-            app: "flowsnake-fleet-service"
+            app: "flowsnake-fleet-service",
         },
-        type: "NodePort"
-    }
+        type: "NodePort",
+    },
 }

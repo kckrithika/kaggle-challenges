@@ -6,24 +6,24 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "flowsnake-fleet-service"
+            name: "flowsnake-fleet-service",
         },
         name: "flowsnake-fleet-service",
-        namespace: "flowsnake"
+        namespace: "flowsnake",
     },
     spec: {
         replicas: 1,
         selector: {
             matchLabels: {
-                app: "flowsnake-fleet-service"
-            }
+                app: "flowsnake-fleet-service",
+            },
         },
         template: {
             metadata: {
                 labels: {
                     name: "flowsnake-fleet-service",
-                    app: "flowsnake-fleet-service"
-                }
+                    app: "flowsnake-fleet-service",
+                },
             },
             spec: {
                 containers: [
@@ -34,23 +34,23 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         ports: [
                             {
                                 containerPort: 8080,
-                                name: "fs30000"
-                            }
+                                name: "fs30000",
+                            },
                         ],
                         readinessProbe: {
                             httpGet: {
                                 path: "/healthz",
                                 port: 8080,
-                                scheme: "HTTP"
-                            }
+                                scheme: "HTTP",
+                            },
                         },
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",
                                 port: 8080,
-                                scheme: "HTTP"
+                                scheme: "HTTP",
                             },
-                            initialDelaySeconds: 180
+                            initialDelaySeconds: 180,
                         },
                         env: [
                             {
@@ -58,81 +58,81 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                 valueFrom: {
                                     configMapKeyRef: {
                                         name: "fleet-config",
-                                        key: "name"
-                                    }
-                                }
+                                        key: "name",
+                                    },
+                                },
                             },
                             {
                                 name: "DOCKER_REGISTRY_URL",
                                 valueFrom: {
                                     configMapKeyRef: {
                                         name: "fleet-config",
-                                        key: "registry"
-                                    }
-                                }
+                                        key: "registry",
+                                    },
+                                },
                             },
                             {
                                 name: "KUBERNETES_IMAGE_PULL_POLICY",
-                                value: "Always"
+                                value: "Always",
                             },
                             {
                                 name: "SPRING_PROFILES_ACTIVE",
-                                value: "dev"
+                                value: "dev",
                             },
                             {
                                 name: "KUBECONFIG",
                                 valueFrom: {
                                     configMapKeyRef: {
                                         name: "fleet-config",
-                                        key: "kubeconfig"
-                                    }
-                                }
-                            }
+                                        key: "kubeconfig",
+                                    },
+                                },
+                            },
                         ],
                         volumeMounts: [
                             {
                                 name: "version-mapping",
                                 mountPath: "/etc/flowsnake/version-mapping",
-                                readOnly: true
+                                readOnly: true,
                             },
                             {
-                                mountPath:"/etc/flowsnake/secrets/flowsnake-ldap",
+                                mountPath: "/etc/flowsnake/secrets/flowsnake-ldap",
                                 name: "flowsnake-ldap",
-                                readOnly:true
+                                readOnly: true,
                             },
                             {
                                 mountPath: "/etc/flowsnake/config/auth-groups",
                                 name: "auth-groups",
-                                readOnly: true
-                            }
+                                readOnly: true,
+                            },
                         ] +
                         flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                        flowsnakeconfigmapmount.cert_volumeMounts
-                    }
+                        flowsnakeconfigmapmount.cert_volumeMounts,
+                    },
                 ],
                 volumes: [
                     {
                         name: "flowsnake-ldap",
                         secret: {
-                            secretName: "flowsnake-ldap"
-                        }
+                            secretName: "flowsnake-ldap",
+                        },
                     },
                     {
                         name: "version-mapping",
                         configMap: {
-                            name: "version-mapping"
-                        }
+                            name: "version-mapping",
+                        },
                     },
                     {
                         name: "auth-groups",
                         configMap: {
-                            name: "auth-groups"
-                        }
-                    }
+                            name: "auth-groups",
+                        },
+                    },
                 ] +
                 flowsnakeconfigmapmount.kubeconfig_volume +
-                flowsnakeconfigmapmount.cert_volume
-            }
-        }
-    }
+                flowsnakeconfigmapmount.cert_volume,
+            },
+        },
+    },
 }

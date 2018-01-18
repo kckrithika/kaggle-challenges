@@ -38,7 +38,7 @@ mkdir -p ../k8s-out/
 cp k8s-out-access.yaml ../k8s-out/access.yaml
 
 # Format input jsonnet files.  TODO: Auto-compute these directories
-for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates; do
+for jdir in . sam sam/configs sam/templates sam/templates/rbac sdn sdn/templates slb slb/templates storage/templates flowsnake flowsnake/templates; do
   jsonnet/jsonnet fmt -i $jdir/*.jsonnet
 done
 

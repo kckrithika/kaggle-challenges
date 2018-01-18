@@ -6,10 +6,10 @@ local kingdom = std.extVar("kingdom");
     fleet_name_overrides: {
         "prd/prd-data-flowsnake": "sfdc-prd",
         "prd/prd-data-flowsnake_test": "prd-data-flowsnake_test",
-        "prd/prd-dev-flowsnake_iot_test": "sfdc-prd-iot-poc"
+        "prd/prd-dev-flowsnake_iot_test": "sfdc-prd-iot-poc",
     },
     deepsea_enabled: [
         "prd/prd-data-flowsnake",
-        "prd/prd-data-flowsnake_test"
-    ]
+        "prd/prd-data-flowsnake_test",
+    ],
 }

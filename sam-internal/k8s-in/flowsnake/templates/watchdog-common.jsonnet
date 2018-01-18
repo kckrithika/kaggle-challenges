@@ -15,9 +15,9 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             "-alertThreshold=20m",
                             "-emailFrequency=6m",
                             "-timeout=2s",
-                            "-funnelEndpoint="+configs.funnelVIP,
-                            "-rcImtEndpoint="+configs.rcImtEndpoint,
-                            "-smtpServer="+configs.smtpServer,
+                            "-funnelEndpoint=" + configs.funnelVIP,
+                            "-rcImtEndpoint=" + configs.rcImtEndpoint,
+                            "-smtpServer=" + configs.smtpServer,
                             "-sender=vgiridaran@salesforce.com",
                             "-recipient=vgiridaran@salesforce.com",
                             "-email-subject-prefix=FLOWSNAKEWD",
@@ -28,56 +28,56 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                         resources: {
                             limits: {
                                 cpu: "0.5",
-                                memory: "300Mi"
+                                memory: "300Mi",
                             },
                             requests: {
                                 cpu: "0.5",
-                                memory: "300Mi"
-                            }
+                                memory: "300Mi",
+                            },
                         },
                         volumeMounts: [
                             {
                                 mountPath: "/hostproc",
-                                name: "procfs-volume"
+                                name: "procfs-volume",
                             },
                             {
                                 mountPath: "/data/hosts",
-                                name: "hosts"
-                            }
-                        ]
-                    }
+                                name: "hosts",
+                            },
+                        ],
+                    },
                 ],
                 hostNetwork: true,
                 volumes: [
                     {
                         hostPath: {
-                            path: "/proc"
+                            path: "/proc",
                         },
-                        name: "procfs-volume"
+                        name: "procfs-volume",
                     },
                     {
                         configMap: {
-                            name: "sfdchosts"
+                            name: "sfdchosts",
                         },
-                        name: "hosts"
-                    }
-                ]
+                        name: "hosts",
+                    },
+                ],
             },
             metadata: {
                 labels: {
                     app: "watchdog-common",
                     apptype: "monitoring",
-                    daemonset: "true"
-                }
-            }
-        }
+                    daemonset: "true",
+                },
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-common"
+            name: "watchdog-common",
         },
         name: "watchdog-common",
-        namespace: "flowsnake"
-    }
+        namespace: "flowsnake",
+    },
 }

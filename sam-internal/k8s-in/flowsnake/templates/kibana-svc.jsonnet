@@ -5,21 +5,21 @@
         name: "kibana",
         namespace: "flowsnake",
         labels: {
-            component: "kibana"
-        }
+            component: "kibana",
+        },
     },
     spec: {
         type: "NodePort",
         selector: {
-            component: "kibana"
+            component: "kibana",
         },
         ports: [
             {
                 name: "http",
                 port: 5601,
                 protocol: "TCP",
-                nodePort: 32003
-            }
-        ]
-    }
+                nodePort: 32003,
+            },
+        ],
+    },
 }

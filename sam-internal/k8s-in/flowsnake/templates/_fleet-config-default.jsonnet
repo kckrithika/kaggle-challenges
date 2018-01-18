@@ -5,11 +5,11 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     kind: "ConfigMap",
     metadata: {
         name: "fleet-config",
-        namespace: "default"
+        namespace: "default",
     },
     data: {
         name: flowsnakeconfig.fleet_name,
         registry: flowsnakeconfig.registry,
-        kubeconfig: "/etc/kubernetes/kubeconfig"
-    }
+        kubeconfig: "/etc/kubernetes/kubeconfig",
+    },
 }
