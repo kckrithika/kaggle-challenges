@@ -19,12 +19,14 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      image: tnrp/csc-health/report-collector:1.11.1-0000198-3bbbd2a0
       ports:
       - name: provider
         containerPort: 8080
       - name: consumer
         containerPort: 8081
+      - name: admin
+        containerPort: 8082
       - name: provider-https
         containerPort: 8443
       - name: consumer-https
@@ -53,8 +55,8 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificate
-        value: /var/lib/report-collector/certificates/sfdc-internal-ca.crt
+      - name: ReportCollector_app_https_caCertificates
+        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
       - name: ReportCollector_app_https_certificate
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
@@ -78,17 +80,18 @@ system:
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
-        -Dvertx.disableFileCPResolving=true
+        -Dvertx.cacheDirBase=${CACHE_DIR}
         -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory
         -Dvertx.metrics.options.enabled=true
         -Dvertx.metrics.options.registryName=vertx-registry
+        -Dvertx.metrics.options.configPath=metric-options.json
         -Dvertx.disableDnsResolver=true
         -Dlog_dir=${LOG_DIR}
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      image: tnrp/csc-health/report-collector:1.11.1-0000198-3bbbd2a0
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
@@ -155,6 +158,8 @@ system:
       targetport: 8080
     - port: 18444
       targetport: 8081
+    - port: 8082
+      targetport: 8082
     - port: 8443
       targetport: 8443
     - port: 8444
