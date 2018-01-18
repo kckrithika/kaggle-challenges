@@ -21,7 +21,7 @@ system:
         mountPath: /rbd/html
       env:
         - name: DUMMYENV
-          value: "SOMEVALUE04"
+          value: "SOMEVALUE05"
       livenessProbe:
         httpGet:
           path: /
