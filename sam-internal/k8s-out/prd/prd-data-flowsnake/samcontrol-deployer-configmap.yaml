@@ -26,6 +26,11 @@ data:
         "sdn-route-watchdog.yaml",
         "sdn-secret-agent.yaml",
         "sdn-vault-agent.yaml",
+        "watchdog-common.yaml",
+        "watchdog-etcd.yaml",
+        "watchdog-master.yaml",
+        "watchdog-node.yaml",
+        "watchdog-pod.yaml",
         "_flowsnake-sdn-secret.yaml",
         "samcontrol-deployer.yaml",
         "deepsea-kdc-svc.yaml"
