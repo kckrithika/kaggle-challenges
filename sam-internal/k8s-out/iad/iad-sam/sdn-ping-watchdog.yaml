@@ -35,6 +35,7 @@ spec:
         - --pingInterval=1s
         - --pingTimeout=5s
         - --livenessProbePort=9102
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /config/kubeconfig

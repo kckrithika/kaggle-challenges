@@ -28,6 +28,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
+                            configs.sfdchosts_arg,
                         ],
                         env: [
                             configs.kube_config_env,
