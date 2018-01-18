@@ -53,9 +53,6 @@ if configs.kingdom == "prd" then {
                         slbconfigs.logs_volume_mount,
                         ]),
                     },
-                ]
-                + if configs.estate == "prd-sdc" then
-                [
                 {
                     name: "slb-file-watcher",
                     image: slbimages.hypersdn,
@@ -77,7 +74,7 @@ if configs.kingdom == "prd" then {
                     slbconfigs.logs_volume_mount,
                 ]),
                 },
-                ] else [],
+                ],
 
                 nodeSelector: {
                     "slb-service": "slb-nginx",
