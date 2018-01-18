@@ -144,45 +144,6 @@ items:
     verbs:
     - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: role:shared0-sdcsamcompute2-6-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-sdcsamcompute2-6-prd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: role:shared0-sdcsamcompute2-7-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-sdcsamcompute2-7-prd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: role:shared0-sdcsamcompute2-8-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-sdcsamcompute2-8-prd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-sdcsamcompute1-10-prd.eng.sfdc.net
@@ -303,38 +264,5 @@ items:
   subjects:
   - kind: User
     name: shared0-sdcsamcompute2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:shared0-sdcsamcompute2-6-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:shared0-sdcsamcompute2-6-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-sdcsamcompute2-6-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:shared0-sdcsamcompute2-7-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:shared0-sdcsamcompute2-7-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-sdcsamcompute2-7-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:shared0-sdcsamcompute2-8-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:shared0-sdcsamcompute2-8-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-sdcsamcompute2-8-prd.eng.sfdc.net
 kind: List
 metadata: {}
