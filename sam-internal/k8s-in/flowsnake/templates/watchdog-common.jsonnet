@@ -1,5 +1,6 @@
-local configs = import "config.jsonnet";
 local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local flowsnakeconfigmap = import "flowsnake_configmap.jsonnet";
 {
     kind: "DaemonSet",
     spec: {
@@ -13,16 +14,11 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             "-role=COMMON",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=20m",
-                            "-emailFrequency=6m",
                             "-timeout=2s",
-                            "-funnelEndpoint=" + configs.funnelVIP,
-                            "-rcImtEndpoint=" + configs.rcImtEndpoint,
-                            "-smtpServer=" + configs.smtpServer,
-                            "-sender=vgiridaran@salesforce.com",
-                            "-recipient=vgiridaran@salesforce.com",
-                            "-email-subject-prefix=FLOWSNAKEWD",
-                            "-hostsConfigFile=/data/hosts/hosts.json",
-                            "-metricsService=flowsnake",
+                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                            "--config=/config/watchdog.json",
+                            "--hostsConfigFile=/sfdchosts/hosts.json",
+                            "-emailFrequency=6m",
                         ],
                         name: "watchdog",
                         resources: {
@@ -36,32 +32,44 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             },
                         },
                         volumeMounts: [
-                            {
-                                mountPath: "/hostproc",
-                                name: "procfs-volume",
-                            },
-                            {
-                                mountPath: "/data/hosts",
-                                name: "hosts",
-                            },
-                        ],
+                          {
+                            mountPath: "/sfdchosts",
+                            name: "sfdchosts",
+                          },
+                          {
+                            mountPath: "/hostproc",
+                            name: "procfs-volume",
+                          },
+                          {
+                            mountPath: "/config",
+                            name: "config",
+                          },
+                        ] +
+                        flowsnakeconfigmapmount.cert_volumeMounts,
                     },
                 ],
                 hostNetwork: true,
                 volumes: [
-                    {
-                        hostPath: {
-                            path: "/proc",
-                        },
-                        name: "procfs-volume",
+                  {
+                    configMap: {
+                      name: "sfdchosts",
                     },
-                    {
-                        configMap: {
-                            name: "sfdchosts",
-                        },
-                        name: "hosts",
+                    name: "sfdchosts",
+                  },
+                  {
+                    hostPath: {
+                      path: "/proc",
                     },
-                ],
+                    name: "procfs-volume",
+                  },
+                  {
+                    configMap: {
+                      name: "watchdog",
+                    },
+                    name: "config",
+                  },
+                ] +
+                flowsnakeconfigmapmount.cert_volume,
             },
             metadata: {
                 labels: {

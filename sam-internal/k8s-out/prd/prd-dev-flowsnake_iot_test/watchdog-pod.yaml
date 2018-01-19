@@ -40,7 +40,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /config/kubeconfig
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:sam-0001027-676096c4
         name: watchdog-pod
         volumeMounts:
         - mountPath: /data/certs
