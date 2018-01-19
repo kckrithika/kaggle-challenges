@@ -1,0 +1,1935 @@
+From 17410ca04034fab08efacdac8a31f416174aac54 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Thu, 18 Jan 2018 17:15:43 -0800
+Subject: [PATCH 01/14] added overrides in samimages.jsonnet for nightly
+ deployer
+
+---
+ sam-internal/k8s-in/sam/samimages.jsonnet | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index ca8a082098..affa9a929b 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -18,6 +18,10 @@ local utils = import "util_functions.jsonnet";
+         # Example:
+         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+ 
++	# [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
++	“prd,prd-samdev,samcontrol-deployer,hypersam”: “ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1”
++	“prd,prd-samdev,watchdog-sdp,hypersam”: “auto”	
++
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+
+From 351a8a936e1740d00b971e57c008b18464a7bb15 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Thu, 18 Jan 2018 17:26:33 -0800
+Subject: [PATCH 02/14] ran build.sh
+
+---
+ sam-internal/k8s-in/sam/samimages.jsonnet                    | 6 +++---
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml | 2 +-
+ sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml        | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index affa9a929b..dac06f41a6 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -18,9 +18,9 @@ local utils = import "util_functions.jsonnet";
+         # Example:
+         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+ 
+-	# [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
+-	“prd,prd-samdev,samcontrol-deployer,hypersam”: “ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1”
+-	“prd,prd-samdev,watchdog-sdp,hypersam”: “auto”	
++        # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
++        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1",
++        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
+ 
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+index bf156febd7..eb4b3338fc 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+@@ -21,7 +21,7 @@ spec:
+         env:
+         - name: KUBECONFIG
+           value: /kubeconfig/kubeconfig-platform
+-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
++        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1
+         livenessProbe:
+           httpGet:
+             path: /
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+index 3e0d6ec40b..00dc1b6f27 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+@@ -28,7 +28,7 @@ spec:
+         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+         - --config=/config/watchdog.json
+         - --hostsConfigFile=/sfdchosts/hosts.json
+-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
++        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
+         name: watchdog-sdp
+         volumeMounts:
+         - mountPath: /sfdchosts
+
+From 69f6fe8f3e008adaf9c0848410b77f5b2f07a9a1 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Thu, 18 Jan 2018 17:53:03 -0800
+Subject: [PATCH 03/14] using image sam-0001210-ef6a180b as a keyword for auto
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet      | 1 +
+ sam-internal/k8s-in/sam/samimages.jsonnet                               | 2 +-
+ sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ .../k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml      | 1 +
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml  | 1 +
+ sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml                   | 2 +-
+ sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml | 1 +
+ sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml  | 1 +
+ sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ 23 files changed, 23 insertions(+), 2 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index e0e8c23a0a..a1a39a5aa1 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -20,6 +20,7 @@ local samimages = import "samimages.jsonnet";
+   "max-resource-time": 300000000000,
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
++  "auto-keyword": "sam-0001210-ef6a180b",
+ }
+ + if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index dac06f41a6..b9c6e33ee3 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
+ 
+         # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
+         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1",
+-        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
++        "prd,prd-samdev,watchdog-sdp,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
+ 
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+diff --git a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+index 522bbf1be4..eaa9cc7436 100755
+--- a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+index 3890ffca12..69f5b30523 100755
+--- a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+index 7b1407656b..d217c75195 100755
+--- a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+index 177ff4c8d6..bb982e0faf 100755
+--- a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+index b5f964f8b4..5d173b26c5 100755
+--- a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+index 248ad59e61..a058e285b8 100755
+--- a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+index 8f288d5db3..b03ca2c8c5 100755
+--- a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+index 23ecbbd242..cc5f0d1243 100755
+--- a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+index d7037af1a6..a7506d858d 100755
+--- a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+index 63374884d5..112a85fbef 100755
+--- a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+index 00dc1b6f27..b4bf337649 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+@@ -28,7 +28,7 @@ spec:
+         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+         - --config=/config/watchdog.json
+         - --hostsConfigFile=/sfdchosts/hosts.json
+-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
++        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001210-ef6a180b
+         name: watchdog-sdp
+         volumeMounts:
+         - mountPath: /sfdchosts
+diff --git a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+index 85181ece7e..4e318f10a8 100755
+--- a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+index 26c8a764d7..8ec543e410 100755
+--- a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+index 9ecffeb564..0302b81fbf 100755
+--- a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+index c582fc3a51..889a0fd283 100755
+--- a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+index fc0b774b92..fe3cbeca3a 100755
+--- a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+
+From b235bbec999ceb443ecc627d4f0bf851673587b0 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 10:58:40 -0800
+Subject: [PATCH 04/14] Added if statement in jsonnet
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet    | 4 +++-
+ sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ .../k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml    | 1 -
+ .../k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml         | 2 +-
+ .../k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml        | 1 -
+ .../k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml         | 1 -
+ sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ 21 files changed, 4 insertions(+), 21 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index a1a39a5aa1..366bd88fa7 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -20,8 +20,10 @@ local samimages = import "samimages.jsonnet";
+   "max-resource-time": 300000000000,
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
+-  "auto-keyword": "sam-0001210-ef6a180b",
+ }
+++ if configs.estate == "prd-samdev" then {
++  "auto-keyword": "sam-0001210-ef6a180b",
++} else {}
+ + if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+   } else if configs.kingdom == "prd" then {
+diff --git a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+index eaa9cc7436..522bbf1be4 100755
+--- a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+index 69f5b30523..3890ffca12 100755
+--- a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+index d217c75195..7b1407656b 100755
+--- a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+index bb982e0faf..177ff4c8d6 100755
+--- a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+index 5d173b26c5..b5f964f8b4 100755
+--- a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+index a058e285b8..248ad59e61 100755
+--- a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+index b03ca2c8c5..8f288d5db3 100755
+--- a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+index cc5f0d1243..23ecbbd242 100755
+--- a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+index a7506d858d..d7037af1a6 100755
+--- a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+index 112a85fbef..63374884d5 100755
+--- a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ac3530be7e 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -14,7 +14,7 @@ data:
+       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+       "max-resource-time": 300000000000,
+       "poll-delay": 30000000000,
+-      "recipient": "sam@salesforce.com,slb@salesforce.com",
++      "recipient": "sam@salesforce.com",
+       "resource-cooldown": 15000000000,
+       "resource-progression-timeout": 120000000000,
+       "resources-to-skip": [
+diff --git a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+index 4e318f10a8..85181ece7e 100755
+--- a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+index 8ec543e410..26c8a764d7 100755
+--- a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+index 0302b81fbf..9ecffeb564 100755
+--- a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+index 889a0fd283..c582fc3a51 100755
+--- a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+index fe3cbeca3a..fc0b774b92 100755
+--- a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+
+From fb693e4be0539f676f5ba675aed662691bfbc9c5 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 11:05:20 -0800
+Subject: [PATCH 05/14] updated docker build image
+
+---
+ sam-internal/k8s-in/sam/samimages.jsonnet                    | 2 +-
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index b9c6e33ee3..5992f15188 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
+         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+ 
+         # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
+-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1",
++        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_174405.a492c548.dirty.dianachang-ltm1",
+         "prd,prd-samdev,watchdog-sdp,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
+ 
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+index eb4b3338fc..dc37b30fe6 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+@@ -21,7 +21,7 @@ spec:
+         env:
+         - name: KUBECONFIG
+           value: /kubeconfig/kubeconfig-platform
+-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1
++        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_174405.a492c548.dirty.dianachang-ltm1
+         livenessProbe:
+           httpGet:
+             path: /
+
+From fe2036b8682803fb203fd4c8162375a70d6cbe26 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Thu, 18 Jan 2018 17:15:43 -0800
+Subject: [PATCH 06/14] added overrides in samimages.jsonnet for nightly
+ deployer
+
+---
+ sam-internal/k8s-in/sam/samimages.jsonnet | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index ca8a082098..affa9a929b 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -18,6 +18,10 @@ local utils = import "util_functions.jsonnet";
+         # Example:
+         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+ 
++	# [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
++	“prd,prd-samdev,samcontrol-deployer,hypersam”: “ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1”
++	“prd,prd-samdev,watchdog-sdp,hypersam”: “auto”	
++
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+
+From 5737d0d6f79efe71eaee1d8778c8fb873d67280c Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Thu, 18 Jan 2018 17:26:33 -0800
+Subject: [PATCH 07/14] ran build.sh
+
+---
+ sam-internal/k8s-in/sam/samimages.jsonnet                    | 6 +++---
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml | 2 +-
+ sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml        | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index affa9a929b..dac06f41a6 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -18,9 +18,9 @@ local utils = import "util_functions.jsonnet";
+         # Example:
+         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+ 
+-	# [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
+-	“prd,prd-samdev,samcontrol-deployer,hypersam”: “ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1”
+-	“prd,prd-samdev,watchdog-sdp,hypersam”: “auto”	
++        # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
++        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1",
++        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
+ 
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+index bf156febd7..eb4b3338fc 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+@@ -21,7 +21,7 @@ spec:
+         env:
+         - name: KUBECONFIG
+           value: /kubeconfig/kubeconfig-platform
+-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
++        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1
+         livenessProbe:
+           httpGet:
+             path: /
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+index 3e0d6ec40b..00dc1b6f27 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+@@ -28,7 +28,7 @@ spec:
+         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+         - --config=/config/watchdog.json
+         - --hostsConfigFile=/sfdchosts/hosts.json
+-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
++        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
+         name: watchdog-sdp
+         volumeMounts:
+         - mountPath: /sfdchosts
+
+From 90b9491bd77f5dbd7f9a55ad9716222e4e1eea9f Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Thu, 18 Jan 2018 17:53:03 -0800
+Subject: [PATCH 08/14] using image sam-0001210-ef6a180b as a keyword for auto
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet      | 1 +
+ sam-internal/k8s-in/sam/samimages.jsonnet                               | 2 +-
+ sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ .../k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml      | 1 +
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml  | 1 +
+ sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml                   | 2 +-
+ sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml | 1 +
+ sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml  | 1 +
+ sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml     | 1 +
+ 23 files changed, 23 insertions(+), 2 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index e0e8c23a0a..a1a39a5aa1 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -20,6 +20,7 @@ local samimages = import "samimages.jsonnet";
+   "max-resource-time": 300000000000,
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
++  "auto-keyword": "sam-0001210-ef6a180b",
+ }
+ + if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index dac06f41a6..b9c6e33ee3 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
+ 
+         # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
+         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1",
+-        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
++        "prd,prd-samdev,watchdog-sdp,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
+ 
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
+diff --git a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+index 522bbf1be4..eaa9cc7436 100755
+--- a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+index 3890ffca12..69f5b30523 100755
+--- a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+index 7b1407656b..d217c75195 100755
+--- a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+index 177ff4c8d6..bb982e0faf 100755
+--- a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+index b5f964f8b4..5d173b26c5 100755
+--- a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+index 248ad59e61..a058e285b8 100755
+--- a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+index 8f288d5db3..b03ca2c8c5 100755
+--- a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+index 23ecbbd242..cc5f0d1243 100755
+--- a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+index d7037af1a6..a7506d858d 100755
+--- a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+index 63374884d5..112a85fbef 100755
+--- a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+index 00dc1b6f27..b4bf337649 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/watchdog-sdp.yaml
+@@ -28,7 +28,7 @@ spec:
+         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+         - --config=/config/watchdog.json
+         - --hostsConfigFile=/sfdchosts/hosts.json
+-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
++        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001210-ef6a180b
+         name: watchdog-sdp
+         volumeMounts:
+         - mountPath: /sfdchosts
+diff --git a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+index 85181ece7e..4e318f10a8 100755
+--- a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+index 26c8a764d7..8ec543e410 100755
+--- a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+index 9ecffeb564..0302b81fbf 100755
+--- a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+index c582fc3a51..889a0fd283 100755
+--- a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+index fc0b774b92..fe3cbeca3a 100755
+--- a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+@@ -2,6 +2,7 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+
+From 6540a4163a85d0cdf207daf4d14b9bdc64421bed Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 10:58:40 -0800
+Subject: [PATCH 09/14] Added if statement in jsonnet
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet    | 4 +++-
+ sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ .../k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml    | 1 -
+ .../k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml         | 2 +-
+ .../k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml        | 1 -
+ .../k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml         | 1 -
+ sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml   | 1 -
+ 21 files changed, 4 insertions(+), 21 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index a1a39a5aa1..366bd88fa7 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -20,8 +20,10 @@ local samimages = import "samimages.jsonnet";
+   "max-resource-time": 300000000000,
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
+-  "auto-keyword": "sam-0001210-ef6a180b",
+ }
+++ if configs.estate == "prd-samdev" then {
++  "auto-keyword": "sam-0001210-ef6a180b",
++} else {}
+ + if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+   } else if configs.kingdom == "prd" then {
+diff --git a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+index eaa9cc7436..522bbf1be4 100755
+--- a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+index 69f5b30523..3890ffca12 100755
+--- a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+index d217c75195..7b1407656b 100755
+--- a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+index bb982e0faf..177ff4c8d6 100755
+--- a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+index 5d173b26c5..b5f964f8b4 100755
+--- a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+index a058e285b8..248ad59e61 100755
+--- a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+index b03ca2c8c5..8f288d5db3 100755
+--- a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+index cc5f0d1243..23ecbbd242 100755
+--- a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+index a7506d858d..d7037af1a6 100755
+--- a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+index 112a85fbef..63374884d5 100755
+--- a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ac3530be7e 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -14,7 +14,7 @@ data:
+       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+       "max-resource-time": 300000000000,
+       "poll-delay": 30000000000,
+-      "recipient": "sam@salesforce.com,slb@salesforce.com",
++      "recipient": "sam@salesforce.com",
+       "resource-cooldown": 15000000000,
+       "resource-progression-timeout": 120000000000,
+       "resources-to-skip": [
+diff --git a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+index 882dc7cb01..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+index 4e318f10a8..85181ece7e 100755
+--- a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+index 8ec543e410..26c8a764d7 100755
+--- a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+index 0302b81fbf..9ecffeb564 100755
+--- a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+index 889a0fd283..c582fc3a51 100755
+--- a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+diff --git a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+index fe3cbeca3a..fc0b774b92 100755
+--- a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+
+From e49e411b129927eda627539b3db48ef53b3e23c4 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 11:05:20 -0800
+Subject: [PATCH 10/14] updated docker build image
+
+---
+ sam-internal/k8s-in/sam/samimages.jsonnet                    | 2 +-
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/samimages.jsonnet b/sam-internal/k8s-in/sam/samimages.jsonnet
+index b9c6e33ee3..5992f15188 100644
+--- a/sam-internal/k8s-in/sam/samimages.jsonnet
++++ b/sam-internal/k8s-in/sam/samimages.jsonnet
+@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
+         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+ 
+         # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
+-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1",
++        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_174405.a492c548.dirty.dianachang-ltm1",
+         "prd,prd-samdev,watchdog-sdp,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
+ 
+         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+index eb4b3338fc..dc37b30fe6 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer.yaml
+@@ -21,7 +21,7 @@ spec:
+         env:
+         - name: KUBECONFIG
+           value: /kubeconfig/kubeconfig-platform
+-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_163607.a492c548.dirty.dianachang-ltm1
++        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180118_174405.a492c548.dirty.dianachang-ltm1
+         livenessProbe:
+           httpGet:
+             path: /
+
+From 9204f577df1e525e0e72382af9892aa593fa8483 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 11:52:38 -0800
+Subject: [PATCH 11/14] modified the jsonnet so it doesn't modify the recipient
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet | 7 ++++---
+ .../k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml      | 3 +--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index 366bd88fa7..182e1f80f5 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -21,9 +21,6 @@ local samimages = import "samimages.jsonnet";
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
+ }
+-+ if configs.estate == "prd-samdev" then {
+-  "auto-keyword": "sam-0001210-ef6a180b",
+-} else {}
+ + if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+   } else if configs.kingdom == "prd" then {
+@@ -35,3 +32,7 @@ local samimages = import "samimages.jsonnet";
+   } else {
+     "disable-rollback": false,
+   }
+++ if configs.estate == "prd-samdev" then {
++    "auto-keyword": "sam-0001210-ef6a180b",
++  } else {
++}
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index ac3530be7e..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+@@ -14,7 +13,7 @@ data:
+       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+       "max-resource-time": 300000000000,
+       "poll-delay": 30000000000,
+-      "recipient": "sam@salesforce.com",
++      "recipient": "sam@salesforce.com,slb@salesforce.com",
+       "resource-cooldown": 15000000000,
+       "resource-progression-timeout": 120000000000,
+       "resources-to-skip": [
+
+From 244bab588ced38613777b267e7d0b59165792a71 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 11:56:50 -0800
+Subject: [PATCH 12/14] fixed the jsonnet
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet     | 3 ---
+ sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml | 3 +--
+ 2 files changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index 2d762a52a0..182e1f80f5 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -21,9 +21,6 @@ local samimages = import "samimages.jsonnet";
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
+ }
+-+ if configs.estate == "prd-samdev" then {
+-  "auto-keyword": "sam-0001210-ef6a180b",
+-} else {}
+ + if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+   } else if configs.kingdom == "prd" then {
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index ac3530be7e..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -2,7 +2,6 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
+-      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+@@ -14,7 +13,7 @@ data:
+       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+       "max-resource-time": 300000000000,
+       "poll-delay": 30000000000,
+-      "recipient": "sam@salesforce.com",
++      "recipient": "sam@salesforce.com,slb@salesforce.com",
+       "resource-cooldown": 15000000000,
+       "resource-progression-timeout": 120000000000,
+       "resources-to-skip": [
+
+From 53bfa895ff39e5acd20c7fa5ce4beafdaca29e73 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 13:53:51 -0800
+Subject: [PATCH 13/14] fixed the jsonnet ?
+
+---
+ .../sam/configs/samcontrol-deployer-config.jsonnet       | 16 ++++++++--------
+ .../prd/prd-sam/samcontrol-deployer-configmap.yaml       |  1 +
+ .../prd-sam_storage/samcontrol-deployer-configmap.yaml   |  1 +
+ .../prd/prd-samdev/samcontrol-deployer-configmap.yaml    |  2 ++
+ .../prd/prd-samtest/samcontrol-deployer-configmap.yaml   |  1 +
+ .../prd/prd-samtwo/samcontrol-deployer-configmap.yaml    |  1 +
+ .../prd/prd-sdc/samcontrol-deployer-configmap.yaml       |  1 +
+ 7 files changed, 15 insertions(+), 8 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index 182e1f80f5..921507aa37 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -21,18 +21,18 @@ local samimages = import "samimages.jsonnet";
+   "delete-orphans": true,
+   "resources-to-skip": ["sdn-secret.yaml"],
+ }
+-+ if configs.estate == "prd-sam_storage" then {
+++ (if configs.estate == "prd-samdev" then {
++    "auto-keyword": "sam-0001210-ef6a180b",
++  } else {
++})
+++ (if configs.estate == "prd-sam_storage" then {
+     recipient: "storagefoundation@salesforce.com",
+   } else if configs.kingdom == "prd" then {
+     recipient: "sam@salesforce.com,slb@salesforce.com",
+   } else {
+-}
+-+ if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
++})
+++ (if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
+     "disable-rollback": true,
+   } else {
+     "disable-rollback": false,
+-  }
+-+ if configs.estate == "prd-samdev" then {
+-    "auto-keyword": "sam-0001210-ef6a180b",
+-  } else {
+-}
++  })
+diff --git a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..a195866ef8 100755
+--- a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+@@ -5,6 +5,7 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
++      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+index 63374884d5..9cc21a75d6 100755
+--- a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+@@ -5,6 +5,7 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
++      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..adfc11a754 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -2,9 +2,11 @@ apiVersion: v1
+ data:
+   samcontroldeployer.json: |-
+     {
++      "auto-keyword": "sam-0001210-ef6a180b",
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
++      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..a195866ef8 100755
+--- a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+@@ -5,6 +5,7 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
++      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..a195866ef8 100755
+--- a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+@@ -5,6 +5,7 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
++      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+index ef4c5613fa..a195866ef8 100755
+--- a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+@@ -5,6 +5,7 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
++      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+
+From 5ff3c77ca2fa22d58e7b16cc868fdf32017c1a90 Mon Sep 17 00:00:00 2001
+From: Diana Chang <diana.chang@dianachang-ltm1.internal.salesforce.com>
+Date: Fri, 19 Jan 2018 14:05:49 -0800
+Subject: [PATCH 14/14] removed if statement for disable-rollback in jsonnet
+
+---
+ sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet   | 5 -----
+ sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ .../k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml   | 1 -
+ .../k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml        | 1 -
+ .../k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml       | 1 -
+ .../k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml        | 1 -
+ sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml  | 1 -
+ 21 files changed, 25 deletions(-)
+
+diff --git a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+index 921507aa37..0e0f19a5d8 100644
+--- a/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
++++ b/sam-internal/k8s-in/sam/configs/samcontrol-deployer-config.jsonnet
+@@ -31,8 +31,3 @@ local samimages = import "samimages.jsonnet";
+     recipient: "sam@salesforce.com,slb@salesforce.com",
+   } else {
+ })
+-+ (if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
+-    "disable-rollback": true,
+-  } else {
+-    "disable-rollback": false,
+-  })
+diff --git a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+index 522bbf1be4..4848f708fb 100755
+--- a/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/cdu/cdu-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+-      "disable-rollback": true,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+index 3890ffca12..0932c628d3 100755
+--- a/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/chx/chx-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+index 7b1407656b..7bc46d3b5a 100755
+--- a/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/dfw/dfw-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+index 177ff4c8d6..3cd122ce02 100755
+--- a/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/frf/frf-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+index b5f964f8b4..e77f883d8c 100755
+--- a/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/hnd/hnd-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+index 248ad59e61..535f90804b 100755
+--- a/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/iad/iad-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+index 8f288d5db3..92afd2e9e2 100755
+--- a/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ord/ord-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+index 23ecbbd242..7fd8d4ac5a 100755
+--- a/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/par/par-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+index d7037af1a6..9a8f3bda0e 100755
+--- a/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/phx/phx-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+index a195866ef8..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+index 9cc21a75d6..63374884d5 100755
+--- a/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sam_storage/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+index adfc11a754..882dc7cb01 100755
+--- a/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samdev/samcontrol-deployer-configmap.yaml
+@@ -6,7 +6,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+index a195866ef8..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtest/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+index a195866ef8..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-samtwo/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+index a195866ef8..ef4c5613fa 100755
+--- a/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/prd/prd-sdc/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+index 85181ece7e..c63ad4b930 100755
+--- a/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/syd/syd-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+-      "disable-rollback": true,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+index 26c8a764d7..bd4115c51e 100755
+--- a/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/ukb/ukb-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/etc/pki_service/ca/cabundle.pem",
+       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+index 9ecffeb564..38b8758b5a 100755
+--- a/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/wax/wax-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+-      "disable-rollback": false,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+index c582fc3a51..1bc65e7ac2 100755
+--- a/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yhu/yhu-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+-      "disable-rollback": true,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,
+diff --git a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+index fc0b774b92..f0a2277d0d 100755
+--- a/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
++++ b/sam-internal/k8s-out/yul/yul-sam/samcontrol-deployer-configmap.yaml
+@@ -5,7 +5,6 @@ data:
+       "ca-file": "/data/certs/ca.crt",
+       "cert-file": "/data/certs/hostcert.crt",
+       "delete-orphans": true,
+-      "disable-rollback": true,
+       "disable-security-check": true,
+       "dry-run": false,
+       "email": true,

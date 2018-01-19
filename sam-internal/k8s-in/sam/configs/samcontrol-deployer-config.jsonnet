@@ -21,14 +21,13 @@ local samimages = import "samimages.jsonnet";
   "delete-orphans": true,
   "resources-to-skip": ["sdn-secret.yaml"],
 }
-+ if configs.estate == "prd-sam_storage" then {
++ (if configs.estate == "prd-samtest" then {
+  "auto-keyword": "sam-0001210-ef6a180b",
+  } else {
+})
++ (if configs.estate == "prd-sam_storage" then {
     recipient: "storagefoundation@salesforce.com",
   } else if configs.kingdom == "prd" then {
     recipient: "sam@salesforce.com,slb@salesforce.com",
   } else {
-}
-+ if configs.kingdom == "cdu" || configs.kingdom == "syd" || configs.kingdom == "yhu" || configs.kingdom == "yul" then {
-    "disable-rollback": true,
-  } else {
-    "disable-rollback": false,
-  }
+})
