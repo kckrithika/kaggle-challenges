@@ -12,9 +12,9 @@ system:
         - sdn-pull-requests 
     containers:
     - name: team-prs 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201801190921
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201801191059
 
-      command: ["/sdn/velo"]
+      command: ["/sdn/slb-velo"]
       args: [""]
       ports:
       - containerPort: 3133
