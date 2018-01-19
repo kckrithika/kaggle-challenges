@@ -35,10 +35,11 @@ spec:
         - --pingInterval=1s
         - --pingTimeout=5s
         - --livenessProbePort=9102
+        - --controlEstate=ukb-sam
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
-          value: /config/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-ukb.data.sfdc.net/tnrp/sdn/hypersdn:v-0000542-5a3bab56
         livenessProbe:
           httpGet:
@@ -55,8 +56,8 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-        - mountPath: /config
-          name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         pool: ukb-sam
@@ -72,4 +73,4 @@ spec:
         name: certs
       - hostPath:
           path: /etc/kubernetes
-        name: config
+        name: kubeconfig
