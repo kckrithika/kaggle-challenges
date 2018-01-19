@@ -7,6 +7,7 @@ set -ex
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/../hypersam.sh"
+cd $DIR
 
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
@@ -32,7 +33,7 @@ if [ ! -f jsonnet/jsonnet ]; then
     popd
 fi
 
-# Nuke output folder to ensure we dont keep around stale output files
+# Nuke output folder to ensure we don't keep around stale output files
 rm -rf ../k8s-out/**
 mkdir -p ../k8s-out/
 cp k8s-out-access.yaml ../k8s-out/access.yaml
