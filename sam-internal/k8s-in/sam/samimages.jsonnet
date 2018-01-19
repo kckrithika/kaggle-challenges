@@ -76,9 +76,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod
         "4": {
-            hypersam: "sam-0001585-fdaa5a39",
-            madkub: "1.0.0-0000056-f3539b1a",
-            madkubSidecar: "1.0.0-0000056-f3539b1a",
+            hypersam: "sam-0001622-cbc44617",
+            madkub: "1.0.0-0000058-3855b6fd",
+            madkubSidecar: "1.0.0-0000058-3855b6fd",
             },
 
         ### Temporary phase just for public cloud

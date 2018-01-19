@@ -15,7 +15,7 @@ data:
       "k8sapiserver": "",
       "keyFile": "/data/certs/hostcert.key",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.wax.prod.non-estates.sfdcsd.net:8443",
-      "maddogMadkubImage": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000056-f3539b1a",
+      "maddogMadkubImage": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000058-3855b6fd",
       "slbConfigInAnnotations": false,
       "slbConfigInLabels": false,
       "statefulAppEnabled": false,
