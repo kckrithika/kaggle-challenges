@@ -1,4 +1,4 @@
 apps:
  report-collector:
-
+  - prd/prd-sam_report_collector
  demo-report-poster:
