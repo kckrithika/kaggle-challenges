@@ -6,7 +6,7 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: redis-sp-c1-12000
-    count: 10
+    count: 4
     hostnetwork: true
     containers:
     - name: caas-redis
