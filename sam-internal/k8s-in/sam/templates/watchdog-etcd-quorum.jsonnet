@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
+
 {
     kind: "Deployment",
     spec: {
@@ -18,6 +19,7 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=10s",
                             "-alertThreshold=300s",
                         ]
+                        + samwdconfig.pagerduty_args
                         + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=6h"]),
                        volumeMounts: configs.filter_empty([
