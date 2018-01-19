@@ -1,8 +1,6 @@
 #!/bin/bash
 #exit on error
 set -e
-#Print each command
-set -x
 
 REPO_OWNER=sam
 
@@ -37,8 +35,8 @@ exitIfMergeCommitFound
 
 cd /tmp
 rm -rf manifests || true
-time git clone git@git.soma.salesforce.com:sam/manifests.git
+git clone git@git.soma.salesforce.com:sam/manifests.git
 
 cd -
 
-/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder  -debug -repo-name manifests
+/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name manifests
