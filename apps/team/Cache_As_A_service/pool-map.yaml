@@ -2047,3 +2047,7 @@ apps:
   - name: ukb/ukb-sp1-sam_caas
  ukb-sp1-redis-sp-c1-12022:
   - name: ukb/ukb-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-c1-12000:
+  - name: hnd/hnd-sp1-sam_caas
