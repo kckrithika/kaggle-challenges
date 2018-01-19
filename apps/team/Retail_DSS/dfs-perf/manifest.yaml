@@ -4,13 +4,17 @@ apiVersion: v1
 system:
   functions:
   - name: dfs-perf
-    count: 1
+    count: 2
     containers:
     - name: dfs-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.7
+      # associate the log directory to a logical volume.
+      volumeMounts:
+      - mountPath: /home/sfdc-dfs/logs
+        name: logvol
       env:
       - name: SFDC_ENVIRONMENT
-        value: CCP_Integration_Performance
+        value: mist
       ports:
       - containerPort: 7021
       - containerPort: 15372
@@ -39,3 +43,9 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
+    # maps the dfslogvol volumnMount to a directory on the host machine
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-dfs/logs
+
