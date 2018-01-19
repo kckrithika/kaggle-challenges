@@ -44,6 +44,15 @@ if configs.estate == "dfw-sam" || configs.estate == "phx-sam" || configs.estate 
                     env: [
                      configs.kube_config_env,
                     ],
+                    livenessProbe: {
+                       httpGet: {
+                             path: "/",
+                             port: 9095,
+                       },
+                       initialDelaySeconds: 20,
+                       periodSeconds: 20,
+                       timeoutSeconds: 20,
+                    },
                     image: samimages.hypersam,
                     name: "snapshoter",
                 }],

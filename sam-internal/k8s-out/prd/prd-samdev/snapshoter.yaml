@@ -28,6 +28,13 @@ spec:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9095
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          timeoutSeconds: 20
         name: snapshoter
         volumeMounts:
         - mountPath: /sfdchosts
