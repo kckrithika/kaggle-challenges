@@ -13,10 +13,20 @@ system:
         httpGet:
           path: /
           port: 9090
- 
+  - name: rbhat-test-func-2
+    count: 2
+    containers:
+    - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rbhat/samhello:bob-20160630 
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090 
   loadbalancers:
   - lbname: samhellolb
-    function: rbhat-test-func
+    function: rbhat-test-func-2
     ports:
       - port: 9090
         targetport: 9090
