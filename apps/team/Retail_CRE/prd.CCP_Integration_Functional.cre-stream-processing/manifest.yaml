@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc_impl.e24b372.42
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc_impl.714b489.43
       env:        
         - name: logDir
           value: /data/sam/cre/log/prd-ccp_integration_functional/cre-stream-processing
