@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 local sdnconfig = import "sdnconfig.jsonnet";
-if configs.kingdom == "prd" then {
+if configs.kingdom == "frf" || configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
