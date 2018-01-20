@@ -51,7 +51,7 @@ system:
 
     volumeClaimTemplates:
     - name: mysql-persistent-storage
-      storageClassName: mysql-hdd-pool
+      storageClassName: standard
       storageSizeRequest: 100Gi
 
   loadbalancers:
