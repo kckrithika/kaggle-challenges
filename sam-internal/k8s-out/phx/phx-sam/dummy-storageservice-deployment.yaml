@@ -13,7 +13,7 @@ spec:
         name: dummy-storageservice-deployment
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon:jewel-0000052-36e8b39d
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon:jewel-0000056-50bd0816
         name: cephdaemon
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/bookie:base-0000031-8791cfb6
         name: sfstore-bookie

@@ -1,0 +1,115 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: cephoperator
+  name: cephoperator-deployment
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: cephoperator
+    spec:
+      containers:
+      - env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: K8S_PLATFORM
+          value: phx-sam
+        - name: CEPH_INIT_CONTAINER
+          value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000284-989c85c6
+        - name: CEPH_DAEMON_IMAGE_PATH
+          value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph:base-0000320-403b5b92
+        name: cephoperator
+        volumeMounts:
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      - args:
+        - -t
+        - ajna_with_tags
+        - -s
+        - prometheus
+        - -i
+        - "60"
+        command:
+        - /opt/sfms/bin/sfms
+        env:
+        - name: SFDC_FUNNEL_VIP
+          value: ajna0-funnel1-0-phx.data.sfdc.net:80
+        - name: MC_KINGDOM
+          value: phx
+        - name: MC_ESTATE
+          value: phx-sam
+        - name: MC_NAME
+          value: ceph-operator
+        - name: MC_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MC_NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MC_DEVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000102-addfc459
+        name: sfms
+      initContainers:
+      - command:
+        - sh
+        - -c
+        - /entrypoint.sh -g 0 -u 0 -s root -l ceph-operator
+        env:
+        - name: KUBEVAR_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: KUBEVAR_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000284-989c85c6
+        name: log-init
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
+      nodeSelector:
+        master: "true"
+      volumes:
+      - emptyDir: {}
+        name: container-log-vol
+      - hostPath:
+          path: /var/log
+        name: host-log-vol
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
