@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
+local samwdconfig = import "samwdconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
 {
@@ -42,14 +43,7 @@ local utils = import "util_functions.jsonnet";
   rcImtEndpoint: configs.rcImtEndpoint,
   smtpServer: configs.smtpServer,
   sender: $.recipient,
-  recipient: (
-        if configs.estate == "prd-sdc" then "sdn@salesforce.com"
-        else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
-        else if configs.estate == "prd-samdev" then ""
-        else if configs.estate == "prd-samtest" then ""
-        else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
-        else "sam-alerts@salesforce.com"
-  ),
+  recipient: samwdconfig.recipient,
 
   # Hairpin deployer
   "deployer-sender": $.recipient,
