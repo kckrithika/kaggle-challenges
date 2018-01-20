@@ -13,7 +13,7 @@ system:
         httpGet:
           path: /
           port: 9090
-  - name: rbhat-test-func-2
+  - name: rbhat-test-func-3
     count: 2
     containers:
     - name: samhello
@@ -26,7 +26,7 @@ system:
           port: 9090 
   loadbalancers:
   - lbname: samhellolb
-    function: rbhat-test-func-2
+    function: rbhat-test-func-3
     ports:
       - port: 9090
         targetport: 9090
