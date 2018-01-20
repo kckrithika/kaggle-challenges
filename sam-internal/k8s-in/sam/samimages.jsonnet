@@ -42,6 +42,9 @@ local utils = import "util_functions.jsonnet";
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001624-3f1841b7",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001624-3f1841b7",
 
+        #[mayank.kumar] testing email reporting for deployment and statefulsets
+        "prd,prd-samdev,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180117_222336.6c44ed56.dirty.mayankkuma-ltm3",
+        "prd,prd-sam,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180117_222336.6c44ed56.dirty.mayankkuma-ltm3",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
