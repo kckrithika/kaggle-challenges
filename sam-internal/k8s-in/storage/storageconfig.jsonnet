@@ -75,14 +75,6 @@
     },
 
     perCluster: {
-        // TODO: fds_per_pod_capacity is a hack that will be going away shortly. FDS uses it in some cases to determine the
-        //       number of pods to try to allocate in a fault domain.
-        fds_per_pod_capacity: {
-            "prd-skipper": "500Mi",
-            "prd-sam_storage": "3813545Mi",
-            "prd-sam": "3813545Mi",
-            "phx-sam": "5586Gi",
-        },
         fds_profiling: {
             "prd-skipper": "true",
             "prd-sam_storage": "true",

@@ -22,8 +22,6 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        - name: FDS_ASSUMED_CAPACITY_PER_POD
-          value: 5586Gi
         - name: FDS_PROFILING
           value: "false"
         image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/faultdomainset:base-0000314-8d9eaec0
