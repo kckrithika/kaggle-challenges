@@ -8,7 +8,7 @@ local discoveryCfg = |||
         -  fastdata-3
 |||;
 
-if configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
