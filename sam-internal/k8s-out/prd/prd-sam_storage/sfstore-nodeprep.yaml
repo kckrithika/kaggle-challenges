@@ -17,7 +17,7 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - prd-sam_sfstore
+                - prd-sam_sfstoredev
               - key: storage.salesforce.com/nodeprep
                 operator: DoesNotExist
       containers:

@@ -3,19 +3,19 @@ local storageimages = import "storageimages.jsonnet";
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "disable" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
-      name: "sfstore-nodeprep",
+      name: "sfstore-nodeprep-undo",
       namespace: "storage-foundation",
     },
     spec: {
       template: {
         metadata: {
           labels: {
-            app: "sfstore-nodeprep",
+            app: "sfstore-nodeprep-undo",
           },
         },
         spec: {
@@ -33,7 +33,8 @@ if configs.estate == "prd-sam_storage" then {
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
-                          operator: "DoesNotExist",
+                          operator: "In",
+                          values: ["cleanup"],
                        },
                      ],
                   },
@@ -115,7 +116,7 @@ if configs.estate == "prd-sam_storage" then {
                 },
                 {
                   name: "DELETE_DISCOVERY",
-                  value: "no",
+                  value: "yes",
                 },
               ],
             },

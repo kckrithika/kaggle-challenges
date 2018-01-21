@@ -18,7 +18,7 @@
     },
 
     // Aggregate all the storage related minion estates in the control plane.
-    storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate] if minion != "prd-sam_sfstoredev"],
+    storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate]],
     perEstate: {
         ceph: {
             // host subnets from git.soma.salesforce.com/estates/estates/tree/master/kingdoms/prd
