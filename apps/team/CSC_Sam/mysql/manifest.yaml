@@ -14,7 +14,7 @@ system:
     type: stateful-set
     containers:
     - name: mysql
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/mysql:5.7.20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180122_152459.df4fafc7.dirty.duncsmith-ltm
 
       # TODO: Use a k4a secret
       env:
@@ -23,7 +23,7 @@ system:
       
       volumeMounts:
       - mountPath: /var/lib/mysql
-        name: mysql-persistent-storage
+        name: mysql-persistent-storage-rev-two
       - mountPath: /certs
         name: certs
       
@@ -50,7 +50,7 @@ system:
     terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
-    - name: mysql-persistent-storage
+    - name: mysql-persistent-storage-rev-two
       storageClassName: standard
       storageSizeRequest: 100Gi
 
