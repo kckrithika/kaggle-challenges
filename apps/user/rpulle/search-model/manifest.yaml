@@ -17,7 +17,7 @@ system:
         requests: { cpu: "12", memory: "10Gi" }
       env:
       - name: GRPC_ANNOUNCED_PORT
-        value: 7014
+        value: 7012
       - name: GRPC_ANNOUNCED_NAME
         value: search-model-executor-rpulle
       livenessProbe:

@@ -21,14 +21,14 @@ system:
         value: mesh
       args:
       - -endpoint
-      - time:DATACENTER:7014
+      - time:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
     - name: time-sherpa
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa-envoy:dev
+      image: sfci/servicelibs/sherpa-envoy:2dfa30a89ae572dbf81b09b25d830f7797356aa1
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
