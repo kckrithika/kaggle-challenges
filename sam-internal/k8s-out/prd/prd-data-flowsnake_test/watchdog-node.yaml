@@ -29,16 +29,16 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
-          value: /config/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
         name: watchdog-node
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /hostproc
-          name: procfs-volume
         - mountPath: /config
           name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
         - mountPath: /etc/pki_service/ca
           name: certificate-authority
           readOnly: true
@@ -56,12 +56,12 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /proc
-        name: procfs-volume
       - configMap:
           name: watchdog
         name: config
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
       - hostPath:
           path: /etc/pki_service/ca
         name: certificate-authority

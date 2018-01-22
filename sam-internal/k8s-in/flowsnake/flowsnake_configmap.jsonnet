@@ -229,6 +229,27 @@ local kingdom = std.extVar("kingdom");
               ],
               until: "2018/12/01",
             },
+            {
+              checker: "nodeChecker",
+              estates: [
+                "prd-data-flowsnake",
+              ],
+              until: "2018/12/01",
+            },
+            {
+              checker: "kubeResourcesChecker",
+              estates: [
+                "prd-data-flowsnake",
+              ],
+              until: "2018/12/01",
+            },
+            {
+              checker: "etcdQuorumChecker",
+              estates: [
+                "prd-data-flowsnake",
+              ],
+              until: "2018/12/01",
+            },
         ],
         syntheticPVRetrytimeout: 420000000000,
         syntheticretrytimeout: 420000000000,

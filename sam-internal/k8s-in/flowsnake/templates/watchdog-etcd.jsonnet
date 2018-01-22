@@ -19,16 +19,11 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                             "--config=/config/watchdog.json",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
-                            "--snoozedAlarms=etcdChecker=2018/01/22#instance=fs1shared0-flowsnakemaster2-2-prd.eng.sfdc.net",
                         ],
                         volumeMounts: [
                           {
                             mountPath: "/sfdchosts",
                             name: "sfdchosts",
-                          },
-                          {
-                            mountPath: "/hostproc",
-                            name: "procfs-volume",
                           },
                           {
                             mountPath: "/config",
@@ -55,12 +50,6 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                       name: "sfdchosts",
                     },
                     name: "sfdchosts",
-                  },
-                  {
-                    hostPath: {
-                      path: "/proc",
-                    },
-                    name: "procfs-volume",
                   },
                   {
                     configMap: {

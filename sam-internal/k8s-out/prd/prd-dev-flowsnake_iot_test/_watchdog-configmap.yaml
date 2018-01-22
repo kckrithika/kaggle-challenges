@@ -2,8 +2,8 @@ apiVersion: v1
 data:
   watchdog.json: |-
     {
-      "ca-file": "/data/certs/ca.crt",
-      "cert-file": "/data/certs/hostcert.crt",
+      "caFile": "/data/certs/ca.crt",
+      "certFile": "/data/certs/hostcert.crt",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617",
       "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
@@ -17,8 +17,7 @@ data:
       "enableStatefulPVChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617",
-      "k8sproxyEndpoint": "http://localhost:8001",
-      "key-file": "/data/certs/hostcert.key",
+      "keyFile": "/data/certs/hostcert.key",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake",
       "maxPVCAge": 420000000000,
@@ -54,6 +53,27 @@ data:
             "prd-data-flowsnake"
           ],
           "until": "2018/12/01"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "prd-data-flowsnake"
+          ],
+          "until": "2018/12/01"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "prd-data-flowsnake"
+          ],
+          "until": "2018/12/01"
+        },
+        {
+          "checker": "etcdQuorumChecker",
+          "estates": [
+            "prd-data-flowsnake"
+          ],
+          "until": "2018/12/01"
         }
       ],
       "syntheticPVRetrytimeout": 420000000000,
@@ -64,4 +84,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: watchdog
-  namespace: sam-system
+  namespace: flowsnake

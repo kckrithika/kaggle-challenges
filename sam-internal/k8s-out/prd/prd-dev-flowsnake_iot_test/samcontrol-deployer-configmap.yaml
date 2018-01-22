@@ -20,18 +20,12 @@ data:
       "resource-cooldown": 15000000000,
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
-        "sdn-bird.yaml",
         "sdn-hairpin-setter.yaml",
         "sdn-peering-agent.yaml",
         "sdn-ping-watchdog.yaml",
         "sdn-route-watchdog.yaml",
         "sdn-secret-agent.yaml",
         "sdn-vault-agent.yaml",
-        "watchdog-common.yaml",
-        "watchdog-etcd.yaml",
-        "watchdog-master.yaml",
-        "watchdog-node.yaml",
-        "watchdog-pod.yaml",
         "_flowsnake-sdn-secret.yaml",
         "samcontrol-deployer.yaml",
         "deepsea-kdc-svc.yaml"

@@ -12,10 +12,10 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         image: flowsnakeimage.watchdog,
                         command: [
                             "/sam/watchdog",
-                            "-role=NODE",
-                            "-watchdogFrequency=60s",
+                            "-role=ETCDQUORUM",
+                            "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
-                            "-emailFrequency=5m",
+                            "-emailFrequency=3m",
                             "-timeout=2s",
                             "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                             "--config=/config/watchdog.json",
@@ -30,19 +30,9 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             mountPath: "/config",
                             name: "config",
                           },
-                          {
-                            mountPath: "/kubeconfig",
-                            name: "kubeconfig",
-                          },
                         ] +
                         flowsnakeconfigmapmount.cert_volumeMounts,
-                        name: "watchdog-node",
-                        env: [
-                            {
-                                name: "KUBECONFIG",
-                                value: "/kubeconfig/kubeconfig-platform",
-                            },
-                        ],
+                        name: "watchdog-etcd-quorum",
                     },
                 ],
                 volumes: [
@@ -58,34 +48,24 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                     },
                     name: "config",
                   },
-                  {
-                    hostPath: {
-                      path: "/etc/kubernetes",
-                    },
-                    name: "kubeconfig",
-                  },
                 ] +
                 flowsnakeconfigmapmount.cert_volume,
             },
             metadata: {
                 labels: {
                     apptype: "monitoring",
-                    name: "watchdog-node",
+                    name: "watchdog-etcd-quorum",
                 },
-            },
-        },
-        selector: {
-            matchLabels: {
-                name: "watchdog-node",
+                namespace: "flowsnake",
             },
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "watchdog-node",
+            name: "watchdog-etcd-quorum",
         },
-        name: "watchdog-node",
+        name: "watchdog-etcd-quorum",
         namespace: "flowsnake",
     },
 }
