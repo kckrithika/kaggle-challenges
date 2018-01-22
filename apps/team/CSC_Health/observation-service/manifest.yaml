@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: tnrp/csc-health/observation-service:observation-service-0000027-b11fa2c2
+      image: tnrp/csc-health/observation-service:observation-service-0000029-e11ff9fc
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000027-b11fa2c2
+      image: tnrp/csc-health/observation-service:observation-service-0000029-e11ff9fc
       ports:
       - containerPort: 8080
       volumeMounts:
@@ -51,20 +51,12 @@ system:
       env:
       - name: OBS_AJNA_ENABLED
         value: true
-      - name: OBS_REPORTCOLLECTOR_MTLSENABLED
-        value: false
       - name: OBS_REPORTCOLLECTOR_WHITELIST
         value: net,sandman
-      - name: OBS_REPORTCOLLECTORALTERNATE_ENABLED
-        value: true
-      - name: OBS_REPORTCOLLECTORALTERNATE_MTLSENABLED
-        value: true
-      - name: OBS_REPORTCOLLECTORALTERNATE_CERTPATH
+      - name: OBS_REPORTCOLLECTOR_CERTPATH
         value: /var/secrets/grok-client.crt.pem
-      - name: OBS_REPORTCOLLECTORALTERNATE_KEYPATH
+      - name: OBS_REPORTCOLLECTOR_KEYPATH
         value: /var/secrets/grok-client.key
-      - name: OBS_REPORTCOLLECTORALTERNATE_WHITELIST
-        value: net,sandman
       - name: OBS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: OBS_GROK_KEYPATH
@@ -84,15 +76,7 @@ system:
         export OBS_AJNA_DATACENTER=${KINGDOM} ;
         export OBS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export OBS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
-        export OBS_REPORTCOLLECTORALTERNATE_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
-        case ${KINGDOM} in
-          prd)
-            export OBS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
-            ;;
-          *)
-            export OBS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.ops.sfdc.net:18444
-            ;;
-        esac ;
+        export OBS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
         /observationservice
       "]
     volumes:
