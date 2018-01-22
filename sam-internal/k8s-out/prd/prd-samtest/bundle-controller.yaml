@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: bundlecontroller
+  name: bundlecontroller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: bundlecontroller
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: bundlecontroller
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/bundlecontroller
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20180122_110429.24360ec6.dirty.prabhsingh-ltm5
+        name: bundle-controller
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
