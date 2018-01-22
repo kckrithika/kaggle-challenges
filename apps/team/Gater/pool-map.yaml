@@ -21,3 +21,5 @@ apps:
   - prd/prd-sam_gater
  gate-manager-test-pv:
   - prd/prd-sam_gater
+ gate-manager-pv:
+  - phx/phx-sam_gater
