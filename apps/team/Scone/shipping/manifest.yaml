@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:stoens-20180110-0c589ee
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:plaird-20180122-da9f733
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
