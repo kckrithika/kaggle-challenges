@@ -42,9 +42,6 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-        - mountPath: /log
-          name: sherpa-log-volume
       ports:
       - containerPort: 7012
         name: sherpa-b-in
