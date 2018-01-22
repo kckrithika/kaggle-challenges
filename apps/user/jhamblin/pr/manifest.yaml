@@ -2,7 +2,7 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
+  - name: team-prs 
     count: 1
     volumes:
     - name: cert
@@ -28,7 +28,7 @@ system:
  
   loadbalancers:
   - lbname: sdn-pull-requests 
-    function: default
+    function: team-prs
     slbenabled: true
     ports:
       - port: 3133
