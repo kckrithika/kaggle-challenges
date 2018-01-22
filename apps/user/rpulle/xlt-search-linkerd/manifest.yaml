@@ -1,0 +1,61 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: search-model-executor-xlt-linkerd
+    count: 1
+    containers:
+    - name: client
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/geoip-client:1.0
+      livenessProbe:
+        exec:
+          command:
+            - "./is-alive.sh"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+    - name: search-model-executor-xlt
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/xlt-agent:20171010
+      ports:
+      - containerPort: 8500
+        name: sme-xlt-port
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - ./bin/agentcontroller.sh
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - ./bin/agentcontroller.sh
+          initialDelaySeconds: 5
+          periodSeconds: 5
+    - name: sherpa-geoip
+      image: sfci/servicelibs/sherpa:2.0.21
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a6b9d0e
+      args: ["--zipkin-rate", "0.0"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 7080
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 110
+          periodSeconds: 5
