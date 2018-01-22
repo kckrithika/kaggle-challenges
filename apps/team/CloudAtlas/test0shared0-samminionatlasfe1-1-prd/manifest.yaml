@@ -32,14 +32,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 20
       readinessProbe:
         exec:
           command:
-          - cat
-          - /tmp/ready
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 24
