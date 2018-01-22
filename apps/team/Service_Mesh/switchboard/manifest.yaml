@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/switchboard:dev
+      image: sfci/servicelibs/switchboard:a7a50b30330b92cab7c5d567cdb66a72a342966f
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
