@@ -1,6 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  labels:
+    cloud: storage
+    team: legostore
   name: ceph-metrics
   namespace: legostore
 spec:
@@ -9,6 +12,8 @@ spec:
     metadata:
       labels:
         app: ceph-metrics
+        cloud: storage
+        team: legostore
     spec:
       containers:
       - args:

@@ -10,12 +10,18 @@ if configs.estate == "disable" then {
     metadata: {
       name: "sfstore-nodeprep-undo",
       namespace: "storage-foundation",
+      labels: {
+        team: "storage-foundation",
+        cloud: "storage",
+      },
     },
     spec: {
       template: {
         metadata: {
           labels: {
             app: "sfstore-nodeprep-undo",
+            team: "storage-foundation",
+            cloud: "storage",
           },
         },
         spec: {

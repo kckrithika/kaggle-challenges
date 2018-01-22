@@ -2,7 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
+    cloud: storage
     name: sfstoreoperator
+    team: sfstore
   name: sfstoreoperator-deployment
   namespace: sam-system
 spec:
@@ -16,7 +18,9 @@ spec:
   template:
     metadata:
       labels:
+        cloud: storage
         name: sfstoreoperator
+        team: sfstore
     spec:
       containers:
       - env:

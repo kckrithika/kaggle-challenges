@@ -9,6 +9,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
     metadata: {
         labels: {
             name: "fds-controller",
+            team: "storage-foundation",
+            cloud: "storage",
         },
         name: "fds-controller-deployment",
         namespace: "sam-system",
@@ -27,6 +29,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
             metadata: {
                 labels: {
                     name: "fds-controller",
+                    team: "storage-foundation",
+                    cloud: "storage",
                 },
             },
             spec: {

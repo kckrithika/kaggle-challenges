@@ -2,7 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
+    cloud: storage
     name: cephoperator
+    team: legostore
   name: cephoperator-deployment
   namespace: sam-system
 spec:
@@ -16,7 +18,9 @@ spec:
   template:
     metadata:
       labels:
+        cloud: storage
         name: cephoperator
+        team: legostore
     spec:
       containers:
       - env:

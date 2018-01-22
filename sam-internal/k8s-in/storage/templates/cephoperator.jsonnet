@@ -9,6 +9,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
     metadata: {
         labels: {
             name: "cephoperator",
+            team: "legostore",
+            cloud: "storage",
         },
         name: "cephoperator-deployment",
         namespace: "sam-system",
@@ -27,6 +29,8 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
             metadata: {
                 labels: {
                     name: "cephoperator",
+                    team: "legostore",
+                    cloud: "storage",
                 },
             },
             spec: {

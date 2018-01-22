@@ -3,10 +3,11 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: fds
-    slb.sfdc.net/portconfigurations: '[{"port":8080,"targetport":8080,"lbtype":"dsr"}]'
+    slb.sfdc.net/portconfigurations: '[{"port":8080,"targetport":8080,"lbtype":"tcp"}]'
   labels:
     app: fds-controller
-    slb.sfdc.net/name: fds
+    cloud: storage
+    team: storage-foundation
   name: fds-svc
   namespace: sam-system
 spec:

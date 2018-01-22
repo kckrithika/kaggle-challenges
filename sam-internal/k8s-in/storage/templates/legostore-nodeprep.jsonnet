@@ -9,12 +9,18 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
     metadata: {
       name: "legostore-nodeprep",
       namespace: "storage-foundation",
+      labels: {
+        team: "storage-foundation",
+        cloud: "storage",
+      },
     },
     spec: {
       template: {
         metadata: {
           labels: {
             app: "legostore-nodeprep",
+            team: "storage-foundation",
+            cloud: "storage",
           },
         },
         spec: {

@@ -9,12 +9,18 @@ if configs.estate == "disabled" then {
     metadata: {
       name: "legostore-nodeprep-undo",
       namespace: "storage-foundation",
+      labels: {
+        team: "storage-foundation",
+        cloud: "storage",
+      },
     },
     spec: {
       template: {
         metadata: {
           labels: {
             app: "legostore-nodeprep-undo",
+            team: "storage-foundation",
+            cloud: "storage",
           },
         },
         spec: {
