@@ -6,18 +6,20 @@ system:
     count: 1
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/davidtee/scanner:scanner-20171128
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/product-defense/scanner:latest
       ports:
       - name: web
         containerPort: 8084
       - name: service
         containerPort: 7020
       livenessProbe:
-          httpGet:
-            path: /ping
-            port: 8084
-          initialDelaySeconds: 30
-          periodSeconds: 5
+        exec:
+          command: ["true"]
+      # httpGet:
+      #   path: /ping
+      #   port: 8084
+      # initialDelaySeconds: 30
+      # periodSeconds: 5
     - name: pd-scanner-service-sherpa
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
