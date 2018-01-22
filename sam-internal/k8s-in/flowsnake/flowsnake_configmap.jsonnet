@@ -214,6 +214,22 @@ local kingdom = std.extVar("kingdom");
         sdpEndpoint: "http://localhost:39999",
         sender: "flowsnake@salesforce.com",
         smtpServer: "rd1-mta1-4-sfm.ops.sfdc.net:25",
+        snooze: [
+            {
+              checker: "etcdChecker",
+              estates: [
+                "prd-data-flowsnake",
+              ],
+              until: "2018/12/01",
+            },
+            {
+              checker: "kubeApiChecker",
+              estates: [
+                "prd-data-flowsnake",
+              ],
+              until: "2018/12/01",
+            },
+        ],
         syntheticPVRetrytimeout: 420000000000,
         syntheticretrytimeout: 420000000000,
         tlsEnabled: true,

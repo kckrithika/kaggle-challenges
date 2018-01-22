@@ -1,6 +1,5 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
-local flowsnakeconfigmap = import "flowsnake_configmap.jsonnet";
 {
     kind: "DaemonSet",
     spec: {

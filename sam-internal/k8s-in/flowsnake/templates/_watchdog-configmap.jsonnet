@@ -4,7 +4,7 @@ local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
     apiVersion: "v1",
     metadata: {
       name: "watchdog",
-      namespace: "sam-system",
+      namespace: "flowsnake",
     },
     data: {
       "watchdog.json": std.toString(flowsnakeauthtopic.watchdog_config),
