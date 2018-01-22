@@ -50,7 +50,7 @@ system:
     terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
-    - name: mysql-persistent-storage-rev2
+    - name: mysql-persistent-storage-rev-two
       storageClassName: standard
       storageSizeRequest: 100Gi
 
