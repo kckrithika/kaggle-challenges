@@ -38,9 +38,11 @@ local utils = import "util_functions.jsonnet";
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
 
-        #[prahlad.joshi] Releasing scrapper to phase 4 kingdoms
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001624-3f1841b7",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001624-3f1841b7",
+        #[prahlad.joshi] Releasing scrapper liveness probe
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001638-6698dc7a",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001638-6698dc7a",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001638-6698dc7a",
+        "prd,prd-samdev,snapshoter,hypersam": "sam-0001638-6698dc7a",
 
         #[mayank.kumar] testing email reporting for deployment and statefulsets
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180117_222336.6c44ed56.dirty.mayankkuma-ltm3",
