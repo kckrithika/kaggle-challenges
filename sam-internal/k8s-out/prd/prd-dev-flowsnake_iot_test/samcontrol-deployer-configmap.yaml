@@ -20,6 +20,7 @@ data:
       "resource-cooldown": 15000000000,
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
+        "sdn-bird.yaml",
         "sdn-hairpin-setter.yaml",
         "sdn-peering-agent.yaml",
         "sdn-ping-watchdog.yaml",
