@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: search-model-executor-xlt-linkerd
+  - name: xlt-search-model-executor-linkerd
     count: 1
     containers:
     - name: client
