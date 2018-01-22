@@ -17,6 +17,8 @@ system:
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: METRICS_KAFKA_KEYSTORE
+          value: /certs/shared2-samminionretailcre-prd.jks  
       ports:
       - containerPort: 8080
       - containerPort: 7020
