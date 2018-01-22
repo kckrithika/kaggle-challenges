@@ -9,7 +9,7 @@ system:
     count: 1
     containers: 
     - name: commercejourneys-sp-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-mc-event-handler:retail-mc-event-handler-20171110
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.2
       ports:
       - containerPort: 8080
       livenessProbe:
