@@ -1,4 +1,6 @@
 apps:
   tls-canary:
   - prd/prd-sam
+  pr:
+  - prd/prd-sam
 
