@@ -18,8 +18,7 @@ system:
         image: tnrp/casp/warden:0.0.1-0000196-cab1167b
         ports:
         - name: warden-stage
-          containerPort: 8882
-          hostPort: 8882
+          containerPort: 8889
         env:
         - name: BRANCH
           value: "eng_production"
@@ -40,5 +39,5 @@ system:
       function: warden-stage-func
       nodeExposed: true
       ports:
-        - port: 8881
-          targetport: 8882
+        - port: 8882
+          targetport: 8889
