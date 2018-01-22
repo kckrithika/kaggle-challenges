@@ -1,0 +1,73 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: search-model-executor-linkerd
+    count: 1
+    containers:
+    - name: search-model-executor
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
+      ports:
+      - name: service-port
+        containerPort: 7020
+      - name: admin-port
+        containerPort: 15372
+      resources:
+        limits: { cpu: "12", memory: "10Gi" }
+        requests: { cpu: "12", memory: "10Gi" }
+      env:
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
+      - name: GRPC_ANNOUNCED_NAME
+        value: search-model-executor-linkerd
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 240
+        timeoutSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 240
+        timeoutSeconds: 10
+    - name: sherpa-t
+      image: sfci/servicelibs/sherpa:2.0.21
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a6b9d0e
+      args: ["--zipkin-rate", "0.0"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
+      ports:
+      - containerPort: 7012
+        name: sherpa-t-in
+      - containerPort: 7080
+        name: sherpa-t-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 110
+          periodSeconds: 5
+  loadbalancers:
+  - lbname: search-model-executor-linkerd-lb
+    function: search-model-executor-linkerd
+    nodeExposed: true
+    ports:
+    - port: 7021
+      targetport: 7020
+
+

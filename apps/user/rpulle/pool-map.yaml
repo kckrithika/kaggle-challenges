@@ -13,8 +13,12 @@ apps:
 
  xlt-search:
   - prd/prd-sam
+ xlt-search-linkerd:
+  - prd/prd-sam
 
  search-model:
+  - prd/prd-sam
+ search-model-linkerd:
   - prd/prd-sam
 
  perf-client:
