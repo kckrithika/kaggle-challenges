@@ -17,7 +17,7 @@ local samimages = import "samimages.jsonnet";
                             "/sam/watchdog",
                             "-role=ETCDQUORUM",
                             "-watchdogFrequency=10s",
-                            "-alertThreshold=300s",
+                            "-alertThreshold=2m",
                         ]
                         + samwdconfig.pagerduty_args
                         + samwdconfig.shared_args
