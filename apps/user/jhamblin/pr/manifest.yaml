@@ -3,16 +3,16 @@ apiVersion: v1
 system:
   functions:
   - name: team-prs 
-    count: 1
+    count: 2
     volumes:
     - name: cert
       maddogCert:
         type: server
         lbnames:
-        - sdn-pull-requests 
+        - compute-pull-requests 
     containers:
     - name: team-prs 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201801191059
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201801221318
 
       command: ["/sdn/slb-velo"]
       args: [""]
@@ -27,7 +27,7 @@ system:
         mountPath: /certs
  
   loadbalancers:
-  - lbname: sdn-pull-requests 
+  - lbname: compute-pull-requests 
     function: team-prs
     slbenabled: true
     ports:
