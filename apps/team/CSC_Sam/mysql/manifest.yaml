@@ -23,7 +23,7 @@ system:
       
       volumeMounts:
       - mountPath: /var/lib/mysql
-        name: mysql-persistent-storage-rev-two
+        name: mysql-persistent-storage
       - mountPath: /certs
         name: certs
       
@@ -50,7 +50,7 @@ system:
     terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
-    - name: mysql-persistent-storage-rev-two
+    - name: mysql-persistent-storage
       storageClassName: mysql-hdd-pool
       storageSizeRequest: 100Gi
 
