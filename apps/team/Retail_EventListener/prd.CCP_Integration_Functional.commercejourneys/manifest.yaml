@@ -6,10 +6,10 @@ system:
       - steve.crouse@salesforce.com
   functions:
   - name: commercejourneys-mc-handler-prd-ccp-integration-functional
-    count: 2
+    count: 1
     containers: 
     - name: commercejourneys-sp-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.4
       ports:
       - containerPort: 8080
       livenessProbe:
