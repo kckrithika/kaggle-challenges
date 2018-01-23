@@ -23,10 +23,12 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      - mountPath: /opt/cre/json
+        name: logvol
     volumes:
     - name: logvol
       hostPath:
-        path: /data/sam/cre/log/prd-ccp_demo/cre-stream-processing
+        path: /home/sfdc-cre/logs/prd-ccp_demo/cre-stream-processing
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
