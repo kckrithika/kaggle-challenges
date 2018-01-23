@@ -9,7 +9,7 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:frecio-metrics.61cb6b2.23
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.6efbcda.50
       env:        
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
