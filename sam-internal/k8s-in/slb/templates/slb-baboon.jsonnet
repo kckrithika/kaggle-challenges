@@ -31,7 +31,9 @@ if configs.estate == "prd-sdc" then {
                        },
                        name: "kubectl",
                     },
-                ]),
+                ]) + if configs.estate == "prd-sdc" then [
+                                                                         configs.sfdchosts_volume,
+                                                                      ] else [],
                 containers: [
                     {
                         name: "slb-baboon",
@@ -54,7 +56,9 @@ if configs.estate == "prd-sdc" then {
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
-                        ],
+                        ] + if configs.estate == "prd-sdc" then [
+                                                                                                       configs.sfdchosts_arg,
+                                                                                                    ] else [],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -66,7 +70,9 @@ if configs.estate == "prd-sdc" then {
                                 name: "kubectl",
                                 mountPath: "/usr/bin/kubectl",
                             },
-                        ]),
+                        ] + if configs.estate == "prd-sdc" then [
+                                                                                                        configs.sfdchosts_volume_mount,
+                                                                                                     ] else []),
                         env: [
                             {
                                name: "NODE_NAME",
