@@ -28,7 +28,6 @@ if configs.estate == "prd-sdc" then {
                     slbconfigs.logs_volume,
                     configs.maddog_cert_volume,
                     configs.kube_config_volume,
-                ]),
                 ] + if configs.estate == "prd-sdc" then [
                                      configs.sfdchosts_volume,
                                   ] else []),
