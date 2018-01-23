@@ -10,7 +10,7 @@ system:
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-sfci/1.0-0000067-15183402
+      image: tnrp/caas/caas-sfci:1.0-0000067-15183402
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
