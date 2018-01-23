@@ -10,10 +10,10 @@ system:
         - /sam/virtual-api
         - --sql-db-host=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
         - --sql-db-port=3306
-        - --sql-db-name=sdp
+        - --sql-db-name=sam_kube_resource
         - --sql-db-pass=pass
         - --sql-db-user=root
-        - --sql-db-resources-table=k8s_resource_sqls
+        - --sql-db-resources-table=k8s_resource
         - --v=4
         - --alsologtostderr
         - --insecure-port=7002
