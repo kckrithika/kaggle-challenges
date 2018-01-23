@@ -18,7 +18,7 @@ spec:
         - /sam/watchdog
         - -role=ETCD
         - -watchdogFrequency=5s
-        - -alertThreshold=150s
+        - -alertThreshold=3m
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

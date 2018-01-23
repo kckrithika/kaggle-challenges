@@ -18,6 +18,7 @@ local samimages = import "samimages.jsonnet";
                             "-watchdogFrequency=60s",
                             "-alertThreshold=5m",
                         ])
+                        + samwdconfig.pagerduty_args
                         + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
                         volumeMounts: configs.filter_empty([
