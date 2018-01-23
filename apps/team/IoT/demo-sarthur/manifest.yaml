@@ -21,7 +21,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/ls
+          - /bin/ls
           initialDelaySeconds: 10
           periodSeconds: 5
       name: demo
