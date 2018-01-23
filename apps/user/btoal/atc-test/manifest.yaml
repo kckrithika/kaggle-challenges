@@ -11,7 +11,10 @@ system:
     - name: atc
       image: tnrp/casp/atc:0.0.1-0000007-80308144
       ports:
-      - containerPort: 8001 
+      - name: envoy
+        containerPort: 8000
+      - name: envoy-admin
+        containerPort: 8001
       livenessProbe:
         httpGet:
           path: /healthcheck/ok
