@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - command:
-        - /sam/k8s-resource-observer
+        - /sam/k8s-resource-reporter
         - --v=5
         - --k8sapiserver=
         - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
@@ -29,7 +29,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180117_222336.6c44ed56.dirty.mayankkuma-ltm3
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180123_004127.47e053fc.dirty.mayankkuma-ltm3
         name: k8s-resource-reporter
         volumeMounts:
         - mountPath: /sfdchosts
