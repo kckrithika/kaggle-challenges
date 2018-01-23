@@ -6,7 +6,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:8078370e0cd4752698b895c33464fe33f8ddfeb2
+      image: sfci/servicelibs/switchboard:8ad6c7969ff3cfe29e52ecddd469980ec92a3ec7
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
