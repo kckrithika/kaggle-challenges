@@ -18,9 +18,8 @@ system:
             port: 8001
 
     loadbalancers:
-    - lbname: atc-lb
+    - lbname: atclb
       function: atc-test
-      nodeExposed: true
       ports:
         - port: 8001 
           targetport: 8001
