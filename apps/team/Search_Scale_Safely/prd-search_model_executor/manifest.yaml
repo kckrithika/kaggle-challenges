@@ -9,7 +9,7 @@ system:
     count: 8
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.1-RC.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.2-RC.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -46,7 +46,7 @@ system:
       - mountPath: /home/sfdc-search-model-executor/logs
         name: logvol
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa:2.0.13
+      image: sfci/servicelibs/sherpa:2.0.21
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -78,7 +78,7 @@ system:
     count: 1
     containers:
     - name: search-model-executor-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:1.1-RC.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor-test:1.2-RC.1
       ports:
       - name: service-port
         containerPort: 7020
