@@ -48,7 +48,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000102-addfc459
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000113-f9a1e9a2
         imagePullPolicy: IfNotPresent
         name: sfms
         ports:
@@ -62,7 +62,7 @@ spec:
         - -ceph-key-config-dir=/etc/ceph-metrics/key-config
         - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
         - -ceph-config-dir=/etc/ceph
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000314-8d9eaec0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000320-403b5b92
         name: configwatcher
         volumeMounts:
         - mountPath: /etc/ceph
