@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cmx
-        image: tnrp/casp/cms:0.0.1-0000005-a1247348
+        image: tnrp/casp/cmx:0.0.1-0000009-c1c12247
         ports:
         - name: cmx
           containerPort: 8787
