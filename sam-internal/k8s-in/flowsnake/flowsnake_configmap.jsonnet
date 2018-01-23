@@ -130,8 +130,7 @@ local kingdom = std.extVar("kingdom");
             ],
         },
     },
-    samcontroldeployer:
-    {
+    samcontroldeployer: {
         email: true,
         "email-delay": 0,
         "delete-orphans": false,
@@ -160,8 +159,7 @@ local kingdom = std.extVar("kingdom");
           "_flowsnake-sdn-secret.yaml",
         ],
     }
-    else
-    {
+    else {
         "ca-file": "/data/certs/ca.crt",
         "cert-file": "/data/certs/hostcert.crt",
         "dry-run": false,
@@ -179,10 +177,9 @@ local kingdom = std.extVar("kingdom");
           "deepsea-kdc-svc.yaml",
         ],
     },
-    watchdog_config:
-    {
+    watchdog_config: {
         "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-        "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617",
+        "deployer-imageName": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180123_112004.cbc44617.dirty.jinxingwang-wsm",
         "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
         "deployer-recipient": "flowsnake@salesforce.com",
         "deployer-sender": "flowsnake@salesforce.com",
@@ -193,7 +190,7 @@ local kingdom = std.extVar("kingdom");
         enableStatefulChecks: true,
         enableStatefulPVChecks: true,
         funnelEndpoint: "ajna0-funnel1-0-prd.data.sfdc.net:80",
-        imageName: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617",
+        imageName: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180123_112004.cbc44617.dirty.jinxingwang-wsm",
         kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
         kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake",
         maxPVCAge: 420000000000,
@@ -219,14 +216,11 @@ local kingdom = std.extVar("kingdom");
         syntheticretrytimeout: 420000000000,
         tlsEnabled: true,
     } +
-    if estate == "prd-data-flowsnake_test" then
-    {
+    if estate == "prd-data-flowsnake_test" then {
         caFile: "/etc/pki_service/ca/cabundle.pem",
         certFile: "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
         keyFile: "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-    }
-    else
-    {
+    } else {
         caFile: "/data/certs/ca.crt",
         certFile: "/data/certs/hostcert.crt",
         keyFile: "/data/certs/hostcert.key",
