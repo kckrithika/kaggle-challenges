@@ -10,8 +10,10 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
     metadata: {
       name: "lv-os-provisioner",
       namespace: "storage-foundation",
-      team: "storage-foundation",
-      cloud: "storage",
+      labels: {
+        team: "storage-foundation",
+        cloud: "storage",
+      },
     },
     spec: {
       template: {

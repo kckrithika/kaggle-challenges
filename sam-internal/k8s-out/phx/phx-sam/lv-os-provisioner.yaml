@@ -1,10 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  cloud: storage
+  labels:
+    cloud: storage
+    team: storage-foundation
   name: lv-os-provisioner
   namespace: storage-foundation
-  team: storage-foundation
 spec:
   template:
     metadata:
