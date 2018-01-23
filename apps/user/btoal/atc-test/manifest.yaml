@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: atc
-      image: tnrp/casp/atc/0.0.1-0000005-047bac11
+      image: tnrp/casp/atc:0.0.1-0000005-047bac11
       ports:
       - containerPort: 8001 
       livenessProbe:
