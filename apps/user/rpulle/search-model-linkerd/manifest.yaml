@@ -60,4 +60,10 @@ system:
           initialDelaySeconds: 110
           periodSeconds: 5
 
-
+  loadbalancers:
+  - lbname: search-model-executor-linkerd-lb
+    function: search-model-executor-linkerd
+    nodeExposed: true
+    ports:
+    - port: 7023
+      targetport: 7020
