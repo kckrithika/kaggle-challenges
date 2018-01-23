@@ -111,7 +111,7 @@ data:
               "/bin/bash",
               "/opt/sfms/bin/sfms"
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000102-addfc459",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000113-f9a1e9a2",
             "imagePullPolicy": "Always",
             "name": "sfms"
           }
@@ -142,7 +142,7 @@ data:
                 }
               }
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000287-054eac70",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000320-403b5b92",
             "name": "log-init",
             "securityContext": {
               "privileged": true
