@@ -39,4 +39,4 @@ git clone git@git.soma.salesforce.com:sam/manifests.git
 
 cd -
 
-/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name manifests
+/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name manifests -full-schema

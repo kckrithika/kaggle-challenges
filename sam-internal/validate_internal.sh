@@ -23,7 +23,6 @@ docker run \
   -validateonly \
   -validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml \
   -skip-sam-internals \
-# Turn this on after next RPM release
-#  -FullSchemaValidation \
+  -FullSchemaValidation \
 
 
