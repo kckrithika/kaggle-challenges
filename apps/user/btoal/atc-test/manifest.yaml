@@ -26,5 +26,7 @@ system:
   - lbname: atclb
     function: atc-test
     ports:
+      - port: 8000
+        targetport: 8001
       - port: 8001 
         targetport: 8001
