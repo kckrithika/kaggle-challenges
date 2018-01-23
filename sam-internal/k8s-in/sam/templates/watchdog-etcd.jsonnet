@@ -50,6 +50,7 @@ local utils = import "util_functions.jsonnet";
                 nodeSelector: if utils.is_public_cloud(configs.kingdom) then {
                     etcd_installed: "true",
                 } else {
+                    etcd_installed: "true",
                     master: "true",
                 },
             },
