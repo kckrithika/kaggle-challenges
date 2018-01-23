@@ -27,6 +27,6 @@ system:
     function: atc-test
     ports:
       - port: 8000
-        targetport: 8001
+        targetport: 8000
       - port: 8001 
         targetport: 8001
