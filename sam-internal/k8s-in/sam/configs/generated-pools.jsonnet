@@ -613,6 +613,18 @@
     },
     {
       "namespaces": [
+        "iot"
+      ],
+      "access": [
+        "team/IoT"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_iot",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -810,6 +822,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_gater",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "iot"
+      ],
+      "access": [
+        "team/IoT"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_iot",
       "kingdom": "ord",
       "superPod": "None"
     },
