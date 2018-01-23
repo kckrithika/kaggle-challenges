@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-  - name: search-model-executor-rpulle
-    count: 1
+  - name: search-model-executor-envoy
+    count: 8
     containers:
-    - name: search-model-executor-rpulle
+    - name: search-model-executor
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
       ports:
       - name: service-port
@@ -19,7 +19,7 @@ system:
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
       - name: GRPC_ANNOUNCED_NAME
-        value: search-model-executor-rpulle
+        value: search-model-executor-envoy
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -48,8 +48,8 @@ system:
           port: 15373
         initialDelaySeconds: 15
   loadbalancers:
-  - lbname: search-model-executor-rpulle-lb
-    function: search-model-executor-rpulle
+  - lbname: search-model-executor-envoy-lb
+    function: search-model-executor-envoy
     nodeExposed: true
     ports:
     - port: 7021

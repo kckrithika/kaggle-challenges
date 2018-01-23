@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: search-model-executor-linkerd
-    count: 1
+    count: 8
     containers:
     - name: search-model-executor
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/irahim/search-model-executor-test:201711091008
@@ -60,4 +60,10 @@ system:
           initialDelaySeconds: 110
           periodSeconds: 5
 
-
+  loadbalancers:
+  - lbname: search-model-executor-linkerd-lb
+    function: search-model-executor-linkerd
+    nodeExposed: true
+    ports:
+    - port: 7023
+      targetport: 7020
