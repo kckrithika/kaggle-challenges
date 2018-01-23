@@ -1,4 +1,6 @@
 apps:
+ prd-cmx:
+  - prd/prd-sam_warden
  prd-warden:
   - prd/prd-sam_warden
  prd-warden-stage:
