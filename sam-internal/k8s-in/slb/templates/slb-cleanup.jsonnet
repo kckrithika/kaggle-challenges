@@ -28,7 +28,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
-                ]),
+                ] + if configs.estate == "prd-sdc" then [
+                                                      configs.sfdchosts_volume,
+                                                   ] else []),
                 containers: [
                     {
                         name: "slb-cleanup",
@@ -41,12 +43,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--filesDirToCleanup=" + slbconfigs.logsDir,
                             "--shouldSkipServiceRecords=false",
                             "--shouldNotDeleteAllFiles=false",
-                        ],
+                        ] + if configs.estate == "prd-sdc" then [
+                                                                              configs.sfdchosts_arg,
+                                                                           ] else [],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
-                         ]),
+                         ] + if configs.estate == "prd-sdc" then [
+                                                                               configs.sfdchosts_volume_mount,
+                                                                            ] else []),
                          env: [
                             configs.kube_config_env,
                         ],

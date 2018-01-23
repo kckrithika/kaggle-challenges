@@ -23,6 +23,7 @@ spec:
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000559-d452c214
         name: slb-dns-register-processor
         volumeMounts:
@@ -34,6 +35,8 @@ spec:
           name: var-config-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       hostNetwork: true
       nodeSelector:
         slb-dns-register: "true"
@@ -50,3 +53,6 @@ spec:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
