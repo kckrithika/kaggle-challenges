@@ -4,22 +4,22 @@ system:
   notifications:
     email:
       - btoal@salesforce.com
-    functions:
-    - name: atc-test
-      count: 1
-      containers:
-      - name: atc
-        image: tnrp/casp/atc/0.0.1-0000005-047bac11
-        ports:
-        - containerPort: 8001 
-        livenessProbe:
-          httpGet:
-            path: /healthcheck/ok
-            port: 8001
-
-    loadbalancers:
-    - lbname: atclb
-      function: atc-test
+  functions:
+  - name: atc-test
+    count: 1
+    containers:
+    - name: atc
+      image: tnrp/casp/atc:0.0.1-0000005-047bac11
       ports:
-        - port: 8001 
-          targetport: 8001
+      - containerPort: 8001 
+      livenessProbe:
+        httpGet:
+          path: /healthcheck/ok
+          port: 8001
+
+  loadbalancers:
+  - lbname: atclb
+    function: atc-test
+    ports:
+      - port: 8001 
+        targetport: 8001
