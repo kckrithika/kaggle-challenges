@@ -55,7 +55,6 @@ system:
 
     - name: sherpa-b
       image: sfci/servicelibs/sherpa:2.0.21
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/sherpa-dlr:a6b9d0e
       args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
