@@ -46,6 +46,7 @@ spec:
       hostNetwork: true
       nodeSelector:
         etcd_installed: "true"
+        master: "true"
       volumes:
       - configMap:
           name: sfdchosts

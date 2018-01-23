@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
+local utils = import "util_functions.jsonnet";
 {
     kind: "DaemonSet",
     spec: {
@@ -44,8 +45,13 @@ local samimages = import "samimages.jsonnet";
                     configs.cert_volume,
                     configs.config_volume("watchdog"),
                 ]),
-                nodeSelector: {
+                # We are still using flannel in minion pools in public cloud, so we need to keep an eye on etcd that holds its config
+                # Everywhere else, we just care about the KubeApi etcd nodes
+                nodeSelector: if utils.is_public_cloud(configs.kingdom) then {
                     etcd_installed: "true",
+                } else {
+                    etcd_installed: "true",
+                    master: "true",
                 },
             },
             metadata: {
