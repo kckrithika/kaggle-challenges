@@ -8,6 +8,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "sfstoreoperator",
+            team: "sfstore",
+            cloud: "storage",
         },
         name: "sfstoreoperator-deployment",
         namespace: "sam-system",
@@ -26,6 +28,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
             metadata: {
                 labels: {
                     name: "sfstoreoperator",
+                    team: "sfstore",
+                    cloud: "storage",
                 },
             },
             spec: {

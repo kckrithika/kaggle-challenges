@@ -8,11 +8,12 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
             namespace: "sam-system",
             labels: {
                 app: "fds-controller",
-                "slb.sfdc.net/name": "fds",
+                team: "storage-foundation",
+                cloud: "storage",
             },
             annotations: {
                 "slb.sfdc.net/name": "fds",
-                "slb.sfdc.net/portconfigurations": '[{"port":8080,"targetport":8080,"lbtype":"dsr"}]',
+                "slb.sfdc.net/portconfigurations": '[{"port":8080,"targetport":8080,"lbtype":"tcp"}]',
             },
         },
         spec: {

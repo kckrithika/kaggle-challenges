@@ -9,7 +9,12 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
       namespace: storageconfigs.cephMetricsNamespace,
       labels: {
          app: "ceph-metrics",
+         team: "legostore",
+         cloud: "storage",
+      },
+      annotations: {
          "slb.sfdc.net/name": "ceph-metrics",
+         "slb.sfdc.net/portconfigurations": '[{"port":8001,"targetport":8001,"lbtype":"tcp"}]',
       },
    },
    spec: {

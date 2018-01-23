@@ -56,7 +56,7 @@
         sfstore: {
             zkServer: {
                 "prd-skipper" : "zk-external.zookeeper.svc.cluster.local:2181",
-                "prd-sam" : "sfstorezk0-dnds1-1-prd.eng.sfdc.net:2181,sfstorezk0-dnds1-2-prd.eng.sfdc.net:2181,sfstorezk0-dnds2-1-prd.eng.sfdc.net:2181", 
+                "prd-sam" : "sfstorezk0-dnds1-1-prd.eng.sfdc.net:2181,sfstorezk0-dnds1-2-prd.eng.sfdc.net:2181,sfstorezk0-dnds2-1-prd.eng.sfdc.net:2181",
                 "prd-sam_storage" : "sfstorezk0-dnds1-1-prd.eng.sfdc.net:2181,sfstorezk0-dnds1-2-prd.eng.sfdc.net:2181,sfstorezk0-dnds2-1-prd.eng.sfdc.net:2181",
             },
             aggregateStorage: {
@@ -84,9 +84,8 @@
     },
 
 
-    fds_per_pod_capacity: self.perCluster.fds_per_pod_capacity[estate],
     fds_profiling: self.perCluster.fds_profiling[estate],
     cephMetricsNamespace: (if estate == "prd-sam_storage" then "ceph-test" else "legostore"),
-    cephMetricsPool: (if estate == "prd-sam_storage" then self.cephEstates[estate][1] else self.cephEstates[estate][0]),    
-    
+    cephMetricsPool: (if estate == "prd-sam_storage" then self.cephEstates[estate][1] else self.cephEstates[estate][0]),
+
 }

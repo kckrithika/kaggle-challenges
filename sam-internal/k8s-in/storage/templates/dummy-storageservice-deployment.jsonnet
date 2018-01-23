@@ -11,6 +11,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
     metadata: {
         labels: {
             name: "dummy-storageservice-deployment",
+            team: "storage-foundation",
+            cloud: "storage",
         },
         name: "dummy-storageservice",
         namespace: "storage",
@@ -22,6 +24,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
             metadata: {
                 labels: {
                     name: "dummy-storageservice-deployment",
+                    team: "storage-foundation",
+                    cloud: "storage",
                 },
             },
             spec: {

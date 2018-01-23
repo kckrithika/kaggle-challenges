@@ -1,6 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
+  labels:
+    cloud: storage
+    team: storage-foundation
   name: lv-os-provisioner
   namespace: storage-foundation
 spec:
@@ -8,6 +11,8 @@ spec:
     metadata:
       labels:
         app: lv-os-provisioner
+        cloud: storage
+        team: storage-foundation
     spec:
       affinity:
         nodeAffinity:

@@ -10,12 +10,18 @@ if configs.estate == "prd-sam_storage" then {
     metadata: {
       name: "sfstore-nodeprep",
       namespace: "storage-foundation",
+      labels: {
+        team: "storage-foundation",
+        cloud: "storage",
+      },
     },
     spec: {
       template: {
         metadata: {
           labels: {
             app: "sfstore-nodeprep",
+            team: "storage-foundation",
+            cloud: "storage",
           },
         },
         spec: {

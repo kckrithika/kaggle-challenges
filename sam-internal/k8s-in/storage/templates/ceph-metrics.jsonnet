@@ -10,6 +10,10 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
    metadata: {
       name: "ceph-metrics",
       namespace: storageconfigs.cephMetricsNamespace,
+      labels: {
+         team: "legostore",
+         cloud: "storage",
+      },
    },
    spec: {
       replicas: 1,
@@ -17,6 +21,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
          metadata: {
             labels: {
                app: "ceph-metrics",
+               team: "legostore",
+               cloud: "storage",
             },
          },
          spec: {
