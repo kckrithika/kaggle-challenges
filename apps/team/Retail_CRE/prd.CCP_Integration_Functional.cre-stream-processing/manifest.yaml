@@ -28,7 +28,7 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
-      - mountPath: /opt/cre/json
+      - mountPath: /opt/cre
         name: logvol  
     - name: sherpa-cre-stream-processing
       image: sfci/servicelibs/sherpa:2.0.15
@@ -55,7 +55,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/sam/cre/log/prd-ccp_integration_functional/cre-stream-processing      
+        path: /home/sfdc-cre/logs
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
