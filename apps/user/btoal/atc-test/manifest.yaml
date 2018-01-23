@@ -9,13 +9,18 @@ system:
     count: 1
     containers:
     - name: atc
-      image: tnrp/casp/atc:0.0.1-0000005-047bac11
+      image: tnrp/casp/atc:0.0.1-0000007-80308144
       ports:
       - containerPort: 8001 
       livenessProbe:
         httpGet:
           path: /healthcheck/ok
           port: 8001
+        initialDelaySeconds : 30
+        periodSeconds : 5
+        failureThreshold : 99999
+        successThreshold : 1 
+        timeoutSeconds : 999999
 
   loadbalancers:
   - lbname: atclb
