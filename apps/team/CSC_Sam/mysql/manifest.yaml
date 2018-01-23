@@ -34,9 +34,9 @@ system:
       livenessProbe:
         tcpSocket:
           port: 3306
-        initialDelaySeconds: 15
-        periodSeconds: 10
-        failureThreshold: 100
+        initialDelaySeconds: 1500
+        periodSeconds: 100
+        failureThreshold: 1000
         
     volumes:
     - name: certs
