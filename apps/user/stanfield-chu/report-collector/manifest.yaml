@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: testreport-collector
-      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.10.0-20180122-secScan
       ports:
       - name: provider
         containerPort: 8080
@@ -92,7 +92,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.10.0-20180122-secScan
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
