@@ -12,7 +12,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                         name: "k8s-resource-reporter",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                           "/sam/k8s-resource-observer",
+                           "/sam/k8s-resource-reporter",
                            "--v=5",
                            "--k8sapiserver=",
                            "--smtpServer=" + configs.smtpServer,
