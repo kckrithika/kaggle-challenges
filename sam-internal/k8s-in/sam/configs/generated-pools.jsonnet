@@ -559,6 +559,48 @@
     },
     {
       "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_crosscloudplatform",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui"
+      ],
+      "access": [
+        "team/Retail_RSUI"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_crosscloudsetup",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_customerresolutionengine",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater"
       ],
       "access": [
@@ -590,6 +632,18 @@
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_report_collector",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "service-protection"
+      ],
+      "access": [
+        "team/Service_Protection"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_serviceprotection",
       "kingdom": "iad",
       "superPod": "None"
     },
@@ -707,6 +761,48 @@
     },
     {
       "namespaces": [
+        "retail-mds",
+        "retail-dfs",
+        "retail-eventlistener"
+      ],
+      "access": [
+        "team/Retail_MDS",
+        "team/Retail_DFS",
+        "team/Retail_EventListener"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_crosscloudplatform",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-rsui"
+      ],
+      "access": [
+        "team/Retail_RSUI"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_crosscloudsetup",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "retail-cre",
+        "retail-credata"
+      ],
+      "access": [
+        "team/Retail_CRE",
+        "team/Retail_CREDATA"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_customerresolutionengine",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater"
       ],
       "access": [
@@ -738,6 +834,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_report_collector",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "service-protection"
+      ],
+      "access": [
+        "team/Service_Protection"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_serviceprotection",
       "kingdom": "ord",
       "superPod": "None"
     },
@@ -1270,6 +1378,18 @@
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_report_collector",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "service-protection"
+      ],
+      "access": [
+        "team/Service_Protection"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_serviceprotection",
       "kingdom": "prd",
       "superPod": "None"
     },
