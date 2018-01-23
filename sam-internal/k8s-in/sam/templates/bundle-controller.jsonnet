@@ -12,7 +12,7 @@ if configs.estate == "prd-samtest" then {
                 containers: [
                     {
                         name: "bundle-controller",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20180122_110429.24360ec6.dirty.prabhsingh-ltm5",
+                        image: samimages.hypersam,
                         command: configs.filter_empty([
                            "/sam/bundlecontroller",
                            ]),
