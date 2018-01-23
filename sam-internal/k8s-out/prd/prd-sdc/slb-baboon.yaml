@@ -38,6 +38,7 @@ spec:
         - --namespace=sam-system
         - --log_dir=/host/data/slb/logs
         - --hostnameoverride=$(NODE_NAME)
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
           valueFrom:
@@ -62,6 +63,8 @@ spec:
           name: kubeconfig
         - mountPath: /usr/bin/kubectl
           name: kubectl
+        - mountPath: /sfdchosts
+          name: sfdchosts
       hostNetwork: true
       nodeSelector:
         pool: prd-sdc
@@ -87,3 +90,6 @@ spec:
       - hostPath:
           path: /usr/bin/kubectl
         name: kubectl
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts

@@ -20,6 +20,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --maxParallelism=1
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -34,6 +35,8 @@ spec:
           name: var-logs-volume
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
       hostNetwork: true
       volumes:
       - hostPath:
@@ -45,3 +48,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
