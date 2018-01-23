@@ -21,12 +21,7 @@ data:
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
         "samcontrol-deployer.yaml",
-        "_flowsnake-sdn-secret.yaml",
-        "watchdog-common.yaml",
-        "watchdog-etcd.yaml",
-        "watchdog-master.yaml",
-        "watchdog-node.yaml",
-        "watchdog-pod.yaml"
+        "_flowsnake-sdn-secret.yaml"
       ],
       "sender": "flowsnake@salesforce.com",
       "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",

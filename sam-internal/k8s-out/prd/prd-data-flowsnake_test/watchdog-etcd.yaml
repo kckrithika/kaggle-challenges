@@ -22,18 +22,9 @@ spec:
         - -emailFrequency=3m
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - -rcImtEndpoint=https://reportcollector-prd.data.sfdc.net:18443/v1/bark
-        - -smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
-        - -sender=vgiridaran@salesforce.com
-        - -recipient=vgiridaran@salesforce.com
-        - -email-subject-prefix=FLOWSNAKEWD
-        - -hostsConfigFile=/data/hosts/hosts.json
-        - -metricsService=flowsnake
-        - -tlsEnabled=true
-        - -caFile=/data/certs/ca.crt
-        - -keyFile=/data/certs/hostcert.key
-        - -certFile=/data/certs/hostcert.crt
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001027-676096c4
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617
         name: watchdog
         resources:
           limits:
@@ -43,17 +34,41 @@ spec:
             cpu: "0.5"
             memory: 300Mi
         volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
+          name: client-key
+          readOnly: true
         - mountPath: /data/certs
-          name: certs
-        - mountPath: /data/hosts
-          name: hosts
+          name: data-cert
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         etcd_installed: "true"
       volumes:
-      - hostPath:
-          path: /data/certs
-        name: certs
       - configMap:
           name: sfdchosts
-        name: hosts
+        name: sfdchosts
+      - configMap:
+          name: watchdog
+        name: config
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/kubernetes/k8s-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/kubernetes/k8s-client/keys
+        name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert

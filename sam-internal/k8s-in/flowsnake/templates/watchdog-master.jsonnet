@@ -1,5 +1,5 @@
-local configs = import "config.jsonnet";
 local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 {
     kind: "DaemonSet",
     spec: {
@@ -16,29 +16,21 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                             "-alertThreshold=150s",
                             "-emailFrequency=5m",
                             "-timeout=2s",
-                            "-funnelEndpoint=" + configs.funnelVIP,
-                            "-rcImtEndpoint=" + configs.rcImtEndpoint,
-                            "-smtpServer=" + configs.smtpServer,
-                            "-sender=vgiridaran@salesforce.com",
-                            "-recipient=vgiridaran@salesforce.com",
-                            "-email-subject-prefix=FLOWSNAKEWD",
-                            "-hostsConfigFile=/data/hosts/hosts.json",
-                            "-metricsService=flowsnake",
-                            "-tlsEnabled=true",
-                            "-caFile=/data/certs/ca.crt",
-                            "-keyFile=/data/certs/hostcert.key",
-                            "-certFile=/data/certs/hostcert.crt",
+                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                            "--config=/config/watchdog.json",
+                            "--hostsConfigFile=/sfdchosts/hosts.json",
                         ],
                         volumeMounts: [
-                            {
-                                mountPath: "/data/certs",
-                                name: "certs",
-                            },
-                            {
-                                mountPath: "/data/hosts",
-                                name: "hosts",
-                            },
-                        ],
+                          {
+                            mountPath: "/sfdchosts",
+                            name: "sfdchosts",
+                          },
+                          {
+                            mountPath: "/config",
+                            name: "config",
+                          },
+                        ] +
+                        flowsnakeconfigmapmount.cert_volumeMounts,
                         name: "watchdog",
                         resources: {
                             limits: {
@@ -53,19 +45,20 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                     },
                 ],
                 volumes: [
-                    {
-                        hostPath: {
-                            path: "/data/certs",
-                        },
-                        name: "certs",
+                  {
+                    configMap: {
+                      name: "sfdchosts",
                     },
-                    {
-                        configMap: {
-                            name: "sfdchosts",
-                        },
-                        name: "hosts",
+                    name: "sfdchosts",
+                  },
+                  {
+                    configMap: {
+                      name: "watchdog",
                     },
-                ],
+                    name: "config",
+                  },
+                ] +
+                flowsnakeconfigmapmount.cert_volume,
                 nodeSelector: {
                     master: "true",
                 },

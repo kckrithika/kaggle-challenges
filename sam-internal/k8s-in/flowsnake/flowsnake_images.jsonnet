@@ -16,7 +16,7 @@ local kingdom = std.extVar("kingdom");
             logloader_image_tag: "468",
             logstash_image_tag: "468",
             nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001027-676096c4",
+            watchdog_image_tag: "sam-0001622-cbc44617",
             zookeeper_image_tag: "345",
             version_mapping: {
                 main: {
@@ -54,7 +54,7 @@ local kingdom = std.extVar("kingdom");
             logloader_image_tag: "345",
             logstash_image_tag: "468",
             nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001027-676096c4",
+            watchdog_image_tag: "sam-0001622-cbc44617",
             zookeeper_image_tag: "345",
             version_mapping: {
                 main: {

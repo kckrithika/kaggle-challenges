@@ -1,0 +1,50 @@
+apiVersion: v1
+data:
+  watchdog.json: |-
+    {
+      "caFile": "/data/certs/ca.crt",
+      "certFile": "/data/certs/hostcert.crt",
+      "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "deployer-imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617",
+      "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
+      "deployer-recipient": "flowsnake@salesforce.com",
+      "deployer-sender": "flowsnake@salesforce.com",
+      "deployer-smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+      "deploymentNamespacePrefixWhitelist": "flowsnake",
+      "email-subject-prefix": "FLOWSNAKEWD",
+      "enableMaddogCertChecks": true,
+      "enableStatefulChecks": true,
+      "enableStatefulPVChecks": true,
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001622-cbc44617",
+      "keyFile": "/data/certs/hostcert.key",
+      "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
+      "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake",
+      "maxPVCAge": 420000000000,
+      "maxUptimeSampleSize": 5,
+      "maxdeploymentduration": 420000000000,
+      "monitoredProcesses": {
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler"
+      },
+      "publishAlertsToKafka": false,
+      "publishAllReportsToKafka": false,
+      "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
+      "recipient": "flowsnake@salesforce.com",
+      "sdpEndpoint": "http://localhost:39999",
+      "sender": "flowsnake@salesforce.com",
+      "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+      "syntheticPVRetrytimeout": 420000000000,
+      "syntheticretrytimeout": 420000000000,
+      "tlsEnabled": true
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: watchdog
+  namespace: flowsnake
