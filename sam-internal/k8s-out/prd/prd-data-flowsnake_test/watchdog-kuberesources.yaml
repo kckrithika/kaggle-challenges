@@ -22,7 +22,7 @@ spec:
         - -role=KUBERESOURCES
         - -watchdogFrequency=60s
         - -alertThreshold=300s
-        - -emailFrequency=6m
+        - -emailFrequency=72h
         - -shouldBatchMetrics=true
         - -maxUptimeSampleSize=5
         - -timeout=2s
