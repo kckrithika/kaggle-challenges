@@ -45,13 +45,13 @@ system:
           command:
           - "/home/sfdc-sherpa/bin/is-alive"
           initialDelaySeconds: 60
-          periodSeconds: 120
+          periodSeconds: 600
       readinessProbe:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
-          periodSeconds: 120
+          periodSeconds: 600
     volumes:
     - name: logvol
       hostPath:
