@@ -16,13 +16,13 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20171211
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20180123
 
       env:
         - name: CYAN_LIVE_VERSION
-          value: 210.11
+          value: 212
         - name: CYAN_TEST_VERSION
-          value: 210.11.1
+          value: 212
         - name: PKI_CA_DIR
           value: /certs
         - name: PKI_MONITORDIR
