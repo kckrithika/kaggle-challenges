@@ -11,7 +11,7 @@ system:
     containers:
     - name: gater1
       # container image/version to run. published separately.
-      image: tnrp/gater/gater:1.6.0-0000036-14884199
+      image: tnrp/gater/gater:1.7.0-0000037-15193845
       args:
         - --server.port=9090
         - --logging.json.stdout.level=OFF
