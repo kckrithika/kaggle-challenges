@@ -62,7 +62,7 @@ system:
 
         # Only needed if desire to override ZK registration value
         - name: CASAM_CYAN_PATH
-          value: casam/casam-212
+          value: casam/casam-212-mist61
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
