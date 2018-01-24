@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-bird
+  name: sdn-bird
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sdn-bird
+      namespace: sam-system
+    spec:
+      containers:
+      - env:
+        - name: BIRD_CONF
+          value: /usr/local/etc/bird.conf
+        - name: BIRD_SOCKET
+          value: /usr/local/var/run/bird.ctl
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/bird:v-0000014-b0a5951d
+        livenessProbe:
+          exec:
+            command:
+            - /bird/sdn-bird-watcher
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        name: sdn-bird
+        volumeMounts:
+        - mountPath: /usr/local/etc
+          name: conf
+        - mountPath: /usr/local/var/run
+          name: socket
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/sdn
+        name: conf
+      - hostPath:
+          path: /etc/kubernetes/sdn
+        name: socket
