@@ -33,6 +33,7 @@ spec:
         - --kneDomainName=
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -60,6 +61,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
@@ -101,3 +104,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts

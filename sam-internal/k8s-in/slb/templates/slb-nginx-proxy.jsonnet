@@ -160,18 +160,16 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
                 "--skipZeroLengthFiles=true",
                 "--metricsEndpoint=" + configs.funnelVIP,
                 "--log_dir=" + slbconfigs.logsDir,
-            ] + if configs.estate == "prd-sdc" then [
-                                                                  configs.sfdchosts_arg,
-                                                               ] else [],
+                configs.sfdchosts_arg,
+            ],
             volumeMounts: configs.filter_empty([
                 {
                     name: "var-target-config-volume",
                     mountPath: "/etc/nginx/conf.d",
                 },
                 slbconfigs.logs_volume_mount,
-            ] + if configs.estate == "prd-sdc" then [
-                                                                  configs.sfdchosts_volume_mount,
-                                                               ] else []),
+                configs.sfdchosts_volume_mount,
+            ]),
          },
          {
           args: [
@@ -280,9 +278,8 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
           },
           name: "maddog-certs",
          },
-        ] + if configs.estate == "prd-sdc" then [
-                                              configs.sfdchosts_volume,
-                                           ] else []),
+         configs.sfdchosts_volume,
+        ]),
        },
       },
      },
@@ -349,6 +346,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
                         "--skipZeroLengthFiles=true",
                         "--metricsEndpoint=" + configs.funnelVIP,
                         "--log_dir=" + slbconfigs.logsDir,
+                        configs.sfdchosts_arg,
                     ],
                 volumeMounts: configs.filter_empty([
                     {
@@ -356,6 +354,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
                         mountPath: "/etc/nginx/conf.d",
                     },
                     slbconfigs.logs_volume_mount,
+                    configs.sfdchosts_volume_mount,
                 ]),
                 },
                 ],

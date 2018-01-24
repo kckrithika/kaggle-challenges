@@ -31,9 +31,8 @@ if configs.estate == "prd-sdc" then {
                        },
                        name: "kubectl",
                     },
-                ]) + if configs.estate == "prd-sdc" then [
-                                                                         configs.sfdchosts_volume,
-                                                                      ] else [],
+                    configs.sfdchosts_volume,
+                ]),
                 containers: [
                     {
                         name: "slb-baboon",
@@ -56,9 +55,8 @@ if configs.estate == "prd-sdc" then {
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                                                       configs.sfdchosts_arg,
-                                                                                                    ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -70,9 +68,8 @@ if configs.estate == "prd-sdc" then {
                                 name: "kubectl",
                                 mountPath: "/usr/bin/kubectl",
                             },
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                                                        configs.sfdchosts_volume_mount,
-                                                                                                     ] else []),
+                            configs.sfdchosts_volume_mount,
+                        ]),
                         env: [
                             {
                                name: "NODE_NAME",

@@ -33,9 +33,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                      },
                      slbconfigs.slb_config_volume,
                      slbconfigs.logs_volume,
-                ] + if configs.estate == "prd-sdc" then [
-                                                       configs.sfdchosts_volume,
-                                                    ] else []),
+                     configs.sfdchosts_volume,
+                ]),
                 containers: [
                     {
                         ports: [
@@ -54,9 +53,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                              configs.sfdchosts_arg,
-                                                                           ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
@@ -64,9 +62,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             },
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                              configs.sfdchosts_volume_mount,
-                                                                           ] else []),
+                            configs.sfdchosts_volume_mount,
+                        ]),
                         securityContext: {
                             privileged: true,
                         },
