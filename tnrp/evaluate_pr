@@ -31,12 +31,12 @@ exitIfMergeCommitFound() {
 
 exitIfMergeCommitFound
 
-/opt/sam/aclrepo  --repo manifests --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
+/opt/sam/aclrepo  --repo="$TNRP_PRODUCT" --pr=$STAGE_PULL_REQUEST_ID --userId=$STAGE_GO_TRIGGER_USER
 
 cd /tmp
 rm -rf manifests || true
-git clone git@git.soma.salesforce.com:sam/manifests.git
+git clone git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git manifests
 
 cd -
 
-/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name manifests
+/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -full-schema
