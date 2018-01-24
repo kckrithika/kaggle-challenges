@@ -25,7 +25,7 @@ system:
         value: sam-minion-iot-test
       - name: SVCMESH_ANNOUNCE_PORT
         value: 7443
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:43abed5 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:zulu
       livenessProbe:
         httpGet:
           path: /manage/info
