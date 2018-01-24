@@ -28,9 +28,8 @@ if configs.estate == "prd-sdc" then {
                     slbconfigs.logs_volume,
                     configs.maddog_cert_volume,
                     configs.kube_config_volume,
-                ] + if configs.estate == "prd-sdc" then [
-                                     configs.sfdchosts_volume,
-                                  ] else []),
+                    configs.sfdchosts_volume,
+                ]),
                 containers: [
                     {
                         name: "slb-canary-creator",
@@ -41,16 +40,14 @@ if configs.estate == "prd-sdc" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxParallelism=1",
-                        ] + if configs.estate == "prd-sdc" then [
-                                                     configs.sfdchosts_arg,
-                                                  ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.kube_config_volume_mount,
-                        ] + if configs.estate == "prd-sdc" then [
-                                                     configs.sfdchosts_volume_mount,
-                                                  ] else []),
+                            configs.sfdchosts_volume_mount,
+                        ]),
                         env: [
                             configs.kube_config_env,
                         ],

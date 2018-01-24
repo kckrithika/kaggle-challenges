@@ -32,9 +32,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                 ] + if configs.estate == "prd-sdc" then [
                     configs.sfdchosts_volume,
-                 ] else []),
+                 ]),
                 containers: [
                     {
                         name: "slb-config-processor",
@@ -57,9 +56,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--kneDomainName=" + slbconfigs.kneDomainName,
                             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
                             "--shouldRemoveConfig=true",
-                        ] + if configs.estate == "prd-sdc" then [
-                           configs.sfdchosts_arg,
-                        ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -67,9 +65,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                         ] + if configs.estate == "prd-sdc" then [
                             configs.sfdchosts_volume_mount,
-                         ] else []),
+                         ]),
                          env: [
                             configs.kube_config_env,
                         ],

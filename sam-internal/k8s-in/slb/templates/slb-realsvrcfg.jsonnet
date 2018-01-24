@@ -28,9 +28,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_volume,
                     slbconfigs.sbin_volume,
                     slbconfigs.logs_volume,
-                 ] + if configs.estate == "prd-sdc" then [
-                                                       configs.sfdchosts_volume,
-                                                    ] else []),
+                    configs.sfdchosts_volume,
+                 ]),
                 containers: [
                     {
                         name: "slb-realsvrcfg",
@@ -41,16 +40,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--netInterfaceName=eth0",
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                              configs.sfdchosts_arg,
-                                                                           ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.sbin_volume_mount,
                             slbconfigs.logs_volume_mount,
-                         ] + if configs.estate == "prd-sdc" then [
-                                                                               configs.sfdchosts_volume_mount,
-                                                                            ] else []),
+                            configs.sfdchosts_volume_mount,
+                         ]),
                         securityContext: {
                             privileged: true,
                         },

@@ -47,9 +47,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                     slbconfigs.usr_sbin_volume,
                     slbconfigs.logs_volume,
-                ] + if configs.estate == "prd-sdc" then [
-                                                      configs.sfdchosts_volume,
-                                                   ] else []),
+                    configs.sfdchosts_volume,
+                ]),
                 containers: [
                     {
                         name: "slb-ipvs-installer",
@@ -62,9 +61,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                              configs.sfdchosts_arg,
-                                                                           ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "dev-volume",
@@ -85,9 +83,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.usr_sbin_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                               configs.sfdchosts_volume_mount,
-                                                                            ] else []),
+                            configs.sfdchosts_volume_mount,
+                        ]),
                     }
                     + (
                     if configs.estate == "prd-sdc" then {
@@ -116,17 +113,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            ] + if configs.estate == "prd-sdc" then [
-                                                                                  configs.sfdchosts_arg,
-                                                                               ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
                             slbconfigs.usr_sbin_volume_mount,
-                        ] + if configs.estate == "prd-sdc" then [
-                                                                              configs.sfdchosts_volume_mount,
-                                                                           ] else []),
+                            configs.sfdchosts_volume_mount,
+                        ]),
                         securityContext: {
                             privileged: true,
                         },
@@ -139,16 +134,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            "/sdn/slb-ipvs-data",
                            "--connPort=" + portconfigs.slb.ipvsDataConnPort,
                            "--log_dir=" + slbconfigs.logsDir,
-                       ] + if configs.estate == "prd-sdc" then [
-                                                                             configs.sfdchosts_arg,
-                                                                          ] else [],
+                           configs.sfdchosts_arg,
+                       ],
                        volumeMounts: configs.filter_empty([
                            slbconfigs.slb_volume_mount,
                            slbconfigs.logs_volume_mount,
                            slbconfigs.usr_sbin_volume_mount,
-                       ] + if configs.estate == "prd-sdc" then [
-                                                                             configs.sfdchosts_volume_mount,
-                                                                          ] else []),
+                           configs.sfdchosts_volume_mount,
+                       ]),
                        securityContext: {
                            privileged: true,
                        },

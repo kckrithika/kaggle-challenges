@@ -27,9 +27,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.logs_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                 ] + if configs.estate == "prd-sdc" then [
-                                                       configs.sfdchosts_volume,
-                                                    ] else []),
+                    configs.sfdchosts_volume,
+                 ]),
                 containers: [
                     {
                         name: "slb-ipvsdata-watchdog",
@@ -50,18 +49,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--maxretries=2",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--namespace=sam-system",
-                        ] + if configs.estate == "prd-sdc" then [
-                                                     configs.sfdchosts_arg,
-                                                  ] else [],
+                            configs.sfdchosts_arg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                         ] + if configs.estate == "prd-sdc" then [
-                                                                               configs.sfdchosts_volume_mount,
-                                                                            ] else []),
+                            configs.sfdchosts_volume_mount,
+                         ]),
                          env: [
                             configs.kube_config_env,
                         ],

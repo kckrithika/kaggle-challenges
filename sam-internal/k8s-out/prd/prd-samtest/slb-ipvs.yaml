@@ -22,6 +22,7 @@ spec:
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000557-cdd21b66
         name: slb-ipvs-installer
         securityContext:
@@ -44,6 +45,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       - command:
         - /sdn/slb-ipvs-processor
         - --configDir=/host/data/slb/config
@@ -51,6 +54,7 @@ spec:
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000557-cdd21b66
         name: slb-ipvs-processor
         securityContext:
@@ -64,10 +68,13 @@ spec:
           name: var-logs-volume
         - mountPath: /host/usr/sbin
           name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       - command:
         - /sdn/slb-ipvs-data
         - --connPort=9107
         - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000557-cdd21b66
         name: slb-ipvs-data
         ports:
@@ -81,6 +88,8 @@ spec:
           name: var-logs-volume
         - mountPath: /host/usr/sbin
           name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       hostNetwork: true
       nodeSelector:
         slb-service: slb-ipvs
@@ -106,3 +115,6 @@ spec:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
