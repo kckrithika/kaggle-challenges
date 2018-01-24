@@ -5,6 +5,6 @@ shared0-samdevcompute2-1-prd.eng.sfdc.net,10.253.233.10/29,10.251.156.96/27,n31-
 shared0-samdevkubeapi1-1-prd.eng.sfdc.net,10.253.233.26/29,10.251.156.160/27,v34-02,prd-samdev
 shared0-samdevkubeapi2-1-prd.eng.sfdc.net,10.253.233.34/29,10.251.156.32/27,m35-02,prd-samdev
 shared0-samdevkubeapi3-1-prd.eng.sfdc.net,10.253.233.42/29,10.251.156.64/27,m41-02,prd-samdev
-shared0-samdevpool1-1-prd.eng.sfdc.net,10.231.186.98/29,10.231.186.96/28,h21-02,prd-samdevspare
-shared0-samdevpool2-1-prd.eng.sfdc.net,10.231.186.106/29,10.231.186.112/28,h11-02,prd-samdevspare
-shared0-samdevpool3-1-prd.eng.sfdc.net,10.231.186.114/29,10.231.186.128/28,f35-02,prd-samdevspare
+shared0-samdevpool1-1-prd.eng.sfdc.net,10.231.186.98/29,10.254.226.0/28,h21-02,prd-samdevspare
+shared0-samdevpool2-1-prd.eng.sfdc.net,10.231.186.106/29,10.254.226.16/28,h11-02,prd-samdevspare
+shared0-samdevpool3-1-prd.eng.sfdc.net,10.231.186.114/29,10.254.226.32/28,f35-02,prd-samdevspare
