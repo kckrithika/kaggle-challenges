@@ -20,7 +20,7 @@ system:
       - name: PHOENIX_KEYTABPATH
         value: /home/controlplane/controlplane-keytab/controlplane.keytab
       - name: SFDC_ENVIRONMENT
-        value: scott-test
+        value: sam
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: sam-minion-iot-test
       - name: SVCMESH_ANNOUNCE_PORT
@@ -59,7 +59,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: scott-test
+        value: sam
       image: tnrp/sherpa:2-0000127-5d8bf4ab
       livenessProbe:
         exec:
@@ -109,16 +109,6 @@ system:
     - maddogCert:
         type: client
       name: client-certs
-  loadbalancers:
-  - function: controlplane-sarthur
-    lbname: controlplane-sarthur-lb
-    nodeExposed: true
-    ports:
-    - port: 7120
-      targetport: 7443
-    - port: 15472
-      targetport: 15372
-    slbEnabled: true
   notifications:
     email:
     - sarthur@salesforce.com

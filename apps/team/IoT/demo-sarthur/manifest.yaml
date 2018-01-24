@@ -17,6 +17,8 @@ system:
         value: sam-minion-iot-test.localhost.mesh.force.com
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+      - name: SFDC_ENVIRONMENT
+        value: sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:beta
       livenessProbe:
         exec:
@@ -43,7 +45,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: scott-test
+        value: sam
       image: tnrp/sherpa:2-0000127-5d8bf4ab
       livenessProbe:
         exec:
