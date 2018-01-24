@@ -15,14 +15,14 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cmx
-        image: tnrp/casp/cmx:0.0.1-0000009-c1c12247
+        image: tnrp/casp/cmx:0.0.1-0000010-ac392e60
         ports:
         - name: cmx
-          containerPort: 8787
+          containerPort: 7014
         livenessProbe:
           httpGet:
             path: /tenants
-            port: 8787
+            port: 7014
           initialDelaySeconds: 120
 
     loadbalancers:
@@ -30,5 +30,11 @@ system:
       function: cmx-func
       nodeExposed: true
       ports:
-        - port: 8787
-          targetport: 8787
+        - port: 7014
+          targetport: 7014
+    - lbname: cmx
+      function: cmx-func
+      slbEnabled: true
+      ports:
+        - port: 80
+          targetport: 7014
