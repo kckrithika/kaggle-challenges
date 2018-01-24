@@ -58,3 +58,6 @@ spec:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
