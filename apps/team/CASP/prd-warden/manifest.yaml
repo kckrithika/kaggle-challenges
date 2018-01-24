@@ -26,6 +26,8 @@ system:
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
+        - mountPath: /opt/warden/cantor
+          name: cantor-vol
         livenessProbe:
           httpGet:
             path: /manage/health
@@ -35,6 +37,9 @@ system:
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
+      - name: cantor-vol
+        hostPath:
+          path: /home/sfdc-casp/cantor
 
     loadbalancers:
     - lbname: warden
