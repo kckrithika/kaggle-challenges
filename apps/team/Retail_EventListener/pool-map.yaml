@@ -1,6 +1,6 @@
 version: v2
 apps:
   prd.CCP_Integration_Functional.commercejourneys:
-  - name: prd/prd-sp2-sam_retail_eventlistener
+  - name: prd/prd-sam_crosscloudplatform
     hostSubList:
-    - shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
+    - shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net
