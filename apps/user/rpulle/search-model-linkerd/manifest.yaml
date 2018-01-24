@@ -61,8 +61,8 @@ system:
           periodSeconds: 5
 
   loadbalancers:
-  - lbname: search-model-executor-linkerd-lb
-    function: search-model-executor-linkerd
+  - lbname: search-linkerd-lb
+    function: search-linkerd
     nodeExposed: true
     ports:
     - port: 7023
