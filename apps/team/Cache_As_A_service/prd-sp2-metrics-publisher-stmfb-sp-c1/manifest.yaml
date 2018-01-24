@@ -10,7 +10,7 @@ system:
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.6.0-0000018-15183706
+      image: tnrp/caas/caas-monitor-prod:2.6.0-0000021-15191181
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
