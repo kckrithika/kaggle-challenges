@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if configs.kingdom == "par" || configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "prd" then {
+if configs.kingdom == "par" || configs.kingdom == "phx" || configs.kingdom == "dfw" || configs.kingdom == "frf" || configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
