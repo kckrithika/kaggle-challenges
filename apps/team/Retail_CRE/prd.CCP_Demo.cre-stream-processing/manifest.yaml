@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-prd-ccp-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.6efbcda.50
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:mm-cc-impl
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -27,12 +27,12 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
-      - mountPath: /opt/cre
+      - mountPath: /opt/cre/json
         name: logvol
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs
+        path: /home/sfdc-cre/logs/prd-ccp_demo/cre-stream-processing
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
