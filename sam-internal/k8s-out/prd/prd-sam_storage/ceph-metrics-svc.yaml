@@ -1,22 +1,46 @@
 apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    slb.sfdc.net/name: ceph-metrics
-    slb.sfdc.net/portconfigurations: '[{"port":8001,"targetport":8001,"lbtype":"tcp"}]'
-  labels:
-    app: ceph-metrics
-    cloud: storage
-    team: legostore
-  name: ceph-metrics
-  namespace: ceph-test
-spec:
-  ports:
-  - name: ceph-metrics
-    nodePort: 38001
-    port: 8001
-    protocol: TCP
-    targetPort: 8001
-  selector:
-    app: ceph-metrics
-  type: NodePort
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      slb.sfdc.net/name: ceph-metrics
+      slb.sfdc.net/portconfigurations: '[{"port":8001,"targetport":8001,"lbtype":"tcp"}]'
+    labels:
+      app: ceph-metrics
+      cloud: storage
+      team: legostore
+    name: ceph-metrics
+    namespace: ceph-prd-sam-cephdev
+  spec:
+    ports:
+    - name: ceph-metrics
+      port: 8001
+      protocol: TCP
+      targetPort: 8001
+    selector:
+      app: ceph-metrics
+    type: NodePort
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      slb.sfdc.net/name: ceph-metrics
+      slb.sfdc.net/portconfigurations: '[{"port":8001,"targetport":8001,"lbtype":"tcp"}]'
+    labels:
+      app: ceph-metrics
+      cloud: storage
+      team: legostore
+    name: ceph-metrics
+    namespace: ceph-prd-sam-storage
+  spec:
+    ports:
+    - name: ceph-metrics
+      port: 8001
+      protocol: TCP
+      targetPort: 8001
+    selector:
+      app: ceph-metrics
+    type: NodePort
+kind: List
+metadata: {}
