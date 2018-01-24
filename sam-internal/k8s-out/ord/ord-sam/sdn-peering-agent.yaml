@@ -15,28 +15,6 @@ spec:
       namespace: sam-system
     spec:
       containers:
-      - env:
-        - name: BIRD_CONF
-          value: /usr/local/etc/bird.conf
-        - name: BIRD_SOCKET
-          value: /usr/local/var/run/bird.ctl
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/bird:v-0000014-b0a5951d
-        livenessProbe:
-          exec:
-            command:
-            - /bird/sdn-bird-watcher
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        name: sdn-bird
-        volumeMounts:
-        - mountPath: /sfdchosts
-          name: sfdchosts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /usr/local/etc
-          name: conf
-        - mountPath: /usr/local/var/run
-          name: socket
       - command:
         - /sdn/sdn-peering-agent
         - --birdsock=/usr/local/var/run/bird.ctl
@@ -47,8 +25,15 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --bgpPasswordFile=/data/secrets/sambgppassword
         - --livenessProbePort=9100
+        - --sdncServiceName=sdn-control-svc
+        - --sdncNamespace=sam-system
+        - --rootPath=/etc/pki_service
+        - --userName=kubernetes
+        - --pkiClientServiceName=k8s-client
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --controlEndpoint=ord-sam
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000542-5a3bab56
         livenessProbe:
           httpGet:
@@ -72,6 +57,8 @@ spec:
         - mountPath: /data/secrets
           name: secrets
           readOnly: true
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       volumes:
       - configMap:
@@ -80,9 +67,11 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - emptyDir: {}
+      - hostPath:
+          path: /etc/kubernetes/sdn
         name: conf
-      - emptyDir: {}
+      - hostPath:
+          path: /etc/kubernetes/sdn
         name: socket
       - hostPath:
           path: /data/certs
@@ -91,3 +80,6 @@ spec:
         secret:
           defaultMode: 256
           secretName: sdn
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
