@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: atc
-      image: tnrp/casp/atc:0.0.1-0000007-80308144
+      image: tnrp/casp/atc:0.0.1-0000009-9bd7d97f
       ports:
       - name: envoy
         containerPort: 8000
