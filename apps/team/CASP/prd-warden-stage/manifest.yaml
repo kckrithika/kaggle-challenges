@@ -24,16 +24,21 @@ system:
           value: "eng_production"
         volumeMounts:
         - mountPath: /home/sfdc-casp/logs
-          name: log-vol
+          name: staging-log-vol
+        - mountPath: /opt/warden/cantor
+          name: staging-cantor-vol
         livenessProbe:
           httpGet:
             path: /manage/health
             port: 15372
           initialDelaySeconds: 120
       volumes:
-      - name: log-vol
+      - name: staging-log-vol
         hostPath:
-          path: /home/sfdc-casp/logs
+          path: /home/sfdc-casp/staging/logs
+      - name: staging-cantor-vol
+        hostPath:
+          path: /home/sfdc-casp/staging/cantor
     loadbalancers:
     - lbname: warden-stage-node
       function: warden-stage-func
