@@ -130,7 +130,8 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
       items: [
          {
             local escapedMinionEstate = storageutils.string_replace(minionEstate, "_", "-"),
-            local cephClusterNamespace = "ceph-" + escapedMinionEstate,
+            local cephClusterName = "ceph-" + escapedMinionEstate,
+            local cephClusterNamespace = (if configs.estate == "prd-sam_storage" then cephClusterName else "legostore"),
 
             apiVersion: "extensions/v1beta1",
             kind: "Deployment",
