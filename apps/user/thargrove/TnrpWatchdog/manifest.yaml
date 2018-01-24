@@ -13,6 +13,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/redirect:latest
       command: ["/redirect"]
       args: ["-port=64132", "-message", "Moved to https://sfdc.co/tnrpmonitor"]
+      env:
+       - name: a
+         value: b
       ports:
       - containerPort: 64132
       livenessProbe:
