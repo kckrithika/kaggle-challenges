@@ -33,16 +33,22 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--configDir=" + slbconfigs.configDir,
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                            "--smtpServer=" + configs.smtpServer,
-                            "--sender=" + slbconfigs.sdn_watchdog_emailsender,
-                            "--recipient=" + slbconfigs.sdn_watchdog_emailrec,
-                            "--emailFrequency=12h",
-                            "--watchdogFrequency=60s",
-                            "--alertThreshold=700s",
                             "--vipLoop=10",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
-                        ],
+                        ]
+                        + (
+                             if configs.estate == "prd-sdc" then [
+                                  "--monitorFrequency=60s",
+                             ] else [
+                                  "--smtpServer=" + configs.smtpServer,
+                                  "--sender=" + slbconfigs.sdn_watchdog_emailsender,
+                                  "--recipient=" + slbconfigs.sdn_watchdog_emailrec,
+                                  "--emailFrequency=12h",
+                                  "--watchdogFrequency=60s",
+                                  "--alertThreshold=700s",
+                             ]
+                        ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,

@@ -56,7 +56,12 @@ if configs.estate == "prd-sdc" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
                             configs.sfdchosts_arg,
-                        ],
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                                 "--port=" + portconfigs.slb.baboonEndPointPort,
+                            ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
