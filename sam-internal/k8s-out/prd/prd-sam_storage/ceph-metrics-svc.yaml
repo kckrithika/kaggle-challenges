@@ -15,7 +15,6 @@ items:
   spec:
     ports:
     - name: ceph-metrics
-      nodePort: 38001
       port: 8001
       protocol: TCP
       targetPort: 8001
@@ -37,7 +36,6 @@ items:
   spec:
     ports:
     - name: ceph-metrics
-      nodePort: 38001
       port: 8001
       protocol: TCP
       targetPort: 8001

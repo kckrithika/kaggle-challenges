@@ -41,8 +41,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
       items: [
          {
             local escapedMinionEstate = utils.string_replace(minionEstate, "_", "-"),
-            local cephClusterName = "ceph-" + escapedMinionEstate,
-            local cephClusterNamespace = (if configs.estate == "prd-sam_storage" then cephClusterName else "legostore"),
+            local cephClusterNamespace = "ceph-" + escapedMinionEstate,
 
             kind: "Service",
             apiVersion: "v1",
@@ -66,7 +65,6 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                      port: 8001,
                      protocol: "TCP",
                      targetPort: 8001,
-                     nodePort: 38001,
                   },
                ],
                selector: {
