@@ -12,6 +12,8 @@ system:
         containerPort: 8084
       - name: service
         containerPort: 7020
+      - name: web-admin
+        containerPort: 15374
       livenessProbe:
         exec:
           command: ["true"]
