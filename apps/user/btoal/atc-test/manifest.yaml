@@ -7,9 +7,16 @@ system:
   functions:
   - name: atc-test
     count: 1
+    volumes:
+    - name: cert
+      maddogCert:
+        type: server
     containers:
     - name: atc
       image: tnrp/casp/atc:0.0.1-0000009-9bd7d97f
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
       ports:
       - name: envoy
         containerPort: 8000
