@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: search-model-executor-xlt
-    count: 1
+    count: 8
     containers:
     - name: client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/geoip-client:1.0
