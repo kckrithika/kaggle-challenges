@@ -34,6 +34,9 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
+        # [prabh.singh] Test bundle controller to prd-samtest
+        "prd,prd-samtest,bundle-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prabh.singh/hypersam:20180122_110429.24360ec6.dirty.prabhsingh-ltm5",
+
         # [rbhat] Fix synthetic watchdog in GIA
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
