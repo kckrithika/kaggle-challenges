@@ -312,6 +312,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
                          },
                      },
                      slbconfigs.logs_volume,
+                     configs.sfdchosts_volume,
                 ]),
                 containers: [
                     {
