@@ -134,7 +134,7 @@ local utils = import "util_functions.jsonnet";
     # Static images that do not go in phases
     static: {
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
-
+        prometheus: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124",
         permissionInitContainer: (
             if (kingdom == "prd") then
                 "sam-c07d4afb-673"
@@ -153,6 +153,7 @@ local utils = import "util_functions.jsonnet";
     # These are the images used by the templates
     hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].hypersam),
     k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
+    prometheus: utils.do_override_based_on_tag($.overrides, "sam", "prometheus", $.static.prometheus),
     permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
     k4aInitContainerImage: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.k4aInitContainerImage),
 
