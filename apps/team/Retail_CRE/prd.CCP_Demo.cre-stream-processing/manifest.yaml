@@ -32,7 +32,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-stream-processing
+        path: /home/sfdc-cre/logs/cre-stream-processing_demo
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
