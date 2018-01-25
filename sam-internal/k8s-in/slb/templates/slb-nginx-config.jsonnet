@@ -54,7 +54,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
                             configs.sfdchosts_arg,
-                        ],
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                                "--httpsEnabled=true",
+                            ] else []
+                        ),
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
