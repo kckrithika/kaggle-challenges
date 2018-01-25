@@ -17,7 +17,6 @@ local utils = import "util_functions.jsonnet";
                             "-watchdogFrequency=5s",
                             "-alertThreshold=3m",
                         ]
-                        + samwdconfig.pagerduty_args
                         + samwdconfig.shared_args
                         + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
                     volumeMounts: configs.filter_empty([
