@@ -23,7 +23,8 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --maxDeleteServiceCount=3
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000568-bf8bffd6
+        - --httpsEnabled=true
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000570-36eb569f
         name: slb-nginx-config
         ports:
         - containerPort: 32146
