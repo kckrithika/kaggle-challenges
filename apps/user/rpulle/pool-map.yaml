@@ -23,3 +23,6 @@ apps:
 
  perf-client:
   - prd/prd-sam
+
+ load-grpc:
+  - prd/prd-sam
