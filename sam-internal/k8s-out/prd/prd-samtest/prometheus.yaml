@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: prometheus
+  name: prometheus
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: prometheus
+  template:
+    metadata:
+      labels:
+        name: prometheus
+    spec:
+      containers:
+      - args:
+        - -f
+        - /prometheusconfig/prometheus.cfg
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9090
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          name: prometheus
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: certs-volume
+        - mountPath: /prometheus
+          name: prom-data
+        - mountPath: /prometheusconfig
+          name: prometheusconfig
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: certs-volume
+      - hostPath:
+          path: /root/prom-data
+        name: prom-data
+      - configMap:
+          name: prometheus
+        name: prometheusconfig
