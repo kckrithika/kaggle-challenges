@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   labels:
-    name: slb-config-processor
-  name: slb-config-processor
+    name: slb-config-processor-dns
+  name: slb-config-processor-dns
   namespace: sam-system
 spec:
   template:
@@ -11,7 +11,7 @@ spec:
       labels:
         apptype: control
         daemonset: "true"
-        name: slb-config-processor
+        name: slb-config-processor-dns
       namespace: sam-system
     spec:
       affinity:
@@ -20,9 +20,7 @@ spec:
             nodeSelectorTerms:
             - matchExpressions:
               - key: slb-dns-register
-                operator: DoesNotExist
-              - key: slb.sfdc.net/role
-                operator: DoesNotExist
+                operator: Exists
       containers:
       - command:
         - /sdn/slb-config-processor
@@ -54,7 +52,7 @@ spec:
           initialDelaySeconds: 600
           periodSeconds: 30
           timeoutSeconds: 5
-        name: slb-config-processor
+        name: slb-config-processor-dns
         securityContext:
           privileged: true
         volumeMounts:
