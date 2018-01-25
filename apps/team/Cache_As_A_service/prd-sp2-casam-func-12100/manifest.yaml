@@ -25,7 +25,7 @@ system:
           value: GRUMPY
 #212#          value: happy
         - name: DB_SID
-          value: mist61b212utf
+          value: mist61a210utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
@@ -137,7 +137,7 @@ system:
     containers:
     - name: csr-seq-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:13
 #212#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:11
 
       env:
