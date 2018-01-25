@@ -660,6 +660,56 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: iot:ord-sam_iot:rolebinding
+    namespace: iot
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioniot1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot1-9-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-10-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-3-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-5-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-6-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-7-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-8-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioniot2-9-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: communities:ord-sam_moderation_einstein:rolebinding
     namespace: communities
   roleRef:
