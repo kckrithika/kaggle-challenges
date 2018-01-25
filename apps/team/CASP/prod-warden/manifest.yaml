@@ -14,7 +14,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prod-warden
-        image: tnrp/casp/warden:0.0.1-0000211-69e92441
+        image: tnrp/casp/warden:0.0.1-0000241-7e270242
         ports:
         - name: warden
           containerPort: 8889
@@ -25,8 +25,8 @@ system:
         - name: JWT_ENABLED
           value: "true"
         volumeMounts:
-        - mountPath: /home/sfdc-casp/lib/warden/mysql
-          name: mysql-vol
+        - mountPath: /opt/warden
+          name: warden-vol
         - mountPath: /home/sfdc-casp/logs
           name: log-vol
         livenessProbe:
@@ -35,9 +35,9 @@ system:
             port: 15372
           initialDelaySeconds: 60
       volumes:
-      - name: mysql-vol
+      - name: warden-vol
         hostPath:
-          path: /home/sfdc-casp/lib/warden/mysql
+          path: /home/sfdc-casp/warden
       - name: log-vol
         hostPath:
           path: /home/sfdc-casp/logs
