@@ -27,12 +27,12 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
-      - mountPath: /opt/cre/cre-stream-processing
+      - mountPath: /opt/cre/cre-stream-processing/json
         name: logvol
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-stream-processing
+        path: /home/sfdc-cre/logs/cre-stream-processing/demo
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
