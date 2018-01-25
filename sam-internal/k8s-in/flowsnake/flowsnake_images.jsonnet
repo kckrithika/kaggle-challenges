@@ -109,6 +109,6 @@ local kingdom = std.extVar("kingdom");
     node_monitor: "dva-registry.internal.salesforce.com/dva/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
     version_mapping: $.per_phase[$.phase].version_mapping,
     /* watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].watchdog_image_tag, */
-    watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180123_112004.cbc44617.dirty.jinxingwang-wsm",
+    watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm",
     zookeeper: "dva-registry.internal.salesforce.com/dva/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 }
