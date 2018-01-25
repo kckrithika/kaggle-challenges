@@ -33,6 +33,10 @@ perCluster: {
         "prd-sam": "csrlb,controlplane-ptest",
     },
 
+    servicesToLbOverride: {
+        "prd-sdc": "slb-canary-proxy-tcp-service",
+    },
+
     namespace: {
         "prd-sdc": "",
         "prd-samtest": "",
@@ -170,6 +174,7 @@ kneDomainName: self.perCluster.kneDomainName[estate],
 processKnEConfigs: self.perCluster.processKnEConfigs[estate],
 kneConfigDir: self.perCluster.kneConfigDir[estate],
 configurePerPort: self.perCluster.configurePerPort[estate],
+servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",

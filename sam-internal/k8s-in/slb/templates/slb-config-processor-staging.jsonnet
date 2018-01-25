@@ -3,21 +3,21 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "slbports.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sdc" then {
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
         labels: {
-            name: "slb-config-processor",
+            name: "slb-config-processor-staging",
         },
-        name: "slb-config-processor",
+        name: "slb-config-processor-staging",
         namespace: "sam-system",
     },
     spec: {
         template: {
             metadata: {
                 labels: {
-                    name: "slb-config-processor",
+                    name: "slb-config-processor-staging",
                     apptype: "control",
                     daemonset: "true",
                 },
@@ -25,6 +25,27 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             spec: {
                 hostNetwork: true,
+                affinity: {
+                            nodeAffinity: {
+                              requiredDuringSchedulingIgnoredDuringExecution: {
+                                nodeSelectorTerms: [
+                                  {
+                                     matchExpressions: [
+                                       {
+                                          key: "slb-dns-register",
+                                          operator: "DoesNotExist",
+                                       },
+                                       {
+                                          key: "slb.sfdc.net/role",
+                                          operator: "In",
+                                          values: ["control"],
+                                       },
+                                     ],
+                                  },
+                                ],
+                              },
+                            },
+                          },
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
@@ -36,7 +57,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                  ]),
                 containers: [
                     {
-                        name: "slb-config-processor",
+                        name: "slb-config-processor-staging",
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-config-processor",
@@ -57,6 +78,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
                             "--shouldRemoveConfig=true",
                             configs.sfdchosts_arg,
+                            "--servicesToLbOverride=" + slbconfigs.servicesToLbOverride,
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -110,28 +132,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         },
                     },
                 ],
-            } + if configs.estate == "prd-sdc" then {
-               affinity: {
-                                           nodeAffinity: {
-                                             requiredDuringSchedulingIgnoredDuringExecution: {
-                                               nodeSelectorTerms: [
-                                                 {
-                                                    matchExpressions: [
-                                                      {
-                                                         key: "slb-dns-register",
-                                                         operator: "DoesNotExist",
-                                                      },
-                                                      {
-                                                         key: "slb.sfdc.net/role",
-                                                         operator: "DoesNotExist",
-                                                      },
-                                                    ],
-                                                 },
-                                               ],
-                                             },
-                                           },
-                                         },
-            } else {},
+            },
         },
     },
 } else "SKIP"
