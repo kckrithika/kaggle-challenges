@@ -39,7 +39,7 @@ system:
        - name: SFDC_ENVIRONMENT
          value: stmfa
        - name: CAAS_ENVIRONMENT
-         value: none
+         value: abc
     volumes:
     - name: logvol
       hostPath:
