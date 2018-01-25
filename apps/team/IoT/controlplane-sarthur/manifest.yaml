@@ -60,7 +60,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      image: tnrp/sherpa:2-0000127-5d8bf4ab
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:2-0000153-5dbf127d
       livenessProbe:
         exec:
           command:
@@ -112,3 +112,10 @@ system:
   notifications:
     email:
     - sarthur@salesforce.com
+  loadbalancers:
+  - function: controlplane-sarthur
+    lbname: controlplane-sarthur-lb
+    nodeExposed: true
+    ports:
+    - port: 15383
+      targetport: 15373

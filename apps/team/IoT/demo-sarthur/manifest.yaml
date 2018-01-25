@@ -14,7 +14,7 @@ system:
       - name: KAFKA_TRUSTSTORE_LOCATION
         value: /home/demo/ajna-certs/cacerts
       - name: CONTROLPLANE_ENDPOINT
-        value: sam-minion-iot-test.localhost.mesh.force.com
+        value: sam-minion-iot-test.localhost.mesh.force.com:5443
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
@@ -46,7 +46,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      image: tnrp/sherpa:2-0000127-5d8bf4ab
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:2-0000153-5dbf127d
       livenessProbe:
         exec:
           command:
@@ -92,3 +92,10 @@ system:
   notifications:
     email:
     - sarthur@salesforce.com
+  loadbalancers:
+  - function: demo-sarthur
+    lbname: demo-sarthur-lb
+    nodeExposed: true
+    ports:
+    - port: 15384
+      targetport: 15373
