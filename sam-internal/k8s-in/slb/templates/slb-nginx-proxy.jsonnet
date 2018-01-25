@@ -33,8 +33,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
                 {
                     \"name\": \"cert1\",
                     \"san\":[
-                        \"*.slb.sfdc.net\",
-                        \"*.sam-system.slb.sfdc.net\"
+                        \"*.slb.sfdc.net\"
                     ],
                     \"cert-type\":\"server\",
                     \"kingdom\":\"prd\",
