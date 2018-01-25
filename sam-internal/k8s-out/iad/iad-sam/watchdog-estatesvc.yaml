@@ -27,7 +27,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=24h
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001622-cbc44617
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0001641-fafe532f
         name: watchdog-estatesvc
         volumeMounts:
         - mountPath: /sfdchosts

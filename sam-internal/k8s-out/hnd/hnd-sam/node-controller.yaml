@@ -28,7 +28,7 @@ spec:
               fieldPath: spec.nodeName
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001622-cbc44617
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001641-fafe532f
         name: node-controller
         volumeMounts:
         - mountPath: /sfdchosts
