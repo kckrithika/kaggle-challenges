@@ -38,7 +38,7 @@ spec:
         - --runAsServer
         - --servicePort=9118
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000570-36eb569f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000574-e1777284
         name: slb-echo-server
         volumeMounts:
         - mountPath: /host/data/slb/logs
