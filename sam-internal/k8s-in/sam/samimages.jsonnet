@@ -48,6 +48,10 @@ local utils = import "util_functions.jsonnet";
         #[mayank.kumar] testing email reporting for deployment and statefulsets
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180123_004127.47e053fc.dirty.mayankkuma-ltm3",
         "prd,prd-sam,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180123_004127.47e053fc.dirty.mayankkuma-ltm3",
+
+         #[rbhat] cache namespace, node list in controller
+        "prd,prd-samdev,samcontrol,hypersam": "sam-0001654-3f9cfd66",
+        "prd,prd-sam,samcontrol,hypersam": "sam-0001654-3f9cfd66",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
