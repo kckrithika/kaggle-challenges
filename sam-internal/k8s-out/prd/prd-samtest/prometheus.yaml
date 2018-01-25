@@ -18,7 +18,7 @@ spec:
       containers:
       - args:
         - -f
-        - /prometheusconfig/prometheus.cfg
+        - /prometheusconfig/prometheus.json
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124
         livenessProbe:
           httpGet:
@@ -42,7 +42,7 @@ spec:
           path: /etc/pki_service
         name: certs-volume
       - hostPath:
-          path: /root/prom-data
+          path: /data/prom-data
         name: prom-data
       - configMap:
           name: prometheus

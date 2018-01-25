@@ -7,6 +7,7 @@ if configs.estate == "prd-samtest" then {
             namespace: "sam-system",
             labels: {
                 app: "prometheus",
+               "slb.sfdc.net/name": "prometheus",
             },
         },
         spec: {

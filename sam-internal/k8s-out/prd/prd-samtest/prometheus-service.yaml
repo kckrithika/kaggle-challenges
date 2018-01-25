@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: prometheus
+    slb.sfdc.net/name: prometheus
   name: prometheus-svc
   namespace: sam-system
 spec:

@@ -13,7 +13,7 @@ if configs.estate == "prd-samtest" then {
                         image: samimages.prometheus,
                         args: [
                           "-f",
-                          "/prometheusconfig/prometheus.cfg",
+                          "/prometheusconfig/prometheus.json",
                         ],
                         volumeMounts: configs.filter_empty([
                             {
@@ -54,7 +54,7 @@ if configs.estate == "prd-samtest" then {
                     },
                     {
                         hostPath: {
-                            path: "/root/prom-data",
+                            path: "/data/prom-data",
                         },
                         name: "prom-data",
                     },

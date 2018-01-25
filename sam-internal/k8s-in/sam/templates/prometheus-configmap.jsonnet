@@ -8,6 +8,6 @@ if configs.estate == "prd-samtest" then {
       namespace: "sam-system",
     },
     data: {
-      "prometheus.cfg": std.toString(importstr "configs/prometheus.cfg"),
+      "prometheus.json": std.toString(import "configs/prometheus.jsonnet"),
     },
 } else "SKIP"
