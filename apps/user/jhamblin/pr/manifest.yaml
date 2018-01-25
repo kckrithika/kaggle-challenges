@@ -12,8 +12,7 @@ system:
         - compute-pull-requests 
     containers:
     - name: team-prs 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201801240735
-
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201801251510
       command: ["/sdn/slb-velo"]
       args: [""]
       ports:
