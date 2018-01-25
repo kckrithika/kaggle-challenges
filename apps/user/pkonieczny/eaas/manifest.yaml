@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image: tnrp/emailinfrastructure/eaas:1.0.0-0000017-acb91dfb
+      image: tnrp/emailinfrastructure/eaas:latest-0000032-3b6f0976
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
