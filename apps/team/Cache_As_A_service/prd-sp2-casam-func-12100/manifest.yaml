@@ -25,7 +25,9 @@ system:
           value: GRUMPY
 #212#          value: happy
         - name: DB_SID
-          value: mist30b212utf
+          value: mist61b212utf
+        - name: IP_DB
+          value: mist61ice1-db1-1-prd.eng.sfdc.net
 
         # Only needed if desire to override ZK registration value
         - name: CASAM_CYAN_PATH
@@ -135,7 +137,7 @@ system:
     containers:
     - name: csr-seq-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:11
 #212#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:11
 
       env:
