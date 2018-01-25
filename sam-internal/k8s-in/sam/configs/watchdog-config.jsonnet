@@ -74,6 +74,12 @@ local utils = import "util_functions.jsonnet";
     "hyperkube.*scheduler": "age.kubescheduler",
     "dockerd.*docker-bootstrap": "age.dockerbootstrap",
     "dockerd.*docker.sock": "age.dockermain",
+  } +
+  if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then
+  {
+    "name=etcd": "age.etcd",
+  } else
+  {
   },
   publishAlertsToKafka: (if configs.kingdom == "prd" then true else false),
   kafkaProducerEndpoint: "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093",
