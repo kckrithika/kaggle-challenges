@@ -2,13 +2,13 @@ apiVersion: v1
 
 system:
   functions:
-  - name: ordering-service
+  - name: ordering-beiwu
     count: 1
     containers:
-    - name: ordering-service
+    - name: ordering-beiwu
       # the image below is built at this commit:
       # https://git.soma.salesforce.com/servicelibs/scone-ms-examples/commit/ba75674c97fec87b035923bcfff3eb995abf0044
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/beiwu/ordering/scone-ordering:bei.wu-20180125-fcb1684
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/beiwu/ordering/ordering-beiwu:bei.wu-20180125-fcb1684
       # image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:plaird-20180122-da9f733
       env:
       - name: SFDC_ENVIRONMENT
