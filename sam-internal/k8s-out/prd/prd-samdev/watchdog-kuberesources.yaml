@@ -5,7 +5,7 @@ metadata:
     name: watchdog-kuberesources
   name: watchdog-kuberesources
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       name: watchdog-kuberesources
