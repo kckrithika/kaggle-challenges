@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-prd-ccp-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.6efbcda.50
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:fr-logging.391053b.2
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -17,6 +17,8 @@ system:
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: METRICS_KAFKA_KEYSTORE
           value: /certs/shared2-samminionretailcre-prd.jks
+        - name: SFDC_ENVIRONMENT
+          value: ccp-demo
       ports:
       - containerPort: 8080
       livenessProbe:
@@ -27,7 +29,7 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
-      - mountPath: /opt/cre/cre-stream-processing
+      - mountPath: /opt/cre/cre-stream-processing_ccp-demo
         name: logvol
     volumes:
     - name: logvol
