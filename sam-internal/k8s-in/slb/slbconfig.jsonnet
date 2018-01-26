@@ -104,6 +104,13 @@ perCluster: {
         "prd-sam_storage": true,
         "prd-sam": true,
     },
+    canaryMaxParallelism: {
+        "prd-sdc": 1,
+        "prd-samtest": 1,
+        "prd-samdev": 1,
+        "prd-sam_storage": 1,
+        "prd-sam": 2,
+    },
 },
 
 
@@ -180,6 +187,7 @@ kneConfigDir: self.perCluster.kneConfigDir[estate],
 configurePerPort: self.perCluster.configurePerPort[estate],
 servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
 servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
+canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
