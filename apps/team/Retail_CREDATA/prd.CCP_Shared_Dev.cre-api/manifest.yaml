@@ -9,7 +9,10 @@ system:
     count: 2
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:master.cf88d72.29
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: ccp-shared-dev
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -21,6 +24,8 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      - mountPath: /opt/cre/cre-api_ccp-shared-dev
+        name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.15
       env:
@@ -46,7 +51,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/sam/cre/log/prd-ccp_shared_dev/cre-api
+        path: /home/sfdc-cre/logs/cre-api_ccp-shared-dev
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
