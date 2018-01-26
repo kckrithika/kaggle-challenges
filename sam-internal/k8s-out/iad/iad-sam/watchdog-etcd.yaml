@@ -19,6 +19,7 @@ spec:
         - -role=ETCD
         - -watchdogFrequency=5s
         - -alertThreshold=3m
+        - -recipient=sam-alerts@salesforce.com,csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --config=/config/watchdog.json
