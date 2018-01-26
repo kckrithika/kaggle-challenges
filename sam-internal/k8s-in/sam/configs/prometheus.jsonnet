@@ -23,24 +23,10 @@ local hosts = import "hosts.jsonnet";
   },
   scrape_configs: [
     {
-      job_name: "prometheus",
-      scrape_interval: "15s",
-      scrape_timeout: "10s",
-      metrics_path: "/metrics",
-      scheme: "http",
+      job_name: "etcd",
       static_configs: [
         {
-          targets: [
-            "localhost:9090",
-          ],
-        },
-      ],
-    },
-    {
-      job_name: "test-etcd",
-      static_configs: [
-        {
-          targets: [h.hostname for h in hosts.hosts if h.estate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && h.devicerole == "samkubeapi"],
+          targets: [h.hostname + ":2379" for h in hosts.hosts if h.estate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && h.devicerole == "samkubeapi"],
         },
       ],
       scheme: "https",
