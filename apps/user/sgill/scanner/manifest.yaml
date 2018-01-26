@@ -2,41 +2,57 @@ apiVersion: v1
 
 system:
   functions:
-  - name: file-inspection
+  - name: pd-scanner-service
     count: 1
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner:20171024_0958
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/product-defense/scanner:latest
       ports:
       - name: web
         containerPort: 8084
       - name: service
         containerPort: 7020
+      - name: web-admin
+        containerPort: 15374
       livenessProbe:
-          httpGet:
-            path: /ping
-            port: 8084
-          initialDelaySeconds: 30
-          periodSeconds: 5
-    - name: sherpa-b
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+        exec:
+          command: ["true"]
+      # httpGet:
+      #   path: /ping
+      #   port: 8084
+      # initialDelaySeconds: 30
+      # periodSeconds: 5
+    - name: pd-scanner-service-sherpa
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       ports:
       - containerPort: 7012
-        name: sherpa-b-in
-      - containerPort: 7080
-        name: sherpa-b-adm
+        name: sherpa-in
+      - containerPort: 15373
+        name: sherpa-adm
+      volumeMounts:
+      - name: pd-scanner-client-cert
+        mountPath: /client-certs # The path in the mesh proxy container to mount client certs on. The mesh proxy looks in /client-certs by default
+      - name: pd-scanner-server-cert
+        mountPath: /server-certs
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - "/home/sfdc-sherpa/bin/is-alive"
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
-          initialDelaySeconds: 5
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 10
           periodSeconds: 5
+  volumes:
+    - name: pd-scanner-client-cert
+      maddogCert:
+        type: client
+    - name: pd-scanner-server-cert
+      maddogCert:
+        type: server
