@@ -20,6 +20,9 @@ system:
         value: 7012
       - name: GRPC_ANNOUNCED_NAME
         value: load-grpc-server
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+
       livenessProbe:
         exec:
           command:
