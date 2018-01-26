@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
+local hosts = import "configs/hosts.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
    kind: "Deployment",
     spec: {
         replicas: 1,
@@ -12,7 +13,7 @@ if configs.estate == "prd-samtest" then {
                         name: "prometheus",
                         image: samimages.prometheus,
                         args: [
-                          "-f",
+                          "--config.file",
                           "/prometheusconfig/prometheus.json",
                         ],
                         volumeMounts: configs.filter_empty([
@@ -65,7 +66,11 @@ if configs.estate == "prd-samtest" then {
                         name: "prometheusconfig",
                     },
                 ]),
+                nodeSelector: {
+                    "kubernetes.io/hostname": [h.hostname for h in hosts.hosts if h.controlestate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0],
+                },
             },
+
             metadata: {
                 labels: {
                     name: "prometheus",
