@@ -123,6 +123,10 @@ shared0-samminiongater1-2-prd.eng.sfdc.net,10.253.207.26/29,10.251.130.32/27,e35
 shared0-samminiongater1-3-prd.eng.sfdc.net,10.253.207.18/29,10.251.130.0/27,b08-02,prd-sam_gater
 shared0-samminiongater2-1-prd.eng.sfdc.net,10.253.207.2/29,10.251.130.128/27,k08-02,prd-sam_gater
 shared0-samminiongater2-2-prd.eng.sfdc.net,10.253.207.34/29,10.251.130.64/27,h38-02,prd-sam_gater
+shared0-samminiongwc1-1-prd.eng.sfdc.net,10.231.186.10/29,10.251.137.32/27,q09-02,prd-sam_gatewayconfig
+shared0-samminiongwc1-2-prd.eng.sfdc.net,10.231.186.18/29,10.251.137.64/27,s03-02,prd-sam_gatewayconfig
+shared0-samminiongwc2-1-prd.eng.sfdc.net,10.231.186.2/29,10.251.137.0/27,e06-02,prd-sam_gatewayconfig
+shared0-samminiongwc2-2-prd.eng.sfdc.net,10.231.186.26/29,10.251.137.96/27,v35-02,prd-sam_gatewayconfig
 shared0-samminioniottest1-1-prd.eng.sfdc.net,10.231.88.66/29,10.251.177.64/27,bb34-02,prd-sp2-sam_iot_test
 shared0-samminioniottest1-2-prd.eng.sfdc.net,10.231.88.82/29,10.251.177.0/27,aa38-02,prd-sp2-sam_iot_test
 shared0-samminioniottest2-1-prd.eng.sfdc.net,10.231.88.74/29,10.251.177.96/27,bb37-02,prd-sp2-sam_iot_test
@@ -133,6 +137,8 @@ shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net,10.231.101.130/29,10.251
 shared0-samminionreportcollector1-1-prd.eng.sfdc.net,10.253.232.10/29,10.251.132.32/27,k10-02,prd-sam_report_collector
 shared0-samminionreportcollector2-1-prd.eng.sfdc.net,10.253.232.2/29,10.251.132.0/27,h10-02,prd-sam_report_collector
 shared0-samminionreportcollector3-1-prd.eng.sfdc.net,10.253.232.18/29,10.251.132.64/27,m37-02,prd-sam_report_collector
+shared0-samminionserviceprotection1-1-prd.eng.sfdc.net,10.231.103.114/29,10.254.226.160/27,m38-02,prd-sam_serviceprotection
+shared0-samminionserviceprotection2-1-prd.eng.sfdc.net,10.231.103.122/29,10.254.226.128/27,bb31-02,prd-sam_serviceprotection
 shared0-samminionsfstore1-1-prd.eng.sfdc.net,10.231.173.2/28,10.251.212.0/27,d38-02,prd-sam_sfstore
 shared0-samminionsfstore1-2-prd.eng.sfdc.net,10.231.173.114/28,10.251.212.160/27,p31-02,prd-sam_sfstore
 shared0-samminionsfstore1-3-prd.eng.sfdc.net,10.231.173.66/28,10.251.212.128/27,n09-02,prd-sam_sfstore

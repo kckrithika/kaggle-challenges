@@ -92,6 +92,36 @@ data:
           "kingdom": "yul",
           "pod": "none",
           "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "yul-sam",
+          "devicerole": "samcompute",
+          "estate": "yul-sdn_control",
+          "hostname": "shared0-sdncontrol1-1-yul.ops.sfdc.net",
+          "kingdom": "yul",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "yul-sam",
+          "devicerole": "samcompute",
+          "estate": "yul-sdn_control",
+          "hostname": "shared0-sdncontrol1-2-yul.ops.sfdc.net",
+          "kingdom": "yul",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "yul-sam",
+          "devicerole": "samcompute",
+          "estate": "yul-sdn_control",
+          "hostname": "shared0-sdncontrol1-3-yul.ops.sfdc.net",
+          "kingdom": "yul",
+          "pod": "none",
+          "superpod": "none"
         }
       ]
     }

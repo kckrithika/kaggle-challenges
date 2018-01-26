@@ -1,0 +1,10 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samkubeapi1-1-yul.ops.sfdc.net,10.221.50.180/28,10.221.55.64/27,NONE,yul-sam
+shared0-samkubeapi2-1-yul.ops.sfdc.net,10.221.50.181/28,10.221.55.96/27,NONE,yul-sam
+shared0-samkubeapi3-1-yul.ops.sfdc.net,10.221.50.182/28,10.221.55.32/27,NONE,yul-sam
+shared0-samminiongater1-1-yul.ops.sfdc.net,10.221.54.100/28,10.221.55.224/27,NONE,yul-sam_gater
+shared0-samminiongater1-2-yul.ops.sfdc.net,10.221.54.101/28,10.221.55.192/27,NONE,yul-sam_gater
+shared0-samminiongater2-1-yul.ops.sfdc.net,10.221.54.102/28,10.221.55.160/27,NONE,yul-sam_gater
+shared0-samminionreportcollector1-1-yul.ops.sfdc.net,10.221.51.148/28,10.221.56.32/27,NONE,yul-sam_report_collector
+shared0-samminionreportcollector2-1-yul.ops.sfdc.net,10.221.51.149/28,10.221.56.96/27,NONE,yul-sam_report_collector
+shared0-samminionreportcollector3-1-yul.ops.sfdc.net,10.221.51.150/28,10.221.56.64/27,NONE,yul-sam_report_collector

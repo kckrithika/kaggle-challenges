@@ -189,6 +189,16 @@ shared0-samminionmoderationeinstein2-1-dfw.ops.sfdc.net,10.220.129.138/29,10.214
 shared0-samminionreportcollector1-1-dfw.ops.sfdc.net,10.247.108.2/29,10.214.132.64/27,v31-01,dfw-sam_report_collector
 shared0-samminionreportcollector2-1-dfw.ops.sfdc.net,10.247.108.10/29,10.214.132.32/27,s18-01,dfw-sam_report_collector
 shared0-samminionreportcollector3-1-dfw.ops.sfdc.net,10.247.108.18/29,10.214.132.0/27,m08-01,dfw-sam_report_collector
+shared0-samminionsme1-1-dfw.ops.sfdc.net,10.247.230.106/29,10.214.178.160/27,f30-02,dfw-search_model_executor
+shared0-samminionsme1-2-dfw.ops.sfdc.net,10.247.230.107/29,10.214.178.192/27,f30-02,dfw-search_model_executor
+shared0-samminionsme1-3-dfw.ops.sfdc.net,10.247.230.108/29,10.214.178.224/27,f30-02,dfw-search_model_executor
+shared0-samminionsme1-4-dfw.ops.sfdc.net,10.247.230.114/29,10.214.178.0/27,b19-01,dfw-search_model_executor
+shared0-samminionsme1-5-dfw.ops.sfdc.net,10.247.230.115/29,10.214.178.32/27,b19-01,dfw-search_model_executor
+shared0-samminionsme2-1-dfw.ops.sfdc.net,10.247.230.98/29,10.214.178.64/27,c20-01,dfw-search_model_executor
+shared0-samminionsme2-2-dfw.ops.sfdc.net,10.247.230.122/29,10.214.179.0/27,g30-02,dfw-search_model_executor
+shared0-samminionsme2-3-dfw.ops.sfdc.net,10.247.230.99/29,10.214.178.96/27,c20-01,dfw-search_model_executor
+shared0-samminionsme2-4-dfw.ops.sfdc.net,10.247.230.123/29,10.214.179.32/27,g30-02,dfw-search_model_executor
+shared0-samminionsme2-5-dfw.ops.sfdc.net,10.247.230.100/29,10.214.178.128/27,c20-01,dfw-search_model_executor
 shared0-samminionwarden1-1-dfw.ops.sfdc.net,10.247.122.210/29,10.214.150.0/27,e33-01,dfw-sam_warden
 shared0-samminionwarden1-2-dfw.ops.sfdc.net,10.247.122.194/29,10.214.150.64/27,p09-01,dfw-sam_warden
 shared0-samminionwarden2-1-dfw.ops.sfdc.net,10.247.122.202/29,10.214.150.32/27,j12-02,dfw-sam_warden
