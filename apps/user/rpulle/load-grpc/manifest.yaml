@@ -21,17 +21,11 @@ system:
       - name: GRPC_ANNOUNCED_NAME
         value: load-grpc-server
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 240
-        timeoutSeconds: 10
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 240
-        timeoutSeconds: 10
+        exec:
+          command:
+            - "./is-alive.sh"
+          initialDelaySeconds: 10
+          periodSeconds: 5
     - name: envoy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa-envoy:dev
       args:
