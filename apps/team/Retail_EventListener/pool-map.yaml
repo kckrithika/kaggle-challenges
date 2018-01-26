@@ -2,5 +2,3 @@ version: v2
 apps:
   prd.CCP_Integration_Functional.commercejourneys:
   - name: prd/prd-sam_crosscloudplatform
-    hostSubList:
-    - shared0-samminioncrosscloudplatform3-1-prd.eng.sfdc.net
