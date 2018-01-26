@@ -26,3 +26,5 @@ apps:
 
  load-grpc:
   - prd/prd-sam
+ load-grpc-linkerd:
+  - prd/prd-sam
