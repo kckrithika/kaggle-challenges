@@ -12,6 +12,7 @@ system:
         value: mesh
       ports:
       - containerPort: 15001
+      - containerPort: 15372
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -27,6 +28,9 @@ system:
     function: switchboard
     slbenabled: true
     ports:
-      - port: 15001
-        targetport: 15001
-        lbtype: dsr
+    - port: 15001
+      targetport: 15001
+      lbtype: dsr
+    - port: 15372
+      targetport: 15372
+      lbtype: dsr
