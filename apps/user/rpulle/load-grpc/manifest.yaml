@@ -26,6 +26,17 @@ system:
             - "./is-alive.sh"
           initialDelaySeconds: 10
           periodSeconds: 5
+- name: beacon-load-grpc-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - load-grpc-server:DATACENTER:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+
     - name: envoy
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa-envoy:dev
       args:
