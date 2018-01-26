@@ -99,6 +99,48 @@ data:
             ]
           },
           {
+            "Env": [
+              {
+                "name": "SFDC_FUNNEL_VIP",
+                "value": "ajna0-funnel1-0-prd.data.sfdc.net:80"
+              },
+              {
+                "name": "MC_KINGDOM",
+                "value": "prd"
+              },
+              {
+                "name": "MC_ESTATE",
+                "value": "prd-sam_storage"
+              },
+              {
+                "name": "MC_NAME",
+                "value": "sfstore"
+              },
+              {
+                "name": "MC_NAMESPACE",
+                "valueFrom": {
+                  "fieldRef": {
+                    "fieldPath": "metadata.namespace"
+                  }
+                }
+              },
+              {
+                "name": "MC_NODE",
+                "valueFrom": {
+                  "fieldRef": {
+                    "fieldPath": "spec.nodeName"
+                  }
+                }
+              },
+              {
+                "name": "MC_DEVICE",
+                "valueFrom": {
+                  "fieldRef": {
+                    "fieldPath": "metadata.name"
+                  }
+                }
+              }
+            ],
             "args": [
               "-t",
               "ajna",
