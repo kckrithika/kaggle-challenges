@@ -92,6 +92,36 @@ data:
           "kingdom": "cdu",
           "pod": "none",
           "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "cdu-sam",
+          "devicerole": "samcompute",
+          "estate": "cdu-sdn_control",
+          "hostname": "shared0-sdncontrol1-1-cdu.ops.sfdc.net",
+          "kingdom": "cdu",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "cdu-sam",
+          "devicerole": "samcompute",
+          "estate": "cdu-sdn_control",
+          "hostname": "shared0-sdncontrol1-2-cdu.ops.sfdc.net",
+          "kingdom": "cdu",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "cdu-sam",
+          "devicerole": "samcompute",
+          "estate": "cdu-sdn_control",
+          "hostname": "shared0-sdncontrol1-3-cdu.ops.sfdc.net",
+          "kingdom": "cdu",
+          "pod": "none",
+          "superpod": "none"
         }
       ]
     }

@@ -92,6 +92,36 @@ data:
           "kingdom": "yhu",
           "pod": "none",
           "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "yhu-sam",
+          "devicerole": "samcompute",
+          "estate": "yhu-sdn_control",
+          "hostname": "shared0-sdncontrol1-1-yhu.ops.sfdc.net",
+          "kingdom": "yhu",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "yhu-sam",
+          "devicerole": "samcompute",
+          "estate": "yhu-sdn_control",
+          "hostname": "shared0-sdncontrol1-2-yhu.ops.sfdc.net",
+          "kingdom": "yhu",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "yhu-sam",
+          "devicerole": "samcompute",
+          "estate": "yhu-sdn_control",
+          "hostname": "shared0-sdncontrol1-3-yhu.ops.sfdc.net",
+          "kingdom": "yhu",
+          "pod": "none",
+          "superpod": "none"
         }
       ]
     }

@@ -1064,6 +1064,46 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gatewayconfig",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_gatewayconfig",
+          "hostname": "shared0-samminiongwc2-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_moderation_einstein",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -1119,6 +1159,26 @@ data:
           "devicerole": "samcompute",
           "estate": "prd-sam_report_collector",
           "hostname": "shared0-samminionreportcollector3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_serviceprotection",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_serviceprotection",
+          "hostname": "shared0-samminionserviceprotection1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_serviceprotection",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_serviceprotection",
+          "hostname": "shared0-samminionserviceprotection2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"
@@ -1409,6 +1469,46 @@ data:
           "devicerole": "samcompute",
           "estate": "prd-sampool",
           "hostname": "shared0-sampool7-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sdn_control",
+          "hostname": "shared0-sdncontrol1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sdn_control",
+          "hostname": "shared0-sdncontrol1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sdn_control",
+          "hostname": "shared0-sdncontrol1-3-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sdn_control",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sdn_control",
+          "hostname": "shared0-sdncontrol1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"

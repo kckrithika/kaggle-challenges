@@ -1744,6 +1744,106 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme1-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme1-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme1-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme1-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme1-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme2-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme2-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme2-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme2-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_sme",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-search_model_executor",
+          "hostname": "shared0-samminionsme2-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_caas",
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
