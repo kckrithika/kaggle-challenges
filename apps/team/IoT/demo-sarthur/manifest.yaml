@@ -19,7 +19,7 @@ system:
         value: ALL
       - name: SFDC_ENVIRONMENT
         value: sam
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:beta
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:bravo
       livenessProbe:
         exec:
           command:
