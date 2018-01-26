@@ -14,7 +14,7 @@ system:
       - name: KAFKA_TRUSTSTORE_LOCATION
         value: /home/demo/ajna-certs/cacerts
       - name: CONTROLPLANE_ENDPOINT
-        value: sam-minion-iot-test.localhost.mesh.force.com:5443
+        value: sam-minion-iot-test.localhost.mesh.force.com:7011
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
