@@ -7,7 +7,7 @@ system:
   functions:
   # service name
   - name: mgmt
-    type: stateful-set
+    #type: stateful-set
     # number of instances ("kpods") to deploy and run
     count: 3
     volumes:
@@ -43,7 +43,7 @@ system:
         httpGet:
           path: /ping.jsp
           port: 8080
-    lbName: mgmtserviceslb
+    #lbName: mgmtserviceslb
 
     #terminationGracePeriodSeconds: 33
   loadbalancers:
