@@ -124,7 +124,8 @@ local configs = import "config.jsonnet";
 				"image": storageimages.sfms,
 				"command": ["/bin/bash", "/opt/sfms/bin/sfms"],
 				"args": ["-t", "ajna", "-s", "sfstore", "-i", "60"],
-				"imagePullPolicy": "Always"
+				"imagePullPolicy": "Always",
+				"Env" : storageutils.sfms_environment_vars("sfstore"),
 			}
 		]
 	}
