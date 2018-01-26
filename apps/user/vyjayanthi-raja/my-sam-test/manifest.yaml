@@ -13,7 +13,7 @@ system:
       - containerPort: 9090
       livenessProbe:
         httpGet:
-          path: /
+          path: /health
           port: 9092
     - name: samhello2
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000574-e1777284
@@ -23,7 +23,7 @@ system:
       - containerPort: 9091
       livenessProbe:
         httpGet:
-          path: /
+          path: /health
           port: 9093
 
   loadbalancers:
