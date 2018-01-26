@@ -9,7 +9,7 @@ system:
   - name: mgmt
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
-    count: 3
+    count: 1
     volumes:
     - name: cert
       maddogCert:
@@ -27,7 +27,7 @@ system:
       - name: PKI_MONITORDIR
         value: /certs/client
       - name: KPODS_COUNT
-        value: 3
+        value: 1
       volumeMounts:
       - name: cert
         mountPath: /certs
