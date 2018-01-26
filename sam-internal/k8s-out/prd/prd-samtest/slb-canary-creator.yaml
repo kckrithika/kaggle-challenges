@@ -38,6 +38,8 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       hostNetwork: true
+      nodeSelector:
+        pool: prd-samtest
       volumes:
       - hostPath:
           path: /data/slb/logs
