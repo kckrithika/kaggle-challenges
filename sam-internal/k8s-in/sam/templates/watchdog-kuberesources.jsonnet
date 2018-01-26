@@ -4,7 +4,7 @@ local samimages = import "samimages.jsonnet";
 {
     kind: "Deployment",
     spec: {
-        replicas: if (configs.estate == "prd-samdev") then 0 else 1,
+        replicas: 1,
         template: {
             spec: {
                 hostNetwork: true,
