@@ -12,6 +12,8 @@ spec:
       labels:
         name: slb-canary-creator
       namespace: sam-system
+    nodeSelector:
+      pool: prd-sam_storage
     spec:
       containers:
       - command:

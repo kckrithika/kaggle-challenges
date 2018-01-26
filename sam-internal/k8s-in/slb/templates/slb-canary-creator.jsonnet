@@ -57,6 +57,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                     },
                 ],
             },
+            nodeSelector: {
+                                                pool: configs.estate,
+                            },
         },
     },
 } else "SKIP"
