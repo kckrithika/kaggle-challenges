@@ -14,7 +14,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: SCONE_SHIPPING_HOST
-        value: shipping.localhost.mesh.force.com
+        value: shipping-by-bei.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
         value: 7011
       - name: JAVA_HEAP_OPTS
