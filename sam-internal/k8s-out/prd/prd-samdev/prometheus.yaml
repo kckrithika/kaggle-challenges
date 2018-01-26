@@ -38,7 +38,7 @@ spec:
         - mountPath: /prometheusconfig
           name: prometheusconfig
       nodeSelector:
-        kubernetes.io/hostname: shared0-samtestkubeapi2-1-prd.eng.sfdc.net
+        kubernetes.io/hostname: shared0-samdevkubeapi2-1-prd.eng.sfdc.net
       volumes:
       - hostPath:
           path: /etc/pki_service
