@@ -15,6 +15,9 @@ system:
         httpGet:
           path: /health
           port: 9092
+      volumeMounts:
+      - mountPath: /host/data/slb/logs
+        name: logvol
     - name: samhello2
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000574-e1777284
       command: ["/sdn/slb-canary-service"]
@@ -25,7 +28,18 @@ system:
         httpGet:
           path: /health
           port: 9093
-
+      volumeMounts:
+      - mountPath: /host/data/slb/logs
+        name: logvol
+      - mountPath: /host/data/slb/config
+        name: configvol
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /data/slb/logs
+    - name: configvol
+      hostPath:
+        path: /data/slb/config
   loadbalancers:
   - lbname: vyj-samhellolb
     function: default
