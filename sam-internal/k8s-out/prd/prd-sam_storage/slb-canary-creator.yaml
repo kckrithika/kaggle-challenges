@@ -12,8 +12,6 @@ spec:
       labels:
         name: slb-canary-creator
       namespace: sam-system
-    nodeSelector:
-      pool: prd-sam_storage
     spec:
       containers:
       - command:
@@ -40,6 +38,8 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       hostNetwork: true
+      nodeSelector:
+        pool: prd-sam_storage
       volumes:
       - hostPath:
           path: /data/slb/logs

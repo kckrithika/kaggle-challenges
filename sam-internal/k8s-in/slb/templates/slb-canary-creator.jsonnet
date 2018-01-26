@@ -24,6 +24,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
             },
             spec: {
                 hostNetwork: true,
+                nodeSelector: {
+                                                                pool: configs.estate,
+                                            },
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
                     configs.maddog_cert_volume,
@@ -57,9 +60,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
                     },
                 ],
             },
-            nodeSelector: {
-                                                pool: configs.estate,
-                            },
         },
     },
 } else "SKIP"
