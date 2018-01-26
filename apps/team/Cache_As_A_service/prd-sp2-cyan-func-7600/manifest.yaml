@@ -16,7 +16,7 @@ system:
     containers:
     - name: cyan-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20180124-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan:sathish.santhanam-20180126
 
       env:
         - name: CYAN_LIVE_VERSION
