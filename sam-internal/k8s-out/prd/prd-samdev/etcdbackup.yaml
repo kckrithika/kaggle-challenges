@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: etcdbackup
+  name: etcdbackup
+spec:
+  template:
+    metadata:
+      labels:
+        daemonset: "true"
+        name: etcdbackup
+    spec:
+      containers:
+      - command:
+        - /sam/etcdbackup.sh
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001661-34c1af9d
+        name: etcdbackup
+        volumeMounts:
+        - mountPath: /data/etcdbackup
+          name: backup
+        - mountPath: /cowdata
+          name: cowdata
+      hostNetwork: true
+      nodeSelector:
+        etcd_installed: "true"
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
+      volumes:
+      - hostPath:
+          path: /data/etcdbackup
+        name: backup
+      - hostPath:
+          path: /cowdata
+        name: cowdata

@@ -18,6 +18,9 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [xiao.zhou] deploying etcd backup
+        "prd,prd-samdev,etcdbackup,hypersam": "sam-0001661-34c1af9d",
+
         # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180119_150539.c0004f05.dirty.dianachang-ltm1",
         "prd,prd-samtest,watchdog-sdp,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
