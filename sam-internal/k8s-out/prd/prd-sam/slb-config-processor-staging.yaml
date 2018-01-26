@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   labels:
-    name: slb-config-processor
-  name: slb-config-processor
+    name: slb-config-processor-staging
+  name: slb-config-processor-staging
   namespace: sam-system
 spec:
   template:
@@ -11,7 +11,7 @@ spec:
       labels:
         apptype: control
         daemonset: "true"
-        name: slb-config-processor
+        name: slb-config-processor-staging
       namespace: sam-system
     spec:
       affinity:
@@ -22,7 +22,9 @@ spec:
               - key: slb-dns-register
                 operator: DoesNotExist
               - key: slb.sfdc.net/role
-                operator: DoesNotExist
+                operator: In
+                values:
+                - control
       containers:
       - command:
         - /sdn/slb-config-processor
@@ -43,6 +45,7 @@ spec:
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --servicesToLbOverride=slb-canary-proxy-tcp-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -54,7 +57,7 @@ spec:
           initialDelaySeconds: 600
           periodSeconds: 30
           timeoutSeconds: 5
-        name: slb-config-processor
+        name: slb-config-processor-staging
         securityContext:
           privileged: true
         volumeMounts:
