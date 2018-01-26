@@ -9,10 +9,16 @@ system:
     count: 2
     containers:
     - name: cre-sp-prd-ccp-shared-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:latest
-      env:        
-        - name: logDir
-          value: /data/sam/cre/log/prd-ccp_shared_dev/cre-stream-processing
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.23d96ad.51
+      env:
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_audit
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: METRICS_KAFKA_KEYSTORE
+          value: /certs/shared2-samminionretailcre-prd.jks
+        - name: SFDC_ENVIRONMENT
+          value: ccp-shared-dev
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -24,6 +30,8 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      - mountPath: /opt/cre/cre-stream-processing_ccp-shared-dev
+        name: logvol
     - name: sherpa-cre-stream-processing
       image: sfci/servicelibs/sherpa:2.0.15
       env:
@@ -49,7 +57,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /data/sam/cre/log/prd-ccp_shared_dev/cre-stream-processing
+        path: /home/sfdc-cre/logs/cre-stream-processing_ccp-shared-dev
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
