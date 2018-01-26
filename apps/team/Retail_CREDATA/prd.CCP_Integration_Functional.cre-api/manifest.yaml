@@ -9,7 +9,10 @@ system:
     count: 2
     containers:
     - name: cre-api-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:9d95ae9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:master.cf88d72.29
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: ccp-integration-functional
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -21,6 +24,8 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      - mountPath: /opt/cre/cre-api_ccp-integration-functional
+        name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.15
       env:
@@ -47,6 +52,9 @@ system:
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-api_ccp-integration-functional
   loadbalancers:
   - lbname: cre-api-prd-ccp-integration-functional-lb
     function: cre-api-prd-ccp-integration-functional
