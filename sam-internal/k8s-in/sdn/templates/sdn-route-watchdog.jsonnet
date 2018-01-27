@@ -29,7 +29,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--smtpServer=" + configs.smtpServer,
                             "--sender=" + sdnconfig.sdn_watchdog_emailsender,
-                            "--recipient=" + sdnconfig.sdn_watchdog_emailrec,
+                            "--recipient=" + sdnconfig.sdn_route_watchdog_emailrec,
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
