@@ -27,7 +27,7 @@ spec:
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-par.data.sfdc.net/tnrp/content_repo/0/archive
         - --smtpServer=ops0-mta2-1-par.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
-        - --recipient=sdn-alerts@salesforce.com
+        - --recipient=sdn@salesforce.com
         - --emailFrequency=12h
         - --watchdogFrequency=180s
         - --alertThreshold=300s
@@ -41,7 +41,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000567-0f3274a2
+        image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
         livenessProbe:
           httpGet:
             path: /liveness-probe

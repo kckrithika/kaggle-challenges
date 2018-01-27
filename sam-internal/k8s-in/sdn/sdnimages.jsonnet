@@ -20,31 +20,31 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000567-0f3274a2",
+            hypersdn: "v-0000580-b84ce00f",
             bird: "v-0000016-a0f26f27",
             },
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
-            hypersdn: "v-0000567-0f3274a2",
+            hypersdn: "v-0000580-b84ce00f",
             bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 3 - Rest of the SAM clusters in PRD
         "3": {
-            hypersdn: "v-0000567-0f3274a2",
+            hypersdn: "v-0000580-b84ce00f",
             bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 4 - Canary sites in Prod
         "4": {
-            hypersdn: "v-0000567-0f3274a2",
+            hypersdn: "v-0000580-b84ce00f",
             bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 5 - All Prod
         "5": {
-            hypersdn: "v-0000567-0f3274a2",
+            hypersdn: "v-0000580-b84ce00f",
             bird: "v-0000014-b0a5951d",
             },
     },

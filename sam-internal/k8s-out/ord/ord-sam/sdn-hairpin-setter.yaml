@@ -16,7 +16,7 @@ spec:
       containers:
       - command:
         - /sdn/sdn-hairpin-setter
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000567-0f3274a2
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
         name: sdn-hairpin-setter
         securityContext:
           privileged: true
