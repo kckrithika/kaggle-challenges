@@ -8,6 +8,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         replicas: 1,
         template: {
             spec: {
+                securityContext: {
+                  runAsUser: 0,
+                  fsGroup: 0,
+                },
                 containers: [
                     {
                         name: "prometheus",
