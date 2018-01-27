@@ -39,7 +39,7 @@ spec:
           name: sfdchosts
       hostNetwork: true
       nodeSelector:
-        pool: prd-sam_storage
+        master: "true"
       volumes:
       - hostPath:
           path: /data/slb/logs
