@@ -39,6 +39,9 @@ spec:
           name: prometheusconfig
       nodeSelector:
         kubernetes.io/hostname: shared0-samkubeapi2-1-prd.eng.sfdc.net
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
       volumes:
       - hostPath:
           path: /etc/pki_service
