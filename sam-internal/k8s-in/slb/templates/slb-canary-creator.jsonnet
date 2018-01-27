@@ -25,7 +25,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.est
             spec: {
                 hostNetwork: true,
                 nodeSelector: {
-                                                                pool: configs.estate,
+                                                                master: "true",
                                             },
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
