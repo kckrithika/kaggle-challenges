@@ -45,7 +45,7 @@ spec:
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --servicesToLbOverride=slb-canary-proxy-tcp-service
+        - --servicesToLbOverride=slb-canary-proxy-http-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
