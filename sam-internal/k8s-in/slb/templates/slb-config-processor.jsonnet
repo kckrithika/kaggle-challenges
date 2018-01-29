@@ -57,7 +57,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
                             "--shouldRemoveConfig=true",
                             configs.sfdchosts_arg,
-                        ] + if configs.estate == "prd-sdc" then [
+                        ] + if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then [
                             "--servicesNotToLbOverride=" + slbconfigs.servicesNotToLbOverride,
                         ] else [],
                         volumeMounts: configs.filter_empty([
