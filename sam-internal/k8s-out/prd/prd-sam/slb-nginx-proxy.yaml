@@ -6,7 +6,7 @@ metadata:
   name: slb-nginx-proxy
   namespace: sam-system
 spec:
-  replicas: 5
+  replicas: 2
   template:
     metadata:
       labels:
