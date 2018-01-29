@@ -33,11 +33,11 @@ spec:
         - /opt/sfms/bin/sfms
         env:
         - name: SFDC_FUNNEL_VIP
-          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+          value: ajna0-funnel1-0-phx.data.sfdc.net:80
         - name: MC_KINGDOM
-          value: prd
+          value: phx
         - name: MC_ESTATE
-          value: prd-sam
+          value: phx-sam
         - name: MC_NAME
           value: grill_ceph
         - name: MC_NAMESPACE
@@ -52,5 +52,5 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000102-addfc459
         name: sfms
