@@ -24,7 +24,7 @@ system:
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: sam-minion-iot-test
       - name: SVCMESH_ANNOUNCE_PORT
-        value: 7012
+        value: 7443
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:victor
       livenessProbe:
         httpGet:
