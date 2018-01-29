@@ -71,8 +71,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                        ),
                 ],
                 nodeSelector: {
-                    "slb-service": "alpha",
-                },
+                                    pool: configs.estate,
+                                },
             },
         },
     },
