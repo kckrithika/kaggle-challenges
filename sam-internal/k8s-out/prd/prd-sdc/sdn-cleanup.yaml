@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-cleanup
+  name: sdn-cleanup
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: sdn-cleanup
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-cleanup
+        - --period=300s
+        - --logsMaxAge=48h
+        - --filesDirToCleanup=/data/logs/sdn/
+        - --shouldNotDeleteAllFiles=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000542-5a3bab56
+        name: sdn-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs
