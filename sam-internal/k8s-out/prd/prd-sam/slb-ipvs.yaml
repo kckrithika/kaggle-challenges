@@ -6,7 +6,7 @@ metadata:
   name: slb-ipvs
   namespace: sam-system
 spec:
-  replicas: 2
+  replicas: 5
   template:
     metadata:
       labels:

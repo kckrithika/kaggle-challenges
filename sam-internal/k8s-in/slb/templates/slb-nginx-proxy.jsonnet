@@ -17,7 +17,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
      },
      spec: {
       minReadySeconds: 30,
-      replicas: 2,
+      replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if configs.estate == "prd-sam" then 5 else 2,
       strategy: {
        type: "RollingUpdate",
       },
@@ -293,7 +293,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 2,
+        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if configs.estate == "prd-sam" then 5 else 2,
         template: {
             metadata: {
                 labels: {
