@@ -1,5 +1,6 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local estate = std.extVar("estate");
 {
     kind: "DaemonSet",
     spec: {
@@ -17,7 +18,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
                             "--config=/config/watchdog.json",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
-                            "-emailFrequency=6m",
+                            "-emailFrequency=" + (if estate == "prd-data-flowsnake_test" then "72h" else "6m"),
                         ],
                         name: "watchdog",
                         resources: {

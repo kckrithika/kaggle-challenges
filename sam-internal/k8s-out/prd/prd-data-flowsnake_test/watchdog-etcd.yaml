@@ -19,7 +19,7 @@ spec:
         - -role=ETCD
         - -watchdogFrequency=5s
         - -alertThreshold=150s
-        - -emailFrequency=3m
+        - -emailFrequency=72h
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
