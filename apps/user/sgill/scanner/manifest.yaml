@@ -4,6 +4,13 @@ system:
   functions:
   - name: pd-scanner-service
     count: 1
+    volumes:
+    - name: pd-scanner-client-cert
+      maddogCert:
+        type: client
+    - name: pd-scanner-server-cert
+      maddogCert:
+        type: server
     containers:
     - name: scanner
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/product-defense/scanner:latest
@@ -49,10 +56,3 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 10
           periodSeconds: 5
-  volumes:
-    - name: pd-scanner-client-cert
-      maddogCert:
-        type: client
-    - name: pd-scanner-server-cert
-      maddogCert:
-        type: server
