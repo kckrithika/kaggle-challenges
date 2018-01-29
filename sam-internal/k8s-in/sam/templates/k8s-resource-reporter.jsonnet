@@ -19,6 +19,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                            "--sender=sam@salesforce.com",
                            "--defaultRecipient=mayank.kumar@salesforce.com",
                            "--namespacesToSkip=sam-watchdog,legostore,sam-system",
+                           "--deploymentRecipientOverride=mayank.kumar@salesforce.com",
                            configs.sfdchosts_arg,
                            ]),
                        volumeMounts: configs.filter_empty([
