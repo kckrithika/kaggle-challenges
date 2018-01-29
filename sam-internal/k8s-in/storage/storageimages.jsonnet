@@ -51,14 +51,14 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod (PHX)
         "3": {
-            default_tag: "base-0000314-8d9eaec0",
+            default_tag: "base-0000320-403b5b92",
             ceph_operator_tag: "base-0000320-403b5b92",
-            sfms_tag: "latest-0000102-addfc459",
+            sfms_tag: "latest-0000113-f9a1e9a2",
             cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000016-45146d1d",
-            loginit_tag: "base-0000284-989c85c6",
+            sfnodeprep_tag: "base-0000017-c6de7b57",
+            loginit_tag: "base-0000320-403b5b92",
             },
 
         ### Release Phase 4 - All Prod. Currently disabled, because there are no other prod clusters yet.
