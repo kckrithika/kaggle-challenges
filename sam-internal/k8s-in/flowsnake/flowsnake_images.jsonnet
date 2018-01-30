@@ -7,7 +7,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - image tags from strata build
         "1": {
             canary_image_tag: "345",
-            es_image_tag: "345",
+            es_image_tag: "503",
             fleetService_image_tag: "468",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "345",
@@ -45,7 +45,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 2
         "2": {
             canary_image_tag: "345",
-            es_image_tag: "345",
+            es_image_tag: "503",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "345",
