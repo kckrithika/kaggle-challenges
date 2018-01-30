@@ -66,5 +66,5 @@ system:
     function: cre-stream-processing-prd-ccp-shared-dev
     nodeExposed: true
     ports:
-      - port: 8081
+      - port: 8087
         targetport: 8080
