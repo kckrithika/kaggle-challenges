@@ -1,6 +1,11 @@
 version: v2
 apps:
     metadata-service-prd-func:    # functional testing
-    - name: prd/prd-sam_crosscloudplatform
+    - name: prd/prd-sp2-sam_retail_mds
+      hostSubList:
+        - shared2-samminionretailmds1-1-prd.eng.sfdc.net
+        - shared2-samminionretailmds2-1-prd.eng.sfdc.net
     metadata-service-prd-perf:    # performance testing
-    - name: prd/prd-sam_crosscloudplatform
+    - name: prd/prd-sp2-sam_retail_mds
+      hostSubList:
+        - shared2-samminionretailmds3-1-prd.eng.sfdc.net
