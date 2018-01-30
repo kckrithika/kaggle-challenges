@@ -168,7 +168,7 @@ system:
         - name: READY_SERVER_COUNT
           value: 2
         - name: DB_SID
-          value: mist30b212utf
+          value: mist61a210utf
         - name: UNLOCK_DWARF
           value: y
         # Can increment value below to force restart of sequencer container
