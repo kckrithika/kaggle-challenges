@@ -1,4 +1,6 @@
 apps:
-  moderation-einstein:
+  moderation-einstein-runtime-staging:
     - prd/prd-sam_moderation_einstein
+
+  moderation-einstein-runtime-production-1:
     - phx/phx-sam_moderation_einstein
