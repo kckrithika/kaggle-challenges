@@ -17,7 +17,8 @@ recipient: (
         else if configs.kingdom == "prd" then "sam-test-alerts@salesforce.com"
         else "sam-alerts@salesforce.com"
 ),
-
+laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
+syntheticPort: (if configs.estate == "prd-sam" then 8063 else 8083),
 pagerduty_args: (if (configs.estate != "prd-sdc" && configs.estate != "prd-sam_storage" && configs.estate != "prd-samdev" && configs.estate != "prd-samtest") then [
   "-recipient=" + $.recipient + "," + "csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com",
 ] else []),

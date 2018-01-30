@@ -35,7 +35,7 @@ local samimages = import "samimages.jsonnet";
                      "-watchdogFrequency=180s",
                      "-alertThreshold=1h",
                      "-emailFrequency=12h",
-                     "-laddr=0.0.0.0:8083",
+                     "-laddr=" + samwdconfig.laddr,
                      "-maxdeploymentduration=5m",
                      "-imageName=" + samimages.hypersam,
                   ]
@@ -43,7 +43,7 @@ local samimages = import "samimages.jsonnet";
                   ports: [
                       {
                       name: "synthetic",
-                      containerPort: 8083,
+                      containerPort: samwdconfig.syntheticPort,
                       },
                   ],
                   env: [

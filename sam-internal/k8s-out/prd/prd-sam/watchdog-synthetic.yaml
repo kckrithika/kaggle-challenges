@@ -23,7 +23,7 @@ spec:
         - -watchdogFrequency=180s
         - -alertThreshold=1h
         - -emailFrequency=12h
-        - -laddr=0.0.0.0:8083
+        - -laddr=0.0.0.0:8063
         - -maxdeploymentduration=5m
         - -imageName=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001641-fafe532f
         - -timeout=2s
@@ -36,7 +36,7 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001641-fafe532f
         name: watchdog-synthetic
         ports:
-        - containerPort: 8083
+        - containerPort: 8063
           name: synthetic
         volumeMounts:
         - mountPath: /sfdchosts
