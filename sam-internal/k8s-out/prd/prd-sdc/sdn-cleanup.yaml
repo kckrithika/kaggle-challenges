@@ -31,7 +31,6 @@ spec:
         volumeMounts:
         - mountPath: /data/logs/sdn
           name: sdnlogs
-      hostNetwork: true
       volumes:
       - hostPath:
           path: /data/logs/sdn
