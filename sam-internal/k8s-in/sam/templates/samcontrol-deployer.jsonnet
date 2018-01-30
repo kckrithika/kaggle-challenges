@@ -15,14 +15,24 @@ local samimages = import "samimages.jsonnet";
                            "/sam/samcontrol-deployer",
                            "--config=/config/samcontroldeployer.json",
                            configs.sfdchosts_arg,
-                           ]),
+                           ]) + (if (configs.kingdom == "prd") then [
+                                    "--tokenfile=/var/secrets/git/token.txt",
+                                    "--auto-deployment-frequency=6h",
+                                    "--auto-deployment-offset=3h",
+                              ] else []),
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
                            configs.maddog_cert_volume_mount,
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,
                            configs.config_volume_mount,
-                         ]),
+                         ]) + (if configs.kingdom == "prd" then [
+                             {
+                                 mountPath: "/var/token",
+                                 name: "token",
+                                 readOnly: true,
+                             },
+                         ] else []),
                          env: [
                            configs.kube_config_env,
                          ],
@@ -43,7 +53,14 @@ local samimages = import "samimages.jsonnet";
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.config_volume("samcontrol-deployer"),
-                ]),
+                ]) + (if configs.kingdom == "prd" then [
+                    {
+                        secret: {
+                              secretName: "git-token",
+                        },
+                        name: "token",
+                    },
+                ] else []),
                 nodeSelector: {
                 } +
                 if configs.kingdom == "prd" then {

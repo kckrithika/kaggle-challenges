@@ -18,6 +18,9 @@ spec:
         - /sam/samcontrol-deployer
         - --config=/config/samcontroldeployer.json
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --tokenfile=/var/secrets/git/token.txt
+        - --auto-deployment-frequency=6h
+        - --auto-deployment-offset=3h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -41,6 +44,9 @@ spec:
           name: kubeconfig
         - mountPath: /config
           name: config
+        - mountPath: /var/token
+          name: token
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -60,3 +66,6 @@ spec:
       - configMap:
           name: samcontrol-deployer
         name: config
+      - name: token
+        secret:
+          secretName: git-token
