@@ -34,7 +34,7 @@ spec:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
-        slb-service: alpha
+        pool: prd-sdc
       volumes:
       - hostPath:
           path: /data/slb/logs
