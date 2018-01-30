@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:shaktiprakash.das-201801301301
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:shaktiprakash.das-201801301736
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
