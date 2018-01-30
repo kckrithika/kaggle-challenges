@@ -7,7 +7,6 @@ if configs.estate == "prd-sdc" then {
     spec: {
         template: {
             spec: {
-                hostNetwork: true,
                 volumes: [
                     sdnconfigs.logs_volume,
                 ],
