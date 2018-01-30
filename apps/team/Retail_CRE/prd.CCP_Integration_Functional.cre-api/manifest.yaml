@@ -5,20 +5,14 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-stream-processing-prd-ccp-integration-performance
+  - name: cre-api-prd-ccp-integration-functional
     count: 2
     containers:
-    - name: cre-sp-prd-ccp-integration-performance
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.23d96ad.51
+    - name: cre-api-prd-ccp-integration-functional
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:master.cf88d72.29
       env:
-        - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_audit
-        - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: METRICS_KAFKA_KEYSTORE
-          value: /certs/shared2-samminionretailcre-prd.jks
         - name: SFDC_ENVIRONMENT
-          value: ccp-integration-performance
+          value: ccp-integration-functional
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -30,13 +24,13 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
-      - mountPath: /opt/cre/cre-stream-processing_ccp-integration-performance
+      - mountPath: /opt/cre/cre-api_ccp-integration-functional
         name: logvol
-    - name: sherpa-cre-stream-processing
+    - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.15
       env:
         - name: SFDC_ENVIRONMENT
-          value: mist
+          value: stmfa
       args:
         - --http2-in=9532
       ports:
@@ -55,16 +49,16 @@ system:
           initialDelaySeconds: 60
           periodSeconds: 120
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-cre/logs/cre-stream-processing_ccp-integration-performance
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-api_ccp-integration-functional
   loadbalancers:
-  - lbname: cre-sp-prd-ccp-integration-performance-lb
-    function: cre-stream-processing-prd-ccp-integration-performance
+  - lbname: cre-api-prd-ccp-integration-functional-lb
+    function: cre-api-prd-ccp-integration-functional
     nodeExposed: true
     ports:
-      - port: 8085
+      - port: 8082
         targetport: 8080

@@ -1,21 +1,37 @@
 version: v2
 apps:
-  prd.CCP_Shared_Dev.cre-stream-processing: # shared dev env instance
-  - name: prd/prd-sp2-sam_retail_cre
+  # ======= STREAM PROCESSING ======== #
+  prd.CCP_Shared_Dev.cre-stream-processing: # stream-processing shared dev env instance
+  - name: prd/prd-sam_customerresolutionengine
     hostSubList:
-        - shared2-samminionretailcre1-1-prd.eng.sfdc.net
-        - shared2-samminionretailcre2-1-prd.eng.sfdc.net
-  prd.CCP_Integration_Functional.cre-stream-processing: # functional test env instance
-  - name: prd/prd-sp2-sam_retail_cre
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  prd.CCP_Integration_Functional.cre-stream-processing: # stream-processing functional test env instance
+  - name: prd/prd-sam_customerresolutionengine
     hostSubList:
-        - shared2-samminionretailcre1-1-prd.eng.sfdc.net
-        - shared2-samminionretailcre2-1-prd.eng.sfdc.net
-  prd.CCP_Integration_Performance.cre-stream-processing: # perf test env instance
-  - name: prd/prd-sp2-sam_retail_cre
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  prd.CCP_Integration_Performance.cre-stream-processing: # stream-processing perf test env instance
+  - name: prd/prd-sam_customerresolutionengine
     hostSubList:
-        - shared2-samminionretailcre3-1-prd.eng.sfdc.net
-  prd.CCP_Demo.cre-stream-processing: # demo env instance
-  - name: prd/prd-sp2-sam_retail_cre
+        - shared0-samminioncustomerresolutionengine2-1-prd.eng.sfdc.net
+  prd.CCP_Demo.cre-stream-processing: # stream-processing demo env instance
+  - name: prd/prd-sam_customerresolutionengine
     hostSubList:
-        - shared2-samminionretailcre1-1-prd.eng.sfdc.net
-        - shared2-samminionretailcre2-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
+        - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  # ======= API ======== #
+  prd.CCP_Shared_Dev.cre-api: # api shared dev env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
+    - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+  prd.CCP_Integration_Functional.cre-api: # api functional test env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine2-2-prd.eng.sfdc.net
+    - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+  prd.CCP_Integration_Performance.cre-api: # api perf test env instance
+  - name: prd/prd-sam_customerresolutionengine
+    hostSubList:
+    - shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net

@@ -68,5 +68,5 @@ system:
     function: cre-stream-processing-prd-ccp-integration-functional
     nodeExposed: true
     ports:
-      - port: 8082
+      - port: 8083
         targetport: 8080

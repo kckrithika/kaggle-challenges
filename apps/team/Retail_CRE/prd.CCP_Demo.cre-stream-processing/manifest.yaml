@@ -43,5 +43,5 @@ system:
     function: cre-stream-processing-prd-ccp-demo
     nodeExposed: true
     ports:
-      - port: 8084
+      - port: 8081
         targetport: 8080
