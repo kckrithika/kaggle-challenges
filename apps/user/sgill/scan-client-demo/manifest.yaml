@@ -10,10 +10,10 @@ system:
         type: client
     containers:
     - name: scan-client-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180129_1415
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180130_1032
       ports:
       - name: web
-        containerPort: 8082
+        containerPort: 8080
       - name: web-admin
         containerPort: 15374
       livenessProbe:
@@ -25,7 +25,7 @@ system:
       # initialDelaySeconds: 30
       # periodSeconds: 5
     - name: pd-scanner-service-sherpa
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
+      image: http://ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:2-0000153-5dbf127d
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
