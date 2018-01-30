@@ -18,14 +18,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [xiao.zhou] deploying etcd backup
-        "prd,prd-samdev,etcdbackup,hypersam": "sam-0001661-34c1af9d",
-
-        # [diana.chang] testing code for nightly deployer and setting the 'auto' keyword for particular resources
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180119_150539.c0004f05.dirty.dianachang-ltm1",
-        "prd,prd-samtest,watchdog-sdp,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
-        "prd,prd-samtest,watchdog-node-controller,hypersam": "sam-0001210-ef6a180b",  #temporary override using an old image that is not currently in use
-
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -38,19 +30,14 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
-        # [prabh.singh] Test bundle controller to prd-samtest
-        "prd,prd-samtest,bundle-controller,hypersam": "sam-0001660-8b0bc075",
-
         # [rbhat] Fix synthetic watchdog in GIA
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
 
         #[mayank.kumar] testing email reporting for deployment and statefulsets
-        "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0001662-26aee930",
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001662-26aee930",
 
          #[rbhat] cache namespace, node list in controller
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001654-3f9cfd66",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001654-3f9cfd66",
     },
 
@@ -69,9 +56,9 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001641-fafe532f",
-            madkub: "1.0.0-0000058-3855b6fd",
-            madkubSidecar: "1.0.0-0000058-3855b6fd",
+            hypersam: "sam-0001667-72dcabb0",
+            madkub: "1.0.0-0000060-e1f75f4a",
+            madkubSidecar: "1.0.0-0000060-e1f75f4a",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
