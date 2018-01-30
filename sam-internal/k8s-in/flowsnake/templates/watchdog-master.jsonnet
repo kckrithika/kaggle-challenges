@@ -31,7 +31,7 @@ local estate = std.extVar("estate");
                             name: "config",
                           },
                         ] +
-                        flowsnakeconfigmapmount.cert_volumeMounts,
+                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
                         name: "watchdog",
                         resources: {
                             limits: {
@@ -59,7 +59,7 @@ local estate = std.extVar("estate");
                     name: "config",
                   },
                 ] +
-                flowsnakeconfigmapmount.cert_volume,
+                flowsnakeconfigmapmount.platform_cert_volume,
                 nodeSelector: {
                     master: "true",
                 },
