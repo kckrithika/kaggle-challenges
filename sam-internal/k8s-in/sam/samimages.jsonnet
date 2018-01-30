@@ -38,11 +38,6 @@ local utils = import "util_functions.jsonnet";
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
 
-        #[mayank.kumar] testing email reporting for deployment and statefulsets
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001662-26aee930",
-
-         #[rbhat] cache namespace, node list in controller
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001654-3f9cfd66",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -67,9 +62,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001641-fafe532f",
-            madkub: "1.0.0-0000058-3855b6fd",
-            madkubSidecar: "1.0.0-0000058-3855b6fd",
+            hypersam: "sam-0001667-72dcabb0",
+            madkub: "1.0.0-0000060-e1f75f4a",
+            madkubSidecar: "1.0.0-0000060-e1f75f4a",
             },
 
         ### Release Phase 3 - Canary Prod FRF
