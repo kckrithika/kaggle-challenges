@@ -2,44 +2,48 @@ apiVersion: v1
 
 system:
   functions:
-  - name: scan-client-demo
+  - name: sgill-scan-client-demo
     count: 1
+    volumes:
+    - name: sgill-scd-client-cert
+      maddogCert:
+        type: client
     containers:
     - name: scan-client-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:snapshot-201710111120
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180129_1415
       ports:
       - name: web
         containerPort: 8082
-      - name: service
-        containerPort: 7020
-      resources:
-        limits: { cpu: ".5", memory: "500Mi" }
-        requests: { cpu: ".5", memory: "500Mi" }
+      - name: web-admin
+        containerPort: 15374
       livenessProbe:
-          httpGet:
-            path: /ping
-            port: 8082
-          initialDelaySeconds: 10
-          periodSeconds: 5
-    - name: sherpa-b
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.0.1-0000039-4d80a889
+        exec:
+          command: ["true"]
+      # httpGet:
+      #   path: /ping
+      #   port: 8084
+      # initialDelaySeconds: 30
+      # periodSeconds: 5
+    - name: pd-scanner-service-sherpa
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:0.2.0-0000100-8b64e2f2
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       ports:
-      - containerPort: 7012
-        name: sherpa-b-in
-      - containerPort: 7080
-        name: sherpa-b-adm
+      - containerPort: 15373
+        name: sherpa-adm
+      volumeMounts:
+      - name: sgill-scd-client-cert
+        mountPath: /client-certs # The path in the mesh proxy container to mount client certs on. The mesh proxy looks in /client-certs by default
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - "/home/sfdc-sherpa/bin/is-alive"
           initialDelaySeconds: 10
           periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
-          initialDelaySeconds: 5
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 10
           periodSeconds: 5
