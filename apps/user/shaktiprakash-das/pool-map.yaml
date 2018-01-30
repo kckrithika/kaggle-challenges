@@ -1,7 +1,7 @@
 apps:
-  geoip-tls:
+#  geoip-tls:
+#    - prd/prd-sam
+  shipping-tls:
     - prd/prd-sam
-#  shipping-tls:
-#    - prd/prd-sam
-#  ordering-tls:
-#    - prd/prd-sam
+  ordering-tls:
+    - prd/prd-sam
