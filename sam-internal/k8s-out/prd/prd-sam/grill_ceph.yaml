@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    cloud: storage
+    name: grill_ceph
+    team: legostore
+  name: grill_ceph-deployment
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        cloud: storage
+        name: grill-ceph
+        team: legostore
+    spec:
+      containers:
+      - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9098
+        name: grill_ceph
+        ports:
+        - containerPort: 9098
+      - args:
+        - -j
+        - prometheus
+        command:
+        - /opt/sfms/bin/sfms
+        env:
+        - name: SFDC_FUNNEL_VIP
+          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+        - name: MC_KINGDOM
+          value: prd
+        - name: MC_ESTATE
+          value: prd-sam
+        - name: MC_NAME
+          value: grill_ceph
+        - name: MC_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MC_NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MC_DEVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
+        name: sfms
