@@ -18,6 +18,8 @@ local kingdom = std.extVar("kingdom");
             "Analytics-DataPool",
             "DSS_FLOWSNAKE_SERVICE",
             "ServiceProtection",
+            "collection_flowsnake",
+            "key_infrastructure",
         ],
         "prd/prd-data-flowsnake_test": [
             "Flowsnake_Ops_Platform",

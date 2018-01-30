@@ -3,7 +3,7 @@ data:
   data: '["Flowsnake_Ops_Platform", "Security-Analytics", "alerting_flowsnake", "dbvisibility",
     "IoT-RM-Flowsnake", "FS_Rackbot", "MCeventing", "Analytics Service Ownership",
     "CRE_AD", "Lightning_Instrumentation", "Analytics-DataPool", "DSS_FLOWSNAKE_SERVICE",
-    "ServiceProtection"]'
+    "ServiceProtection", "collection_flowsnake", "key_infrastructure"]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
