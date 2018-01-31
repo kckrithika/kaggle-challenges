@@ -1,13 +1,8 @@
 version: v2
 apps:
-  rsui-func:         # fuctional test env instance
-    - name: prd/prd-sp2-sam_retail_rsui
-      hostSubList:
-        - shared2-samminionretailrsui1-1-prd.eng.sfdc.net
-        - shared2-samminionretailrsui2-1-prd.eng.sfdc.net
-  rsui-perf: 	# perf test env instance
-    - name: prd/prd-sp2-sam_retail_rsui
-      hostSubList:
-        - shared2-samminionretailrsui3-1-prd.eng.sfdc.net
-  mock-metadata-service:
-    - name: prd/prd-sp2-sam_retail_rsui
+  rsui-func:
+  - name: prd/prd-sam_crosscloudsetup
+  rsui-perf:
+  - name: prd/prd-sam_crosscloudsetup
+  rsui-integ:
+  - name: prd/prd-sam_crosscloudsetup
