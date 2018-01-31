@@ -53,7 +53,7 @@ local utils = import "util_functions.jsonnet";
         "3": {
             default_tag: "base-0000326-f0e05b8b",
             ceph_operator_tag: "base-0000326-f0e05b8b",
-            sfms_tag: "latest-0000117-8730c32f",
+            sfms_tag: "latest-0000115-5cf2ec86",
             cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
