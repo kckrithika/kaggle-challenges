@@ -20,7 +20,7 @@ system:
         - --cluster.name=sp-na45-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
-        - mountPath: /home/caas/logs/caas
+        - mountPath: /home/
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -43,7 +43,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs/randomb
+        path: /home/caas/logs/randomc
     - name: secretvol
       secret:
         secretName: caas-secret-sp-na45-c1
