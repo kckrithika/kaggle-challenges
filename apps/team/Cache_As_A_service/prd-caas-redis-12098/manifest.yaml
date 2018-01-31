@@ -48,9 +48,8 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
-            
       volumeMounts:
-      - mountPath: /log
+      - mountPath: /home/sfdc-caas/logs
         name: logvol
       env:
        - name: SFDC_ENVIRONMENT
