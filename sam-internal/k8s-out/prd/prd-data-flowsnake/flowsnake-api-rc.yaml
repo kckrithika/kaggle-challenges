@@ -70,10 +70,10 @@ spec:
         - mountPath: /etc/pki_service/ca
           name: certificate-authority
           readOnly: true
-        - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
           name: client-certificate
           readOnly: true
-        - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
+        - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
         - mountPath: /data/certs
@@ -90,16 +90,16 @@ spec:
           name: auth-groups
         name: auth-groups
       - hostPath:
-          path: /etc/kubernetes/kubeconfig
+          path: /etc/kubernetes/kubeconfig-platform
         name: kubeconfig
       - hostPath:
           path: /etc/pki_service/ca
         name: certificate-authority
       - hostPath:
-          path: /etc/pki_service/kubernetes/k8s-client/certificates
+          path: /etc/pki_service/platform/platform-client/certificates
         name: client-certificate
       - hostPath:
-          path: /etc/pki_service/kubernetes/k8s-client/keys
+          path: /etc/pki_service/platform/platform-client/keys
         name: client-key
       - hostPath:
           path: /data/certs

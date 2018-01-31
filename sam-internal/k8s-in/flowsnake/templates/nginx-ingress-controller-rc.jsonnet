@@ -90,9 +90,9 @@ local estate = std.extVar("estate");
                             if estate == "prd-data-flowsnake_test" then
                                 flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                                flowsnakeconfigmapmount.cert_volumeMounts
+                                flowsnakeconfigmapmount.platform_cert_volumeMounts
                             else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                                flowsnakeconfigmapmount.cert_volumeMounts
+                                flowsnakeconfigmapmount.platform_cert_volumeMounts
                         ),
                     },
                 ],
@@ -100,9 +100,9 @@ local estate = std.extVar("estate");
                     if estate == "prd-data-flowsnake_test" then
                         flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
-                        flowsnakeconfigmapmount.cert_volume
+                        flowsnakeconfigmapmount.platform_cert_volume
                     else flowsnakeconfigmapmount.kubeconfig_volume +
-                        flowsnakeconfigmapmount.cert_volume
+                        flowsnakeconfigmapmount.platform_cert_volume
                 ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",
