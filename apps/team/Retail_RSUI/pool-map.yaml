@@ -1,8 +1,8 @@
 version: v2
 apps:
   rsui-func:
-  - name: prd/prd-sam_crosscloudplatform
+  - name: prd/prd-sam_crosscloudsetup
   rsui-perf:
-  - name: prd/prd-sam_crosscloudplatform
+  - name: prd/prd-sam_crosscloudsetup
   rsui-integ:
-  - name: prd/prd-sam_crosscloudplatform
+  - name: prd/prd-sam_crosscloudsetup
