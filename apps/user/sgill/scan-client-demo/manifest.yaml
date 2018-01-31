@@ -13,7 +13,7 @@ system:
         type: server
     containers:
     - name: scan-client-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180130_1453
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180131_1031
       ports:
       - name: web
         containerPort: 8080
