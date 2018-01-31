@@ -16,7 +16,7 @@ local samimages = import "samimages.jsonnet";
                            "--config=/config/samcontroldeployer.json",
                            configs.sfdchosts_arg,
                            ]) + (if configs.estate == "prd-samtest" then [
-                                    "--tokenfile=/var/secrets/git/token.txt",
+                                    "--tokenfile=/var/token/token",
                                     "--auto-deployment-frequency=6h",
                                     "--auto-deployment-offset=3h",
                               ] else []),

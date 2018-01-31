@@ -18,13 +18,13 @@ spec:
         - /sam/samcontrol-deployer
         - --config=/config/samcontroldeployer.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --tokenfile=/var/secrets/git/token.txt
+        - --tokenfile=/var/token/token
         - --auto-deployment-frequency=6h
         - --auto-deployment-offset=3h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180130_114039.7258c3fc.dirty.dianachang-ltm1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180130_150026.46576a61.dirty.dianachang-ltm1
         livenessProbe:
           httpGet:
             path: /
