@@ -7,6 +7,4 @@ apps:
       - prd/prd-sp2-sam_iot_test
   demo-sarthur:
       - prd/prd-sp2-sam_iot_test
-  provisioning-ftest:
-      - prd/prd-sp2-sam_iot_test
 
