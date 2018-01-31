@@ -10,7 +10,7 @@ system:
       type: RollingUpdate
     containers:
     - name: idbconnector
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:12
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:13
       args: ["--spring.config.location=file:/secrets/", "--spring.profiles.active=docker,sam-password,sam"]
       ports:
       - containerPort: 9095
