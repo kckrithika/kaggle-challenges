@@ -1,0 +1,22 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: mmittelstadt-testsam
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mmittelstadt/mmittelstadt-testsam:mmittelstadt-012918
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+
+  loadbalancers:
+  - lbname: mmittelstadt-testsam-lb
+    function: default
+    ports:
+      - port: 9090
+        targetport: 9090
