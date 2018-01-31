@@ -43,7 +43,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs/random2
+        path: /home/caas/logs/randomb
     - name: secretvol
       secret:
         secretName: caas-secret-sp-na45-c1
