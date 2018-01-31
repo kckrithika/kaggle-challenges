@@ -18,9 +18,9 @@ system:
         - --server.port=7510
         - --management.port=7511
         - --cluster.name=sp-c1
-        - --logDir=/home/caas/logs/caas
+        - --logDir=/home/sfdc-caas/logs/caas
       volumeMounts:
-        - mountPath: /home/caas/logs/caas
+        - mountPath: /home/sfdc-caas/logs/caas
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -43,7 +43,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs/caas
+        path: /home/sfdc-caas/logs/caas
     - name: secretvol
       secret:
         secretName: caas-secret-stmfa-sp-c1
