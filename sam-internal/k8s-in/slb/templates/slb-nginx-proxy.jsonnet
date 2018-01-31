@@ -32,12 +32,12 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
             \"certreqs\":[
                 {
                     \"name\": \"cert1\",
-                    \"san\":[
-                        \"*.slb.sfdc.net\"
-                    ],
                     \"cert-type\":\"server\",
                     \"kingdom\":\"prd\",
                     \"role\": \"sam_compute\"
+                    \"san\":[
+                        \"*.sam-system." + configs.estate + ".prd.slb.sfdc.net\"
+                    ],
                 },
                 {
                     \"name\": \"cert2\",
