@@ -1,0 +1,65 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - cloudatlas@salesforce.com
+  functions:
+  - name: cloudatlas-par-fe2-1
+    count: 1
+    strategy:
+      type: Recreate
+    hostnetwork: true
+    containers:
+    - name: cloudatlas-pdm-install
+      image: sfci/cloud-atlas/cloudatlas:2.7rc2
+      command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
+      env:
+      - name: UBID_DEPLOYMENT_STAGE
+        value: ALL
+      volumeMounts:
+      - mountPath: /home/sfdc-atlas
+        name: hosthomevol
+      - mountPath: /home/sfdc-atlas/logs/servers/proxy
+        name: pinglogvol
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
+      ports:
+      - containerPort: 1389
+      - containerPort: 1636
+      - containerPort: 8989
+      livenessProbe:
+        exec:
+          command:
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 24
+    volumes:
+    - name: hosthomevol
+      hostPath:
+        path: /data/ca-cluster-a
+    - name: pinglogvol
+      hostPath:
+        path: /home/sfdc-atlas/logs/pingserver
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
+    - name: server-cert
+      maddogCert:
+        type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
