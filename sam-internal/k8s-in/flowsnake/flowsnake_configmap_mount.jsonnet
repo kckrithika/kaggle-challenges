@@ -57,13 +57,13 @@
         {
             name: "client-certificate",
             hostPath: {
-                path: "/etc/pki_service/kubernetes/k8s-client/certificates",
+                path: "/etc/pki_service/platform/platform-client/certificates",
             },
         },
         {
             name: "client-key",
             hostPath: {
-                path: "/etc/pki_service/kubernetes/k8s-client/keys",
+                path: "/etc/pki_service/platform/platform-client/keys",
             },
         },
         {
