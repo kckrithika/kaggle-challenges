@@ -5,7 +5,7 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-phx-dir1-1
+  - name: __MANIFEST_FUNCTION_NAME__
     count: 1
     strategy:
       type: Recreate
