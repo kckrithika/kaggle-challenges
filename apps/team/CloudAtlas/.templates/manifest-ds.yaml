@@ -5,7 +5,7 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-prd-dev-dir1-1
+  - name: __MANIFEST_FUNCTION_NAME__
     count: 1
     strategy:
       type: Recreate
@@ -34,7 +34,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:0595de1
+      image: sfci/cloud-atlas/cloudatlas:2.7rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -48,6 +48,9 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -57,7 +60,7 @@ system:
           command:
           - /opt/pdm/pdm.customer/bin/is-alive.sh
         initialDelaySeconds: 60
-        periodSeconds: 20
+        periodSeconds: 30
       readinessProbe:
         exec:
           command:
@@ -79,3 +82,6 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
