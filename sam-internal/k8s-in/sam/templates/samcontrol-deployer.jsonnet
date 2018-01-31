@@ -41,7 +41,7 @@ local samimages = import "samimages.jsonnet";
                              path: "/",
                              port: 9099,
                            },
-                           initialDelaySeconds: 2,
+                           initialDelaySeconds: 20,
                            periodSeconds: 10,
                            timeoutSeconds: 10,
                         },

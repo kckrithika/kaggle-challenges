@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [diana.chang] Testing daily deployer and setting the 'auto' keyword for particular resources
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_120948.f6eacc29.dirty.dianachang-ltm1",
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1",
         "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
