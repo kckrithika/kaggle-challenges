@@ -46,6 +46,10 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+            
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: mist42
