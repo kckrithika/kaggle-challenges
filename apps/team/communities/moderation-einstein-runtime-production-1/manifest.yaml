@@ -3,18 +3,30 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - shaktiprakash.das@salesforce.com
       - communities.moderation@salesforce.com
   functions:
   - name: moderation-einstein
     count: 3
     containers:
+    - name: moderation-einstein-model
+      image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-model:20180128
+      livenessProbe:
+       exec:
+        command: ["ls", "/model/model_global.vw"]
+      initialDelaySeconds: 10
+      periodSeconds: 5
+      volumeMounts:
+       - mountPath: /model
+         name: model-volume
+  
     - name: moderation-einstein-service
-      image: tnrp/moderation-einstein/moderation-einstein-service:1.0.7-0000024-20957600
+      image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-service-docker:2018012912
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: maas/app, maas/jvm, maas/json. 
       volumeMounts:
+      - mountPath: /opt/moderation-einstein/models/spam
+        name: model-volume
       - mountPath: /log
         name: logvol
       ports:
@@ -30,6 +42,8 @@ system:
     # written to this directory.
     # TBD: SAM is still implementing the splunk forwarding functionality. This location may change.
     volumes:
+    - name: model-volume
+      emptyDir: {}
     - name: logvol
       hostPath:
         path: /home/sfdc-sam/logs
