@@ -8,6 +8,9 @@ system:
     - name: sgill-scd-client-cert
       maddogCert:
         type: client
+    - name: sgill-scd-server-cert
+      maddogCert:
+        type: server
     containers:
     - name: scan-client-demo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180130_1453
@@ -30,11 +33,15 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       ports:
+      - containerPort: 5443
+        name: sherpa-out-tls
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
       - name: sgill-scd-client-cert
         mountPath: /client-certs # The path in the mesh proxy container to mount client certs on. The mesh proxy looks in /client-certs by default
+      - name: sgill-scd-client-cert
+        mountPath: /server-certs
       livenessProbe:
         exec:
           command:

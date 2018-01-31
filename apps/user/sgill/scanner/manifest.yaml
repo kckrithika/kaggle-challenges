@@ -5,6 +5,9 @@ system:
   - name: pd-scanner-service
     count: 1
     volumes:
+    - name: pd-scanner-client-cert
+      maddogCert:
+        type: server
     - name: pd-scanner-server-cert
       maddogCert:
         type: server
@@ -43,6 +46,8 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
+      - name: pd-scanner-client-cert
+        mountPath: /client-certs
       - name: pd-scanner-server-cert
         mountPath: /server-certs
       livenessProbe:
