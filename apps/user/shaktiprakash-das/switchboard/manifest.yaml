@@ -1,0 +1,36 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: switchboard
+    count: 2
+    containers:
+    - name: switchboard
+      image: sfci/servicelibs/switchboard:8ad6c7969ff3cfe29e52ecddd469980ec92a3ec7
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: dev
+      ports:
+      - containerPort: 15001
+      - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+  loadbalancers:
+  - lbname: switchboard-nlb
+    function: switchboard
+    nodeExposed: true
+    ports:
+    - port: 15001
+      targetport: 15001
+      lbtype: dsr
+    - port: 9876
+      targetport: 15372
+      #lbtype: dsr
