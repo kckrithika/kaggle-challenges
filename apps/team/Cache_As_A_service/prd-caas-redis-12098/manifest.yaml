@@ -42,7 +42,7 @@ system:
       - -endpoint
       - caas/cluster/sp-na1-c1:SUPERPOD:12098
       - -logdir
-      - /home/sfdc-caas/logs
+      - /home/sfdc-caas/logs/sp-na1-c1-12098
       livenessProbe:
         initialDelaySeconds: 5
         exec:
