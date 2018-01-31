@@ -19,12 +19,12 @@ spec:
                       "certreqs":[
                           {
                               "name": "cert1",
-                              "san":[
-                                  "*.slb.sfdc.net"
-                              ],
                               "cert-type":"server",
                               "kingdom":"prd",
                               "role": "sam_compute"
+                              "san":[
+                                  "*.sam-system.prd-sdc.prd.slb.sfdc.net"
+                              ],
                           },
                           {
                               "name": "cert2",
