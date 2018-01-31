@@ -1,0 +1,50 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: shipping-sboobna
+    count: 1
+    containers:
+    - name: shipping-sboobna
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/shipping/shipping-sboobna:sboobna-20180131-fcb1684
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7020
+      - containerPort: 15372
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - name: beacon-shipping
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - shipping-sboobna:DATACENTER:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    - name: sherpa-shipping
+      image: tnrp/sherpa:0.2.0-0000099-7cf33a3f
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5
