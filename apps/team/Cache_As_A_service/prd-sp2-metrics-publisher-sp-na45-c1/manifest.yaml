@@ -10,7 +10,7 @@ system:
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.6.0-0000027-15233483
+      image: tnrp/caas/caas-monitor-prod:2.6.0-0000029-15234336
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
@@ -43,7 +43,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs/caas
+        path: /home/sfdc-caas/logs/caas
     - name: secretvol
       secret:
         secretName: caas-secret-sp-na45-c1
