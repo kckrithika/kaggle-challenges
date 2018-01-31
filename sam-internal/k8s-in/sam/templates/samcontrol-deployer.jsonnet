@@ -17,8 +17,8 @@ local samimages = import "samimages.jsonnet";
                            configs.sfdchosts_arg,
                            ]) + (if configs.estate == "prd-samtest" then [
                                     "--tokenfile=/var/token/token",
-                                    "--auto-deployment-frequency=6h",
-                                    "--auto-deployment-offset=3h",
+                                    "--daily-deployment-frequency=6h",
+                                    "--daily-deployment-offset=3h",
                               ] else []),
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
