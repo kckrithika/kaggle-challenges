@@ -37,10 +37,8 @@ system:
       image: sfci/cloud-atlas/cloudatlas:2.7rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
-      - name: UBID_REMOVE_EXISTING
-        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: NONE
+        value: ALL
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol

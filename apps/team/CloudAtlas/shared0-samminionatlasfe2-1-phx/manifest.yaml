@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.6rc2
+      image: sfci/cloud-atlas/cloudatlas:2.7rc2
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -36,13 +36,14 @@ system:
       livenessProbe:
         exec:
           command:
-          - /bin/true
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
         initialDelaySeconds: 60
-        periodSeconds: 5
+        periodSeconds: 30
       readinessProbe:
         exec:
           command:
-          - /bin/true
+          - cat
+          - /tmp/ready
         initialDelaySeconds: 60
         periodSeconds: 5
         failureThreshold: 24
