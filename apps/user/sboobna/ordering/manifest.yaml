@@ -4,6 +4,10 @@ system:
   functions:
   - name: ordering-sboobna
     count: 1
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
     containers:
     - name: ordering-sboobna
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/ordering/ordering-sboobna:sboobna-20180131-fcb1684
