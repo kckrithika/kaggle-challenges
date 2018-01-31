@@ -22,7 +22,9 @@ local samimages = import "samimages.jsonnet";
   "resources-to-skip": ["sdn-secret.yaml"],
 }
 + (if configs.estate == "prd-samtest" then {
-  "auto-keyword": "sam-0001210-ef6a180b",
+  "daily-deployment-keyword": "auto",
+  "daily-deployment-offset": 10800000000000,
+  "daily-deployment-frequency": 21600000000000,
   } else {
 })
 + (if configs.estate == "prd-sam_storage" then {
