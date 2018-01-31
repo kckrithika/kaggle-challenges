@@ -71,7 +71,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                        ),
                 ],
                 nodeSelector: {
-                                    pool: configs.estate,
+                                    "slb-service": "slb-ipvs",
                                 },
             },
         },

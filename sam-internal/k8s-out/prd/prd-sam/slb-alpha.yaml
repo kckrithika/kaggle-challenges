@@ -31,7 +31,7 @@ spec:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
-        pool: prd-sam
+        slb-service: slb-ipvs
       volumes:
       - hostPath:
           path: /data/slb/logs
