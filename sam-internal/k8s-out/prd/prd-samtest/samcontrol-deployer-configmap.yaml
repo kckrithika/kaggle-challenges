@@ -2,9 +2,11 @@ apiVersion: v1
 data:
   samcontroldeployer.json: |-
     {
-      "auto-keyword": "sam-0001210-ef6a180b",
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "daily-deployment-frequency": 21600000000000,
+      "daily-deployment-keyword": "auto",
+      "daily-deployment-offset": 10800000000000,
       "delete-orphans": true,
       "disable-security-check": true,
       "dry-run": false,
