@@ -30,10 +30,16 @@ system:
           path: /manage/health
           port: 15373
     - name: beacon-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180131
       args:
       - -endpoint
-      - ordering:DATACENTER:7012
+      - ordering-sboobna:DATACENTER:7012
+      - -service
+      - ordering-sboobna
+      - -rootCertPath
+      - /certs/ca.pem
+      - -clientCertDir
+      - /certs/client
       volumeMounts:
       - name: cert
         mountPath: /certs
