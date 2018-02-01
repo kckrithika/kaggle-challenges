@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 local sdnconfig = import "sdnconfig.jsonnet";
@@ -13,7 +14,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     {
                         name: "sdn-peering-agent",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: std.prune([
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
@@ -29,7 +30,9 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
                             configs.sfdchosts_arg,
-                        ],
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
+                        ]),
                         env: [
                             configs.kube_config_env,
                         ],
@@ -63,7 +66,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 readOnly: true,
                             },
                             configs.kube_config_volume_mount,
-
+                            sdnconfigs.logs_volume_mount,
                         ]),
                     },
                 ],
@@ -96,6 +99,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         },
                     },
                     configs.kube_config_volume,
+                    sdnconfigs.logs_volume,
                 ]),
             },
             metadata: {

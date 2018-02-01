@@ -34,7 +34,7 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "sdn-control",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: std.prune([
                             "/sdn/sdn-control-service",
                             "--archiveSvcEndpoint=http://10.253.152.173:14431/tnrp/content_repo/0/archive",
                             "--port=" + portconfigs.sdn.sdn_control_service,
@@ -50,7 +50,9 @@ if configs.estate == "prd-sdc" then {
                             "--pkiServerServiceName=k8s-server",
                             "--pkiClientServiceName=k8s-client",
                             "--enableNyxMtls",
-                        ],
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
+                        ]),
                         env: [
                             configs.kube_config_env,
                         ],
@@ -68,6 +70,7 @@ if configs.estate == "prd-sdc" then {
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            sdnconfigs.logs_volume_mount,
                         ]),
                     },
                 ],
@@ -76,6 +79,7 @@ if configs.estate == "prd-sdc" then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    sdnconfigs.logs_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate,

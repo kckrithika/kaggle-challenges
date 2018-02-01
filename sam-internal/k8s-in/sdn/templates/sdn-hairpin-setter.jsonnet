@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
@@ -13,28 +14,32 @@ local utils = import "util_functions.jsonnet";
                     {
                         name: "sdn-hairpin-setter",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: std.prune([
                             "/sdn/sdn-hairpin-setter",
-                        ],
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
+                        ]),
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sys-mount",
                                 mountPath: "/sys/devices/virtual/net",
                             },
+                            sdnconfigs.logs_volume_mount,
                         ]),
                         securityContext: {
                             privileged: true,
                         },
                     },
                 ],
-                volumes: [
+                volumes: configs.filter_empty([
                     {
                         name: "sys-mount",
                         hostPath: {
                             path: "/sys/devices/virtual/net",
                         },
                     },
-                ],
+                    sdnconfigs.logs_volume,
+                ]),
             },
             metadata: {
                 labels: {

@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 if utils.is_flowsnake_cluster(configs.estate) then {
@@ -13,7 +14,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                     {
                         name: "sdn-secret-agent",
                         image: sdnimages.hypersdn,
-                        command: configs.filter_empty([
+                        command: std.prune([
                            "/sdn/sdn-secret-agent",
                            "--funnelEndpoint=" + configs.funnelVIP,
                            "--logtostderr=true",
@@ -26,12 +27,15 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                            "--cafile=" + configs.caFile,
                            "--livenessProbePort=" + portconfigs.sdn.sdn_secret_agent,
                            configs.sfdchosts_arg,
+                           sdnconfigs.logDirArg,
+                           sdnconfigs.logToStdErrArg,
                          ]),
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
                            configs.maddog_cert_volume_mount,
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,
+                           sdnconfigs.logs_volume_mount,
                          ]),
                          env: [
                            configs.kube_config_env,
@@ -52,6 +56,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    sdnconfigs.logs_volume,
                 ]),
                 nodeSelector: {
                 } +
