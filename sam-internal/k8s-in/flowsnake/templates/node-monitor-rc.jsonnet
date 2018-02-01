@@ -62,7 +62,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             flowsnakeconfigmapmount.platform_cert_volumeMounts,
                      },
                  ],
-                 volumes: flowsnakeconfigmapmount.kubeconfig_volume +
+                 volumes: flowsnakeconfigmapmount.kubeconfig_platform_volume +
                      flowsnakeconfigmapmount.platform_cert_volume,
             },
         },
