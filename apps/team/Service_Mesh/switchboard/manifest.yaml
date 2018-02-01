@@ -9,7 +9,7 @@ system:
       image: sfci/servicelibs/switchboard:8ad6c7969ff3cfe29e52ecddd469980ec92a3ec7
       env:
       - name: SFDC_ENVIRONMENT
-        value: prod
+        value: stm
       ports:
       - containerPort: 15001
       - containerPort: 15372
