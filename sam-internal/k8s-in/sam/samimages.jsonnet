@@ -38,12 +38,6 @@ local utils = import "util_functions.jsonnet";
         "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
 
-        #[mayank.kumar] testing email reporting for deployment and statefulsets
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001662-26aee930",
-
-         #[rbhat] cache namespace, node list in controller
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001654-3f9cfd66",
-
         #[prahlad.joshi] scrapper sends kind for watch events
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
@@ -73,7 +67,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001641-fafe532f",
+            hypersam: "sam-0001667-72dcabb0",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
