@@ -8,9 +8,11 @@ system:
     count: 2
     strategy:
       type: RollingUpdate
+      maxSurge: 2
+      maxUnavailable: 1
     containers:
     - name: idbconnector
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:13
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:14
       args: ["--spring.config.location=file:/secrets/", "--spring.profiles.active=docker,sam-password,sam"]
       ports:
       - containerPort: 9095
