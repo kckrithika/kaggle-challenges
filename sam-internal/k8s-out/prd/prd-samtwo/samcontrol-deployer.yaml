@@ -41,6 +41,9 @@ spec:
           name: kubeconfig
         - mountPath: /config
           name: config
+        - mountPath: /var/token
+          name: token
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -60,3 +63,6 @@ spec:
       - configMap:
           name: samcontrol-deployer
         name: config
+      - name: token
+        secret:
+          secretName: git-token
