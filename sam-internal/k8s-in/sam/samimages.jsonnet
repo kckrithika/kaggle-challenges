@@ -47,6 +47,11 @@ local utils = import "util_functions.jsonnet";
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "prd,prd-samdev,snapshoter,hypersam": "sam-0001681-b53394f1",
+
+        #[mayank.kumar] email reporter
+        "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
+        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
+
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

@@ -18,7 +18,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                            "--smtpServer=" + configs.smtpServer,
                            "--sender=sam@salesforce.com",
                            "--defaultRecipient=mayank.kumar@salesforce.com",
-                           "--namespacesToSkip=sam-watchdog,legostore,sam-system",
+                           "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
                            "--deploymentRecipientOverride=mayank.kumar@salesforce.com",
                            configs.sfdchosts_arg,
                            ]),
