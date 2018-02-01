@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     kind: "DaemonSet",
     spec: {
         template: {
