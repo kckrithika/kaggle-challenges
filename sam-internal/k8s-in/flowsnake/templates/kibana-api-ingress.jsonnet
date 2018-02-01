@@ -32,6 +32,13 @@
                             },
                         },
                         {
+                            path: "/api/status",
+                            backend: {
+                                serviceName: "kibana",
+                                servicePort: 5601,
+                            },
+                        },
+                        {
                             path: "/plugins",
                             backend: {
                                 serviceName: "kibana",
