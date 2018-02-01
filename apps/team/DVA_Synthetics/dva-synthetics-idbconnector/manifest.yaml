@@ -5,14 +5,14 @@ system:
       - dvasynthetics@salesforce.com
   functions:
   - name: dva-synthetics-idbconnector
-    count: 3
+    count: 2 
     strategy:
       type: RollingUpdate
       maxSurge: 2
       maxUnavailable: 1
     containers:
     - name: idbconnector
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:16
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/dva-synthetics-idbconnector:17
       args: ["--spring.config.location=file:/secrets/", "--spring.profiles.active=docker,sam-password,sam"]
       ports:
       - containerPort: 9095
