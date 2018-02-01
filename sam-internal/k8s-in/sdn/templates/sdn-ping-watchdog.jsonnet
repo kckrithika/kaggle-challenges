@@ -68,7 +68,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                            sdnconfigs.logs_volume_mount,
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -77,7 +77,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    sdnconfigs.logs_volume,
+                    sdnconfigs.conditional_logs_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate,

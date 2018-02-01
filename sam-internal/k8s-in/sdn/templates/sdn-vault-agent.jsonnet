@@ -42,7 +42,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 name: "certs",
                                 mountPath: "/data/certs",
                             },
-                            sdnconfigs.logs_volume_mount,
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -55,7 +55,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             path: "/data/certs",
                         },
                     },
-                    sdnconfigs.logs_volume,
+                    sdnconfigs.conditional_logs_volume,
 
                 ]),
                 nodeSelector: {

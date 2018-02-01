@@ -70,7 +70,7 @@ if configs.estate == "prd-sdc" then {
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                            sdnconfigs.logs_volume_mount,
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -79,7 +79,7 @@ if configs.estate == "prd-sdc" then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    sdnconfigs.logs_volume,
+                    sdnconfigs.conditional_logs_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate,

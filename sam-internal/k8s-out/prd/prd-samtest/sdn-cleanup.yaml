@@ -31,6 +31,9 @@ spec:
         securityContext:
           privileged: true
         volumeMounts:
-        - {}
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       volumes:
-      - {}
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
                                 name: "sys-mount",
                                 mountPath: "/sys/devices/virtual/net",
                             },
-                            sdnconfigs.logs_volume_mount,
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                         securityContext: {
                             privileged: true,
@@ -38,7 +38,7 @@ local utils = import "util_functions.jsonnet";
                             path: "/sys/devices/virtual/net",
                         },
                     },
-                    sdnconfigs.logs_volume,
+                    sdnconfigs.conditional_logs_volume,
                 ]),
             },
             metadata: {

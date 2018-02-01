@@ -27,18 +27,18 @@ local utils = import "util_functions.jsonnet";
     logToStdErrArg: (if estate == "prd-sdc" then "--logtostderr=false"),
 
     # Volume for logs
-    logs_volume:
-        if estate == "prd-sdc" then {
-            name: "sdnlogs",
-            hostPath: {
-                path: "/data/logs/sdn",
-            },
-        } else {},
+    logs_volume: {
+        name: "sdnlogs",
+        hostPath: {
+            path: "/data/logs/sdn",
+        },
+    },
+    conditional_logs_volume: if estate == "prd-sdc" then self.logs_volume else {},
 
     # Volume mount for logs
-    logs_volume_mount:
-        if estate == "prd-sdc" then {
-            mountPath: "/data/logs/sdn",
-            name: "sdnlogs",
-        } else {},
+    logs_volume_mount: {
+        mountPath: "/data/logs/sdn",
+        name: "sdnlogs",
+    },
+    conditional_logs_volume_mount: if estate == "prd-sdc" then self.logs_volume_mount else {},
 }

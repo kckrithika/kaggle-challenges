@@ -35,7 +35,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                            configs.maddog_cert_volume_mount,
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,
-                           sdnconfigs.logs_volume_mount,
+                           sdnconfigs.conditional_logs_volume_mount,
                          ]),
                          env: [
                            configs.kube_config_env,
@@ -56,7 +56,7 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    sdnconfigs.logs_volume,
+                    sdnconfigs.conditional_logs_volume,
                 ]),
                 nodeSelector: {
                 } +
