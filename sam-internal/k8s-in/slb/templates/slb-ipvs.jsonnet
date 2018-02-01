@@ -113,6 +113,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
+                            "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
                         ]
                         + (
