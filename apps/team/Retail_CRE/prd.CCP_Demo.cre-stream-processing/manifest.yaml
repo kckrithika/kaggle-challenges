@@ -26,6 +26,8 @@ system:
             command:
             - ls
         initialDelaySeconds: 30
+        periodSeconds: 30
+        failureThreshold: 5
       volumeMounts:
       - mountPath: /certs
         name: certs
