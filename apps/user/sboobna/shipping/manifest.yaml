@@ -30,6 +30,9 @@ system:
       args:
       - -endpoint
       - shipping-sboobna:DATACENTER:7012
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
       livenessProbe:
         initialDelaySeconds: 5
         exec:
