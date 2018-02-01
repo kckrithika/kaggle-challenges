@@ -1,7 +1,9 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then {
+local utils = import "util_functions.jsonnet";
+
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate) then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -14,7 +16,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         command: [
                             "/sam/watchdog",
                             "-role=RBAC",
-                            "-watchdogFrequency=60s",
+                            "-watchdogFrequency=180s",
                             "-alertThreshold=1h",
                             "-maxUptimeSampleSize=5",
                         ]

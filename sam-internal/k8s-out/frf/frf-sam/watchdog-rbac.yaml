@@ -19,7 +19,7 @@ spec:
       - command:
         - /sam/watchdog
         - -role=RBAC
-        - -watchdogFrequency=60s
+        - -watchdogFrequency=180s
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
         - -timeout=2s
