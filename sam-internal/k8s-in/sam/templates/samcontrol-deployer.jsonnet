@@ -22,7 +22,7 @@ local samimages = import "samimages.jsonnet";
                            configs.cert_volume_mount,
                            configs.kube_config_volume_mount,
                            configs.config_volume_mount,
-                         ]) + (if configs.estate == "prd-samtest" then [
+                         ]) + (if (configs.estate == "prd-samtest" || configs.estate == "prd-samdev") then [
                              {
                                  mountPath: "/var/token",
                                  name: "token",
@@ -49,7 +49,7 @@ local samimages = import "samimages.jsonnet";
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.config_volume("samcontrol-deployer"),
-                ]) + (if configs.estate == "prd-samtest" then [
+                ]) + (if (configs.estate == "prd-samtest" || configs.estate == "prd-samdev") then [
                     {
                         secret: {
                               secretName: "git-token",

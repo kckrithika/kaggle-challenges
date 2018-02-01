@@ -21,7 +21,7 @@ local samimages = import "samimages.jsonnet";
   "delete-orphans": true,
   "resources-to-skip": ["sdn-secret.yaml"],
 }
-+ (if configs.estate == "prd-samtest" then {
++ (if (configs.estate == "prd-samtest" || configs.estate == "prd-samdev") then {
   "daily-deployment-keyword": "auto",
   tokenfile: "/var/token/token",
   "daily-deployment-offset": 10800000000000,
