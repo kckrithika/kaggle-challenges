@@ -37,6 +37,8 @@ spec:
         - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
         - prd
+        - --estate
+        - prd-sam_storage
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000061-74e4a7b6
         livenessProbe:
           httpGet:
