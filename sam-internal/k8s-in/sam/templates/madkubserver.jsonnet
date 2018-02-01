@@ -50,7 +50,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
               "--kingdom",
               configs.kingdom,
             ] +
-            if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" || configs.estate == "prd-sam_storage" then [
+            if configs.kingdom == "prd" then [
               "--estate",
               configs.estate,
             ] else [
