@@ -9,7 +9,7 @@ system:
       image: sfci/servicelibs/switchboard:8ad6c7969ff3cfe29e52ecddd469980ec92a3ec7
       env:
       - name: SFDC_ENVIRONMENT
-        value: sam
+        value: mesh
       ports:
       - containerPort: 15001
       - containerPort: 15372
@@ -24,11 +24,19 @@ system:
           port: 15372
         initialDelaySeconds: 15
   loadbalancers:
-  - lbname: switchboard-nlb
+  - lbname: switchboard-lb
     function: switchboard
-    nodeExposed: true
     slbenabled: true
     ports:
     - port: 15001
       targetport: 15001
       lbtype: dsr
+    - port: 15372
+      targetport: 15372
+      lbtype: dsr
+  - lbname: switchboard-nlb
+    function: switchboard
+    nodeExposed: true
+    ports:
+      - port: 15001
+        targetport: 15001
