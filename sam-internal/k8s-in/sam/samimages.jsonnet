@@ -45,10 +45,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,samcontrol,hypersam": "sam-0001654-3f9cfd66",
 
         #[prahlad.joshi] scrapper sends kind for watch events
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001669-de304b55",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001669-de304b55",
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001669-de304b55",
-        "prd,prd-samdev,snapshoter,hypersam": "sam-0001669-de304b55",
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "prd,prd-samdev,snapshoter,hypersam": "sam-0001681-b53394f1",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
