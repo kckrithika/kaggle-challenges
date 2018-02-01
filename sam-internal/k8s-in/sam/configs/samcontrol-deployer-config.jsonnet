@@ -23,6 +23,7 @@ local samimages = import "samimages.jsonnet";
 }
 + (if configs.estate == "prd-samtest" then {
   "daily-deployment-keyword": "auto",
+  tokenfile: "/var/token/token",
   "daily-deployment-offset": 10800000000000,
   "daily-deployment-frequency": 21600000000000,
   } else {

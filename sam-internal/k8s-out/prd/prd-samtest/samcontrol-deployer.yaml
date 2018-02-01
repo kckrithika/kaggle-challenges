@@ -18,9 +18,6 @@ spec:
         - /sam/samcontrol-deployer
         - --config=/config/samcontroldeployer.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --tokenfile=/var/token/token
-        - --daily-deployment-frequency=6h
-        - --daily-deployment-offset=3h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
