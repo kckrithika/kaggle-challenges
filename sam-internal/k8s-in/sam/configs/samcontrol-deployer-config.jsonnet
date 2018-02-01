@@ -21,11 +21,11 @@ local samimages = import "samimages.jsonnet";
   "delete-orphans": true,
   "resources-to-skip": ["sdn-secret.yaml"],
 }
-+ (if (configs.estate == "prd-samtest" || configs.estate == "prd-samdev") then {
++ (if configs.kingdom == "prd" then {
   "daily-deployment-keyword": "auto",
   tokenfile: "/var/token/token",
-  "daily-deployment-offset": 10800000000000,
-  "daily-deployment-frequency": 21600000000000,
+  "daily-deployment-offset": "3h",
+  "daily-deployment-frequency": "6h",
   } else {
 })
 + (if configs.estate == "prd-sam_storage" then {
