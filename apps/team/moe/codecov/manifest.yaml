@@ -180,7 +180,7 @@ system:
         periodSeconds: 60
     # nginx container
     - name: nginx
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/nginx:5
       volumeMounts:
       - name: datavol
         mountPath: /archive
@@ -197,6 +197,15 @@ system:
         failureThreshold: 3
         initialDelaySeconds: 60
         periodSeconds: 60
+      # HACKHACK: this "readiness probe" exists just to force nginx to reload config (including updated certs) every 24 hours.
+      readinessProbe:
+        exec:
+          command:
+          - nginx
+          - -s
+          - reload
+        initialDelaySeconds: 5
+        periodSeconds: 86400
 
     lbname: codecov-headless-lb
 
