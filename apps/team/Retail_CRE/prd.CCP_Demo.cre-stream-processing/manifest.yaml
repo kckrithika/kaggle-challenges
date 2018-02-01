@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-sp-prd-ccp-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:fr-newEstate.0e219bd.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:fr-newEstate.5313580.2
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
