@@ -16,7 +16,7 @@ system:
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: METRICS_KAFKA_KEYSTORE
-          value: /certs/shared2-samminionretailcre-prd.jks
+          value: /certs/shared2-samminionretailcre1-1-prd.jks
         - name: SFDC_ENVIRONMENT
           value: ccp-demo
       ports:
