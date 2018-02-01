@@ -23,14 +23,14 @@ spec:
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
         - -timeout=2s
-        - -funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - -funnelEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001641-fafe532f
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/hypersam:sam-0001641-fafe532f
         name: watchdog-rbac
         volumeMounts:
         - mountPath: /sfdchosts
