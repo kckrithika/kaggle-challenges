@@ -41,7 +41,6 @@ local utils = import "util_functions.jsonnet";
         #[prahlad.joshi] scrapper sends kind for watch events
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "prd,prd-samdev,snapshoter,hypersam": "sam-0001681-b53394f1",
     },
 
@@ -74,7 +73,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF
         "3": {
-            hypersam: "sam-0001641-fafe532f",
+            hypersam: "sam-0001667-72dcabb0",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
