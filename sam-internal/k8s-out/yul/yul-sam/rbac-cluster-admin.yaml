@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1alpha1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: User
+  name: shared0-samkubeapi1-1-yul.ops.sfdc.net
+- kind: User
+  name: shared0-samkubeapi2-1-yul.ops.sfdc.net
+- kind: User
+  name: shared0-samkubeapi3-1-yul.ops.sfdc.net
