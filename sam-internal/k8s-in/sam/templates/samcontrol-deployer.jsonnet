@@ -15,11 +15,7 @@ local samimages = import "samimages.jsonnet";
                            "/sam/samcontrol-deployer",
                            "--config=/config/samcontroldeployer.json",
                            configs.sfdchosts_arg,
-                           ]) + (if configs.estate == "prd-samtest" then [
-                                    "--tokenfile=/var/token/token",
-                                    "--daily-deployment-frequency=6h",
-                                    "--daily-deployment-offset=3h",
-                              ] else []),
+                           ]),
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
                            configs.maddog_cert_volume_mount,
@@ -41,7 +37,7 @@ local samimages = import "samimages.jsonnet";
                              path: "/",
                              port: 9099,
                            },
-                           initialDelaySeconds: 2,
+                           initialDelaySeconds: 20,
                            periodSeconds: 10,
                            timeoutSeconds: 10,
                         },

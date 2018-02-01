@@ -18,18 +18,15 @@ spec:
         - /sam/samcontrol-deployer
         - --config=/config/samcontroldeployer.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --tokenfile=/var/token/token
-        - --daily-deployment-frequency=6h
-        - --daily-deployment-offset=3h
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_120948.f6eacc29.dirty.dianachang-ltm1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1
         livenessProbe:
           httpGet:
             path: /
             port: 9099
-          initialDelaySeconds: 2
+          initialDelaySeconds: 20
           periodSeconds: 10
           timeoutSeconds: 10
         name: samcontrol-deployer

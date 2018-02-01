@@ -24,7 +24,8 @@ data:
       ],
       "sender": "sam@salesforce.com",
       "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
-      "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
+      "tokenfile": "/var/token/token"
     }
 kind: ConfigMap
 metadata:
