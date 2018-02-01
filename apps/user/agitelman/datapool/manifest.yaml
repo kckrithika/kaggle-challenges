@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wave/datapool-server:b32d7d5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wave/datapool-server:628223b
       ports:
       - containerPort: 7020
         name: grpc
@@ -47,37 +47,37 @@ system:
 #        name: datapoolconfig
 #        readOnly: true
 
-#    - name: sherpa
-#      image: tnrp/sherpa:2-0000127-5d8bf4ab
-#      env:
-#      - name: SFDC_ENVIRONMENT
-#        value: kingdom-test
-#
-#      livenessProbe:
-#        exec:
-#          command:
-#          - ./bin/is-alive
-#          initialDelaySeconds: 10
-#          periodSeconds: 5
-#
-#      ports:
-#      - containerPort: 7012
-#        name: sherpa-in
-#      - containerPort: 7443
-#        name: sherpa-tls
-#      - containerPort: 15373
-#        name: sherpa-adm
-#      readinessProbe:
-#        exec:
-#          command:
-#          - ./bin/is-ready
-#          initialDelaySeconds: 5
-#          periodSeconds: 5
-#      volumeMounts:
-#      - mountPath: /server-certs
-#        name: server-certs
-#      - mountPath: /client-certs
-#        name: client-certs
+    - name: sherpa
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:2-0000153-5dbf127d
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: kingdom-test
+
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /client-certs
+        name: client-certs
     count: 1
 
 
@@ -98,13 +98,13 @@ system:
 #      secret:
 #        secretName: datapool-config
 
-#    - maddogCert:
-#        type: server
-#      name: server-certs
-#
-#    - maddogCert:
-#        type: client
-#      name: client-certs
+    - maddogCert:
+        type: server
+      name: server-certs
+
+    - maddogCert:
+        type: client
+      name: client-certs
 
 
   loadbalancers:
@@ -114,7 +114,13 @@ system:
     slbenabled: true
     ports:
       - port: 7025
+        targetport: 7012
+      - port: 7120
         targetport: 7020
+      - port: 7045
+        targetport: 7443
       - port: 15375
+        targetport: 15373
+      - port: 15376
         targetport: 15372
 
