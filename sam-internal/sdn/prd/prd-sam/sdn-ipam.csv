@@ -1,9 +1,4 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
-samcaas1-caasminion1-1-prd.eng.sfdc.net,10.253.231.10/29,10.251.152.192/27,u40-02,prd-sp1-sam_caas
-samcaas1-caasminion1-2-prd.eng.sfdc.net,10.253.231.34/29,10.251.152.32/27,f34-02,prd-sp1-sam_caas
-samcaas1-caasminion2-1-prd.eng.sfdc.net,10.253.231.2/29,10.251.152.64/27,k23-02,prd-sp1-sam_caas
-samcaas1-caasminion2-2-prd.eng.sfdc.net,10.253.231.18/29,10.251.152.224/27,u41-02,prd-sp1-sam_caas
-samcaas1-caasminion3-1-prd.eng.sfdc.net,10.253.231.26/29,10.251.152.96/27,p31-02,prd-sp1-sam_caas
 samcaas2-caasminion1-1-prd.eng.sfdc.net,10.231.71.2/29,10.251.189.0/27,m31-02,prd-sp2-sam_caas
 samcaas2-caasminion1-2-prd.eng.sfdc.net,10.231.71.26/29,10.251.188.64/27,e35-02,prd-sp2-sam_caas
 samcaas2-caasminion1-3-prd.eng.sfdc.net,10.231.71.50/29,10.251.188.160/27,j08-02,prd-sp2-sam_caas
