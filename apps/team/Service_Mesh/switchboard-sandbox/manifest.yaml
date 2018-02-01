@@ -2,14 +2,14 @@ apiVersion: v1
 
 system:
   functions:
-  - name: switchboard
+  - name: switchboardsb
     count: 2
     containers:
-    - name: switchboard
+    - name: switchboardsb
       image: sfci/servicelibs/switchboard:8ad6c7969ff3cfe29e52ecddd469980ec92a3ec7
       env:
       - name: SFDC_ENVIRONMENT
-        value: stm
+        value: mesh
       ports:
       - containerPort: 15001
       - containerPort: 15372
@@ -25,7 +25,7 @@ system:
         initialDelaySeconds: 15
   loadbalancers:
   - lbname: switchboard-lb
-    function: switchboard
+    function: switchboardsb
     slbenabled: true
     ports:
     - port: 15001
@@ -35,7 +35,7 @@ system:
       targetport: 15372
       lbtype: dsr
   - lbname: switchboard-nlb
-    function: switchboard
+    function: switchboardsb
     nodeExposed: true
     ports:
       - port: 15001
