@@ -26,9 +26,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                         volumeMounts: [
                             sdnconfigs.logs_volume_mount,
                         ],
-                        env: [
-                            configs.kube_config_env,
-                        ],
                         securityContext: {
                             privileged: true,
                         },
