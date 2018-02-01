@@ -34,3 +34,9 @@ system:
     - port: 15372
       targetport: 15372
       lbtype: dsr
+  - lbname: switchboard-nlb
+    function: switchboard
+    nodeExposed: true
+    ports:
+      - port: 15001
+        targetport: 15001
