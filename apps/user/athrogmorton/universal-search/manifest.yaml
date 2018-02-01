@@ -4,6 +4,13 @@ system:
   functions:
   - name: universal-search
     count: 3
+    volumes:
+    - name: pki-cert-vol
+      maddogCert:
+        type: client
+    - name: log-vol
+      hostpath:
+        path: /home/sfdc-usmt/logs
     containers:
     - name: universal-search
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search:0.2.2
@@ -16,6 +23,11 @@ system:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
       env:
+      volumeMounts:
+      - name: pki-cert-vol
+        mountPath: /etc/pki_service
+      - name: log-vol
+        mountPath: /home/sfdc-usmt/logs
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -27,3 +39,4 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
+    
