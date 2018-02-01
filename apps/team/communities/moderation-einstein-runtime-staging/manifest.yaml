@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: moderation-einstein-model
-      image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-model:20180128
+      image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-model:20180131
       livenessProbe:
        exec:
         command: ["ls", "/model/model_global.vw"]
@@ -20,7 +20,7 @@ system:
          name: model-volume
   
     - name: moderation-einstein-service
-      image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-service-docker:2018012912
+      image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-service-docker:20180131
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
       # we will end up with the following sub-directories: maas/app, maas/jvm, maas/json. 
