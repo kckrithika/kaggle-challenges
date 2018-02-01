@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-baboon-service
+  labels:
+    app: slb-baboon-service
+    slb.sfdc.net/name: slb-baboon-service
+  name: slb-baboon-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-baboon-port
+    nodePort: 32150
+    port: 32150
+    protocol: TCP
+    targetPort: 32150
+  selector:
+    name: slb-baboon
+  type: NodePort
