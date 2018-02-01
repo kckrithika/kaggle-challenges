@@ -197,15 +197,6 @@ system:
         failureThreshold: 3
         initialDelaySeconds: 60
         periodSeconds: 60
-      # HACKHACK: this "readiness probe" exists just to force nginx to reload config (including updated certs) every 24 hours.
-      readinessProbe:
-        exec:
-          command:
-          - nginx
-          - -s
-          - reload
-        initialDelaySeconds: 5
-        periodSeconds: 86400
 
     lbname: codecov-headless-lb
 
