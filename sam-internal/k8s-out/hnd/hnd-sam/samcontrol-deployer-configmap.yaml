@@ -11,11 +11,11 @@ data:
       "email-delay": 0,
       "funnelEndpoint": "ajna0-funnel1-0-hnd.data.sfdc.net:80",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-      "max-resource-time": 300000000000,
-      "poll-delay": 30000000000,
+      "max-resource-time": "5m",
+      "poll-delay": "30s",
       "recipient": "sam@salesforce.com",
-      "resource-cooldown": 15000000000,
-      "resource-progression-timeout": 120000000000,
+      "resource-cooldown": "15s",
+      "resource-progression-timeout": "2m",
       "resources-to-skip": [
         "sdn-secret.yaml"
       ],
