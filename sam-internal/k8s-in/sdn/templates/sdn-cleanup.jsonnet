@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -20,6 +20,8 @@ if configs.estate == "prd-sdc" then {
                             "--logsMaxAge=48h",
                             "--filesDirToCleanup=" + sdnconfigs.logFilePath,
                             "--shouldNotDeleteAllFiles=false",
+                            "--log_dir=" + sdnconfigs.logFilePath,
+                            "--logtostderr=false",
                         ],
                         volumeMounts: [
                             sdnconfigs.logs_volume_mount,
