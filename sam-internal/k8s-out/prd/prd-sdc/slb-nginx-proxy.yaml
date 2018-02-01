@@ -21,10 +21,10 @@ spec:
                               "name": "cert1",
                               "cert-type":"server",
                               "kingdom":"prd",
-                              "role": "sam_compute"
+                              "role": "sam_compute",
                               "san":[
                                   "*.sam-system.prd-sdc.prd.slb.sfdc.net"
-                              ],
+                              ]
                           },
                           {
                               "name": "cert2",
