@@ -73,7 +73,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             },
                             {
                                 name: "KUBERNETES_IMAGE_PULL_POLICY",
-                                value: "Always",
+                                value: if flowsnakeconfig.is_minikube then "Never" else "Always",
                             },
                             {
                                 name: "SPRING_PROFILES_ACTIVE",

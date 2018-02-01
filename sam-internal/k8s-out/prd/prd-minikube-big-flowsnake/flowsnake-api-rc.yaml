@@ -29,7 +29,7 @@ spec:
               key: registry
               name: fleet-config
         - name: KUBERNETES_IMAGE_PULL_POLICY
-          value: Always
+          value: Never
         - name: SPRING_PROFILES_ACTIVE
           value: dev
         - name: KUBECONFIG

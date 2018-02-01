@@ -32,7 +32,7 @@ spec:
               fieldPath: metadata.namespace
         - name: KUBECONFIG
           value: /etc/kubernetes/kubeconfig
-        image: minikube/flowsnake-ingress-controller-nginx:minikube
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:345
         imagePullPolicy: Never
         livenessProbe:
           httpGet:

@@ -17,7 +17,7 @@ spec:
         name: default-http-backend
     spec:
       containers:
-      - image: minikube/flowsnake-ingress-default-backend:minikube
+      - image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-default-backend:345
         livenessProbe:
           httpGet:
             path: /healthz

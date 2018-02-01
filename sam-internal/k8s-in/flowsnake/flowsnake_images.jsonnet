@@ -145,8 +145,8 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             es_image_tag: "minikube",
             fleetService_image_tag: "minikube",
             glok_image_tag: "minikube",
-            ingressControllerNginx_image_tag: "minikube",
-            ingressDefaultBackend_image_tag: "minikube",
+            ingressControllerNginx_image_tag: "345",
+            ingressDefaultBackend_image_tag: "345",
             kibana_image_tag: "minikube",
             logloader_image_tag: "minikube",
             logstash_image_tag: "minikube",
@@ -177,14 +177,16 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             "4"
         ),
 
+    ingress_registry: (if flowsnakeconfig.is_minikube then "dva-registry.internal.salesforce.com/dva" else flowsnakeconfig.registry),
+
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
     canary: flowsnakeconfig.registry + "/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
     es: flowsnakeconfig.registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
     fleet_service: flowsnakeconfig.registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
     glok: flowsnakeconfig.registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
-    ingress_controller_nginx: flowsnakeconfig.registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
-    ingress_default_backend: flowsnakeconfig.registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
+    ingress_controller_nginx: $.ingress_registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
+    ingress_default_backend: $.ingress_registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
     kibana: flowsnakeconfig.registry + "/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
     logloader: flowsnakeconfig.registry + "/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
     logstash: flowsnakeconfig.registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
