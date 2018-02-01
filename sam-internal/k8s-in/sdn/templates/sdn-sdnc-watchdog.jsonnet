@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
-local sdnconfig = import "sdnconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
 if configs.estate == "prd-sdc" then {
@@ -23,7 +23,7 @@ if configs.estate == "prd-sdc" then {
                     {
                         name: "sdn-sdnc-watchdog",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: std.prune([
                             "/sdn/sdn-sdnc-watchdog",
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--funnelEndpoint=" + configs.funnelVIP,
@@ -34,7 +34,9 @@ if configs.estate == "prd-sdc" then {
                             "--sdncNamespace=sam-system",
                             "--pkiClientServiceName=k8s-client",
                             "--livenessProbePort=" + portconfigs.sdn.sdn_sdnc_watchdog,
-                        ],
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
+                        ]),
                         env: [
                             configs.kube_config_env,
                         ],
@@ -52,6 +54,7 @@ if configs.estate == "prd-sdc" then {
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -60,6 +63,7 @@ if configs.estate == "prd-sdc" then {
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    sdnconfigs.conditional_logs_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate,

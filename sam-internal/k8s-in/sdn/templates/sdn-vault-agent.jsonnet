@@ -23,8 +23,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--certfile=" + configs.certFile,
                             "--cafile=" + configs.caFile,
                             "--livenessProbePort=" + portconfigs.sdn.sdn_vault_agent,
-                            (if configs.estate == "prd-sdc" then ("--log_dir=" + sdnconfigs.logFilePath)),
-                            (if configs.estate == "prd-sdc" then "--logtostderr=false"),
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
                         ]),
                         livenessProbe: {
                             httpGet: {
@@ -42,7 +42,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 name: "certs",
                                 mountPath: "/data/certs",
                             },
-                            (if configs.estate == "prd-sdc" then sdnconfigs.logs_volume_mount else {}),
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -55,7 +55,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             path: "/data/certs",
                         },
                     },
-                    (if configs.estate == "prd-sdc" then sdnconfigs.logs_volume else {}),
+                    sdnconfigs.conditional_logs_volume,
 
                 ]),
                 nodeSelector: {

@@ -37,6 +37,8 @@ spec:
         - --livenessProbePort=9102
         - --controlEstate=prd-sdc
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
@@ -63,6 +65,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: prd-sdc
@@ -79,3 +83,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
-local sdnconfig = import "sdnconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
 if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
@@ -23,13 +23,13 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     {
                         name: "sdn-route-watchdog",
                         image: sdnimages.hypersdn,
-                        command: [
+                        command: std.prune([
                             "/sdn/sdn-route-watchdog",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--smtpServer=" + configs.smtpServer,
-                            "--sender=" + sdnconfig.sdn_watchdog_emailsender,
-                            "--recipient=" + sdnconfig.sdn_route_watchdog_emailrec,
+                            "--sender=" + sdnconfigs.sdn_watchdog_emailsender,
+                            "--recipient=" + sdnconfigs.sdn_route_watchdog_emailrec,
                             "--emailFrequency=12h",
                             "--watchdogFrequency=180s",
                             "--alertThreshold=300s",
@@ -38,9 +38,11 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
-                            "--momCollectorEndpoint=" + sdnconfig.momVIP,
+                            "--momCollectorEndpoint=" + sdnconfigs.momVIP,
                             configs.sfdchosts_arg,
-                        ]
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
+                        ])
                         + (
                             if configs.estate == "prd-sdc" then [
                             "--sdncServiceName=sdn-control-svc",
@@ -64,6 +66,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
+                            sdnconfigs.conditional_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -72,6 +75,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
+                    sdnconfigs.conditional_logs_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate,
