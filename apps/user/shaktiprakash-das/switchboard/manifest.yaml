@@ -27,6 +27,8 @@ system:
   - lbname: switchboard-nlb
     function: switchboard
     nodeExposed: true
+    slbenabled: true
     ports:
     - port: 15001
       targetport: 15001
+      lbtype: dsr
