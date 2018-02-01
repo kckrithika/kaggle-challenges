@@ -20,6 +20,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                             "--logsMaxAge=48h",
                             "--filesDirToCleanup=" + sdnconfigs.logFilePath,
                             "--shouldNotDeleteAllFiles=false",
+                            "--log_dir=" + sdnconfigs.logFilePath,
+                            "--logtostderr=false",
                         ],
                         volumeMounts: [
                             sdnconfigs.logs_volume_mount,

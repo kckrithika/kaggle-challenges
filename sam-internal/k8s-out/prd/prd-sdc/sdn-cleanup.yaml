@@ -21,6 +21,8 @@ spec:
         - --logsMaxAge=48h
         - --filesDirToCleanup=/data/logs/sdn/
         - --shouldNotDeleteAllFiles=false
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
