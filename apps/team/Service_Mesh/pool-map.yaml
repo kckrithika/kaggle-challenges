@@ -2,6 +2,8 @@ apps:
   geoip-nk:
     - prd/prd-sam_gater
   switchboard:
+    - prd/prd-sam_gater
+  switchboard-sandbox:
     - prd/prd-sam
   time:
     - prd/prd-sam
