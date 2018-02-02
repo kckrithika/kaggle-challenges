@@ -5,8 +5,8 @@ system:
   - name: switchboard
     count: 2
     containers:
-    - name: switchboard
-      image: sfci/servicelibs/switchboard:8ad6c7969ff3cfe29e52ecddd469980ec92a3ec7
+    - name: switchboard 
+      image: sfci/servicelibs/switchboard:6060ca0361475838095094a71025e2b749135b35
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
