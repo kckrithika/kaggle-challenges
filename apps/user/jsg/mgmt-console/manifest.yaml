@@ -42,7 +42,7 @@ system:
         initialDelaySeconds: 60
         httpGet:
           path: /manage/health
-          port: 8080
+          port: 15372
     #lbName: mgmtserviceslb
 
     #terminationGracePeriodSeconds: 33
@@ -54,4 +54,7 @@ system:
     ports:
       - port: 8889
         targetport: 8080
+      - port: 15372
+        targetport: 15372
+
  
