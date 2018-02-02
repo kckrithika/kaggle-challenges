@@ -45,33 +45,33 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
-  - name: sherpa
-    image: sfci/servicelibs/sherpa:2.0.21
-    env:
-    - name: SFDC_ENVIRONMENT
-      value: "sam"
-    resources:
-      limits: { cpu: "1", memory: "1Gi" }
-      requests: { cpu: "1", memory: "1Gi" }
-    volumeMounts:
-      - name: server-cert-vol
-        mountPath: /server-certs
-    ports:
-    - containerPort: 7012
-      name: sherpa-in
-    - containerPort: 7443
-      name: sherpa-tls  
-    - containerPort: 15373
-      name: sherpa-adm
-    livenessProbe:
-      exec:
-        command:
-        - "./bin/is-alive"
-      initialDelaySeconds: 120
-      periodSeconds: 5
-    readinessProbe:
-      exec:
-        command:
-        - "./bin/is-ready"
-      initialDelaySeconds: 110
-      periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.21
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls  
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: server-cert-vol
+          mountPath: /server-certs
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
