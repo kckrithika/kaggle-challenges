@@ -25,7 +25,7 @@ spec:
         - --publicKey=/var/slb/canarycerts/sdc.crt
         - --healthPort=9119
         - --markerPath=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000586-5c7d2e3a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000588-cc577c78
         livenessProbe:
           httpGet:
             path: /
