@@ -6,7 +6,7 @@ system:
             - jsanzgonzalez@salesforce.com (mailto:jsanzgonzalez@salesforce.com)
   functions:
   # service name
-  - name: mgmt
+  - name: mgmtconsole
     #type: stateful-set
     # number of instances ("kpods") to deploy and run
     count: 1
@@ -48,7 +48,7 @@ system:
     #terminationGracePeriodSeconds: 33
   loadbalancers:
   - lbname: mgmt-console-lb
-    function: mgmt
+    function: mgmtconsole
     nodeExposed: false
     slbenabled: true
     ports:
