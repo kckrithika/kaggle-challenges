@@ -11,6 +11,9 @@ system:
     containers:
     - name: tictactoe-server-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       args:
       - --scone.service.name=tictactoe-server-service-envoy
       - --metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
@@ -35,6 +38,9 @@ system:
           port: 15372
     - name: beacon-tictactoe-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       args:
       - -endpoint
       - tictactoe-server-service-envoy:DATACENTER:7012
