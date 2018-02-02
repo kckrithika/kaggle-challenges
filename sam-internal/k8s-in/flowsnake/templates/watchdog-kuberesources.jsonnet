@@ -1,5 +1,6 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {
   kind: "Deployment",
    spec: {
@@ -16,7 +17,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                            "-role=KUBERESOURCES",
                            "-watchdogFrequency=60s",
                            "-alertThreshold=300s",
-                           "-emailFrequency=72h",
+                           "-emailFrequency=" + flowsnakeconfig.watchdog_email_frequency_kuberesources,
                            "-shouldBatchMetrics=true",
                            "-maxUptimeSampleSize=5",
                            "-timeout=2s",
