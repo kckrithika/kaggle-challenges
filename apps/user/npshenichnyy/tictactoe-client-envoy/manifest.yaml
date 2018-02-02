@@ -7,6 +7,9 @@ system:
     containers:
     - name: tictactoe-client-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-client-service:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       args:
       - --scone.service.name=tictactoe-client-service-envoy
       - --tictactoe.server.host=tictactoe-server-service-envoy.localhost.mesh.force.com
