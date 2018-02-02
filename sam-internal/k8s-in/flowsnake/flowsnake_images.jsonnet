@@ -67,6 +67,7 @@ local kingdom = std.extVar("kingdom");
                   "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
                   "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
                   "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                  "hadoop-dep-test-itest-ready": "hadoop-dep-test-itest-ready"
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
