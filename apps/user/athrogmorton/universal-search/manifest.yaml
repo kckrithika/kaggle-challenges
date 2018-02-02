@@ -1,13 +1,19 @@
 apiVersion: v1
 
 system:
+  notifications:
+    email:
+    - athrogmorton@salesforce.com
   functions:
   - name: universal-search
     count: 3
     volumes:
-    - name: pki-cert-vol
+    - name: client-cert-vol
       maddogCert:
         type: client
+    - name: server-cert-vol
+      maddogCert:
+        type: server
     - name: log-vol
       hostpath:
         path: /home/sfdc-usmt/logs
@@ -24,7 +30,7 @@ system:
         requests: { cpu: "2", memory: "10Gi" }
       env:
       volumeMounts:
-      - name: pki-cert-vol
+      - name: client-cert-vol
         mountPath: /etc/pki_service
       - name: log-vol
         mountPath: /home/sfdc-usmt/logs
@@ -39,4 +45,33 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
-    
+  - name: sherpa
+    image: sfci/servicelibs/sherpa:2.0.21
+    env:
+    - name: SFDC_ENVIRONMENT
+      value: "sam"
+    resources:
+      limits: { cpu: "1", memory: "1Gi" }
+      requests: { cpu: "1", memory: "1Gi" }
+    volumeMounts:
+      - name: server-cert-vol
+        mountPath: /server-certs
+    ports:
+    - containerPort: 7012
+      name: sherpa-in
+    - containerPort: 7443
+      name: sherpa-tls  
+    - containerPort: 15373
+      name: sherpa-adm
+    livenessProbe:
+      exec:
+        command:
+        - "./bin/is-alive"
+      initialDelaySeconds: 120
+      periodSeconds: 5
+    readinessProbe:
+      exec:
+        command:
+        - "./bin/is-ready"
+      initialDelaySeconds: 110
+      periodSeconds: 5
