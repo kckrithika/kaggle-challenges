@@ -8,9 +8,9 @@ system:
     - name: dashboard-phx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam
         - --insecure-port=9090
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PHX</h3>"
+        - --system-banner="<h2> Information for PHX is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -25,9 +25,9 @@ system:
     - name: dashboard-dfw
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam
         - --insecure-port=9091
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>DFW</h3>"
+        - --system-banner="<h2> Information for DFW is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -42,9 +42,9 @@ system:
     - name: dashboard-frf
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam
         - --insecure-port=9092
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>FRF</h3>"
+        - --system-banner="<h2> Information for FRF is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -59,9 +59,9 @@ system:
     - name: dashboard-iad
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam
         - --insecure-port=9093
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>IAD</h3>"
+        - --system-banner="<h2> Information for IAD is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -76,9 +76,9 @@ system:
     - name: dashboard-ord
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam
         - --insecure-port=9094
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>ORD</h3>"
+        - --system-banner="<h2> Information for ORD is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -93,9 +93,9 @@ system:
     - name: dashboard-par
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam
         - --insecure-port=9095
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PAR</h3>"
+        - --system-banner="<h2> Information for PAR is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -111,9 +111,9 @@ system:
       args:
         - --v=8
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam
         - --insecure-port=9096
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>HND</h3>"
+        - --system-banner="<h2> Information for HND is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -128,9 +128,9 @@ system:
     - name: dashboard-ukb
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb-sam
         - --insecure-port=9097
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>UKB</h3>"
+        - --system-banner="<h2> Information for UKB datacenter is on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -147,7 +147,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samtest
         - --insecure-port=9098
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMTEST</h3>"
+        - --system-banner="<h2> Information for this PRD-Samtest is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -164,7 +164,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAM</h3>"
+        - --system-banner="<h2> PRD Status - If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
@@ -181,7 +181,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-samdev
         - --insecure-port=9100
-        - --system-banner="<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>"
+        - --system-banner="<h2> Information for this datacenter is provided on a best-effort basis. If something looks wrong - let us know on our <a href="http://computecloud.slack.com">Slack</a> (Search for \#sam-onboarding)."
         - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
