@@ -22,10 +22,11 @@ system:
 #210#          value: S
           value: T
         - name: DB_USER
-#210#          value: GRUMPY
+#210#          value: grumpy
           value: happy
         - name: DB_SID
-          value: mist61a210utf
+#210#          value: mist61a210utf
+          value: mist61b212utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
@@ -168,7 +169,8 @@ system:
         - name: READY_SERVER_COUNT
           value: 2
         - name: DB_SID
-          value: mist61a210utf
+#210#          value: mist61a210utf
+          value: mist61b212utf
         - name: UNLOCK_DWARF
           value: y
         # Can increment value below to force restart of sequencer container
