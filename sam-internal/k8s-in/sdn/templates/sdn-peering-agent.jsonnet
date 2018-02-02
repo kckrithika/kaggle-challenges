@@ -66,7 +66,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 readOnly: true,
                             },
                             configs.kube_config_volume_mount,
-                            sdnconfigs.conditional_logs_volume_mount,
+                            sdnconfigs.conditional_sdn_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -99,7 +99,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         },
                     },
                     configs.kube_config_volume,
-                    sdnconfigs.conditional_logs_volume,
+                    sdnconfigs.conditional_sdn_logs_volume,
                 ]),
             },
             metadata: {
