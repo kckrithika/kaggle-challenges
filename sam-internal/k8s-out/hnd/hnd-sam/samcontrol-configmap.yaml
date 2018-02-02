@@ -15,7 +15,7 @@ data:
       "k8sapiserver": "",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.hnd.prod.non-estates.sfdcsd.net:8443",
-      "maddogMadkubImage": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000058-3855b6fd",
+      "maddogMadkubImage": "ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000061-74e4a7b6",
       "slbConfigInAnnotations": false,
       "slbConfigInLabels": false,
       "statefulAppEnabled": false,
