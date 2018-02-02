@@ -19,7 +19,7 @@ spec:
         - -role=MASTER
         - -watchdogFrequency=5s
         - -alertThreshold=150s
-        - -emailFrequency=5m
+        - -emailFrequency=10m
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

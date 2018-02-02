@@ -12,4 +12,6 @@ local kingdom = std.extVar("kingdom");
         "prd/prd-data-flowsnake",
         "prd/prd-data-flowsnake_test",
     ],
+    watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
+    watchdog_email_frequency_kuberesources: "72h",
 }
