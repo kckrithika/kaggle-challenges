@@ -1,0 +1,51 @@
+# Manifest Syntax: https://sfdc.co/sam-manifest-format
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: dfs-perf
+    count: 2
+    containers:
+    - name: dfs-perf
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.7
+      # associate the log directory to a logical volume.
+      volumeMounts:
+      - mountPath: /home/sfdc-dfs/logs
+        name: logvol
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      ports:
+      - containerPort: 7021
+      - containerPort: 15372
+      livenessProbe:
+        exec:
+          command: ["true"]
+    - name: sherpa-rsui
+      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: mist
+      args:
+        - --http2-in=9532
+      ports:
+        - containerPort: 9532
+        - containerPort: 7080
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+    # maps the dfslogvol volumnMount to a directory on the host machine
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-dfs/logs
+
