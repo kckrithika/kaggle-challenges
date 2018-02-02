@@ -46,7 +46,7 @@ system:
           port: 15372
         initialDelaySeconds: 120
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.20
       ports:
       - containerPort: 7012
         name: sherpa-in
