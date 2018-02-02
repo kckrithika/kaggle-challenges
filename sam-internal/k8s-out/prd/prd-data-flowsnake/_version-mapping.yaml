@@ -7,6 +7,7 @@ data:
     0.9.4 = 447
     0.9.5 = 487
     add-hive-to-spark-4-itest-ready = add-hive-to-spark-4-itest-ready
+    hadoop-dep-test-itest-ready = hadoop-dep-test-itest-ready
     kafka-one-test = cm201711-kafka-one-upgrade-itest-ready
     khtest = disable-core-dumps-itest-ready
     release-095-retry-itest-ready = release-095-retry-itest-ready
