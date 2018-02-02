@@ -124,8 +124,8 @@ system:
 
     volumeClaimTemplates:
     - name: datavol
-      storageClassName: standard
-      storageSizeRequest: 100Gi
+      storageClassName: ssandke-slow
+      storageSizeRequest: 1Gi
 
   - name: etcd-pvnc
     count: 1
@@ -176,8 +176,8 @@ system:
 
     volumeClaimTemplates:
     - name: datavol
-      storageClassName: standard
-      storageSizeRequest: 100Gi
+      storageClassName: ssandke-slow
+      storageSizeRequest: 1Gi
 
   loadbalancers:
   - lbname: etcd-transient
