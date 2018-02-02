@@ -44,6 +44,7 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001619-308fa232",
 
         #[prahlad.joshi] scrapper sends kind for watch events
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "prd,prd-samdev,snapshoter,hypersam": "sam-0001681-b53394f1",
