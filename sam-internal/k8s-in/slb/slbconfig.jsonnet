@@ -35,7 +35,7 @@ perCluster: {
 
     servicesToLbOverride: {
         "prd-sdc": "",
-        "prd-sam": "slb-canary-proxy-http-service,slb-alpha-svc",
+        "prd-sam": "",
     },
 
     servicesNotToLbOverride: {
