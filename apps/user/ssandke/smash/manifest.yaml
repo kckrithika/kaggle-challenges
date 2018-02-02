@@ -33,6 +33,7 @@ system:
   loadbalancers:
   - lbname: tiller
     function: tiller
+    slbEnabled: true
     ports:
     - port: 44134
       targetport: 44134
