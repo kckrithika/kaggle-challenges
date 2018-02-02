@@ -1,0 +1,61 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - emailinfrastructure@salesforce.com
+  functions:
+  - name: eaas-grpc-client
+    count: 3 
+    strategy:
+      type: RollingUpdate
+    containers:
+    - name: eaas-grpc-client
+      image: docker-sfci-dev/sfci/pkonieczny/grpc-client:71978e59aa9a93f3fb98cada3f7ac4f7a3908d6e
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - /home/sfdc-eaas/grpc-client.jar
+      initialDelaySeconds: 5
+      periodSeconds: 5
+    - name: sherpa-eaas-grpc-client
+      image: sfci/servicelibs/sherpa:2.0.17
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-eaas-in
+      - containerPort: 7443
+        name: sherpa-eaas-tls
+      - containerPort: 15373
+        name: sherpa-eaas-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      volumeMounts:
+      - name: eaas-server-cert
+        mountPath: /server-certs
+    volumes:
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
+    - name: eaas-server-cert
+      maddogCert:
+        type: server
