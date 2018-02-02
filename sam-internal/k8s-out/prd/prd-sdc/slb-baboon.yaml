@@ -40,7 +40,7 @@ spec:
         - --namespace=sam-system
         - --log_dir=/host/data/slb/logs
         - --hostnameoverride=$(NODE_NAME)
-        - --port=32150
+        - --port=32151
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
