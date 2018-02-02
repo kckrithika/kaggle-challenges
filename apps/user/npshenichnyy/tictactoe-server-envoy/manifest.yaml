@@ -1,0 +1,64 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: tictactoe-server-service-envoy
+    count: 1
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-tictactoe/logs
+    containers:
+    - name: tictactoe-server-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-server-service:latest
+      args:
+      - --scone.service.name=tictactoe-server-service-envoy
+      - --metrics.funnelEndPointURL=${SFDC_METRICS_SERVICE_HOST}
+      - --server.port=15371
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvol
+      ports:
+        - containerPort: 7020
+        - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - name: beacon-tictactoe-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - tictactoe-server-service-envoy:DATACENTER:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    - name: sherpa-tictactoe-server
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/5/console
+      image: sfci/servicelibs/sherpa-envoy:3b0190312fa125d04b1a7b8ce70ce999a00aff68
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - --switchboard-addr
+      - switchboard-lb.service-mesh.prd-sam.prd.slb.sfdc.net
+      livenessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
