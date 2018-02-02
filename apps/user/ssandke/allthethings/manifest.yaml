@@ -59,8 +59,8 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: standard
-      storageSizeRequest: 3Gi
+      storageClassName: ssandke-slow
+      storageSizeRequest: 1Gi
 
   # loadbalancers:
   # - lbname: samhellolb
