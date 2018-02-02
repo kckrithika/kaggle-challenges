@@ -8,7 +8,7 @@ if configs.kingdom == "prd" then {
         template: {
             spec: {
                 volumes: [
-                    sdnconfigs.logs_volume,
+                    sdnconfigs.sdn_logs_volume,
                 ],
                 containers: [
                     {
@@ -24,7 +24,7 @@ if configs.kingdom == "prd" then {
                             "--logtostderr=false",
                         ],
                         volumeMounts: [
-                            sdnconfigs.logs_volume_mount,
+                            sdnconfigs.sdn_logs_volume_mount,
                         ],
                         securityContext: {
                             privileged: true,

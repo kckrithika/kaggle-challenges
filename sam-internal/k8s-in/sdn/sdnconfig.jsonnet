@@ -23,22 +23,22 @@ local utils = import "util_functions.jsonnet";
     # File path for logs
     logFilePath: "/data/logs/sdn/",
 
-    logDirArg: (if estate == "prd-sdc" then ("--log_dir=" + self.logFilePath)),
-    logToStdErrArg: (if estate == "prd-sdc" then "--logtostderr=false"),
+    logDirArg: (if estate == "prd-sdc" || estate == "prd-samdev" || estate == "prd-samtest" then ("--log_dir=" + self.logFilePath)),
+    logToStdErrArg: (if estate == "prd-sdc" || estate == "prd-samdev" || estate == "prd-samtest" then "--logtostderr=false"),
 
     # Volume for logs
-    logs_volume: {
+    sdn_logs_volume: {
         name: "sdnlogs",
         hostPath: {
             path: "/data/logs/sdn",
         },
     },
-    conditional_logs_volume: if estate == "prd-sdc" then self.logs_volume else {},
+    conditional_sdn_logs_volume: if estate == "prd-sdc" || estate == "prd-samdev" || estate == "prd-samtest" then self.sdn_logs_volume else {},
 
     # Volume mount for logs
-    logs_volume_mount: {
+    sdn_logs_volume_mount: {
         mountPath: "/data/logs/sdn",
         name: "sdnlogs",
     },
-    conditional_logs_volume_mount: if estate == "prd-sdc" then self.logs_volume_mount else {},
+    conditional_sdn_logs_volume_mount: if estate == "prd-sdc" || estate == "prd-samdev" || estate == "prd-samtest" then self.sdn_logs_volume_mount else {},
 }
