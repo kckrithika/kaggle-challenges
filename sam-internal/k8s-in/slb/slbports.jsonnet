@@ -38,6 +38,6 @@
         bravoServiceNodePort3: 32147,
         slbEchoServiceNodePort: 32148,
         slbIpvsControlPort: 32149,
-        baboonEndPointPort: 32151,
+        baboonEndPointPort: 22135,
     },
 }
