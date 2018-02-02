@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+if configs.kingdom == "prd" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -25,9 +25,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samdev" || configs.esta
                         ],
                         volumeMounts: [
                             sdnconfigs.logs_volume_mount,
-                        ],
-                        env: [
-                            configs.kube_config_env,
                         ],
                         securityContext: {
                             privileged: true,
