@@ -185,3 +185,7 @@ apps:
     - name: par/par-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-par.ops.sfdc.net
+  shared0-samminionatlasfe2-1-par:
+    - name: par/par-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe2-1-par.ops.sfdc.net
