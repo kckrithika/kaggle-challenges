@@ -1,5 +1,5 @@
 {
-    cert_volume: [
+    k8s_cert_volume: [
         {
             name: "certificate-authority",
             hostPath: {
@@ -25,7 +25,7 @@
             },
         },
     ],
-    cert_volumeMounts: [
+    k8s_cert_volumeMounts: [
         {
             mountPath: "/etc/pki_service/ca",
             name: "certificate-authority",
@@ -100,6 +100,14 @@
            mountPath: "/etc/kubernetes/kubeconfig",
            name: "kubeconfig",
            readOnly: true,
+        },
+    ],
+    kubeconfig_platform_volume: [
+        {
+            hostPath: {
+              path: "/etc/kubernetes/kubeconfig-platform",
+            },
+            name: "kubeconfig",
         },
     ],
     kubeconfig_volume: [

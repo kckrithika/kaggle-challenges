@@ -107,7 +107,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                             },
                         ] +
                         flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                        flowsnakeconfigmapmount.cert_volumeMounts,
+                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
                     },
                 ],
                 volumes: [
@@ -116,8 +116,8 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         emptyDir: {},
                     },
                 ] +
-                flowsnakeconfigmapmount.kubeconfig_volume +
-                flowsnakeconfigmapmount.cert_volume,
+                flowsnakeconfigmapmount.kubeconfig_platform_volume +
+                flowsnakeconfigmapmount.platform_cert_volume,
             },
         },
     },
