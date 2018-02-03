@@ -10,6 +10,8 @@ system:
     containers:
     - name: moderation-einstein-model
       image: docker-sfci-rc/sfci/moderation-einstein/moderation-einstein-model:20180131
+      # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
+      args: ["-d"]
       livenessProbe:
        exec:
         command: ["ls", "/model/model_global.vw"]
