@@ -17,7 +17,6 @@ if configs.estate == "prd-sdc" then {
         replicas: 1,
         template: {
             spec: {
-                hostNetwork: true,
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
