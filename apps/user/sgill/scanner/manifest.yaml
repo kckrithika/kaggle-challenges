@@ -7,13 +7,13 @@ system:
     volumes:
     - name: pd-scanner-client-cert
       maddogCert:
-        type: server
+        type: client
     - name: pd-scanner-server-cert
       maddogCert:
         type: server
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner:20180130_1458
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner:20180202_1909
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
