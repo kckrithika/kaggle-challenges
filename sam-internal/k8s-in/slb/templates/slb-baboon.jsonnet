@@ -39,11 +39,11 @@ if configs.estate == "prd-sdc" then {
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-baboon",
-                            "--deletePodPeriod=1h",
+                            "--deletePodPeriod=20m",
                             "--deletePodFlag=true",
                             "--deleteIpvsStatePeriod=4h",
                             "--deleteIpvsStateFlag=true",
-                            "--deleteConfigFilePeriod=80m",
+                            "--deleteConfigFilePeriod=50m",
                             "--deleteConfigFileFlag=true",
                             "--deleteNginxTunnelIntfPeriod=2h",
                             "--deleteNginxTunnelIntfFlag=true",
