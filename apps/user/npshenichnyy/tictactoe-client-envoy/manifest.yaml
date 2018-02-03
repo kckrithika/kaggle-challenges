@@ -13,6 +13,7 @@ system:
       args:
       - --scone.service.name=tictactoe-client-service-envoy
       - --tictactoe.server.host=tictactoe-server-service-envoy.localhost.mesh.force.com
+      - --tictactoe.server.port=7012
       ports:
         - containerPort: 7020
         - containerPort: 15372
