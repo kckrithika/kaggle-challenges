@@ -68,7 +68,6 @@ spec:
           name: kubectl
         - mountPath: /sfdchosts
           name: sfdchosts
-      hostNetwork: true
       nodeSelector:
         pool: prd-sdc
       volumes:
