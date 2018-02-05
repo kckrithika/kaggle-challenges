@@ -71,6 +71,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     },
                 ]),
                 nodeSelector: {
+                    # TODO: Find a better way to do this.
                     "kubernetes.io/hostname": [h.hostname for h in hosts.hosts if h.controlestate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0],
                 },
             },
