@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: default
+  - name: speedometer
     count: 1
     containers:
     - name: speedometer
@@ -10,6 +10,10 @@ system:
       command: ["/sdn/speedometer"]
       ports:
       - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
       volumeMounts:
       - mountPath: /host/data/speedometer/logs
         name: logvol
@@ -19,7 +23,7 @@ system:
         path: /data/speedometer/logs
   loadbalancers:
   - lbname: speedometer
-    function: default
+    function: speedometer
     slbenabled: true
     ports:
       - port: 8080
