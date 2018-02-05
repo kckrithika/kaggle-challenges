@@ -87,6 +87,7 @@ if configs.estate == "prd-sdc" then {
                 ],
                 nodeSelector: {
                     pool: configs.estate,
+                    master: "true",
                 },
             },
             metadata: {

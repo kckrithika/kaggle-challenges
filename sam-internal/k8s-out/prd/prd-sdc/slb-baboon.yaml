@@ -69,6 +69,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
+        master: "true"
         pool: prd-sdc
       volumes:
       - hostPath:
