@@ -1,0 +1,28 @@
+apiVersion: v1
+system:
+  functions:
+  - name: gocd-master
+    count: 1
+    containers:
+    - name: jenkins-master
+      # Replace this image with our gocd image when ready
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/nelsonwolf-hellosam:1
+      ports:
+      - name: ui
+        containerPort: 8153
+      - name: agent
+        containerPort: 8154
+      livenessProbe:
+        httpGet:
+          path: /go/api/v1/health
+          port: 8153
+        initialDelaySeconds: 120
+  loadbalancers:
+  - lbname: gocd-lb 
+    function: gocd-master
+    slbenabled: true
+    ports:
+    - port: 8153
+      targetport: 8153
+    - port: 8154
+      targetport: 8154
