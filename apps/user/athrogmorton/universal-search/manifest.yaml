@@ -6,7 +6,7 @@ system:
     - athrogmorton@salesforce.com
   functions:
   - name: universal-search
-    count: 3
+    count: 2
     volumes:
     - name: client-cert-vol
       maddogCert:
@@ -14,9 +14,12 @@ system:
     - name: server-cert-vol
       maddogCert:
         type: server
-    - name: log-vol
+    - name: usmt-log-vol
       hostpath:
         path: /home/sfdc-usmt/logs
+    - name: sherpa-log-vol
+      hostpath:
+        path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search:0.2.2
@@ -32,7 +35,7 @@ system:
       volumeMounts:
       - name: client-cert-vol
         mountPath: /etc/pki_service
-      - name: log-vol
+      - name: usmt-log-vol
         mountPath: /home/sfdc-usmt/logs
       livenessProbe:
         httpGet:
@@ -46,7 +49,7 @@ system:
           port: 15372
         initialDelaySeconds: 120
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.20
+      image: sfci/servicelibs/sherpa:2.0.21
       ports:
       - containerPort: 7012
         name: sherpa-in
@@ -63,15 +66,17 @@ system:
       volumeMounts:
         - name: server-cert-vol
           mountPath: /server-certs
+        - name: sherpa-log-vol
+          mountPath: /log
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 10
         periodSeconds: 5
