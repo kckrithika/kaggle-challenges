@@ -26,10 +26,48 @@ system:
     - name: www
       storageClassName: small-hdd-pool
       storageSizeRequest: 500Gi
-  loadbalancers:
-  - lbname: cephlb
-    function: stateful-grill-ceph
-    slbenabled: true
-    ports:
-      - port: 9099
-        targetport: 9099
+    loadbalancers:
+    - lbname: grill-ceph-lb
+      function: stateful-grill-ceph
+      slbenabled: true
+      ports:
+        - port: 9099
+          targetport: 9099
+
+  - name: grill-ceph-sfms
+    count: 1
+    containers:
+    # metric streamer as side-car container
+    - name: sfms
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
+      command:
+        - /opt/sfms/bin/sfms
+      args:
+      - -j
+      - prometheus
+      env:
+      - name: SFDC_FUNNEL_VIP
+        value: ajna0-funnel1-0-prd.data.sfdc.net:80
+      - name: MC_KINGDOM
+        value: prd
+      - name: MC_ESTATE
+        value: prd-sam_storage
+      - name: MC_NAME
+        value: grill_ceph
+      - name: MC_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      - name: MC_NODE
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
+      - name: MC_DEVICE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.name
+      livenessProbe:
+        exec:
+          command:
+          - cat
+          - tmp/healthy
