@@ -1,3 +1,5 @@
 apps:
+ gocd-master:
+  - prd/prd-sam
  jenkins-master:
   - prd/prd-sam
