@@ -1,0 +1,30 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: speedometer
+    count: 1
+    containers:
+    - name: speedometer
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000594-db28d96c
+      command: ["/sdn/speedometer"]
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - mountPath: /host/data/speedometer/logs
+        name: logvol
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /data/speedometer/logs
+  loadbalancers:
+  - lbname: speedometer
+    function: speedometer
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
