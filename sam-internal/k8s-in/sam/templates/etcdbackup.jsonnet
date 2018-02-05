@@ -3,7 +3,7 @@ local samimages = import "samimages.jsonnet";
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
 
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" then {
     kind: "DaemonSet",
     spec: {
         template: {
