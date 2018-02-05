@@ -87,6 +87,12 @@ local utils = import "util_functions.jsonnet";
 ) +
 (
   if configs.kingdom == "prd" then {
+    # Manifest ZIP Thingy
+    ManifestTnrpEndpoint: configs.tnrpArchiveEndpoint,
+  } else {}
+) +
+(
+  if configs.kingdom == "prd" then {
   # Kuberesource Checker
   # We dont want to report on broken hairpin pods, since hairpin already alerts on those
   # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack

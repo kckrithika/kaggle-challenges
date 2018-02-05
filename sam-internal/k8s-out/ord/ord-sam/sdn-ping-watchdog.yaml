@@ -24,7 +24,7 @@ spec:
       - command:
         - /sdn/sdn-ping-watchdog
         - --funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
-        - --archiveSvcEndpoint=https://ops0-piperepo1-1-ord.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-ord.data.sfdc.net/tnrp/content_repo/0/archive
         - --smtpServer=ops0-mta2-1-ord.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
         - --recipient=sdn-alerts@salesforce.com

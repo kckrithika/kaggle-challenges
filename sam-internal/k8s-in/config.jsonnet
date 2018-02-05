@@ -65,7 +65,8 @@ local utils = import "util_functions.jsonnet",
         "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net:80"
     ),
     tnrpArchiveEndpoint: (
-    if kingdom == "par" || kingdom == "prd" || kingdom == "phx" then
+    # Rolling to use LB endpoints (.data)
+    if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
         "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/tnrp/content_repo/0/archive"
     else if utils.is_gia(kingdom) then
         "https://ops-piperepo1-0-" + kingdom + ".data.sfdc.net/tnrp/content_repo/0/archive"

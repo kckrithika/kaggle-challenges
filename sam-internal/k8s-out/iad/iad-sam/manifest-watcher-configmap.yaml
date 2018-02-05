@@ -7,7 +7,7 @@ data:
       "disableCertsCheck": true,
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "tlsEnabled": true,
-      "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-iad.ops.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrpArchiveEndpoint": "https://ops0-piperepo1-0-iad.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:
