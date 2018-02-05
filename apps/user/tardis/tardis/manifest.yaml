@@ -52,6 +52,10 @@ system:
           secretKeyRef:
             name: tardis-secret
             key: git-token
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: .soma.salesforce.com
       - name: SERVER_PORT
         value: 9091
       - name: SSL_CERT_KEY_PATH
