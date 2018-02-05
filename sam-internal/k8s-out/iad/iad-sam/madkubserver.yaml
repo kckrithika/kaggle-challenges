@@ -37,6 +37,8 @@ spec:
         - http://ajna0-funnel1-0-iad.data.sfdc.net:80
         - --kingdom
         - iad
+        - --estate
+        - iad-sam
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000061-74e4a7b6
         livenessProbe:
           httpGet:
