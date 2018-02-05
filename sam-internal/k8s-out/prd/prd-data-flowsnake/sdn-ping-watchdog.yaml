@@ -37,6 +37,8 @@ spec:
         - --livenessProbePort=9102
         - --controlEstate=prd-data-flowsnake
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -58,6 +60,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: prd-data-flowsnake
@@ -74,3 +78,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs
