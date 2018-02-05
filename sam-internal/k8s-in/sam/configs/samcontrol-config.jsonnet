@@ -40,3 +40,6 @@ local utils = import "util_functions.jsonnet";
 + (if configs.estate == "prd-samtest" then {
     livenessProbePort: "22545",
   } else {})
++ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+    enableDNS: true,
+  } else {})
