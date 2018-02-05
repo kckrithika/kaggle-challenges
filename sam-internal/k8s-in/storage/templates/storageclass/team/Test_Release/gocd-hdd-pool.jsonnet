@@ -6,7 +6,7 @@ if configs.estate == "prd-sam" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
-        "name": "gocd-hdd-pool",
+        "name": "test-release-gocd-hdd-pool",
         "namespace": appNamespace,
         "annotations": {
             "manifestctl.sam.data.sfdc.net/swagger": "disable",
