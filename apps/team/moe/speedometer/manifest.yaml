@@ -17,14 +17,20 @@ system:
       volumeMounts:
       - mountPath: /host/data/speedometer/logs
         name: logvol
+      - mountPath: /secrets
+        name: speedometer-ghe-pat
+        readOnly: true
     volumes:
     - name: logvol
       hostPath:
         path: /data/speedometer/logs
+    - name: speedometer-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
   loadbalancers:
   - lbname: speedometer
     function: speedometer
     slbenabled: true
     ports:
-      - port: 8080
+      - port: 80
         targetport: 8080
