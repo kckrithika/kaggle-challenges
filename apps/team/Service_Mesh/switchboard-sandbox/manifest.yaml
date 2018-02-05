@@ -6,8 +6,8 @@ system:
     count: 2
     containers:
     - name: switchboardsb
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/11/console
-      image: sfci/servicelibs/switchboard:6060ca0361475838095094a71025e2b749135b35
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/14/console
+      image: sfci/servicelibs/switchboard:a71ddd9ad0091a29120c1f52a826f41b045ea119
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
