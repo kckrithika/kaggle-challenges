@@ -49,11 +49,8 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
               "http://" + configs.funnelVIP,
               "--kingdom",
               configs.kingdom,
-            ] +
-            if configs.kingdom == "prd" then [
               "--estate",
               configs.estate,
-            ] else [
             ],
             image: samimages.madkub,
             name: "madkubserver",
