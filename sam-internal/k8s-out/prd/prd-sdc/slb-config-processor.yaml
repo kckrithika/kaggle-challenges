@@ -14,13 +14,6 @@ spec:
         name: slb-config-processor
       namespace: sam-system
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: slb.sfdc.net/role
-                operator: DoesNotExist
       containers:
       - command:
         - /sdn/slb-config-processor
@@ -41,6 +34,7 @@ spec:
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
         - --servicesNotToLbOverride=slb-canary-proxy-tcp-service
         env:
         - name: KUBECONFIG

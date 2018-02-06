@@ -3,8 +3,8 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    name: slb-nginx-proxy
-  name: slb-nginx-proxy
+    name: slb-nginx-proxy-b
+  name: slb-nginx-proxy-b
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -104,7 +104,7 @@ spec:
                    ]
       creationTimestamp: null
       labels:
-        name: slb-nginx-proxy
+        name: slb-nginx-proxy-b
       namespace: sam-system
     spec:
       containers:
@@ -117,7 +117,7 @@ spec:
             port: 12080
           initialDelaySeconds: 15
           periodSeconds: 10
-        name: slb-nginx-proxy
+        name: slb-nginx-proxy-b
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
@@ -192,7 +192,7 @@ spec:
           name: maddog-certs
       hostNetwork: true
       nodeSelector:
-        slb-service: slb-nginx
+        slb-service: slb-nginx-b
       restartPolicy: Always
       volumes:
       - hostPath:

@@ -4,7 +4,7 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local samimages = import "sam/samimages.jsonnet";
 
-if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
      apiVersion: "extensions/v1beta1",
      kind: "Deployment",
      metadata: {
@@ -17,7 +17,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
      },
      spec: {
       minReadySeconds: 30,
-      replicas: 1,
+      replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 2,
       strategy: {
        type: "RollingUpdate",
       },
@@ -282,7 +282,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
        },
       },
      },
-} else if configs.estate == "prd-sam" then {
+} else if configs.kingdom == "prd" then {
   apiVersion: "extensions/v1beta1",
       kind: "Deployment",
       metadata: {

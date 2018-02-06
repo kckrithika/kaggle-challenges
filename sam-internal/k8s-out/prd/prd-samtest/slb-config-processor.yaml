@@ -34,6 +34,7 @@ spec:
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
