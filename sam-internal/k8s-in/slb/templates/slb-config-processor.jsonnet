@@ -57,11 +57,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
                             "--shouldRemoveConfig=true",
                             configs.sfdchosts_arg,
+                            "--proxySelectorLabelValue=slb-nginx-config-b",
                         ] + if configs.estate == "prd-sdc" then [
                             "--servicesNotToLbOverride=" + slbconfigs.servicesNotToLbOverride,
-                        ] else []
-                        + if configs.estate == "prd-sam" then [
-                            "--proxySelectorLabelValue=slb-nginx-config-b",
                         ] else [],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -115,24 +113,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         },
                     },
                 ],
-            } + if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
-               affinity: {
-                                           nodeAffinity: {
-                                             requiredDuringSchedulingIgnoredDuringExecution: {
-                                               nodeSelectorTerms: [
-                                                 {
-                                                    matchExpressions: [
-                                                      {
-                                                         key: "slb.sfdc.net/role",
-                                                         operator: "DoesNotExist",
-                                                      },
-                                                    ],
-                                                 },
-                                               ],
-                                             },
-                                           },
-                                         },
-            } else {},
+            },
         },
     },
 } else "SKIP"
