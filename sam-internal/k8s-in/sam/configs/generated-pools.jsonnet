@@ -1970,6 +1970,18 @@
       "estate": "yul-sam_gater",
       "kingdom": "yul",
       "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "sdn"
+      ],
+      "access": [
+        "team/sdn"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-sdn_control",
+      "kingdom": "yul",
+      "superPod": "None"
     }
   ]
 }
