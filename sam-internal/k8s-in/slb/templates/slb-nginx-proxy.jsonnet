@@ -4,7 +4,7 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local samimages = import "sam/samimages.jsonnet";
 
-if configs.kingdom == "prd" && configs.estate == "prd-sdc" then {
+if configs.kingdom == "prd" && (configs.estate == "prd-sdc" || configs.estate == "prd-samtest") then {
      apiVersion: "extensions/v1beta1",
      kind: "Deployment",
      metadata: {
