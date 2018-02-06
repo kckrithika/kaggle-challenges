@@ -19,8 +19,6 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: slb-dns-register
-                operator: DoesNotExist
               - key: slb.sfdc.net/role
                 operator: DoesNotExist
       containers:
