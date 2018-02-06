@@ -11,18 +11,20 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
+      - name: MANAGEMENT_PORT
+        value: 15370
       ports:
       - containerPort: 15001
-      - containerPort: 15372
+      - containerPort: 15370
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15370
         initialDelaySeconds: 20
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15370
         initialDelaySeconds: 15
   loadbalancers:
   - lbname: switchboard-lb
@@ -32,8 +34,8 @@ system:
     - port: 15001
       targetport: 15001
       lbtype: dsr
-    - port: 15372
-      targetport: 15372
+    - port: 15370
+      targetport: 15370
       lbtype: dsr
   - lbname: switchboard-nlb
     function: switchboard
