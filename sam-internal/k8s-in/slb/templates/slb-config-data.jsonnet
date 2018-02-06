@@ -34,7 +34,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             image: slbimages.hypersdn,
                             command: [
                                 "/sdn/slb-config-data",
-                                "--slbDir=" + slbconfigs.slbDir,
                                 "--port=" + portconfigs.slb.slbConfigDataPort,
                             ],
                             volumeMounts: configs.filter_empty([
