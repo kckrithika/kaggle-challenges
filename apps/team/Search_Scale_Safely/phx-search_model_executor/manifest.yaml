@@ -9,7 +9,7 @@ system:
     count: 20
     containers:
     - name: search-model-executor
-      image: sfci/searchdev/smt-search-model-executor:1.2
+      image: sfci/searchdev/smt-search-model-executor:1.3.0
       ports:
       - name: service-port
         containerPort: 7020
