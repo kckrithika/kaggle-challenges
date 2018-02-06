@@ -34,7 +34,7 @@ system:
       env:
       volumeMounts:
       - name: client-cert-vol
-        mountPath: /etc/pki_service
+        mountPath: /certs
       - name: usmt-log-vol
         mountPath: /home/sfdc-usmt/logs
       livenessProbe:
