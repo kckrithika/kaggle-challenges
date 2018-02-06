@@ -14,6 +14,13 @@ spec:
         name: slb-config-processor
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb.sfdc.net/role
+                operator: DoesNotExist
       containers:
       - command:
         - /sdn/slb-config-processor

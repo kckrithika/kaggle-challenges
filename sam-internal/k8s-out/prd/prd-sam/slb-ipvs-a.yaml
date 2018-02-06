@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-ipvs
-  name: slb-ipvs
+    name: slb-ipvs-a
+  name: slb-ipvs-a
   namespace: sam-system
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
-        name: slb-ipvs
+        name: slb-ipvs-a
       namespace: sam-system
     spec:
       containers:
@@ -93,7 +93,7 @@ spec:
           name: sfdchosts
       hostNetwork: true
       nodeSelector:
-        slb-service: slb-ipvs
+        slb-service: slb-ipvs-a
       volumes:
       - hostPath:
           path: /data/slb

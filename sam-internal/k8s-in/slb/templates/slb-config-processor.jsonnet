@@ -25,6 +25,24 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             spec: {
                 hostNetwork: true,
+                affinity: {
+                   nodeAffinity: {
+                                                                 requiredDuringSchedulingIgnoredDuringExecution: {
+                                                                   nodeSelectorTerms: [
+                                                                     {
+                                                                        matchExpressions: [
+                                                                          {
+                                                                             key: "slb.sfdc.net/role",
+                                                                             operator: "DoesNotExist",
+                                                                          },
+                                                                        ],
+                                                                     },
+                                                                   ],
+                                                                 },
+                                                               },
+                                                             },
+
+
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
