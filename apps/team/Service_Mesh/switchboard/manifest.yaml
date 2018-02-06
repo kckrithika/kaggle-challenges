@@ -13,6 +13,18 @@ system:
         value: stm
       - name: MANAGEMENT_PORT
         value: 15370
+      - name: CLUSTERS_EXTERNAL-CLUSTERS[0]
+        value: geoip
+      - name: CLUSTERS_EXTERNAL-CLUSTERS[1]
+        value: time
+      - name: CLUSTERS_EXTERNAL-CLUSTERS[2]
+        value: search-model-executor-rpulle
+      - name: CLUSTERS_EXTERNAL-CLUSTERS[3]
+        value: search-model-executor-rpulle
+      - name: CLUSTERS_EXTERNAL-CLUSTERS[4]
+        value: search-model-executor-xlt
+      - name: CLUSTERS_EXTERNAL-CLUSTERS[5]
+        value: tictactoe-server-service-envoy
       ports:
       - containerPort: 15001
       - containerPort: 15370
