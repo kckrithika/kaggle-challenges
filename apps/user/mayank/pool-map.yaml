@@ -1,11 +1,15 @@
+version: v2
 apps:
  StatefulApp:
-  - prd/prd-sam
+  - name: prd/prd-sam
+    hostSubList:
+    - shared0-samcompute1-3-prd.eng.sfdc.net
+    - shared0-samcompute1-4-prd.eng.sfdc.net
+    - shared0-samcompute1-5-prd.eng.sfdc.net   
  TestApp:
-  - prd/prd-sam
-  #- prd/prd-samdev
+  - name: prd/prd-sam
  StatefulDemoApp:
-  - prd/prd-samtest
-  - prd/prd-sam
+  - name: prd/prd-samtest
+  - name: prd/prd-sam
  StatefulAppOnRdi:
-  - prd/prd-samdev
+  - name: prd/prd-samdev
