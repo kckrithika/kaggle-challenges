@@ -58,13 +58,6 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                     configs.kube_config_volume,
                     sdnconfigs.conditional_sdn_logs_volume,
                 ]),
-                nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
             },
             metadata: {
                 labels: {
