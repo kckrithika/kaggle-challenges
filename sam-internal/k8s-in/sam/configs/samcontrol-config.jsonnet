@@ -41,5 +41,8 @@ local utils = import "util_functions.jsonnet";
     livenessProbePort: "22545",
   } else {})
 + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+    # [mayank] This flag enables dns resolution for pods deployed by samcontroller
+    # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
+    # we will enable kubedns soon and then we can enable it for prod as well.
     enableDNS: true,
   } else {})
