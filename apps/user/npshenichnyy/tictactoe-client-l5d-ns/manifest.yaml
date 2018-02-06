@@ -1,0 +1,53 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: tictactoe-client-service-l5d-ns
+    count: 2
+    containers:
+    - name: tictactoe-client-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/tictactoe-client-service:latest
+      args:
+      # SCONE doesn't support prefixes...
+      - --scone.service.name=mesh-games_tictactoe-client-service-l5d-ns
+      - --tictactoe.server.host=tictactoe-server-service-l5d-ns.mesh-games.localhost.mesh.force.com
+      - --tictactoe.server.port=7011
+      ports:
+        - containerPort: 7020
+        - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - name: sherpa-tictactoe-client
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:2-0000158-04d330c5
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+      readinessProbe:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"

@@ -11,3 +11,7 @@ apps:
   - prd/prd-sam
  tictactoe-client-envoy:
   - prd/prd-sam
+ tictactoe-server-l5d-ns:
+  - prd/prd-sam
+ tictactoe-client-l5d-ns:
+  - prd/prd-sam
