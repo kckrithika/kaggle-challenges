@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = import "sdnimages.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -50,4 +50,4 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
         name: "sdn-cleanup",
         namespace: "sam-system",
     },
-} else "SKIP"
+}
