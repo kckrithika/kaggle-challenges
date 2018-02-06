@@ -19,8 +19,6 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: slb-dns-register
-                operator: DoesNotExist
               - key: slb.sfdc.net/role
                 operator: DoesNotExist
       containers:
@@ -43,7 +41,7 @@ spec:
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --servicesNotToLbOverride=slb-canary-proxy-http-service,slb-alpha-svc,slb-bravo-svc,slb-canary-service
+        - --proxySelectorLabelValue=slb-nginx-config-b
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
