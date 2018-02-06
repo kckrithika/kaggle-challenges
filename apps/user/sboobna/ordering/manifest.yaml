@@ -5,9 +5,12 @@ system:
   - name: ordering-sboobna
     count: 1
     volumes:
-    - name: cert
+    - name: clientcert
       maddogCert:
         type: client
+    - name: servercert
+      maddogCert:
+        type: server
     containers:
     - name: ordering-sboobna
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/ordering/ordering-sboobna:sboobna-20180131-fcb1684
@@ -37,12 +40,14 @@ system:
       - -service
       - ordering
       - -rootCert
-      - /certs/ca.pem
+      - /clientcerts/ca.pem
       - -certDir
-      - /certs/client
+      - /clientcerts/client
       volumeMounts:
-      - name: cert
-        mountPath: /certs
+      - name: clientcert
+        mountPath: /clientcerts
+      - name: servercert
+        mountPath: /servercerts
       livenessProbe:
         initialDelaySeconds: 5
         exec:
