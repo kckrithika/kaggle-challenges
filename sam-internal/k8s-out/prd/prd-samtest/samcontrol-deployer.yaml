@@ -21,7 +21,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180205_123347.e7b0f028.dirty.dianachang-ltm1
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180206_101227.e7b0f028.dirty.dianachang-ltm1
         livenessProbe:
           httpGet:
             path: /
