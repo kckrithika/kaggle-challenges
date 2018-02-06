@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000594-db28d96c
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000599-e9594234
       command: ["/speedometer/speedometer"]
       ports:
       - containerPort: 8080
