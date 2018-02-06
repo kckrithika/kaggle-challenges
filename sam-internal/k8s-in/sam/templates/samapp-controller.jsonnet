@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
 local utils = import "util_functions.jsonnet";
 
+// Only for testing purpose
 if configs.estate == "prd-samtest" then {
     kind: "Deployment",
     spec: {
