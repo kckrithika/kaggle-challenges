@@ -32,8 +32,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                                      {
                                                                         matchExpressions: [
                                                                           {
-                                                                             key: "slb.sfdc.net/role",
-                                                                             operator: "DoesNotExist",
+                                                                             key: "slb-service",
+                                                                             operator: "NotIn",
+                                                                             values: ["slb-nginx-a", "slb-ipvs-a"],
                                                                           },
                                                                         ],
                                                                      },

@@ -19,8 +19,11 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: slb.sfdc.net/role
-                operator: DoesNotExist
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-nginx-a
+                - slb-ipvs-a
       containers:
       - command:
         - /sdn/slb-config-processor
