@@ -39,5 +39,5 @@ git clone git@git.soma.salesforce.com:sam/${TNRP_PRODUCT}.git manifests
 
 cd -
 
-/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name="$TNRP_PRODUCT" 
+/opt/sam/evaluate-pr-2 -authorizer $STAGE_GO_TRIGGER_USER -orig-dir /tmp/manifests -dir-with-changes $PWD -pr="$STAGE_PULL_REQUEST_ID" -smb /opt/sam/sam-manifest-builder -repo-name="$TNRP_PRODUCT" -unvalidated-image-prefixes "minikube"
 # Add this once we fixed madDog and K4A validation: -full-schema
