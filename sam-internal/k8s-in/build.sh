@@ -7,6 +7,7 @@ set -ex
 DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/../hypersam.sh"
+cd $DIR
 
 # Script to generate yaml files for all our apps in all estates
 # ./build.sh
@@ -32,7 +33,7 @@ if [ ! -f jsonnet/jsonnet ]; then
     popd
 fi
 
-# Nuke output folder to ensure we dont keep around stale output files
+# Nuke output folder to ensure we don't keep around stale output files
 rm -rf ../k8s-out/**
 mkdir -p ../k8s-out/
 cp k8s-out-access.yaml ../k8s-out/access.yaml
@@ -50,6 +51,8 @@ fi
 
 time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/
 time ./parallel_build.py flowsnake/templates,sdn/templates ../k8s-out/ flowsnakeEstates.json
+# Skip SDN templates for Minikube
+time ./parallel_build.py flowsnake/templates ../k8s-out/ flowsnakeMinikubeEstates.json
 
 # Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
 # by the Storage Foundation team.

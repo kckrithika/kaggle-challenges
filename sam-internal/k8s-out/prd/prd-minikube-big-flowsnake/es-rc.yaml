@@ -1,0 +1,94 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    component: elasticsearch
+    name: elasticsearch
+  name: elasticsearch
+  namespace: flowsnake
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        component: elasticsearch
+        name: elasticsearch
+      namespace: flowsnake
+    spec:
+      containers:
+      - env:
+        - name: NAMESPACE
+          value: flowsnake
+        - name: CLUSTER_NAME
+          value: elasticsearch
+        - name: NUMBER_OF_MASTERS
+          value: "2"
+        - name: DISCOVERY_SERVICE
+          value: elasticsearch-discovery
+        - name: NETWORK_HOST
+          value: 0.0.0.0
+        - name: NODE_MASTER
+          value: "true"
+        - name: NODE_DATA
+          value: "true"
+        - name: HTTP_ENABLE
+          value: "true"
+        - name: KUBERNETES_CA_CERTIFICATE_FILE
+          value: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        image: minikube/flowsnake-elasticsearch:minikube
+        imagePullPolicy: Never
+        livenessProbe:
+          initialDelaySeconds: 180
+          tcpSocket:
+            port: 9300
+        name: es
+        ports:
+        - containerPort: 9200
+          name: http
+          protocol: TCP
+        - containerPort: 9300
+          name: transport
+          protocol: TCP
+        readinessProbe:
+          tcpSocket:
+            port: 9300
+        securityContext:
+          capabilities:
+            add:
+            - IPC_LOCK
+        volumeMounts:
+        - mountPath: /es-data
+          name: storage
+        - mountPath: /etc/kubernetes/kubeconfig
+          name: kubeconfig
+          readOnly: true
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
+      volumes:
+      - emptyDir: {}
+        name: storage
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig-platform
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert

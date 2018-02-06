@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  data: '{"Flowsnake_Ops_Platform": ["sfdc.test.flowsnake__prd.ajna_local__logs",
+    "sfdc.prod.flowsnake__prd.ajna_local__logs"]}'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: ajna-topic-grants
+  namespace: flowsnake

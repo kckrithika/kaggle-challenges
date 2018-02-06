@@ -1,5 +1,8 @@
 local configs = import "config.jsonnet";
-
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube then
+"SKIP"
+else
 {
     kind: "ConfigMap",
     apiVersion: "v1",

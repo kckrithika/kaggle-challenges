@@ -1,6 +1,10 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local zookeeper = import "zookeeper-rcs.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube_small then
+"SKIP"
+else
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -32,7 +36,7 @@ local zookeeper = import "zookeeper-rcs.jsonnet";
                     {
                         name: "logstash",
                         image: flowsnakeimage.logstash,
-                        imagePullPolicy: "Always",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
                         env: [
                             {
                                 name: "KAFKA_TOPIC",

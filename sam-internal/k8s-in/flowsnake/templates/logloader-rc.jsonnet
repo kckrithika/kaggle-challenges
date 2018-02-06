@@ -1,5 +1,9 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube_small then
+"SKIP"
+else
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -29,7 +33,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
                     {
                         name: "flowsnake-logloader",
                         image: flowsnakeimage.logloader,
-                        imagePullPolicy: "Always",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
                         env: [
                             {
                                 name: "FLOWSNAKE_FLEET",

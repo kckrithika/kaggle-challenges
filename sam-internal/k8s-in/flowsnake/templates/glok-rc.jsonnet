@@ -1,5 +1,6 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local zookeeper = import "_zookeeper-rcs.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {
     apiVersion: "apps/v1beta1",
     kind: "StatefulSet",
@@ -14,7 +15,7 @@ local zookeeper = import "_zookeeper-rcs.jsonnet";
         updateStrategy: {
             type: "RollingUpdate",
         },
-        replicas: 3,
+        replicas: if flowsnakeconfig.is_minikube_small then 1 else 3,
         serviceName: "glok-set",
         template: {
             metadata: {
@@ -28,7 +29,7 @@ local zookeeper = import "_zookeeper-rcs.jsonnet";
                     {
                         name: "glok",
                         image: flowsnakeimage.glok,
-                        imagePullPolicy: "Always",
+                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
                         env: [
                             {
                                 name: "ZOOKEEPER_CONNECTION_STRING",

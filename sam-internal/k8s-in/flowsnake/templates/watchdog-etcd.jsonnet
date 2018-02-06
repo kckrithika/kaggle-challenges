@@ -1,6 +1,10 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local estate = std.extVar("estate");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if flowsnakeconfig.is_minikube then
+"SKIP"
+else
 {
     kind: "DaemonSet",
     spec: {
