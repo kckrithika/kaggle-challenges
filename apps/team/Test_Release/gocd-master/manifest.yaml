@@ -5,8 +5,7 @@ system:
     count: 1
     containers:
     - name: jenkins-master
-      # Replace this image with our gocd image when ready
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/nelsonwolf-hellosam:1
+      image: dva-registry.internal.salesforce.com/dva/gocd_server_docker:1
       ports:
       - name: ui
         containerPort: 8153
