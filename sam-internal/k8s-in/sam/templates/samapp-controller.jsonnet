@@ -20,7 +20,10 @@ if configs.estate == "prd-samtest" then {
                            "--logtostderr=true",
                            "--config=/config/samapp-controller-config.json",
                            configs.sfdchosts_arg,
-                           ]),
+                           ]) + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then [
+                           # Kept here because of the use of the envvar. Keep in sync with the config.
+                           "--maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
+                           ] else []),
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
                           configs.maddog_cert_volume_mount,
