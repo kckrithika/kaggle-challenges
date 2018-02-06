@@ -23,7 +23,7 @@ spec:
         - --logtostderr=true
         - --config=/config/samapp-controller-config.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --maddogMadkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
+        - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
