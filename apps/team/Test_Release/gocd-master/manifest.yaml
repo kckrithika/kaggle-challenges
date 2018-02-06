@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: jenkins-master
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gocd_server_docker:6
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dva-rc/dva/gocd_server_docker:7
       ports:
       - name: ui
         containerPort: 8153
