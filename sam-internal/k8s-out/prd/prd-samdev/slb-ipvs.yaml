@@ -23,7 +23,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000582-a6c72e1a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000604-0a502102
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -56,7 +56,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --maximumDeleteCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000582-a6c72e1a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000604-0a502102
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -76,7 +76,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000582-a6c72e1a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000604-0a502102
         name: slb-ipvs-data
         ports:
         - containerPort: 32149
