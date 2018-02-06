@@ -3,22 +3,22 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "slb-ipvs",
+            name: "slb-ipvs-a",
         },
-        name: "slb-ipvs",
+        name: "slb-ipvs-a",
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 2,
+        replicas: 1,
         template: {
             metadata: {
                 labels: {
-                    name: "slb-ipvs",
+                    name: "slb-ipvs-a",
                 },
                 namespace: "sam-system",
             },
@@ -172,7 +172,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                       ),
                 ],
                 nodeSelector: {
-                    "slb-service": "slb-ipvs",
+                    "slb-service": "slb-ipvs-a",
                 },
             },
         },

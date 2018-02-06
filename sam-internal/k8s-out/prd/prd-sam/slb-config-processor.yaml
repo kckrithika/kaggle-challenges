@@ -14,6 +14,16 @@ spec:
         name: slb-config-processor
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-nginx-a
+                - slb-ipvs-a
       containers:
       - command:
         - /sdn/slb-config-processor
@@ -21,7 +31,7 @@ spec:
         - --period=1800s
         - --namespace=
         - --podstatus=running
-        - --subnet=10.251.196.0/22
+        - --subnet=10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-247
         - --k8sapiserver=
         - --serviceList=csrlb,controlplane-ptest
         - --useVipLabelToSelectSvcs=true

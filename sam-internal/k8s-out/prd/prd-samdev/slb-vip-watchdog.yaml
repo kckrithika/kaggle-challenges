@@ -51,7 +51,7 @@ spec:
           name: var-logs-volume
       hostNetwork: true
       nodeSelector:
-        pool: prd-samdev
+        slb-dns-register: "true"
       volumes:
       - hostPath:
           path: /data/slb

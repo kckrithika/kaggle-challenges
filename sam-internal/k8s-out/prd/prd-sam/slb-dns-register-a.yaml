@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-dns-register-a
+  name: slb-dns-register-a
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: slb-dns-register-a
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-dns-register
+        - --path=/host/data/slb/config
+        - --ddi=https://ddi-api-prd.data.sfdc.net
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --cafile=/etc/pki_service/ca/cabundle.pem
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000582-a6c72e1a
+        name: slb-dns-register-a-processor
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      hostNetwork: true
+      nodeSelector:
+        slb-dns-register-a: "true"
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /data/slb/config
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts

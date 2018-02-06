@@ -14,6 +14,16 @@ spec:
         name: slb-config-processor
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-nginx-a
+                - slb-ipvs-a
       containers:
       - command:
         - /sdn/slb-config-processor
