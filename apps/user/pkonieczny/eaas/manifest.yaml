@@ -16,9 +16,9 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       - name: GRPC_ANNOUNCED_PORT
-        value: 7443
+        value: 7014
       - name: SCONE_SERVICE_NAME
-        value: eaas
+        value: eaas-pkonieczny
       ports:
         - name: grpc
           containerPort: 7020
@@ -26,6 +26,8 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
+      - mountPath: /etc/pki_service
+        name: eaas-client-cert
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -49,6 +51,8 @@ system:
         name: sherpa-eaas-in
       - containerPort: 7443
         name: sherpa-eaas-tls
+      - containerPort: 7014
+        name: sherpa-eaas-rpc
       - containerPort: 15373
         name: sherpa-eaas-adm
       livenessProbe:
@@ -64,8 +68,6 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
-      - name: eaas-client-cert
-        mountPath: /client-certs
       - name: eaas-server-cert
         mountPath: /server-certs
     volumes:
