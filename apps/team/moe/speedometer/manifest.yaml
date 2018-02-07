@@ -13,6 +13,8 @@ system:
       - "/secrets/ghe_pat"
       - "-afwPR"
       - "8085"
+      - "-log_dir"
+      - "/host/data/speedometer/logs"
       ports:
       - containerPort: 8080
       livenessProbe:
