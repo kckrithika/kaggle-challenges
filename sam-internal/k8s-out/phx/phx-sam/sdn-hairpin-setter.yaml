@@ -16,6 +16,8 @@ spec:
       containers:
       - command:
         - /sdn/sdn-hairpin-setter
+        - null
+        - null
         image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
         name: sdn-hairpin-setter
         securityContext:
@@ -23,8 +25,13 @@ spec:
         volumeMounts:
         - mountPath: /sys/devices/virtual/net
           name: sys-mount
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       volumes:
       - hostPath:
           path: /sys/devices/virtual/net
         name: sys-mount
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

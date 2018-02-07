@@ -33,12 +33,10 @@ local utils = import "util_functions.jsonnet";
             path: "/data/logs/sdn",
         },
     },
-    conditional_sdn_logs_volume: if kingdom == "prd" || kingdom == "frf" then self.sdn_logs_volume else {},
 
     # Volume mount for logs
     sdn_logs_volume_mount: {
         mountPath: "/data/logs/sdn",
         name: "sdnlogs",
     },
-    conditional_sdn_logs_volume_mount: if kingdom == "prd" || kingdom == "frf" then self.sdn_logs_volume_mount else {},
 }

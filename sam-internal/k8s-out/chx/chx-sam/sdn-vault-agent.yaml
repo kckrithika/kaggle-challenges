@@ -23,6 +23,8 @@ spec:
         - --certfile=/data/certs/hostcert.crt
         - --cafile=/data/certs/ca.crt
         - --livenessProbePort=9106
+        - null
+        - null
         image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
         livenessProbe:
           httpGet:
@@ -37,6 +39,8 @@ spec:
           name: sfdchosts
         - mountPath: /data/certs
           name: certs
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: chx-sam
@@ -47,3 +51,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

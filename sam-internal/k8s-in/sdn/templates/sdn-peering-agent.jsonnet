@@ -14,7 +14,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     {
                         name: "sdn-peering-agent",
                         image: sdnimages.hypersdn,
-                        command: std.prune([
+                        command: [
                             "/sdn/sdn-peering-agent",
                             "--birdsock=/usr/local/var/run/bird.ctl",
                             "--birdconf=/usr/local/etc/bird.conf",
@@ -32,7 +32,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.sfdchosts_arg,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]),
+                        ],
                         env: [
                             configs.kube_config_env,
                         ],
@@ -66,7 +66,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 readOnly: true,
                             },
                             configs.kube_config_volume_mount,
-                            sdnconfigs.conditional_sdn_logs_volume_mount,
+                            sdnconfigs.sdn_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -99,7 +99,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         },
                     },
                     configs.kube_config_volume,
-                    sdnconfigs.conditional_sdn_logs_volume,
+                    sdnconfigs.sdn_logs_volume,
                 ]),
             },
             metadata: {
