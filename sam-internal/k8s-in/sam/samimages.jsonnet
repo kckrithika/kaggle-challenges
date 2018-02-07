@@ -26,6 +26,9 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
         "prd,prd-sam,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
 
+        #[Xiao] Deploying samapp controller to prd-samtest for hackweek
+        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180207_130606.13d405d5.dirty.xiaozhou-ltm2",
+
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
