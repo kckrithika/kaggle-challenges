@@ -17,6 +17,8 @@ system:
         name: clientcertvol
         readOnly: true
       env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 1
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
         value: $(ANDREISREPORTCOLLECTORLB_SERVICE_HOST)
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
