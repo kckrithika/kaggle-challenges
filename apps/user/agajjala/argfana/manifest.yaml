@@ -12,6 +12,9 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/agajjala/grafana:latest
       ports:
         - containerPort: 3000
+      volumeMounts:
+      - name: grafanalog
+        mountPath: /var/lib
       livenessProbe:
         initialDelaySeconds: 30
         timeoutSeconds: 10
@@ -24,6 +27,10 @@ system:
         httpGet:
           path: /
           port: 3000
+    volumes:
+    - hostPath:
+        path: /var/lib
+      name: grafanalog
   loadbalancers:
   - lbname: argfanalb
     function: argfana
