@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-stream-processing-prd-ccp-demo
-    count: 1
+    count: 3
     containers:
     - name: cre-sp-prd-ccp-demo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:fr-newEstate.89e4974.3
@@ -44,6 +44,7 @@ system:
   - lbname: cre-sp-prd-ccp-demo-lb
     function: cre-stream-processing-prd-ccp-demo
     nodeExposed: true
+    slbenabled: true
     ports:
       - port: 8081
         targetport: 8080
