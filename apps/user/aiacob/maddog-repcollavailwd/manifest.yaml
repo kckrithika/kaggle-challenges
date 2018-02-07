@@ -1,0 +1,61 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cschealthcp@salesforce.com
+  functions:
+  - name: andreis-maddog-repcollavailwd
+    count: 1
+    containers:
+    - name: maddog-repcollavailwd
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.3-0000085-b2995890
+      resources:
+        requests: { cpu: "0.5", memory: "200M" }
+      volumeMounts:
+      - mountPath: /var/lib/report-collector-availability-watchdog/pki
+        name: clientcertvol
+      env:
+      - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
+        value: $(ANDREISREPORTCOLLECTORLB_SERVICE_HOST)
+      - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
+        value: $(ANDREISREPORTCOLLECTORLB_SERVICE_PORT_TCP8448)
+      - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PROTOCOL
+        value: https
+      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_HOST
+        value: $(ANDREISREPORTCOLLECTORLB_SERVICE_HOST)
+      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PORT
+        value: $(ANDREISREPORTCOLLECTORLB_SERVICE_PORT_TCP8449)
+      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PROTOCOL
+        value: https
+      - name: RC_WD_VERIFYREPORTISTRUSTED
+        value: true
+      - name: RC_WD_SSL_VERIFYSERVERIDENTITY
+        value: false
+      - name: RC_WD_SSL_STRICTSSL
+        value: true
+      - name: RC_WD_SSL_AUTH_CERT
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
+      - name: RC_WD_SSL_AUTH_KEY
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
+      - name: RC_WD_SSL_AUTH_CA
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
+      - name: RC_WD_LOGGER_LEVEL
+        value: debug
+      command: ["/bin/sh", "-c"]
+      args: ["
+      export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
+      export RC_WD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      export RC_WD_AJNA_DATACENTER=${KINGDOM} ;
+      export RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS=false ;
+      node --harmony ${APP_DIR}/lib/watchdog.js
+      "]
+      livenessProbe:
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 5
+    volumes:
+    - name: clientcertvol
+      maddogCert:
+        type: client
