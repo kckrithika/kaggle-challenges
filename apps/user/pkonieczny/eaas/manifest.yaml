@@ -33,11 +33,15 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
+        periodSeconds: 60
+        timeoutSeconds: 30
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 110
+        periodSeconds: 60
+        timeoutSeconds: 30
     - name: sherpa-eaas
       image: sfci/servicelibs/sherpa:2.0.17
       env:
