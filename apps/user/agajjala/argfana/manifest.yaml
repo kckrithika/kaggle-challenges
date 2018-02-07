@@ -9,12 +9,9 @@ system:
     count: 1
     containers:
     - name: argfana
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/agajjala/grafana:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akamath/grafana:v1
       ports:
         - containerPort: 3000
-      volumeMounts:
-      - name: grafanalog
-        mountPath: /var/lib
       livenessProbe:
         initialDelaySeconds: 30
         timeoutSeconds: 10
@@ -27,10 +24,6 @@ system:
         httpGet:
           path: /
           port: 3000
-    volumes:
-    - hostPath:
-        path: /data/sdn
-      name: grafanalog
   loadbalancers:
   - lbname: argfanalb
     function: argfana
