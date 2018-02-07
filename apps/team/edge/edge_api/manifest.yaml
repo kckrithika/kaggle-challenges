@@ -2,8 +2,8 @@ apiVersion: v1
 
 system:
   functions:
-  - name: par-edge-api-1 
+  - name: par-edge-api-1
     count: 0
     containers:
-    - name: edge_api_server 
+    - name: edge_api_server
       image: ops0-artifactrepo1-0-par.data.sfdc.net/tnrp/edge/edge_api:1.0-0000005-936f6756
