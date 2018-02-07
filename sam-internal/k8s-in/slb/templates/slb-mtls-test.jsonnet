@@ -4,7 +4,7 @@ local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local samimages = import "sam/samimages.jsonnet";
 
-if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
+if configs.kingdom == "prd" && configs.estate == "prd-sam" then {
      apiVersion: "extensions/v1beta1",
      kind: "Deployment",
      metadata: {
@@ -47,26 +47,6 @@ if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
        },
        spec: {
         containers: [
-         {
-            name: "slb-mtls-test",
-            image: slbimages.slbnginx,
-            command: ["/runner.sh"],
-            volumeMounts: configs.filter_empty([
-               {
-                    name: "var-target-config-volume",
-                    mountPath: "/etc/nginx/conf.d",
-               },
-               slbconfigs.logs_volume_mount,
-               {
-                mountPath: "/cert1",
-                name: "cert1",
-               },
-               {
-                mountPath: "/cert2",
-                name: "cert2",
-               },
-            ]),
-         },
          {
           args: [
            "/sam/madkub-client",
@@ -139,7 +119,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
         ],
         hostNetwork: true,
         nodeSelector: {
-            master: true,
+            pool: configs.estate,
         },
         restartPolicy: "Always",
         volumes: configs.filter_empty([
