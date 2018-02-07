@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: core
-    count: 1
+    count: 0
 
     containers:
     - name: core-sam
