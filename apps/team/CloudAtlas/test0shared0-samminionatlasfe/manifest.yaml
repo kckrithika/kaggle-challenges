@@ -1,0 +1,61 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cloudatlas@salesforce.com
+  functions:
+  - name: cloudatlas-prd-dev-fe
+    count: 2
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
+    hostnetwork: true
+    containers:
+    - name: cloudatlas-pdm-install
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:ca0e28e
+      command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
+      env:
+      - name: UBID_DEPLOYMENT_STAGE
+        value: ALL
+      volumeMounts:
+      - mountPath: /home/sfdc-atlas
+        name: hosthomevol
+      - mountPath: /home/sfdc-atlas/logs/servers/proxy
+        name: pinglogvol
+      - mountPath: /log
+        name: logvol
+      - mountPath: /certs
+        name: server-cert
+      ports:
+      - containerPort: 7032
+      - containerPort: 8890
+      livenessProbe:
+        exec:
+          command:
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
+        initialDelaySeconds: 60
+        periodSeconds: 20
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 24
+    volumes:
+    - name: hosthomevol
+      hostPath:
+        path: /data/ca-cluster-a
+    - name: pinglogvol
+      hostPath:
+        path: /home/sfdc-atlas/logs/pingserver
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-atlas/logs
+    - name: server-cert
+      maddogCert:
+        type: server
