@@ -3,12 +3,12 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    name: slb-nginx-proxy-b
-  name: slb-nginx-proxy-b
+    name: slb-mtls-dsr
+  name: slb-mtls-dsr
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
   template:
@@ -104,7 +104,7 @@ spec:
                    ]
       creationTimestamp: null
       labels:
-        name: slb-nginx-proxy-b
+        name: slb-mtls-dsr
       namespace: sam-system
     spec:
       containers:
@@ -117,7 +117,7 @@ spec:
             port: 12080
           initialDelaySeconds: 15
           periodSeconds: 10
-        name: slb-nginx-proxy-b
+        name: slb-mtls-dsr
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
@@ -191,8 +191,6 @@ spec:
         - mountPath: /maddog-certs/
           name: maddog-certs
       hostNetwork: true
-      nodeSelector:
-        slb-service: slb-nginx-b
       restartPolicy: Always
       volumes:
       - hostPath:

@@ -9,22 +9,22 @@ if configs.estate == "prd-sam" then {
      kind: "Deployment",
      metadata: {
       creationTimestamp: null,
-      name: "slb-nginx-proxy-b",
+      name: "slb-mtls-dsr",
       namespace: "sam-system",
       labels: {
-        name: "slb-nginx-proxy-b",
+        name: "slb-mtls-dsr",
       },
      },
      spec: {
       minReadySeconds: 30,
-      replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else 2,
+      replicas: 1,
       strategy: {
        type: "RollingUpdate",
       },
       template: {
        metadata: {
         labels: {
-          name: "slb-nginx-proxy-b",
+          name: "slb-mtls-dsr",
         },
         namespace: "sam-system",
         annotations: {
@@ -120,7 +120,7 @@ if configs.estate == "prd-sam" then {
        spec: {
         containers: [
          {
-            name: "slb-nginx-proxy-b",
+            name: "slb-mtls-dsr",
             image: slbimages.slbnginx,
             command: ["/runner.sh"],
             livenessProbe: {
@@ -241,9 +241,6 @@ if configs.estate == "prd-sam" then {
          },
         ],
         hostNetwork: true,
-        nodeSelector: {
-            "slb-service": "slb-nginx-b",
-        },
         restartPolicy: "Always",
         volumes: configs.filter_empty([
          slbconfigs.logs_volume,
