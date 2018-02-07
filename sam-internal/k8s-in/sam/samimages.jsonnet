@@ -21,6 +21,7 @@ local utils = import "util_functions.jsonnet";
         # [diana.chang] Testing daily deployer and setting the 'auto' keyword for particular resources, changed watchdog-sdp in prd-samtest so it doesn't use a keyword
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1",
         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1",
+        "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
         # [jiayi] Deploying snapshotconsumer to prd-samdev & prd-sam
         "prd,prd-samdev,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",

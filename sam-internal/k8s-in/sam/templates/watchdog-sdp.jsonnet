@@ -20,9 +20,9 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                             "-alertThreshold=300s",
                             "-emailFrequency=24h",
                         ]
-                        + (if configs.estate == "prd-samtest" then [
+                        /* + (if configs.estate == "prd-samtest" then [
                               "--breakwatchdogsdp",
-                        ] else [])
+                        ] else [])*/
                         + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
