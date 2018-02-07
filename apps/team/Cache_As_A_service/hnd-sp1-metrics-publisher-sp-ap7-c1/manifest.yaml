@@ -1,0 +1,49 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: metrics-publisher-sp-ap7-c1
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: metrics-publisher
+      image: tnrp/caas/caas-monitor-prod:2.6.0-0000023-15191845
+      resources:
+        limits: { memory: "2048M" }
+        requests: { memory: "1536M" }
+      args:
+        - --server.port=7506
+        - --management.port=7507
+        - --cluster.name=sp-ap7-c1
+        - --logDir=/home/caas/logs/caas
+      volumeMounts:
+        - mountPath: /home/caas/logs/caas
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 7507
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+      # expose redis outside the container
+      ports:
+      - containerPort: 7506
+      - containerPort: 7507
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+       - name: CAAS_ENVIRONMENT
+         value: none
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs/caas
+    - name: secretvol
+      secret:
+        secretName: caas-secret-sp-ap7-c1

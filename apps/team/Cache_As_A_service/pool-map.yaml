@@ -2051,3 +2051,67 @@ apps:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-c1-12000:
   - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap7-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap7-pc1-12004:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs72-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs72-c1-12013:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap6-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap6-c1-12005:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs31-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs31-pc1-12008:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap6-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap6-pc1-12006:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs6-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs6-pc1-12012:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs31-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs31-c1-12007:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs6-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs6-c1-12011:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap0-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap0-pc1-12016:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap0-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap0-c1-12015:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap1-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap1-c1-12001:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs5-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs5-pc1-12010:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap1-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap1-pc1-12002:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs72-pc1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs72-pc1-12014:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-ap7-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-ap7-c1-12003:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-metrics-publisher-sp-cs5-c1:
+  - name: hnd/hnd-sp1-sam_caas
+ hnd-sp1-redis-sp-cs5-c1-12009:
+  - name: hnd/hnd-sp1-sam_caas

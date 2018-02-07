@@ -3,14 +3,14 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - caas-dev@salesforce.com
+      - rpragada@salesforce.com
   functions:
   - name: redis-sp-c1-12000
     count: 4
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "3Gi" }
@@ -34,7 +34,7 @@ system:
       ports:
       - containerPort: 12000
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12000

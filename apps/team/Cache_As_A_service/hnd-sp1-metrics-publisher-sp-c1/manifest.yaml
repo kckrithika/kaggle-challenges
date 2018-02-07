@@ -3,14 +3,14 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - caas-dev@salesforce.com
+      - rpragada@salesforce.com
   functions:
   - name: metrics-publisher-sp-c1
     count: 1
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.5.3-0000017-14897003
+      image: tnrp/caas/caas-monitor-prod:2.6.0-0000023-15191845
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
