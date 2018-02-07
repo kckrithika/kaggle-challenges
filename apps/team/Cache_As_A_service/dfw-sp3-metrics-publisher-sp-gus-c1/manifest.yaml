@@ -3,23 +3,22 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - caas-dev@salesforce.com
+      - rpragada@salesforce.com
   functions:
   - name: metrics-publisher-sp-gus-c1
     count: 1
     hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.5.3-0000017-14897003
+      image: tnrp/caas/caas-monitor-prod:2.6.0-0000023-15191845
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
       args:
         - --server.port=7576
         - --management.port=7577
-        - --cluster.name=sp-c1
+        - --cluster.name=sp-gus-c1
         - --logDir=/home/caas/logs/caas
-        - --metrics.container=caas.sp-gus-c1
       volumeMounts:
         - mountPath: /home/caas/logs/caas
           name: logvol
@@ -38,7 +37,7 @@ system:
       - containerPort: 7577
       env:
        - name: SFDC_ENVIRONMENT
-         value: prod-gus
+         value: prod
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
@@ -47,4 +46,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-sp-c1
+        secretName: caas-secret-sp-gus-c1
