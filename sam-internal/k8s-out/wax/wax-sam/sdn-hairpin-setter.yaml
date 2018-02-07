@@ -16,8 +16,8 @@ spec:
       containers:
       - command:
         - /sdn/sdn-hairpin-setter
-        - null
-        - null
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
         name: sdn-hairpin-setter
         securityContext:

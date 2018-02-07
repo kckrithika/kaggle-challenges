@@ -37,8 +37,8 @@ spec:
         - --livenessProbePort=9102
         - --controlEstate=dfw-sam
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - null
-        - null
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

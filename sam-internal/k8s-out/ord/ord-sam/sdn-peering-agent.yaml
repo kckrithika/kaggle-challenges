@@ -31,8 +31,8 @@ spec:
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - null
-        - null
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

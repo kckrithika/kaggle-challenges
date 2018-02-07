@@ -23,8 +23,8 @@ local utils = import "util_functions.jsonnet";
     # File path for logs
     logFilePath: "/data/logs/sdn/",
 
-    logDirArg: (if kingdom == "prd" || kingdom == "frf" then ("--log_dir=" + self.logFilePath)),
-    logToStdErrArg: (if kingdom == "prd" || kingdom == "frf" then "--logtostderr=false"),
+    logDirArg: "--log_dir=" + self.logFilePath,
+    logToStdErrArg: "--logtostderr=false",
 
     # Volume for logs
     sdn_logs_volume: {
