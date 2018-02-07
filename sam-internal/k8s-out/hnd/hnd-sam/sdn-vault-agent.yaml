@@ -23,6 +23,8 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
         livenessProbe:
           httpGet:
@@ -39,6 +41,8 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: hnd-sam
@@ -52,3 +56,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

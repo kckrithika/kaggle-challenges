@@ -23,7 +23,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     {
                         name: "sdn-ping-watchdog",
                         image: sdnimages.hypersdn,
-                        command: std.prune([
+                        command: [
                             "/sdn/sdn-ping-watchdog",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
@@ -41,7 +41,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.sfdchosts_arg,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ])
+                        ]
                         + (
                             if configs.estate == "prd-sdc" then [
                             "--sdncServiceName=sdn-control-svc",
@@ -68,7 +68,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
-                            sdnconfigs.conditional_sdn_logs_volume_mount,
+                            sdnconfigs.sdn_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -77,7 +77,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    sdnconfigs.conditional_sdn_logs_volume,
+                    sdnconfigs.sdn_logs_volume,
                 ]),
                 nodeSelector: {
                     pool: configs.estate,

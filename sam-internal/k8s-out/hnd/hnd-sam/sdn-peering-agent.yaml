@@ -31,6 +31,8 @@ spec:
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -59,6 +61,8 @@ spec:
           readOnly: true
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       volumes:
       - configMap:
@@ -83,3 +87,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

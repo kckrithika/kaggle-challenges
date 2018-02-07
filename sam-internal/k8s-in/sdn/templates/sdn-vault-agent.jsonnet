@@ -15,7 +15,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                     {
                         name: "sdn-vault-agent",
                         image: sdnimages.hypersdn,
-                        command: std.prune([
+                        command: [
                             "/sdn/sdn-vault-agent",
                             "--funnelEndpoint=" + configs.funnelVIP,
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
@@ -25,7 +25,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--livenessProbePort=" + portconfigs.sdn.sdn_vault_agent,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]),
+                        ],
                         livenessProbe: {
                             httpGet: {
                                path: "/liveness-probe",
@@ -42,7 +42,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                                 name: "certs",
                                 mountPath: "/data/certs",
                             },
-                            sdnconfigs.conditional_sdn_logs_volume_mount,
+                            sdnconfigs.sdn_logs_volume_mount,
                         ]),
                     },
                 ],
@@ -55,7 +55,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             path: "/data/certs",
                         },
                     },
-                    sdnconfigs.conditional_sdn_logs_volume,
+                    sdnconfigs.sdn_logs_volume,
 
                 ]),
                 nodeSelector: {
