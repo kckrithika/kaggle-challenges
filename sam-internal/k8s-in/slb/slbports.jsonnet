@@ -18,6 +18,7 @@
         canaryServiceProxyHttpPort: 9116,
         slbConfigDataPort: 9117,
         slbEchoServicePort: 9118,
+        mtlsDsrPort: 9119,
 
         slbNginxProxyLivenessProbePort: 12080,
         slbConfigProcessorLivenessProbePort: 9876,
@@ -39,5 +40,6 @@
         slbEchoServiceNodePort: 32148,
         slbIpvsControlPort: 32149,
         baboonEndPointPort: 32555,
+        mtlsDsrNodePort: 32150,
     },
 }
