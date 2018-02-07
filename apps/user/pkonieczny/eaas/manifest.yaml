@@ -52,7 +52,7 @@ system:
       - containerPort: 7443
         name: sherpa-eaas-tls
       - containerPort: 7014
-        name: sherpa-eaas-grpc
+        name: sherpa-eaas-rpc
       - containerPort: 15373
         name: sherpa-eaas-adm
       livenessProbe:
