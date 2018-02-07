@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-stream-processing-prd-ccp-shared-dev
-    count: 2
+    count: 3
     containers:
     - name: cre-sp-prd-ccp-shared-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.23d96ad.51
@@ -65,6 +65,7 @@ system:
   - lbname: cre-sp-prd-ccp-shared-dev-lb
     function: cre-stream-processing-prd-ccp-shared-dev
     nodeExposed: true
+    slbEnabled: true    
     ports:
       - port: 8087
         targetport: 8080

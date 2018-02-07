@@ -6,7 +6,7 @@ system:
       - frecio@salesforce.com
   functions:
   - name: cre-stream-processing-prd-ccp-integration-functional
-    count: 2
+    count: 3
     containers:
     - name: cre-sp-prd-ccp-integration-functional
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.23d96ad.51
@@ -67,6 +67,7 @@ system:
   - lbname: cre-sp-prd-ccp-integration-functional-lb
     function: cre-stream-processing-prd-ccp-integration-functional
     nodeExposed: true
+    slbenabled: true
     ports:
       - port: 8083
         targetport: 8080
