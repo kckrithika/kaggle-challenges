@@ -5,16 +5,17 @@ system:
     email:
       - cschealthcp@salesforce.com
   functions:
-  - name: andreis-maddog-repcollavailwd
+  - name: andreis-repcollavailwd
     count: 1
     containers:
-    - name: maddog-repcollavailwd
+    - name: repcollavailwd
       image: tnrp/csc-health/report-collector-availability-watchdog:2.7.3-0000085-b2995890
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
-      - mountPath: /var/lib/report-collector-availability-watchdog/pki
+      - mountPath: /var/lib/report-collector-availability-watchdog/certificates/client/
         name: clientcertvol
+        readOnly: true
       env:
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
         value: $(ANDREISREPORTCOLLECTORLB_SERVICE_HOST)
@@ -35,11 +36,11 @@ system:
       - name: RC_WD_SSL_STRICTSSL
         value: true
       - name: RC_WD_SSL_AUTH_CERT
-        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
+        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.crt
       - name: RC_WD_SSL_AUTH_KEY
-        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
+        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.key
       - name: RC_WD_SSL_AUTH_CA
-        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
+        value: /var/lib/report-collector-availability-watchdog/certificates/ca.crt
       - name: RC_WD_LOGGER_LEVEL
         value: debug
       command: ["/bin/sh", "-c"]
@@ -57,5 +58,5 @@ system:
         initialDelaySeconds: 5
     volumes:
     - name: clientcertvol
-      maddogCert:
-        type: client
+      secret:
+        secretName: csc-rc-hack-certificates
