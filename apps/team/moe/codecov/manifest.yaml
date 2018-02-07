@@ -224,7 +224,7 @@ system:
   loadbalancers:
   - lbname: postgres
     function: postgres
-    slbEnabled: false
+    slbEnabled: true
     ports:
       - port: 5432
         targetport: 5432
