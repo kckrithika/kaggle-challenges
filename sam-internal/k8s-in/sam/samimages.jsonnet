@@ -43,6 +43,17 @@ local utils = import "util_functions.jsonnet";
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
         "prd,prd-samdev,snapshoter,hypersam": "auto",
+        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "chx,chx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "iad,iad-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "ord,ord-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "par,par-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "syd,syd-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "wax,wax-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        "yul,yul-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
 
         #[mayank.kumar] email reporter
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",

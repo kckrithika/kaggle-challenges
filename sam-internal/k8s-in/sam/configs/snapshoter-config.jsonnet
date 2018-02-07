@@ -1,7 +1,7 @@
 local samimages = import "samimages.jsonnet";
 local configs = import "config.jsonnet";
 
-if configs.estate == "dfw-sam" || configs.estate == "phx-sam" || configs.estate == "frf-sam" || configs.estate == "prd-samdev" then {
+if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
   recipient: "sam@salesforce.com",
   "ca-file": configs.caFile,
   "key-file": configs.keyFile,

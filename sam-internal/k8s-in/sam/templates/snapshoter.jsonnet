@@ -1,6 +1,9 @@
 local configs = import "config.jsonnet";
 local samimages = import "samimages.jsonnet";
-if configs.estate == "dfw-sam" || configs.estate == "phx-sam" || configs.estate == "frf-sam" || configs.estate == "prd-samdev" then {
+
+#Keep the below if statement in sync with the one in snapshoter-configmap.jsonnet
+
+if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {

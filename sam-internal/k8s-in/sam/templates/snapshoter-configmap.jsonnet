@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 
-if configs.estate == "dfw-sam" || configs.estate == "phx-sam" || configs.estate == "frf-sam" || configs.estate == "prd-samdev" then {
+#Keep the below if statement in sync with the one in snapshoter.jsonnet
+if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
