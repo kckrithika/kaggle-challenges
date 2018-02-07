@@ -2,8 +2,8 @@ apiVersion: v1
  
 system:
   functions:
-  - name: default
-    count: 2
+  - name: tls-canary
+    count: 3
     volumes:
     - name: cert
       maddogCert:
@@ -11,30 +11,30 @@ system:
         lbnames:
         - tlslb
     containers:
-    - name: tls
+    - name: canary
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201802062212
       command: ["/sdn/slb-canary-service"]
-      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133", "--tlsPorts=3135,3136,3137", "--privateKey=/certs/server/keys/server-key.pem", "--publicKey=/certs/server/certificates/server.pem"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=80", "--tlsPorts=3135,3136,3137", "--privateKey=/certs/server/keys/server-key.pem", "--publicKey=/certs/server/certificates/server.pem"]
       ports:
-      - containerPort: 3133
+      - containerPort: 80
       - containerPort: 3135
       - containerPort: 3136
       - containerPort: 3137
       livenessProbe:
         httpGet:
           path: /
-          port: 3133
+          port: 80
       volumeMounts:
       - name: cert
         mountPath: /certs
  
   loadbalancers:
   - lbname: tlslb 
-    function: default
+    function: tls-canary
     slbenabled: true
     ports:
-      - port: 3133
-        targetport: 3133
+      - port: 80
+        targetport: 80
       - port: 3135
         targetport: 3135
         lbtype: dsr
