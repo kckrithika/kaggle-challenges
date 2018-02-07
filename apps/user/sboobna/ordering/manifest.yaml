@@ -8,9 +8,6 @@ system:
     - name: clientcert
       maddogCert:
         type: client
-    - name: servercert
-      maddogCert:
-        type: server
     containers:
     - name: ordering-sboobna
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/ordering/ordering-sboobna:sboobna-20180131-fcb1684
@@ -33,7 +30,7 @@ system:
           path: /manage/health
           port: 15373
     - name: beacon-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180204-bd14711
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180206-bd14711
       args:
       - -endpoint
       - ordering-sboobna:DATACENTER:7012
@@ -46,8 +43,6 @@ system:
       volumeMounts:
       - name: clientcert
         mountPath: /clientcerts
-      - name: servercert
-        mountPath: /servercerts
       livenessProbe:
         initialDelaySeconds: 5
         exec:
