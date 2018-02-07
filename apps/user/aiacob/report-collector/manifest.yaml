@@ -5,7 +5,7 @@ system:
     email:
       - aiacob@salesforce.com
   functions:
-  - name: testreport-collector
+  - name: andreis-report-collector
     count: 3
     volumes:
       - name: servercertvol
@@ -13,16 +13,16 @@ system:
           type: server
       - name: redisauthvol
         secret:
-          secretName: csc-redis-auth-0
+          secretName: csc-redis-hack-auth
       - name: certvol
         secret:
-          secretName: rc-certs
+          secretName: csc-rc-hack-certificates
       - name: logvol
         hostPath:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/rc-multi-ca:aiacob-20171127
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector:201802070920
       ports:
       - name: provider
         containerPort: 8080
@@ -38,8 +38,6 @@ system:
         readOnly: true
       - mountPath: /var/log/report-collector
         name: logvol
-      - mountPath: /var/lib/report-collector/pki
-        name: servercertvol
       - mountPath: /var/secrets/redis
         name: redisauthvol
         readOnly: true
@@ -47,9 +45,9 @@ system:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 1
       - name: ReportCollector_redis_host
-        value: $(REDISLB_SERVICE_HOST)
+        value: $(ANDREISREDISLB_SERVICE_HOST)
       - name: ReportCollector_redis_port
-        value: $(REDISLB_SERVICE_PORT)
+        value: $(ANDREISREDISLB_SERVICE_PORT)
       - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
@@ -61,12 +59,11 @@ system:
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_caCertificates
-        value: "[\"/var/lib/report-collector/pki/ca.pem\",
-                 \"/var/lib/report-collector/certificates/ca.crt\"]"
+        value: "[\"/var/lib/report-collector/certificates/ca.crt\"]"
       - name: ReportCollector_app_https_certificate
-        value: /var/lib/report-collector/pki/server/certificates/server.pem
+        value: /var/lib/report-collector/certificates/rc_server.crt
       - name: ReportCollector_app_https_privateKey
-        value: /var/lib/report-collector/pki/server/keys/server-key.pem
+        value: /var/lib/report-collector/certificates/rc_server.key
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
@@ -133,7 +130,7 @@ system:
     volumes:
       - name: redisauthvol
         secret:
-          secretName: csc-redis-auth-0
+          secretName: csc-redis-hack-auth
     containers:
     - name: redis
       image: tnrp/csc-health/redis-auth:3.2
@@ -151,8 +148,8 @@ system:
         initialDelaySeconds: 5
 
   loadbalancers:
-  - lbname: reportcollectorlb
-    function: testreport-collector
+  - lbname: andreisreportcollectorlb
+    function: andreis-report-collector
     nodeExposed: true
     ports:
       # LB was supposed to allow SSL on the backend, but its not currently
@@ -166,7 +163,7 @@ system:
       targetport: 8443
     - port: 8449
       targetport: 8444
-  - lbname: redislb
+  - lbname: andreisredislb
     function: redis
     nodeExposed: true
     ports:
