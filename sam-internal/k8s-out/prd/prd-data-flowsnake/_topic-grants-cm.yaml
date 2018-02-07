@@ -62,7 +62,12 @@ data:
     "sfdc.prod.dvasyslog__ukb.ajna_local__syslog.network", "sfdc.prod.dvasyslog__ukb.ajna_local__syslog.network.raw",
     "sfdc.prod.dvasyslog__ukb.ajna_local__syslog.device", "sfdc.test.dvasyslog__hnd.ajna_local__syslog.network",
     "sfdc.test.dvasyslog__hnd.ajna_local__syslog.network.raw", "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.network",
-    "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.network.raw", "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.device"]}'
+    "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.network.raw", "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.device",
+    "sfdc.prod.dvasyslog__dfw.ajna_local__trap", "sfdc.prod.dvasyslog__phx.ajna_local__trap",
+    "sfdc.prod.dvasyslog__frf.ajna_local__trap", "sfdc.prod.dvasyslog__par.ajna_local__trap",
+    "sfdc.prod.dvasyslog__iad.ajna_local__trap", "sfdc.prod.dvasyslog__ord.ajna_local__trap",
+    "sfdc.prod.dvasyslog__hnd.ajna_local__trap", "sfdc.prod.dvasyslog__ukb.ajna_local__trap",
+    "sfdc.prod.dvasyslog__prd.ajna_local__trap"]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
