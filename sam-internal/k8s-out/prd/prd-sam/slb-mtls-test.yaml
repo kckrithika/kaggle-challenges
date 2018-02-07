@@ -19,7 +19,7 @@ spec:
                               "kingdom":"prd",
                               "role": "sam_compute",
                               "san":[
-                                  "*.sam-system.prd-samtest.prd.slb.sfdc.net"
+                                  "*.sam-system.prd-sam.prd.slb.sfdc.net"
                               ]
                           },
                           {
@@ -36,19 +36,6 @@ spec:
       namespace: sam-system
     spec:
       containers:
-      - command:
-        - /runner.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000011-91f79527
-        name: slb-mtls-test
-        volumeMounts:
-        - mountPath: /etc/nginx/conf.d
-          name: var-target-config-volume
-        - mountPath: /host/data/slb/logs
-          name: var-logs-volume
-        - mountPath: /cert1
-          name: cert1
-        - mountPath: /cert2
-          name: cert2
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
@@ -95,7 +82,7 @@ spec:
           name: maddog-certs
       hostNetwork: true
       nodeSelector:
-        master: true
+        pool: prd-sam
       restartPolicy: Always
       volumes:
       - hostPath:
