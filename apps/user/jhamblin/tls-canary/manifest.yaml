@@ -35,6 +35,7 @@ system:
     ports:
       - port: 3133
         targetport: 3133
+        lbtype: http
       - port: 3135
         targetport: 3135
         lbtype: dsr
