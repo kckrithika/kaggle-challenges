@@ -43,7 +43,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-caas/logs/caas
+        path: /home/caas/logs/caas
     - name: secretvol
       secret:
         secretName: caas-secret-sp-na45-c1
