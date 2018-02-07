@@ -6,11 +6,13 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000599-e9594234
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000606-cf084b12
       command: ["/speedometer/speedometer"]
       args:
       - "-gheTokenPath"
       - "/secrets/ghe_pat"
+      - "-afwPR"
+      - "8085"
       ports:
       - containerPort: 8080
       livenessProbe:
