@@ -1,0 +1,66 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - rpragada@salesforce.com
+  functions:
+  - name: redis-sp-ap7-c1-12003
+    count: 6
+    hostnetwork: true
+    containers:
+    - name: caas-redis
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
+      resources:
+        limits: { memory: "5Gi" }
+        requests: { memory: "3Gi" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+      args:
+        - --port=12003
+        - --maxMemoryMB=3072
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        exec:
+          command:
+           - /opt/caas/redis/redis-livenessprobe.py
+           - --port=12003
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 12003
+    - name: caas-redis-announcer
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
+      command: ["/opt/caas/redis/announcer-startup.sh"]
+      args:
+        - --redisPort=12003
+        - --cluster.name=sp-ap7-c1
+        - --logDir=/home/caas/logs
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/opt/caas/redis/is-alive.sh"
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: prod
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
+      volumeMounts:
+        - mountPath: /home/caas/logs
+          name: logvol
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/caas/logs
+    - name: secretvol
+      secret:
+         secretName: caas-secret-sp-ap7-c1
