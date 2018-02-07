@@ -40,4 +40,5 @@ system:
         targetport: 3135
         lbtype: dsr
       - port: 3136
+        lbtype: http
         targetport: 3136
