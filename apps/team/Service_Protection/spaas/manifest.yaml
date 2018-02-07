@@ -14,7 +14,7 @@ system:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci-docker-rc/sfci/service-protection/sps:0.0.2.8
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.8
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.19
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
@@ -22,10 +22,8 @@ system:
         
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
-      - name: rest-port
-        containerPort: 8080
       - name: management-port
-        containerPort: 15372
+        containerPort: 15400
       - name: grpc-port 
         containerPort: 7022
 
@@ -39,11 +37,15 @@ system:
       #replace with standard scone health monitoring
       livenessProbe:
         # SAM will wait this long after starting the container before first checking
-        initialDelaySeconds: 15
+        initialDelaySeconds: 30
         httpGet:
-          path: /ping
-          port: 8080
-
+          path: /manage/health
+          port: 15400
+    readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15400
+        initialDelaySeconds: 60
     # Maps volumeMounts from containers to volumes (which map to host filesystem locations)
     # This is used for sending logs to Splunk until SAM/DVA logging pipeline is up
     volumes:
