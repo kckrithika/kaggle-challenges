@@ -12,14 +12,14 @@ system:
         - tlslb
     containers:
     - name: tls
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jhamblin/hypersdn:jhamblin-201710200855
-
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/root/hypersdn:root-201802062212
       command: ["/sdn/slb-canary-service"]
-      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133", "--tlsPorts=3135,3136", "--privateKey=/certs/server/keys/server-key.pem", "--publicKey=/certs/server/certificates/server.pem"]
+      args: ["--serviceName=slb-canary-as-app","--metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80","--log_dir=/host/data/slb/logs", "--ports=3133", "--tlsPorts=3135,3136,3137", "--privateKey=/certs/server/keys/server-key.pem", "--publicKey=/certs/server/certificates/server.pem"]
       ports:
       - containerPort: 3133
       - containerPort: 3135
       - containerPort: 3136
+      - containerPort: 3137
       livenessProbe:
         httpGet:
           path: /
@@ -35,10 +35,12 @@ system:
     ports:
       - port: 3133
         targetport: 3133
-        lbtype: http
       - port: 3135
         targetport: 3135
         lbtype: dsr
       - port: 3136
         lbtype: http
         targetport: 3136
+      - port: 3137
+        lbtype: tcp
+        targetport: 3137
