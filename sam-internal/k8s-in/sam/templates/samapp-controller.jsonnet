@@ -22,7 +22,7 @@ if configs.estate == "prd-samtest" then {
                            configs.sfdchosts_arg,
                            ]) + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then [
                            # Kept here because of the use of the envvar. Keep in sync with the config.
-                           "--maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
+                           "--madkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
                            ] else []),
                        volumeMounts: configs.filter_empty([
                           configs.sfdchosts_volume_mount,
