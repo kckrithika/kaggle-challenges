@@ -21,16 +21,15 @@ system:
           containerPort: 7014
         livenessProbe:
           httpGet:
-            path: /tenants
+            path: /
             port: 7014
-          initialDelaySeconds: 120
         volumeMounts:
         - mountPath: /opt/cmx
-          name: cmx
+          name: cmx-vol
       volumes:
-      - name: cmx
+      - name: cmx-vol
         hostPath:
-          path: /home/sfdc-cmx
+          path: /home/sfdc-casp/cmx
 
     loadbalancers:
     - lbname: cmx-node
