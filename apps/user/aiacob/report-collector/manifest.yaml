@@ -43,7 +43,7 @@ system:
         readOnly: true
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
-        value: 2
+        value: 3
       - name: ReportCollector_redis_host
         value: $(ANDREISREDISLB_SERVICE_HOST)
       - name: ReportCollector_redis_port
