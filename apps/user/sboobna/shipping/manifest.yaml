@@ -5,7 +5,7 @@ system:
   - name: shipping-sboobna
     count: 1
     volumes:
-    - name: cert
+    - name: clientcert
       maddogCert:
         type: client
     containers:
@@ -26,13 +26,19 @@ system:
           path: /manage/health
           port: 15372
     - name: beacon-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180207-21e8fa6
       args:
       - -endpoint
       - shipping-sboobna:DATACENTER:7012
+      - -service
+      - shipping
+      - -rootCert
+      - /clientcerts/ca.pem
+      - -certDir
+      - /clientcerts/client
       volumeMounts:
-      - name: cert
-        mountPath: /certs
+      - name: clientcert
+        mountPath: /clientcerts
       livenessProbe:
         initialDelaySeconds: 5
         exec:
