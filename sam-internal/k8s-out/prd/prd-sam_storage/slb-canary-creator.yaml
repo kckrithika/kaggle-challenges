@@ -16,7 +16,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-canary-creator
-        - --canaryImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000605-1e0c9174
+        - --canaryImage=ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000611-2c5a53ee
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --maxParallelism=1
@@ -24,7 +24,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000605-1e0c9174
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000611-2c5a53ee
         name: slb-canary-creator
         securityContext:
           privileged: true
