@@ -206,11 +206,7 @@ def main():
         sys.exit(1)
 
     if len(estate_filter)>0:
-        new_control_estates = []
-        for thisce in control_estates:
-          if thisce in estate_filter:
-            new_control_estates.append(thisce)
-        control_estates = new_control_estates
+        control_estates = list(set(control_estates) & set(estate_filter))
 
     # Do the work
     work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)
