@@ -13,7 +13,7 @@ system:
           secretName: csc-rc-hack-certificates
     containers:
     - name: andreis-locust-provider-master
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-locust:201802080927
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-locust:201802081024
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
@@ -62,7 +62,7 @@ system:
           secretName: csc-rc-hack-certificates
     containers:
     - name: locust-worker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-locust:201802080927
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-locust:201802081024
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
