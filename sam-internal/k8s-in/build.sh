@@ -60,17 +60,17 @@ else
   /opt/sam/manifestctl generate-pool-list --in ../pools/ --out  ../k8s-in/sam/configs/generated-pools.jsonnet
 fi
 
-time ./parallel_build.py sam/templates/,sdn/templates/,slb/templates/,storage/templates/ ../k8s-out/ ../pools/ $1
-time ./parallel_build.py flowsnake/templates,sdn/templates ../k8s-out/ flowsnakeEstates.json $1
+./parallel_build.py --src=sam/templates/,sdn/templates/,slb/templates/,storage/templates/ --out=../k8s-out/ --pools=../pools/ --estatefilter=$1
+./parallel_build.py --src=flowsnake/templates,sdn/templates --out=../k8s-out/ --pools=flowsnakeEstates.json --estatefilter=$1
 # Skip SDN templates for Minikube
-time ./parallel_build.py flowsnake/templates ../k8s-out/ flowsnakeMinikubeEstates.json $1
+./parallel_build.py --src=flowsnake/templates --out=../k8s-out/ --pools=flowsnakeMinikubeEstates.json --estatefilter=$1
 
 # Skipper is a tool for creating dev/test k8s clusters in Private Cloud created
 # by the Storage Foundation team.
 # https://git.soma.salesforce.com/SFStorage/skipper
 # The line below creates k8s-out yaml files from jsonnet from storage templates
 # that are appropriate for this environment.
-time ./parallel_build.py storage/templates/ ../k8s-out/ skipperEstates.json $1
+./parallel_build.py --src=storage/templates/ --out=../k8s-out/ --pools=skipperEstates.json --estatefilter=$1
 
 # Json is quite poor when it comes to multi-line strings.  Since configMaps are a kubernetes resource with files
 # encoded as strings within that file, you end up with generated configMaps with enormous lines that are hard to read
