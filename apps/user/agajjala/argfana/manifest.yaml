@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: argfana
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akamath/grafana:v1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/akamath/grafana:v6
       ports:
         - containerPort: 3000
       livenessProbe:
