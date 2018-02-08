@@ -19,10 +19,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         replicas: 1,
         template: {
             spec: {
-                hostNetwork: true,
                 volumes: configs.filter_empty([
                    slbconfigs.slb_volume,
                    slbconfigs.logs_volume,
+                   configs.sfdchosts_volume,
                 ]),
                 containers: [
                     {
@@ -37,11 +37,24 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
                             "--monitorFrequency=60s",
+                            "--hostnameoverride=$(NODE_NAME)",
+                            configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
+                            configs.sfdchosts_volume_mount,
                         ]),
+                        env: [
+                            {
+                               name: "NODE_NAME",
+                               valueFrom: {
+                                  fieldRef: {
+                                     fieldPath: "spec.nodeName",
+                                  },
+                               },
+                            },
+                        ],
                     },
                 ],
                 nodeSelector: {
