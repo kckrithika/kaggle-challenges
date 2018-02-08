@@ -177,15 +177,23 @@ def find_control_estates(pools_arg):
 
 def main():
     # Process arguments
-    if len(sys.argv) != 4:
-        print("usage: parallel_run.py template_dir output_dir pools_arg")
+    if len(sys.argv) < 4 or len(sys.argv) > 5:
+        print("usage: parallel_run.py template_dir output_dir pools_arg [one_estate]")
         print("       template_dir: can be mutiply filename names and directory names")
         print("       output_dir: can only be single directory name")
         print("       pools_arg: can only be single directory name or single filename names")
+        print("       estate_filter: use for local testing only, comma seperated list of kingdom/estate.  Ex: 'prd/prd-samtest,prd-prd-samdev'")
         return
     template_dirs = sys.argv[1]
     output_dir = sys.argv[2]
     pools_arg = sys.argv[3]
+    estate_filter = []
+    if len(sys.argv)>4 and len(sys.argv[4])>0:
+      estate_filter = sys.argv[4].split(",")
+      for this_filter in estate_filter:
+        if len(this_filter.split("/")) != 2:
+          print("Estate filter expected to be in format kingdom/estate.  Got " + this_filter)
+          sys.exit(1)
 
     # Read control estates
     if os.path.isdir(pools_arg):
@@ -194,6 +202,14 @@ def main():
         control_estates = json.load(open(pools_arg))["kingdomEstates"]
     else:
         print("\nwrong input,input have to be a filename or directory name.")
+        sys.exit(1)
+
+    if len(estate_filter)>0:
+        new_control_estates = []
+        for thisce in control_estates:
+          if thisce in estate_filter:
+            new_control_estates.append(thisce)
+        control_estates = new_control_estates
 
     # Do the work
     work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)
