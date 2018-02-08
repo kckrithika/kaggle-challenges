@@ -11,7 +11,7 @@ system:
     containers:
     - name: gater1
       # container image/version to run. published separately.
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/gater/gate-manager:1.7.1
+      image: /sfci/gater/gate-manager:1.7.1
       args:
         - --server.port=9090
         - --logging.json.stdout.level=OFF
