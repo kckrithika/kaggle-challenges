@@ -1,0 +1,65 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-api-iad-ccp-shared-dev
+    count: 3
+    containers:
+    - name: cre-api-iad-ccp-shared-dev
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-api:master.bd8b237.45
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: ccp-shared-dev
+      ports:
+      - containerPort: 8080
+      - containerPort: 7020
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
+      volumeMounts:
+      - mountPath: /certs
+        name: certs
+      - mountPath: /opt/cre/cre-api_ccp-shared-dev
+        name: logvol
+    - name: sherpa-cre-api
+      image: sfci/servicelibs/sherpa:2.0.15
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: CCP_Shared_Dev
+      args:
+        - --http2-in=9532
+      ports:
+        - containerPort: 9532
+        - containerPort: 7080
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-api_ccp-shared-dev
+    - name: certs
+      hostPath:
+        path: /home/sfdc-retail/keystores
+  loadbalancers:
+  - lbname: cre-api-iad-ccp-shared-dev-lb
+    function: cre-api-iad-ccp-shared-dev
+    nodeExposed: true
+    slbenabled: true    
+    ports:
+      - port: 8086
+        targetport: 8080

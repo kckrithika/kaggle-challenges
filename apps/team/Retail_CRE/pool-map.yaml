@@ -35,3 +35,5 @@ apps:
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
     - shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
+  iad.CCP_Shared_Dev.cre_api:
+  - name: iad/iad-sam_customerresolutionengine
