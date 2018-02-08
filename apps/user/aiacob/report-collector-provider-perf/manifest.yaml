@@ -22,6 +22,8 @@ system:
           containerPort: 8089
         - name: loc-master-w1
           containerPort: 5557
+        - name: loc-master-w2
+          containerPort: 5558
       volumeMounts:
       - mountPath: /var/lib/certs
         name: certvol
@@ -110,3 +112,6 @@ system:
         - port: 5557
           targetPort: 5557
           name: loc-master-w1
+        - port: 5558
+          targetPort: 5558
+          name: loc-master-w2

@@ -22,6 +22,8 @@ system:
           containerPort: 8089
         - name: loc-master-w1
           containerPort: 5557
+        - name: loc-master-w2
+          containerPort: 5558
       volumeMounts:
       - mountPath: /var/lib/certs
         name: certvol
@@ -94,7 +96,7 @@ system:
       - name: LOCUST_MASTER_HOST
         value: $(ANDREISLOCUSTMASTERCONSUMERLB_SERVICE_HOST)
       - name: LOCUST_MASTER_PORT
-        value: $(ANDREISLOCUSTMASTERCONSUMERLB_SERVICE_PORT_TCP5557)
+        value: $(ANDREISLOCUSTMASTERCONSUMERLB_SERVICE_PORT_TCP5559)
       livenessProbe:
         exec:
           command:
@@ -107,6 +109,9 @@ system:
         - port: 8090
           targetPort: 8089
           name: loc-master-ui
-        - port: 5558
+        - port: 5559
           targetPort: 5557
           name: loc-master-w1
+        - port: 5560
+          targetPort: 5558
+          name: loc-master-w2
