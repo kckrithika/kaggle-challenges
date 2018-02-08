@@ -23,13 +23,6 @@ system:
           httpGet:
             path: /
             port: 7014
-        volumeMounts:
-        - mountPath: /opt/cmx
-          name: cmx-vol
-      volumes:
-      - name: cmx-vol
-        hostPath:
-          path: /home/sfdc-casp/cmx
 
     loadbalancers:
     - lbname: cmx-node
