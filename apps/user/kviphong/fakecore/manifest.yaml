@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: fakecore
-    count: 2
+    count: 0
     containers:
     - name: fakecore-sam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/fakecore_salescloud:2
