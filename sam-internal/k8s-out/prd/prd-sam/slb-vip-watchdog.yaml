@@ -42,7 +42,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --optOutNamespace=kne
         - --monitorFrequency=60s
-        - --hostnameoverride=$(NODE_NAME)
+        - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: NODE_NAME
