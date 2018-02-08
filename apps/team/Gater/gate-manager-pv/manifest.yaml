@@ -10,7 +10,7 @@ system:
     count: 2
     containers:
     - name: gater
-      image: tnrp/gater/gater:1.7.0-0000037-15193845
+      image: /sfci/gater/gate-manager:1.7.1
       args:
         - --server.port=9090
         - --scone.srpc.announcing-enabled=false
