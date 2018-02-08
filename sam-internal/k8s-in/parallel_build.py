@@ -4,6 +4,7 @@ import os
 import sys
 import subprocess
 import json
+import argparse
 from subprocess import Popen, PIPE, STDOUT
 if sys.version_info >= (3,0):
     from queue import Queue
@@ -177,15 +178,23 @@ def find_control_estates(pools_arg):
 
 def main():
     # Process arguments
-    if len(sys.argv) != 4:
-        print("usage: parallel_run.py template_dir output_dir pools_arg")
-        print("       template_dir: can be mutiply filename names and directory names")
-        print("       output_dir: can only be single directory name")
-        print("       pools_arg: can only be single directory name or single filename names")
-        return
-    template_dirs = sys.argv[1]
-    output_dir = sys.argv[2]
-    pools_arg = sys.argv[3]
+    parser = argparse.ArgumentParser(description='Run jsonnet in parallel to build control estates templates')
+    parser.add_argument('--src', help='One or more directories or filenames comma seperated', required=True)
+    parser.add_argument('--out', help='Single output directory', required=True)
+    parser.add_argument('--pools', help='Directory with structure of sam-internals/pools/ or a filename with json content', required=True)
+    parser.add_argument('--estatefilter', help='Filter estates for local purposes only.  Supports a comma-seperated list of kingdom/estate.  Example: "prd/prd-samtest,prd-samdev"')
+    args = parser.parse_args()
+
+    template_dirs = args.src
+    output_dir = args.out
+    pools_arg = args.pools
+    estate_filter = []
+    if args.estatefilter != None and len(args.estatefilter)>0:
+      estate_filter = args.estatefilter.split(",")
+      for this_filter in estate_filter:
+        if len(this_filter.split("/")) != 2:
+          print("Estate filter expected to be in format kingdom/estate.  Got " + this_filter)
+          sys.exit(1)
 
     # Read control estates
     if os.path.isdir(pools_arg):
@@ -194,6 +203,10 @@ def main():
         control_estates = json.load(open(pools_arg))["kingdomEstates"]
     else:
         print("\nwrong input,input have to be a filename or directory name.")
+        sys.exit(1)
+
+    if len(estate_filter)>0:
+        control_estates = list(set(control_estates) & set(estate_filter))
 
     # Do the work
     work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)
