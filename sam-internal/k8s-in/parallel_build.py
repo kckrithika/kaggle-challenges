@@ -189,7 +189,7 @@ def main():
     output_dir = args.out
     pools_arg = args.pools
     estate_filter = []
-    if len(args.estatefilter)>0:
+    if args.estatefilter != None and len(args.estatefilter)>0:
       estate_filter = args.estatefilter.split(",")
       for this_filter in estate_filter:
         if len(this_filter.split("/")) != 2:
