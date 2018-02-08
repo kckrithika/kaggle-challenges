@@ -42,6 +42,13 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --optOutNamespace=kne
         - --monitorFrequency=60s
+        - --hostnameoverride=$(NODE_NAME)
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000611-2c5a53ee
         name: slb-vip-watchdog
         volumeMounts:
@@ -49,7 +56,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
-      hostNetwork: true
+        - mountPath: /sfdchosts
+          name: sfdchosts
       nodeSelector:
         slb-dns-register: "true"
       volumes:
@@ -59,3 +67,6 @@ spec:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
