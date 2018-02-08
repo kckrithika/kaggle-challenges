@@ -13,9 +13,11 @@ system:
         containerPort: 8154
       livenessProbe:
         httpGet:
-          path: /go/api/v1/health
+          path: /go/auth/login 
+          # TODO After upgrade to >v17.11, use this path
+          #path: /go/api/v1/health
           port: 8153
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
   loadbalancers:
   - lbname: gocd-lb 
     function: gocd-master
