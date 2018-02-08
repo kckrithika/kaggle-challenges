@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: jenkins-master
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/testandrelease/gocd_server_docker:1.0-0000021-d98b01bc
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/testandrelease/gocd_server_docker:1.0-0000022-f2b13f3c
       ports:
       - name: ui
         containerPort: 8153
