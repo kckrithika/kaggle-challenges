@@ -7,7 +7,7 @@ system:
   functions:
   - name: zk-func
     type: stateful-set
-    count: 3
+    count: 5
     containers:
     - name: zk-func-cont
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8szk:v4
