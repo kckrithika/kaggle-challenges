@@ -30,7 +30,7 @@ system:
       volumes:
       - name: cmx
         hostPath:
-          path: /opt/cmx
+          path: /home/sfdc-cmx
 
     loadbalancers:
     - lbname: cmx-node
