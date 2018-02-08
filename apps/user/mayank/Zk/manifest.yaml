@@ -7,7 +7,7 @@ system:
   functions:
   - name: zk-func
     type: stateful-set
-    count: 5
+    count: 3
     containers:
     - name: zk-func-cont
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8szk:v4
@@ -24,7 +24,7 @@ system:
         name: leader-election
       env:
       - name : ZK_REPLICAS
-        value: "5"
+        value: "3"
       - name : ZK_HEAP_SIZE
         value: "1G"
       - name : ZK_TICK_TIME
