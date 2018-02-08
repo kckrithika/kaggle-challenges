@@ -6,7 +6,7 @@
         containers: 
           - 
             args: 
-              - "export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;export ReportCollector_ajna_datacenter=${KINGDOM} ;export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;${JAVA_HOME}/bin/java-Dlogback.configurationFile=${APP_DIR}/logback-docker.xml-Dvertx.disableFileCPResolving=true-Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory-Dvertx.metrics.options.enabled=true-Dvertx.metrics.options.registryName=vertx-registry-Dvertx.disableDnsResolver=true-Dlog_dir=${LOG_DIR}-Dinstance=${FUNCTION_INSTANCE_NAME}-jar ${JAR_PATH}"
+              - "export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ; export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ; export ReportCollector_ajna_datacenter=${KINGDOM} ; export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ; ${JAVA_HOME}/bin/java -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml -Dvertx.disableFileCPResolving=true -Dvertx.logger-delegate-factory-class-name=io.vertx.core.logging.SLF4JLogDelegateFactory -Dvertx.metrics.options.enabled=true -Dvertx.metrics.options.registryName=vertx-registry -Dvertx.disableDnsResolver=true -Dlog_dir=${LOG_DIR} -Dinstance=${FUNCTION_INSTANCE_NAME} -jar ${JAR_PATH} "
             command: 
               - "/bin/sh"
               - "-c"
@@ -90,7 +90,7 @@
                 readOnly: true
           - 
             args: 
-              - "while sleep ${CLEANUP_PERIOD_SECONDS};do    echo $(date) \"Processing\" $CLEANUP_FOLDER;    if [ ! -d \"$CLEANUP_FOLDER\" ]; then        echo $CLEANUP_FOLDER \" doesn''t exist\";        continue;    fi;    find $CLEANUP_FOLDER -name \"$CLEANUP_FILE_PATTERN\" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;done"
+              - "while sleep ${CLEANUP_PERIOD_SECONDS}; do     echo $(date) \"Processing\" $CLEANUP_FOLDER;     if [ ! -d \"$CLEANUP_FOLDER\" ]; then         echo $CLEANUP_FOLDER \" doesn''t exist\";         continue;     fi;      find $CLEANUP_FOLDER -name \"$CLEANUP_FILE_PATTERN\" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete; done "
             command: 
               - "/bin/sh"
               - "-c"
