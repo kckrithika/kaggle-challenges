@@ -40,11 +40,55 @@ data:
           }
         },
         {
-          "job_name": "kubernetes-apiservers",
+          "job_name": "kubernetes-apiserver",
+          "scheme": "https",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:6443",
+                "shared0-samdevkubeapi2-1-prd.eng.sfdc.net:6443",
+                "shared0-samdevkubeapi3-1-prd.eng.sfdc.net:6443"
+              ]
+            }
+          ],
+          "tls_config": {
+            "ca_file": "/etc/pki_service/ca/cabundle.pem",
+            "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+            "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
+          }
+        },
+        {
+          "job_name": "kubernetes-controller-manager",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:10252",
+                "shared0-samdevkubeapi2-1-prd.eng.sfdc.net:10252",
+                "shared0-samdevkubeapi3-1-prd.eng.sfdc.net:10252"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "kubernetes-scheduler",
+          "scheme": "http",
+          "static_configs": [
+            {
+              "targets": [
+                "shared0-samdevkubeapi1-1-prd.eng.sfdc.net:10251",
+                "shared0-samdevkubeapi2-1-prd.eng.sfdc.net:10251",
+                "shared0-samdevkubeapi3-1-prd.eng.sfdc.net:10251"
+              ]
+            }
+          ]
+        },
+        {
+          "job_name": "kubernetes-kubelet",
           "kubernetes_sd_configs": [
             {
               "api_server": "shared0-samdevkubeapi2-1-prd.eng.sfdc.net:8000",
-              "role": "endpoints",
+              "role": "node",
               "tls_config": {
                 "ca_file": "/etc/pki_service/ca/cabundle.pem",
                 "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
@@ -52,17 +96,7 @@ data:
               }
             }
           ],
-          "relabel_configs": [
-            {
-              "action": "keep",
-              "regex": "default;kubernetes;https",
-              "source_labels": [
-                "__meta_kubernetes_namespace",
-                "__meta_kubernetes_service_name",
-                "__meta_kubernetes_endpoint_port_name"
-              ]
-            }
-          ],
+          "relabel_configs": [],
           "scheme": "https",
           "tls_config": {
             "ca_file": "/etc/pki_service/ca/cabundle.pem",
