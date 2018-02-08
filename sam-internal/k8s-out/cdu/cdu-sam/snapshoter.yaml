@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: snapshoter
+  name: snapshoter
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: snapshoter
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: snapshoter
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sam/snapshoter
+        - --config=/config/snapshoter.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --v=10
+        - --alsologtostderr
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001681-b53394f1
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9095
+          initialDelaySeconds: 20
+          periodSeconds: 20
+          timeoutSeconds: 20
+        name: snapshoter
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /config
+          name: config
+      hostNetwork: true
+      nodeSelector:
+        pool: cdu-sam
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: snapshoter
+        name: config
