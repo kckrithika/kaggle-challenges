@@ -37,7 +37,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
                             "--monitorFrequency=60s",
-                            "--hostnameoverride=$(NODE_NAME)",
+                            "--hostnameOverride=$(NODE_NAME)",
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
