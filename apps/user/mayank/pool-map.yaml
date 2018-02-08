@@ -1,5 +1,11 @@
 version: v2
 apps:
+ Zk:
+  - name: prd/prd-sam
+    hostSubList:
+    - shared0-samcompute1-3-prd.eng.sfdc.net
+    - shared0-samcompute1-4-prd.eng.sfdc.net
+    - shared0-samcompute1-5-prd.eng.sfdc.net   
  StatefulApp:
   - name: prd/prd-sam
     hostSubList:
