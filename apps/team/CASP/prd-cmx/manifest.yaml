@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-cmx
-        image: tnrp/casp/cmx:0.0.1-0000016-9d6cc932
+        image: tnrp/casp/cmx:0.0.1-0000021-e37f9515
         ports:
         - name: cmx
           containerPort: 7014
@@ -24,6 +24,13 @@ system:
             path: /tenants
             port: 7014
           initialDelaySeconds: 120
+        volumeMounts:
+        - mountPath: /opt/cmx
+          name: cmx
+      volumes:
+      - name: cmx
+        hostPath:
+          path: /home/sfdc-cmx
 
     loadbalancers:
     - lbname: cmx-node
