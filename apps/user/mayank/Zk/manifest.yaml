@@ -24,7 +24,7 @@ system:
         name: leader-election
       env:
       - name : ZK_REPLICAS
-        value: "3"
+        value: "5"
       - name : ZK_HEAP_SIZE
         value: "1G"
       - name : ZK_TICK_TIME
