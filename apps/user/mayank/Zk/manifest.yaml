@@ -10,7 +10,7 @@ system:
     count: 3
     containers:
     - name: zk-func-cont
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8szk:v3
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8szk:v4
       resources:
         requests:
           memory: "2Gi"
