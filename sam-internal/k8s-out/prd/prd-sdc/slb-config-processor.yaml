@@ -45,7 +45,6 @@ spec:
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
-        - --servicesNotToLbOverride=slb-canary-proxy-tcp-service
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

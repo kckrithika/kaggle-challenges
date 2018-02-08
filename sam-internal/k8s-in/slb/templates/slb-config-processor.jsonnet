@@ -77,9 +77,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--shouldRemoveConfig=true",
                             configs.sfdchosts_arg,
                             "--proxySelectorLabelValue=slb-nginx-config-b",
-                        ] + if configs.estate == "prd-sdc" then [
-                            "--servicesNotToLbOverride=" + slbconfigs.servicesNotToLbOverride,
-                        ] else [],
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
