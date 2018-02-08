@@ -45,7 +45,7 @@ if [ $1 -eq "" ]; then
   mkdir -p ../k8s-out/
   cp k8s-out-access.yaml ../k8s-out/access.yaml
 else
-  echo "Skipping cleanup because we are processing one estate only"
+  echo "Skipping cleanup because we are processing a filtered list of estates"
 fi
 
 
