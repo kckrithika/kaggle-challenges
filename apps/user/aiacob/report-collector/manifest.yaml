@@ -149,7 +149,7 @@ system:
           port: 6379
         initialDelaySeconds: 5
     - name: redis-stat
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-redis-stat:201802091017
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-redis-stat:201802091024
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
