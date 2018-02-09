@@ -22,7 +22,7 @@ spec:
         - /sam/snapshoter
         - --config=/config/snapshoter.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --v=10
+        - --v=4
         - --alsologtostderr
         env:
         - name: KUBECONFIG
