@@ -14,22 +14,13 @@ system:
         containerPort: 8154
       volumeMounts:
       - name: mount-db
-        mountPath: /path1
+        mountPath: /var/lib/go-server/db
       - name: mount-log
-        mountPath: /path2
+        mountPath: /var/log/go-server
       - name: mount-artifacts
-        mountPath: /path3
+        mountPath: /var/lib/go-server/artifacts 
       - name: mount-etc-go
-        mountPath: /path4
-      # TODO use this when we confirm its working
-      #- name: mount-db
-      #  mountPath: /var/lib/go-server/db
-      #- name: mount-log
-      #  mountPath: /var/log/go-server
-      #- name: mount-artifacts
-      #  mountPath: /var/lib/go-server/artifacts 
-      #- name: mount-etc-go
-      #  mountPath: /etc/go
+        mountPath: /etc/go
       livenessProbe:
         httpGet:
           path: /go/auth/login 
