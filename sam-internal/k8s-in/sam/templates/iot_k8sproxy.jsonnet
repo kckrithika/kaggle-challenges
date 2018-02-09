@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-sam" then {
 # This is just to unblock IOT Team since their pipeline uses port 5000. Should be removed after they are able to access proxy at port 40000

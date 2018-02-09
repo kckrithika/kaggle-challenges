@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 {
   # Snoozes - This is a central list of all snoozed watchdogs.  For each snooze, please add a comment explaining the reason

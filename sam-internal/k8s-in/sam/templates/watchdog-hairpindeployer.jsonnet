@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 # This is a hack.  All watchdogs use the shared configMap, but hairpin had a duplicate set of flags
 # and is not wired up to the configMap.  We should either pass through flags or have it use the configMap
 local samwdconfigmap = import "configs/watchdog-config.jsonnet";

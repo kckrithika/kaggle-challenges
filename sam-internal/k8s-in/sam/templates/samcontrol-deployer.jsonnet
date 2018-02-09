@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 {
     kind: "Deployment",
     spec: {

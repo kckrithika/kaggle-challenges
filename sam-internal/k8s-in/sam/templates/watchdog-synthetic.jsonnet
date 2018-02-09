@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 {
    apiVersion: "extensions/v1beta1",

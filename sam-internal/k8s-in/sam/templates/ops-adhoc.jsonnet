@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 # Turned off by default.  Enable only when needed for a prod issue
 if configs.kingdom == "prd" then {

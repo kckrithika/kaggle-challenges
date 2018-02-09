@@ -1,5 +1,4 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
 
 {
   funnelEndpoint: configs.funnelVIP,

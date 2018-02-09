@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local hosts = import "configs/hosts.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {

@@ -1,6 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local utils = import "util_functions.jsonnet";
+
 {
     ### Global overrides - Anything here will override anything below.
     overrides: {
@@ -84,18 +84,18 @@ local utils = import "util_functions.jsonnet";
     # These are the images used by the templates.
 
     # Maintained in https://git.soma.salesforce.com/SFStorage/foundation repo.
-    fdscontroller: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].default_tag),
-    configwatcher: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "configwatcher", $.per_phase[$.phase].default_tag),
-    sfstoreoperator: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfstoreoperator", $.per_phase[$.phase].default_tag),
+    fdscontroller: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].default_tag),
+    configwatcher: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "configwatcher", $.per_phase[$.phase].default_tag),
+    sfstoreoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfstoreoperator", $.per_phase[$.phase].default_tag),
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
-    cephoperator: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
-    loginit: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
+    cephoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
+    loginit: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.
-    sfms: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
+    sfms: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
 
     # The ceph daemon image is maintained in the https://git.soma.salesforce.com/SFStorage/ceph-docker repo.
-    cephdaemon: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph-daemon", $.per_phase[$.phase].cephdaemon_tag),
+    cephdaemon: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph-daemon", $.per_phase[$.phase].cephdaemon_tag),
     # cephdaemon_image_path is the base path for daemon images. The tag for the daemon image will come from the ceph cluster spec itself.
     cephdaemon_image_path: std.split($.cephdaemon, ":")[0],
     # ceph_daemon_tag is the tag used for daemon images. This is populated in the ceph cluster spec, and can be overridden per-minion estate
@@ -103,11 +103,14 @@ local utils = import "util_functions.jsonnet";
     cephdaemon_tag: $.per_phase[$.phase].cephdaemon_tag,
 
     # The sfstore bookie image is maintained in the https://git.soma.salesforce.com/SFStorage/bookkeeper repo.
-    sfstorebookie: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "bookie", $.per_phase[$.phase].sfstorebookie_tag),
+    sfstorebookie: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "bookie", $.per_phase[$.phase].sfstorebookie_tag),
 
     # The sfstore lvprovisioner image is maintained in the https://git.soma.salesforce.com/SFStorage/lvprovisioner repo.
-    lvprovisioner: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "lvprovisioner", $.per_phase[$.phase].lvprovisioner_tag),
+    lvprovisioner: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "lvprovisioner", $.per_phase[$.phase].lvprovisioner_tag),
 
     # The sfstore nodeprep image is maintained in the https://git.soma.salesforce.com/SFStorage/nodeprep repo.
-    sfnodeprep: utils.do_override_for_tnrp_image($.overrides, "storagecloud", "sfnodeprep", $.per_phase[$.phase].sfnodeprep_tag),
+    sfnodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfnodeprep", $.per_phase[$.phase].sfnodeprep_tag),
+
+    # [thargrove] Temporary - next PR will do this properly
+    local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: std.extVar("template") + ".jsonnet" },
 }
