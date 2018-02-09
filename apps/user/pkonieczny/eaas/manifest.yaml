@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/pkonieczny/emailservice:05239add7a2fb9abb81d5dce85d7c464d73c1fe3
+      image: docker-sfci-dev/sfci/pkonieczny/emailservice:3bb6ab76672dd48028764e28f05a7c95ff2a7484
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -26,8 +26,6 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
-      - mountPath: /etc/pki_service
-        name: eaas-client-cert
       livenessProbe:
         httpGet:
           path: /manage/health
