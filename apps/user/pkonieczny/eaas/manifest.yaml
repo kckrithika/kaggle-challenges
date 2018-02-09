@@ -22,7 +22,6 @@ system:
       ports:
         - name: grpc
           containerPort: 7020
-        - containerPort: 15372
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -55,8 +54,6 @@ system:
         name: sherpa-eaas-in
       - containerPort: 7443
         name: sherpa-eaas-tls
-      - containerPort: 7014
-        name: sherpa-eaas-rpc
       - containerPort: 15373
         name: sherpa-eaas-adm
       livenessProbe:
