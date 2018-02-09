@@ -5,10 +5,10 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-api-iad-ccp-shared-dev
+  - name: cre-api-iad-prod
     count: 3
     containers:
-    - name: cre-api-iad-ccp-shared-dev
+    - name: cre-api-iad-prod
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/cre/cre-api:master.bd8b237.45
       env:
         - name: SFDC_ENVIRONMENT
@@ -24,7 +24,7 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
-      - mountPath: /opt/cre/cre-api_ccp-shared-dev
+      - mountPath: /opt/cre/cre-api_prod
         name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.15
@@ -51,13 +51,13 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-api_ccp-shared-dev
+        path: /home/sfdc-cre/logs/cre-api_prod
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
   loadbalancers:
-  - lbname: cre-api-iad-ccp-shared-dev-lb
-    function: cre-api-iad-ccp-shared-dev
+  - lbname: cre-api-iad-prod-lb
+    function: cre-api-iad-prod
     nodeExposed: true
     slbenabled: true    
     ports:
