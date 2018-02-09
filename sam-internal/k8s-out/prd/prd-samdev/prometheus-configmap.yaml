@@ -98,10 +98,6 @@ data:
           ],
           "relabel_configs": [
             {
-              "action": "labelmap",
-              "regex": "__meta_kubernetes_node_label_(.+)"
-            },
-            {
               "replacement": "${1}:10250",
               "source_labels": [
                 "__meta_kubernetes_node_name"
@@ -130,10 +126,6 @@ data:
             }
           ],
           "relabel_configs": [
-            {
-              "action": "labelmap",
-              "regex": "__meta_kubernetes_node_label_(.+)"
-            },
             {
               "replacement": "${1}:4194",
               "source_labels": [

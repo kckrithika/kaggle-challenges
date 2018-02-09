@@ -93,10 +93,10 @@ local hosts = import "hosts.jsonnet";
         key_file: "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
       },
       relabel_configs: [
-        {
-          action: "labelmap",
-          regex: "__meta_kubernetes_node_label_(.+)",
-        },
+#        {
+#          action: "labelmap",
+#          regex: "__meta_kubernetes_node_label_(.+)",
+#        },
         # This gives us an endpoint with the hostname instead of the IP
         {
           source_labels: ["__meta_kubernetes_node_name"],
@@ -121,10 +121,10 @@ local hosts = import "hosts.jsonnet";
      }],
       scheme: "http",
       relabel_configs: [
-        {
-          action: "labelmap",
-          regex: "__meta_kubernetes_node_label_(.+)",
-        },
+#        {
+#          action: "labelmap",
+#          regex: "__meta_kubernetes_node_label_(.+)",
+#        },
         # This gives us an endpoint with the hostname instead of the IP
         {
           source_labels: ["__meta_kubernetes_node_name"],
