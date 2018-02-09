@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector:201802070920
+      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
       ports:
       - name: provider
         containerPort: 8080
@@ -58,8 +58,8 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificates
-        value: "[\"/var/lib/report-collector/certificates/ca.crt\"]"
+      - name: ReportCollector_app_https_caCertificate
+        value: /var/lib/report-collector/certificates/ca.crt
       - name: ReportCollector_app_https_certificate
         value: /var/lib/report-collector/certificates/rc_server.crt
       - name: ReportCollector_app_https_privateKey
