@@ -16,7 +16,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       - name: GRPC_ANNOUNCED_PORT
-        value: 7014
+        value: 7012
       - name: SCONE_SERVICE_NAME
         value: eaas-pkonieczny
       ports:
