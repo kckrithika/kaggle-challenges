@@ -2,15 +2,34 @@ apiVersion: v1
 system:
   functions:
   - name: gocd-master
+    type: stateful-set
     count: 1
     containers:
     - name: jenkins-master
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/testandrelease/gocd_server_docker:1.0-0000023-c52c2225
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/testandrelease/gocd_server_docker:1.0-0000024-b0c87f85
       ports:
       - name: ui
         containerPort: 8153
       - name: agent
         containerPort: 8154
+      volumeMounts:
+      - name: mount-db
+        mountPath: /path1
+      - name: mount-log
+        mountPath: /path2
+      - name: mount-artifacts
+        mountPath: /path3
+      - name: mount-etc-go
+        mountPath: /path4
+      # TODO use this when we confirm its working
+      #- name: mount-db
+      #  mountPath: /var/lib/go-server/db
+      #- name: mount-log
+      #  mountPath: /var/log/go-server
+      #- name: mount-artifacts
+      #  mountPath: /var/lib/go-server/artifacts 
+      #- name: mount-etc-go
+      #  mountPath: /etc/go
       livenessProbe:
         httpGet:
           path: /go/auth/login 
@@ -18,6 +37,20 @@ system:
           #path: /go/api/v1/health
           port: 8153
         initialDelaySeconds: 60
+    volumeClaimTemplates:
+    - name: mount-db
+      storageClassName: test-release-gocd-hdd-pool 
+      storageSizeRequest: 10Gi
+    - name: mount-log
+      storageClassName: test-release-gocd-hdd-pool 
+      storageSizeRequest: 10Gi
+    - name: mount-artifacts
+      storageClassName: test-release-gocd-hdd-pool 
+      storageSizeRequest: 10Gi
+    - name: mount-etc-go
+      storageClassName: test-release-gocd-hdd-pool 
+      storageSizeRequest: 10Gi
+    lbname: gcd-lb-stateful
   loadbalancers:
   - lbname: gocd-lb 
     function: gocd-master
