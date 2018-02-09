@@ -148,6 +148,21 @@ system:
         tcpSocket:
           port: 6379
         initialDelaySeconds: 5
+    - name: redis-stat
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-redis-stat:201802091017
+      volumeMounts:
+      - mountPath: /var/secrets/redis
+        name: redisauthvol
+        readOnly: true
+      ports:
+      - containerPort: 63790
+      livenessProbe:
+        exec:
+          command:
+          - echo
+          - always_healthy
+        initialDelaySeconds: 5
+        periodSeconds: 30
 
   loadbalancers:
   - lbname: andreisreportcollectorlb
@@ -171,3 +186,5 @@ system:
     ports:
       - port: 6382
         targetport: 6379
+      - port: 63790
+        targetport: 63790
