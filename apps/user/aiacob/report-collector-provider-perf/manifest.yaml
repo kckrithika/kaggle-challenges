@@ -39,6 +39,12 @@ system:
         value: 20
       - name: LOCUST_WEIGHT_POST_LARGE_REPORT
         value: 1
+      - name: LOCUST_WEIGHT_GET_WATCHDOG_REPORTS
+        value: 0
+      - name: LOCUST_WEIGHT_GET_OBSERVER_REPORTS
+        value: 0
+      - name: LOCUST_WEIGHT_GET_ALL_REPORTS
+        value: 0
       - name: LOCUST_RC_PROVIDER_PROTOCOL
         value: https
       - name: LOCUST_RC_PROVIDER_HOST
@@ -81,6 +87,12 @@ system:
         value: 20
       - name: LOCUST_WEIGHT_POST_LARGE_REPORT
         value: 1
+      - name: LOCUST_WEIGHT_GET_WATCHDOG_REPORTS
+        value: 0
+      - name: LOCUST_WEIGHT_GET_OBSERVER_REPORTS
+        value: 0
+      - name: LOCUST_WEIGHT_GET_ALL_REPORTS
+        value: 0
       - name: LOCUST_RC_PROVIDER_PROTOCOL
         value: https
       - name: LOCUST_RC_PROVIDER_HOST
