@@ -96,13 +96,53 @@ data:
               }
             }
           ],
-          "relabel_configs": [],
+          "relabel_configs": [
+            {
+              "action": "labelmap",
+              "regex": "__meta_kubernetes_node_label_(.+)"
+            },
+            {
+              "replacement": "${1}:10250",
+              "source_labels": [
+                "__meta_kubernetes_node_name"
+              ],
+              "target_label": "__address__"
+            }
+          ],
           "scheme": "https",
           "tls_config": {
             "ca_file": "/etc/pki_service/ca/cabundle.pem",
             "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
             "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
           }
+        },
+        {
+          "job_name": "cadvisor",
+          "kubernetes_sd_configs": [
+            {
+              "api_server": "shared0-samtestkubeapi2-1-prd.eng.sfdc.net:8000",
+              "role": "node",
+              "tls_config": {
+                "ca_file": "/etc/pki_service/ca/cabundle.pem",
+                "cert_file": "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+                "key_file": "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
+              }
+            }
+          ],
+          "relabel_configs": [
+            {
+              "action": "labelmap",
+              "regex": "__meta_kubernetes_node_label_(.+)"
+            },
+            {
+              "replacement": "${1}:4194",
+              "source_labels": [
+                "__meta_kubernetes_node_name"
+              ],
+              "target_label": "__address__"
+            }
+          ],
+          "scheme": "http"
         }
       ]
     }
