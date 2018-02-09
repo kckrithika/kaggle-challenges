@@ -33,6 +33,12 @@ system:
         value: 3
       - name: LOCUST_FUNCTION
         value: master
+      - name: LOCUST_WEIGHT_POST_WATCHDOG_REPORT
+        value: 0
+      - name: LOCUST_WEIGHT_POST_OBSERVER_REPORT
+        value: 0
+      - name: LOCUST_WEIGHT_POST_LARGE_REPORT
+        value: 0
       - name: LOCUST_WEIGHT_GET_WATCHDOG_REPORTS
         value: 3
       - name: LOCUST_WEIGHT_GET_OBSERVER_REPORTS
@@ -75,6 +81,12 @@ system:
       env:
       - name: LOCUST_FUNCTION
         value: worker
+      - name: LOCUST_WEIGHT_POST_WATCHDOG_REPORT
+        value: 0
+      - name: LOCUST_WEIGHT_POST_OBSERVER_REPORT
+        value: 0
+      - name: LOCUST_WEIGHT_POST_LARGE_REPORT
+        value: 0
       - name: LOCUST_WEIGHT_GET_WATCHDOG_REPORTS
         value: 3
       - name: LOCUST_WEIGHT_GET_OBSERVER_REPORTS
