@@ -29,7 +29,7 @@ system:
   loadbalancers:
   - lbname: switchboard-lb
     function: switchboardsb
-    slbenabled: true
+    nodeExposed: true
     ports:
     - port: 15001
       targetport: 15001
@@ -37,9 +37,3 @@ system:
     - port: 15370
       targetport: 15370
       lbtype: dsr
-  - lbname: switchboard-nlb
-    function: switchboardsb
-    nodeExposed: true
-    ports:
-      - port: 15001
-        targetport: 15001
