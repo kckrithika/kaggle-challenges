@@ -57,7 +57,7 @@ system:
           - "true"
 
   - name: andreis-locust-consumer-worker
-    count: 30
+    count: 5
     volumes:
       - name: certvol
         secret:

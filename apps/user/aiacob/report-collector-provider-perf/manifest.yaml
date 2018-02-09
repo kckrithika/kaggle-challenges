@@ -57,7 +57,7 @@ system:
           - "true"
 
   - name: andreis-locust-provider-worker
-    count: 30
+    count: 10
     volumes:
       - name: certvol
         secret:
