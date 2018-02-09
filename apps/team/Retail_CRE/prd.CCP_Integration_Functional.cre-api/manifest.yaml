@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-integration-functional
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:master.cf88d72.29
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/cre/cre-api:master.bd8b237.46
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-integration-functional
