@@ -82,7 +82,7 @@ if configs.estate == "prd-sdc" then {
                     sdnconfigs.sdn_logs_volume,
                 ]),
                 nodeSelector: {
-                    pool: configs.estate,
+                    master: "true",
                 },
             },
         },
