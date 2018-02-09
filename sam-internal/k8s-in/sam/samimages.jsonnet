@@ -44,7 +44,7 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
         # [d.smith] scraper has --sink=logs arg for DCs we dont care about sending through kafka
-        "prd,prd-sam,snapshoter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam",
+        "prd,prd-sam,snapshoter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180209_141036.9b122d00.clean.duncsmith-ltm",
 
         #[mayank.kumar] email reporter
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
