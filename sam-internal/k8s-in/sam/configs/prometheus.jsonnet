@@ -71,11 +71,7 @@ local hosts = import "hosts.jsonnet";
       ],
       scheme: "http",
     },
-    # Followed example here: https://github.com/prometheus/prometheus/blob/release-2.1/documentation/examples/prometheus-kubernetes.yml
-    # Rather than connecting directly to the node, the scrape is proxied though the
-    # Kubernetes apiserver.  This means it will work if Prometheus is running out of
-    # cluster, or can't connect to nodes for some other reason (e.g. because of
-    # firewalling).
+    # Started with this example, but changed heavily: https://github.com/prometheus/prometheus/blob/release-2.1/documentation/examples/prometheus-kubernetes.yml
     {
       job_name: "kubernetes-kubelet",
       kubernetes_sd_configs: [{
@@ -101,16 +97,40 @@ local hosts = import "hosts.jsonnet";
 #          action: "labelmap",
 #          regex: "__meta_kubernetes_node_label_(.+)",
 #        },
+        # This gives us an endpoint with the hostname instead of the IP
+        {
+          source_labels: ["__meta_kubernetes_node_name"],
+          target_label: "__address__",
+          replacement: "${1}:10250",
+        },
+      ],
+    },
+    {
+      job_name: "cadvisor",
+      kubernetes_sd_configs: [{
+        # This needs to be the same hostname that we are running on.  We can't use localhost or 127.0.0.1 because the certs wont match
+        # Keep this in sync with host selector in ../templates/prometheus.jsonnet
+        # Yes this is ugly, we need a better solution
+        api_server: ([h.hostname for h in hosts.hosts if h.controlestate == std.extVar("estate") && h.kingdom == std.extVar("kingdom") && std.endsWith(std.split(h.hostname, "-")[1], "kubeapi2")][0]) + ":8000",
+        role: "node",
+        tls_config: {
+         ca_file: "/etc/pki_service/ca/cabundle.pem",
+          cert_file: "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
+          key_file: "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem",
+        },
+     }],
+      scheme: "http",
+      relabel_configs: [
 #        {
-#          target_label: "__address__",
-#          replacement: "kubernetes.default.svc:443",
+#          action: "labelmap",
+#          regex: "__meta_kubernetes_node_label_(.+)",
 #        },
-#        {
-#          source_labels: ["__meta_kubernetes_node_name"],
-#          regex: "(.+)",
-#          target_label: "__metrics_path__",
-#          replacement: "/api/v1/nodes/${1}/proxy/metrics",
-#        },
+        # This gives us an endpoint with the hostname instead of the IP
+        {
+          source_labels: ["__meta_kubernetes_node_name"],
+          target_label: "__address__",
+          replacement: "${1}:4194",
+        },
       ],
     },
   ],
