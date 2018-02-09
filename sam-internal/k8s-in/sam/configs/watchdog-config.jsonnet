@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local samimages = import "samimages.jsonnet";
+local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samwdconfig = import "samwdconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 

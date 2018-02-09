@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = import "slbimages.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-local samimages = import "sam/samimages.jsonnet";
+local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
      apiVersion: "extensions/v1beta1",

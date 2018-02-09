@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
+
 {
     # ================== SAM RELEASE ====================
     # Releases should follow the order below unless there are special circumstances.  Each phase should use the
@@ -169,20 +170,29 @@ local utils = import "util_functions.jsonnet";
     # ====== DO NOT EDIT BELOW HERE ======
 
     # These are the images used by the templates
-    hypersam: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].hypersam),
-    k8sproxy: utils.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
-    prometheus: utils.do_override_based_on_tag($.overrides, "sam", "prometheus", $.static.prometheus),
-    permissionInitContainer: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
-    k4aInitContainerImage: utils.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.k4aInitContainerImage),
+    hypersam: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].hypersam),
+    k8sproxy: imageFunc.do_override_based_on_tag($.overrides, "sam", "k8sproxy", $.static.k8sproxy),
+    prometheus: imageFunc.do_override_based_on_tag($.overrides, "sam", "prometheus", $.static.prometheus),
+    permissionInitContainer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
+    k4aInitContainerImage: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.k4aInitContainerImage),
 
     # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
     # of all containers
-    madkub: utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
+    madkub: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
 
     # override need to follow the phase as we are changing the format.
     madkubSidecar: if $.per_phase[$.phase].hypersam == "sam-0001355-581a778b" then
                 "sam/madkub:" + $.per_phase[$.phase].madkubSidecar
             else
-                utils.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
+                imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
 
+    # To make overrides work, the util_functions library needs to know the template we are processing
+    # To keep things clean, we are passing it from template to here at import time, then we pass it down to utils
+    #
+    # Each template needs to have this at the top:
+    #
+    #   local samimages = (import "samimages.jsonnet") + {templateFilename :: std.thisFile};
+    #
+    templateFilename:: error "templateFilename must be passed at time of import",
+    local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
 }

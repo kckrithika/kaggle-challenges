@@ -1,6 +1,5 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local utils = import "util_functions.jsonnet";
 {
     ### Global overrides - Anything here will override anything below
     overrides: {
@@ -66,6 +65,9 @@ local utils = import "util_functions.jsonnet";
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
     # These are the images used by the templates
-    hypersdn: utils.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
-    bird: utils.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
+    hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
+    bird: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
+
+    # [thargrove] Temporary - next PR will do this properly
+    local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: std.extVar("template") + ".jsonnet" },
 }

@@ -1,4 +1,3 @@
-local samimages = import "samimages.jsonnet";
 local configs = import "config.jsonnet";
 
 if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
