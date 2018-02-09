@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas-grpc-client
-      image: docker-sfci-dev/sfci/pkonieczny/grpc-client:71978e59aa9a93f3fb98cada3f7ac4f7a3908d6e
+      image: docker-sfci-dev/sfci/pkonieczny/grpc-client:1d213dce356d2d284775ee408729d9d74891c43a
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -20,8 +20,11 @@ system:
           command:
           - cat
           - /home/sfdc-eaas/grpc-client.jar
-      initialDelaySeconds: 5
-      periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /etc/pki_service
+        name: eaas-client-cert
     - name: sherpa-eaas-grpc-client
       image: sfci/servicelibs/sherpa:2.0.17
       env:
