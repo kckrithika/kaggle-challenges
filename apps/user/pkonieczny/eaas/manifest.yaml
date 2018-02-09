@@ -18,10 +18,11 @@ system:
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
       - name: SCONE_SERVICE_NAME
-        value: eaas-pkonieczny
+        value: eaas
       ports:
         - name: grpc
           containerPort: 7020
+        - containerPort: 15372
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
