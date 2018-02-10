@@ -196,7 +196,7 @@ system:
     - name: dashboard-cdu
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdu-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdu-sam
         - --insecure-port=9101
         - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>
         - --system-banner-severity=WARNING
@@ -213,7 +213,7 @@ system:
     - name: dashboard-yhu
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yhu-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yhu-sam
         - --insecure-port=9102
         - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/YsYmAPoYKC5b"> here </a> for status updates</br><h3>PRD-SAMDEV</h3>
         - --system-banner-severity=WARNING
@@ -230,7 +230,7 @@ system:
     - name: dashboard-yul
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yul-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yul-sam
         - --insecure-port=9103
         - --system-banner=<h3>YUL-SAM</h3>
         - --system-banner-severity=WARNING
@@ -247,7 +247,7 @@ system:
     - name: dashboard-syd
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-sam.prd.slb.sfdc.net:40001/syd-sam
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/syd-sam
         - --insecure-port=9104
         - --system-banner=<h3>SYD-SAM</h3>
         - --system-banner-severity=WARNING
