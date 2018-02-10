@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
-local sdnimages = import "sdnimages.jsonnet";
+local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
 if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {

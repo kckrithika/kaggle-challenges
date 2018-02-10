@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
-local storageimages = import "storageimages.jsonnet";
+local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "storageutils.jsonnet";
 
 local internal = {

@@ -2,7 +2,7 @@
 // This provides a no-op Deployment (replica count is 0), but triggers an image promotion of the storage service TNRP images into production
 // datacenters where this Deployment is applied.
 local configs = import "config.jsonnet";
-local storageimages = import "storageimages.jsonnet";
+local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {

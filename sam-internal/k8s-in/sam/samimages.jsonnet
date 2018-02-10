@@ -186,13 +186,12 @@ local utils = import "util_functions.jsonnet";
             else
                 imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
 
-    # To make overrides work, the util_functions library needs to know the template we are processing
-    # To keep things clean, we are passing it from template to here at import time, then we pass it down to utils
+    # image_functions needs to know the filename of the template we are processing
+    # Each template must set this at time of importing this file, for example:
     #
-    # Each template needs to have this at the top:
+    # "local someteamimages = (import "someteamimages.jsonnet")  + { templateFilename:: std.thisFile };"
     #
-    #   local samimages = (import "samimages.jsonnet") + {templateFilename :: std.thisFile};
-    #
+    # Then we pass this again into image_functions at time of import.
     templateFilename:: error "templateFilename must be passed at time of import",
     local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
 }

@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local storageimages = import "storageimages.jsonnet";
+local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local clusterNamespace = (if configs.estate == "prd-sam_storage"  then "ceph-test" else if configs.estate == "prd-sam" then "legostore" else "ceph");
 local appNamespace = (if configs.estate == "prd-sam_storage"  then "gater-apps" else if configs.estate == "prd-sam" then "user-jisaac-gater-apps" else "gater");
 

@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local storageimages = import "storageimages.jsonnet";
+local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
