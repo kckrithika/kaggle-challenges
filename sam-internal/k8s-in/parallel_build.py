@@ -63,7 +63,6 @@ def run_jsonnet(item):
     cmd = "./jsonnet/jsonnet"
     cmd += " -V kingdom=" + item.kingdom
     cmd += " -V estate=" + item.estate
-    cmd += " -V template=" + appName
     cmd += " " + item.jsonnet_file
     cmd += " -o " + outfile
     cmd += " --jpath . "

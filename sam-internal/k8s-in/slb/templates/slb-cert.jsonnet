@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
-local slbimages = import "slbimages.jsonnet";
+local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "../sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 

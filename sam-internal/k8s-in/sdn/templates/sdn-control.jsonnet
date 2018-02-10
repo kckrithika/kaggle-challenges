@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
-local sdnimages = import "sdnimages.jsonnet";
+local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" then {

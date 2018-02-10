@@ -87,7 +87,7 @@ local internal = {
       )
     ,
 
-    # This hidden field needs to be set with the template name at time of import.  It must contain the value of std.thisFile from the templace being processed
+    # This hidden field needs to be set with the template name at time of import.  It must contain the value of std.thisFile from the template being processed
     # We use this to enable overrides per template.  It used to be set on the cmd line, but to speed up build we want to do a multi-file run of jsonnet which
     # does not allow us to pass different arguments for different templates anymore.
     #

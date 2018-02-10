@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local storageimages = import "storageimages.jsonnet";
+local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 
 if configs.estate == "disabled" then {
