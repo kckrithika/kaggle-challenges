@@ -15,7 +15,7 @@ if flowsnakeconfig.is_minikube then
             },
         ],
         selector: {
-            app: "test-data",
+            app: "flowsnake-test-data",
         },
     },
 } else "SKIP"
