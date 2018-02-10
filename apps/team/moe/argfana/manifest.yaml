@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - agajjala@salesforce.com
+      - sdn@salesforce.com
   functions:
   - name: argfana
     count: 1

@@ -3,3 +3,5 @@ apps:
     - prd/prd-sam
   speedometer:
     - prd/prd-sam
+  argfana:
+    - prd/prd-sam
