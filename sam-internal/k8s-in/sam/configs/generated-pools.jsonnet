@@ -1466,7 +1466,7 @@
         "universal-search"
       ],
       "access": [
-        "team/Universal_Search"
+        "team/universal-search"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_universalsearchmt",
