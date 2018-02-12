@@ -37,18 +37,20 @@ system:
       - containerPort: 12079
         name: caas-cluster
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
-        - --redisPort=12079
-        - --cluster.name=sp-mist30-c1
-        - --logDir=/home/caas/logs
-        - --pathPrefix=/mist30/prd/sp2
+      - -endpoint
+      - caas/cluster/sp-mist30-c1:SUPERPOD:12079
+      - -logdir
+      - /home/sfdc-caas/logs/sp-mist30-c1-12079
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/opt/caas/redis/is-alive.sh"
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
