@@ -13,6 +13,7 @@ else:
 from threading import Thread
 
 NUM_WORKER_THREADS = 10
+MULTI_TEMP_DIR = "./multifile-temp/"
 
 # Info needed to process one jsonnet file for one estate
 class jsonnet_workitem:
@@ -55,21 +56,29 @@ def delete_if_skip(filename):
           return True
     return False
 
-# Process one jsonnet template
-def run_jsonnet(item):
-    # Used for cleanup right now, but we can probably move this to jsonnet later
+def make_multifile(item):
     computed_out_files = []
-    multifilename = "./temp/multi_"+item.kingdom+"_"+item.estate+"_" + item.team_dir + ".jsonnet"
+    # Jsonnet multi-file input format is:
+    #
+    # {
+    #   "sam-deployment-portal.json" : import ("sam/templates/sam-deployment-portal.jsonnet"),
+    # }
+    multifilename = os.path.join(MULTI_TEMP_DIR, "multi_"+item.kingdom+"_"+item.estate+"_" + item.team_dir + ".jsonnet")
     with open(multifilename, 'w') as multifile:
         multifile.write("{\n")
         for inFile in item.jsonnet_files:
-            # Outfile is infile bu with jsonnet swapped to json
+            # Outfile is computed from infile, but with file extension changed from jsonnet to json
             appNameWithExt = os.path.basename(inFile)
             appName = os.path.splitext(appNameWithExt)[0]
             outfile = appName + ".json"
             multifile.write("  \"" + outfile + "\": (import \"" + inFile + "\"),\n")
             computed_out_files.append(os.path.join(item.output_dir, outfile))
         multifile.write("}\n")
+    return multifilename, computed_out_files
+
+# Process one jsonnet template
+def run_jsonnet(item):
+    multifilename, computed_out_files = make_multifile(item)
 
     includeDir = "./" + item.team_dir
     cmd = "./jsonnet/jsonnet"
@@ -217,6 +226,11 @@ def main():
         if len(this_filter.split("/")) != 2:
           print("Estate filter expected to be in format kingdom/estate.  Got " + this_filter)
           sys.exit(1)
+
+    # Write temp files in CWD because they can be useful for debugging (we use gitignore)
+    # We do this here because we dont want to do it in the multi-threaded code and have conflicts
+    if not os.path.exists(MULTI_TEMP_DIR):
+        os.makedirs(MULTI_TEMP_DIR)
 
     # Read control estates
     if os.path.isdir(pools_arg):
