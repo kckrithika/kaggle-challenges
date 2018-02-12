@@ -71,6 +71,8 @@ system:
       volumeMounts:
       - name: eaas-server-cert
         mountPath: /server-certs
+      - name: sherpa-log-volume
+        mountPath: /log
 
     volumes:
     - name: logvol
@@ -79,3 +81,6 @@ system:
     - name: eaas-server-cert
       maddogCert:
         type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
