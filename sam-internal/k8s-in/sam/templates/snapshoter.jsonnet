@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 
 #Keep the below if statement in sync with the one in snapshoter-configmap.jsonnet
 
-if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
+{
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -34,7 +34,7 @@ if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
 "/sam/snapshoter",
                         "--config=/config/snapshoter.json",
                         "--hostsConfigFile=/sfdchosts/hosts.json",
-                        "--v=10",
+                        "--v=4",
                         "--alsologtostderr",
 ],
                     volumeMounts: configs.filter_empty([
@@ -77,4 +77,4 @@ if configs.kingdom != "prd" || configs.estate == "prd-samdev" then {
             },
         },
     },
-} else "SKIP"
+}

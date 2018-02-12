@@ -22,12 +22,12 @@ spec:
         - /sam/snapshoter
         - --config=/config/snapshoter.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --v=10
+        - --v=4
         - --alsologtostderr
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001681-b53394f1
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001355-581a778b
         livenessProbe:
           httpGet:
             path: /

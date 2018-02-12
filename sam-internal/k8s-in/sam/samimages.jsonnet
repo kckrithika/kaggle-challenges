@@ -43,22 +43,8 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
-        #[prahlad.joshi] scrapper sends kind for watch events
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "prd,prd-samdev,snapshoter,hypersam": "auto",
-        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "chx,chx-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "iad,iad-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "ord,ord-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "par,par-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "syd,syd-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "wax,wax-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
-        "yul,yul-sam,snapshoter,hypersam": "sam-0001681-b53394f1",
+        # [d.smith] scraper has --sink=logs arg for DCs we dont care about sending through kafka
+        "prd,prd-sam,snapshoter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180209_141036.9b122d00.clean.duncsmith-ltm",
 
         #[mayank.kumar] email reporter
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
