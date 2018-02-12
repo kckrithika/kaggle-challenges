@@ -25,7 +25,7 @@ system:
       volumeMounts:
       - mountPath: /etc/pki_service
         name: eaas-client-cert
-        
+
     - name: sherpa-eaas-grpc-client
       image: sfci/servicelibs/sherpa:2.0.21
       env:
@@ -54,8 +54,8 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
-      - name: eaas-server-cert
-        mountPath: /server-certs
+      - name: eaas-client-cert
+        mountPath: /client-certs
       - name: sherpa-log-volume
         mountPath: /log
     
