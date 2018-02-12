@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-mtls-tcp
-    slb.sfdc.net/type: tcp
+    slb.sfdc.net/portconfigurations: '[{"port":"12345","targetport":"12345","lbtype":"tcp"}]'
   name: slb-mtls-tcp-service
   namespace: sam-system
 spec:
