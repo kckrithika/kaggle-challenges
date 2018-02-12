@@ -6,12 +6,12 @@ system:
       - emailinfrastructure@salesforce.com
   functions:
   - name: eaas
-    count: 4 
+    count: 3 
     strategy:
       type: RollingUpdate
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/pkonieczny/emailservice:86e2de9b22f0b430084833d62135d8e5df6d9070
+      image: docker-sfci-dev/sfci/pkonieczny/emailservice:fa220522fc9ed4f7d6b5279546c7cccb05e3eb34
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -22,7 +22,6 @@ system:
       ports:
         - name: grpc
           containerPort: 7020
-        - containerPort: 15372
       volumeMounts:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
@@ -40,8 +39,10 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
+
     - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa:2.0.17
+      image: sfci/servicelibs/sherpa:2.0.21
+      args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -60,33 +61,23 @@ system:
           command:
           - cat
           - ./output/config.yaml
-        initialDelaySeconds: 1200
+        initialDelaySeconds: 120
         periodSeconds: 50
       readinessProbe:
         exec:
           command:
-          - cat  
+          - cat
           - ./output/config.yaml
-        initialDelaySeconds: 50
+        initialDelaySeconds: 110
         periodSeconds: 50
       volumeMounts:
       - name: eaas-server-cert
         mountPath: /server-certs
+
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
-    - name: eaas-client-cert
-      maddogCert:
-        type: client
     - name: eaas-server-cert
       maddogCert:
         type: server
-  loadbalancers:
-  - lbname: eaas-lb
-    function: eaas
-    ports:
-      - port: 15372
-        targetport: 15372
-      - port: 7020 
-        targetport: 7020
