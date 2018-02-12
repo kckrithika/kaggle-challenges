@@ -4,15 +4,11 @@ if configs.estate == "prd-sam" then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
-            name: "slb-mtls-dsr-service",
+            name: "slb-mtls-tcp-service",
             namespace: "sam-system",
-            labels: {
-                app: "slb-mtls-dsr-service",
-                "slb.sfdc.net/name": "slb-mtls-dsr",
-                "slb.sfdc.net/type": "none",
-            },
             annotations: {
-                "slb.sfdc.net/name": "slb-mtls-dsr",
+                "slb.sfdc.net/name": "slb-mtls-tcp",
+                "slb.sfdc.net/type": "tcp",
             },
         },
         spec: {

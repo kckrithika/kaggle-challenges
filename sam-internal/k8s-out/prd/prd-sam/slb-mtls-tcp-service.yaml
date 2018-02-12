@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-mtls-tcp
+    slb.sfdc.net/type: tcp
+  name: slb-mtls-tcp-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-mtls-dsr-port
+    nodePort: 32150
+    port: 9119
+    protocol: TCP
+    targetPort: 9119
+  selector:
+    name: slb-mtls-dsr
+  type: NodePort
