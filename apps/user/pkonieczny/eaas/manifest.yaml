@@ -59,15 +59,15 @@ system:
         exec:
           command:
           - cat
-          - ./bin/is-alive
+          - ./output/config.yaml
         initialDelaySeconds: 1200
         periodSeconds: 50
       readinessProbe:
         exec:
           command:
           - cat  
-          - ./bin/is-ready
-        initialDelaySeconds: 1100
+          - ./output/config.yaml
+        initialDelaySeconds: 50
         periodSeconds: 50
       volumeMounts:
       - name: eaas-server-cert
