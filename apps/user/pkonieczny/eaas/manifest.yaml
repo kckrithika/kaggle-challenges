@@ -58,13 +58,15 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - cat
+          - ./bin/is-alive
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - cat  
+          - ./bin/is-ready
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
