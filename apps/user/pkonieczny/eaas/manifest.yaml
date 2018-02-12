@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image: docker-sfci-dev/sfci/pkonieczny/emailservice:fa220522fc9ed4f7d6b5279546c7cccb05e3eb34
+      image: docker-sfci-dev/sfci/pkonieczny/emailservice:bab85f783ce409f7a27827c6fe0b836a3108578c
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -26,18 +26,16 @@ system:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
       livenessProbe:
-        exec:
-          command:
-          - cat
-          - entrypoint.sh
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 120
         periodSeconds: 60
         timeoutSeconds: 30
       readinessProbe:
-        exec:
-          command:
-          - cat
-          - entrypoint.sh
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
@@ -61,17 +59,15 @@ system:
       livenessProbe:
         exec:
           command:
-          - cat
-          - ./output/config.yaml
+          - "./bin/is-alive"
         initialDelaySeconds: 120
-        periodSeconds: 50
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - cat
-          - ./output/config.yaml
+          - "./bin/is-ready"
         initialDelaySeconds: 110
-        periodSeconds: 50
+        periodSeconds: 5
       volumeMounts:
       - name: eaas-server-cert
         mountPath: /server-certs
