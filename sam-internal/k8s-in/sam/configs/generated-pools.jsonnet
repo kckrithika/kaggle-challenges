@@ -1463,6 +1463,18 @@
     },
     {
       "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_universalsearchmt",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
