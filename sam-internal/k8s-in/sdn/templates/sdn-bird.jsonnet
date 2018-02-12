@@ -1,5 +1,6 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
@@ -31,6 +32,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 name: "socket",
                                 mountPath: "/usr/local/var/run",
                             },
+                            (if configs.estate == "prd-sdc" then sdnconfigs.sdn_logs_volume_mount else {}),
                         ]),
                         env: [
                             {
@@ -57,6 +59,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             path: "/etc/kubernetes/sdn",
                         },
                     },
+                    (if configs.estate == "prd-sdc" then sdnconfigs.sdn_logs_volume else {}),
                 ]),
             },
             metadata: {
