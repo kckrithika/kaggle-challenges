@@ -2044,6 +2044,32 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
+    name: role:shared2-retailperfcontroller1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared2-retailperfcontroller1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared2-retailperfcontroller2-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared2-retailperfcontroller2-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
     name: role:samcaas2-caasminion1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -2603,45 +2629,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: role:shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: role:shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: role:shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-    resources:
-    - nodes/status
-    verbs:
-    - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
     name: role:shared2-samminionretailmds1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -2713,6 +2700,45 @@ items:
     - '*'
     resourceNames:
     - shared2-samminionretailrsui3-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
     resources:
     - nodes/status
     verbs:
@@ -4447,6 +4473,28 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
+    name: rolebinding:shared2-retailperfcontroller1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared2-retailperfcontroller1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared2-retailperfcontroller1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared2-retailperfcontroller2-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared2-retailperfcontroller2-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared2-retailperfcontroller2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
     name: rolebinding:samcaas2-caasminion1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -4920,39 +4968,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: rolebinding:shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: rolebinding:shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: role:shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
     name: rolebinding:shared2-samminionretailmds1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -5016,5 +5031,38 @@ items:
   subjects:
   - kind: User
     name: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net
 kind: List
 metadata: {}

@@ -742,6 +742,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: service-protection:ord-sam_serviceprotection:rolebinding
+    namespace: service-protection
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionserviceprotection1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionserviceprotection1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionserviceprotection2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionserviceprotection3-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: sf-store:ord-sam_sfstore:rolebinding
     namespace: sf-store
   roleRef:

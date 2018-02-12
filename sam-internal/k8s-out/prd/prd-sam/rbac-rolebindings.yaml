@@ -845,22 +845,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: retail-eventlistener-sp2:prd-sp2-sam_retail_eventlistener:rolebinding
-    namespace: retail-eventlistener-sp2
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: retail-mds-sp2:prd-sp2-sam_retail_mds:rolebinding
     namespace: retail-mds-sp2
   roleRef:
