@@ -31,19 +31,20 @@ system:
       ports:
       - containerPort: 12036
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
-        - --redisPort=12036
-        - --cluster.name=sp-na45-c1
-        - --logDir=/home/caas/logs
+      - -endpoint
+      - caas/cluster/sp-na45-c1:SUPERPOD:12036
+      - -logdir
+      - /home/sfdc-caas/logs/sp-na45-c1-12036
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12036
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
