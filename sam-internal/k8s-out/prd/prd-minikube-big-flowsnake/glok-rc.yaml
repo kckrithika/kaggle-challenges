@@ -22,6 +22,10 @@ spec:
           value: "9092"
         - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
           value: "true"
+        - name: NUM_PARTITIONS
+          value: "3"
+        - name: DEFAULT_REPLICATION_FACTOR
+          value: "3"
         - name: FLOWSNAKE_FLEET
           valueFrom:
             configMapKeyRef:

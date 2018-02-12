@@ -8,4 +8,4 @@ spec:
   - name: k80
     port: 80
   selector:
-    app: test-data
+    app: flowsnake-test-data

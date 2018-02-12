@@ -44,6 +44,14 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                                 value: "true",
                             },
                             {
+                                name: "NUM_PARTITIONS",
+                                value: if flowsnakeconfig.is_minikube_small then "1" else "3",
+                            },
+                            {
+                                name: "DEFAULT_REPLICATION_FACTOR",
+                                value: if flowsnakeconfig.is_minikube_small then "1" else "3",
+                            },
+                            {
                                 name: "FLOWSNAKE_FLEET",
                                 valueFrom: {
                                     configMapKeyRef: {
