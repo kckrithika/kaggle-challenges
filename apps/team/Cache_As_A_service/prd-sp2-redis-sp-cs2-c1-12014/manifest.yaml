@@ -36,18 +36,18 @@ system:
     - name: caas-redis-announcer
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
-      - -endpoint
-      - caas/cluster/sp-cs2-c1:SUPERPOD:12014
-      - -logdir
-      - /home/sfdc-caas/logs/sp-cs2-c1-12014
+        - -endpoint
+        - caas/cluster/sp-cs2-c1:SUPERPOD:12014
+        - -logdir
+        - /home/sfdc-caas/logs/sp-cs2-c1-12014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
       volumeMounts:
-      - mountPath: /home/sfdc-caas/logs
-        name: logvol
+        - mountPath: /home/sfdc-caas/logs
+          name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: stmfa
