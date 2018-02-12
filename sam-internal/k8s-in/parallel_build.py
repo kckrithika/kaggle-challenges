@@ -16,11 +16,12 @@ NUM_WORKER_THREADS = 10
 
 # Info needed to process one jsonnet file for one estate
 class jsonnet_workitem:
-    def __init__(self, kingdom, estate, jsonnet_file, output_dir):
+    def __init__(self, kingdom, estate, jsonnet_files, output_dir, team_dir):
         self.kingdom = kingdom
         self.estate = estate
-        self.jsonnet_file = jsonnet_file
+        self.jsonnet_files = jsonnet_files
         self.output_dir = output_dir
+        self.team_dir = team_dir
 
 # Simple run command wrapper
 # First return is true for success, second return is cmd+stdout+stderr
@@ -56,21 +57,33 @@ def delete_if_skip(filename):
 
 # Process one jsonnet template
 def run_jsonnet(item):
-    appNameWithExt = os.path.basename(item.jsonnet_file)
-    appName = os.path.splitext(appNameWithExt)[0]
-    outfile = os.path.join(item.output_dir, appName + ".json")
-    includeDir = "./" + item.jsonnet_file.split("/")[0]
+    # Used for cleanup right now, but we can probably move this to jsonnet later
+    computed_out_files = []
+    multifilename = "./temp/multi_"+item.kingdom+"_"+item.estate+"_" + item.team_dir + ".jsonnet"
+    with open(multifilename, 'w') as multifile:
+        multifile.write("{\n")
+        for inFile in item.jsonnet_files:
+            # Outfile is infile bu with jsonnet swapped to json
+            appNameWithExt = os.path.basename(inFile)
+            appName = os.path.splitext(appNameWithExt)[0]
+            outfile = appName + ".json"
+            multifile.write("  \"" + outfile + "\": (import \"" + inFile + "\"),\n")
+            computed_out_files.append(os.path.join(item.output_dir, outfile))
+        multifile.write("}\n")
+
+    includeDir = "./" + item.team_dir
     cmd = "./jsonnet/jsonnet"
     cmd += " -V kingdom=" + item.kingdom
     cmd += " -V estate=" + item.estate
-    cmd += " " + item.jsonnet_file
-    cmd += " -o " + outfile
+    cmd += " " + multifilename
+    cmd += " -m " + item.output_dir
     cmd += " --jpath . "
     cmd += " --jpath " + includeDir
     (passed, msg) = run_cmd(cmd)
+    
     if passed:
-        if delete_if_skip(outfile):
-            return True, "Skipped " + outfile
+        for outfile in computed_out_files:
+            delete_if_skip(outfile)
     return (passed, msg)
 
 # Thread safe queues
@@ -142,14 +155,24 @@ def make_work_items(templates_args, output_root_dir, control_estates):
       else:
           template_list = []
       for ce in control_estates:
-          for template in template_list:
-              kingdom, estate = ce.split("/")
-              full_out_dir = os.path.join(output_root_dir, kingdom, estate)
+            kingdom, estate = ce.split("/")
+            full_out_dir = os.path.join(output_root_dir, kingdom, estate)
 
-              # Do this here so threads dont race as this is not atomic
-              if not os.path.exists(full_out_dir):
-                  os.makedirs(full_out_dir)
-              ret.append(jsonnet_workitem(kingdom, estate, template, full_out_dir))
+            # Do this here so threads dont race as this is not atomic
+            if not os.path.exists(full_out_dir):
+                os.makedirs(full_out_dir)
+
+            # We need a different work item for each team, because they have different includes and we dont want conflicts
+            mapTeamToFiles = {}
+
+            for thisTemplate in template_list:
+                teamDir = thisTemplate.split("/")[0]
+                if not (teamDir in mapTeamToFiles):
+                    mapTeamToFiles[teamDir] = []
+                mapTeamToFiles[teamDir].append(thisTemplate)
+            
+            for (team, files) in mapTeamToFiles.iteritems():
+                ret.append(jsonnet_workitem(kingdom, estate, files, full_out_dir, team))
     return ret
 
 # Python does not ship with the yaml library by default, and we dont want to deal with dependencies in TNRP
