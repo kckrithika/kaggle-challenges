@@ -5,10 +5,13 @@ system:
     email:
       - cloudatlas@salesforce.com
   functions:
-  - name: cloudatlas-prd-stage-dir2-1
-    count: 1
+  - name: cloudatlas-prd-stage-dir
+    count: 2
     strategy:
-      type: Recreate
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client-prd-stage-dir2-1
