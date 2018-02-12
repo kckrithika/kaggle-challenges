@@ -5,11 +5,12 @@ apps:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
       - test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
-  test1shared0-samminionatlasfe2-1-prd:
+  test1shared0-samminionatlasfe-prd:
     - name: prd/prd-sam_cloudatlas
       hostSubList:
       - test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-  # PRD-Stage DS Nodes (phasing out)
+
+  # PRD-Stage Topomaster
   test1shared0-samminionatlasdir1-1-prd:
     - name: prd/prd-sam_cloudatlas_dir
       hostSubList:
