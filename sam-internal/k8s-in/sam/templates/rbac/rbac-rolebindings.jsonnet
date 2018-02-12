@@ -20,7 +20,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
           kind: "User",
           name: minionnode,
         }
-for minionnode in hosts
+        for minionnode in hosts
       ],
       roleRef: {
         kind: "ClusterRole",
@@ -28,20 +28,24 @@ for minionnode in hosts
         apiGroup: "rbac.authorization.k8s.io",
       },
   },
-  createClusterRoleBinding(hosts):: {
+  createClusterRoleBinding(minionEstate, hosts):: {
+      // For nodes in the control estate, the rule name will be "samcompute:clusterrolebinding".
+      // For nodes in minion estates, the rule name will be "samcompute:<minionestate>:clusterr"
+      local estateSpecificTag = if minionEstate != configs.estate then minionEstate + ":" else "",
+
       #Gives permission to read secrets & update events &pod status in the cluster and in all namespaces.
       kind: "ClusterRoleBinding",
       apiVersion: "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
-        # In PRD samcompute nodes get permission to read secrets, update pod/status & events across all namespace
-        name: "samcompute:clusterrolebinding",
+        # In test clusters nodes get permission to read secrets, update pod/status & events across all namespace
+        name: estateSpecificTag + "samcompute:clusterrolebinding",
       },
       subjects: [
         {
           kind: "User",
           name: minionnode,
         }
-for minionnode in hosts
+        for minionnode in hosts
       ],
       roleRef: {
         kind: "ClusterRole",
@@ -54,7 +58,12 @@ for minionnode in hosts
             local hosts = rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
             # In Prod samcompute & samkubeapi nodes get admin access.
             # In PRD customer apps run on samcompute nodes. So samcompute nodes get restricted access but all the  permissions are across namespace(clusterRoleBinding)
-            if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [self.createClusterRoleBinding(hosts)] else [self.createRoleBinding(namespace, minionEstate, hosts) for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)]
+            if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [
+              self.createClusterRoleBinding(minionEstate, hosts),
+            ] else [
+              self.createRoleBinding(namespace, minionEstate, hosts)
+              for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)
+            ]
             for minionEstate in rbac_utils.get_Minion_Estates(configs.kingdom, configs.estate)
         ]),
 

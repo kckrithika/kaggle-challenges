@@ -15,7 +15,13 @@ local kingdom = std.extVar("kingdom");
 
     # This is for filtering in, or out, testing clusters.
     is_test_cluster(estate):: (
-        estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-sdc" || estate == "prd-sam" || estate == "prd-sam_storage"
+        estate == "prd-samdev" ||
+        estate == "prd-samtest" ||
+        estate == "prd-sdc" ||
+        estate == "prd-sam" ||
+        estate == "prd-sam_storage" ||
+        estate == "prd-sam_cephdev" ||
+        estate == "prd-sam_sfstoredev"
     ),
 
     # This is for filtering flowsnake clusters.
