@@ -30,7 +30,7 @@ system:
           port: 15370
         initialDelaySeconds: 15
   loadbalancers:
-  - lbname: switchboard-lb
+  - lbname: switchboardsb-lb
     function: switchboardsb
     nodeExposed: true
     ports:
