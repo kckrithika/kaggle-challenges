@@ -37,7 +37,7 @@ system:
         value: mesh
       args:
       - --switchboard-addr
-      - switchboard-lb.service-mesh.prd-sam.prd.slb.sfdc.net
+      - shared0-samcompute1-12-prd.eng.sfdc.net
       livenessProbe:
         httpGet:
           path: /listeners
