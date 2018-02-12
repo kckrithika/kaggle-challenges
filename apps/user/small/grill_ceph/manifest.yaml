@@ -69,5 +69,5 @@ system:
       livenessProbe:
         exec:
           command:
-          - cat
+          - touch 
           - tmp/healthy
