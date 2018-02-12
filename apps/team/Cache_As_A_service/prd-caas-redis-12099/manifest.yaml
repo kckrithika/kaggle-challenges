@@ -57,16 +57,10 @@ system:
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs
+        path: /home/sfdc-caas/logs
     - name: secretvol
       secret:
          secretName: caas-secret-sp-c1
