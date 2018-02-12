@@ -60,15 +60,15 @@ system:
           command:
           - cat
           - ./bin/is-alive
-        initialDelaySeconds: 120
-        periodSeconds: 5
+        initialDelaySeconds: 1200
+        periodSeconds: 50
       readinessProbe:
         exec:
           command:
           - cat  
           - ./bin/is-ready
-        initialDelaySeconds: 110
-        periodSeconds: 5
+        initialDelaySeconds: 1100
+        periodSeconds: 50
       volumeMounts:
       - name: eaas-server-cert
         mountPath: /server-certs
