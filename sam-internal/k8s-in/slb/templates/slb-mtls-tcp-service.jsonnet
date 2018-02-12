@@ -8,7 +8,7 @@ if configs.estate == "prd-sam" then {
             namespace: "sam-system",
             annotations: {
                 "slb.sfdc.net/name": "slb-mtls-tcp",
-                "slb.sfdc.net/type": "tcp",
+                "slb.sfdc.net/portconfigurations": "[{\"port\":\"12345\",\"targetport\":\"12345\",\"lbtype\":\"tcp\"}]",
             },
         },
         spec: {
