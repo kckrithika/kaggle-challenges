@@ -26,16 +26,18 @@ system:
       - mountPath: /home/sfdc-eaas/logs
         name: logvol
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - cat
+          - entrypoint.sh
         initialDelaySeconds: 120
         periodSeconds: 60
         timeoutSeconds: 30
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command:
+          - cat
+          - entrypoint.sh
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
