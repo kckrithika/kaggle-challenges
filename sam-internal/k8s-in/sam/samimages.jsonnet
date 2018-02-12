@@ -47,11 +47,8 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,snapshoter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180209_141036.9b122d00.clean.duncsmith-ltm",
 
         #[mayank.kumar] email reporter
-        "prd,prd-samdev,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001704-41aa4a99",
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001704-41aa4a99",
-        "prd,prd-samtest,samcontrol,hypersam": "sam-0001704-41aa4a99",
 
     },
 
@@ -70,7 +67,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001667-72dcabb0",
+            hypersam: "sam-0001710-3ec484d6",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
