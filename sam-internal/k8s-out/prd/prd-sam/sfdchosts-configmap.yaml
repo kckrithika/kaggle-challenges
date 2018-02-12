@@ -1694,6 +1694,26 @@ data:
           "superpod": "sp1"
         },
         {
+          "bomrolename": "retail_perf_controller",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-retail_perf_controller",
+          "hostname": "shared2-retailperfcontroller1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
+          "bomrolename": "retail_perf_controller",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sp2-retail_perf_controller",
+          "hostname": "shared2-retailperfcontroller2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "sp2"
+        },
+        {
           "bomrolename": "sam_minion_caas",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -2124,36 +2144,6 @@ data:
           "superpod": "sp2"
         },
         {
-          "bomrolename": "sam_minion_retail_eventlistener",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp2-sam_retail_eventlistener",
-          "hostname": "shared2-samminionretaileventlistener1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp2"
-        },
-        {
-          "bomrolename": "sam_minion_retail_eventlistener",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp2-sam_retail_eventlistener",
-          "hostname": "shared2-samminionretaileventlistener2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp2"
-        },
-        {
-          "bomrolename": "sam_minion_retail_eventlistener",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp2-sam_retail_eventlistener",
-          "hostname": "shared2-samminionretaileventlistener3-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp2"
-        },
-        {
           "bomrolename": "sam_minion_retail_mds",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -2212,6 +2202,36 @@ data:
           "kingdom": "prd",
           "pod": "none",
           "superpod": "sp2"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_universalsearchmt",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-universalsearch_svc",
+          "hostname": "shared0-samminionuniversalsearchmt2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
         }
       ]
     }
