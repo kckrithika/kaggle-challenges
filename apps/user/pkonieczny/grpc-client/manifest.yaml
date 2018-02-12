@@ -25,8 +25,9 @@ system:
       volumeMounts:
       - mountPath: /etc/pki_service
         name: eaas-client-cert
+        
     - name: sherpa-eaas-grpc-client
-      image: sfci/servicelibs/sherpa:2.0.17
+      image: sfci/servicelibs/sherpa:2.0.21
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -55,6 +56,9 @@ system:
       volumeMounts:
       - name: eaas-server-cert
         mountPath: /server-certs
+      - name: sherpa-log-volume
+        mountPath: /log
+    
     volumes:
     - name: eaas-client-cert
       maddogCert:
@@ -62,3 +66,6 @@ system:
     - name: eaas-server-cert
       maddogCert:
         type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
