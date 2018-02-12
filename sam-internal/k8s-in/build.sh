@@ -40,7 +40,7 @@ if [ ! -f jsonnet/jsonnet ]; then
 fi
 
 # Nuke output folder to ensure we don't keep around stale output files
-if [ $1 -eq "" ]; then
+if [ "$1" == "" ]; then
   rm -rf ../k8s-out/**
   mkdir -p ../k8s-out/
   cp k8s-out-access.yaml ../k8s-out/access.yaml
