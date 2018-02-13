@@ -19,14 +19,8 @@ items:
       spec:
         containers:
         - args:
-          - -m
-          - snapshot_for_cephmon
-          - -t
-          - ajna_with_tags
-          - -s
+          - -j
           - cephmon
-          - -i
-          - "60"
           command:
           - /opt/sfms/bin/sfms
           env:
@@ -110,14 +104,8 @@ items:
       spec:
         containers:
         - args:
-          - -m
-          - snapshot_for_cephmon
-          - -t
-          - ajna_with_tags
-          - -s
+          - -j
           - cephmon
-          - -i
-          - "60"
           command:
           - /opt/sfms/bin/sfms
           env:

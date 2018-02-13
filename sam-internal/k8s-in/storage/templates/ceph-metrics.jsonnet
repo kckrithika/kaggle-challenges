@@ -194,14 +194,8 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                               "/opt/sfms/bin/sfms",
                            ],
                            args: [
-                              "-m",
-                              "snapshot_for_cephmon",
-                              "-t",
-                              "ajna_with_tags",
-                              "-s",
+                              "-j",
                               "cephmon",
-                              "-i",
-                              '60',
                            ],
                            ports: [
                               {
