@@ -1807,6 +1807,30 @@ hosts:
   kingdom: dfw
   pod: none
   superpod: sp4
+- bomrolename: sam_minion_universalsearchmt
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-universalsearch_svc
+  hostname: shared0-samminionuniversalsearchmt1-1-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_universalsearchmt
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-universalsearch_svc
+  hostname: shared0-samminionuniversalsearchmt1-2-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_universalsearchmt
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-universalsearch_svc
+  hostname: shared0-samminionuniversalsearchmt1-3-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  superpod: none
 - bomrolename: searchidx
   controlestate: dfw-sam
   devicerole: searchidx
@@ -1843,38 +1867,6 @@ hosts:
   controlestate: dfw-sam
   devicerole: searchidx
   estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx1-5-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx1-6-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx1-7-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx1-8-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
   hostname: shared0-searchidx2-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -1892,78 +1884,6 @@ hosts:
   devicerole: searchidx
   estate: dfw-universalsearch_svc
   hostname: shared0-searchidx2-3-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx2-4-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx2-5-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx2-6-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchidx
-  controlestate: dfw-sam
-  devicerole: searchidx
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchidx2-7-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchtla
-  controlestate: dfw-sam
-  devicerole: searchtla
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchtla1-1-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchtla
-  controlestate: dfw-sam
-  devicerole: searchtla
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchtla1-2-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchtla
-  controlestate: dfw-sam
-  devicerole: searchtla
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchtla1-3-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchtla
-  controlestate: dfw-sam
-  devicerole: searchtla
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchtla2-1-dfw.ops.sfdc.net
-  kingdom: dfw
-  pod: none
-  superpod: none
-- bomrolename: searchtla
-  controlestate: dfw-sam
-  devicerole: searchtla
-  estate: dfw-universalsearch_svc
-  hostname: shared0-searchtla2-2-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
   superpod: none
@@ -5820,6 +5740,38 @@ hosts:
   devicerole: samcompute
   estate: iad-sam_report_collector
   hostname: shared0-samminionreportcollector3-1-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_serviceprotection
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_serviceprotection
+  hostname: shared0-samminionserviceprotection1-1-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_serviceprotection
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_serviceprotection
+  hostname: shared0-samminionserviceprotection1-2-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_serviceprotection
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_serviceprotection
+  hostname: shared0-samminionserviceprotection2-1-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_serviceprotection
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_serviceprotection
+  hostname: shared0-samminionserviceprotection3-1-iad.ops.sfdc.net
   kingdom: iad
   pod: none
   superpod: none
