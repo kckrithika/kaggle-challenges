@@ -33,6 +33,8 @@ spec:
           name: conf
         - mountPath: /usr/local/var/run
           name: socket
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
       hostNetwork: true
       volumes:
       - hostPath:
@@ -41,3 +43,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes/sdn
         name: socket
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs

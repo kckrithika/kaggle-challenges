@@ -23,7 +23,7 @@ spec:
         - --shouldNotDeleteAllFiles=false
         - --log_dir=/data/logs/sdn/
         - --logtostderr=false
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000580-b84ce00f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000621-9ceb3d47
         name: sdn-cleanup
         securityContext:
           privileged: true
