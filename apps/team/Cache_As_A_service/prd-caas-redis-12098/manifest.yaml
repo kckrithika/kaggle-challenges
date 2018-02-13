@@ -32,7 +32,7 @@ system:
       # expose redis outside the container
       env:
        - name: SFDC_SUBENVIRONMENT
-         value: mist42
+         value: mist30
       ports:
       - containerPort: 12098
         name: caas-cluster
@@ -53,7 +53,7 @@ system:
         name: logvol
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist42
+         value: mist30
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
