@@ -50,6 +50,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001704-41aa4a99",
 
+        # [cdebains] Override phase-deployment for controller to enable colocation.
+        "prd,prd-samtest,samcontrol,hypersam": "sam-0001716-d493443b",
+        "prd,prd-samdev,samcontrol,hypersam": "sam-0001716-d493443b",
+
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
