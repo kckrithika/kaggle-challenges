@@ -9,19 +9,24 @@ system:
     count: 2
     containers:
     - name: switchboard 
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/18/console
-      image: sfci/servicelibs/switchboard:e55dcb199fba8d7229699c267734a19d856e5b1f
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/23
+      image: sfci/servicelibs/switchboard:d91e1ced4f5f89e6a9c209103953235d8e164e36
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: MANAGEMENT_PORT
         value: 15370
+      - name: LOGGING_DIR
+        value: "/log"
       args:
       - --clusters.external-clusters[0]=geoip:HTTP2
       - --clusters.external-clusters[1]=time:HTTP2
       - --clusters.external-clusters[2]=search-model-executor-rpulle:HTTP2
       - --clusters.external-clusters[3]=search-model-executor-xlt:HTTP2
       - --clusters.external-clusters[4]=tictactoe-server-service-envoy:HTTP2
+      volumeMounts:
+        - mountPath: /log
+          name: switchboard-log-volume
       ports:
       - containerPort: 15001
       - containerPort: 15370
@@ -35,6 +40,12 @@ system:
           path: /manage/health
           port: 15370
         initialDelaySeconds: 15
+
+    volumes:
+        - name: switchboard-log-volume
+          hostPath:
+            path: /home/sfdc-switchboard/logs
+
   loadbalancers:
   - lbname: switchboard-lb
     function: switchboard
