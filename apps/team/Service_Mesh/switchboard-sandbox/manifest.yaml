@@ -14,17 +14,17 @@ system:
       - name: MANAGEMENT_PORT
         value: 15370
       - name: CLUSTERS_EXTERNAL-CLUSTERS[0]
-        value: geoip
+        value: geoip:HTTP2
       - name: CLUSTERS_EXTERNAL-CLUSTERS[1]
-        value: time
+        value: time:HTTP2
       - name: CLUSTERS_EXTERNAL-CLUSTERS[2]
-        value: search-model-executor-rpulle
+        value: search-model-executor-rpulle:HTTP2
       - name: CLUSTERS_EXTERNAL-CLUSTERS[3]
-        value: search-model-executor-rpulle
+        value: search-model-executor-rpulle:HTTP2
       - name: CLUSTERS_EXTERNAL-CLUSTERS[4]
-        value: search-model-executor-xlt
+        value: search-model-executor-xlt:HTTP2
       - name: CLUSTERS_EXTERNAL-CLUSTERS[5]
-        value: tictactoe-server-service-envoy
+        value: tictactoe-server-service-envoy:HTTP2
       ports:
       - containerPort: 15001
       - containerPort: 15370
