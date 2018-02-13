@@ -10,7 +10,7 @@ system:
         type: server
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner:20180202_1909
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner:20180212_2033
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
