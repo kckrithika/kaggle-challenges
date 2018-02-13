@@ -28,15 +28,20 @@ system:
           path: /manage/health
           port: 15373
     - name: beacon-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20180213-8c0bea8
       args:
       - -endpoint
       - ordering:DATACENTER:7012
+      - logging.dir
+      - /log
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
     - name: sherpa-ordering
       image: tnrp/sherpa:0.2.0-0000099-7cf33a3f
       args: ["--http2-origin", "localhost:7021"]
@@ -55,3 +60,8 @@ system:
           - "./bin/is-ready"
           initialDelaySeconds: 110
           periodSeconds: 5
+
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-beacon-ordering/logs
