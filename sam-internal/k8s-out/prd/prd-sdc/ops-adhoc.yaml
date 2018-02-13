@@ -17,7 +17,7 @@ spec:
         - /bin/bash
         - -xe
         - /config/ops-adhoc.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001667-72dcabb0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001710-3ec484d6
         name: ops-adhoc
         resources:
           limits:
