@@ -25,13 +25,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 targetPort: portconfigs.slb.canaryServiceProxyHttpPort,
                 nodePort: portconfigs.slb.canaryServiceProxyHttpNodePort,
             },
-            {
-                name: "slb-canary-proxy-https-port",
-                port: portconfigs.slb.canaryServiceProxyHttpsPort,
-                protocol: "TCP",
-                targetPort: portconfigs.slb.canaryServiceProxyHttpsPort,
-                nodePort: portconfigs.slb.canaryServiceProxyHttpsNodePort,
-            },
             ],
             selector: {
                 name: "slb-canary-proxy-http",

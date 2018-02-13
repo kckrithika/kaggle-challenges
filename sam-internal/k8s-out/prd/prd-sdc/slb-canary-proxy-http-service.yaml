@@ -17,11 +17,6 @@ spec:
     port: 9116
     protocol: TCP
     targetPort: 9116
-  - name: slb-canary-proxy-https-port
-    nodePort: 32443
-    port: 443
-    protocol: TCP
-    targetPort: 443
   selector:
     name: slb-canary-proxy-http
   type: NodePort
