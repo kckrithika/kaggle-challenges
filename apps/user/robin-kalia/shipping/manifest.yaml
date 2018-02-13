@@ -1,0 +1,63 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: shipping-robin-kalia
+    count: 1
+    volumes:
+    - name: clientcert
+      maddogCert:
+        type: client
+    containers:
+    - name: shipping-robin-kalia
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/shipping/shipping-robin-kalia:robin.kalia-20180212-c8ba0a9
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7020
+      - containerPort: 15372
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+    - name: beacon-shipping
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180210-21e8fa6
+      args:
+      - -endpoint
+      - shipping-robin-kalia:DATACENTER:7012
+      - -service
+      - shipping
+      - -rootCert
+      - /clientcerts/ca.pem
+      - -certDir
+      - /clientcerts/client
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    - name: sherpa-shipping
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.22-snapshot
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 5
+          periodSeconds: 5

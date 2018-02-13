@@ -1,0 +1,68 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ordering-robin-kalia
+    count: 1
+    volumes:
+    - name: clientcert
+      maddogCert:
+        type: client
+    containers:
+    - name: ordering-robin-kalia
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180212-c8ba0a9
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: SCONE_SHIPPING_HOST
+        value: shipping-robin-kalia.localhost.mesh.force.com
+      - name: SCONE_SHIPPING_PORT
+        value: 7011
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7021
+      - containerPort: 15373
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15373
+    - name: beacon-ordering
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180210-21e8fa6
+      args:
+      - -endpoint
+      - ordering-robin-kalia:DATACENTER:7012
+      - -service
+      - ordering
+      - -rootCert
+      - /clientcerts/ca.pem
+      - -certDir
+      - /clientcerts/client
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+    - name: sherpa-ordering
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.22-snapshot
+      args: ["--http2-origin", "localhost:7021"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 110
+          periodSeconds: 5
