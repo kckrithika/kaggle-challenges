@@ -8,7 +8,7 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor-prod:2.6.0-0000021-15191181
+      image: tnrp/caas/caas-monitor-prod:2.6.0-0000023-15191845
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
