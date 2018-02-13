@@ -22,7 +22,7 @@ spec:
         - --ports=9116
         - --healthPort=9119
         - --markerPath=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000622-e9c97838
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000623-c4359fdf
         livenessProbe:
           httpGet:
             path: /
