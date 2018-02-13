@@ -16,6 +16,12 @@ system:
         value: stm
       - name: MANAGEMENT_PORT
         value: 15370
+      args:
+      - --clusters.external-clusters[0]=geoip:HTTP2
+      - --clusters.external-clusters[1]=time:HTTP2
+      - --clusters.external-clusters[2]=search-model-executor-rpulle:HTTP2
+      - --clusters.external-clusters[3]=search-model-executor-xlt:HTTP2
+      - --clusters.external-clusters[4]=tictactoe-server-service-envoy:HTTP2
       ports:
       - containerPort: 15001
       - containerPort: 15370
