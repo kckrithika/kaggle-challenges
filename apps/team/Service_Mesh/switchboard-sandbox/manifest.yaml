@@ -13,18 +13,12 @@ system:
         value: mesh
       - name: MANAGEMENT_PORT
         value: 15370
-      - name: CLUSTERS_EXTERNAL-CLUSTERS[0]
-        value: geoip:HTTP2
-      - name: CLUSTERS_EXTERNAL-CLUSTERS[1]
-        value: time:HTTP2
-      - name: CLUSTERS_EXTERNAL-CLUSTERS[2]
-        value: search-model-executor-rpulle:HTTP2
-      - name: CLUSTERS_EXTERNAL-CLUSTERS[3]
-        value: search-model-executor-rpulle:HTTP2
-      - name: CLUSTERS_EXTERNAL-CLUSTERS[4]
-        value: search-model-executor-xlt:HTTP2
-      - name: CLUSTERS_EXTERNAL-CLUSTERS[5]
-        value: tictactoe-server-service-envoy:HTTP2
+      args:
+      - --clusters.external-clusters[0]=geoip:HTTP2
+      - --clusters.external-clusters[1]=time:HTTP2
+      - --clusters.external-clusters[2]=search-model-executor-rpulle:HTTP2
+      - --clusters.external-clusters[3]=search-model-executor-xlt:HTTP2
+      - --clusters.external-clusters[4]=tictactoe-server-service-envoy:HTTP2
       ports:
       - containerPort: 15001
       - containerPort: 15370
