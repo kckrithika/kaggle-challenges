@@ -184,6 +184,10 @@ shared0-samminionmoderationeinstein2-1-iad.ops.sfdc.net,10.222.223.202/29,10.213
 shared0-samminionreportcollector1-1-iad.ops.sfdc.net,10.222.224.18/28,10.213.144.0/27,b10-01,iad-sam_report_collector
 shared0-samminionreportcollector2-1-iad.ops.sfdc.net,10.222.224.10/28,10.213.144.64/27,j10-03,iad-sam_report_collector
 shared0-samminionreportcollector3-1-iad.ops.sfdc.net,10.222.224.34/28,10.213.144.32/27,g11-03,iad-sam_report_collector
+shared0-samminionserviceprotection1-1-iad.ops.sfdc.net,10.222.242.66/29,10.208.100.0/27,a07-03,iad-sam_serviceprotection
+shared0-samminionserviceprotection1-2-iad.ops.sfdc.net,10.222.242.82/29,10.208.100.96/27,g11-02,iad-sam_serviceprotection
+shared0-samminionserviceprotection2-1-iad.ops.sfdc.net,10.222.242.90/29,10.208.100.64/27,f12-01,iad-sam_serviceprotection
+shared0-samminionserviceprotection3-1-iad.ops.sfdc.net,10.222.242.74/29,10.208.100.32/27,d05-02,iad-sam_serviceprotection
 shared0-samminionsfstore1-1-iad.ops.sfdc.net,10.222.229.195/29,10.213.156.224/27,g14-02,iad-sam_sfstore
 shared0-samminionsfstore1-2-iad.ops.sfdc.net,10.222.229.235/29,10.213.156.32/27,c11-01,iad-sam_sfstore
 shared0-samminionsfstore2-1-iad.ops.sfdc.net,10.222.229.226/29,10.213.156.64/27,d04-02,iad-sam_sfstore

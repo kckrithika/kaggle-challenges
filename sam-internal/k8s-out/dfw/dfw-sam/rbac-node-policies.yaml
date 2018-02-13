@@ -2601,6 +2601,45 @@ items:
     verbs:
     - '*'
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionuniversalsearchmt1-1-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionuniversalsearchmt1-1-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionuniversalsearchmt1-2-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionuniversalsearchmt1-2-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: role:shared0-samminionuniversalsearchmt1-3-dfw.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionuniversalsearchmt1-3-dfw.ops.sfdc.net
+    resources:
+    - nodes/status
+    verbs:
+    - '*'
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samcompute1-1-dfw.ops.sfdc.net
@@ -4800,5 +4839,38 @@ items:
   subjects:
   - kind: User
     name: samcaas4-caasminion3-3-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionuniversalsearchmt1-1-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionuniversalsearchmt1-1-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-1-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionuniversalsearchmt1-2-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionuniversalsearchmt1-2-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: rolebinding:shared0-samminionuniversalsearchmt1-3-dfw.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: role:shared0-samminionuniversalsearchmt1-3-dfw.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionuniversalsearchmt1-3-dfw.ops.sfdc.net
 kind: List
 metadata: {}

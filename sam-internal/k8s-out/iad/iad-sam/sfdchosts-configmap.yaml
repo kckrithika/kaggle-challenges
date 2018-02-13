@@ -1624,6 +1624,46 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_serviceprotection",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_serviceprotection",
+          "hostname": "shared0-samminionserviceprotection1-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_serviceprotection",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_serviceprotection",
+          "hostname": "shared0-samminionserviceprotection1-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_serviceprotection",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_serviceprotection",
+          "hostname": "shared0-samminionserviceprotection2-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_serviceprotection",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-sam_serviceprotection",
+          "hostname": "shared0-samminionserviceprotection3-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sfstorezk",
           "controlestate": "iad-sam",
           "devicerole": "dnds",
