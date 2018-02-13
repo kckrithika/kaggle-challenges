@@ -7,14 +7,14 @@ system:
   - name: spaas
     
     # number of instances ("kpods") to deploy and run
-    count: 1
+    count: 2
     
     # Docker image(s) that make up one instance of the service
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci-docker-rc/sfci/service-protection/sps:0.0.2.8
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci-docker-rc/sfci/service-protection/sps:0.0.2.22
+      #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
