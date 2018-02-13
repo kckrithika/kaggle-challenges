@@ -43,17 +43,26 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
-        # [d.smith] scraper has --sink=logs arg for DCs we dont care about sending through kafka
-        "prd,prd-sam,snapshoter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180209_141036.9b122d00.clean.duncsmith-ltm",
-
-        #[mayank.kumar] email reporter
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0001683-5541c627",
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001704-41aa4a99",
+        # [d.smith] Early push of new hypersam - fixes snapshotter
+        "prd,prd-samdev,snapshoter,hypersam": "auto",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "chx,chx-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "iad,iad-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "ord,ord-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "par,par-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "syd,syd-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "wax,wax-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "yul,yul-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
 
         # [cdebains] Override phase-deployment for controller to enable colocation.
         "prd,prd-samtest,samcontrol,hypersam": "sam-0001716-d493443b",
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001716-d493443b",
-
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
