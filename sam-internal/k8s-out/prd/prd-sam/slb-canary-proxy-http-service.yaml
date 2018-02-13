@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-canary-proxy-http
-    slb.sfdc.net/portconfigurations: '[{"port":9116,"targetport":9116,"lbtype":"http"}]'
+    slb.sfdc.net/portconfigurations: '[{"port":9116,"targetport":9116,"lbtype":"http"},{"port":443,"targetport":443,"lbtype":"http"}]'
   labels:
     app: slb-canary-proxy-http-service
     slb.sfdc.net/name: slb-canary-proxy-http
@@ -17,6 +17,11 @@ spec:
     port: 9116
     protocol: TCP
     targetPort: 9116
+  - name: slb-canary-proxy-https-port
+    nodePort: 32443
+    port: 443
+    protocol: TCP
+    targetPort: 443
   selector:
     name: slb-canary-proxy-http
   type: NodePort
