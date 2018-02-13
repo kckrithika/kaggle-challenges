@@ -5,13 +5,12 @@ local utils = import "util_functions.jsonnet";
     ### Global overrides - Anything here will override anything below
     overrides: {
         #
-        # This section lets you override any hypersam image for a given kingdom,estate,template,image.
-        # Template is the short name of the template.  For k8s-in/templates/samcontrol.jsonnet use "samcontrol"
+        # This section lets you override any hypersdn image for a given kingdom,estate,template,image.
+        # Template is the short name of the template. For k8s-in/templates/samcontrol.jsonnet use "samcontrol"
         # Image name
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        #
 
     },
 
@@ -20,7 +19,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000611-2c5a53ee",
+            hypersdn: "v-0000622-e9c97838",
             slbnginx: "v-0000011-91f79527",
             },
 
