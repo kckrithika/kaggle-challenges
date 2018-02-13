@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-canary-proxy-tcp-host
+  name: slb-canary-proxy-tcp-host
+  namespace: sam-system
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: slb-canary-proxy-tcp-host
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-proxy-tcp-host
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs
+        - --ports=9120
+        - --healthPort=9119
+        - --markerPath=/host/data/slb/logs
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000623-c4359fdf
+        name: slb-canary-proxy-tcp
+        volumeMounts:
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+      nodeSelector:
+        pool: prd-sdc
+      volumes:
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
