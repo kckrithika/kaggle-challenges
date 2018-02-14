@@ -22,7 +22,7 @@ system:
          exec:
            command:
             - echo
-            - HEALTHY
+            - HEALTHYY
          initialDelaySeconds: 480
          periodSeconds: 1
 
