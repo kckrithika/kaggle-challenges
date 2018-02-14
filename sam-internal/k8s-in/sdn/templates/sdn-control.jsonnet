@@ -3,7 +3,7 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -81,9 +81,10 @@ if configs.estate == "prd-sdc" then {
                     configs.kube_config_volume,
                     sdnconfigs.sdn_logs_volume,
                 ]),
-                nodeSelector: {
-                    master: "true",
-                },
+                nodeSelector: configs.filter_empty([
+                    sdnconfigs.sdn_control_pool,
+                    sdnconfigs.sdn_master,
+                ]),
             },
         },
     },

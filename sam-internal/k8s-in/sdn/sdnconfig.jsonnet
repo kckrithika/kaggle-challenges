@@ -39,4 +39,15 @@ local utils = import "util_functions.jsonnet";
         mountPath: "/data/logs/sdn",
         name: "sdnlogs",
     },
+
+    # Pool in which sdn_control_svc should run
+    sdn_control_pool: {
+        pool: (if estate == "prd-sdc" then estate else kingdom + "-sdn_control"),
+    },
+
+    # Make the sdnc run in master nodes (Temporary fix)
+    sdn_master: (if estate == "prd-sdc" then
+    {
+        master: "true",
+    } else {}),
 }
