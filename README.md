@@ -8,19 +8,9 @@ Please make your changes on a fork of this repo.  Remember to sync changes from 
 
 ```sh
 $ ./validate.sh 
-NOTE: If the next command gives you an error like 'server gave HTTP response to HTTPS client.' then you most likely are missing the insecure registry setting in docker.  See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker)
-+ docker run -it --rm -v /Users/thargrove/manifests-th:/repo/ shared0-samcontrol1-1-prd.eng.sfdc.net:5000/sam-tools:thargrove-20160915_105447-fb609d7 /sam/sam-manifest-builder --root=/repo/ -validateonly
-### Loading files from disk
-  Ignoring file: apps/README.md
-  Found pool-map: apps/team/CSC_Health/pool-map.yaml (team/CSC_Health)
-  ...
-  Found pool: sam-internal/pools/prd/prd-samtemp/pool.yaml (prd/prd-samtemp)
-### Validating Yaml Contents
-### Successfully validated 11 app manifests
-### All Validations Passed
-### Successful run.  Good files: 20, Bad Files: 0, Ignored Files: 1
-
-!!! All validations passed.  You are good to commit !!!
+NOTE: If the docker run command returns a 'BAD_CREDENTIAL' error, you need to run 'docker login ops0-artifactrepo1-0-prd.data.sfdc.net' (one-time). See https://confluence.internal.salesforce.com/x/NRDa (Set up Docker for Sam)
+sam-manifest-builder build version: 20180131_005446.43e3d41.dirty.9b0f360a10ec
+### Successful run.  Good files: 1589, Bad Files: 0, Ignored Files: 285
 ```
 
 To start a pull request: commit your changes, push to your fork, then use the GitHub UI to create a pull request. Please include the validation output in the PR body. To get it to format correctly, add a line before and after the text with three back-ticks.
