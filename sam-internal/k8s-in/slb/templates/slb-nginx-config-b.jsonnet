@@ -32,7 +32,7 @@ if configs.kingdom == "prd" then {
                                     \"role\": \"sam_compute\",
                                     \"san\":[
                                         \"*.sam-system." + configs.estate + ".prd.slb.sfdc.net\",
-                                        \"ops0-rdi-sfcloud1-0-prd.slb.sfdc.net\"
+                                        \"*.slb.sfdc.net\"
                                     ]
                                 },
                                 {

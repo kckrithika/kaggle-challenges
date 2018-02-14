@@ -20,7 +20,7 @@ spec:
                                               "role": "sam_compute",
                                               "san":[
                                                   "*.sam-system.prd-sam_storage.prd.slb.sfdc.net",
-                                                  "ops0-rdi-sfcloud1-0-prd.slb.sfdc.net"
+                                                  "*.slb.sfdc.net"
                                               ]
                                           },
                                           {
