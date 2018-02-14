@@ -61,8 +61,8 @@ spec:
           name: sdnlogs
       hostNetwork: true
       nodeSelector:
-      - pool: prd-sdc
-      - master: "true"
+        master: "true"
+        pool: prd-sdc
       volumes:
       - configMap:
           name: sfdchosts
