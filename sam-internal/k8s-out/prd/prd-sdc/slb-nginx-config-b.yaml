@@ -19,7 +19,8 @@ spec:
                                               "kingdom":"prd",
                                               "role": "sam_compute",
                                               "san":[
-                                                  "*.sam-system.prd-sdc.prd.slb.sfdc.net"
+                                                  "*.sam-system.prd-sdc.prd.slb.sfdc.net",
+                                                  "ops0-rdi-sfcloud1-0-prd.slb.sfdc.net"
                                               ]
                                           },
                                           {
@@ -111,8 +112,8 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --maxDeleteServiceCount=3
-        - --httpsEnabled=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net,slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --httpsEnabled=slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000629-f6ab145c
         name: slb-nginx-config-b
         ports:

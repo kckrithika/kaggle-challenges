@@ -23,6 +23,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --maxDeleteServiceCount=3
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --httpsEnabled=slb-canary-proxy-http.sam-system.prd-sam.prd.slb.sfdc.net
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000629-f6ab145c
         name: slb-nginx-config-a
         ports:

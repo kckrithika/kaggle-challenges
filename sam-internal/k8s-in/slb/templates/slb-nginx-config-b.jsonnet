@@ -31,7 +31,8 @@ if configs.kingdom == "prd" then {
                                     \"kingdom\":\"prd\",
                                     \"role\": \"sam_compute\",
                                     \"san\":[
-                                        \"*.sam-system." + configs.estate + ".prd.slb.sfdc.net\"
+                                        \"*.sam-system." + configs.estate + ".prd.slb.sfdc.net\",
+                                        \"ops0-rdi-sfcloud1-0-prd.slb.sfdc.net\"
                                     ]
                                 },
                                 {
@@ -166,10 +167,17 @@ if configs.kingdom == "prd" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
-                            "--httpsEnabled="
-                            + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net,slb-portal-service.sam-system." + configs.estate + ".prd.slb.sfdc.net",
                             configs.sfdchosts_arg,
-                        ],
+                        ]
+                        + (
+                            if configs.estate == "prd-sam" then [
+                                "--httpsEnabled="
+                                + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net," + "ops0-rdi-sfcloud1-0-prd.slb.sfdc.net",
+                            ] else [
+                                 "--httpsEnabled="
+                                 + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net",
+                            ]
+                        ),
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
