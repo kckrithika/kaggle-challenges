@@ -166,14 +166,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
+                            "--httpsEnabled="
+                            + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net,slb-portal-service.sam-system." + configs.estate + ".prd.slb.sfdc.net",
                             configs.sfdchosts_arg,
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" then [
-                                "--httpsEnabled="
-                                + "slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net,slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net",
-                            ] else []
-                        ),
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
@@ -365,13 +361,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                               "--metricsEndpoint=" + configs.funnelVIP,
                               "--log_dir=" + slbconfigs.logsDir,
                               "--maxDeleteServiceCount=3",
+                              "--httpsEnabled="
+                              + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net,slb-portal-service.sam-system." + configs.estate + ".prd.slb.sfdc.net",
                               configs.sfdchosts_arg,
-                          ]
-                          + (
-                              if configs.estate == "prd-sdc" then [
-                                  "--httpsEnabled=true",
-                              ] else []
-                          ),
+                          ],
                           volumeMounts: configs.filter_empty([
                               {
                                   name: "var-target-config-volume",
