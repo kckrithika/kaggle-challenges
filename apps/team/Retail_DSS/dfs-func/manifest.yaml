@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.13
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
