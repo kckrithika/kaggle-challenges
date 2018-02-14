@@ -32,7 +32,7 @@ system:
       args:
       - -endpoint
       - ordering:DATACENTER:7012
-      - logging.dir
+      - -logging.dir
       - /log
       livenessProbe:
         initialDelaySeconds: 5
@@ -64,4 +64,4 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-beacon-ordering/logs
+        path: /home/sfdc-ordering-service/logs
