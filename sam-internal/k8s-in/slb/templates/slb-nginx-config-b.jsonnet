@@ -170,7 +170,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-samtest" then {
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
-                                "--httpsEnabled=true",
+                                "--httpsEnabled="
+                                + "slb-canary-proxy-http.sam-system.prd-sdc.prd.slb.sfdc.net,slb-portal-service.sam-system.prd-sdc.prd.slb.sfdc.net",
                             ] else []
                         ),
                         volumeMounts: configs.filter_empty([
