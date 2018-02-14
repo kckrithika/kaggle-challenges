@@ -81,10 +81,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                     configs.kube_config_volume,
                     sdnconfigs.sdn_logs_volume,
                 ]),
-                nodeSelector: configs.filter_empty([
-                    sdnconfigs.sdn_control_pool,
-                    sdnconfigs.sdn_master,
-                ]),
+                nodeSelector: {
+                    pool: sdnconfigs.sdn_control_pool,
+                    master: sdnconfigs.sdn_master,
+                },
             },
         },
     },
