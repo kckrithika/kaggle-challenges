@@ -39,27 +39,22 @@ apps:
         - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
   # DFW Proxy Nodes
-  shared0-samminionatlasfe1-1-dfw:
+  shared0-samminionatlasfe-dfw:
     - name: dfw/dfw-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-dfw.ops.sfdc.net
-  shared0-samminionatlasfe2-1-dfw:
-    - name: dfw/dfw-sam_cloudatlas
-      hostSubList:
       - shared0-samminionatlasfe2-1-dfw.ops.sfdc.net
 
-  # DFW DS Nodes
+  # DFW DS Topomaster
   shared0-samminionatlasdir1-1-dfw:
     - name: dfw/dfw-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-dfw.ops.sfdc.net
-  shared0-samminionatlasdir1-2-dfw:
+  # DFW DS Nodes
+  shared0-samminionatlasdir-dfw:
     - name: dfw/dfw-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-2-dfw.ops.sfdc.net
-  shared0-samminionatlasdir2-1-dfw:
-    - name: dfw/dfw-sam_cloudatlas_dir
-      hostSubList:
       - shared0-samminionatlasdir2-1-dfw.ops.sfdc.net
 
   # IAD Proxy Nodes
@@ -68,7 +63,6 @@ apps:
       hostSubList:
       - shared0-samminionatlasfe1-1-iad.ops.sfdc.net
       - shared0-samminionatlasfe2-1-iad.ops.sfdc.net
-
 
   # IAD DS Nodes
   shared0-samminionatlasdir-iad:
