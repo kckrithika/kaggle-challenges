@@ -34,6 +34,7 @@ spec:
         - --pkiServerServiceName=k8s-server
         - --pkiClientServiceName=k8s-client
         - --enableNyxMtls
+        - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
         - --logtostderr=false
         env:
