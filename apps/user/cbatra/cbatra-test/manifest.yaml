@@ -26,7 +26,7 @@ system:
          secretName: argusk4a
      - name: testvol
        k4aSecret:
-         secretName: secretname
+         secretName: mysecret
     env:
       - name: TEST_ENV
         value: test_val_new
