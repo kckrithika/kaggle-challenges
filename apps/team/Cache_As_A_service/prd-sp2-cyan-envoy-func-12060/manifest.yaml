@@ -1,0 +1,58 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: csr-cyan-envoy
+
+    count: 1
+
+    volumes:
+    - name: cert
+      maddogCert:
+        type: server
+        lbnames:
+          - cyanlbv2
+
+    containers:
+    - name: csr-cyan-envoy-sam
+
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan-envoy:sathish.santhanam-20180214-2
+
+      livenessProbe:
+         exec:
+           command:
+            - echo
+            - HEALTHY
+         initialDelaySeconds: 480
+         periodSeconds: 1
+
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 12061
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 12060
+        - containerPort: 12061
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+
+    terminationGracePeriodSeconds: 100
+    progressDeadlineSeconds: 120
+
+  loadbalancers:
+  - lbname: cyanlbv2
+    function: csr-cyan-envoy
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+    - port: 12060
+      targetport: 12060
+    - port: 12061
+      targetport: 12061
