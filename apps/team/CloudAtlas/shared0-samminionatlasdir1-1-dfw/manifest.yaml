@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - cloudatlas@salesforce.com
+      - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-dfw-dir1-1
     count: 1
