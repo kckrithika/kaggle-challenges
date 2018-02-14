@@ -111,8 +111,9 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --maxDeleteServiceCount=3
+        - --httpsEnabled=slb-canary-proxy-http.sam-system.prd-samtest.prd.slb.sfdc.net,slb-portal-service.sam-system.prd-samtest.prd.slb.sfdc.net
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000623-c4359fdf
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000629-f6ab145c
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -157,7 +158,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000623-c4359fdf
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000629-f6ab145c
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
