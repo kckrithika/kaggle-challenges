@@ -18,7 +18,7 @@ spec:
         - /sdn/sdn-hairpin-setter
         - --log_dir=/data/logs/sdn/
         - --logtostderr=false
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000621-9ceb3d47
         name: sdn-hairpin-setter
         securityContext:
           privileged: true
