@@ -50,6 +50,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--pkiServerServiceName=k8s-server",
                             "--pkiClientServiceName=k8s-client",
                             "--enableNyxMtls",
+                            configs.sfdchosts_arg,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                         ],
