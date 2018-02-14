@@ -15,7 +15,7 @@ from threading import Thread
 NUM_WORKER_THREADS = 10
 MULTI_TEMP_DIR = "./multifile-temp/"
 
-# Info needed to process one jsonnet file for one estate
+# Info needed to process a set of jsonnet file for one estate for one team
 class jsonnet_workitem:
     def __init__(self, kingdom, estate, jsonnet_files, output_dir, team_dir):
         self.kingdom = kingdom
@@ -62,7 +62,11 @@ def make_multifile(item):
     #
     # {
     #   "sam-deployment-portal.json" : import ("sam/templates/sam-deployment-portal.jsonnet"),
+    #   "samcontrol.json" : import ("sam/templates/samcontrol.jsonnet"),
+    #   ...
     # }
+    # We use a different multi-file for each estate and team combination (because these both influce arguments, and arguments are shared for all the multifile)
+    # Estate and kingdom are passed on cmd line with '-V kingdom=xxx -V estate=yyy' and each team has a different include folder passed with `--jpath`
     multifilename = os.path.join(MULTI_TEMP_DIR, "multi_"+item.kingdom+"_"+item.estate+"_" + item.team_dir + ".jsonnet")
     with open(multifilename, 'w') as multifile:
         multifile.write("{\n")
@@ -75,8 +79,8 @@ def make_multifile(item):
             computed_out_files.append(os.path.join(item.output_dir, outfile))
         multifile.write("}\n")
     return multifilename, computed_out_files
-
-# Process one jsonnet template
+    
+# Process one work item (a set of json templates for same estate+team)
 def run_jsonnet(item):
     multifilename, computed_out_files = make_multifile(item)
 
