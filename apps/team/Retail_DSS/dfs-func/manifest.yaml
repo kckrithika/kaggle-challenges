@@ -28,7 +28,7 @@ system:
       args:
         - --http1-in=9531
       ports:
-        - containerPort: 7014
+        - containerPort: 9531
         - containerPort: 7080
       livenessProbe:
         exec:
