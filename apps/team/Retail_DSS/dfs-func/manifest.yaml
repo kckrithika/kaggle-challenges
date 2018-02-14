@@ -25,6 +25,8 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
+      args:
+        - --http1-in=9531
       ports:
         - containerPort: 7014
         - containerPort: 7080
