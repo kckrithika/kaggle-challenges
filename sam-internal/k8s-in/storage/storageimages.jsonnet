@@ -39,14 +39,14 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
         "2": {
-            default_tag: "base-0000326-f0e05b8b",
-            ceph_operator_tag: "base-0000326-f0e05b8b",
-            sfms_tag: "latest-0000115-5cf2ec86",
+            default_tag: "base-0000334-75f04e65",
+            ceph_operator_tag: "base-0000334-75f04e65",
+            sfms_tag: "latest-0000124-7978892e",
             cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000031-8791cfb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             sfnodeprep_tag: "base-0000017-c6de7b57",
-            loginit_tag: "base-0000326-f0e05b8b",
+            loginit_tag: "base-0000334-75f04e65",
             },
 
         ### Release Phase 3 - Canary sites in Prod (PHX)
