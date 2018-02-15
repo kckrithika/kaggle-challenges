@@ -10,7 +10,7 @@ metadata:
   namespace: sam-system
 spec:
   ports:
-  - name: portal-port
+  - name: deployer-portal-port
     nodePort: 64215
     port: 9099
     protocol: TCP

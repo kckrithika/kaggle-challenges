@@ -16,7 +16,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
         spec: {
             ports: [
             {
-                name: "portal-port",
+                name: "deployer-portal-port",
                 port: 9099,
                 protocol: "TCP",
                 targetPort: 9099,
