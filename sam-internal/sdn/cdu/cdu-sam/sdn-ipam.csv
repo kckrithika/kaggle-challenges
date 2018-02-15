@@ -1,0 +1,4 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-sdncontrol1-1-cdu.ops.sfdc.net,10.221.151.68/28,10.221.151.192/27,NONE,cdu-sdn_control
+shared0-sdncontrol1-2-cdu.ops.sfdc.net,10.221.151.69/28,10.221.151.160/27,NONE,cdu-sdn_control
+shared0-sdncontrol1-3-cdu.ops.sfdc.net,10.221.151.70/28,10.221.151.224/27,NONE,cdu-sdn_control
