@@ -25,7 +25,6 @@ spec:
         - --sender=sam@salesforce.com
         - --defaultRecipient=mayank.kumar@salesforce.com
         - --namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store
-        - --deploymentRecipientOverride=mayank.kumar@salesforce.com
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG

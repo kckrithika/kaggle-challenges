@@ -1,7 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-{
-
+if configs.kingdom != "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -77,4 +76,4 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
         name: "sam-deployment-reporter",
         namespace: "sam-system",
     },
-}
+} else "SKIP"
