@@ -63,6 +63,11 @@ local utils = import "util_functions.jsonnet";
         # [cdebains] Override phase-deployment for controller to enable colocation.
         "prd,prd-samtest,samcontrol,hypersam": "sam-0001716-d493443b",
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001716-d493443b",
+
+        # [mayank] Deploy Stateful Revision cleanup Until we upgrade to 1.9
+        "prd,prd-samdev,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
+        "prd,prd-sam,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
+
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
