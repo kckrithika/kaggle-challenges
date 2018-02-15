@@ -21,5 +21,5 @@ spec:
         name: cephdaemon
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/bookie:base-0000031-8791cfb6
         name: sfstore-bookie
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000326-f0e05b8b
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000334-75f04e65
         name: loginit
