@@ -54,7 +54,7 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -125,7 +125,7 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa-f
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -165,7 +165,7 @@ system:
       ports:
       - containerPort: 8500
     - name: sherpa-xlt
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.22
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
