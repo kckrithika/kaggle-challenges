@@ -37,7 +37,7 @@ data:
         "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem"
       ],
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
-      "maxPVCAge": 420000000000,
+      "maxPVCAge": "9m",
       "maxUptimeSampleSize": 5,
       "maxdeploymentduration": 420000000000,
       "monitoredProcesses": {
@@ -140,8 +140,8 @@ data:
         }
       ],
       "storageClassName": "synthetic-hdd-pool",
-      "syntheticPVRetrytimeout": 420000000000,
-      "syntheticretrytimeout": 420000000000,
+      "syntheticPVRetrytimeout": "9m",
+      "syntheticretrytimeout": "9m",
       "tlsEnabled": true
     }
 kind: ConfigMap
