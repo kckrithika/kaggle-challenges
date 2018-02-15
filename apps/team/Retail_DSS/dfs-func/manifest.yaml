@@ -25,11 +25,9 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
-      args:
-        - --http1-in=9531
       ports:
-        - containerPort: 9531
-        - containerPort: 7080
+        - containerPort: 7014
+        - containerPort: 15373
       livenessProbe:
         exec:
           command:
