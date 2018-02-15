@@ -21,7 +21,7 @@ system:
         exec:
           command: ["true"]
     - name: sherpa-dfs
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      image: sfci/servicelibs/sherpa:2.0.21
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
@@ -33,13 +33,13 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
+          - "./bin/is-alive"
           initialDelaySeconds: 60
           periodSeconds: 120
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
+          - "./bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
     volumes:
