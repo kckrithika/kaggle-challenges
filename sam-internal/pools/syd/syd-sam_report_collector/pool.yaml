@@ -1,0 +1,10 @@
+---
+# List of teams that can deploy apps to this pool.
+# Team name must match GUS scrum team with spaces converted to underscore
+# Run k8s-in/build.sh after updating pools
+access:
+  - 'team/CSC_Health'
+
+# Each pool is managed by a SAM control stack running in one estate
+# Name here is an exact match on a file under estates/estates repo
+controlEstate: syd/syd-sam
