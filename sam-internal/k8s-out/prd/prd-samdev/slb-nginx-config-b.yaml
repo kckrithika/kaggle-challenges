@@ -132,7 +132,7 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000011-91f79527
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000015-a5742b48
         livenessProbe:
           httpGet:
             path: /
