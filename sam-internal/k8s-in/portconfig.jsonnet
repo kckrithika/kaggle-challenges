@@ -21,6 +21,7 @@
         sdn_control: 9110,
         sdn_secret_agent: 9120,
         sdn_sdnc_watchdog: 9121,
+        sdn_aws_agent: 9122,
     },
     slb: {
         ipvsDataConnPort: 9107,
