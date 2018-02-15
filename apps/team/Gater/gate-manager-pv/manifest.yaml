@@ -13,7 +13,6 @@ system:
       image: sfci/gater/gate-manager:1.8.0
       args:
         - --server.port=9090
-        - --scone.srpc.announcing-enabled=false
 
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
       # and this volume mount is mapped to a host directory below in the volumes section. Underneath this directory
