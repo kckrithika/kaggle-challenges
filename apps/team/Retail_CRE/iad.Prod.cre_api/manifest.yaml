@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-iad-prod
-      image: sfci/cre/cre-api:0.0.1.2.master.9389de9.52
+      image: sfci/cre/cre-api:0.0.1.4.master.9389de9.54
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-shared-dev
