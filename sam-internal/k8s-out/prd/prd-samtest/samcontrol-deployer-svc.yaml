@@ -11,7 +11,7 @@ metadata:
 spec:
   ports:
   - name: deployer-portal-port
-    nodePort: 64215
+    nodePort: 32864
     port: 9099
     protocol: TCP
     targetPort: 9099

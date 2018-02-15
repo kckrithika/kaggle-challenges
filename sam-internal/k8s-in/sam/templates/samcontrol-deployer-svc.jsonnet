@@ -20,7 +20,7 @@ if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
                 port: 9099,
                 protocol: "TCP",
                 targetPort: 9099,
-                nodePort: 64215,
+                nodePort: 32864,
             },
             ],
                 selector: {
