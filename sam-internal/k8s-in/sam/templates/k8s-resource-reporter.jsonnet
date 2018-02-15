@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.kingdom == "prd" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -19,7 +19,6 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                            "--sender=sam@salesforce.com",
                            "--defaultRecipient=mayank.kumar@salesforce.com",
                            "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
-                           "--deploymentRecipientOverride=mayank.kumar@salesforce.com",
                            configs.sfdchosts_arg,
                            ]),
                        volumeMounts: configs.filter_empty([
