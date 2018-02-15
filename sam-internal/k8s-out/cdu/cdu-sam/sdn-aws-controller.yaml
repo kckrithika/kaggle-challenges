@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: sdn-aws-agent
-  name: sdn-aws-agent
+    name: sdn-aws-controller
+  name: sdn-aws-controller
   namespace: sam-system
 spec:
   replicas: 1
@@ -15,11 +15,11 @@ spec:
   template:
     metadata:
       labels:
-        name: sdn-aws-agent
+        name: sdn-aws-controller
     spec:
       containers:
       - command:
-        - /sdn/sdn-aws-agent
+        - /sdn/sdn-aws-controller
         - --archiveSvcEndpoint=https://ops0-piperepo1-1-cdu.ops.sfdc.net/tnrp/content_repo/0/archive
         - --livenessProbePort=9122
         - --ipamPullInterval=30s
@@ -47,7 +47,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 30
           timeoutSeconds: 5
-        name: sdn-aws-agent
+        name: sdn_aws_controller
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts

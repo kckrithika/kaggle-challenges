@@ -8,9 +8,9 @@ if configs.estate == "cdu-sam" then {
     kind: "Deployment",
     metadata: {
         labels: {
-            name: "sdn-aws-agent",
+            name: "sdn-aws-controller",
         },
-        name: "sdn-aws-agent",
+        name: "sdn-aws-controller",
         namespace: "sam-system",
     },
     spec: {
@@ -25,19 +25,19 @@ if configs.estate == "cdu-sam" then {
         template: {
             metadata: {
                 labels: {
-                    name: "sdn-aws-agent",
+                    name: "sdn-aws-controller",
                 },
             },
             spec: {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdn-aws-agent",
+                        name: "sdn_aws_controller",
                         image: sdnimages.hypersdn,
                         command: [
-                            "/sdn/sdn-aws-agent",
+                            "/sdn/sdn-aws-controller",
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                            "--livenessProbePort=" + portconfigs.sdn.sdn_aws_agent,
+                            "--livenessProbePort=" + portconfigs.sdn.sdn_aws_controller,
                             "--ipamPullInterval=30s",
                             "--archiveSvcPullInterval=30s",
                             "--rootPath=/etc/pki_service",
@@ -59,7 +59,7 @@ if configs.estate == "cdu-sam" then {
                         livenessProbe: {
                             httpGet: {
                                 path: "/liveness-probe",
-                                port: portconfigs.sdn.sdn_aws_agent,
+                                port: portconfigs.sdn.sdn_aws_controller,
                             },
                             initialDelaySeconds: 30,
                             timeoutSeconds: 5,
