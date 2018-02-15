@@ -67,7 +67,6 @@ local utils = import "util_functions.jsonnet";
         # [mayank] Deploy Stateful Revision cleanup Until we upgrade to 1.9
         "prd,prd-samdev,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
         "prd,prd-sam,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
-
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -168,6 +167,9 @@ local utils = import "util_functions.jsonnet";
             else if (kingdom == "prd" || kingdom == "frf") then
                 "sam-0001548-81d3b9bd"
         ),
+        kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
+        kubednsmasq: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
+        kubednssidecar: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1",
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
@@ -178,6 +180,9 @@ local utils = import "util_functions.jsonnet";
     prometheus: imageFunc.do_override_based_on_tag($.overrides, "sam", "prometheus", $.static.prometheus),
     permissionInitContainer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.permissionInitContainer),
     k4aInitContainerImage: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.static.k4aInitContainerImage),
+    kubedns: imageFunc.do_override_based_on_tag($.overrides, "sam", "kubedns", $.static.kubedns),
+    kubednsmasq: imageFunc.do_override_based_on_tag($.overrides, "sam", "kubednsmasq", $.static.kubednsmasq),
+    kubednssidecar: imageFunc.do_override_based_on_tag($.overrides, "sam", "kubednssidecar", $.static.kubednssidecar),
 
     # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
     # of all containers

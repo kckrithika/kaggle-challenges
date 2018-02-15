@@ -53,7 +53,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                                 value: "10055",
                             },
                         ],
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/k8s-dns-kube-dns-amd64:1.14.1",
+                        image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
                         livenessProbe: {
                             failureThreshold: 5,
@@ -137,7 +137,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                             "--server=/in-addr.arpa/127.0.0.1#10053",
                             "--server=/ip6.arpa/127.0.0.1#10053",
                         ],
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
+                        image: samimages.kubednsmasq,
                         imagePullPolicy: "IfNotPresent",
                         livenessProbe: {
                             failureThreshold: 5,
@@ -180,7 +180,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                             "--probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.cluster.local,5,A",
                             "--probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.cluster.local,5,A",
                         ],
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/k8s-dns-sidecar-amd64:1.14.1",
+                        image: samimages.kubednssidecar,
                         imagePullPolicy: "IfNotPresent",
                         livenessProbe: {
                             failureThreshold: 5,
