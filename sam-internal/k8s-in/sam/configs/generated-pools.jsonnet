@@ -27,6 +27,18 @@
     },
     {
       "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "cdu-sam",
+      "estate": "cdu-sam_report_collector",
+      "kingdom": "cdu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1777,6 +1789,18 @@
     },
     {
       "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "syd-sam",
+      "estate": "syd-sam_report_collector",
+      "kingdom": "syd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1961,6 +1985,18 @@
     },
     {
       "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "yhu-sam",
+      "estate": "yhu-sam_report_collector",
+      "kingdom": "yhu",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1980,6 +2016,18 @@
       ],
       "controlEstate": "yul-sam",
       "estate": "yul-sam_gater",
+      "kingdom": "yul",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health"
+      ],
+      "access": [
+        "team/CSC_Health"
+      ],
+      "controlEstate": "yul-sam",
+      "estate": "yul-sam_report_collector",
       "kingdom": "yul",
       "superPod": "None"
     },
