@@ -158,7 +158,9 @@ local utils = import "util_functions.jsonnet";
         ),
 
         k4aInitContainerImage: (
-            if (kingdom == "prd" || kingdom == "frf") then
+            if (estate == "prd-samdev" || estate == "prd-samtest") then
+               "sam-0001721-43ca853b"
+            else if (kingdom == "prd" || kingdom == "frf") then
                 "sam-0001548-81d3b9bd"
         ),
     },
