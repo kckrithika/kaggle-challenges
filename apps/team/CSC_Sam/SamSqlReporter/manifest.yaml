@@ -1,0 +1,35 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - sam@salesforce.com
+  functions:
+  - name: samsql
+    count: 1
+    containers:
+    - name: samsql
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180214_165838.5682f38.dirty.thargrove-ltm1
+      command: ["/sam/sam-sql-reporter"]
+      args: ["--dbPasswordFile=/var/secrets/mysql.txt", "--k8sResourceDbName=sam_kube_resource", "--k8sResourceTableName=k8s_resource","-v=5","--alsologtostderr", "--port=64212"]
+      ports:
+      - containerPort: 64212
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 64212
+      volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+    volumes:
+    - name: mysql
+      secret:
+        secretName: mysql
+  loadbalancers:
+  - lbname: samsqllb
+    function: samsql
+    slbEnabled: true
+    ports:
+      - port: 64212
+        targetport: 64212
