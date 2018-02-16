@@ -55,6 +55,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
+      args:
+      - --switchboard
+      - shared0-samminiongater1-1-prd.eng.sfdc.net:15001,shared0-samminiongater1-2-prd.eng.sfdc.net:15001,shared0-samminiongater1-3-prd.eng.sfdc.net:15001,shared0-samminiongater2-1-prd.eng.sfdc.net:15001,shared0-samminiongater2-2-prd.eng.sfdc.net:15001
       livenessProbe:
         httpGet:
           path: /listeners
