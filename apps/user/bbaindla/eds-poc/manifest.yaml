@@ -1,0 +1,29 @@
+--- 
+apiVersion: v1
+system: 
+  functions: 
+    - 
+      containers: 
+        - 
+          image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bbaindla/hello:eds-20180216"
+          livenessProbe: 
+            httpGet: 
+              path: /
+              port: 9090
+          name: samhello
+          ports: 
+            - 
+              containerPort: 9090
+      count: 2
+      name: default
+  loadbalancers: 
+    - 
+      function: default
+      lbname: samhellolb
+      ports: 
+        - 
+          lbtype: tcp
+          port: 9090
+          targetport: 9090
+      slbenabled: true
+
