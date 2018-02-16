@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:drichelson-20180215-e3e6383
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:drichelson-20180216-15372
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -19,13 +19,13 @@ system:
         name: ordering-log-volume
       ports:
       - containerPort: 7021
-      - containerPort: 15371
+      - containerPort: 15372
       - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
           path: /manage/health
-          port: 15371
+          port: 15372
 
     - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
