@@ -45,20 +45,20 @@ local utils = import "util_functions.jsonnet";
 
         # [d.smith] Early push of new hypersam - fixes snapshotter
         "prd,prd-samdev,snapshoter,hypersam": "auto",
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "chx,chx-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "iad,iad-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "ord,ord-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "par,par-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "syd,syd-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "wax,wax-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
-        "yul,yul-sam,snapshoter,hypersam": "sam-0001710-3ec484d6",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "chx,chx-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "iad,iad-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "ord,ord-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "par,par-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "syd,syd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "wax,wax-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
 
         # [cdebains] Override phase-deployment for controller to enable colocation.
         "prd,prd-samtest,samcontrol,hypersam": "sam-0001716-d493443b",
@@ -98,7 +98,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF
         "3": {
-            hypersam: "sam-0001667-72dcabb0",
+            hypersam: "sam-0001710-3ec484d6",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },

@@ -27,7 +27,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0001710-3ec484d6
+        image: ops0-artifactrepo1-0-syd.data.sfdc.net/tnrp/sam/hypersam:sam-0001725-d0637219
         livenessProbe:
           httpGet:
             path: /
