@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: dfs-shared
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.14
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -23,25 +23,23 @@ system:
         exec:
           command: ["true"]
     - name: sherpa-dfs
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      image: sfci/servicelibs/sherpa:2.0.21
       env:
         - name: SFDC_ENVIRONMENT
           value: dfs
-      args:
-        - --http2-in=9532
       ports:
-        - containerPort: 9532
+        - containerPort: 7014
         - containerPort: 7080
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
+          - "./bin/is-alive"
           initialDelaySeconds: 60
           periodSeconds: 120
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
+          - "./bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
     volumes:
