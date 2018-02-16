@@ -32,7 +32,7 @@ if configs.estate == "cdu-sam" then {
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "sdn_aws_controller",
+                        name: "sdn-aws-controller",
                         image: sdnimages.hypersdn,
                         command: [
                             "/sdn/sdn-aws-controller",
