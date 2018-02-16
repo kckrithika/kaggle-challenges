@@ -14,6 +14,7 @@ system:
         value: shipping.dan.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
         value: 7011
+      volumeMounts:
       - mountPath: /log
         name: ordering-log-volume
       ports:
