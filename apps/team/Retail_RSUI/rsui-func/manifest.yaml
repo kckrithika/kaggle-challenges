@@ -12,21 +12,25 @@ system:
         - rsui-func-lb
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.21
       ports:
       - containerPort: 8080
       - containerPort: 15372
       env:
       - name: MDS_HOST
-        value: mock-metadata-servicelb.retail-rsui-sp2.prd-sam.prd.slb.sfdc.net
+        value: metadata-service.localhost.mesh.force.com
       - name: MDS_PORT
-        value: 36184
+        value: 7011
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
         value: stmfa
+      - name: TENANT_SOURCE
+        value: MDS065tATaAUcWi
+      - name: TENANT_CANONICAL
+        value: MDS08fS6PGukUaj
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
