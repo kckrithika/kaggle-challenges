@@ -25,7 +25,7 @@ system:
         initialDelaySeconds: 15
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15371
 
     - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
