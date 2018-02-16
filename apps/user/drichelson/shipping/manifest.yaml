@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-service
-      image: scone-shipping:drichelson-20180215-e3e6383
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:drichelson-20180215-e3e6383
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -23,7 +23,7 @@ system:
           port: 15372
 
     - name: beacon-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20180213-8c0bea8
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
       - dan/shipping:DATACENTER:7012
