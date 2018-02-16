@@ -1,0 +1,76 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-aws-controller
+  name: sdn-aws-controller
+  namespace: sam-system
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: sdn-aws-controller
+    spec:
+      containers:
+      - command:
+        - /sdn/sdn-aws-controller
+        - --archiveSvcEndpoint=https://ops0-piperepo1-1-cdu.ops.sfdc.net/tnrp/content_repo/0/archive
+        - --livenessProbePort=9122
+        - --ipamPullInterval=30s
+        - --archiveSvcPullInterval=30s
+        - --rootPath=/etc/pki_service
+        - --userName=kubernetes
+        - --pkiServerServiceName=k8s-server
+        - --pkiClientServiceName=k8s-client
+        - --awsRegion=ap-southeast-2
+        - --ddi=https://ddi-api-cdu.data.sfdc.net
+        - --keyfile=/data/certs/hostcert.key
+        - --certfile=/data/certs/hostcert.crt
+        - --cafile=/data/certs/ca.crt
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --log_dir=/data/logs/sdn/
+        - --logtostderr=false
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000580-b84ce00f
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9122
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 5
+        name: sdn_aws_controller
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/logs/sdn
+          name: sdnlogs
+      hostNetwork: true
+      nodeSelector:
+        master: "false"
+        pool: cdu-sdn_control
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/logs/sdn
+        name: sdnlogs
