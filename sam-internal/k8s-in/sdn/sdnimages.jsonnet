@@ -12,6 +12,10 @@ local kingdom = std.extVar("kingdom");
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
         #
         # override sam-storage temporarily
+
+        # [agajjala] Rolling out latest image of hypersdn to CDU with sdn-aws-controller
+        "cdu,cdu-sam,sdn-aws-controller,hypersdn": "v-0000638-cc700174",
+
     },
 
     ### Per-phase image tags
