@@ -1,0 +1,80 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: shipping
+    count: 1
+    containers:
+    - name: scone-service
+      image: scone-shipping:drichelson-20180215-e3e6383
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      - mountPath: /log
+        name: shipping-log-volume
+      ports:
+      - containerPort: 7020
+      - containerPort: 15372
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 15
+        httpGet:
+          path: /manage/health
+          port: 15372
+
+    - name: beacon-shipping
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20180213-8c0bea8
+      args:
+      - -endpoint
+      - dan/shipping:DATACENTER:7012
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: beacon-log-volume
+
+    - name: sherpa-shipping
+      image: sfci/servicelibs/sherpa:2.0.22
+      args: ["--zipkin-rate", "0.0"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 15373
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
+    volumes:
+    - name: shipping-log-volume
+      hostPath:
+        path: /home/sfdc-shipping-scone/logs
+    - name: beacon-log-volume
+      hostPath:
+        path: /home/sfdc-shipping-beacon/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
