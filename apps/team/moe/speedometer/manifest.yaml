@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: speedometer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000621-9ceb3d47
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/speedometer:v-0000636-d8930a92
       command: ["/speedometer/speedometer"]
       args:
       - "-gheTokenPath"
@@ -17,6 +17,8 @@ system:
       - "/host/data/speedometer/logs"
       - "-tnrpImagePrefixMapPath"
       - "image_prefixes.yaml"
+      - "-webfilesPath"
+      - "/speedometer/webfiles"
       ports:
       - containerPort: 8080
       livenessProbe:
