@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.3-0000085-b2995890
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-wd:2018020160717
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
