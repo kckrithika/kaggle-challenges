@@ -47,7 +47,7 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 30
           timeoutSeconds: 5
-        name: sdn_aws_controller
+        name: sdn-aws-controller
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
