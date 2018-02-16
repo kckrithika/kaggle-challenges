@@ -10,7 +10,7 @@ system:
         type: client
     containers:
     - name: ordering-sboobna
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/ordering/ordering-sboobna:sboobna-20180131-fcb1684
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/ordering/ordering-sboobna:sboobna-20180215-2149427
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -30,7 +30,7 @@ system:
           path: /manage/health
           port: 15373
     - name: beacon-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180210-21e8fa6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
       - -endpoint
       - ordering-sboobna:DATACENTER:7012
