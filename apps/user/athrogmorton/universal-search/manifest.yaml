@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search:0.2.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search:0.3.2
       ports:
       - name: service-port
         containerPort: 7020
@@ -32,6 +32,12 @@ system:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
       env:
+      - name: SCONE_SRPC_ANNOUNCING_ENABLED
+        value: true
+      - name: ANNOUNCED_NAME
+        value: universal-search
+      - name: ANNOUNCED_PORT
+        value: 7012
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
