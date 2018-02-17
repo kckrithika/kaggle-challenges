@@ -31,7 +31,7 @@ system:
       - -endpoint
       - shipping-sboobna:DATACENTER:7012
       - -service
-      - shipping
+      - shipping-test
       - -rootCert
       - /clientcerts/ca.pem
       - -certDir
@@ -45,7 +45,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa5:2.0.22-snapshot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa7:2.0.22-snapshot
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
