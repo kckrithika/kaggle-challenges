@@ -58,13 +58,17 @@ local utils = import "util_functions.jsonnet";
 
     # DDIService Endpoint
     ddiService: (
-        "https://ddi-api-" + kingdom + ".data.sfdc.net"
+        "https://ddi-api-crz.data.sfdc.net/"
     ),
 
     awsRegion: (
-    if kingdom == "cdu" || kingdom == "syd" then
-        "ap-southeast-2"
-    else
-        "ca-central-1"
+    if kingdom == "cdu" then
+        "ap-southeast-2c"
+    else if kingdom == "syd" then
+        "ap-southeast-2b"
+    else if kingdom == "yhu" then
+        "ca-central-1b"
+    else if kingdom == "yul" then
+        "ca-central-1a"
     ),
 }

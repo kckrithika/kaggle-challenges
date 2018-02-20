@@ -28,8 +28,8 @@ spec:
         - --userName=kubernetes
         - --pkiServerServiceName=k8s-server
         - --pkiClientServiceName=k8s-client
-        - --awsRegion=ap-southeast-2
-        - --ddi=https://ddi-api-cdu.data.sfdc.net
+        - --awsRegion=ap-southeast-2c
+        - --ddi=https://ddi-api-crz.data.sfdc.net/
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt
         - --cafile=/data/certs/ca.crt
@@ -39,7 +39,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000640-2e73cf4c
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000641-16ee92ca
         livenessProbe:
           httpGet:
             path: /liveness-probe
