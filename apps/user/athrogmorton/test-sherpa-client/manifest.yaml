@@ -1,0 +1,75 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - athrogmorton@salesforce.com
+  functions:
+  - name: test-sherpa-client
+    count: 1
+    volumes:
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: server-cert-vol
+      maddogCert:
+        type: server
+    - name: sherpa-log-vol
+      hostpath:
+        path: /home/sfdc-sherpa/logs
+    containers:
+    - name: universal-search
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/test-sherpa-client:0.3.2
+      ports:
+      - name: service-port
+        containerPort: 7020
+      - name: admin-port
+        containerPort: 15372
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      env:
+      livenessProbe:
+        exec:
+          command:
+          - "echo hello"
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "echo hello"
+        initialDelaySeconds: 5
+        periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.21
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls  
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: server-cert-vol
+          mountPath: /server-certs
+        - name: sherpa-log-vol
+          mountPath: /log
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 10
+        periodSeconds: 5
