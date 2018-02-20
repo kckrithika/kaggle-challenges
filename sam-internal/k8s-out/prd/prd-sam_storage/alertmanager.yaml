@@ -1,0 +1,53 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: alertmanager
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+      - env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/alertmanager:base-0000334-75f04e65
+        name: alertmanager
+        ports:
+        - containerPort: 15212
+          name: alert-hook
+          protocol: TCP
+        - containerPort: 15213
+          name: alert-publisher
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+      nodeSelector:
+        master: "true"
+      volumes:
+      - emptyDir: {}
+        name: container-log-vol
+      - hostPath:
+          path: /var/log
+        name: host-log-vol
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
