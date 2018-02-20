@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-sp-prd-ccp-shared-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-stream-processing:master.23d96ad.51
+      image: sfci/cre/cre-stream-processing:0.0.1.5.master.bd4f636.73
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -23,10 +23,13 @@ system:
       - containerPort: 8080
       - containerPort: 7020
       livenessProbe:
-        exec:
-            command:
-            - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
       volumeMounts:
       - mountPath: /certs
         name: certs
