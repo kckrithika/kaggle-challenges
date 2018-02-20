@@ -39,7 +39,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000638-cc700174
+        image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000640-2e73cf4c
         livenessProbe:
           httpGet:
             path: /liveness-probe

@@ -14,7 +14,7 @@ local kingdom = std.extVar("kingdom");
         # override sam-storage temporarily
 
         # [agajjala] Rolling out latest image of hypersdn to CDU with sdn-aws-controller
-        "cdu,cdu-sam,sdn-aws-controller,hypersdn": "v-0000638-cc700174",
+        "cdu,cdu-sam,sdn-aws-controller,hypersdn": "v-0000640-2e73cf4c",
 
     },
 
