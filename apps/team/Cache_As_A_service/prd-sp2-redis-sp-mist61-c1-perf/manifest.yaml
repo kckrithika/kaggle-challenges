@@ -12,8 +12,8 @@ system:
     - name: caas-redis
       image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       resources:
-        limits: { memory: "6Gi" }
-        requests: { memory: "10Gi" }
+        limits: { memory: "10Gi" }
+        requests: { memory: "6Gi" }
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
