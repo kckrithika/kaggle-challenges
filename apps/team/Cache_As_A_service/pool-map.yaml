@@ -1922,7 +1922,7 @@ apps:
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
- prd-sp2-redis-sp-mist61-c1-perf-12019:
+ prd-sp2-redis-sp-mist61-c1-perf:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net

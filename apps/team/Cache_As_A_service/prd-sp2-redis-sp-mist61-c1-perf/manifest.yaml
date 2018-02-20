@@ -5,7 +5,7 @@ system:
     email:
       - tdias@salesforce.com
   functions:
-  - name: prd-sp2-redis-sp-mist61-c1-perf-12019
+  - name: prd-sp2-redis-sp-mist61-c1-perf
     count: 2
     hostnetwork: true
     containers:
@@ -21,23 +21,23 @@ system:
           name: secretvol
           readOnly: true
       args:
-        - --port=12019
+        - --port=12021
         - --maxMemoryMB=6144
         - --logDir=/home/caas/logs
       livenessProbe:
         exec:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12019
+           - --port=12021
         initialDelaySeconds: 15
         timeoutSeconds: 10
       ports:
-      - containerPort: 12019
-    - name: caas-redis-announcer-12019
+      - containerPort: 12021
+    - name: caas-redis-announcer
       image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
-        - --redisPort=12019
+        - --redisPort=12021
         - --cluster.name=sp-mist61-c1
         - --logDir=/home/caas/logs
         - --pathPrefix=/mist61/prd/sp2
