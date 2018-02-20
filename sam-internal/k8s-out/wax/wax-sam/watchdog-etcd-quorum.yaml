@@ -28,7 +28,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=6h
-        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001667-72dcabb0
+        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001710-3ec484d6
         name: watchdog-etcd-quorum
         volumeMounts:
         - mountPath: /sfdchosts
