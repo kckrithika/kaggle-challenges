@@ -40,14 +40,13 @@ system:
         - --redisPort=12019
         - --cluster.name=sp-mist61-c1
         - --logDir=/home/caas/logs
+        - --pathPrefix=/mist61/prd/sp2
       livenessProbe:
-        initialDelaySeconds: 5
         exec:
           command:
-            - "/opt/caas/redis/is-alive.sh"
-      env:
-       - name: SFDC_ENVIRONMENT
-         value: mist61
+           - /opt/caas/redis/is-alive.sh
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
@@ -60,7 +59,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs
+        path: /home/caas/logs/caas
     - name: secretvol
       secret:
-         secretName: caas-secret-sp-c1
+        secretName: caas-secret-sp-c1
