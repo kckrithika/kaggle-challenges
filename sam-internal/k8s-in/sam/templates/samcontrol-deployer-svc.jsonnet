@@ -3,14 +3,14 @@ if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
-            name: "scd",
+            name: "samcontrol-deployer",
             namespace: "sam-system",
             labels: {
                 app: "samcontrol-deployer",
-                "slb.sfdc.net/name": "scd",
+                "slb.sfdc.net/name": "samcontrol-deployer",
             },
             annotations: {
-                "slb.sfdc.net/name": "scd",
+                "slb.sfdc.net/name": "samcontrol-deployer",
             },
         },
         spec: {
