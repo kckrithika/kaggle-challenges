@@ -7,7 +7,7 @@ system:
     count: 1
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.14
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.15
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -15,11 +15,31 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stmfa
       ports:
-      - containerPort: 7021
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
           command: ["true"]
+    - name: sherpa-dfs
+      image: sfci/servicelibs/sherpa:2.0.21
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: stmfa
+      ports:
+        - containerPort: 7014
+        - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
     volumes:
     - name: logvol
       hostPath:
