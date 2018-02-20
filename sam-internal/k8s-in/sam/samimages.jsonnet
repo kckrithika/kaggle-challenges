@@ -19,17 +19,8 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [diana.chang] Testing daily deployer and setting the 'auto' keyword for particular resources, changed watchdog-sdp in prd-samtest so it doesn't use a keyword
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1",
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180131_154915.d7abb274.dirty.dianachang-ltm1",
-        "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
-
         # [jiayi] Deploying snapshotconsumer to prd-samdev & prd-sam
-        "prd,prd-samdev,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
         "prd,prd-sam,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
-
-        #[Xiao] Deploying samapp controller to prd-samtest for hackweek
-        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180207_130606.13d405d5.dirty.xiaozhou-ltm2",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -44,7 +35,6 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
         # [d.smith] Early push of new hypersam - fixes snapshotter
-        "prd,prd-samdev,snapshoter,hypersam": "auto",
         "frf,frf-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001725-d0637219",
@@ -60,12 +50,7 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
 
-        # [cdebains] Override phase-deployment for controller to enable colocation.
-        "prd,prd-samtest,samcontrol,hypersam": "sam-0001716-d493443b",
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001716-d493443b",
-
         # [mayank] Deploy Stateful Revision cleanup Until we upgrade to 1.9
-        "prd,prd-samdev,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
         "prd,prd-sam,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
     },
 
@@ -84,7 +69,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001710-3ec484d6",
+            hypersam: "sam-0001730-c7caec88",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
@@ -163,7 +148,7 @@ local utils = import "util_functions.jsonnet";
 
         k4aInitContainerImage: (
             if (estate == "prd-samdev" || estate == "prd-samtest") then
-               "sam-0001721-43ca853b"
+               "sam-0001730-c7caec88"
             else if (kingdom == "prd" || kingdom == "frf") then
                 "sam-0001548-81d3b9bd"
         ),
