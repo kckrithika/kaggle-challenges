@@ -68,9 +68,13 @@ apps:
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
   expreportcollectorha:
+    - prd/prd-sam_report_collector
   exprepcollavailwd:
+    - prd/prd-sam_report_collector
   expcname-repcollavailwd:
+    - prd/prd-sam_report_collector
   expmaddog-repcollavailwd:
+    - prd/prd-sam_report_collector
   cname-repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
