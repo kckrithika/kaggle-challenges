@@ -568,6 +568,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: retail-rrps:ord-sam_crosscloudsetup:rolebinding
+    namespace: retail-rrps
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioncrosscloudsetup1-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup1-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup2-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup2-2-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: retail-rsui:ord-sam_crosscloudsetup:rolebinding
     namespace: retail-rsui
   roleRef:
