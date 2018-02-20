@@ -15435,14 +15435,6 @@ hosts:
   controlestate: prd-sdc
   devicerole: samkubeapi
   estate: prd-sdc
-  hostname: shared0-sdcsamkubeapi2-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: sdc_samkubeapi
-  controlestate: prd-sdc
-  devicerole: samkubeapi
-  estate: prd-sdc
   hostname: shared0-sdcsamkubeapi3-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
