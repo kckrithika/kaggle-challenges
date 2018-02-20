@@ -14,13 +14,17 @@ system:
     - name: rsui-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.21
       ports:
-      - containerPort: 8080
+      - containerPort: 7021
+        name: rsui-in-http1
       - containerPort: 15372
+        name: rsui-in-admin
       env:
       - name: MDS_HOST
         value: metadata-service.localhost.mesh.force.com
       - name: MDS_PORT
         value: 7011
+      - name: SERVER_PORT
+        value: 7021
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
@@ -44,27 +48,30 @@ system:
         mountPath: /servercerts
 
     - name: sherpa-rsui-func
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
-        - name: SFDC_ENVIRONMENT
-          value: stmfa
-      args:
-        - --http2-in=9532
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
-        - containerPort: 9532
-        - containerPort: 7080
+      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
 
   loadbalancers:
   - lbname: rsui-func-lb
@@ -72,6 +79,6 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8080
+        targetport: 7021
       - port: 15372
         targetport: 15372
