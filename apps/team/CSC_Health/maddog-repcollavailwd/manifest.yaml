@@ -9,7 +9,10 @@ system:
     count: 1
     containers:
     - name: maddog-repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.7.3-0000085-b2995890
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000094-1c59fd7d
+      ports:
+      - name: liveness
+        containerPort: 8089
       resources:
         requests: { cpu: "0.5", memory: "200M" }
       volumeMounts:
@@ -49,10 +52,11 @@ system:
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
       livenessProbe:
-        exec:
-          command:
-          - "true"
+        httpGet:
+          path: /healthz
+          port: 8089
         initialDelaySeconds: 5
+        periodSeconds: 5
     volumes:
     - name: clientcertvol
       maddogCert:
