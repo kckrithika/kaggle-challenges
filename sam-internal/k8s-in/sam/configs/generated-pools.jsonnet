@@ -587,10 +587,12 @@
     },
     {
       "namespaces": [
-        "retail-rsui"
+        "retail-rsui",
+        "retail-rrps"
       ],
       "access": [
-        "team/Retail_RSUI"
+        "team/Retail_RSUI",
+        "team/Retail_RRPS"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_crosscloudsetup",
@@ -801,10 +803,12 @@
     },
     {
       "namespaces": [
-        "retail-rsui"
+        "retail-rsui",
+        "retail-rrps"
       ],
       "access": [
-        "team/Retail_RSUI"
+        "team/Retail_RSUI",
+        "team/Retail_RRPS"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_crosscloudsetup",
@@ -1353,10 +1357,12 @@
     },
     {
       "namespaces": [
-        "retail-rsui"
+        "retail-rsui",
+        "retail-rrps"
       ],
       "access": [
-        "team/Retail_RSUI"
+        "team/Retail_RSUI",
+        "team/Retail_RRPS"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_crosscloudsetup",
