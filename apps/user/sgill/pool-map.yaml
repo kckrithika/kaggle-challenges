@@ -1,5 +1,5 @@
 apps:
   scan-client-demo:
     - prd/prd-sam
-  scanner:
+  scanner-sgill-sandbox:
     - prd/prd-sam
