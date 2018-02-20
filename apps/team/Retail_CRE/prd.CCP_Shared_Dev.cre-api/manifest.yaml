@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: sfci/cre/cre-api:0.0.1.2.master.9389de9.52
+      image: sfci/cre/cre-api:0.0.1.7.master.821ed6e.57
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-shared-dev
@@ -17,10 +17,13 @@ system:
       - containerPort: 8080
       - containerPort: 7020
       livenessProbe:
-        exec:
-            command:
-            - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
       volumeMounts:
       - mountPath: /certs
         name: certs
