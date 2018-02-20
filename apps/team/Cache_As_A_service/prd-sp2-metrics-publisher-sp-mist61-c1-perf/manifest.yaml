@@ -3,9 +3,9 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - jayant.kumar@salesforce.com
+      - tdias@salesforce.com
   functions:
-  - name: metrics-publisher-ist-sp-c1
+  - name: prd-sp2-metrics-publisher-sp-mist61-c1-perf
     count: 1
     hostnetwork: true
     containers:
@@ -17,7 +17,7 @@ system:
       args:
         - --server.port=7510
         - --management.port=7511
-        - --cluster.name=sp-c1
+        - --cluster.name=sp-mist61-c1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -37,7 +37,7 @@ system:
       - containerPort: 7511
       env:
        - name: SFDC_ENVIRONMENT
-         value: ist
+         value: mist61
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
@@ -46,4 +46,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-stmfa-sp-c1
+        secretName: caas-secret-sp-c1
