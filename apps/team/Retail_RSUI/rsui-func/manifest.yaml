@@ -14,7 +14,7 @@ system:
     - name: rsui-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.21
       ports:
-      - containerPort: 7021
+      - containerPort: 7022
         name: rsui-in-http1
       - containerPort: 15372
         name: rsui-in-admin
@@ -24,7 +24,7 @@ system:
       - name: MDS_PORT
         value: 7011
       - name: SERVER_PORT
-        value: 7021
+        value: 7022
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
@@ -56,6 +56,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
+      - containerPort: 7011
+        name: sherpa-ot-http2
       - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sherpa-in-http1
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
@@ -79,6 +81,8 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 7021
+        targetport: 7022
+      - port: 80
+        targetport: 7022
       - port: 15372
         targetport: 15372
