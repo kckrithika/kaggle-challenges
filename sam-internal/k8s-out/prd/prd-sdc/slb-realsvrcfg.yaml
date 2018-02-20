@@ -22,7 +22,7 @@ spec:
         - --netInterfaceName=eth0
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000639-b2dcd3da
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000642-6cb6daa4
         name: slb-realsvrcfg
         securityContext:
           privileged: true
