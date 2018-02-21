@@ -5,10 +5,13 @@ system:
     email:
       - cloudatlas-dev@salesforce.com
   functions:
-  - name: cloudatlas-frf-dir1-2
-    count: 1
+  - name: cloudatlas-frf-dir
+    count: 3
     strategy:
-      type: Recreate
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client
