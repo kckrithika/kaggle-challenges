@@ -1,11 +1,11 @@
 local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 
-if configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
-  local cephClusters = ["prd-sam_ceph", "prd-sam_sfstore"],
+  local storageClusters = ["prd-sam_ceph", "prd-sam_sfstore", "prd-sam_cephdev", "prd-sam_sfstoredev", "prd-sam_storage"],
 
   createClusterRoleBindingForLocalPV(hosts):: {
       kind: "ClusterRoleBinding",
@@ -31,7 +31,7 @@ for minionnode in hosts
       kind: "ClusterRole",
       apiVersion: "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
-        name: "ceph-role:" + node,
+        name: "localstorage-role:" + node,
       },
       rules: [
         {
@@ -55,7 +55,7 @@ for minionnode in hosts
         kind: "ClusterRoleBinding",
         apiVersion: "rbac.authorization.k8s.io/v1alpha1",
         metadata: {
-          name: "ceph-rolebinding:" + node,
+          name: "localstorage-rolebinding:" + node,
         },
         subjects: [{
            kind: "User",
@@ -64,24 +64,24 @@ for minionnode in hosts
         ,
         roleRef: {
            kind: "ClusterRole",
-           name: "ceph-role:" + node,
+           name: "localstorage-role:" + node,
            apiGroup: "rbac.authorization.k8s.io",
         },
 
    },
 
-    local cephNodes = std.join([], [
-            rbac_utils.get_Estate_Nodes(configs.kingdom, minion, rbac_utils.minionRole)
-for minion in cephClusters
+    local storageNodes = std.join([], [
+            rbac_utils.get_ControlEstate_Nodes(configs.kingdom, configs.estate, minion, rbac_utils.minionRole)
+for minion in storageClusters
 ]),
 
-    local localPVRoleBindings = [self.createClusterRoleBindingForLocalPV(cephNodes)],
+    local localPVRoleBindings = [self.createClusterRoleBindingForLocalPV(storageNodes)],
 
     local updateNodeRoles = std.join([], [
-            [self.createUpdateNodeRoles(node) for node in cephNodes],
+            [self.createUpdateNodeRoles(node) for node in storageNodes],
 ]),
     local updateNodeBindings = std.join([], [
-            [self.createUpdateNodeBindings(node) for node in cephNodes],
+            [self.createUpdateNodeBindings(node) for node in storageNodes],
         ]),
 
     local itemList = localPVRoleBindings + updateNodeRoles + updateNodeBindings,

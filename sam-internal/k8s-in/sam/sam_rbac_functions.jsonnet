@@ -11,6 +11,9 @@ local pools = import "configs/generated-pools.jsonnet";
     # Returns list of nodes in given kingdom + estate + role from hosts.jsonnet
     get_Estate_Nodes(kingdom, estate, role):: [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.estate == estate && h.devicerole == role],
 
+    # Returns list of nodes in given kingdom + control estate + estate + role from hosts.jsonnet
+    get_ControlEstate_Nodes(kingdom, controlestate, estate, role):: [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.controlestate == controlestate && h.estate == estate && h.devicerole == role],
+
     # Returns list of minion estate in given kingdom + controlestate  from hosts.jsonnet
     get_Minion_Estates(kingdom, controlestate):: std.uniq(std.sort([h.estate for h in hosts.hosts if h.kingdom == kingdom && h.controlestate == controlestate && h.devicerole == $.minionRole])),
 
