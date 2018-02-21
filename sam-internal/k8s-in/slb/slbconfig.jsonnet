@@ -1,5 +1,6 @@
 {
 local estate = std.extVar("estate"),
+local kingdom = std.extVar("kingdom"),
 
 slbDir: "/host/data/slb",
 slbDockerDir: "/data/slb",
@@ -10,11 +11,8 @@ slbPortalTemplatePath: "/sdn/webfiles",
 
 perCluster: {
     ddiService: {
-        "prd-sdc": "https://ddi-api-prd.data.sfdc.net",
-        "prd-samtest": "https://ddi-api-prd.data.sfdc.net",
-        "prd-samdev": "https://ddi-api-prd.data.sfdc.net",
-        "prd-sam": "https://ddi-api-prd.data.sfdc.net",
-        "prd-sam_storage": "https://ddi-api-prd.data.sfdc.net",
+        prd: "https://ddi-api-prd.data.sfdc.net",
+        frf: "https://ddi-api-frf.data.sfdc.net",
     },
 
     subnet: {
@@ -23,6 +21,7 @@ perCluster: {
             "prd-samdev": "10.251.129.243-248",
             "prd-sam_storage": "10.251.129.249-254",
             "prd-sam": "10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-247",
+            "frf-sam": "10.214.36.0/22",
             # prd-sam-a : 10.251.199.248-255
     },
 
@@ -32,6 +31,7 @@ perCluster: {
         "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "csrlb,controlplane-ptest",
+        "frf-sam": "",
     },
 
     servicesToLbOverride: {
@@ -50,6 +50,7 @@ perCluster: {
         "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "",
+        "frf-sam": "",
     },
 
     useProxyServicesList: {
@@ -58,6 +59,7 @@ perCluster: {
         "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
+        "frf-sam": "",
     },
 
     podLabelList: {
@@ -77,6 +79,7 @@ perCluster: {
         "prd-samdev": true,
         "prd-sam_storage": true,
         "prd-sam": true,
+        "frf-sam": true,
     },
     kneDomainName: {
         "prd-sdc": "prd-sdc.slb.sfdc.net",
@@ -84,6 +87,7 @@ perCluster: {
         "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "slb.sfdc.net",
+        "frf-sam": "slb.sfdc.net",
     },
     processKnEConfigs: {
         "prd-sdc": true,
@@ -91,6 +95,7 @@ perCluster: {
         "prd-samdev": false,
         "prd-sam_storage": false,
         "prd-sam": true,
+        "frf-sam": false,
 
     },
     kneConfigDir: {
@@ -99,13 +104,7 @@ perCluster: {
         "prd-samdev": "/var/slb/testkneconfigs",
         "prd-sam_storage": "/var/slb/testkneconfigs",
         "prd-sam": "/var/slb/kneconfig",
-    },
-    configurePerPort: {
-        "prd-sdc": true,
-        "prd-samtest": true,
-        "prd-samdev": true,
-        "prd-sam_storage": true,
-        "prd-sam": true,
+        "frf-sam": "/var/slb/kneconfig",
     },
     canaryMaxParallelism: {
         "prd-sdc": 1,
@@ -179,7 +178,7 @@ perCluster: {
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
 namespace: self.perCluster.namespace[estate],
-ddiService: self.perCluster.ddiService[estate],
+ddiService: self.perCluster.ddiService[kingdom],
 canaryServiceName: self.perCluster.canaryServiceName[estate],
 useProxyServicesList: self.perCluster.useProxyServicesList[estate],
 podLabelList: self.perCluster.podLabelList[estate],

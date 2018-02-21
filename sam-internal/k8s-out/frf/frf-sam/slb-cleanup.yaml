@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-cleanup
+  name: slb-cleanup
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: slb-cleanup
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs
+        - --filesDirToCleanup=/host/data/slb/logs
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts

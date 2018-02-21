@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-portal
+  name: slb-portal
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: slb-portal
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-portal
+        - --configDir=/host/data/slb/config
+        - --templatePath=/sdn/webfiles
+        - --port=9112
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-portal
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+      nodeSelector:
+        pool: frf-sam
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
