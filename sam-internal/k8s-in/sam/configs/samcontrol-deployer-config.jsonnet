@@ -20,7 +20,7 @@ local configs = import "config.jsonnet";
   "delete-orphans": true,
   "resources-to-skip": ["sdn-secret.yaml"],
 }
-+ (if configs.kingdom == "prd" then {
++ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
   "daily-deployment-keyword": "auto",
   tokenfile: "/var/token/token",
   "daily-deployment-offset": "3h",
