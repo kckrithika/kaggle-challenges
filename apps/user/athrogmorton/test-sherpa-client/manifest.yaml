@@ -18,7 +18,7 @@ system:
       hostpath:
         path: /home/sfdc-sherpa/logs
     containers:
-    - name: universal-search
+    - name: test-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/test-sherpa-client:0.3.2
       ports:
       - name: service-port
@@ -33,13 +33,13 @@ system:
         exec:
           command:
           - "echo hello"
-        initialDelaySeconds: 5
+        initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "echo hello"
-        initialDelaySeconds: 5
+        initialDelaySeconds: 120
         periodSeconds: 5
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.21
