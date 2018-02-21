@@ -16,7 +16,7 @@ items:
       namespace: legostore
     pool: prd-sam_ceph
     storageClassAllocations:
-    - aggregateStorage: 180Ti
+    - aggregateStorage: 152Ti
       name: hdd
 kind: List
 metadata: {}

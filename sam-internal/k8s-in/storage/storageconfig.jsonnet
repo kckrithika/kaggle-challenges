@@ -46,7 +46,7 @@
                     "prd-sam_cephdev": "1Ti",
                 },
                 "prd-sam": {
-                    "prd-sam_ceph": "180Ti",
+                    "prd-sam_ceph": "152Ti",
                 },
                 "phx-sam": {
                     "phx-sam_ceph": "273Ti",
