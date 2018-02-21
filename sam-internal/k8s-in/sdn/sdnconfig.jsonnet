@@ -70,12 +70,12 @@ local utils = import "util_functions.jsonnet";
 
     awsAZ: (
     if kingdom == "yul" then
-      "ca-central-1a"
+        "ca-central-1a"
     else if kingdom == "yhu" then
-      "ca-central-1b"
+        "ca-central-1b"
     else if kingdom == "cdu" then
-      "ap-southeast-2c"
+        "ap-southeast-2c"
     else if kingdom == "syd" then
-      "ap-southeast-2b"
+        "ap-southeast-2b"
     ),
 }
