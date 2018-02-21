@@ -16,18 +16,24 @@ system:
         value: /certs/client/certificates/client.pem
       - name: SECRETSERVICE_PRIVATE_KEY_PATH
         value: /certs/client/keys/client-key.pem
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: 127.0.0.1,localhost,.ci.data.com,.sfdc.net,.force.com,.dmz.salesforce.com
       volumeMounts:
       - name: cert
         mountPath: /certs
       livenessProbe:
         exec:
           command:
-          - /usr/bin/true
+          - /bin/true
         initialDelaySeconds: 60
-        periodSeconds: 60
+        periodSeconds: 600
       readinessProbe:
         exec:
           command:
-          - /usr/bin/true
+          - /bin/true
         initialDelaySeconds: 60
-        periodSeconds: 60
+        periodSeconds: 600
