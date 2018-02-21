@@ -5,6 +5,7 @@ display_usage() {
   echo '-n|--name : <secretName>'
   echo '-o|--org : <team/teamName> or <user/user-name>'
   echo '-k|--kingdom : <kingdom>[,<otherKingdom>]'
+  echo '-s|--superpod : <superpod>[,<otherSuperpod>]'
   echo '-g|--global'
   echo '-f|--from-file : <pathToFile>'
   echo ''
@@ -38,6 +39,10 @@ case $i in
     KINGDOM="${i#*=}"
     shift # past argument=value
     ;;
+    --superpod=*|-s=*)
+    SUPERPOD="${i#*=}"
+    shift # past argument=value
+    ;;
     --global*|-g*)
     GLOBAL=true
     shift # past argument=value
@@ -67,8 +72,8 @@ DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/sam-internal/hypersam.sh"
 
-#Remove next line after moratorium. This is just to use the updated hypersam image
-HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001729-90133235
+#Remove next line after the SMB release. This is just to use the updated hypersam image
+HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001730-c7caec88
 
 docker run \
   --rm \
@@ -76,13 +81,16 @@ docker run \
   -u 0 \
   -v ${PWD}:/repo \
   -v /:/hostroot \
+  -v ${HOME}:/homedir \
   ${HYPERSAM} \
   manifestctl \
   encrypt \
   --manifestRepoRoot='/repo/' \
   --hostRoot='/hostroot/' \
+  --userHomeDir='/homedir/' \
   --secretName=${NAME}\
   --teamOrUserName=${ORG}\
   --kingdomList=${KINGDOM}\
+  --superPod=${SUPERPOD}\
   --global=${GLOBAL}\
   ${FROM_FILE[*]}
