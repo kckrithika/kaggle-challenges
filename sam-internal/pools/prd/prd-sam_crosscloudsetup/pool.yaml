@@ -4,6 +4,7 @@
 # Run k8s-in/build.sh after updating pools
 access:
   - 'team/Retail_RSUI'
+  - 'team/Retail_RRPS'
 
 # Each pool is managed by a SAM control stack running in one estate
 # Name here is an exact match on a file under estates/estates repo
