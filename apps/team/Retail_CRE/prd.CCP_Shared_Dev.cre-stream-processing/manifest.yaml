@@ -29,7 +29,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
+          scheme: HTTP
       volumeMounts:
       - mountPath: /certs
         name: certs
