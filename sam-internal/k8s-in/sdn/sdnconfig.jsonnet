@@ -62,13 +62,20 @@ local utils = import "util_functions.jsonnet";
     ),
 
     awsRegion: (
-    if kingdom == "cdu" then
-        "ap-southeast-2c"
-    else if kingdom == "syd" then
-        "ap-southeast-2b"
+    if kingdom == "cdu" || kingdom == "syd" then
+        "ap-southeast-2"
+    else if kingdom == "yhu" || kingdom == "yul" then
+        "ca-central-1"
+    ),
+
+    awsAZ: (
+    if kingdom == "yul" then
+      "ca-central-1a"
     else if kingdom == "yhu" then
-        "ca-central-1b"
-    else if kingdom == "yul" then
-        "ca-central-1a"
+      "ca-central-1b"
+    else if kingdom == "cdu" then
+      "ap-southeast-2c"
+    else if kingdom == "syd" then
+      "ap-southeast-2b"
     ),
 }
