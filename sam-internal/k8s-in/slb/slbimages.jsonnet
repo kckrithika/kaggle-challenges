@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000642-6cb6daa4",
+            hypersdn: "v-0000643-41cb7e16",  # NOTE: 643 requires updates to slb-iface-processor and slb-ipvs-installer
             slbnginx: "v-0000019-722fb3a3",
             },
 
