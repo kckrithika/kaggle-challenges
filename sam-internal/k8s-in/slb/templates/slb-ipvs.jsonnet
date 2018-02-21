@@ -57,12 +57,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
                             "--host=/host",
-                            "--marker=" + slbconfigs.slbDir + "/ipvs.marker",
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ],
+                        ]
+                        + (if configs.estate == "prd-sdc" then [] else [
+                            "--marker=" + slbconfigs.slbDir + "/ipvs.marker",
+                        ]),
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "dev-volume",
