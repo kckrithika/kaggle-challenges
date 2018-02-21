@@ -1,0 +1,120 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-ipvs
+  name: slb-ipvs
+  namespace: sam-system
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: slb-ipvs
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-ipvs-installer
+        - --modules=/sdn
+        - --host=/host
+        - --period=5s
+        - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-ipvs-installer
+        securityContext:
+          capabilities:
+            add:
+            - ALL
+          privileged: true
+        volumeMounts:
+        - mountPath: /dev
+          name: dev-volume
+        - mountPath: /lib/modules
+          name: lib-modules-volume
+        - mountPath: /host/tmp
+          name: tmp-volume
+        - mountPath: /host/lib/modules
+          name: lib-modules-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-ipvs-processor
+        - --configDir=/host/data/slb/config
+        - --marker=/host/data/slb/ipvs.marker
+        - --period=5s
+        - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - --log_dir=/host/data/slb/logs
+        - --maximumDeleteCount=20
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-ipvs-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-ipvs-data
+        - --connPort=9107
+        - --log_dir=/host/data/slb/logs
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-ipvs-data
+        ports:
+        - containerPort: 32149
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      hostNetwork: true
+      nodeSelector:
+        slb-service: slb-ipvs
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config
+        name: var-config-volume
+      - hostPath:
+          path: /dev
+        name: dev-volume
+      - hostPath:
+          path: /lib/modules
+        name: lib-modules-volume
+      - hostPath:
+          path: /tmp
+        name: tmp-volume
+      - hostPath:
+          path: /usr/sbin
+        name: usr-sbin-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts

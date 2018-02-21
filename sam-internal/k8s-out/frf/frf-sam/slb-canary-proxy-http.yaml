@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-canary-proxy-http
+  name: slb-canary-proxy-http
+  namespace: sam-system
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: slb-canary-proxy-http
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-canary-proxy-http
+        - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - --log_dir=/host/data/slb/logs
+        - --ports=9116
+        - --tlsPorts=443
+        - --privateKey=/var/slb/canarycerts/server.key
+        - --publicKey=/var/slb/canarycerts/sam.crt
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-canary-proxy-http
+        volumeMounts:
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+      nodeSelector:
+        pool: frf-sam
+      volumes:
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume

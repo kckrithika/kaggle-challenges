@@ -1,0 +1,120 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: slb-config-processor
+  name: slb-config-processor
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        apptype: control
+        daemonset: "true"
+        name: slb-config-processor
+      namespace: sam-system
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-nginx-a
+                - slb-ipvs-a
+      containers:
+      - command:
+        - /sdn/slb-config-processor
+        - --configDir=/host/data/slb/config
+        - --period=1800s
+        - --namespace=
+        - --podstatus=running
+        - --subnet=10.214.36.0/22
+        - --k8sapiserver=
+        - --serviceList=
+        - --useVipLabelToSelectSvcs=true
+        - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - --log_dir=/host/data/slb/logs
+        - --sleepTime=100ms
+        - --processKnEConfigs=false
+        - --kneConfigDir=/var/slb/kneconfig
+        - --kneDomainName=slb.sfdc.net
+        - --livenessProbePort=9876
+        - --shouldRemoveConfig=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9876
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 5
+        name: slb-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config
+        - --shouldSkipServiceRecords=true
+        - --shouldNotDeleteAllFiles=true
+        - --log_dir=/host/data/slb/logs
+        - --skipFilesWithSuffix=slb.block
+        - --maxDeleteFileCount=3
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000647-eca1189d
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/config
+        name: var-config-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
