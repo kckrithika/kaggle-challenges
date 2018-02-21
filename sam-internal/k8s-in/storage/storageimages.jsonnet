@@ -14,12 +14,6 @@ local kingdom = std.extVar("kingdom");
         #
         # Ceph daemon image override example:
         #   "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "jewel-0000050-9308fbd0"
-
-        // TODO: The SAM deployer currently clobbers custom resource status on updates. Keep the version fixed in existing
-        //       clusters until either the SAM deployer is fixed to not clobber the status of custom resources or the ceph operator
-        //       is fixed to move the cluster state to a separate object.
-        "prd,prd-sam_ceph,ceph-cluster,ceph-daemon": "jewel-0000056-50bd0816",
-        "phx,phx-sam_ceph,ceph-cluster,ceph-daemon": "jewel-0000056-50bd0816",
     },
 
     ### Per-phase image tags
