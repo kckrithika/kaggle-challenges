@@ -1,0 +1,33 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: appstore-reviews
+    count: 1
+    volumes:
+    - name: cert
+      maddogCert: # Add "ROLE::samapp.user-jschroeder.appstore-reviews" to Secret Service
+        type: client
+    containers:
+    - name: appstorereview
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/appstore_reviews:20180220.0
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
+      livenessProbe:
+        exec:
+          command:
+          - /usr/bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 60
+      readinessProbe:
+        exec:
+          command:
+          - /usr/bin/true
+        initialDelaySeconds: 60
+        periodSeconds: 60
+    env:
+    - name: SECRETSERVICE_CERT_PATH
+      value: /certs/client/certificates/client.pem
+    - name: SECRETSERVICE_PRIVATE_KEY_PATH
+      value: /certs/client/keys/client-key.pem
