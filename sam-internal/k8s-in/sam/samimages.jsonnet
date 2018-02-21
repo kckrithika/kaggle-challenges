@@ -19,9 +19,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [jiayi] Deploying snapshotconsumer to prd-samdev & prd-sam
-        "prd,prd-sam,snapshotconsumer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jiayi.yan/consumer:v3",
-
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -50,8 +47,6 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
 
-        # [mayank] Deploy Stateful Revision cleanup Until we upgrade to 1.9
-        "prd,prd-sam,stateful-revision-cleaner,hypersam": "sam-0001715-154deff7",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -76,7 +71,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001710-3ec484d6",
+            hypersam: "sam-0001730-c7caec88",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
@@ -147,10 +142,7 @@ local utils = import "util_functions.jsonnet";
         ),
 
         k4aInitContainerImage: (
-            if (estate == "prd-samdev" || estate == "prd-samtest") then
                "sam-0001730-c7caec88"
-            else if (kingdom == "prd" || kingdom == "frf") then
-                "sam-0001548-81d3b9bd"
         ),
         kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
         kubednsmasq: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
