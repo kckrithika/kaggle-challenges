@@ -22,12 +22,12 @@ system:
       livenessProbe:
         exec:
           command:
-          - /usr/bin/true
+          - /bin/true
         initialDelaySeconds: 60
-        periodSeconds: 60
+        periodSeconds: 600
       readinessProbe:
         exec:
           command:
-          - /usr/bin/true
+          - /bin/true
         initialDelaySeconds: 60
-        periodSeconds: 60
+        periodSeconds: 600
