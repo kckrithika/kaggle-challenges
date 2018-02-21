@@ -7,4 +7,6 @@ apps:
       - prd/prd-sp2-sam_iot_test
   demo-sarthur:
       - prd/prd-sp2-sam_iot_test
+  controlplane-secure:
+      - prd/prd-sp2-sam_iot_test
 
