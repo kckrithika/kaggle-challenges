@@ -45,6 +45,7 @@ if configs.estate == "cdu-sam" then {
                             "--pkiServerServiceName=k8s-server",
                             "--pkiClientServiceName=k8s-client",
                             "--awsRegion=" + sdnconfigs.awsRegion,
+                            "--awsAZ=" + sdnconfigs.awsAZ,
                             "--ddi=" + sdnconfigs.ddiService,
                             "--keyfile=" + configs.keyFile,
                             "--certfile=" + configs.certFile,
