@@ -71,8 +71,8 @@ for minionnode in hosts
    },
 
     local storageNodes = std.join([], [
-            rbac_utils.get_ControlEstate_Nodes(configs.kingdom, configs.estate, minion, rbac_utils.minionRole)
-for minion in storageClusters
+            rbac_utils.get_ControlEstate_Nodes(configs.kingdom, configs.estate, minionEstate, rbac_utils.minionRole)
+for minionEstate in storageClusters
 ]),
 
     local localPVRoleBindings = [self.createClusterRoleBindingForLocalPV(storageNodes)],
