@@ -22,6 +22,7 @@ system:
       ports:
       - containerPort: 8080
       - containerPort: 7020
+      - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
