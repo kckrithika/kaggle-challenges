@@ -20,14 +20,14 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000643-41cb7e16",  # NOTE: 643 requires updates to slb-iface-processor and slb-ipvs-installer
+            hypersdn: "v-0000643-41cb7e16",
             slbnginx: "v-0000019-722fb3a3",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000637-039b9a19",
-            slbnginx: "v-0000015-a5742b48",
+            hypersdn: "v-0000643-41cb7e16",
+            slbnginx: "v-0000019-722fb3a3",
             },
 
         ### Release Phase 3 - Canary sites in Prod
