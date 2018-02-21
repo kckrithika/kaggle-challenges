@@ -1,0 +1,44 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: rrps-func
+    count: 1
+    volumes:
+    - name: retailservercert
+      maddogCert:
+        type: server
+        lbnames:
+        - rrps-func-lb
+    containers:
+    - name: rrps-func
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-runtime:0.0.1.1
+      ports:
+      - containerPort: 7123
+      - containerPort: 15372
+      env:
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
+      volumeMounts:
+      - name: retailservercert
+        mountPath: /servercerts
+
+  loadbalancers:
+  - lbname: rrps-func-lb
+    function: rrps-func
+    slbEnabled: true
+    ports:
+      - port: 7123
+        targetport: 7123
+      - port: 15372
+        targetport: 15372
