@@ -1,2 +1,4 @@
 version: v2
 apps:
+  rrps-func:
+  - name: prd/prd-sam_crosscloudsetup
