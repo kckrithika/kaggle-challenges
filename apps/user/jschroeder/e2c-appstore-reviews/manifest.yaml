@@ -16,6 +16,12 @@ system:
         value: /certs/client/certificates/client.pem
       - name: SECRETSERVICE_PRIVATE_KEY_PATH
         value: /certs/client/keys/client-key.pem
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: 127.0.0.1,localhost,.ci.data.com,.sfdc.net,.force.com,.dmz.salesforce.com
       volumeMounts:
       - name: cert
         mountPath: /certs
