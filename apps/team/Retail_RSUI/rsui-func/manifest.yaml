@@ -22,7 +22,7 @@ system:
       - name: MDS_HOST
         value: metadata-service.localhost.mesh.force.com
       - name: MDS_PORT
-        value: 7011
+        value: 7012
       - name: SERVER_PORT
         value: 7022
       - name: PKI_CA_DIR
@@ -56,7 +56,7 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7011
+      - containerPort: 7012
         name: sherpa-ot-http2
       - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sherpa-in-http1
