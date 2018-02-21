@@ -42,8 +42,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         + (
                            if configs.estate == "prd-sdc" then [
                             "--publicKey=/var/slb/canarycerts/sdc.crt",
-                            "--healthPort=" + portconfigs.slb.canaryServiceHealthPort,
-                            "--markerPath=" + slbconfigs.logsDir,
                            ] else [
                             "--publicKey=/var/slb/canarycerts/sam.crt",
                            ]
