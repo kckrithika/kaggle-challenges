@@ -5,3 +5,5 @@ apps:
     - phx/phx-sam_gater
   geoip-sandbox:
     - prd/prd-sam_gater
+  geoip-tls-sandbox:
+    - prd/prd-sam_gater
