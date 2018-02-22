@@ -36,7 +36,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                                              operator: "NotIn",
                                                                              values: ["slb-nginx-a", "slb-ipvs-a"],
                                                                           },
-                                                                        ],
+                                                                        ] + if configs.estate == "prd-sdc" then [
+                                                                           {
+                                                                             key: "illumio",
+                                                                             operator: "DoesNotExist",
+                                                                           },
+                                                                        ] else [],
                                                                      },
                                                                    ],
                                                                  },
