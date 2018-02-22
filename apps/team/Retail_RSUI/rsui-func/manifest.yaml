@@ -86,11 +86,6 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-        
-
   loadbalancers:
   - lbname: rsui-func-lb
     function: rsui-func
