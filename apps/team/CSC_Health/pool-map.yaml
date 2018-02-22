@@ -47,7 +47,6 @@ apps:
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
   expcandidate-service:
-    - prd/prd-sam_report_collector
   candidate-service:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector

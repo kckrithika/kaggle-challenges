@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000015-278a68b1
+      image: tnrp/csc-health/candidate-service:candidate-service-0000021-823d2aec
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000015-278a68b1
+      image: tnrp/csc-health/candidate-service:candidate-service-0000021-823d2aec
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -51,15 +51,11 @@ system:
       env:
       - name: CHS_AJNA_ENABLED
         value: true
-      - name: CHS_REPORTCOLLECTOR_MTLSENABLED
-        value: false
-      - name: CHS_REPORTCOLLECTORALTERNATE_ENABLED
-        value: true
-      - name: CHS_REPORTCOLLECTORALTERNATE_MTLSENABLED
-        value: true
-      - name: CHS_REPORTCOLLECTORALTERNATE_CERTPATH
+      - name: CHS_REPORTCOLLECTOR_WHITELIST
+        value: net,grok.server_watchdog
+      - name: CHS_REPORTCOLLECTOR_CERTPATH
         value: /var/secrets/grok-client.crt.pem
-      - name: CHS_REPORTCOLLECTORALTERNATE_KEYPATH
+      - name: CHS_REPORTCOLLECTOR_KEYPATH
         value: /var/secrets/grok-client.key
       - name: CHS_GROK_CERTPATH
         value: /var/secrets/grok-client.crt.pem
@@ -80,15 +76,7 @@ system:
         export CHS_AJNA_DATACENTER=${KINGDOM} ;
         export CHS_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
         export CHS_GROK_ENDPOINT=https://ops0-grok1-0-${KINGDOM}.data.sfdc.net ;
-        export CHS_REPORTCOLLECTORALTERNATE_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
-        case ${KINGDOM} in
-          prd)
-            export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.eng.sfdc.net:18444
-            ;;
-          *)
-            export CHS_REPORTCOLLECTOR_ENDPOINT=https://ops0-health1-1-${KINGDOM}.ops.sfdc.net:18444
-            ;;
-        esac ;
+        export CHS_REPORTCOLLECTOR_ENDPOINT=https://reportcollector-${KINGDOM}.data.sfdc.net:18444 ;
         /candidateservice
       "]
     volumes:
