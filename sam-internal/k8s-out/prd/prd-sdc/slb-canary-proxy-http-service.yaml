@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: slb-canary-proxy-http
-    slb.sfdc.net/portconfigurations: '[{"port":9116,"targetport":9116,"lbtype":"http"},{"port":443,"targetport":443,"lbtype":"http","reencrypt":true}]'
+    slb.sfdc.net/portconfigurations: '[{"port":9116,"targetport":9116,"lbtype":"http"},{"port":443,"targetport":443,"lbtype":"http","reencrypt":true,"sticky":300,"healthport":9116,"hEaLtHpath":"/health"}]'
   labels:
     app: slb-canary-proxy-http-service
     slb.sfdc.net/name: slb-canary-proxy-http
