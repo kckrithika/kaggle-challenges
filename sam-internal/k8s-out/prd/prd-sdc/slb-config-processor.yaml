@@ -24,6 +24,8 @@ spec:
                 values:
                 - slb-nginx-a
                 - slb-ipvs-a
+              - key: illumio
+                operator: DoesNotExist
       containers:
       - command:
         - /sdn/slb-config-processor
