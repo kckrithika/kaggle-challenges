@@ -27,6 +27,7 @@ system:
         value: "sam"
       - name: COM_MAXMIND_DATABASE_FILE
         value: "/dw/data/GeoIP2-City.mmdb"
+#        TODO: remove announcements from geoip since beacon now works
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
       - name: LOGGING_DIR
@@ -53,6 +54,20 @@ system:
           port: 15372
         initialDelaySeconds: 115
 
+    - name: geoip-tls-beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      args:
+      - -endpoint
+      - ccait/geoip-tls:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
     - name: sherpa-tls-b
       image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.0"]
@@ -70,8 +85,8 @@ system:
         - name: time-tls-server-cert
           mountPath: /server-certs
       ports:
-      - containerPort: 7012
-        name: sherpa-b-in
+      - containerPort: 7443
+        name: sherpa-b-tls-in
       - containerPort: 15373
         name: sherpa-b-adm
       livenessProbe:
@@ -115,9 +130,9 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: GRPC_ROUTING_GEOIP_HOST
-          value: geoip.localhost.mesh.force.com
+          value: geoip-tls.ccait.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
-          value: 7011
+          value: 5443
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
