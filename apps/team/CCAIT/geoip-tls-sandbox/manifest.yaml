@@ -1,0 +1,185 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: geoip-tls
+    count: 3
+    containers:
+    - name: ccait-geoip-tls-database
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:20170604
+      # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
+      args: ["-d"]
+      livenessProbe:
+        exec:
+          command: ["ls", "/database/GeoIP2-City.mmdb"]
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      volumeMounts:
+        - mountPath: /database
+          name: maxmind-volume
+
+    - name: ccait-geoip-tls-backend
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:049a201e1066a6773f5a4a9cacce1c45806a0637
+      env:
+      - name: JAVA_OPTS
+        value: "-Xms512m -Xmx512m"
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      - name: COM_MAXMIND_DATABASE_FILE
+        value: "/dw/data/GeoIP2-City.mmdb"
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
+      - name: LOGGING_DIR
+        value: "/log"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /dw/data
+          name: maxmind-volume
+        - mountPath: /log
+          name: geoip-log-volume
+      ports:
+        - containerPort: 7020
+          name: grpc
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
+
+    - name: sherpa-tls-b
+      image: sfci/servicelibs/sherpa:2.0.22
+      args: ["--zipkin-rate", "0.0"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
+        - name: time-tls-client-cert
+          mountPath: /client-certs
+        - name: time-tls-server-cert
+          mountPath: /server-certs
+      ports:
+      - containerPort: 7012
+        name: sherpa-b-in
+      - containerPort: 15373
+        name: sherpa-b-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
+
+    volumes:
+    - name: maxmind-volume
+      emptyDir: {}
+    - name: geoip-log-volume
+      hostPath:
+        path: /home/sfdc-geoip/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: time-tls-client-cert
+      maddogCert:
+        type: client
+    - name: time-tls-server-cert
+      maddogCert:
+        type: server
+
+  - name: geoip-tls-demo
+    count: 1
+    containers:
+    - name: ccait-geoip-frontend
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
+      env:
+        - name: JAVA_OPTS
+          value: "-Xms512m -Xmx512m"
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        - name: GRPC_ROUTING_GEOIP_HOST
+          value: geoip.localhost.mesh.force.com
+        - name: GRPC_ROUTING_GEOIP_PORT
+          value: 7011
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+        - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 115
+
+    - name: sherpa-tls-f
+      image: sfci/servicelibs/sherpa:2.0.22
+      args: ["--zipkin-rate", "0.0"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
+        - name: time-tls-client-cert
+          mountPath: /client-certs
+        - name: time-tls-server-cert
+          mountPath: /server-certs
+      ports:
+      - containerPort: 15373
+        name: sherpa-f-adm
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: time-tls-client-cert
+      maddogCert:
+        type: client
+    - name: time-tls-server-cert
+      maddogCert:
+        type: server
+
+  loadbalancers:
+  - lbname: ccait-geoip-tls-frontend-lb
+    function: geoip-tls-demo
+    nodeExposed: true
+    ports:
+      - port: 45081
+        targetport: 8080
