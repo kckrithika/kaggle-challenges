@@ -173,7 +173,7 @@ spec:
         - --madkub-endpoint
         - https://$(MADKUBSERVER_SERVICE_HOST):32007
         - --maddog-endpoint
-        - https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443
+        - https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443
         - --maddog-server-ca
         - /maddog-certs/ca/security-ca.pem
         - --madkub-server-ca
