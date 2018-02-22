@@ -3,12 +3,15 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - cloudatlas@salesforce.com
+      - cloudatlas-dev@salesforce.com
   functions:
-  - name: cloudatlas-par-fe1-1
-    count: 1
+  - name: cloudatlas-par-fe
+    count: 2
     strategy:
-      type: Recreate
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
