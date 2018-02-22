@@ -18,7 +18,6 @@ spec:
         - /sdn/slb-ipvs-installer
         - --modules=/sdn
         - --host=/host
-        - --marker=/host/data/slb/ipvs.marker
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
@@ -50,7 +49,6 @@ spec:
       - command:
         - /sdn/slb-ipvs-processor
         - --configDir=/host/data/slb/config
-        - --marker=/host/data/slb/ipvs.marker
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
