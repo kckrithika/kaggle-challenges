@@ -21,8 +21,6 @@ system:
     - name: test-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/test-sherpa-client:0.3.2
       ports:
-      - name: service-port
-        containerPort: 7020
       - name: admin-port
         containerPort: 15372
       resources:
@@ -65,11 +63,11 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 20
+        initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 10
+        initialDelaySeconds: 110
         periodSeconds: 5
