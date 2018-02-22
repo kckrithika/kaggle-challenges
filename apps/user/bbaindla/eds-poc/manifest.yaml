@@ -5,7 +5,7 @@ system:
     - 
       containers: 
         - 
-          image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bbaindla/hello:eds-20180216"
+          image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/bbaindla/hello:eds-20180221"
           livenessProbe: 
             httpGet: 
               path: /
