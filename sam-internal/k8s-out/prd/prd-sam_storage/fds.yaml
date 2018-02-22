@@ -28,7 +28,7 @@ spec:
           value: /kubeconfig/kubeconfig-platform
         - name: FDS_PROFILING
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000334-75f04e65
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000344-eb6c8620
         livenessProbe:
           httpGet:
             path: /healthz
