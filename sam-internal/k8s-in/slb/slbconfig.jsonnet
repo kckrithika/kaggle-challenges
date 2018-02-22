@@ -113,6 +113,11 @@ perCluster: {
         "prd-sam_storage": 1,
         "prd-sam": 2,
     },
+    madkubServer: {
+        prd: "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
+        frf: "https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443",
+        phx: "https://all.pkicontroller.pki.blank.phx.prod.non-estates.sfdcsd.net:8443",
+    },
 },
 
 
@@ -190,6 +195,7 @@ configurePerPort: self.perCluster.configurePerPort[estate],
 servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
 servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
 canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
+madkubServer: self.perCluster.madkubServer[kingdom],
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",

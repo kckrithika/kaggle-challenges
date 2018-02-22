@@ -51,7 +51,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                                 \"--madkub-endpoint\",
                                 \"https://$(MADKUBSERVER_SERVICE_HOST):32007\",
                                 \"--maddog-endpoint\",
-                                \"https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443\",
+                                \"" + slbconfigs.madkubServer + "\",
                                 \"--maddog-server-ca\",
                                 \"/maddog-certs/ca/security-ca.pem\",
                                 \"--madkub-server-ca\",
