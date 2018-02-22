@@ -1,6 +1,10 @@
 local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+if flowsnakeconfig.is_minikube then
+"SKIP"
+else
 {
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",

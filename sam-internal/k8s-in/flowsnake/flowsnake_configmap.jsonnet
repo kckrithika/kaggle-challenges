@@ -3,6 +3,7 @@ local kingdom = std.extVar("kingdom");
 {
     auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else error "No matching auth group name: " + kingdom + "/" + estate),
     topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic grants name: " + kingdom + "/" + estate),
+    maddog_namespace: (if std.objectHas(self.maddog_namespace_map, kingdom + "/" + estate) then $.maddog_namespace_map[kingdom + "/" + estate] else error "No matching maddog namespace map: " + kingdom + "/" + estate),
     auth_groups_map: {
         "prd/prd-data-flowsnake": [
             "Flowsnake_Ops_Platform",
@@ -205,6 +206,23 @@ local kingdom = std.extVar("kingdom");
                 "sfdc.prod.flowsnake__prd.ajna_local__logs",
             ],
         },
+    },
+    maddog_namespace_map: {
+      "prd/prd-data-flowsnake": {
+          samapp: "Flowsnake_Ops_Platform",
+      },
+      "prd/prd-data-flowsnake_test": {
+          samapp: "Flowsnake_Ops_Platform",
+      },
+      "prd/prd-dev-flowsnake_iot_test": {
+          samapp: "Flowsnake_Ops_Platform",
+      },
+      "prd/prd-minikube-small-flowsnake": {
+          samapp: "Flowsnake_Ops_Platform",
+      },
+      "prd/prd-minikube-big-flowsnake": {
+          samapp: "Flowsnake_Ops_Platform",
+      },
     },
     samcontroldeployer: {
         email: true,
