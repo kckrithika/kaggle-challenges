@@ -57,7 +57,6 @@ if configs.estate == "prd-sam" then {
                             "/sdn/slb-ipvs-installer",
                             "--modules=/sdn",
                             "--host=/host",
-                            "--marker=" + slbconfigs.slbDir + "/ipvs.marker",
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
@@ -109,7 +108,6 @@ if configs.estate == "prd-sam" then {
                         command: [
                             "/sdn/slb-ipvs-processor",
                             "--configDir=" + slbconfigs.configDir,
-                            "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
