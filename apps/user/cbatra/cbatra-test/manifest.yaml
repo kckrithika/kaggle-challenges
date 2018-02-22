@@ -10,21 +10,15 @@ system:
       ports:
       - containerPort: 9090
       volumeMounts:
-      - mountPath : /secrets/
-        name: secretvol
-        readOnly: true
-      - mountPath : /testsecrets/
-        name: testvol
+      - mountPath : /testsecrets1/
+        name: testvol1
         readOnly: true
       livenessProbe:
         httpGet:
           path: /
           port: 9090
     volumes:
-     - name: secretvol
-       k4aSecret:
-         secretName: argusk4a
-     - name: testvol
+     - name: testvol1
        k4aSecret:
          secretName: mysecret
     env:
