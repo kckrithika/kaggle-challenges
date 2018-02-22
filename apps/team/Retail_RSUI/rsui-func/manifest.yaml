@@ -78,7 +78,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
-      - rsui:DATACENTER:7012
+      - rsui:DATACENTER:7014
       - -logging.dir
       - /log
       livenessProbe:
