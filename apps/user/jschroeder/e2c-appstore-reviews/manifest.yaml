@@ -10,7 +10,7 @@ system:
         type: client
     containers:
     - name: appstorereview
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/appstore_reviews:20180220.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/appstore_reviews:20180221.0
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
