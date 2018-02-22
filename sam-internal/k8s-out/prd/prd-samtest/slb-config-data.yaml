@@ -18,7 +18,7 @@ spec:
       - command:
         - /sdn/slb-config-data
         - --port=9117
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000643-41cb7e16
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000652-a10bc60a
         name: slb-config-data
         volumeMounts:
         - mountPath: /host/data/slb
