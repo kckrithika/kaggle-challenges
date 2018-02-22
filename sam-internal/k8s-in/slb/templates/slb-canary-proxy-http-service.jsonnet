@@ -11,9 +11,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.kingdom
                 "slb.sfdc.net/name": "slb-canary-proxy-http",
                 "slb.sfdc.net/type": "http",
             },
-            annotations: {
-                "slb.sfdc.net/name": "slb-canary-proxy-http",
-                "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"},{\"port\":443,\"targetport\":443,\"lbtype\":\"http\",\"reencrypt\":true}]",
+        } +
+            if configs.estate == "prd-sdc" then {
+                annotations: {
+                    "slb.sfdc.net/name": "slb-canary-proxy-http",
+                    "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"},{\"port\":443,\"targetport\":443,\"lbtype\":\"http\",\"reencrypt\":true,\"sticky\":300,\"healthport\":9116,\"hEaLtHpath\":\"/health\"}]",
+                },
+            } else {
+                annotations: {
+                    "slb.sfdc.net/name": "slb-canary-proxy-http",
+                    "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyHttpPort + ",\"lbtype\":\"http\"},{\"port\":443,\"targetport\":443,\"lbtype\":\"http\",\"reencrypt\":true}]",
             },
         },
         spec: {
