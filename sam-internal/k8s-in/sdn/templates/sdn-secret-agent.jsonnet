@@ -29,7 +29,8 @@ if utils.is_flowsnake_cluster(configs.estate) then {
                            configs.sfdchosts_arg,
                            sdnconfigs.logDirArg,
                            sdnconfigs.logToStdErrArg,
-                         ],
+                         ]
+                         + sdnconfigs.conditionalAlsoLogToStdErrArg,
                          volumeMounts: configs.filter_empty([
                            configs.sfdchosts_volume_mount,
                            configs.maddog_cert_volume_mount,

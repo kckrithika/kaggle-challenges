@@ -21,9 +21,10 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--logsMaxAge=48h",
                             "--filesDirToCleanup=" + sdnconfigs.logFilePath,
                             "--shouldNotDeleteAllFiles=false",
-                            "--log_dir=" + sdnconfigs.logFilePath,
-                            "--logtostderr=false",
-                        ],
+                            sdnconfigs.logDirArg,
+                            sdnconfigs.logToStdErrArg,
+                        ]
+                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
                         volumeMounts: [
                             sdnconfigs.sdn_logs_volume_mount,
                         ],
