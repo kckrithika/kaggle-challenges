@@ -24,12 +24,12 @@ system:
       - name: PHOENIX_KEYTABUSER
         value: iot
       - name: SFDC_ENVIRONMENT
-        value: secure
+        value: stmfa
       - name: SVCMESH_ANNOUNCE_PORT
         value: 7443
       - name: SVCMESH_ANNOUNCE_SERVICENAME
-        value: sam-minion-iot-test
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:2cac30c
+        value: iot.controlplane-secure
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:eb75662
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -60,7 +60,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: secure
+        value: stmfa
       image: sfci/servicelibs/sherpa:2.0.22
       livenessProbe:
         exec:
