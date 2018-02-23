@@ -121,7 +121,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             path: slbconfigs.slbDockerDir + "/nginx/config",
                          },
                      },
-                     slbconfigs.slb_config_volume,
+                     slbconfigs.slb_volume,
                      slbconfigs.logs_volume,
                      configs.sfdchosts_volume,
                      {
@@ -183,7 +183,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                                 name: "var-target-config-volume",
                                 mountPath: slbconfigs.slbDir + "/nginx/config",
                             },
-                            slbconfigs.slb_config_volume_mount,
+                            slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
                         ]),

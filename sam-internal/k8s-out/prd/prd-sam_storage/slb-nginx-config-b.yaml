@@ -124,8 +124,8 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb/nginx/config
           name: var-target-config-volume
-        - mountPath: /host/data/slb/config
-          name: var-config-volume
+        - mountPath: /host/data/slb
+          name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
         - mountPath: /sfdchosts
@@ -220,8 +220,8 @@ spec:
           path: /data/slb/nginx/config
         name: var-target-config-volume
       - hostPath:
-          path: /data/slb/config
-        name: var-config-volume
+          path: /data/slb
+        name: var-slb-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
