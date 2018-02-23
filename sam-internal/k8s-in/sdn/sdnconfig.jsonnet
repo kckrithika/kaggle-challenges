@@ -25,6 +25,9 @@ local utils = import "util_functions.jsonnet";
 
     logDirArg: "--log_dir=" + self.logFilePath,
     logToStdErrArg: "--logtostderr=false",
+    alsoLogToStdErrArg: "--alsologtostderr=true",
+
+    conditionalAlsoLogToStdErrArg: (if estate == "prd-sdc" then [self.alsoLogToStdErrArg] else []),
 
     # Volume for logs
     sdn_logs_volume: {

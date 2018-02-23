@@ -43,6 +43,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                         ]
+                        + sdnconfigs.conditionalAlsoLogToStdErrArg
                         + (
                             if configs.estate == "prd-sdc" then [
                             "--sdncServiceName=sdn-control-svc",

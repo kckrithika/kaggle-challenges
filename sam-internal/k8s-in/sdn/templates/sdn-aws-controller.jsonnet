@@ -53,7 +53,8 @@ if configs.estate == "cdu-sam" then {
                             configs.sfdchosts_arg,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ],
+                        ]
+                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
                         env: [
                             configs.kube_config_env,
                         ],

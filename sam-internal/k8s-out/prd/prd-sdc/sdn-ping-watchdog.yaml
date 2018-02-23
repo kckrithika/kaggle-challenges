@@ -39,6 +39,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
         - --logtostderr=false
+        - --alsologtostderr=true
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
