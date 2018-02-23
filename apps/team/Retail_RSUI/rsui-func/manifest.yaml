@@ -25,8 +25,10 @@ system:
         value: 7012
       - name: SERVER_PORT
         value: 7022
-      - name: SECURITY_SERVER_DYNAMICKEYSTORE_ENABLED
-        VALUE: false
+      - name: PKI_CA_DIR
+        value: /servercerts
+      - name: PKI_MONITORDIR
+        value: /servercerts/server
       - name: SFDC_ENVIRONMENT
         value: stmfa
       - name: TENANT_SOURCE
