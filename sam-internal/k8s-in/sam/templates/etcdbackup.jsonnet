@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 # Yeah, I know this is not a watchdog.  Will fix with a refactor
 local wdconfig = import "samwdconfig.jsonnet";
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -69,4 +69,4 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
         },
         name: "etcdbackup",
     },
-} else "SKIP"
+}
