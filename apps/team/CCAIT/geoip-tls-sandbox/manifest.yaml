@@ -194,6 +194,7 @@ system:
   loadbalancers:
   - lbname: ccait-geoip-tls-frontend-lb
     function: geoip-tls-demo
+    slbEnabled: true
     nodeExposed: true
     ports:
       - port: 45081
