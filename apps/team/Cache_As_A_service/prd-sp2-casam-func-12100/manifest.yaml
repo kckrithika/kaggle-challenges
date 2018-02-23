@@ -47,10 +47,9 @@ system:
         # Matches the external port on the load balancer
         # (9001 for SAM LB direct to container; 12052 for SAM LB to Cyan ; 12100 for L4-SLB)
         - name: PUBLIC_PORT
+          value: 443 # temp change to test edge gateway
 #          value: 12100
 #          value: 12052
-           # temp change to test edge gateway integration
-           value: 443
 
         # Set to true it PUBLIC_PORT is an https endpoint
         - name: PUBLIC_PORT_IS_SECURE
