@@ -32,7 +32,8 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                                     \"role\": \"sam_compute\",
                                     \"san\":[
                                         \"*.sam-system." + configs.estate + ".prd.slb.sfdc.net\",
-                                        \"*.slb.sfdc.net\"
+                                        \"*.slb.sfdc.net\",
+                                        \"*.soma.salesforce.com\"
                                     ]
                                 },
                                 {
