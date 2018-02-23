@@ -14835,30 +14835,6 @@ hosts:
   controlestate: prd-sam_storage
   devicerole: samcompute
   estate: prd-sam_storage
-  hostname: shared0-storagesamcompute1-4-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagesamcompute1-5-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagesamcompute1-6-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
   hostname: shared0-storagesamcompute2-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
@@ -14883,30 +14859,6 @@ hosts:
   controlestate: prd-sam_storage
   devicerole: samcompute
   estate: prd-sam_storage
-  hostname: shared0-storagesamcompute2-4-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagesamcompute2-5-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagesamcompute2-6-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
   hostname: shared0-storagesamcompute3-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
@@ -14924,22 +14876,6 @@ hosts:
   devicerole: samcompute
   estate: prd-sam_storage
   hostname: shared0-storagesamcompute3-3-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagesamcompute3-4-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: none
-- bomrolename: storage_samcompute
-  controlestate: prd-sam_storage
-  devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagesamcompute3-5-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
@@ -14975,11 +14911,75 @@ hosts:
   kingdom: prd
   pod: none
   superpod: none
-- bomrolename: storage_samcompute2
-  controlestate: prd-sam_storage
+- bomrolename: storage_samcomputedev
+  controlestate: prd-sam_storagedev
   devicerole: samcompute
-  estate: prd-sam_storage
-  hostname: shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamcomputedev1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samcomputedev
+  controlestate: prd-sam_storagedev
+  devicerole: samcompute
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamcomputedev1-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samcomputedev
+  controlestate: prd-sam_storagedev
+  devicerole: samcompute
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamcomputedev2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samcomputedev
+  controlestate: prd-sam_storagedev
+  devicerole: samcompute
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamcomputedev2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samcomputedev
+  controlestate: prd-sam_storagedev
+  devicerole: samcompute
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamcomputedev3-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samkubeapidev
+  controlestate: prd-sam_storagedev
+  devicerole: samkubeapi
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamkubeapidev1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samkubeapidev
+  controlestate: prd-sam_storagedev
+  devicerole: samkubeapi
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamkubeapidev2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samkubeapidev
+  controlestate: prd-sam_storagedev
+  devicerole: samkubeapi
+  estate: prd-sam_storagedev
+  hostname: shared0-storagesamkubeapidev3-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: storage_samcomputedev2
+  controlestate: prd-sam_storagedev
+  devicerole: samcompute
+  estate: prd-sam_storagedev
+  hostname: shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
