@@ -20,7 +20,7 @@ system:
         name: rsui-in-admin
       env:
       - name: MDS_HOST
-        value: 10.251.182.36
+        value: metadata-service.localhost.mesh.force.com
       - name: MDS_PORT
         value: 7012
       - name: SERVER_PORT
