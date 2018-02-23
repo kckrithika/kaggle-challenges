@@ -20,7 +20,8 @@ spec:
                                               "role": "sam_compute",
                                               "san":[
                                                   "*.sam-system.prd-samtest.prd.slb.sfdc.net",
-                                                  "*.slb.sfdc.net"
+                                                  "*.slb.sfdc.net",
+                                                  "*.soma.salesforce.com"
                                               ]
                                           },
                                           {
