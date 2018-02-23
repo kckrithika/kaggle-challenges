@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: datapool-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/artifactory/docker-sfci-rc/sfci/insights/datapoolservice:8d591f1
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/insights/datapoolservice:8d591f1
       ports:
       - containerPort: 7021
       - containerPort: 15372
