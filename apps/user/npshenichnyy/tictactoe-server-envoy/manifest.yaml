@@ -50,14 +50,11 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-tictactoe-server
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/8/console
-      image: sfci/servicelibs/sherpa-envoy:8c3ee78cbf3d19181706512322f3d6d941eed34f
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/14/console
+      image: sfci/servicelibs/sherpa-envoy:41d34d256993fbf144dfa5a4aaca9ad469bc75bb
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      args:
-      - --switchboard
-      - shared0-samminiongater1-1-prd.eng.sfdc.net:15001,shared0-samminiongater1-2-prd.eng.sfdc.net:15001,shared0-samminiongater1-3-prd.eng.sfdc.net:15001,shared0-samminiongater2-1-prd.eng.sfdc.net:15001,shared0-samminiongater2-2-prd.eng.sfdc.net:15001
       livenessProbe:
         httpGet:
           path: /listeners
