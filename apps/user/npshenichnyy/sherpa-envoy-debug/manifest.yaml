@@ -1,0 +1,18 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: sherpa-envoy-debug
+    count: 1
+    containers:
+    - name: sherpa-envoy
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-envoy:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      livenessProbe:
+        exec:
+          # Live forever
+          command: ["ls", "/"]
+        initialDelaySeconds: 30
+        periodSeconds: 10
