@@ -173,9 +173,10 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             if configs.estate == "prd-sam" then [
                                 "--httpsEnabled="
                                 + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net," + "ops0-rdi-sfcloud1-0-prd.slb.sfdc.net",
+                            ] else if configs.estate == "prd-sdc" then [
                             ] else [
-                                 "--httpsEnabled="
-                                 + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net",
+                                "--httpsEnabled="
+                                + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net",
                             ]
                         ),
                         volumeMounts: configs.filter_empty([
