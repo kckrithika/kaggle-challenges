@@ -78,23 +78,11 @@ items:
   - kind: User
     name: shared0-storagesamcompute1-3-prd.eng.sfdc.net
   - kind: User
-    name: shared0-storagesamcompute1-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute1-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute1-6-prd.eng.sfdc.net
-  - kind: User
     name: shared0-storagesamcompute2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-storagesamcompute2-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-storagesamcompute2-3-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute2-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute2-5-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute2-6-prd.eng.sfdc.net
   - kind: User
     name: shared0-storagesamcompute3-1-prd.eng.sfdc.net
   - kind: User
@@ -102,13 +90,7 @@ items:
   - kind: User
     name: shared0-storagesamcompute3-3-prd.eng.sfdc.net
   - kind: User
-    name: shared0-storagesamcompute3-4-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagesamcompute3-5-prd.eng.sfdc.net
-  - kind: User
     name: shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
@@ -554,45 +536,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: localstorage-role:shared0-storagesamcompute1-4-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute1-4-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagesamcompute1-5-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute1-5-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagesamcompute1-6-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute1-6-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
     name: localstorage-role:shared0-storagesamcompute2-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
@@ -625,45 +568,6 @@ items:
     - '*'
     resourceNames:
     - shared0-storagesamcompute2-3-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagesamcompute2-4-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute2-4-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagesamcompute2-5-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute2-5-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagesamcompute2-6-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute2-6-prd.eng.sfdc.net
     resources:
     - nodes
     verbs:
@@ -710,51 +614,12 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRole
   metadata:
-    name: localstorage-role:shared0-storagesamcompute3-4-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute3-4-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagesamcompute3-5-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagesamcompute3-5-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
     name: localstorage-role:shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
   rules:
   - apiGroups:
     - '*'
     resourceNames:
     - shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
-    resources:
-    - nodes
-    verbs:
-    - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRole
-  metadata:
-    name: localstorage-role:shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
-  rules:
-  - apiGroups:
-    - '*'
-    resourceNames:
-    - shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
     resources:
     - nodes
     verbs:
@@ -1136,39 +1001,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute1-4-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute1-4-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute1-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute1-5-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute1-5-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute1-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute1-6-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute1-6-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute1-6-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
     name: localstorage-rolebinding:shared0-storagesamcompute2-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -1199,39 +1031,6 @@ items:
   subjects:
   - kind: User
     name: shared0-storagesamcompute2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute2-4-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute2-4-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute2-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute2-5-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute2-5-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute2-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute2-6-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute2-6-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute2-6-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
@@ -1268,28 +1067,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: ClusterRoleBinding
   metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute3-4-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute3-4-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute3-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagesamcompute3-5-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagesamcompute3-5-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagesamcompute3-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
     name: localstorage-rolebinding:shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
   roleRef:
     apiGroup: rbac.authorization.k8s.io
@@ -1298,16 +1075,5 @@ items:
   subjects:
   - kind: User
     name: shared0-storagetwosamcompute1-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: ClusterRoleBinding
-  metadata:
-    name: localstorage-rolebinding:shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: localstorage-role:shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
-  subjects:
-  - kind: User
-    name: shared0-storagetwosamcompute1-2-prd.eng.sfdc.net
 kind: List
 metadata: {}

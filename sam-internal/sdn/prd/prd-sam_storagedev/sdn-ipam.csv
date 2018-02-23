@@ -1,0 +1,10 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-storagesamcomputedev1-1-prd.eng.sfdc.net,10.253.240.90/29,10.231.200.96/27,p04-02,prd-sam_storagedev
+shared0-storagesamcomputedev1-2-prd.eng.sfdc.net,10.253.240.91/29,10.231.200.128/27,p04-02,prd-sam_storagedev
+shared0-storagesamcomputedev2-1-prd.eng.sfdc.net,10.253.240.74/29,10.231.200.0/27,bb38-02,prd-sam_storagedev
+shared0-storagesamcomputedev2-2-prd.eng.sfdc.net,10.253.240.75/29,10.231.200.32/27,bb38-02,prd-sam_storagedev
+shared0-storagesamcomputedev3-1-prd.eng.sfdc.net,10.253.240.82/29,10.231.200.224/27,s03-02,prd-sam_storagedev
+shared0-storagesamkubeapidev1-1-prd.eng.sfdc.net,10.253.240.114/29,10.231.200.160/27,p32-02,prd-sam_storagedev
+shared0-storagesamkubeapidev2-1-prd.eng.sfdc.net,10.253.240.66/29,10.231.200.192/27,q09-02,prd-sam_storagedev
+shared0-storagesamkubeapidev3-1-prd.eng.sfdc.net,10.253.240.83/29,10.231.201.0/27,s03-02,prd-sam_storagedev
+shared0-storagetwosamcomputedev1-1-prd.eng.sfdc.net,10.253.240.106/29,10.231.200.64/27,k22-02,prd-sam_storagedev
