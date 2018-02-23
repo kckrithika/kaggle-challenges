@@ -242,6 +242,7 @@ local kingdom = std.extVar("kingdom");
         "key-file": "/data/certs/hostcert.key",
         "resources-to-skip": [
           "sdn-bird.yaml",
+          "sdn-cleanup.yaml",
           "sdn-hairpin-setter.yaml",
           "sdn-peering-agent.yaml",
           "sdn-ping-watchdog.yaml",
