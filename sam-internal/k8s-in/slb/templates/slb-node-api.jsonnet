@@ -35,7 +35,7 @@ if configs.estate == "prd-sdc" then {
                             image: slbimages.hypersdn,
                             command: [
                                 "/sdn/slb-node-api",
-                                "--port=" + portconfigs.slb.slbNodeApiPort,
+                                "--port=9130",
                                 "--configDir=" + slbconfigs.configDir,
                             ],
                             volumeMounts: configs.filter_empty([
