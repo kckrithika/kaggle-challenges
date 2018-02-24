@@ -13,7 +13,9 @@ system:
       - name: admin-port
         containerPort: 15372
       resources:
-        limits: { cpu: "2", memory: "10Gi" }
+        limits: 
+        - cpu: 2
+        - memory: 10Gi
         requests: { cpu: "2", memory: "10Gi" }
       env:
       - name: GRPC_ANNOUNCED_NAME
