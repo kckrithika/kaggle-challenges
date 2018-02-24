@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mds/logs
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.69
+      image: sfci/metadata-cannon/metadata-service:0.0.70
       ports:
       - containerPort: 7020
       - containerPort: 9091
