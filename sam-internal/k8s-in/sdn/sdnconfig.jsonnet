@@ -33,7 +33,7 @@ local utils = import "util_functions.jsonnet";
     sdn_logs_volume: {
         name: "sdnlogs",
         hostPath: {
-            path: "/data/logs/sdn",
+          path: "/data/logs/sdn",
         },
     },
 
