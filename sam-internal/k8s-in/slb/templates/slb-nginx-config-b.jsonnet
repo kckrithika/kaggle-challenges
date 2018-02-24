@@ -171,10 +171,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                             configs.sfdchosts_arg,
                         ]
                         + (
-                            if configs.estate == "prd-sam" then [
-                                "--httpsEnabled="
-                                + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net," + "ops0-rdi-sfcloud1-0-prd.slb.sfdc.net",
-                            ] else if configs.estate == "prd-sdc" then [
+                            if configs.kingdom == "prd" then [
                             ] else [
                                 "--httpsEnabled="
                                 + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net",

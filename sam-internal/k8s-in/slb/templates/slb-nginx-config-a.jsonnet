@@ -54,8 +54,6 @@ if configs.estate == "prd-sam" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
                             configs.sfdchosts_arg,
-                            "--httpsEnabled="
-                             + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net",
                         ],
                         volumeMounts: configs.filter_empty([
                             {

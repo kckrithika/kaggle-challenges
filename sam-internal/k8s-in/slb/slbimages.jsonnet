@@ -20,13 +20,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000657-4755d042",  # 657 requires that -httpsEnabled be removed from slb-nginx-config
+            hypersdn: "v-0000657-4755d042",
             slbnginx: "v-0000020-f742177c",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000654-7f316327",
+            hypersdn: "v-0000657-4755d042",  # 657 requires that -httpsEnabled be removed from slb-nginx-config
             slbnginx: "v-0000019-722fb3a3",
             },
 
