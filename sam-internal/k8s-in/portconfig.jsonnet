@@ -35,6 +35,7 @@
         slbConfigDataPort: 9117,
         slbEchoServicePort: 9118,
         canaryServiceHealthPort: 9119,
+        slbNodeApiPort: 9130,
 
         slbNginxProxyLivenessProbePort: 12080,
 

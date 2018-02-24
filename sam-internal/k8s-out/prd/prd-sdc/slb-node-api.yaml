@@ -1,33 +1,36 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   labels:
-    name: slb-canary-passthrough-tls
-  name: slb-canary-passthrough-tls
+    name: slb-node-api
+  name: slb-node-api
   namespace: sam-system
 spec:
-  replicas: 2
   template:
     metadata:
       labels:
-        name: slb-canary-passthrough-tls
+        apptype: control
+        daemonset: "true"
+        name: slb-node-api
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-canary-service
-        - --serviceName=slb-canary-passthrough-tls
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
-        - --ports=9114
+        - /sdn/slb-node-api
+        - --port=9130
+        - --configDir=/host/data/slb/config
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000660-eeb341b7
-        name: slb-canary-passthrough-tls
+        name: slb-node-api
         volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
-      nodeSelector:
-        pool: prd-sdc
+      hostNetwork: true
       volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
