@@ -23,7 +23,7 @@ system:
         containerPort: 7022
       livenessProbe:
         httpGet:
-          path: /zipkin
+          path: /health
           port: 7022
         initialDelaySeconds: 120
 
