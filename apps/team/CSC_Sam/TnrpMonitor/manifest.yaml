@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: tnrpwd
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/tnrpwd:thargrove-20180208_153137-c664dca
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/tnrpwd:thargrove-20180226_141445-ea49ea3
       command: ["/bin/tnrpWatchdog"]
       args: ["-tokenfile", "/var/secrets/git/token.txt", "--alsologtostderr"]
       ports:
