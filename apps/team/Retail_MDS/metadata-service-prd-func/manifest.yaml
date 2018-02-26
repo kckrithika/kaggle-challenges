@@ -14,7 +14,7 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-mds/logs
-    - name: secrets
+    - name: secretsvol
       k4aSecret:
         secretName: mds-gdot-storepass
     containers:
@@ -58,8 +58,8 @@ system:
           mountPath: /certificates
         - name: logvol
           mountPath: /home/sfdc-mds/logs
-        - name: secrets
-          mountPath: /secrets
+        - name: secretsvol
+          mountPath: /home/sfdc-mds/secrets
           readOnly: true
 
     - name: sherpa-mds
