@@ -310,7 +310,38 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                               },
                              ],
                             },
-                   ],
+                   ]
+                   + (
+                       if configs.estate == "prd-sdc" then [
+                            {
+                               name: "slb-cert-checker",
+                               image: slbimages.hypersdn,
+                               command: [
+                                   "/sdn/slb-cert-checker",
+                                   "--metricsEndpoint=" + configs.funnelVIP,
+                                   "--log_dir=" + slbconfigs.logsDir,
+                                   configs.sfdchosts_arg,
+                               ],
+                                volumeMounts: configs.filter_empty([
+                                  {
+                                       name: "var-target-config-volume",
+                                       mountPath: "/etc/nginx/conf.d",
+                                  },
+                                  slbconfigs.logs_volume_mount,
+                                  {
+                                   mountPath: "/cert1",
+                                   name: "cert1",
+                                  },
+                                  {
+                                   mountPath: "/cert2",
+                                   name: "cert2",
+                                  },
+                                   slbconfigs.logs_volume_mount,
+                                   configs.sfdchosts_volume_mount,
+                               ]),
+                            },
+                       ] else []
+                   ),
 
                 nodeSelector: {
                     "slb-service": "slb-nginx-b",
