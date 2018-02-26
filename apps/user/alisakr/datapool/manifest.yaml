@@ -10,9 +10,9 @@ system:
     - name: datapool-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wave/datapool-server:628223b
       ports:
-      - containerPort: 7020
+      - containerPort: 7923
         name: grpc
-      - containerPort: 15372
+      - containerPort: 15276
         name: mgmt
       livenessProbe:
         initialDelaySeconds: 90
@@ -20,7 +20,7 @@ system:
         timeoutSeconds: 30
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15276
       env:
       - name: SFDC_ENVIRONMENT
         value: kingdom-test
@@ -61,11 +61,11 @@ system:
           periodSeconds: 5
 
       ports:
-      - containerPort: 7012
+      - containerPort: 70206
         name: sherpa-in
-      - containerPort: 7443
+      - containerPort: 70345
         name: sherpa-tls
-      - containerPort: 15373
+      - containerPort: 15275
         name: sherpa-adm
       readinessProbe:
         exec:
