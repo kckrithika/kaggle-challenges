@@ -88,51 +88,33 @@ apps:
       - shared0-samminionatlasfe2-1-frf.ops.sfdc.net
 
   # ORD DS Nodes
-  shared0-samminionatlasdir1-1-ord:
+  shared0-samminionatlasdir-ord:
     - name: ord/ord-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-ord.ops.sfdc.net
-  shared0-samminionatlasdir1-2-ord:
-    - name: ord/ord-sam_cloudatlas_dir
-      hostSubList:
       - shared0-samminionatlasdir1-2-ord.ops.sfdc.net
-  shared0-samminionatlasdir2-1-ord:
-    - name: ord/ord-sam_cloudatlas_dir
-      hostSubList:
       - shared0-samminionatlasdir2-1-ord.ops.sfdc.net
 
   # ORD Proxy Nodes
-  shared0-samminionatlasfe1-1-ord:
+  shared0-samminionatlasfe-ord:
     - name: ord/ord-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-ord.ops.sfdc.net
-  shared0-samminionatlasfe2-1-ord:
-    - name: ord/ord-sam_cloudatlas
-      hostSubList:
       - shared0-samminionatlasfe2-1-ord.ops.sfdc.net
 
   # PHX DS Nodes
-  shared0-samminionatlasdir1-1-phx:
+  shared0-samminionatlasdir-phx:
     - name: phx/phx-sam_cloudatlas_dir
       hostSubList:
       - shared0-samminionatlasdir1-1-phx.ops.sfdc.net
-  shared0-samminionatlasdir1-2-phx:
-    - name: phx/phx-sam_cloudatlas_dir
-      hostSubList:
       - shared0-samminionatlasdir1-2-phx.ops.sfdc.net
-  shared0-samminionatlasdir2-1-phx:
-    - name: phx/phx-sam_cloudatlas_dir
-      hostSubList:
       - shared0-samminionatlasdir2-1-phx.ops.sfdc.net
  
   # PHX Proxy Nodes
-  shared0-samminionatlasfe1-1-phx:
+  shared0-samminionatlasfe-phx:
     - name: phx/phx-sam_cloudatlas
       hostSubList:
       - shared0-samminionatlasfe1-1-phx.ops.sfdc.net
-  shared0-samminionatlasfe2-1-phx:
-    - name: phx/phx-sam_cloudatlas
-      hostSubList:
       - shared0-samminionatlasfe2-1-phx.ops.sfdc.net
 
   # PAR DS Nodes
