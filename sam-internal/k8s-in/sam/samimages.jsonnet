@@ -141,9 +141,7 @@ local utils = import "util_functions.jsonnet";
                 "sam-1ebeb0ac-657"
         ),
 
-        k4aInitContainerImage: (
-               "sam-0001730-c7caec88"
-        ),
+        k4aInitContainerImage: "sam-0001730-c7caec88",
         kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
         kubednsmasq: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
         kubednssidecar: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1",
