@@ -19,8 +19,6 @@ system:
         secretName: mds-gdot-storepass
       k4aSecret:
         secretName: mds-gdot-provisioning-keypass
-      k4aSecret:
-        secretName: mds-gdot-tenant-master-keypass
     containers:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.0.69
