@@ -29,23 +29,12 @@ system:
       env:
       livenessProbe:
         exec:
-          command:
-          - "echo hello"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "echo hello"
+          command: ["true"]
         initialDelaySeconds: 120
         periodSeconds: 5
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.22
       ports:
-      - containerPort: 7012
-        name: sherpa-in
-      - containerPort: 7443
-        name: sherpa-tls
       - containerPort: 15373
         name: sherpa-adm
       env:
