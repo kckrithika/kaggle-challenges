@@ -19,7 +19,8 @@ system:
           name: maxmind-volume
 
     - name: ccait-geoip-tls-backend
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:049a201e1066a6773f5a4a9cacce1c45806a0637
+      # Pushed by this build: https://sconelibci.dop.sfdc.net/job/geoip/job/geoip/job/master/10
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:8d0126e7fc0ac428347444a3a458dfc68842d24e
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
@@ -27,9 +28,6 @@ system:
         value: "sam"
       - name: COM_MAXMIND_DATABASE_FILE
         value: "/dw/data/GeoIP2-City.mmdb"
-#        TODO: remove announcements from geoip since beacon now works
-      - name: GRPC_ANNOUNCED_PORT
-        value: 7012
       - name: LOGGING_DIR
         value: "/log"
       resources:
