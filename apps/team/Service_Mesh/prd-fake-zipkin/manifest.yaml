@@ -15,11 +15,11 @@ system:
     containers:
     - name: prd-fake-zipkin
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rmichela/openzipkin/zipkin:2.4.9
+      command: ["java"]
+      args: ["-Djava.security.egd=file:/dev/./urandom" "-Dzipkin.storage.mem.max-spans=5000" "-cp" "." "org.springframework.boot.loader.PropertiesLauncher"]
       env:
       - name: QUERY_PORT
         value: "7022"
-      - name: zipkin_storage_mem_max-spans
-        value: "5000"
       ports:
       - name: zipkin
         containerPort: 7022
