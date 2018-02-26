@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.2.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.4.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -49,7 +49,7 @@ system:
           port: 15372
         initialDelaySeconds: 120
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.22
       ports:
       - containerPort: 7012
         name: sherpa-in
@@ -72,11 +72,22 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-        initialDelaySeconds: 20
+        initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 10
+        initialDelaySeconds: 110
         periodSeconds: 5
+    - name: beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - universal-search:DATACENTER_ALLENV:7012
+      # Change to 7443 once TLS in SAM containers is ready, see https://gus.lightning.force.com/lightning/r/0D5B000000aanOjKAI/view  
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
