@@ -4,7 +4,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "phx" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {

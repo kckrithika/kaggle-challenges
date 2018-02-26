@@ -36,8 +36,8 @@ spec:
       - command:
         - /sdn/slb-vip-watchdog
         - --configDir=/host/data/slb/config
-        - --funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
-        - --archiveSvcEndpoint=https://ops0-piperepo1-0-frf.data.sfdc.net/tnrp/content_repo/0/archive
+        - --funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-phx.data.sfdc.net/tnrp/content_repo/0/archive
         - --vipLoop=10
         - --log_dir=/host/data/slb/logs
         - --optOutNamespace=kne
@@ -49,7 +49,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
@@ -59,7 +59,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        pool: frf-sam
+        pool: phx-sam
       volumes:
       - hostPath:
           path: /data/slb

@@ -31,11 +31,11 @@ spec:
         - --period=1800s
         - --namespace=
         - --podstatus=running
-        - --subnet=10.214.36.0/22
+        - --subnet=10.208.208.0/22
         - --k8sapiserver=
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
-        - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --sleepTime=100ms
         - --processKnEConfigs=false
@@ -48,7 +48,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -84,7 +84,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=3
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true

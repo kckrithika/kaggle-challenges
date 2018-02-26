@@ -32,8 +32,8 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000647-eca1189d",
-            slbnginx: "v-0000019-722fb3a3",
+            hypersdn: "v-0000660-eeb341b7",
+            slbnginx: "v-0000020-f742177c",
             },
 
         ### Release Phase 3 - All Prod
@@ -49,7 +49,7 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf") then
+        else if (kingdom == "frf" || kingdom == "phx") then
             "3"
         else
             "4"

@@ -13,6 +13,7 @@ perCluster: {
     ddiService: {
         prd: "https://ddi-api-prd.data.sfdc.net",
         frf: "https://ddi-api-frf.data.sfdc.net",
+        phx: "https://ddi-api-phx.data.sfdc.net",
     },
 
     subnet: {
@@ -22,6 +23,7 @@ perCluster: {
             "prd-sam_storage": "10.251.129.249-254",
             "prd-sam": "10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-247",
             "frf-sam": "10.214.36.0/22",
+            "phx-sam": "10.208.208.0/22",
             # prd-sam-a : 10.251.199.248-255
     },
 
@@ -32,6 +34,7 @@ perCluster: {
         "prd-sam_storage": "",
         "prd-sam": "csrlb,controlplane-ptest",
         "frf-sam": "",
+        "phx-sam": "",
     },
 
     servicesToLbOverride: {
@@ -51,6 +54,7 @@ perCluster: {
         "prd-sam_storage": "",
         "prd-sam": "",
         "frf-sam": "",
+        "phx-sam": "",
     },
 
     useProxyServicesList: {
@@ -60,6 +64,7 @@ perCluster: {
         "prd-sam_storage": "",
         "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
         "frf-sam": "",
+        "phx-sam": "",
     },
 
     podLabelList: {
@@ -80,6 +85,7 @@ perCluster: {
         "prd-sam_storage": true,
         "prd-sam": true,
         "frf-sam": true,
+        "phx-sam": true,
     },
     kneDomainName: {
         "prd-sdc": "prd-sdc.slb.sfdc.net",
@@ -88,6 +94,7 @@ perCluster: {
         "prd-sam_storage": "",
         "prd-sam": "slb.sfdc.net",
         "frf-sam": "slb.sfdc.net",
+        "phx-sam": "slb.sfdc.net",
     },
     processKnEConfigs: {
         "prd-sdc": true,
@@ -96,6 +103,7 @@ perCluster: {
         "prd-sam_storage": false,
         "prd-sam": true,
         "frf-sam": false,
+        "phx-sam": false,
 
     },
     kneConfigDir: {
@@ -105,6 +113,7 @@ perCluster: {
         "prd-sam_storage": "/var/slb/testkneconfigs",
         "prd-sam": "/var/slb/kneconfig",
         "frf-sam": "/var/slb/kneconfig",
+        "phx-sam": "/var/slb/kneconfig",
     },
     canaryMaxParallelism: {
         "prd-sdc": 1,
