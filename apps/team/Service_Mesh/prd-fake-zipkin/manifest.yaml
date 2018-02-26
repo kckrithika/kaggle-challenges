@@ -18,6 +18,8 @@ system:
       env:
       - name: QUERY_PORT
         value: "7022"
+      - name: zipkin.storage.mem.max-spans
+        value: "5000"
       ports:
       - name: zipkin
         containerPort: 7022
