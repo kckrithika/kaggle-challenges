@@ -14,9 +14,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-mds/logs
-    - name: secretsvol
-      k4aSecret:
-        secretName: mds-gdot-storepass
     containers:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.0.69
@@ -58,9 +55,6 @@ system:
           mountPath: /certificates
         - name: logvol
           mountPath: /home/sfdc-mds/logs
-        - name: secretsvol
-          mountPath: /home/sfdc-mds/secrets
-          readOnly: true
 
     - name: sherpa-mds
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
