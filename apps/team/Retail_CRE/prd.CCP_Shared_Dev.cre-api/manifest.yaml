@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: sfci/cre/cre-api:0.0.1.7.master.821ed6e.57
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:0.0.1.kg-probe.6814ebe.5
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-shared-dev
@@ -24,7 +24,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTP
+          scheme: HTTPS
       volumeMounts:
       - mountPath: /certs
         name: certs
