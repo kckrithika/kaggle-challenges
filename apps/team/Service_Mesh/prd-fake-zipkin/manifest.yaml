@@ -18,8 +18,8 @@ system:
       env:
       - name: QUERY_PORT
         value: "7022"
-      - name: zipkin_storage_mem_max-spans
-        value: "5000"
+      - name: JAVA_OPTS
+        value: "-Djava.security.egd=file:/dev/./urandom -Dzipkin.storage.mem.max-spans=5000"
       ports:
       - name: zipkin
         containerPort: 7022
