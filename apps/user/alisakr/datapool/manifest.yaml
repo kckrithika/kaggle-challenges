@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/insights/datapoolservice:8d591f1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/wave/datapool-server:628223b
       ports:
       - containerPort: 7020
         name: grpc
@@ -113,14 +113,14 @@ system:
     nodeExposed: true
     slbenabled: true
     ports:
-      - port: 7025
+      - port: 70206
         targetport: 7012
-      - port: 7120
+      - port: 7923
         targetport: 7020
-      - port: 7045
+      - port: 70345
         targetport: 7443
-      - port: 15375
+      - port: 15275
         targetport: 15373
-      - port: 15376
+      - port: 15276
         targetport: 15372
 
