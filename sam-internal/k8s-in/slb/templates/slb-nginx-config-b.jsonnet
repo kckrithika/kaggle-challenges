@@ -318,9 +318,9 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "p
                                 volumeMounts: configs.filter_empty([
                                   {
                                        name: "var-target-config-volume",
-                                       mountPath: "/etc/nginx/conf.d",
+                                       mountPath: slbconfigs.slbDir + "/nginx/config",
+
                                   },
-                                  slbconfigs.logs_volume_mount,
                                   {
                                    mountPath: "/cert1",
                                    name: "cert1",
@@ -329,8 +329,9 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "p
                                    mountPath: "/cert2",
                                    name: "cert2",
                                   },
-                                   slbconfigs.logs_volume_mount,
-                                   configs.sfdchosts_volume_mount,
+                                  slbconfigs.slb_volume_mount,
+                                  slbconfigs.logs_volume_mount,
+                                  configs.sfdchosts_volume_mount,
                                ]),
                             },
                        ] else []
