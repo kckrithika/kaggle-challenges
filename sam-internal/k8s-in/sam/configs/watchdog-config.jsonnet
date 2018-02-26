@@ -88,7 +88,7 @@ local utils = import "util_functions.jsonnet";
 (
   if configs.kingdom == "prd" then {
     # Manifest ZIP Thingy
-    ManifestTnrpEndpoint: configs.tnrpArchiveEndpoint,
+    m_tnrpEndpoint: configs.tnrpArchiveEndpoint,
   } else {}
 ) +
 (
