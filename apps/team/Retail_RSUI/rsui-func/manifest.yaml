@@ -10,6 +10,11 @@ system:
         type: server
         lbnames:
         - rsui-func-lb
+    # maps the retail  volumnMount to a directory on the host machine
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-retail/logs
+
     containers:
     - name: rsui-func
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.21
