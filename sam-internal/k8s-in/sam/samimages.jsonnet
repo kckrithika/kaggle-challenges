@@ -142,9 +142,6 @@ local utils = import "util_functions.jsonnet";
         ),
 
         k4aInitContainerImage: (
-            if (kingdom == "prd") then
-                "sam-0001730-c7caec88"
-            else if (kingdom == "frf") then
                "sam-0001730-c7caec88"
         ),
         kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
