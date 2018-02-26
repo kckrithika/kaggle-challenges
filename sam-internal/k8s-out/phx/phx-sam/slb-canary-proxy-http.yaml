@@ -17,19 +17,19 @@ spec:
       - command:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-proxy-http
-        - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
+        - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --ports=9116
         - --tlsPorts=443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sam.crt
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000660-eeb341b7
         name: slb-canary-proxy-http
         volumeMounts:
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
       nodeSelector:
-        pool: frf-sam
+        pool: phx-sam
       volumes:
       - hostPath:
           path: /data/slb/logs
