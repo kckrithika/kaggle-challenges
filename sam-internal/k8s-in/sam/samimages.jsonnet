@@ -78,7 +78,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF
         "3": {
-            hypersam: "sam-0001710-3ec484d6",
+            hypersam: "sam-0001730-c7caec88",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
@@ -141,12 +141,7 @@ local utils = import "util_functions.jsonnet";
                 "sam-1ebeb0ac-657"
         ),
 
-        k4aInitContainerImage: (
-            if (kingdom == "prd") then
-                "sam-0001730-c7caec88"
-            else if (kingdom == "frf") then
-               "sam-0001548-81d3b9bd"
-        ),
+        k4aInitContainerImage: "sam-0001730-c7caec88",
         kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
         kubednsmasq: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
         kubednssidecar: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1",
