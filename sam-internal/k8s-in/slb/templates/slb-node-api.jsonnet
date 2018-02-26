@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-local portconfigs = import "portconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
@@ -35,7 +35,7 @@ if configs.estate == "prd-sdc" then {
                             image: slbimages.hypersdn,
                             command: [
                                 "/sdn/slb-node-api",
-                                "--port=9130",
+                                "--port=" + slbports.slb.slbNodeApiPort,
                                 "--configDir=" + slbconfigs.configDir,
                             ],
                             volumeMounts: configs.filter_empty([
