@@ -19,7 +19,7 @@ system:
       - name: QUERY_PORT
         value: "7022"
       - name: JAVA_OPTS
-        value: -Djava.security.egd=file:/dev/./urandom -Dzipkin.storage.mem.max-spans=5000"
+        value: "-Djava.security.egd=file:/dev/./urandom -Dzipkin.storage.mem.max-spans=5000"
       ports:
       - name: zipkin
         containerPort: 7022
