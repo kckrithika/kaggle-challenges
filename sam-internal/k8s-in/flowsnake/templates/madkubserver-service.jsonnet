@@ -6,10 +6,14 @@ else
     apiVersion: "v1",
     kind: "Service",
     metadata: {
+        labels: {
+            service: "madkubserver",
+        },
         name: "madkubserver",
         namespace: "flowsnake",
     },
     spec: {
+        clusterIP: "10.254.208.254",
         ports: [
             {
                 name: "madkubapitls",
@@ -20,5 +24,8 @@ else
         selector: {
             service: "madkubserver",
         },
+    },
+    status: {
+        loadBalancer: {},
     },
 }
