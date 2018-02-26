@@ -169,14 +169,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "p
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxDeleteServiceCount=3",
                             configs.sfdchosts_arg,
-                        ]
-                        + (
-                            if configs.kingdom == "prd" then [
-                            ] else [
-                                "--httpsEnabled="
-                                + "slb-canary-proxy-http.sam-system." + configs.estate + ".prd.slb.sfdc.net",
-                            ]
-                        ),
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "var-target-config-volume",
