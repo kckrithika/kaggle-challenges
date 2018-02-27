@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: sconeconfig-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-sconeconfig:plaird-20180226-d9cdd2d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-sconeconfig:plaird-20180223-83534d7
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -17,6 +17,7 @@ system:
       - name: EXAMPLE_CMD_ARG
         value: red
       ports:
+      - containerPort: 7020
       - containerPort: 15372
       - containerPort: 9010
       livenessProbe:
