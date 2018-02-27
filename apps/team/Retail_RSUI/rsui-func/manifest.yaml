@@ -51,6 +51,8 @@ system:
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
+      - name: logvol
+        mountPath: /home/scone/logs
 
     - name: sherpa-rsui-func
       image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
