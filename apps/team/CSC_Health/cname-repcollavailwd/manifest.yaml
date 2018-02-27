@@ -20,8 +20,6 @@ system:
         name: clientcertvol
         readOnly: true
       env:
-      - name: RC_WD_INTERVALMS
-        value: 120000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
         value: 18443
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PROTOCOL

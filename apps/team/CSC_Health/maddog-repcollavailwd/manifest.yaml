@@ -19,8 +19,6 @@ system:
       - mountPath: /var/lib/report-collector-availability-watchdog/pki
         name: clientcertvol
       env:
-      - name: RC_WD_INTERVALMS
-        value: 120000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
         value: 18443
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PROTOCOL
