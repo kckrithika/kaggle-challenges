@@ -10,13 +10,11 @@ system:
     - name: cert
       maddogCert:
         type: server
-        lbnames:
-          - cyanlbv2
 
     containers:
     - name: csr-cyan-envoy-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan-envoy:sathish.santhanam-20180214-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan-envoy:tyler-20180227-2
 
       livenessProbe:
          exec:
@@ -36,8 +34,9 @@ system:
 
       ports:
         # Actually used by the container
-        - containerPort: 12060
-        - containerPort: 12061
+        - containerPort: 12060 # Plain text port
+        - containerPort: 12061 # Admin port
+        - containerPort: 12063 # TLS enabled port
 
       volumeMounts:
         - name: cert
@@ -56,3 +55,5 @@ system:
       targetport: 12060
     - port: 12061
       targetport: 12061
+    - port: 12063
+      targetport: 12063
