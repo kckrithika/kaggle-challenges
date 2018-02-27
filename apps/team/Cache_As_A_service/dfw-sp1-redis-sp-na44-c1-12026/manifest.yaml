@@ -10,7 +10,7 @@ system:
     hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
       resources:
         limits: { memory: "5Gi" }
         requests: { memory: "3Gi" }
@@ -34,7 +34,7 @@ system:
       ports:
       - containerPort: 12026
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
       command: ["/opt/caas/redis/announcer-startup.sh"]
       args:
         - --redisPort=12026
