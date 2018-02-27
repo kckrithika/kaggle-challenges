@@ -31,6 +31,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
                   "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
                   "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                  "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
                 }
                 +
                 # These are for developer testing only
@@ -103,6 +104,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
                   "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
                   "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                  "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -135,6 +137,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
                   "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
                   "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                  "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

@@ -11,6 +11,7 @@ data:
     add-hive-to-spark-4-itest-ready = add-hive-to-spark-4-itest-ready
     kafka-one-test = cm201711-kafka-one-upgrade-itest-ready
     khtest = disable-core-dumps-itest-ready
+    memoized-k8s-itest-ready = memoized-k8s-itest-ready
     release-095-retry-itest-ready = release-095-retry-itest-ready
 kind: ConfigMap
 metadata:
