@@ -133,10 +133,9 @@ data:
         {
           "checker": "hairpinChecker",
           "estates": [
-            "prd-sam_cloudatlas",
-            "prd-sam_cloudatlas_dir"
+            "cache-as-a-service-sp2"
           ],
-          "until": "2017/11/21"
+          "until": "2018/3/29"
         }
       ],
       "storageClassName": "synthetic-hdd-pool",

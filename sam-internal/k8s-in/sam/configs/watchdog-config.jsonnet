@@ -29,7 +29,7 @@ local utils = import "util_functions.jsonnet";
     # Dont change prod
     # 1.7.4 update triggered veth problems. Fixed in all non-flannel estates. Pending fix for flannel estates
     if configs.kingdom == "prd" then [
-    { estates: ["prd-sam_cloudatlas", "prd-sam_cloudatlas_dir"], checker: "hairpinChecker", until: "2017/11/21" },
+    { estates: ["cache-as-a-service-sp2"], checker: "hairpinChecker", until: "2018/3/29" },
     ] else []
     ),
 
