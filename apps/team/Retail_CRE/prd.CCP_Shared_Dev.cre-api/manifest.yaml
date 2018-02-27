@@ -24,7 +24,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
+          scheme: HTTP
       volumeMounts:
       - mountPath: /myclientcert
         name: myclientcert
@@ -66,8 +66,6 @@ system:
         type: server
         lbnames:
           - cre-api-prd-ccp-shared-dev-lb
-      # hostPath:
-      #   path: /home/sfdc-retail/keystores
   loadbalancers:
   - lbname: cre-api-prd-ccp-shared-dev-lb
     function: cre-api-prd-ccp-shared-dev
