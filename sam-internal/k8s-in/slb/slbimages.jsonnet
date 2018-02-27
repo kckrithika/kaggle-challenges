@@ -32,7 +32,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000660-eeb341b7",
+            hypersdn: "v-0000668-bae2cf08",
             slbnginx: "v-0000020-f742177c",
             },
 
