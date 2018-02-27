@@ -18,7 +18,7 @@ else
     template: {
       metadata: {
         annotations: {
-            "madkub.sam.sfdc.net/allcerts": std.toString({ certreqs: [{ name: "ingresscerts", role: "samapp", san: [flowsnakeconfig.fleet_vips[estate]], "cert-type": "server", kingdom: kingdom }] }),
+            "madkub.sam.sfdc.net/allcerts": std.toString({ certreqs: [{ name: "ingresscerts", role: "flowsnake", san: [flowsnakeconfig.fleet_vips[estate]], "cert-type": "server", kingdom: kingdom }] }),
         },
         labels: {
           name: "cert-secretizer",
@@ -66,7 +66,7 @@ else
                 name: "tokens",
               },
               {
-                mountPath: "/maddog-certs/",
+                mountPath: "/maddog-certs",
                 name: "pki",
               },
             ],
@@ -75,6 +75,7 @@ else
                 name: "MADKUB_NODENAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "spec.nodeName",
                   },
                 },
@@ -83,6 +84,7 @@ else
                 name: "MADKUB_NAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.name",
                   },
                 },
@@ -91,6 +93,7 @@ else
                 name: "MADKUB_NAMESPACE",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.namespace",
                   },
                 },
@@ -137,7 +140,7 @@ else
                 name: "tokens",
               },
               {
-                mountPath: "/maddog-certs/",
+                mountPath: "/maddog-certs",
                 name: "pki",
               },
             ],
@@ -146,6 +149,7 @@ else
                 name: "MADKUB_NODENAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "spec.nodeName",
                   },
                 },
@@ -154,6 +158,7 @@ else
                 name: "MADKUB_NAME",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.name",
                   },
                 },
@@ -162,6 +167,7 @@ else
                 name: "MADKUB_NAMESPACE",
                 valueFrom: {
                   fieldRef: {
+                    apiVersion: "v1",
                     fieldPath: "metadata.namespace",
                   },
                 },
