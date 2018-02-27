@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:0.0.1.kg-probe.6814ebe.5
+      image: sfci/cre/cre-api:0.0.1.14.master.9099272.64
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-shared-dev

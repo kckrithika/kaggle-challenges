@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-sp-prd-ccp-shared-dev
-      image: sfci/cre/cre-stream-processing:0.0.1.5.master.bd4f636.73
+      image: sfci/cre/cre-stream-processing:0.0.1.12.master.b4c1e01.80
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -30,7 +30,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTP
+          scheme: HTTPS
       volumeMounts:
       - mountPath: /certs
         name: certs
