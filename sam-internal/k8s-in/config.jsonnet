@@ -64,6 +64,19 @@ local utils = import "util_functions.jsonnet",
     else
         "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net:80"
     ),
+    # This is the Tnrp EndPoint VIP without the complete path
+    # We should migrate all our services to use this Endpoint.
+    # The Individual services can append paths to it to make
+    # appropriate urls. The tnrpArchiveEndPoint should be
+    # deprecated in favor of this.
+    tnrpEndpoint: (
+    if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+        "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/"
+    else if utils.is_gia(kingdom) then
+        "https://ops-piperepo1-0-" + kingdom + ".data.sfdc.net/"
+    else
+        "https://ops0-piperepo1-1-" + kingdom + "." + engOrOps + ".sfdc.net/"
+    ),
     tnrpArchiveEndpoint: (
     # Rolling to use LB endpoints (.data)
     if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
