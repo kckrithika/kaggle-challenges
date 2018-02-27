@@ -29,7 +29,7 @@ local configs = import "config.jsonnet";
 })
 + (if configs.estate == "prd-sam_storage" then {
     recipient: "storagefoundation@salesforce.com",
-  } else if configs.kingdom == "prd" then {
+  } else if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "phx" then {
     recipient: "sam@salesforce.com,slb@salesforce.com",
   } else {
 })
