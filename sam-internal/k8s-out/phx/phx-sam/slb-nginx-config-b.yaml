@@ -19,7 +19,7 @@ spec:
                                               "kingdom":"prd",
                                               "role": "sam_compute",
                                               "san":[
-                                                  "*.sam-system.phx-sam.prd.slb.sfdc.net",
+                                                  "*.sam-system.phx-sam.phx.slb.sfdc.net",
                                                   "*.slb.sfdc.net",
                                                   "*.soma.salesforce.com"
                                               ]
