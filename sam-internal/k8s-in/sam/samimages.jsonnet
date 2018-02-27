@@ -19,6 +19,10 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [diana.chang] Overriding prd-samtest with latest veresion of daily deployer to test the webportal
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180226_145353.96b17456.dirty.dianachang-ltm1",
+        "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
+
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
