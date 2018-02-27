@@ -2,6 +2,7 @@ version: v2
 apps:
     metadata-service-prd-func:    # functional testing
     - name: prd/prd-sam_crosscloudplatform
+    - name: prd/prd-sp2-sam_retail_mds
     metadata-service-prd-perf:    # performance testing
     - name: prd/prd-sam_crosscloudplatform
 
