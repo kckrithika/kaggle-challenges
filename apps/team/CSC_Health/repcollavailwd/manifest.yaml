@@ -22,6 +22,8 @@ system:
         name: clientcertvol
         readOnly: true
       env:
+      - name: RC_WD_INTERVALMS
+        value: 120000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
@@ -34,6 +36,8 @@ system:
         value: $(REPORTCOLLECTORHALB_SERVICE_PORT_TCP8444)
       - name: RC_WD_REPORTCOLLECTOR_CONSUMER_PROTOCOL
         value: https
+      - name: RC_WD_REPORTCOLLECTOR_CONSUMER_TIMEOUTMS
+        value: 90000
       - name: RC_WD_VERIFYREPORTISTRUSTED
         value: true
       - name: RC_WD_SSL_VERIFYSERVERIDENTITY
