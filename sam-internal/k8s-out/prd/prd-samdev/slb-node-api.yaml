@@ -2,8 +2,8 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   labels:
-    name: slb-iface-processor
-  name: slb-iface-processor
+    name: slb-node-api
+  name: slb-node-api
   namespace: sam-system
 spec:
   template:
@@ -11,41 +11,26 @@ spec:
       labels:
         apptype: control
         daemonset: "true"
-        name: slb-iface-processor
+        name: slb-node-api
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/slb-iface-processor
+        - /sdn/slb-node-api
+        - --port=9130
         - --configDir=/host/data/slb/config
-        - --period=5s
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
-        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000663-72f5a471
-        name: slb-iface-processor
-        securityContext:
-          privileged: true
+        name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
-          name: var-config-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
-        - mountPath: /sfdchosts
-          name: sfdchosts
       hostNetwork: true
       volumes:
       - hostPath:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/config
-        name: var-config-volume
-      - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
-      - configMap:
-          name: sfdchosts
-        name: sfdchosts
