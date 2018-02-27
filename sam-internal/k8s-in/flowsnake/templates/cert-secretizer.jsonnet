@@ -18,7 +18,7 @@ else
     template: {
       metadata: {
         annotations: {
-            "madkub.sam.sfdc.net/allcerts": std.toString({ certreqs: [{ name: "ingresscerts", role: "samapp", san: ["test-fleet-fake-san-prd.data.sfdc.net"], "cert-type": "server", kingdom: kingdom }] }),
+            "madkub.sam.sfdc.net/allcerts": std.toString({ certreqs: [{ name: "ingresscerts", role: "samapp", san: [flowsnakeconfig.fleet_vips[estate]], "cert-type": "server", kingdom: kingdom }] }),
         },
         labels: {
           name: "cert-secretizer",
@@ -27,7 +27,7 @@ else
       spec: {
         containers: [
           {
-            name: "madkub-refresher",
+            name: "sam-madkub-integration-refresher",
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
@@ -100,7 +100,7 @@ else
         ],
         initContainers: [
           {
-            name: "madkub-initer",
+            name: "sam-madkub-integration-init",
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",

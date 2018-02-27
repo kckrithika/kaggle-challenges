@@ -44,7 +44,7 @@ else
               "--token-folder",
               "/tokens/",
               "--service-hostname",
-              "madkubserver",
+              "$(MADKUBSERVER_SERVICE_HOST)",
               "--funnel-endpoint",
               "http://ajna0-funnel1-0-prd.data.sfdc.net:80",
               "--kingdom",
