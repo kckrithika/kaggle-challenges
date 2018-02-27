@@ -131,10 +131,9 @@ data:
         {
           "checker": "hairpinChecker",
           "estates": [
-            "prd-sam_cloudatlas",
-            "prd-sam_cloudatlas_dir"
+            "prd-sp2-sam_caas"
           ],
-          "until": "2017/11/21"
+          "until": "2018/04/01"
         }
       ],
       "storageClassName": "standard",
