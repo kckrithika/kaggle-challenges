@@ -27,16 +27,12 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "0.9.4": 447,
                   "0.9.5": 487,
                   "0.9.6": 512,
-                  khtest: "disable-core-dumps-itest-ready",
-                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
-                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
-                  "release-095-retry-itest-ready": "release-095-retry-itest-ready",
                 }
                 +
                 # These are for developer testing only
                 # only copy above to phase 2
                 {
-                  "0.0.1": 1,
+                  "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -66,11 +62,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "0.9.4": 447,
                   "0.9.5": 487,
                   "0.9.6": 512,
-                  khtest: "disable-core-dumps-itest-ready",
-                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
-                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
-                  "release-095-retry-itest-ready": "release-095-retry-itest-ready",
-                  "hadoop-dep-test-itest-ready": "hadoop-dep-test-itest-ready",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -99,10 +90,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "0.9.3": 427,
                   "0.9.4": 447,
                   "0.9.5": 487,
-                  khtest: "disable-core-dumps-itest-ready",
-                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
-                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
-                  "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                  "0.9.6": 512,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -131,10 +119,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                   "0.9.3": 427,
                   "0.9.4": 447,
                   "0.9.5": 487,
-                  khtest: "disable-core-dumps-itest-ready",
-                  "add-hive-to-spark-4-itest-ready": "add-hive-to-spark-4-itest-ready",
-                  "kafka-one-test": "cm201711-kafka-one-upgrade-itest-ready",
-                  "release-095-retry-itest-ready": "release-095-retry-itest-ready",
+                  "0.9.6": 512,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
