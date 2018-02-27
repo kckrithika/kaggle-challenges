@@ -114,12 +114,7 @@ if configs.estate == "prd-sam" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" then [
-                                "--activateHealthChecker=true",
-                            ] else []
-                        ),
+                        ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.slb_config_volume_mount,
