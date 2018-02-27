@@ -26,8 +26,10 @@ system:
           port: 15372
           scheme: HTTPS
       volumeMounts:
-      - mountPath: /certs
-        name: certs
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert
       - mountPath: /opt/cre/cre-api_ccp-shared-dev
         name: logvol
     - name: sherpa-cre-api
@@ -56,9 +58,16 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-api_ccp-shared-dev
-    - name: certs
-      hostPath:
-        path: /home/sfdc-retail/keystores
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-api-prd-ccp-shared-dev-lb
+      # hostPath:
+      #   path: /home/sfdc-retail/keystores
   loadbalancers:
   - lbname: cre-api-prd-ccp-shared-dev-lb
     function: cre-api-prd-ccp-shared-dev
