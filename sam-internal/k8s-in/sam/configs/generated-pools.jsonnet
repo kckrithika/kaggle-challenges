@@ -1392,7 +1392,7 @@
       "access": [
         "team/Gater",
         "team/CCAIT",
-        "team/Service_Mesh"
+        "team/service-mesh"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
