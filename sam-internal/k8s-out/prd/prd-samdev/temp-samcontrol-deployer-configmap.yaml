@@ -1,11 +1,11 @@
 apiVersion: v1
 data:
-  deployer-port: "9123"
   tempsamcontroldeployer.json: |-
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "delete-orphans": false,
+      "deployer-port": 9123,
       "disable-rollback": true,
       "disable-security-check": true,
       "dry-run": false,
