@@ -5,42 +5,28 @@ system:
     email:
       - emailinfrastructure@salesforce.com
   functions:
-  - name: eaas
+  - name: eaas-grpc-client
     count: 3 
     strategy:
       type: RollingUpdate
     containers:
-    - name: eaas
-      image:  tnrp/emailinfrastructure/eaas:latest-0000038-311fa31b
+    - name: eaas-grpc-client
+      image: docker-sfci-dev/sfci/eaas/grpc-client:e8e4c3128a3603279f459bdfd1c70ed8d9325cdc
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      - name: GRPC_ANNOUNCED_PORT
-        value: 7443
-      - name: SCONE_SERVICE_NAME
-        value: eaas
-      ports:
-        - name: grpc
-          containerPort: 7020
-      volumeMounts:
-      - mountPath: /home/sfdc-eaas/logs
-        name: logvol
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 120
-        periodSeconds: 60
-        timeoutSeconds: 30
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 110
-        periodSeconds: 60
-        timeoutSeconds: 30
+        exec:
+          command:
+          - cat
+          - /home/sfdc-eaas/grpc-client.jar
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /etc/pki_service
+        name: eaas-client-cert
 
-    - name: sherpa-eaas
+    - name: sherpa-eaas-grpc-client
       image: sfci/servicelibs/sherpa:2.0.21
       args: ["--zipkin-rate", "0.01"]
       env:
@@ -69,15 +55,15 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
-      - name: eaas-server-cert
-        mountPath: /server-certs
+      - name: eaas-client-cert
+        mountPath: /client-certs
       - name: sherpa-log-volume
         mountPath: /log
-
+    
     volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-eaas/logs
+    - name: eaas-client-cert
+      maddogCert:
+        type: client
     - name: eaas-server-cert
       maddogCert:
         type: server
