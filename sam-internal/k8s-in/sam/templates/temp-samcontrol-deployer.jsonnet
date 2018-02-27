@@ -30,12 +30,17 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                          livenessProbe: {
                            httpGet: {
                              path: "/",
-                             port: 9099,
-                           },
+                           } + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+                                 port: 9123,
+                             } else {
+                                 port: 9099,
+                             }),
+
+
                            initialDelaySeconds: 2,
                            periodSeconds: 10,
                            timeoutSeconds: 10,
-                        },
+                         },
                     },
                 ],
                 volumes: configs.filter_empty([
