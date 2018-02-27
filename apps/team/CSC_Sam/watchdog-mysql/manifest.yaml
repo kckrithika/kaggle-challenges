@@ -16,16 +16,18 @@ system:
     - name: watchdog-mysql
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180123_135035.df4fafc7.dirty.duncsmith-ltm
 
-      # TODO: Use a k4a secret
-      env:
-      - name: MYSQL_ROOT_PASSWORD
-        value: pass
+      # env:
+      #- name: MYSQL_ROOT_PASSWORD_FILE
+      #  value: /secret/
       
       volumeMounts:
       - mountPath: /var/lib/watchdog-mysql
         name: watchdog-mysql-persistent-storage-rev-three
       - mountPath: /certs
         name: certs
+      - mountPath: /secrets
+        name: watchdog-mysqlsecret
+        readOnly: true
       
       ports:
       - containerPort: 3309
@@ -42,6 +44,9 @@ system:
     - name: certs
       maddogCert:
         type: server
+    - name: watchdog-mysqlsecret
+      k4aSecret:
+        secretName: watchdogmysql
 
     lbname: watchdog-mysql-stateful-lb
 
@@ -51,7 +56,7 @@ system:
 
     volumeClaimTemplates:
     - name: watchdog-mysql-persistent-storage-rev-three
-      storageClassName: watchdog-mysql-hdd-pool
+      storageClassName: mysql-hdd-pool
       storageSizeRequest: 100Gi
 
   loadbalancers:
