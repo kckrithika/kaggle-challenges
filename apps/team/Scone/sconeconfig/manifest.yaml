@@ -13,7 +13,7 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: EXAMPLE_SYSTEM_PROP
-        value: blue
+        value: green
       - name: EXAMPLE_CMD_ARG
         value: red
       ports:
