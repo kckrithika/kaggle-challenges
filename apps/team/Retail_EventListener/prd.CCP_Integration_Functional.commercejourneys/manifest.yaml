@@ -7,7 +7,11 @@ system:
   functions:
   - name: commercejourneys-mc-handler-prd-ccp-integration-functional
     count: 1
-    containers: 
+    volumes:
+    - name: cccjclientcert
+      maddogCert:
+        type: client
+    containers:
     - name: commercejourneys-sp-prd-ccp-integration-functional
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.5
       ports:
@@ -17,6 +21,9 @@ system:
             command:
             - ls
         initialDelaySeconds: 30
+      volumeMounts:
+      - name: cccjclientcert
+        mountPath: /clientcert
   loadbalancers:
   - lbname: commercejourneys-retail-event-handler-prd-lb
     function: commercejourneys-mc-handler-prd-ccp-integration-functional
