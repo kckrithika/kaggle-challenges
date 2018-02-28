@@ -243,7 +243,6 @@ local kingdom = std.extVar("kingdom");
         "dry-run": false,
         "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
         "resources-to-skip": [
-          "samcontrol-deployer.yaml",
           "_flowsnake-sdn-secret.yaml",
         ],
     }
