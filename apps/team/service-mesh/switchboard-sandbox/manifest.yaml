@@ -9,9 +9,8 @@ system:
     count: 2
     containers:
     - name: switchboardsb
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/27
-      # image: sfci/servicelibs/switchboard:da9fd99578d5c72de490465e11fb5f9a7f8bc54d
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/switchboard-heap:heap
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/33
+      image: sfci/servicelibs/switchboard:27947207b0824dc9c8f8c37b4cd2f611c88f8271
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
