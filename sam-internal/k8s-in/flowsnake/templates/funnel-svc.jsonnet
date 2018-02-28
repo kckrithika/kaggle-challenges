@@ -8,7 +8,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     },
     spec: {
         type: "ExternalName",
-        externalName: flowsnakeconfig.funnel_endpoint,
+        externalName: flowsnakeconfig.funnel_vip,
         ports: [
             {
                 protocol: "TCP",

@@ -219,6 +219,7 @@ local kingdom = std.extVar("kingdom");
         "phx/phx-flowsnake_prod": {
         },
     },
+        //TODO: This structure is bogus. Need to specify LDAP and PKI principals for each namespace.
     maddog_namespace_map: {
       "prd/prd-data-flowsnake": {
           flowsnake: "Flowsnake_Ops_Platform",
@@ -228,6 +229,13 @@ local kingdom = std.extVar("kingdom");
       },
       "prd/prd-dev-flowsnake_iot_test": {
           flowsnake: "Flowsnake_Ops_Platform",
+      },
+        //TODO: In prod data centers, let the certs on the host act as administrators.
+      "iad/iad-flowsnake_prod": {
+      },
+      "ord/ord-flowsnake_prod": {
+      },
+      "phx/phx-flowsnake_prod": {
       },
     },
     samcontroldeployer: {

@@ -4,7 +4,7 @@ metadata:
   name: funnel
   namespace: default
 spec:
-  externalName: ajna0-funnel1-0-prd.data.sfdc.net
+  externalName: ajna0-funnel1-0-phx.data.sfdc.net
   ports:
   - port: 8080
     protocol: TCP
