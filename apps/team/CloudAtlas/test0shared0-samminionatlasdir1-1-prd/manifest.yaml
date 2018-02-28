@@ -12,7 +12,7 @@ system:
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client
-      image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
+      image: sfci/servicelibs/sherpa:2.0.22
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
