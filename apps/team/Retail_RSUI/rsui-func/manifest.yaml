@@ -17,7 +17,7 @@ system:
 
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.21
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.24
       ports:
       - containerPort: 7022
         name: rsui-in-http1
