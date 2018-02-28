@@ -16,9 +16,9 @@ system:
     - name: watchdog-mysql
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180123_135035.df4fafc7.dirty.duncsmith-ltm
 
-      # env:
-      #- name: MYSQL_ROOT_PASSWORD_FILE
-      #  value: /secret/
+      env:
+      - name: MYSQL_ROOT_PASSWORD_FILE
+        value: /secrets/rootpassword
       
       volumeMounts:
       - mountPath: /var/lib/watchdog-mysql
