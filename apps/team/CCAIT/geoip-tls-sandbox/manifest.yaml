@@ -37,6 +37,8 @@ system:
       # Pushed by this build: https://sconelibci.dop.sfdc.net/job/geoip/job/geoip/job/master/10
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:8d0126e7fc0ac428347444a3a458dfc68842d24e
       env:
+      - name: SCONE_SERVICE_NAME
+        value: "geoip-tls"
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
       - name: SFDC_ENVIRONMENT
