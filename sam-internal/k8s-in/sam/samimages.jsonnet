@@ -20,9 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [diana.chang] Overriding prd-samtest with latest veresion of daily deployer to test the webportal
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180227_104653.e747a9b7.dirty.dianachang-ltm1",
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180227_104653.e747a9b7.dirty.dianachang-ltm1",
-        "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180228_141049.c600aa49.dirty.dianachang-ltm1",
+        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180228_141049.c600aa49.dirty.dianachang-ltm1",
+        #"prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
