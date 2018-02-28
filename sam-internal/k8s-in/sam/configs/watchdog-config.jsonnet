@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local samwdconfig = import "samwdconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-{
+std.prune({
   # Snoozes - This is a central list of all snoozed watchdogs.  For each snooze, please add a comment explaining the reason
   # Format of struct is here: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/tools/watchdog/internal/config/config.go
   # Fields `estates`, `checker`, and `until` are required.  Specific instances can be listed with `instances` or using regex with `instanceRegex`
@@ -79,39 +79,28 @@ local utils = import "util_functions.jsonnet";
   publishAlertsToKafka: (if configs.kingdom == "prd" then true else false),
   kafkaProducerEndpoint: "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093",
   kafkaTopic: "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__opevents",
-} +
-(
-  if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
-      publishAllReportsToKafka: true,
-  } else {}
-) +
-(
-  if configs.kingdom == "prd" then {
-    # Manifest ZIP Thingy
-    m_tnrpEndpoint: configs.tnrpEndpoint,
-  } else {}
-) +
-(
-  if configs.kingdom == "prd" then {
+
+  publishAllReportsToKafka: (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then true),
+
+  m_tnrpEndpoint: (if configs.kingdom == "prd" then configs.tnrpEndpoint),
+
   # Kuberesource Checker
   # We dont want to report on broken hairpin pods, since hairpin already alerts on those
   # PRD is very noisy with lots of bad customer deployments and pods, so for now just focus on our control stack
-      kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
-      kubeResourceNamespacePrefixWhitelist: "sam-system,csc-sam",
-      deploymentNamespacePrefixWhitelist: "sam-system",
-  } else {
-    podNamespacePrefixBlacklist: "sam-watchdog",
-  }
-) + (if configs.estate == "prd-samdev" then {
-    # This is special as in only  RDI Ceph Is supported
-    # This will goaway slowly
-    enableStatefulChecks: true,
-    enableStatefulPVChecks: true,
-    storageClassName: "standard",
-  } else {})
-  + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
-    enableMaddogCertChecks: true,
-  } else {})
+  kubeResourceNamespacePrefixBlacklist: (if configs.kingdom == "prd" then "sam-watchdog"),
+  kubeResourceNamespacePrefixWhitelist: (if configs.kingdom == "prd" then "sam-system,csc-sam"),
+  deploymentNamespacePrefixWhitelist: (if configs.kingdom == "prd" then "sam-system"),
+  podNamespacePrefixBlacklist: (if configs.kingdom != "prd" then "sam-watchdog"),
+
+  # This is special as in only  RDI Ceph Is supported
+  # This will goaway slowly
+  enableStatefulChecks: (if configs.estate == "prd-samdev" then true),
+  enableStatefulPVChecks: (if configs.estate == "prd-samdev" then true),
+  storageClassName: (if configs.estate == "prd-samdev" then "standard"),
+
+  enableMaddogCertChecks: (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then true),
+
+})
   + (if utils.is_cephstorage_supported(configs.estate) then {
     storageClassName: "synthetic-hdd-pool",
     enableStatefulChecks: true,
