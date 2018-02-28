@@ -22,8 +22,10 @@ system:
             - ls
         initialDelaySeconds: 30
       volumeMounts:
-      - mountPath: /certs
-        name: certs
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert
       - mountPath: /opt/cre/cre-api_prod
         name: logvol
     - name: sherpa-cre-api
@@ -52,9 +54,14 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-api_prod
-    - name: certs
-      hostPath:
-        path: /home/sfdc-retail/keystores
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-api-ord-prod-lb
   loadbalancers:
   - lbname: cre-api-ord-prod-lb
     function: cre-api-ord-prod
