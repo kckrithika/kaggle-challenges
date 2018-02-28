@@ -7,3 +7,5 @@ apps:
     - prd/prd-sam_gater
   geoip-tls-sandbox:
     - prd/prd-sam_gater
+  geoip-tls-envoy-sandbox:
+    - prd/prd-sam_gater
