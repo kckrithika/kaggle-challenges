@@ -18,7 +18,8 @@ system:
 
       env:
       - name: MYSQL_ROOT_PASSWORD
-        value: test@pass #/secrets/mysql_watchdog-password
+        value: test@pass
+        #/secrets/mysql_watchdog-password
         
       volumeMounts:
       - mountPath: /var/lib/watchdog-mysql
