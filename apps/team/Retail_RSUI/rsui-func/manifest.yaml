@@ -51,6 +51,7 @@ system:
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
+      #mount splunk logs mount
       - name: logvol
         mountPath: /home/retail-setup/logs
 
