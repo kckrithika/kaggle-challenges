@@ -31,7 +31,7 @@ system:
         timeoutSeconds: 90
         httpGet:
           path: /manage/health
-          port: 15373
+          port: 15372
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
