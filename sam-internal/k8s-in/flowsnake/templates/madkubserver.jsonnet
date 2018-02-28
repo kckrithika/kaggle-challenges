@@ -2,7 +2,7 @@ local flowsnakeimage = import "flowsnake_images.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-if flowsnakeconfig.is_minikube then
+if !flowsnakeconfig.maddog_enabled then
 "SKIP"
 else
 {
@@ -46,7 +46,7 @@ else
               "--service-hostname",
               "$(MADKUBSERVER_SERVICE_HOST)",
               "--funnel-endpoint",
-              "http://ajna0-funnel1-0-prd.data.sfdc.net:80",
+              "http://" + flowsnakeconfig.funnel_endpoint + ":80",
               "--kingdom",
               kingdom,
               "--estate",
@@ -109,7 +109,7 @@ else
               "--refresher-token-grace-period",
               "30s",
               "--funnel-endpoint",
-              "http://ajna0-funnel1-0-prd.data.sfdc.net:80",
+              "http://" + flowsnakeconfig.funnel_endpoint + ":80",
               "--kingdom",
               kingdom,
               "--cert-folders",

@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+if !flowsnakeconfig.maddog_enabled then
 "SKIP"
 else
 {

@@ -1,6 +1,6 @@
-local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
+local flowsnakeconfigmap = import "flowsnake_configmap.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+if !flowsnakeconfig.maddog_enabled then
 "SKIP"
 else
 {
@@ -12,6 +12,6 @@ else
         namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeauthtopic.maddog_namespace),
+        data: std.toString(flowsnakeconfigmap.maddog_namespace),
     },
 }

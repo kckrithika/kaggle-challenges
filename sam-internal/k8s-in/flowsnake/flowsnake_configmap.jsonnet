@@ -209,19 +209,13 @@ local kingdom = std.extVar("kingdom");
     },
     maddog_namespace_map: {
       "prd/prd-data-flowsnake": {
-          samapp: "Flowsnake_Ops_Platform",
+          flowsnake: "Flowsnake_Ops_Platform",
       },
       "prd/prd-data-flowsnake_test": {
-          samapp: "Flowsnake_Ops_Platform",
+          flowsnake: "Flowsnake_Ops_Platform",
       },
       "prd/prd-dev-flowsnake_iot_test": {
-          samapp: "Flowsnake_Ops_Platform",
-      },
-      "prd/prd-minikube-small-flowsnake": {
-          samapp: "Flowsnake_Ops_Platform",
-      },
-      "prd/prd-minikube-big-flowsnake": {
-          samapp: "Flowsnake_Ops_Platform",
+          flowsnake: "Flowsnake_Ops_Platform",
       },
     },
     samcontroldeployer: {

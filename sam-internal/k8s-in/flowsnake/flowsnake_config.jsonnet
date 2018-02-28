@@ -1,4 +1,5 @@
 local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
@@ -31,4 +32,5 @@ local estate = std.extVar("estate");
         else
             estate,
     registry: if self.is_minikube then "minikube" else "dva-registry.internal.salesforce.com/dva",
+    funnel_endpoint: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
 }

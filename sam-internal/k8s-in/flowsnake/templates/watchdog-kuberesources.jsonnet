@@ -24,7 +24,7 @@ else
                            "-shouldBatchMetrics=true",
                            "-maxUptimeSampleSize=5",
                            "-timeout=2s",
-                           "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                           "-funnelEndpoint=" + flowsnakeconfig.funnel_endpoint + ":80",
                            "--config=/config/watchdog.json",
                            "--hostsConfigFile=/sfdchosts/hosts.json",
                        ],
