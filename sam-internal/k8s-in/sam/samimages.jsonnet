@@ -19,6 +19,9 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [thargrove] Quick test of manifest-watcher with SkipOldZip support
+        "prd,prd-samtest,manifest-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180228_152041.85ae2ce.dirty.thargrove-ltm1",
+
         # [diana.chang] Overriding prd-samtest with latest veresion of daily deployer to test the webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180228_141049.c600aa49.dirty.dianachang-ltm1",
         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180228_141049.c600aa49.dirty.dianachang-ltm1",
