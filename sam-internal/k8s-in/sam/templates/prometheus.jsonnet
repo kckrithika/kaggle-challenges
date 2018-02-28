@@ -41,12 +41,12 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                         },
                         ],
                       livenessProbe: {
-                           initialDelaySeconds: 15,
+                           initialDelaySeconds: 300,
                            httpGet: {
                                path: "/",
                                port: 9090,
                            },
-                           timeoutSeconds: 10,
+                           timeoutSeconds: 30,
                         },
                     },
                 ],

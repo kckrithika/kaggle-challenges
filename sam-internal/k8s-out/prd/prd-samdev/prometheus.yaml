@@ -24,8 +24,8 @@ spec:
           httpGet:
             path: /
             port: 9090
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+          initialDelaySeconds: 300
+          timeoutSeconds: 30
         name: prometheus
         ports:
         - containerPort: 9090
