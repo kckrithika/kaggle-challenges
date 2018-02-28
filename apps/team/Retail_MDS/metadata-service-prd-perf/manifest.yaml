@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-mds/logs
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.69
+      image: sfci/metadata-cannon/metadata-service:0.0.70
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -56,7 +56,6 @@ system:
         - name: logvol
           mountPath: /home/sfdc-mds/logs
 
-
     - name: sherpa-mds
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
       env:
@@ -78,6 +77,21 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
+
+    # TODO: Fix the image path to the relative one
+    # TODO: Change the announced name to be "metadata-service" once there's a way to provide the name used in PKI certs
+    - name: beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - retail-mds/metadata-service-prd-perf:7012
+      - retail-mds/metadata-service-prd-perf:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: metadata-service-prd-perf-lb
     function: metadata-service-prd-perf
