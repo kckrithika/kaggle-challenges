@@ -20,11 +20,13 @@ system:
         value: "/log"
       args:
       - --clusters.external-clusters[0]=geoip:HTTP2
-      - --clusters.external-clusters[1]=time:HTTP2
-      - --clusters.external-clusters[2]=search-model-executor-rpulle:HTTP2
-      - --clusters.external-clusters[3]=search-model-executor-xlt:HTTP2
-      - --clusters.external-clusters[4]=tictactoe-server-service-envoy:HTTP2
-      - --clusters.external-clusters[5]=testqa:HTTP2
+      - --clusters.external-clusters[1]=geoip-tls:HTTP2_TLS
+      - --clusters.external-clusters[2]=geoip-tls-envoy:HTTP2_TLS
+      - --clusters.external-clusters[3]=time:HTTP2
+      - --clusters.external-clusters[4]=search-model-executor-rpulle:HTTP2
+      - --clusters.external-clusters[5]=search-model-executor-xlt:HTTP2
+      - --clusters.external-clusters[6]=tictactoe-server-service-envoy:HTTP2
+      - --clusters.external-clusters[7]=testqa:HTTP2
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
