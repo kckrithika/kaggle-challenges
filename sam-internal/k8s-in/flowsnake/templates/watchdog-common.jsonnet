@@ -18,7 +18,7 @@ else
                             "-watchdogFrequency=5s",
                             "-alertThreshold=20m",
                             "-timeout=2s",
-                            "-funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80",
+                            "-funnelEndpoint=" + flowsnakeconfig.funnel_endpoint + ":80",
                             "--config=/config/watchdog.json",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                             "-emailFrequency=" + flowsnakeconfig.watchdog_email_frequency,

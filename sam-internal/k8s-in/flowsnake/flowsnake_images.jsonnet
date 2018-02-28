@@ -183,6 +183,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     # Non-Flowsnake images
     /* watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].watchdog_image_tag, */
     watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm",
+    madkub: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
 
     version_mapping: $.per_phase[$.phase].version_mapping,
 }

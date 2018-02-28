@@ -1,3 +1,4 @@
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {
     apiVersion: "v1",
     kind: "Service",
@@ -7,7 +8,7 @@
     },
     spec: {
         type: "ExternalName",
-        externalName: "ajna0-funnel1-0-prd.data.sfdc.net",
+        externalName: flowsnakeconfig.funnel_endpoint,
         ports: [
             {
                 protocol: "TCP",

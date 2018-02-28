@@ -106,8 +106,12 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                 readOnly: true,
                             },
                         ] +
-                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                        if flowsnakeconfig.maddog_enabled then
+                            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                            flowsnakeconfigmapmount.platform_cert_volumeMounts +
+                            flowsnakeconfigmapmount.maddog_volumes
+                        else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                            flowsnakeconfigmapmount.platform_cert_volumeMounts,
                     },
                 ],
                 volumes: [
@@ -130,8 +134,12 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         },
                     },
                 ] +
-                flowsnakeconfigmapmount.kubeconfig_platform_volume +
-                flowsnakeconfigmapmount.platform_cert_volume,
+                if flowsnakeconfig.maddog_enabled then
+                    flowsnakeconfigmapmount.kubeconfig_platform_volume +
+                    flowsnakeconfigmapmount.platform_cert_volume +
+                    flowsnakeconfigmapmount.maddog_volumeMounts
+                else flowsnakeconfigmapmount.kubeconfig_platform_volume +
+                    flowsnakeconfigmapmount.platform_cert_volume,
             },
         },
     },
