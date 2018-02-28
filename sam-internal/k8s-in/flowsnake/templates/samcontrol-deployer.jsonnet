@@ -1,4 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnakeimage = import "flowsnake_images.jsonnet";
 if flowsnakeconfig.is_minikube then
 "SKIP"
 else
@@ -34,7 +35,7 @@ else
                 value: "/kubeconfig/kubeconfig-platform",
               },
             ],
-            image: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001501-6ebd0f4f",
+            image: flowsnakeimage.deployer,
             livenessProbe: {
               httpGet: {
                 path: "/",
