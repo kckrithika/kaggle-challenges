@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-{
+std.prune({
   funnelEndpoint: configs.funnelVIP,
   "disable-security-check": true,
   "tnrp-endpoint": configs.tnrpArchiveEndpoint,
@@ -10,7 +10,11 @@ local configs = import "config.jsonnet";
   "email-delay": 0,
   "smtp-server": configs.smtpServer,
   sender: "sam@salesforce.com",
-  recipient: "sam@salesforce.com",
+  recipient: (
+    if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
+    else if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "phx" then "sam@salesforce.com,slb@salesforce.com"
+    else "sam@salesforce.com"
+  ),
   "ca-file": configs.caFile,
   "key-file": configs.keyFile,
   "cert-file": configs.certFile,
@@ -19,17 +23,12 @@ local configs = import "config.jsonnet";
   "max-resource-time": (if configs.kingdom == "prd" then "5m" else 300000000000),
   "delete-orphans": true,
   "resources-to-skip": ["sdn-secret.yaml"],
-}
-+ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
-  "daily-deployment-keyword": "auto",
-  tokenfile: "/var/token/token",
-  "daily-deployment-offset": "3h",
-  "daily-deployment-frequency": "6h",
-  } else {
-})
-+ (if configs.estate == "prd-sam_storage" then {
-    recipient: "storagefoundation@salesforce.com",
-  } else if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "phx" then {
-    recipient: "sam@salesforce.com,slb@salesforce.com",
-  } else {
+
+  # This is a private field which does not go to output (because it has a '::' instead of ':')
+  enableDailyDeployment:: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then true else false),
+  "daily-deployment-keyword": (if self.enableDailyDeployment then "auto"),
+  tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
+  "daily-deployment-offset": (if self.enableDailyDeployment then "3h"),
+  "daily-deployment-frequency": (if self.enableDailyDeployment then "6h"),
+
 })
