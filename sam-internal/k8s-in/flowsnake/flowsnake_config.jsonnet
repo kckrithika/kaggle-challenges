@@ -13,7 +13,7 @@ local kingdom = std.extVar("kingdom");
         // prd-data-flowsnake has a pretty/preferred CNAME that predates estate-based VIP configuration.
         "prd-data-flowsnake": "flowsnake-prd.data.sfdc.net",
         "prd-dev-flowsnake_iot_test": "dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net",
-        "prd-data-flowsnake_test": "flowsnake-test1-0-prd.data.sfdc.net", //Does not work yet
+        "prd-data-flowsnake_test": "flowsnake-test1-0-prd.data.sfdc.net",  //Does not work yet
 
         // Production VIPs (flowsnake_worker_prod estate roles) are defined in estates:
         // https://git.soma.salesforce.com/estates/estates/blob/master/conf/vips.yaml

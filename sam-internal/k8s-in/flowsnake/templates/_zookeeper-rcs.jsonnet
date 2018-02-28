@@ -1,4 +1,4 @@
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {
     connection_string:: std.join(",", ["zookeeper-" + ri + ".zookeeper-set" + ":" + $.zk_port for ri in std.range(0, $.zk_replicas - 1)]),

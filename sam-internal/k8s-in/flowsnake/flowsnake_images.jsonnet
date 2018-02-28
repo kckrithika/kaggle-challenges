@@ -1,7 +1,19 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local utils = import "util_functions.jsonnet";
 {
+    ### Global overrides - Anything here will override anything below
+    overrides: {
+        #
+        # This section lets you override any hypersam image for a given kingdom,estate,template,image.
+        # Template is the short name of the template.  For k8s-in/templates/samcontrol.jsonnet use "samcontrol"
+        # Image name
+        #
+        # Example:
+        #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+    },
+
     ### Per-phase image tags
     per_phase: {
 
@@ -16,6 +28,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             kibana_image_tag: "345",
             logloader_image_tag: "468",
             logstash_image_tag: "468",
+            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
@@ -53,6 +66,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             kibana_image_tag: "345",
             logloader_image_tag: "345",
             logstash_image_tag: "468",
+            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
@@ -83,6 +97,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             kibana_image_tag: "345",
             logloader_image_tag: "345",
             logstash_image_tag: "468",
+            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
@@ -113,6 +128,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             kibana_image_tag: "345",
             logloader_image_tag: "345",
             logstash_image_tag: "468",
+            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
@@ -142,6 +158,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             kibana_image_tag: "minikube",
             logloader_image_tag: "minikube",
             logstash_image_tag: "minikube",
+            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "minikube",
             zookeeper_image_tag: "minikube",
             version_mapping: {
@@ -185,10 +202,23 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     node_monitor: flowsnakeconfig.registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
     zookeeper: flowsnakeconfig.registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 
-    # Non-Flowsnake images
-    watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].watchdog_image_tag,
-    /* watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm", */
-    madkub: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
-    deployer: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].deployer_image_tag,
     version_mapping: $.per_phase[$.phase].version_mapping,
+
+    # Non-Flowsnake images
+    deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
+    watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
+    /* watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm", */
+    madkub: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
+
+    # image function logic borrowed from samimages.jsonnet. We currently do not use the override functionality,
+    # but benefit from the automatic DC-correct determination of which artifactrepo to use.
+    #
+    # image_functions needs to know the filename of the template we are processing
+    # Each template must set this at time of importing this file, for example:
+    #
+    # "local someteamimages = (import "someteamimages.jsonnet")  + { templateFilename:: std.thisFile };"
+    #
+    # Then we pass this again into image_functions at time of import.
+    templateFilename:: error "templateFilename must be passed at time of import",
+    local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
 }
