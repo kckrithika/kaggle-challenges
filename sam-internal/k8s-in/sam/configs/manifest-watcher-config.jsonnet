@@ -9,4 +9,5 @@ std.prune({
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
+  skipOldZips: (if configs.kingdom == "prd" then true),
 })

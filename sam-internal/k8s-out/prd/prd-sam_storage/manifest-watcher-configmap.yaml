@@ -6,6 +6,7 @@ data:
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "disableCertsCheck": true,
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "skipOldZips": true,
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive"
     }
