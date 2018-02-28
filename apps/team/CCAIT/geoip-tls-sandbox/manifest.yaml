@@ -1,3 +1,16 @@
+# Fully working manifest that provisions 2 functions:
+# Server: geoip-tls:
+#     1. geoip-database: used by geoip service
+#     2. geoip-backend: gRPC service
+#     3. beacon: announcer sidecar for geoip-tls
+#     4. sherpa: sidecar proxy for geoip-backend
+#
+# Client: geoip-tls-demo:
+#     1. geoip-frontend: gRPC client (including web ui) for accessing geoip-tls function
+#     2. sherpa: sidecar proxy for geoip-frontend
+#
+# For more info on ports see https://git.soma.salesforce.com/servicelibs/sherpa#ports
+
 apiVersion: v1
 
 system:
@@ -5,7 +18,8 @@ system:
   - name: geoip-tls
     count: 3
     containers:
-    - name: ccait-geoip-tls-database
+
+    - name: geoip-database
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-database:20170604
       # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
       args: ["-d"]
@@ -15,10 +29,11 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
       volumeMounts:
-        - mountPath: /database
-          name: maxmind-volume
+        - name: maxmind-volume
+          mountPath: /database
 
-    - name: ccait-geoip-tls-backend
+    # gRPC service that is only called directly by sherpa sidecar proxy
+    - name: geoip-backend
       # Pushed by this build: https://sconelibci.dop.sfdc.net/job/geoip/job/geoip/job/master/10
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:8d0126e7fc0ac428347444a3a458dfc68842d24e
       env:
@@ -34,10 +49,10 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - mountPath: /dw/data
-          name: maxmind-volume
-        - mountPath: /log
-          name: geoip-log-volume
+        - name: maxmind-volume
+          mountPath: /dw/data
+        - name: geoip-log-volume
+          mountPath: /log
       ports:
         - containerPort: 7020
           name: grpc
@@ -52,7 +67,9 @@ system:
           port: 15372
         initialDelaySeconds: 115
 
-    - name: geoip-tls-beacon
+    # Super simple app that announces our namespaced service: ccait/geoip-tls on port 7443 which is sherpa's
+    # incoming http2+TLS port.
+    - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
@@ -66,7 +83,7 @@ system:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: sherpa-tls-b
+    - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.0"]
       env:
@@ -76,17 +93,17 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - mountPath: /log
-          name: sherpa-log-volume
-        - name: time-tls-client-cert
+        - name: sherpa-log-volume
+          mountPath: /log
+        - name: geoip-tls-client-cert
           mountPath: /client-certs
-        - name: time-tls-server-cert
+        - name: geoip-tls-server-cert
           mountPath: /server-certs
       ports:
       - containerPort: 7443
-        name: sherpa-b-tls-in
+        name: sherpa-h2-tls
       - containerPort: 15373
-        name: sherpa-b-adm
+        name: sherpa-admin
       livenessProbe:
         exec:
           command:
@@ -110,17 +127,18 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
-    - name: time-tls-client-cert
+    - name: geoip-tls-client-cert
       maddogCert:
         type: client
-    - name: time-tls-server-cert
+    - name: geoip-tls-server-cert
       maddogCert:
         type: server
 
   - name: geoip-tls-demo
     count: 1
     containers:
-    - name: ccait-geoip-frontend
+
+    - name: geoip-frontend
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
       env:
         - name: JAVA_OPTS
@@ -147,7 +165,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
 
-    - name: sherpa-tls-f
+    - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.0"]
       env:
@@ -157,15 +175,15 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - mountPath: /log
-          name: sherpa-log-volume
-        - name: time-tls-client-cert
+        - name: sherpa-log-volume
+          mountPath: /log
+        - name: geoip-tls-demo-client-cert
           mountPath: /client-certs
-        - name: time-tls-server-cert
+        - name: geoip-tls-demo-server-cert
           mountPath: /server-certs
       ports:
       - containerPort: 15373
-        name: sherpa-f-adm
+        name: sherpa-admin
       livenessProbe:
         exec:
           command:
@@ -182,15 +200,15 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
-    - name: time-tls-client-cert
+    - name: geoip-tls-demo-client-cert
       maddogCert:
         type: client
-    - name: time-tls-server-cert
+    - name: geoip-tls-demo-server-cert
       maddogCert:
         type: server
 
   loadbalancers:
-  - lbname: ccait-geoip-tls-frontend-lb
+  - lbname: geoip-tls-frontend-lb
     function: geoip-tls-demo
     slbEnabled: true
     nodeExposed: true
