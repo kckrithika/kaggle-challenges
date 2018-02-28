@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: glok-set
+  name: glok-set
+  namespace: flowsnake
+spec:
+  clusterIP: None
+  ports:
+  - name: k9092
+    port: 9092
+  selector:
+    app: glok

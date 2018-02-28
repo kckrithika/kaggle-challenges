@@ -37,6 +37,12 @@ local kingdom = std.extVar("kingdom");
         "prd/prd-minikube-big-flowsnake": [
             "Flowsnake_Ops_Platform",
         ],
+        "iad/iad-flowsnake_prod": [
+        ],
+        "ord/ord-flowsnake_prod": [
+        ],
+        "phx/phx-flowsnake_prod": [
+        ],
     },
     topic_grants_map: {
         "prd/prd-data-flowsnake": {
@@ -205,6 +211,12 @@ local kingdom = std.extVar("kingdom");
                 "sfdc.test.flowsnake__prd.ajna_local__logs",
                 "sfdc.prod.flowsnake__prd.ajna_local__logs",
             ],
+        },
+        "iad/iad-flowsnake_prod": {
+        },
+        "ord/ord-flowsnake_prod": {
+        },
+        "phx/phx-flowsnake_prod": {
         },
     },
     maddog_namespace_map: {

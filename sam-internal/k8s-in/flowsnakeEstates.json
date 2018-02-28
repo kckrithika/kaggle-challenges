@@ -1,5 +1,8 @@
 {
   "kingdomEstates": [
+    "iad/iad-flowsnake_prod",
+    "ord/ord-flowsnake_prod",
+    "phx/phx-flowsnake_prod",
     "prd/prd-data-flowsnake",
     "prd/prd-data-flowsnake_test",
     "prd/prd-dev-flowsnake_iot_test"
