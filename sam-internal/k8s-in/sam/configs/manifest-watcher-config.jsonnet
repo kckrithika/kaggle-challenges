@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-{
+std.prune({
   disableCertsCheck: true,
   # [thargrove] Quick fix because 1-1 in this kingdom is returning stale latest.  TODO: Remove as soon as we have protection in manifest-watcher
   # from using an older zip
@@ -9,4 +9,4 @@ local configs = import "config.jsonnet";
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
-}
+})
