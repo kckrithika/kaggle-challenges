@@ -17,8 +17,9 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             logloader_image_tag: "468",
             logstash_image_tag: "468",
             nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001622-cbc44617",
+            watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
+            deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -52,8 +53,9 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             logloader_image_tag: "345",
             logstash_image_tag: "468",
             nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001622-cbc44617",
+            watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
+            deployer_image_tag: "sam-0001501-6ebd0f4f",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -81,8 +83,9 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             logloader_image_tag: "345",
             logstash_image_tag: "468",
             nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001027-676096c4",
+            watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
+            deployer_image_tag: "sam-0001501-6ebd0f4f",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -110,8 +113,9 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             logloader_image_tag: "345",
             logstash_image_tag: "468",
             nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001027-676096c4",
+            watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
+            deployer_image_tag: "sam-0001501-6ebd0f4f",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -181,9 +185,9 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     zookeeper: flowsnakeconfig.registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 
     # Non-Flowsnake images
-    /* watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].watchdog_image_tag, */
-    watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm",
+    watchdog: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].watchdog_image_tag,
+    /* watchdog: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180124_165559.cbc44617.dirty.jinxingwang-wsm", */
     madkub: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
-
+    deployer: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:" + $.per_phase[$.phase].deployer_image_tag,
     version_mapping: $.per_phase[$.phase].version_mapping,
 }
