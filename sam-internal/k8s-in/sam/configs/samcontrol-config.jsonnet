@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-{
+std.prune({
   debug: true,
   dockerregistry: configs.registry,
   k8sapiserver: "",
@@ -33,16 +33,12 @@ local utils = import "util_functions.jsonnet";
   slbConfigInLabels: (if configs.kingdom == "prd" then true else false),
   slbConfigInAnnotations: (if configs.kingdom == "prd" then true else false),
 
-}
-+ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then {
-    k4aInitContainerImage: samimages.k4aInitContainerImage,
-  } else {})
-+ (if configs.estate == "prd-samtest" then {
-    livenessProbePort: "22545",
-  } else {})
-+ (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
-    # [mayank] This flag enables dns resolution for pods deployed by samcontroller
-    # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
-    # we will enable kubedns soon and then we can enable it for prod as well.
-    enableDNS: true,
-  } else {})
+  k4aInitContainerImage: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then samimages.k4aInitContainerImage),
+
+  livenessProbePort: (if configs.estate == "prd-samtest" then "22545"),
+
+  # [mayank] This flag enables dns resolution for pods deployed by samcontroller
+  # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
+  # we will enable kubedns soon and then we can enable it for prod as well.
+  enableDNS: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then true),
+})

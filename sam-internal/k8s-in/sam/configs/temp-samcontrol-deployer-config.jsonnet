@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 
-{
+std.prune({
   funnelEndpoint: configs.funnelVIP,
   "disable-security-check": true,
   "tnrp-endpoint": configs.tnrpArchiveEndpoint,
@@ -21,8 +21,5 @@ local configs = import "config.jsonnet";
   "etcd-directory": "/temp/secrets/",
   "src-root": "temp-secrets/",
   "delete-orphans": false,
-} + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
-
-        "deployer-port": 9123,
-
-    } else {})
+  "deployer-port": (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 9123),
+})
