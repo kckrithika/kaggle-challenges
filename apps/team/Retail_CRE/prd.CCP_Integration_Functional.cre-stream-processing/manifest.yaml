@@ -49,10 +49,8 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 30
-          periodSeconds: 30
-          failureThreshold: 5
+          - ls
+        initialDelaySeconds: 30
     volumes:
     - name: logvol
       hostPath:
