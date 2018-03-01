@@ -8,6 +8,7 @@ data:
     0.9.5 = 487
     0.9.6 = 512
     memoized-k8s-itest-ready = memoized-k8s-itest-ready
+    tc-will-itest-ready = tc-will-itest-ready
 kind: ConfigMap
 metadata:
   creationTimestamp: null
