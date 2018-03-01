@@ -37,9 +37,8 @@ if configs.kingdom == "prd" then {
                                 "/sdn/slb-node-api",
                                 "--port=" + slbports.slb.slbNodeApiPort,
                                 "--configDir=" + slbconfigs.configDir,
-                            ] + if configs.estate == "prd-sdc" then [
                                 "--log_dir=" + slbconfigs.logsDir,
-                            ] else [],
+                            ],
                             volumeMounts: configs.filter_empty([
                                 slbconfigs.slb_volume_mount,
                                 slbconfigs.logs_volume_mount,
