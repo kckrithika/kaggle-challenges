@@ -45,6 +45,8 @@ system:
         value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       - name: RC_WD_LOGGER_LEVEL
         value: debug
+      - name: RC_WD_LIVENESS_FRESHNESSMS
+        value: 130000
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_REPORTCOLLECTOR_PROVIDER_HOST=reportcollector-${KINGDOM}.data.sfdc.net ;
