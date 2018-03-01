@@ -26,6 +26,11 @@ spec:
                 - slb-ipvs-a
               - key: illumio
                 operator: DoesNotExist
+              - key: pool
+                operator: In
+                values:
+                - prd-sdc
+                - prd-slb
       containers:
       - command:
         - /sdn/slb-config-processor
