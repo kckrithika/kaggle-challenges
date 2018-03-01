@@ -123,7 +123,7 @@ system:
         - name: GRPC_ROUTING_GEOIP_HOST
           value: geoip-tls-envoy.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
-          value: 5443
+          value: 7011 # This is different than linkerd!! in Envoy we share plaintext and mTLS on the same listener
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
