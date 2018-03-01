@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      image: tnrp/csc-health/report-collector:1.13.1-0000247-a03c62e2
       ports:
       - name: provider
         containerPort: 8080
@@ -58,8 +58,8 @@ system:
         value: 8444
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
-      - name: ReportCollector_app_https_caCertificate
-        value: /var/lib/report-collector/certificates/ca.crt
+      - name: ReportCollector_app_https_caCertificates
+        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
       - name: ReportCollector_app_https_certificate
         value: /var/lib/report-collector/certificates/rc_server.crt
       - name: ReportCollector_app_https_privateKey
@@ -94,7 +94,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.10.0-0000166-c8306a6e
+      image: tnrp/csc-health/report-collector:1.13.1-0000247-a03c62e2
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
