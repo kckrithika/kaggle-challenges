@@ -34,7 +34,7 @@ local utils = import "util_functions.jsonnet";
         # [cbatra] [Important]  If we update an initContainerImage then it is not promoted to prod by default
         # This is just a hack for now until we fix the logic in SMB image promotion to also add images for InitContainers/sidecars
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
-        "frf,frf-sam,watchdog-puppet,hypersam": "sam-0001746-68046186",
+        "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
         # [d.smith] Early push of new hypersam - fixes snapshotter
         "frf,frf-sam,snapshoter,hypersam": "sam-0001725-d0637219",
