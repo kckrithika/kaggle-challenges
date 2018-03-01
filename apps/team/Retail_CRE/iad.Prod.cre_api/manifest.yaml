@@ -9,18 +9,22 @@ system:
     count: 3
     containers:
     - name: cre-api-iad-prod
-      image: sfci/cre/cre-api:0.0.1.4.master.9389de9.54
+      image: sfci/cre/cre-api:0.0.1.14.master.9099272.64
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-shared-dev
       ports:
       - containerPort: 8080
       - containerPort: 7020
+      - containerPort: 15372
       livenessProbe:
-        exec:
-            command:
-            - ls
-        initialDelaySeconds: 30
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
       volumeMounts:
       - mountPath: /myclientcert
         name: myclientcert
