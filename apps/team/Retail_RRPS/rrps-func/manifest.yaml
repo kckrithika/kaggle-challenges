@@ -10,9 +10,13 @@ system:
         type: server
         lbnames:
         - rrps-func-lb
+    # maps the retail  volumnMount to a directory on the host machine
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-retail/logs
     containers:
     - name: rrps-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-runtime:0.0.1.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-runtime:0.0.1.2
       ports:
       - containerPort: 7123
       - containerPort: 15372
@@ -32,6 +36,9 @@ system:
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
+      #mount splunk logs mount
+      - name: logvol
+        mountPath: /home/retail-setup/logs
 
   loadbalancers:
   - lbname: rrps-func-lb
