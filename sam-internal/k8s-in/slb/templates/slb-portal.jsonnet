@@ -32,7 +32,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        image: slbimages.hypersdn,
                        command: [
                            "/sdn/slb-portal",
-                           "--configDir=" + slbconfigs.configDir,
+                           ] + (if configs.estate == "prd-sdc" then []
+                                                        else [
+                                                         "--configDir=" + slbconfigs.configDir,
+                                                        ]) +
+                           [
                            "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                            "--port=" + portconfigs.slb.slbPortalServicePort,
                        ],
@@ -52,7 +56,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            },
+            } + if configs.estate == "prd-sdc" then {
+               hostNetwork: true,
+            } else {},
         },
     },
 } else "SKIP"
