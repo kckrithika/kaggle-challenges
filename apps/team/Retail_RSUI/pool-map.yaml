@@ -6,3 +6,6 @@ apps:
   - name: prd/prd-sam_crosscloudsetup
   rsui-integ:
   - name: prd/prd-sam_crosscloudsetup
+  rsui-production:
+  - name: iad/iad-sam_crosscloudsetup
+  - name: ord/ord-sam_crosscloudsetup
