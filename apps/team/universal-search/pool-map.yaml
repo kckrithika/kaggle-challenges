@@ -1,3 +1,7 @@
 apps:
+  iad-universal-search:
+    - iad/iad-sam_universalsearchmt
+  ord-universal-search:
+    - ord/ord-sam_universalsearchmt
   prd-universal-search:
     - prd/prd-sam_universalsearchmt
