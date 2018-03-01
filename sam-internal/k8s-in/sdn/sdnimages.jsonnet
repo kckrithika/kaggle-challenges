@@ -29,7 +29,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
-            hypersdn: "v-0000640-2e73cf4c",
+            hypersdn: "v-0000668-bae2cf08",
             bird: "v-0000014-b0a5951d",
             },
 
