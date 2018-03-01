@@ -31,6 +31,11 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
+        # [cbatra] [Important]  If we update an initContainerImage then it is not promoted to prod by default
+        # This is just a hack for now until we fix the logic in SMB image promotion to also add images for InitContainers/sidecars
+        # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
+        "frf,frf-sam,watchdog-puppet,hypersam": "sam-0001746-68046186",
+
         # [d.smith] Early push of new hypersam - fixes snapshotter
         "frf,frf-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001725-d0637219",
@@ -131,6 +136,9 @@ local utils = import "util_functions.jsonnet";
         ),
 
     # Static images that do not go in phases
+    # [Important Note]: When you are changing images in for initContainers/sidecars  they are not promoted to prod by default. This need to be
+    # fixed in the image promotion logic in SMB. For now the workaround is to update the image of a watchdog in one prod DC so that the image is promoted
+    # Please be very careful when making such a change
     static: {
         k8sproxy: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
         prometheus: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/prometheus:20180124",
