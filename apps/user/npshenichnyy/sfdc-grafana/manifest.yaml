@@ -15,6 +15,10 @@ system:
         value: "http://sfdc-grafanalb.user-npshenichnyy.prd-sam.prd.slb.sfdc.net:64135"
       ports:
         - containerPort: 3000
+      volumeMounts:
+      - mountPath: /etc/grafana/provisioning/datasources/
+        name: secretvol
+        readOnly: true
       livenessProbe:
         initialDelaySeconds: 30
         timeoutSeconds: 10
@@ -27,6 +31,12 @@ system:
         httpGet:
           path: /
           port: 3000
+
+    volumes:
+      - name: secretvol
+        k4aSecret:
+          secretName: grafanadatasources
+
   loadbalancers:
   - lbname: sfdc-grafanalb
     function: sfdc-grafana
