@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-sp-prd-ccp-integration-performance
-      image: sfci/cre/cre-stream-processing:0.0.1.12.master.b4c1e01.80
+      image: sfci/cre/cre-stream-processing:0.0.1.14.master.e13ca0d.82
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -69,7 +69,7 @@ system:
   - lbname: cre-sp-prd-ccp-integration-performance-lb
     function: cre-stream-processing-prd-ccp-integration-performance
     nodeExposed: true
-    slbenabled: true    
+    slbenabled: true
     ports:
       - port: 8085
         targetport: 8080
