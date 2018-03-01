@@ -31,7 +31,7 @@ else
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              "https://10.254.208.254:32007",
+              "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
               "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
@@ -107,7 +107,7 @@ else
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              "https://10.254.208.254:32007",
+              "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
               "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",

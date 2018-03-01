@@ -34,6 +34,20 @@ local kingdom = std.extVar("kingdom");
         "prd-dev-flowsnake_iot_test",
     ],
     maddog_enabled: !self.is_minikube && std.count(self.maddog_disabled_estates, estate) == 0,
+
+    host_ca_cert_path: if self.maddog_enabled then
+        "/etc/pki_service/ca/cabundle.pem"
+      else
+        "/data/certs/ca.crt",
+    host_platform_client_cert_path: if self.maddog_enabled then
+        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
+      else
+        "/data/certs/hostcert.crt",
+    host_platform_client_key_path: if self.maddog_enabled then
+        "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
+      else
+        "/data/certs/hostcert.key",
+
     fleet_name: if self.is_minikube then
             # See flowsnake-platform/flowsnake-config
             "minikube"
@@ -45,4 +59,6 @@ local kingdom = std.extVar("kingdom");
     funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
     funnel_vip_and_port: $.funnel_vip + ":80",
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
+
+    sdn_enabled: !(estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" || self.is_minikube),
 }

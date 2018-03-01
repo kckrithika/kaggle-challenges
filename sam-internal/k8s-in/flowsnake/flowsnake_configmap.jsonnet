@@ -1,5 +1,8 @@
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local samconfig = import "config.jsonnet";
 {
     auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else error "No matching auth group name: " + kingdom + "/" + estate),
     topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic grants name: " + kingdom + "/" + estate),
@@ -244,61 +247,61 @@ local kingdom = std.extVar("kingdom");
         "delete-orphans": false,
         "disable-rollback": true,
         "disable-security-check": true,
-        "override-control-estate": "/prd/prd-sam",
+        "override-control-estate": "/" + kingdom + "/" + kingdom + "-sam",
         "orphan-namespaces": "flowsnake",
-        funnelEndpoint: "ajna0-funnel1-0-prd.data.sfdc.net:80",
+        funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
         "max-resource-time": 300000000000,
         "poll-delay": 30000000000,
         recipient: "flowsnake@salesforce.com",
         "resource-cooldown": 15000000000,
         "resource-progression-timeout": 120000000000,
         sender: "flowsnake@salesforce.com",
-        "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
-        "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive",
-    } +
-    if estate == "prd-data-flowsnake_test" then
-    {
-        "ca-file": "/etc/pki_service/ca/cabundle.pem",
-        "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+        "smtp-server": samconfig.smtpServer,
+        "tnrp-endpoint": samconfig.tnrpArchiveEndpoint,
+        "ca-file": flowsnakeconfig.host_ca_cert_path,
+        "cert-file": flowsnakeconfig.host_platform_client_cert_path,
+        "key-file": flowsnakeconfig.host_platform_client_key_path,
         "dry-run": false,
-        "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
         "resources-to-skip": [
-          "_flowsnake-sdn-secret.yaml",
-        ],
-    }
-    else {
-        "ca-file": "/data/certs/ca.crt",
-        "cert-file": "/data/certs/hostcert.crt",
-        "dry-run": false,
-        "key-file": "/data/certs/hostcert.key",
-        "resources-to-skip": [
-          "sdn-bird.yaml",
-          "sdn-cleanup.yaml",
-          "sdn-hairpin-setter.yaml",
-          "sdn-peering-agent.yaml",
-          "sdn-ping-watchdog.yaml",
-          "sdn-route-watchdog.yaml",
-          "sdn-secret-agent.yaml",
-          "sdn-vault-agent.yaml",
-          "_flowsnake-sdn-secret.yaml",
-          "samcontrol-deployer.yaml",
+          ] +
+          (if flowsnakeconfig.sdn_enabled then [
+              //TODO: figure out if we should still be skipping this
+              "_flowsnake-sdn-secret.yaml",
+          ] else [
+              "sdn-bird.yaml",
+              "sdn-cleanup.yaml",
+              "sdn-hairpin-setter.yaml",
+              "sdn-peering-agent.yaml",
+              "sdn-ping-watchdog.yaml",
+              "sdn-route-watchdog.yaml",
+              "sdn-secret-agent.yaml",
+              "sdn-vault-agent.yaml",
+              "_flowsnake-sdn-secret.yaml",
+          ]) +
+          (if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then [
+              //TODO: re-enable Autodeployer self-updates in all estates
+              "samcontrol-deployer.yaml",
+          ] else []) +
+          (if estate == "prd-data-flowsnake_test" then [
+          ] else [
+          //TODO: Why are we skipping this?
           "deepsea-kdc-svc.yaml",
-        ],
+          ]),
     },
     watchdog_config: {
-        "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-        "deployer-imageName": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180123_112004.cbc44617.dirty.jinxingwang-wsm",
-        "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
+        "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
+        "deployer-imageName": flowsnakeimage.deployer,
+        "deployer-rcImtEndpoint": samconfig.rcImtEndpoint,
         "deployer-recipient": "flowsnake@salesforce.com",
         "deployer-sender": "flowsnake@salesforce.com",
-        "deployer-smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+        "deployer-smtpServer": samconfig.smtpServer,
         deploymentNamespacePrefixWhitelist: "flowsnake",
         "email-subject-prefix": "FLOWSNAKEWD",
         enableMaddogCertChecks: true,
         enableStatefulChecks: true,
         enableStatefulPVChecks: true,
-        funnelEndpoint: "ajna0-funnel1-0-prd.data.sfdc.net:80",
-        imageName: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180123_112004.cbc44617.dirty.jinxingwang-wsm",
+        funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
+        imageName: flowsnakeimage.watchdog,
         kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
         kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake",
         maxPVCAge: 420000000000,
@@ -315,11 +318,11 @@ local kingdom = std.extVar("kingdom");
         },
         publishAlertsToKafka: false,
         publishAllReportsToKafka: false,
-        rcImtEndpoint: "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
+        rcImtEndpoint: samconfig.rcImtEndpoint,
         recipient: "flowsnake@salesforce.com",
         sdpEndpoint: "http://localhost:39999",
         sender: "flowsnake@salesforce.com",
-        smtpServer: "rd1-mta1-4-sfm.ops.sfdc.net:25",
+        smtpServer: samconfig.smtpServer,
         syntheticPVRetrytimeout: 420000000000,
         syntheticretrytimeout: 420000000000,
         tlsEnabled: true,
