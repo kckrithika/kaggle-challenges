@@ -2,18 +2,18 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: temp-manifest-watcher
-  name: temp-manifest-watcher
+    name: temp-crd-watcher
+  name: temp-crd-watcher
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: temp-manifest-watcher
+      name: temp-crd-watcher
   template:
     metadata:
       labels:
         apptype: control
-        name: temp-manifest-watcher
+        name: temp-crd-watcher
       namespace: sam-system
     spec:
       containers:
@@ -27,8 +27,8 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001747-8c6b4886
-        name: temp-manifest-watcher
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001748-8e8506b2
+        name: temp-crd-watcher
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -57,7 +57,7 @@ spec:
           path: /manifests
         name: sfdc-volume
       - configMap:
-          name: temp-manifest-watcher
+          name: temp-crd-watcher
         name: config
       - hostPath:
           path: /etc/kubernetes

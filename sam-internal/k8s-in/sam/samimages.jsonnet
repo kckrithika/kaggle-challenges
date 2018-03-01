@@ -19,6 +19,12 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [xiao.zhou] fix temp-crd-watcher
+        "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0001748-8e8506b2",
+        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0001748-8e8506b2",
+        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001748-8e8506b2",
+
+
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",

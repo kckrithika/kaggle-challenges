@@ -10,5 +10,6 @@ local configs = import "config.jsonnet";
   lockName: "/locks/tempmanifestwatcher",
   crdEnabled: true,
   crdDeletionEnabled: true,
-  endpointRepoName: configs.endpoint,
+  endpointRepoName: (if configs.kingdom == "prd" then "test-manifests"),
+  manifestV1Enabled: false,
 }

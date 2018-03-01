@@ -7,14 +7,15 @@ data:
       "crdDeletionEnabled": true,
       "crdEnabled": true,
       "disableCertsCheck": true,
-      "endpointRepoName": null,
+      "endpointRepoName": "test-manifests",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "lockName": "/locks/tempmanifestwatcher",
+      "manifestV1Enabled": false,
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo2-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: temp-manifest-watcher
+  name: temp-crd-watcher
   namespace: sam-system

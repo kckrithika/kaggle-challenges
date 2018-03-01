@@ -5,10 +5,10 @@ if configs.kingdom == "prd" then
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "temp-manifest-watcher",
+      name: "temp-crd-watcher",
       namespace: "sam-system",
     },
     data: {
-      "tempmanifestwatcher.json": std.toString(import "configs/temp-manifest-watcher-config.jsonnet"),
+      "tempmanifestwatcher.json": std.toString(import "configs/temp-crd-watcher-config.jsonnet"),
     },
 } else "SKIP"

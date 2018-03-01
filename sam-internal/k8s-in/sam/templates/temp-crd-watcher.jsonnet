@@ -11,7 +11,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "temp-manifest-watcher",
+                        name: "temp-crd-watcher",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
                            "/sam/manifest-watcher",
@@ -43,7 +43,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         },
                         name: "sfdc-volume",
                     },
-                    configs.config_volume("temp-manifest-watcher"),
+                    configs.config_volume("temp-crd-watcher"),
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
@@ -56,7 +56,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
             },
             metadata: {
                 labels: {
-                    name: "temp-manifest-watcher",
+                    name: "temp-crd-watcher",
                     apptype: "control",
                 },
                 namespace: "sam-system",
@@ -64,15 +64,15 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
         },
         selector: {
             matchLabels: {
-                name: "temp-manifest-watcher",
+                name: "temp-crd-watcher",
             },
         },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "temp-manifest-watcher",
+            name: "temp-crd-watcher",
         },
-        name: "temp-manifest-watcher",
+        name: "temp-crd-watcher",
     },
 } else "SKIP"
