@@ -200,12 +200,6 @@ local utils = import "util_functions.jsonnet",
         },
     },
 
-    # [xiao] For testing CRD in prd
-    endpoint: (
-        if estate == "prd-samtest" || estate == "prd-samdev" || estate == "prd-sam" then
-            "test-manifests"
-    ),
-
     # For apps that use sfdcLocation2
     sfdchosts_volume_mount: {
         mountPath: "/sfdchosts",

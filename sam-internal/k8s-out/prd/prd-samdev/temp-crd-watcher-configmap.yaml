@@ -17,5 +17,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: temp-manifest-watcher
+  name: temp-crd-watcher
   namespace: sam-system

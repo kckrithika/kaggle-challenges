@@ -5,7 +5,7 @@ if configs.kingdom == "prd" then
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "temp-manifest-watcher",
+      name: "temp-crd-watcher",
       namespace: "sam-system",
     },
     data: {

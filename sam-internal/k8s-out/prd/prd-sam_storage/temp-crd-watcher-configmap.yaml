@@ -7,7 +7,7 @@ data:
       "crdDeletionEnabled": true,
       "crdEnabled": true,
       "disableCertsCheck": true,
-      "endpointRepoName": null,
+      "endpointRepoName": "test-manifests",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "lockName": "/locks/tempmanifestwatcher",
       "manifestV1Enabled": false,
@@ -17,5 +17,5 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
-  name: temp-manifest-watcher
+  name: temp-crd-watcher
   namespace: sam-system
