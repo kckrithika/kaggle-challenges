@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search:0.3.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/athrogmorton/universal-search:0.5.0
       ports:
       - name: service-port
         containerPort: 7020
@@ -83,7 +83,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
-      - universal-search:DATACENTER_ALLENV:7012
+      - universal-search-athrogmorton:DATACENTER_ALLENV:7012
       # Change to 7443 once TLS in SAM containers is ready, see https://gus.lightning.force.com/lightning/r/0D5B000000aanOjKAI/view  
       livenessProbe:
         initialDelaySeconds: 5
