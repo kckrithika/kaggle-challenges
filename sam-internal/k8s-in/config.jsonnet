@@ -202,7 +202,7 @@ local utils = import "util_functions.jsonnet",
 
     # [xiao] For testing CRD in prd
     endpoint: (
-        if estate == "prd-samtest" then
+        if estate == "prd-samtest" || estate == "prd-samdev" || estate == "prd-sam" then
             "test-manifests"
     ),
 

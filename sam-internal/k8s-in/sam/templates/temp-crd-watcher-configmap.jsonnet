@@ -9,6 +9,6 @@ if configs.kingdom == "prd" then
       namespace: "sam-system",
     },
     data: {
-      "tempmanifestwatcher.json": std.toString(import "configs/temp-manifest-watcher-config.jsonnet"),
+      "tempmanifestwatcher.json": std.toString(import "configs/temp-crd-watcher-config.jsonnet"),
     },
 } else "SKIP"

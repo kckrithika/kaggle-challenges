@@ -11,4 +11,5 @@ local configs = import "config.jsonnet";
   crdEnabled: true,
   crdDeletionEnabled: true,
   endpointRepoName: configs.endpoint,
+  manifestV1Enabled: false,
 }

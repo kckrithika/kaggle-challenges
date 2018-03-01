@@ -7,9 +7,10 @@ data:
       "crdDeletionEnabled": true,
       "crdEnabled": true,
       "disableCertsCheck": true,
-      "endpointRepoName": "test-manifests",
+      "endpointRepoName": null,
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "lockName": "/locks/tempmanifestwatcher",
+      "manifestV1Enabled": false,
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo2-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
     }
