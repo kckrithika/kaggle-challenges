@@ -69,7 +69,7 @@ system:
           port: 15372
         initialDelaySeconds: 115
 
-    # Super simple app that announces our namespaced service: ccait/geoip-tls on port 7443 which is sherpa's
+    # Super simple app that announces our namespaced service: user-drichelson/geoip-tls/samapp on port 7443 which is sherpa's
     # incoming http2+TLS port.
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
@@ -78,7 +78,7 @@ system:
         value: "sam"
       args:
       - -endpoint
-      - ccait/geoip-tls/samapp:DATACENTER:7443
+      - user-drichelson/geoip-tls/samapp:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -148,7 +148,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: GRPC_ROUTING_GEOIP_HOST
-          value: samapp.geoip-tls.ccait.localhost.mesh.force.com
+          value: samapp.geoip-tls.user-drichelson.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 5443
       resources:
