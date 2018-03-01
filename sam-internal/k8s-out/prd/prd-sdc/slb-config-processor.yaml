@@ -24,13 +24,13 @@ spec:
                 values:
                 - slb-nginx-a
                 - slb-ipvs-a
-              - key: illumio
-                operator: DoesNotExist
               - key: pool
                 operator: In
                 values:
                 - prd-sdc
                 - prd-slb
+              - key: illumio
+                operator: DoesNotExist
       containers:
       - command:
         - /sdn/slb-config-processor
