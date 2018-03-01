@@ -78,7 +78,7 @@ system:
         value: "sam"
       args:
       - -endpoint
-      - user-drichelson/geoip-tls/samapp:DATACENTER:7443
+      - samapp/user-drichelson/geoip-tls:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -148,7 +148,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: GRPC_ROUTING_GEOIP_HOST
-          value: samapp.geoip-tls.user-drichelson.localhost.mesh.force.com
+          value: geoip-tls.user-drichelson.samapp.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 5443
       resources:
