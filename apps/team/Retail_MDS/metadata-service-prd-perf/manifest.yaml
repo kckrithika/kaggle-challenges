@@ -84,8 +84,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
-      - retail-mds/metadata-service-prd-perf:7012
-      - retail-mds/metadata-service-prd-perf:7443
+      - retail-mds/metadata-service-prd-perf:DATACENTER:7012
+      - retail-mds/metadata-service-prd-perf:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
