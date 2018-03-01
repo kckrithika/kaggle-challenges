@@ -24,6 +24,11 @@ spec:
                 values:
                 - slb-nginx-a
                 - slb-ipvs-a
+              - key: pool
+                operator: In
+                values:
+                - frf-sam
+                - frf-slb
       containers:
       - command:
         - /sdn/slb-config-processor

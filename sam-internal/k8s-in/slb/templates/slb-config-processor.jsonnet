@@ -36,19 +36,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                                              operator: "NotIn",
                                                                              values: ["slb-nginx-a", "slb-ipvs-a"],
                                                                           },
+                                                                          {
+                                                                             key: "pool",
+                                                                             operator: "In",
+                                                                             values: [configs.estate, configs.kingdom + "-slb"],
+                                                                          },
 
                                                                         ] + (if configs.estate == "prd-sdc" then [
                                                                            {
                                                                              key: "illumio",
                                                                              operator: "DoesNotExist",
                                                                            },
-                                                                        ] else [])
-                                                                        + (if configs.kingdom == "prd" then [
-                                                                           {
-                                                                             key: "pool",
-                                                                             operator: "In",
-                                                                             values: [configs.estate, configs.kingdom + "-slb"],
-                                                                                                                                                      },
                                                                         ] else []),
                                                                      },
                                                                    ],
