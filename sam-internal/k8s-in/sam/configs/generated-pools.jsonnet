@@ -689,6 +689,18 @@
     },
     {
       "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_universalsearchmt",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
@@ -900,6 +912,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_sfstore",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_universalsearchmt",
       "kingdom": "ord",
       "superPod": "None"
     },
