@@ -24,6 +24,11 @@ spec:
                 values:
                 - slb-nginx-a
                 - slb-ipvs-a
+              - key: pool
+                operator: In
+                values:
+                - prd-samtest
+                - prd-slb
       containers:
       - command:
         - /sdn/slb-config-processor
