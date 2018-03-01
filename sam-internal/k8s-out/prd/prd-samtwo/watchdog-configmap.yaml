@@ -22,7 +22,7 @@ data:
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "sam-system,csc-sam",
       "laddr": "0.0.0.0:8083",
-      "m_tnrpEndpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
+      "m_tnrpEndpoint": "https://ops0-piperepo2-1-prd.eng.sfdc.net/",
       "maddogCommonCerts": [
         "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
         "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem",
