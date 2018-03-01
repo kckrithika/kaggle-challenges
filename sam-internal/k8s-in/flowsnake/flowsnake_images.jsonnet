@@ -9,7 +9,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         "1": {
             canary_image_tag: "345",
             es_image_tag: "503",
-            fleetService_image_tag: "468",
+            fleetService_image_tag: "tc-will-itest-ready",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "345",
             ingressDefaultBackend_image_tag: "345",
@@ -34,6 +34,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                 # only copy above to phase 2
                 {
                   "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
+                  "tc-will-itest-ready": "tc-will-itest-ready",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
