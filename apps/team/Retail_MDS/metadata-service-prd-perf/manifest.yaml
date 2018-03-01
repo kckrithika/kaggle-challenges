@@ -55,7 +55,7 @@ system:
           port: 15523
       volumeMounts:
         - name: mds-client-cert
-          mountPath: /certificates
+          mountPath: /client-certs
         # TODO: Remove, not needed by MDS
         - name:  mds-server-cert
           mountPath: /server-certs
