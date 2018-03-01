@@ -52,7 +52,7 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
