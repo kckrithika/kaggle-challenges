@@ -26,6 +26,20 @@ else
       },
       spec: {
         containers: [
+            {
+            name: "cert-secretizer",
+            image: flowsnakeimage.cert_secretizer,
+            volumeMounts: [
+              {
+                mountPath: "/certToSecretConfigs",
+                name: "certs-to-secrets",
+              },
+              {
+                mountPath: "/certs",
+                name: "datacerts",
+              },
+            ],
+          },
           {
             name: "sam-madkub-integration-refresher",
             args: [
@@ -177,6 +191,12 @@ else
         ],
         restartPolicy: "Always",
         volumes: [
+          {
+            name: "certs-to-secrets",
+            configMap: {
+              name: "certs-to-secrets",
+            },
+          },
           {
             name: "kubeconfig",
             hostPath: {
