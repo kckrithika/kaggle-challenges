@@ -25,6 +25,8 @@ system:
         value: /servercerts
       - name: PKI_MONITORDIR
         value: /servercerts/server
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
