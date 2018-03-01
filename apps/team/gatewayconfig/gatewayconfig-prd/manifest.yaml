@@ -1,0 +1,34 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - kbotha@salesforce.com
+      - gateway@salesforce.com
+  functions:
+  - name: default
+    count: 2
+    hostnetwork: true
+    containers:
+    - name: gatewayconfig
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2017-07-11a
+      args:
+        - start
+        - --settings.path=-.-.sfm.-.gatewayconfig
+        - --superpod.name=-
+      ports:
+      - containerPort: 9133
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 20
+        periodSeconds: 15
+        httpGet:
+          path: /api
+          port: 9133
+  loadbalancers:
+  - lbname: gatewayconfiglb
+    #nodeexposed: true
+    function: default
+    ports:
+      - port: 9133
+        targetport: 9133
