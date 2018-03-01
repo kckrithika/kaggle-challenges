@@ -37,14 +37,14 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
-    - name: beacon
+    - name: beacon-eaas
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       args:
       - -endpoint
-      - user-pkonieczny/eaas:DATACENTER:7443
+      - samapp/user-pkonieczny/eaas:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
