@@ -25,7 +25,7 @@ std.prune({
   "resources-to-skip": ["sdn-secret.yaml"],
 
   # This is a private field which does not go to output (because it has a '::' instead of ':')
-  enableDailyDeployment:: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then false else false),
+  enableDailyDeployment:: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then true else false),
   "daily-deployment-keyword": (if self.enableDailyDeployment then "auto"),
   tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
   "daily-deployment-offset": (if self.enableDailyDeployment then "3h"),
