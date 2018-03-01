@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: datapool-service
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/insights/datapoolservice:08991e6
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-rc/sfci/insights/datapoolservice:a9120b2
       ports:
       - containerPort: 7020
         name: grpc
