@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: sfci/cre/cre-api:0.0.1.14.master.9099272.64
+      image: sfci/cre/cre-api:0.0.1.16.master.2bb3c66.66
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-shared-dev
@@ -70,7 +70,7 @@ system:
   - lbname: cre-api-prd-ccp-shared-dev-lb
     function: cre-api-prd-ccp-shared-dev
     nodeExposed: true
-    slbenabled: true    
+    slbenabled: true
     ports:
       - port: 8086
         targetport: 8080

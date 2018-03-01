@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-integration-functional
-      image: sfci/cre/cre-api:0.0.1.14.master.9099272.64
+      image: sfci/cre/cre-api:0.0.1.16.master.2bb3c66.66
       env:
         - name: SFDC_ENVIRONMENT
           value: ccp-integration-functional
