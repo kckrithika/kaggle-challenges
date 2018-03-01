@@ -59,7 +59,7 @@ system:
       - name: ReportCollector_app_https_clientAuth
         value: REQUEST
       - name: ReportCollector_app_https_caCertificates
-        value: "[\"/var/lib/report-collector/certificates/sfdc-internal-ca.crt\"]"
+        value: "[\"/var/lib/report-collector/certificates/ca.crt\"]"
       - name: ReportCollector_app_https_certificate
         value: /var/lib/report-collector/certificates/rc_server.crt
       - name: ReportCollector_app_https_privateKey
