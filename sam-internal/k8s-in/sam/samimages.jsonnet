@@ -19,14 +19,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [thargrove] Quick test of manifest-watcher with SkipOldZip support
-        "prd,prd-samtest,manifest-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/hypersam:20180228_152041.85ae2ce.dirty.thargrove-ltm1",
-
-        # [diana.chang] Overriding prd-samtest with latest veresion of daily deployer to test the webportal
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180228_170012.c600aa49.dirty.dianachang-ltm1",
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180228_170012.c600aa49.dirty.dianachang-ltm1",
-        "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
-
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
@@ -72,7 +64,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001730-c7caec88",
+            hypersam: "sam-0001747-8c6b4886",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
