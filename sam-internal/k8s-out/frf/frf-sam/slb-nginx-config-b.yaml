@@ -112,7 +112,7 @@ spec:
         - --netInterfaceName=eth0
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --log_dir=/host/data/slb/logs
-        - --maxDeleteServiceCount=3
+        - --maxDeleteServiceCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000668-bae2cf08
         name: slb-nginx-config-b

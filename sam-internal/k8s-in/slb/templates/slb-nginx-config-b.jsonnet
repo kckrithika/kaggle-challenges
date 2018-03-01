@@ -167,7 +167,7 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "p
                             "--netInterfaceName=eth0",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
-                            "--maxDeleteServiceCount=3",
+                            "--maxDeleteServiceCount=20",
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
