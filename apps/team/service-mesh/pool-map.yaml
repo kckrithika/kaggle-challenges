@@ -5,10 +5,14 @@ apps:
     - prd/prd-sam_gater
   switchboard-sandbox:
     - prd/prd-sam
+  switchboard-prod:
+    - par/par-sam_gater
   time:
     - prd/prd-sam
   envoy-canary:
     - prd/prd-sam_gater
+  envoy-canary-prod:
+    - par/par-sam_gater
   demo-geoip:
     - prd/prd-sam
   prd-fake-zipkin:
