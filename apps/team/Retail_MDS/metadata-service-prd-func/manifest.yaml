@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.75
+      image: sfci/metadata-cannon/metadata-service:0.0.76
       ports:
       - containerPort: 7020
       - containerPort: 9091
