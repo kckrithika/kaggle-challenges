@@ -46,11 +46,11 @@ system:
         value: 4
       - name: ReportCollector_datastore
         value: redisIndex
-      - name: ReportCollector_redisIndex_host
+      - name: ReportCollector_redis_host
         value: $(ANDREISREDISLB_SERVICE_HOST)
-      - name: ReportCollector_redisIndex_port
+      - name: ReportCollector_redis_port
         value: $(ANDREISREDISLB_SERVICE_PORT)
-      - name: ReportCollector_redisIndex_fullPathToAuthFile
+      - name: ReportCollector_redis_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
         value: true
