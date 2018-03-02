@@ -27,7 +27,7 @@ local utils = import "util_functions.jsonnet";
     logToStdErrArg: "--logtostderr=false",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
-    conditionalAlsoLogToStdErrArg: (if (estate == "prd-sdc") || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then [self.alsoLogToStdErrArg] else []),
+    conditionalAlsoLogToStdErrArg: (if (kingdom == "prd") then [self.alsoLogToStdErrArg] else []),
 
     # Volume for logs
     sdn_logs_volume: {
