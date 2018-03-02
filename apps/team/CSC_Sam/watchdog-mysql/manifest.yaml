@@ -20,6 +20,8 @@ system:
       - name: MYSQL_ROOT_PASSWORD
         value: test@pass
         #/secrets/mysql_watchdog-password
+      - name: MYSQL_TCP_PORT
+        value: 3309
         
       volumeMounts:
       - mountPath: /var/lib/watchdog-mysql
