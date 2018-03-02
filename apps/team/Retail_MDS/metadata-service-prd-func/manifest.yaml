@@ -8,21 +8,24 @@ system:
   - name: metadata-service-prd-func
     count: 2
     volumes:
+    - name: mds-server-cert
+      maddogCert:
+        type: server
     - name: mds-client-cert
       maddogCert:
         type: client
     - name: logvol
       hostPath:
         path: /home/sfdc-mds/logs
-    - name: gdot-secrets-volume
-      k4aSecret:
-        secretName: mds-gdot-secrets-prd
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    - name: gdot-secrets-volume
+      k4aSecret:
+        secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.76
+      image: sfci/metadata-cannon/metadata-service:0.0.78
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -55,13 +58,19 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
+      ports:
+        - containerPort: 7012
+          name: sherpa-h2-plain
+        - containerPort: 7443
+          name: sherpa-h2-tls
+        - containerPort: 15373
       volumeMounts:
         - name: sherpa-log-volume
           mountPath: /log
-      ports:
-        - containerPort: 7012
-        - containerPort: 7016
-        - containerPort: 7080
+        - name: mds-client-cert
+          mountPath: /client-certs
+        - name:  mds-server-cert
+          mountPath: /server-certs
       livenessProbe:
         exec:
           command:
