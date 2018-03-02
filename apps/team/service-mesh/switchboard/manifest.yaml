@@ -32,6 +32,9 @@ system:
       ports:
       - containerPort: 15001
       - containerPort: 15370
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "4Gi" }
       livenessProbe:
         httpGet:
           path: /manage/health
