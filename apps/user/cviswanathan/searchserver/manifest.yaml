@@ -16,3 +16,9 @@ system:
         ports:
         - containerPort: 8983 # add additional container ports for the protocols your service uses
           name: solr-port
+        livenessProbe:
+          exec:
+            command:
+            - "command || true"
+          initialDelaySeconds: 120
+          periodSeconds: 5
