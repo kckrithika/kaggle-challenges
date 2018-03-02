@@ -69,7 +69,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "temp-secret-amcontrol-deployer",
+            name: "temp-secret-samcontrol-deployer",
         },
         name: "temp-secret-samcontrol-deployer",
         namespace: "sam-system",
