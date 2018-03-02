@@ -43,7 +43,7 @@ system:
       - name: UBID_REMOVE_EXISTING
         value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
