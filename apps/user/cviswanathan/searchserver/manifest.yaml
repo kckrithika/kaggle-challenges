@@ -14,7 +14,7 @@ system:
           limits: { cpu: "1", memory: "1Gi" }
           requests: { cpu: "1", memory: "1Gi" }
         volumeMounts:
-          - mountPath: /log
+          - mountPath: /sfdc/local-data/logs
             name: log-volume
         ports:
         - containerPort: 8983 # add additional container ports for the protocols your service uses
@@ -24,4 +24,4 @@ system:
       volumes:
       - name: log-volume
         hostPath:
-          path: /home/solr/logs
+          path: /var/log/
