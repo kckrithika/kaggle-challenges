@@ -5,11 +5,11 @@ system:
     count: 1
     containers:
     - name: imagemagick-sconems
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/imagemagick-sconems:first-version
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/imagemagick-sconems:second-version
       ports:
       - containerPort: 7021
-      - containerPort: 15372
+      - containerPort: 15373
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15373
