@@ -26,13 +26,15 @@ system:
       - --clusters.external-clusters[4]=search-model-executor-rpulle:HTTP2
       - --clusters.external-clusters[5]=search-model-executor-xlt:HTTP2
       - --clusters.external-clusters[6]=tictactoe-server-service-envoy:HTTP2
-      - --clusters.external-clusters[7]=testqa:HTTP2
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
       ports:
       - containerPort: 15001
       - containerPort: 15370
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "4Gi" }
       livenessProbe:
         httpGet:
           path: /manage/health
