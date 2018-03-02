@@ -1,6 +1,6 @@
 This repo contains live manifests for SAM deployments.  
 
-Please read the [Confluence docs on deploying](https://confluence.internal.salesforce.com/display/SAM/Onboarding+To+SAM), which provides the most up to date overviews of the deploy process. There you also find links to details for the file formats and validation commands that are necessary for a successful deployment. Below we provide the short version. Above all else, make sure you validate bfore starting a pull!!
+Please read the [SAM Documentation](https://confluence.internal.salesforce.com/display/SAM/), which provides the most up to date overviews of the deploy process. There you also find links to details for the file formats and validation commands that are necessary for a successful deployment. Below we provide the short version. Above all else, make sure you validate bfore starting a pull!!
 
 ### Before submitting a pull request
 
