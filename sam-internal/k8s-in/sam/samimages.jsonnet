@@ -25,6 +25,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
+        "prd,prd-sam,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
 
         # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",
