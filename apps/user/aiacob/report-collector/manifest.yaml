@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.13.1-0000247-a03c62e2
+      image: tnrp/csc-health/report-collector:1.13.1-0000250-21166494
       ports:
       - name: provider
         containerPort: 8080
@@ -44,11 +44,13 @@ system:
       env:
       - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
         value: 4
-      - name: ReportCollector_redis_host
+      - name: ReportCollector_datastore
+        value: redisIndex
+      - name: ReportCollector_redisIndex_host
         value: $(ANDREISREDISLB_SERVICE_HOST)
-      - name: ReportCollector_redis_port
+      - name: ReportCollector_redisIndex_port
         value: $(ANDREISREDISLB_SERVICE_PORT)
-      - name: ReportCollector_redis_fullPathToAuthFile
+      - name: ReportCollector_redisIndex_fullPathToAuthFile
         value: /var/secrets/redis/auth
       - name: ReportCollector_app_https_enabled
         value: true
@@ -142,6 +144,9 @@ system:
         readOnly: true
       ports:
       - containerPort: 6379
+      env:
+      - name: DUMMY_UNUSED_ENV_VAR_FOR_POD_BOUNCE
+        value: 0
       logs:
       - directory: /var/log/redis
       livenessProbe:
