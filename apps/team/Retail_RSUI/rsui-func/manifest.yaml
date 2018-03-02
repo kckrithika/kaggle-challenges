@@ -27,7 +27,7 @@ system:
       - name: MDS_HOST
         value: metadata-service.localhost.mesh.force.com
       - name: MDS_PORT
-        value: 7012
+        value: 7011
       - name: SERVER_PORT
         value: 7022
       - name: PKI_CA_DIR
