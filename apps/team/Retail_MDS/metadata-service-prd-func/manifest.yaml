@@ -14,12 +14,15 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-mds/logs
+    - name: gdot-secrets-volume
+      k4aSecret:
+        secretName: mds-gdot-secrets-prd
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.70
+      image: sfci/metadata-cannon/metadata-service:0.0.75
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -58,6 +61,9 @@ system:
           mountPath: /certificates
         - name: logvol
           mountPath: /home/sfdc-mds/logs
+	- name: gdot-secrets-volume
+	  mountPath: /home/sfdc-mds/secrets
+	  readOnly: true
 
     - name: sherpa-mds
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
