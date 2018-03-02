@@ -16,7 +16,6 @@ system:
       command:
         - /sam/ajnaconsumer
         - -v=3
-        -
       volumeMounts:
       - name: myclientcert
         mountPath: /clientcert
