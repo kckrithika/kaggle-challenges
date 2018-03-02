@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-sp-prd-ccp-integration-functional
-      image: sfci/cre/cre-stream-processing:0.0.1.14.master.e13ca0d.82
+      image: sfci/cre/cre-stream-processing:0.0.1.18.master.21fd37e.86
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
