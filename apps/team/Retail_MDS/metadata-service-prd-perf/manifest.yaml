@@ -72,8 +72,7 @@ system:
           name: sherpa-h2-plain
         - containerPort: 7443
           name: sherpa-h2-tls
-        - containerPort: 7016
-        - containerPort: 7080
+        - containerPort: 15373
       volumeMounts:
         - name: mds-client-cert
           mountPath: /client-certs
@@ -98,6 +97,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
+      - metadata-service-prd-perf:DATACENTER:7012
       - retail-mds/metadata-service-prd-perf:DATACENTER:7012
       - retail-mds/metadata-service-prd-perf:DATACENTER:7443
       livenessProbe:
