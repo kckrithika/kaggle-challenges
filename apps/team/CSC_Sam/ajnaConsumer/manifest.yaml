@@ -1,6 +1,8 @@
 apiVersion: v1
 
 system:
+  email:
+    - a.mitra@salesforce.com
   functions:
   - name: ajnaconsumer
     count: 1
