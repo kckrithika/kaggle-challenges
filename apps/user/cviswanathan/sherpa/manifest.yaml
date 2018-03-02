@@ -33,3 +33,9 @@ system:
             - "./bin/is-ready"
           initialDelaySeconds: 110
           periodSeconds: 5
+
+      # Add the log volume in the function section:
+      volumes:
+      - name: sherpa-log-volume
+        hostPath:
+          path: /home/sfdc-sherpa/logs
