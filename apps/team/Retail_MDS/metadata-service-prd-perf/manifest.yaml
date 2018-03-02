@@ -17,12 +17,15 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-mds/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: gdot-secrets-volume
       k4aSecret:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.76
+      image: sfci/metadata-cannon/metadata-service:0.0.78
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -44,9 +47,6 @@ system:
       volumeMounts:
         - name: mds-client-cert
           mountPath: /client-certs
-        # TODO: Remove, not needed by MDS
-        - name:  mds-server-cert
-          mountPath: /server-certs
         - name: logvol
           mountPath: /home/sfdc-mds/logs
         - name: gdot-secrets-volume
@@ -65,6 +65,8 @@ system:
           name: sherpa-h2-tls
         - containerPort: 15373
       volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log
         - name: mds-client-cert
           mountPath: /client-certs
         - name:  mds-server-cert
@@ -81,22 +83,6 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
-
-    # TODO: Fix the image path to the relative one
-    # TODO: Change the announced name to be "metadata-service" once there's a way to provide the name used in PKI certs
-    - name: beacon
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-      args:
-      - -endpoint
-      - metadata-service-prd-perf:DATACENTER:7012
-      - retail-mds/metadata-service-prd-perf:DATACENTER:7012
-      - retail-mds/metadata-service-prd-perf:DATACENTER:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-
   loadbalancers:
   - lbname: metadata-service-prd-perf-lb
     function: metadata-service-prd-perf
