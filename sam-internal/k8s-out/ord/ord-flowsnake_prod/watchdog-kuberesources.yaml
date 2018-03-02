@@ -1,0 +1,83 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-kuberesources
+  name: watchdog-kuberesources
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchdog-kuberesources
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: watchdog-kuberesources
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - -role=KUBERESOURCES
+        - -watchdogFrequency=60s
+        - -alertThreshold=300s
+        - -emailFrequency=72h
+        - -shouldBatchMetrics=true
+        - -maxUptimeSampleSize=5
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/hypersam:sam-0001730-c7caec88
+        name: watchdog-kuberesources
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /hostproc
+          name: procfs-volume
+        - mountPath: /config
+          name: config
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
+      hostNetwork: true
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /proc
+        name: procfs-volume
+      - configMap:
+          name: watchdog
+        name: config
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert

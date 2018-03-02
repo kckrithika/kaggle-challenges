@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 {
     apiVersion: "extensions/v1beta1",
@@ -108,7 +108,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         ] +
                         if flowsnakeconfig.maddog_enabled then
                             flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                            flowsnakeconfigmapmount.k8s_cert_volumeMounts +
+                            flowsnakeconfigmapmount.platform_cert_volumeMounts +
                             flowsnakeconfigmapmount.maddog_volumes
                         else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                             flowsnakeconfigmapmount.platform_cert_volumeMounts,
@@ -135,8 +135,8 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                     },
                 ] +
                 if flowsnakeconfig.maddog_enabled then
-                    flowsnakeconfigmapmount.kubeconfig_volume +
-                    flowsnakeconfigmapmount.k8s_cert_volume +
+                    flowsnakeconfigmapmount.kubeconfig_platform_volume +
+                    flowsnakeconfigmapmount.platform_cert_volume +
                     flowsnakeconfigmapmount.maddog_volumeMounts
                 else flowsnakeconfigmapmount.kubeconfig_platform_volume +
                     flowsnakeconfigmapmount.platform_cert_volume,

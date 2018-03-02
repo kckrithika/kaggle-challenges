@@ -1,4 +1,4 @@
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local zookeeper = import "_zookeeper-rcs.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {

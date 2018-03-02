@@ -1,4 +1,4 @@
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 if flowsnakeconfig.is_minikube then
@@ -24,7 +24,7 @@ else
                            "-shouldBatchMetrics=true",
                            "-maxUptimeSampleSize=5",
                            "-timeout=2s",
-                           "-funnelEndpoint=" + flowsnakeconfig.funnel_endpoint + ":80",
+                           "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                            "--config=/config/watchdog.json",
                            "--hostsConfigFile=/sfdchosts/hosts.json",
                        ],

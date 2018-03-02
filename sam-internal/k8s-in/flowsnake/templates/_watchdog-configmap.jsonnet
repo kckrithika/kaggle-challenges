@@ -1,4 +1,4 @@
-local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
+local flowsnakeconfigmap = import "flowsnake_configmap.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 if flowsnakeconfig.is_minikube then
 "SKIP"
@@ -11,6 +11,6 @@ else
       namespace: "flowsnake",
     },
     data: {
-      "watchdog.json": std.toString(flowsnakeauthtopic.watchdog_config),
+      "watchdog.json": std.toString(flowsnakeconfigmap.watchdog_config),
     },
 }

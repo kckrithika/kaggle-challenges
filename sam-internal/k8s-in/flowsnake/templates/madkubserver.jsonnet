@@ -1,4 +1,4 @@
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
@@ -46,7 +46,7 @@ else
               "--service-hostname",
               "$(MADKUBSERVER_SERVICE_HOST)",
               "--funnel-endpoint",
-              "http://" + flowsnakeconfig.funnel_endpoint + ":80",
+              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--estate",
@@ -109,7 +109,7 @@ else
               "--refresher-token-grace-period",
               "30s",
               "--funnel-endpoint",
-              "http://" + flowsnakeconfig.funnel_endpoint + ":80",
+              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--cert-folders",

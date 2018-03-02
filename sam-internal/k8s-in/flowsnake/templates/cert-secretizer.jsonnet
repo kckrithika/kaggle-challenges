@@ -1,4 +1,4 @@
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
@@ -31,7 +31,7 @@ else
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              "https://10.254.208.254:32007",
+              "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
               "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
@@ -41,7 +41,7 @@ else
               "--token-folder",
               "/tokens",
               "--funnel-endpoint",
-              "http://" + flowsnakeconfig.funnel_endpoint + ":80",
+              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--superpod",
@@ -107,7 +107,7 @@ else
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              "https://10.254.208.254:32007",
+              "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
               "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
@@ -117,7 +117,7 @@ else
               "--token-folder",
               "/tokens",
               "--funnel-endpoint",
-              "http://" + flowsnakeconfig.funnel_endpoint + ":80",
+              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--superpod",

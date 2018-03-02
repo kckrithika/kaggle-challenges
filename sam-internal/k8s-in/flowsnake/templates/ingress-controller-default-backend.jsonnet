@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
