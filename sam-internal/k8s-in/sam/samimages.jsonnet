@@ -89,7 +89,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001730-c7caec88",
+            hypersam: "sam-0001747-8c6b4886",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
