@@ -1,0 +1,15 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: imagemagick-sconems
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/imagemagick-sconems:first-version
+      ports:
+      - containerPort: 7021
+      - containerPort: 15372
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
