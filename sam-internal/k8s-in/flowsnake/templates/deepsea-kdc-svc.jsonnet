@@ -21,5 +21,6 @@ if flowsnakeconfig.deepsea_enabled then {
                 targetPort: 9089,
             },
         ],
+        sessionAffinity: "None",
     },
 } else "SKIP"

@@ -30,7 +30,7 @@ data:
         "sdn-vault-agent.yaml",
         "_flowsnake-sdn-secret.yaml",
         "samcontrol-deployer.yaml",
-        "deepsea-kdc-svc.yaml"
+        "deepsea-kdc-endpoints.yaml"
       ],
       "sender": "flowsnake@salesforce.com",
       "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",

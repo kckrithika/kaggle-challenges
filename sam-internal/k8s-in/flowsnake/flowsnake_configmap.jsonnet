@@ -282,10 +282,11 @@ local samconfig = import "config.jsonnet";
               //TODO: re-enable Autodeployer self-updates in all estates
               "samcontrol-deployer.yaml",
           ] else []) +
-          (if estate == "prd-data-flowsnake_test" then [
+          (if flowsnakeconfig.deepsea_enabled then [
+              // Must skip (and manually deploy) because AutoDeployer does not support Endpoints resources at the moment.
+              // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
+              "deepsea-kdc-endpoints.yaml",
           ] else [
-          //TODO: Why are we skipping this?
-          "deepsea-kdc-svc.yaml",
           ]),
     },
     watchdog_config: {
