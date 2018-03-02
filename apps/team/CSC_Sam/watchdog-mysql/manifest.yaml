@@ -17,7 +17,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180123_135035.df4fafc7.dirty.duncsmith-ltm
 
       env:
-      - name: MYSQL_ROOT_PASSWORD
+      - name: MYSQL_ROOT_PASSWORD_FILE
         value: /secrets/mysql_watchdog-password
       - name: MYSQL_TCP_PORT
         value: 3309
