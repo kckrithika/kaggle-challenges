@@ -12,4 +12,5 @@ local configs = import "config.jsonnet";
   crdDeletionEnabled: true,
   endpointRepoName: (if configs.kingdom == "prd" then "test-manifests"),
   manifestV1Enabled: false,
+  etcdAppFolder: "temp-crd-watcher",
 }
