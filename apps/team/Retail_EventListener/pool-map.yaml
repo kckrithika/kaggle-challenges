@@ -2,3 +2,5 @@ version: v2
 apps:
   prd.CCP_Integration_Functional.commercejourneys:
   - name: prd/prd-sam_crosscloudplatform
+  prd.CCP_Integration_Functional.retailcalculator:
+  - name: prd/prd-sam_crosscloudplatform
