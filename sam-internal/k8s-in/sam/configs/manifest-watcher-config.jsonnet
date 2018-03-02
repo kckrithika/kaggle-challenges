@@ -8,4 +8,5 @@ std.prune({
   keyFile: configs.keyFile,
   certFile: configs.certFile,
   skipOldZips: (if configs.kingdom == "prd" then true),
+  etcdAppFolder: "manifest-watcher",
 })

@@ -5,6 +5,7 @@ data:
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "disableCertsCheck": true,
+      "etcdAppFolder": "manifest-watcher",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo2-1-par.ops.sfdc.net/tnrp/content_repo/0/archive"

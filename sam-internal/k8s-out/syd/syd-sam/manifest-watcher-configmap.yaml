@@ -5,6 +5,7 @@ data:
       "caFile": "/data/certs/ca.crt",
       "certFile": "/data/certs/hostcert.crt",
       "disableCertsCheck": true,
+      "etcdAppFolder": "manifest-watcher",
       "keyFile": "/data/certs/hostcert.key",
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-syd.ops.sfdc.net/tnrp/content_repo/0/archive"
