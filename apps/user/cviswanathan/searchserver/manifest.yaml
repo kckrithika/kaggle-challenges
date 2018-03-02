@@ -24,4 +24,4 @@ system:
       volumes:
       - name: log-volume
         hostPath:
-          path: /sfdc/local-data/logs
+          path: /home/solr/logs
