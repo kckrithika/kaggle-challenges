@@ -18,8 +18,7 @@ system:
 
       env:
       - name: MYSQL_ROOT_PASSWORD
-        value: test@pass
-        #/secrets/mysql_watchdog-password
+        value: /secrets/mysql_watchdog-password
       - name: MYSQL_TCP_PORT
         value: 3309
         
