@@ -22,10 +22,13 @@ local utils = import "util_functions.jsonnet";
         # [thargrove] Testing manifest-watcher with SkipOldZip protection
         "prd,prd-samtest,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
+        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         "prd,prd-samdev,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
+        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
 
         # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",
