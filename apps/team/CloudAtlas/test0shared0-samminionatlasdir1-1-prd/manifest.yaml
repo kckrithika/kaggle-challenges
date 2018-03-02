@@ -34,11 +34,13 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:7a6c05f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:cf69bff
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
+      - name: UBID_REMOVE_EXISTING
+        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
@@ -48,6 +50,9 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -79,3 +84,6 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
