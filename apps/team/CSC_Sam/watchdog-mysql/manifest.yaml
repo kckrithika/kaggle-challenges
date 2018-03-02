@@ -47,11 +47,10 @@ system:
     - name: certs
       maddogCert:
         type: server
+        lbname: watchdog-mysql-stateful-lb
     - name: watchdog-mysqlsecret
       k4aSecret:
         secretName: watchdogmysql
-
-    lbname: watchdog-mysql-stateful-lb
 
     # Give containers a bit of time to shut down, as they might be syncing 
     # state into the PV on shutdown
@@ -63,7 +62,7 @@ system:
       storageSizeRequest: 100Gi
 
   loadbalancers:
-  - lbname: watchdog-mysql
+  - lbname: watchdog-mysql-stateful-lb
     function: watchdog-mysql
     slbEnabled: true
     lbtype: dsr
