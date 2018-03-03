@@ -52,20 +52,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            },
                            initialDelaySeconds: 30,
                            periodSeconds: 3,
-                       }
-                       + if configs.estate == "prd-sdc" then {
-                         env: [
-                                                                            {
-                                                                               name: "NODE_NAME",
-                                                                               valueFrom: {
-                                                                                  fieldRef: {
-                                                                                     fieldPath: "spec.nodeName",
-                                                                                  },
-                                                                               },
-                                                                            },
-                                                     ],
-                       } else {},
-                    },
+                       },
+                    } + if configs.estate == "prd-sdc" then {
+                                                 env: [
+                                                                                                    {
+                                                                                                       name: "NODE_NAME",
+                                                                                                       valueFrom: {
+                                                                                                          fieldRef: {
+                                                                                                             fieldPath: "spec.nodeName",
+                                                                                                          },
+                                                                                                       },
+                                                                                                    },
+                                                                             ],
+                                               } else {},
                 ],
                 nodeSelector: {
                     pool: configs.estate,
