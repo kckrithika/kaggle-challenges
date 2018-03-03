@@ -45,8 +45,8 @@ apps:
   - prd/prd-samtest
  watchdog-mysql:
   - prd/prd-sam
- # - prd/prd-samdev
- # - prd/prd-samtest
+ ajnaConsumer:
+  - prd/prd-sam
  SamDailyReport:
   - prd/prd-sam
  pseudo-api:
