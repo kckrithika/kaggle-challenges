@@ -32,7 +32,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        image: slbimages.hypersdn,
                        command: [
                            "/sdn/slb-portal",
-                           ] + (if configs.estate == "prd-sdc" then []
+                           ] + (if configs.estate == "prd-sdc" then [
+                                   "--hostnameOverride=$(NODE_NAME)",
+                                ]
                                                         else [
                                                          "--configDir=" + slbconfigs.configDir,
                                                         ]) +
@@ -51,14 +53,23 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            initialDelaySeconds: 30,
                            periodSeconds: 3,
                        },
-                    },
+                    } + if configs.estate == "prd-sdc" then {
+                                                 env: [
+                                                                                                    {
+                                                                                                       name: "NODE_NAME",
+                                                                                                       valueFrom: {
+                                                                                                          fieldRef: {
+                                                                                                             fieldPath: "spec.nodeName",
+                                                                                                          },
+                                                                                                       },
+                                                                                                    },
+                                                                             ],
+                                               } else {},
                 ],
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            } + if configs.estate == "prd-sdc" then {
-               hostNetwork: true,
-            } else {},
+            },
         },
     },
 } else "SKIP"

@@ -20,13 +20,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000671-65cbe419",
+            hypersdn: "v-0000672-5df21d29",
             slbnginx: "v-0000020-f742177c",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000668-bae2cf08",  # 669 requires 1) slb-portal should be on hostnetwork 2) removal of configDir param from slb-portal
+            hypersdn: "v-0000668-bae2cf08",  # 672 requires removal of configDir param and addition of hostNameOverride param from slb-portal
             slbnginx: "v-0000020-f742177c",
             },
 
