@@ -12,9 +12,9 @@ system:
       command:
           - /sam/ajnaconsumer
           - -v=3
-          - -caFile="/certs/ca.pem"
+          - -caFile=/certs/ca.pem
           - -kafkaConsumerEndpoint="ajna0-brokeragg1-0-prd.data.sfdc.net:9093"
-          - -kafkaTopics=[]string{"sfdc.prod.sam__prd.ajna_local__opevents"}
+          - -kafkaTopics="sfdc.prod.sam__prd.ajna_local__opevents"
           - -databaseHostname="watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net"
           - -databasePasswordFile="/secrets/mysql_watchdog-password"
           - -failedReportsDatabaseName="mysql_watchdog"
@@ -23,8 +23,8 @@ system:
       volumeMounts:
       - name: certs
         mountPath: /certs
-      - mountPath: /secrets
-        name: watchdog-mysqlsecret
+      - name: watchdog-mysqlsecret
+        mountPath: /secrets
         readOnly: true
 
       livenessProbe:
