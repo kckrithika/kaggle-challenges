@@ -19,6 +19,6 @@ system:
         livenessProbe:
           exec:
             command:
-            - "command || true"
+            - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
