@@ -4,10 +4,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "temp-samcontrol-deployer",
+      name: "temp-secret-samcontrol-deployer",
       namespace: "sam-system",
     },
     data: {
-      "tempsamcontroldeployer.json": std.toString(import "configs/temp-samcontrol-deployer-config.jsonnet"),
+      "tempsecretsamcontroldeployer.json": std.toString(import "configs/temp-secret-samcontrol-deployer-config.jsonnet"),
     },
 } else "SKIP"

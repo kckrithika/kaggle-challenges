@@ -10,11 +10,11 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 hostNetwork: true,
                 containers: [
                     {
-                        name: "temp-samcontrol-deployer",
+                        name: "temp-secret-samcontrol-deployer",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
                            "/sam/samcontrol-deployer",
-                           "--config=/config/tempsamcontroldeployer.json",
+                           "--config=/config/tempsecretsamcontroldeployer.json",
                            configs.sfdchosts_arg,
                            ]),
                          volumeMounts: configs.filter_empty([
@@ -48,7 +48,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                    configs.config_volume("temp-samcontrol-deployer"),
+                    configs.config_volume("temp-secret-samcontrol-deployer"),
                 ]),
                 nodeSelector: {
                 } +
@@ -60,7 +60,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             },
             metadata: {
                 labels: {
-                    name: "temp-samcontrol-deployer",
+                    name: "temp-secret-samcontrol-deployer",
                     apptype: "control",
                 },
             },
@@ -69,9 +69,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     apiVersion: "extensions/v1beta1",
     metadata: {
         labels: {
-            name: "temp-samcontrol-deployer",
+            name: "temp-secret-samcontrol-deployer",
         },
-        name: "temp-samcontrol-deployer",
+        name: "temp-secret-samcontrol-deployer",
         namespace: "sam-system",
     },
 } else "SKIP"
