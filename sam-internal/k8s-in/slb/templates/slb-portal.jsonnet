@@ -33,7 +33,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        command: [
                            "/sdn/slb-portal",
                            ] + (if configs.estate == "prd-sdc" then [
-                                   "--hostnameOverride=$(NODE_NAME)",
+                                   "--hostname=$(NODE_NAME)",
                                 ]
                                                         else [
                                                          "--configDir=" + slbconfigs.configDir,

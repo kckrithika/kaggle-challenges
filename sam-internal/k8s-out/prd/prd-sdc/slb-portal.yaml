@@ -16,7 +16,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-portal
-        - --hostnameOverride=$(NODE_NAME)
+        - --hostname=$(NODE_NAME)
         - --templatePath=/sdn/webfiles
         - --port=9112
         env:
