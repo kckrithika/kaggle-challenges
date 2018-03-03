@@ -10,34 +10,34 @@ system:
     - name: ajnaconsumer
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171215_030949.045613dd.dirty.hariudhayak-ltm
       command:
-        - /sam/ajnaconsumer
-        - -v=3
-        - -caFile="/data/certs/ca.crt"
-        - -kafkaConsumerEndpoint="ajna0-brokeragg1-0-prd.data.sfdc.net:9093"
-        - -kafkaTopics=[]string{"sfdc.prod.sam__prd.ajna_local__opevents"}
-        - -databaseHostname="watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net"
-        - -databasePasswordFile="/secrets/mysql_watchdog-password"
-        - -failedReportsDatabaseName="mysql_watchdog"
-        - -allReportsDatabaseName="mysql_watchdog"
-
+          - /sam/ajnaconsumer
+          - -v=3
+          - -caFile="/certs/ca.pem"
+          - -kafkaConsumerEndpoint="ajna0-brokeragg1-0-prd.data.sfdc.net:9093"
+          - -kafkaTopics=[]string{"sfdc.prod.sam__prd.ajna_local__opevents"}
+          - -databaseHostname="watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net"
+          - -databasePasswordFile="/secrets/mysql_watchdog-password"
+          - -failedReportsDatabaseName="mysql_watchdog"
+          - -allReportsDatabaseName="mysql_watchdog"
+          
       volumeMounts:
-      - name: myclientcert
-        mountPath: /clientcert
+      - name: certs
+        mountPath: /certs
       - mountPath: /secrets
         name: watchdog-mysqlsecret
         readOnly: true
 
-      volumes:
-          - name: myclientcert
-            maddogCert:
-              type: client
-          - name: watchdog-mysqlsecret
-            k4aSecret:
-              secretName: watchdogmysql
-
       livenessProbe:
         exec:
           command:
-          - ls
+              - ls
         initialDelaySeconds: 5
         periodSeconds: 5
+
+    volumes:
+    - name: certs
+      maddogCert:
+        type: client
+    - name: watchdog-mysqlsecret
+      k4aSecret:
+        secretName: watchdogmysql
