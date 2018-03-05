@@ -5,7 +5,7 @@ system:
   email:
   - robert.snell@salesforce.com
   functions:
-  - name: metadata-service-prd-func
+  - name: metadata-service
     count: 2
     volumes:
     - name: mds-server-cert
@@ -85,7 +85,7 @@ system:
           periodSeconds: 120
   loadbalancers:
   - lbname: metadata-service-prd-func-lb
-    function: metadata-service-prd-func
+    function: metadata-service
     nodeExposed: true
     ports:
     - port: 9091
