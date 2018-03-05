@@ -32,6 +32,7 @@ system:
         limits: { cpu: "8", memory: "20Gi" }
         requests: { cpu: "8", memory: "20Gi" }
       env:
+      # Revert this config override when 0.5.1 image is released
       - name: MANAGEMENT_HEALTH_DEFAULTS_ENABLED
         value: false
       volumeMounts:
