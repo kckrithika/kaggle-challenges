@@ -689,18 +689,6 @@
     },
     {
       "namespaces": [
-        "universal-search"
-      ],
-      "access": [
-        "team/universal-search"
-      ],
-      "controlEstate": "iad-sam",
-      "estate": "iad-sam_universalsearchmt",
-      "kingdom": "iad",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "casp"
       ],
       "access": [
@@ -734,6 +722,18 @@
       "estate": "iad-sp2-sam_caas",
       "kingdom": "iad",
       "superPod": "sp2"
+    },
+    {
+      "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-universalsearch_svc",
+      "kingdom": "iad",
+      "superPod": "None"
     },
     {
       "namespaces": [
@@ -917,18 +917,6 @@
     },
     {
       "namespaces": [
-        "universal-search"
-      ],
-      "access": [
-        "team/universal-search"
-      ],
-      "controlEstate": "ord-sam",
-      "estate": "ord-sam_universalsearchmt",
-      "kingdom": "ord",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "casp"
       ],
       "access": [
@@ -962,6 +950,18 @@
       "estate": "ord-sp2-sam_caas",
       "kingdom": "ord",
       "superPod": "sp2"
+    },
+    {
+      "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-universalsearch_svc",
+      "kingdom": "ord",
+      "superPod": "None"
     },
     {
       "namespaces": [
@@ -1505,18 +1505,6 @@
     },
     {
       "namespaces": [
-        "universal-search"
-      ],
-      "access": [
-        "team/universal-search"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-sam_universalsearchmt",
-      "kingdom": "prd",
-      "superPod": "None"
-    },
-    {
-      "namespaces": [
         "casp"
       ],
       "access": [
@@ -1792,6 +1780,18 @@
       "estate": "prd-sp2-sam_retail_rsui",
       "kingdom": "prd",
       "superPod": "sp2"
+    },
+    {
+      "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-universalsearch_svc",
+      "kingdom": "prd",
+      "superPod": "None"
     },
     {
       "namespaces": [
