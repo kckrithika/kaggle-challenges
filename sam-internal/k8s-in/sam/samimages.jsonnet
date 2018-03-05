@@ -20,6 +20,8 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [thargrove] Testing manifest-watcher with SkipOldZip protection
+        # Synthetic needs to go before manifest-watcher
+        # PRD
         "prd,prd-samtest,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
@@ -29,6 +31,21 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        # PRODUCTION
+        "frf,frf-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "phx,phx-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "cdu,cdu-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "hnd,hnd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "iad,iad-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "ord,ord-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "par,par-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "syd,syd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "ukb,ukb-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "yhu,yhu-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
+        "yul,yul-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
 
         # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",

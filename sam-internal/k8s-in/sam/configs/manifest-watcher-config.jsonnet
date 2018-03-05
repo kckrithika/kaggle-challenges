@@ -7,6 +7,8 @@ std.prune({
   caFile: configs.caFile,
   keyFile: configs.keyFile,
   certFile: configs.certFile,
-  skipOldZips: (if configs.kingdom == "prd" then true),
+  # This ensures we dont deploy an older zip than our previous one.  This can happen
+  # with out-of-sync TNRP servers behind a VIP
+  skipOldZips: true,
   etcdAppFolder: "manifest-watcher",
 })
