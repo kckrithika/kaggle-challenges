@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: sfci/cre/cre-api:0.0.1.16.master.2bb3c66.66
+      image: sfci/cre/cre-api:0.0.1.21.master.9aad407.71
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
