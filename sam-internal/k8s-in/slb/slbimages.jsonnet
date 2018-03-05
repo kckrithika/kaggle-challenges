@@ -1,4 +1,4 @@
-# kick kick
+# kick
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
