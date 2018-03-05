@@ -65,6 +65,10 @@ system:
         value: true
       - name: ReportCollector_app_https_supportCompression
         value: true
+      - name: ReportCollector_app_http_supportDecompression
+        value: true
+      - name: ReportCollector_app_http_supportCompression
+        value: true
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
