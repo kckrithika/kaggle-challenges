@@ -33,7 +33,7 @@ std.prune({
   slbConfigInLabels: (if configs.kingdom == "prd" then true else false),
   slbConfigInAnnotations: (if configs.kingdom == "prd" then true else false),
 
-  k4aInitContainerImage: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then samimages.k4aInitContainerImage),
+  k4aInitContainerImage: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" || configs.kingdom == "iad" || configs.kingdom == "ord" then samimages.k4aInitContainerImage),
 
   livenessProbePort: (if configs.estate == "prd-samtest" then "22545"),
 
