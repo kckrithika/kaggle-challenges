@@ -58,6 +58,22 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
+    - name: beacon
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - iot.controlplane-secure:DATACENTER:7443
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
     - env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
