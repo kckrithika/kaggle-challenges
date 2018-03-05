@@ -10,9 +10,13 @@ system:
         type: server
         lbnames:
         - rsui-perf-lb
+    # maps the retail  volumnMount to a directory on the host machine
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-retail/logs
     containers:
     - name: rsui-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:9474a46
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.24
       ports:
       - containerPort: 8080
       - containerPort: 15372
@@ -38,6 +42,9 @@ system:
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
+      #mount splunk logs mount
+      - name: logvol
+        mountPath: /home/retail-setup/logs
 
     - name: sherpa-rsui-perf
       image: tnrp/sherpa:0.2.0-0000076-47b587a5
