@@ -7,6 +7,7 @@ data:
       "disableCertsCheck": true,
       "etcdAppFolder": "manifest-watcher",
       "keyFile": "/data/certs/hostcert.key",
+      "skipOldZips": true,
       "tlsEnabled": true,
       "tnrpArchiveEndpoint": "https://ops0-piperepo1-1-yul.ops.sfdc.net/tnrp/content_repo/0/archive"
     }
