@@ -69,6 +69,9 @@ local utils = import "util_functions.jsonnet";
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
+        # [cbatra] Overriding controller in IAD to use the new certs for k4a
+        "iad,iad-sam,samcontrol,hypersam": "sam-0001747-8c6b4886",
+
         # [d.smith] Early push of new hypersam - fixes snapshotter
         "frf,frf-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001725-d0637219",
