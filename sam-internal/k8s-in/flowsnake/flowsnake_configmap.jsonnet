@@ -263,7 +263,7 @@ local samconfig = import "config.jsonnet";
         "key-file": flowsnakeconfig.host_platform_client_key_path,
         "dry-run": false,
         "resources-to-skip": [
-            // alwasy skip this, should never get deployed by auto-deployer, sdn-secret-agent will read this file and deploy.
+            // always skip this, should never get deployed by auto-deployer, sdn-secret-agent will read this file and deploy.
             "_flowsnake-sdn-secret.yaml",
         ] +
         (if flowsnakeconfig.sdn_enabled then [
