@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image:  tnrp/emailinfrastructure/eaas:latest-0000038-311fa31b
+      image:  tnrp/emailinfrastructure/eaas:latest-0000039-ff1963a9
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -40,8 +40,22 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
 
+    - name: beacon-eaas
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      args:
+      - -endpoint
+      - emailinfra/eaas:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
     - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.22
       args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
