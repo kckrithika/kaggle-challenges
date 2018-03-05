@@ -26,7 +26,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000668-bae2cf08",  # 672 requires removal of configDir param and addition of hostName param + env var from slb-portal
+            hypersdn: "v-0000673-b7197010",  # 672 requires removal of configDir param and addition of hostName param + env var from slb-portal
             slbnginx: "v-0000020-f742177c",
             },
 
