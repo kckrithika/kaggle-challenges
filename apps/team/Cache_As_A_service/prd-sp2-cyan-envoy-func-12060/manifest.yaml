@@ -7,9 +7,12 @@ system:
     count: 1
 
     volumes:
-    - name: cert
+    - name: cert_server
       maddogCert:
         type: server
+    - name: cert_client
+      maddogCert:
+        type: client
 
     containers:
     - name: csr-cyan-envoy-sam
@@ -39,7 +42,9 @@ system:
         - containerPort: 12063 # TLS enabled port
 
       volumeMounts:
-        - name: cert
+        - name: cert_server
+          mountPath: /certs
+        - name: cert_client
           mountPath: /certs
 
     terminationGracePeriodSeconds: 100
