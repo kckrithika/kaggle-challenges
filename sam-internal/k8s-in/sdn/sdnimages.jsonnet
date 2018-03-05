@@ -41,7 +41,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 4 - Canary sites in Prod
         "4": {
-            hypersdn: "v-0000640-2e73cf4c",
+            hypersdn: "v-0000668-bae2cf08",
             bird: "v-0000014-b0a5951d",
             },
 
