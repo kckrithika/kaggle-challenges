@@ -32,7 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        image: slbimages.hypersdn,
                        command: [
                            "/sdn/slb-portal",
-                           ] + (if configs.estate == "prd-sdc" then [
+                           ] + (if configs.kingdom == "prd" then [
                                    "--hostname=$(NODE_NAME)",
                                 ]
                                                         else [
@@ -53,7 +53,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            initialDelaySeconds: 30,
                            periodSeconds: 3,
                        },
-                    } + if configs.estate == "prd-sdc" then {
+                    } + if configs.kingdom == "prd" then {
                                                  env: [
                                                                                                     {
                                                                                                        name: "NODE_NAME",
