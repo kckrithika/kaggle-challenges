@@ -1991,7 +1991,7 @@ apps:
     - samcaas2-caasminion1-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-8-prd.eng.sfdc.net
-  prd-sp2-redis-sp-mist43-c1-12068:
+ prd-sp2-redis-sp-mist43-c1-12068:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net
@@ -2003,7 +2003,7 @@ apps:
     - samcaas2-caasminion1-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-8-prd.eng.sfdc.net
-  prd-sp2-redis-sp-mist43-c1-12069:
+ prd-sp2-redis-sp-mist43-c1-12069:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net
