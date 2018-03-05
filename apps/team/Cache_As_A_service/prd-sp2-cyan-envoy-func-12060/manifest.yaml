@@ -7,10 +7,10 @@ system:
     count: 1
 
     volumes:
-    - name: cert_server
+    - name: cert-server
       maddogCert:
         type: server
-    - name: cert_client
+    - name: cert-client
       maddogCert:
         type: client
 
@@ -42,9 +42,9 @@ system:
         - containerPort: 12063 # TLS enabled port
 
       volumeMounts:
-        - name: cert_server
+        - name: cert-server
           mountPath: /certs
-        - name: cert_client
+        - name: cert-client
           mountPath: /certs
 
     terminationGracePeriodSeconds: 100
