@@ -36,7 +36,6 @@ spec:
       - command:
         - /sdn/slb-vip-watchdog
         - --configDir=/host/data/slb/config
-        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --archiveSvcEndpoint=https://ops0-piperepo2-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive
         - --vipLoop=10
         - --log_dir=/host/data/slb/logs
@@ -44,6 +43,7 @@ spec:
         - --monitorFrequency=60s
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
         - name: NODE_NAME
           valueFrom:
