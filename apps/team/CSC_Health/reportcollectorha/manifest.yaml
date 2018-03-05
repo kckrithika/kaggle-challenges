@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.12.0-0000243-4439d3ae
+      image: tnrp/csc-health/report-collector:1.14.0-0000251-2e482917
       ports:
       - name: provider
         containerPort: 8080
@@ -61,6 +61,14 @@ system:
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
         value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_https_supportDecompression
+        value: true
+      - name: ReportCollector_app_https_supportCompression
+        value: true
+      - name: ReportCollector_app_http_supportDecompression
+        value: true
+      - name: ReportCollector_app_http_supportCompression
+        value: true
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
@@ -78,13 +86,6 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-      case ${KINGDOM} in
-        prd)
-          export ReportCollector_app_https_supportDecompression=true ;
-          export ReportCollector_app_https_supportCompression=true ;
-          ;;
-        *)
-      esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.cacheDirBase=${CACHE_DIR}
@@ -98,7 +99,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.12.0-0000243-4439d3ae
+      image: tnrp/csc-health/report-collector:1.14.0-0000251-2e482917
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
