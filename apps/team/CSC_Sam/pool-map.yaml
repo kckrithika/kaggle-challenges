@@ -38,7 +38,7 @@ apps:
   - prd/prd-sam
   - frf/frf-sam
  SamTestAppSecret:
-  - frf/frf-sam
+  - iad/iad-sam
  mysql:
   - prd/prd-sam
   - prd/prd-samdev
