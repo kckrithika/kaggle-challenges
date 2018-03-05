@@ -36,7 +36,6 @@ spec:
       - command:
         - /sdn/slb-vip-watchdog
         - --configDir=/host/data/slb/config
-        - --funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-frf.data.sfdc.net/tnrp/content_repo/0/archive
         - --vipLoop=10
         - --log_dir=/host/data/slb/logs
@@ -44,6 +43,7 @@ spec:
         - --monitorFrequency=60s
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --funnelEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         env:
         - name: NODE_NAME
           valueFrom:
