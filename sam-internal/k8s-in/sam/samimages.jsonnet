@@ -31,7 +31,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        # PRODUCTION
+        # PRODUCTION - this is newer than this weekly release (0001725)
         "frf,frf-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         "phx,phx-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
@@ -70,7 +70,6 @@ local utils = import "util_functions.jsonnet";
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
         # [d.smith] Early push of new hypersam - fixes snapshotter
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "phx,phx-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "cdu,cdu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
@@ -116,7 +115,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF
         "3": {
-            hypersam: "sam-0001730-c7caec88",
+            hypersam: "sam-0001747-8c6b4886",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
