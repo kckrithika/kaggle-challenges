@@ -25,6 +25,7 @@ spec:
         - --livenessProbePort=9106
         - --log_dir=/data/logs/sdn/
         - --logtostderr=false
+        - --alsologtostderr=true
         image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sdn/hypersdn:v-0000640-2e73cf4c
         livenessProbe:
           httpGet:

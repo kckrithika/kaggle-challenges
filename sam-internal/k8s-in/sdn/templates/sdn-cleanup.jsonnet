@@ -23,8 +23,8 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--shouldNotDeleteAllFiles=false",
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]
-                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
+                            sdnconfigs.alsoLogToStdErrArg,
+                        ],
                         volumeMounts: [
                             sdnconfigs.sdn_logs_volume_mount,
                         ],

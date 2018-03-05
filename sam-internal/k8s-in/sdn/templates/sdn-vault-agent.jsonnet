@@ -25,8 +25,8 @@ if !utils.is_public_cloud(configs.kingdom) then {
                             "--livenessProbePort=" + portconfigs.sdn.sdn_vault_agent,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]
-                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
+                            sdnconfigs.alsoLogToStdErrArg,
+                        ],
                         livenessProbe: {
                             httpGet: {
                                path: "/liveness-probe",

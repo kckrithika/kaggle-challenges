@@ -53,8 +53,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             configs.sfdchosts_arg,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]
-                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
+                            sdnconfigs.alsoLogToStdErrArg,
+                        ],
                         env: [
                             configs.kube_config_env,
                         ],

@@ -40,6 +40,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
         - --logtostderr=false
+        - --alsologtostderr=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform

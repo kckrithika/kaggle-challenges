@@ -27,8 +27,6 @@ local utils = import "util_functions.jsonnet";
     logToStdErrArg: "--logtostderr=false",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
-    conditionalAlsoLogToStdErrArg: (if (kingdom == "prd") || (kingdom == "frf") then [self.alsoLogToStdErrArg] else []),
-
     # Volume for logs
     sdn_logs_volume: {
         name: "sdnlogs",

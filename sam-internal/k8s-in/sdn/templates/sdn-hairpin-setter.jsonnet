@@ -18,8 +18,8 @@ local utils = import "util_functions.jsonnet";
                             "/sdn/sdn-hairpin-setter",
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]
-                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
+                            sdnconfigs.alsoLogToStdErrArg,
+                        ],
                         volumeMounts: configs.filter_empty([
                             {
                                 name: "sys-mount",
