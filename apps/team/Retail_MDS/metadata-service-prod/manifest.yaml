@@ -7,7 +7,7 @@ system:
   - vivanov@salesforce.com
   functions:
   - name: metadata-service
-    count: 2 #TODO: fill me !
+    count: 2
     volumes:
     - name: mds-server-cert
       maddogCert:
@@ -29,7 +29,6 @@ system:
       image: sfci/metadata-cannon/metadata-service:0.0.79
       ports:
       - containerPort: 7020
-      - containerPort: 9091  # TODO: remove?
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
@@ -84,11 +83,3 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
-# TODO: do we need LB?
-  loadbalancers:
-  - lbname: metadata-service-prod-lb
-    function: metadata-service
-    nodeExposed: true
-    ports:
-    - port: 9091
-      targetport: 9091
