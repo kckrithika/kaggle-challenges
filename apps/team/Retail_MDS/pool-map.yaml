@@ -5,3 +5,5 @@ apps:
     metadata-service-prd-perf:    # performance testing
     - name: prd/prd-sam_crosscloudplatform
 
+    metadata-service-prod:        # production
+    - name: iad/iad-sam_crosscloudplatform
