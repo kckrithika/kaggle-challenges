@@ -70,7 +70,7 @@ local utils = import "util_functions.jsonnet";
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001501-6ebd0f4f",
+            deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -101,7 +101,7 @@ local utils = import "util_functions.jsonnet";
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001501-6ebd0f4f",
+            deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -132,7 +132,7 @@ local utils = import "util_functions.jsonnet";
             nodeMonitor_image_tag: "403",
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001501-6ebd0f4f",
+            deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
                   "0.9.1": 377,

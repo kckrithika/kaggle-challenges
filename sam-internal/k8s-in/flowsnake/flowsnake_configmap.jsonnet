@@ -263,31 +263,31 @@ local samconfig = import "config.jsonnet";
         "key-file": flowsnakeconfig.host_platform_client_key_path,
         "dry-run": false,
         "resources-to-skip": [
-          ] +
-          (if flowsnakeconfig.sdn_enabled then [
-              //TODO: figure out if we should still be skipping this
-              "_flowsnake-sdn-secret.yaml",
-          ] else [
-              "sdn-bird.yaml",
-              "sdn-cleanup.yaml",
-              "sdn-hairpin-setter.yaml",
-              "sdn-peering-agent.yaml",
-              "sdn-ping-watchdog.yaml",
-              "sdn-route-watchdog.yaml",
-              "sdn-secret-agent.yaml",
-              "sdn-vault-agent.yaml",
-              "_flowsnake-sdn-secret.yaml",
-          ]) +
-          (if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then [
-              //TODO: re-enable Autodeployer self-updates in all estates
-              "samcontrol-deployer.yaml",
-          ] else []) +
-          (if flowsnakeconfig.deepsea_enabled then [
-              // Must skip (and manually deploy) because AutoDeployer does not support Endpoints resources at the moment.
-              // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
-              "deepsea-kdc-endpoints.yaml",
-          ] else [
-          ]),
+            // alwasy skip this, should never get deployed by auto-deployer, sdn-secret-agent will read this file and deploy.
+            "_flowsnake-sdn-secret.yaml",
+        ] +
+        (if flowsnakeconfig.sdn_enabled then [
+        ] else [
+            "sdn-bird.yaml",
+            "sdn-cleanup.yaml",
+            "sdn-hairpin-setter.yaml",
+            "sdn-peering-agent.yaml",
+            "sdn-ping-watchdog.yaml",
+            "sdn-route-watchdog.yaml",
+            "sdn-secret-agent.yaml",
+            "sdn-vault-agent.yaml",
+            "_flowsnake-sdn-secret.yaml",
+        ]) +
+        (if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then [
+            //TODO: re-enable Autodeployer self-updates in all estates
+            "samcontrol-deployer.yaml",
+        ] else []) +
+        (if flowsnakeconfig.deepsea_enabled then [
+            // Must skip (and manually deploy) because AutoDeployer does not support Endpoints resources at the moment.
+            // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
+            "deepsea-kdc-endpoints.yaml",
+        ] else [
+        ]),
     },
     watchdog_config: {
         "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
