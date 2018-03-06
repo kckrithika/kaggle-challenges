@@ -36,8 +36,8 @@ if configs.estate == "prd-sdc" then {
                             "--livenessProbePort=" + portconfigs.sdn.sdn_sdnc_watchdog,
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
-                        ]
-                        + sdnconfigs.conditionalAlsoLogToStdErrArg,
+                            sdnconfigs.alsoLogToStdErrArg,
+                        ],
                         env: [
                             configs.kube_config_env,
                         ],
