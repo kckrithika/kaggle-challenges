@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-sp-prd-ccp-integration-functional
-      image: sfci/cre/cre-stream-processing:0.0.1.18.master.21fd37e.86
+      image: sfci/cre/cre-stream-processing:0.0.1.21.master.2d68a81.89
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -19,6 +19,8 @@ system:
           value: /certs/shared2-samminionretailcre1-1-prd.jks
         - name: SFDC_ENVIRONMENT
           value: ccp-integration-functional
+        - name: METRICS_KAFKA_ENABLED
+          value: true          
       ports:
       - containerPort: 8080
       - containerPort: 7020
