@@ -56,9 +56,9 @@ system:
     function: switchboard-perf
     nodeExposed: true
     ports:
-    - port: 17001
-      targetport: 15001
+    - port: 15001
+      targetport: 17001
       lbtype: dsr
-    - port: 17370
-      targetport: 15370
+    - port: 15370
+      targetport: 17370
       lbtype: dsr
