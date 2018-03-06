@@ -5,10 +5,10 @@ system:
     email:
       - rpulle@salesforce.com
   functions:
-  - name: switchboard
+  - name: switchboard-perf
     count: 1
     containers:
-    - name: switchboard 
+    - name: switchboard-perf
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
       image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
       env:
@@ -52,8 +52,8 @@ system:
             path: /home/sfdc-switchboard/logs
 
   loadbalancers:
-  - lbname: switchboard-lb
-    function: switchboard
+  - lbname: switchboard-perf-lb
+    function: switchboard-perf
     nodeExposed: true
     ports:
     - port: 15001
