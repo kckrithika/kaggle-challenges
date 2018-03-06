@@ -28,3 +28,7 @@ apps:
   - prd/prd-sam
  load-grpc-linkerd:
   - prd/prd-sam
+
+ switchboard:
+  - prd/prd-sam
+
