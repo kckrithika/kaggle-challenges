@@ -88,10 +88,10 @@ system:
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
       case ${KINGDOM} in
         prd)
-          export ReportCollector_redis_select=1 ;
           export ReportCollector_datastore=redisIndex ;
           ;;
         *)
+      esac;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.cacheDirBase=${CACHE_DIR}
