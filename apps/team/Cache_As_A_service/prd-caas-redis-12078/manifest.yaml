@@ -37,7 +37,7 @@ system:
       - containerPort: 12078
         name: caas-cluster
     - name: caas-redis-announcer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
       - caas/cluster/sp-mist30-c1:SUPERPOD:12078
