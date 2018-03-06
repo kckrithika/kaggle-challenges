@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.14.0-0000251-2e482917
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       ports:
       - name: provider
         containerPort: 8080
@@ -86,6 +86,12 @@ system:
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=${KINGDOM} ;
       export ReportCollector_ajna_device=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
+      case ${KINGDOM} in
+        prd)
+          export ReportCollector_redis_select=1 ;
+          export ReportCollector_datastore=redisIndex ;
+          ;;
+        *)
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.cacheDirBase=${CACHE_DIR}
@@ -99,7 +105,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.14.0-0000251-2e482917
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
