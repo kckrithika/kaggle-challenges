@@ -76,9 +76,6 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-        - mountPath: /data/certs
-          name: data-cert
-          readOnly: true
         - mountPath: /etc/flowsnake/config/maddog-namespaces
           name: maddog-namespaces
           readOnly: true
@@ -104,9 +101,6 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
-      - hostPath:
-          path: /data/certs
-        name: data-cert
       - configMap:
           name: maddog-namespaces
         name: maddog-namespaces

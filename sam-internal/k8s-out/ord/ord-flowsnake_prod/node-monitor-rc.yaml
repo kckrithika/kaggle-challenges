@@ -47,9 +47,6 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-        - mountPath: /data/certs
-          name: data-cert
-          readOnly: true
       volumes:
       - hostPath:
           path: /etc/kubernetes/kubeconfig-platform
@@ -63,6 +60,3 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
-      - hostPath:
-          path: /data/certs
-        name: data-cert
