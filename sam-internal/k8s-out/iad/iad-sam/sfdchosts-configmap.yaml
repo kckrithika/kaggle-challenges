@@ -1884,6 +1884,206 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-10-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-3-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-4-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-5-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-6-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-7-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-8-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion1-9-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-1-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-10-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-2-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-3-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-4-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-5-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-6-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-7-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-8-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "slb_minion",
+          "controlestate": "iad-sam",
+          "devicerole": "samcompute",
+          "estate": "iad-slb",
+          "hostname": "shared0-slbminion2-9-iad.ops.sfdc.net",
+          "kingdom": "iad",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_caas",
           "controlestate": "iad-sam",
           "devicerole": "samcompute",

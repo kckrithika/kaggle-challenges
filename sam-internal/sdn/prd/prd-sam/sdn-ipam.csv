@@ -120,8 +120,14 @@ shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net,10.231.189.2/28,10
 shared0-samminiongater1-1-prd.eng.sfdc.net,10.253.207.10/29,10.251.130.96/27,j08-02,prd-sam_gater
 shared0-samminiongater1-2-prd.eng.sfdc.net,10.253.207.26/29,10.251.130.32/27,e35-02,prd-sam_gater
 shared0-samminiongater1-3-prd.eng.sfdc.net,10.253.207.18/29,10.251.130.0/27,b08-02,prd-sam_gater
+shared0-samminiongater1-4-prd.eng.sfdc.net,10.240.128.178/29,10.251.130.192/27,q09-02,prd-sam_gater
+shared0-samminiongater1-5-prd.eng.sfdc.net,10.240.128.186/29,10.251.130.160/27,bb38-02,prd-sam_gater
+shared0-samminiongater1-6-prd.eng.sfdc.net,10.240.128.226/29,10.251.130.224/27,s03-02,prd-sam_gater
 shared0-samminiongater2-1-prd.eng.sfdc.net,10.253.207.2/29,10.251.130.128/27,k08-02,prd-sam_gater
 shared0-samminiongater2-2-prd.eng.sfdc.net,10.253.207.34/29,10.251.130.64/27,h38-02,prd-sam_gater
+shared0-samminiongater2-3-prd.eng.sfdc.net,10.253.207.42/29,10.251.131.0/27,u09-02,prd-sam_gater
+shared0-samminiongater2-4-prd.eng.sfdc.net,10.253.207.50/29,10.251.131.32/27,u10-02,prd-sam_gater
+shared0-samminiongater2-5-prd.eng.sfdc.net,10.253.207.58/29,10.251.131.64/27,w04-02,prd-sam_gater
 shared0-samminiongwc1-1-prd.eng.sfdc.net,10.231.186.10/29,10.251.137.32/27,q09-02,prd-sam_gatewayconfig
 shared0-samminiongwc1-2-prd.eng.sfdc.net,10.231.186.18/29,10.251.137.64/27,s03-02,prd-sam_gatewayconfig
 shared0-samminiongwc2-1-prd.eng.sfdc.net,10.231.186.2/29,10.251.137.0/27,e06-02,prd-sam_gatewayconfig
@@ -130,6 +136,9 @@ shared0-samminioniottest1-1-prd.eng.sfdc.net,10.231.88.66/29,10.251.177.64/27,bb
 shared0-samminioniottest1-2-prd.eng.sfdc.net,10.231.88.82/29,10.251.177.0/27,aa38-02,prd-sp2-sam_iot_test
 shared0-samminioniottest2-1-prd.eng.sfdc.net,10.231.88.74/29,10.251.177.96/27,bb37-02,prd-sp2-sam_iot_test
 shared0-samminioniottest2-2-prd.eng.sfdc.net,10.231.88.90/29,10.251.177.32/27,bb31-02,prd-sp2-sam_iot_test
+shared0-samminionmcconsumer1-1-prd.eng.sfdc.net,10.240.128.194/29,10.254.234.64/27,w04-02,prd-sp1-sam_mc_consumer
+shared0-samminionmcconsumer2-1-prd.eng.sfdc.net,10.240.128.210/29,10.254.234.32/27,u10-02,prd-sp1-sam_mc_consumer
+shared0-samminionmcconsumer3-1-prd.eng.sfdc.net,10.240.128.218/29,10.254.234.0/27,u09-02,prd-sp1-sam_mc_consumer
 shared0-samminionmoderationeinstein1-1-prd.eng.sfdc.net,10.231.101.138/29,10.251.136.64/27,x34-02,prd-sam_moderation_einstein
 shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net,10.231.101.146/29,10.251.136.0/27,q04-02,prd-sam_moderation_einstein
 shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net,10.231.101.130/29,10.251.136.32/27,r10-02,prd-sam_moderation_einstein
