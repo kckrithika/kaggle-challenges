@@ -21,14 +21,14 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
-            default_tag: "base-0000349-2c28796d",
-            ceph_operator_tag: "base-0000334-75f04e65",
-            sfms_tag: "latest-0000119-3aa3ffd3",
+            default_tag: "base-0000360-ba0dd469",
+            ceph_operator_tag: "base-0000360-ba0dd469",
+            sfms_tag: "latest-0000145-15e8997c",
             cephdaemon_tag: "jewel-0000056-50bd0816",
-            sfstorebookie_tag: "base-0000049-2a69b61e",
+            sfstorebookie_tag: "base-0000064-6c5c1cb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000017-c6de7b57",
-            loginit_tag: "base-0000334-75f04e65",
+            sfnodeprep_tag: "base-0000360-ba0dd469",
+            loginit_tag: "base-0000360-ba0dd469",
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
