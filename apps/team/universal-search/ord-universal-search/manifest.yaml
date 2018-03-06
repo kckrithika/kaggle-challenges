@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.2.1
+      image: sfci/searchdev/universal-search:0.5.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -32,24 +32,25 @@ system:
         limits: { cpu: "8", memory: "20Gi" }
         requests: { cpu: "8", memory: "20Gi" }
       env:
-      # Revert this config override when 0.5.1 image is released
-      - name: MANAGEMENT_HEALTH_DEFAULTS_ENABLED
-        value: false
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
       - name: usmt-log-vol
         mountPath: /home/sfdc-usmt/logs
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+      #  httpGet:
+      #    path: /manage/health
+      #    port: 15372
+        exec:
+          command: ["true"]
         initialDelaySeconds: 120 
         timeoutSeconds: 30
       readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
+      #  httpGet:
+      #    path: /manage/health
+      #    port: 15372
+        exec:
+          command: ["true"]
         initialDelaySeconds: 120
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.22
