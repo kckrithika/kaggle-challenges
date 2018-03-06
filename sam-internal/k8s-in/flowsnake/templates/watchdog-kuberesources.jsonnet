@@ -1,7 +1,8 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+// Disable everywhere for now because too noisy, because at any given time we have failed customer pods.
+if flowsnakeconfig.is_minikube || true then
 "SKIP"
 else
 {
