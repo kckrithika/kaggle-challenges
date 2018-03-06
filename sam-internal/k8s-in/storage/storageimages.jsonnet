@@ -85,6 +85,7 @@ local kingdom = std.extVar("kingdom");
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
     cephoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
     loginit: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
+    nodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep", $.per_phase[$.phase].sfnodeprep_tag),
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.
     sfms: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
@@ -102,9 +103,6 @@ local kingdom = std.extVar("kingdom");
 
     # The sfstore lvprovisioner image is maintained in the https://git.soma.salesforce.com/SFStorage/lvprovisioner repo.
     lvprovisioner: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "lvprovisioner", $.per_phase[$.phase].lvprovisioner_tag),
-
-    # The sfstore nodeprep image is maintained in the https://git.soma.salesforce.com/SFStorage/nodeprep repo.
-    sfnodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfnodeprep", $.per_phase[$.phase].sfnodeprep_tag),
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:

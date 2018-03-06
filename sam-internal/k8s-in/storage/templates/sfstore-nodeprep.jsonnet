@@ -60,7 +60,7 @@ if configs.estate == "prd-sam_storage" then {
           containers: [
             {
               name: "nodeprep",
-              image: storageimages.sfnodeprep,
+              image: storageimages.nodeprep,
               imagePullPolicy: "Always",
               securityContext: {
                 privileged: true,
