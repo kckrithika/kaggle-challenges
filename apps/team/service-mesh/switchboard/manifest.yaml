@@ -26,6 +26,7 @@ system:
       - --clusters.external-clusters[4]=search-model-executor-rpulle:HTTP2
       - --clusters.external-clusters[5]=search-model-executor-xlt:HTTP2
       - --clusters.external-clusters[6]=tictactoe-server-service-envoy:HTTP2
+      - --clusters.external-clusters[7]=envoy-canary:HTTP2
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
