@@ -17,7 +17,7 @@ system:
     containers:
     - name: csr-cyan-envoy-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan-envoy:tyler-20180228-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan-envoy:tyler-20180306-1
 
       livenessProbe:
          exec:
@@ -40,12 +40,13 @@ system:
         - containerPort: 12060 # Plain text port
         - containerPort: 12061 # Admin port
         - containerPort: 12063 # TLS enabled port
+        - containerPort: 12065 # TLS end to end port
 
       volumeMounts:
         - name: cert-server
-          mountPath: /certs
+          mountPath: /certs/cert-server
         - name: cert-client
-          mountPath: /certs
+          mountPath: /certs/cert-client
 
     terminationGracePeriodSeconds: 100
     progressDeadlineSeconds: 120
@@ -62,3 +63,5 @@ system:
       targetport: 12061
     - port: 12063
       targetport: 12063
+    - port: 12065
+      targetport: 12065
