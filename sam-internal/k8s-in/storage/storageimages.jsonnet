@@ -21,14 +21,14 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
-            default_tag: "base-0000349-2c28796d",
-            ceph_operator_tag: "base-0000334-75f04e65",
-            sfms_tag: "latest-0000119-3aa3ffd3",
+            default_tag: "base-0000360-ba0dd469",
+            ceph_operator_tag: "base-0000360-ba0dd469",
+            sfms_tag: "latest-0000145-15e8997c",
             cephdaemon_tag: "jewel-0000056-50bd0816",
-            sfstorebookie_tag: "base-0000049-2a69b61e",
+            sfstorebookie_tag: "base-0000064-6c5c1cb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000017-c6de7b57",
-            loginit_tag: "base-0000334-75f04e65",
+            sfnodeprep_tag: "base-0000360-ba0dd469",
+            loginit_tag: "base-0000360-ba0dd469",
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
@@ -85,6 +85,7 @@ local kingdom = std.extVar("kingdom");
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
     cephoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
     loginit: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
+    nodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep", $.per_phase[$.phase].sfnodeprep_tag),
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.
     sfms: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),
@@ -102,9 +103,6 @@ local kingdom = std.extVar("kingdom");
 
     # The sfstore lvprovisioner image is maintained in the https://git.soma.salesforce.com/SFStorage/lvprovisioner repo.
     lvprovisioner: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "lvprovisioner", $.per_phase[$.phase].lvprovisioner_tag),
-
-    # The sfstore nodeprep image is maintained in the https://git.soma.salesforce.com/SFStorage/nodeprep repo.
-    sfnodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfnodeprep", $.per_phase[$.phase].sfnodeprep_tag),
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
