@@ -91,6 +91,10 @@ else
   /opt/sam/manifestctl validate-config-maps --in ../k8s-out/
 fi
 
+# evaluate_pr2 has a check that all files in k8s-in/k8s-out match, and it does not read .gitignore
+# Until that script is fixed we need to remove this at the end
+rm -rf multifile-temp/
+
 # TODO: Add warning when running against out-of-sync git repo
 
 # TODO: Add some basic validations
