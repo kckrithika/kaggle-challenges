@@ -8,9 +8,10 @@ system:
     count: 1
     containers:
     - name: ajnaconsumer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171215_030949.045613dd.dirty.hariudhayak-ltm
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001757-dc758114
+      #ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hari.udhayakumar/hypersam:20171215_030949.045613dd.dirty.hariudhayak-ltm
       command: ["/sam/ajnaconsumer"]
-      args: ["-caFile", "/certs/ca.pem", "-kafkaConsumerEndpoint", "ajna0-brokeragg1-0-prd.data.sfdc.net:9093", "-kafkaTopics", "sfdc.prod.sam__prd.ajna_local__opevents", "-databaseHostname", "watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net", "-databasePasswordFile", "/secrets/mysql_watchdog-password", "-failedReportsDatabaseName", "mysql_watchdog", "-allReportsDatabaseName", "mysql_watchdog"]
+      args: ["-v=3", "--caFile=/certs/ca.pem", "--kafkaConsumerEndpoint=ajna0-brokeragg1-0-prd.data.sfdc.net:9093", "--kafkaTopics=sfdc.prod.sam__prd.ajna_local__opevents", "--databaseHostname=watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net", "--databasePasswordFile=/secrets/mysql_watchdog-password", "--failedReportsDatabaseName=mysql_watchdog", "--allReportsDatabaseName=mysql_watchdog"]
       volumeMounts:
       - name: certs
         mountPath: /certs
