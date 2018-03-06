@@ -14,7 +14,7 @@ system:
           limits: { cpu: "1", memory: "1Gi" }
           requests: { cpu: "1", memory: "1Gi" }
         ports:
-        - containerPort: 8983 # add additional container ports for the protocols your service uses
+        - containerPort: 7014 # add additional container ports for the protocols your service uses
           name: solr-port
         livenessProbe:
           exec:
@@ -22,3 +22,16 @@ system:
             - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
+    - name: beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - searchserver:prd:7014
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
