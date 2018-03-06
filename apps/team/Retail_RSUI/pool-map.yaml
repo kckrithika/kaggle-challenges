@@ -2,10 +2,18 @@ version: v2
 apps:
   rsui-func:
   - name: prd/prd-sam_crosscloudsetup
+    hostSubList:
+        - shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
+        - shared0-samminioncrosscloudsetup2-1-prd.eng.sfdc.net
   rsui-perf:
   - name: prd/prd-sam_crosscloudsetup
+    hostSubList:
+        - shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
   rsui-integ:
   - name: prd/prd-sam_crosscloudsetup
+    hostSubList:
+        - shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
+        - shared0-samminioncrosscloudsetup2-1-prd.eng.sfdc.net
   rsui-production:
   - name: iad/iad-sam_crosscloudsetup
   - name: ord/ord-sam_crosscloudsetup
