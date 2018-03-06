@@ -60,13 +60,11 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to public cloud. This stops spamming customers and publishes metrics to the correct scope.
-        "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
         # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to public cloud. This will correctly deploy hairpin watchdogs with correct role info.
-        "cdu,cdu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "syd,syd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
@@ -80,7 +78,6 @@ local utils = import "util_functions.jsonnet";
         "iad,iad-sam,samcontrol,hypersam": "sam-0001747-8c6b4886",
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
-        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "syd,syd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
@@ -114,14 +111,14 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
-        ### Release Phase 3 - Canary Prod FRF
+        ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
             hypersam: "sam-0001747-8c6b4886",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
-        ### Release Phase 4 - Rest of Prod
+        ### Release Phase 4 - Rest of Prod + Pub + Gia (Pub overridden by 'pub' phase for now)
         "4": {
             hypersam: "sam-0001747-8c6b4886",
             madkub: "1.0.0-0000061-74e4a7b6",
@@ -160,7 +157,7 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf") then
+        else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
         else if utils.is_public_cloud(kingdom) then
             "pub"
