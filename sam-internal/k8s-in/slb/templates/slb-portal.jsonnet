@@ -52,7 +52,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            },
                            initialDelaySeconds: 30,
                            periodSeconds: 3,
-                       },
+                       } + if configs.kingdom == "prd" then {
+                           timeoutSeconds: 10,
+                       } else {},
                     } + if configs.kingdom == "prd" then {
                                                  env: [
                                                                                                     {
