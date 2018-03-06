@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-prd-ccp-shared-dev
-      image: sfci/cre/cre-api:0.0.1.21.master.9aad407.71
+      image: sfci/cre/cre-api:0.0.1.22.master.f0f6420.72
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit
@@ -34,6 +34,8 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
+      - mountPath: /certs
+        name: certs
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
@@ -63,6 +65,9 @@ system:
           initialDelaySeconds: 60
           periodSeconds: 120
     volumes:
+    - name: certs
+      hostPath:
+        path: /home/sfdc-retail/keystores
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-api_ccp-shared-dev
