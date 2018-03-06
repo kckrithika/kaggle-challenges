@@ -17,7 +17,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:0.0.0
+      image: sfci/retail/retail-setup:1.0.0
       ports:
       - containerPort: 7022
         name: rsui-in-http1
