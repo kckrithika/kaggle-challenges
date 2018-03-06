@@ -65,7 +65,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:plaird-20180306-7d28ae2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:plaird-20180306-464f8f0
       args:
       - -endpoint
       - iot.controlplane-secure:DATACENTER:7443
