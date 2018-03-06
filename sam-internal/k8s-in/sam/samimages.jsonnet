@@ -59,13 +59,13 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",
         "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
-        # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to all kingdoms. This stops spamming customers and publishes metrics to the correct scope.
+        # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to public cloud. This stops spamming customers and publishes metrics to the correct scope.
         "cdu,cdu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
-        # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to all kingdoms. This will correctly deploy hairpin watchdogs with correct role info.
+        # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to public cloud. This will correctly deploy hairpin watchdogs with correct role info.
         "cdu,cdu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "syd,syd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
@@ -79,18 +79,9 @@ local utils = import "util_functions.jsonnet";
         # [cbatra] Overriding controller in IAD to use the new certs for k4a
         "iad,iad-sam,samcontrol,hypersam": "sam-0001747-8c6b4886",
 
-        # [d.smith] Early push of new hypersam - fixes snapshotter
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
         "cdu,cdu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "chx,chx-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "iad,iad-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "ord,ord-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "par,par-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "syd,syd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "wax,wax-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
 
@@ -132,7 +123,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod
         "4": {
-            hypersam: "sam-0001710-3ec484d6",
+            hypersam: "sam-0001747-8c6b4886",
             madkub: "1.0.0-0000061-74e4a7b6",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
