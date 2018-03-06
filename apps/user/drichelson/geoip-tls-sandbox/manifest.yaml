@@ -86,7 +86,7 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.23
       args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -168,7 +168,7 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.23
       args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
