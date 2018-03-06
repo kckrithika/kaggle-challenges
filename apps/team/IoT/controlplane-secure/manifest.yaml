@@ -59,10 +59,13 @@ system:
         name: controlplanekeytab
         readOnly: true
     - name: beacon
+      ports:
+      - containerPort: 9010
+        name: jconsole
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:plaird-20180306-529a03f
       args:
       - -endpoint
       - iot.controlplane-secure:DATACENTER:7443
@@ -134,6 +137,8 @@ system:
       targetport: 15372
     - port: 15383
       targetport: 15373
+    - port: 15389
+      targetport: 9010
     slbEnabled: true
   notifications:
     email:
