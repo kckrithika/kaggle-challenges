@@ -1,0 +1,46 @@
+# Manifest Syntax: https://sfdc.co/sam-manifest-format
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: dfs-production
+    count: 3
+    containers:
+    - name: dfs-production
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.1.18
+      volumeMounts:
+      - name: logvol
+        mountPath: /home/scone/logs
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      ports:
+      - containerPort: 7022
+      - containerPort: 15372
+      livenessProbe:
+        exec:
+          command: ["true"]
+    - name: sherpa-dfs
+      image: sfci/servicelibs/sherpa:2.0.21
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: prod
+      ports:
+        - containerPort: 7014
+        - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 60
+          periodSeconds: 120
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-dfs/logs
