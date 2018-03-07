@@ -1028,11 +1028,13 @@
     {
       "namespaces": [
         "gater",
-        "ccait"
+        "ccait",
+        "service-mesh"
       ],
       "access": [
         "team/Gater",
-        "team/CCAIT"
+        "team/CCAIT",
+        "team/service-mesh"
       ],
       "controlEstate": "par-sam",
       "estate": "par-sam_gater",
