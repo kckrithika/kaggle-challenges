@@ -52,7 +52,7 @@ system:
       - name: CHS_AJNA_ENABLED
         value: true
       - name: CHS_REPORTCOLLECTOR_WHITELIST
-        value: netmgt.nhal_client,netmgt.sandman,sandman,grok.server_watchdog
+        value: netmgt.nhal_client,netmgt.sandman,sandman,grok.server_watchdog,network-nvt
       - name: CHS_REPORTCOLLECTOR_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: CHS_REPORTCOLLECTOR_KEYPATH
