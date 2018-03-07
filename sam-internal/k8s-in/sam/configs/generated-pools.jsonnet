@@ -1425,6 +1425,18 @@
     },
     {
       "namespaces": [
+        "gateway"
+      ],
+      "access": [
+        "team/gateway"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_gatewayconfig",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
