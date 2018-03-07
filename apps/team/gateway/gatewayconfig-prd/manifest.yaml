@@ -39,7 +39,7 @@ system:
       - containerPort: 9133
       - containerPort: 15372
       livenessProbe:
-        initialDelaySeconds: 20
+        initialDelaySeconds: 21
         periodSeconds: 15
         exec:
           command:
