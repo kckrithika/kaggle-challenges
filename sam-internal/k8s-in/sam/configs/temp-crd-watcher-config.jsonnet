@@ -9,7 +9,7 @@ local configs = import "config.jsonnet";
   certFile: configs.certFile,
   lockName: "/locks/tempmanifestwatcher",
   crdEnabled: true,
-  crdDeletionEnabled: true,
+  crdDeletionEnabled: (if configs.estate != "prd-sam" then true else false),
   endpointRepoName: (if configs.kingdom == "prd" then "test-manifests"),
   manifestV1Enabled: false,
   etcdAppFolder: "temp-crd-watcher",
