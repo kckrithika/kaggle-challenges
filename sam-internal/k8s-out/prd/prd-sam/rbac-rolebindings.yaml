@@ -569,6 +569,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: gateway:prd-sam_gatewayconfig:rolebinding
+    namespace: gateway
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongwc1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongwc1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongwc2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminiongwc2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: communities:prd-sam_moderation_einstein:rolebinding
     namespace: communities
   roleRef:
