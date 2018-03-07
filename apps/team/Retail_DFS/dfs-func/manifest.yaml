@@ -44,3 +44,10 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-dfs/logs
+  loadbalancers:
+  - lbname: dfs-lb
+    function: dfs-func
+    nodeExposed: true
+    ports:
+    - port: 7022
+      targetport: 7022
