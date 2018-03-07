@@ -189,6 +189,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-search_model_executor",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -356,6 +368,18 @@
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_warden",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-search_model_executor",
       "kingdom": "frf",
       "superPod": "None"
     },
