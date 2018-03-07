@@ -18,7 +18,7 @@ system:
         livenessProbe:
           exec:
             command:
-            - /bin/ps -ef | /usr/bin/grep cantor.jar | /usr/bin/grep -v grep
+            - usr/bin/true
 
     loadbalancers:
     - lbname: cantor
