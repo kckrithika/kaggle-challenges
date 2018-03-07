@@ -4,6 +4,7 @@ system:
   notifications:
     email:
       - rmichela@salesforce.com
+      - afalko@salesforce.com
   functions:
   - name: fake-zipkin
     count: 1
