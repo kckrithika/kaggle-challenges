@@ -20,7 +20,7 @@ system:
           exec:
             command:
             - "true"
-          initialDelaySeconds: 120
+          initialDelaySeconds: 120 
           periodSeconds: 5
     - name: sherpa-searchserver
       image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see below
