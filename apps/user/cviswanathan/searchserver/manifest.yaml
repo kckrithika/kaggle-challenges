@@ -50,12 +50,6 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-        
-# Add the log volume in the function section:
-    volumes:
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
@@ -69,3 +63,9 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
+        
+# Add the log volume in the function section:
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
