@@ -7,6 +7,8 @@ apps:
     - prd/prd-sam
   time:
     - prd/prd-sam
+  envoy-canary:
+    - prd/prd-sam_gater
   demo-geoip:
     - prd/prd-sam
   prd-fake-zipkin:

@@ -26,6 +26,7 @@ system:
       - --clusters.external-clusters[4]=search-model-executor-rpulle:HTTP2
       - --clusters.external-clusters[5]=search-model-executor-xlt:HTTP2
       - --clusters.external-clusters[6]=tictactoe-server-service-envoy:HTTP2
+      - --clusters.external-clusters[7]=envoy-canary:HTTP2
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
@@ -40,11 +41,13 @@ system:
           path: /manage/health
           port: 15370
         initialDelaySeconds: 20
+        periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /manage/health
           port: 15370
         initialDelaySeconds: 15
+        periodSeconds: 5
 
     volumes:
         - name: switchboard-log-volume
