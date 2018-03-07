@@ -11,6 +11,8 @@ system:
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001762-fd881849
       command:
         - /sam/ajnaconsumer
+        - --v=3
+        - --databaseHostname=watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net
       volumeMounts:
       - name: certs
         mountPath: /certs
