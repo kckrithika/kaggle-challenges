@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: h1-test-client-l5d
+  - name: h1-test-client-l5d-tls
     count: 1
     containers:
     - name: h1-test-client
