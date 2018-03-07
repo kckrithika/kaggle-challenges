@@ -23,7 +23,7 @@ local kingdom = std.extVar("kingdom");
         "1": {
             default_tag: "base-0000360-ba0dd469",
             ceph_operator_tag: "base-0000360-ba0dd469",
-            sfms_tag: "latest-0000145-15e8997c",
+            sfms_tag: "latest-0000147-e9f9f61c",
             cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000064-6c5c1cb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
