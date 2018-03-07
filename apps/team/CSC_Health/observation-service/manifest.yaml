@@ -52,7 +52,7 @@ system:
       - name: OBS_AJNA_ENABLED
         value: true
       - name: OBS_REPORTCOLLECTOR_WHITELIST
-        value: net,sandman
+        value: netmgt.nhal_client,netmgt.sandman
       - name: OBS_REPORTCOLLECTOR_CERTPATH
         value: /var/secrets/grok-client.crt.pem
       - name: OBS_REPORTCOLLECTOR_KEYPATH
