@@ -22,7 +22,7 @@ system:
             - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
-    - name: sherpa
+    - name: sherpa-searchserver
       image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see below
       env:
       - name: SFDC_ENVIRONMENT
