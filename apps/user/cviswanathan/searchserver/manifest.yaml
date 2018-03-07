@@ -64,8 +64,8 @@ system:
           command:
           - "/home/scone/is-alive.sh"
         
-# Add the log volume in the function section:
-    volumes:
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
+  # Add the log volume in the function section:
+  volumes:
+  - name: sherpa-log-volume
+    hostPath:
+      path: /home/sfdc-sherpa/logs
