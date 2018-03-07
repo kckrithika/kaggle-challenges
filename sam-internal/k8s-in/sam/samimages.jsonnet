@@ -22,12 +22,6 @@ local utils = import "util_functions.jsonnet";
         # [thargrove] Testing manifest-watcher with SkipOldZip protection
         # Synthetic needs to go before manifest-watcher
         # PRD
-        "prd,prd-samtest,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
-        "prd,prd-samtest,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "prd,prd-samdev,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
-        "prd,prd-samdev,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
@@ -102,8 +96,8 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001747-8c6b4886",
-            madkub: "1.0.0-0000061-74e4a7b6",
+            hypersam: "sam-0001760-c9a04911",
+            madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
