@@ -22,6 +22,40 @@ system:
             - "true"
           initialDelaySeconds: 120
           periodSeconds: 5
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see below
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam" # Use whatever environment your kpod uses
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /log
+          name: sherpa-log-volume
+      ports:
+      - containerPort: 7014 # add additional container ports for the protocols your service uses
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues. 
+        name: sherpa-in-admin 
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+        
+# Add the log volume in the function section:
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
