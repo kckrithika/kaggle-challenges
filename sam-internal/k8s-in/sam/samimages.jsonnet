@@ -48,6 +48,11 @@ local utils = import "util_functions.jsonnet";
         "ukb,ukb-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
         "wax,wax-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
 
+        # Lagging Public Cloud - etcdBackup needs a recent image
+        "yhu,yhu-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
+        "yul,yul-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
+        "syd,syd-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
+
         # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",
         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",
