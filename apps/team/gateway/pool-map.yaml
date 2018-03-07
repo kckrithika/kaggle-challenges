@@ -1,8 +1,4 @@
 apps:
  gatewayconfig-prd:
   - name: prd/prd-sam_gatewayconfig
-    hostSubList:
-    - shared0-samminiongwc1-2-prd.eng.sfdc.net
-    - shared0-samminiongwc1-1-prd.eng.sfdc.net
-    - shared0-samminiongwc2-1-prd.eng.sfdc.net
 
