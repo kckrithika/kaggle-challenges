@@ -1,4 +1,6 @@
 apps:
+ prd-cantor:
+  - prd/prd-sam_warden
  prd-cmx:
   - prd/prd-sam_warden
  prd-warden:
