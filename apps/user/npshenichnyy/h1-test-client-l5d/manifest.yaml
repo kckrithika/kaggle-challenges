@@ -7,6 +7,8 @@ system:
     containers:
     - name: h1-test-client
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-client:latest
+      args:
+      - "http://h1-test-server-l5d.localhost.mesh.force.com:7013"
       env:
       - name: SFDC_ENVIRONMENT
         value: sam

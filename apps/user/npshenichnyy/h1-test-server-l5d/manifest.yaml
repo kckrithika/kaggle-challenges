@@ -7,6 +7,8 @@ system:
     containers:
     - name: h1-test-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-server:latest
+      args:
+      - "0.0.0.0:7022"
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -22,7 +24,7 @@ system:
       args:
       - -endpoint
       # 7014 - http1 non-tls
-      - time:DATACENTER_ALLENV:7014
+      - h1-test-server-l5d:DATACENTER_ALLENV:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
