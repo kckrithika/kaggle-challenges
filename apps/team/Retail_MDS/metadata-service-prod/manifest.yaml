@@ -3,8 +3,8 @@ apiVersion: v1
 system:
   notifications:
   email:
-  - robert.snell@salesforce.com
   - vivanov@salesforce.com
+  - robert.snell@salesforce.com
   functions:
   - name: metadata-service
     count: 2
