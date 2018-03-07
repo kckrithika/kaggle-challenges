@@ -12,7 +12,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
       - name: SFDC_ENVIRONMENT
-        value: stm
+        value: mesh
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -29,7 +29,7 @@ system:
       image: sfci/servicelibs/sherpa-envoy:fe853035d839fabd6d147007ada5b1cd036b7b81
       env:
       - name: SFDC_ENVIRONMENT
-        value: stm
+        value: mesh
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
