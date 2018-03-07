@@ -4,7 +4,7 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "crdDeletionEnabled": true,
+      "crdDeletionEnabled": false,
       "crdEnabled": true,
       "disableCertsCheck": true,
       "endpointRepoName": "test-manifests",
