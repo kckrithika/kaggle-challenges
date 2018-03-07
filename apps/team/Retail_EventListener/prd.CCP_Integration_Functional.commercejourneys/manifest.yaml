@@ -11,6 +11,9 @@ system:
   - name: commercejourneys-mc-handler-prd-ccp-integration-functional
     count: 1
     volumes:
+    - name: secretvol
+      k4aSecret:
+          secretName: multitenantcreds
     - name: cccjclientcert
       maddogCert:
         type: client
@@ -35,6 +38,9 @@ system:
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
+      - name: secretvol
+        mountPath: /secrets/
+        readOnly: true
   loadbalancers:
   - lbname: commercejourneys-retail-event-handler-prd-lb
     function: commercejourneys-mc-handler-prd-ccp-integration-functional
