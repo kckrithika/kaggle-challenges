@@ -23,7 +23,7 @@ system:
         path: /home/sfdc-sherpa/logs
     - name: gdot-secrets-volume
       k4aSecret:
-        secretName: mds-gdot-secrets-prod2
+        secretName: mds-gdot-secrets-prod3
     containers:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.0.80
