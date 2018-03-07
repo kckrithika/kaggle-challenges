@@ -31,7 +31,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                             "/sdn/slb-vip-watchdog",
                             "--configDir=" + slbconfigs.configDir,
-                            "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                             "--vipLoop=10",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
@@ -44,6 +43,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 "--metricsEndpoint=" + configs.funnelVIP,
                              ] else [
                                 "--funnelEndpoint=" + configs.funnelVIP,
+                                "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
                              ]
                         ),
                         volumeMounts: configs.filter_empty([
