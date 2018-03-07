@@ -61,4 +61,5 @@ local kingdom = std.extVar("kingdom");
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
 
     sdn_enabled: !(estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" || self.is_minikube),
+    sdn_in_transition: estate == "prd-data-flowsnake",
 }
