@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.kingdom == "prd" || configs.kingdom == "frf" then {
+{
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -67,4 +67,4 @@ if configs.kingdom == "prd" || configs.kingdom == "frf" then {
         name: "k8s-resource-reporter",
         namespace: "sam-system",
     },
-} else "SKIP"
+}
