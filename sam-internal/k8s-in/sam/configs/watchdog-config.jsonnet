@@ -105,10 +105,10 @@ std.prune({
     storageClassName: "synthetic-hdd-pool",
     enableStatefulChecks: true,
     enableStatefulPVChecks: true,
-    maxPVCAge: (if configs.estate == "prd-sam" then "9m" else 420000000000),
-    syntheticPVRetrytimeout: (if configs.estate == "prd-sam" then "9m" else 420000000000),
-    syntheticretrytimeout: (if configs.estate == "prd-sam" then "9m" else 420000000000),
-    maxdeploymentduration: 420000000000,
+    maxPVCAge: (if configs.estate == "prd-sam" then "15m" else 420000000000),
+    syntheticPVRetrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
+    syntheticretrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
+    maxdeploymentduration: (if configs.estate == "prd-sam" then "15m" else 420000000000),
   } else {})
   + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
     # Maddog(cert) checker
