@@ -27,7 +27,7 @@ system:
         name: logvol
       - mountPath: /tmp
         name: amagicvolumethatvanishes
-      - mountPath : /secret/
+      - mountPath : /secrets/
         name: secretvol
         readOnly: true
     volumes:
@@ -38,7 +38,7 @@ system:
       emptyDir: {}
     - name: secretvol
       k4aSecret:
-        secretName: prodsecretnew
+        secretName: prodsecretlatest
   loadbalancers:
   - lbname: samtestsecretlb
     nodeExposed: true
