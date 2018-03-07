@@ -68,7 +68,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:plaird-20180306-b1ec160
       args:
       - -endpoint
-      - iot.controlplane-secure:DATACENTER:7443
+      - iot/controlplane-secure:DATACENTER:7443
       # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
       # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
       # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
