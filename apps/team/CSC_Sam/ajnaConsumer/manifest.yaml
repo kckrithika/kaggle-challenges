@@ -9,8 +9,10 @@ system:
     containers:
     - name: ajnaconsumer
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001762-fd881849
-      command: ["/sam/ajnaconsumer"]
-      args: ["-v=3", "--caFile=/certs/ca.pem", "--kafkaConsumerEndpoint=ajna0-brokeragg1-0-prd.data.sfdc.net:9093", "--kafkaTopics=sfdc.prod.sam__prd.ajna_local__opevents", "--databaseHostname=watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net", "--databasePasswordFile=/secrets/mysql_watchdog-password", "--failedReportsDatabaseName=mysql_watchdog", "--allReportsDatabaseName=mysql_watchdog"]
+      command:
+        - /sam/ajnaconsumer
+        - --v=3
+        - --databaseHostname=watchdog-mysql.csc-sam.prd-sam.prd.slb.sfdc.net
       volumeMounts:
       - name: certs
         mountPath: /certs
