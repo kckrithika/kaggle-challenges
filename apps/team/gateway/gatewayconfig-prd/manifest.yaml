@@ -1,5 +1,4 @@
 apiVersion: v1
-
 system:
   notifications:
     email:
@@ -20,7 +19,7 @@ system:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-07 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-08a 
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
