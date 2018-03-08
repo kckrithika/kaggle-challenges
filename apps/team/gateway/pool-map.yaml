@@ -1,4 +1,3 @@
 apps:
  gatewayconfig-prd:
-  - prd/prd-sam
-
+  - prd/prd-sam_gatewayconfig
