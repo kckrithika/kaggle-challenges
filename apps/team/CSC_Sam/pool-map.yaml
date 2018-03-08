@@ -57,5 +57,3 @@ apps:
   - prd/prd-sam
  TnrpMonitor:
   - prd/prd-sam
- SamSqlReporter:
-  - prd/prd-sam
