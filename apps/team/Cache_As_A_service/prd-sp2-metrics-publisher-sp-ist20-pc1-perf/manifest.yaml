@@ -5,7 +5,7 @@ system:
     email:
       - caas-dev@salesforce.com
   functions:
-  - name: prd-sp2-metrics-publisher-sp-ist17-c1-perf
+  - name: prd-sp2-metrics-publisher-sp-ist20-pc1-perf
     count: 1
     hostnetwork: true
     containers:
@@ -17,7 +17,7 @@ system:
       args:
         - --server.port=7571
         - --management.port=7572
-        - --cluster.name=sp-ist17-c1
+        - --cluster.name=sp-pc1
         - --logDir=/home/caas/logs/caas
       volumeMounts:
         - mountPath: /home/caas/logs/caas
@@ -37,7 +37,7 @@ system:
       - containerPort: 7572
       env:
        - name: SFDC_ENVIRONMENT
-         value: ist17
+         value: ist20
        - name: CAAS_ENVIRONMENT
          value: none
     volumes:
