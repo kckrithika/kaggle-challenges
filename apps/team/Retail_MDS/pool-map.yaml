@@ -7,3 +7,4 @@ apps:
 
     metadata-service-prod:        # production
     - name: iad/iad-sam_crosscloudplatform
+    - name: ord/ord-sam_crosscloudplatform
