@@ -82,7 +82,7 @@ system:
       - mountPath: /client-certs
         name: client-certs
     count: 1
-    name: controlplane-mbyne
+    name: controlplane-sarthur
     strategy:
       type: Recreate
     volumes:
