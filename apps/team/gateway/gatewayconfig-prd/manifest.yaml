@@ -1,4 +1,5 @@
 apiVersion: v1
+
 system:
   notifications:
     email:
@@ -8,28 +9,28 @@ system:
   - name: default
     count: 3
     hostnetwork: true
-#    volumes: 
-#    - name: gwcertclient
-#      maddogCert:
-#        type: client
-#    - name: gwcertserver
-#      maddogCert:
-#        type: server
-#        lbnames:
-#        - gatewayconfiglb
+    volumes: 
+    - name: gwcertclient
+      maddogCert:
+        type: client
+    - name: gwcertserver
+      maddogCert:
+        type: server
+        lbnames:
+        - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kbotha/gatewayconfig:2018-01-18a
-#     env:
-#      - name: PKI_CA_DIR
-#        value: /gwcertserver
-#      - name: PKI_MONITORDIR
-#        value: /gwcertserver/server
-#      volumeMounts:
-#      - name: gwcertclient
-#        mountPath: /gwcertclient
-#      - name: gwcertserver
-#        mountPath: /gwcertserver
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-07 
+      env:
+      - name: PKI_CA_DIR
+        value: /gwcertserver
+      - name: PKI_MONITORDIR
+        value: /gwcertserver/server
+      volumeMounts:
+      - name: gwcertclient
+        mountPath: /gwcertclient
+      - name: gwcertserver
+        mountPath: /gwcertserver
       args:
         - start
         - --debug
