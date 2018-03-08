@@ -1,0 +1,60 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - servicemesh@salesforce.com
+  functions:
+  - name: switchboard
+    count: 2
+    containers:
+    - name: switchboard 
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
+      image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: MANAGEMENT_PORT
+        value: 15370
+      - name: LOGGING_DIR
+        value: "/log"
+      args:
+      - --clusters.external-clusters[0]=envoy-canary:HTTP2
+      volumeMounts:
+        - mountPath: /log
+          name: switchboard-log-volume
+      ports:
+      - containerPort: 15001
+      - containerPort: 15370
+      resources:
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "4Gi" }
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15370
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15370
+        initialDelaySeconds: 15
+        periodSeconds: 5
+
+    volumes:
+        - name: switchboard-log-volume
+          hostPath:
+            path: /home/sfdc-switchboard/logs
+
+  loadbalancers:
+  - lbname: switchboard-lb
+    function: switchboard
+    nodeExposed: true
+    ports:
+    - port: 15001
+      targetport: 15001
+      lbtype: dsr
+    - port: 15370
+      targetport: 15370
+      lbtype: dsr
