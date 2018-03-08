@@ -3,5 +3,7 @@ apps:
   - prd/prd-sam
  prd-search_model_executor:
   - prd/prd-search_model_executor
- phx-search_model_executor:
+ prod-search_model_executor:
   - phx/phx-search_model_executor
+  - dfw/dfw-search_model_executor
+  - frf/frf-search_model_executor
