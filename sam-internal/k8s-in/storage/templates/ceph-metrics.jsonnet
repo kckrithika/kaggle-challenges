@@ -195,7 +195,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                            ],
                            args: [
                               "-j",
-                              "cephmon",
+                              "ceph_mon",
                            ],
                            ports: [
                               {
@@ -210,7 +210,10 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                                  mountPath: "/etc/ceph",
                               },
                            ],
-                           env: storageutils.sfms_environment_vars("ceph"),
+                           env: [{
+                                    name: "MC_ZK_SERVERS",
+                                    value: storageconfigs.perEstate.sfstore.zkServer[configs.estate],
+                              }] + storageutils.sfms_environment_vars("ceph"),
                         },
                         {
                            name: "configwatcher",
