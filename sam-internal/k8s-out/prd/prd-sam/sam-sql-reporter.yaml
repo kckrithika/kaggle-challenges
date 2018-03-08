@@ -41,6 +41,8 @@ spec:
         - mountPath: /var/queries/
           name: queries
           readOnly: true
+      nodeSelector:
+        pool: prd-sam
       volumes:
       - name: mysql
         secret:
