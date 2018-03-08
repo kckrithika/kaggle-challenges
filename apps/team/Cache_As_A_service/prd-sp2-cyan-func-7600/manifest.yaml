@@ -65,9 +65,9 @@ system:
     nodeExposed: true
     slbEnabled: true
     ports:
-    - port: 12052
-      targetport: 12050
-    - port: 12053
-      targetport: 12051
     - port: 12056
+      targetport: 12050
+    - port: 12057
+      targetport: 12051
+    - port: 12058
       targetport: 12055
