@@ -1435,6 +1435,18 @@
     },
     {
       "namespaces": [
+        "wave-elt"
+      ],
+      "access": [
+        "team/wave-elt"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_datapool",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh"
