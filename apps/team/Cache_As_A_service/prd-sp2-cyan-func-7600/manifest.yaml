@@ -11,7 +11,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cyanlb
+          - cyanlbv1
 
     containers:
     - name: cyan-sam
@@ -60,7 +60,7 @@ system:
     progressDeadlineSeconds: 120
 
   loadbalancers:
-  - lbname: cyanlb
+  - lbname: cyanlbv1
     function: cyan
     nodeExposed: true
     slbEnabled: true
