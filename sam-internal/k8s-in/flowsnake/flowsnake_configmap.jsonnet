@@ -274,7 +274,7 @@ local samconfig = import "config.jsonnet";
             "sdn-peering-agent.yaml",
             "sdn-ping-watchdog.yaml",
             "sdn-route-watchdog.yaml",
-            "sdn-secret-agent.yaml",
+            /* "sdn-secret-agent.yaml", */
             /* "sdn-vault-agent.yaml", */
             "_flowsnake-sdn-secret.yaml",
         ] else [

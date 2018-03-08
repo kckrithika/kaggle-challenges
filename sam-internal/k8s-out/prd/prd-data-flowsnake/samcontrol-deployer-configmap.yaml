@@ -27,7 +27,6 @@ data:
         "sdn-peering-agent.yaml",
         "sdn-ping-watchdog.yaml",
         "sdn-route-watchdog.yaml",
-        "sdn-secret-agent.yaml",
         "_flowsnake-sdn-secret.yaml",
         "samcontrol-deployer.yaml",
         "deepsea-kdc-endpoints.yaml"
