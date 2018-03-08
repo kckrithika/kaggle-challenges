@@ -52,7 +52,7 @@ system:
     progressDeadlineSeconds: 120
 
   loadbalancers:
-  - lbname: cyanlbv2
+  - lbname: cyanlb
     function: csr-cyan-envoy
     nodeExposed: true
     slbEnabled: true
@@ -63,5 +63,5 @@ system:
       targetport: 12061
     - port: 12063
       targetport: 12063
-    - port: 12065
+    - port: 12052
       targetport: 12065
