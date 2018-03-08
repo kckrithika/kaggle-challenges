@@ -128,8 +128,6 @@ system:
     lbname: controlplane-secure-lb
     nodeExposed: true
     ports:
-    - port: 7444
-      targetport: 7443
     - port: 15382
       targetport: 15372
     - port: 15383
