@@ -67,11 +67,6 @@ local estate = std.extVar("estate");
                                     },
                                 },
                             },
-                            # Remove after upgrade to future version of ingress controller that uses --kubeconfig arg instead
-                            {
-                                name: "KUBECONFIG",
-                                value: "/etc/kubernetes/kubeconfig",
-                            },
                         ],
                         ports: [
                             {
@@ -86,15 +81,11 @@ local estate = std.extVar("estate");
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
-                            # Future ingress controller expects annotations-prefix
-                            # "--annotations-prefix=ingress.kubernetes.io",
-                            # Future ingress controller version uses 30s
-                            #"--sync-period=30s",
-                            "--sync-period=5s",
+                            "--annotations-prefix=ingress.kubernetes.io",
+                            "--sync-period=30s",
                         ] + if !flowsnakeconfig.is_minikube then
                         [
-                            # Future ingress controller versions use this argument instead of KUBECONFIG env var.
-                            # "--kubeconfig=/etc/kubernetes/kubeconfig",
+                            "--kubeconfig=/etc/kubernetes/kubeconfig",
                         ] else [],
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then

@@ -224,22 +224,45 @@ local samconfig = import "config.jsonnet";
     },
         //TODO: This structure is bogus. Need to specify LDAP and PKI principals for each namespace.
     maddog_namespace_map: {
-      "prd/prd-data-flowsnake": {
-          flowsnake: "Flowsnake_Ops_Platform",
-      },
-      "prd/prd-data-flowsnake_test": {
-          flowsnake: "Flowsnake_Ops_Platform",
-      },
-      "prd/prd-dev-flowsnake_iot_test": {
-          flowsnake: "Flowsnake_Ops_Platform",
-      },
-        //TODO: In prod data centers, let the certs on the host act as administrators.
-      "iad/iad-flowsnake_prod": {
-      },
-      "ord/ord-flowsnake_prod": {
-      },
-      "phx/phx-flowsnake_prod": {
-      },
+      "prd/prd-data-flowsnake": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: [],
+        },
+      ],
+      "prd/prd-data-flowsnake_test": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: [],
+        },
+      ],
+      "prd/prd-dev-flowsnake_iot_test": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: [],
+        },
+      ],
+      "prd/prd-minikube-small-flowsnake": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: [],
+        },
+      ],
+      "prd/prd-minikube-big-flowsnake": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: [],
+        },
+      ],
+      //TODO: In prod data centers, let the certs on the host act as administrators.
+      "iad/iad-flowsnake_prod": [],
+      "ord/ord-flowsnake_prod": [],
+      "phx/phx-flowsnake_prod": [],
     },
     samcontroldeployer: {
         email: true,

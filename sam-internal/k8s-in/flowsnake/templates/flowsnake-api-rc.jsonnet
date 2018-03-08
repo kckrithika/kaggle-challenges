@@ -101,6 +101,11 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                 readOnly: true,
                             },
                             {
+                                mountPath: "/etc/flowsnake/config/maddog-namespaces",
+                                name: "maddog-namespaces",
+                                readOnly: true,
+                            },
+                            {
                                 mountPath: "/etc/flowsnake/config/auth-groups",
                                 name: "auth-groups",
                                 readOnly: true,
@@ -125,6 +130,12 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         name: "version-mapping",
                         configMap: {
                             name: "version-mapping",
+                        },
+                    },
+                    {
+                        name: "maddog-namespaces",
+                        configMap: {
+                            name: "maddog-namespaces",
                         },
                     },
                     {

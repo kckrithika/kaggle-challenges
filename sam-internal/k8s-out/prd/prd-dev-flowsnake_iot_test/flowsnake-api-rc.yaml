@@ -61,6 +61,9 @@ spec:
         - mountPath: /etc/flowsnake/secrets/flowsnake-ldap
           name: flowsnake-ldap
           readOnly: true
+        - mountPath: /etc/flowsnake/config/maddog-namespaces
+          name: maddog-namespaces
+          readOnly: true
         - mountPath: /etc/flowsnake/config/auth-groups
           name: auth-groups
           readOnly: true
@@ -89,6 +92,9 @@ spec:
       - configMap:
           name: version-mapping
         name: version-mapping
+      - configMap:
+          name: maddog-namespaces
+        name: maddog-namespaces
       - configMap:
           name: auth-groups
         name: auth-groups
