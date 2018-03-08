@@ -10,7 +10,8 @@ system:
     containers:
     - name: switchboardsb
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
-      image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
+      #image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rama.rao/switchboard:perftest
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -33,8 +34,8 @@ system:
       - containerPort: 15001
       - containerPort: 15370
       resources:
-        limits: { cpu: "4", memory: "4Gi" }
-        requests: { cpu: "4", memory: "4Gi" }
+        limits: { cpu: "8", memory: "6Gi" }
+        requests: { cpu: "8", memory: "6Gi" }
       livenessProbe:
         httpGet:
           path: /manage/health
