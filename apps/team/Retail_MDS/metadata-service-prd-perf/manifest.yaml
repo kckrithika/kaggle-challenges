@@ -4,7 +4,6 @@ system:
   notifications:
   email:
   - robert.snell@salesforce.com
-  - vivanov@salesforce.com
   functions:
   - name: metadata-service-prd-perf
     count: 1
