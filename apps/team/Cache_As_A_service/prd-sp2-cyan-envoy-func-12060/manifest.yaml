@@ -10,6 +10,8 @@ system:
     - name: cert-server
       maddogCert:
         type: server
+        lbnames:
+          - cyanlb
     - name: cert-client
       maddogCert:
         type: client
@@ -17,7 +19,7 @@ system:
     containers:
     - name: csr-cyan-envoy-sam
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/docker-cyan-envoy:tyler-20180307-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-envoy:sathish.santhanam-20180308
 
       livenessProbe:
          exec:
