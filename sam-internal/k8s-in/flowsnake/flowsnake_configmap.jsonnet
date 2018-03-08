@@ -268,10 +268,10 @@ local samconfig = import "config.jsonnet";
         ] +
         (if flowsnakeconfig.sdn_enabled then [
         ] else if flowsnakeconfig.sdn_in_transition then [
-            "sdn-bird.yaml",
+            /* "sdn-bird.yaml", */
             "sdn-cleanup.yaml",
             "sdn-hairpin-setter.yaml",
-            "sdn-peering-agent.yaml",
+            /* "sdn-peering-agent.yaml", */
             "sdn-ping-watchdog.yaml",
             "sdn-route-watchdog.yaml",
             /* "sdn-secret-agent.yaml", */
