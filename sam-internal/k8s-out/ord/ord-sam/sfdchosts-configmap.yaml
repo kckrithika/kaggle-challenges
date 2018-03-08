@@ -1348,6 +1348,16 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_gater",
+          "hostname": "shared0-samminiongater1-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_gater",
           "hostname": "shared0-samminiongater2-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1359,6 +1369,26 @@ data:
           "devicerole": "samcompute",
           "estate": "ord-sam_gater",
           "hostname": "shared0-samminiongater2-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_gater",
+          "hostname": "shared0-samminiongater2-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_gater",
+          "hostname": "shared0-samminiongater2-4-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "superpod": "none"
