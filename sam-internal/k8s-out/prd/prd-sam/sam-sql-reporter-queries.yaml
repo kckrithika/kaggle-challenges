@@ -53,4 +53,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: samsqlqueries
-  namespace: csc-sam
+  namespace: sam-system
