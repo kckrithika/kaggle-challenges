@@ -9,6 +9,10 @@ if configs.estate == "prd-sam_storage" then {
             app: "alertmanager-svc",
             namespace: "sam-system",
         },
+        annotations: {
+            "slb.sfdc.net/name": "alertmanager",
+            "slb.sfdc.net/portconfigurations": '[{"port":15212,"targetport":15212,"lbtype":"tcp"}, {"port":15213,"targetport":15213,"lbtype":"tcp"}]',
+        },
     },
     spec: {
         type: "NodePort",
