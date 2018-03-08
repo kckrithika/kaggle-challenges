@@ -75,5 +75,6 @@ if utils.is_flowsnake_cluster(configs.estate) then {
             name: "sdn-secret-agent",
         },
         name: "sdn-secret-agent",
+        namespace: "sam-system",
     },
 } else "SKIP"
