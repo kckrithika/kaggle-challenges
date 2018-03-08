@@ -27,6 +27,9 @@ if configs.estate == "prd-sam" then {
                 },
             },
             spec: {
+                nodeSelector: {
+                     pool: configs.estate,
+                },
                 containers: [
                     {
                         args: [
