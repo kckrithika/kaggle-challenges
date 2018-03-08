@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: samsqlreporter
+  name: samsqlreporter
+  namespace: sam-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: samsqlreporter
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: samsqlreporter
+    spec:
+      containers:
+      - args:
+        - --dbPasswordFile=/var/secrets/mysql.txt
+        - -v=5
+        - --alsologtostderr
+        - --port=64212
+        - --queryFile=/var/queries/sam-sql-queries.json
+        command:
+        - /sam/sam-sql-reporter
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001769-20d44c74
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 64212
+        name: samsqlreporter
+        ports:
+        - containerPort: 64212
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+        - mountPath: /var/queries/
+          name: queries
+          readOnly: true
+      volumes:
+      - name: mysql
+        secret:
+          secretName: mysql
+      - configMap:
+          name: samsqlqueries
+        name: queries

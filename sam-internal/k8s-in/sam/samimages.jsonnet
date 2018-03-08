@@ -85,6 +85,8 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
 
+        # [thargrove] Moving sam-sql-reporter to sam-internals
+        "prd,prd-sam,sam-sql-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001769-20d44c74",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
