@@ -19,12 +19,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [thargrove] Testing manifest-watcher with SkipOldZip protection
-        # Synthetic needs to go before manifest-watcher
-        # PRD
-        "prd,prd-sam,temp-crd-watcher,hypersam": "sam-0001750-8ac5ea6a",
-        "prd,prd-sam,manifest-watcher,hypersam": "sam-0001750-8ac5ea6a",
-        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         # PRODUCTION - this is newer than this weekly release (0001725)
         "frf,frf-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
         "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
@@ -107,8 +101,8 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001747-8c6b4886",
-            madkub: "1.0.0-0000061-74e4a7b6",
+            hypersam: "sam-0001760-c9a04911",
+            madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
