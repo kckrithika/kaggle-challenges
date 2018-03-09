@@ -45,15 +45,15 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 3 - Canary sites in Prod (PHX)
         "3": {
-            default_tag: "base-0000334-75f04e65",
-            ceph_operator_tag: "base-0000334-75f04e65",
-            sfms_tag: "latest-0000124-7978892e",
+            default_tag: "base-0000360-ba0dd469",
+            ceph_operator_tag: "base-0000360-ba0dd469",
+            sfms_tag: "latest-0000147-e9f9f61c",
             cephdaemon_tag: "jewel-0000056-50bd0816",
-            sfstorebookie_tag: "base-0000031-8791cfb6",
+            sfstorebookie_tag: "base-0000064-6c5c1cb6",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000017-c6de7b57",
-            loginit_tag: "base-0000334-75f04e65",
-            },
+            sfnodeprep_tag: "base-0000360-ba0dd469",
+            loginit_tag: "base-0000360-ba0dd469",
+        },
 
         ### Release Phase 4 - All Prod. Currently disabled, because there are no other prod clusters yet.
         "4": {
