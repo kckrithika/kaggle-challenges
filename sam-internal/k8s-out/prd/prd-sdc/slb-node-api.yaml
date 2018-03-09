@@ -14,6 +14,16 @@ spec:
         name: slb-node-api
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - prd-sdc
+                - prd-slb
       containers:
       - command:
         - /sdn/slb-node-api

@@ -45,7 +45,26 @@ if configs.kingdom == "prd" then {
                              ]),
                         },
                 ],
-             },
+             } + if configs.estate == "prd-sdc" then {
+                                               affinity: {
+                                                                  nodeAffinity: {
+                                                                                                                requiredDuringSchedulingIgnoredDuringExecution: {
+                                                                                                                  nodeSelectorTerms: [
+                                                                                                                    {
+                                                                                                                          matchExpressions: [
+                                                                                                                                              {
+                                                                                                                                                 key: "pool",
+                                                                                                                                                 operator: "In",
+                                                                                                                                                 values: [configs.estate, configs.kingdom + "-slb"],
+                                                                                                                                              },
+
+                                                                                                                                            ],
+                                                                                                                                            },
+                                ],
+                                },
+                                },
+                                },
+                                            } else {},
         },
     },
 } else "SKIP"
