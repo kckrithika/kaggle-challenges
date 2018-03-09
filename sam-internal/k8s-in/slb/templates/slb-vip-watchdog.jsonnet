@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.sfdchosts_arg,
                         ]
                         + (
-                             if configs.estate == "prd-sdc" then [
+                             if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
                                 "--metricsEndpoint=" + configs.funnelVIP,
                              ] else [
                                 "--funnelEndpoint=" + configs.funnelVIP,
