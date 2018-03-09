@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: ajnaconsumer
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001762-fd881849
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001773-7dd8c461
       command:
         - /sam/ajnaconsumer
         - --v=3
