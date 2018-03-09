@@ -13,14 +13,14 @@ if configs.kingdom == "prd" then {
                         name: "watchdog-proxy",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=K8SPROXY",
-                            "-k8sproxyEndpoint=http://localhost:40000",
-                            "-watchdogFrequency=10s",
-                            "-alertThreshold=300s",
-                            "-emailFrequency=48h",
-                        ]
-                        + samwdconfig.shared_args,
+                                     "/sam/watchdog",
+                                     "-role=K8SPROXY",
+                                     "-k8sproxyEndpoint=http://localhost:40000",
+                                     "-watchdogFrequency=10s",
+                                     "-alertThreshold=300s",
+                                     "-emailFrequency=48h",
+                                 ]
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
@@ -36,19 +36,19 @@ if configs.kingdom == "prd" then {
                     configs.maddog_cert_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "watchdog-proxy",
                     apptype: "monitoring",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

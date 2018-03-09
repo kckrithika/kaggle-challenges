@@ -12,19 +12,19 @@ local utils = import "util_functions.jsonnet";
                     {
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=ETCD",
-                            "-watchdogFrequency=5s",
-                            "-alertThreshold=3m",
-                        ]
-                        + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
-                    volumeMounts: configs.filter_empty([
-                        configs.sfdchosts_volume_mount,
-                        configs.maddog_cert_volume_mount,
-                        configs.cert_volume_mount,
-                        configs.config_volume_mount,
-                    ]),
+                                     "/sam/watchdog",
+                                     "-role=ETCD",
+                                     "-watchdogFrequency=5s",
+                                     "-alertThreshold=3m",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -59,7 +59,7 @@ local utils = import "util_functions.jsonnet";
                     apptype: "monitoring",
                     daemonset: "true",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
     },

@@ -13,23 +13,23 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "watchdog-deployment",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=DEPLOYMENT",
-                            "-watchdogFrequency=10s",
-                            "-alertThreshold=1h",
-                        ]
-                        + samwdconfig.shared_args
-                        + ["-emailFrequency=24h"],
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                          configs.config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                                     "/sam/watchdog",
+                                     "-role=DEPLOYMENT",
+                                     "-watchdogFrequency=10s",
+                                     "-alertThreshold=1h",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + ["-emailFrequency=24h"],
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -40,19 +40,19 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "watchdog-deployment",
                     apptype: "monitoring",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

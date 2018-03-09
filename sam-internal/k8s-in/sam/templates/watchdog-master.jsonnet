@@ -11,19 +11,19 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     {
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=MASTER",
-                            "-watchdogFrequency=5s",
-                            "-alertThreshold=150s",
-                        ]
-                        + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
-                    volumeMounts: configs.filter_empty([
-                        configs.sfdchosts_volume_mount,
-                        configs.maddog_cert_volume_mount,
-                        configs.cert_volume_mount,
-                        configs.config_volume_mount,
-                    ]),
+                                     "/sam/watchdog",
+                                     "-role=MASTER",
+                                     "-watchdogFrequency=5s",
+                                     "-alertThreshold=150s",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -53,7 +53,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     apptype: "monitoring",
                     daemonset: "true",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
     },

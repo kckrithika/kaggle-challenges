@@ -14,24 +14,24 @@ local utils = import "util_functions.jsonnet";
                         name: "watchdog-node",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=NODE",
-                            "-watchdogFrequency=60s",
-                            "-alertThreshold=1h",
-                        ]
-                        + samwdconfig.shared_args
-                        + (if !utils.is_public_cloud(configs.kingdom) then ["-publishAllReportsToKafka=true"] else [])
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                          configs.config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                                     "/sam/watchdog",
+                                     "-role=NODE",
+                                     "-watchdogFrequency=60s",
+                                     "-alertThreshold=1h",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + (if !utils.is_public_cloud(configs.kingdom) then ["-publishAllReportsToKafka=true"] else [])
+                                 + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -42,12 +42,12 @@ local utils = import "util_functions.jsonnet";
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {

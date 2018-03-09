@@ -16,23 +16,23 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         name: "watchdog-node-controller",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=NODECONTROLLER",
-                            "-watchdogFrequency=10s",
-                            "-alertThreshold=300s",
-                        ]
-                        + samwdconfig.shared_args
-                        + ["-emailFrequency=24h"],
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                          configs.config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                                     "/sam/watchdog",
+                                     "-role=NODECONTROLLER",
+                                     "-watchdogFrequency=10s",
+                                     "-alertThreshold=300s",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + ["-emailFrequency=24h"],
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -43,19 +43,19 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "watchdog-node-controller",
                     apptype: "monitoring",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

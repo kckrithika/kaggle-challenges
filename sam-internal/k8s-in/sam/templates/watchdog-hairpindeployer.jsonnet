@@ -8,12 +8,12 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
     kind: "Deployment",
     spec: {
         strategy: {
-              type: "RollingUpdate",
-              rollingUpdate: {
-                    maxSurge: 0,
-                    maxUnavailable: 1,
-              },
-         },
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxSurge: 0,
+                maxUnavailable: 1,
+            },
+        },
         replicas: 1,
         template: {
             spec: {
@@ -23,24 +23,24 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                         name: "watchdog-hairpindeployer",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=HAIRPINDEPLOYER",
-                            "-alertThreshold=1h",
-                            "-watchdogFrequency=120s",
-                            "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
-                            "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
-                        ]
-                        + samwdconfig.shared_args,
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                          configs.config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                                     "/sam/watchdog",
+                                     "-role=HAIRPINDEPLOYER",
+                                     "-alertThreshold=1h",
+                                     "-watchdogFrequency=120s",
+                                     "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
+                                     "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
+                                 ]
+                                 + samwdconfig.shared_args,
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -51,19 +51,19 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "watchdog-hairpindeployer",
                     apptype: "monitoring",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

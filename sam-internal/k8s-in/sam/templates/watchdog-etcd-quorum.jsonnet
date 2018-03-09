@@ -14,20 +14,20 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "watchdog-etcd-quorum",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=ETCDQUORUM",
-                            "-watchdogFrequency=10s",
-                            "-alertThreshold=2m",
-                        ]
-                        + samwdconfig.pagerduty_args
-                        + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=6h"]),
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.config_volume_mount,
-                       ]),
+                                     "/sam/watchdog",
+                                     "-role=ETCDQUORUM",
+                                     "-watchdogFrequency=10s",
+                                     "-alertThreshold=2m",
+                                 ]
+                                 + samwdconfig.pagerduty_args
+                                 + samwdconfig.shared_args
+                                 + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=6h"]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.config_volume_mount,
+                        ]),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -45,7 +45,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     name: "watchdog-etcd-quorum",
                     apptype: "monitoring",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

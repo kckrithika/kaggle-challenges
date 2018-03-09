@@ -13,13 +13,13 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         name: "watchdog-maddogcert",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=MADDOGCERT",
-                            "-watchdogFrequency=10m",
-                            "-alertThreshold=30m",
-                            "-emailFrequency=24h",
-                        ]
-                        + samwdconfig.shared_args,
+                                     "/sam/watchdog",
+                                     "-role=MADDOGCERT",
+                                     "-watchdogFrequency=10m",
+                                     "-alertThreshold=30m",
+                                     "-emailFrequency=24h",
+                                 ]
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
@@ -41,7 +41,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     apptype: "monitoring",
                     daemonset: "true",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
     },

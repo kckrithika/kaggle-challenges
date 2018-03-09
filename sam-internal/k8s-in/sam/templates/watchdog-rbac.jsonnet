@@ -14,14 +14,14 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) && 
                         name: "watchdog-rbac",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=RBAC",
-                            "-watchdogFrequency=180s",
-                            "-alertThreshold=1h",
-                            "-maxUptimeSampleSize=5",
-                        ]
-                        + samwdconfig.shared_args
-                        + ["-emailFrequency=24h"],
+                                     "/sam/watchdog",
+                                     "-role=RBAC",
+                                     "-watchdogFrequency=180s",
+                                     "-alertThreshold=1h",
+                                     "-maxUptimeSampleSize=5",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + ["-emailFrequency=24h"],
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,
@@ -30,7 +30,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) && 
                             configs.config_volume_mount,
                         ]),
                         env: [
-                             configs.kube_config_env,
+                            configs.kube_config_env,
                         ],
                     },
                 ],
@@ -40,7 +40,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) && 
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.config_volume("watchdog"),
-                    ]),
+                ]),
             },
             metadata: {
                 labels: {

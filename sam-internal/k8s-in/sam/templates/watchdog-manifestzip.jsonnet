@@ -13,24 +13,24 @@ if configs.estate == "prd-sam" then {
                         name: "watchdog-manifestzip",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=MANIFESTZIP",
-                            "-watchdogFrequency=7m",
-                            "-alertThreshold=10s",
-                            "-emailFrequency=1h",
-                        ]
-                        + samwdconfig.shared_args,
+                                     "/sam/watchdog",
+                                     "-role=MANIFESTZIP",
+                                     "-watchdogFrequency=7m",
+                                     "-alertThreshold=10s",
+                                     "-emailFrequency=1h",
+                                 ]
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          {
-                             mountPath: "/var/token",
-                             name: "token",
-                             readOnly: true,
-                          },
-                          configs.config_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                       ]),
+                            configs.sfdchosts_volume_mount,
+                            {
+                                mountPath: "/var/token",
+                                name: "token",
+                                readOnly: true,
+                            },
+                            configs.config_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                        ]),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -38,7 +38,7 @@ if configs.estate == "prd-sam" then {
                     {
                         secret: {
                             secretName: "git-token",
-                          },
+                        },
                         name: "token",
                     },
                     configs.config_volume("watchdog"),

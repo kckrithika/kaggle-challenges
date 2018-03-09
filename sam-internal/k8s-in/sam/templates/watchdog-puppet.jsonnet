@@ -29,13 +29,13 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     {
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=PUPPET",
-                            "-watchdogFrequency=15m",
-                            "-alertThreshold=1000h",
-                            "-emailFrequency=1000h",
-                        ]
-                        + samwdconfig.shared_args,
+                                     "/sam/watchdog",
+                                     "-role=PUPPET",
+                                     "-watchdogFrequency=15m",
+                                     "-alertThreshold=1000h",
+                                     "-emailFrequency=1000h",
+                                 ]
+                                 + samwdconfig.shared_args,
                         name: "watchdog",
                         resources: {
                             requests: {
@@ -47,20 +47,20 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                 memory: "300Mi",
                             },
                         },
-                         volumeMounts: configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             {
-                               mountPath: "/var/lib/puppet/state",
-                               name: "last-run-summary",
+                                mountPath: "/var/lib/puppet/state",
+                                name: "last-run-summary",
                             },
                             {
-                               mountPath: "/etc/puppet",
-                               name: "afw-build",
+                                mountPath: "/etc/puppet",
+                                name: "afw-build",
                             },
                             configs.config_volume_mount,
                             configs.cert_volume_mount,
                             configs.maddog_cert_volume_mount,
-                         ]),
+                        ]),
                     },
                 ],
             },

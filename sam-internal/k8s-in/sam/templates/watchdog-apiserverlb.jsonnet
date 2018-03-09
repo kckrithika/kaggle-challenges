@@ -13,19 +13,19 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "watchdog-apiserverlb",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                            "/sam/watchdog",
-                            "-role=APISERVERLB",
-                            "-watchdogFrequency=60s",
-                            "-alertThreshold=5m",
-                        ])
-                        + samwdconfig.pagerduty_args
-                        + samwdconfig.shared_args
-                        + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
+                                     "/sam/watchdog",
+                                     "-role=APISERVERLB",
+                                     "-watchdogFrequency=60s",
+                                     "-alertThreshold=5m",
+                                 ])
+                                 + samwdconfig.pagerduty_args
+                                 + samwdconfig.shared_args
+                                 + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=12h"]),
                         volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.config_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.config_volume_mount,
                         ]),
                     },
                 ],
@@ -36,19 +36,19 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.config_volume("watchdog"),
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "watchdog-apiserverlb",
                     apptype: "monitoring",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

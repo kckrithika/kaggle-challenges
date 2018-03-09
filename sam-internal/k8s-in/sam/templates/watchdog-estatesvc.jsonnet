@@ -16,13 +16,13 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         name: "watchdog-estatesvc",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=ESTATESVC",
-                            "-watchdogFrequency=10s",
-                            "-alertThreshold=300s",
-                        ]
-                        + samwdconfig.shared_args
-                        + ["-emailFrequency=24h"],
+                                     "/sam/watchdog",
+                                     "-role=ESTATESVC",
+                                     "-watchdogFrequency=10s",
+                                     "-alertThreshold=300s",
+                                 ]
+                                 + samwdconfig.shared_args
+                                 + ["-emailFrequency=24h"],
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
@@ -38,12 +38,12 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.maddog_cert_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
