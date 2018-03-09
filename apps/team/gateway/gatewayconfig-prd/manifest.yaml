@@ -1,5 +1,4 @@
 apiVersion: v1
-
 system:
   notifications:
     email:
@@ -33,7 +32,6 @@ system:
         mountPath: /gwcertserver
       args:
         - start
-        - --debug
         - --settings.path=-.-.sfm.-.gatewayconfig
         - --superpod.name=-
       ports:
