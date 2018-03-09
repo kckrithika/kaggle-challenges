@@ -17,11 +17,3 @@ apps:
   - prd/prd-sam
  sherpa-envoy-debug:
   - prd/prd-sam
- h1-test-client-l5d:
-  - prd/prd-sam
- h1-test-server-l5d:
-  - prd/prd-sam
- h1-test-client-l5d-tls:
-  - prd/prd-sam
- h1-test-server-l5d-tls:
-  - prd/prd-sam

@@ -44,7 +44,7 @@ system:
         - name: sherpa-log-volume
           mountPath: /log
 
-    - volumes:
-      - name: sherpa-log-volume
-        hostPath:
-          path: /home/sfdc-sherpa/logs
+    volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
