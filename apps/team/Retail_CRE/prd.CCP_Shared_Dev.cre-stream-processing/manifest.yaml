@@ -36,30 +36,44 @@ system:
       volumeMounts:
       - mountPath: /certs
         name: certs
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert        
       - mountPath: /opt/cre/cre-stream-processing_ccp-shared-dev
         name: logvol
     - name: sherpa-cre-stream-processing
-      image: sfci/servicelibs/sherpa:2.0.15
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert        
       env:
         - name: SFDC_ENVIRONMENT
           value: CCP_Shared_Dev
-      args:
-        - --http2-in=9532
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
-        - containerPort: 9532
-        - containerPort: 7080
+      - containerPort: 7012
+        name: sherpa-ot-http2
+      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
     volumes:
     - name: logvol
       hostPath:
@@ -67,6 +81,14 @@ system:
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-sp-prd-ccp-shared-dev-lb        
   loadbalancers:
   - lbname: cre-sp-prd-ccp-shared-dev-lb
     function: cre-stream-processing-prd-ccp-shared-dev
