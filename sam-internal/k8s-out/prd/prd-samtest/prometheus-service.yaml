@@ -12,8 +12,10 @@ metadata:
 spec:
   ports:
   - name: prometheus-port
+    nodePort: 38000
     port: 80
     protocol: TCP
     targetPort: 9090
   selector:
     name: prometheus
+  type: NodePort

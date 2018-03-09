@@ -27,15 +27,20 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
 
     spec: {
         ports: [
-        {
-            name: "prometheus-port",
-            port: 80,
-            protocol: "TCP",
-            targetPort: 9090,
-        },
-        ],
-            selector: {
-                name: "prometheus",
+            {
+                name: "prometheus-port",
+                port: 80,
+                protocol: "TCP",
+                targetPort: 9090,
             },
-    },
+        ],
+        selector: {
+            name: "prometheus",
+        },
+    }
+    # We dont have SLB on test beds, so add in a node port
+    + if configs.estate != "prd-sam" then {
+        ports: [super.ports[0] { nodePort: 38000 }],
+        type: "NodePort",
+    } else {},
 } else "SKIP"
