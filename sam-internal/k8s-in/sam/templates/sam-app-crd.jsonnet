@@ -5,6 +5,9 @@ if configs.kingdom == "prd" then {
     kind: "CustomResourceDefinition",
     metadata: {
       name: "samapps.samcrd.salesforce.com",
+      annotations: {
+        "manifestctl.sam.data.sfdc.net/swagger": "disable",
+      },
     },
     spec: {
       group: "samcrd.salesforce.com",
