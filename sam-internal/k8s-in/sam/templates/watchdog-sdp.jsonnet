@@ -13,17 +13,17 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                         name: "watchdog-sdp",
                         image: samimages.hypersam,
                         command: [
-                            "/sam/watchdog",
-                            "-role=SDP",
-                            "-sdpEndpoint=http://localhost:39999",
-                            "-watchdogFrequency=10s",
-                            "-alertThreshold=300s",
-                            "-emailFrequency=24h",
-                        ]
-                         + (if configs.estate == "prd-samtest" then [
-                              "--breakwatchdogsdp",
-                        ] else [])
-                        + samwdconfig.shared_args,
+                                     "/sam/watchdog",
+                                     "-role=SDP",
+                                     "-sdpEndpoint=http://localhost:39999",
+                                     "-watchdogFrequency=10s",
+                                     "-alertThreshold=300s",
+                                     "-emailFrequency=24h",
+                                 ]
+                                 + (if configs.estate == "prd-samtest" then [
+                                        "--breakwatchdogsdp",
+                                    ] else [])
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
