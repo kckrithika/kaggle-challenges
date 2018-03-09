@@ -1737,6 +1737,18 @@
     },
     {
       "namespaces": [
+        "ice-pd-sp2"
+      ],
+      "access": [
+        "team/ice-pd"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sp2-sam_coreapp",
+      "kingdom": "prd",
+      "superPod": "sp2"
+    },
+    {
+      "namespaces": [
         "emailinfra-sp2"
       ],
       "access": [
