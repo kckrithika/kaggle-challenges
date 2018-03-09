@@ -77,7 +77,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.23
       livenessProbe:
         exec:
           command:
