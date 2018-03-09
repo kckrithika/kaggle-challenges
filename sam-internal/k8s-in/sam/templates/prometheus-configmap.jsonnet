@@ -4,10 +4,10 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
-      name: "prometheus",
-      namespace: "sam-system",
+        name: "prometheus",
+        namespace: "sam-system",
     },
     data: {
-      "prometheus.json": std.toString(import "configs/prometheus.jsonnet"),
+        "prometheus.json": std.toString(import "configs/prometheus.jsonnet"),
     },
 } else "SKIP"

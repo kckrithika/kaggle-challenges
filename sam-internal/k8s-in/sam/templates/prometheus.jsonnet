@@ -3,22 +3,22 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local hosts = import "configs/hosts.jsonnet";
 
 if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
-   kind: "Deployment",
+    kind: "Deployment",
     spec: {
         replicas: 1,
         template: {
             spec: {
                 securityContext: {
-                  runAsUser: 0,
-                  fsGroup: 0,
+                    runAsUser: 0,
+                    fsGroup: 0,
                 },
                 containers: [
                     {
                         name: "prometheus",
                         image: samimages.prometheus,
                         args: [
-                          "--config.file",
-                          "/prometheusconfig/prometheus.json",
+                            "--config.file",
+                            "/prometheusconfig/prometheus.json",
                         ],
                         volumeMounts: configs.filter_empty([
                             {
@@ -35,18 +35,18 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                             },
                         ]),
                         ports: [
-                        {
-                            containerPort: 9090,
-                            name: "prometheus",
-                        },
+                            {
+                                containerPort: 9090,
+                                name: "prometheus",
+                            },
                         ],
-                      livenessProbe: {
-                           initialDelaySeconds: 300,
-                           httpGet: {
-                               path: "/",
-                               port: 9090,
-                           },
-                           timeoutSeconds: 30,
+                        livenessProbe: {
+                            initialDelaySeconds: 300,
+                            httpGet: {
+                                path: "/",
+                                port: 9090,
+                            },
+                            timeoutSeconds: 30,
                         },
                     },
                 ],
