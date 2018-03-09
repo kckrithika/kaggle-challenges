@@ -19,7 +19,7 @@ system:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-08b 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-08e
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
