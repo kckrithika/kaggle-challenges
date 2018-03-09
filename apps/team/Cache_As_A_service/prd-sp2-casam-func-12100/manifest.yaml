@@ -93,15 +93,17 @@ system:
 
       readinessProbe:
         httpGet:
-          scheme: HTTPS
+          path: /ping.jsp
+          port: 12100
+#          scheme: HTTPS
           # Note: host here should really be the cyanlb VIP that is commented out. However
           # there are some routing problems on our minions currently so we have to revert
           # back to nodeport for now
 #          host: cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net
-          host: samcaas2-caasminion1-2-prd.eng.sfdc.net
+#          host: samcaas2-caasminion1-2-prd.eng.sfdc.net
 #210#          path: /__cyan_admin__/app/health?version=210.12
-          path: /__cyan_admin__/app/health?version=212
-          port: 12052
+#          path: /__cyan_admin__/app/health?version=212
+#          port: 12052
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
