@@ -42,5 +42,5 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     + if configs.estate != "prd-sam" then {
         ports: [super.ports[0] { nodePort: 38000 }],
         type: "NodePort",
-    },
+    } else {},
 } else "SKIP"
