@@ -1737,9 +1737,11 @@
     },
     {
       "namespaces": [
+        "core-on-sam-sp2",
         "ice-pd-sp2"
       ],
       "access": [
+        "team/core-on-sam",
         "team/ice-pd"
       ],
       "controlEstate": "prd-sam",

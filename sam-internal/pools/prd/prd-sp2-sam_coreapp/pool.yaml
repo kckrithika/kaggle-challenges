@@ -3,6 +3,7 @@
 # Team name must match GUS scrum team with spaces converted to underscore
 # Run k8s-in/build.sh after updating pools
 access:
+  - 'team/core-on-sam'
   - 'team/ice-pd'
 
 # Each pool is managed by a SAM control stack running in one estate
