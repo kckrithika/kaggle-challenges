@@ -52,9 +52,11 @@ apps:
  pseudo-api:
   - prd/prd-sam
  pseudo-api-test:
-  - prd/prd-sam
+  - prd/prd-samdev
  kubernetes-dashboard:
   - prd/prd-sam
+ kubernetes-dashboard-test:
+  - prd/prd-samdev
  TnrpMonitor:
   - prd/prd-sam
  SamSqlReporter:

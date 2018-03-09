@@ -8,16 +8,16 @@ system:
     - name: virtual-api
       command:
         - /sam/virtual-api
-        - --sql-db-host=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
+        - --sql-db-host=mysql.csc-sam.prd-samdev.prd.slb.sfdc.net
         - --sql-db-port=3306
-        - --sql-db-name=sam_kube_resource
+        - --sql-db-name=sdp
         - --sql-db-pass=pass
         - --sql-db-user=root
-        - --sql-db-resources-table=k8s_resource
+        - --sql-db-resources-table=k8s_resource_test
         - --v=4
         - --alsologtostderr
         - --insecure-port=7002
-        - --passthrough-api-server=shared0-samkubeapi1-1-prd.eng.sfdc.net:40000
+        - --passthrough-api-server=shared0-samdevkubeapi1-1-prd.eng.sfdc.net:40000
         - --passthrough-all-cluster=prd-sam
         - --secret-passthrough-namespace=kube-system
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/hypersam:20180306_150100.00f1fa85.dirty.duncsmith-ltm
