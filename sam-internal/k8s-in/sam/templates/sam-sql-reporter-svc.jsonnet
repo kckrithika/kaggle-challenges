@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
         labels: {
             app: "samsqlreporter",
         },
-        annotations: {
+        annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "samsqlreporter",
             "slb.sfdc.net/portconfigurations": std.toString(
                 [
@@ -23,7 +23,7 @@ if configs.estate == "prd-sam" then {
                     },
                 ]
             ),
-        },
+        } else {},
     },
     spec: {
         ports: [
@@ -37,6 +37,5 @@ if configs.estate == "prd-sam" then {
         selector: {
             name: "samsqlreporter",
         },
-        type: "ClusterIP",
     },
 } else "SKIP"

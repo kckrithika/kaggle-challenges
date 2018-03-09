@@ -1,10 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    slb.sfdc.net/name: prometheus
-    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80, "reencrypt":
-      false, "sticky": 0, "targetport": 9090}]'
+  annotations: {}
   labels:
     app: prometheus
   name: prometheus-svc

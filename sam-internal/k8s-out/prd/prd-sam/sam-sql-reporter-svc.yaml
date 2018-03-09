@@ -17,4 +17,3 @@ spec:
     targetPort: 64212
   selector:
     name: samsqlreporter
-  type: ClusterIP

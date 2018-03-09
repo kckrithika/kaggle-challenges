@@ -3,18 +3,18 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: sdp
+    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 80, "reencrypt":
+      false, "sticky": 0, "targetport": 64121}, {"lbtype": "", "nodeport": 0, "port":
+      64121, "reencrypt": false, "sticky": 0, "targetport": 64121}]'
   labels:
     app: sam-deployment-portal
-    slb.sfdc.net/name: sdp
   name: sdp
   namespace: sam-system
 spec:
   ports:
   - name: portal-port
-    nodePort: 39999
     port: 64121
     protocol: TCP
     targetPort: 64121
   selector:
     name: sam-deployment-portal
-  type: NodePort
