@@ -83,6 +83,12 @@ local utils = import "util_functions.jsonnet";
 
         # [thargrove] Moving sam-sql-reporter to sam-internals
         "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0001769-20d44c74",
+
+        # [prabh.singh] Get Metrics flowing from bundle controller, remove after Phase March 2nd week
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001772-64511618",
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001772-64511618",
+        "prd,prd-samtest,bundle-controller,hypersam": "sam-0001772-64511618",
+
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
