@@ -16,7 +16,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mist
       ports:
-      - containerPort: 7023
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
@@ -52,5 +52,5 @@ system:
     nodeExposed: true
     ports:
     - port: 7023
-      targetport: 7023
+      targetport: 7022
 
