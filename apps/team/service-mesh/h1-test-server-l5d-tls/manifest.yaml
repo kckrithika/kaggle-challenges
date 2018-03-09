@@ -2,13 +2,14 @@ apiVersion: v1
 
 system:
   functions:
-  - name: h1-test-client-l5d-tls
+  - name: h1-test-server-l5d-tls
     count: 1
     containers:
-    - name: h1-test-client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-client:latest
+    - name: h1-test-server
+      # Code lives here: https://git.soma.salesforce.com/npshenichnyy/sherpa-http1-test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-server:latest
       args:
-      - "http://h1-test-server-l5d-tls.user-npshenichnyy.samapp.localhost.mesh.force.com:5442"
+      - "0.0.0.0:7022"
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -16,12 +17,30 @@ system:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 20
+
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      args:
+      - -endpoint
+      # 7442 - http1 tls
+      - service-mesh/h1-test-server-l5d-tls:DATACENTER_ALLENV:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
     - name: sherpa-l5d
       image: sfci/servicelibs/sherpa:2.0.23
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
       ports:
+      - containerPort: 7442
+        name: h1-tls-in
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
@@ -39,11 +58,17 @@ system:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
       volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
+
     volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: tls-client-cert
       maddogCert:
         type: client

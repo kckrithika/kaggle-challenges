@@ -6,6 +6,7 @@ system:
     count: 1
     containers:
     - name: h1-test-client
+      # Code lives here: https://git.soma.salesforce.com/npshenichnyy/sherpa-http1-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-client:latest
       args:
       - "http://h1-test-server-l5d.localhost.mesh.force.com:7013"
@@ -16,6 +17,7 @@ system:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 20
+
     - name: sherpa-l5d
       image: sfci/servicelibs/sherpa:2.0.23
       env:
@@ -38,3 +40,11 @@ system:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log
+
+    - volumes:
+      - name: sherpa-log-volume
+        hostPath:
+          path: /home/sfdc-sherpa/logs
