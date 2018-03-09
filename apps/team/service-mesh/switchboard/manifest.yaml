@@ -9,8 +9,8 @@ system:
     count: 2
     containers:
     - name: switchboard 
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
-      image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/39
+      image: sfci/servicelibs/switchboard:9c07b531bb0218610a9eabef991dbe6ba8a0498c
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
