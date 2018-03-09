@@ -1,2 +1,4 @@
 version: v2
 apps:
+ test-bash:
+  - name: prd/prd-sp2-sam_coreapp

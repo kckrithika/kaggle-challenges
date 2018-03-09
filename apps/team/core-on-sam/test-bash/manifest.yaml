@@ -1,0 +1,42 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: bash
+
+    count: 1
+    
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    
+    containers:
+    - name: bashc
+
+      image: tnrp/casam/coreapp:214__15043100-0000094-120c8cb2
+
+ 
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 10
+        periodSeconds: 30
+
+      readinessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        failureThreshold: 10
+
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+    
+      command: ["bash"]
