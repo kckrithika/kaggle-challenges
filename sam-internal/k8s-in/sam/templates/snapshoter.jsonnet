@@ -31,30 +31,30 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
             spec: {
                 containers: [{
                     command: [
-"/sam/snapshoter",
+                        "/sam/snapshoter",
                         "--config=/config/snapshoter.json",
                         "--hostsConfigFile=/sfdchosts/hosts.json",
                         "--v=4",
                         "--alsologtostderr",
-],
+                    ],
                     volumeMounts: configs.filter_empty([
-                           configs.sfdchosts_volume_mount,
-                           configs.maddog_cert_volume_mount,
-                           configs.cert_volume_mount,
-                           configs.kube_config_volume_mount,
-                           configs.config_volume_mount,
+                        configs.sfdchosts_volume_mount,
+                        configs.maddog_cert_volume_mount,
+                        configs.cert_volume_mount,
+                        configs.kube_config_volume_mount,
+                        configs.config_volume_mount,
                     ]),
                     env: [
-                     configs.kube_config_env,
+                        configs.kube_config_env,
                     ],
                     livenessProbe: {
-                       httpGet: {
-                             path: "/",
-                             port: 9095,
-                       },
-                       initialDelaySeconds: 20,
-                       periodSeconds: 20,
-                       timeoutSeconds: 20,
+                        httpGet: {
+                            path: "/",
+                            port: 9095,
+                        },
+                        initialDelaySeconds: 20,
+                        periodSeconds: 20,
+                        timeoutSeconds: 20,
                     },
                     image: samimages.hypersam,
                     name: "snapshoter",
@@ -65,15 +65,15 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.config_volume("snapshoter"),
-                 ]),
+                ]),
                 hostNetwork: true,
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
         },
     },

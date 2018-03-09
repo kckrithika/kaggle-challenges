@@ -57,10 +57,10 @@ if configs.estate == "prd-samdev" then {
 
                         ]),
                         ports: [
-                        {
-                            containerPort: 8080,
-                            name: "jenkins",
-                        },
+                            {
+                                containerPort: 8080,
+                                name: "jenkins",
+                            },
                         ],
                     },
                 ],
@@ -125,7 +125,7 @@ if configs.estate == "prd-samdev" then {
                         },
                         name: "libltdl",
                     },
-                    ],
+                ],
                 nodeSelector: {
                     "kubernetes.io/hostname": "shared0-samdevcompute1-1-prd.eng.sfdc.net",
                 },

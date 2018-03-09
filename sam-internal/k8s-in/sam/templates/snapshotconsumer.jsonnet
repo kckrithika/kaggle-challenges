@@ -27,29 +27,29 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
             },
             spec: {
                 containers: [{
-                        name: "snapshotconsumer",
-                        image: samimages.hypersam,
-                        command: [
-                            "/sam/snapshotconsumer",
-                            "--config=/config/snapshotconsumer.json",
-                            "--hostsConfigFile=/sfdchosts/hosts.json",
-                            "-v=3",
-                        ],
-                        volumeMounts: configs.filter_empty([
-                               configs.sfdchosts_volume_mount,
-                               configs.maddog_cert_volume_mount,
-                               configs.cert_volume_mount,
-                               configs.kube_config_volume_mount,
-                               configs.config_volume_mount,
-                               {
-                                  mountPath: "/var/mysqlPwd",
-                                  name: "mysql",
-                                  readOnly: true,
-                               },
-                        ]),
-                        env: [
-                         configs.kube_config_env,
-                        ],
+                    name: "snapshotconsumer",
+                    image: samimages.hypersam,
+                    command: [
+                        "/sam/snapshotconsumer",
+                        "--config=/config/snapshotconsumer.json",
+                        "--hostsConfigFile=/sfdchosts/hosts.json",
+                        "-v=3",
+                    ],
+                    volumeMounts: configs.filter_empty([
+                        configs.sfdchosts_volume_mount,
+                        configs.maddog_cert_volume_mount,
+                        configs.cert_volume_mount,
+                        configs.kube_config_volume_mount,
+                        configs.config_volume_mount,
+                        {
+                            mountPath: "/var/mysqlPwd",
+                            name: "mysql",
+                            readOnly: true,
+                        },
+                    ]),
+                    env: [
+                        configs.kube_config_env,
+                    ],
                 }],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
@@ -59,7 +59,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                     configs.config_volume("snapshotconsumer"),
                     {
                         secret: {
-                              secretName: "mysql-pwd",
+                            secretName: "mysql-pwd",
                         },
                         name: "mysql",
                     },

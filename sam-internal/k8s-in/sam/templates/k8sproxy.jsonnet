@@ -15,12 +15,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         image: samimages.k8sproxy,
                         args: [
                         ] + (if configs.kingdom == "prd" then [
-                          "-f",
-                          "/k8sproxyconfig/haproxy-maddog.cfg",
-                        ] else [
-                          "-f",
-                          "/etc/haproxy/haproxy.cfg",
-                        ]),
+                                 "-f",
+                                 "/k8sproxyconfig/haproxy-maddog.cfg",
+                             ] else [
+                                 "-f",
+                                 "/etc/haproxy/haproxy.cfg",
+                             ]),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             {
@@ -33,18 +33,18 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                             },
                         ]),
                         ports: [
-                        {
-                            containerPort: 5000,
-                            name: "k8sproxy",
-                        },
+                            {
+                                containerPort: 5000,
+                                name: "k8sproxy",
+                            },
                         ],
-                      livenessProbe: {
-                           initialDelaySeconds: 15,
-                           httpGet: {
-                               path: "/",
-                               port: 5000,
-                           },
-                           timeoutSeconds: 10,
+                        livenessProbe: {
+                            initialDelaySeconds: 15,
+                            httpGet: {
+                                path: "/",
+                                port: 5000,
+                            },
+                            timeoutSeconds: 10,
                         },
                     },
                 ],

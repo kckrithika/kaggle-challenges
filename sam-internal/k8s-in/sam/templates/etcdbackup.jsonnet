@@ -21,26 +21,26 @@ local wdconfig = import "samwdconfig.jsonnet";
                         ],
                         name: "etcdbackup",
                         volumeMounts: configs.filter_empty([
-                        {
-                              name: "backup",
-                              mountPath: "/data/etcdbackup",
-                          },
-                          {
-                              name: "cowdata",
-                              mountPath: "/cowdata",
-                          },
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                            {
+                                name: "backup",
+                                mountPath: "/data/etcdbackup",
+                            },
+                            {
+                                name: "cowdata",
+                                mountPath: "/cowdata",
+                            },
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
-                {
-                    hostPath: {
-                        path: "/data/etcdbackup",
-                    },
-                    name: "backup",
+                    {
+                        hostPath: {
+                            path: "/data/etcdbackup",
+                        },
+                        name: "backup",
                     },
 
                     {

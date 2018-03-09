@@ -9,8 +9,8 @@ if configs.kingdom == "prd" then {
             spec: {
                 # We need this so we can mutate kubeconfig
                 securityContext: {
-                  runAsUser: 0,
-                  fsGroup: 0,
+                    runAsUser: 0,
+                    fsGroup: 0,
                 },
                 hostNetwork: true,
                 containers: [
@@ -31,16 +31,16 @@ if configs.kingdom == "prd" then {
                                 cpu: "0.5",
                                 memory: "300Mi",
                             },
-                          },
+                        },
                         volumeMounts: configs.filter_empty([
-                             configs.opsadhoc_volume_mount,
-                             configs.config_volume_mount,
+                            configs.opsadhoc_volume_mount,
+                            configs.config_volume_mount,
                         ]),
                     },
                 ],
                 volumes: configs.filter_empty([
-                   configs.opsadhoc_volume,
-                   configs.config_volume("ops-adhoc"),
+                    configs.opsadhoc_volume,
+                    configs.config_volume("ops-adhoc"),
                 ]),
             },
             metadata: {
@@ -60,4 +60,4 @@ if configs.kingdom == "prd" then {
         namespace: "sam-system",
     },
 } else
-  "SKIP"
+    "SKIP"

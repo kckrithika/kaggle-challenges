@@ -18,15 +18,15 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                             "-funnelEndpoint=" + configs.funnelVIP,
                             configs.sfdchosts_arg,
                         ]),
-                            env: [
-                          configs.kube_config_env,
+                        env: [
+                            configs.kube_config_env,
                         ],
                         volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                       ]),
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                        ]),
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -36,12 +36,12 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
 
             },
             metadata: {
