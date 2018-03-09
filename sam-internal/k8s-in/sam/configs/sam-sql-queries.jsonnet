@@ -20,8 +20,12 @@ GROUP BY ControlEstate",
       sql: "SELECT * FROM nodeDetailView",
     },
     {
-      name: "Hosts-Not-Ready",
-     sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True'",
+      name: "Hosts-Not-Ready-Sam",
+     sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND NOT Name like '%minionceph%'",
+    },
+    {
+      name: "Hosts-Not-Ready-Ceph",
+     sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND Name like '%minionceph%'",
     },
     {
       name: "Hosts-Docker-Version",
@@ -56,7 +60,8 @@ GROUP BY ControlEstate",
 WHERE
   ( Namespace != 'sam-watchdog' AND Namespace != 'sam-system' AND Namespace != 'csc-sam') AND
   (availableReplicas != desiredReplicas OR availableReplicas IS NULL) AND
-  NOT ControlEstate LIKE 'prd-%'",
+  NOT ControlEstate LIKE 'prd-%' AND
+  desiredReplicas != 0",
     },
     {
       name: "Bad-Pods-By-Host-Production",
@@ -69,7 +74,7 @@ select
         SUM(SucceededCount) AS SucceededCount,
         SUM(OtherCount) AS OtherCount,
         SUM(RunningCount) AS RunningCount,
-        GROUP_CONCAT(CustomerodWithIssue SEPARATOR '; ') AS CustomerodWithIssue,
+        GROUP_CONCAT(CustomerPodWithIssue SEPARATOR '; ') AS CustomerPodWithIssue,
         GROUP_CONCAT(SystemPodWithIssue SEPARATOR '; ') AS SystemPodWithIssue
 from (
         select
@@ -80,7 +85,7 @@ from (
                 CASE WHEN Phase != 'Running' AND Phase != 'Pending' AND Phase != 'Failed' AND Phase != 'Succeeded' THEN 1 ELSE 0 END AS OtherCount,
                 CASE WHEN Phase = 'Running' THEN 1 ELSE 0 END AS RunningCount,
                 CASE WHEN Phase != 'Running' AND (Namespace = 'sam-system' OR Namespace = 'sam-watchdog' OR Namespace = 'csc-sam') THEN Name ELSE NULL END AS SystemPodWithIssue,
-                CASE WHEN Phase != 'Running' AND (Namespace != 'sam-system' AND Namespace != 'sam-watchdog' AND Namespace != 'csc-sam') THEN Name ELSE NULL END AS CustomerodWithIssue,
+                CASE WHEN Phase != 'Running' AND (Namespace != 'sam-system' AND Namespace != 'sam-watchdog' AND Namespace != 'csc-sam') THEN Name ELSE NULL END AS CustomerPodWithIssue,
                 NodeUrl
         from
                 podDetailView
