@@ -11,14 +11,25 @@ if configs.estate == "prd-sam" then {
         },
         annotations: {
             "slb.sfdc.net/name": "samsqlreporter",
-            "slb.sfdc.net/portconfigurations": '[{"port":80,"targetport":64212,"nodeport":0,"lbtype":"","reencrypt":false,"sticky":0}]',
+            "slb.sfdc.net/portconfigurations": std.toString(
+                [
+                    {
+                        port: 80,
+                        targetport: $.spec.ports[0].targetPort,
+                        nodeport: 0,
+                        lbtype: "",
+                        reencrypt: false,
+                        sticky: 0,
+                    },
+                ]
+            ),
         },
     },
     spec: {
         ports: [
             {
                 name: "ssr-port",
-                port: 64212,
+                port: 80,
                 protocol: "TCP",
                 targetPort: 64212,
             },

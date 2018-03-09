@@ -7,25 +7,34 @@ if configs.kingdom == "prd" && configs.estate == "prd-samtest" then {
             namespace: "sam-system",
             labels: {
                 app: "samcontrol-deployer",
-                "slb.sfdc.net/name": "samcontrol-deployer",
             },
             annotations: {
                 "slb.sfdc.net/name": "samcontrol-deployer",
+                "slb.sfdc.net/portconfigurations": std.toString(
+                    [
+                        {
+                            port: 80,
+                            targetport: $.spec.ports[0].targetPort,
+                            nodeport: 0,
+                            lbtype: "",
+                            reencrypt: false,
+                            sticky: 0,
+                        },
+                    ]
+                ),
             },
         },
         spec: {
             ports: [
             {
                 name: "deployer-portal-port",
-                port: 9099,
+                port: 80,
                 protocol: "TCP",
                 targetPort: 9099,
-                nodePort: 32864,
             },
             ],
                 selector: {
                     name: "samcontrol-deployer",
                 },
-                type: "NodePort",
         },
 } else "SKIP"
