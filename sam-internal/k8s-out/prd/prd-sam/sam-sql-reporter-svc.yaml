@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: samsqlreporter
-    slb.sfdc.net/portconfigurations: '[{"port":64212,"targetport":64212,"nodeport":0,"lbtype":"","reencrypt":false,"sticky":0}]'
+    slb.sfdc.net/portconfigurations: '[{"port":80,"targetport":64212,"nodeport":0,"lbtype":"","reencrypt":false,"sticky":0}]'
   labels:
     app: samsqlreporter
   name: samsqlreporter
@@ -16,4 +16,4 @@ spec:
     targetPort: 64212
   selector:
     name: samsqlreporter
-  type: NodePort
+  type: ClusterIP
