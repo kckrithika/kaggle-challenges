@@ -11,7 +11,7 @@ if configs.estate == "prd-sam" then {
         },
         annotations: {
             "slb.sfdc.net/name": "samsqlreporter",
-            "slb.sfdc.net/portconfigurations": '[{"port":64212,"targetport":64212,"nodeport":0,"lbtype":"","reencrypt":false,"sticky":0}]',
+            "slb.sfdc.net/portconfigurations": '[{"port":80,"targetport":64212,"nodeport":0,"lbtype":"","reencrypt":false,"sticky":0}]',
         },
     },
     spec: {
@@ -26,6 +26,6 @@ if configs.estate == "prd-sam" then {
         selector: {
             name: "samsqlreporter",
         },
-        type: "NodePort",
+        type: "ClusterIP",
     },
 } else "SKIP"
