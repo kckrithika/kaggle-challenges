@@ -56,7 +56,7 @@ local utils = import "util_functions.jsonnet";
         # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180308_161535.90723c69.dirty.dianachang-ltm1",
         "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180301_145056.e30e3317.dirty.dianachang-ltm1",
-        #"prd,prd-samtest,watchdog-sdp,hypersam": "auto",
+        "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to public cloud. This stops spamming customers and publishes metrics to the correct scope.
         "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
