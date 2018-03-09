@@ -28,7 +28,6 @@ system:
   loadbalancers:
   - lbname: dashboard-prd-samdev
     function: dashboard
-    slbEnabled: true
     ports:
       - port: 80
         targetport: 9090

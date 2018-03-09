@@ -30,7 +30,6 @@ system:
   loadbalancers:
   - lbname: pseudo-kubeapi-test
     function: pseudo-kubeapi-test
-    slbEnabled: true
     ports:
       - port: 40001
         targetport: 7002
