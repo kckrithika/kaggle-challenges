@@ -83,6 +83,8 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001772-64511618",
         "prd,prd-samtest,bundle-controller,hypersam": "sam-0001772-64511618",
 
+        # [thargrove] New SDP that includes KubeDashboard links
+        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0001775-2781f687",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
