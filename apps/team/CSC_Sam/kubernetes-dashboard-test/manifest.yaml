@@ -8,7 +8,7 @@ system:
     - name: dashboard-prd-samdev
       args:
         - --logtostderr=true
-        - --apiserver-host=http://pseudo-kubeapi-test.csc-sam.prd-samdev.prd.slb.sfdc.net:40001/prd-samdev
+        - --apiserver-host=http://shared0-samdevkubeapi1-1-prd.eng.sfdc.net:40001
         - --insecure-port=9090
         - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
         - --system-banner-severity=WARNING
@@ -26,8 +26,9 @@ system:
     - name: temp
       emptyDir: {}
   loadbalancers:
-  - lbname: dashboard-prd-samdev
-    function: dashboard
+  - lbname: dashboard-test
+    function: dashboard-test
+    nodeExposed: true
     ports:
-      - port: 80
+      - port: 31343
         targetport: 9090

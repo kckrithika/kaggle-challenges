@@ -2,13 +2,13 @@ apiVersion: v1
 system:
   functions:
   - name: pseudo-kubeapi-test
-    count: 3
+    count: 1
     progressDeadlineSeconds: 120
     containers:
     - name: virtual-api
       command:
         - /sam/virtual-api
-        - --sql-db-host=mysql.csc-sam.prd-samdev.prd.slb.sfdc.net
+        - --sql-db-host=10.251.156.48
         - --sql-db-port=3306
         - --sql-db-name=sdp
         - --sql-db-pass=pass
@@ -30,6 +30,7 @@ system:
   loadbalancers:
   - lbname: pseudo-kubeapi-test
     function: pseudo-kubeapi-test
+    nodeExposed: true
     ports:
       - port: 40001
         targetport: 7002
