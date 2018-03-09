@@ -24,11 +24,12 @@ spec:
         - -watchdogFrequency=10s
         - -alertThreshold=300s
         - -emailFrequency=24h
+        - --breakwatchdogsdp
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001760-c9a04911
         name: watchdog-sdp
         volumeMounts:
         - mountPath: /sfdchosts
