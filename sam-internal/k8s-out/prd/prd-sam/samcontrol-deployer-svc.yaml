@@ -12,10 +12,8 @@ metadata:
 spec:
   ports:
   - name: deployer-portal-port
-    nodePort: 32864
     port: 80
     protocol: TCP
     targetPort: 9099
   selector:
     name: samcontrol-deployer
-  type: NodePort
