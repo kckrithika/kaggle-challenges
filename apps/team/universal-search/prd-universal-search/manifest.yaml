@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.5.0
+      image: sfci/searchdev/universal-search:0.5.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -88,8 +88,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - universal-search:DATACENTER_ALLENV:7012
-      # Change to 7443 once TLS in SAM containers is ready, see https://gus.lightning.force.com/lightning/r/0D5B000000aanOjKAI/view  
+      - universal-search:DATACENTER_ALLENV:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
