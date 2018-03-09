@@ -12,21 +12,21 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         name: "stateful-revision-cleaner",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                           "/sam/stateful-revision-cleaner",
-                           "--v=5",
-                           "--k8sapiserver=",
-                           "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
-                           configs.sfdchosts_arg,
-                           ]),
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                            "/sam/stateful-revision-cleaner",
+                            "--v=5",
+                            "--k8sapiserver=",
+                            "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
+                            configs.sfdchosts_arg,
+                        ]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -36,12 +36,12 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {

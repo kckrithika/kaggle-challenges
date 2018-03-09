@@ -15,26 +15,26 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         image: samimages.hypersam,
                         command: configs.filter_empty([
                             "/sam/node-controller",
-                           "--funnelEndpoint=" + configs.funnelVIP,
-                           configs.sfdchosts_arg,
+                            "--funnelEndpoint=" + configs.funnelVIP,
+                            configs.sfdchosts_arg,
                         ]),
                         volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                       ]),
-                       env: [
-                          {
-                              name: "NODE_NAME",
-                              valueFrom: {
-                                  fieldRef: {
-                                      fieldPath: "spec.nodeName",
-                                  },
-                              },
-                          },
-                          configs.kube_config_env,
-                       ],
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                        ]),
+                        env: [
+                            {
+                                name: "NODE_NAME",
+                                valueFrom: {
+                                    fieldRef: {
+                                        fieldPath: "spec.nodeName",
+                                    },
+                                },
+                            },
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -44,12 +44,12 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {

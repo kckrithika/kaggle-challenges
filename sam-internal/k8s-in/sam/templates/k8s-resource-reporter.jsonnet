@@ -12,24 +12,24 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "k8s-resource-reporter",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                           "/sam/k8s-resource-reporter",
-                           "--v=5",
-                           "--k8sapiserver=",
-                           "--smtpServer=" + configs.smtpServer,
-                           "--sender=sam@salesforce.com",
-                           "--defaultRecipient=mayank.kumar@salesforce.com",
-                           "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
-                           configs.sfdchosts_arg,
-                           ]),
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                            "/sam/k8s-resource-reporter",
+                            "--v=5",
+                            "--k8sapiserver=",
+                            "--smtpServer=" + configs.smtpServer,
+                            "--sender=sam@salesforce.com",
+                            "--defaultRecipient=mayank.kumar@salesforce.com",
+                            "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
+                            configs.sfdchosts_arg,
+                        ]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -39,12 +39,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {

@@ -14,19 +14,19 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "manifest-watcher",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                           "/sam/manifest-watcher",
-                           "--funnelEndpoint=" + configs.funnelVIP,
-                           "--v=2",
-                           "--logtostderr=true",
-                           "--config=/config/manifestwatcher.json",
-                           "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
-                           configs.sfdchosts_arg,
-                         ]),
-                      volumeMounts: configs.filter_empty([
-                          configs.maddog_cert_volume_mount,
-                          configs.sfdchosts_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.config_volume_mount,
+                            "/sam/manifest-watcher",
+                            "--funnelEndpoint=" + configs.funnelVIP,
+                            "--v=2",
+                            "--logtostderr=true",
+                            "--config=/config/manifestwatcher.json",
+                            "--syntheticEndpoint=http://$(WATCHDOG_SYNTHETIC_SERVICE_SERVICE_HOST):9090/tnrp/content_repo/0/archive",
+                            configs.sfdchosts_arg,
+                        ]),
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.config_volume_mount,
                         ]),
                     },
                 ],
@@ -34,7 +34,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.sfdchosts_volume,
-                     {
+                    {
                         hostPath: {
                             path: "/manifests",
                         },
@@ -43,12 +43,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.config_volume("manifest-watcher"),
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
