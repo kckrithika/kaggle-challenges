@@ -47,23 +47,28 @@ system:
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
-      args:
-        - --http2-in=9532
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
-        - containerPort: 9532
-        - containerPort: 7080
+      - containerPort: 7012
+        name: sherpa-ot-http2
+      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
     volumes:
     - name: certs
       hostPath:
