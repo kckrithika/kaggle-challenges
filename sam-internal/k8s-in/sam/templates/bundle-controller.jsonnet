@@ -14,16 +14,16 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                         name: "bundle-controller",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                           "/sam/bundlecontroller",
-                           ]),
-                       volumeMounts: configs.filter_empty([
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
+                            "/sam/bundlecontroller",
+                        ]),
+                        volumeMounts: configs.filter_empty([
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -32,19 +32,19 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                     configs.kube_config_volume,
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "bundlecontroller",
                     apptype: "control",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

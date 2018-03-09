@@ -12,34 +12,34 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         name: "samcontrol-deployer",
                         image: samimages.hypersam,
                         command: configs.filter_empty([
-                           "/sam/samcontrol-deployer",
-                           "--config=/config/samcontroldeployer.json",
-                           configs.sfdchosts_arg,
-                           ]),
-                         volumeMounts: configs.filter_empty([
-                           configs.sfdchosts_volume_mount,
-                           configs.maddog_cert_volume_mount,
-                           configs.cert_volume_mount,
-                           configs.kube_config_volume_mount,
-                           configs.config_volume_mount,
-                         ]) + (if configs.kingdom == "prd" then [
-                             {
-                                 mountPath: "/var/token",
-                                 name: "token",
-                                 readOnly: true,
-                             },
-                         ] else []),
-                         env: [
-                           configs.kube_config_env,
-                         ],
-                         livenessProbe: {
-                           httpGet: {
-                             path: "/",
-                             port: 9099,
-                           },
-                           initialDelaySeconds: 20,
-                           periodSeconds: 10,
-                           timeoutSeconds: 10,
+                            "/sam/samcontrol-deployer",
+                            "--config=/config/samcontroldeployer.json",
+                            configs.sfdchosts_arg,
+                        ]),
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            configs.config_volume_mount,
+                        ]) + (if configs.kingdom == "prd" then [
+                                  {
+                                      mountPath: "/var/token",
+                                      name: "token",
+                                      readOnly: true,
+                                  },
+                              ] else []),
+                        env: [
+                            configs.kube_config_env,
+                        ],
+                        livenessProbe: {
+                            httpGet: {
+                                path: "/",
+                                port: 9099,
+                            },
+                            initialDelaySeconds: 20,
+                            periodSeconds: 10,
+                            timeoutSeconds: 10,
                         },
                     },
                 ],
@@ -50,20 +50,20 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     configs.kube_config_volume,
                     configs.config_volume("samcontrol-deployer"),
                 ]) + (if configs.kingdom == "prd" then [
-                    {
-                        secret: {
-                              secretName: "git-token",
-                        },
-                        name: "token",
-                    },
-                ] else []),
+                          {
+                              secret: {
+                                  secretName: "git-token",
+                              },
+                              name: "token",
+                          },
+                      ] else []),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
