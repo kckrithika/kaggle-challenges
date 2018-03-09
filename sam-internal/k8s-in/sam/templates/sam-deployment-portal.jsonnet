@@ -9,41 +9,41 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
                 hostNetwork: true,
                 containers: [
                     {
-                       name: "sam-deployment-portal",
-                       image: samimages.hypersam,
-                       command: configs.filter_empty([
-                          "/sam/sam-deployment-portal",
-                          configs.sfdchosts_arg,
-                          "--alsologtostderr",
-                       ]),
-                       ports: [
-                       {
-                           containerPort: 64121,
-                       },
-                       ],
-                       volumeMounts: configs.filter_empty([
-                          configs.sfdchosts_volume_mount,
-                          configs.maddog_cert_volume_mount,
-                          configs.cert_volume_mount,
-                          configs.kube_config_volume_mount,
-                          {
-                             mountPath: "/var/token",
-                             name: "token",
-                             readOnly: true,
-                          },
-                       ]),
-                       env: [
-                          configs.kube_config_env,
-                       ],
-                       livenessProbe: {
-                           initialDelaySeconds: 15,
-                           httpGet: {
-                               path: "/",
-                               port: 64121,
-                           },
-                           timeoutSeconds: 10,
-                       },
-                       workingDir: "/sam",
+                        name: "sam-deployment-portal",
+                        image: samimages.hypersam,
+                        command: configs.filter_empty([
+                            "/sam/sam-deployment-portal",
+                            configs.sfdchosts_arg,
+                            "--alsologtostderr",
+                        ]),
+                        ports: [
+                            {
+                                containerPort: 64121,
+                            },
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            configs.sfdchosts_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.kube_config_volume_mount,
+                            {
+                                mountPath: "/var/token",
+                                name: "token",
+                                readOnly: true,
+                            },
+                        ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
+                        livenessProbe: {
+                            initialDelaySeconds: 15,
+                            httpGet: {
+                                path: "/",
+                                port: 64121,
+                            },
+                            timeoutSeconds: 10,
+                        },
+                        workingDir: "/sam",
                     },
                 ],
                 volumes: configs.filter_empty([
@@ -53,25 +53,25 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
                     configs.kube_config_volume,
                     {
                         secret: {
-                              secretName: "git-token",
+                            secretName: "git-token",
                         },
                         name: "token",
                     },
                 ]),
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
                     name: "sam-deployment-portal",
                     apptype: "control",
                 },
-               namespace: "sam-system",
+                namespace: "sam-system",
             },
         },
         selector: {

@@ -20,21 +20,21 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                         command: [
                             "/sam/estatesvc/script/estatesvc-wrapper.sh",
                             configs.kingdom,
-                           "--funnelEndpoint=" + configs.funnelVIP,
+                            "--funnelEndpoint=" + configs.funnelVIP,
                         ],
                         ports: [
-                        {
-                            containerPort: 9090,
-                            name: "estate-server",
-                        },
+                            {
+                                containerPort: 9090,
+                                name: "estate-server",
+                            },
                         ],
                         livenessProbe: {
-                           initialDelaySeconds: 15,
-                           httpGet: {
-                               path: "/info",
-                               port: 9090,
-                           },
-                           timeoutSeconds: 10,
+                            initialDelaySeconds: 15,
+                            httpGet: {
+                                path: "/info",
+                                port: 9090,
+                            },
+                            timeoutSeconds: 10,
                         },
                         env: [
                             {
@@ -57,12 +57,12 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     },
                 ],
                 nodeSelector: {
-                } +
-                if configs.kingdom == "prd" then {
-                    master: "true",
-                } else {
-                     pool: configs.estate,
-                },
+                              } +
+                              if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {
