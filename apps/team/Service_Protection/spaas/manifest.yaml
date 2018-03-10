@@ -7,7 +7,8 @@ system:
   - name: spaas
     
     # number of instances ("kpods") to deploy and run
-    count: 2
+    # recommended min: 3 for availability
+    count: 3
     
     # Docker image(s) that make up one instance of the service
     containers:
@@ -30,9 +31,12 @@ system:
      # In your startup script, set logging.dir to this location
       # /log is mapped outside the container to the host's filesystem
       volumeMounts:
-      - mountPath: /log
-        name: logvol      
-
+      - name: logvol 
+        mountPath: /log
+      - name: spaasclientcert
+        mountPath: /clientcerts
+      - name: spaasservercert
+        mountPath: /servercerts
       # SAM will bounce the container if this returns an HTTP response code other than 200-399
       #replace with standard scone health monitoring
       livenessProbe:
@@ -52,6 +56,12 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-spaas/logs
+    - name: spaasclientcert
+      maddogCert:
+        type: client
+    - name: spaasservercert
+      maddogCert:
+        type: server
                  
   loadbalancers:
   - lbname: spaaslb
