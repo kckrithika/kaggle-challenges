@@ -82,6 +82,7 @@ local kingdom = std.extVar("kingdom");
     configwatcher: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "configwatcher", $.per_phase[$.phase].default_tag),
     sfstoreoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfstoreoperator", $.per_phase[$.phase].default_tag),
     alertmanager: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "alertmanager", $.per_phase[$.phase].default_tag),
+    sfnstatemetrics: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfn-state-metrics", $.per_phase[$.phase].default_tag),
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
     cephoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
     loginit: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
