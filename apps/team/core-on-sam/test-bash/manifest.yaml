@@ -39,4 +39,4 @@ system:
         - name: cert
           mountPath: /certs
     
-      command: ["bash"]
+      command: ["tail", "/home/sfdc/salesforce/build/sam_startup.sh", "-f"]
