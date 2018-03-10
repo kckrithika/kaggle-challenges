@@ -33,7 +33,7 @@ system:
         initialDelaySeconds: 120
         periodSeconds: 5
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.23
       ports:
       - containerPort: 15373
         name: sherpa-adm
