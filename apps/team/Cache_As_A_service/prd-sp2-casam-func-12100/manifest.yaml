@@ -150,7 +150,7 @@ system:
           # Note: value here should really be the cyanlb VIP that is commented out. However
           # there are some routing problems on our minions currently so we have to revert
           # back to nodeport for now
-          value: https://samcaas2-caasminion1-2-prd.eng.sfdc.net:12052 
+          value: https://samcaas2-caasminion1-2-prd.eng.sfdc.net:12056
 #          value: https://cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net:12052 
         - name: CURL_GLOBAL_OPTS
           value: -k
