@@ -34,7 +34,7 @@ system:
           path: /
           port: 12061
         initialDelaySeconds: 120
-        periodSeconds: 1
+        periodSeconds: 30
         failureThreshold: 10
 
       ports:
