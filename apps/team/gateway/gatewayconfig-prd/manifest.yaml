@@ -19,7 +19,7 @@ system:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-11b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-11c
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
@@ -32,7 +32,6 @@ system:
         mountPath: /gwcertserver
       args:
         - start
-        - --settings.path=-.-.sfm.-.gatewayconfig
         - --superpod.name=-
       ports:
       - containerPort: 7022
