@@ -10,6 +10,9 @@ system:
         type: server
         lbnames:
         - rsui-func-lb
+    - name: retailclientcert
+      maddogCert:
+        type: client
     # maps the retail  volumnMount to a directory on the host machine
     - name: logvol
       hostPath:
@@ -25,9 +28,9 @@ system:
         name: rsui-in-admin
       env:
       - name: MDS_HOST
-        value: metadata-service.localhost.mesh.force.com
+        value: metadata-service.retail-mds.localhost.mesh.force.com
       - name: MDS_PORT
-        value: 7011
+        value: 5443
       - name: SERVER_PORT
         value: 7022
       - name: PKI_CA_DIR
@@ -63,6 +66,9 @@ system:
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: retailclientcert
+        mountPath: /clientcerts
       ports:
       - containerPort: 7012
         name: sherpa-ot-http2
