@@ -10,23 +10,36 @@ system:
         type: server
         lbnames:
         - jtuley-rsui-lb
+    # maps the retail  volumnMount to a directory on the host machine
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-retail/logs
+
     containers:
     - name: rsui
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:45cd825
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:dca7fd4
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
+        name: rsui-in-http1
       - containerPort: 15372
+        name: rsui-in-admin
       env:
       - name: MDS_HOST
         value: metadata-service.localhost.mesh.force.com
       - name: MDS_PORT
         value: 7011
+      - name: SERVER_PORT
+        value: 7022
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
         value: stmfa
+      - name: TENANT_SOURCE
+        value: MDS065tATaAUcWi
+      - name: TENANT_CANONICAL
+        value: MDS08fS6PGukUaj
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
@@ -38,29 +51,37 @@ system:
       volumeMounts:
       - name: retailservercert
         mountPath: /servercerts
+      #mount splunk logs mount
+      - name: logvol
+        mountPath: /home/retail-setup/logs
 
     - name: sherpa-jtuley-rsui
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
-        - name: SFDC_ENVIRONMENT
-          value: stmfa
-      args:
-        - --http2-in=9532
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       ports:
-        - containerPort: 9532
-        - containerPort: 7080
+      - containerPort: 7012
+        name: sherpa-ot-http2
+      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
 
   loadbalancers:
   - lbname: jtuley-rsui-lb
@@ -68,10 +89,8 @@ system:
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8080
+        targetport: 7022
+      - port: 443
+        targetport: 7022
       - port: 15372
         targetport: 15372
-      - port: 9532
-        targetport: 9532
-      - port: 7080
-        targetport: 7080
