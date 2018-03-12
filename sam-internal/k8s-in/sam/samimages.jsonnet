@@ -80,8 +80,6 @@ local utils = import "util_functions.jsonnet";
 
         # [prabh.singh] Get Metrics flowing from bundle controller, remove after Phase March 2nd week
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001772-64511618",
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001772-64511618",
-        "prd,prd-samtest,bundle-controller,hypersam": "sam-0001772-64511618",
 
         # [thargrove] New SDP that includes KubeDashboard links
         "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0001777-aa657163",
@@ -102,7 +100,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001760-c9a04911",
+            hypersam: "sam-0001780-a269ec85",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
