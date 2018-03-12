@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
-  data: '[ ]'
+  data: '[{"authorizedClientCerts": ["flowsnake_master_prod"], "authorizedLdapGroups":
+    [ ], "namespace": "flowsnake"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null

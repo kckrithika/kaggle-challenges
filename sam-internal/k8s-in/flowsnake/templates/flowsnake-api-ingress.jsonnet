@@ -9,7 +9,6 @@
             "ingress.kubernetes.io/auth-tls-verify-client": "optional",
             "ingress.kubernetes.io/auth-tls-secret": "flowsnake/flowsnake-tls",
             "ingress.kubernetes.io/auth-tls-verify-depth": "1",
-            //"ingress.kubernetes.io/auth-tls-error-page": "/nice-try-red-team",
         },
     },
     spec: {

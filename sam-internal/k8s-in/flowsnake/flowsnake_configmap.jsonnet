@@ -222,47 +222,52 @@ local samconfig = import "config.jsonnet";
         "phx/phx-flowsnake_prod": {
         },
     },
-        //TODO: This structure is bogus. Need to specify LDAP and PKI principals for each namespace.
     auth_namespaces_data: {
+      // Underscore-free client names are a temporary workaround for a pki bug 
       "prd/prd-data-flowsnake": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: [],
+            authorizedClientCerts: ["flowsnakemaster", "flowsnake_master"],
         },
       ],
       "prd/prd-data-flowsnake_test": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: [],
+            authorizedClientCerts: ["flowsnakemastertest", "flowsnake_master_test"],
         },
       ],
       "prd/prd-dev-flowsnake_iot_test": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: [],
+            authorizedClientCerts: ["flowsnakemasteriottest", "flowsnake_master_iot_test"],
         },
       ],
-      "prd/prd-minikube-small-flowsnake": [
+      "prd/prd-minikube-small-flowsnake": [],
+      "prd/prd-minikube-big-flowsnake": [],
+      "iad/iad-flowsnake_prod": [
         {
             namespace: "flowsnake",
-            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: [],
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["flowsnake_master_prod"],
         },
       ],
-      "prd/prd-minikube-big-flowsnake": [
+      "ord/ord-flowsnake_prod": [
         {
             namespace: "flowsnake",
-            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: [],
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["flowsnake_master_prod"],
         },
       ],
-      //TODO: In prod data centers, let the certs on the host act as administrators.
-      "iad/iad-flowsnake_prod": [],
-      "ord/ord-flowsnake_prod": [],
-      "phx/phx-flowsnake_prod": [],
+      "phx/phx-flowsnake_prod": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+      ],
     },
     samcontroldeployer: {
         email: true,

@@ -81,6 +81,7 @@ local estate = std.extVar("estate");
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
+                            // To be uncommented after baked command line params are removed from ingress controller docker image
                             //"--annotations-prefix=ingress.kubernetes.io",
                             //"--sync-period=30s",
                         //] + if !flowsnakeconfig.is_minikube then
