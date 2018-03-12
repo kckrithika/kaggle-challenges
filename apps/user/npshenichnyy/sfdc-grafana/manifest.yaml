@@ -16,7 +16,7 @@ system:
       ports:
         - containerPort: 3000
       volumeMounts:
-      - mountPath: /etc/grafana/provisioning/datasources/
+      - mountPath: /secrets/
         name: secretvol
         readOnly: true
       livenessProbe:
@@ -35,7 +35,7 @@ system:
     volumes:
       - name: secretvol
         k4aSecret:
-          secretName: grafanadatasources
+          secretName: grafanaarguscreds
 
   loadbalancers:
   - lbname: sfdc-grafanalb
