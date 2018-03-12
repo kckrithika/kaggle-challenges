@@ -26,7 +26,7 @@ if configs.estate == "prd-sam_storage" then {
       namespace: "sam-system",
     },
     data: {
-      "sfn-selector.yaml": selector,
+      "sfn-selectors.yaml": selector,
     },
 } else "SKIP"
 
