@@ -18,27 +18,55 @@ system:
           command: ["/bin/true"]
         initialDelaySeconds: 20
 
-    - name: sherpa-envoy
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/16/console
-      image: sfci/servicelibs/sherpa-envoy:76dd027d9d7e9d27a60b11793113957c68812657
+    - name: sherpa-l5d
+      image: sfci/servicelibs/sherpa:2.0.23
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 20
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 15
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
+
+    #- name: sherpa-envoy
+    #  # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/16/console
+    #  image: sfci/servicelibs/sherpa-envoy:76dd027d9d7e9d27a60b11793113957c68812657
+    #  env:
+    #  - name: SFDC_ENVIRONMENT
+    #    value: sam
+    #  livenessProbe:
+    #    httpGet:
+    #      path: /listeners
+    #      port: 15373
+    #    initialDelaySeconds: 20
+    #  readinessProbe:
+    #    httpGet:
+    #      path: /listeners
+    #      port: 15373
+    #    initialDelaySeconds: 15
+    #  volumeMounts:
+    #    - name: tls-client-cert
+    #      mountPath: /client-certs
+    #    - name: tls-server-cert
+    #      mountPath: /server-certs
 
     - name: debug-tools
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
