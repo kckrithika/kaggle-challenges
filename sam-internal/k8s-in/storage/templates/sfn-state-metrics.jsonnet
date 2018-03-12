@@ -23,6 +23,14 @@ if configs.estate == "prd-sam_storage" then {
             },
             spec: {
                 volumes: storageutils.log_init_volumes()
+                + [
+                    {
+                        name: "sfn-config-dir",
+                        configMap: {
+                            name: "sfn-config",
+                        },
+                    },
+                ]
                 + configs.filter_empty([
                         configs.maddog_cert_volume,
                         configs.cert_volume,
@@ -43,6 +51,11 @@ if configs.estate == "prd-sam_storage" then {
                         ],
                         volumeMounts:
                             storageutils.log_init_volume_mounts()
+                            + [{
+                                    name: "sfn-config-dir",
+                                    mountPath: "/sfn-state-metrics/sfn-selectors.yaml",
+                                    subPath: "sfn-selectors.yaml",
+                            }]
                             + configs.filter_empty([
                                 configs.maddog_cert_volume_mount,
                                 configs.cert_volume_mount,

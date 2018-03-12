@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  sfn-selector.yaml: |
+    pods:
+        matchExpressions:
+          - {key: cloud, operator: In, values: [storage]}
+    nodes:
+        matchExpressions:
+          - {key: pool, operator: In, values: [prd-sam_ceph]}
+    persistentvolumes:
+        matchExpressions:
+          - {key: pool, operator: In, values: [prd-sam_ceph]}
+    persistentvolumeclaims:
+        matchExpressions:
+          - {key: namespace, operator: In, values: [legostore]}
+    statefulsets:
+        matchExpressions:
+          - {key: namespace, operator: In, values: [legostore]}
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfn-config
+  namespace: sam-system
