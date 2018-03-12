@@ -68,7 +68,9 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - name: retailclientcert
-        mountPath: /clientcerts
+        mountPath: /certs/client
+      - name: retailservercert
+        mountPath: /certs/server
       ports:
       - containerPort: 7012
         name: sherpa-ot-http2
