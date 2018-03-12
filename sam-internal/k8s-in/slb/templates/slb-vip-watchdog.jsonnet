@@ -37,15 +37,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--monitorFrequency=60s",
                             "--hostnameOverride=$(NODE_NAME)",
                             configs.sfdchosts_arg,
-                        ]
-                        + (
-                             if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then [
-                                "--metricsEndpoint=" + configs.funnelVIP,
-                             ] else [
-                                "--funnelEndpoint=" + configs.funnelVIP,
-                                "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                             ]
-                        ),
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                             ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
