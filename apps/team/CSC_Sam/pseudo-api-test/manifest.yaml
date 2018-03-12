@@ -11,8 +11,8 @@ system:
         - --sql-db-host=10.251.156.48
         - --sql-db-port=3306
         - --sql-db-name=sdp
-        - --sql-db-pass=pass
         - --sql-db-user=root
+        - --sql-db-pass-file=/var/secrets/mysql.txt
         - --sql-db-resources-table=k8s_resource_test
         - --v=4
         - --alsologtostderr
@@ -27,6 +27,14 @@ system:
         httpGet:
           path: /healthz
           port: 7002
+      volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+    volumes:
+    - name: mysql
+      secret:
+        secretName: mysql
   loadbalancers:
   - lbname: pseudo-kubeapi-test
     function: pseudo-kubeapi-test
