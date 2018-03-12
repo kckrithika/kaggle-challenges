@@ -26,7 +26,7 @@ system:
       args:
       - -endpoint
       # 7442 - http1 tls
-      - samapp/user-npshenichnyy/h1-test-server-l5d-tls:DATACENTER_ALLENV:7442
+      - samapp/user-npshenichnyy/h1-test-server-envoy-tls:DATACENTER_ALLENV:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
