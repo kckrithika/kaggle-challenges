@@ -44,7 +44,7 @@ spec:
         - name: MC_ZK_SERVERS
           value: sfstorezk0-dnds1-1-prd.eng.sfdc.net:2181,sfstorezk0-dnds1-2-prd.eng.sfdc.net:2181,sfstorezk0-dnds2-1-prd.eng.sfdc.net:2181
         - name: MC_PORT
-          value: "38001"
+          value: "38002"
         - name: SFDC_FUNNEL_VIP
           value: ajna0-funnel1-0-prd.data.sfdc.net:80
         - name: MC_KINGDOM

@@ -22,7 +22,7 @@ if configs.estate == "prd-sam_storage" then {
                 port: 8080,
                 protocol: "TCP",
                 targetPort: 8080,
-                nodePort: 38001,
+                nodePort: 38002,
                 },
             ],
             selector: {

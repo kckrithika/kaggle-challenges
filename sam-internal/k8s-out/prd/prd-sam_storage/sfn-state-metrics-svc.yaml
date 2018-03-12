@@ -12,7 +12,7 @@ metadata:
 spec:
   ports:
   - name: sfn-metrics
-    nodePort: 38001
+    nodePort: 38002
     port: 8080
     protocol: TCP
     targetPort: 8080
