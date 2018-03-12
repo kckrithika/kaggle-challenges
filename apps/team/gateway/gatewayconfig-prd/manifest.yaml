@@ -19,7 +19,7 @@ system:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-08g
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gateway/gatewayconfig:2018-03-11a
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
@@ -35,7 +35,7 @@ system:
         - --settings.path=-.-.sfm.-.gatewayconfig
         - --superpod.name=-
       ports:
-      - containerPort: 9133
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 21
@@ -52,5 +52,5 @@ system:
     #nodeexposed: true
     function: default
     ports:
-      - port: 9133
-        targetport: 9133
+      - port: 7022
+        targetport: 7022
