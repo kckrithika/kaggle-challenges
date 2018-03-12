@@ -26,6 +26,9 @@ spec:
           name: container-log-vol
         - mountPath: /var/log-mounted
           name: host-log-vol
+        - mountPath: /sfn-state-metrics/sfn-selectors.yaml
+          name: sfn-config-dir
+          subPath: sfn-selectors.yaml
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
@@ -72,6 +75,9 @@ spec:
       - hostPath:
           path: /var/log
         name: host-log-vol
+      - configMap:
+          name: sfn-config
+        name: sfn-config-dir
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
