@@ -17,3 +17,7 @@ apps:
   - prd/prd-sam
  sherpa-envoy-debug:
   - prd/prd-sam
+ h1-test-client-envoy-tls:
+  - prd/prd-sam
+ h1-test-server-envoy-tls:
+  - prd/prd-sam
