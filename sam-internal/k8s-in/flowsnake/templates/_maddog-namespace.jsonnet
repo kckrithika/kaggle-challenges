@@ -4,11 +4,10 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
-        // TODO: rename
-        name: "maddog-namespaces",
+        name: "auth-namespaces",
         namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeconfigmap.maddog_namespace),
+        data: std.toString(flowsnakeconfigmap.auth_namespaces),
     },
 }

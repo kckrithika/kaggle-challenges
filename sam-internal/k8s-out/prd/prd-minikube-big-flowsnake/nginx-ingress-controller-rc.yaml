@@ -20,8 +20,6 @@ spec:
       containers:
       - args:
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
-        - --annotations-prefix=ingress.kubernetes.io
-        - --sync-period=30s
         env:
         - name: POD_NAME
           valueFrom:

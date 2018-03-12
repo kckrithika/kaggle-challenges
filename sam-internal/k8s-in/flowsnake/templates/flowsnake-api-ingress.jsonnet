@@ -7,10 +7,9 @@
         annotations: {
             "ingress.kubernetes.io/rewrite-target": "/",
             "ingress.kubernetes.io/auth-tls-verify-client": "optional",
-            "ingress.kubernetes.io/auth-tls-secret": "default/flowsnake-tls",
+            "ingress.kubernetes.io/auth-tls-secret": "flowsnake/flowsnake-tls",
             "ingress.kubernetes.io/auth-tls-verify-depth": "1",
             //"ingress.kubernetes.io/auth-tls-error-page": "/nice-try-red-team",
-            "ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream": "true",
         },
     },
     spec: {

@@ -2,8 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
-    ingress.kubernetes.io/auth-tls-secret: default/flowsnake-tls
+    ingress.kubernetes.io/auth-tls-secret: flowsnake/flowsnake-tls
     ingress.kubernetes.io/auth-tls-verify-client: optional
     ingress.kubernetes.io/auth-tls-verify-depth: "1"
     ingress.kubernetes.io/rewrite-target: /

@@ -157,19 +157,4 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
             },
         },
     ],
-    maddog_volumes: [
-        {
-            mountPath: "/etc/flowsnake/config/maddog-namespaces",
-            name: "maddog-namespaces",
-            readOnly: true,
-        },
-    ],
-    maddog_volumeMounts: [
-        {
-            name: "maddog-namespaces",
-            configMap: {
-                name: "maddog-namespaces",
-            },
-        },
-    ],
 }

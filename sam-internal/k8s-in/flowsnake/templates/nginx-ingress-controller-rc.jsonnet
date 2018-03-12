@@ -81,12 +81,13 @@ local estate = std.extVar("estate");
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
-                            "--annotations-prefix=ingress.kubernetes.io",
-                            "--sync-period=30s",
-                        ] + if !flowsnakeconfig.is_minikube then
-                        [
-                            "--kubeconfig=/etc/kubernetes/kubeconfig",
-                        ] else [],
+                            //"--annotations-prefix=ingress.kubernetes.io",
+                            //"--sync-period=30s",
+                        //] + if !flowsnakeconfig.is_minikube then
+                        //[
+                        //    "--kubeconfig=/etc/kubernetes/kubeconfig",
+                        //] else [],
+                        ],
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
                                 []

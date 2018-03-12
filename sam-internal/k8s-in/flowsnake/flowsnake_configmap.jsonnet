@@ -6,7 +6,7 @@ local samconfig = import "config.jsonnet";
 {
     auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else error "No matching auth group name: " + kingdom + "/" + estate),
     topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic grants name: " + kingdom + "/" + estate),
-    maddog_namespace: (if std.objectHas(self.maddog_namespace_map, kingdom + "/" + estate) then $.maddog_namespace_map[kingdom + "/" + estate] else error "No matching maddog namespace map: " + kingdom + "/" + estate),
+    auth_namespaces: (if std.objectHas(self.auth_namespaces_data, kingdom + "/" + estate) then $.auth_namespaces_data[kingdom + "/" + estate] else error "No matching auth namespaces data: " + kingdom + "/" + estate),
     auth_groups_map: {
         "prd/prd-data-flowsnake": [
             "Flowsnake_Ops_Platform",
@@ -223,7 +223,7 @@ local samconfig = import "config.jsonnet";
         },
     },
         //TODO: This structure is bogus. Need to specify LDAP and PKI principals for each namespace.
-    maddog_namespace_map: {
+    auth_namespaces_data: {
       "prd/prd-data-flowsnake": [
         {
             namespace: "flowsnake",
