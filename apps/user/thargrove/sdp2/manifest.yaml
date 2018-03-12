@@ -11,7 +11,7 @@ system:
     - name: sdp2
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sdp2:thargrove-20180311_230557-f41f990
       command: ["/bin/sam-deployment-portal2"]
-      args: ["--webfiles=/bin/webfiles","--sqlpassfile=/var/secrets/pass"]
+      args: ["--webfiles=/bin/webfiles","--sqlpassfile=/var/secrets/mysql.txt"]
       ports:
       - containerPort: 8000
       livenessProbe:
@@ -25,7 +25,7 @@ system:
     volumes:
     - name: mysql
       secret:
-        secretName: mysql
+        secretName: mysql2
   loadbalancers:
   - lbname: sdp2
     function: sdp2
