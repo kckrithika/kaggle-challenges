@@ -32,13 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        image: slbimages.hypersdn,
                        command: [
                            "/sdn/slb-portal",
-                           ] + (if configs.kingdom == "prd" then [
-                                   "--hostname=$(NODE_NAME)",
-                                ]
-                                                        else [
-                                                         "--configDir=" + slbconfigs.configDir,
-                                                        ]) +
-                           [
+                           "--hostname=$(NODE_NAME)",
                            "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                            "--port=" + portconfigs.slb.slbPortalServicePort,
                        ],
@@ -52,21 +46,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            },
                            initialDelaySeconds: 30,
                            periodSeconds: 3,
-                       } + if configs.kingdom == "prd" then {
                            timeoutSeconds: 10,
-                       } else {},
-                    } + if configs.kingdom == "prd" then {
-                                                 env: [
-                                                                                                    {
-                                                                                                       name: "NODE_NAME",
-                                                                                                       valueFrom: {
-                                                                                                          fieldRef: {
-                                                                                                             fieldPath: "spec.nodeName",
-                                                                                                          },
-                                                                                                       },
-                                                                                                    },
-                                                                             ],
-                                               } else {},
+                       },
+                      env: [
+                      {
+                        name: "NODE_NAME",
+                        valueFrom: {
+                          fieldRef: {
+                            fieldPath: "spec.nodeName",
+                          },
+                        },
+                      },
+                    ],
+                  },
                 ],
                 nodeSelector: {
                     pool: configs.estate,
