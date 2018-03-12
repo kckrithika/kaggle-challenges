@@ -5,6 +5,9 @@ system:
   - name: rsui-func
     count: 1
     volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: retailservercert
       maddogCert:
         type: server
@@ -67,13 +70,13 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
       - name: retailclientcert
-        mountPath: /certs/client
+        mountPath: /client-certs
       - name: retailservercert
-        mountPath: /certs/server
+        mountPath: /server-certs
       ports:
-      - containerPort: 7012
-        name: sherpa-ot-http2
       - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sherpa-in-http1
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
