@@ -1,0 +1,35 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - thargrove@salesforce.com
+  functions:
+  - name: sdp2
+    count: 1
+    containers:
+    - name: sdp2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sdp2:thargrove-20180311_230557-f41f990
+      command: ["/bin/sam-deployment-portal2"]
+      args: ["--webfiles=/bin/webfiles","--sqlpassfile=/var/secrets/mysql.txt"]
+      ports:
+      - containerPort: 8000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+      volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+    volumes:
+    - name: mysql
+      secret:
+        secretName: mysql2
+  loadbalancers:
+  - lbname: sdp2
+    function: sdp2
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 8000
