@@ -114,7 +114,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --maxDeleteServiceCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000668-bae2cf08
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000682-ee0a4ee3
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -132,7 +132,7 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000020-f742177c
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000021-7429568b
         livenessProbe:
           httpGet:
             path: /
@@ -159,7 +159,7 @@ spec:
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000668-bae2cf08
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000682-ee0a4ee3
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d

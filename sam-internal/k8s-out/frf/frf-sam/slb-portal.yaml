@@ -19,7 +19,7 @@ spec:
         - --configDir=/host/data/slb/config
         - --templatePath=/sdn/webfiles
         - --port=9112
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000668-bae2cf08
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000682-ee0a4ee3
         livenessProbe:
           httpGet:
             path: /
