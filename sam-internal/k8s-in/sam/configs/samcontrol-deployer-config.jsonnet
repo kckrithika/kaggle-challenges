@@ -28,7 +28,7 @@ std.prune({
   enableDailyDeployment:: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then true else false),
   "daily-deployment-keyword": (if self.enableDailyDeployment then "auto"),
   tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
-  "daily-deployment-offset": (if self.enableDailyDeployment then "3h"),
-  "daily-deployment-frequency": (if self.enableDailyDeployment then "6h"),
+  "daily-deployment-offset": (if self.enableDailyDeployment then "0"),
+  "daily-deployment-frequency": (if self.enableDailyDeployment then "10m"),
 
 })
