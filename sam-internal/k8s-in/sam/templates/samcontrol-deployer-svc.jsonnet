@@ -8,7 +8,7 @@ if configs.kingdom == "prd" then {
         labels: {
             app: "samcontrol-deployer",
         },
-        annotations: {
+        annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "samcontrol-deployer",
             "slb.sfdc.net/portconfigurations": std.toString(
                 [
@@ -22,7 +22,7 @@ if configs.kingdom == "prd" then {
                     },
                 ]
             ),
-        },
+        } else {},
     },
     spec: {
               ports: [

@@ -8,7 +8,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         labels: {
             app: "prometheus",
         },
-        annotations: {
+        annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "prometheus",
             "slb.sfdc.net/portconfigurations": std.toString(
                 [
@@ -22,7 +22,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                     },
                 ]
             ),
-        },
+        } else {},
     },
 
     spec: {

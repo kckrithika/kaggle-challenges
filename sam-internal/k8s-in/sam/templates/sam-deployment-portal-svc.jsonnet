@@ -7,11 +7,31 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
         namespace: "sam-system",
         labels: {
             app: "sam-deployment-portal",
-            "slb.sfdc.net/name": "sdp",
         },
-        annotations: {
+        annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "sdp",
-        },
+            "slb.sfdc.net/portconfigurations": std.toString(
+                [
+                    {
+                        port: 80,
+                        targetport: $.spec.ports[0].targetPort,
+                        nodeport: 0,
+                        lbtype: "",
+                        reencrypt: false,
+                        sticky: 0,
+                    },
+                    {
+                        port: 64121,
+                        targetport: $.spec.ports[0].targetPort,
+                        nodeport: 0,
+                        lbtype: "",
+                        reencrypt: false,
+                        sticky: 0,
+                    },
+                ]
+            ),
+
+        } else {},
     },
     spec: {
         ports: [
@@ -20,12 +40,13 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
                 port: 64121,
                 protocol: "TCP",
                 targetPort: 64121,
-                nodePort: 39999,
             },
         ],
         selector: {
             name: "sam-deployment-portal",
         },
+    } + if configs.estate != "prd-sam" then {
+        ports: [super.ports[0] { nodePort: 39999 }],
         type: "NodePort",
-    },
+    } else {},
 } else "SKIP"
