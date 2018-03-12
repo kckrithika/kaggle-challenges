@@ -5,7 +5,7 @@ system:
     - a.mitra@salesforce.com
   functions:
   - name: ajnaconsumer
-    count: 1
+    count: 0
     containers:
     - name: ajnaconsumer
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001773-7dd8c461
