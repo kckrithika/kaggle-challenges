@@ -67,3 +67,12 @@ system:
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
+
+  loadbalancers:
+    - lbname: searchserverlb
+      function: searchserver
+      slbenabled: true
+      ports:
+        - port: 7014
+          targetport: 7014
+          lbtype: http
