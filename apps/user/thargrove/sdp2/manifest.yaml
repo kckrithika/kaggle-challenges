@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sdp2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sdp2:thargrove-20180313_132631-e77643c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/thargrove/sdp2:thargrove-20180313_144940-15beddc
       command: ["/bin/sam-deployment-portal2"]
       args: ["--webfiles=/bin/webfiles","--sqlpassfile=/var/secrets/mysql.txt"]
       ports:
