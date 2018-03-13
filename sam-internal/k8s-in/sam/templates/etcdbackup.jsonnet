@@ -52,6 +52,7 @@ local wdconfig = import "samwdconfig.jsonnet";
                 ]),
                 nodeSelector: {
                     etcd_installed: "true",
+                    master: "true",
                 },
             },
             metadata: {
