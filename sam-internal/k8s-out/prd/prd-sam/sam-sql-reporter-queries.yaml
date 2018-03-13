@@ -33,7 +33,7 @@ data:
         },
         {
           "name": "Hosts-Kube-Version",
-          "sql": "SELECT Name, kubeletVersion FROM nodeDetailView ORDER BY kubeletVersion"
+          "sql": "SELECT Name, kubeletVersion, Ready FROM nodeDetailView ORDER BY kubeletVersion"
         },
         {
           "name": "Hosts-Kube-Version-Aggregate",
