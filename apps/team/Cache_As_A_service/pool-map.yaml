@@ -1890,19 +1890,27 @@ apps:
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net
     - samcaas2-caasminion1-6-prd.eng.sfdc.net
+    - samcaas2-caasminion1-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-5-prd.eng.sfdc.net
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
+    - samcaas2-caasminion2-7-prd.eng.sfdc.net
+    - samcaas2-caasminion2-8-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+    - samcaas2-caasminion3-6-prd.eng.sfdc.net
  prd-sp2-redis-sp-ist18-c1-perf:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
     - samcaas2-caasminion1-5-prd.eng.sfdc.net
     - samcaas2-caasminion1-6-prd.eng.sfdc.net
+    - samcaas2-caasminion1-7-prd.eng.sfdc.net
     - samcaas2-caasminion2-5-prd.eng.sfdc.net
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
+    - samcaas2-caasminion2-7-prd.eng.sfdc.net
+    - samcaas2-caasminion2-8-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+    - samcaas2-caasminion3-6-prd.eng.sfdc.net
  prd-sp2-metrics-publisher-sp-ist20-pc1-perf:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
