@@ -223,7 +223,7 @@ local samconfig = import "config.jsonnet";
         },
     },
     auth_namespaces_data: {
-      // Underscore-free client names are a temporary workaround for a pki bug 
+      // Underscore-free client names are a temporary workaround for a pki bug
       "prd/prd-data-flowsnake": [
         {
             namespace: "flowsnake",
