@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.2.1
+      image: sfci/searchdev/universal-search:0.5.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -32,9 +32,6 @@ system:
         limits: { cpu: "8", memory: "20Gi" }
         requests: { cpu: "8", memory: "20Gi" }
       env:
-      # Revert this config override when 0.5.1 image is released
-      - name: MANAGEMENT_HEALTH_DEFAULTS_ENABLED
-        value: false
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -52,7 +49,7 @@ system:
           port: 15372
         initialDelaySeconds: 120
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.23
       ports:
       - containerPort: 7012
         name: sherpa-in
@@ -83,3 +80,13 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - universal-search/universal-search:DATACENTER_ALLENV:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
