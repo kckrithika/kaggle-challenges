@@ -72,15 +72,6 @@ local utils = import "util_functions.jsonnet";
         "syd,syd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-
-        # [thargrove] Moving sam-sql-reporter to sam-internals
-        "prd,prd-sam,sam-sql-reporter,hypersam": "sam-0001769-20d44c74",
-
-        # [prabh.singh] Get Metrics flowing from bundle controller, remove after Phase March 2nd week
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001772-64511618",
-
-        # [thargrove] New SDP that includes KubeDashboard links
-        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0001777-aa657163",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -105,7 +96,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001760-c9a04911",
+            hypersam: "sam-0001780-a269ec85",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
