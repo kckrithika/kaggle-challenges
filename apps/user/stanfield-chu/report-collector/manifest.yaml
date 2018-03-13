@@ -5,11 +5,11 @@ system:
     email:
       - stanfield.chu@salesforce.com
   functions:
-  - name: testreport-collector
-    count: 1
+  - name: stans-report-collector
+    count: 3
     volumes:
       - name: servercertvol
-        secret:
+        k4aSecret:
           secretName: csc-rc-certificates
       - name: redisauthvol
         secret:
@@ -18,8 +18,8 @@ system:
         hostPath:
           path: /var/log/report-collector
     containers:
-    - name: testreport-collector
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.12.0-20180301-funnelCompress
+    - name: report-collectorha
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       ports:
       - name: provider
         containerPort: 8080
@@ -79,7 +79,7 @@ system:
       export ReportCollector_ajna_funnelHost=${SFDC_METRICS_SERVICE_HOST} ;
       export ReportCollector_ajna_funnelPort=${SFDC_METRICS_SERVICE_PORT} ;
       export ReportCollector_ajna_datacenter=TEST ;
-      export ReportCollector_ajna_device=stan-test-reportcollector ;
+      export ReportCollector_ajna_device=stans-reportcollector ;
       ${JAVA_HOME}/bin/java
         -Dlogback.configurationFile=${APP_DIR}/logback-docker.xml
         -Dvertx.disableFileCPResolving=true
@@ -92,7 +92,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.10.0-20180122-secScan
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
@@ -149,7 +149,7 @@ system:
 
   loadbalancers:
   - lbname: reportcollectorlb
-    function: testreport-collector
+    function: stans-report-collector
     nodeExposed: true
     ports:
       # LB was supposed to allow SSL on the backend, but its not currently
