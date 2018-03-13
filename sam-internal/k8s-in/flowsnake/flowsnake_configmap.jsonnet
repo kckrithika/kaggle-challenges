@@ -267,7 +267,7 @@ local samconfig = import "config.jsonnet";
             "_flowsnake-sdn-secret.yaml",
         ] +
         (if flowsnakeconfig.sdn_enabled then [
-        ] else if flowsnakeconfig.sdn_in_transition then [
+        ] else if estate == "prd-data-flowsnake" then [
             /* "sdn-bird.yaml", */
             "sdn-cleanup.yaml",
             "sdn-hairpin-setter.yaml",
@@ -275,6 +275,16 @@ local samconfig = import "config.jsonnet";
             "sdn-ping-watchdog.yaml",
             "sdn-route-watchdog.yaml",
             /* "sdn-secret-agent.yaml", */
+            /* "sdn-vault-agent.yaml", */
+            "_flowsnake-sdn-secret.yaml",
+        ] else if estate == "prd-dev-flowsnake_iot_test" then [
+            "sdn-bird.yaml",
+            "sdn-cleanup.yaml",
+            "sdn-hairpin-setter.yaml",
+            "sdn-peering-agent.yaml",
+            "sdn-ping-watchdog.yaml",
+            "sdn-route-watchdog.yaml",
+            "sdn-secret-agent.yaml",
             /* "sdn-vault-agent.yaml", */
             "_flowsnake-sdn-secret.yaml",
         ] else [

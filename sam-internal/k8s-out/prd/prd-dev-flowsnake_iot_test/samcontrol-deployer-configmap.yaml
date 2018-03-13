@@ -28,7 +28,6 @@ data:
         "sdn-ping-watchdog.yaml",
         "sdn-route-watchdog.yaml",
         "sdn-secret-agent.yaml",
-        "sdn-vault-agent.yaml",
         "_flowsnake-sdn-secret.yaml",
         "samcontrol-deployer.yaml"
       ],
