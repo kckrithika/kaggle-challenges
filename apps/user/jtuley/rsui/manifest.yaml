@@ -18,6 +18,7 @@ system:
     containers:
     - name: rsui
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:dca7fd4
+
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -36,10 +37,12 @@ system:
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
         value: stmfa
+      - name: TENANT_SUPER
+        value: commercecloud/stmfana44ice1/abcdefabcdef
       - name: TENANT_SOURCE
-        value: MDS065tATaAUcWi
+        value: commercecloud/stmfana44ice1/abcdefabcdef
       - name: TENANT_CANONICAL
-        value: MDS08fS6PGukUaj
+        value: mds/stmfa/ST0000000000001
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
