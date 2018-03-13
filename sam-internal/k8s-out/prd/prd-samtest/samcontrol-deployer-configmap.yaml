@@ -17,7 +17,7 @@ data:
       "max-resource-time": "5m",
       "poll-delay": "30s",
       "recipient": "sam@salesforce.com,slb@salesforce.com",
-      "resource-cooldown": "15s",
+      "resource-cooldown": "30s",
       "resource-progression-timeout": "2m",
       "resources-to-skip": [
         "sdn-secret.yaml"
