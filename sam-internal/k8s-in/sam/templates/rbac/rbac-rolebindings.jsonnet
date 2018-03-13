@@ -2,11 +2,15 @@ local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
-  apiVersion: "v1",
-  kind: "List",
-  metadata: {},
-  createRoleBinding(namespace, estate, hosts):: {
+# Map of estate to additional CI namespaces
+local ci = {
+  "prd-sp2-sam_iot_test": ["iot-ci", "ci-iot"],
+  "prd-sp2-sam_chatbot": ["chatbot-ci"],
+};
+
+# Functions
+local functions = {
+    createRoleBinding(namespace, estate, hosts):: {
       #Gives permission to read secrets & update events & pod status in the rolebinding's namespace
       kind: "RoleBinding",
       apiVersion: "rbac.authorization.k8s.io/v1alpha1",
@@ -53,21 +57,25 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
         apiGroup: "rbac.authorization.k8s.io",
       },
   },
+  getCiNamespaces(minionEstate):: (if std.objectHas(ci, minionEstate) then ci[minionEstate] else []),
+};
 
-  local roleBindings = std.join([], [
+# Computed Data
+local data = {
+  roleBindings: std.join([], [
             local hosts = rbac_utils.get_Estate_Nodes(configs.kingdom, minionEstate, rbac_utils.minionRole);
             # In Prod samcompute & samkubeapi nodes get admin access.
             # In PRD customer apps run on samcompute nodes. So samcompute nodes get restricted access but all the  permissions are across namespace(clusterRoleBinding)
             if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [
-              self.createClusterRoleBinding(minionEstate, hosts),
+              functions.createClusterRoleBinding(minionEstate, hosts),
             ] else [
-              self.createRoleBinding(namespace, minionEstate, hosts)
-              for namespace in rbac_utils.getNamespaces(configs.kingdom, minionEstate)
+              functions.createRoleBinding(namespace, minionEstate, hosts)
+              for namespace in (rbac_utils.getNamespaces(configs.kingdom, minionEstate) + functions.getCiNamespaces(minionEstate))
             ]
             for minionEstate in rbac_utils.get_Minion_Estates(configs.kingdom, configs.estate)
         ]),
 
-  local clusterRoleBindings = [
+  clusterRoleBindings: [
     {
       #Gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces.
       kind: "ClusterRoleBinding",
@@ -152,8 +160,13 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
         apiGroup: "rbac.authorization.k8s.io",
     },
     },
-
   ],
+};
 
-  items: clusterRoleBindings + roleBindings,
+# This is the actual output
+if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+  apiVersion: "v1",
+  kind: "List",
+  metadata: {},
+  items: data.clusterRoleBindings + data.roleBindings,
 } else "SKIP"
