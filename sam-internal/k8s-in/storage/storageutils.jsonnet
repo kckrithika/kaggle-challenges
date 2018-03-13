@@ -114,19 +114,42 @@ local configs = import "config.jsonnet";
     // This is WIP and slowly we will call this to generate storageclass
     // per request
     make_storage_class(estate,name,namespace,clusters,size) :: {
-    "apiVersion": "csp.storage.salesforce.com/v1",
-    "kind": "CustomerStoragePool",
-    "metadata": {
-        "name": "someName",
-        "namespace": "someNamespace",
-        "annotations": {
-            "manifestctl.sam.data.sfdc.net/swagger": "disable",
+        "apiVersion": "csp.storage.salesforce.com/v1",
+        "kind": "CustomerStoragePool",
+        "metadata": {
+            "name": "someName",
+            "namespace": "someNamespace",
+            "annotations": {
+                "manifestctl.sam.data.sfdc.net/swagger": "disable",
+            },
         },
+        "spec": {
+            "clusterNamespace": "legostore",
+            "size": "50Gi",
+            "storageTier": "hdd" ,
+        }
     },
-    "spec": {
-        "clusterNamespace": "legostore",
-        "size": "50Gi",
-        "storageTier": "hdd" ,
-    }
-}
+
+    make_sfn_selector_rule(estates) :: |||
+        pods:
+            matchExpressions:
+                - {key: cloud, operator: In, values: [storage]}
+        nodes:
+            matchExpressions:
+                - {key: pool, operator: In, values: %(poolSet)s}
+        persistentvolumes:
+            matchExpressions:
+                - {key: pool, operator: In, values: %(poolSet)s}
+        persistentvolumeclaims:
+            matchExpressions:
+                - {key: daemon, operator: In, values: %(daemonSet)s}
+        statefulsets:
+            matchExpressions:
+                - {key: daemon, operator: In, values: %(daemonSet)s}
+    ||| % {
+        poolSet : std.toString([ minion for minion in estates]),
+        daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
+    },
+    
+
 }
