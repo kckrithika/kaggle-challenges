@@ -148,7 +148,7 @@ system:
         initialDelaySeconds: 5
 
   loadbalancers:
-  - lbname: reportcollectorlb
+  - lbname: stansreportcollectorlb
     function: stans-report-collector
     nodeExposed: true
     ports:
