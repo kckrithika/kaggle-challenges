@@ -27,6 +27,7 @@ spec:
       hostNetwork: true
       nodeSelector:
         etcd_installed: "true"
+        master: "true"
       securityContext:
         fsGroup: 0
         runAsUser: 0
