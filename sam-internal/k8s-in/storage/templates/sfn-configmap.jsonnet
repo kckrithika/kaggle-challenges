@@ -1,20 +1,23 @@
 local configs = import "config.jsonnet";
+local storageimages = import "storageimages.jsonnet";
+local storageutils = import "storageutils.jsonnet";
+
 local selector = |||
   pods:
       matchExpressions:
         - {key: cloud, operator: In, values: [storage]}
   nodes:
       matchExpressions:
-        - {key: pool, operator: In, values: [prd-sam_ceph]}
+        - {key: pool, operator: In, values: [prd-sam_storage, prd-sam_cephdev]}
   persistentvolumes:
       matchExpressions:
-        - {key: pool, operator: In, values: [prd-sam_ceph]}
+        - {key: pool, operator: In, values: [prd-sam_storage, prd-sam_cephdev]}
   persistentvolumeclaims:
       matchExpressions:
-        - {key: namespace, operator: In, values: [legostore]}
+        - {key: daemon, operator: In, values: [mon, osd]}
   statefulsets:
       matchExpressions:
-        - {key: namespace, operator: In, values: [legostore]}
+        - {key: daemon, operator: In, values: [mon, osd]}
 |||;
 
 
