@@ -8,7 +8,7 @@ system:
   - name: stans-repcollavailwd
     count: 1
     containers:
-    - name: repcollavailwd
+    - name: stans-repcollavailwd
       image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000094-1c59fd7d
       ports:
       - name: liveness
@@ -52,7 +52,7 @@ system:
       args: ["
       export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export RC_WD_AJNA_DEVICE=stans-RCWD ;
-      export RC_WD_AJNA_DATACENTER=${KINGDOM} ;
+      export RC_WD_AJNA_DATACENTER=TEST;
       export RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS=false ;
       node --harmony ${APP_DIR}/lib/watchdog.js
       "]
