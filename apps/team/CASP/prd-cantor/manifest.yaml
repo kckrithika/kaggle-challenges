@@ -10,7 +10,7 @@ system:
       count: 1
       containers:
       - name: prd-cantor
-        image: tnrp/casp/cantor:0.0.1-0000003-b47b40d4
+        image: tnrp/casp/cantor:0.0.1-0000004-e516a371
         ports:
         - name: cantor
           containerPort: 7443
