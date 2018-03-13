@@ -39,7 +39,7 @@ system:
       - name: RC_WD_SSL_VERIFYSERVERIDENTITY
         value: false
       - name: RC_WD_SSL_STRICTSSL
-        value: true
+        value: false
       - name: RC_WD_SSL_AUTH_CERT
         value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_client.crt
       - name: RC_WD_SSL_AUTH_KEY
