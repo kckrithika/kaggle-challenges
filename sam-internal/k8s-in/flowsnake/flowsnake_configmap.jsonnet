@@ -277,6 +277,16 @@ local samconfig = import "config.jsonnet";
             /* "sdn-secret-agent.yaml", */
             /* "sdn-vault-agent.yaml", */
             "_flowsnake-sdn-secret.yaml",
+        ] else if flowsnakeconfig.sdn_in_transition_dev then [
+            "sdn-bird.yaml",
+            "sdn-cleanup.yaml",
+            "sdn-hairpin-setter.yaml",
+            "sdn-peering-agent.yaml",
+            "sdn-ping-watchdog.yaml",
+            "sdn-route-watchdog.yaml",
+            "sdn-secret-agent.yaml",
+            /* "sdn-vault-agent.yaml", */
+            "_flowsnake-sdn-secret.yaml",
         ] else [
             "sdn-bird.yaml",
             "sdn-cleanup.yaml",
