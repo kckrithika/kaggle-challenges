@@ -27,7 +27,7 @@ local kingdom = std.extVar("kingdom");
             cephdaemon_tag: "jewel-0000056-50bd0816",
             sfstorebookie_tag: "base-0000065-340ffbdf",
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
-            sfnodeprep_tag: "base-0000017-c6de7b57",
+            sfnodeprep_tag: "base-0000362-8c6931af",
             loginit_tag: "base-0000362-8c6931af",
         },
 

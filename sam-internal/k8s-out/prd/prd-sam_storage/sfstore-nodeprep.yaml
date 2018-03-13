@@ -41,7 +41,7 @@ spec:
           value: /hostroot/etc
         - name: DELETE_DISCOVERY
           value: "no"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/nodeprep:base-0000017-c6de7b57
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/nodeprep:base-0000362-8c6931af
         imagePullPolicy: Always
         name: nodeprep
         securityContext:
