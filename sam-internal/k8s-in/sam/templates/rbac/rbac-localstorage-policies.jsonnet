@@ -1,11 +1,19 @@
 local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev" then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
-  local storageClusters = ["prd-sam_ceph", "prd-sam_sfstore", "prd-sam_cephdev", "prd-sam_sfstoredev", "prd-sam_storage"],
+  local storageClusters = [
+    "prd-sam_ceph",
+    "prd-sam_sfstore",
+    "prd-sam_cephdev",
+    "prd-sam_sfstoredev",
+    "prd-sam_storage",
+    "prd-sam_storagedev",
+    "phx-sam_ceph",
+  ],
 
   createClusterRoleBindingForLocalPV(hosts):: {
       kind: "ClusterRoleBinding",
