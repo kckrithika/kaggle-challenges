@@ -853,6 +853,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: chatbot-ci:prd-sp2-sam_chatbot:rolebinding
+    namespace: chatbot-ci
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionchatbot1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: core-on-sam-sp2:prd-sp2-sam_coreapp:rolebinding
     namespace: core-on-sam-sp2
   roleRef:

@@ -5,6 +5,7 @@ local utils = import "util_functions.jsonnet";
 # Map of estate to additional CI namespaces
 local ci = {
   "prd-sp2-sam_iot_test": ["iot-ci", "ci-iot"],
+  "prd-sp2-sam_chatbot": ["chatbot-ci"],
 };
 
 # Functions
