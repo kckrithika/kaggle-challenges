@@ -1,3 +1,4 @@
+# To run this locally before merge, follow instructions here: https://git.soma.salesforce.com/sam/sam/tree/master/pkg/sam-sql-reporter
 {
   queries: [
     {
@@ -33,7 +34,7 @@ GROUP BY ControlEstate",
     },
     {
       name: "Hosts-Kube-Version",
-      sql: "SELECT Name, kubeletVersion FROM nodeDetailView ORDER BY kubeletVersion",
+      sql: "SELECT Name, kubeletVersion, Ready FROM nodeDetailView ORDER BY kubeletVersion",
     },
     {
       name: "Hosts-Kube-Version-Aggregate",
