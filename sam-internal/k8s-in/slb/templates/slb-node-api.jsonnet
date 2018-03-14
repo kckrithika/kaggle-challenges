@@ -3,7 +3,7 @@ local slbports = import "slbports.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.kingdom == "prd" then {
+if configs.kingdom == "prd" || configs.kingdom == "phx" || configs.kingdom == "frf" then {
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
