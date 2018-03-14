@@ -117,8 +117,6 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
-        else if (kingdom == "syd") || (kingdom == "yul") then
-            "4"
         else if (kingdom == "yhu") then
             "pub"
         else
