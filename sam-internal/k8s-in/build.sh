@@ -5,7 +5,7 @@ set -ex
 
 if [ "$1" == "-h" ]; then
   echo "Usage: build.sh - with no arguments processes all kingdoms and estates"
-  echo "       build.sh kingdom/estate1,kingdom/estate2 - processes a single estate, for local testing only!"
+  echo "       build.sh \"kingdom/estate1,kingdom/*foo*,*bar*\" - processes a set of estates supporting wildcard!"
   exit 1
 fi
 
