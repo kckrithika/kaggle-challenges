@@ -205,6 +205,7 @@ servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
 servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
 canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
 madkubServer: self.perCluster.madkubServer[kingdom],
+slbInKingdom: kingdom in { prd: 1, phx: 1, frf: 1 },
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
