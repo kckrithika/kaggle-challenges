@@ -20,13 +20,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000693-e1dfadf7",
+            hypersdn: "v-0000693-e1dfadf7",  # 693 requires change to slb-vip-watchdog parameter '--configDir'
             slbnginx: "v-0000024-6c678838",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000693-e1dfadf7",
+            hypersdn: "v-0000693-e1dfadf7",  # 693 requires change to slb-vip-watchdog parameter '--configDir'
             slbnginx: "v-0000024-6c678838",
             },
 
