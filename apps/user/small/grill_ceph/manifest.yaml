@@ -70,4 +70,4 @@ system:
         exec:
           command:
           - touch 
-          - tmp/healthy
+          - /tmp/healthy
