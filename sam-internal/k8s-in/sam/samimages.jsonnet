@@ -19,27 +19,6 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # PRODUCTION - this is newer than this weekly release (0001725)
-        "dfw,dfw-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "phx,phx-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "chx,chx-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "hnd,hnd-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "iad,iad-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "ord,ord-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "par,par-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "ukb,ukb-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        "wax,wax-sam,watchdog-synthetic,hypersam": "sam-0001754-e4f0ff11",
-        # PRODUCTION - Manifest-watcher
-        "dfw,dfw-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "phx,phx-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "chx,chx-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "hnd,hnd-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "iad,iad-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "ord,ord-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "par,par-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "ukb,ukb-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-        "wax,wax-sam,manifest-watcher,hypersam": "sam-0001754-e4f0ff11",
-
         # Lagging Public Cloud - etcdBackup needs a recent image
         "yhu,yhu-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
         "yul,yul-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
@@ -64,9 +43,6 @@ local utils = import "util_functions.jsonnet";
         # This is just a hack for now until we fix the logic in SMB image promotion to also add images for InitContainers/sidecars
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
-
-        # [cbatra] Overriding controller in IAD to use the new certs for k4a
-        "iad,iad-sam,samcontrol,hypersam": "sam-0001747-8c6b4886",
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
         "syd,syd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
@@ -110,8 +86,8 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia (Pub overridden by 'pub' phase for now)
         "4": {
-            hypersam: "sam-0001747-8c6b4886",
-            madkub: "1.0.0-0000061-74e4a7b6",
+            hypersam: "sam-0001760-c9a04911",
+            madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
