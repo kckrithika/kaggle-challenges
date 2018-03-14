@@ -1,0 +1,11 @@
+{
+   "apiVersion": "v1",
+   "data": {
+      "haproxy-maddog.cfg": "global\n    maxconn 1024\n    # TODO: where should logs go? Local syslog for now.\n    # http://cbonte.github.io/haproxy-dconv/1.6/configuration.html#3.1-log\n    log 127.0.0.1 syslog\n\ndefaults\n    option tcplog\n    option dontlognull\n    option tcpka\n\nfrontend localhost\n    bind *:5000\n    mode http\n\n    acl secrets url_reg /api/v1/secrets\n    acl secrets_namespace url_reg /api/v1/namespaces/.*/secrets\n    http-request deny if secrets\n    http-request deny if secrets_namespace\n\n    timeout client 50s\n    timeout client-fin 30s\n    log global\n    default_backend kubernetes-apiserver\n    option clitcpka\n\n\nbackend kubernetes-apiserver\n    mode http\n    timeout server 50s\n    timeout connect 5s\n    timeout tunnel  50s\n    option httpchk HEAD /healthz HTTP/1.1\\r\\nHost:\\ localhost\n    default-server inter 5s fall 3 rise 2\n    option srvtcpka\n\n    # Connect to local HAProxy, preferring the one on this host\n    # TODO: The below host specific cert will be called hostcert-chain.pem and will work on any host\n    # Change this after the filename is available through puppet.\n    server proxy localhost:8000 ssl ca-file /etc/pki_service/ca/cabundle.pem crt /etc/pki_service/kubernetes/chain-client.pem\n"
+   },
+   "kind": "ConfigMap",
+   "metadata": {
+      "name": "k8sproxy",
+      "namespace": "sam-system"
+   }
+}

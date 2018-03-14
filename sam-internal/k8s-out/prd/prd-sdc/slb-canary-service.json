@@ -1,0 +1,37 @@
+{
+   "apiVersion": "v1",
+   "kind": "Service",
+   "metadata": {
+      "annotations": {
+         "slb.sfdc.net/name": "slb-canary-service"
+      },
+      "labels": {
+         "app": "slb-canary-service",
+         "slb.sfdc.net/name": "slb-canary-service"
+      },
+      "name": "slb-canary-service",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "ports": [
+         {
+            "name": "slb-canary-port",
+            "nodePort": 32136,
+            "port": 9111,
+            "protocol": "TCP",
+            "targetPort": 9111
+         },
+         {
+            "name": "slb-canary-tls",
+            "nodePort": 32135,
+            "port": 9443,
+            "protocol": "TCP",
+            "targetPort": 9443
+         }
+      ],
+      "selector": {
+         "name": "slb-canary"
+      },
+      "type": "NodePort"
+   }
+}

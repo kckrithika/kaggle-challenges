@@ -1,0 +1,11 @@
+{
+   "apiVersion": "v1",
+   "data": {
+      "snapshoter.json": "{\"ca-file\": \"/etc/pki_service/ca/cabundle.pem\", \"recipient\": \"sam@salesforce.com\", \"sink\": \"logs\"}"
+   },
+   "kind": "ConfigMap",
+   "metadata": {
+      "name": "snapshoter",
+      "namespace": "sam-system"
+   }
+}

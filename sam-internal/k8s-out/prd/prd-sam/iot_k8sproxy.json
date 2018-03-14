@@ -1,0 +1,91 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "Deployment",
+   "metadata": {
+      "labels": {
+         "name": "iotk8sproxy"
+      },
+      "name": "iotk8sproxy",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "replicas": 1,
+      "selector": {
+         "matchLabels": {
+            "name": "iotk8sproxy"
+         }
+      },
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "proxy",
+               "name": "iotk8sproxy"
+            }
+         },
+         "spec": {
+            "containers": [
+               {
+                  "args": [
+                     "-f",
+                     "/k8sproxyconfig/haproxy-maddog.cfg"
+                  ],
+                  "image": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/haproxy:20170614_183811.a8a02a5.clean.cbatra-ltm1",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/",
+                        "port": 5000
+                     },
+                     "initialDelaySeconds": 15,
+                     "timeoutSeconds": 10
+                  },
+                  "name": "iotk8sproxy",
+                  "ports": [
+                     {
+                        "containerPort": 5000,
+                        "name": "k8sproxy"
+                     }
+                  ],
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/etc/pki_service",
+                        "name": "maddog-certs"
+                     },
+                     {
+                        "mountPath": "/etc/certs",
+                        "name": "sfdc-volume"
+                     },
+                     {
+                        "mountPath": "/k8sproxyconfig",
+                        "name": "k8sproxyconfig"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "nodeSelector": {
+               "kubernetes.io/hostname": "shared0-samcompute1-1-prd.eng.sfdc.net"
+            },
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/etc/pki_service"
+                  },
+                  "name": "maddog-certs"
+               },
+               {
+                  "hostPath": {
+                     "path": "/data/certs"
+                  },
+                  "name": "sfdc-volume"
+               },
+               {
+                  "configMap": {
+                     "name": "k8sproxy"
+                  },
+                  "name": "k8sproxyconfig"
+               }
+            ]
+         }
+      }
+   }
+}

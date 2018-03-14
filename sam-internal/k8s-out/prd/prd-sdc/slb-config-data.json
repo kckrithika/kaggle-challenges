@@ -1,0 +1,58 @@
+{
+   "apiVersion": "extensions/v1beta1",
+   "kind": "DaemonSet",
+   "metadata": {
+      "labels": {
+         "name": "slb-config-data"
+      },
+      "name": "slb-config-data",
+      "namespace": "sam-system"
+   },
+   "spec": {
+      "template": {
+         "metadata": {
+            "labels": {
+               "apptype": "control",
+               "daemonset": "true",
+               "name": "slb-config-data"
+            },
+            "namespace": "sam-system"
+         },
+         "spec": {
+            "containers": [
+               {
+                  "command": [
+                     "/sdn/slb-config-data",
+                     "--port=9117"
+                  ],
+                  "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000693-e1dfadf7",
+                  "livenessProbe": {
+                     "httpGet": {
+                        "path": "/",
+                        "port": 9117
+                     },
+                     "initialDelaySeconds": 5,
+                     "periodSeconds": 3
+                  },
+                  "name": "slb-config-data",
+                  "volumeMounts": [
+                     {
+                        "mountPath": "/host/data/slb",
+                        "name": "var-slb-volume"
+                     }
+                  ]
+               }
+            ],
+            "hostNetwork": true,
+            "volumes": [
+               {
+                  "hostPath": {
+                     "path": "/data/slb"
+                  },
+                  "name": "var-slb-volume"
+               }
+            ]
+         }
+      }
+   }
+}
