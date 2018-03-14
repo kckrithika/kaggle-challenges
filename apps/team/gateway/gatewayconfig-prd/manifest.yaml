@@ -7,7 +7,6 @@ system:
   functions:
   - name: default
     count: 3
-    hostnetwork: true
     volumes: 
     - name: gwcertclient
       maddogCert:
