@@ -1,10 +1,10 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 {
   # MadDog
-  enableMaddog: (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then true else false),
+  enableMaddog: samfeatureflags.maddogforsamapps,
   maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
   maddogMadkubImage: samimages.madkubSidecar,
 }

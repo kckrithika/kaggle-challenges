@@ -1,8 +1,11 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-local utils = import "util_functions.jsonnet";
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+local samfeatureflags = import "sam-feature-flags.jsonnet";
+
+# This is a watchdog for SAM's hosts that request maddog certs
+
+if samfeatureflags.maddogforsamhosts then {
     kind: "DaemonSet",
     spec: {
         template: {

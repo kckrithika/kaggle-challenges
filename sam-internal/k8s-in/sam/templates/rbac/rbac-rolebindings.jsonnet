@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 # Map of estate to additional CI namespaces
 local ci = {
@@ -164,7 +165,7 @@ local data = {
 };
 
 # This is the actual output
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+if samfeatureflags.rbac then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},
