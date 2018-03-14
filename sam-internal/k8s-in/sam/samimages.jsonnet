@@ -119,7 +119,7 @@ local utils = import "util_functions.jsonnet";
             "3"
         else if (kingdom == "syd") || (kingdom == "yul") then
             "4"
-        else if utils.is_public_cloud(kingdom) then
+        else if (kingdom == "yhu") then
             "pub"
         else
             "4"
