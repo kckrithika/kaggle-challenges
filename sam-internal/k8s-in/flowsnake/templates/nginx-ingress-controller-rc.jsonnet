@@ -99,6 +99,11 @@ local estate = std.extVar("estate");
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
                                 []
+                            # TODO: remove this block when we have new nginx
+                            else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
+                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
+                            # -----------------------------------------------------------------------------------
                             else if flowsnakeconfig.maddog_enabled then
                                 flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
@@ -111,6 +116,11 @@ local estate = std.extVar("estate");
                 volumes: (
                     if flowsnakeconfig.is_minikube then
                         []
+                    # TODO: remove this block when we have new nginx
+                    else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
+                        flowsnakeconfigmapmount.kubeconfig_volume +
+                        flowsnakeconfigmapmount.k8s_cert_volume
+                    # -----------------------------------------------------------------------------------
                     else if flowsnakeconfig.maddog_enabled then
                         flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
