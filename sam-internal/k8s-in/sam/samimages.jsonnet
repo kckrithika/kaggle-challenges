@@ -21,8 +21,6 @@ local utils = import "util_functions.jsonnet";
 
         # Lagging Public Cloud - etcdBackup needs a recent image
         "yhu,yhu-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
-        "yul,yul-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
-        "syd,syd-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
 
         # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
         "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180309_142438.4a213247.dirty.dianachang-ltm1",
@@ -30,14 +28,10 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtest,watchdog-sdp,hypersam": "auto",
 
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to public cloud. This stops spamming customers and publishes metrics to the correct scope.
-        "syd,syd-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-        "yul,yul-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
         # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to public cloud. This will correctly deploy hairpin watchdogs with correct role info.
-        "syd,syd-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
         "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-        "yul,yul-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
 
         # [cbatra] [Important]  If we update an initContainerImage then it is not promoted to prod by default
         # This is just a hack for now until we fix the logic in SMB image promotion to also add images for InitContainers/sidecars
@@ -45,9 +39,7 @@ local utils = import "util_functions.jsonnet";
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
-        "syd,syd-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "yul,yul-sam,snapshoter,hypersam": "sam-0001725-d0637219",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
@@ -125,6 +117,8 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
+        else if (kingdom == "syd") || (kingdom == "yul") then
+            "4"
         else if utils.is_public_cloud(kingdom) then
             "pub"
         else
