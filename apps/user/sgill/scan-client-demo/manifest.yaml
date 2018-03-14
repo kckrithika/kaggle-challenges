@@ -4,13 +4,18 @@ system:
   functions:
   - name: sgill-scan-client-demo
     count: 1
+
     volumes:
     - name: sgill-scd-client-cert
       maddogCert:
         type: client
+
     containers:
     - name: scan-client-demo
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20120215_0933
+      env:
+        - name: GRPC_ENDPOINT_TLS
+          value: "scanner-sgill-sandbox.user-sgill.samapp.localhost.mesh.force.com:5443"
       ports:
       - name: web
         containerPort: 8080
@@ -24,8 +29,9 @@ system:
       #   port: 8084
       # initialDelaySeconds: 30
       # periodSeconds: 5
+
     - name: sgill-scan-client-sherpa
-      image: sfci/servicelibs/sherpa-envoy:fe853035d839fabd6d147007ada5b1cd036b7b81
+      image: sfci/servicelibs/sherpa:2.0.23
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -38,12 +44,12 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 10
-          periodSeconds: 5
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
