@@ -30,8 +30,6 @@ local kingdom = std.extVar("kingdom");
     ],
     deepsea_enabled: std.count(self.deepsea_enabled_estates, estate) > 0,
     maddog_disabled_estates: [
-        "prd-data-flowsnake",
-        "prd-dev-flowsnake_iot_test",
     ],
     maddog_enabled: !self.is_minikube && std.count(self.maddog_disabled_estates, estate) == 0,
 
