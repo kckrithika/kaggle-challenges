@@ -276,10 +276,6 @@ local samconfig = import "config.jsonnet";
             "sdn-secret-agent.yaml",
             "sdn-vault-agent.yaml",
         ] else []) +
-        (if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then [
-            //TODO: re-enable Autodeployer self-updates in all estates
-            "samcontrol-deployer.yaml",
-        ] else []) +
         (if flowsnakeconfig.deepsea_enabled then [
             // Must skip (and manually deploy) because AutoDeployer does not support Endpoints resources at the moment.
             // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
