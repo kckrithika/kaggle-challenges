@@ -8,8 +8,6 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  nodeSelector:
-    pool: prd-sam
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -193,6 +191,8 @@ spec:
         - mountPath: /maddog-certs/
           name: maddog-certs
       hostNetwork: true
+      nodeSelector:
+        pool: prd-sam
       restartPolicy: Always
       volumes:
       - hostPath:

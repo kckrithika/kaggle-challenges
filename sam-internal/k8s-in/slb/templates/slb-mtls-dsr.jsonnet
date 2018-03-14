@@ -240,6 +240,9 @@ if configs.estate == "prd-sam" then {
                         ],
                     },
                 ],
+                nodeSelector: {
+                    pool: configs.estate,
+                },
                 hostNetwork: true,
                 restartPolicy: "Always",
                 volumes: configs.filter_empty([
@@ -277,9 +280,6 @@ if configs.estate == "prd-sam" then {
                     configs.sfdchosts_volume,
                 ]),
             },
-        },
-        nodeSelector: {
-            pool: configs.estate,
         },
     },
 } else "SKIP"
