@@ -30,6 +30,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-vip-watchdog",
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [] else [
+                                "--configDir=" + slbconfigs.configDir,
+                            ]
+                        ) +
+                        [
+
                             "--vipLoop=10",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
@@ -37,13 +45,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--hostnameOverride=$(NODE_NAME)",
                             configs.sfdchosts_arg,
                             "--metricsEndpoint=" + configs.funnelVIP,
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then [] else [
-                                "--configDir=" + slbconfigs.configDir,
-                            ]
-                        ),
-                        volumeMounts: configs.filter_empty([
+                        ],
+                       volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,

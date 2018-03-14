@@ -42,7 +42,6 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --configDir=/host/data/slb/config
         env:
         - name: NODE_NAME
           valueFrom:
