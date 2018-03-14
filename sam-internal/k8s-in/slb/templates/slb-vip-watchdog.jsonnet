@@ -32,7 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-vip-watchdog",
                         ]
                         + (
-                            if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [] else [
+                            if configs.kingdom == "prd" then [] else [
                                 "--configDir=" + slbconfigs.configDir,
                             ]
                         ) +
@@ -46,7 +46,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.sfdchosts_arg,
                             "--metricsEndpoint=" + configs.funnelVIP,
                         ],
-                       volumeMounts: configs.filter_empty([
+                        volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
