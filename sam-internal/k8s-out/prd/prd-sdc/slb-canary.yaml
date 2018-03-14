@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    scheduler.alpha.kubernetes.io/affinity: |
+      {   "nodeAffinity": {
+          "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [
+                  {
+                    "key": "slb-service",
+                    "operator": "NotIn",
+                    "values": ["slb-ipvs", "slb-nginx"]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+  labels:
+    name: slb-canary
+  name: slb-canary
+  namespace: sam-system
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: slb-canary
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-canary-service
+        - --serviceName=slb-sdc-svc
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs
+        - --ports=9111
+        - --tlsPorts=9443
+        - --privateKey=/var/slb/canarycerts/server.key
+        - --publicKey=/var/slb/canarycerts/sdc.crt
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000693-e1dfadf7
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9111
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        name: slb-canary
+        volumeMounts:
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-sdc
+      volumes:
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume

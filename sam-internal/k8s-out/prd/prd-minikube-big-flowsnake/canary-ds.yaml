@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: canary
+  name: canary
+  namespace: default
+spec:
+  template:
+    metadata:
+      labels:
+        app: canary
+        name: canary
+    spec:
+      containers:
+      - image: minikube/flowsnake-canary:minikube
+        imagePullPolicy: Never
+        name: canary
+        readinessProbe:
+          exec:
+            command:
+            - bash
+            - /run-checks.sh
+          periodSeconds: 20
+        resources:
+          requests:
+            cpu: 0.1
+            memory: 5M
+        volumeMounts:
+        - mountPath: /empty
+          name: empty
+        - mountPath: /proc-host
+          name: proc
+          readOnly: true
+      volumes:
+      - emptyDir: {}
+        name: empty
+      - hostPath:
+          path: /proc
+        name: proc

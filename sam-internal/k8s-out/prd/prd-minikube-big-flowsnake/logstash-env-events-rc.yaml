@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: logstash-env-events
+    name: logstash-env-events
+  name: logstash-env-events
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logstash-env-events
+  template:
+    metadata:
+      labels:
+        app: logstash-env-events
+        name: logstash-env-events
+      namespace: flowsnake
+    spec:
+      containers:
+      - env:
+        - name: KAFKA_TOPIC
+          value: flowsnake-environment-events
+        - name: ELASTICSEARCH_INDEX
+          value: flowsnake-environment-events
+        - name: ELASTICSEARCH_DOCUMENT_TYPE
+          value: event
+        - name: ZOOKEEPER_CONNECTION_STRING
+          value: zookeeper-0.zookeeper-set:2181,zookeeper-1.zookeeper-set:2181,zookeeper-2.zookeeper-set:2181
+        image: minikube/flowsnake-logstash:minikube
+        imagePullPolicy: Never
+        name: logstash

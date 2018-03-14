@@ -1,0 +1,16 @@
+apiVersion: v1
+items:
+- apiVersion: sfstore.storage.salesforce.com/v1beta1
+  kind: SfstoreCluster
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: prdsam
+    namespace: sfstore
+  spec:
+    aggregateStorage: 5Gi
+    faultDomainBoundary: kubernetes.io/hostname
+    pool: prd-skipper
+    version: "1.10"
+kind: List
+metadata: {}

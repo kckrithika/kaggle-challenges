@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  samapp-controller-config.json: |-
+    {
+      "enableMaddog": true,
+      "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
+      "maddogMadkubImage": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000061-74e4a7b6"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: samapp-controller
+  namespace: sam-system

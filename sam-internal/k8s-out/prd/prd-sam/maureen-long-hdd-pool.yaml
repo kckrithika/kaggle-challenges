@@ -1,0 +1,11 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: maureen-long-hdd-pool
+  namespace: user-maureen-long
+spec:
+  clusterNamespace: legostore
+  size: 10Gi
+  storageTier: hdd

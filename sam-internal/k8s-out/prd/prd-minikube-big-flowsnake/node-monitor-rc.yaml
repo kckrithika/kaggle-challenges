@@ -1,0 +1,68 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: node-monitor
+  name: node-monitor
+  namespace: default
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: node-monitor
+        name: node-monitor
+    spec:
+      containers:
+      - env:
+        - name: CANARY_INTERVAL_SECONDS
+          value: "60"
+        - name: CANARY_UNHEALTHY_THRESHOLD_SECONDS
+          value: "60"
+        - name: CANARY_HEALTH_REJOIN_THRESHOLD_SECONDS
+          value: "300"
+        - name: FLEET_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: name
+              name: fleet-config
+        - name: KUBECONFIG
+          valueFrom:
+            configMapKeyRef:
+              key: kubeconfig
+              name: fleet-config
+        image: minikube/flowsnake-node-monitor:minikube
+        imagePullPolicy: Never
+        name: node-monitor
+        volumeMounts:
+        - mountPath: /etc/kubernetes/kubeconfig
+          name: kubeconfig
+          readOnly: true
+        - mountPath: /etc/pki_service/ca
+          name: certificate-authority
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/certificates
+          name: client-certificate
+          readOnly: true
+        - mountPath: /etc/pki_service/platform/platform-client/keys
+          name: client-key
+          readOnly: true
+        - mountPath: /data/certs
+          name: data-cert
+          readOnly: true
+      volumes:
+      - hostPath:
+          path: /etc/kubernetes/kubeconfig-platform
+        name: kubeconfig
+      - hostPath:
+          path: /etc/pki_service/ca
+        name: certificate-authority
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/certificates
+        name: client-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-client/keys
+        name: client-key
+      - hostPath:
+          path: /data/certs
+        name: data-cert

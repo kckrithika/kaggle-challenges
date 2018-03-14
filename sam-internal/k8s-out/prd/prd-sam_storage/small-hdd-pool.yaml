@@ -1,0 +1,11 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: small-hdd-pool
+  namespace: legostore
+spec:
+  clusterNamespace: ceph-prd-sam-storage
+  size: 500Gi
+  storageTier: hdd

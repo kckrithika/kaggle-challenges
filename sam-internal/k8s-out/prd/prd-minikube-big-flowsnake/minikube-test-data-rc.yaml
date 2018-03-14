@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: flowsnake-test-data
+  name: flowsnake-test-data
+  namespace: flowsnake
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flowsnake-test-data
+  template:
+    metadata:
+      labels:
+        app: flowsnake-test-data
+    spec:
+      containers:
+      - image: minikube/flowsnake-test-data:minikube
+        imagePullPolicy: Never
+        name: test-data
+        ports:
+        - containerPort: 80
+          name: k80
+      terminationGracePeriodSeconds: 60

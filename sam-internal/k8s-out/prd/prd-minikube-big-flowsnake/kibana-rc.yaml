@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    component: kibana
+    name: kibana
+  name: kibana
+  namespace: flowsnake
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        component: kibana
+        name: kibana
+      namespace: flowsnake
+    spec:
+      containers:
+      - image: minikube/flowsnake-kibana:minikube
+        imagePullPolicy: Never
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5601
+            scheme: HTTP
+          initialDelaySeconds: 180
+        name: kibana
+        ports:
+        - containerPort: 5601
+          name: http
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5601
+            scheme: HTTP

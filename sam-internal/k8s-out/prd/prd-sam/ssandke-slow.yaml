@@ -1,0 +1,11 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: ssandke-slow
+  namespace: user-ssandke
+spec:
+  clusterNamespace: legostore
+  size: 5Gi
+  storageTier: hdd

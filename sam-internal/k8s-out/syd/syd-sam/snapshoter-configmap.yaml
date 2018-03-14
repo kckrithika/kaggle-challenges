@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  snapshoter.json: |-
+    {
+      "ca-file": "/data/certs/ca.crt",
+      "cert-file": "/data/certs/hostcert.crt",
+      "kafka-topic": "sfdc.prod.sam__syd.ajna_local__resourcestatus",
+      "kafkaEndpoint": "ajna0-broker1-0-syd.data.sfdc.net:9093",
+      "key-file": "/data/certs/hostcert.key",
+      "recipient": "sam@salesforce.com"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: snapshoter
+  namespace: sam-system

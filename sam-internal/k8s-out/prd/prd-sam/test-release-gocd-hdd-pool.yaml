@@ -1,0 +1,11 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: test-release-gocd-hdd-pool
+  namespace: test-release
+spec:
+  clusterNamespace: legostore
+  size: 300Gi
+  storageTier: hdd

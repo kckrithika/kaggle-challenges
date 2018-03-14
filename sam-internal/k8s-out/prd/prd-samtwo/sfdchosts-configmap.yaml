@@ -1,0 +1,72 @@
+apiVersion: v1
+data:
+  hosts.json: |-
+    {
+      "hosts": [
+        {
+          "bomrolename": "samtwo_compute",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwocompute1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_compute",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwocompute1-2-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_compute",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samcompute",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwocompute2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_kube_api",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samkubeapi",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_kube_api",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samkubeapi",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwokubeapi2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "samtwo_kube_api",
+          "controlestate": "prd-samtwo",
+          "devicerole": "samkubeapi",
+          "estate": "prd-samtwo",
+          "hostname": "shared0-samtwokubeapi3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfdchosts
+  namespace: sam-system

@@ -1,0 +1,22 @@
+apiVersion: v1
+data:
+  nodeLabelsForPV: |
+    - failure-domain.beta.kubernetes.io/zone
+    - failure-domain.beta.kubernetes.io/region
+    - kubernetes.io/hostname
+    - node.sam.sfdc.net/pool
+    - pool
+    - node.sam.sfdc.net/rack
+    - node.sam.sfdc.net/role
+  storageClassMap: |
+    ssd:
+      hostDir: "/mnt/lvssd"
+      mountDir: /local-ssd
+    hdd:
+      hostDir: "/mnt/lvhdd"
+      mountDir: /local-hdd
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: local-volume-sfdc-config
+  namespace: storage-foundation
