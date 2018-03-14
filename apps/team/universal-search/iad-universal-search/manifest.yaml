@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.5.1
+      image: sfci/searchdev/universal-search:0.5.2
       ports:
       - name: service-port
         containerPort: 7020
@@ -49,7 +49,7 @@ system:
           port: 15372
         initialDelaySeconds: 120
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.24
       ports:
       - containerPort: 7012
         name: sherpa-in
