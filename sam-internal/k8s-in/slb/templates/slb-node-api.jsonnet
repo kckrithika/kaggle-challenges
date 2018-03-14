@@ -28,43 +28,43 @@ if slbconfigs.slbInKingdom then {
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
-                 ]),
+                ]),
                 containers: [
-                        {
-                            name: "slb-node-api",
-                            image: slbimages.hypersdn,
-                            command: [
-                                "/sdn/slb-node-api",
-                                "--port=" + slbports.slb.slbNodeApiPort,
-                                "--configDir=" + slbconfigs.configDir,
-                                "--log_dir=" + slbconfigs.logsDir,
-                            ],
-                            volumeMounts: configs.filter_empty([
-                                slbconfigs.slb_volume_mount,
-                                slbconfigs.logs_volume_mount,
-                             ]),
-                        },
+                    {
+                        name: "slb-node-api",
+                        image: slbimages.hypersdn,
+                        command: [
+                            "/sdn/slb-node-api",
+                            "--port=" + slbports.slb.slbNodeApiPort,
+                            "--configDir=" + slbconfigs.configDir,
+                            "--log_dir=" + slbconfigs.logsDir,
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                        ]),
+                    },
                 ],
-             } + if configs.estate == "prd-sdc" then {
-                                               affinity: {
-                                                                  nodeAffinity: {
-                                                                                                                requiredDuringSchedulingIgnoredDuringExecution: {
-                                                                                                                  nodeSelectorTerms: [
-                                                                                                                    {
-                                                                                                                          matchExpressions: [
-                                                                                                                                              {
-                                                                                                                                                 key: "pool",
-                                                                                                                                                 operator: "In",
-                                                                                                                                                 values: [configs.estate, configs.kingdom + "-slb"],
-                                                                                                                                              },
+            } + if configs.kingdom == "prd" then {
+                affinity: {
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "pool",
+                                            operator: "In",
+                                            values: [configs.estate, configs.kingdom + "-slb"],
+                                        },
 
-                                                                                                                                            ],
-                                                                                                                                            },
-                                ],
+                                    ],
                                 },
-                                },
-                                },
-                                            } else {},
+                            ],
+                        },
+                    },
+                },
+            } else {},
         },
     },
 } else "SKIP"
