@@ -9,4 +9,8 @@ apps:
       - prd/prd-sp2-sam_iot_test
   controlplane-secure:
       - prd/prd-sp2-sam_iot_test
+  controlplane-staging:
+      - prd/prd-sp2-sam_iot_test
+  enrichment-staging:
+      - prd/prd-sp2-sam_iot_test
 
