@@ -45,7 +45,6 @@ if slbconfigs.slbInKingdom then {
                         ]),
                     },
                 ],
-            } + if configs.kingdom == "prd" then {
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
@@ -64,7 +63,7 @@ if slbconfigs.slbInKingdom then {
                         },
                     },
                 },
-            } else {},
+            },
         },
     },
 } else "SKIP"
