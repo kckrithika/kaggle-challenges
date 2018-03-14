@@ -19,7 +19,7 @@ system:
     volumes:
     - name: hostdatavol
       hostPath:
-        path: /data/test-xfs
+        path: /data/logs
  
   loadbalancers:
   - lbname: testxfslb
