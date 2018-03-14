@@ -47,6 +47,10 @@ GROUP BY DayHour;",
       sql: "SELECT Kingdom, kubeletVersion, COUNT(*) FROM nodeDetailView GROUP BY Kingdom, kubeletVersion ORDER BY kubeletVersion",
     },
     {
+      name: "Resource-Types-By-Kingdom",
+      sql: "SELECT ControlEstate, ApiKind, Count(*) FROM ( SELECT ControlEstate, ApiKind, IsTombstone FROM k8s_resource where IsTombstone <> 1) AS ss GROUP BY ControlEstate, ApiKind ORDER BY ControlEstate",
+    },
+    {
       name: "Bad-Customer-Deployments-Production",
       sql: "SELECT * FROM
 (
