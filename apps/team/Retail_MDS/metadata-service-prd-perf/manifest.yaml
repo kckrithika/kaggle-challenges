@@ -83,6 +83,24 @@ system:
           - "/home/sfdc-sherpa/bin/is-ready"
           initialDelaySeconds: 60
           periodSeconds: 120
+
+    - name: beacon-mds
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - metadata-service:DATACENTER:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: metadata-service-prd-perf-lb
     function: metadata-service-prd-perf
