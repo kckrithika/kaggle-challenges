@@ -79,6 +79,9 @@ spec:
         - mountPath: /data/certs
           name: data-cert
           readOnly: true
+        - mountPath: /etc/flowsnake/config/maddog-namespaces
+          name: maddog-namespaces
+          readOnly: true
       volumes:
       - name: flowsnake-ldap
         secret:
@@ -104,3 +107,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: data-cert
+      - configMap:
+          name: maddog-namespaces
+        name: maddog-namespaces
