@@ -266,28 +266,7 @@ local samconfig = import "config.jsonnet";
             // always skip this, should never get deployed by auto-deployer, sdn-secret-agent will read this file and deploy.
             "_flowsnake-sdn-secret.yaml",
         ] +
-        (if flowsnakeconfig.sdn_enabled then [
-        ] else if estate == "prd-data-flowsnake" then [
-            /* "sdn-bird.yaml", */
-            /* "sdn-cleanup.yaml", */
-            /* "sdn-hairpin-setter.yaml", */
-            /* "sdn-peering-agent.yaml", */
-            /* "sdn-ping-watchdog.yaml", */
-            /* "sdn-route-watchdog.yaml", */
-            /* "sdn-secret-agent.yaml", */
-            /* "sdn-vault-agent.yaml", */
-            "_flowsnake-sdn-secret.yaml",
-        ] else if estate == "prd-dev-flowsnake_iot_test" then [
-            /* "sdn-bird.yaml", */
-            /* "sdn-cleanup.yaml", */
-            /* "sdn-hairpin-setter.yaml", */
-            /* "sdn-peering-agent.yaml", */
-            "sdn-ping-watchdog.yaml",
-            "sdn-route-watchdog.yaml",
-            /* "sdn-secret-agent.yaml", */
-            /* "sdn-vault-agent.yaml", */
-            "_flowsnake-sdn-secret.yaml",
-        ] else [
+        (if !flowsnakeconfig.sdn_enabled then [
             "sdn-bird.yaml",
             "sdn-cleanup.yaml",
             "sdn-hairpin-setter.yaml",
@@ -296,8 +275,7 @@ local samconfig = import "config.jsonnet";
             "sdn-route-watchdog.yaml",
             "sdn-secret-agent.yaml",
             "sdn-vault-agent.yaml",
-            "_flowsnake-sdn-secret.yaml",
-        ]) +
+        ] else []) +
         (if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then [
             //TODO: re-enable Autodeployer self-updates in all estates
             "samcontrol-deployer.yaml",
