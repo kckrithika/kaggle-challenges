@@ -20,8 +20,9 @@ system:
       livenessProbe:
         exec:
           command: ["true"]
-    - name: scanner-sgill-sandbox-sherpa
-      image: sfci/servicelibs/sherpa-envoy:fe853035d839fabd6d147007ada5b1cd036b7b81
+
+    - name: pd-scanner-sherpa
+      image: sfci/servicelibs/sherpa:2.0.23
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -34,15 +35,18 @@ system:
       - name: pd-scanner-server-cert
         mountPath: /server-certs
       livenessProbe:
-         httpGet:
-           path: /listeners
-           port: 15373
-         initialDelaySeconds: 20
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
-         httpGet:
-           path: /listeners
-           port: 15373
-         initialDelaySeconds: 15
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+
     - name: beacon
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       env:
@@ -50,7 +54,7 @@ system:
         value: "sam"
       args:
       - -endpoint
-      - scanner-sgill-sandbox:DATACENTER_ALLENV:7443
+      - samapp/user-sgill/scanner-sgill-sandbox:DATACENTER_ALLENV:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
