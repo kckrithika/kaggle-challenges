@@ -1,0 +1,29 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: xfs-test-app
+    count: 2
+    containers:
+    - name: test-xfs
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/samhello:lizhang-20170830
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /home/sfdc-xfstest
+        name: hostdatavol
+    volumes:
+    - name: hostdatavol
+      hostPath:
+        path: /data/test-xfs
+ 
+  loadbalancers:
+  - lbname: testxfslb
+    function: xfs-test-app
+    ports:
+      - port: 9090
+        targetport: 9090
