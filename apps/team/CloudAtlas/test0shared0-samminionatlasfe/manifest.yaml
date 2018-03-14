@@ -15,7 +15,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:88d0453
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:b6458b1
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
