@@ -8,6 +8,8 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
+  nodeSelector:
+    pool: prd-sam
   replicas: 1
   strategy:
     type: RollingUpdate
