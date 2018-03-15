@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - image tags from strata build
         "1": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "minikube",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "503",
             fleetService_image_tag: "tc-will-itest-ready",
             glok_image_tag: "472",
@@ -59,7 +59,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2
         "2": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "minikube",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "503",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
@@ -91,7 +91,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3
         "3": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "minikube",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "345",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
@@ -123,7 +123,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 4
         "4": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "minikube",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "345",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
