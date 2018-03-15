@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
 local rbac_utils = import "sam_rbac_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev" then {
+if samfeatureflags.rbacstorage then {
   apiVersion: "v1",
   kind: "List",
   metadata: {},

@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samwdconfig = import "samwdconfig.jsonnet";
 local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 std.prune({
   # Snoozes - This is a central list of all snoozed watchdogs.  For each snooze, please add a comment explaining the reason
@@ -110,7 +111,7 @@ std.prune({
     syntheticretrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
     maxdeploymentduration: (if configs.estate == "prd-sam" then "15m" else 420000000000),
   } else {})
-  + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+  + (if samfeatureflags.maddogforsamapps then {
     # Maddog(cert) checker
     maddogCommonCerts: [
       "/etc/pki_service/kubernetes/k8s-server/certificates/k8s-server.pem",
