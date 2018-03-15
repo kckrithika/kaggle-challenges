@@ -18,5 +18,6 @@
             "secretName=sfdc-ca
             secretType=generic
             certificatePath=/certs/ca.pem",
+          "master.config": std.toString(import "cert-secretizer-master-config.jsonnet"),
     },
 }
