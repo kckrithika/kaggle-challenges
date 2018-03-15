@@ -58,7 +58,7 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInKingdom then {
                 nodeSelector: {
                 }
                 + (
-                    if configs.estate == "prd-sdc" || configs.kingdom == "prd" then {
+                    if configs.kingdom == "prd" then {
                          "slb-dns-register": "true",
                     } else {
                          pool: configs.estate,
