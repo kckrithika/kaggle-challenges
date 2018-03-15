@@ -30,14 +30,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-vip-watchdog",
-                        ]
-                        + (
-                            if configs.kingdom == "prd" then [] else [
-                                "--configDir=" + slbconfigs.configDir,
-                            ]
-                        ) +
-                        [
-
                             "--vipLoop=10",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--optOutNamespace=kne",
