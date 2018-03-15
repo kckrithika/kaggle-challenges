@@ -41,6 +41,9 @@ local utils = import "util_functions.jsonnet";
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
+        "prd,prd-samdev,snapshoter,hypersam": "auto",
+        "prd,prd-samtest,snapshoter,hypersam": "auto",
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001787-9d2ea394",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
