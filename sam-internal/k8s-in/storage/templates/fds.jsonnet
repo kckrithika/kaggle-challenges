@@ -3,7 +3,57 @@ local storageimages = (import "storageimages.jsonnet") + { templateFilename:: st
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "prd-skipper",
+    "phx-sam",
+]);
+
+// Init containers for the pod.
+local initContainers = [
+    storageutils.log_init_container(
+        storageimages.loginit,
+        "fds",
+        7337,
+        7337,
+        "sfdc"
+    ),
+];
+
+// Volume Mounts for the FDS container.
+local fdsVolumeMounts =
+    storageutils.log_init_volume_mounts() +
+    if configs.estate != "prd-skipper" then
+        configs.filter_empty([
+            configs.maddog_cert_volume_mount,
+            configs.cert_volume_mount,
+            configs.kube_config_volume_mount,
+        ])
+    else [];
+
+// Environment variables for the FDS container.
+local fdsEnvironmentVars = std.prune([
+    if configs.estate != "prd-skipper" then configs.kube_config_env else null,
+    {
+        name: "FDS_PROFILING",
+        value: storageconfigs.fds_profiling,
+    },
+]);
+
+// Volumes available to the pod.
+local podVolumes =
+    storageutils.log_init_volumes() +
+    if configs.estate != "prd-skipper" then
+        configs.filter_empty([
+            configs.maddog_cert_volume,
+            configs.cert_volume,
+            configs.kube_config_volume,
+        ])
+    else [];
+
+if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -34,16 +84,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                 },
             },
             spec: {
-                initContainers: [
-                    {} +
-                    storageutils.log_init_container(
-                        storageimages.loginit,
-                        "fds",
-                        7337,
-                        7337,
-                        "sfdc"
-                    ),
-                ],
+                initContainers: initContainers,
                 containers: [
                     {
                         name: "fds",
@@ -66,19 +107,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             },
                         },
                         volumeMounts:
-                            storageutils.log_init_volume_mounts()
-                            + configs.filter_empty([
-                                configs.maddog_cert_volume_mount,
-                                configs.cert_volume_mount,
-                                configs.kube_config_volume_mount,
-                            ]),
-                        env: configs.filter_empty([
-                            configs.kube_config_env,
-                            {
-                                name: "FDS_PROFILING",
-                                value: storageconfigs.fds_profiling,
-                            },
-                        ]),
+                            fdsVolumeMounts,
+                        env:
+                            fdsEnvironmentVars,
                     },
                     {
                         // Pump prometheus metrics to argus.
@@ -92,18 +123,13 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             "prometheus",
                         ],
                         env: storageutils.sfms_environment_vars("fds"),
-
                     },
                 ],
-                volumes: storageutils.log_init_volumes()
-                + configs.filter_empty([
-                        configs.maddog_cert_volume,
-                        configs.cert_volume,
-                        configs.kube_config_volume,
-                    ]),
-                nodeSelector: {
+                volumes:
+                    podVolumes,
+                nodeSelector: if configs.estate != "prd-skipper" then {
                     master: "true",
-                },
+                } else {},
             },
         },
     },
