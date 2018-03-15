@@ -21,13 +21,21 @@ system:
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
+      - name: PHOENIX_KEYTABSERVICE_ENABLED
+        value: true
+      - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CLIENT_DIRECTORY
+        value: /client-certs/client
+      - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CA_DIRECTORY
+        value: /client-certs
+      - name: PHOENIX_ENVIRONMENT
+        value: kingdom-test
       - name: SFDC_ENVIRONMENT
         value: staging
       - name: SVCMESH_ANNOUNCE_PORT
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:ea0a22e
+      image: image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-d872040
       livenessProbe:
         httpGet:
           path: /manage/health
