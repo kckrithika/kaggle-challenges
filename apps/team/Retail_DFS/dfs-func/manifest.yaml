@@ -48,6 +48,7 @@ system:
   - lbname: dfs-lb
     function: dfs-func
     nodeExposed: true
+    slbEnabled: true
     ports:
     - port: 7022
       targetport: 7022
