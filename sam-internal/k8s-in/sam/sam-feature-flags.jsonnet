@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet";
     rbacwd: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate),
 
     # todo: explain what is blocking this from going everywhere
-    rbacstorage: configs.estate == "prd-sam" || configs.estate == "prd-sam_storage",
+    rbacstorage: configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev",
 
     # MadDog
     maddogforsamapps: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
