@@ -1,0 +1,2613 @@
+apiVersion: v1
+items:
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: local-pv-create
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: local-pv-create
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-10-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-11-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-12-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-13-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-14-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-15-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-16-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-17-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-18-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-19-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-2-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-20-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-21-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-22-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-23-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-24-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-25-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-26-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-27-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-28-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-29-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-3-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-30-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-31-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-32-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-33-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-34-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-4-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-5-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-6-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-7-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-8-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph1-9-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-10-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-11-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-12-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-13-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-14-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-15-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-16-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-17-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-18-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-19-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-2-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-20-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-21-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-22-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-23-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-24-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-25-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-26-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-27-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-28-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-29-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-3-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-30-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-31-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-32-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-33-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-4-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-5-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-6-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-7-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-8-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph2-9-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-1-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-10-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-11-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-12-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-13-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-14-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-15-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-16-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-17-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-18-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-19-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-2-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-20-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-21-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-22-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-23-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-24-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-25-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-26-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-27-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-28-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-29-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-3-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-30-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-31-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-32-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-33-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-4-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-5-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-6-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-7-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-8-phx.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionceph3-9-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-1-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-1-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-10-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-10-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-11-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-11-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-12-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-12-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-13-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-13-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-14-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-14-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-15-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-15-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-16-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-16-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-17-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-17-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-18-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-18-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-19-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-19-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-2-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-2-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-20-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-20-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-21-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-21-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-22-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-22-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-23-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-23-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-24-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-24-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-25-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-25-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-26-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-26-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-27-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-27-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-28-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-28-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-29-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-29-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-3-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-3-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-30-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-30-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-31-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-31-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-32-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-32-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-33-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-33-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-34-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-34-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-4-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-4-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-5-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-5-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-6-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-6-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-7-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-7-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-8-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-8-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph1-9-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph1-9-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-1-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-1-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-10-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-10-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-11-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-11-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-12-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-12-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-13-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-13-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-14-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-14-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-15-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-15-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-16-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-16-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-17-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-17-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-18-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-18-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-19-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-19-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-2-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-2-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-20-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-20-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-21-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-21-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-22-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-22-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-23-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-23-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-24-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-24-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-25-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-25-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-26-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-26-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-27-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-27-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-28-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-28-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-29-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-29-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-3-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-3-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-30-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-30-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-31-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-31-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-32-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-32-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-33-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-33-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-4-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-4-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-5-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-5-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-6-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-6-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-7-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-7-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-8-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-8-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph2-9-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph2-9-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-1-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-1-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-10-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-10-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-11-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-11-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-12-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-12-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-13-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-13-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-14-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-14-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-15-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-15-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-16-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-16-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-17-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-17-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-18-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-18-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-19-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-19-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-2-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-2-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-20-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-20-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-21-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-21-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-22-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-22-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-23-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-23-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-24-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-24-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-25-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-25-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-26-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-26-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-27-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-27-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-28-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-28-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-29-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-29-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-3-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-3-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-30-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-30-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-31-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-31-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-32-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-32-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-33-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-33-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-4-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-4-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-5-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-5-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-6-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-6-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-7-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-7-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-8-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-8-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRole
+  metadata:
+    name: localstorage-role:shared0-samminionceph3-9-phx.ops.sfdc.net
+  rules:
+  - apiGroups:
+    - '*'
+    resourceNames:
+    - shared0-samminionceph3-9-phx.ops.sfdc.net
+    resources:
+    - nodes
+    verbs:
+    - patch
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-1-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-1-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-1-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-10-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-10-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-10-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-11-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-11-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-11-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-12-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-12-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-12-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-13-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-13-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-13-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-14-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-14-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-14-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-15-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-15-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-15-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-16-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-16-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-16-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-17-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-17-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-17-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-18-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-18-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-18-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-19-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-19-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-19-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-2-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-2-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-2-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-20-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-20-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-20-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-21-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-21-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-21-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-22-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-22-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-22-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-23-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-23-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-23-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-24-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-24-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-24-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-25-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-25-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-25-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-26-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-26-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-26-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-27-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-27-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-27-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-28-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-28-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-28-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-29-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-29-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-29-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-3-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-3-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-3-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-30-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-30-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-30-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-31-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-31-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-31-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-32-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-32-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-32-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-33-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-33-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-33-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-34-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-34-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-34-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-4-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-4-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-4-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-5-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-5-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-5-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-6-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-6-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-6-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-7-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-7-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-7-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-8-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-8-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-8-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph1-9-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph1-9-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph1-9-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-1-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-1-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-1-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-10-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-10-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-10-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-11-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-11-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-11-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-12-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-12-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-12-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-13-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-13-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-13-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-14-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-14-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-14-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-15-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-15-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-15-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-16-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-16-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-16-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-17-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-17-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-17-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-18-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-18-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-18-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-19-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-19-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-19-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-2-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-2-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-2-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-20-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-20-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-20-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-21-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-21-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-21-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-22-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-22-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-22-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-23-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-23-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-23-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-24-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-24-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-24-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-25-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-25-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-25-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-26-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-26-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-26-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-27-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-27-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-27-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-28-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-28-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-28-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-29-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-29-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-29-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-3-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-3-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-3-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-30-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-30-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-30-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-31-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-31-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-31-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-32-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-32-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-32-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-33-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-33-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-33-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-4-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-4-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-4-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-5-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-5-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-5-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-6-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-6-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-6-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-7-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-7-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-7-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-8-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-8-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-8-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph2-9-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph2-9-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph2-9-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-1-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-1-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-1-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-10-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-10-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-10-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-11-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-11-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-11-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-12-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-12-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-12-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-13-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-13-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-13-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-14-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-14-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-14-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-15-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-15-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-15-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-16-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-16-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-16-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-17-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-17-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-17-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-18-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-18-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-18-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-19-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-19-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-19-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-2-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-2-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-2-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-20-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-20-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-20-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-21-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-21-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-21-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-22-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-22-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-22-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-23-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-23-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-23-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-24-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-24-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-24-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-25-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-25-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-25-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-26-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-26-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-26-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-27-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-27-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-27-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-28-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-28-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-28-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-29-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-29-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-29-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-3-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-3-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-3-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-30-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-30-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-30-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-31-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-31-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-31-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-32-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-32-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-32-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-33-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-33-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-33-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-4-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-4-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-4-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-5-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-5-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-5-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-6-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-6-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-6-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-7-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-7-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-7-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-8-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-8-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-8-phx.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: ClusterRoleBinding
+  metadata:
+    name: localstorage-rolebinding:shared0-samminionceph3-9-phx.ops.sfdc.net
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: localstorage-role:shared0-samminionceph3-9-phx.ops.sfdc.net
+  subjects:
+  - kind: User
+    name: shared0-samminionceph3-9-phx.ops.sfdc.net
+kind: List
+metadata: {}
