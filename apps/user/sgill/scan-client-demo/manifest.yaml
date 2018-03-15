@@ -12,10 +12,12 @@ system:
 
     containers:
     - name: scan-client-demo
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180314_0433
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180315_0900
       env:
         - name: GRPC_ENDPOINT_TLS
           value: "scanner-sgill-sandbox.user-sgill.samapp.localhost.mesh.force.com:5443"
+        - name: GRPC_ENDPOINT
+          value: "scanner-sgill-sandbox.user-sgill.samapp.localhost.mesh.force.com:7011"
       ports:
       - name: web
         containerPort: 8080
