@@ -9,6 +9,9 @@ system:
     - name: sgill-scd-client-cert
       maddogCert:
         type: client
+    - name: sgill-scd-server-cert
+      maddogCert:
+        type: server
 
     containers:
     - name: scan-client-demo
@@ -43,6 +46,8 @@ system:
       volumeMounts:
       - name: sgill-scd-client-cert
         mountPath: /client-certs # The path in the mesh proxy container to mount client certs on. The mesh proxy looks in /client-certs by default
+      - name: sgill-scd-server-cert
+        mountPath: /server-certs
       livenessProbe:
         exec:
           command:
