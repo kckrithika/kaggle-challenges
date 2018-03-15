@@ -20,6 +20,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - image tags from strata build
         "1": {
             canary_image_tag: "345",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "503",
             fleetService_image_tag: "tc-will-itest-ready",
             glok_image_tag: "472",
@@ -58,6 +59,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2
         "2": {
             canary_image_tag: "345",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "503",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
@@ -89,6 +91,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3
         "3": {
             canary_image_tag: "345",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "345",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
@@ -120,6 +123,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 4
         "4": {
             canary_image_tag: "345",
+            cert_secretizer_image_tag: "544",
             es_image_tag: "345",
             fleetService_image_tag: "487",
             glok_image_tag: "472",
@@ -150,6 +154,7 @@ local utils = import "util_functions.jsonnet";
 
         minikube: {
             canary_image_tag: "minikube",
+            cert_secretizer_image_tag: "minikube",
             es_image_tag: "minikube",
             fleetService_image_tag: "minikube",
             glok_image_tag: "minikube",
@@ -191,6 +196,7 @@ local utils = import "util_functions.jsonnet";
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
     canary: flowsnakeconfig.registry + "/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
+    cert_secretizer: flowsnakeconfig.registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
     es: flowsnakeconfig.registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
     fleet_service: flowsnakeconfig.registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
     glok: flowsnakeconfig.registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
