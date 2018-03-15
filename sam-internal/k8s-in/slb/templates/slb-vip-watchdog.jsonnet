@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.kingdom == "frf" || configs.kingdom == "phx" then {
+if configs.estate == "prd-sdc" || configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "phx" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -56,8 +56,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                 ],
                 nodeSelector: {
-                       pool: configs.estate,
-                },
+                }
+                + (
+                    if configs.estate == "prd-sdc" || configs.kingdom == "prd" then {
+                         "slb-dns-register": "true",
+                    } else {
+                         pool: configs.estate,
+                    }
+                ),
             },
             metadata: {
                 labels: {

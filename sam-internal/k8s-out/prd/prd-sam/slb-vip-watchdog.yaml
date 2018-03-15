@@ -57,7 +57,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        pool: prd-sam
+        slb-dns-register: "true"
       volumes:
       - hostPath:
           path: /data/slb
