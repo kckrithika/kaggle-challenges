@@ -9,6 +9,8 @@ system:
         value: sfdc.test.iot.integration
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
         value: /home/controlplane/cacerts
+      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
+        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: METRICS_FUNNELURL
