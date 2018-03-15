@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: pd-scanner-service
+  - name: scanner-sgill-sandbox
     count: 1
     containers:
     - name: scanner
