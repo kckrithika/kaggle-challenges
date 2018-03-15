@@ -32,11 +32,11 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000682-ee0a4ee3",
-            slbnginx: "v-0000021-7429568b",
+            hypersdn: "v-0000693-e1dfadf7",  # 693 requires change to slb-vip-watchdog parameter '--configDir'
+            slbnginx: "v-0000024-6c678838",
             },
 
-        ### Release Phase 3 - All Prod
+        ### Release Phase 4 - All Prod
         "4": {
             hypersdn: "v-0000149-6e609e0f",
             slbnginx: "v-0000004-d69f7abb",
