@@ -175,11 +175,13 @@ local utils = import "util_functions.jsonnet",
     maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
 
     # For apps that read MadDog certs from the host
+    # This condition needs to be kept in sync with the feature flag in sam/sam-feature-flags.maddogforsamhosts
     maddog_cert_volume_mount: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
     {
         mountPath: "/etc/pki_service",
         name: "maddog-certs",
     } else {}),
+    # This condition needs to be kept in sync with the feature flag in sam/sam-feature-flags.maddogforsamhosts
     maddog_cert_volume: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
     {
         hostPath: {
