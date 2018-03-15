@@ -24,7 +24,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000693-e1dfadf7
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000695-6f1dfad0
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -39,7 +39,7 @@ spec:
           name: sfdchosts
       hostNetwork: true
       nodeSelector:
-        slb-dns-register: "true"
+        slb-service: slb-dns
       volumes:
       - hostPath:
           path: /etc/pki_service
