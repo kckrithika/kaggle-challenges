@@ -16,7 +16,7 @@ system:
       - name: PHOENIX_DATACENTER
         value: prd
       - name: PHOENIX_KEYTABPATH
-        value: /home/controlplane/controlplane-keytab/iot.keytab
+        value: /home/controlplane/iot.keytab
       - name: PHOENIX_KEYTABPRINCIPAL
         value: iot
       - name: PHOENIX_KEYTABUSER
@@ -64,6 +64,10 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /client-certs
+        name: client-certs
     - env:
       - name: SFDC_ENVIRONMENT
         value: staging
