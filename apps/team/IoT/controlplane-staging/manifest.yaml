@@ -3,6 +3,8 @@ system:
   functions:
   - containers:
     - env:
+      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
+        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.integration
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
@@ -35,19 +37,23 @@ system:
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-d872040
+      - name: JAVA_OPTS
+        value: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-3c7f517
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 120
-        timeoutSeconds: 120
+        initialDelaySeconds: 1200
+        timeoutSeconds: 1200
       name: controlplane
       ports:
       - containerPort: 15372
         name: mgmt
       - containerPort: 7020
         name: grpc
+      - containerPort: 5005
+        name: debug
       resources:
         limits:
           cpu: 7
@@ -110,7 +116,7 @@ system:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
       name: beacon
-    count: 2
+    count: 1
     name: controlplane
     strategy:
       type: Recreate
@@ -139,8 +145,9 @@ system:
       targetport: 7012
     - port: 8115
       targetport: 15372
+    - port: 7445
+      targetport: 5005
     slbEnabled: true
   notifications:
     email:
     - iotenterprise@salesforce.com
-
