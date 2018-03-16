@@ -8,14 +8,14 @@ system:
       - richard.li@salesforce.com
       - jcormier@salesforce.com
   functions:
-  - name: retailcalculator-mc-handler-prd-ccp-integration-functional
+  - name: retailcalculator
     count: 1
     volumes:
     - name: cccjclientcert
       maddogCert:
         type: client
     containers:
-    - name: retailcalculator-sp-prd-ccp-integration-functional
+    - name: retailcalculator
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.4
       ports:
         - containerPort: 8080
@@ -36,8 +36,8 @@ system:
       - name: cccjclientcert
         mountPath: /clientcert
   loadbalancers:
-  - lbname: retailcalculator-retail-event-handler-prd-lb
-    function: retailcalculator-mc-handler-prd-ccp-integration-functional
+  - lbname: retailcalculator-lb
+    function: retailcalculator
     nodeExposed: true
     ports:
       - port: 8082
