@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scanner
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner-pd-sandbox:20180313_1300
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scanner-sgill-sandbox:20180313_1300
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
