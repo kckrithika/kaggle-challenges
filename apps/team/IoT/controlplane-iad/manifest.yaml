@@ -7,26 +7,14 @@ system:
         value: ajna0-zk1-1-iad.ops.sfdc.net
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.prod.iot
-      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
-        value: /home/controlplane/cacerts
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: METRICS_FUNNELURL
-        value: http://ajna0-funnel1-0-iad.data.sfdc.net
       - name: PHOENIX_DATACENTER
         value: iad
-      - name: PHOENIX_KEYTABPATH
-        value: /home/controlplane/controlplane-keytab/iot.keytab
       - name: PHOENIX_KEYTABPRINCIPAL
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
-      - name: SETTINGS_PATH
-        value: prod.-.iad.-.controlplane
-      - name: SETTINGS_SUPERPOD
-        value: NONE
-      - name: SFDC_ENVIRONMENT
-        value: prod
       - name: SVCMESH_ANNOUNCE_PORT
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
@@ -54,12 +42,6 @@ system:
       volumeMounts:
       - mountPath: /home/controlplane/logs
         name: logvol
-      - mountPath: /home/controlplane/ajna-certs
-        name: ajnacerts
-        readOnly: true
-      - mountPath: /home/controlplane/controlplane-keytab
-        name: controlplanekeytab
-        readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -110,12 +92,6 @@ system:
     - hostPath:
         path: /data/sam/iot/log/controlplane
       name: logvol
-    - name: ajnacerts
-      secret:
-        secretName: ajna-certs
-    - name: controlplanekeytab
-      secret:
-        secretName: controlplane-keytab
     - maddogCert:
         type: server
       name: server-certs
@@ -126,11 +102,6 @@ system:
   - function: controlplane
     lbname: controlplane-lb
     nodeExposed: true
-    ports:
-    - port: 7443
-      targetport: 7012
-    - port: 15372
-      targetport: 15372
     slbEnabled: true
   notifications:
     email:
