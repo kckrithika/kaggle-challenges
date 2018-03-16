@@ -46,7 +46,6 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-      volumeMounts:
         - name: client-cert-vol
           mountPath: /client-certs
         - name: sherpa-log-vol
