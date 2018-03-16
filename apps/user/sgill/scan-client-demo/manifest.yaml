@@ -20,7 +20,7 @@ system:
         - name: GRPC_ENDPOINT_TLS
           value: "scanner-sgill-sandbox.user-sgill.samapp.localhost.mesh.force.com:5443"
         - name: GRPC_ENDPOINT
-          value: "scanner-sgill-sandbox.user-sgill.samapp.localhost.mesh.force.com:7011"
+          value: "scanner-sgill-sandbox-plain.localhost.mesh.force.com:7011"
       ports:
       - name: web
         containerPort: 8080
