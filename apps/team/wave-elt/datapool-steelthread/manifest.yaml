@@ -4,10 +4,10 @@ system:
     email:
       - agitelman@salesforce.com
   functions:
-  - name: datapool-service
+  - name: datapool-steelthread
     count: 1
     containers:
-    - name: datapool-steelthread
+    - name: datapool-service
       image: sfci/insights/datapoolservice:49fa420
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-rc/sfci/insights/datapoolservice:49fa420
       ports:
@@ -92,7 +92,7 @@ system:
 #        secretName: ajna-certs
 
     - name: datapoolkeytab
-      secret:
+      k4aSecret:
         secretName: datapool-keytab
 
 #    - name: datapoolconfig
@@ -110,7 +110,7 @@ system:
 
   loadbalancers:
   - lbname: datapool-lb
-    function: datapool-service
+    function: datapool-steelthread
     nodeExposed: true
     slbenabled: true
     ports:
