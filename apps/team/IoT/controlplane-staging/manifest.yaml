@@ -42,8 +42,8 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 1200
-        timeoutSeconds: 1200
+        initialDelaySeconds: 600
+        timeoutSeconds: 600
       name: controlplane
       ports:
       - containerPort: 15372
