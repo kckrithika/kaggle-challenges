@@ -5,7 +5,7 @@ system:
     email:
       - smalladi@salesforce.com
   functions:
-  - name: dr-fn
+  - name: default
     count: 2
     progressDeadlineSeconds: 120
     containers:
@@ -17,24 +17,11 @@ system:
         httpGet:
           path: /
           port: 9090
-      volumeMounts:
-      - mountPath : /secrets/
-        name: secretvol
-        readOnly: true
-      env:
-      - name: TEST_ENV
-        value: test_val_new
-      - name: SFDC_ENVIRONMENT
-        value: myenv
-    volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: dummy
   loadbalancers:
   - lbname: smalladi-sam-test
-    function: dr-fn
-    nodeExposed: true
+    function: default
     slbEnabled: true
     ports:
-      - port: 9088
+      - port: 9090
         targetport: 9090
+        lbtype: tcp
