@@ -1,0 +1,127 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+      - agitelman@salesforce.com
+  functions:
+  - name: datapool-service
+    count: 1
+    containers:
+    - name: datapool-steelthread
+      image: sfci/insights/datapoolservice:49fa420
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sfci-rc/sfci/insights/datapoolservice:49fa420
+      ports:
+      - containerPort: 7020
+        name: grpc
+      - containerPort: 15372
+        name: mgmt
+      livenessProbe:
+        initialDelaySeconds: 90
+        periodSeconds: 60
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: kingdom-test
+      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
+        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
+      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
+        value: /opt/java/jdk1.8.0_121/jre/lib/security/cacerts
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: PHOENIX_KEYTABPATH
+        value: /home/datapool/datapool-keytab/datapool.keytab
+      volumeMounts:
+      - name: logvol
+        mountPath: /home/datapool/logs
+
+      - name: datapoolkeytab
+        mountPath: /home/datapool/datapool-keytab
+        readOnly: true
+
+#      - mountPath: /home/datapool/ajna-certs
+#        name: ajnacerts
+#        readOnly: true
+#      - mountPath: /home/datapool/datapool-config
+#        name: datapoolconfig
+#        readOnly: true
+
+    - name: sherpa
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sherpa:2-0000153-5dbf127d
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: kingdom-test
+
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /client-certs
+        name: client-certs
+    count: 1
+
+
+    volumes:
+    - hostPath:
+        path: /data/sam/wave/log/datapool
+      name: logvol
+
+#    - name: ajnacerts
+#      secret:
+#        secretName: ajna-certs
+
+    - name: datapoolkeytab
+      secret:
+        secretName: datapool-keytab
+
+#    - name: datapoolconfig
+#      secret:
+#        secretName: datapool-config
+
+    - maddogCert:
+        type: server
+      name: server-certs
+
+    - maddogCert:
+        type: client
+      name: client-certs
+
+
+  loadbalancers:
+  - lbname: datapool-lb
+    function: datapool-service
+    nodeExposed: true
+    slbenabled: true
+    ports:
+      - port: 7025
+        targetport: 7012
+      - port: 7120
+        targetport: 7020
+      - port: 7045
+        targetport: 7443
+      - port: 15375
+        targetport: 15373
+      - port: 15376
+        targetport: 15372
+
