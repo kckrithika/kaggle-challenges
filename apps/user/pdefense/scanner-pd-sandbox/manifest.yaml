@@ -29,6 +29,8 @@ system:
       ports:
       - containerPort: 7443
         name: sherpa-in-tls
+      - containerPort: 7014
+        name: sherpa-in
       - containerPort: 15373
         name: sherpa-adm
       volumeMounts:
@@ -57,6 +59,8 @@ system:
       args:
       - -endpoint
       - samapp/user-pdefense/scanner-pd-sandbox:DATACENTER:7443
+      - -endpoint
+      - samapp/user-pdefense/scanner-pd-sandbox:DATACENTER:7014
       livenessProbe:
         initialDelaySeconds: 5
         exec:
