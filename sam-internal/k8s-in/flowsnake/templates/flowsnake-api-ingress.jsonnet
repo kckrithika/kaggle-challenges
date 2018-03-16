@@ -1,4 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local estate = std.extVar("estate");
+if estate == "prd-data-flowsnake_test" then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Ingress",
@@ -23,6 +25,35 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                    }
                ]
            else []),
+        rules: [
+            {
+                http: {
+                    paths: [
+                        {
+                            path: "/flowsnake",
+                            backend: {
+                                serviceName: "flowsnake-fleet-service",
+                                servicePort: 8080,
+                            },
+                        },
+                    ],
+                },
+            },
+        ],
+    },
+}
+else
+{
+    apiVersion: "extensions/v1beta1",
+    kind: "Ingress",
+    metadata: {
+        name: "fleet-service-ingress",
+        namespace: "flowsnake",
+        annotations: {
+            "ingress.kubernetes.io/rewrite-target": "/",
+        },
+    },
+    spec: {
         rules: [
             {
                 http: {
