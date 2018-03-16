@@ -39,6 +39,17 @@ else
                 name: "datacerts",
               },
             ],
+            env: [
+              {
+                name: "FLOWSNAKE_FLEET",
+                valueFrom: {
+                  configMapKeyRef: {
+                    name: "fleet-config",
+                    key: "name",
+                  },
+                },
+              },
+            ],
           },
           {
             name: "sam-madkub-integration-refresher",
