@@ -13,4 +13,6 @@ apps:
       - prd/prd-sp2-sam_iot_test
   enrichment-staging:
       - prd/prd-sp2-sam_iot_test
+  provisioning-staging:
+      - prd/prd-sp2-sam_iot_test
 

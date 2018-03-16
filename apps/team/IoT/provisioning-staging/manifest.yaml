@@ -1,0 +1,241 @@
+---
+  apiVersion: "v1"
+  system: 
+    functions: 
+      - 
+        containers: 
+          - 
+            env: 
+              - 
+                name: "AQUEDUCT_HOST"
+                value: "int1shared0-internal-emp-aqueduct1-0-prd.data.sfdc.net"
+              - 
+                name: "BUILD_NUMBER"
+                value: "11"
+              - 
+                name: "COMPILER_CORES"
+                value: "2"
+              - 
+                name: "COMPILER_MEMORY"
+                value: "8 gigabytes"
+              - 
+                name: "COMPILER_REPLICAS"
+                value: "1"
+              - 
+                name: "COMPILER_STORM_JAR_JVM_OPTS"
+                value: "-XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g"
+              - 
+                name: "COMPILER_TAG"
+                value: "6cc1a40"
+              - 
+                name: "CONTROLPLANE_ENDPOINT"
+                value: "shared0-samminioniottest1-1-prd.eng.sfdc.net:9115"
+              - 
+                name: "ENRICHMENTSVC_HOST"
+                value: "shared0-samminioniottest1-1-prd.eng.sfdc.net:9136"
+              - 
+                name: "ENV_FLOWSNAKE_MANIFEST_PATH"
+                value: "classpath:/manifests/provisioning.json"
+              - 
+                name: "ENV_ORGS"
+                value: "500000000000006"
+              - 
+                name: "ENV_PREFIX"
+                value: "iot-prd-staging-"
+              - 
+                name: "ENV_UPGRADE"
+                value: "true"
+              - 
+                name: "FLOWSNAKE_OWNER_GROUP"
+                value: "iot-rm-flowsnake"
+              - 
+                name: "FLOWSNAKE_PLATFORM_VERSION"
+                value: "0.9.6"
+              - 
+                name: "FLOWSNAKE_URL"
+                value: "https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net"
+              - 
+                name: "INTAKE_CORES"
+                value: "2"
+              - 
+                name: "INTAKE_JAVA_OPTS"
+                value: "-Xmx6g -Xms6g"
+              - 
+                name: "INTAKE_MEMORY"
+                value: "8 gigabytes"
+              - 
+                name: "INTAKE_REPLICAS"
+                value: "1"
+              - 
+                name: "INTAKE_TAG"
+                value: "1cfce68"
+              - 
+                name: "JAVA_OPTS"
+                value: "-server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m -XX:ParallelGCThreads=5 -XX:ConcGCThreads=5"
+              - 
+                name: "KAFKA_CLIENT_ID"
+                value: "iotrm_integ"
+              - 
+                name: "KAFKA_NAMESPACE"
+                value: "sfdc.test.iot.integration"
+              - 
+                name: "LOGGING_JSON_STDOUT_LEVEL"
+                value: "all"
+              - 
+                name: "LOGGING_STDERR_LEVEL"
+                value: "ALL"
+              - 
+                name: "SUBMITTER_CORES"
+                value: "1"
+              - 
+                name: "SUBMITTER_HEAP"
+                value: "1 gigabytes"
+              - 
+                name: "SUBMITTER_MEMORY"
+                value: "1200 megabytes"
+              - 
+                name: "WORKER_CORES"
+                value: "4"
+              - 
+                name: "WORKER_HEAP"
+                value: "4 gigabytes"
+              - 
+                name: "WORKER_MEMORY"
+                value: "8 gigabytes"
+              - 
+                name: "WORKER_REPLICAS"
+                value: "2"
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:5cd2d65"
+            livenessProbe: 
+              httpGet: 
+                path: "/manage/health"
+                port: 15372
+              initialDelaySeconds: 120
+              timeoutSeconds: 120
+            name: "provisioning-staging"
+            ports: 
+              - 
+                containerPort: 15372
+                name: "mgmt"
+              - 
+                containerPort: 7020
+                name: "grpc"
+              - 
+                containerPort: 8080
+                name: "http"
+            resources: 
+              limits: 
+                cpu: 2
+                memory: "1G"
+              requests: 
+                cpu: 1
+                memory: "1G"
+            volumeMounts: 
+              - 
+                mountPath: "/home/provisioning/certs"
+                name: "certs"
+              - 
+                mountPath: "/home/provisioning/secrets"
+                name: "flowsnake"
+                readOnly: true
+              - 
+                mountPath: "/home/provisioning/hbase"
+                name: "flowsnake-keytab"
+                readOnly: true
+              - 
+                mountPath: "/home/provisioning/p12cert"
+                name: "flowsnake-p12cert"
+                readOnly: true
+              - 
+                mountPath: "/home/provisioning/aqueduct-keystore"
+                name: "flowsnake-aqueduct-keystore"
+                readOnly: true
+          - 
+            env: 
+              - 
+                name: "SFDC_ENVIRONMENT"
+                value: "staging"
+            image: "sfci/servicelibs/sherpa:2.0.22"
+            livenessProbe: 
+              exec: 
+                command: 
+                  - "./bin/is-alive"
+                initialDelaySeconds: 10
+                periodSeconds: 5
+            name: "sherpa"
+            ports: 
+              - 
+                containerPort: 7012
+                name: "sherpa-in"
+              - 
+                containerPort: 7443
+                name: "sherpa-tls"
+              - 
+                containerPort: 15373
+                name: "sherpa-adm"
+            readinessProbe: 
+              exec: 
+                command: 
+                  - "./bin/is-ready"
+                initialDelaySeconds: 5
+                periodSeconds: 5
+            volumeMounts: 
+              - 
+                mountPath: "/server-certs"
+                name: "server-certs"
+              - 
+                mountPath: "/client-certs"
+                name: "client-certs"
+        count: 1
+        name: "provisioning-staging"
+        strategy: 
+          type: "Recreate"
+        volumes: 
+          - 
+            maddogCert: 
+              type: "client"
+            name: "certs"
+          - 
+            name: "flowsnake"
+            secret: 
+              secretName: "flowsnake"
+          - 
+            name: "flowsnake-keytab"
+            secret: 
+              secretName: "flowsnake-keytab"
+          - 
+            name: "flowsnake-p12cert"
+            secret: 
+              secretName: "flowsnake-p12cert"
+          - 
+            name: "flowsnake-aqueduct-keystore"
+            secret: 
+              secretName: "flowsnake-aqueduct-keystore"
+          - 
+            maddogCert: 
+              type: "server"
+            name: "server-certs"
+          - 
+            maddogCert: 
+              type: "client"
+            name: "client-certs"
+    loadbalancers: 
+      - 
+        function: "provisioning-staging"
+        lbname: "provisioning-staging-lb"
+        nodeExposed: true
+        ports: 
+          - 
+            port: 9116
+            targetport: 7012
+          - 
+            port: 15374
+            targetport: 15372
+          - 
+            port: 8116
+            targetport: 8080
+        slbEnabled: true
+    notifications: 
+      email: 
+        - "mbyne@salesforce.com"
+
