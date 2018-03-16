@@ -1,5 +1,6 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 if !flowsnakeconfig.maddog_enabled then
@@ -38,7 +39,10 @@ else
                 mountPath: "/certs",
                 name: "datacerts",
               },
-            ],
+            ] +
+            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+            flowsnakeconfigmapmount.platform_cert_volumeMounts +
+            flowsnakeconfigmapmount.maddog_volumes,
             env: [
               {
                 name: "FLOWSNAKE_FLEET",
@@ -48,6 +52,15 @@ else
                     key: "name",
                   },
                 },
+              },
+              {
+                name: "KUBECONFIG",
+                valueFrom: {
+                  configMapKeyRef: {
+                    name: "fleet-config",
+                    key: "kubeconfig",
+                  },
+                 },
               },
             ],
           },
