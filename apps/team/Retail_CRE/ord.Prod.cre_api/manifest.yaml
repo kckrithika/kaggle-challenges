@@ -33,7 +33,12 @@ system:
       - mountPath: /opt/cre/cre-api_prod
         name: logvol
     - name: sherpa-cre-api
-      image: sfci/servicelibs/sherpa:2.0.15
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
