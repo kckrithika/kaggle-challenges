@@ -20,6 +20,8 @@ system:
       env:
       - name: UBID_DEPLOYMENT_STAGE
         value: ALL
+      - name: DUMMY_ENVIRONMENT
+        value: "xfs-debug"
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
