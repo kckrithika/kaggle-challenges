@@ -31,8 +31,8 @@ std.prune({
   maddogMadkubImage: samimages.madkubSidecar,
 
   # SLB
-  slbConfigInLabels: (if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtwo" then true else if configs.kingdom != "prd" then false),
-  slbConfigInAnnotations: (if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtwo" then true else if configs.kingdom != "prd" then false),
+  slbConfigInLabels: (if configs.kingdom != "prd" then false),
+  slbConfigInAnnotations: (if configs.kingdom != "prd" then false),
 
   k4aInitContainerImage: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" || configs.kingdom == "iad" || configs.kingdom == "ord" then samimages.k4aInitContainerImage),
 
