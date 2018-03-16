@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import fnmatch
 import sys
 import subprocess
 import json
@@ -211,6 +212,12 @@ def find_control_estates(pools_arg):
     sorted(ret)
     return ret
 
+def filter_estates(estates, filters):
+    for e in estates:
+        for f in filters:
+            if fnmatch.fnmatch(e, f):
+                yield e
+
 def main():
     # Process arguments
     parser = argparse.ArgumentParser(description='Run jsonnet in parallel to build control estates templates')
@@ -227,8 +234,8 @@ def main():
     if args.estatefilter != None and len(args.estatefilter)>0:
       estate_filter = args.estatefilter.split(",")
       for this_filter in estate_filter:
-        if len(this_filter.split("/")) != 2:
-          print("Estate filter expected to be in format kingdom/estate.  Got " + this_filter)
+        if len(this_filter.split("/")) > 2:
+          print("Estate filter expected to be in format 'kingdom/estate' or '*somesubstring*' but got " + this_filter)
           sys.exit(1)
 
     # Write temp files in CWD because they can be useful for debugging (we use gitignore)
@@ -246,7 +253,8 @@ def main():
         sys.exit(1)
 
     if len(estate_filter)>0:
-        control_estates = list(set(control_estates) & set(estate_filter))
+        control_estates = list(filter_estates(control_estates, estate_filter))
+        print("Filter matched the following estates: " + str(control_estates))
 
     # Do the work
     work_items = make_work_items(template_dirs.split(","), output_dir, control_estates)
