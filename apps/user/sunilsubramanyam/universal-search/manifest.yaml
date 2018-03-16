@@ -30,10 +30,10 @@ system:
       livenessProbe:
         exec:
           command:
-          - "./run.sh"
-        initialDelaySeconds: 120
-        timeoutSeconds: 420
-        periodSeconds: 900
+          - "/home/sfdc-usmt/run.sh"
+        initialDelaySeconds: 60
+        timeoutSeconds: 240
+        periodSeconds: 720
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
       ports:
