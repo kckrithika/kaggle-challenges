@@ -21,6 +21,8 @@ if configs.estate == "prd-sdc" then {
                    slbconfigs.logs_volume,
                    configs.sfdchosts_volume,
                    configs.kube_config_volume,
+                   configs.cert_volume,
+                   configs.maddog_cert_volume,
                 ]),
                 containers: [
                     {
@@ -37,6 +39,8 @@ if configs.estate == "prd-sdc" then {
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
                             configs.kube_config_volume_mount,
+                            configs.cert_volume_mount,
+                            configs.maddog_cert_volume_mount,
                         ]),
                         env: [
                             configs.kube_config_env,
