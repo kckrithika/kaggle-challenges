@@ -34,6 +34,10 @@ spec:
           name: sfdchosts
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       nodeSelector:
         pool: prd-sdc
       volumes:
@@ -49,3 +53,9 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
