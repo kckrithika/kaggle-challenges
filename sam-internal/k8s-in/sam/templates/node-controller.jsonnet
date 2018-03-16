@@ -1,9 +1,9 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 # Only private PROD info is provided for node-controller currently
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+if samfeatureflags.estatessvc then {
     kind: "Deployment",
     spec: {
         replicas: 1,

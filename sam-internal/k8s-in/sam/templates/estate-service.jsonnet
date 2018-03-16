@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 # Only private PROD info is provided by estate service currently
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+if samfeatureflags.estatessvc then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {

@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 {
 
@@ -22,7 +23,7 @@ local utils = import "util_functions.jsonnet";
                             "--logtostderr=true",
                             "--config=/config/samcontrol.json",
                             configs.sfdchosts_arg,
-                        ]) + (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then [
+                        ]) + (if samfeatureflags.maddogforsamapps then [
                                   # Kept here because of the use of the envvar. Keep in sync with the config.
                                   "-maddogMadkubEndpoint=" + "https://$(MADKUBSERVER_SERVICE_HOST):32007",
                               ] else []),

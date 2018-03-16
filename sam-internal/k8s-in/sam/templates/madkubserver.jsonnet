@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+if samfeatureflags.maddogforsamapps then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {

@@ -99,7 +99,7 @@ std.prune({
   enableStatefulPVChecks: (if configs.estate == "prd-samdev" then true),
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
 
-  enableMaddogCertChecks: (if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then true),
+  enableMaddogCertChecks: (if samfeatureflags.maddogforsamhosts then true),
 
 })
   + (if utils.is_cephstorage_supported(configs.estate) then {
