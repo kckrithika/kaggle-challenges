@@ -3,8 +3,6 @@ system:
   functions:
   - containers:
     - env:
-      - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
-        value: ajna0-zk1-1-prd.ops.sfdc.net
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.integration
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
