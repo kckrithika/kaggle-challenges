@@ -977,6 +977,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-search_model_executor",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
