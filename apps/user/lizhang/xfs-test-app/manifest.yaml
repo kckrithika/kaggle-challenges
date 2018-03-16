@@ -13,14 +13,7 @@ system:
         httpGet:
           path: /
           port: 9090
-      volumeMounts:
-      - mountPath: /home/sfdc-xfstest
-        name: hostdatavol
-    volumes:
-    - name: hostdatavol
-      hostPath:
-        path: /data/logs
- 
+
   loadbalancers:
   - lbname: testxfslb
     function: xfs-test-app
