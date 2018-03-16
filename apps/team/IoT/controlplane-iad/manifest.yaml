@@ -1,0 +1,137 @@
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - env:
+      - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
+        value: ajna0-zk1-1-iad.ops.sfdc.net
+      - name: DVAKAFKA_TOPICAPI_NAMESPACE
+        value: sfdc.prod.iot
+      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
+        value: /home/controlplane/cacerts
+      - name: LOGGING_STDERR_LEVEL
+        value: ALL
+      - name: METRICS_FUNNELURL
+        value: http://ajna0-funnel1-0-iad.data.sfdc.net
+      - name: PHOENIX_DATACENTER
+        value: iad
+      - name: PHOENIX_KEYTABPATH
+        value: /home/controlplane/controlplane-keytab/iot.keytab
+      - name: PHOENIX_KEYTABPRINCIPAL
+        value: iot
+      - name: PHOENIX_KEYTABUSER
+        value: iot
+      - name: SETTINGS_PATH
+        value: prod.-.iad.-.controlplane
+      - name: SETTINGS_SUPERPOD
+        value: NONE
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      - name: SVCMESH_ANNOUNCE_PORT
+        value: 7012
+      - name: SVCMESH_ANNOUNCE_SERVICENAME
+        value: controlplane
+      image: ops0-artifactrepo2-0-iad.data.sfdc.net/docker-sfci-dev/sfci/iot/enterprise-controlplane:1.0.0.18
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 120
+        timeoutSeconds: 120
+      name: controlplane
+      ports:
+      - containerPort: 15372
+        name: mgmt
+      - containerPort: 7020
+        name: grpc
+      resources:
+        limits:
+          cpu: 7
+          memory: 16G
+        requests:
+          cpu: 2
+          memory: 2G
+      volumeMounts:
+      - mountPath: /home/controlplane/logs
+        name: logvol
+      - mountPath: /home/controlplane/ajna-certs
+        name: ajnacerts
+        readOnly: true
+      - mountPath: /home/controlplane/controlplane-keytab
+        name: controlplanekeytab
+        readOnly: true
+    - env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      image: sfci/servicelibs/sherpa:2.0.23
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      name: sherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /client-certs
+        name: client-certs
+    - args:
+      - -endpoint
+      - controlplane:DATACENTER:7012
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+      name: beacon
+    count: 2
+    name: controlplane
+    strategy:
+      type: Recreate
+    volumes:
+    - hostPath:
+        path: /data/sam/iot/log/controlplane
+      name: logvol
+    - name: ajnacerts
+      secret:
+        secretName: ajna-certs
+    - name: controlplanekeytab
+      secret:
+        secretName: controlplane-keytab
+    - maddogCert:
+        type: server
+      name: server-certs
+    - maddogCert:
+        type: client
+      name: client-certs
+  loadbalancers:
+  - function: controlplane
+    lbname: controlplane-lb
+    nodeExposed: true
+    ports:
+    - port: 7443
+      targetport: 7012
+    - port: 15372
+      targetport: 15372
+    slbEnabled: true
+  notifications:
+    email:
+    - iotenterprise@salesforce.com

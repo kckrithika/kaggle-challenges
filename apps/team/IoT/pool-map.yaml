@@ -15,4 +15,6 @@ apps:
       - prd/prd-sp2-sam_iot_test
   provisioning-staging:
       - prd/prd-sp2-sam_iot_test
+  controlplane-iad:
+      - iad/iad-sam_iot
 
