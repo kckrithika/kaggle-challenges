@@ -37,8 +37,6 @@ system:
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: controlplane
-      - name: JAVA_OPTS
-        value: -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-3c7f517
       livenessProbe:
         httpGet:
