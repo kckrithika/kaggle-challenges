@@ -196,21 +196,21 @@
               type: "client"
             name: "certs"
           - 
-            name: "flowsnake"
-            secret: 
+            k4aSecret: 
               secretName: "flowsnake"
+            name: "flowsnake"
           - 
-            name: "flowsnake-keytab"
-            secret: 
+            k4aSecret: 
               secretName: "flowsnake-keytab"
+            name: "flowsnake-keytab"
           - 
-            name: "flowsnake-p12cert"
-            secret: 
+            k4aSecret: 
               secretName: "flowsnake-p12cert"
+            name: "flowsnake-p12cert"
           - 
-            name: "flowsnake-aqueduct-keystore"
-            secret: 
+            k4aSecret: 
               secretName: "flowsnake-aqueduct-keystore"
+            name: "flowsnake-aqueduct-keystore"
           - 
             maddogCert: 
               type: "server"
