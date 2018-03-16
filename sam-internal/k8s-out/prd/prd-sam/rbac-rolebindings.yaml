@@ -741,13 +741,9 @@ items:
   - kind: User
     name: shared0-sdbcompute1-2-prd.eng.sfdc.net
   - kind: User
-    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
-  - kind: User
     name: shared0-sdbcompute2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -763,13 +759,9 @@ items:
   - kind: User
     name: shared0-sdbcompute1-2-prd.eng.sfdc.net
   - kind: User
-    name: shared0-sdbcompute1-3-prd.eng.sfdc.net
-  - kind: User
     name: shared0-sdbcompute2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-  - kind: User
-    name: shared0-sdbcompute2-3-prd.eng.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:

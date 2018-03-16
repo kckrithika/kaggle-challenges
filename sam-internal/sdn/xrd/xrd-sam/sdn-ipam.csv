@@ -1,0 +1,12 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute1-1-xrd.eng.sfdc.net,10.210.202.66/28,10.229.0.128/27,c05-02,xrd-sam
+shared0-samcompute1-2-xrd.eng.sfdc.net,10.210.202.82/28,10.229.0.160/27,r11-02,xrd-sam
+shared0-samcompute2-1-xrd.eng.sfdc.net,10.210.202.2/28,10.229.0.96/27,b08-02,xrd-sam
+shared0-samkubeapi1-1-xrd.eng.sfdc.net,10.210.202.18/28,10.229.0.0/27,a06-02,xrd-sam
+shared0-samkubeapi2-1-xrd.eng.sfdc.net,10.210.202.34/28,10.229.0.64/27,b07-02,xrd-sam
+shared0-samkubeapi3-1-xrd.eng.sfdc.net,10.210.202.50/28,10.229.0.32/27,b04-02,xrd-sam
+shared0-samminiongater1-1-xrd.eng.sfdc.net,10.210.201.154/29,10.229.2.64/27,b08-02,xrd-sam_gater
+shared0-samminiongater1-2-xrd.eng.sfdc.net,10.210.201.130/29,10.229.2.96/27,c09-02,xrd-sam_gater
+shared0-samminiongater1-3-xrd.eng.sfdc.net,10.210.201.138/29,10.229.2.0/27,a05-02,xrd-sam_gater
+shared0-samminiongater2-1-xrd.eng.sfdc.net,10.210.201.146/29,10.229.2.128/27,k04-02,xrd-sam_gater
+shared0-samminiongater2-2-xrd.eng.sfdc.net,10.210.201.162/29,10.229.2.32/27,a09-02,xrd-sam_gater
