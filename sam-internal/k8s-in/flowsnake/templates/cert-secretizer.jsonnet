@@ -251,7 +251,10 @@ else
               medium: "Memory",
             },
           },
-        ],
+        ] +
+        flowsnakeconfigmapmount.kubeconfig_platform_volume +
+        flowsnakeconfigmapmount.platform_cert_volume +
+        flowsnakeconfigmapmount.maddog_volumeMounts,
       },
     },
   },
