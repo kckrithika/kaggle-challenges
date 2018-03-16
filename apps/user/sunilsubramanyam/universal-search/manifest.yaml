@@ -34,6 +34,12 @@ system:
         initialDelaySeconds: 60
         timeoutSeconds: 240
         periodSeconds: 720
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-usmt/run.sh"
+        initialDelaySeconds: 60
+        timeoutSeconds: 300
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
       ports:
