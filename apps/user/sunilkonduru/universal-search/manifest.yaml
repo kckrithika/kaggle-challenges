@@ -19,7 +19,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sunil.kksubramanyam/universal-search-synthetics:test
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sunil.kksubramanyam/universal-search-synthetics:0.0.1
       resources:
         limits: { cpu: "2", memory: "4Gi" }
         requests: { cpu: "2", memory: "4Gi" }
