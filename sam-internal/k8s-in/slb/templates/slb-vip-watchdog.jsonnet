@@ -37,6 +37,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--hostnameOverride=$(NODE_NAME)",
                             configs.sfdchosts_arg,
                             "--metricsEndpoint=" + configs.funnelVIP,
+                            "--httpTimeout=5s",
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,

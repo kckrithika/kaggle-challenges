@@ -42,6 +42,7 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
+        - --httpTimeout=5s
         env:
         - name: NODE_NAME
           valueFrom:
