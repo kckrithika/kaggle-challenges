@@ -23,7 +23,11 @@ local utils = import "util_functions.jsonnet";
 
     # MadDog
     maddogforsamapps: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
-    # Keep this in sync with maddog_cert_volume and maddog_cert_volume_mount in configs.jsonnet
-    maddogforsamhosts: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
+
+    maddogforsamhosts: configs.maddogForSamHostsEnabled,
+
+    # EstatesSvc gets an rpm from estates but that does not have data for GIA or public cloud
+    # NodeController uses estatesSvc.
+    estatessvc: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
 
 }

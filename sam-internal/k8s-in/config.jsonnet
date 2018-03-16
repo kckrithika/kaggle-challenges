@@ -105,10 +105,12 @@ local utils = import "util_functions.jsonnet",
 
     # Commonly used elements for kubernetes resources
 
+    maddogForSamHostsEnabled: !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom),
+
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         name: "KUBECONFIG",
-        value: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
+        value: (if $.maddogForSamHostsEnabled then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
     },
     kube_config_volume_mount: {
         mountPath: "/kubeconfig",
@@ -145,7 +147,7 @@ local utils = import "util_functions.jsonnet",
         name: "certs",
     },
     caFile: (
-        if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+        if $.maddogForSamHostsEnabled then
             "/etc/pki_service/ca/cabundle.pem"
         else
             "/data/certs/ca.crt"
@@ -153,7 +155,7 @@ local utils = import "util_functions.jsonnet",
     keyFile: (
         if utils.is_flowsnake_cluster(estate) then
             "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
-        else if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+        else if $.maddogForSamHostsEnabled then
             "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
         else
             "/data/certs/hostcert.key"
@@ -161,7 +163,7 @@ local utils = import "util_functions.jsonnet",
     certFile: (
         if utils.is_flowsnake_cluster(estate) then
             "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem"
-        else if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+        else if $.maddogForSamHostsEnabled then
             "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
         else
             "/data/certs/hostcert.crt"
@@ -175,14 +177,12 @@ local utils = import "util_functions.jsonnet",
     maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
 
     # For apps that read MadDog certs from the host
-    # This condition needs to be kept in sync with the feature flag in sam/sam-feature-flags.maddogforsamhosts
-    maddog_cert_volume_mount: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+    maddog_cert_volume_mount: (if $.maddogForSamHostsEnabled then
     {
         mountPath: "/etc/pki_service",
         name: "maddog-certs",
     } else {}),
-    # This condition needs to be kept in sync with the feature flag in sam/sam-feature-flags.maddogforsamhosts
-    maddog_cert_volume: (if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+    maddog_cert_volume: (if $.maddogForSamHostsEnabled then
     {
         hostPath: {
             path: "/etc/pki_service",
