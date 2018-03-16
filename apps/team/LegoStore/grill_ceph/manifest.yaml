@@ -7,7 +7,7 @@ system:
     count: 2
     containers:
     - name: stateful-small
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/legostore/grill_ceph:v1-0000007-252062b3 
+      image: tnrp/legostore/grill_ceph:v1-0000007-252062b3 
       command:
         - /bin/grill_ceph
       ports:
