@@ -20,6 +20,7 @@ if configs.estate == "prd-sdc" then {
                    slbconfigs.slb_volume,
                    slbconfigs.logs_volume,
                    configs.sfdchosts_volume,
+                   configs.kube_config_volume,
                 ]),
                 containers: [
                     {
@@ -29,13 +30,17 @@ if configs.estate == "prd-sdc" then {
                             "/sdn/slb-labels-checker",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--metricsEndpoint=" + configs.funnelVIP,
-                            "--labelValues=" + "slb-ipvs: 2, slb-nginx: 2, slb-dns: 1",
+                            "--labelValues=slb-ipvs:2,slb-nginx-b:2,slb-dns:1",
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
+                            configs.kube_config_volume_mount,
                         ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 nodeSelector: {
