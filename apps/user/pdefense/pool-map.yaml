@@ -1,0 +1,5 @@
+apps:
+  scan-client-demo:
+    - prd/prd-sam
+  scanner-pd-sandbox:
+    - prd/prd-sam

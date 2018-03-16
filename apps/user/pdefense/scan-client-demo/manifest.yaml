@@ -1,0 +1,62 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: pd-scan-client-demo
+    count: 1
+
+    volumes:
+    - name: pd-scd-client-cert
+      maddogCert:
+        type: client
+    - name: pd-scd-server-cert
+      maddogCert:
+        type: server
+
+    containers:
+    - name: scan-client-demo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/gills/scan-client-demo:20180315_0900
+      env:
+        - name: GRPC_ENDPOINT_TLS
+          value: "scanner-pd-sandbox.user-pdefense.samapp.localhost.mesh.force.com:5443"
+        - name: GRPC_ENDPOINT
+          value: "scanner-pd-sandbox.user-pdefense.samapp.localhost.mesh.force.com:7011"
+      ports:
+      - name: web
+        containerPort: 8080
+      - name: web-admin
+        containerPort: 15374
+      livenessProbe:
+        exec:
+          command: ["true"]
+      # httpGet:
+      #   path: /ping
+      #   port: 8084
+      # initialDelaySeconds: 30
+      # periodSeconds: 5
+
+    - name: pd-scan-client-sherpa
+      image: sfci/servicelibs/sherpa:2.0.23
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      volumeMounts:
+      - name: pd-scd-client-cert
+        mountPath: /client-certs # The path in the mesh proxy container to mount client certs on. The mesh proxy looks in /client-certs by default
+      - name: pd-scd-server-cert
+        mountPath: /server-certs
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
