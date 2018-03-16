@@ -33,10 +33,6 @@ system:
       ports:
         - port: 9099
           targetport: 9099
-
-  - name: grill-ceph-sfms
-    count: 1
-    containers:
     # metric streamer as side-car container
     - name: sfms
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
