@@ -7,6 +7,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 local ci = {
   "prd-sp2-sam_iot_test": ["iot-ci", "ci-iot"],
   "prd-sp2-sam_chatbot": ["chatbot-ci"],
+  "prd-sp2-sam_coreapp": ["ci-ice-pd"],
 };
 
 # Functions
