@@ -17,12 +17,12 @@ if estate == "prd-data-flowsnake_test" then
         },
     },
     spec: {
-       tls: 
+       tls:
            (if !flowsnakeconfig.is_minikube then
                [
                    {
-                       secretName: "flowsnake-tls"
-                   }
+                       secretName: "flowsnake-tls",
+                   },
                ]
            else []),
         rules: [
