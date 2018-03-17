@@ -3,16 +3,16 @@ apiVersion: v1
 system:
   functions:
   -
-    name: sme-all
+    name: sme-synthetics-qa
     count: 4
     containers:
     -
       name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssstestorganization/smt-search-model-executor:0.0-RC.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.krishnan/search-model-executor:synthetics-qa
       env:
       -
         name: GRPC_ANNOUNCED_NAME
-        value: sme-all
+        value: sme-synthetics-qa
       -
         name: SFDC_ENVIRONMENT
         value: sam
