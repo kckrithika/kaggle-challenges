@@ -28,7 +28,8 @@ system:
           path: /manage/health
           port: 15373
     - name: beacon-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:stoens-20180213-8c0bea8
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
       - ordering:DATACENTER:7012
@@ -43,7 +44,8 @@ system:
       - mountPath: /log
         name: logvol
     - name: sherpa-ordering
-      image: tnrp/sherpa:0.2.0-0000099-7cf33a3f
+      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
+      image: sfci/servicelibs/sherpa:2.0.24
       args: ["--http2-origin", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
