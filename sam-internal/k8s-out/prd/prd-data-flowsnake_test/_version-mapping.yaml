@@ -6,7 +6,7 @@ data:
     0.9.3 = 427
     0.9.4 = 447
     0.9.5 = 487
-    0.9.6 = 512
+    0.9.6 = jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest
     memoized-k8s-itest-ready = memoized-k8s-itest-ready
     tc-will-itest-ready = tc-will-itest-ready
 kind: ConfigMap
