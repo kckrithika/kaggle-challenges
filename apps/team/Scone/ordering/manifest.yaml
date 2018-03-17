@@ -44,6 +44,7 @@ system:
       - mountPath: /log
         name: logvol
     - name: sherpa-ordering
+      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
       image: sfci/servicelibs/sherpa:2.0.24
       args: ["--http2-origin", "localhost:7021"]
       env:
