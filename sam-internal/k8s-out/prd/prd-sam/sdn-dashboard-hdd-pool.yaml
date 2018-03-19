@@ -1,0 +1,11 @@
+apiVersion: csp.storage.salesforce.com/v1
+kind: CustomerStoragePool
+metadata:
+  annotations:
+    manifestctl.sam.data.sfdc.net/swagger: disable
+  name: sdn-dashboard-hdd-pool
+  namespace: sam-system
+spec:
+  clusterNamespace: legostore
+  size: 2Ti
+  storageTier: hdd
