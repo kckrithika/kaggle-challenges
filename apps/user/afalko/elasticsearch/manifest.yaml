@@ -57,14 +57,14 @@ system:
       storageSizeRequest: 100Gi
 
   loadbalancers:
-  - lbname: elasticsearch-rest
-    function: elasticsearch-rest
+  - lbname: es-rest
+    function: es-rest
     slbEnabled: true
     ports:
       - port: 9200
         targetport: 9200
-  - lbname: elasticsearch-transport
-    function: elasticsearch-transport
+  - lbname: es-transport
+    function: es-transport
     slbEnabled: true
     ports:
       - port: 9300
