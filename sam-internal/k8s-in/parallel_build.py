@@ -80,7 +80,7 @@ def make_multifile(item):
             computed_out_files.append(os.path.join(item.output_dir, outfile))
         multifile.write("}\n")
     return multifilename, computed_out_files
-    
+
 # Process one work item (a set of json templates for same estate+team)
 def run_jsonnet(item):
     multifilename, computed_out_files = make_multifile(item)
@@ -94,7 +94,7 @@ def run_jsonnet(item):
     cmd += " --jpath . "
     cmd += " --jpath " + includeDir
     (passed, msg) = run_cmd(cmd)
-    
+
     if passed:
         for outfile in computed_out_files:
             delete_if_skip(outfile)
@@ -184,8 +184,8 @@ def make_work_items(templates_args, output_root_dir, control_estates):
                 if not (teamDir in mapTeamToFiles):
                     mapTeamToFiles[teamDir] = []
                 mapTeamToFiles[teamDir].append(thisTemplate)
-            
-            for (team, files) in mapTeamToFiles.iteritems():
+
+            for (team, files) in mapTeamToFiles.items():
                 ret.append(jsonnet_workitem(kingdom, estate, files, full_out_dir, team))
     return ret
 
