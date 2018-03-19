@@ -1,0 +1,71 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - afalko@salesforce.com
+
+  functions:
+  - name: elasticsearch
+    count: 1
+    type: stateful-set
+    containers:
+    - name: elasticsearch
+      image: docker-dva-rc/dva/elasticsearch-server:2
+      #env:
+      #- name: ES_PASSWORD_FILE
+      #  value: /secrets/rootpassword
+      volumeMounts:
+      - mountPath: /var/lib/elasticsearch
+        name: elasticsearch-persistent-storage
+      #- mountPath: /certs
+      #  name: certs
+      #- mountPath: /secrets
+      #  name: es-pass
+      #  readOnly: true
+      
+      ports:
+      - containerPort: 9200
+        name: elasticsearch-rest
+      - containerPort: 9300
+        name: elasticsearch-transport
+
+      livenessProbe:
+        tcpSocket:
+          port: 9200
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
+        
+    volumes:
+    #- name: certs
+    #  maddogCert:
+    #    type: server
+    #- name: es-pass
+    #  k4aSecret:
+    #    secretName: es
+
+    lbname: elasticsearch-stateful-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing 
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 20
+
+    volumeClaimTemplates:
+    - name: elasticsearch-persistent-storage
+      storageClassName: standard
+      storageSizeRequest: 100Gi
+
+  loadbalancers:
+  - lbname: elasticsearch-rest
+    function: elasticsearch-rest
+    slbEnabled: true
+    ports:
+      - port: 9200
+        targetport: 9200
+  - lbname: elasticsearch-transport
+    function: elasticsearch-transport
+    slbEnabled: true
+    ports:
+      - port: 9300
+        targetport: 9300
