@@ -22,12 +22,6 @@ local utils = import "util_functions.jsonnet";
         # Lagging Public Cloud - etcdBackup needs a recent image
         "yhu,yhu-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
 
-        # [diana.chang] overriding samcontrol-deployer in prd-samtest/dev for webportal
-        #"prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180309_142438.4a213247.dirty.dianachang-ltm1",
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180315_105708.f92e80ec.dirty.dianachang-ltm1",
-        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
-        "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
-
         # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to public cloud. This stops spamming customers and publishes metrics to the correct scope.
         "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
 
@@ -41,14 +35,9 @@ local utils = import "util_functions.jsonnet";
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "prd,prd-samdev,snapshoter,hypersam": "auto",
-        "prd,prd-samtest,snapshoter,hypersam": "auto",
         "prd,prd-sam,snapshoter,hypersam": "sam-0001798-35713584",
 
-
         # [rbhat] Add referenceLink field to bundleStatus
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001796-fe64d75b",
-        "prd,prd-samtest,bundle-controller,hypersam": "sam-0001796-fe64d75b",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001796-fe64d75b",
     },
 
@@ -67,7 +56,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
         "1": {
-            hypersam: "sam-0001780-a269ec85",
+            hypersam: "sam-0001800-1972769a",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
