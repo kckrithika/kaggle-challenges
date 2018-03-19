@@ -20,7 +20,7 @@ spec:
       containers:
       - args:
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
-        - --sync-period=5s
+        - --sync-period=30s
         env:
         - name: POD_NAME
           valueFrom:
