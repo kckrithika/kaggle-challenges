@@ -94,12 +94,9 @@ system:
       # Non-namespaced, plaintext
       - -endpoint
       - geoip:DATACENTER:7012
-      # Namespaced, plaintext
-      - -endpoint
-      - ccait/geoip:DATACENTER:7012
       # Namespaced, TLS
       - -endpoint
-      - ccait/geoip-tls:DATACENTER:7443
+      - ccait/geoip:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -133,7 +130,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: GRPC_ROUTING_GEOIP_HOST
-          value: geoip-tls.ccait.localhost.mesh.force.com
+          value: geoip.ccait.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
           value: 5443
       resources:
