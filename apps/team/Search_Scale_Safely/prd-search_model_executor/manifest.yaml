@@ -14,7 +14,7 @@ system:
         maxUnavailable: 25%
     containers:
     - name: search-model-executor
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.6-RC.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/searchdev/smt-search-model-executor:1.6-RC.2
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
