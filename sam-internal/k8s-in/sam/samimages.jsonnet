@@ -43,7 +43,7 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "prd,prd-samdev,snapshoter,hypersam": "auto",
         "prd,prd-samtest,snapshoter,hypersam": "auto",
-        "prd,prd-sam,snapshoter,hypersam": "sam-0001792-01f8e580",
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001798-35713584",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
