@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: pdss-api-test1 
+    count: 2
+    containers:
+    - name: pdss-api-test1 
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-pdss-ap-test1:paras-20180316
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /dns/zone/pdss-a 
+          port: 8080
+  loadbalancers:
+  - lbname: pdssapitest1lb
+    function: pdss-api-test1 
+    slbenabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: tcp
