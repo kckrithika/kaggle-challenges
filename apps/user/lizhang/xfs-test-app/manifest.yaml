@@ -13,7 +13,14 @@ system:
         httpGet:
           path: /
           port: 9090
-
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: testsecret
   loadbalancers:
   - lbname: testxfslb
     function: xfs-test-app
