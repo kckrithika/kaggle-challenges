@@ -52,7 +52,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         } +
                         if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                                 path: "/",
-                                port: 38102,
+                                port: 38103,
                             } else {
                                 path: "/",
                                 port: 9095,
