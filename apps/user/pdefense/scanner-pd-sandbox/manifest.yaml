@@ -60,7 +60,7 @@ system:
       - -endpoint
       - samapp/user-pdefense/scanner-pd-sandbox:DATACENTER:7443
       - -endpoint
-      - samapp/user-pdefense/scanner-pd-sandbox:DATACENTER:7014
+      - scanner-pd-sandbox-plain:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
