@@ -26,7 +26,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000693-e1dfadf7",  # 693 requires change to slb-vip-watchdog parameter '--configDir'
+            hypersdn: "v-0000696-a1d6fcf1",
             slbnginx: "v-0000024-6c678838",
             },
 
