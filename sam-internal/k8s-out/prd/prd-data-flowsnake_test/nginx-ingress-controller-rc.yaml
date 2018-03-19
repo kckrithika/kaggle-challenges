@@ -32,7 +32,7 @@ spec:
               fieldPath: metadata.namespace
         - name: KUBECONFIG
           value: /etc/kubernetes/kubeconfig
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:345
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:535
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -71,9 +71,6 @@ spec:
         - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
           name: client-key
           readOnly: true
-        - mountPath: /data/certs
-          name: data-cert
-          readOnly: true
       terminationGracePeriodSeconds: 60
       volumes:
       - hostPath:
@@ -94,6 +91,3 @@ spec:
       - hostPath:
           path: /etc/pki_service/kubernetes/k8s-client/keys
         name: client-key
-      - hostPath:
-          path: /data/certs
-        name: data-cert

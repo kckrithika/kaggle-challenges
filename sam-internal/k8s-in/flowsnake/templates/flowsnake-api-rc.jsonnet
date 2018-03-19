@@ -101,17 +101,18 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                 readOnly: true,
                             },
                             {
+                                mountPath: "/etc/flowsnake/config/auth-namespaces",
+                                name: "auth-namespaces",
+                                readOnly: true,
+                            },
+                            {
                                 mountPath: "/etc/flowsnake/config/auth-groups",
                                 name: "auth-groups",
                                 readOnly: true,
                             },
                         ] +
-                        if flowsnakeconfig.maddog_enabled then
-                            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                            flowsnakeconfigmapmount.platform_cert_volumeMounts +
-                            flowsnakeconfigmapmount.maddog_volumes
-                        else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                            flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
                     },
                 ],
                 volumes: [
@@ -128,18 +129,20 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                         },
                     },
                     {
+                        name: "auth-namespaces",
+                        configMap: {
+                            name: "auth-namespaces",
+                        },
+                    },
+                    {
                         name: "auth-groups",
                         configMap: {
                             name: "auth-groups",
                         },
                     },
                 ] +
-                if flowsnakeconfig.maddog_enabled then
-                    flowsnakeconfigmapmount.kubeconfig_platform_volume +
-                    flowsnakeconfigmapmount.platform_cert_volume +
-                    flowsnakeconfigmapmount.maddog_volumeMounts
-                else flowsnakeconfigmapmount.kubeconfig_platform_volume +
-                    flowsnakeconfigmapmount.platform_cert_volume,
+                flowsnakeconfigmapmount.kubeconfig_platform_volume +
+                flowsnakeconfigmapmount.platform_cert_volume,
             },
         },
     },

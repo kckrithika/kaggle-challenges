@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  data: '[{"authorizedClientCerts": ["flowsnakemasteriottest", "flowsnake_master_iot_test"],
+    "authorizedLdapGroups": ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"}]'
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: auth-namespaces
+  namespace: flowsnake

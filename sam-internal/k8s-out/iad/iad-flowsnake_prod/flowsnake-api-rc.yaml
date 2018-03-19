@@ -61,6 +61,9 @@ spec:
         - mountPath: /etc/flowsnake/secrets/flowsnake-ldap
           name: flowsnake-ldap
           readOnly: true
+        - mountPath: /etc/flowsnake/config/auth-namespaces
+          name: auth-namespaces
+          readOnly: true
         - mountPath: /etc/flowsnake/config/auth-groups
           name: auth-groups
           readOnly: true
@@ -76,12 +79,6 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-        - mountPath: /data/certs
-          name: data-cert
-          readOnly: true
-        - mountPath: /etc/flowsnake/config/maddog-namespaces
-          name: maddog-namespaces
-          readOnly: true
       volumes:
       - name: flowsnake-ldap
         secret:
@@ -89,6 +86,9 @@ spec:
       - configMap:
           name: version-mapping
         name: version-mapping
+      - configMap:
+          name: auth-namespaces
+        name: auth-namespaces
       - configMap:
           name: auth-groups
         name: auth-groups
@@ -104,9 +104,3 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
-      - hostPath:
-          path: /data/certs
-        name: data-cert
-      - configMap:
-          name: maddog-namespaces
-        name: maddog-namespaces

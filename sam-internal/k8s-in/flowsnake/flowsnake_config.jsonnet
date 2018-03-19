@@ -29,10 +29,14 @@ local kingdom = std.extVar("kingdom");
         "prd-data-flowsnake_test",
     ],
     deepsea_enabled: std.count(self.deepsea_enabled_estates, estate) > 0,
-    maddog_disabled_estates: [
+    // Note: maddog_enabled if pki_agent working. Includes both "enabled" and "in-transition" Puppet settings
+    maddog_enabled: !self.is_minikube,
+    // Prefer cert_services certs on these estates. (But use MadDog cabundle if maddog_enabled)
+    cert_services_preferred_estates: [
+        "prd-data-flowsnake",
+        "prd-dev-flowsnake_iot_test",
     ],
-    maddog_enabled: !self.is_minikube && std.count(self.maddog_disabled_estates, estate) == 0,
-
+    cert_services_preferred: std.count(self.cert_services_preferred_estates, estate) == 1,
     host_ca_cert_path: if self.maddog_enabled then
         "/etc/pki_service/ca/cabundle.pem"
       else
@@ -45,7 +49,6 @@ local kingdom = std.extVar("kingdom");
         "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
       else
         "/data/certs/hostcert.key",
-
     fleet_name: if self.is_minikube then
             # See flowsnake-platform/flowsnake-config
             "minikube"
@@ -57,6 +60,11 @@ local kingdom = std.extVar("kingdom");
     funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
     funnel_vip_and_port: $.funnel_vip + ":80",
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
-
     sdn_enabled: !(self.is_minikube),
+    elastic_search_enabled: (
+        estate == "prd-data-flowsnake" ||
+        estate == "prd-data-flowsnake_test" ||
+        estate == "prd-dev-flowsnake_iot_test" ||
+        (self.is_minikube && !self.is_minikube_small)
+),
 }
