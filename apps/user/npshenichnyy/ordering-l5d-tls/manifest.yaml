@@ -16,15 +16,17 @@ system:
         value: shipping-l5d-tls.user-npshenichnyy.samapp.localhost.mesh.force.com:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      args:
+      - --server.port=15374
       ports:
       - containerPort: 7021
-      - containerPort: 15373
+      - containerPort: 15374
       - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15373
+          port: 15374
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
       image: sfci/servicelibs/sherpa:2.0.24
