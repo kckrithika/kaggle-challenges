@@ -31,7 +31,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /
-            port: 38102
+            port: 38103
           initialDelaySeconds: 20
           periodSeconds: 20
           timeoutSeconds: 20

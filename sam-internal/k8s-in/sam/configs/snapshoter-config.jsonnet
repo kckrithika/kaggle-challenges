@@ -12,7 +12,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
   "kafka-topic": "sfdc.prod.sam__" + configs.kingdom + ".ajna_local__resourcestatus",
   "ca-file": configs.caFile,
   "send-events": true,
-  "liveness-probe-port": 38102,
+  "liveness-probe-port": 38103,
 } else {
   recipient: "sam@salesforce.com",
   "ca-file": configs.caFile,
