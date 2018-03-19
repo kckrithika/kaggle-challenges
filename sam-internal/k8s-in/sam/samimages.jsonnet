@@ -44,6 +44,12 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,snapshoter,hypersam": "auto",
         "prd,prd-samtest,snapshoter,hypersam": "auto",
         "prd,prd-sam,snapshoter,hypersam": "sam-0001798-35713584",
+
+
+        # [rbhat] Add referenceLink field to bundleStatus
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001796-fe64d75b",
+        "prd,prd-samtest,bundle-controller,hypersam": "sam-0001796-fe64d75b",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001796-fe64d75b",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
