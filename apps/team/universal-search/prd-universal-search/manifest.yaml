@@ -51,8 +51,6 @@ system:
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
       ports:
-      - containerPort: 7012
-        name: sherpa-in
       - containerPort: 7443
         name: sherpa-tls  
       - containerPort: 15373
