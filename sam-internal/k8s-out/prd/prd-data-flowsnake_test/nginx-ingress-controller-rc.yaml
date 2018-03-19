@@ -20,6 +20,7 @@ spec:
       containers:
       - args:
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
+        - --sync-period=5s
         env:
         - name: POD_NAME
           valueFrom:
@@ -29,6 +30,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: KUBECONFIG
+          value: /etc/kubernetes/kubeconfig
         image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:535
         imagePullPolicy: Always
         livenessProbe:
