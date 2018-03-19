@@ -7,3 +7,6 @@ apps:
   - phx/phx-search_model_executor
   - dfw/dfw-search_model_executor
   - frf/frf-search_model_executor
+  - iad/iad-search_model_executor
+  - ord/ord-search_model_executor
+  - hnd/hnd-search_model_executor
