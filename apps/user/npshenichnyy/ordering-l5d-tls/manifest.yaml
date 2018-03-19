@@ -1,0 +1,71 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ordering-l5d-tls
+    count: 1
+    containers:
+    - name: ordering
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master
+      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/servicelibs/scone-ms-examples/scone-ordering:latest
+      # the image below is built at this commit:
+      # https://git.soma.salesforce.com/servicelibs/scone-ms-examples/commit/ba75674c97fec87b035923bcfff3eb995abf0044
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:plaird-20180228-da39b30
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      - name: SCONE_SHIPPING_HOST
+        value: shipping-l5d-tls.localhost.mesh.force.com
+      - name: SCONE_SHIPPING_PORT
+        value: 7011
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7021
+      - containerPort: 15373
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15373
+    - name: beacon
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - ordering-l5d-tls:DATACENTER:7012
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
+      image: sfci/servicelibs/sherpa:2.0.24
+      args: ["--http2-origin", "localhost:7021"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+          initialDelaySeconds: 120
+          periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+          initialDelaySeconds: 110
+          periodSeconds: 5
+
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-ordering-service/logs
