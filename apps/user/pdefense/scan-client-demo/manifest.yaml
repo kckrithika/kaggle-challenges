@@ -20,7 +20,7 @@ system:
         - name: GRPC_ENDPOINT_TLS
           value: "scanner-pd-sandbox.user-pdefense.samapp.localhost.mesh.force.com:5443"
         - name: GRPC_ENDPOINT
-          value: "scanner-pd-sandbox.user-pdefense.samapp.localhost.mesh.force.com:7011"
+          value: "scanner-pd-sandbox-plain.localhost.mesh.force.com:7011"
       ports:
       - name: web
         containerPort: 8080

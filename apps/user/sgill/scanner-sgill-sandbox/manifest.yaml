@@ -58,7 +58,7 @@ system:
       - -endpoint
       - samapp/user-sgill/scanner-sgill-sandbox:DATACENTER:7443
       - -endpoint
-      - scanner-sgill-sandbox-plain:DATACENTER:7014
+      - scanner-sgill-sandbox-plain:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
