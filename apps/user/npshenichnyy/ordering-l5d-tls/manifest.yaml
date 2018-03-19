@@ -52,14 +52,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        initialDelaySeconds: 110
+        periodSeconds: 5
       volumeMounts:
         - name: tls-client-cert
           mountPath: /client-certs
