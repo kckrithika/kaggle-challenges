@@ -86,11 +86,7 @@ local estate = std.extVar("estate");
                         ],
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
-                            # Future ingress controller expects annotations-prefix
-                            # "--annotations-prefix=ingress.kubernetes.io",
-                            # Future ingress controller version uses 30s
-                            #"--sync-period=30s",
-                            "--sync-period=5s",
+                            "--sync-period=30s",
                         ] + if !flowsnakeconfig.is_minikube then
                         [
                             # Future ingress controller versions use this argument instead of KUBECONFIG env var.
