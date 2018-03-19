@@ -13,7 +13,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sam
       - name: SCONE_SHIPPING_DEST
-        value: shipping-l5d-tls.localhost.mesh.force.com:5443
+        value: shipping-l5d-tls.user-npshenichnyy.samapp.localhost.mesh.force.com:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
@@ -25,22 +25,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15373
-    - name: beacon
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      args:
-      - -endpoint
-      - ordering-l5d-tls:DATACENTER:7443
-      - -logging.dir
-      - /log
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
       image: sfci/servicelibs/sherpa:2.0.24
