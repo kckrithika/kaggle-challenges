@@ -26,7 +26,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - shipping-l5d-tls:DATACENTER:7443
+      - samapp/user-npshenichnyy/shipping-l5d-tls:DATACENTER:7443     
       - -logging.dir
       - /log
       livenessProbe:
