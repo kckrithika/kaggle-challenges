@@ -39,10 +39,14 @@ else
                 mountPath: "/certs",
                 name: "datacerts",
               },
+              {
+                mountPath: "/etc/flowsnake/config/auth-namespaces",
+                name: "auth-namespaces",
+                readOnly: true,
+              },
             ] +
             flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-            flowsnakeconfigmapmount.platform_cert_volumeMounts +
-            flowsnakeconfigmapmount.maddog_volumes,
+            flowsnakeconfigmapmount.platform_cert_volumeMounts,
             env: [
               {
                 name: "FLOWSNAKE_FLEET",
@@ -251,10 +255,14 @@ else
               medium: "Memory",
             },
           },
+          {
+            name: "auth-namespaces",
+            configMap: {
+              name: "auth-namespaces",
+            },
+          },
         ] +
-        flowsnakeconfigmapmount.kubeconfig_platform_volume +
-        flowsnakeconfigmapmount.platform_cert_volume +
-        flowsnakeconfigmapmount.maddog_volumeMounts,
+        flowsnakeconfigmapmount.platform_cert_volume,
       },
     },
   },
