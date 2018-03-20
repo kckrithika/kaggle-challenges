@@ -14,8 +14,9 @@ system:
         value: -Xmx64m
       ports:
       - containerPort: 7020
+        name: h2-in
       - containerPort: 15372
-      - containerPort: 9010
+        name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
@@ -24,9 +25,16 @@ system:
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam      
       args:
+      # H2-TLS
       - -endpoint
       - samapp/user-npshenichnyy/shipping-l5d-tls:DATACENTER:7443     
+      # H2-Plain
+      - -endpoint
+      - samapp/user-npshenichnyy/shipping-l5d-tls-plain:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:
@@ -43,6 +51,13 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
+      ports:
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: h2-in
+      - containerPort: 15373
+        name: sherpa-adm        
       livenessProbe:
         exec:
           command:
@@ -56,11 +71,12 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
+        - name: logvol
+          mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
-
     volumes:
     - name: logvol
       hostPath:
@@ -71,3 +87,4 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+
