@@ -6,27 +6,27 @@ system:
     count: 1
     containers:
     - name: ordering
-      # with overriden --server.port=15374
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:npshenichnyy-20180319-d2f9380
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
       - name: SCONE_SHIPPING_DEST
         value: shipping-l5d-tls.user-npshenichnyy.samapp.localhost.mesh.force.com:5443
+      - name: SCONE_MANAGEMENT_PORT
+        value: 15372
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      #args:
-      #- --server.port=15374
       ports:
       - containerPort: 7021
-        name: h2-in
-      - containerPort: 15374
+        name: grpc-svc
+      - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15374
+          port: 15372
+
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
       image: sfci/servicelibs/sherpa:2.0.24
@@ -35,7 +35,6 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sam
       ports:
-      # No exposed ports, except for the admin interface
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
