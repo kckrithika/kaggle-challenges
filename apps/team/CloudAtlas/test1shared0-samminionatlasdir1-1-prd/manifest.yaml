@@ -84,4 +84,4 @@ system:
         type: server
     - name: secretsvol
       secret:
-        secretName: passw
+        secretName: passwd
