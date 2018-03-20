@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
-        "prd,prd-sam,snapshoter,hypersam": "sam-0001798-35713584",
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
 
         # [rbhat] Add referenceLink field to bundleStatus
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001796-fe64d75b",
