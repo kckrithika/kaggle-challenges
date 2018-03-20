@@ -38,6 +38,9 @@ system:
         failureThreshold: 100
         
     volumes:
+        - name: elasticsearch-persistent-storage
+          hostPath:
+          path: /data/elasticsearch
     #- name: certs
     #  maddogCert:
     #    type: server
@@ -51,10 +54,10 @@ system:
     # state into the PV on shutdown
     terminationGracePeriodSeconds: 20
 
-    volumeClaimTemplates:
-    - name: elasticsearch-persistent-storage
-      storageClassName: standard
-      storageSizeRequest: 100Gi
+    #volumeClaimTemplates:
+    #- name: elasticsearch-persistent-storage
+    #  storageClassName: standard
+    #  storageSizeRequest: 100Gi
 
   loadbalancers:
   - lbname: es-rest
