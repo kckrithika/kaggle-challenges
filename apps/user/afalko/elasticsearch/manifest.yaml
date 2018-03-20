@@ -26,9 +26,9 @@ system:
       
       ports:
       - containerPort: 9200
-        name: elasticsearch-rest
+        name: es-rest
       - containerPort: 9300
-        name: elasticsearch-transport
+        name: es-transport
 
       livenessProbe:
         tcpSocket:
