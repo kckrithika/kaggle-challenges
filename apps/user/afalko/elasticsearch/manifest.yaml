@@ -26,9 +26,9 @@ system:
       
       ports:
       - containerPort: 9200
-        name: elasticsearch-rest
+        name: es-rest
       - containerPort: 9300
-        name: elasticsearch-transport
+        name: es-transport
 
       livenessProbe:
         tcpSocket:
@@ -58,13 +58,13 @@ system:
 
   loadbalancers:
   - lbname: es-rest
-    function: es-rest
+    function: elasticsearch
     slbEnabled: true
     ports:
       - port: 9200
         targetport: 9200
   - lbname: es-transport
-    function: es-transport
+    function: elasticsearch
     slbEnabled: true
     ports:
       - port: 9300
