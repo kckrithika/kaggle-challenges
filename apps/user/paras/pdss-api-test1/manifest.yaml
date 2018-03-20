@@ -5,12 +5,12 @@ system:
     count: 2
     containers:
     - name: pdss-api-test1 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-pdss-ap-test1:paras-20180316
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180320
       ports:
       - containerPort: 8080
       livenessProbe:
         httpGet:
-          path: /dns/zone/pdss-a 
+          path: /v1/zone/status
           port: 8080
   loadbalancers:
   - lbname: pdssapitest1lb
