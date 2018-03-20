@@ -25,7 +25,7 @@ system:
         secretName: usmt-keytab-prd-test
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search:version1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search:version2
       ports:
       - name: service-port
         containerPort: 7020
