@@ -93,10 +93,10 @@ system:
       args:
       # Non-namespaced, plaintext
       - -endpoint
-      - geoip:DATACENTER:7012
+      - geoip:DATACENTER_ALLENV:7012
       # Namespaced, TLS
       - -endpoint
-      - ccait/geoip:DATACENTER:7443
+      - ccait/geoip:DATACENTER_ALLENV:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
