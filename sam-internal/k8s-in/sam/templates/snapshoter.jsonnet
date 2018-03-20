@@ -49,14 +49,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     ],
                     livenessProbe: {
                         httpGet: {
-                        } +
-                        if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
-                                path: "/",
-                                port: 38103,
-                            } else {
-                                path: "/",
-                                port: 9095,
-                            },
+                            path: "/",
+                            port: 9095,
+                        },
                         initialDelaySeconds: 20,
                         periodSeconds: 20,
                         timeoutSeconds: 20,
