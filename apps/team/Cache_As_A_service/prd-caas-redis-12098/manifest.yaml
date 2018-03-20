@@ -53,7 +53,7 @@ system:
         name: logvol
       env:
        - name: SFDC_ENVIRONMENT
-         value: mist30
+         value: prd
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
