@@ -61,6 +61,11 @@ shared0-samcompute2-9-prd.eng.sfdc.net,10.253.213.61/29,10.251.164.32/27,j07-02,
 shared0-samkubeapi1-1-prd.eng.sfdc.net,10.253.213.6/29,10.251.161.32/27,e41-02,prd-sam
 shared0-samkubeapi2-1-prd.eng.sfdc.net,10.253.213.14/29,10.251.163.160/27,h21-02,prd-sam
 shared0-samkubeapi3-1-prd.eng.sfdc.net,10.253.213.46/29,10.251.161.192/27,f34-02,prd-sam
+shared0-samminionatlastwodir1-1-prd.eng.sfdc.net,10.240.129.146/29,10.254.238.192/27,w04-02,prd-sam_cloudatlastwo_dir
+shared0-samminionatlastwodir1-2-prd.eng.sfdc.net,10.240.129.138/29,10.254.238.128/27,q09-02,prd-sam_cloudatlastwo_dir
+shared0-samminionatlastwodir2-1-prd.eng.sfdc.net,10.240.129.130/29,10.254.238.160/27,u09-02,prd-sam_cloudatlastwo_dir
+shared0-samminionatlastwofe1-1-prd.eng.sfdc.net,10.240.129.74/29,10.254.238.0/27,q09-02,prd-sam_cloudatlastwo
+shared0-samminionatlastwofe2-1-prd.eng.sfdc.net,10.240.129.66/29,10.254.238.32/27,u09-02,prd-sam_cloudatlastwo
 shared0-samminioncephrd1-1-prd.eng.sfdc.net,10.231.171.98/28,10.251.200.224/27,k21-02,prd-sam_ceph
 shared0-samminioncephrd1-2-prd.eng.sfdc.net,10.231.171.2/28,10.251.202.128/27,n07-02,prd-sam_ceph
 shared0-samminioncephrd1-3-prd.eng.sfdc.net,10.231.171.3/28,10.251.202.160/27,n07-02,prd-sam_ceph
