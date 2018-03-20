@@ -20,8 +20,9 @@ system:
       - --server.port=15374
       ports:
       - containerPort: 7021
+        name: h2-in
       - containerPort: 15374
-      - containerPort: 9010
+        name: scone-management
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
@@ -34,6 +35,10 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
+      ports:
+      # No exposed ports, except for the admin interface
+      - containerPort: 15373
+        name: sherpa-adm
       livenessProbe:
         exec:
           command:
@@ -47,6 +52,8 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
+        - name: logvol
+          mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
@@ -55,7 +62,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-ordering-linkerd-tls/logs
+        path: /home/sfdc-shipping-linkerd-tls/logs
     - name: tls-client-cert
       maddogCert:
         type: client
