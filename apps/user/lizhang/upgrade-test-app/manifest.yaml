@@ -1,0 +1,39 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: upgrade-test-app
+    count: 3
+    containers:
+    - name: test-upgrade
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lizhang/samhello:lizhang-20170830
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretvol
+         readOnly: true
+       - name: myclientcert
+         mountPath: /clientcert
+       - name: myservercert
+         mountPath: /servercert
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: testsecret
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+  loadbalancers:
+  - lbname: testupgradelb
+    function: upgrade-test-app
+    ports:
+      - port: 9090
+        targetport: 9090

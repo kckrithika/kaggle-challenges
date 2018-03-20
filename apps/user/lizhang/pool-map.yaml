@@ -6,3 +6,7 @@ apps:
  xfs-test-app:
   - prd/prd-samdev
   - prd/prd-samtest
+ upgrade-test-app:
+  - prd/prd-sam
+  - prd/prd-samdev
+  - prd/prd-samtest
