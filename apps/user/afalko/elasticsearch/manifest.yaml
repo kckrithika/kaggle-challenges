@@ -40,7 +40,7 @@ system:
     volumes:
         - name: elasticsearch-persistent-storage
           hostPath:
-          path: /data/elasticsearch
+              path: /data/elasticsearch
     #- name: certs
     #  maddogCert:
     #    type: server
