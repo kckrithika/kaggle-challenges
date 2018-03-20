@@ -37,7 +37,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.9rc3
+      image: sfci/cloud-atlas/cloudatlas:2.9rc4
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -51,6 +51,9 @@ system:
         name: logvol
       - mountPath: /certs
         name: server-cert
+      - mountPath: /secrets
+        name: secretsvol
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -82,3 +85,6 @@ system:
     - name: server-cert
       maddogCert:
         type: server
+    - name: secretsvol
+      secret:
+        secretName: passwd
