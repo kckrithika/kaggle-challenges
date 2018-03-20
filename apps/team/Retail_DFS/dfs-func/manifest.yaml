@@ -7,10 +7,12 @@ system:
     count: 1
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.19
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.0
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
+      - name: dfs-server-cert
+        mountPath: /servercerts
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -26,7 +28,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: stmfa
       ports:
-        - containerPort: 7014
+        - containerPort: 7442
         - containerPort: 15373
       livenessProbe:
         exec:
@@ -44,6 +46,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-dfs/logs
+    - name: dfs-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: dfs-lb
     function: dfs-func
