@@ -137,7 +137,7 @@ system:
           secretName: csc-redis-hack-auth
     containers:
     - name: redis
-      image: tnrp/csc-health/redis-auth:3.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-redis:201820031205
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
