@@ -39,6 +39,10 @@ local utils = import "util_functions.jsonnet";
 
         # [rbhat] Add referenceLink field to bundleStatus
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001796-fe64d75b",
+
+        # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
+        "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
+        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
