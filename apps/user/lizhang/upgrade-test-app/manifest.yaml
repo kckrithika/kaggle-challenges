@@ -19,8 +19,6 @@ system:
          readOnly: true
        - name: myclientcert
          mountPath: /clientcert
-       - name: myservercert
-         mountPath: /servercert
     volumes:
     - name: secretvol
       k4aSecret:
@@ -28,9 +26,6 @@ system:
     - name: myclientcert
       maddogCert:
         type: client
-    - name: myservercert
-      maddogCert:
-        type: server
   loadbalancers:
   - lbname: testupgradelb
     function: upgrade-test-app
