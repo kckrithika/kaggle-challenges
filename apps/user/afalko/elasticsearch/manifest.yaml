@@ -58,13 +58,13 @@ system:
 
   loadbalancers:
   - lbname: es-rest
-    function: es-rest
+    function: elasticsearch
     slbEnabled: true
     ports:
       - port: 9200
         targetport: 9200
   - lbname: es-transport
-    function: es-transport
+    function: elasticsearch
     slbEnabled: true
     ports:
       - port: 9300
