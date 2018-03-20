@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: ordering
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/servicelibs/scone-ms-examples/scone-ordering:0.3.0-snapshot
+      image: servicelibs/scone-ms-examples/scone-ordering:0.3.0-snapshot
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
