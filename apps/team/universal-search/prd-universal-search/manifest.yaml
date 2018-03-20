@@ -88,3 +88,61 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
+  - name: universal-search-synthetics
+    count: 1
+    volumes:
+    - name: synthetics-log-vol
+      hostpath:
+        path: /home/sfdc-usmt/logs
+    - name: client-cert-vol
+      maddogCert:
+        type: client
+    - name: sherpa-log-vol
+      hostpath:
+        path: /home/sfdc-sherpa/logs
+    containers:
+    - name: universal-search-synthetics
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search-synthetics:0.5.4-SNAPSHOT
+      resources:
+        limits: { cpu: "2", memory: "4Gi" }
+        requests: { cpu: "2", memory: "4Gi" }
+      env:
+      volumeMounts:
+      - name: synthetics-log-vol
+        mountPath: /home/sfdc-usmt/logs
+      livenessProbe:
+        exec:
+          command:
+          - "/home/sfdc-usmt/run.sh"
+        initialDelaySeconds: 120
+        timeoutSeconds: 300
+        periodSeconds: 900
+        failureThreshold: 1
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.24
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: client-cert-vol
+          mountPath: /client-certs
+        - name: sherpa-log-vol
+          mountPath: /log
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
