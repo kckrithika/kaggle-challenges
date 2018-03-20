@@ -16,7 +16,7 @@ system:
       - containerPort: 7020
         name: h2-in
       - containerPort: 15372
-        name: scone-management
+        name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
