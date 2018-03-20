@@ -8,6 +8,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180320
       ports:
       - containerPort: 8080
+      - containerPort: 53 
       livenessProbe:
         httpGet:
           path: /v1/zone/status
@@ -19,4 +20,7 @@ system:
     ports:
       - port: 8080
         targetport: 8080
+        lbtype: tcp
+      - port: 53 
+        targetport: 53 
         lbtype: tcp
