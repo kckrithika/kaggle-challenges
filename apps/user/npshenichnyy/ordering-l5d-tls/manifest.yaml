@@ -6,9 +6,8 @@ system:
     count: 1
     containers:
     - name: ordering
-      # the image below is built at this commit:
-      # https://git.soma.salesforce.com/servicelibs/scone-ms-examples/commit/ba75674c97fec87b035923bcfff3eb995abf0044
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:plaird-20180228-da39b30
+      # with overriden --server.port=15374
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ordering:npshenichnyy-20180319-d2f9380
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
