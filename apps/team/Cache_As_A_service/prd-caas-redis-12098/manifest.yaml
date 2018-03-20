@@ -37,31 +37,26 @@ system:
       - containerPort: 12098
         name: caas-cluster
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
-        - --redisPort=12098
-        - --cluster.name=sp-na1-c1
-        - --logDir=/home/caas/logs
+      - -endpoint
+      - caas/cluster/sp-na1-c1:SUPERPOD:12098
+      - -logdir
+      - /home/sfdc-caas/logs/sp-na1-c1-12098
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12098
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: mist30
       resources:
-        limits: { memory: "200M" }
+        limits: { memory: "500M" }
         requests: { memory: "200M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
     volumes:
     - name: logvol
       hostPath:
