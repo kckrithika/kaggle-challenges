@@ -10,7 +10,7 @@ data:
       "kafka-topic": "sfdc.prod.sam__prd.ajna_local__resourcestatus",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kube-poll-interval": "5m",
-      "liveness-probe-port": 38103,
+      "liveness-probe-port": 9095,
       "send-events": true,
       "sinks": "kafka",
       "sources": "informer"
