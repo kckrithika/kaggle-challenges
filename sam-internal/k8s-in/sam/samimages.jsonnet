@@ -24,6 +24,26 @@ local utils = import "util_functions.jsonnet";
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
+        # [d.smith] Early push of new hypersam - adds events and clean resource deletes
+        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "chx,chx-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "iad,iad-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "ord,ord-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "par,par-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "syd,syd-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "wax,wax-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "yul,yul-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "prd,prd-samdev,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "prd,prd-samtest,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001806-daf96a92",
+        "prd,prd-sdc,snapshoter,hypersam": "sam-0001806-daf96a92",
 
         # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
         "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
