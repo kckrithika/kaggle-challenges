@@ -62,7 +62,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             "-j",
                             "prometheus",
                         ],
-                        env: storageutils.sfms_environment_vars("sfoperator"),
+                        env: storageutils.sfms_environment_vars("sfstoreoperator"),
                     },
 
                 ],
