@@ -9,7 +9,7 @@ system:
       # Code lives here: https://git.soma.salesforce.com/npshenichnyy/sherpa-http1-test
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/h1-test-client:latest
       args:
-      - "http://h1-test-server-envoy-tls.service-mesh.localhost.mesh.force.com:7014"
+      - "http://h1-test-server-envoy-tls.service-mesh.localhost.mesh.force.com:7013"
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
