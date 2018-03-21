@@ -103,7 +103,7 @@ system:
         initialDelaySeconds: 15
       ports:
       - containerPort: 7443
-        name: sherpa-admin
+        name: geoip-in
       - containerPort: 15373
         name: sherpa-admin
       volumeMounts:
