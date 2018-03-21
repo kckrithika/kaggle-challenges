@@ -3,6 +3,7 @@ local kingdom = std.extVar("kingdom");
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
+    is_test_fleet: estate == "prd-data-flowsnake_test",
     fleet_name_overrides: {
         "prd-data-flowsnake": "sfdc-prd",
         "prd-dev-flowsnake_iot_test": "sfdc-prd-iot-poc",
