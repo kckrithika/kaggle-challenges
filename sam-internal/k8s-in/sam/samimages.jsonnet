@@ -31,7 +31,7 @@ local utils = import "util_functions.jsonnet";
 
 
         # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
-        "prd,prd-samtest,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1",
+        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters

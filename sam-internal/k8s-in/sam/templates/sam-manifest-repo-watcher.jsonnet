@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samdev" then {
             kind: "Deployment",
             spec: {
                 replicas: 1,
