@@ -1234,6 +1234,36 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer1-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer2-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_mc_consumer",
+          "controlestate": "prd-sam",
+          "devicerole": "samcompute",
+          "estate": "prd-sam_mc_consumer",
+          "hostname": "shared0-samminionmcconsumer3-1-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_moderation_einstein",
           "controlestate": "prd-sam",
           "devicerole": "samcompute",
@@ -1762,36 +1792,6 @@ data:
           "kingdom": "prd",
           "pod": "none",
           "superpod": "none"
-        },
-        {
-          "bomrolename": "sam_minion_mc_consumer",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_mc_consumer",
-          "hostname": "shared0-samminionmcconsumer1-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
-          "bomrolename": "sam_minion_mc_consumer",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_mc_consumer",
-          "hostname": "shared0-samminionmcconsumer2-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
-        },
-        {
-          "bomrolename": "sam_minion_mc_consumer",
-          "controlestate": "prd-sam",
-          "devicerole": "samcompute",
-          "estate": "prd-sp1-sam_mc_consumer",
-          "hostname": "shared0-samminionmcconsumer3-1-prd.eng.sfdc.net",
-          "kingdom": "prd",
-          "pod": "none",
-          "superpod": "sp1"
         },
         {
           "bomrolename": "sdb_compute",
