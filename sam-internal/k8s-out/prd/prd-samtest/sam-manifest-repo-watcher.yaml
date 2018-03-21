@@ -17,7 +17,7 @@ spec:
       - command:
         - /sam/sam-manifest-repo-watcher
         - --config=/config/sammanifestrepowatcher.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001800-1972769a
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1
         name: sam-manifest-repo-watcher
       hostNetwork: true
       nodeSelector:
