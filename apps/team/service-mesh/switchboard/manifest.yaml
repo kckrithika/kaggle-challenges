@@ -28,6 +28,7 @@ system:
       - --clusters.external-clusters[6]=tictactoe-server-service-envoy:HTTP2
       - --clusters.external-clusters[7]=envoy-canary:HTTP2
       - --clusters.external-clusters[8]=geoip-envoy-tls.user-drichelson.samapp:HTTP2_TLS
+      - --clusters.external-clusters[9]=geoip-envoy-tls-sandbox.service-mesh:HTTP2_TLS
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume

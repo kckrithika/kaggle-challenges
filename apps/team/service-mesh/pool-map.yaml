@@ -1,4 +1,6 @@
 apps:
+  geoip-envoy-tls-sandbox:
+    - prd/prd-sam
   geoip-nk:
     - prd/prd-sam_gater
   switchboard:
@@ -24,4 +26,12 @@ apps:
   h1-test-client-l5d-tls:
   - prd/prd-sam
   h1-test-server-l5d-tls:
+  - prd/prd-sam
+  h1-test-client-envoy:
+  - prd/prd-sam
+  h1-test-server-envoy:
+  - prd/prd-sam
+  h1-test-client-envoy-tls:
+  - prd/prd-sam
+  h1-test-server-envoy-tls:
   - prd/prd-sam
