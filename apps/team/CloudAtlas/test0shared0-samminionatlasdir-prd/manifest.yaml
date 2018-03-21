@@ -20,7 +20,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       - name: DUMMY_ENVIRONMENT
-        value: "xfs-debug2"
+        value: "xfs-debug3"
       ports:
       - containerPort: 7012
         name: sherpa-in
