@@ -6,7 +6,8 @@ system:
     count: 1
     containers:
     - name: shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-shipping:plaird-20180122-da9f733
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/npshenichnyy%252Fsfci-changes/10
+      image: sfci/servicelibs/scone-ms-examples/scone-shipping:0d79405cd9e1a1d2c509037cc52c47c42f31482e
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -54,12 +55,12 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sam
       ports:
+      - containerPort: 15373
+        name: sherpa-adm
       - containerPort: 7443
         name: h2-tls-in
       - containerPort: 7012
-        name: h2-in
-      - containerPort: 15373
-        name: sherpa-adm        
+        name: grpc-in
       livenessProbe:
         exec:
           command:
