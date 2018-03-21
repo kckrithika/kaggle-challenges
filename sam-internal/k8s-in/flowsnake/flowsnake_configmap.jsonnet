@@ -245,8 +245,20 @@ local samconfig = import "config.jsonnet";
             authorizedClientCerts: ["flowsnakemasteriottest", "flowsnake_master_iot_test"],
         },
       ],
-      "prd/prd-minikube-small-flowsnake": [],
-      "prd/prd-minikube-big-flowsnake": [],
+      "prd/prd-minikube-small-flowsnake": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: ["flowsnake.minikube"],
+        },
+      ],
+      "prd/prd-minikube-big-flowsnake": [
+        {
+            namespace: "flowsnake",
+            authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+            authorizedClientCerts: ["flowsnake.minikube"],
+        },
+      ],
       "iad/iad-flowsnake_prod": [
         {
             namespace: "flowsnake",
