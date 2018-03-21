@@ -50,7 +50,7 @@ spec:
         - name: MC_ESTATE
           value: prd-sam
         - name: MC_NAME
-          value: sfoperator
+          value: sfstoreoperator
         - name: MC_NAMESPACE
           valueFrom:
             fieldRef:
@@ -63,7 +63,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000151-78ea2ca9
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000158-cad47597
         name: sfms
       nodeSelector:
         master: "true"
