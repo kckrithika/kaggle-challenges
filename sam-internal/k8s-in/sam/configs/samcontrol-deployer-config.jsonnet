@@ -29,6 +29,6 @@ std.prune({
   "daily-deployment-keyword": (if self.enableDailyDeployment then "auto"),
   tokenfile: (if self.enableDailyDeployment then "/var/token/token"),
   "daily-deployment-offset": (if self.enableDailyDeployment then "0"),
-  "daily-deployment-frequency": (if self.enableDailyDeployment then "3h"),
+  "daily-deployment-frequency": (if self.enableDailyDeployment then "24h"),
 
 })
