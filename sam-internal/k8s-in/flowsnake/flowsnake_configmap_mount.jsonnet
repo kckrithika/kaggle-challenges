@@ -3,19 +3,19 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
     k8s_cert_volume:
         (if flowsnakeconfig.maddog_enabled then [
             {
-                name: "certificate-authority",
+                name: "k8s-certificate-authority",
                 hostPath: {
                     path: "/etc/pki_service/ca",
                 },
             },
             {
-                name: "client-certificate",
+                name: "k8s-client-certificate",
                 hostPath: {
                     path: "/etc/pki_service/kubernetes/k8s-client/certificates",
                 },
             },
             {
-                name: "client-key",
+                name: "k8s-client-key",
                 hostPath: {
                     path: "/etc/pki_service/kubernetes/k8s-client/keys",
                 },
@@ -33,17 +33,17 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         (if flowsnakeconfig.maddog_enabled then [
             {
                 mountPath: "/etc/pki_service/ca",
-                name: "certificate-authority",
+                name: "k8s-certificate-authority",
                 readOnly: true,
             },
             {
                 mountPath: "/etc/pki_service/kubernetes/k8s-client/certificates",
-                name: "client-certificate",
+                name: "k8s-client-certificate",
                 readOnly: true,
             },
             {
                 mountPath: "/etc/pki_service/kubernetes/k8s-client/keys",
-                name: "client-key",
+                name: "k8s-client-key",
                 readOnly: true,
             },
         ] else []) +
