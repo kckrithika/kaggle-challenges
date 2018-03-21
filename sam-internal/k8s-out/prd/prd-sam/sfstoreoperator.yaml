@@ -37,6 +37,34 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+      - args:
+        - -j
+        - prometheus
+        command:
+        - /opt/sfms/bin/sfms
+        env:
+        - name: SFDC_FUNNEL_VIP
+          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+        - name: MC_KINGDOM
+          value: prd
+        - name: MC_ESTATE
+          value: prd-sam
+        - name: MC_NAME
+          value: sfstoreoperator
+        - name: MC_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MC_NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MC_DEVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000158-cad47597
+        name: sfms
       nodeSelector:
         master: "true"
       volumes:
