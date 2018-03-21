@@ -37,7 +37,7 @@ system:
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-3c7f517
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-4578e6d
       livenessProbe:
         httpGet:
           path: /manage/health
