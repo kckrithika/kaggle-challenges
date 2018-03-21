@@ -27,16 +27,16 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: MANAGEMENT_PORT
-        value: 15373
+        value: 15371
       ports:
       - containerPort: 7443
-      - containerPort: 15373
+      - containerPort: 15371
       - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15373
+          port: 15371
     - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
