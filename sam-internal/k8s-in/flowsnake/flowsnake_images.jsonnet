@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "558",
             es_image_tag: "503",
-            fleetService_image_tag: "tc-will-itest-ready",
+            fleetService_image_tag: "560",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "560",
             ingressDefaultBackend_image_tag: "560",
