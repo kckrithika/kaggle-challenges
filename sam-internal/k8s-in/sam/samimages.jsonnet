@@ -24,11 +24,6 @@ local utils = import "util_functions.jsonnet";
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
-        # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
-        "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-
-        # [rbhat] Add referenceLink field to bundleStatus
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001796-fe64d75b",
 
         # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
         "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
@@ -57,7 +52,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001780-a269ec85",
+            hypersam: "sam-0001800-1972769a",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
