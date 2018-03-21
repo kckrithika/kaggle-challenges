@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sdc" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -13,7 +13,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: 2,
         template: {
             metadata: {
                 labels: {
@@ -22,10 +21,28 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 namespace: "sam-system",
             },
             spec: {
-                hostNetwork: true,
+                affinity: {
+                   nodeAffinity: {
+                                     requiredDuringSchedulingIgnoredDuringExecution: {
+                                       nodeSelectorTerms: [
+                                         {
+                                                matchExpressions: [
+                                                  {
+                                                     key: "slb-service",
+                                                     operator: "In",
+                                                     values: ["slb-nginx-b", "slb-ipvs"],
+                                                  },
+                                                ],
+                                             },
+                                           ],
+                                         },
+                   },
+                },
+
                 volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.logs_volume,
+                    slbconfigs.proc_volume,
                 ]),
                 containers: [
                     {
@@ -39,15 +56,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        volumeMounts: configs.filter_empty([
                            slbconfigs.slb_volume_mount,
                            slbconfigs.logs_volume_mount,
+                           slbconfigs.proc_volume_mount,
                        ]),
                        securityContext: {
                            privileged: true,
                        },
                     },
                 ],
-                nodeSelector: {
-                    "slb-service": "slb-ipvs",
-                },
             },
         },
     },

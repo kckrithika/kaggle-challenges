@@ -6,13 +6,22 @@ metadata:
   name: slb-node-os-stats
   namespace: sam-system
 spec:
-  replicas: 2
   template:
     metadata:
       labels:
         name: slb-node-os-stats
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: In
+                values:
+                - slb-nginx-b
+                - slb-ipvs
       containers:
       - command:
         - /sdn/slb-node-os-stats
@@ -27,9 +36,8 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs
           name: var-logs-volume
-      hostNetwork: true
-      nodeSelector:
-        slb-service: slb-ipvs
+        - mountPath: /host/proc
+          name: proc-volume
       volumes:
       - hostPath:
           path: /data/slb
@@ -37,3 +45,6 @@ spec:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+      - hostPath:
+          path: /proc
+        name: proc-volume
