@@ -26,13 +26,13 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000696-a1d6fcf1",  # 703 requires an increase to the maxDeleteCount parameter for slb-cleanup-config-processor so it can clean the -nginx-proxy config files
+            hypersdn: "v-0000703-3ffb01c2",
             slbnginx: "v-0000024-6c678838",
             },
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000696-a1d6fcf1",
+            hypersdn: "v-0000696-a1d6fcf1",  # 703 requires an increase to the maxDeleteCount parameter for slb-cleanup-config-processor so it can clean the -nginx-proxy config files
             slbnginx: "v-0000024-6c678838",
             },
 
