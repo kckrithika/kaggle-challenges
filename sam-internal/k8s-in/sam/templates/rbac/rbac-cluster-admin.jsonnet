@@ -3,7 +3,7 @@ local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if samfeatureflags.rbac then {
+{
     kind: "ClusterRoleBinding",
     apiVersion: "rbac.authorization.k8s.io/v1alpha1",
     metadata: {
@@ -23,4 +23,4 @@ if samfeatureflags.rbac then {
         name: "cluster-admin",
         apiGroup: "rbac.authorization.k8s.io",
     },
-} else "SKIP"
+}
