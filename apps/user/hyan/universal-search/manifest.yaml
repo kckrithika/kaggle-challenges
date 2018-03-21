@@ -22,10 +22,10 @@ system:
         path: /home/sfdc-sherpa/logs
     - name: secretvol
       k4aSecret:
-        secretName: usmt-keytab-prd-test
+        secretName: solrcloudcli-keytab-prd-test
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search:version6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search:version7
       ports:
       - name: service-port
         containerPort: 7020
