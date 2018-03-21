@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-labels-checker
+  name: slb-labels-checker
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: slb-labels-checker
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-labels-checker
+        - --log_dir=/host/data/slb/logs
+        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --labelValues=slb-ipvs:3,slb-nginx-b:3,slb-dns:1
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000703-3ffb01c2
+        name: slb-labels-checker
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+      nodeSelector:
+        pool: prd-sam
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /data/slb/logs
+        name: var-logs-volume
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs

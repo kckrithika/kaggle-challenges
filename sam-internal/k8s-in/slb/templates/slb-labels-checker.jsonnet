@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -31,8 +31,13 @@ if configs.estate == "prd-sdc" then {
                         command: [
                             "/sdn/slb-labels-checker",
                             "--log_dir=" + slbconfigs.logsDir,
+                            "--hostnameOverride=$(NODE_NAME)",
                             "--metricsEndpoint=" + configs.funnelVIP,
+                        ] + if configs.estate == "prd-sam" then [
+                            "--labelValues=slb-ipvs:3,slb-nginx-b:3,slb-dns:1",
+                        ] else if configs.estate == "prd-sdc" then [
                             "--labelValues=slb-ipvs:2,slb-nginx-b:2,slb-dns:1",
+                        ] else [
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
