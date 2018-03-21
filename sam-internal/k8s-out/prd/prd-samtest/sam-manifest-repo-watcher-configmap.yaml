@@ -1,0 +1,17 @@
+apiVersion: v1
+data:
+  sammanifestrepowatcher.json: |-
+    {
+      "db-hostname": "someDBHostname",
+      "db-name": "someDBName",
+      "db-password-file": "somefile.txt",
+      "db-username": "someDBUsername",
+      "tnrp-bot-account-name": "svc-tnrp-git-rw",
+      "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
+      "tnrp-scan-frequency": "10m"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sam-manifest-repo-watcher
+  namespace: sam-system

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sam-manifest-repo-watcher
+  name: sam-manifest-repo-watcher
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: control
+        name: sam-manifest-repo-watcher
+    spec:
+      containers:
+      - command:
+        - /sam/sam-manifest-repo-watcher
+        - --config=/config/sammanifestrepowatcher.json
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1
+        name: sam-manifest-repo-watcher
+      hostNetwork: true
+      nodeSelector:
+        master: "true"
+      volumes:
+      - configMap:
+          name: sam-manifest-repo-watcher
+        name: config
