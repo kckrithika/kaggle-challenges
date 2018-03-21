@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
@@ -50,6 +51,20 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             configs.kube_config_env,
                         ],
                     },
+                    {
+                        // Pump prometheus metrics to argus.
+                        name: "sfms",
+                        image: storageimages.sfms,
+                        command: [
+                            "/opt/sfms/bin/sfms",
+                        ],
+                        args: [
+                            "-j",
+                            "prometheus",
+                        ],
+                        env: storageutils.sfms_environment_vars("sfoperator"),
+                    },
+
                 ],
                 volumes: configs.filter_empty([
                     {
