@@ -19,22 +19,12 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # Lagging Public Cloud - etcdBackup needs a recent image
-        "yhu,yhu-sam,etcdbackup,hypersam": "sam-0001747-8c6b4886",
-
-        # [hari.udhayakumar] Rolling out latest image of watchdog-kuberesources to public cloud. This stops spamming customers and publishes metrics to the correct scope.
-        "yhu,yhu-sam,watchdog-kuberesources,hypersam": "sam-0001572-b2f60f37",
-
-        # [prabh.singh] Rolling out latest image of watchdog-hairpindeployer to public cloud. This will correctly deploy hairpin watchdogs with correct role info.
-        "yhu,yhu-sam,watchdog-hairpindeployer,hypersam": "sam-0001568-53c1b42b",
-
         # [cbatra] [Important]  If we update an initContainerImage then it is not promoted to prod by default
         # This is just a hack for now until we fix the logic in SMB image promotion to also add images for InitContainers/sidecars
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
         # [d.smith] Early push of new hypersam - fixes snapshotter in public cloud
-        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001725-d0637219",
         "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
 
         # [rbhat] Add referenceLink field to bundleStatus
@@ -86,17 +76,6 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
-        ### Temporary phase just for public cloud
-        # We are keeping this on an old build until we upgrade to k8s 1.7
-        # (which is blocked on the hairpin fix)
-        # After that, we will eliminate this phase and re-add these kingdoms
-        # phases 1-4
-        pub: {
-            hypersam: "sam-0001355-581a778b",
-            madkub: "1.0.0-0000035-9241ed31",
-            madkubSidecar: "1.0.0-0000035-9241ed31",
-            },
-
        ### For testing private bits from a developer's machine pre-checkin if
        ### privatebuildoverride overrides are defined, otherwise use phase 1
        privates: {
@@ -120,8 +99,6 @@ local utils = import "util_functions.jsonnet";
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
-        else if (kingdom == "yhu") then
-            "pub"
         else
             "4"
         ),
