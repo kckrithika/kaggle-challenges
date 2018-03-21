@@ -17,14 +17,6 @@ if estate == "prd-data-flowsnake_test" || flowsnakeconfig.is_minikube then
         },
     },
     spec: {
-       tls:
-           (if !flowsnakeconfig.is_minikube then
-               [
-                   {
-                       secretName: "flowsnake-tls",
-                   },
-               ]
-           else []),
         rules: [
             {
                 http: {
