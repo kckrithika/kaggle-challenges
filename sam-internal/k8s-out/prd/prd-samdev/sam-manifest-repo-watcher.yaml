@@ -19,6 +19,9 @@ spec:
         - --config=/config/sammanifestrepowatcher.json
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1
         name: sam-manifest-repo-watcher
+        volumeMounts:
+        - mountPath: /config
+          name: config
       hostNetwork: true
       nodeSelector:
         master: "true"

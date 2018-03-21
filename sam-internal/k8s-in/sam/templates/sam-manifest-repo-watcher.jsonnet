@@ -15,6 +15,9 @@ if configs.estate == "prd-samdev" then {
                                             "/sam/sam-manifest-repo-watcher",
                                             "--config=/config/sammanifestrepowatcher.json",
                                         ]),
+                                        volumeMounts: configs.filter_empty([
+                                                    configs.config_volume_mount,
+                                        ]),
                                     },
                                 ],
                                 volumes: configs.filter_empty([
