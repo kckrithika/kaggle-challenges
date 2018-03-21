@@ -25,7 +25,7 @@ system:
         value: -Xmx64m
       ports:
       - containerPort: 7443
-      - containerPort: 15373
+      - containerPort: 15372
       - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 15
