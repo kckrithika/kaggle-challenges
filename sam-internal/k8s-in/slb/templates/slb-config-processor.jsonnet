@@ -127,9 +127,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             "--skipFilesWithSuffix=slb.block",
                         ] + if configs.estate == "prd-sam" then [
-                            "--maxDeleteFileCount=15",
-                        ] else if configs.estate == "prd-sdc" then [
-                            # Increase maxDeleteCount in prd-sdc so slb-cleanup will remove the -nginx-proxy config files
+                            # Increase maxDeleteCount so slb-cleanup will remove the -nginx-proxy config files
+                            "--maxDeleteFileCount=500",
+                        ] else if configs.kingdom == "prd" then [
                             "--maxDeleteFileCount=20",
                         ]
                         else [
