@@ -139,7 +139,8 @@ system:
         - name: GRPC_ROUTING_GEOIP_HOST
           value: geoip-envoy-tls.user-drichelson.samapp.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
-          value: 5443
+#         Envoy uses the same port for http2 and http2+tls and autonegotiates.
+          value: 7011
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
