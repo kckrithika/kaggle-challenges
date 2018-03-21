@@ -12,11 +12,11 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
     apiVersion: "v1",
     kind: "List",
-    items: [
-    {
+    items: std.prune([
+    if std.length(storageImageType.estates) > 0 then {
         local name = storageImageType.name + "-image-puller",
         apiVersion: "extensions/v1beta1",
         kind: "DaemonSet",
@@ -76,7 +76,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 },
             },
         },
-    }
+    } else {}
     for storageImageType in [
         {
             name: "sfstore",
@@ -89,5 +89,5 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
             estates: storageconfigs.cephEstates[configs.estate],
         },
     ]
-    ],
+    ]),
 } else "SKIP"
