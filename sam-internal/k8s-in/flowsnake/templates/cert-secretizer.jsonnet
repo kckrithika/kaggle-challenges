@@ -111,7 +111,9 @@ else
                 mountPath: "/maddog-certs",
                 name: "pki",
               },
-            ],
+            ] +
+            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+            flowsnakeconfigmapmount.platform_cert_volumeMounts,
             env: [
               {
                 name: "MADKUB_NODENAME",
