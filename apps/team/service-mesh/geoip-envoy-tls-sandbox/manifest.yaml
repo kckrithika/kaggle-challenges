@@ -15,7 +15,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: geoip-envoy-tls
+  - name: geoip-envoy-tls-sandbox
     count: 3
     containers:
 
@@ -78,7 +78,7 @@ system:
         value: "sam"
       args:
       - -endpoint
-      - service-mesh/geoip-envoy-tls:DATACENTER:7443
+      - service-mesh/geoip-envoy-tls-sandbox:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -137,7 +137,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam"
         - name: GRPC_ROUTING_GEOIP_HOST
-          value: geoip-envoy-tls.service-mesh.localhost.mesh.force.com
+          value: geoip-envoy-tls-sandbox.service-mesh.localhost.mesh.force.com
         - name: GRPC_ROUTING_GEOIP_PORT
 #         Envoy uses the same port for http2 and http2+tls and autonegotiates.
           value: 7011
@@ -191,7 +191,7 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: geoip-envoy-tls-frontend-lb
+  - lbname: geoip-envoy-tls-sandbox-frontend-lb
     function: geoip-envoy-tls-demo
     slbEnabled: true
     nodeExposed: true
