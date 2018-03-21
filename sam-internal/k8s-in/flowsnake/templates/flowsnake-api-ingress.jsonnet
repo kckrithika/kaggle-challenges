@@ -1,6 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
-if estate == "prd-data-flowsnake_test" then
+if estate == "prd-data-flowsnake_test" || flowsnakeconfig.is_minikube then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Ingress",
