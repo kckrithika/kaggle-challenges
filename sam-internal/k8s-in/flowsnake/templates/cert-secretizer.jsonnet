@@ -46,7 +46,8 @@ else
               },
             ] +
             flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-            flowsnakeconfigmapmount.platform_cert_volumeMounts,
+            flowsnakeconfigmapmount.platform_cert_volumeMounts +
+            flowsnakeconfigmapmount.k8s_cert_volumeMounts,
             env: [
               {
                 name: "FLOWSNAKE_FLEET",
@@ -264,7 +265,8 @@ else
             },
           },
         ] +
-        flowsnakeconfigmapmount.platform_cert_volume,
+        flowsnakeconfigmapmount.platform_cert_volume +
+        flowsnakeconfigmapmount.k8s_cert_volume,
       },
     },
   },
