@@ -24,6 +24,26 @@ local utils = import "util_functions.jsonnet";
         # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
         "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
 
+        # [d.smith] Early push of new hypersam - adds events and clean resource deletes
+        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "chx,chx-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "iad,iad-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "ord,ord-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "par,par-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "syd,syd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "wax,wax-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "yul,yul-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-samdev,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-samtest,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-sdc,snapshoter,hypersam": "sam-0001803-2a719339",
 
         # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
         "prd,prd-samdev,watchdog-puppet,hypersam": "auto",

@@ -11,6 +11,7 @@ data:
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kube-poll-interval": "5m",
       "liveness-probe-port": 9095,
+      "recipient": "sam@salesforce.com",
       "send-events": true,
       "sinks": "kafka",
       "sources": "informer"
