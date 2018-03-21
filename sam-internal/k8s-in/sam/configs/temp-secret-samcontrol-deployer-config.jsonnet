@@ -21,5 +21,5 @@ std.prune({
   "etcd-directory": "/temp/secrets/",
   "src-root": "temp-secrets/",
   "delete-orphans": false,
-  "deployer-port": (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 9123),
+  "deployer-port": 9123,
 })
