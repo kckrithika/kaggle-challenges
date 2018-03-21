@@ -6,9 +6,12 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: __MANIFEST_FUNCTION_NAME__
-    count: 1
+    count: __COUNT__
     strategy:
-      type: Recreate
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     hostnetwork: true
     containers:
     - name: sherpa-cloudatlas-client
@@ -34,7 +37,7 @@ system:
         initialDelaySeconds: 10
         periodSeconds: 5
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.8rc2
+      image: sfci/cloud-atlas/cloudatlas:2.9rc4
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
