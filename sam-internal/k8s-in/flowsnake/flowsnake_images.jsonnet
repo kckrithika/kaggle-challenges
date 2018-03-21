@@ -24,8 +24,8 @@ local utils = import "util_functions.jsonnet";
             es_image_tag: "503",
             fleetService_image_tag: "tc-will-itest-ready",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "535",
-            ingressDefaultBackend_image_tag: "535",
+            ingressControllerNginx_image_tag: "560",
+            ingressDefaultBackend_image_tag: "560",
             kibana_image_tag: "345",
             logloader_image_tag: "468",
             logstash_image_tag: "468",
@@ -49,6 +49,7 @@ local utils = import "util_functions.jsonnet";
                 {
                   "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
                   "tc-will-itest-ready": "tc-will-itest-ready",
+                  "0.9.7-itest": 560,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
