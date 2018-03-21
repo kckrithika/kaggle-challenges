@@ -101,12 +101,18 @@ local estate = std.extVar("estate");
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             # -----------------------------------------------------------------------------------
                             else if flowsnakeconfig.maddog_enabled then
-                                flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
-                        ),
+                        ) +
+                        if flowsnakeconfig.is_test_fleet then
+                        [
+                         {
+                             name: "flowsnake-tls-secret",
+                             mountPath: "/etc/ssl/certs",
+                         },
+                        ] else flowsnakeconfigmapmount.nginx_volumeMounts,
                     },
                 ],
                 volumes: (
@@ -118,12 +124,19 @@ local estate = std.extVar("estate");
                         flowsnakeconfigmapmount.k8s_cert_volume
                     # -----------------------------------------------------------------------------------
                     else if flowsnakeconfig.maddog_enabled then
-                        flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
                     else flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
-                ),
+                ) + if flowsnakeconfig.is_test_fleet then
+                [
+                    {
+                        name: "flowsnake-tls-secret",
+                        secret: {
+                            secretName: "flowsnake-tls",
+                        },
+                    },
+                ] else flowsnakeconfigmapmount.nginx_volume,
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",
                 },

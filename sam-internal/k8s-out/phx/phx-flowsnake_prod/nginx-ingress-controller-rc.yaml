@@ -53,12 +53,6 @@ spec:
             port: 80
             scheme: HTTP
         volumeMounts:
-        - mountPath: /etc/ssl/certs/ssl-cert-snakeoil.pem
-          name: server-certificate
-          readOnly: true
-        - mountPath: /etc/ssl/private/ssl-cert-snakeoil.key
-          name: server-key
-          readOnly: true
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
@@ -71,14 +65,14 @@ spec:
         - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /etc/ssl/certs/ssl-cert-snakeoil.pem
+          name: server-certificate
+          readOnly: true
+        - mountPath: /etc/ssl/private/ssl-cert-snakeoil.key
+          name: server-key
+          readOnly: true
       terminationGracePeriodSeconds: 60
       volumes:
-      - hostPath:
-          path: /etc/pki_service/platform/platform-server/certificates/platform-server.pem
-        name: server-certificate
-      - hostPath:
-          path: /etc/pki_service/platform/platform-server/keys/platform-server-key.pem
-        name: server-key
       - hostPath:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
@@ -91,3 +85,9 @@ spec:
       - hostPath:
           path: /etc/pki_service/kubernetes/k8s-client/keys
         name: client-key
+      - hostPath:
+          path: /etc/pki_service/platform/platform-server/certificates/platform-server.pem
+        name: server-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-server/keys/platform-server-key.pem
+        name: server-key

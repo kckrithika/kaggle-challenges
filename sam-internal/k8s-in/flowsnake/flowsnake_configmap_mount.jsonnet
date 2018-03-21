@@ -132,6 +132,8 @@ local k8s_prepend = if flowsnakeconfig.is_test_fleet then "k8s-" else "";
             name: "kubeconfig",
         },
     ],
+} + if flowsnakeconfig.is_test_fleet then {} else
+{
     nginx_volumeMounts: [
         {
             mountPath: "/etc/ssl/certs/ssl-cert-snakeoil.pem",
