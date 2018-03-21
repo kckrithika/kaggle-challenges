@@ -1,5 +1,6 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 if !flowsnakeconfig.maddog_enabled then
@@ -37,6 +38,33 @@ else
               {
                 mountPath: "/certs",
                 name: "datacerts",
+              },
+              {
+                mountPath: "/etc/flowsnake/config/auth-namespaces",
+                name: "auth-namespaces",
+                readOnly: true,
+              },
+            ] +
+            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+            flowsnakeconfigmapmount.platform_cert_volumeMounts,
+            env: [
+              {
+                name: "FLOWSNAKE_FLEET",
+                valueFrom: {
+                  configMapKeyRef: {
+                    name: "fleet-config",
+                    key: "name",
+                  },
+                },
+              },
+              {
+                name: "KUBECONFIG",
+                valueFrom: {
+                  configMapKeyRef: {
+                    name: "fleet-config",
+                    key: "kubeconfig",
+                  },
+                 },
               },
             ],
           },
@@ -227,7 +255,14 @@ else
               medium: "Memory",
             },
           },
-        ],
+          {
+            name: "auth-namespaces",
+            configMap: {
+              name: "auth-namespaces",
+            },
+          },
+        ] +
+        flowsnakeconfigmapmount.platform_cert_volume,
       },
     },
   },
