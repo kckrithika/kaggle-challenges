@@ -2,10 +2,13 @@ apiVersion: v1
 data:
   sammanifestrepowatcher.json: |-
     {
-      "db-hostname": "someDBHostname",
-      "db-name": "someDBName",
-      "db-password-file": "somefile.txt",
-      "db-username": "someDBUsername",
+      "db-hostname": "mysql.csc-sam.prd-samdev.prd.slb.sfdc.net",
+      "db-name": "sam_manifest_repo_watcher_dev",
+      "db-password-file": "/var/mysqlPwd/pass.txt",
+      "db-username": "root",
+      "git-url": "https://git.soma.salesforce.com/api/v3/",
+      "pr-table-name": "pr_table",
+      "pr-to-teamoruser-table-name": "pr_to_teamoruser_table",
       "tnrp-bot-account-name": "svc-tnrp-git-rw",
       "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
       "tnrp-scan-frequency": "10m"
