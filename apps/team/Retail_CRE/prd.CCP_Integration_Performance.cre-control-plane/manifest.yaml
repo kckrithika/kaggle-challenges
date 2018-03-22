@@ -1,0 +1,88 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-control-plane-ccp-perf
+    count: 3
+    containers:
+    - name: cre-control-plane-ccp-perf
+      image: sfci/cre/cre-control-plane:0.0.1.3.master.0e4079b.6
+      env:
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: SFDC_ENVIRONMENT
+          value: ccp-integration-performance
+        - name: METRICS_KAFKA_ENABLED
+          value: true          
+      ports:
+      - containerPort: 8080
+      - containerPort: 7020
+      - containerPort: 15372
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
+      volumeMounts:
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true        
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert        
+      - mountPath: /opt/cre/cre-control-plane-ccp-perf
+        name: logvol
+    - name: sherpa-cre-control-plane
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-ot-http2
+      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: gdot-private-key
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-control-plane-ccp-perf
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-control-plane-ccp-perf-lb        
+  loadbalancers:
+  - lbname: cre-control-plane-ccp-perf-lb
+    function: cre-control-plane-ccp-perf
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+      - port: 8090
+        targetport: 8080
