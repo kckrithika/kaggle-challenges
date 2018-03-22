@@ -2,17 +2,15 @@ apiVersion: v1
 
 system:
   functions:
-  - name: ordering-l5d-tls
+  - name: shipping-l5d-tls
     count: 1
     containers:
-    - name: ordering
+    - name: shipping
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/npshenichnyy%252Fsfci-changes/10
-      image: sfci/servicelibs/scone-ms-examples/scone-ordering:0d79405cd9e1a1d2c509037cc52c47c42f31482e
+      image: sfci/servicelibs/scone-ms-examples/scone-shipping:0d79405cd9e1a1d2c509037cc52c47c42f31482e
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      - name: SCONE_SHIPPING_DEST
-        value: shipping-l5d-tls.user-npshenichnyy.samapp.localhost.mesh.force.com:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
@@ -21,10 +19,34 @@ system:
       - containerPort: 15372
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15372
+
+    - name: beacon
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam      
+      args:
+      # H2-TLS
+      - -endpoint
+      - service-mesh/shipping-l5d-tls:DATACENTER:7443     
+      # H2-Plain
+      - -endpoint
+      - service-mesh/shipping-l5d-tls-plain:DATACENTER:7012
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
 
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
@@ -35,6 +57,10 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
       livenessProbe:
         exec:
           command:
@@ -54,11 +80,10 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
-
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-ordering-linkerd-tls/logs
+        path: /home/sfdc-shipping-linkerd-tls/logs
     - name: tls-client-cert
       maddogCert:
         type: client
