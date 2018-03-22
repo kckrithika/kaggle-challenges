@@ -24,7 +24,7 @@ system:
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
-      - containerPort: 7443
+      - containerPort: 7020
       - containerPort: 15372
       - containerPort: 9010
       livenessProbe:
