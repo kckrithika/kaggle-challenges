@@ -8,15 +8,9 @@ system:
     - name: clientcert
       maddogCert:
         type: client
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
     containers:
     - name: ordering-dghosh
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dghosh/ordering/scone-ordering-dghosh:dghosh-20180321-14bace0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180212-c8ba0a9
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -51,10 +45,6 @@ system:
       volumeMounts:
       - name: clientcert
         mountPath: /clientcerts
-      - name: tls-client-cert
-        mountPath: /client-certs
-      - name: tls-server-cert
-        mountPath: /server-certs
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -62,7 +52,7 @@ system:
             - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-debug
-      args: ["--http2-origin", "localhost:7443"]
+      args: ["--http2-origin", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
