@@ -14,6 +14,16 @@ spec:
         name: slb-realsvrcfg
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - frf-sam
+                - frf-slb
       containers:
       - command:
         - /sdn/slb-realsvrcfg
