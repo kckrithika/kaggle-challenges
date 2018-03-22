@@ -3,7 +3,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-if !flowsnakeconfig.maddog_enabled then
+if !flowsnakeconfig.maddog_enabled || !flowsnakeconfig.is_test_fleet then
 "SKIP"
 else
 {
