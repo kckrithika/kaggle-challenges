@@ -27,8 +27,8 @@ system:
           port: 15372
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
-      image: sfci/servicelibs/sherpa:2.0.24
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/20/console
+      image: sfci/servicelibs/sherpa-envoy:8c88da117952065195ab198ecd2c26c260fdb0ec
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -36,17 +36,15 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
       readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
       volumeMounts:
         - name: logvol
           mountPath: /log
