@@ -29,7 +29,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.sbin_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                 ]),
+                ]),
                 containers: [
                     {
                         name: "slb-realsvrcfg",
@@ -42,39 +42,38 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
                         ] + if configs.kingdom == "prd" then [
-                           "--maxDeleteVipCount=1000",
+                            "--maxDeleteVipCount=1000",
                         ] else [],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
                             slbconfigs.sbin_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
-                         ]),
+                        ]),
                         securityContext: {
                             privileged: true,
                         },
                     },
                 ],
-            } + if configs.kingdom == "prd" then {
-               affinity: {
-                                  nodeAffinity: {
-                                                                                requiredDuringSchedulingIgnoredDuringExecution: {
-                                                                                  nodeSelectorTerms: [
-                                                                                    {
-                                                                                          matchExpressions: [
-                                                                                                              {
-                                                                                                                 key: "pool",
-                                                                                                                 operator: "In",
-                                                                                                                 values: [configs.estate, configs.kingdom + "-slb"],
-                                                                                                              },
+                affinity: {
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "pool",
+                                            operator: "In",
+                                            values: [configs.estate, configs.kingdom + "-slb"],
+                                        },
 
-                                                                                                            ],
-                                                                                                            },
-],
-},
-},
-},
-            } else {},
+                                    ],
+                                },
+                            ],
+                        },
+                    },
+                },
+            },
         },
     },
 } else "SKIP"

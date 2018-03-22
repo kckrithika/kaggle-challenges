@@ -53,26 +53,25 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         },
                     },
                 ],
-            } + if configs.kingdom == "prd" then {
-                               affinity: {
-                                                  nodeAffinity: {
-                                                                                                requiredDuringSchedulingIgnoredDuringExecution: {
-                                                                                                  nodeSelectorTerms: [
-                                                                                                    {
-                                                                                                          matchExpressions: [
-                                                                                                                              {
-                                                                                                                                 key: "pool",
-                                                                                                                                 operator: "In",
-                                                                                                                                 values: [configs.estate, configs.kingdom + "-slb"],
-                                                                                                                              },
+                affinity: {
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "pool",
+                                            operator: "In",
+                                            values: [configs.estate, configs.kingdom + "-slb"],
+                                        },
 
-                                                                                                                            ],
-                                                                                                                            },
-                ],
+                                    ],
+                                },
+                            ],
+                        },
+                    },
                 },
-                },
-                },
-                            } else {},
+            },
         },
     },
 } else "SKIP"
