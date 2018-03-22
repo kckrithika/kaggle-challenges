@@ -7,11 +7,13 @@ system:
     count: 2
     containers:
     - name: dfs-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.18
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.0
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
+      - name: dfs-server-cert
+        mountPath: /servercerts
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -27,7 +29,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: mist
       ports:
-        - containerPort: 7014
+        - containerPort: 7442
         - containerPort: 15373
       livenessProbe:
         exec:
@@ -46,6 +48,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-dfs/logs
+    - name: dfs-server-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: dfs-lbpf
     function: dfs-perf
