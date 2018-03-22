@@ -95,48 +95,55 @@ local estate = std.extVar("estate");
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
                                 []
+                            else if flowsnakeconfig.is_test_fleet then
+                                [
+                                 {
+                                     name: "flowsnake-tls-secret",
+                                     mountPath: "/etc/ssl/certs",
+                                 },
+                                ] +
+                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             # TODO: remove this block when we have new nginx
                             else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             # -----------------------------------------------------------------------------------
                             else if flowsnakeconfig.maddog_enabled then
+                                flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
-                        ) +
-                        if flowsnakeconfig.is_test_fleet then
-                        [
-                         {
-                             name: "flowsnake-tls-secret",
-                             mountPath: "/etc/ssl/certs",
-                         },
-                        ] else flowsnakeconfigmapmount.nginx_volumeMounts,
+                        ),
                     },
                 ],
                 volumes: (
                     if flowsnakeconfig.is_minikube then
                         []
+                    else if flowsnakeconfig.is_test_fleet then
+                        [
+                            {
+                                name: "flowsnake-tls-secret",
+                                secret: {
+                                    secretName: "flowsnake-tls",
+                                },
+                            },
+                        ] +
+                        flowsnakeconfigmapmount.kubeconfig_volume +
+                        flowsnakeconfigmapmount.k8s_cert_volume
                     # TODO: remove this block when we have new nginx
                     else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
                         flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
                     # -----------------------------------------------------------------------------------
                     else if flowsnakeconfig.maddog_enabled then
+                        flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
                     else flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
-                ) + if flowsnakeconfig.is_test_fleet then
-                [
-                    {
-                        name: "flowsnake-tls-secret",
-                        secret: {
-                            secretName: "flowsnake-tls",
-                        },
-                    },
-                ] else flowsnakeconfigmapmount.nginx_volume,
+                ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",
                 },

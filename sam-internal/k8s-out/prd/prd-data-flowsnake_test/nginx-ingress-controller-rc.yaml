@@ -53,6 +53,8 @@ spec:
             port: 80
             scheme: HTTP
         volumeMounts:
+        - mountPath: /etc/ssl/certs
+          name: flowsnake-tls-secret
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
@@ -65,10 +67,11 @@ spec:
         - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
           name: k8s-client-key
           readOnly: true
-        - mountPath: /etc/ssl/certs
-          name: flowsnake-tls-secret
       terminationGracePeriodSeconds: 60
       volumes:
+      - name: flowsnake-tls-secret
+        secret:
+          secretName: flowsnake-tls
       - hostPath:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
@@ -81,6 +84,3 @@ spec:
       - hostPath:
           path: /etc/pki_service/kubernetes/k8s-client/keys
         name: k8s-client-key
-      - name: flowsnake-tls-secret
-        secret:
-          secretName: flowsnake-tls
