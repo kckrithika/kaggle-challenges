@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if samfeatureflags.rbac then {
+{
   apiVersion: "v1",
   kind: "List",
   metadata: {},
@@ -160,4 +160,4 @@ if samfeatureflags.rbac then {
     },
 
   ],
-} else "SKIP"
+}
