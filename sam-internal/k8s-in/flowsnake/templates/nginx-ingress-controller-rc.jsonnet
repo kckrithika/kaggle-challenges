@@ -95,6 +95,16 @@ local estate = std.extVar("estate");
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
                                 []
+                            else if flowsnakeconfig.is_test_fleet then
+                                [
+                                 {
+                                     name: "flowsnake-tls-secret",
+                                     mountPath: "/etc/ssl/certs",
+                                     readOnly: true,
+                                 },
+                                ] +
+                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             # TODO: remove this block when we have new nginx
                             else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
@@ -112,6 +122,17 @@ local estate = std.extVar("estate");
                 volumes: (
                     if flowsnakeconfig.is_minikube then
                         []
+                    else if flowsnakeconfig.is_test_fleet then
+                        [
+                            {
+                                name: "flowsnake-tls-secret",
+                                secret: {
+                                    secretName: "flowsnake-tls",
+                                },
+                            },
+                        ] +
+                        flowsnakeconfigmapmount.kubeconfig_volume +
+                        flowsnakeconfigmapmount.k8s_cert_volume
                     # TODO: remove this block when we have new nginx
                     else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
                         flowsnakeconfigmapmount.kubeconfig_volume +
