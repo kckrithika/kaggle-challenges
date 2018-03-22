@@ -16,7 +16,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: appcatalog-lite
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_lite:20180321.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_lite:20180322.0
       volumeMounts:
       - name: tls-client-cert
         mountPath: /certs
