@@ -20,7 +20,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --hostnameOverride=$(NODE_NAME)
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --labelValues=slb-ipvs:2,slb-nginx-b:2,slb-dns:1
+        - --labelValues=slb-ipvs:3,slb-nginx-b:3,slb-dns:1
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
@@ -44,7 +44,7 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
       nodeSelector:
-        pool: prd-sdc
+        pool: prd-sam
       volumes:
       - hostPath:
           path: /data/slb
