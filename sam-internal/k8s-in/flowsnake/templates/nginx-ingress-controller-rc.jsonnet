@@ -100,6 +100,7 @@ local estate = std.extVar("estate");
                                  {
                                      name: "flowsnake-tls-secret",
                                      mountPath: "/etc/ssl/certs",
+                                     readOnly: "true",
                                  },
                                 ] +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
