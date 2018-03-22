@@ -17,7 +17,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig
-        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001780-a269ec85
+        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a
         name: etcdbackup
         volumeMounts:
         - mountPath: /data/etcdbackup
