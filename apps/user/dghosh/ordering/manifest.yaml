@@ -29,7 +29,7 @@ system:
       - name: MANAGEMENT_PORT
         value: 15371
       ports:
-      - containerPort: 7443
+      - containerPort: 7021
       - containerPort: 15371
       - containerPort: 9010
       livenessProbe:
