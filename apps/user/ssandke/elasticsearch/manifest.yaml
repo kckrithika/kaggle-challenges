@@ -56,7 +56,7 @@ system:
 
     volumeClaimTemplates:
     - name: elasticsearch-persistent-storage
-      storageClassName: standard
+      storageClassName: ssandke-slow
       storageSizeRequest: 1Gi
 
   loadbalancers:
