@@ -166,9 +166,9 @@ local data = {
 };
 
 # This is the actual output
-if samfeatureflags.rbac then {
+{
   apiVersion: "v1",
   kind: "List",
   metadata: {},
   items: data.clusterRoleBindings + data.roleBindings,
-} else "SKIP"
+}

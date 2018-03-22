@@ -3,7 +3,7 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
 local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 # The following ClusterRole & ClusterRoleBinding allows Minion Nodes to update their own status but not others.
-if samfeatureflags.rbac then {
+{
   apiVersion: "v1",
   kind: "List",
   metadata: {},
@@ -60,4 +60,4 @@ if samfeatureflags.rbac then {
 
   local itemList = roles + rolesbindings,
   items: itemList,
-} else "SKIP"
+}
