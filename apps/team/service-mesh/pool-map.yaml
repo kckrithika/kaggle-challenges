@@ -35,3 +35,7 @@ apps:
   - prd/prd-sam
   h1-test-server-envoy-tls:
   - prd/prd-sam
+ ordering-l5d-tls:
+  - prd/prd-sam
+ shipping-l5d-tls:
+  - prd/prd-sam
