@@ -8,17 +8,21 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
         template: {
             spec: {
                 hostNetwork: true,
+                  securityContext: {
+                    runAsUser: 0,
+                    fsGroup: 0,
+                },
                 containers: [
                     {
+                  securityContext: {
+                    privileged: true,
+                },
                         name: "k8s-event-processor",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180320_205723.ce444308.dirty.mayankkuma-ltm3",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180322_001013.ce444308.dirty.mayankkuma-ltm3",
                         command: configs.filter_empty([
                             "/sam/k8s-event-processor",
                             "--v=5",
                             "--k8sapiserver=",
-                            "--smtpServer=" + configs.smtpServer,
-                            "--sender=sam@salesforce.com",
-                            "--defaultRecipient=mayank.kumar@salesforce.com",
                             "--namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store",
                             configs.sfdchosts_arg,
                         ]),
@@ -50,6 +54,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                         ]),
                         env: [
                             configs.kube_config_env,
+                            {
+                                name: "SYSTEMD_IGNORE_CHROOT",
+                                value: "yes",
+                            },
                         ],
                     },
                 ],

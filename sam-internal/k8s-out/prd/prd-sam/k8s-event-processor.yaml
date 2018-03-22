@@ -21,16 +21,17 @@ spec:
         - /sam/k8s-event-processor
         - --v=5
         - --k8sapiserver=
-        - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
-        - --sender=sam@salesforce.com
-        - --defaultRecipient=mayank.kumar@salesforce.com
         - --namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180320_205723.ce444308.dirty.mayankkuma-ltm3
+        - name: SYSTEMD_IGNORE_CHROOT
+          value: "yes"
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180322_001013.ce444308.dirty.mayankkuma-ltm3
         name: k8s-event-processor
+        securityContext:
+          privileged: true
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -55,6 +56,9 @@ spec:
       hostNetwork: true
       nodeSelector:
         master: "true"
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
       volumes:
       - configMap:
           name: sfdchosts
