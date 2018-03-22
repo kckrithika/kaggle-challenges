@@ -188,6 +188,17 @@ perCluster: {
         name: "usr-sbin-volume",
         mountPath: "/host/usr/sbin",
     },
+# Frequently used volume: /proc
+    proc_volume: {
+        name: "proc-volume",
+        hostPath: {
+            path: "/proc",
+        },
+    },
+    proc_volume_mount: {
+        name: "proc-volume",
+        mountPath: "/host/proc",
+    },
 
 subnet: self.perCluster.subnet[estate],
 serviceList: self.perCluster.serviceList[estate],
