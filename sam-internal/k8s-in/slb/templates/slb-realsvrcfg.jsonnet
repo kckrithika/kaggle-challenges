@@ -41,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--netInterfaceName=eth0",
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ] + if configs.estate == "prd-sdc" then [
+                        ] + if configs.kingdom == "prd" then [
                            "--maxDeleteVipCount=1000",
                         ] else [],
                         volumeMounts: configs.filter_empty([
