@@ -11,7 +11,7 @@ system:
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor-prod:2.6.3-0000037-15337581
+      image: tnrp/caas/caas-monitor-prod:2.6.4-0000039-15515104
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
