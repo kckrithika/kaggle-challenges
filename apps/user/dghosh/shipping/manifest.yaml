@@ -9,15 +9,9 @@ system:
     - name: clientcert
       maddogCert:
         type: client
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
     containers:
     - name: shipping-dghosh
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dghosh/shipping/scone-shipping-dghosh:dghosh-20180321-14bace0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/shipping/shipping-robin-kalia:robin.kalia-20180212-c8ba0a9
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -46,10 +40,6 @@ system:
       volumeMounts:
       - name: clientcert
         mountPath: /clientcerts
-      - name: tls-client-cert
-        mountPath: /client-certs
-      - name: tls-server-cert
-        mountPath: /server-certs
       livenessProbe:
         initialDelaySeconds: 5
         exec:
