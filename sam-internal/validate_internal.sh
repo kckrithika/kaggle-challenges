@@ -23,8 +23,7 @@ docker run \
   -validateonly \
   -validationExceptionsFile=/repo/sam-internal/validation-whitelist.yaml \
   -skip-sam-internals \
+  -FullSchemaValidation \
 
-# TODO: Re-add this once it works with MadDog and K4A volumes
-#  -FullSchemaValidation \
 
 
