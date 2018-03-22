@@ -49,6 +49,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         ]),
                         env: [
                             configs.kube_config_env,
+                            {
+                               name: "NODE_NAME",
+                               valueFrom: {
+                                  fieldRef: {
+                                     fieldPath: "spec.nodeName",
+                                  },
+                               },
+                            },
                         ],
                     },
                 ],
