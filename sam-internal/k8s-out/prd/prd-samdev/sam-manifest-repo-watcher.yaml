@@ -22,6 +22,9 @@ spec:
         volumeMounts:
         - mountPath: /config
           name: config
+        - mountPath: /var/mysqlPwd
+          name: mysql
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -29,3 +32,6 @@ spec:
       - configMap:
           name: sam-manifest-repo-watcher
         name: config
+      - name: mysql
+        secret:
+          secretName: mysql-pwd

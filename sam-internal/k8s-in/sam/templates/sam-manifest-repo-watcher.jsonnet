@@ -17,11 +17,22 @@ if configs.estate == "prd-samdev" then {
                                         ]),
                                         volumeMounts: configs.filter_empty([
                                                     configs.config_volume_mount,
+                                                    {
+                                                            mountPath: "/var/mysqlPwd",
+                                                            name: "mysql",
+                                                            readOnly: true,
+                                                        },
                                         ]),
                                     },
                                 ],
                                 volumes: configs.filter_empty([
                                     configs.config_volume("sam-manifest-repo-watcher"),
+                                    {
+                                            secret: {
+                                                secretName: "mysql-pwd",
+                                            },
+                                            name: "mysql",
+                                    },
                                 ]),
                                 nodeSelector: {
                                               } +
