@@ -55,7 +55,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/ssl/certs
           name: flowsnake-tls-secret
-          readOnly: "true"
+          readOnly: true
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
