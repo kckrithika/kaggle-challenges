@@ -129,11 +129,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         ] + if configs.estate == "prd-sam" then [
                             # Increase maxDeleteCount so slb-cleanup will remove the -nginx-proxy config files
                             "--maxDeleteFileCount=500",
-                        ] else if configs.kingdom == "prd" then [
+                        ] else [
                             "--maxDeleteFileCount=20",
-                        ]
-                        else [
-                            "--maxDeleteFileCount=3",
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
