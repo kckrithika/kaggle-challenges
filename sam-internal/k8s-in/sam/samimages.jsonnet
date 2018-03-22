@@ -19,16 +19,10 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [cbatra] [Important]  If we update an initContainerImage then it is not promoted to prod by default
-        # This is just a hack for now until we fix the logic in SMB image promotion to also add images for InitContainers/sidecars
-        # Here we are just updating the image of a watchdog in one kingdom to get the image promoted everywhere
-        "frf,frf-sam,watchdog-puppet,hypersam": $.static.k4aInitContainerImage,
-
         # [d.smith] Early push of new hypersam - adds events and clean resource deletes
         "cdu,cdu-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "chx,chx-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "hnd,hnd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "iad,iad-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "ord,ord-sam,snapshoter,hypersam": "sam-0001803-2a719339",
@@ -83,7 +77,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
-            hypersam: "sam-0001780-a269ec85",
+            hypersam: "sam-0001800-1972769a",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
