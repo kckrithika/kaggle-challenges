@@ -26,6 +26,7 @@ apps:
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
   expobservation-service:
+    - prd/prd-sam_report_collector
   observation-service:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
