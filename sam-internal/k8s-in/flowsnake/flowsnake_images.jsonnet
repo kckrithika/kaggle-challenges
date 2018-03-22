@@ -20,12 +20,12 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - image tags from strata build
         "1": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "558",
+            cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "560",
+            fleetService_image_tag: "565",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "564",
-            ingressDefaultBackend_image_tag: "560",
+            ingressControllerNginx_image_tag: "565",
+            ingressDefaultBackend_image_tag: "565",
             kibana_image_tag: "345",
             logloader_image_tag: "468",
             logstash_image_tag: "468",
@@ -49,7 +49,7 @@ local utils = import "util_functions.jsonnet";
                 {
                   "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
                   "tc-will-itest-ready": "tc-will-itest-ready",
-                  "0.9.7-itest": 560,
+                  "0.9.7-itest": 565,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
