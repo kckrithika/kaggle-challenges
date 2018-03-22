@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
             es_image_tag: "503",
             fleetService_image_tag: "560",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "560",
+            ingressControllerNginx_image_tag: "564",
             ingressDefaultBackend_image_tag: "560",
             kibana_image_tag: "345",
             logloader_image_tag: "468",
