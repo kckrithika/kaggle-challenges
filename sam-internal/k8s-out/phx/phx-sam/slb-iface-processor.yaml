@@ -22,7 +22,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000696-a1d6fcf1
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000703-3ffb01c2
         name: slb-iface-processor
         securityContext:
           privileged: true
