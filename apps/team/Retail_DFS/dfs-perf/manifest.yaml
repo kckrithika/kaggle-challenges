@@ -12,8 +12,6 @@ system:
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
-      - name: dfs-server-cert
-        mountPath: /servercerts
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
@@ -24,7 +22,10 @@ system:
         exec:
           command: ["true"]
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - name: dfs-server-cert
+        mountPath: /servercerts
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
