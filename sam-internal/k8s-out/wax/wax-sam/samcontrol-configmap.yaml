@@ -12,7 +12,7 @@ data:
       "enableMaddog": false,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,
-      "k4aInitContainerImage": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001766-90cf5295",
+      "k4aInitContainerImage": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a",
       "k8sapiserver": "",
       "keyFile": "/data/certs/hostcert.key",
       "maddogMaddogEndpoint": "https://all.pkicontroller.pki.blank.wax.prod.non-estates.sfdcsd.net:8443",

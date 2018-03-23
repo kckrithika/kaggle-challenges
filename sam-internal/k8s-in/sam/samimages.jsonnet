@@ -20,19 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [d.smith] Early push of new hypersam - adds events and clean resource deletes
-        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "chx,chx-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "iad,iad-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "ord,ord-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "par,par-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "syd,syd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "wax,wax-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "yul,yul-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
         "prd,prd-samdev,snapshoter,hypersam": "sam-0001803-2a719339",
         "prd,prd-samtest,snapshoter,hypersam": "sam-0001803-2a719339",
@@ -90,7 +77,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia (Pub overridden by 'pub' phase for now)
         "4": {
-            hypersam: "sam-0001780-a269ec85",
+            hypersam: "sam-0001800-1972769a",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
@@ -127,7 +114,7 @@ local utils = import "util_functions.jsonnet";
                 "sam-1ebeb0ac-657"
         ),
 
-        k4aInitContainerImage: "sam-0001766-90cf5295",
+        k4aInitContainerImage: "sam-0001800-1972769a",
         kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
         kubednsmasq: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
         kubednssidecar: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1",
