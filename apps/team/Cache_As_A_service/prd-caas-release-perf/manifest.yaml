@@ -10,8 +10,6 @@ system:
     strategy:
       type: Recreate
     hostnetwork: true
-    nodeSelector:
-      kubernetes.io/hostname=samcaas2-caasminion1-1-prd.eng.sfdc.net    
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
@@ -34,8 +32,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12015
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12015
@@ -53,8 +51,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12015
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -82,8 +80,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12016
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12016
@@ -101,8 +99,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12016
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -130,8 +128,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12017
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12017
@@ -149,8 +147,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12017
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -178,8 +176,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12018
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12018
@@ -197,8 +195,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12018
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -226,8 +224,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12019
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12019
@@ -245,8 +243,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12019
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -274,8 +272,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12020
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12020
@@ -293,8 +291,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12020
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -322,8 +320,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12021
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12021
@@ -341,8 +339,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12021
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -370,8 +368,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12022
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12022
@@ -389,8 +387,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12022
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -399,7 +397,7 @@ system:
           readOnly: true
     - name: caas-metrics-publisher 
       # container image/version to  run
-      image: tnrp/caas/caas-monitor-prod:2.6.0-0000023-15191845
+      image: tnrp/caas/caas-monitor-prod:2.6.4-0000039-15515104
       args: 
         - --zookeeper.seedHosts=shared0-discovery1-0-crd.data.sfdc.net:2181
         - --server.port=7521 
