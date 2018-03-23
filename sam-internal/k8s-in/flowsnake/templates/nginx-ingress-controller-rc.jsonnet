@@ -67,11 +67,6 @@ local estate = std.extVar("estate");
                                     },
                                 },
                             },
-                            # Remove after upgrade to future version of ingress controller that uses --kubeconfig arg instead
-                            {
-                                name: "KUBECONFIG",
-                                value: "/etc/kubernetes/kubeconfig",
-                            },
                         ],
                         ports: [
                             {
@@ -87,11 +82,7 @@ local estate = std.extVar("estate");
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
                             "--sync-period=30s",
-                        ] + if !flowsnakeconfig.is_minikube then
-                        [
-                            # Future ingress controller versions use this argument instead of KUBECONFIG env var.
-                            # "--kubeconfig=/etc/kubernetes/kubeconfig",
-                        ] else [],
+                        ],
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
                                 [
@@ -111,11 +102,6 @@ local estate = std.extVar("estate");
                                 ] +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
-                            # TODO: remove this block when we have new nginx
-                            else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
-                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
-                            # -----------------------------------------------------------------------------------
                             else if flowsnakeconfig.maddog_enabled then
                                 flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
@@ -146,11 +132,6 @@ local estate = std.extVar("estate");
                         ] +
                         flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
-                    # TODO: remove this block when we have new nginx
-                    else if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
-                        flowsnakeconfigmapmount.kubeconfig_volume +
-                        flowsnakeconfigmapmount.k8s_cert_volume
-                    # -----------------------------------------------------------------------------------
                     else if flowsnakeconfig.maddog_enabled then
                         flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
