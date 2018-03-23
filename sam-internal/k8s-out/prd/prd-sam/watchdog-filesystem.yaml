@@ -43,6 +43,9 @@ spec:
         - mountPath: /data
           name: data-volume
       hostNetwork: true
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
       volumes:
       - configMap:
           name: sfdchosts
