@@ -27,8 +27,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12098
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       env:
        - name: SFDC_SUBENVIRONMENT
