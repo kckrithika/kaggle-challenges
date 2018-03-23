@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.5.3
+      image: sfci/searchdev/universal-search:0.6.1
       ports:
       - name: service-port
         containerPort: 7020
