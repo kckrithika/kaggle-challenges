@@ -94,7 +94,13 @@ local estate = std.extVar("estate");
                         ] else [],
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
-                                []
+                                [
+                                 {
+                                     name: "flowsnake-tls-secret",
+                                     mountPath: "/etc/ssl/certs",
+                                     readOnly: true,
+                                 },
+                                ]
                             else if flowsnakeconfig.is_test_fleet then
                                 [
                                  {
@@ -121,7 +127,14 @@ local estate = std.extVar("estate");
                 ],
                 volumes: (
                     if flowsnakeconfig.is_minikube then
-                        []
+                        [
+                            {
+                                name: "flowsnake-tls-secret",
+                                secret: {
+                                    secretName: "flowsnake-tls",
+                                },
+                            },
+                        ]
                     else if flowsnakeconfig.is_test_fleet then
                         [
                             {
