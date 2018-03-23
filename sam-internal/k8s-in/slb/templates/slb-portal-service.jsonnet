@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
+local slbconfigs = import "slbconfig.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || configs.kingdom == "frf" || configs.kingdom == "phx" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
