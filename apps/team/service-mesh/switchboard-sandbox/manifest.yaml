@@ -31,6 +31,7 @@ system:
       - --clusters.external-clusters[9]=geoip-envoy-tls-sandbox.service-mesh:HTTP2_TLS
       - --clusters.external-clusters[10]=h1-test-server-envoy.service-mesh:HTTP1
       - --clusters.external-clusters[11]=h1-test-server-envoy-tls.service-mesh:HTTP1_TLS
+      - --clusters.external-clusters[12]=shipping-envoy-tls.service-mesh:HTTP2_TLS
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
