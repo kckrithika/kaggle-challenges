@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: shipping-l5d-tls
+  - name: shipping-envoy-tls
     count: 1
     containers:
     - name: shipping
@@ -33,10 +33,10 @@ system:
       args:
       # H2-TLS
       - -endpoint
-      - service-mesh/shipping-l5d-tls:DATACENTER:7443     
+      - service-mesh/shipping-envoy-tls:DATACENTER:7443     
       # H2-Plain
       - -endpoint
-      - service-mesh/shipping-l5d-tls-plain:DATACENTER:7012
+      - service-mesh/shipping-envoy-tls-plain:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:

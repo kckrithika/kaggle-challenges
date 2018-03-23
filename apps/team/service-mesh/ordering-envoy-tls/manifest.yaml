@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: ordering-l5d-tls
+  - name: ordering-envoy-tls
     count: 1
     containers:
     - name: ordering
@@ -12,7 +12,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: SCONE_SHIPPING_DEST
-        value: shipping-l5d-tls.service-mesh.localhost.mesh.force.com:5443
+        value: shipping-envoy-tls.service-mesh.localhost.mesh.force.com:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
