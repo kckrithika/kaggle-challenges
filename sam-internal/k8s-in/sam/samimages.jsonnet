@@ -46,6 +46,11 @@ local utils = import "util_functions.jsonnet";
 
         # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
         "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180322_164313.da469b49.dirty.dianachang-ltm1",
+
+        # [lizhang.li] Enable filesytem-watchdog in prd-sam, prd-samtest, prd-samdev
+        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
+        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
+        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
     },
 
     ### This section list private build overrides that can be deployed to the test clusters
