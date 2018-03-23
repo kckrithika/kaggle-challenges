@@ -46,8 +46,7 @@ else
               },
             ] +
             flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-            flowsnakeconfigmapmount.platform_cert_volumeMounts +
-            flowsnakeconfigmapmount.k8s_cert_volumeMounts,
+            flowsnakeconfigmapmount.platform_cert_volumeMounts,
             env: [
               {
                 name: "FLOWSNAKE_FLEET",
@@ -78,9 +77,9 @@ else
               "--maddog-endpoint",
               "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
-              "/maddog-certs/ca/security-ca.pem",
+              "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              "/maddog-certs/ca/cacerts.pem",
+              "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
               "--funnel-endpoint",
@@ -108,13 +107,7 @@ else
                 mountPath: "/tokens",
                 name: "tokens",
               },
-              {
-                mountPath: "/maddog-certs",
-                name: "pki",
-              },
-            ] +
-            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-            flowsnakeconfigmapmount.platform_cert_volumeMounts,
+            ] + flowsnakeconfigmapmount.platform_cert_volumeMounts,
             env: [
               {
                 name: "MADKUB_NODENAME",
@@ -156,9 +149,9 @@ else
               "--maddog-endpoint",
               "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
-              "/maddog-certs/ca/security-ca.pem",
+              "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              "/maddog-certs/ca/cacerts.pem",
+              "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
               "--funnel-endpoint",
@@ -184,11 +177,7 @@ else
                 mountPath: "/tokens",
                 name: "tokens",
               },
-              {
-                mountPath: "/maddog-certs",
-                name: "pki",
-              },
-            ],
+            ] + flowsnakeconfigmapmount.platform_cert_volumeMounts,
             env: [
               {
                 name: "MADKUB_NODENAME",
@@ -229,24 +218,6 @@ else
             },
           },
           {
-            name: "kubeconfig",
-            hostPath: {
-              path: "/etc/kubernetes/kubeconfig",
-            },
-          },
-          {
-            name: "kubeconfig-certs",
-            hostPath: {
-              path: "/data/certs",
-            },
-          },
-          {
-            name: "pki",
-            hostPath: {
-              path: "/etc/pki_service",
-            },
-          },
-          {
             name: "datacerts",
             emptyDir: {
               medium: "Memory",
@@ -266,7 +237,7 @@ else
           },
         ] +
         flowsnakeconfigmapmount.platform_cert_volume +
-        flowsnakeconfigmapmount.k8s_cert_volume,
+        flowsnakeconfigmapmount.kubeconfig_platform_volume,
       },
     },
   },
