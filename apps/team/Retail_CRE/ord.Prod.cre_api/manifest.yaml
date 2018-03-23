@@ -5,14 +5,20 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-api-ord-prod
+  - name: cre-api
     count: 3
     containers:
-    - name: cre-api-ord-prod
+    - name: cre-api
       image: sfci/cre/cre-api:0.0.1.22.master.f0f6420.72
       env:
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__ord.ajna_local__cre_audit
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: prod
+        - name: METRICS_KAFKA_ENABLED
+          value: false          
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -30,7 +36,7 @@ system:
         name: myclientcert
       - mountPath: /myservercert
         name: myservercert
-      - mountPath: /opt/cre/cre-api_prod
+      - mountPath: /opt/cre/cre-api
         name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.23
@@ -67,7 +73,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-api_prod
+        path: /home/sfdc-cre/logs/cre-api
     - name: myclientcert
       maddogCert:
         type: client
@@ -75,10 +81,10 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-api-ord-prod-lb
+          - cre-api-lb
   loadbalancers:
-  - lbname: cre-api-ord-prod-lb
-    function: cre-api-ord-prod
+  - lbname: cre-api-lb
+    function: cre-api
     nodeExposed: true
     slbenabled: true    
     ports:

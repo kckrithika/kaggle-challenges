@@ -5,14 +5,14 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-api-prd-ccp-shared-dev
+  - name: cre-api-ccp-dev
     count: 3
     containers:
-    - name: cre-api-prd-ccp-shared-dev
+    - name: cre-api-ccp-dev
       image: sfci/cre/cre-api:0.0.1.22.master.f0f6420.72
       env:
         - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_audit
+          value: sfdc.prod.cre__prd.ajna_local__cre_audit_CCP_Shared_Dev
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: METRICS_KAFKA_KEYSTORE
@@ -40,7 +40,7 @@ system:
         name: myclientcert
       - mountPath: /myservercert
         name: myservercert
-      - mountPath: /opt/cre/cre-api_ccp-shared-dev
+      - mountPath: /opt/cre/cre-api-ccp-dev
         name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.23
@@ -80,7 +80,7 @@ system:
         path: /home/sfdc-retail/keystores
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-api_ccp-shared-dev
+        path: /home/sfdc-cre/logs/cre-api-ccp-dev
     - name: myclientcert
       maddogCert:
         type: client
@@ -88,10 +88,10 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-api-prd-ccp-shared-dev-lb
+          - cre-api-ccp-dev-lb
   loadbalancers:
-  - lbname: cre-api-prd-ccp-shared-dev-lb
-    function: cre-api-prd-ccp-shared-dev
+  - lbname: cre-api-ccp-dev-lb
+    function: cre-api-ccp-dev
     nodeExposed: true
     slbenabled: true
     ports:
