@@ -151,5 +151,19 @@ local configs = import "config.jsonnet";
         daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
     },
     
-
+    # Check for an image override based on kingdom,minionEstate,ceph-cluster,ceph-daemon. If not found return default_tag.
+    # This is based on the `do_override` function in util_functions.jsonnet, and allows for ceph cluster override specifications
+    # that are consistent with other image overrides.
+    #
+    # overrides - a map of "kingdom,estate,template,image" to "tag"
+    # minionEstate - the estate where the ceph cluster will be created.
+    # default_tag - the docker tag to use when no override is found (e.g., "jewel-0000052-36e8b39d")
+    #
+    do_cephdaemon_tag_override(overrides, minionEstate, default_tag):: (
+        local overrideName = configs.kingdom + "," + minionEstate + ",ceph-cluster,ceph-daemon";
+        if (std.objectHas(overrides, overrideName)) then
+            overrides[overrideName]
+        else
+            default_tag
+    ),
 }
