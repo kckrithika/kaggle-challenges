@@ -44,7 +44,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ],
+                        ] + if configs.estate == "prd-sam" then [
+                            "--maxDeleteEntries=500",
+                        ] else [],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
