@@ -5,10 +5,10 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-stream-processing-prd-ccp-shared-dev
+  - name: cre-sp-ccp-dev
     count: 3
     containers:
-    - name: cre-sp-prd-ccp-shared-dev
+    - name: cre-sp-ccp-dev
       image: sfci/cre/cre-stream-processing:0.0.1.23.master.d66a3ca.91
       env:
         - name: METRICS_KAFKA_TOPIC
@@ -40,7 +40,7 @@ system:
         name: myclientcert
       - mountPath: /myservercert
         name: myservercert        
-      - mountPath: /opt/cre/cre-stream-processing_ccp-shared-dev
+      - mountPath: /opt/cre/cre-sp-ccp-dev
         name: logvol
     - name: sherpa-cre-stream-processing
       image: sfci/servicelibs/sherpa:2.0.23
@@ -77,7 +77,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-stream-processing_ccp-shared-dev
+        path: /home/sfdc-cre/logs/cre-sp-ccp-dev
     - name: certs
       hostPath:
         path: /home/sfdc-retail/keystores
@@ -88,10 +88,10 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-sp-prd-ccp-shared-dev-lb        
+          - cre-sp-ccp-dev-lb        
   loadbalancers:
-  - lbname: cre-sp-prd-ccp-shared-dev-lb
-    function: cre-stream-processing-prd-ccp-shared-dev
+  - lbname: cre-sp-ccp-dev-lb
+    function: cre-sp-ccp-dev
     nodeExposed: true
     slbEnabled: true
     ports:
