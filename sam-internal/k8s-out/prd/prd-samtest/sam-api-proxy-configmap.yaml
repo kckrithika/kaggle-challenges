@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  sam-api-proxy.json: |-
+    {
+      "apiServerUrl": "localhost:8000"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sam-api-proxy
