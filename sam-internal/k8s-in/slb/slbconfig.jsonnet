@@ -53,7 +53,6 @@ perCluster: {
         "prd-samtest": "",
         "prd-samdev": "",
         "prd-sam_storage": "",
-        "prd-sam": "",
     } + {
         [k + "-sam"]: ""
             for k in $.prodKingdoms + ["prd"]
