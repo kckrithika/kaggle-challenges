@@ -75,7 +75,7 @@ else
               "--madkub-endpoint",
               "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
-              "https://all.controller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
               "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
