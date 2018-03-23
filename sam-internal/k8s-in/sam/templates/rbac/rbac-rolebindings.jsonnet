@@ -8,6 +8,7 @@ local ci = {
   "prd-sp2-sam_iot_test": ["iot-ci", "ci-iot"],
   "prd-sp2-sam_chatbot": ["chatbot-ci"],
   "prd-sp2-sam_coreapp": ["ci-ice-pd"],
+  "prd-sam_gater": ["ci-ccait"],
 };
 
 # Functions
