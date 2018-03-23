@@ -52,6 +52,12 @@ spec:
             path: /healthz
             port: 80
             scheme: HTTP
-        volumeMounts: []
+        volumeMounts:
+        - mountPath: /etc/ssl/certs
+          name: flowsnake-tls-secret
+          readOnly: true
       terminationGracePeriodSeconds: 60
-      volumes: []
+      volumes:
+      - name: flowsnake-tls-secret
+        secret:
+          secretName: flowsnake-tls
