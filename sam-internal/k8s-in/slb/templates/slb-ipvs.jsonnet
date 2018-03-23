@@ -112,7 +112,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
+                        ] + (if configs.estate == "prd-sam" then [
+                            # All the KNE VIPs are being deleted
+                            "--maximumDeleteCount=1000",
+                        ] else [
                             "--maximumDeleteCount=20",
+                        ]) +
+                        [
                             configs.sfdchosts_arg,
                         ],
                         volumeMounts: configs.filter_empty([
