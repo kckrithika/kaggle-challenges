@@ -29,13 +29,13 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
         "2": {
-            hypersdn: "v-0000668-bae2cf08",
+            hypersdn: "v-0000707-dc1b3811",
             bird: "v-0000014-b0a5951d",
             },
 
         ### Release Phase 3 - Rest of the SAM clusters in PRD
         "3": {
-            hypersdn: "v-0000668-bae2cf08",
+            hypersdn: "v-0000707-dc1b3811",
             bird: "v-0000014-b0a5951d",
             },
 
