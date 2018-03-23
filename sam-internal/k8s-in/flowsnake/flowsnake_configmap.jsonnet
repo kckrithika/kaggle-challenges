@@ -227,6 +227,11 @@ local samconfig = import "config.jsonnet";
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
             authorizedClientCerts: ["flowsnakemasteriottest", "flowsnake_master_iot_test"],
         },
+        {
+            namespace: "retail-cre",
+            authorizedLdapGroups: ["CRE_AD"],
+            authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev"],
+        },
       ],
       "prd/prd-minikube-small-flowsnake": [
         {
@@ -248,12 +253,22 @@ local samconfig = import "config.jsonnet";
             authorizedLdapGroups: [],
             authorizedClientCerts: ["flowsnake_master_prod"],
         },
+        {
+            namespace: "retail-cre",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["retail-cre.cre-control-plane"],
+        },
       ],
       "ord/ord-flowsnake_prod": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: [],
             authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "retail-cre",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["retail-cre.cre-control-plane"],
         },
       ],
       "phx/phx-flowsnake_prod": [
