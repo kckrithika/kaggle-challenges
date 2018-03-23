@@ -13,6 +13,11 @@ data:
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
       "enableMaddogCertChecks": true,
+      "filesystemCheckDirs": [
+        "/data/",
+        "/data/logs/sdn/",
+        "/data/slb/logs/"
+      ],
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto",
       "k8sproxyEndpoint": "http://localhost:40000",

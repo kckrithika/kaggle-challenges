@@ -125,3 +125,10 @@ std.prune({
       "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
     ],
   } else {})
+  + (if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+    filesystemCheckDirs: [
+      "/data/",
+      "/data/logs/sdn/",
+      "/data/slb/logs/",
+    ],
+  } else {})
