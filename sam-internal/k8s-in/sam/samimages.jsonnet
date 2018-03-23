@@ -48,20 +48,26 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180322_164313.da469b49.dirty.dianachang-ltm1",
     },
 
-    ### This section list private build overrides that can be deployed to the test clusters
-    # for temporary testing
-    # While doing a new release this should be set to empty to deploy the official build
-    #
-    privatebuildoverridetag: "",
-
-
     ### Per-phase image tags
     per_phase: {
 
-        ### Release Phase 1 - Test Beds
-        # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to quickly find latest image
+        ### Release Phase 0 - Nightly deployment of the most recent hypersam to prd-samtest
+        # Under normal cirumstances we should not need to change this section.
+        # Overrides work just fine in this phase.  To see the active hypersam tag visit:
+        # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
+
+        "0": {
+             hypersam: "auto",
+             madkub: $.per_phase["1"].madkub,
+             madkubSidecar: $.per_phase["1"].madkubSidecar,
+             },
+
+        ### Release Phase 1 - prd-samdev
+        # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to pick the correct tag
+        # As much as possible, we want to use a tag that is running well in phase 0 above.
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
+
         "1": {
             hypersam: "sam-0001800-1972769a",
             madkub: "1.0.0-0000066-fedd8bce",
@@ -89,23 +95,14 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
-       ### For testing private bits from a developer's machine pre-checkin if
-       ### privatebuildoverride overrides are defined, otherwise use phase 1
-       privates: {
-           hypersam: (
-             if ($.privatebuildoverridetag != "") then
-                $.privatebuildoverridetag
-             else $.per_phase["1"].hypersam
-),
            madkub: $.per_phase["1"].madkub,
            madkubSidecar: $.per_phase["1"].madkubSidecar,
         },
-    },
 
     ### Phase kingdom/estate mapping
     phase: (
         if (estate == "prd-samtest") then
-            "privates"
+            "0"
         else if (estate == "prd-samdev") then
             "1"
         else if (kingdom == "prd") then
