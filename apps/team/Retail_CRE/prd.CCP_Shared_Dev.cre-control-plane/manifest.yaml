@@ -29,9 +29,9 @@ system:
             - ls
         initialDelaySeconds: 30
       volumeMounts:
-      - mountPath: /secrets/
-        name: secretvol
-        readOnly: true        
+      # - mountPath: /secrets/
+      #   name: secretvol
+      #   readOnly: true        
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
@@ -64,9 +64,9 @@ system:
             - ls
         initialDelaySeconds: 30
     volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: gdot-private-key
+    # - name: secretvol
+    #   k4aSecret:
+    #     secretName: gdot-private-key
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-ccp-dev
