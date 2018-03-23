@@ -147,8 +147,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12017
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
@@ -387,8 +387,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12022
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       volumeMounts:
         - mountPath: /home/caas/logs
           name: logvol
