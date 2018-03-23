@@ -11,7 +11,7 @@ system:
     type: stateful-set
     containers:
     - name: elasticsearch
-      image: docker-dva-rc/dva/elasticsearch-server:3
+      image: docker-dva-rc/dva/elasticsearch-server:4
       #env:
       #- name: ES_PASSWORD_FILE
       #  value: /secrets/rootpassword
