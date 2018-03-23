@@ -35,10 +35,10 @@ system:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
       env:
-        - name: KRB5_CONF
-          value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
-        - name: JAAS_CONF
-          value: /home/sfdc-usmt/krb-config/jaas-prd.conf
+      - name: KRB5_CONF
+        value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
+      - name: JAAS_CONF
+        value: /home/sfdc-usmt/krb-config/jaas-prd.conf
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -72,10 +72,10 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - name: server-cert-vol
-          mountPath: /server-certs
-        - name: sherpa-log-vol
-          mountPath: /log
+      - name: server-cert-vol
+        mountPath: /server-certs
+      - name: sherpa-log-vol
+        mountPath: /log
       livenessProbe:
         exec:
           command:
@@ -116,10 +116,9 @@ system:
       resources:
         limits: { cpu: "2", memory: "4Gi" }
         requests: { cpu: "2", memory: "4Gi" }
-      env:
       volumeMounts:
-      - name: synthetics-log-vol
-        mountPath: /home/sfdc-usmt/logs
+        - name: synthetics-log-vol
+          mountPath: /home/sfdc-usmt/logs
       livenessProbe:
         exec:
           command:
@@ -140,10 +139,10 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - name: client-cert-vol
-          mountPath: /client-certs
-        - name: sherpa-log-vol
-          mountPath: /log
+      - name: client-cert-vol
+        mountPath: /client-certs
+      - name: sherpa-log-vol
+        mountPath: /log
       livenessProbe:
         exec:
           command:
