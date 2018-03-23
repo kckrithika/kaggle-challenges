@@ -8,12 +8,12 @@ configDir: self.slbDir + "/config",
 logsDir: self.slbDir + "/logs",
 ipvsMarkerFile: self.slbDir + "/ipvs.marker",
 slbPortalTemplatePath: "/sdn/webfiles",
+prodKingdoms: ['frf', 'phx'],
 
 perCluster: {
     ddiService: {
-        prd: "https://ddi-api-prd.data.sfdc.net",
-        frf: "https://ddi-api-frf.data.sfdc.net",
-        phx: "https://ddi-api-phx.data.sfdc.net",
+        [k]: "https://ddi-api-" + k + ".data.sfdc.net"
+            for k in $.prodKingdoms + ["prd"]
     },
 
     subnet: {
@@ -33,8 +33,9 @@ perCluster: {
         "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "csrlb,controlplane-ptest",
-        "frf-sam": "",
-        "phx-sam": "",
+    } + {
+        [k + "-sam"]: ""
+            for k in $.prodKingdoms
     },
 
     servicesToLbOverride: {
@@ -52,9 +53,9 @@ perCluster: {
         "prd-samtest": "",
         "prd-samdev": "",
         "prd-sam_storage": "",
-        "prd-sam": "",
-        "frf-sam": "",
-        "phx-sam": "",
+    } + {
+        [k + "-sam"]: ""
+            for k in $.prodKingdoms + ["prd"]
     },
 
     useProxyServicesList: {
@@ -63,8 +64,9 @@ perCluster: {
         "prd-samdev": "",
         "prd-sam_storage": "",
         "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
-        "frf-sam": "",
-        "phx-sam": "",
+    } + {
+        [k + "-sam"]: ""
+            for k in $.prodKingdoms
     },
 
     podLabelList: {
@@ -83,18 +85,18 @@ perCluster: {
         "prd-samtest": true,
         "prd-samdev": true,
         "prd-sam_storage": true,
-        "prd-sam": true,
-        "frf-sam": true,
-        "phx-sam": true,
+    } + {
+        [k + "-sam"]: true
+            for k in $.prodKingdoms + ["prd"]
     },
     kneDomainName: {
         "prd-sdc": "prd-sdc.slb.sfdc.net",
         "prd-samtest": "",
         "prd-samdev": "",
         "prd-sam_storage": "",
-        "prd-sam": "slb.sfdc.net",
-        "frf-sam": "slb.sfdc.net",
-        "phx-sam": "slb.sfdc.net",
+    } + {
+        [k + "-sam"]: "slb.sfdc.net"
+            for k in $.prodKingdoms + ["prd"]
     },
     processKnEConfigs: {
         "prd-sdc": true,
@@ -102,18 +104,19 @@ perCluster: {
         "prd-samdev": false,
         "prd-sam_storage": false,
         "prd-sam": true,
-        "frf-sam": false,
-        "phx-sam": false,
-
+    } + {
+        [k + "-sam"]: false
+            for k in $.prodKingdoms
     },
+
     kneConfigDir: {
         "prd-sdc": "/var/slb/testkneconfigs",
         "prd-samtest": "/var/slb/testkneconfigs",
         "prd-samdev": "/var/slb/testkneconfigs",
         "prd-sam_storage": "/var/slb/testkneconfigs",
-        "prd-sam": "/var/slb/kneconfig",
-        "frf-sam": "/var/slb/kneconfig",
-        "phx-sam": "/var/slb/kneconfig",
+    } + {
+        [k + "-sam"]: "/var/slb/kneconfig"
+            for k in $.prodKingdoms + ["prd"]
     },
     canaryMaxParallelism: {
         "prd-sdc": 1,
@@ -123,9 +126,8 @@ perCluster: {
         "prd-sam": 2,
     },
     madkubServer: {
-        prd: "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
-        frf: "https://all.pkicontroller.pki.blank.frf.prod.non-estates.sfdcsd.net:8443",
-        phx: "https://all.pkicontroller.pki.blank.phx.prod.non-estates.sfdcsd.net:8443",
+        [k]: "https://all.pkicontroller.pki.blank." + k + ".prod.non-estates.sfdcsd.net:8443"
+            for k in $.prodKingdoms + ["prd"]
     },
 },
 
@@ -216,7 +218,7 @@ servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
 servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
 canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
 madkubServer: self.perCluster.madkubServer[kingdom],
-slbInKingdom: kingdom in { prd: 1, phx: 1, frf: 1 },
+slbInKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms + ["prd"] },
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
