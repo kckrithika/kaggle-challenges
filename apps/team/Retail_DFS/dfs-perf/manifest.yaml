@@ -36,14 +36,14 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+        initialDelaySeconds: 60
+        periodSeconds: 120
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+        initialDelaySeconds: 60
+        periodSeconds: 120
     # maps the dfslogvol volumnMount to a directory on the host machine
     volumes:
     - name: logvol
