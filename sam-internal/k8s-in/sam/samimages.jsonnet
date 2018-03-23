@@ -48,13 +48,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180322_164313.da469b49.dirty.dianachang-ltm1",
     },
 
-    ### This section list private build overrides that can be deployed to the test clusters
-    # for temporary testing
-    # While doing a new release this should be set to empty to deploy the official build
-    #
-    privatebuildoverridetag: "",
-
-
     ### Per-phase image tags
     per_phase: {
 
@@ -62,6 +55,11 @@ local utils = import "util_functions.jsonnet";
         # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to quickly find latest image
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
+
+        "0": $.per_phase["1"] {
+             hypersam: "auto",
+             },
+
         "1": {
             hypersam: "sam-0001800-1972769a",
             madkub: "1.0.0-0000066-fedd8bce",
@@ -89,23 +87,14 @@ local utils = import "util_functions.jsonnet";
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
-       ### For testing private bits from a developer's machine pre-checkin if
-       ### privatebuildoverride overrides are defined, otherwise use phase 1
-       privates: {
-           hypersam: (
-             if ($.privatebuildoverridetag != "") then
-                $.privatebuildoverridetag
-             else $.per_phase["1"].hypersam
-),
            madkub: $.per_phase["1"].madkub,
            madkubSidecar: $.per_phase["1"].madkubSidecar,
         },
-    },
 
     ### Phase kingdom/estate mapping
     phase: (
         if (estate == "prd-samtest") then
-            "privates"
+            "0"
         else if (estate == "prd-samdev") then
             "1"
         else if (kingdom == "prd") then
