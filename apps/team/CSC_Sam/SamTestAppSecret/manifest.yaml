@@ -38,7 +38,7 @@ system:
       emptyDir: {}
     - name: secretvol
       k4aSecret:
-        secretName: prodsecretlatest
+        secretName: watchdogsecret
   loadbalancers:
   - lbname: samtestsecretlb
     nodeExposed: true
