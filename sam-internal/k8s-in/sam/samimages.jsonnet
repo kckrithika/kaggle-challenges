@@ -51,14 +51,22 @@ local utils = import "util_functions.jsonnet";
     ### Per-phase image tags
     per_phase: {
 
-        ### Release Phase 1 - Test Beds
-        # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to quickly find latest image
+        ### Release Phase 0 - Nightly deployment of the most recent hypersam to prd-samtest
+        # Under normal cirumstances we should not need to change this section.
+        # Overrides work just fine in this phase.  To see the active hypersam tag visit:
+        # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
+
+        "0": {
+             hypersam: "auto",
+             madkub: $.per_phase["1"].madkub,
+             madkubSidecar: $.per_phase["1"].madkubSidecar,
+             },
+
+        ### Release Phase 1 - prd-samdev
+        # See https://git.soma.salesforce.com/sam/sam/wiki/Deploy-SAM on how to pick the correct tag
+        # As much as possible, we want to use a tag that is running well in phase 0 above.
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
-
-        "0": $.per_phase["1"] {
-             hypersam: "auto",
-             },
 
         "1": {
             hypersam: "sam-0001800-1972769a",
