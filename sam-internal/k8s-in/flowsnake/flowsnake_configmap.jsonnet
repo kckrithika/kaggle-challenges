@@ -206,26 +206,25 @@ local samconfig = import "config.jsonnet";
         },
     },
     auth_namespaces_data: {
-      // Underscore-free client names are a temporary workaround for a pki bug
       "prd/prd-data-flowsnake": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: ["flowsnakemaster", "flowsnake_master"],
+            authorizedClientCerts: ["flowsnake_master"],
         },
       ],
       "prd/prd-data-flowsnake_test": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: ["flowsnakemastertest", "flowsnake_master_test"],
+            authorizedClientCerts: ["flowsnake_master_test"],
         },
       ],
       "prd/prd-dev-flowsnake_iot_test": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
-            authorizedClientCerts: ["flowsnakemasteriottest", "flowsnake_master_iot_test"],
+            authorizedClientCerts: ["flowsnake_master_iot_test"],
         },
         {
             namespace: "retail-cre",

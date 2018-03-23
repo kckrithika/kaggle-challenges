@@ -1,8 +1,8 @@
 apiVersion: v1
 data:
-  data: '[{"authorizedClientCerts": ["flowsnakemasteriottest", "flowsnake_master_iot_test"],
-    "authorizedLdapGroups": ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"},
-    {"authorizedClientCerts": ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf",
+  data: '[{"authorizedClientCerts": ["flowsnake_master_iot_test"], "authorizedLdapGroups":
+    ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"}, {"authorizedClientCerts":
+    ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf",
     "retail-cre.cre-control-plane-ccp-dev"], "authorizedLdapGroups": ["CRE_AD"], "namespace":
     "retail-cre"}]'
 kind: ConfigMap
