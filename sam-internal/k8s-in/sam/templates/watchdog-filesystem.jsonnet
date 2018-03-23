@@ -7,6 +7,10 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
     spec: {
         template: {
             spec: {
+                securityContext: {
+                    runAsUser: 0,
+                    fsGroup: 0,
+                },
                 hostNetwork: true,
                 containers: [
                     {
