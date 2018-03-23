@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.6.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.6.1
       ports:
       - name: service-port
         containerPort: 7020
@@ -35,10 +35,10 @@ system:
         limits: { cpu: "2", memory: "10Gi" }
         requests: { cpu: "2", memory: "10Gi" }
       env:
-        - name: KRB5_CONF
-          value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
-        - name: JAAS_CONF
-          value: /home/sfdc-usmt/krb-config/jaas-prd.conf
+      - name: KRB5_CONF
+        value: /home/sfdc-usmt/krb-config/krb5_searchzk_prd.conf
+      - name: JAAS_CONF
+        value: /home/sfdc-usmt/krb-config/jaas-prd.conf
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
@@ -72,10 +72,10 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - name: server-cert-vol
-          mountPath: /server-certs
-        - name: sherpa-log-vol
-          mountPath: /log
+      - name: server-cert-vol
+        mountPath: /server-certs
+      - name: sherpa-log-vol
+        mountPath: /log
       livenessProbe:
         exec:
           command:
@@ -112,14 +112,13 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search-synthetics:0.5.4-SNAPSHOT
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.1
       resources:
         limits: { cpu: "2", memory: "4Gi" }
         requests: { cpu: "2", memory: "4Gi" }
-      env:
       volumeMounts:
-      - name: synthetics-log-vol
-        mountPath: /home/sfdc-usmt/logs
+        - name: synthetics-log-vol
+          mountPath: /home/sfdc-usmt/logs
       livenessProbe:
         exec:
           command:
@@ -140,10 +139,10 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        - name: client-cert-vol
-          mountPath: /client-certs
-        - name: sherpa-log-vol
-          mountPath: /log
+      - name: client-cert-vol
+        mountPath: /client-certs
+      - name: sherpa-log-vol
+        mountPath: /log
       livenessProbe:
         exec:
           command:
