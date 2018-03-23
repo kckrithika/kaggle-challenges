@@ -73,7 +73,6 @@ spec:
       hostNetwork: true
       nodeSelector:
         master: "true"
-        pool: prd-sdc
       volumes:
       - configMap:
           name: sfdchosts

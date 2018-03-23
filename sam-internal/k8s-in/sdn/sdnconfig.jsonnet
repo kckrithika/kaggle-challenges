@@ -41,6 +41,22 @@ local utils = import "util_functions.jsonnet";
         name: "sdnlogs",
     },
 
+    # Volume for kubectl
+    sdn_kubectl_volume: {
+        name: "kubectl",
+        hostPath: {
+            path: "/usr/bin/kubectl",
+        },
+    },
+    conditional_sdn_kubectl_volume: if estate == "prd-sdc" then self.sdn_kubectl_volume else {},
+
+    # Volume mount for kubectl
+    sdn_kubectl_volume_mount: {
+        name: "kubectl",
+        mountPath: "/usr/bin/kubectl",
+    },
+    conditional_sdn_kubectl_volume_mount: if estate == "prd-sdc" then self.sdn_kubectl_volume_mount else {},
+
     # Pool in which sdn_control_svc should run
     sdn_control_pool: (
         if estate == "prd-sdc" then

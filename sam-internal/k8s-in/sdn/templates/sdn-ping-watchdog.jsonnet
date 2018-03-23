@@ -70,10 +70,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             sdnconfigs.sdn_logs_volume_mount,
-                            {
-                                name: "kubectl",
-                                mountPath: "/usr/bin/kubectl",
-                            },
+                            sdnconfigs.conditional_sdn_kubectl_volume_mount,
                         ]),
                     },
                 ],
@@ -83,17 +80,15 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.cert_volume,
                     configs.kube_config_volume,
                     sdnconfigs.sdn_logs_volume,
-                    {
-                       hostPath: {
-                          path: "/usr/bin/kubectl",
-                       },
-                       name: "kubectl",
-                    },
+                    sdnconfigs.conditional_sdn_kubectl_volume,
                 ]),
                 nodeSelector: {
-                    pool: configs.estate,
-                    master: "true",
-                },
+                              } +
+                              if configs.estate == "prd-sdc" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
             },
             metadata: {
                 labels: {

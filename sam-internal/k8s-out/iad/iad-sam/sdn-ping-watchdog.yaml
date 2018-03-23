@@ -63,11 +63,8 @@ spec:
           name: kubeconfig
         - mountPath: /data/logs/sdn
           name: sdnlogs
-        - mountPath: /usr/bin/kubectl
-          name: kubectl
       hostNetwork: true
       nodeSelector:
-        master: "true"
         pool: iad-sam
       volumes:
       - configMap:
@@ -85,6 +82,3 @@ spec:
       - hostPath:
           path: /data/logs/sdn
         name: sdnlogs
-      - hostPath:
-          path: /usr/bin/kubectl
-        name: kubectl
