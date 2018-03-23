@@ -2,6 +2,8 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
+local slbconfig = import "slbconfig.jsonnet";
+
 {
     ### Global overrides - Anything here will override anything below
     overrides: {
@@ -49,7 +51,7 @@ local utils = import "util_functions.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if (kingdom == "frf" || kingdom == "phx") then
+        else if kingdom in { [k]: 1 for k in slbconfig.prodKingdoms } then
             "3"
         else
             "4"
