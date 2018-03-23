@@ -6,7 +6,7 @@ system:
     count: 8
     containers:
     - name: client
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/geoip-client:1.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rpulle/geoip-client:1.0
       livenessProbe:
         exec:
           command:
