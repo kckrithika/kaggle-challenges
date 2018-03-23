@@ -12,7 +12,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: SCONE_SHIPPING_DEST
-        value: shipping-envoy-tls.service-mesh.localhost.mesh.force.com:5443
+        value: shipping-envoy-tls.service-mesh.localhost.mesh.force.com:7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:

@@ -31,12 +31,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       args:
-      # H2-TLS
       - -endpoint
       - service-mesh/shipping-envoy-tls:DATACENTER:7443     
-      # H2-Plain
-      - -endpoint
-      - service-mesh/shipping-envoy-tls-plain:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:
