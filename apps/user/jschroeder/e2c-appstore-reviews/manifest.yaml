@@ -26,8 +26,8 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
-      - name: APP_CATALOG_GRPC
-        value: appcatalog-backend.user-jschroeder.samapp.localhost.mesh.force.com:7012
+      - name: APP_CATALOG_RPC
+        value: appcatalog-lite.user-jschroeder.samapp.localhost.mesh.force.com:7011
       - name: NO_PROXY
         value: 127.0.0.1,localhost,.ci.data.com,.sfdc.net,.force.com,.dmz.salesforce.com
       volumeMounts:
