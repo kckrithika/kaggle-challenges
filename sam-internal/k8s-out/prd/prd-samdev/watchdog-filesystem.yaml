@@ -42,6 +42,8 @@ spec:
           name: config
         - mountPath: /data
           name: data-volume
+        - mountPath: /home
+          name: home-volume
       hostNetwork: true
       securityContext:
         fsGroup: 0
@@ -65,3 +67,6 @@ spec:
       - hostPath:
           path: /data
         name: data-volume
+      - hostPath:
+          path: /home
+        name: home-volume

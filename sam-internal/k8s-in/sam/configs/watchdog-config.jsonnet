@@ -130,5 +130,6 @@ std.prune({
       "/data/",
       "/data/logs/sdn/",
       "/data/slb/logs/",
+      "/home/sfdc/",
     ],
   } else {})
