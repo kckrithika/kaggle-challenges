@@ -31,6 +31,10 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                                 mountPath: "/data",
                                 name: "data-volume",
                             },
+                            {
+                                mountPath: "/home",
+                                name: "home-volume",
+                            },
                         ]),
                         env: [
                             configs.kube_config_env,
@@ -48,6 +52,12 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
                             path: "/data",
                         },
                         name: "data-volume",
+                    },
+                    {
+                        hostPath: {
+                            path: "/home",
+                        },
+                        name: "home-volume",
                     },
                 ]),
             },
