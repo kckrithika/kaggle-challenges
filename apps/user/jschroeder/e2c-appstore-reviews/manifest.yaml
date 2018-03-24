@@ -1,16 +1,22 @@
 apiVersion: v1
- 
+
 system:
   functions:
   - name: appstore-reviews
     count: 1
     volumes:
-    - name: cert
+    - name: tls-client-cert
       maddogCert: # Add "ROLE::samapp.user-jschroeder.appstore-reviews" to Secret Service
         type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     containers:
     - name: appstorereview
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jschroeder/appstore_reviews:20180227.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appstore_reviews:20180323.0
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
@@ -20,10 +26,12 @@ system:
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: APP_CATALOG_GRPC
+        value: appcatalog-backend.user-jschroeder.samapp.localhost.mesh.force.com:7012
       - name: NO_PROXY
         value: 127.0.0.1,localhost,.ci.data.com,.sfdc.net,.force.com,.dmz.salesforce.com
       volumeMounts:
-      - name: cert
+      - name: tls-client-cert
         mountPath: /certs
       livenessProbe:
         exec:
@@ -37,3 +45,33 @@ system:
           - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 600
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.24
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam" # Use whatever environment your kpod uses
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+      ports:
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
