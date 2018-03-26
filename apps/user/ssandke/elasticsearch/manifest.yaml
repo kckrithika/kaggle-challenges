@@ -37,10 +37,10 @@ system:
         periodSeconds: 10
         failureThreshold: 100
         
-    volumes:
-        - name: elasticsearch-persistent-storage
-          hostPath:
-              path: /data/elasticsearch
+    #volumes:
+    #    - name: elasticsearch-persistent-storage
+    #      hostPath:
+    #          path: /data/elasticsearch
     #- name: certs
     #  maddogCert:
     #    type: server
@@ -54,10 +54,10 @@ system:
     # state into the PV on shutdown
     terminationGracePeriodSeconds: 20
 
-    #volumeClaimTemplates:
-    #- name: elasticsearch-persistent-storage
-    #  storageClassName: ssandke-slow
-    #  storageSizeRequest: 1Gi
+    volumeClaimTemplates:
+    - name: elasticsearch-persistent-storage
+      storageClassName: ssandke-slow
+      storageSizeRequest: 1Gi
 
   loadbalancers:
   - lbname: es-rest

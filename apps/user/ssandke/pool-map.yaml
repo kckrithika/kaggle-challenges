@@ -3,8 +3,8 @@ apps:
     - prd/prd-sam
   etcd-pv:
     - prd/prd-sam
-#  elasticsearch:
-#    - prd/prd-sam
+  elasticsearch:
+    - prd/prd-sam
 #  smash:
 #    - prd/prd-sam
     
