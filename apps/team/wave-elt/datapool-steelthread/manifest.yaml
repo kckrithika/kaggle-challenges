@@ -24,21 +24,32 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: kingdom-test
-      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
-        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
-      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
-        value: /opt/java/jdk1.8.0_121/jre/lib/security/cacerts
+
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+
       - name: PHOENIX_KEYTABPATH
         value: /home/datapool/datapool-keytab/datapool.keytab
-      volumeMounts:
-      - name: logvol
-        mountPath: /home/datapool/logs
 
-      - name: datapoolkeytab
-        mountPath: /home/datapool/datapool-keytab
+      - name: PHOENIX_LAZYINIT
+        value: false  # Hit HBase as soon as we start
+
+      - name: PKI_TRUSTSTORE_DIR
+        value: /home/datapool/client-certs
+
+      - name: PKI_KEYSTORE_DIR
+        value: /home/datapool/client-certs/client
+
+      volumeMounts:
+      - mountPath: /home/datapool/logs
+        name: logvol
+
+      - mountPath: /home/datapool/datapool-keytab
+        name: datapoolkeytab
         readOnly: true
+
+      - mountPath: /home/datapool/client-certs
+        name: tls-client-certs
 
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
@@ -77,8 +88,10 @@ system:
       volumeMounts:
       - mountPath: /server-certs
         name: tls-server-certs
+
       - mountPath: /client-certs
         name: tls-client-certs
+
       - mountPath: /log
         name: sherpa-log-volume
 
