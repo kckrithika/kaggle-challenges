@@ -5,5 +5,11 @@ apps:
  shipping:
   - prd/prd-sam
 
- geoip-client:
+ #geoip-client: -> Commenting out as we don't need to test geoip-client right now
+ # - prd/prd-sam
+
+ ordering-orig:
+  - prd/prd-sam
+
+ shipping-orig:
   - prd/prd-sam
