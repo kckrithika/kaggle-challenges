@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: stateful-grill-ceph
+  - name: stateful-grill-ceph        
     type: stateful-set
     count: 2
     containers:
@@ -20,20 +20,6 @@ system:
           httpGet:
             path: /
             port: 9098
-    lbname: stateful-lb1
-    terminationGracePeriodSeconds: 33
-    volumeClaimTemplates:
-    - name: www
-      storageClassName: small-hdd-pool
-      storageSizeRequest: 500Gi
-    loadbalancers:
-    - lbname: grill-ceph-lb
-      function: stateful-grill-ceph
-      slbenabled: true
-      ports:
-        - port: 9099
-          targetport: 9099
-    # metric streamer as side-car container
     - name: sfms
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
       command:
@@ -45,7 +31,7 @@ system:
       - name: SFDC_FUNNEL_VIP
         value: ajna0-funnel1-0-prd.data.sfdc.net:80
       - name: MC_KINGDOM
-        value: prd
+        value: prd 
       - name: MC_ESTATE
         value: prd-sam_storage
       - name: MC_NAME
@@ -67,3 +53,16 @@ system:
           command:
           - touch 
           - /tmp/healthy
+    lbname: stateful-lb1
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: www
+      storageClassName: small-hdd-pool
+      storageSizeRequest: 500Gi
+  loadbalancers:
+  - lbname: grill-ceph-lb
+    function: stateful-grill-ceph
+    slbenabled: true
+    ports:
+      - port: 9099
+        targetport: 9099
