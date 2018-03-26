@@ -6,53 +6,53 @@ system:
     type: stateful-set
     count: 2
     containers:
-    - name: stateful-small
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1
-      command:
-        - /bin/grill_ceph
-      ports:
-      - containerPort: 9099
-        name: web
-      volumeMounts:
-      - name: www
-        mountPath: /rbd/html
-      livenessProbe:
-          httpGet:
-            path: /
-            port: 9098
-    - name: sfms
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
-      command:
-        - /opt/sfms/bin/sfms
-      args:
-      - -j
-      - prometheus
-      env:
-      - name: SFDC_FUNNEL_VIP
-        value: ajna0-funnel1-0-prd.data.sfdc.net:80
-      - name: MC_KINGDOM
-        value: prd 
-      - name: MC_ESTATE
-        value: prd-sam_storage
-      - name: MC_NAME
-        value: grill_ceph
-      - name: MC_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-      - name: MC_NODE
-        valueFrom:
-          fieldRef:
-            fieldPath: spec.nodeName
-      - name: MC_DEVICE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.name
-      livenessProbe:
-        exec:
-          command:
-          - touch 
-          - /tmp/healthy
+      - name: stateful-small
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1
+        command:
+          - /bin/grill_ceph
+        ports:
+        - containerPort: 9099
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /rbd/html
+        livenessProbe:
+            httpGet:
+              path: /
+              port: 9098
+      - name: sfms
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
+        command:
+          - /opt/sfms/bin/sfms
+        args:
+        - -j
+        - prometheus
+        env:
+        - name: SFDC_FUNNEL_VIP
+          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+        - name: MC_KINGDOM
+          value: prd 
+        - name: MC_ESTATE
+          value: prd-sam_storage
+        - name: MC_NAME
+          value: grill_ceph
+        - name: MC_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MC_NODE
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: MC_DEVICE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        livenessProbe:
+          exec:
+            command:
+            - touch 
+            - /tmp/healthy
     lbname: stateful-lb1
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
