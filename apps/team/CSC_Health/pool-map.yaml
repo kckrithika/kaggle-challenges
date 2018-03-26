@@ -71,7 +71,6 @@ apps:
   expreportcollectorha:
   exprepcollavailwd:
   expcname-repcollavailwd:
-  expmaddog-repcollavailwd:
   cname-repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -82,6 +81,4 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
-  maddog-repcollavailwd:
-    - prd/prd-sam_report_collector
   service-event-recorder:
