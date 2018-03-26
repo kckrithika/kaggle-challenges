@@ -17,13 +17,13 @@ system:
       ports:
       - containerPort: 7020
         name: grpc-svc
-      - containerPort: 15372
+      - containerPort: 15371
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15371
 
     - name: sherpa-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-debug
@@ -31,12 +31,12 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       ports:
-      - containerPort: 15373
+      - containerPort: 15374
         name: sherpa-adm
       livenessProbe:
         httpGet:
           path: /listeners
-          port: 15373
+          port: 15374
         initialDelaySeconds: 20
       readinessProbe:
         httpGet:
