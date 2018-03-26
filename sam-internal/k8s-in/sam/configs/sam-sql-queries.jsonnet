@@ -7,49 +7,71 @@
 FROM ( SELECT (ConsumeTime - ProduceTime) / 1000000000 AS diff_seconds, ControlEstate FROM k8s_resource ) AS ss
 GROUP BY ControlEstate",
     },
+
+
     {
       name: "Kube-Resource-Kafka-Pipeline-Latencies-ByHour",
       sql: "SELECT Count(*) as Count, avg(diff_seconds), std(diff_seconds), min(diff_seconds), max(diff_seconds), FROM_UNIXTIME(ProduceTime / 1000000000, \"%y-%m-%d %k\") as DayHour
 FROM ( SELECT (ConsumeTime - ProduceTime) / 1000000000 AS diff_seconds, ProduceTime FROM k8s_resource ) AS ss
 GROUP BY DayHour;",
     },
+
+
     {
       name: "Host-Os-Versions-Aggregate",
       sql: "SELECT kernelVersion, COUNT(*) FROM nodeDetailView GROUP BY kernelVersion ORDER BY kernelVersion DESC",
     },
+
+
     {
       name: "Host-Os-Versions",
       sql: "SELECT Name, kernelVersion FROM nodeDetailView ORDER BY kernelVersion DESC",
     },
+
+
     {
 
       name: "Hosts-All",
       sql: "SELECT * FROM nodeDetailView",
     },
+
+
     {
       name: "Hosts-Not-Ready-Sam",
      sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND NOT Name like '%minionceph%'",
     },
+
+
     {
       name: "Hosts-Not-Ready-Ceph",
      sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND Name like '%minionceph%'",
     },
+
+
     {
       name: "Hosts-Docker-Version",
       sql: "SELECT ControlEstate, Name, containerRuntimeVersion FROM nodeDetailView ORDER BY containerRuntimeVersion",
     },
+
+
     {
       name: "Hosts-Kube-Version",
       sql: "SELECT Name, kubeletVersion, Ready FROM nodeDetailView ORDER BY kubeletVersion",
     },
+
+
     {
       name: "Hosts-Kube-Version-Aggregate",
       sql: "SELECT Kingdom, kubeletVersion, COUNT(*) FROM nodeDetailView GROUP BY Kingdom, kubeletVersion ORDER BY kubeletVersion",
     },
+
+
     {
       name: "Resource-Types-By-Kingdom",
       sql: "SELECT ControlEstate, ApiKind, Count(*) FROM ( SELECT ControlEstate, ApiKind, IsTombstone FROM k8s_resource where IsTombstone <> 1) AS ss GROUP BY ControlEstate, ApiKind ORDER BY ControlEstate",
     },
+
+
     {
       name: "Bad-Customer-Deployments-Production",
       sql: "SELECT * FROM
@@ -74,6 +96,8 @@ WHERE
   NOT ControlEstate LIKE 'prd-%' AND
   desiredReplicas != 0",
     },
+
+
     {
       name: "Bad-Pods-By-Host-Production",
       sql: "select * from (
@@ -110,6 +134,8 @@ group by NodeName, NodeUrl
 where (PendingCount+FailedCount+SucceededCount+OtherCount)>0
 order by PendingCount+FailedCount+SucceededCount+OtherCount desc",
     },
+
+
     {
       name: "Bad-Customer-Pods",
       sql: "select
@@ -121,6 +147,94 @@ where
         and not (NodeName like '%samminionceph%')
         and (Namespace != 'sam-system' AND Namespace != 'sam-watchdog' AND Namespace != 'csc-sam')
         and Phase != 'Running'",
+    },
+
+
+    {
+      name: "Image-Pull-Errors",
+      sql: "select
+  ControlEstate,
+  Namespace,
+  Payload->>'$.message' as Message,
+  Payload->>'$.source.host' as Host,
+  Payload->>'$.involvedObject.kind' as InvolvedObjKind,
+  Payload->>'$.involvedObject.name' as InvolvedObjName,
+  Payload->>'$.involvedObject.namespace' as InvolvedObjNamespace
+from
+  k8s_resource
+where
+  ApiKind like 'Event' and
+  Payload->>'$.message' like '%ImagePullBackOff%'",
+    },
+
+
+    {
+      name: "Sam-App-Pod-Age-All-Kingdoms",
+      sql: "select
+  PodAgeDays,
+  SUM(CASE WHEN ControlEstate = 'prd-sam' then Count else 0 END) as 'PrdSam',
+  SUM(CASE WHEN ControlEstate = 'prd-samdev' then Count else 0 END) as 'PrdSamDev',
+  SUM(CASE WHEN ControlEstate = 'prd-samtest' then Count else 0 END) as 'PrdSamTest',
+  SUM(CASE WHEN ControlEstate = 'frf-sam' then Count else 0 END) as 'FrfSam',
+  SUM(CASE WHEN ControlEstate = 'phx-sam' then Count else 0 END) as 'PhxSam',
+  SUM(CASE WHEN ControlEstate = 'par-sam' then Count else 0 END) as 'ParSam',
+  SUM(CASE WHEN ControlEstate = 'ord-sam' then Count else 0 END) as 'OrdSam',
+  SUM(CASE WHEN ControlEstate = 'iad-sam' then Count else 0 END) as 'IadSam',
+  SUM(CASE WHEN ControlEstate = 'hnd-sam' then Count else 0 END) as 'HndSam',
+  SUM(CASE WHEN ControlEstate = 'dfw-sam' then Count else 0 END) as 'DfwSam',
+  SUM(CASE WHEN ControlEstate = 'ukb-sam' then Count else 0 END) as 'UkbSam',
+  SUM(CASE WHEN ControlEstate = 'cdu-sam' then Count else 0 END) as 'CduSam',
+  SUM(CASE WHEN ControlEstate = 'syd-sam' then Count else 0 END) as 'SydSam',
+  SUM(CASE WHEN ControlEstate = 'yhu-sam' then Count else 0 END) as 'YhuSam',
+  SUM(CASE WHEN ControlEstate = 'yul-sam' then Count else 0 END) as 'YulSam',
+  SUM(CASE WHEN ControlEstate = 'chx-sam' then Count else 0 END) as 'ChxSam',
+  SUM(CASE WHEN ControlEstate = 'wax-sam' then Count else 0 END) as 'WaxSam'
+from
+(
+  select
+    ControlEstate,
+    PodAgeDays,
+    COUNT(*) as Count
+  from
+  (
+    select
+      ControlEstate,
+      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
+    from podDetailView
+    where IsSamApp = True
+  ) as ss
+  where PodAgeDays IS NOT NULL
+  group by ControlEstate, PodAgeDays
+) as ss2
+group by PodAgeDays",
+    },
+
+
+    {
+      name: "Sam-App-Pod-Age-Prd",
+      sql: "select
+  PodAgeDays,
+  SUM(CASE WHEN ControlEstate = 'prd-sam' then Count else 0 END) as 'PrdSam',
+  SUM(CASE WHEN ControlEstate = 'prd-samdev' then Count else 0 END) as 'PrdSamDev',
+  SUM(CASE WHEN ControlEstate = 'prd-samtest' then Count else 0 END) as 'PrdSamTest'
+from
+(
+  select
+    ControlEstate,
+    PodAgeDays,
+    COUNT(*) as Count
+  from
+  (
+    select
+      ControlEstate,
+      LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
+    from podDetailView
+    where IsSamApp = True
+  ) as ss
+  where PodAgeDays IS NOT NULL
+  group by ControlEstate, PodAgeDays
+) as ss2
+group by PodAgeDays",
     },
   ],
 }
