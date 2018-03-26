@@ -19,7 +19,6 @@ spec:
         - -watchdogFrequency=180s
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
-        - -recipient=,make@salesforce.com
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
