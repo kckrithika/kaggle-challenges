@@ -2,8 +2,8 @@ apiVersion: v1
 
 system:
   notifications:
-  email:
-  - robert.snell@salesforce.com
+    email:
+      - robert.snell@salesforce.com
   functions:
   - name: metadata-service
     count: 2
@@ -25,7 +25,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.96
+      image: sfci/metadata-cannon/metadata-service:0.0.97
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -75,14 +75,14 @@ system:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+        initialDelaySeconds: 60
+        periodSeconds: 120
       readinessProbe:
         exec:
           command:
           - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+        initialDelaySeconds: 60
+        periodSeconds: 120
 
     - name: beacon-mds
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
