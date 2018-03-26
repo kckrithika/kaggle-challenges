@@ -82,6 +82,7 @@ local estate = std.extVar("estate");
                         args: [
                             "--default-backend-service=$(POD_NAMESPACE)/default-http-backend",
                             "--sync-period=30s",
+                            "--kubeconfig=/etc/kubernetes/kubeconfig",
                         ],
                         volumeMounts: (
                             if flowsnakeconfig.is_minikube then
