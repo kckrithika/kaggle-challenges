@@ -93,7 +93,7 @@ local estate = std.extVar("estate");
                                      readOnly: true,
                                  },
                                 ]
-                            else if flowsnakeconfig.is_test_fleet then
+                            else if flowsnakeconfig.maddog_enabled then
                                 [
                                  {
                                      name: "flowsnake-tls-secret",
@@ -101,10 +101,6 @@ local estate = std.extVar("estate");
                                      readOnly: true,
                                  },
                                 ] +
-                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
-                            else if flowsnakeconfig.maddog_enabled then
-                                flowsnakeconfigmapmount.nginx_volumeMounts +
                                 flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                             else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
@@ -122,7 +118,7 @@ local estate = std.extVar("estate");
                                 },
                             },
                         ]
-                    else if flowsnakeconfig.is_test_fleet then
+                    else if flowsnakeconfig.maddog_enabled then
                         [
                             {
                                 name: "flowsnake-tls-secret",
@@ -131,10 +127,6 @@ local estate = std.extVar("estate");
                                 },
                             },
                         ] +
-                        flowsnakeconfigmapmount.kubeconfig_volume +
-                        flowsnakeconfigmapmount.k8s_cert_volume
-                    else if flowsnakeconfig.maddog_enabled then
-                        flowsnakeconfigmapmount.nginx_volume +
                         flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
                     else flowsnakeconfigmapmount.kubeconfig_volume +

@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local k8s_prepend = if flowsnakeconfig.is_test_fleet then "k8s-" else "";
+local k8s_prepend = "k8s-";
 {
     k8s_cert_volume:
         (if flowsnakeconfig.maddog_enabled then [
@@ -130,34 +130,6 @@ local k8s_prepend = if flowsnakeconfig.is_test_fleet then "k8s-" else "";
               path: "/etc/kubernetes/kubeconfig",
             },
             name: "kubeconfig",
-        },
-    ],
-} + if flowsnakeconfig.is_test_fleet then {} else
-{
-    nginx_volumeMounts: [
-        {
-            mountPath: "/etc/ssl/certs/ssl-cert-snakeoil.pem",
-            name: "server-certificate",
-            readOnly: true,
-        },
-        {
-            mountPath: "/etc/ssl/private/ssl-cert-snakeoil.key",
-            name: "server-key",
-            readOnly: true,
-        },
-    ],
-    nginx_volume: [
-        {
-            name: "server-certificate",
-            hostPath: {
-                path: "/etc/pki_service/platform/platform-server/certificates/platform-server.pem",
-            },
-        },
-        {
-            name: "server-key",
-            hostPath: {
-                path: "/etc/pki_service/platform/platform-server/keys/platform-server-key.pem",
-            },
         },
     ],
 }
