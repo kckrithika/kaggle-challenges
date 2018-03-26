@@ -22,10 +22,10 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-565-3-itest",
+            fleetService_image_tag: "571",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "565",
-            ingressDefaultBackend_image_tag: "565",
+            ingressControllerNginx_image_tag: "571",
+            ingressDefaultBackend_image_tag: "571",
             kibana_image_tag: "345",
             logloader_image_tag: "468",
             logstash_image_tag: "468",
@@ -42,13 +42,12 @@ local utils = import "util_functions.jsonnet";
                   "0.9.4": 447,
                   "0.9.5": 487,
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
+                  "0.9.7": 571,
                 }
                 +
                 # These are for developer testing only
                 # only copy above to phase 2
                 {
-                  "memoized-k8s-itest-ready": "memoized-k8s-itest-ready",
-                  "tc-will-itest-ready": "tc-will-itest-ready",
                   "0.9.7-itest": 565,
                 },
                 # ignore this section, require by std.manifestIni
