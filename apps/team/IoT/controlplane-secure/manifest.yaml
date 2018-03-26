@@ -9,6 +9,8 @@ system:
   functions:
   - containers:
     - env:
+      - name: COMPILER_ENDPOINT_FSENV_PREFIX
+        value: iot-prd-stmfa-
       - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
         value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
@@ -23,13 +25,17 @@ system:
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
+      - name: SETTINGS_PATH
+        value: stmfa.-.prd.-.controlplane-secure
+      - name: SETTINGS_SUPERPOD
+        value: sp2
       - name: SFDC_ENVIRONMENT
         value: stmfa
       - name: SVCMESH_ANNOUNCE_PORT
-        value: 7012
+        value: '7012'
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: controlplane-secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:eb75662
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:echo
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -58,22 +64,6 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
-    - name: beacon
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: stmfa
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-      args:
-      - -endpoint
-      - controlplane-secure:DATACENTER:7012
-      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
-      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
-      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
     - env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -82,8 +72,8 @@ system:
         exec:
           command:
           - ./bin/is-alive
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       name: sherpa
       ports:
       - containerPort: 7012
@@ -96,13 +86,26 @@ system:
         exec:
           command:
           - ./bin/is-ready
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /server-certs
         name: server-certs
       - mountPath: /client-certs
         name: client-certs
+    - args:
+      - -endpoint
+      - controlplane-secure:DATACENTER:7012
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+      name: beacon
     count: 2
     name: controlplane-secure
     strategy:
@@ -128,11 +131,10 @@ system:
     lbname: controlplane-secure-lb
     nodeExposed: true
     ports:
+    - port: 7444
+      targetport: 7012
     - port: 15382
       targetport: 15372
-    - port: 15383
-      targetport: 15373
-    slbEnabled: true
   notifications:
     email:
     - sarthur@salesforce.com
