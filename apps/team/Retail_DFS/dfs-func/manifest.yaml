@@ -49,7 +49,7 @@ system:
         path: /home/sfdc-dfs/logs
     - name: dfs-server-cert
       maddogCert:
-	type: server
+        type: server
   loadbalancers:
   - lbname: dfs-lb
     function: dfs-func
