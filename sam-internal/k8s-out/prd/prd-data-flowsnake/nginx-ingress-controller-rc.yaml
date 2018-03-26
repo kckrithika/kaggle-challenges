@@ -30,9 +30,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        - name: KUBECONFIG
-          value: /etc/kubernetes/kubeconfig
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:345
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:571
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
@@ -53,6 +51,12 @@ spec:
             port: 80
             scheme: HTTP
         volumeMounts:
+        - mountPath: /etc/ssl/certs/ssl-cert-snakeoil.pem
+          name: server-certificate
+          readOnly: true
+        - mountPath: /etc/ssl/private/ssl-cert-snakeoil.key
+          name: server-key
+          readOnly: true
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
@@ -72,6 +76,12 @@ spec:
         vippool: "true"
       terminationGracePeriodSeconds: 60
       volumes:
+      - hostPath:
+          path: /etc/pki_service/platform/platform-server/certificates/platform-server.pem
+        name: server-certificate
+      - hostPath:
+          path: /etc/pki_service/platform/platform-server/keys/platform-server-key.pem
+        name: server-key
       - hostPath:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig

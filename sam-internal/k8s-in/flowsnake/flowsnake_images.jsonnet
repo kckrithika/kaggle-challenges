@@ -59,14 +59,14 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2
         "2": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "558",
+            cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-ldap-hotfix-fleet-svc-1-itest",
+            fleetService_image_tag: "571",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "345",
-            ingressDefaultBackend_image_tag: "345",
+            ingressControllerNginx_image_tag: "571",
+            ingressDefaultBackend_image_tag: "571",
             kibana_image_tag: "345",
-            logloader_image_tag: "345",
+            logloader_image_tag: "468",
             logstash_image_tag: "468",
             madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
@@ -81,6 +81,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.4": 447,
                   "0.9.5": 487,
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
+                  "0.9.7": 571,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -91,14 +92,14 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3
         "3": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "558",
-            es_image_tag: "345",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-ldap-hotfix-fleet-svc-1-itest",
+            cert_secretizer_image_tag: "565",
+            es_image_tag: "503",
+            fleetService_image_tag: "571",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "345",
-            ingressDefaultBackend_image_tag: "345",
+            ingressControllerNginx_image_tag: "571",
+            ingressDefaultBackend_image_tag: "571",
             kibana_image_tag: "345",
-            logloader_image_tag: "345",
+            logloader_image_tag: "468",
             logstash_image_tag: "468",
             madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
@@ -113,6 +114,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.4": 447,
                   "0.9.5": 487,
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
+                  "0.9.7": 571,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -123,14 +125,14 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 4
         "4": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "558",
-            es_image_tag: "345",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-ldap-hotfix-fleet-svc-1-itest",
+            cert_secretizer_image_tag: "565",
+            es_image_tag: "503",
+            fleetService_image_tag: "571",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "345",
-            ingressDefaultBackend_image_tag: "345",
+            ingressControllerNginx_image_tag: "571",
+            ingressDefaultBackend_image_tag: "571",
             kibana_image_tag: "345",
-            logloader_image_tag: "345",
+            logloader_image_tag: "468",
             logstash_image_tag: "468",
             madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "403",
@@ -145,6 +147,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.4": 447,
                   "0.9.5": 487,
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
+                  "0.9.7": 571,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

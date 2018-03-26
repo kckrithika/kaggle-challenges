@@ -37,7 +37,7 @@ spec:
             configMapKeyRef:
               key: kubeconfig
               name: fleet-config
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-fleet-service:jenkins-dva-transformation-flowsnake-platform-ldap-hotfix-fleet-svc-1-itest
+        image: dva-registry.internal.salesforce.com/dva/flowsnake-fleet-service:571
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
