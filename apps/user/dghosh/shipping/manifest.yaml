@@ -47,7 +47,7 @@ system:
         name: logvol
 
     - name: sherpa-shipping
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-debug
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dghosh/sherpa/sherpa-dghosh:dghosh-20180321-a868362
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
