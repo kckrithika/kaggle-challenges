@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -81,4 +81,4 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.esta
         },
         name: "watchdog-filesystem",
     },
-} else "SKIP"
+}

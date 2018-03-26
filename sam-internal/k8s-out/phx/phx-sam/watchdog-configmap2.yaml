@@ -14,6 +14,12 @@ data:
       "enableMaddogCertChecks": true,
       "enableStatefulChecks": true,
       "enableStatefulPVChecks": true,
+      "filesystemCheckDirs": [
+        "/data/",
+        "/data/logs/sdn/",
+        "/data/slb/logs/",
+        "/home/sfdc/"
+      ],
       "funnelEndpoint": "ajna0-funnel1-0-phx.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a",
       "k8sproxyEndpoint": "http://localhost:40000",

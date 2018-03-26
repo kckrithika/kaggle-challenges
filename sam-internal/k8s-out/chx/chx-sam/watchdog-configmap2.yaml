@@ -11,6 +11,12 @@ data:
       "deployer-sender": "sam-alerts@salesforce.com",
       "deployer-smtpServer": "ops-mta1-4-chx.ops.sfdc.net:25",
       "email-subject-prefix": "SAMWD",
+      "filesystemCheckDirs": [
+        "/data/",
+        "/data/logs/sdn/",
+        "/data/slb/logs/",
+        "/home/sfdc/"
+      ],
       "funnelEndpoint": "mandm-funnel-chx.data.sfdc.net:8080",
       "imageName": "ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a",
       "k8sproxyEndpoint": "http://localhost:40000",
