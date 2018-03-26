@@ -49,13 +49,13 @@ system:
         readOnly: true
       livenessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/info
           port: 15372
         initialDelaySeconds: 120 
         timeoutSeconds: 30
       readinessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/info
           port: 15372
         initialDelaySeconds: 120
     - name: sherpa
