@@ -313,6 +313,36 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: cloudatlas:prd-sam_cloudatlastwo:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionatlastwofe1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionatlastwofe2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
+    name: cloudatlas:prd-sam_cloudatlastwo_dir:rolebinding
+    namespace: cloudatlas
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionatlastwodir1-1-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionatlastwodir1-2-prd.eng.sfdc.net
+  - kind: User
+    name: shared0-samminionatlastwodir2-1-prd.eng.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: retail-dfs:prd-sam_crosscloudplatform:rolebinding
     namespace: retail-dfs
   roleRef:
