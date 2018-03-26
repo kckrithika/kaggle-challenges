@@ -101,6 +101,11 @@ std.prune({
 
   enableMaddogCertChecks: (if samfeatureflags.maddogforsamhosts then true),
 
+  filesystemCheckDirs: [
+    "/data/",
+    "/data/logs/sdn/",
+    "/home/sfdc/",
+  ],
 })
   + (if utils.is_cephstorage_supported(configs.estate) then {
     storageClassName: "synthetic-hdd-pool",
@@ -123,13 +128,5 @@ std.prune({
     maddogEtcdCerts: [
       "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
       "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
-    ],
-  } else {})
-  + (if configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
-    filesystemCheckDirs: [
-      "/data/",
-      "/data/logs/sdn/",
-      "/data/slb/logs/",
-      "/home/sfdc/",
     ],
   } else {})
