@@ -16,9 +16,8 @@ system:
       volumeMounts:
       - mountPath: /var/log/report-collector-availability-watchdog
         name: logvol
-      - mountPath: /var/lib/report-collector-availability-watchdog/certificates/client/
+      - mountPath: /var/lib/report-collector-availability-watchdog/pki
         name: clientcertvol
-        readOnly: true
       env:
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
         value: $(EXPREPORTCOLLECTORHALB_SERVICE_HOST)
@@ -39,11 +38,11 @@ system:
       - name: RC_WD_SSL_STRICTSSL
         value: true
       - name: RC_WD_SSL_AUTH_CERT
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_avail_wd_client.crt
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
       - name: RC_WD_SSL_AUTH_KEY
-        value: /var/lib/report-collector-availability-watchdog/certificates/client/rc_avail_wd_client.key
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
       - name: RC_WD_SSL_AUTH_CA
-        value: /var/lib/report-collector-availability-watchdog/certificates/sfdc-internal-ca.crt
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       - name: RC_WD_LOGGER_LOGDIR
         value: /var/log/report-collector-availability-watchdog
       - name: RC_WD_LOGGER_LEVEL
@@ -67,5 +66,5 @@ system:
       hostPath:
         path: /var/log/report-collector-availability-watchdog
     - name: clientcertvol
-      secret:
-        secretName: csc-rc-avail-wd-certificates
+      maddogCert:
+        type: client
