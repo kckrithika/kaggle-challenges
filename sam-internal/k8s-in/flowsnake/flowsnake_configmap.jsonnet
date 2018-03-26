@@ -312,8 +312,7 @@ local samconfig = import "config.jsonnet";
             "sdn-route-watchdog.yaml",
             "sdn-secret-agent.yaml",
             "sdn-vault-agent.yaml",
-        ] else []) +
-        (if estate == "iad-flowsnake_prod" then [
+        ] else if flowsnakeconfig.sdn_pre_deployment then [
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
@@ -343,7 +342,9 @@ local samconfig = import "config.jsonnet";
             "watchdog-etcd-quorum.yaml",
             "watchdog-etcd.yaml",
             "watchdog-master.yaml",
-        ] else if estate == "ord-flowsnake_prod" then [
+        ] else if flowsnakeconfig.sdn_during_deployment then [
+        // this state will get maually edited during sdn rollout
+        // after its done please reset it same as sdn_pre_deployment
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
@@ -373,7 +374,7 @@ local samconfig = import "config.jsonnet";
             "watchdog-etcd-quorum.yaml",
             "watchdog-etcd.yaml",
             "watchdog-master.yaml",
-        ] else if estate == "phx-flowsnake_prod" then [
+        ] else if flowsnakeconfig.sdn_done_deployment then [
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
@@ -391,14 +392,6 @@ local samconfig = import "config.jsonnet";
             "nginx-ingress-controller-rc.yaml",
             "nginx-ingress-controller-svc.yaml",
             "node-monitor-rc.yaml",
-            "sdn-bird.yaml",
-            "sdn-cleanup.yaml",
-            "sdn-hairpin-setter.yaml",
-            "sdn-peering-agent.yaml",
-            "sdn-ping-watchdog.yaml",
-            "sdn-route-watchdog.yaml",
-            "sdn-secret.yaml",
-            "sdn-vault-agent.yaml",
             "watchdog-common.yaml",
             "watchdog-etcd-quorum.yaml",
             "watchdog-etcd.yaml",
@@ -408,8 +401,7 @@ local samconfig = import "config.jsonnet";
             // Must skip (and manually deploy) because AutoDeployer does not support Endpoints resources at the moment.
             // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
             "deepsea-kdc-endpoints.yaml",
-        ] else [
-        ]),
+        ] else []),
     },
     watchdog_config: {
         "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
