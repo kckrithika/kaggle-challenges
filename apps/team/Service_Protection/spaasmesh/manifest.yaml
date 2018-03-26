@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   functions:
   # service name
-  - name: spaas
+  - name: spaasmesh
     
     # number of instances ("kpods") to deploy and run
     # recommended min: 3 for availability
@@ -19,7 +19,7 @@ system:
       # set container environment variables
       env:
       - name: SFDC_ENVIRONMENT
-        value: sconex
+        value: mesh
         
       # standard ports https://salesforce.quip.com/uHeqAb3s9qsR
       ports:
@@ -50,12 +50,28 @@ system:
           path: /manage/health
           port: 15400
         initialDelaySeconds: 60
+    - name: beacon-spaasmesh
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - spaasmesh:DATACENTER:7022
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
     # Maps volumeMounts from containers to volumes (which map to host filesystem locations)
     # This is used for sending logs to Splunk until SAM/DVA logging pipeline is up
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-spaas/logs
+        path: /home/sfdc-spaasmesh/logs
     - name: spaasclientcert
       maddogCert:
         type: client
@@ -64,8 +80,8 @@ system:
         type: server
                  
   loadbalancers:
-  - lbname: spaaslb
-    function: spaas
+  - lbname: spaasmeshlb
+    function: spaasmesh
     nodeExposed: true
     ports:
       - port: 7022
