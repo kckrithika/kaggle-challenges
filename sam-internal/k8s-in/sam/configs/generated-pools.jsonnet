@@ -1427,6 +1427,30 @@
     },
     {
       "namespaces": [
+        "cloudatlas"
+      ],
+      "access": [
+        "team/CloudAtlas"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_cloudatlastwo",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cloudatlas"
+      ],
+      "access": [
+        "team/CloudAtlas"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_cloudatlastwo_dir",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "retail-mds",
         "retail-dfs",
         "retail-eventlistener"
