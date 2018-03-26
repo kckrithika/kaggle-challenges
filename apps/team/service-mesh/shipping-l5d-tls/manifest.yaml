@@ -6,8 +6,8 @@ system:
     count: 1
     containers:
     - name: shipping
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/npshenichnyy%252Fsfci-changes/16
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:873e4c9c0edfae5026069dba96860db22850cf33
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/npshenichnyy%252Fsfci-changes2/2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:b258772614bcf62f9f3a15ba62800ea1d20ef1c6
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
