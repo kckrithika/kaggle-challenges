@@ -17,15 +17,9 @@ system:
       - name: www
         mountPath: /rbd/html
       livenessProbe:
-         httpGet:
+          httpGet:
             path: /
             port: 9098
-    volumeClaimTemplates:
-    - name: www
-      storageClassName: small-hdd-pool
-      storageSizeRequest: 500Gi
-    lbname: grill-ceph-lb
-    terminationGracePeriodSeconds: 30
     - name: sfms
       image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000115-5cf2ec86
       command:
@@ -59,6 +53,12 @@ system:
           command:
           - touch 
           - /tmp/healthy
+    lbname: stateful-lb1
+    terminationGracePeriodSeconds: 33
+    volumeClaimTemplates:
+    - name: www
+      storageClassName: small-hdd-pool
+      storageSizeRequest: 500Gi
   loadbalancers:
   - lbname: grill-ceph-lb
     function: stateful-grill-ceph
@@ -66,4 +66,3 @@ system:
     ports:
       - port: 9099
         targetport: 9099
-
