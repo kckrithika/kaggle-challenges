@@ -31,12 +31,12 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       ports:
-      - containerPort: 15374
+      - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
         httpGet:
           path: /listeners
-          port: 15374
+          port: 15373
         initialDelaySeconds: 20
       readinessProbe:
         httpGet:
