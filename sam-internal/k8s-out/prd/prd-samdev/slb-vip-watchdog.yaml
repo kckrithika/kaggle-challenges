@@ -11,7 +11,7 @@ metadata:
                   {
                     "key": "slb-service",
                     "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx"]
+                    "values": ["slb-ipvs", "slb-nginx-a","slb-nginx-b"]
                   }
                 ]
               }
@@ -58,7 +58,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        slb-dns-register: "true"
+        slb-service: slb-dns
       volumes:
       - hostPath:
           path: /data/slb

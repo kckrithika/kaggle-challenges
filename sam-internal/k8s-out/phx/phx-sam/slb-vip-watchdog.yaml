@@ -11,7 +11,7 @@ metadata:
                   {
                     "key": "slb-service",
                     "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx"]
+                    "values": ["slb-ipvs", "slb-nginx-a","slb-nginx-b"]
                   }
                 ]
               }
