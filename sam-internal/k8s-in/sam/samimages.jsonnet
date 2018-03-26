@@ -21,23 +21,11 @@ local utils = import "util_functions.jsonnet";
 
         # [d.smith] Early push of new hypersam - adds events and clean resource deletes
         "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
-        "prd,prd-samdev,snapshoter,hypersam": "sam-0001803-2a719339",
-        "prd,prd-samtest,snapshoter,hypersam": "sam-0001803-2a719339",
         "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001803-2a719339",
         "prd,prd-sdc,snapshoter,hypersam": "sam-0001803-2a719339",
 
-        # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
-        "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
-        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
-
-
-        # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
-        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180322_164313.da469b49.dirty.dianachang-ltm1",
-
         # [lizhang.li] Enable filesytem-watchdog in prd-sam, prd-samtest, prd-samdev
         "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
-        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
-        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
         "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
         "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001812-10f710cd",
@@ -77,7 +65,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001800-1972769a",
+            hypersam: "sam-0001815-8cfb538e",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
