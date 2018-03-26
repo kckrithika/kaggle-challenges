@@ -84,7 +84,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 ]),
                 nodeSelector: {
                               } +
-                              if configs.kingdom == "prd" then {
+                              if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                                   master: "true",
                               } else {
                                   pool: configs.estate,
