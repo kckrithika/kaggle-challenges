@@ -15,13 +15,11 @@ local kingdom = std.extVar("kingdom");
         "prd-data-flowsnake": "flowsnake-prd.data.sfdc.net",
         "prd-dev-flowsnake_iot_test": "dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net",
         "prd-data-flowsnake_test": "flowsnake-test1-0-prd.data.sfdc.net",  //Does not work yet
-
         // Production VIPs (flowsnake_worker_prod estate roles) are defined in estates:
         // https://git.soma.salesforce.com/estates/estates/blob/master/conf/vips.yaml
         "iad-flowsnake_prod": "flowsnake-iad.data.sfdc.net",
         "ord-flowsnake_prod": "flowsnake-ord.data.sfdc.net",
         "phx-flowsnake_prod": "flowsnake-phx.data.sfdc.net",
-
     },
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
@@ -38,6 +36,18 @@ local kingdom = std.extVar("kingdom");
         "prd-dev-flowsnake_iot_test",
     ],
     cert_services_preferred: std.count(self.cert_services_preferred_estates, estate) == 1,
+    sdn_pre_deployment_estates: [
+        "iad-flowsnake_prod",
+        "ord-flowsnake_prod",
+        "phx-flowsnake_prod",
+    ],
+    sdn_during_deployment_estates: [
+    ],
+    sdn_done_deployment_estates: [
+    ],
+    sdn_pre_deployment: std.count(self.sdn_pre_deployment_estates, estate) == 1,
+    sdn_during_deployment: std.count(self.sdn_during_deployment_estates, estate) == 1,
+    sdn_done_deployment: std.count(self.sdn_done_deployment_estates, estate) == 1,
     host_ca_cert_path: if self.maddog_enabled then
         "/etc/pki_service/ca/cabundle.pem"
       else
@@ -67,5 +77,5 @@ local kingdom = std.extVar("kingdom");
         estate == "prd-data-flowsnake_test" ||
         estate == "prd-dev-flowsnake_iot_test" ||
         (self.is_minikube && !self.is_minikube_small)
-),
+    ),
 }
