@@ -114,20 +114,12 @@ system:
     - name: universal-search-synthetics
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.2
       resources:
-        limits: { cpu: "2", memory: "4Gi" }
-        requests: { cpu: "2", memory: "4Gi" }
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
         - name: synthetics-log-vol
           mountPath: /home/sfdc-usmt/logs
       livenessProbe:
-        exec:
-          command:
-          - "/home/sfdc-usmt/run.sh"
-        initialDelaySeconds: 120
-        timeoutSeconds: 300
-        periodSeconds: 900
-        failureThreshold: 1
-      readinessProbe:
         exec:
           command:
           - "/home/sfdc-usmt/run.sh"
