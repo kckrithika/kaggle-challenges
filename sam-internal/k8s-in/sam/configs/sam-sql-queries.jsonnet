@@ -9,7 +9,6 @@ GROUP BY ControlEstate",
     },
 
 
-
     {
       name: "Kube-Resource-Kafka-Pipeline-Latencies-ByHour",
       sql: "SELECT Count(*) as Count, avg(diff_seconds), std(diff_seconds), min(diff_seconds), max(diff_seconds), FROM_UNIXTIME(ProduceTime / 1000000000, \"%y-%m-%d %k\") as DayHour
@@ -18,19 +17,16 @@ GROUP BY DayHour;",
     },
 
 
-
     {
       name: "Host-Os-Versions-Aggregate",
       sql: "SELECT kernelVersion, COUNT(*) FROM nodeDetailView GROUP BY kernelVersion ORDER BY kernelVersion DESC",
     },
 
 
-
     {
       name: "Host-Os-Versions",
       sql: "SELECT Name, kernelVersion FROM nodeDetailView ORDER BY kernelVersion DESC",
     },
-
 
 
     {
@@ -40,12 +36,10 @@ GROUP BY DayHour;",
     },
 
 
-
     {
       name: "Hosts-Not-Ready-Sam",
      sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND NOT Name like '%minionceph%'",
     },
-
 
 
     {
@@ -54,12 +48,10 @@ GROUP BY DayHour;",
     },
 
 
-
     {
       name: "Hosts-Docker-Version",
       sql: "SELECT ControlEstate, Name, containerRuntimeVersion FROM nodeDetailView ORDER BY containerRuntimeVersion",
     },
-
 
 
     {
@@ -68,19 +60,16 @@ GROUP BY DayHour;",
     },
 
 
-
     {
       name: "Hosts-Kube-Version-Aggregate",
       sql: "SELECT Kingdom, kubeletVersion, COUNT(*) FROM nodeDetailView GROUP BY Kingdom, kubeletVersion ORDER BY kubeletVersion",
     },
 
 
-
     {
       name: "Resource-Types-By-Kingdom",
       sql: "SELECT ControlEstate, ApiKind, Count(*) FROM ( SELECT ControlEstate, ApiKind, IsTombstone FROM k8s_resource where IsTombstone <> 1) AS ss GROUP BY ControlEstate, ApiKind ORDER BY ControlEstate",
     },
-
 
 
     {
@@ -107,7 +96,6 @@ WHERE
   NOT ControlEstate LIKE 'prd-%' AND
   desiredReplicas != 0",
     },
-
 
 
     {
@@ -148,7 +136,6 @@ order by PendingCount+FailedCount+SucceededCount+OtherCount desc",
     },
 
 
-
     {
       name: "Bad-Customer-Pods",
       sql: "select
@@ -161,7 +148,6 @@ where
         and (Namespace != 'sam-system' AND Namespace != 'sam-watchdog' AND Namespace != 'csc-sam')
         and Phase != 'Running'",
     },
-
 
 
     {
@@ -180,7 +166,6 @@ where
   ApiKind like 'Event' and
   Payload->>'$.message' like '%ImagePullBackOff%'",
     },
-
 
 
     {
@@ -223,7 +208,6 @@ from
 ) as ss2
 group by PodAgeDays",
     },
-
 
 
     {
