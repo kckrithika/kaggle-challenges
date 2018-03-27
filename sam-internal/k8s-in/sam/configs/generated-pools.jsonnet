@@ -1861,18 +1861,6 @@
     },
     {
       "namespaces": [
-        "retail-dss-sp2"
-      ],
-      "access": [
-        "team/Retail_DSS"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-sp2-sam_retail_dss",
-      "kingdom": "prd",
-      "superPod": "sp2"
-    },
-    {
-      "namespaces": [
         "retail-eventlistener-sp2"
       ],
       "access": [
