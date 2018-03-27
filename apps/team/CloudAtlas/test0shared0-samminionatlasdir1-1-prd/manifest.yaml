@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - cloudatlas@salesforce.com
+      - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-prd-dev-dir1-1
     count: 1
@@ -37,10 +37,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:e2a7942
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
-      - name: UBID_REMOVE_EXISTING
-        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: NONE
+        value: ALL
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
