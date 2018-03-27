@@ -1133,38 +1133,6 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
-    name: retail-cre-sp2:prd-sp2-sam_retail_cre:rolebinding
-    namespace: retail-cre-sp2
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailcre1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcre2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcre3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
-    name: retail-credata-sp2:prd-sp2-sam_retail_credata:rolebinding
-    namespace: retail-credata-sp2
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: minion:role
-  subjects:
-  - kind: User
-    name: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
-  - kind: User
-    name: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
-  kind: RoleBinding
-  metadata:
     name: retail-dss-sp2:prd-sp2-sam_retail_dss:rolebinding
     namespace: retail-dss-sp2
   roleRef:
