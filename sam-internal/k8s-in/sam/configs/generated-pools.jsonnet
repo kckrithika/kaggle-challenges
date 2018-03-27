@@ -1535,6 +1535,18 @@
     },
     {
       "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_mc_consumer",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
