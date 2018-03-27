@@ -20,6 +20,9 @@ system:
     - name: sherpa-log-vol
       hostpath:
         path: /home/sfdc-sherpa/logs
+    - name: secret-vol
+      k4aSecret:
+        secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
       image: sfci/searchdev/universal-search:0.6.1
@@ -31,11 +34,19 @@ system:
       resources:
         limits: { cpu: "8", memory: "20Gi" }
         requests: { cpu: "8", memory: "20Gi" }
+      env:
+      - name: KRB5_CONF
+        value: /home/sfdc-usmt/krb-config/krb5_searchzk_ord.conf
+      - name: JAAS_CONF
+        value: /home/sfdc-usmt/krb-config/jaas-private.conf
       volumeMounts:
       - name: client-cert-vol
         mountPath: /certs
       - name: usmt-log-vol
         mountPath: /home/sfdc-usmt/logs
+      - name: secret-vol
+        mountPath: /secrets/
+        readOnly: true
       livenessProbe:
         httpGet:
           path: /manage/health
