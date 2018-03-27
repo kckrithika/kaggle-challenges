@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
                                     "--sqlDbHostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net",
                                     "--sqlK8sResourceDbName=sam_kube_resource",
                                     "--sqlDbPort=3306",
-                                    "--sqlQuery=select * from nodeDetailView where Ready!=True",
+                                    "--sqlQuery=select * from nodeDetailView where Ready!=True and Kingdom='prd'",
                                     "-v=5",
                                     "--alsologtostderr",
                                  ]
