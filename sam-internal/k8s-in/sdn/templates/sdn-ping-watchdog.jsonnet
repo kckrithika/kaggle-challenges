@@ -84,10 +84,10 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 ]),
                 nodeSelector: {
                               } +
-                              if !utils.is_flowsnake_cluster(configs.estate) then {
-                                  master: "true",
-                              } else {
+                              if utils.is_flowsnake_cluster(configs.estate) then {
                                   pool: configs.estate,
+                              } else {
+                                  master: "true",
                               },
             },
             metadata: {
