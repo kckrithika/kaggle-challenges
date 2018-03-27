@@ -30,6 +30,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: KUBECONFIG
+          value: /etc/kubernetes/kubeconfig
         image: dva-registry.internal.salesforce.com/dva/flowsnake-ingress-controller-nginx:571
         imagePullPolicy: Always
         livenessProbe:
@@ -51,23 +53,20 @@ spec:
             port: 80
             scheme: HTTP
         volumeMounts:
-        - mountPath: /etc/ssl/certs/ssl-cert-snakeoil.pem
-          name: server-certificate
-          readOnly: true
-        - mountPath: /etc/ssl/private/ssl-cert-snakeoil.key
-          name: server-key
+        - mountPath: /etc/ssl/certs
+          name: flowsnake-tls-secret
           readOnly: true
         - mountPath: /etc/kubernetes/kubeconfig
           name: kubeconfig
           readOnly: true
         - mountPath: /etc/pki_service/ca
-          name: certificate-authority
+          name: k8s-certificate-authority
           readOnly: true
         - mountPath: /etc/pki_service/kubernetes/k8s-client/certificates
-          name: client-certificate
+          name: k8s-client-certificate
           readOnly: true
         - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
-          name: client-key
+          name: k8s-client-key
           readOnly: true
         - mountPath: /data/certs
           name: data-cert
@@ -76,24 +75,21 @@ spec:
         vippool: "true"
       terminationGracePeriodSeconds: 60
       volumes:
-      - hostPath:
-          path: /etc/pki_service/platform/platform-server/certificates/platform-server.pem
-        name: server-certificate
-      - hostPath:
-          path: /etc/pki_service/platform/platform-server/keys/platform-server-key.pem
-        name: server-key
+      - name: flowsnake-tls-secret
+        secret:
+          secretName: flowsnake-tls
       - hostPath:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
       - hostPath:
           path: /etc/pki_service/ca
-        name: certificate-authority
+        name: k8s-certificate-authority
       - hostPath:
           path: /etc/pki_service/kubernetes/k8s-client/certificates
-        name: client-certificate
+        name: k8s-client-certificate
       - hostPath:
           path: /etc/pki_service/kubernetes/k8s-client/keys
-        name: client-key
+        name: k8s-client-key
       - hostPath:
           path: /data/certs
         name: data-cert
