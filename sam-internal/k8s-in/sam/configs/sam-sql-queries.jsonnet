@@ -8,6 +8,7 @@ FROM ( SELECT (ConsumeTime - ProduceTime) / 1000000000 AS diff_seconds, ControlE
 GROUP BY ControlEstate",
     },
 
+#===================
 
     {
       name: "Kube-Resource-Kafka-Pipeline-Latencies-ByHour",
@@ -16,18 +17,21 @@ FROM ( SELECT (ConsumeTime - ProduceTime) / 1000000000 AS diff_seconds, ProduceT
 GROUP BY DayHour;",
     },
 
+#===================
 
     {
       name: "Host-Os-Versions-Aggregate",
       sql: "SELECT kernelVersion, COUNT(*) FROM nodeDetailView GROUP BY kernelVersion ORDER BY kernelVersion DESC",
     },
 
+#===================
 
     {
       name: "Host-Os-Versions",
       sql: "SELECT Name, kernelVersion FROM nodeDetailView ORDER BY kernelVersion DESC",
     },
 
+#===================
 
     {
 
@@ -35,42 +39,49 @@ GROUP BY DayHour;",
       sql: "SELECT * FROM nodeDetailView",
     },
 
+#===================
 
     {
       name: "Hosts-Not-Ready-Sam",
      sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND NOT Name like '%minionceph%'",
     },
 
+#===================
 
     {
       name: "Hosts-Not-Ready-Ceph",
      sql: "SELECT * FROM nodeDetailView WHERE Ready != 'True' AND Name like '%minionceph%'",
     },
 
+#===================
 
     {
       name: "Hosts-Docker-Version",
       sql: "SELECT ControlEstate, Name, containerRuntimeVersion FROM nodeDetailView ORDER BY containerRuntimeVersion",
     },
 
+#===================
 
     {
       name: "Hosts-Kube-Version",
       sql: "SELECT Name, kubeletVersion, Ready FROM nodeDetailView ORDER BY kubeletVersion",
     },
 
+#===================
 
     {
       name: "Hosts-Kube-Version-Aggregate",
       sql: "SELECT Kingdom, kubeletVersion, COUNT(*) FROM nodeDetailView GROUP BY Kingdom, kubeletVersion ORDER BY kubeletVersion",
     },
 
+#===================
 
     {
       name: "Resource-Types-By-Kingdom",
       sql: "SELECT ControlEstate, ApiKind, Count(*) FROM ( SELECT ControlEstate, ApiKind, IsTombstone FROM k8s_resource where IsTombstone <> 1) AS ss GROUP BY ControlEstate, ApiKind ORDER BY ControlEstate",
     },
 
+#===================
 
     {
       name: "Bad-Customer-Deployments-Production",
@@ -97,6 +108,7 @@ WHERE
   desiredReplicas != 0",
     },
 
+#===================
 
     {
       name: "Bad-Pods-By-Host-Production",
@@ -135,6 +147,7 @@ where (PendingCount+FailedCount+SucceededCount+OtherCount)>0
 order by PendingCount+FailedCount+SucceededCount+OtherCount desc",
     },
 
+#===================
 
     {
       name: "Bad-Customer-Pods",
@@ -149,6 +162,7 @@ where
         and Phase != 'Running'",
     },
 
+#===================
 
     {
       name: "Image-Pull-Errors",
@@ -167,6 +181,7 @@ where
   Payload->>'$.message' like '%ImagePullBackOff%'",
     },
 
+#===================
 
     {
       name: "Sam-App-Pod-Age-All-Kingdoms",
@@ -201,7 +216,7 @@ from
       ControlEstate,
       LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
     from podDetailView
-    where IsSamApp = True
+    where IsSamApp = True and ProduceAgeInMinutes<15
   ) as ss
   where PodAgeDays IS NOT NULL
   group by ControlEstate, PodAgeDays
@@ -209,6 +224,7 @@ from
 group by PodAgeDays",
     },
 
+#===================
 
     {
       name: "Sam-App-Pod-Age-Prd",
@@ -229,12 +245,40 @@ from
       ControlEstate,
       LEAST(FLOOR(PodAgeInMinutes/60.0/24.0),10) as PodAgeDays
     from podDetailView
-    where IsSamApp = True
+    where IsSamApp = True and ProduceAgeInMinutes<15
   ) as ss
   where PodAgeDays IS NOT NULL
   group by ControlEstate, PodAgeDays
 ) as ss2
 group by PodAgeDays",
+    },
+
+#===================
+
+    {
+      name: "MySql-Pods-With-Old-Produce-Age",
+      sql: "select
+  NamespacePodPrefix,
+  SUM(Count) as Count,
+  GROUP_CONCAT(ControlEstate, ' ')
+from
+(
+  select
+    NamespacePodPrefix,
+    ControlEstate,
+    COUNT(*) as Count
+  from
+  (
+    select
+      CONCAT(Namespace, ' ', SUBSTRING_INDEX(Name, '-', 1)) as NamespacePodPrefix,
+      ControlEstate
+    from podDetailView
+    where IsSamApp = True and ProduceAgeInMinutes>60.0
+  ) as ss
+  group by NamespacePodPrefix, ControlEstate
+) as ss2
+group by NamespacePodPrefix
+order by Count desc",
     },
   ],
 }
