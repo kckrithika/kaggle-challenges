@@ -154,19 +154,13 @@ local utils = import "util_functions.jsonnet",
             "/data/certs/ca.crt"
     ),
     keyFile: (
-        // this is part of flowsnake phase rollout, will remove after we rollout to all fleet
-        if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
-            "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
-        else if $.maddogForSamHostsEnabled then
+        if $.maddogForSamHostsEnabled then
             "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
         else
             "/data/certs/hostcert.key"
     ),
     certFile: (
-        // this is part of flowsnake phase rollout, will remove after we rollout to all fleet
-        if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
-           "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem"
-        else if $.maddogForSamHostsEnabled then
+        if $.maddogForSamHostsEnabled then
             "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
         else
             "/data/certs/hostcert.crt"
