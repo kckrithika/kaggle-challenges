@@ -8,7 +8,7 @@ configDir: self.slbDir + "/config",
 logsDir: self.slbDir + "/logs",
 ipvsMarkerFile: self.slbDir + "/ipvs.marker",
 slbPortalTemplatePath: "/sdn/webfiles",
-prodKingdoms: ['frf', 'phx', 'iad'],
+prodKingdoms: ['frf', 'phx', 'iad', 'ord'],
 
 perCluster: {
     ddiService: {
@@ -25,6 +25,7 @@ perCluster: {
             "frf-sam": "10.214.36.0/22",
             "phx-sam": "10.208.208.0/22",
             "iad-sam": "10.208.108.0/22",
+            "ord-sam": "10.208.148.0/22",
             # prd-sam-a : 10.251.199.248-255
     },
 
