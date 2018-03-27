@@ -123,7 +123,7 @@ system:
     nodeExposed: true
     slbenabled: true
     ports:
-      - port: 7025
+      - port: 7025  # Plain text port until we get SSL working
         targetport: 7012
       - port: 7443
         targetport: 7443
