@@ -75,7 +75,7 @@ system:
     type: stateful-set
     containers:
     - name: elasticsearch
-      image: docker-dva-rc/dva/elasticsearch-server:8
+      image: docker-dva-rc/dva/elasticsearch-server:9
       #env:
       #- name: ES_PASSWORD_FILE
       #  value: /secrets/rootpassword
@@ -102,10 +102,10 @@ system:
         failureThreshold: 100
     terminationGracePeriodSeconds: 20
 
-    volumeClaimTemplates:
-    - name: elasticsearch-persistent-storage
-      storageClassName: gater-hdd-pool
-      storageSizeRequest: 1Gi
+    #volumeClaimTemplates:
+    #- name: elasticsearch-persistent-storage
+    #  storageClassName: gater-hdd-pool
+    #  storageSizeRequest: 1Gi
     lbname: elasticsearch-stateful-lb
 
   loadbalancers:
