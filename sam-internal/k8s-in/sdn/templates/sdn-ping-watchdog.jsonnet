@@ -70,7 +70,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             sdnconfigs.sdn_logs_volume_mount,
-                            sdnconfigs.conditional_sdn_kubectl_volume_mount,
+                            sdnconfigs.sdn_kubectl_volume_mount,
                         ]),
                     },
                 ],
@@ -80,14 +80,10 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     configs.cert_volume,
                     configs.kube_config_volume,
                     sdnconfigs.sdn_logs_volume,
-                    sdnconfigs.conditional_sdn_kubectl_volume,
+                    sdnconfigs.sdn_kubectl_volume,
                 ]),
                 nodeSelector: {
-                              } +
-                              if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                                   master: "true",
-                              } else {
-                                  pool: configs.estate,
                               },
             },
             metadata: {
