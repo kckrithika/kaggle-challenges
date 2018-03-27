@@ -21,6 +21,7 @@ data:
       "resource-progression-timeout": 120000000000,
       "resources-to-skip": [
         "_flowsnake-sdn-secret.yaml",
+        "cert-secretizer.yaml",
         "_zookeeper-rcs.yaml",
         "_zookeeper-set-svc.yaml",
         "canary-ds.yaml",
@@ -38,10 +39,6 @@ data:
         "nginx-ingress-controller-rc.yaml",
         "nginx-ingress-controller-svc.yaml",
         "node-monitor-rc.yaml",
-        "sdn-bird.yaml",
-        "sdn-cleanup.yaml",
-        "sdn-hairpin-setter.yaml",
-        "sdn-peering-agent.yaml",
         "sdn-ping-watchdog.yaml",
         "sdn-route-watchdog.yaml",
         "sdn-secret.yaml",

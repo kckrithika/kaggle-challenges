@@ -36,11 +36,11 @@ local kingdom = std.extVar("kingdom");
     ],
     cert_services_preferred: std.count(self.cert_services_preferred_estates, estate) == 1,
     sdn_pre_deployment_estates: [
-        "iad-flowsnake_prod",
-        "ord-flowsnake_prod",
         "phx-flowsnake_prod",
     ],
     sdn_during_deployment_estates: [
+        "iad-flowsnake_prod",
+        "ord-flowsnake_prod",
     ],
     sdn_done_deployment_estates: [
     ],
