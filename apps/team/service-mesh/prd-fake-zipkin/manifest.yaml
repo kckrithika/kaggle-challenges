@@ -70,6 +70,43 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+  - name: elasticsearch
+    count: 1
+    type: stateful-set
+    containers:
+    - name: elasticsearch
+      image: docker-dva-rc/dva/elasticsearch-server:8
+      #env:
+      #- name: ES_PASSWORD_FILE
+      #  value: /secrets/rootpassword
+      volumeMounts:
+      - mountPath: /var/lib/elasticsearch
+        name: elasticsearch-persistent-storage
+      #- mountPath: /certs
+      #  name: certs
+      #- mountPath: /secrets
+      #  name: es-pass
+      #  readOnly: true
+
+      ports:
+      - containerPort: 9200
+        name: es-rest
+      - containerPort: 9300
+        name: es-transport
+
+      livenessProbe:
+        tcpSocket:
+          port: 9200
+        initialDelaySeconds: 15
+        periodSeconds: 10
+        failureThreshold: 100
+    terminationGracePeriodSeconds: 20
+
+    volumeClaimTemplates:
+    - name: elasticsearch-persistent-storage
+      storageClassName: gater-hdd-pool
+      storageSizeRequest: 1Gi
+    lbname: elasticsearch-stateful-lb
 
   loadbalancers:
   - lbname: mesh-fake-zipkin-lb
@@ -80,3 +117,15 @@ system:
       - port: 19411
         targetport: 7022
         lbtype: http
+  - lbname: es-rest
+    function: elasticsearch
+    slbEnabled: true
+    ports:
+      - port: 9200
+        targetport: 9200
+  - lbname: es-transport
+    function: elasticsearch
+    slbEnabled: true
+    ports:
+      - port: 9300
+        targetport: 9300
