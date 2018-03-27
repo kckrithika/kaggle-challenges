@@ -14,17 +14,10 @@ system:
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
-      - name: logvol
-        hostPath:
-          path: /var/log/report-collector
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.12.0-0000243-4439d3ae
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       ports:
-      - name: provider
-        containerPort: 8080
-      - name: consumer
-        containerPort: 8081
       - name: admin
         containerPort: 8082
       - name: provider-https
@@ -59,10 +52,13 @@ system:
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
         value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_http_enabled
+        value: false
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /healthz
-          port: 8080
+          port: 8443
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
@@ -83,44 +79,10 @@ system:
         -Dvertx.metrics.options.registryName=vertx-registry
         -Dvertx.metrics.options.configPath=metric-options.json
         -Dvertx.disableDnsResolver=true
-        -Dlog_dir=${LOG_DIR}
+        -Dlog_dir=/dev/null
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
-  - name: csc-health-stale-log-cleaner
-    image: tnrp/csc-health/report-collector:1.12.0-0000243-4439d3ae
-    volumeMounts:
-      - mountPath: /var/log/report-collector
-        name: logvol
-    env:
-      - name: CLEANUP_FOLDER
-        value: /var/log/report-collector
-      - name: CLEANUP_PERIOD_SECONDS
-        value: 1800
-      - name: CLEANUP_FILE_PATTERN
-        value: "*tmp*"
-      - name: CLEANUP_FILE_AGE_MINUTES
-        value: 30
-    livenessProbe:
-      exec:
-        command:
-        - echo
-        - always_healthy
-      initialDelaySeconds: 5
-      periodSeconds: 30
-    command: ["/bin/sh", "-c"]
-    args: ['
-        while sleep ${CLEANUP_PERIOD_SECONDS};
-        do
-            echo $(date) "Processing" $CLEANUP_FOLDER;
-            if [ ! -d "$CLEANUP_FOLDER" ]; then
-                echo $CLEANUP_FOLDER " doesn''t exist";
-                continue;
-            fi;
-
-            find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
-        done
-    ']
   - name: expredisnoha
     count: 1
     volumes:
@@ -136,8 +98,6 @@ system:
         readOnly: true
       ports:
       - containerPort: 6379
-      logs:
-      - directory: /var/log/redis
       livenessProbe:
         tcpSocket:
           port: 6379
@@ -148,13 +108,6 @@ system:
     function: expreport-collectorha
     nodeExposed: true
     ports:
-      # LB was supposed to allow SSL on the backend, but its not currently
-      # supported, so we will use non SSL but on these node ports (18443, 18444)
-      # since its the one exposed in estates for sam_minionreportcollector
-    - port: 28443
-      targetport: 8080
-    - port: 28444
-      targetport: 8081
     - port: 28447
       targetport: 8082
     - port: 28445
