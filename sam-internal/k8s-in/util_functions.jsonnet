@@ -26,7 +26,12 @@ local kingdom = std.extVar("kingdom");
 
     # This is for filtering flowsnake clusters.
     is_flowsnake_cluster(estate):: (
-        estate == "prd-data-flowsnake" || estate == "prd-data-flowsnake_test" || estate == "prd-dev-flowsnake_iot_test" || estate == "ord-flowsnake_prod" || estate == "iad-flowsnake_prod" || estate == "phx-flowsnake_prod"
+        estate == "prd-data-flowsnake" ||
+        estate == "prd-data-flowsnake_test" ||
+        estate == "prd-dev-flowsnake_iot_test" ||
+        estate == "iad-flowsnake_prod" ||
+        estate == "ord-flowsnake_prod" ||
+        estate == "phx-flowsnake_prod"
     ),
 
     # This is for filtering Kingdoms which support Ceph Clusters
