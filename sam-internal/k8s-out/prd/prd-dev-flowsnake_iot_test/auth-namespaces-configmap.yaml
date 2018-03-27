@@ -4,7 +4,9 @@ data:
     ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"}, {"authorizedClientCerts":
     ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf",
     "retail-cre.cre-control-plane-ccp-dev"], "authorizedLdapGroups": ["CRE_AD"], "namespace":
-    "retail-cre"}]'
+    "retail-cre"}, {"authorizedClientCerts": ["iot.provisioning", "iot.provisioning-ftest",
+    "iot.provisioning-provisioningtest"], "authorizedLdapGroups": ["IoT-RM-Flowsnake"],
+    "namespace": "iot"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null

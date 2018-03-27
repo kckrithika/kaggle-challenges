@@ -231,6 +231,11 @@ local samconfig = import "config.jsonnet";
             authorizedLdapGroups: ["CRE_AD"],
             authorizedClientCerts: ["retail-cre.cre-control-plane-ccp-func", "retail-cre.cre-control-plane-ccp-perf", "retail-cre.cre-control-plane-ccp-dev"],
         },
+        {
+            namespace: "iot",
+            authorizedLdapGroups: ["IoT-RM-Flowsnake"],
+            authorizedClientCerts: ["iot.provisioning", "iot.provisioning-ftest", "iot.provisioning-provisioningtest"],
+        },
       ],
       "prd/prd-minikube-small-flowsnake": [
         {
