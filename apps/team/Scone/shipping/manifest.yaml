@@ -39,7 +39,7 @@ system:
         name: logvol
     - name: sherpa-shipping
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
-      image: sfci/servicelibs/sherpa:2.0.24
+      image: sfci/servicelibs/sherpa:2.0.25
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
