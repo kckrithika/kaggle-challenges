@@ -28,7 +28,7 @@ local utils = import "util_functions.jsonnet";
 
         # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
         "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
-        "prd,prd-samdev,watchdog-sdp,hypersam": "auto",
+        #"prd,prd-samdev,watchdog-sdp,hypersam": "auto",
 
 
         # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
