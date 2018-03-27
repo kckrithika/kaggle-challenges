@@ -14,7 +14,7 @@ system:
     containers:
     - name: spaas
       #Prod image cannot be used directly in sam sandbox?
-      image: sfci/service-protection/sps:0.0.2.37
+      image: sfci/service-protection/sps:0.0.2.39
       #image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/service-protection/sps:0.0.2.22
       # set container environment variables
       env:
@@ -53,9 +53,12 @@ system:
     - name: beacon-spaasmesh
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       args:
       - -endpoint
-      - spaasmesh:DATACENTER:7022
+      - spaasmesh:DATACENTER_ALLENV:7022
       - -logging.dir
       - /log
       livenessProbe:
