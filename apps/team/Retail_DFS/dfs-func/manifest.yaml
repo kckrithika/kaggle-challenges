@@ -22,14 +22,11 @@ system:
           command: ["true"]
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa:2.0.23
-      volumeMounts:
-      - name: dfs-server-cert
-        mountPath: /servercerts
       env:
         - name: SFDC_ENVIRONMENT
           value: stmfa
       ports:
-        - containerPort: 7442
+        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
