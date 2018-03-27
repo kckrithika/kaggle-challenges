@@ -1,3 +1,5 @@
 apps:
  jeff-samhello:
-  - prd/prd-sam  
+  - prd/prd-sam
+ jeff-sampleapp:
+  - prd/prd-sam
