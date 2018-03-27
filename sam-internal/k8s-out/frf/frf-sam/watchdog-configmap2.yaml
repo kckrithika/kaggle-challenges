@@ -15,6 +15,7 @@ data:
       "filesystemCheckDirs": [
         "/data/",
         "/data/logs/sdn/",
+        "/data/slb/logs/",
         "/home/sfdc/"
       ],
       "funnelEndpoint": "mandm-funnel-frf1.data.sfdc.net:8080",

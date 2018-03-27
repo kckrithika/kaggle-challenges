@@ -18,6 +18,7 @@ data:
       "filesystemCheckDirs": [
         "/data/",
         "/data/logs/sdn/",
+        "/data/slb/logs/",
         "/home/sfdc/"
       ],
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
