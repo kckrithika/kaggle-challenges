@@ -14,9 +14,6 @@ system:
       - name: redisauthvol
         secret:
           secretName: csc-redis-auth-0
-      - name: logvol
-        hostPath:
-          path: /var/log/report-collector
     containers:
     - name: expreport-collectorha
       image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
@@ -86,40 +83,6 @@ system:
         -Dinstance=${FUNCTION_INSTANCE_NAME}
         -jar ${JAR_PATH}
       "]
-  - name: csc-health-stale-log-cleaner
-    image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
-    volumeMounts:
-      - mountPath: /var/log/report-collector
-        name: logvol
-    env:
-      - name: CLEANUP_FOLDER
-        value: /var/log/report-collector
-      - name: CLEANUP_PERIOD_SECONDS
-        value: 1800
-      - name: CLEANUP_FILE_PATTERN
-        value: "*tmp*"
-      - name: CLEANUP_FILE_AGE_MINUTES
-        value: 30
-    livenessProbe:
-      exec:
-        command:
-        - echo
-        - always_healthy
-      initialDelaySeconds: 5
-      periodSeconds: 30
-    command: ["/bin/sh", "-c"]
-    args: ['
-        while sleep ${CLEANUP_PERIOD_SECONDS};
-        do
-            echo $(date) "Processing" $CLEANUP_FOLDER;
-            if [ ! -d "$CLEANUP_FOLDER" ]; then
-                echo $CLEANUP_FOLDER " doesn''t exist";
-                continue;
-            fi;
-
-            find $CLEANUP_FOLDER -name "$CLEANUP_FILE_PATTERN" -mmin +$CLEANUP_FILE_AGE_MINUTES -type f -print -delete;
-        done
-    ']
   - name: expredisnoha
     count: 1
     volumes:
@@ -135,8 +98,6 @@ system:
         readOnly: true
       ports:
       - containerPort: 6379
-      logs:
-      - directory: /var/log/redis
       livenessProbe:
         tcpSocket:
           port: 6379
