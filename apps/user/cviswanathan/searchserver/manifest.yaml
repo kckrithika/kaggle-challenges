@@ -7,7 +7,7 @@ system:
       count: 2
       containers:  
       - name: searchserver 
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c.viswanathan/searchserver:20180326 # Use the latest version, see below
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c.viswanathan/searchserver:20180327 # Use the latest version, see below
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
