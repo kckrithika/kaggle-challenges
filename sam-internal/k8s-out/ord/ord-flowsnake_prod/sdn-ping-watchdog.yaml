@@ -67,7 +67,7 @@ spec:
           name: kubectl
       hostNetwork: true
       nodeSelector:
-        master: "true"
+        pool: ord-flowsnake_prod
       volumes:
       - configMap:
           name: sfdchosts

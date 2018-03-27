@@ -67,7 +67,7 @@ spec:
           name: kubectl
       hostNetwork: true
       nodeSelector:
-        master: "true"
+        pool: prd-dev-flowsnake_iot_test
       volumes:
       - configMap:
           name: sfdchosts
