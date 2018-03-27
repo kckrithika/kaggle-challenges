@@ -16,7 +16,7 @@ system:
         type: client
     containers:
     - name: retailcalculator
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.5
       ports:
         - containerPort: 8080
         - containerPort: 15372
