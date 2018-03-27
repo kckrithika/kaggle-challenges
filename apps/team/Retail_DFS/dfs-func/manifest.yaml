@@ -44,9 +44,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-dfs/logs
-    - name: dfs-server-cert
-      maddogCert:
-        type: server
   loadbalancers:
   - lbname: dfs-lb
     function: dfs-func
