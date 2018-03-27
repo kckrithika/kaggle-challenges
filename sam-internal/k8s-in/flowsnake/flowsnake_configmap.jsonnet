@@ -441,15 +441,9 @@ local samconfig = import "config.jsonnet";
         syntheticPVRetrytimeout: 420000000000,
         syntheticretrytimeout: 420000000000,
         tlsEnabled: true,
-    } +
-    if estate == "prd-data-flowsnake_test" then {
         caFile: "/etc/pki_service/ca/cabundle.pem",
         certFile: "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
         keyFile: "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-    } else {
-        caFile: "/data/certs/ca.crt",
-        certFile: "/data/certs/hostcert.crt",
-        keyFile: "/data/certs/hostcert.key",
     },
     cert_secretizer_config: {
         certToSecretConfigs: [

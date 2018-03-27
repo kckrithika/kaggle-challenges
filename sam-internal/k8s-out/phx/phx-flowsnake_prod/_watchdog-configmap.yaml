@@ -2,8 +2,8 @@ apiVersion: v1
 data:
   watchdog.json: |-
     {
-      "caFile": "/data/certs/ca.crt",
-      "certFile": "/data/certs/hostcert.crt",
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-phx.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001730-c7caec88",
       "deployer-rcImtEndpoint": "https://reportcollector-phx.data.sfdc.net:18443/v1/bark",
@@ -17,7 +17,7 @@ data:
       "enableStatefulPVChecks": true,
       "funnelEndpoint": "ajna0-funnel1-0-phx.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001730-c7caec88",
-      "keyFile": "/data/certs/hostcert.key",
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kubeResourceNamespacePrefixBlacklist": "sam-watchdog",
       "kubeResourceNamespacePrefixWhitelist": "sam-system,flowsnake",
       "maxPVCAge": 420000000000,
