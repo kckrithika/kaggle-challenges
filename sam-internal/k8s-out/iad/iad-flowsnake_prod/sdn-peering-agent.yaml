@@ -21,9 +21,9 @@ spec:
         - --birdconf=/usr/local/etc/bird.conf
         - --funnelEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-iad.data.sfdc.net/tnrp/content_repo/0/archive
-        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
-        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - --bgpPasswordFile=/data/secrets/sambgppassword
+        - --keyfile=/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem
+        - --certfile=/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem
+        - --bgpPasswordFile=/data/secrets/flowsnakebgppassword
         - --livenessProbePort=9100
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system

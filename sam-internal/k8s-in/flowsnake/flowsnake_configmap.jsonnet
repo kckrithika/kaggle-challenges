@@ -318,6 +318,7 @@ local samconfig = import "config.jsonnet";
             "sdn-secret-agent.yaml",
             "sdn-vault-agent.yaml",
         ] else if flowsnakeconfig.sdn_pre_deployment then [
+            "cert-secretizer.yaml",
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
@@ -350,6 +351,7 @@ local samconfig = import "config.jsonnet";
         ] else if flowsnakeconfig.sdn_during_deployment then [
         // this state will get maually edited during sdn rollout
         // after its done please reset it same as sdn_pre_deployment
+            "cert-secretizer.yaml",
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
@@ -367,10 +369,6 @@ local samconfig = import "config.jsonnet";
             "nginx-ingress-controller-rc.yaml",
             "nginx-ingress-controller-svc.yaml",
             "node-monitor-rc.yaml",
-            "sdn-bird.yaml",
-            "sdn-cleanup.yaml",
-            "sdn-hairpin-setter.yaml",
-            "sdn-peering-agent.yaml",
             "sdn-ping-watchdog.yaml",
             "sdn-route-watchdog.yaml",
             "sdn-secret.yaml",
@@ -380,6 +378,7 @@ local samconfig = import "config.jsonnet";
             "watchdog-etcd.yaml",
             "watchdog-master.yaml",
         ] else if flowsnakeconfig.sdn_done_deployment then [
+            "cert-secretizer.yaml",
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
