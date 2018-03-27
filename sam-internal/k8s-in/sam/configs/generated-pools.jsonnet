@@ -1639,12 +1639,10 @@
     },
     {
       "namespaces": [
-        "retail-cre",
-        "retail-credata"
+        "distributed-tracing"
       ],
       "access": [
-        "team/Retail_CRE",
-        "team/Retail_CREDATA"
+        "team/distributed-tracing"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_zipkin",
