@@ -1639,6 +1639,18 @@
     },
     {
       "namespaces": [
+        "distributed-tracing"
+      ],
+      "access": [
+        "team/distributed-tracing"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_zipkin",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "*"
       ],
       "access": [
@@ -1842,42 +1854,6 @@
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sp2-sam_iot_test",
-      "kingdom": "prd",
-      "superPod": "sp2"
-    },
-    {
-      "namespaces": [
-        "retail-cre-sp2"
-      ],
-      "access": [
-        "team/Retail_CRE"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-sp2-sam_retail_cre",
-      "kingdom": "prd",
-      "superPod": "sp2"
-    },
-    {
-      "namespaces": [
-        "retail-credata-sp2"
-      ],
-      "access": [
-        "team/Retail_CREDATA"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-sp2-sam_retail_credata",
-      "kingdom": "prd",
-      "superPod": "sp2"
-    },
-    {
-      "namespaces": [
-        "retail-dss-sp2"
-      ],
-      "access": [
-        "team/Retail_DSS"
-      ],
-      "controlEstate": "prd-sam",
-      "estate": "prd-sp2-sam_retail_dss",
       "kingdom": "prd",
       "superPod": "sp2"
     },
