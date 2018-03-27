@@ -353,26 +353,10 @@ local samconfig = import "config.jsonnet";
         // after its done please reset it same as sdn_pre_deployment
             "cert-secretizer.yaml",
             "_zookeeper-rcs.yaml",
-            "_zookeeper-set-svc.yaml",
             "canary-ds.yaml",
-            "flowsnake-api-ingress.yaml",
-            "flowsnake-api-rc.yaml",
-            "flowsnake-api-svc.yaml",
-            "funnel-svc.yaml",
             "glok-rc.yaml",
-            "glok-set-svc.yaml",
-            "glok-svc.yaml",
-            "ingress-controller-default-backend-svc.yaml",
-            "ingress-controller-default-backend.yaml",
-            "madkubserver-service.yaml",
-            "madkubserver.yaml",
             "nginx-ingress-controller-rc.yaml",
-            "nginx-ingress-controller-svc.yaml",
             "node-monitor-rc.yaml",
-            "watchdog-common.yaml",
-            "watchdog-etcd-quorum.yaml",
-            "watchdog-etcd.yaml",
-            "watchdog-master.yaml",
         ] else if flowsnakeconfig.sdn_done_deployment then [
             "cert-secretizer.yaml",
             "_zookeeper-rcs.yaml",
@@ -441,15 +425,9 @@ local samconfig = import "config.jsonnet";
         syntheticPVRetrytimeout: 420000000000,
         syntheticretrytimeout: 420000000000,
         tlsEnabled: true,
-    } +
-    if estate == "prd-data-flowsnake_test" then {
         caFile: "/etc/pki_service/ca/cabundle.pem",
         certFile: "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
         keyFile: "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-    } else {
-        caFile: "/data/certs/ca.crt",
-        certFile: "/data/certs/hostcert.crt",
-        keyFile: "/data/certs/hostcert.key",
     },
     cert_secretizer_config: {
         certToSecretConfigs: [
