@@ -1,5 +1,6 @@
 # Use corp user name instead of git user ids e.g. prahlad.joshi instead of prahlad-joshi
 users:
+  - afalko # Temporarly until Zipkin gets own estate: https://gus.lightning.force.com/one/one.app#/sObject/0D5B000000bpeU9KAI/view
   - bhoyt
   - drichelson
   - jbratton
