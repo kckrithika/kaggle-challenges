@@ -105,6 +105,7 @@ local utils = import "util_functions.jsonnet",
 
     # Commonly used elements for kubernetes resources
 
+    # As of 2018-03, Flowsnake hosts are MadDog enabled where SAM is, so this applies to them too.
     maddogForSamHostsEnabled: !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom),
 
     # For use by apps that talk to the Kube API server using the host's kubeConfig
@@ -153,17 +154,13 @@ local utils = import "util_functions.jsonnet",
             "/data/certs/ca.crt"
     ),
     keyFile: (
-        if utils.is_flowsnake_cluster(estate) then
-            "/etc/pki_service/kubernetes/k8s-client/keys/k8s-client-key.pem"
-        else if $.maddogForSamHostsEnabled then
+        if $.maddogForSamHostsEnabled then
             "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
         else
             "/data/certs/hostcert.key"
     ),
     certFile: (
-        if utils.is_flowsnake_cluster(estate) then
-            "/etc/pki_service/kubernetes/k8s-client/certificates/k8s-client.pem"
-        else if $.maddogForSamHostsEnabled then
+        if $.maddogForSamHostsEnabled then
             "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
         else
             "/data/certs/hostcert.crt"
