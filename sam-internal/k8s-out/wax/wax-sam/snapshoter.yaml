@@ -26,7 +26,7 @@ spec:
         - --alsologtostderr
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a
         livenessProbe:
           httpGet:
@@ -39,6 +39,8 @@ spec:
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -52,6 +54,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

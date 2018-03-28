@@ -27,12 +27,14 @@ spec:
         - -emailFrequency=24h
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sam/hypersam:sam-0001818-cc165257
         name: watchdog-filesystem
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /data/certs
           name: certs
         - mountPath: /kubeconfig
@@ -51,6 +53,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs

@@ -32,7 +32,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a
         name: watchdog-synthetic
         ports:
@@ -41,6 +41,8 @@ spec:
         volumeMounts:
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
         - mountPath: /test
           name: test
         - mountPath: /_output
@@ -58,6 +60,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
       - hostPath:
           path: /data/certs
         name: certs
