@@ -92,9 +92,12 @@ system:
         periodSeconds: 5
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      # TODO Remove plaintext 7012 port once ACL is merged
       args:
       - -endpoint
       - universal-search/universal-search:DATACENTER_ALLENV:7443
+      - -endpoint
+      - universal-search-plaintext:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
