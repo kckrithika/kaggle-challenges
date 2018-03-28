@@ -17,7 +17,7 @@ spec:
       - command:
         - /sdn/sdn-hairpin-setter
         - --log_dir=/data/logs/sdn/
-        - --logtostderr=false
+        - --logtostderr=true
         - --alsologtostderr=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000724-ebac0861
         name: sdn-hairpin-setter

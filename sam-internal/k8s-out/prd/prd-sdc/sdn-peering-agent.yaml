@@ -32,7 +32,7 @@ spec:
         - --pkiClientServiceName=k8s-client
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
-        - --logtostderr=false
+        - --logtostderr=true
         - --alsologtostderr=true
         env:
         - name: KUBECONFIG
