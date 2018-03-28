@@ -1,1 +1,3 @@
 apps:
+  nginx-test:
+  - prd/prd-sam

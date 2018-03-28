@@ -1,0 +1,33 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: nginx-test
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000024-6c678838
+      command: ["/runner.sh"]
+      args: [""]
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 12080
+        initialDelaySeconds: 15
+        periodSeconds: 10
+      volumeMounts:
+      - mountPath: /etc/nginx/conf.d
+        name: var-target-config-volume
+      - mountPath: /host/data/slb/logs
+        name: var-logs-volume
+    hostNetwork: true
+    volumes:
+    - hostPath:
+        path: /data/slb/nginx/config
+      name: var-target-config-volume
+    - hostPath:
+        path: /data/slb
+      name: var-slb-volume
+    - hostPath:
+        path: /data/slb/logs
+      name: var-logs-volume
