@@ -13,6 +13,13 @@ local kingdom = std.extVar("kingdom");
         kingdom == "chx" || kingdom == "wax"
     ),
 
+    is_production(kingdom):: (
+      kingdom != "prd" &&
+      kingdom != "crd" &&
+      kingdom != "sfz" &&
+      kingdom != "crz"
+    ),
+
     # This is for filtering in, or out, testing clusters.
     is_test_cluster(estate):: (
         estate == "prd-samdev" ||
@@ -37,12 +44,5 @@ local kingdom = std.extVar("kingdom");
     # This is for filtering Kingdoms which support Ceph Clusters
     is_cephstorage_supported(estate):: (
        estate == "prd-sam" || estate == "phx-sam"
-    ),
-
-    is_prod(kingdom):: (
-      kingdom != "prd" &&
-      kingdom != "crd" &&
-      kingdom != "sfz" &&
-      kingdom != "crz"
     ),
 }
