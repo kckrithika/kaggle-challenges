@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: helloworld
-      image: https://ops0-artifactrepo1-0-prd.data.sfdc.net/artifactory/docker-sam/karim-elmaaroufi/helloworld:first-time-helloworld-918275052321
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/karim-elmaaroufi/helloworld:first-time-03262018
       ports:
       - containerPort: 9090
       livenessProbe:
