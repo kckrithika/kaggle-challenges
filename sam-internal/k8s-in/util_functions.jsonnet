@@ -39,7 +39,7 @@ local kingdom = std.extVar("kingdom");
        estate == "prd-sam" || estate == "phx-sam"
     ),
 
-    is_prod(estate):: (
+    is_prod(kingdom):: (
       kingdom != "prd" &&
       kingdom != "crd" &&
       kingdom != "sfz" &&

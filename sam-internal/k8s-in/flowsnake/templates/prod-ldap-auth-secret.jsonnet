@@ -1,6 +1,6 @@
 local util = import "util_functions.jsonnet";
-local estate = std.extVar("estate");
-if util.is_prod(estate) then
+local kingdom = std.extVar("kingdom");
+if util.is_prod(kingdom) then
 // we don't support LDAP in prod, but the FleetService crashes without an LDAP secret, so we're temporarily deploying a dummy one until the Fleet Service is fixed
 {
     apiVersion: "v1",
