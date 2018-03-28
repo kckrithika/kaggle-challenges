@@ -20,10 +20,17 @@ system:
         - name: cantor
           containerPort: 7443
           hostPort: 17443
+        volumeMounts:
+        - mountPath: /home/sfdc-casp/cantor
+          name: cantor-vol
         livenessProbe:
           exec:
             command:
             - /usr/bin/true
+      volumes:
+      - name: cantor-vol
+        hostPath:
+          path: /data/cantor
 
     loadbalancers:
     - lbname: cantor
