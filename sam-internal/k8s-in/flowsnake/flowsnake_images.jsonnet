@@ -49,6 +49,7 @@ local utils = import "util_functions.jsonnet";
                 # only copy above to phase 2
                 {
                   "0.9.7-itest": 565,
+                  "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
