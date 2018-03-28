@@ -1,0 +1,55 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ordering-orig-robin-kalia
+    count: 1
+    containers:
+    - name: ordering-orig-robin-kalia
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering-orig/ordering-orig-robin-kalia:robin.kalia-20180328-2f2d236
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: SCONE_SHIPPING_HOST
+        value: shipping-orig-robin-kalia.localhost.mesh.force.com
+      - name: SCONE_SHIPPING_PORT
+        value: 7011
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7021
+      - containerPort: 15373
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15373
+    - name: beacon-ordering-orig
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+      - -endpoint
+      - ordering-orig-robin-kalia:DATACENTER:7012
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+    - name: sherpa-ordering-orig
+      image: tnrp/sherpa:0.2.0-0000099-7cf33a3f
+      args: ["--http2-origin", "localhost:7021"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
