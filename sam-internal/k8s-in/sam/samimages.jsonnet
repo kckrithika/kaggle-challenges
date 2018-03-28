@@ -27,6 +27,11 @@ local utils = import "util_functions.jsonnet";
        # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1",
 
+        # [d.smith] Early push of new hypersam - addgs events and clean resource deletes
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001803-2a719339",
+        "prd,prd-sdc,snapshoter,hypersam": "sam-0001803-2a719339",
+
         # [lizhang.li] Enable filesytem-watchdog everywhere
         "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
@@ -48,6 +53,9 @@ local utils = import "util_functions.jsonnet";
 
         # [xiao.zhou] test samapp controller
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-03262018-5",
+
+        # [a.mitra] enable watchdog-sql
+        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001822-ef2809ef",
     },
 
     ### Per-phase image tags

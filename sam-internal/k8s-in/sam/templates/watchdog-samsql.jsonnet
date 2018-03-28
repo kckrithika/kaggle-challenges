@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.estate == "prd-sam" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -58,7 +58,6 @@ if configs.estate == "prd-sam" then {
                     name: "watchdog-samsql",
                     apptype: "monitoring",
                 },
-                namespace: "sam-system",
             },
         },
         selector: {
