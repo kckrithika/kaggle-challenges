@@ -123,9 +123,16 @@ system:
         exec:
           command:
           - "/home/sfdc-usmt/run.sh"
+        initialDelaySeconds: 960
+        timeoutSeconds: 30
+        periodSeconds: 900
+        failureThreshold: 1
+      readinessProbe:
+        exec:
+          command:
+          - "/home/sfdc-usmt/run.sh"
         initialDelaySeconds: 60
         timeoutSeconds: 30
-        periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
