@@ -25,7 +25,7 @@ spec:
         - --queryFile=/var/queries/sam-sql-queries.json
         command:
         - /sam/sam-sql-reporter
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001800-1972769a
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001815-8cfb538e
         livenessProbe:
           httpGet:
             path: /
