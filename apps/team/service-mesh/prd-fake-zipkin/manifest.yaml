@@ -100,11 +100,10 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 10
         failureThreshold: 100
-
     volumes:
-        - name: elasticsearch-persistent-storage
-          hostPath:
-              path: /data/elasticsearch
+    - name: elasticsearch-persistent-storage
+      hostPath:
+          path: /data/elasticsearch
     terminationGracePeriodSeconds: 20
 
     #volumeClaimTemplates:

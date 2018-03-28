@@ -5,6 +5,8 @@ apps:
     - prd/prd-sam
   elasticsearch:
     - prd/prd-sam
+  zipkin-es-spark:
+    - prd/prd-sam
 #  smash:
 #    - prd/prd-sam
     
