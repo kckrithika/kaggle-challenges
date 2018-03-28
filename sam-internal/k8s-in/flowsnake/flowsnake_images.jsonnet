@@ -83,6 +83,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.5": 487,
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
+                  "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",  # temporary for IoT
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
