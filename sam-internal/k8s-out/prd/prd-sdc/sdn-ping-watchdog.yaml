@@ -38,7 +38,7 @@ spec:
         - --controlEstate=prd-sdc
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
-        - --logtostderr=false
+        - --logtostderr=true
         - --alsologtostderr=true
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
