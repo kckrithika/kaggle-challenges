@@ -58,17 +58,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
-        initialDelaySeconds: 60
-        periodSeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 24
+          - /bin/true
     volumes:
     - name: hosthomevol
       hostPath:
