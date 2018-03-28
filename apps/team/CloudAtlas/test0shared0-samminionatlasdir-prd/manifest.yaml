@@ -41,7 +41,9 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_REMOVE_EXISTING
-        value: ALL
+        value: TRUE
+      - name: UBID_DEPLOYMENT_STAGE
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
