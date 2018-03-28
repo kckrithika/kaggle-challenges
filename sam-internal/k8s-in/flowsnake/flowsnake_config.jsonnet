@@ -1,7 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 {
-    is_prod: kingdom != "prd" && kingdom != "crd" && kingdom != "sfz" && kingdom != "crz",
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
     fleet_name_overrides: {

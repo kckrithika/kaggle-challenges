@@ -1,5 +1,7 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_prod then
+local util = import "util_functions.jsonnet";
+local estate = std.extVar("estate");
+if util.is_prod(estate) then
+// we don't support LDAP in prod, but the FleetService crashes without an LDAP secret, so we're temporarily deploying a dummy one until the Fleet Service is fixed
 {
     apiVersion: "v1",
     kind: "Secret",

@@ -38,4 +38,11 @@ local kingdom = std.extVar("kingdom");
     is_cephstorage_supported(estate):: (
        estate == "prd-sam" || estate == "phx-sam"
     ),
+
+    is_prod(estate):: (
+      kingdom != "prd" &&
+      kingdom != "crd" &&
+      kingdom != "sfz" &&
+      kingdom != "crz"
+    ),
 }
