@@ -21,10 +21,6 @@ system:
     - name: report-collectorha
       image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       ports:
-      - name: provider
-        containerPort: 8080
-      - name: consumer
-        containerPort: 8081
       - name: admin
         containerPort: 8082
       - name: provider-https
@@ -65,10 +61,8 @@ system:
         value: true
       - name: ReportCollector_app_https_supportCompression
         value: true
-      - name: ReportCollector_app_http_supportDecompression
-        value: true
-      - name: ReportCollector_app_http_supportCompression
-        value: true
+      - name: ReportCollector_app_http_enabled
+        value: false
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
@@ -79,8 +73,9 @@ system:
         value: redisIndex
       livenessProbe:
         httpGet:
+          scheme: HTTPS
           path: /healthz
-          port: 8080
+          port: 8443
         initialDelaySeconds: 5
       command: ["/bin/sh", "-c"]
       args: ["
@@ -149,8 +144,6 @@ system:
         readOnly: true
       ports:
       - containerPort: 6379
-      logs:
-      - directory: /var/log/redis
       livenessProbe:
         tcpSocket:
           port: 6379
@@ -161,13 +154,6 @@ system:
     function: report-collectorha
     nodeExposed: true
     ports:
-      # LB was supposed to allow SSL on the backend, but its not currently
-      # supported, so we will use non SSL but on these node ports (18443, 18444)
-      # since its the one exposed in estates for sam_minionreportcollector
-    - port: 18443
-      targetport: 8080
-    - port: 18444
-      targetport: 8081
     - port: 8082
       targetport: 8082
     - port: 8443
