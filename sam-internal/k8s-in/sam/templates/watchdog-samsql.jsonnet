@@ -73,5 +73,6 @@ if configs.estate == "prd-sam" then {
             name: "watchdog-samsql",
         },
         name: "watchdog-samsql",
+        namespace: "sam-system",
     },
 } else "SKIP"

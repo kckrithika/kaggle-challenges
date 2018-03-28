@@ -4,6 +4,7 @@ metadata:
   labels:
     name: watchdog-samsql
   name: watchdog-samsql
+  namespace: sam-system
 spec:
   replicas: 1
   selector:
