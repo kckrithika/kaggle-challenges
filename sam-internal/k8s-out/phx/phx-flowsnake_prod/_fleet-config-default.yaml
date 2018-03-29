@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   kubeconfig: /etc/kubernetes/kubeconfig
   name: phx-flowsnake_prod
-  registry: dva-registry.internal.salesforce.com/dva
+  registry: ops0-artifactrepo1-0-phx.data.sfdc.net/dva
 kind: ConfigMap
 metadata:
   creationTimestamp: null

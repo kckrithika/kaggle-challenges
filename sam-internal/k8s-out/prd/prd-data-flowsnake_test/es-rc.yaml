@@ -38,7 +38,7 @@ spec:
             configMapKeyRef:
               key: kubeconfig
               name: fleet-config
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-elasticsearch:503
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-elasticsearch:503
         imagePullPolicy: Always
         livenessProbe:
           initialDelaySeconds: 180

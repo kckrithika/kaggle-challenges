@@ -16,7 +16,7 @@ spec:
       namespace: flowsnake
     spec:
       containers:
-      - image: dva-registry.internal.salesforce.com/dva/flowsnake-kibana:345
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-kibana:345
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
