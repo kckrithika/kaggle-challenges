@@ -13,6 +13,13 @@ local kingdom = std.extVar("kingdom");
         kingdom == "chx" || kingdom == "wax"
     ),
 
+    is_production(kingdom):: (
+      kingdom != "prd" &&
+      kingdom != "crd" &&
+      kingdom != "sfz" &&
+      kingdom != "crz"
+    ),
+
     # This is for filtering in, or out, testing clusters.
     is_test_cluster(estate):: (
         estate == "prd-samdev" ||
