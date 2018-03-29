@@ -24,7 +24,7 @@ system:
       - name: PHOENIX_KEYTABUSER
         value: iot
       - name: PHOENIX_KEYTABSERVICE_ENABLED
-        value: false
+        value: true
       - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CLIENT_DIRECTORY
         value: /client-certs/client
       - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CA_DIRECTORY
@@ -80,6 +80,8 @@ system:
         exec:
           command:
           - ./bin/is-alive
+        initialDelaySeconds: 10
+        periodSeconds: 5
       name: sherpa
       ports:
       - containerPort: 7012
@@ -92,6 +94,8 @@ system:
         exec:
           command:
           - ./bin/is-ready
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /server-certs
         name: server-certs
