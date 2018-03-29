@@ -16,7 +16,7 @@ spec:
         - /sam/etcdbackup.sh
         env:
         - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig
+          value: /kubeconfig/kubeconfig-platform
         image: ops-artifactrepo1-0-chx.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a
         name: etcdbackup
         volumeMounts:

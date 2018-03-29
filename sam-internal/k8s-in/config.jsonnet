@@ -111,7 +111,7 @@ local utils = import "util_functions.jsonnet",
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         name: "KUBECONFIG",
-        value: (if $.maddogForSamHostsEnabled then "/kubeconfig/kubeconfig-platform" else "/kubeconfig/kubeconfig"),
+        value: "/kubeconfig/kubeconfig-platform",
     },
     kube_config_volume_mount: {
         mountPath: "/kubeconfig",
@@ -174,18 +174,16 @@ local utils = import "util_functions.jsonnet",
     maddogServerCAPath: "/etc/pki_service/ca/security-ca.pem",
 
     # For apps that read MadDog certs from the host
-    maddog_cert_volume_mount: (if $.maddogForSamHostsEnabled then
-    {
+    maddog_cert_volume_mount: {
         mountPath: "/etc/pki_service",
         name: "maddog-certs",
-    } else {}),
-    maddog_cert_volume: (if $.maddogForSamHostsEnabled then
-    {
+    },
+    maddog_cert_volume: {
         hostPath: {
             path: "/etc/pki_service",
         },
         name: "maddog-certs",
-    } else {}),
+    },
 
     # For apps that use liveConfig + configMap for configuration
     config_volume_mount: {
