@@ -110,7 +110,7 @@ spec:
       containers:
       - command:
         - /runner.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000024-6c678838
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000026-409d6394
         livenessProbe:
           httpGet:
             path: /
