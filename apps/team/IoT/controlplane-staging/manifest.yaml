@@ -24,7 +24,7 @@ system:
       - name: PHOENIX_KEYTABUSER
         value: iot
       - name: PHOENIX_KEYTABSERVICE_ENABLED
-        value: true
+        value: false
       - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CLIENT_DIRECTORY
         value: /client-certs/client
       - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CA_DIRECTORY
