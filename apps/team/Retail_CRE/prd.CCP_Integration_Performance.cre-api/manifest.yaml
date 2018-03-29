@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-perf
-      image: sfci/cre/cre-api:0.0.1.22.master.f0f6420.72
+      image: sfci/cre/cre-api:0.0.1.34.master.b5d081e.86
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit_CCP_Integration_Performance
@@ -18,7 +18,7 @@ system:
         - name: METRICS_KAFKA_KEYSTORE
           value: /certs/shared2-samminionretailcre1-1-prd.jks
         - name: SFDC_ENVIRONMENT
-          value: ccp-integration-performance
+          value: ccp-perf
         - name: METRICS_KAFKA_ENABLED
           value: true
       ports:
