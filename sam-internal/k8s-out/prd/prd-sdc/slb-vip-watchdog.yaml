@@ -58,7 +58,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        slb-service: slb-dns
+        slb-dns-register: "true"
       volumes:
       - hostPath:
           path: /data/slb
