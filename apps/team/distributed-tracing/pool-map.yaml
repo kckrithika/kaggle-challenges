@@ -1,2 +1,6 @@
 version: v2
 apps:
+    zipkin-kafka-proxy:
+    - prd/prd-sam_report_collector
+    - iad/iad-sam_report_collector
+    - ord/ord-sam_report_collector
