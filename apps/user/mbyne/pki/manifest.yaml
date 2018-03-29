@@ -24,7 +24,13 @@ system:
       volumeMounts:
       - name: certs
         mountPath: /home/scone/certs
+      - name: inmemory
+        mountPath: /inmemory
     volumes:
+      -
+        name: "inmemory"
+        emptyDir:
+          medium: "Memory"
       - name: certs
         maddogCert:
           type: client
