@@ -18,10 +18,12 @@ local ci = {
 local orgs = ["iot", "ice-pd", "ccait", "atf", "user-sample", "user-vpod"];
 
 {
+  namespaces: {
     ['ci-' + x]: x
 for x in orgs
-}
+  }
 + {
     [c.namespace]: c.team
     for c in ci.additionalNs
+  },
 }
