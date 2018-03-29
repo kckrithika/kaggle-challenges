@@ -28,9 +28,11 @@ local utils = import "util_functions.jsonnet";
        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1",
 
         # [lizhang.li] Enable filesytem-watchdog everywhere
-        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
-        "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
-        "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
+        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
+        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
+        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
+        "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
+        "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",

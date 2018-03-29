@@ -131,3 +131,10 @@ std.prune({
       "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
     ],
   } else {})
+  + (if configs.kingdom == "prd" then {
+    filesystemRecursiveCheck: true,
+    filesystemRecursiveCheckDirs: [
+      "/data/",
+      "/home/",
+    ],
+  } else {})
