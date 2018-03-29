@@ -50,7 +50,11 @@
                 value: "iot-rm-flowsnake"
               - 
                 name: "FLOWSNAKE_PLATFORM_VERSION"
-                value: "0.9.6"
+                value: "0.9.7-mktest"
+              -
+                name: "FLOWSNAKE_USE_PKI"
+                value: "true"
+
               - 
                 name: "FLOWSNAKE_URL"
                 value: "https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net"
@@ -105,7 +109,7 @@
               - 
                 name: "WORKER_REPLICAS"
                 value: "2"
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:5cd2d65"
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:fs-0.9.7-6db4760"
             livenessProbe: 
               httpGet: 
                 path: "/manage/health"
