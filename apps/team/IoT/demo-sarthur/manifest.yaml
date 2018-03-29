@@ -14,18 +14,18 @@ system:
       - name: KAFKA_TRUSTSTORE_LOCATION
         value: /home/demo/ajna-certs/cacerts
       - name: CONTROLPLANE_ENDPOINT
-        value: controlplane-secure.iot.localhost.mesh.force.com:7011
+        value: controlplane-secure.localhost.mesh.force.com:7011
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: secure
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:bravo
       livenessProbe:
         exec:
           command:
           - /bin/ls
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       name: demo
       ports:
       - containerPort: 15372
@@ -45,14 +45,14 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: secure
       image: sfci/servicelibs/sherpa:2.0.23
       livenessProbe:
         exec:
           command:
           - ./bin/is-alive
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       name: sherpa
       ports:
       - containerPort: 7012
@@ -65,8 +65,8 @@ system:
         exec:
           command:
           - ./bin/is-ready
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /server-certs
         name: server-certs
