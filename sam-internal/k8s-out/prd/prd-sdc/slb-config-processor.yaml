@@ -30,7 +30,9 @@ spec:
                 - prd-sdc
                 - prd-slb
               - key: illumio
-                operator: DoesNotExist
+                operator: NotIn
+                values:
+                - b
       containers:
       - command:
         - /sdn/slb-config-processor

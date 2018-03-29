@@ -57,14 +57,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                 ],
                 nodeSelector: {
-                }
-                + (
-                if configs.estate == "prd-sdc" then {
-                    "slb-service": "slb-dns",
-                } else {
                     "slb-dns-register": "true",
-                }
-                ),
+                },
             },
         },
     },

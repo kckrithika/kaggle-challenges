@@ -60,7 +60,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 }
                 + (
                     if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
-                         "slb-service": "slb-dns",
+                         "slb-dns-register": "true",
                     } else {
                          pool: configs.estate,
                     }
