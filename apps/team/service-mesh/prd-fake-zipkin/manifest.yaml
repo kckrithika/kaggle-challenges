@@ -72,7 +72,7 @@ system:
             - "/home/scone/is-alive.sh"
   - name: elasticsearch
     count: 1
-    type: stateful-set
+    #type: stateful-set
     containers:
     - name: elasticsearch
       image: docker-dva-rc/dva/elasticsearch-server:8
