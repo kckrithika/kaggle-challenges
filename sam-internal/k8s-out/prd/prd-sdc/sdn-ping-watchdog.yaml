@@ -48,7 +48,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000724-ebac0861
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000728-88462e0f
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -66,8 +66,6 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /data/logs/sdn
-          name: sdnlogs
         - mountPath: /usr/bin/kubectl
           name: kubectl
       hostNetwork: true
@@ -86,9 +84,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
-      - hostPath:
-          path: /data/logs/sdn
-        name: sdnlogs
       - hostPath:
           path: /usr/bin/kubectl
         name: kubectl
