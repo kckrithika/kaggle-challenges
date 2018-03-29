@@ -11,7 +11,8 @@ data:
       "pr-to-teamoruser-table-name": "pr_to_teamoruser_table",
       "tnrp-bot-account-name": "svc-tnrp-git-rw",
       "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
-      "tnrp-scan-frequency": "10m"
+      "tnrp-scan-frequency": "10m",
+      "tokenfile": "/var/token/token"
     }
 kind: ConfigMap
 metadata:
