@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   kubeconfig: /etc/kubernetes/kubeconfig
   name: ord-flowsnake_prod
-  registry: dva-registry.internal.salesforce.com/dva
+  registry: ops0-artifactrepo1-0-ord.data.sfdc.net/dva
 kind: ConfigMap
 metadata:
   creationTimestamp: null

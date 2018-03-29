@@ -31,7 +31,7 @@ spec:
             configMapKeyRef:
               key: name
               name: fleet-config
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-kafka:472
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka:472
         imagePullPolicy: Always
         livenessProbe:
           initialDelaySeconds: 180

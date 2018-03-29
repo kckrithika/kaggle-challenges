@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local configs = import "config.jsonnet";
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
@@ -66,7 +67,13 @@ local kingdom = std.extVar("kingdom");
             $.fleet_name_overrides[estate]
         else
             estate,
-    registry: if self.is_minikube then "minikube" else "dva-registry.internal.salesforce.com/dva",
+    registry: if self.is_minikube then
+            "minikube"
+        else if estate == "prd-data-flowsnake" ||
+                estate == "prd-dev-flowsnake_iot_test" then
+            "dva-registry.internal.salesforce.com/dva"
+        else
+            configs.registry + "/dva",
     funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
     funnel_vip_and_port: $.funnel_vip + ":80",
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
