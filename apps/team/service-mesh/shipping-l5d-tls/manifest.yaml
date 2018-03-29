@@ -6,13 +6,15 @@ system:
     count: 1
     containers:
     - name: shipping
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:f45f9f3eb27a6cdc830176dc7db362e570993759
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/236/
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:15c5e5298ef1612b151944ba18efe4d66a739e49
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+        value: -Dscone.service.name=shipping-service-l5d-tls
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -31,12 +33,8 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       args:
-      # H2-TLS
       - -endpoint
       - service-mesh/shipping-l5d-tls:DATACENTER:7443     
-      # H2-Plain
-      - -endpoint
-      - service-mesh/shipping-l5d-tls-plain:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:
@@ -49,7 +47,7 @@ system:
         name: logvol
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
+      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2025---2018-03-27
       image: sfci/servicelibs/sherpa:2.0.25
       env:
       - name: SFDC_ENVIRONMENT

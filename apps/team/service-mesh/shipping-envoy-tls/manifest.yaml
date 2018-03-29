@@ -6,13 +6,15 @@ system:
     count: 1
     containers:
     - name: shipping
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:f45f9f3eb27a6cdc830176dc7db362e570993759
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/236/
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:15c5e5298ef1612b151944ba18efe4d66a739e49
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+        value: -Dscone.service.name=shipping-service-envoy-tls
       ports:
       - containerPort: 7020
         name: grpc-svc
