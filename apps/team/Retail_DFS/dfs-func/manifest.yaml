@@ -18,6 +18,8 @@ system:
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
+      - name: dfs-server-cert
+        mountPath: /server-certs
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
@@ -37,6 +39,7 @@ system:
           value: stmfa
       ports:
         - containerPort: 7442
+        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
