@@ -34,9 +34,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--hostnameOverride=$(NODE_NAME)",
                             "--metricsEndpoint=" + configs.funnelVIP,
                         ] + if configs.estate == "prd-sam" then [
-                            "--labelValues=slb-ipvs:3,slb-nginx-b:3,slb-dns:1",
+                            "--labelValues=slb-ipvs:3,slb-nginx-b:3",
                         ] else if configs.estate == "prd-sdc" then [
-                            "--labelValues=slb-ipvs:2,slb-nginx-b:2,slb-dns:1",
+                            "--labelValues=slb-ipvs:2,slb-nginx-b:2",
                         ] else [
                         ],
                         volumeMounts: configs.filter_empty([
