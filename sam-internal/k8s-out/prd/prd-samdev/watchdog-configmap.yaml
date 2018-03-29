@@ -21,6 +21,11 @@ data:
         "/data/slb/logs/",
         "/home/sfdc/"
       ],
+      "filesystemRecursiveCheck": true,
+      "filesystemRecursiveCheckDirs": [
+        "/data/",
+        "/home/"
+      ],
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "imageName": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001815-8cfb538e",
       "k8sproxyEndpoint": "http://localhost:40000",
