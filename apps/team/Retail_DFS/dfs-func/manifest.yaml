@@ -14,7 +14,7 @@ system:
         type: server
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.1.19
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.3
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -27,6 +27,7 @@ system:
       livenessProbe:
         exec:
           command: ["true"]
+
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa:2.0.23
       volumeMounts:
@@ -51,6 +52,26 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 60
         periodSeconds: 120
+
+    - name: beacon-dfs
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - dfs:DATACENTER:7014
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: dfs-lb
     function: dfs-func
