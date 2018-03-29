@@ -79,9 +79,9 @@ system:
       #env:
       #- name: ES_PASSWORD_FILE
       #  value: /secrets/rootpassword
-      volumeMounts:
-      - mountPath: /var/lib/elasticsearch
-        name: elasticsearch-persistent-storage
+      #volumeMounts:
+      #- mountPath: /var/lib/elasticsearch
+      #  name: elasticsearch-persistent-storage
       #- mountPath: /certs
       #  name: certs
       #- mountPath: /secrets
@@ -100,10 +100,10 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 10
         failureThreshold: 100
-    volumes:
-    - name: elasticsearch-persistent-storage
-      hostPath:
-          path: /data/elasticsearch
+    #volumes:
+    #- name: elasticsearch-persistent-storage
+    #  hostPath:
+    #      path: /data/elasticsearch
     terminationGracePeriodSeconds: 20
 
     #volumeClaimTemplates:
