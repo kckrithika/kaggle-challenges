@@ -24,7 +24,7 @@ system:
       - name: PHOENIX_KEYTABUSER
         value: iot
       - name: PHOENIX_KEYTABSERVICE_ENABLED
-        value: true
+        value: false
       - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CLIENT_DIRECTORY
         value: /client-certs/client
       - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CA_DIRECTORY
@@ -37,7 +37,7 @@ system:
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-4578e6d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-b8aea37
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -80,8 +80,6 @@ system:
         exec:
           command:
           - ./bin/is-alive
-          initialDelaySeconds: 10
-          periodSeconds: 5
       name: sherpa
       ports:
       - containerPort: 7012
@@ -94,8 +92,6 @@ system:
         exec:
           command:
           - ./bin/is-ready
-          initialDelaySeconds: 5
-          periodSeconds: 5
       volumeMounts:
       - mountPath: /server-certs
         name: server-certs
