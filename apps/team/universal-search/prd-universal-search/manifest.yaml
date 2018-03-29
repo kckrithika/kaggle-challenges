@@ -117,7 +117,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: universal-search-synthetics
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hyan/universal-search-synthetics:0.0.3-SNAPSHOT
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search-synthetics:0.0.3
       env:
       - name: SFDC_ENVIRONMENT
         value: "stmfa"
