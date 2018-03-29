@@ -20,6 +20,7 @@ if configs.estate == "prd-sam" then {
                                     "--sqlK8sResourceDbName=sam_kube_resource",
                                     "--sqlDbPort=3306",
                                     "--sqlQuery=select * from nodeDetailView where Ready!=True and Kingdom='prd'",
+                                    "--recipient=a.mitra@salesforce.com",
                                     "-v=5",
                                     "--alsologtostderr",
                                  ]

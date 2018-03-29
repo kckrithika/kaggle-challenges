@@ -26,13 +26,14 @@ spec:
         - --sqlK8sResourceDbName=sam_kube_resource
         - --sqlDbPort=3306
         - --sqlQuery=select * from nodeDetailView where Ready!=True and Kingdom='prd'
+        - --recipient=a.mitra@salesforce.com
         - -v=5
         - --alsologtostderr
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001822-ef2809ef
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001825-c908451b
         name: watchdog-samsql
         volumeMounts:
         - mountPath: /var/secrets/
