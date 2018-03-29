@@ -22,7 +22,13 @@ if configs.estate == "prd-samdev" then {
                                                             name: "mysql",
                                                             readOnly: true,
                                                         },
-                                        ]),
+                                        ]) + (if configs.kingdom == "prd" then [
+                                          {
+                                              mountPath: "/var/token",
+                                              name: "token",
+                                              readOnly: true,
+                                                  },
+                                              ] else []),
                                     },
                                 ],
                                 volumes: configs.filter_empty([
@@ -33,7 +39,14 @@ if configs.estate == "prd-samdev" then {
                                             },
                                             name: "mysql",
                                     },
-                                ]),
+                                ]) + (if configs.kingdom == "prd" then [
+                                  {
+                                      secret: {
+                                          secretName: "git-token",
+                                      },
+                                      name: "token",
+                                  },
+                              ] else []),
                                 nodeSelector: {
                                               } +
                                               if configs.kingdom == "prd" then {
