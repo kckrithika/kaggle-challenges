@@ -15,7 +15,7 @@ system:
               maxUnavailable: 1
       containers:
       - name: zipkin-es-spark
-        image: docker-dva-rc/dva/zipkin-dependencies-spark-standalone:1
+        image: docker-dva-rc/dva/zipkin-dependencies-spark-standalone:2
         # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
         env:
         - name: ES_HOSTS
