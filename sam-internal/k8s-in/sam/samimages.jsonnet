@@ -48,6 +48,9 @@ local utils = import "util_functions.jsonnet";
 
         # [xiao.zhou] test samapp controller
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-03262018-5",
+
+        # [a.mitra] enable watchdog-sql
+        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001825-c908451b",
     },
 
     ### Per-phase image tags
