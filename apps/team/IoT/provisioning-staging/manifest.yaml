@@ -26,7 +26,7 @@
                 value: "-XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g"
               - 
                 name: "COMPILER_TAG"
-                value: "6cc1a40"
+                value: "6a483a2"
               - 
                 name: "CONTROLPLANE_ENDPOINT"
                 value: "shared0-samminioniottest1-1-prd.eng.sfdc.net:9115"
@@ -36,6 +36,9 @@
               - 
                 name: "ENV_FLOWSNAKE_MANIFEST_PATH"
                 value: "classpath:/manifests/provisioning.json"
+              - 
+                name: "ENV_NAMESPACE"
+                value: "iot"
               - 
                 name: "ENV_ORGS"
                 value: "500000000000006"
@@ -51,13 +54,12 @@
               - 
                 name: "FLOWSNAKE_PLATFORM_VERSION"
                 value: "0.9.7-mktest"
-              -
-                name: "FLOWSNAKE_USE_PKI"
-                value: "true"
-
               - 
                 name: "FLOWSNAKE_URL"
                 value: "https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net"
+              - 
+                name: "FLOWSNAKE_USE_PKI"
+                value: "true"
               - 
                 name: "INTAKE_CORES"
                 value: "2"
@@ -72,7 +74,7 @@
                 value: "1"
               - 
                 name: "INTAKE_TAG"
-                value: "1cfce68"
+                value: "900131d"
               - 
                 name: "JAVA_OPTS"
                 value: "-server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m -XX:ParallelGCThreads=5 -XX:ConcGCThreads=5"
@@ -109,7 +111,7 @@
               - 
                 name: "WORKER_REPLICAS"
                 value: "2"
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:fs-0.9.7-6db4760"
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:d6a1d1d"
             livenessProbe: 
               httpGet: 
                 path: "/manage/health"
@@ -226,7 +228,7 @@
     loadbalancers: 
       - 
         function: "provisioning"
-        lbname: "provisioning-staging-lb"
+        lbname: "provisioning-lb"
         nodeExposed: true
         ports: 
           - 
@@ -238,7 +240,6 @@
           - 
             port: 8116
             targetport: 8080
-        slbEnabled: true
     notifications: 
       email: 
         - "mbyne@salesforce.com"
