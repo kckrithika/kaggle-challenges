@@ -28,5 +28,3 @@ spec:
         name: sdn-cleanup
         securityContext:
           privileged: true
-        volumeMounts: []
-      volumes: []

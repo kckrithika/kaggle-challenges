@@ -8,9 +8,9 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     spec: {
         template: {
             spec: {
-                volumes: configs.filter_empty([
+                [if configs.estate != "prd-sdc" then 'volumes']: [
                     sdnconfigs.sdn_logs_volume,
-                ]),
+                ],
                 containers: [
                     {
                         name: "sdn-cleanup",
@@ -25,9 +25,9 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
                         ],
-                        volumeMounts: configs.filter_empty([
+                        [if configs.estate != "prd-sdc" then 'volumeMounts']: [
                             sdnconfigs.sdn_logs_volume_mount,
-                        ]),
+                        ],
                         securityContext: {
                             privileged: true,
                         },
