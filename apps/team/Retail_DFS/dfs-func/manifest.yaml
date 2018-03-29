@@ -18,8 +18,6 @@ system:
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
-      - name: dfs-server-cert
-        mountPath: /server-certs
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
