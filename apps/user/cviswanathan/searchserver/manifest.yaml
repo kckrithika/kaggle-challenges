@@ -12,8 +12,8 @@ system:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
         resources:
-          limits: { cpu: "1", memory: "1Gi" }
-          requests: { cpu: "1", memory: "1Gi" }
+          limits: { cpu: "20", memory: "16Gi" }
+          requests: { cpu: "20", memory: "16Gi" }
         ports:
         - containerPort: 7022 # add additional container ports for the protocols your service uses
           name: solr-port
