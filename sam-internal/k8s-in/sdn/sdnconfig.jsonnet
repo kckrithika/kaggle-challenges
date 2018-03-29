@@ -28,7 +28,7 @@ local utils = import "util_functions.jsonnet";
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     # Volume for logs
-    sdn_logs_volume: {
+    sdn_logs_volume: if (estate == "prd-sdc") then {} else {
         name: "sdnlogs",
         hostPath: {
           path: "/data/logs/sdn",
@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
     },
 
     # Volume mount for logs
-    sdn_logs_volume_mount: {
+    sdn_logs_volume_mount: if (estate == "prd-sdc") then {} else {
         mountPath: "/data/logs/sdn",
         name: "sdnlogs",
     },

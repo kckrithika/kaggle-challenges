@@ -8,7 +8,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
     spec: {
         template: {
             spec: {
-                volumes: [
+                [if configs.estate != "prd-sdc" then 'volumes']: [
                     sdnconfigs.sdn_logs_volume,
                 ],
                 containers: [
@@ -25,7 +25,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
                         ],
-                        volumeMounts: [
+                        [if configs.estate != "prd-sdc" then 'volumeMounts']: [
                             sdnconfigs.sdn_logs_volume_mount,
                         ],
                         securityContext: {
