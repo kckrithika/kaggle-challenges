@@ -23,7 +23,7 @@ local slbconfig = import "slbconfig.jsonnet";
         ### Release Phase 1 - prd-sdc
         "1": {
             hypersdn: "v-0000726-9a1c8aff",
-            slbnginx: "v-0000024-6c678838",
+            slbnginx: "v-0000026-409d6394",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
