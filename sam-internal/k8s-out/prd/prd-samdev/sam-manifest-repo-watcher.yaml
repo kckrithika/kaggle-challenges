@@ -25,6 +25,9 @@ spec:
         - mountPath: /var/mysqlPwd
           name: mysql
           readOnly: true
+        - mountPath: /var/token
+          name: token
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -35,3 +38,6 @@ spec:
       - name: mysql
         secret:
           secretName: mysql-pwd
+      - name: token
+        secret:
+          secretName: git-token
