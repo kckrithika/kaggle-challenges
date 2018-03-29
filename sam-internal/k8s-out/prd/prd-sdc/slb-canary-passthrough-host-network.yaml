@@ -1,24 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {   "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": {
-            "nodeSelectorTerms": [
-              {
-                "matchExpressions": [
-                  {
-                    "key": "slb-service",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx"]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
   labels:
     name: slb-canary-passthrough-host-network
   name: slb-canary-passthrough-host-network
@@ -31,6 +13,20 @@ spec:
         name: slb-canary-passthrough-host-network
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - prd-sdc
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+                - slb-nginx
       containers:
       - command:
         - /sdn/slb-canary-service

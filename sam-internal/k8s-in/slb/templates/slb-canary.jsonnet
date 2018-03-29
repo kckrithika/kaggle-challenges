@@ -12,12 +12,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
         },
         name: "slb-canary",
         namespace: "sam-system",
-    } +
-        if configs.estate == "prd-sdc" then {
-                    annotations: {
-                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-                    },
-            } else {},
+    },
     spec: {
         replicas: 2,
         template: {
@@ -83,7 +78,32 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            },
+            } + (
+            if configs.estate == "prd-sdc" then {
+              affinity: {
+                nodeAffinity: {
+                  requiredDuringSchedulingIgnoredDuringExecution: {
+                    nodeSelectorTerms: [
+                      {
+                        matchExpressions: [
+                          {
+                            key: "pool",
+                            operator: "In",
+                            values: [configs.estate],
+                          },
+                          {
+                            key: "slb-service",
+                            operator: "NotIn",
+                            values: ["slb-ipvs", "slb-nginx"],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              },
+            } else {}
+          ),
         },
     },
 } else "SKIP"
