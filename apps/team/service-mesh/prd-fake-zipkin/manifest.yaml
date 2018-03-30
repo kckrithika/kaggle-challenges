@@ -131,6 +131,9 @@ system:
       env:
       #- name: ES_HOSTS
       #  value: 'es-rest:9200'
+      # TODO: This might be an upstream bug; either way we should enable auth here eventually
+      - name: SPARK_USER
+        value: ''
       - name: ES_NODES_WAN_ONLY
         value: 'true'
       livenessProbe:
