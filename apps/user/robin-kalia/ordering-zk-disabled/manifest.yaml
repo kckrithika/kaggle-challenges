@@ -1,0 +1,70 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: ordering-zk-disabled-robin-kalia
+    count: 1
+    volumes:
+    - name: clientcert
+      maddogCert:
+        type: client
+    containers:
+    - name: ordering-zk-disabled-robin-kalia
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering-zk-disabled/ordering-zk-disabled-robin-kalia:robin.kalia-20180330-56c2dc0
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: SCONE_SHIPPING_HOST
+        value: shipping-zk-disabled-robin-kalia.localhost.mesh.force.com
+      - name: SCONE_SHIPPING_PORT
+        value: 7011
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      - name: MANAGEMENT_PORT
+        value: 15371
+      ports:
+      - containerPort: 7021
+      - containerPort: 15371
+      - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15371
+    - name: beacon-ordering-zk-disabled
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
+      args:
+      - -endpoint
+      - ordering-zk-disabled-robin-kalia:DATACENTER:7012
+      - -service
+      - ordering-zk-disabled-robin-kalia
+      - -rootCert
+      - /clientcerts/ca.pem
+      - -certDir
+      - /clientcerts/client
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+    - name: sherpa-ordering-zk-disabled
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-debug-zkdisabled
+      args: ["--http2-origin", "localhost:7021"]
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
