@@ -15,7 +15,7 @@ system:
         maxUnavailable: 1
     containers:
     - name: prd-fake-zipkin
-      image: docker-dva-rc/dva/zipkin-server:3
+      image: docker-dva-rc/dva/zipkin-server:11
       env:
       - name: QUERY_PORT
         value: "7022"
