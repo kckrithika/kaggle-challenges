@@ -15,12 +15,12 @@ system:
         maxUnavailable: 1
     containers:
     - name: prd-fake-zipkin
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rmichela/openzipkin/zipkin:2.4.9
+      image: docker-dva-rc/dva/zipkin-server:3
       env:
       - name: QUERY_PORT
         value: "7022"
       - name: JAVA_OPTS
-        value: "-Djava.security.egd=file:/dev/./urandom -Dzipkin.storage.mem.max-spans=5000"
+        value: "-Djava.security.egd=file:/dev/./urandom -Dzipkin.storage.mem.max-spans=5000000"
       ports:
       - name: zipkin
         containerPort: 7022
