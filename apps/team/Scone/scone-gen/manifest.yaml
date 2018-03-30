@@ -9,10 +9,14 @@ system:
     count: 1
     containers:
     - name: sconegen
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen:bzimmerman-20180313-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen:bzimmerman-20180330-7dc59fe
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
+      volumeMounts:
+      - mountPath: /secrets/service-config/
+        name: secretvol
+        readOnly: true
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -29,6 +33,10 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: sconegenguscreds
   loadbalancers:
   - lbname: sconegenerator
     function: sconegen
