@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   ci-namespaces.json: |-
     {
-      "namespaces": {
+      "namespacesToTeam": {
         "ci-atf": "atf",
         "ci-atf-dev": "atf",
         "ci-atf-mirror": "atf",
