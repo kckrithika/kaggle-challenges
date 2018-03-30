@@ -110,6 +110,7 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
+                  // to promote image to prod DC, please add wanted image tag into flowsnake_config.jsonnet/flowsnakeImageTagToPromote
                   "0.9.1": 377,
                   "0.9.2": 403,
                   "0.9.3": 427,
@@ -143,6 +144,7 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
+                  // to promote image to prod DC, please add wanted image tag into flowsnake_config.jsonnet/flowsnakeImageTagToPromote
                   "0.9.1": 377,
                   "0.9.2": 403,
                   "0.9.3": 427,

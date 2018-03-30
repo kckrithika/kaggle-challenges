@@ -306,7 +306,7 @@ local samconfig = import "config.jsonnet";
         "dry-run": false,
         "resources-to-skip": [
             // always skip this, this is used for image promotion to prod.
-            "image-promotion.jsonne",
+            "image-promotion.yaml",
             // always skip this, should never get deployed by auto-deployer, sdn-secret-agent will read this file and deploy.
             "_flowsnake-sdn-secret.yaml",
         ] +

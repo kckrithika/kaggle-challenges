@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local flowsnakeimage = import "flowsnake_images.jsonnet";
 local configs = import "config.jsonnet";
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
@@ -81,8 +82,12 @@ local configs = import "config.jsonnet";
         (self.is_minikube && !self.is_minikube_small)
     ),
     flowsnakeImageTagToPromote: [
-    // comment out promoted iamge without remove to keep recover.
-        345,
+        377,
+        403,
+        427,
+        447,
+        487,
+        "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
         571,
     ],
     flowsnakeImagesToPromote: [
@@ -91,17 +96,10 @@ local configs = import "config.jsonnet";
         "flowsnake-spark-worker",
         "flowsnake-spark-history-server",
         "flowsnake-rewriting-proxy",
-        "flowsnake-kafka",
         "flowsnake-local-kafka",
         "flowsnake-global-kafka",
-        "flowsnake-zookeeper",
         "flowsnake-local-zookeeper",
         "flowsnake-kafka-rest-proxy",
-        "flowsnake-elasticsearch",
-        "flowsnake-logstash",
-        "flowsnake-kibana",
-        "flowsnake-ingress-default-backend",
-        "flowsnake-ingress-controller-nginx",
         "flowsnake-spark-token-renewer",
         "flowsnake-spark-secret-updater",
         "flowsnake-tensorflow-python27",
@@ -116,7 +114,6 @@ local configs = import "config.jsonnet";
         "flowsnake-airflow-worker",
         "flowsnake-postgresql",
         "flowsnake-redis",
-        "flowsnake-fleet-service",
         "flowsnake-environment-service",
         "flowsnake-stream-production-monitor",
         "flowsnake-kafka-configurator",
@@ -126,9 +123,5 @@ local configs = import "config.jsonnet";
         "flowsnake-job-flowsnake-storm-demo-job",
         "flowsnake-job-flowsnake-airflow-dags",
         "flowsnake-job-flowsnake-spark-local-mode-demo-job",
-        "flowsnake-logloader",
-        "flowsnake-canary",
-        "flowsnake-node-monitor",
-        "flowsnake-cert-secretizer",
     ],
 }
