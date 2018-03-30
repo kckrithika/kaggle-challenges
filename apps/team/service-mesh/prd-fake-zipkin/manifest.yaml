@@ -126,12 +126,11 @@ system:
             maxUnavailable: 1
     containers:
     - name: zipkin-es-spark
-      image: docker-dva-rc/dva/zipkin-dependencies-spark-standalone:4
+      image: docker-dva-rc/dva/zipkin-dependencies-spark-standalone:6
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
-      - name: ES_HOSTS
-        value: '${ES_REST_SERVICE_HOST}:${ES_REST_SERVICE_PORT}'
-        #value: 'es-rest:9200'
+      #- name: ES_HOSTS
+      #  value: 'es-rest:9200'
       - name: ES_NODES_WAN_ONLY
         value: 'true'
       livenessProbe:
