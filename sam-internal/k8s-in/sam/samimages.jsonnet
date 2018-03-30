@@ -53,6 +53,9 @@ local utils = import "util_functions.jsonnet";
 
         # [a.mitra] enable watchdog-sql
         "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001825-c908451b",
+
+        # [mayank.kumar] fix synthetic timeout
+        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001825-c908451b",
     },
 
     ### Per-phase image tags
