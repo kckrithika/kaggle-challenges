@@ -73,6 +73,11 @@ system:
   - name: elasticsearch
     count: 1
     #type: stateful-set
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxSurge: 0
+            maxUnavailable: 1
     containers:
     - name: elasticsearch
       image: docker-dva-rc/dva/elasticsearch-server:8
@@ -125,7 +130,8 @@ system:
       # See https://github.com/openzipkin/zipkin-dependencies for available ENV options
       env:
       - name: ES_HOSTS
-        value: 'es-rest:9200'
+        value: '${ES_REST_SERVICE_HOST}:${ES_REST_SERVICE_PORT}'
+        #value: 'es-rest:9200'
       - name: ES_NODES_WAN_ONLY
         value: 'true'
       livenessProbe:
