@@ -13,3 +13,9 @@ apps:
 
  shipping-orig:
   - prd/prd-sam
+
+ ordering-gdsd-disabled:
+  - prd/prd-sam
+
+ shipping-gdsd-disabled:
+  - prd/prd-sam
