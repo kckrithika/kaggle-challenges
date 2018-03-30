@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
 
         # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
        "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
-       #"prd,prd-samdev,watchdog-sdp,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana-chang/hypersam:auto",
+       "prd,prd-samdev,watchdog-sdp,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana-chang/hypersam:auto",
 
        # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1",
