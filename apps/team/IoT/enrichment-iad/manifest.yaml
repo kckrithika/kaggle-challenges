@@ -13,7 +13,7 @@ system:
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
         value: enrichment
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-enrichment:02b8ea9
+      image: sfci/iot/enterprise-enrichment:1.0.1.2
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -36,12 +36,9 @@ system:
       volumeMounts:
       - mountPath: /home/enrichment/logs
         name: logvol
-      - mountPath: /home/enrichment/enrichment-keytab
-        name: enrichmentkeytab
-        readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: staging
+        value: prod
       image: sfci/servicelibs/sherpa:2.0.23
       livenessProbe:
         exec:
@@ -73,8 +70,8 @@ system:
       - enrichment:DATACENTER:7012
       env:
       - name: SFDC_ENVIRONMENT
-        value: staging
-      image: docker-sfci-rc/sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+        value: prod
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       livenessProbe:
         exec:
           command:
@@ -89,9 +86,6 @@ system:
     - hostPath:
         path: /data/sam/iot/log/enrichment
       name: logvol
-    - name: enrichmentkeytab
-      secret:
-        secretName: enrichment-keytab
     - maddogCert:
         type: server
       name: server-certs
@@ -101,14 +95,6 @@ system:
   loadbalancers:
   - function: enrichment
     lbname: enrichment-lb
-    nodeExposed: true
-    ports:
-    - port: 9136
-      targetport: 7012
-    - port: 8136
-      targetport: 15372
-    slbEnabled: true
   notifications:
     email:
     - iotenterprise@salesforce.com
-
