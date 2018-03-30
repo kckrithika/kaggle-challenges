@@ -1,9 +1,9 @@
 apps:
- # ordering:       # this must match the name of your application (the folder you created above). It is case sensitive
- #  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
+ ordering:       # this must match the name of your application (the folder you created above). It is case sensitive
+  - prd/prd-sam  # the SAM Sandbox uses the prd/prd-sam host cluster
 
- # shipping:
- #  - prd/prd-sam
+ shipping:
+  - prd/prd-sam
 
  #geoip-client: -> Commenting out as we don't need to test geoip-client right now
  # - prd/prd-sam

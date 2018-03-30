@@ -10,7 +10,7 @@ system:
         type: client
     containers:
     - name: ordering-robin-kalia
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180212-c8ba0a9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180330-4bd5327
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -60,11 +60,11 @@ system:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        initialDelaySeconds: 110
+        periodSeconds: 5
