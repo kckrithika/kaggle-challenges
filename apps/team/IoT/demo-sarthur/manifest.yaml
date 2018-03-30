@@ -14,11 +14,11 @@ system:
       - name: KAFKA_TRUSTSTORE_LOCATION
         value: /home/demo/ajna-certs/cacerts
       - name: CONTROLPLANE_ENDPOINT
-        value: controlplane-secure.localhost.mesh.force.com:7011
+        value: controlplane.localhost.mesh.force.com:7011
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
-        value: secure
+        value: staging
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:bravo
       livenessProbe:
         exec:
@@ -45,7 +45,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: secure
+        value: staging
       image: sfci/servicelibs/sherpa:2.0.23
       livenessProbe:
         exec:
