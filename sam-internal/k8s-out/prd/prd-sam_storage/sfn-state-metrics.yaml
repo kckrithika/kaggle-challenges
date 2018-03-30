@@ -16,7 +16,7 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfn-state-metrics:base-0000367-4217a04e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfn-state-metrics:base-0000372-87cf766b
         name: sfn-state-metrics
         ports:
         - containerPort: 8080
