@@ -3,12 +3,6 @@ system:
   functions:
   - containers:
     - env:
-      - name: HBASE_SECURITY_KEYTAB_LOCATION
-        value: /home/enrichment/enrichment-keytab/enrichment.keytab
-      - name: HBASE_SECURITY_KEYTAB_PRINCIPAL
-        value: iot-enrichment@IOT1DCHBASE0A-PRD.APP.ENG.SFDC.NET
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
       - name: SVCMESH_ANNOUNCE_PORT
         value: 7012
       - name: SVCMESH_ANNOUNCE_SERVICENAME
