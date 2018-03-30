@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: ordering-orig-robin-kalia
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering-orig/ordering-orig-robin-kalia:robin.kalia-20180328-2f2d236
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering-orig/ordering-orig-robin-kalia:robin.kalia-20180329-38d2193
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -16,17 +16,15 @@ system:
         value: 7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      - name: MANAGEMENT_PORT
-        value: 15371
       ports:
       - containerPort: 7021
-      - containerPort: 15371
+      - containerPort: 15373
       - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
-          port: 15371
+          port: 15373
     - name: beacon-ordering-orig
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
