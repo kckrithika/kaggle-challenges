@@ -40,10 +40,6 @@ local configs = import "config.jsonnet";
         "phx-flowsnake_prod",
     ],
     sdn_during_deployment_estates: [
-        "iad-flowsnake_prod",
-        "ord-flowsnake_prod",
-    ],
-    sdn_done_deployment_estates: [
     ],
     sdn_pre_deployment: std.count(self.sdn_pre_deployment_estates, estate) == 1,
     sdn_during_deployment: std.count(self.sdn_during_deployment_estates, estate) == 1,
