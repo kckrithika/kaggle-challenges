@@ -3,6 +3,8 @@ system:
   functions:
   - containers:
     - env:
+      - name: COMPILER_ENDPOINT_FSENV_PREFIX
+        value: iot-iad-prod-
       - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
         value: ajna0-zk1-1-iad.ops.sfdc.net
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
@@ -46,8 +48,8 @@ system:
         exec:
           command:
           - ./bin/is-alive
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       name: sherpa
       ports:
       - containerPort: 7012
@@ -60,8 +62,8 @@ system:
         exec:
           command:
           - ./bin/is-ready
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /server-certs
         name: server-certs
