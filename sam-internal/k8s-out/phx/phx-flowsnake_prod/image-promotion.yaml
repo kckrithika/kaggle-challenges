@@ -1,0 +1,270 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: FakeDeplyForImgPromo
+spec:
+  containers:
+  - - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-driver:345
+      name: flowsnake-spark-driver
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-master:345
+      name: flowsnake-spark-master
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-worker:345
+      name: flowsnake-spark-worker
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-history-server:345
+      name: flowsnake-spark-history-server
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-rewriting-proxy:345
+      name: flowsnake-rewriting-proxy
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka:345
+      name: flowsnake-kafka
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-local-kafka:345
+      name: flowsnake-local-kafka
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-global-kafka:345
+      name: flowsnake-global-kafka
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-zookeeper:345
+      name: flowsnake-zookeeper
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-local-zookeeper:345
+      name: flowsnake-local-zookeeper
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka-rest-proxy:345
+      name: flowsnake-kafka-rest-proxy
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-elasticsearch:345
+      name: flowsnake-elasticsearch
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-logstash:345
+      name: flowsnake-logstash
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kibana:345
+      name: flowsnake-kibana
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-ingress-default-backend:345
+      name: flowsnake-ingress-default-backend
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-ingress-controller-nginx:345
+      name: flowsnake-ingress-controller-nginx
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-token-renewer:345
+      name: flowsnake-spark-token-renewer
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-secret-updater:345
+      name: flowsnake-spark-secret-updater
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-tensorflow-python27:345
+      name: flowsnake-tensorflow-python27
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-tensorflow-python35:345
+      name: flowsnake-tensorflow-python35
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-worker:345
+      name: flowsnake-storm-worker
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-nimbus:345
+      name: flowsnake-storm-nimbus
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-submitter:345
+      name: flowsnake-storm-submitter
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-ui:345
+      name: flowsnake-storm-ui
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-test-data:345
+      name: flowsnake-test-data
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-airflow-webserver:345
+      name: flowsnake-airflow-webserver
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-airflow-scheduler:345
+      name: flowsnake-airflow-scheduler
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-airflow-worker:345
+      name: flowsnake-airflow-worker
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-postgresql:345
+      name: flowsnake-postgresql
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-redis:345
+      name: flowsnake-redis
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-fleet-service:345
+      name: flowsnake-fleet-service
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-environment-service:345
+      name: flowsnake-environment-service
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-stream-production-monitor:345
+      name: flowsnake-stream-production-monitor
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka-configurator:345
+      name: flowsnake-kafka-configurator
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-sluice-configurator:345
+      name: flowsnake-sluice-configurator
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka-connect:345
+      name: flowsnake-kafka-connect
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-demo-job:345
+      name: flowsnake-job-flowsnake-demo-job
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-storm-demo-job:345
+      name: flowsnake-job-flowsnake-storm-demo-job
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-airflow-dags:345
+      name: flowsnake-job-flowsnake-airflow-dags
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-spark-local-mode-demo-job:345
+      name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-logloader:345
+      name: flowsnake-logloader
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-canary:345
+      name: flowsnake-canary
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-node-monitor:345
+      name: flowsnake-node-monitor
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-cert-secretizer:345
+      name: flowsnake-cert-secretizer
+  - - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-driver:571
+      name: flowsnake-spark-driver
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-master:571
+      name: flowsnake-spark-master
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-worker:571
+      name: flowsnake-spark-worker
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-history-server:571
+      name: flowsnake-spark-history-server
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-rewriting-proxy:571
+      name: flowsnake-rewriting-proxy
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka:571
+      name: flowsnake-kafka
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-local-kafka:571
+      name: flowsnake-local-kafka
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-global-kafka:571
+      name: flowsnake-global-kafka
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-zookeeper:571
+      name: flowsnake-zookeeper
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-local-zookeeper:571
+      name: flowsnake-local-zookeeper
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka-rest-proxy:571
+      name: flowsnake-kafka-rest-proxy
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-elasticsearch:571
+      name: flowsnake-elasticsearch
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-logstash:571
+      name: flowsnake-logstash
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kibana:571
+      name: flowsnake-kibana
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-ingress-default-backend:571
+      name: flowsnake-ingress-default-backend
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-ingress-controller-nginx:571
+      name: flowsnake-ingress-controller-nginx
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-token-renewer:571
+      name: flowsnake-spark-token-renewer
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-spark-secret-updater:571
+      name: flowsnake-spark-secret-updater
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-tensorflow-python27:571
+      name: flowsnake-tensorflow-python27
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-tensorflow-python35:571
+      name: flowsnake-tensorflow-python35
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-worker:571
+      name: flowsnake-storm-worker
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-nimbus:571
+      name: flowsnake-storm-nimbus
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-submitter:571
+      name: flowsnake-storm-submitter
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-storm-ui:571
+      name: flowsnake-storm-ui
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-test-data:571
+      name: flowsnake-test-data
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-airflow-webserver:571
+      name: flowsnake-airflow-webserver
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-airflow-scheduler:571
+      name: flowsnake-airflow-scheduler
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-airflow-worker:571
+      name: flowsnake-airflow-worker
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-postgresql:571
+      name: flowsnake-postgresql
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-redis:571
+      name: flowsnake-redis
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-fleet-service:571
+      name: flowsnake-fleet-service
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-environment-service:571
+      name: flowsnake-environment-service
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-stream-production-monitor:571
+      name: flowsnake-stream-production-monitor
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka-configurator:571
+      name: flowsnake-kafka-configurator
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-sluice-configurator:571
+      name: flowsnake-sluice-configurator
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-kafka-connect:571
+      name: flowsnake-kafka-connect
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-demo-job:571
+      name: flowsnake-job-flowsnake-demo-job
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-storm-demo-job:571
+      name: flowsnake-job-flowsnake-storm-demo-job
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-airflow-dags:571
+      name: flowsnake-job-flowsnake-airflow-dags
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-job-flowsnake-spark-local-mode-demo-job:571
+      name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-logloader:571
+      name: flowsnake-logloader
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-canary:571
+      name: flowsnake-canary
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-node-monitor:571
+      name: flowsnake-node-monitor
+    - count: 0
+      image: ops0-artifactrepo1-0-phx.data.sfdc.net/dvaflowsnake-cert-secretizer:571
+      name: flowsnake-cert-secretizer
