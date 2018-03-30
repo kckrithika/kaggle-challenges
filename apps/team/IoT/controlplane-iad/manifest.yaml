@@ -15,10 +15,6 @@ system:
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
-      - name: SVCMESH_ANNOUNCE_PORT
-        value: 7012
-      - name: SVCMESH_ANNOUNCE_SERVICENAME
-        value: controlplane
       image: sfci/iot/enterprise-controlplane:1.0.0.21
       livenessProbe:
         httpGet:
