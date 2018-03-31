@@ -81,9 +81,7 @@ system:
     - maddogCert:
         type: client
       name: client-certs
-  loadbalancers:
-  - function: enrichment
-    lbname: enrichment-lb
+  loadbalancers: []
   notifications:
     email:
     - iotenterprise@salesforce.com
