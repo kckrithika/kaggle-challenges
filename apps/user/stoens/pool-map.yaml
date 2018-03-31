@@ -1,3 +1,6 @@
 apps:
  alligator:
   - prd/prd-sam
+ scone-gen:
+  - prd/prd-sam
+  
