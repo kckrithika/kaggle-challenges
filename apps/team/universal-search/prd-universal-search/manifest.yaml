@@ -50,16 +50,21 @@ system:
         mountPath: /secrets/
         readOnly: true
       livenessProbe:
-        httpGet:
-          path: /manage/info
-          port: 15372
-        initialDelaySeconds: 120 
+        exec:
+          command:
+          - curl 'localhost:15372/manage/health' | python -c "import sys, json; print json.load(sys.stdin)['middleTier']" | grep -q UP
+        initialDelaySeconds: 60
         timeoutSeconds: 30
+        periodSeconds: 120
+        failureThreshold: 1
       readinessProbe:
         httpGet:
-          path: /manage/info
+          path: /manage/health
           port: 15372
-        initialDelaySeconds: 120
+        initialDelaySeconds: 60
+        timeoutSeconds: 30
+        periodSeconds: 120
+        failureThreshold: 1
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.25
       ports:
