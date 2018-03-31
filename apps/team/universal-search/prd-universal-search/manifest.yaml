@@ -50,9 +50,9 @@ system:
         mountPath: /secrets/
         readOnly: true
       livenessProbe:
-        exec:
-          command:
-          - curl 'localhost:15372/manage/health' | python -c "import sys, json; print json.load(sys.stdin)['middleTier']" | grep -q UP
+        httpGet:
+          path: /manage/health
+          port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 120
