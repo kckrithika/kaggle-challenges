@@ -24,11 +24,11 @@ local utils = import "util_functions.jsonnet";
     logFilePath: "/data/logs/sdn/",
 
     logDirArg: "--log_dir=" + self.logFilePath,
-    logToStdErrArg: if estate == "prd-sdc" then "--logtostderr=true" else "--logtostderr=false",
+    logToStdErrArg: if (estate == "prd-sdc") || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then "--logtostderr=true" else "--logtostderr=false",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     # Volume for logs
-    sdn_logs_volume: if (estate == "prd-sdc") then {} else {
+    sdn_logs_volume: if (estate == "prd-sdc") || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then {} else {
         name: "sdnlogs",
         hostPath: {
           path: "/data/logs/sdn",
@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
     },
 
     # Volume mount for logs
-    sdn_logs_volume_mount: if (estate == "prd-sdc") then {} else {
+    sdn_logs_volume_mount: if (estate == "prd-sdc") || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then {} else {
         mountPath: "/data/logs/sdn",
         name: "sdnlogs",
     },
