@@ -53,7 +53,7 @@ system:
         exec:
           command:
           - curl 'localhost:15372/manage/health' | python -c "import sys, json; print json.load(sys.stdin)['middleTier']" | grep -q UP
-        initialDelaySeconds: 60
+        initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 120
         failureThreshold: 1
@@ -61,7 +61,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 60
+        initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 120
         failureThreshold: 1
@@ -135,13 +135,11 @@ system:
       livenessProbe:
         exec:
           command: ["true"]
-        initialDelaySeconds: 120 
-        timeoutSeconds: 30
       readinessProbe:
         exec:
           command:
           - "/home/sfdc-usmt/run.sh"
-        initialDelaySeconds: 60
+        initialDelaySeconds: 120
         timeoutSeconds: 30
         periodSeconds: 900
         failureThreshold: 1
