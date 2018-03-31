@@ -22,10 +22,10 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000367-4217a04e",
-            ceph_operator_tag: "base-0000367-4217a04e",
-            sfnodeprep_tag: "base-0000367-4217a04e",
-            loginit_tag: "base-0000367-4217a04e",
+            default_tag: "base-0000372-87cf766b",
+            ceph_operator_tag: "base-0000372-87cf766b",
+            sfnodeprep_tag: "base-0000372-87cf766b",
+            loginit_tag: "base-0000372-87cf766b",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
             sfms_tag: "latest-0000162-ba3dd8d0",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner

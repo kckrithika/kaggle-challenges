@@ -60,7 +60,7 @@ items:
           - -ceph-key-config-dir=/etc/ceph-metrics/key-config
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000367-4217a04e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000372-87cf766b
           name: configwatcher
           volumeMounts:
           - mountPath: /etc/ceph
@@ -147,7 +147,7 @@ items:
           - -ceph-key-config-dir=/etc/ceph-metrics/key-config
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000367-4217a04e
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000372-87cf766b
           name: configwatcher
           volumeMounts:
           - mountPath: /etc/ceph
