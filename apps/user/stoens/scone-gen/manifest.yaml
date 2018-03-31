@@ -1,0 +1,50 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - stoens@salesforce.com
+  functions:
+  - name: stoens-sconegen
+    count: 1
+    containers:
+    - name: sconegen
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen:stoens-20180331-14e24a1
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      volumeMounts:
+      - mountPath: /secrets/service-config/
+        name: secretvol
+        readOnly: true
+      ports:
+        - containerPort: 8080
+        - containerPort: 15372
+        - containerPort: 9010
+      livenessProbe:
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+      readinessProbe:
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+        httpGet:
+          path: /manage/health
+          port: 15372
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: sconegenguscreds
+  loadbalancers:
+  - lbname: sconegenerator
+    function: stoens-sconegen
+    slbEnabled: true
+    ports:
+      - port: 8080
+        targetport: 8080
+        lbtype: http
+      - port: 15372
+        targetport: 15372
+        lbtype: http
