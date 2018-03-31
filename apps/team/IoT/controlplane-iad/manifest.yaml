@@ -96,9 +96,7 @@ system:
     - maddogCert:
         type: client
       name: client-certs
-  loadbalancers:
-  - function: controlplane
-    lbname: controlplane-lb
+  loadbalancers: []
   notifications:
     email:
     - iotenterprise@salesforce.com
