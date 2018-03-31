@@ -5,7 +5,7 @@ system:
     email:
       - stoens@salesforce.com
   functions:
-  - name: stoens_sconegen
+  - name: stoens-sconegen
     count: 1
     containers:
     - name: sconegen
@@ -39,7 +39,7 @@ system:
         secretName: sconegenguscreds
   loadbalancers:
   - lbname: sconegenerator
-    function: stoens_sconegen
+    function: stoens-sconegen
     slbEnabled: true
     ports:
       - port: 8080
