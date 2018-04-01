@@ -67,6 +67,9 @@ local util = import "util_functions.jsonnet";
             estate,
     registry: if self.is_minikube then
             "minikube"
+        else if estate == "prd-data-flowsnake_test" then
+            configs.registry
+        //TODO: remove the special cases when promoting 0.9.8 with revised registry config
         else if estate == "prd-data-flowsnake" ||
                 estate == "prd-dev-flowsnake_iot_test" then
             "dva-registry.internal.salesforce.com/dva"
