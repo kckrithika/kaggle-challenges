@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: sconegen
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen:bzimmerman-20180330-ee214be
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-gen:stoens-20180401-b1452a4
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
