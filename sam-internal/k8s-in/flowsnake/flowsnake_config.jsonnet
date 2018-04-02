@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local configs = import "config.jsonnet";
+local util = import "util_functions.jsonnet";
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
@@ -21,7 +22,7 @@ local configs = import "config.jsonnet";
         "ord-flowsnake_prod": "flowsnake-ord.data.sfdc.net",
         "phx-flowsnake_prod": "flowsnake-phx.data.sfdc.net",
     },
-    watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
+    watchdog_email_frequency: if estate == "prd-data-flowsnake_test" || util.is_production(kingdom) then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
     deepsea_enabled_estates: [
         "prd-data-flowsnake",
