@@ -2,29 +2,14 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - env:
-      - name: COMPILER_ENDPOINT_FSENV_PREFIX
-        value: iot-iad-prod-
-      - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
-        value: ajna0-zk1-1-iad.ops.sfdc.net
-      - name: DVAKAFKA_TOPICAPI_NAMESPACE
-        value: sfdc.prod.iot
-      - name: LOGGING_STDERR_LEVEL
-        value: ALL
-      - name: PHOENIX_DATACENTER
-        value: iad
-      - name: PHOENIX_KEYTABPRINCIPAL
-        value: iot
-      - name: PHOENIX_KEYTABUSER
-        value: iot
-      image: sfci/iot/enterprise-controlplane:1.0.0.21
+    - image: sfci/iot/enterprise-enrichment:1.0.1.2
       livenessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/info
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: controlplane
+      name: enrichment
       ports:
       - containerPort: 15372
         name: mgmt
@@ -38,7 +23,7 @@ system:
           cpu: 2
           memory: 2G
       volumeMounts:
-      - mountPath: /home/controlplane/logs
+      - mountPath: /home/enrichment/logs
         name: logvol
     - env:
       - name: SFDC_ENVIRONMENT
@@ -71,7 +56,7 @@ system:
         name: client-certs
     - args:
       - -endpoint
-      - controlplane:DATACENTER:7012
+      - enrichment:DATACENTER:7012
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -83,12 +68,12 @@ system:
         initialDelaySeconds: 5
       name: beacon
     count: 2
-    name: controlplane
+    name: enrichment
     strategy:
       type: Recreate
     volumes:
     - hostPath:
-        path: /data/sam/iot/log/controlplane
+        path: /data/sam/iot/log/enrichment
       name: logvol
     - maddogCert:
         type: server
