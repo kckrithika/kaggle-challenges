@@ -96,7 +96,6 @@ system:
     - maddogCert:
         type: client
       name: client-certs
-  loadbalancers: []
   notifications:
     email:
     - iotenterprise@salesforce.com
