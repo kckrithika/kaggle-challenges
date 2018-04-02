@@ -9,15 +9,92 @@
 // clusters.
 
 local configs = import "config.jsonnet";
+local cephclusterimage = (import "ceph-cluster-image.libsonnet") + { templateFilename:: std.thisFile };
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
+local storageutils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+local affinitizeToStoragePool = configs.estate != "prd-skipper";
+
+// Defines the set of control estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "prd-skipper",
+    "phx-sam",
+]);
+
+// Local functions.
+local internal = {
+    puller_node_affinity(estate):: (
+        if affinitizeToStoragePool then {
+            nodeAffinity: {
+                requiredDuringSchedulingIgnoredDuringExecution: {
+                    nodeSelectorTerms: [{
+                        matchExpressions: [{
+                            key: "pool",
+                            operator: "In",
+                            values: [estate],
+                        }],
+                    }],
+                },
+            },
+        } else {}
+    ),
+
+    init_container(index, image):: {
+        name: "image-puller" + (if index > 0 then "-" + index else ""),
+        image: image,
+        command: [
+            "/bin/bash",
+            "-c",
+            "echo successfully pulled image " + image,
+        ],
+    },
+
+    init_containers(images):: [
+        internal.init_container(index, images[index])
+        for index in std.range(0, std.length(images) - 1)
+    ],
+};
+
+local storageImageTypes = [
+    # SFStore cluster images.
+    {
+        estate: minionEstate,
+        type: "sfstore",
+        images: [
+            storageimages.sfstorebookie,
+        ],
+        minionEstates: storageconfigs.sfstoreEstates[configs.estate],
+    }
+    for minionEstate in storageconfigs.sfstoreEstates[configs.estate]
+] + [
+    # Ceph cluster images.
+    {
+        estate: minionEstate,
+        type: "ceph",
+        images: [
+            cephclusterimage.do_cephdaemon_image_override(minionEstate),
+        ],
+        minionEstates: storageconfigs.cephEstates[configs.estate],
+    }
+    for minionEstate in storageconfigs.cephEstates[configs.estate]
+];
+
+if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "v1",
     kind: "List",
-    items: std.prune([
-    if std.length(storageImageType.estates) > 0 then {
-        local name = storageImageType.name + "-image-puller",
+    items: [
+    {
+        // For control estates that have multiple minion estates, include the escaped minion
+        // estate name in the daemonset name.
+        local estateSpecificNamePortion = if std.length(storageImageType.minionEstates) > 1
+            then "-" + storageutils.string_replace(storageImageType.estate, "_", "-")
+            else "",
+        local name = storageImageType.type + estateSpecificNamePortion + "-image-puller",
+        local pauseimage = "gcr.io/google_containers/pause-amd64:3.0",
+
         apiVersion: "extensions/v1beta1",
         kind: "DaemonSet",
         metadata: {
@@ -39,55 +116,18 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                     },
                 },
                 spec: {
-                    affinity: {
-                        nodeAffinity: {
-                            requiredDuringSchedulingIgnoredDuringExecution: {
-                                nodeSelectorTerms: [
-                                {
-                                    matchExpressions: [
-                                    {
-                                        key: "pool",
-                                        operator: "In",
-                                        values: storageImageType.estates,
-                                    },
-                                    ],
-                                },
-                                ],
-                            },
-                        },
-                    },
-                    initContainers: [
-                        {
-                            name: "image-puller",
-                            image: storageImageType.image,
-                            command: [
-                                "/bin/bash",
-                                "-c",
-                                "echo successfully pulled image " + storageImageType.image,
-                            ],
-                        },
-                    ],
+                    affinity: internal.puller_node_affinity(storageImageType.estate),
+                    initContainers: internal.init_containers(storageImageType.images),
                     containers: [
                         {
                             name: "pause",
-                            image: "gcr.io/google_containers/pause-amd64:3.0",
+                            image: pauseimage,
                         },
                     ],
                 },
             },
         },
-    } else {}
-    for storageImageType in [
-        {
-            name: "sfstore",
-            image: storageimages.sfstorebookie,
-            estates: storageconfigs.sfstoreEstates[configs.estate],
-        },
-        {
-            name: "ceph",
-            image: storageimages.cephdaemon,
-            estates: storageconfigs.cephEstates[configs.estate],
-        },
-    ]
-    ]),
+    }
+    for storageImageType in storageImageTypes
+    ],
 } else "SKIP"

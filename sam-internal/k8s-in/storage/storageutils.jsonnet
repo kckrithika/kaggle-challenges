@@ -150,6 +150,22 @@ local configs = import "config.jsonnet";
         poolSet : std.toString([ minion for minion in estates]),
         daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
     },
-    
 
+    # Check for an image override based on kingdom,minionEstate,ceph-cluster,ceph-daemon. If not found return default_tag.
+    # This is based on the `do_override` function in util_functions.jsonnet, but allows overrides to be set for minion
+    # estates instead of always using just the control estate.
+    #
+    # overrides - a map of "kingdom,estate,template,image" to "tag"
+    # minionEstate - the minion estate for the resource will be created.
+    # templateName - the name of the resource, e.g., "ceph-cluster".
+    # imageName - the base name of the image, e.g., "ceph-daemon".
+    # defaultTag - the docker tag to use when no override is found (e.g., "jewel-0000052-36e8b39d")
+    #
+    do_minion_estate_tag_override(overrides, minionEstate, templateName, imageName, defaultTag):: (
+        local overrideName = configs.kingdom + "," + minionEstate + "," + templateName + "," + imageName;
+        if (std.objectHas(overrides, overrideName)) then
+            overrides[overrideName]
+        else
+            defaultTag
+    ),
 }
