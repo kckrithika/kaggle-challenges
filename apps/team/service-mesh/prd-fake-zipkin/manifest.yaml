@@ -31,7 +31,7 @@ system:
         initialDelaySeconds: 120
 
     - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.25
       args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
