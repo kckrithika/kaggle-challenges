@@ -27,6 +27,10 @@ spec:
                 values:
                 - slb-ipvs
                 - slb-nginx
+              - key: illumio
+                operator: NotIn
+                values:
+                - b
       containers:
       - command:
         - /sdn/slb-canary-service

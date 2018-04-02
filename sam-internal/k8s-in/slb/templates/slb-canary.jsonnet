@@ -96,7 +96,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             operator: "NotIn",
                             values: ["slb-ipvs", "slb-nginx"],
                           },
-                        ],
+                        ] + (
+                            if configs.estate == "prd-sdc" then
+                            [
+                              {
+                                key: "illumio",
+                                operator: "NotIn",
+                                values: ["b"],
+                              },
+                            ] else []
+                          ),
                       },
                     ],
                   },
