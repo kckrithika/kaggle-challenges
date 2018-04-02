@@ -9,10 +9,11 @@
 // clusters.
 
 local configs = import "config.jsonnet";
+local cephclusterimage = (import "ceph-cluster-image.libsonnet") + { templateFilename:: std.thisFile };
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
-local imagefunctions = (import "image_functions.libsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
+
 local affinitizeToStoragePool = configs.estate != "prd-skipper";
 
 // Defines the set of control estates where this service is enabled.
@@ -71,11 +72,10 @@ local storageImageTypes = [
 ] + [
     # Ceph cluster images.
     {
-        local cephdaemon_tag = storageutils.do_cephdaemon_tag_override(storageimages.overrides, minionEstate, storageimages.cephdaemon_tag),
         estate: minionEstate,
         type: "ceph",
         images: [
-            imagefunctions.do_override_based_on_tag(storageimages.overrides, "storagecloud", "ceph-daemon", cephdaemon_tag),
+            cephclusterimage.do_cephdaemon_image_override(minionEstate),
         ],
         minionEstates: storageconfigs.cephEstates[configs.estate],
     }

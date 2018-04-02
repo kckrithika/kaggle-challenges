@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
-local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "storageutils.jsonnet";
+local cephclusterimage = (import "ceph-cluster-image.libsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate == "prd-skipper" then
     {
@@ -32,7 +32,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                         namespace: cephClusterNamespace,
                     },
                     pool: minionEstate,
-                    cephVersion: utils.do_cephdaemon_tag_override(storageimages.overrides, minionEstate, storageimages.cephdaemon_tag),
+                    cephVersion: cephclusterimage.do_cephdaemon_tag_override(minionEstate),
                     faultDomainBoundary: "node.sam.sfdc.net/rack",
                     K8S_NETWORK: storageconfigs.perEstate.ceph.k8s_subnet[configs.estate][minionEstate],
                     storageClassAllocations: [
