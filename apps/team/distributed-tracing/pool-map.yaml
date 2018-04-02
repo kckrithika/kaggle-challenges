@@ -1,1 +1,3 @@
 apps:
+    zipkin-kafka-proxy:
+    - prd/prd-sam_report_collector
