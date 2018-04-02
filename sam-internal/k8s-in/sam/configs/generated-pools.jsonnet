@@ -687,10 +687,12 @@
     },
     {
       "namespaces": [
-        "csc-health"
+        "csc-health",
+        "distributed-tracing"
       ],
       "access": [
-        "team/CSC_Health"
+        "team/CSC_Health",
+        "team/distributed-tracing"
       ],
       "controlEstate": "iad-sam",
       "estate": "iad-sam_report_collector",
@@ -927,10 +929,12 @@
     },
     {
       "namespaces": [
-        "csc-health"
+        "csc-health",
+        "distributed-tracing"
       ],
       "access": [
-        "team/CSC_Health"
+        "team/CSC_Health",
+        "team/distributed-tracing"
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_report_collector",
@@ -1559,10 +1563,12 @@
     },
     {
       "namespaces": [
-        "csc-health"
+        "csc-health",
+        "distributed-tracing"
       ],
       "access": [
-        "team/CSC_Health"
+        "team/CSC_Health",
+        "team/distributed-tracing"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_report_collector",
