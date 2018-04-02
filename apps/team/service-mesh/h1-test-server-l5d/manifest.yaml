@@ -34,7 +34,7 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa-l5d
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.25
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
