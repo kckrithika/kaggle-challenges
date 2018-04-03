@@ -1,5 +1,4 @@
 local configs = import "config.jsonnet";
-local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 {
   apiVersion: "v1",
