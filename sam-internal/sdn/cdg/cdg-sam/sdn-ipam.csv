@@ -1,0 +1,15 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute1-1-cdg.ops.sfdc.net,10.211.136.130/29,10.229.130.160/27,a47-01,cdg-sam
+shared0-samcompute1-2-cdg.ops.sfdc.net,10.211.136.131/29,10.229.130.192/27,a47-01,cdg-sam
+shared0-samcompute2-1-cdg.ops.sfdc.net,10.211.136.138/29,10.229.130.64/27,a12-01,cdg-sam
+shared0-samkubeapi1-1-cdg.ops.sfdc.net,10.211.136.132/29,10.229.130.224/27,a47-01,cdg-sam
+shared0-samkubeapi1-2-cdg.ops.sfdc.net,10.211.136.133/29,10.229.131.0/27,a47-01,cdg-sam
+shared0-samkubeapi2-1-cdg.ops.sfdc.net,10.211.136.139/29,10.229.130.96/27,a12-01,cdg-sam
+shared0-samkubeapi2-2-cdg.ops.sfdc.net,10.211.136.140/29,10.229.130.128/27,a12-01,cdg-sam
+shared0-samkubeapi3-1-cdg.ops.sfdc.net,10.211.136.146/29,10.229.130.0/27,a10-01,cdg-sam
+shared0-samkubeapi3-2-cdg.ops.sfdc.net,10.211.136.147/29,10.229.130.32/27,a10-01,cdg-sam
+shared0-samminiongater1-1-cdg.ops.sfdc.net,10.211.230.2/29,10.229.128.0/27,z13-01,cdg-sam_gater
+shared0-samminiongater1-2-cdg.ops.sfdc.net,10.211.230.3/29,10.229.128.32/27,z13-01,cdg-sam_gater
+shared0-samminiongater1-3-cdg.ops.sfdc.net,10.211.230.4/29,10.229.128.64/27,z13-01,cdg-sam_gater
+shared0-samminiongater2-1-cdg.ops.sfdc.net,10.211.230.10/29,10.229.128.96/27,z15-01,cdg-sam_gater
+shared0-samminiongater2-2-cdg.ops.sfdc.net,10.211.230.11/29,10.229.128.128/27,z15-01,cdg-sam_gater

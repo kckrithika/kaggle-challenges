@@ -1108,6 +1108,16 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform1-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_crosscloudplatform",
           "hostname": "shared0-samminioncrosscloudplatform2-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1139,6 +1149,16 @@ data:
           "devicerole": "samcompute",
           "estate": "ord-sam_crosscloudplatform",
           "hostname": "shared0-samminioncrosscloudplatform2-4-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform2-5-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "superpod": "none"
@@ -1184,6 +1204,16 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_crosscloudplatform",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_crosscloudplatform",
+          "hostname": "shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_crosscloudsetup",
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
@@ -1199,6 +1229,16 @@ data:
           "devicerole": "samcompute",
           "estate": "ord-sam_crosscloudsetup",
           "hostname": "shared0-samminioncrosscloudsetup1-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudsetup",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_crosscloudsetup",
+          "hostname": "shared0-samminioncrosscloudsetup1-3-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "superpod": "none"
@@ -1228,7 +1268,27 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_crosscloudsetup",
+          "hostname": "shared0-samminioncrosscloudsetup2-3-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudsetup",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_crosscloudsetup",
           "hostname": "shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_crosscloudsetup",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_crosscloudsetup",
+          "hostname": "shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "superpod": "none"
@@ -1638,6 +1698,16 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector1-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_report_collector",
           "hostname": "shared0-samminionreportcollector2-1-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
@@ -1648,7 +1718,27 @@ data:
           "controlestate": "ord-sam",
           "devicerole": "samcompute",
           "estate": "ord-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector2-2-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_report_collector",
           "hostname": "shared0-samminionreportcollector3-1-ord.ops.sfdc.net",
+          "kingdom": "ord",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_report_collector",
+          "controlestate": "ord-sam",
+          "devicerole": "samcompute",
+          "estate": "ord-sam_report_collector",
+          "hostname": "shared0-samminionreportcollector3-2-ord.ops.sfdc.net",
           "kingdom": "ord",
           "pod": "none",
           "superpod": "none"

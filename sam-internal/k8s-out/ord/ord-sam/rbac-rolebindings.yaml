@@ -482,6 +482,8 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudplatform1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudplatform1-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudplatform2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform2-2-ord.ops.sfdc.net
@@ -490,6 +492,8 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudplatform2-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudplatform2-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudplatform3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-2-ord.ops.sfdc.net
@@ -497,6 +501,8 @@ items:
     name: shared0-samminioncrosscloudplatform3-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -516,6 +522,8 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudplatform1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudplatform1-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudplatform2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform2-2-ord.ops.sfdc.net
@@ -524,6 +532,8 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudplatform2-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudplatform2-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudplatform3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-2-ord.ops.sfdc.net
@@ -531,6 +541,8 @@ items:
     name: shared0-samminioncrosscloudplatform3-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -550,6 +562,8 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudplatform1-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudplatform1-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudplatform2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform2-2-ord.ops.sfdc.net
@@ -558,6 +572,8 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudplatform2-4-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudplatform2-5-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudplatform3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-2-ord.ops.sfdc.net
@@ -565,6 +581,8 @@ items:
     name: shared0-samminioncrosscloudplatform3-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-4-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -580,11 +598,17 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudsetup1-2-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudsetup1-3-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudsetup2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup2-2-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudsetup2-3-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -600,11 +624,17 @@ items:
   - kind: User
     name: shared0-samminioncrosscloudsetup1-2-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudsetup1-3-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudsetup2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup2-2-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminioncrosscloudsetup2-3-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -762,9 +792,15 @@ items:
   - kind: User
     name: shared0-samminionreportcollector1-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminionreportcollector1-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminionreportcollector2-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminionreportcollector2-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminionreportcollector3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -778,9 +814,15 @@ items:
   - kind: User
     name: shared0-samminionreportcollector1-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminionreportcollector1-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminionreportcollector2-1-ord.ops.sfdc.net
   - kind: User
+    name: shared0-samminionreportcollector2-2-ord.ops.sfdc.net
+  - kind: User
     name: shared0-samminionreportcollector3-1-ord.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionreportcollector3-2-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:

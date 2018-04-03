@@ -1,0 +1,15 @@
+Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+shared0-samcompute1-1-fra.ops.sfdc.net,10.212.136.130/29,10.160.2.0/27,e21-01,fra-sam
+shared0-samcompute1-2-fra.ops.sfdc.net,10.212.136.131/29,10.160.2.32/27,e21-01,fra-sam
+shared0-samcompute2-1-fra.ops.sfdc.net,10.212.136.138/29,10.160.2.192/27,f22-01,fra-sam
+shared0-samkubeapi1-1-fra.ops.sfdc.net,10.212.136.132/29,10.160.2.64/27,e21-01,fra-sam
+shared0-samkubeapi1-2-fra.ops.sfdc.net,10.212.136.133/29,10.160.2.96/27,e21-01,fra-sam
+shared0-samkubeapi2-1-fra.ops.sfdc.net,10.212.136.139/29,10.160.2.224/27,f22-01,fra-sam
+shared0-samkubeapi2-2-fra.ops.sfdc.net,10.212.136.140/29,10.160.3.0/27,f22-01,fra-sam
+shared0-samkubeapi3-1-fra.ops.sfdc.net,10.212.136.146/29,10.160.2.128/27,f21-01,fra-sam
+shared0-samkubeapi3-2-fra.ops.sfdc.net,10.212.136.147/29,10.160.2.160/27,f21-01,fra-sam
+shared0-samminiongater1-1-fra.ops.sfdc.net,10.212.230.2/29,10.160.0.64/27,f23-01,fra-sam_gater
+shared0-samminiongater1-2-fra.ops.sfdc.net,10.212.230.3/29,10.160.0.96/27,f23-01,fra-sam_gater
+shared0-samminiongater1-3-fra.ops.sfdc.net,10.212.230.4/29,10.160.0.128/27,f23-01,fra-sam_gater
+shared0-samminiongater2-1-fra.ops.sfdc.net,10.212.230.10/29,10.160.0.0/27,f21-01,fra-sam_gater
+shared0-samminiongater2-2-fra.ops.sfdc.net,10.212.230.11/29,10.160.0.32/27,f21-01,fra-sam_gater
