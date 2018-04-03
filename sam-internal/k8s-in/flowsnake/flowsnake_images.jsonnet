@@ -110,13 +110,6 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
-                  // to promote image to prod DC, please add wanted image tag into flowsnake_config.jsonnet/flowsnakeImageTagToPromote
-                  "0.9.1": 377,
-                  "0.9.2": 403,
-                  "0.9.3": 427,
-                  "0.9.4": 447,
-                  "0.9.5": 487,
-                  "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
                 },
                 # ignore this section, require by std.manifestIni
@@ -144,13 +137,6 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             version_mapping: {
                 main: {
-                  // to promote image to prod DC, please add wanted image tag into flowsnake_config.jsonnet/flowsnakeImageTagToPromote
-                  "0.9.1": 377,
-                  "0.9.2": 403,
-                  "0.9.3": 427,
-                  "0.9.4": 447,
-                  "0.9.5": 487,
-                  "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
                 },
                 # ignore this section, require by std.manifestIni
@@ -231,4 +217,40 @@ local utils = import "util_functions.jsonnet";
     # Then we pass this again into image_functions at time of import.
     templateFilename:: error "templateFilename must be passed at time of import",
     local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
+
+    # List of images that the Flowsnake control plane deploys dynamically
+    flowsnakeImagesToPromote: [
+        "flowsnake-spark-driver",
+        "flowsnake-spark-master",
+        "flowsnake-spark-worker",
+        "flowsnake-spark-history-server",
+        "flowsnake-rewriting-proxy",
+        "flowsnake-local-kafka",
+        "flowsnake-global-kafka",
+        "flowsnake-local-zookeeper",
+        "flowsnake-kafka-rest-proxy",
+        "flowsnake-spark-token-renewer",
+        "flowsnake-spark-secret-updater",
+        "flowsnake-tensorflow-python27",
+        "flowsnake-tensorflow-python35",
+        "flowsnake-storm-worker",
+        "flowsnake-storm-nimbus",
+        "flowsnake-storm-submitter",
+        "flowsnake-storm-ui",
+        "flowsnake-test-data",
+        "flowsnake-airflow-webserver",
+        "flowsnake-airflow-scheduler",
+        "flowsnake-airflow-worker",
+        "flowsnake-postgresql",
+        "flowsnake-redis",
+        "flowsnake-environment-service",
+        "flowsnake-stream-production-monitor",
+        "flowsnake-kafka-configurator",
+        "flowsnake-sluice-configurator",
+        "flowsnake-kafka-connect",
+        "flowsnake-job-flowsnake-demo-job",
+        "flowsnake-job-flowsnake-storm-demo-job",
+        "flowsnake-job-flowsnake-airflow-dags",
+        "flowsnake-job-flowsnake-spark-local-mode-demo-job",
+    ],
 }
