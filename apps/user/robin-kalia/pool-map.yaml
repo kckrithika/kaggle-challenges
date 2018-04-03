@@ -20,8 +20,8 @@ apps:
  shipping-gdsd-disabled:
   - prd/prd-sam
 
- ordering-zk-disabled:
-  - prd/prd-sam
+ # ordering-zk-disabled:
+ # - prd/prd-sam
 
- shipping-zk-disabled:
-  - prd/prd-sam
+ # shipping-zk-disabled:
+ # - prd/prd-sam
