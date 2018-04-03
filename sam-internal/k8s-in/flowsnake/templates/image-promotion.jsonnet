@@ -9,7 +9,7 @@ if util.is_production(kingdom) then
   spec: {
     template: {
       spec: {
-        containers: [
+        containers: std.flattenArrays([
 [
           {
             name: imageName,
@@ -18,7 +18,7 @@ if util.is_production(kingdom) then
         for imageName in flowsnakeimages.flowsnakeImagesToPromote
 ]
         for version in std.objectFields(flowsnakeimages.version_mapping.main)
-][0],
+]),
       },
     },
   },
