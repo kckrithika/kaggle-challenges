@@ -24,22 +24,26 @@ local utils = import "util_functions.jsonnet";
     logFilePath: "/data/logs/sdn/",
 
     logDirArg: "--log_dir=" + self.logFilePath,
-    logToStdErrArg: if (kingdom == "prd") || (kingdom == "frf") then "--logtostderr=true" else "--logtostderr=false",
+    logToStdErrArg: "--logtostderr=true",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     # Volume for logs
-    sdn_logs_volume: if (kingdom == "prd") || (kingdom == "frf") then {} else {
-        name: "sdnlogs",
-        hostPath: {
-          path: "/data/logs/sdn",
-        },
-    },
+    sdn_logs_volume: {},
+    #Previously:
+    #{
+    #    name: "sdnlogs",
+    #    hostPath: {
+    #      path: "/data/logs/sdn",
+    #    },
+    #},
 
     # Volume mount for logs
-    sdn_logs_volume_mount: if (kingdom == "prd") || (kingdom == "frf") then {} else {
-        mountPath: "/data/logs/sdn",
-        name: "sdnlogs",
-    },
+    sdn_logs_volume_mount: {},
+    #Previously:
+    #{
+    #    mountPath: "/data/logs/sdn",
+    #    name: "sdnlogs",
+    #},
 
     # Volume for kubectl
     sdn_kubectl_volume: {

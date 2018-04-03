@@ -17,22 +17,17 @@ spec:
       - command:
         - /sdn/sdn-hairpin-setter
         - --log_dir=/data/logs/sdn/
-        - --logtostderr=false
+        - --logtostderr=true
         - --alsologtostderr=true
-        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000724-ebac0861
+        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000728-88462e0f
         name: sdn-hairpin-setter
         securityContext:
           privileged: true
         volumeMounts:
         - mountPath: /sys/devices/virtual/net
           name: sys-mount
-        - mountPath: /data/logs/sdn
-          name: sdnlogs
       hostNetwork: true
       volumes:
       - hostPath:
           path: /sys/devices/virtual/net
         name: sys-mount
-      - hostPath:
-          path: /data/logs/sdn
-        name: sdnlogs
