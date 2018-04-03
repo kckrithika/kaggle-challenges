@@ -1,4 +1,6 @@
 apps:
+    zipkin-kafka-proxy-test:
+    - prd/prd-sam_report_collector
     zipkin-kafka-proxy:
     - prd/prd-sam_report_collector
     - iad/iad-sam_report_collector
