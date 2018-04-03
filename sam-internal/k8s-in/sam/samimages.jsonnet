@@ -56,6 +56,10 @@ local utils = import "util_functions.jsonnet";
 
         # [mayank.kumar] fix synthetic timeout
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001825-c908451b",
+
+        #[rbhat] watch on downstream objects & update bundleStatus
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001838-2b71386f",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001838-2b71386f",
     },
 
     ### Per-phase image tags
