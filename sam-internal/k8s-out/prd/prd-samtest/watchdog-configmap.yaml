@@ -12,6 +12,7 @@ data:
       "deployer-smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
+      "enableK4aChecks": true,
       "enableMaddogCertChecks": true,
       "filesystemCheckDirs": [
         "/data/",
