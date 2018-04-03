@@ -24,9 +24,9 @@ spec:
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
         - --log_dir=/data/logs/sdn/
-        - --logtostderr=false
+        - --logtostderr=true
         - --alsologtostderr=true
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000724-ebac0861
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000728-88462e0f
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -42,8 +42,6 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-        - mountPath: /data/logs/sdn
-          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: ord-sam
@@ -57,6 +55,3 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
-      - hostPath:
-          path: /data/logs/sdn
-        name: sdnlogs

@@ -32,12 +32,12 @@ spec:
         - --pkiClientServiceName=k8s-client
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
-        - --logtostderr=false
+        - --logtostderr=true
         - --alsologtostderr=true
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000724-ebac0861
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sdn/hypersdn:v-0000728-88462e0f
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -62,8 +62,6 @@ spec:
           readOnly: true
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /data/logs/sdn
-          name: sdnlogs
       hostNetwork: true
       volumes:
       - configMap:
@@ -88,6 +86,3 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
-      - hostPath:
-          path: /data/logs/sdn
-        name: sdnlogs

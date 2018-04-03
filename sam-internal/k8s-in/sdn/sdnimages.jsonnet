@@ -47,7 +47,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 5 - All Prod
         "5": {
-            hypersdn: "v-0000724-ebac0861",
+            hypersdn: "v-0000728-88462e0f",
             bird: "v-0000014-b0a5951d",
             },
     },
