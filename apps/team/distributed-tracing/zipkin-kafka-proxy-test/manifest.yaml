@@ -6,7 +6,7 @@ system:
         - afalko@salesforce.com
 
     functions:
-    - name: zipkin-kafka-proxy
+    - name: zipkin-kafka-proxy-test
       count: 1
       strategy:
           type: RollingUpdate
@@ -14,7 +14,7 @@ system:
               maxSurge: 0
               maxUnavailable: 1
       containers:
-      - name: zipkin-kafka-proxy
+      - name: zipkin-kafka-proxy-test
         image: docker-all/dva/zipkin-kafka-proxy:1
         livenessProbe:
             exec:
