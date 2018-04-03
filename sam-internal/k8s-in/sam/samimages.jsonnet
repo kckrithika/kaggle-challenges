@@ -19,18 +19,8 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-
-        # [diana.chang] Turn on daily deployer for watchdog nodes in prd-samdev
-       "prd,prd-samdev,watchdog-puppet,hypersam": "auto",
-#       "prd,prd-samdev,watchdog-sdp,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana-chang/hypersam:auto",
-
-       # [diana.chang] letting the skeleton code for the manifest-repo-watcher run in samtest
-       "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180321_135909.f1c24c74.dirty.dianachang-ltm1",
-
         # [lizhang.li] Enable filesytem-watchdog everywhere
         "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
-        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
-        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
         "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
         "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
@@ -47,9 +37,6 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
-
-        # [xiao.zhou] test samapp controller
-        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-03262018-5",
 
         # [a.mitra] enable watchdog-sql
         "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001825-c908451b",
@@ -83,7 +70,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001815-8cfb538e",
+            hypersam: "sam-0001837-ee111691",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
