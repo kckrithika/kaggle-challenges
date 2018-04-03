@@ -13,17 +13,19 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                 cloud: "storage",
             },
             annotations: {
-                "slb.sfdc.net/name": storageconfigs.serviceNames["fds-svc"],
-                "slb.sfdc.net/portconfigurations": '[{"port":8080,"targetport":8080,"lbtype":"tcp"}]',
+                "slb.sfdc.net/name": storageconfigs.serviceDefn.fds_svc.name,
+                "slb.sfdc.net/portconfigurations": "[{%(port1)s}]" % {
+                    port1: storageconfigs.serviceDefn.fds_svc.health["port-config"],
+                },
             },
         },
         spec: {
             ports: [
                 {
-                name: "fds-controller-port",
-                port: 8080,
+                name: storageconfigs.serviceDefn.fds_svc.health["port-name"],
+                port: storageconfigs.serviceDefn.fds_svc.health.port,
                 protocol: "TCP",
-                targetPort: 8080,
+                targetPort: storageconfigs.serviceDefn.fds_svc.health.port,
                 } +
                 if configs.estate != "prd-sam_storage" then {
                     nodePort: 32100,

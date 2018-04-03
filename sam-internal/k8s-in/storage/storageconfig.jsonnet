@@ -17,10 +17,31 @@
         "phx-sam": [],
     },
 
-    serviceNames: {
-        "fds-svc": "fds",
-        "ceph-metrics-svc": "ceph-metrics",
-        "sfn-metrics-svc": "sfn-metrics",
+    serviceDefn: {
+        fds_svc: {
+                "name" : 'fds',
+                health: {
+                    "port-name" : "fds-controller-port",
+                    "port" : 8080,
+                    "port-config" : '"port":8080,"targetport":8080,"lbtype":"tcp"',
+                }
+            },
+        ceph_metrics_svc: {
+                "name" : 'ceph-metrics',
+                health: {
+                    "port-name" : "ceph-metrics",
+                    "port" : 8001,
+                    "port-config" : '"port":8001,"targetport":8001,"lbtype":"tcp"',
+                }
+            },
+        sfn_metrics_svc: {
+                "name" : 'sfn-metrics',
+                health: {
+                    "port-name" : "sfn-metrics",
+                    "port" : 8080,
+                    "port-config" : '"port":8080,"targetport":8080,"lbtype":"tcp"',
+                }
+            },
     },
 
     // Aggregate all the storage related minion estates in the control plane.

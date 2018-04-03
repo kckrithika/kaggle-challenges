@@ -91,19 +91,19 @@ if std.setMember(configs.estate, enabledEstates) then {
                         image: storageimages.fdscontroller,
                         ports: [
                             {
-                                containerPort: 8080,
+                                containerPort: storageconfigs.serviceDefn.fds_svc.health.port,
                             },
                         ],
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",
-                                port: 8080,
+                                port: storageconfigs.serviceDefn.fds_svc.health.port,
                             },
                         },
                         readinessProbe: {
                             httpGet: {
                                 path: "/healthz",
-                                port: 8080,
+                                port: storageconfigs.serviceDefn.fds_svc.health.port,
                             },
                         },
                         volumeMounts:
@@ -124,7 +124,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                         ],
                         env: [] +
                         if configs.estate != "prd-sam_storage" then
-                            storageutils.sfms_environment_vars(storageconfigs.serviceNames["fds-svc"])
+                            storageutils.sfms_environment_vars(storageconfigs.serviceDefn.fds_svc.name)
                         else
                         [
                             {
@@ -133,9 +133,9 @@ if std.setMember(configs.estate, enabledEstates) then {
                             },
                             {
                                 name: "MC_PORT",
-                                value: "8080",
+                                value: storageconfigs.serviceDefn.fds_svc.health.port,
                             },
-                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceNames["fds-svc"]),
+                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceDefn.fds_svc.name),
 
                     },
                 ],
