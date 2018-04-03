@@ -144,4 +144,4 @@ items: configs.filter_empty([
     ]),
 kind: "List",
 metadata: {},
-}
+} else "SKIP"
