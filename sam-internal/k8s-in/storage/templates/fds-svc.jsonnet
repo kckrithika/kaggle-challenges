@@ -27,7 +27,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                 protocol: "TCP",
                 targetPort: storageconfigs.serviceDefn.fds_svc.health.port,
                 } +
-                if configs.estate != "prd-sam_storage" then {
+                if configs.estate == "phx-sam" then {
                     nodePort: 32100,
                 } else {},
             ],
