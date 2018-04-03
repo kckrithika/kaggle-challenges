@@ -40,6 +40,10 @@ local fdsEnvironmentVars = std.prune([
         name: "FDS_PROFILING",
         value: storageconfigs.fds_profiling,
     },
+    if configs.estate == "prd-skipper" then {
+        name: "FDS_MIN_RESYNC_PERIOD",
+        value: "3s",
+    },
 ]);
 
 // Volumes available to the pod.
