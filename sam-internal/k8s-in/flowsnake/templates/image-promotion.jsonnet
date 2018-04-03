@@ -6,26 +6,19 @@ if util.is_production(kingdom) then
 {
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",
-  metadata: {
-    name: "FakeDeplyForImgPromo",
-  },
   spec: {
     template: {
       spec: {
         containers: [
 [
-        {
-          count: 0,
-          image: flowsnakeconfig.registry + "/" + imageName + ":" + imageTag,
-          name: imageName,
-        }
-for imageName in flowsnakeimages.flowsnakeImagesToPromote
+          {
+            name: imageName,
+            image: flowsnakeconfig.registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
+          }
+        for imageName in flowsnakeimages.flowsnakeImagesToPromote
 ]
-for imageTag in [
-flowsnakeimages.version_mapping.main[version]
-for version in std.objectFields(flowsnakeimages.version_mapping.main)
-]
-],
+        for version in std.objectFields(flowsnakeimages.version_mapping.main)
+][0],
       },
     },
   },
