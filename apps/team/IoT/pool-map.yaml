@@ -21,3 +21,5 @@ apps:
       - iad/iad-sam_iot
   controlplane-ord:
       - ord/ord-sam_iot
+  enrichment-ord:
+      - ord/ord-sam_iot
