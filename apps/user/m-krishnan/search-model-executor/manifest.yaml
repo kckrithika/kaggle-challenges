@@ -13,7 +13,7 @@ system:
         type: server
     containers:
     - name: search-model-executor
-      image: docker-sam/m.krishnan/smt-search-model-executor:no-announcement
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/m.krishnan/smt-search-model-executor:no-announcement
       ports:
       - name: service-port
         containerPort: 7020
@@ -34,7 +34,7 @@ system:
         timeoutSeconds: 10
         periodSeconds: 60
     - name: beacon
-      image: docker-sam/servicemesh/beacon:1.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       # mTLS port
       - -endpoint
@@ -76,7 +76,7 @@ system:
     count: 4
     containers:
     - name: search-model-executor
-      image: docker-sam/ssstestorganization/smt-search-model-executor:0.0-RC.4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssstestorganization/smt-search-model-executor:0.0-RC.4
       args:
       - --modelstore.repo.models=model_repository_root/models
       - --modelstore.repo.manifests=model_repository_root/datacenters/${KINGDOM}/sme-1
