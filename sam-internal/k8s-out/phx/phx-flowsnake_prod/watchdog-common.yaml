@@ -23,7 +23,7 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -emailFrequency=72h
+        - -emailFrequency=10m
         image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sam/hypersam:sam-0001730-c7caec88
         name: watchdog
         resources:
