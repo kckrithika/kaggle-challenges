@@ -17,6 +17,12 @@
         "phx-sam": [],
     },
 
+    serviceNames: {
+        "fds-svc": "fds",
+        "ceph-metrics-svc": "ceph-metrics",
+        "sfn-metrics-svc": "sfn-metrics",
+    },
+
     // Aggregate all the storage related minion estates in the control plane.
     storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate]],
     perEstate: {

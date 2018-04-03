@@ -83,9 +83,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             },
                             {
                                 name: "MC_PORT",
-                                value: "38002",
+                                value: "8080",
                             },
-                        ] + storageutils.sfms_environment_vars("sfn-state-metrics"),
+                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceNames["sfn-metrics-svc"]),
                     },
                 ],
             },

@@ -13,7 +13,6 @@ metadata:
 spec:
   ports:
   - name: fds-controller-port
-    nodePort: 32100
     port: 8080
     protocol: TCP
     targetPort: 8080
