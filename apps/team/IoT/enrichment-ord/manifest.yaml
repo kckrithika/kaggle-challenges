@@ -1,0 +1,86 @@
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: sfci/iot/enterprise-enrichment:1.0.1.2
+      livenessProbe:
+        httpGet:
+          path: /manage/info
+          port: 15372
+        initialDelaySeconds: 120
+        timeoutSeconds: 120
+      name: enrichment
+      ports:
+      - containerPort: 15372
+        name: mgmt
+      - containerPort: 7020
+        name: grpc
+      resources:
+        limits:
+          cpu: 7
+          memory: 16G
+        requests:
+          cpu: 2
+          memory: 2G
+      volumeMounts:
+      - mountPath: /home/enrichment/logs
+        name: logvol
+    - env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      image: sfci/servicelibs/sherpa:2.0.23
+      livenessProbe:
+        exec:
+          command:
+          - ./bin/is-alive
+        initialDelaySeconds: 10
+        periodSeconds: 5
+      name: sherpa
+      ports:
+      - containerPort: 7012
+        name: sherpa-in
+      - containerPort: 7443
+        name: sherpa-tls
+      - containerPort: 15373
+        name: sherpa-adm
+      readinessProbe:
+        exec:
+          command:
+          - ./bin/is-ready
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      volumeMounts:
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /client-certs
+        name: client-certs
+    - args:
+      - -endpoint
+      - enrichment:DATACENTER:7012
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+      name: beacon
+    count: 2
+    name: enrichment
+    strategy:
+      type: Recreate
+    volumes:
+    - hostPath:
+        path: /data/sam/iot/log/enrichment
+      name: logvol
+    - maddogCert:
+        type: server
+      name: server-certs
+    - maddogCert:
+        type: client
+      name: client-certs
+  notifications:
+    email:
+    - iotenterprise@salesforce.com
