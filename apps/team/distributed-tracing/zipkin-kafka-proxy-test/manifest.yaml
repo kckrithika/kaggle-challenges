@@ -1,0 +1,37 @@
+apiVersion: v1
+
+system:
+    notifications:
+        email:
+        - afalko@salesforce.com
+
+    functions:
+    - name: zipkin-kafka-proxy-test
+      count: 1
+      strategy:
+          type: RollingUpdate
+          rollingUpdate:
+              maxSurge: 0
+              maxUnavailable: 1
+      containers:
+      - name: zipkin-kafka-proxy-test
+        image: docker-all/dva/zipkin-kafka-proxy:1
+        livenessProbe:
+            exec:
+                # TODO: Check if process is running?
+                command: 
+                - /bin/true
+            initialDelaySeconds: 5
+            periodSeconds: 5
+        volumeMounts:
+            - name: tls-client-cert
+              mountPath: /client-certs
+            - name: tls-server-cert
+              mountPath: /server-certs
+      volumes:
+      - name: tls-client-cert
+        maddogCert:
+            type: client
+      - name: tls-server-cert
+        maddogCert:
+            type: server
