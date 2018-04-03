@@ -98,7 +98,7 @@ std.prune({
   enableStatefulChecks: (if configs.estate == "prd-samdev" then true),
   enableStatefulPVChecks: (if configs.estate == "prd-samdev" then true),
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
-
+  enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then true),
   enableMaddogCertChecks: (if samfeatureflags.maddogforsamhosts then true),
 
   filesystemCheckDirs: [
