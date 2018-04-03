@@ -6,7 +6,6 @@ display_usage() {
   echo '-o|--org : <team/teamName> or <user/user-name>'
   echo '-k|--kingdom : <kingdom>[,<otherKingdom>]'
   echo '-s|--superpod : <superpod>[,<otherSuperpod>]'
-  echo '-g|--global'
   echo '-f|--from-file : <pathToFile>'
   echo ''
   echo 'Example: ./add-secret.sh -n=mysecret -o=team/CSC_SAM -k=prd -f=$(pwd)/token.txt'
@@ -43,10 +42,6 @@ case $i in
     SUPERPOD="${i#*=}"
     shift # past argument=value
     ;;
-    --global*|-g*)
-    GLOBAL=true
-    shift # past argument=value
-    ;;
     --from-file=*|-f=*)
     FROM_FILE[index]="$FROM_FILE_ARG${i#*=}"
     ((++index))
@@ -73,7 +68,7 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 . "$DIR/sam-internal/hypersam.sh"
 
 #Remove next line after the SMB release. This is just to use the updated hypersam image
-HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001755-ecd0a975
+HYPERSAM=ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001831-42e0badb
 
 docker run \
   --rm \
@@ -92,5 +87,4 @@ docker run \
   --teamOrUserName=${ORG}\
   --kingdomList=${KINGDOM}\
   --superPod=${SUPERPOD}\
-  --global=${GLOBAL}\
   ${FROM_FILE[*]}
