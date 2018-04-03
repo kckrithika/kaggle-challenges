@@ -1,12 +1,6 @@
 apiVersion: v1
 data:
   version-mapping.properties: |
-    0.9.1 = 377
-    0.9.2 = 403
-    0.9.3 = 427
-    0.9.4 = 447
-    0.9.5 = 487
-    0.9.6 = jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest
     0.9.7 = 571
 kind: ConfigMap
 metadata:
