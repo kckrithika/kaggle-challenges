@@ -42,6 +42,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
+                            (if sdnimages.phase == "1" then "--failPercentageThreshold=5" else "--failPercentageThreshold=0"),
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
