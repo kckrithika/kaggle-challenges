@@ -25,19 +25,23 @@ spec:
         - --sqlDbHostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
         - --sqlK8sResourceDbName=sam_kube_resource
         - --sqlDbPort=3306
-        - --sqlQuery=select * from nodeDetailView where Ready!=True and Kingdom='prd'
-        - --recipient=a.mitra@salesforce.com
+        - --sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet
+        - --recipient=sam-test-alerts@salesforce.com
+        - --deployer-emailFrequency=24h
         - -v=5
         - --alsologtostderr
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001825-c908451b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001838-2b71386f
         name: watchdog-samsql
         volumeMounts:
         - mountPath: /var/secrets/
           name: mysql
+          readOnly: true
+        - mountPath: /var/queries/
+          name: queries
           readOnly: true
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -53,6 +57,9 @@ spec:
       - name: mysql
         secret:
           secretName: mysql
+      - configMap:
+          name: watchdogsamsqlqueries
+        name: queries
       - configMap:
           name: sfdchosts
         name: sfdchosts

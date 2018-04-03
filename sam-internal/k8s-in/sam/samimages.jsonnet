@@ -38,8 +38,8 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
 
-        # [a.mitra] enable watchdog-sql
-        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001825-c908451b",
+        # [a.mitra] enable multiple queries for watchdog-sql
+        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001838-2b71386f",
 
         # [mayank.kumar] fix synthetic timeout
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001825-c908451b",
