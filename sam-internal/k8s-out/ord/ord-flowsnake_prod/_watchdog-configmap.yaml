@@ -39,6 +39,64 @@ data:
       "sdpEndpoint": "http://localhost:39999",
       "sender": "flowsnake@salesforce.com",
       "smtpServer": "ops0-mta2-1-ord.ops.sfdc.net:25",
+      "snooze": [
+        {
+          "checker": "kubeletChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "kubeletChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "nodeChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "podChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "iad-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        },
+        {
+          "checker": "kubeResourcesChecker",
+          "estates": [
+            "ord-flowsnake_prod"
+          ],
+          "until": "2018/04/31"
+        }
+      ],
       "syntheticPVRetrytimeout": 420000000000,
       "syntheticretrytimeout": 420000000000,
       "tlsEnabled": true

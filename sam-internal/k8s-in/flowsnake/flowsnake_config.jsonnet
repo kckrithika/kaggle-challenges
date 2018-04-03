@@ -2,6 +2,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeimage = import "flowsnake_images.jsonnet";
 local configs = import "config.jsonnet";
+local util = import "util_functions.jsonnet";
 {
     is_minikube: std.startsWith(estate, "prd-minikube"),
     is_minikube_small: std.startsWith(estate, "prd-minikube-small"),
