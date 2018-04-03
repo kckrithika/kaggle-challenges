@@ -1,7 +1,6 @@
 local rbac_utils = import "sam_rbac_functions.jsonnet";
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
-local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 {
     kind: "ClusterRoleBinding",

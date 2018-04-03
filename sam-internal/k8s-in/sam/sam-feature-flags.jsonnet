@@ -16,7 +16,7 @@ local utils = import "util_functions.jsonnet";
     rbac: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
 
     # for the first pr keeping logic the same, but we should unify this with the one above
-    rbacwd: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate),
+    rbacwd: !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate),
 
     # todo: explain what is blocking this from going everywhere
     rbacstorage: configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev",
