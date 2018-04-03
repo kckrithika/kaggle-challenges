@@ -10,13 +10,23 @@ if util.is_production(kingdom) then
     name: "FakeDeplyForImgPromo",
   },
   spec: {
-    containers: [[
-    {
-      count: 0,
-      image: flowsnakeconfig.registry + "/" + imageName + ":" + imageTag,
-      name: imageName,
-    }
+    template: {
+      spec: {
+        containers: [
+[
+        {
+          count: 0,
+          image: flowsnakeconfig.registry + "/" + imageName + ":" + imageTag,
+          name: imageName,
+        }
 for imageName in flowsnakeimages.flowsnakeImagesToPromote
-] for imageTag in [flowsnakeimages.version_mapping.main[version] for version in std.objectFields(flowsnakeimages.version_mapping.main)]],
+]
+for imageTag in [
+flowsnakeimages.version_mapping.main[version]
+for version in std.objectFields(flowsnakeimages.version_mapping.main)
+]
+],
+      },
+    },
   },
 } else "SKIP"
