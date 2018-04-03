@@ -45,10 +45,11 @@ spec:
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
+        - --failPercentageThreshold=5
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000728-88462e0f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000736-6a1608d8
         livenessProbe:
           httpGet:
             path: /liveness-probe

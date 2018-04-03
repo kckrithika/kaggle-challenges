@@ -51,6 +51,9 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
                             ] else []
+                        )
+                        + (
+                            if sdnimages.phase == "1" then ["--failPercentageThreshold=5"] else []
                         ),
                         env: [
                             configs.kube_config_env,
