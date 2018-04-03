@@ -25,6 +25,7 @@ local kingdom = std.extVar("kingdom");
         "1": {
             hypersdn: "v-0000736-6a1608d8",
             bird: "v-0000016-a0f26f27",
+            hyperelk: "v-76",
             },
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
@@ -71,7 +72,7 @@ local kingdom = std.extVar("kingdom");
     # These are the images used by the templates
     hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
     bird: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
-
+    hyperelk: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hyperelk", $.per_phase[$.phase].hyperelk),
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
     #

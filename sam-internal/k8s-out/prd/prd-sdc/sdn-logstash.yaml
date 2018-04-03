@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-logstash
+  name: sdn-logstash
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-logstash
+      namespace: sam-system
+    spec:
+      containers:
+      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-76
+        name: sdn-logstash
+      env:
+      - name: RUN
+        value: logstash
+      hostNetwork: true
