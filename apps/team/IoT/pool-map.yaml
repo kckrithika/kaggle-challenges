@@ -17,4 +17,7 @@ apps:
       - prd/prd-sp2-sam_iot_test
   controlplane-iad:
       - iad/iad-sam_iot
-
+  enrichment-iad:
+      - iad/iad-sam_iot
+  controlplane-ord:
+      - ord/ord-sam_iot
