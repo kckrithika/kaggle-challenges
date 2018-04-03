@@ -7,17 +7,16 @@ if configs.estate == "prd-sdc" then {
         replicas: 1,
         template: {
             spec: {
-                hostNetwork: true,
                 containers: [
                     {
                         name: "sdn-logstash",
                         image: sdnimages.hyperelk,
-                    },
-                ],
-                env: [
-                    {
-                        name: "RUN",
-                        value: "logstash",
+                        env: [
+                                {
+                                    name: "RUN",
+                                    value: "logstash",
+                                },
+                        ],
                     },
                 ],
             },

@@ -15,9 +15,8 @@ spec:
       namespace: sam-system
     spec:
       containers:
-      - image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-76
+      - env:
+        - name: RUN
+          value: logstash
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000079-0f21357f
         name: sdn-logstash
-      env:
-      - name: RUN
-        value: logstash
-      hostNetwork: true
