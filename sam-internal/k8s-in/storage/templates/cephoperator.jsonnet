@@ -2,8 +2,61 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
+local isEstateNotSkipper = configs.estate != "prd-skipper";
 
-if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam",
+    "prd-skipper",
+    "phx-sam",
+]);
+
+local masterNodeSelector =
+    if isEstateNotSkipper then {
+        master: "true",
+    }
+    else {};
+
+// Environment variables for the Local Provisioner container.
+local cephOpEnvironmentVars =
+        if isEstateNotSkipper then std.prune([configs.kube_config_env])
+        else std.prune([
+        {
+            name: "MIN_OSD_VOL_SIZE",
+            value: "5Gi",
+        },
+        {
+            name: "MIN_MON_VOL_SIZE",
+            value: "5Gi",
+        },
+        {
+            name: "DEV_MODE",
+            value: "YEs",
+        },
+        ]);
+
+local internal = {
+    cert_volume_mounts(estate):: (
+        if isEstateNotSkipper then
+            configs.filter_empty([
+                configs.maddog_cert_volume_mount,
+                configs.cert_volume_mount,
+                configs.kube_config_volume_mount,
+            ])
+        else []
+    ),
+    cert_volume(estate):: (
+        if isEstateNotSkipper then
+            configs.filter_empty([
+                configs.maddog_cert_volume,
+                configs.cert_volume,
+                configs.kube_config_volume,
+            ])
+        else []
+    ),
+};
+
+if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -50,13 +103,8 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                         image: storageimages.cephoperator,
                         volumeMounts:
                             storageutils.log_init_volume_mounts()
-                            + configs.filter_empty([
-                                configs.maddog_cert_volume_mount,
-                                configs.cert_volume_mount,
-                                configs.kube_config_volume_mount,
-                            ]),
-                        env: [
-                            configs.kube_config_env,
+                            + internal.cert_volume_mounts(configs.estate),
+                        env: cephOpEnvironmentVars + [
                             {
                                 name: "K8S_PLATFORM",
                                 value: configs.estate,
@@ -91,14 +139,8 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                 ],
                 volumes:
                     storageutils.log_init_volumes()
-                    + configs.filter_empty([
-                        configs.maddog_cert_volume,
-                        configs.cert_volume,
-                        configs.kube_config_volume,
-                    ]),
-                nodeSelector: {
-                    master: "true",
-                },
+                    + internal.cert_volume(configs.estate),
+                nodeSelector: masterNodeSelector,
             },
         },
     },

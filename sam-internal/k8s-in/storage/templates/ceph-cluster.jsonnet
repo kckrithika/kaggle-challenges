@@ -2,8 +2,17 @@ local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
 local cephclusterimage = (import "ceph-cluster-image.libsonnet") + { templateFilename:: std.thisFile };
+local isEstateNotSkipper = configs.estate != "prd-skipper";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" || configs.estate == "prd-skipper" then
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam",
+    "phx-sam",
+    "prd-sam_storage",
+    "prd-skipper",
+]);
+
+if std.setMember(configs.estate, enabledEstates) then
     {
         apiVersion: "v1",
         kind: "List",
@@ -31,7 +40,6 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                         name: cephClusterName,
                         namespace: cephClusterNamespace,
                     },
-                    pool: minionEstate,
                     cephVersion: cephclusterimage.do_cephdaemon_tag_override(minionEstate),
                     faultDomainBoundary: "node.sam.sfdc.net/rack",
                     K8S_NETWORK: storageconfigs.perEstate.ceph.k8s_subnet[configs.estate][minionEstate],
@@ -41,7 +49,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                             aggregateStorage: storageconfigs.perEstate.ceph.aggregateStorage[configs.estate][minionEstate],
                         },
                     ],
-                },
+                } + if isEstateNotSkipper then { pool: minionEstate } else {}
+                  + if !isEstateNotSkipper then { cephOsdDaemonOverride: "osd_directory" } else {},
             }
             for minionEstate in storageconfigs.cephEstates[configs.estate]
         ],

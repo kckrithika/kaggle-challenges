@@ -2,8 +2,87 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
+local isEstateNotSkipper = configs.estate != "prd-skipper";
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "prd-skipper",
+    "phx-sam",
+]);
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+// Environment variables for the Local Provisioner container.
+local lvEnvironmentVars = std.prune([
+   {
+      name: "MY_NODE_NAME",
+        valueFrom: {
+          fieldRef: {
+          fieldPath: "spec.nodeName",
+          },
+        },
+    },
+]) +
+    if isEstateNotSkipper then
+       configs.filter_empty([
+{
+                name: "MY_NAMESPACE",
+                value: "lvns",
+        },
+        {
+                name: "KUBECONFIG",
+                value: "/kubeconfig/kubeconfig",
+        },
+])
+    else [];
+
+
+local internal = {
+    provisioner_node_affinity(estate):: (
+        if isEstateNotSkipper then {
+          nodeAffinity: {
+              requiredDuringSchedulingIgnoredDuringExecution: {
+                nodeSelectorTerms: [
+                  {
+                     matchExpressions: [
+                       {
+                          key: "pool",
+                          operator: "In",
+                          values: storageconfigs.storageEstates,
+                       },
+                       {
+                          key: "storage.salesforce.com/nodeprep",
+                          operator: "In",
+                          values: ["mounted"],
+                       },
+                     ],
+                  },
+                ],
+              },
+            },
+        } else {}
+    ),
+    cert_volume_mounts(estate):: (
+      if isEstateNotSkipper then
+          configs.filter_empty([
+            configs.maddog_cert_volume_mount,
+            configs.cert_volume_mount,
+            configs.kube_config_volume_mount,
+        ])
+      else []
+    ),
+    cert_volume(estate):: (
+      if isEstateNotSkipper then
+          configs.filter_empty([
+            configs.maddog_cert_volume,
+            configs.cert_volume,
+            configs.kube_config_volume,
+        ])
+      else []
+    ),
+
+
+};
+if std.setMember(configs.estate, enabledEstates) then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -26,28 +105,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
         },
         spec: {
           hostNetwork: true,
-          affinity: {
-            nodeAffinity: {
-              requiredDuringSchedulingIgnoredDuringExecution: {
-                nodeSelectorTerms: [
-                  {
-                     matchExpressions: [
-                       {
-                          key: "pool",
-                          operator: "In",
-                          values: storageconfigs.storageEstates,
-                       },
-                       {
-                          key: "storage.salesforce.com/nodeprep",
-                          operator: "In",
-                          values: ["mounted"],
-                       },
-                     ],
-                  },
-                ],
-              },
-            },
-          },
+          affinity: internal.provisioner_node_affinity(configs.estate),
           initContainers: [
             {} +
             storageutils.log_init_container(
@@ -79,28 +137,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                   name: "local-volume-sfdc-config",
                   mountPath: "/etc/provisioner/config",
                 },
-                configs.maddog_cert_volume_mount,
-                configs.cert_volume_mount,
-                configs.kube_config_volume_mount,
-              ] + storageutils.log_init_volume_mounts()),
-              env: [
-                {
-                  name: "MY_NODE_NAME",
-                  valueFrom: {
-                    fieldRef: {
-                      fieldPath: "spec.nodeName",
-                    },
-                  },
-                },
-                {
-                  name: "MY_NAMESPACE",
-                  value: "lvns",
-                },
-                {
-                  name: "KUBECONFIG",
-                  value: "/kubeconfig/kubeconfig",
-                },
-              ],
+              ] + internal.cert_volume_mounts(configs.estate)
+              + storageutils.log_init_volume_mounts()),
+              env: lvEnvironmentVars,
             },
           ],
           volumes: configs.filter_empty([
@@ -122,10 +161,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                  name: "local-volume-sfdc-config",
                },
             },
-            configs.maddog_cert_volume,
-            configs.cert_volume,
-            configs.kube_config_volume,
-          ] + storageutils.log_init_volumes()),
+          ] + internal.cert_volume(configs.estate) + storageutils.log_init_volumes()),
         },
       },
    },
