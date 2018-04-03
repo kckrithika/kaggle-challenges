@@ -1,4 +1,116 @@
 hosts:
+- bomrolename: sam_compute
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam
+  hostname: shared0-samcompute1-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_compute
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam
+  hostname: shared0-samcompute1-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_compute
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam
+  hostname: shared0-samcompute2-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: cdg-sam
+  devicerole: samkubeapi
+  estate: cdg-sam
+  hostname: shared0-samkubeapi1-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: cdg-sam
+  devicerole: samkubeapi
+  estate: cdg-sam
+  hostname: shared0-samkubeapi1-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: cdg-sam
+  devicerole: samkubeapi
+  estate: cdg-sam
+  hostname: shared0-samkubeapi2-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: cdg-sam
+  devicerole: samkubeapi
+  estate: cdg-sam
+  hostname: shared0-samkubeapi2-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: cdg-sam
+  devicerole: samkubeapi
+  estate: cdg-sam
+  hostname: shared0-samkubeapi3-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: cdg-sam
+  devicerole: samkubeapi
+  estate: cdg-sam
+  hostname: shared0-samkubeapi3-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater1-3-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater2-1-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: cdg-sam
+  devicerole: samcompute
+  estate: cdg-sam_gater
+  hostname: shared0-samminiongater2-2-cdg.ops.sfdc.net
+  kingdom: cdg
+  pod: none
+  superpod: none
 - bomrolename: sam_kube_api
   controlestate: cdu-sam
   devicerole: samkubeapi
@@ -2045,6 +2157,118 @@ hosts:
   estate: dfw-universalsearch_svc
   hostname: shared0-searchidx2-3-dfw.ops.sfdc.net
   kingdom: dfw
+  pod: none
+  superpod: none
+- bomrolename: sam_compute
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam
+  hostname: shared0-samcompute1-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_compute
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam
+  hostname: shared0-samcompute1-2-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_compute
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam
+  hostname: shared0-samcompute2-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: fra-sam
+  devicerole: samkubeapi
+  estate: fra-sam
+  hostname: shared0-samkubeapi1-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: fra-sam
+  devicerole: samkubeapi
+  estate: fra-sam
+  hostname: shared0-samkubeapi1-2-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: fra-sam
+  devicerole: samkubeapi
+  estate: fra-sam
+  hostname: shared0-samkubeapi2-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: fra-sam
+  devicerole: samkubeapi
+  estate: fra-sam
+  hostname: shared0-samkubeapi2-2-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: fra-sam
+  devicerole: samkubeapi
+  estate: fra-sam
+  hostname: shared0-samkubeapi3-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_kube_api
+  controlestate: fra-sam
+  devicerole: samkubeapi
+  estate: fra-sam
+  hostname: shared0-samkubeapi3-2-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam_gater
+  hostname: shared0-samminiongater1-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam_gater
+  hostname: shared0-samminiongater1-2-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam_gater
+  hostname: shared0-samminiongater1-3-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam_gater
+  hostname: shared0-samminiongater2-1-fra.ops.sfdc.net
+  kingdom: fra
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_gater
+  controlestate: fra-sam
+  devicerole: samcompute
+  estate: fra-sam_gater
+  hostname: shared0-samminiongater2-2-fra.ops.sfdc.net
+  kingdom: fra
   pod: none
   superpod: none
 - bomrolename: sam_compute
@@ -5651,6 +5875,14 @@ hosts:
   controlestate: iad-sam
   devicerole: samcompute
   estate: iad-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform1-5-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_crosscloudplatform
   hostname: shared0-samminioncrosscloudplatform2-1-iad.ops.sfdc.net
   kingdom: iad
   pod: none
@@ -5676,6 +5908,14 @@ hosts:
   devicerole: samcompute
   estate: iad-sam_crosscloudplatform
   hostname: shared0-samminioncrosscloudplatform2-4-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform2-5-iad.ops.sfdc.net
   kingdom: iad
   pod: none
   superpod: none
@@ -5711,6 +5951,14 @@ hosts:
   kingdom: iad
   pod: none
   superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform3-5-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
 - bomrolename: sam_minion_crosscloudsetup
   controlestate: iad-sam
   devicerole: samcompute
@@ -5724,6 +5972,14 @@ hosts:
   devicerole: samcompute
   estate: iad-sam_crosscloudsetup
   hostname: shared0-samminioncrosscloudsetup1-2-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup1-3-iad.ops.sfdc.net
   kingdom: iad
   pod: none
   superpod: none
@@ -5747,7 +6003,23 @@ hosts:
   controlestate: iad-sam
   devicerole: samcompute
   estate: iad-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup2-3-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_crosscloudsetup
   hostname: shared0-samminioncrosscloudsetup3-1-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup3-2-iad.ops.sfdc.net
   kingdom: iad
   pod: none
   superpod: none
@@ -6075,6 +6347,14 @@ hosts:
   controlestate: iad-sam
   devicerole: samcompute
   estate: iad-sam_report_collector
+  hostname: shared0-samminionreportcollector1-2-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_report_collector
   hostname: shared0-samminionreportcollector2-1-iad.ops.sfdc.net
   kingdom: iad
   pod: none
@@ -6083,7 +6363,23 @@ hosts:
   controlestate: iad-sam
   devicerole: samcompute
   estate: iad-sam_report_collector
+  hostname: shared0-samminionreportcollector2-2-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_report_collector
   hostname: shared0-samminionreportcollector3-1-iad.ops.sfdc.net
+  kingdom: iad
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: iad-sam
+  devicerole: samcompute
+  estate: iad-sam_report_collector
+  hostname: shared0-samminionreportcollector3-2-iad.ops.sfdc.net
   kingdom: iad
   pod: none
   superpod: none
@@ -8539,6 +8835,14 @@ hosts:
   controlestate: ord-sam
   devicerole: samcompute
   estate: ord-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform1-5-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_crosscloudplatform
   hostname: shared0-samminioncrosscloudplatform2-1-ord.ops.sfdc.net
   kingdom: ord
   pod: none
@@ -8564,6 +8868,14 @@ hosts:
   devicerole: samcompute
   estate: ord-sam_crosscloudplatform
   hostname: shared0-samminioncrosscloudplatform2-4-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform2-5-ord.ops.sfdc.net
   kingdom: ord
   pod: none
   superpod: none
@@ -8599,6 +8911,14 @@ hosts:
   kingdom: ord
   pod: none
   superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
 - bomrolename: sam_minion_crosscloudsetup
   controlestate: ord-sam
   devicerole: samcompute
@@ -8612,6 +8932,14 @@ hosts:
   devicerole: samcompute
   estate: ord-sam_crosscloudsetup
   hostname: shared0-samminioncrosscloudsetup1-2-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup1-3-ord.ops.sfdc.net
   kingdom: ord
   pod: none
   superpod: none
@@ -8635,7 +8963,23 @@ hosts:
   controlestate: ord-sam
   devicerole: samcompute
   estate: ord-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup2-3-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_crosscloudsetup
   hostname: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net
   kingdom: ord
   pod: none
   superpod: none
@@ -8963,6 +9307,14 @@ hosts:
   controlestate: ord-sam
   devicerole: samcompute
   estate: ord-sam_report_collector
+  hostname: shared0-samminionreportcollector1-2-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_report_collector
   hostname: shared0-samminionreportcollector2-1-ord.ops.sfdc.net
   kingdom: ord
   pod: none
@@ -8971,7 +9323,23 @@ hosts:
   controlestate: ord-sam
   devicerole: samcompute
   estate: ord-sam_report_collector
+  hostname: shared0-samminionreportcollector2-2-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_report_collector
   hostname: shared0-samminionreportcollector3-1-ord.ops.sfdc.net
+  kingdom: ord
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: ord-sam
+  devicerole: samcompute
+  estate: ord-sam_report_collector
+  hostname: shared0-samminionreportcollector3-2-ord.ops.sfdc.net
   kingdom: ord
   pod: none
   superpod: none
@@ -14271,6 +14639,286 @@ hosts:
   kingdom: prd
   pod: none
   superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release300-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release300-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release301-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release301-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release302-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release302-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release303-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release303-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release304-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release304-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release305-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release305-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release306-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release306-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release307-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release307-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release308-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release308-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release309-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release309-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release310-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release310-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release311-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: rdi-release
+  controlestate: prd-sam
+  devicerole: unknown
+  estate: prd-rdi_release
+  hostname: rdi-release311-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit1-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit1-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit1-4-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit2-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit3-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit3-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_mit
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-rdi_release
+  hostname: shared0-samminionmit3-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
 - bomrolename: sam_compute
   controlestate: prd-sam
   devicerole: samcompute
@@ -15139,6 +15787,14 @@ hosts:
   controlestate: prd-sam
   devicerole: samcompute
   estate: prd-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform1-4-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_crosscloudplatform
   hostname: shared0-samminioncrosscloudplatform2-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
@@ -15156,6 +15812,14 @@ hosts:
   devicerole: samcompute
   estate: prd-sam_crosscloudplatform
   hostname: shared0-samminioncrosscloudplatform2-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform2-4-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
@@ -15183,11 +15847,27 @@ hosts:
   kingdom: prd
   pod: none
   superpod: none
+- bomrolename: sam_minion_crosscloudplatform
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_crosscloudplatform
+  hostname: shared0-samminioncrosscloudplatform3-4-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
 - bomrolename: sam_minion_crosscloudsetup
   controlestate: prd-sam
   devicerole: samcompute
   estate: prd-sam_crosscloudsetup
   hostname: shared0-samminioncrosscloudsetup1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup1-2-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
@@ -15203,7 +15883,23 @@ hosts:
   controlestate: prd-sam
   devicerole: samcompute
   estate: prd-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_crosscloudsetup
   hostname: shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_crosscloudsetup
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_crosscloudsetup
+  hostname: shared0-samminioncrosscloudsetup3-2-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
@@ -15451,6 +16147,14 @@ hosts:
   controlestate: prd-sam
   devicerole: samcompute
   estate: prd-sam_report_collector
+  hostname: shared0-samminionreportcollector1-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_report_collector
   hostname: shared0-samminionreportcollector2-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
@@ -15459,7 +16163,23 @@ hosts:
   controlestate: prd-sam
   devicerole: samcompute
   estate: prd-sam_report_collector
+  hostname: shared0-samminionreportcollector2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_report_collector
   hostname: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_report_collector
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_report_collector
+  hostname: shared0-samminionreportcollector3-2-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
@@ -15799,6 +16519,30 @@ hosts:
   kingdom: prd
   pod: none
   superpod: none
+- bomrolename: sam_minion_tardis
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_tardis
+  hostname: shared0-samminiontardis1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_tardis
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_tardis
+  hostname: shared0-samminiontardis1-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_tardis
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_tardis
+  hostname: shared0-samminiontardis2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
 - bomrolename: sam_minion_tnrp_merger
   controlestate: prd-sam
   devicerole: samcompute
@@ -15892,6 +16636,54 @@ hosts:
   devicerole: samcompute
   estate: prd-sam_warden
   hostname: shared0-samminionwarden2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_zipkin
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_zipkin
+  hostname: shared0-samminionzipkin1-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_zipkin
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_zipkin
+  hostname: shared0-samminionzipkin1-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_zipkin
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_zipkin
+  hostname: shared0-samminionzipkin1-3-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_zipkin
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_zipkin
+  hostname: shared0-samminionzipkin2-1-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_zipkin
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_zipkin
+  hostname: shared0-samminionzipkin2-2-prd.eng.sfdc.net
+  kingdom: prd
+  pod: none
+  superpod: none
+- bomrolename: sam_minion_zipkin
+  controlestate: prd-sam
+  devicerole: samcompute
+  estate: prd-sam_zipkin
+  hostname: shared0-samminionzipkin2-3-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: none
@@ -16852,126 +17644,6 @@ hosts:
   devicerole: samcompute
   estate: prd-sp2-sam_iot_test
   hostname: shared0-samminioniottest2-2-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_cre
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_cre
-  hostname: shared2-samminionretailcre1-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_cre
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_cre
-  hostname: shared2-samminionretailcre2-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_cre
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_cre
-  hostname: shared2-samminionretailcre3-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_credata
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_credata
-  hostname: shared2-samminionretailcredata1-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_credata
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_credata
-  hostname: shared2-samminionretailcredata2-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_credata
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_credata
-  hostname: shared2-samminionretailcredata3-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_dss
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_dss
-  hostname: shared2-samminionretaildss1-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_dss
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_dss
-  hostname: shared2-samminionretaildss2-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_dss
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_dss
-  hostname: shared2-samminionretaildss3-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_mds
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_mds
-  hostname: shared2-samminionretailmds1-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_mds
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_mds
-  hostname: shared2-samminionretailmds2-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_mds
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_mds
-  hostname: shared2-samminionretailmds3-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_rsui
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_rsui
-  hostname: shared2-samminionretailrsui1-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_rsui
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_rsui
-  hostname: shared2-samminionretailrsui2-1-prd.eng.sfdc.net
-  kingdom: prd
-  pod: none
-  superpod: sp2
-- bomrolename: sam_minion_retail_rsui
-  controlestate: prd-sam
-  devicerole: samcompute
-  estate: prd-sp2-sam_retail_rsui
-  hostname: shared2-samminionretailrsui3-1-prd.eng.sfdc.net
   kingdom: prd
   pod: none
   superpod: sp2
@@ -18108,6 +18780,486 @@ hosts:
   devicerole: samcompute
   estate: xrd-sam_gater
   hostname: shared0-samminiongater2-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool1-8-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool2-8-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool3-8-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool4-8-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool5-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool6-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool7-7-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-1-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-2-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-3-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-4-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-5-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-6-xrd.eng.sfdc.net
+  kingdom: xrd
+  pod: none
+  superpod: none
+- bomrolename: sampool
+  controlestate: xrd-sam
+  devicerole: samcompute
+  estate: xrd-sampool
+  hostname: shared0-sampool8-7-xrd.eng.sfdc.net
   kingdom: xrd
   pod: none
   superpod: none
