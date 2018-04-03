@@ -2,10 +2,10 @@
   sql_alerts: [
     {
       name: "Bad-Customer-Deployments-Production",
-      instructions: "The following nodes are reported as bad customer deployments in Production",
+      instructions: "The following deployments are reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
       alertThreshold: "30m",
       alertFrequency: "24h",
-      watchdogFrequency: "24h",
+      watchdogFrequency: "15m",
       sql: "SELECT * FROM
 (
   SELECT
