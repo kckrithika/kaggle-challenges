@@ -55,7 +55,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                   cloud: "storage",
                },
                annotations: {
-                  "slb.sfdc.net/name": "ceph-metrics",
+                  "slb.sfdc.net/name": storageconfigs.serviceNames["ceph-metrics-svc"],
                   "slb.sfdc.net/portconfigurations": '[{"port":8001,"targetport":8001,"lbtype":"tcp"}]',
                },
             },

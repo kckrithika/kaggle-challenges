@@ -25,8 +25,8 @@ items:
         - command:
           - /bin/bash
           - -c
-          - echo successfully pulled image ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000065-340ffbdf
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000065-340ffbdf
+          - echo successfully pulled image ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000072-858faabe
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000072-858faabe
           name: image-puller
 - apiVersion: extensions/v1beta1
   kind: DaemonSet

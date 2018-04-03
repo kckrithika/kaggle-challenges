@@ -122,7 +122,21 @@ if std.setMember(configs.estate, enabledEstates) then {
                             "-j",
                             "prometheus",
                         ],
-                        env: storageutils.sfms_environment_vars("fds"),
+                        env: [] +
+                        if configs.estate != "prd-sam_storage" then
+                            storageutils.sfms_environment_vars(storageconfigs.serviceNames["fds-svc"])
+                        else
+                        [
+                            {
+                                name: "MC_ZK_SERVERS",
+                                value: storageconfigs.perEstate.sfstore.zkServer[configs.estate],
+                            },
+                            {
+                                name: "MC_PORT",
+                                value: "8080",
+                            },
+                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceNames["fds-svc"]),
+
                     },
                 ],
                 volumes:

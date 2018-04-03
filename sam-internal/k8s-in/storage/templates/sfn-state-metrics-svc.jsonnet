@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local storageconfigs = import "storageconfig.jsonnet";
 
 if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     kind: "Service",
@@ -11,7 +12,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 cloud: "storage",
             },
             annotations: {
-                "slb.sfdc.net/name": "sfn-metrics",
+                "slb.sfdc.net/name": storageconfigs.serviceNames["sfn-metrics-svc"],
                 "slb.sfdc.net/portconfigurations": '[{"port":8080,"targetport":8080,"lbtype":"tcp"}]',
             },
         },
@@ -22,7 +23,6 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 port: 8080,
                 protocol: "TCP",
                 targetPort: 8080,
-                nodePort: 38002,
                 },
             ],
             selector: {
