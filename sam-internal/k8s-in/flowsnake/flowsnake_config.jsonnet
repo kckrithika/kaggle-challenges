@@ -81,21 +81,4 @@ local util = import "util_functions.jsonnet";
         estate == "prd-dev-flowsnake_iot_test" ||
         (self.is_minikube && !self.is_minikube_small)
     ),
-    # Snoozes - This is a central list of all snoozed watchdogs.  For each snooze, please add a comment explaining the reason
-    # Format of struct is here: https://git.soma.salesforce.com/sam/sam/blob/master/pkg/tools/watchdog/internal/config/config.go
-    # Fields `estates`, `checker`, and `until` are required.  Specific instances can be listed with `instances` or using regex with `instanceRegex`
-    # Until date format is YYYY/MM/DD.
-    #
-    # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
-    snooze: [
-      # Unknown - next time add comment
-      { estates: ["iad-flowsnake_prod"], checker: "kubeletChecker", until: "2018/04/31" },
-      { estates: ["prd-flowsnake_prod"], checker: "kubeletChecker", until: "2018/04/31" },
-      { estates: ["iad-flowsnake_prod"], checker: "nodeChecker", until: "2018/04/31" },
-      { estates: ["prd-flowsnake_prod"], checker: "nodeChecker", until: "2018/04/31" },
-      { estates: ["iad-flowsnake_prod"], checker: "podChecker", until: "2018/04/31" },
-      { estates: ["prd-flowsnake_prod"], checker: "podChecker", until: "2018/04/31" },
-      { estates: ["iad-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/31" },
-      { estates: ["prd-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/31" },
-      ],
 }
