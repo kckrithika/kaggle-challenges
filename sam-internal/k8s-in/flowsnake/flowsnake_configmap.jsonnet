@@ -439,14 +439,14 @@ local samconfig = import "config.jsonnet";
         # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
         snooze: [
           # snooze iad & ord due to un-fully deployed fleet.
-          { estates: ["iad-flowsnake_prod"], checker: "kubeletChecker", until: "2018/04/31" },
-          { estates: ["ord-flowsnake_prod"], checker: "kubeletChecker", until: "2018/04/31" },
-          { estates: ["iad-flowsnake_prod"], checker: "nodeChecker", until: "2018/04/31" },
-          { estates: ["ord-flowsnake_prod"], checker: "nodeChecker", until: "2018/04/31" },
-          { estates: ["iad-flowsnake_prod"], checker: "podChecker", until: "2018/04/31" },
-          { estates: ["ord-flowsnake_prod"], checker: "podChecker", until: "2018/04/31" },
-          { estates: ["iad-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/31" },
-          { estates: ["ord-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/31" },
+          { estates: ["iad-flowsnake_prod"], checker: "kubeletChecker", until: "2018/04/30" },
+          { estates: ["ord-flowsnake_prod"], checker: "kubeletChecker", until: "2018/04/30" },
+          { estates: ["iad-flowsnake_prod"], checker: "nodeChecker", until: "2018/04/30" },
+          { estates: ["ord-flowsnake_prod"], checker: "nodeChecker", until: "2018/04/30" },
+          { estates: ["iad-flowsnake_prod"], checker: "podChecker", until: "2018/04/30" },
+          { estates: ["ord-flowsnake_prod"], checker: "podChecker", until: "2018/04/30" },
+          { estates: ["iad-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/30" },
+          { estates: ["ord-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/30" },
           ],
     },
     cert_secretizer_config: {
