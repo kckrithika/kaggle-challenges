@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -38,27 +38,45 @@ if configs.estate == "prd-sdc" then {
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-baboon",
-                            "--deletePodPeriod=20m",
-                            "--deletePodFlag=true",
-                            "--deleteIpvsStatePeriod=4h",
-                            "--deleteIpvsStateFlag=true",
-                            "--deleteConfigFilePeriod=50m",
-                            "--deleteConfigFileFlag=true",
-                            "--deleteNginxTunnelIntfPeriod=2h",
-                            "--deleteNginxTunnelIntfFlag=true",
-                            "--deleteIpvsIntfPeriod=1.5h",
-                            "--deleteIpvsIntfFlag=true",
-                            "--deleteCustomerPodFlag=true",
-                            "--deleteCustomerPodPeriod=30m",
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--slbPodLabel=" + slbconfigs.podLabelList,
                             "--k8sapiserver=",
                             "--namespace=sam-system",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
                             "--port=" + portconfigs.slb.baboonEndPointPort,
                             configs.sfdchosts_arg,
-                        ],
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                        ]
+                        + (
+                            if configs.estate == "prd-sdc" then [
+                                "--deletePodPeriod=20m",
+                                "--deletePodFlag=true",
+                                "--deleteIpvsStatePeriod=4h",
+                                "--deleteIpvsStateFlag=true",
+                                "--deleteConfigFilePeriod=50m",
+                                "--deleteConfigFileFlag=true",
+                                "--deleteNginxTunnelIntfPeriod=2h",
+                                "--deleteNginxTunnelIntfFlag=true",
+                                "--deleteIpvsIntfPeriod=1.5h",
+                                "--deleteIpvsIntfFlag=true",
+                                "--deleteCustomerPodFlag=true",
+                                "--deleteCustomerPodPeriod=30m",
+                                "--slbPodLabel=" + slbconfigs.podLabelList,
+                            ] else [
+                                "--deletePodPeriod=20m",
+                                "--deletePodFlag=false",
+                                "--deleteIpvsStatePeriod=4h",
+                                "--deleteIpvsStateFlag=false",
+                                "--deleteConfigFilePeriod=50m",
+                                "--deleteConfigFileFlag=false",
+                                "--deleteNginxTunnelIntfPeriod=2h",
+                                "--deleteNginxTunnelIntfFlag=false",
+                                "--deleteIpvsIntfPeriod=1.5h",
+                                "--deleteIpvsIntfFlag=false",
+                                "--deleteCustomerPodFlag=false",
+                                "--deleteCustomerPodPeriod=30m",
+                                "--slbPodLabel=" + slbconfigs.podLabelList,
+                            ]
+                        ),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,

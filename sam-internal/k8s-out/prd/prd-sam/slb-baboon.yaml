@@ -25,16 +25,16 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --deletePodPeriod=20m
-        - --deletePodFlag=true
+        - --deletePodFlag=false
         - --deleteIpvsStatePeriod=4h
-        - --deleteIpvsStateFlag=true
+        - --deleteIpvsStateFlag=false
         - --deleteConfigFilePeriod=50m
-        - --deleteConfigFileFlag=true
+        - --deleteConfigFileFlag=false
         - --deleteNginxTunnelIntfPeriod=2h
-        - --deleteNginxTunnelIntfFlag=true
+        - --deleteNginxTunnelIntfFlag=false
         - --deleteIpvsIntfPeriod=1.5h
-        - --deleteIpvsIntfFlag=true
-        - --deleteCustomerPodFlag=true
+        - --deleteIpvsIntfFlag=false
+        - --deleteCustomerPodFlag=false
         - --deleteCustomerPodPeriod=30m
         - --slbPodLabel=name=slb-ipvs, name=slb-portal, name=slb-realsvrcfg, name=slb-dns-register,
           name=slb-node-os-stats, name=slb-vip-watchdog, name=slb-nginx-config, name=slb-ipvsdata-watchdog,
@@ -70,7 +70,7 @@ spec:
           name: sfdchosts
       nodeSelector:
         master: "true"
-        pool: prd-sdc
+        pool: prd-sam
       volumes:
       - hostPath:
           path: /etc/pki_service
