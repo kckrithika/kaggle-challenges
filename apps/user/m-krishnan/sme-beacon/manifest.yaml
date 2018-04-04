@@ -38,11 +38,11 @@ system:
       args:
       # mTLS port
       - -endpoint
-      - samapp/m-krishnan/sme-beacon:DATACENTER_ALLENV:7443
+      - samapp/user-m-krishnan/sme-beacon:DATACENTER_ALLENV:7443
 
       # Plaintext port
       - -endpoint
-      - sme-beacon-plaintext:DATACENTER_ALLENV:7012
+      - sme-beacon:DATACENTER_ALLENV:7012
       livenessProbe:
         exec:
           command: ["/home/scone/is-alive.sh"]
