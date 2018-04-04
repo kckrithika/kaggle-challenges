@@ -25,6 +25,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
 
     - name: beacon-shipping
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
@@ -41,7 +44,7 @@ system:
           - "/home/scone/is-alive.sh"
       volumeMounts:
       - mountPath: /log
-        name: logvol
+        name: logvolbeacon
 
     - name: sherpa-shipping
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2025---2018-03-27
@@ -68,6 +71,9 @@ system:
         periodSeconds: 5
 
     volumes:
-    - name: logvol
+    - name: logvolbeacon
       hostPath:
-        path: /home/sfdc-shipping-service/logs
+        path: /home/sfdc-scone-shipping-beacon/logs
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-shipping-service/logs
