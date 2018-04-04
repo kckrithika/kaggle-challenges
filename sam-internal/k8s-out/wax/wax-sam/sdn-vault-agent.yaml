@@ -21,7 +21,7 @@ spec:
         - --archiveSvcEndpoint=https://ops-piperepo1-0-wax.data.sfdc.net/tnrp/content_repo/0/archive
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt
-        - --cafile=/data/certs/ca.crt
+        - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
         - --log_dir=/data/logs/sdn/
         - --logtostderr=true

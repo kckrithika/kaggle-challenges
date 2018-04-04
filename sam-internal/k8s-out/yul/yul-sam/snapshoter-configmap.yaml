@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   snapshoter.json: |-
     {
-      "ca-file": "/data/certs/ca.crt",
+      "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/data/certs/hostcert.crt",
       "kafka-endpoint": "ajna0-broker1-0-yul.data.sfdc.net:9093",
       "kafka-payload-kb": 300,

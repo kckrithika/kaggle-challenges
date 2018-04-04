@@ -148,10 +148,7 @@ local utils = import "util_functions.jsonnet",
         name: "certs",
     },
     caFile: (
-        if $.maddogForSamHostsEnabled then
-            "/etc/pki_service/ca/cabundle.pem"
-        else
-            "/data/certs/ca.crt"
+        "/etc/pki_service/ca/cabundle.pem"
     ),
     keyFile: (
         if $.maddogForSamHostsEnabled then
