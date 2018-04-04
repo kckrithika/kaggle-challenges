@@ -1,5 +1,8 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+if !flowsnakeconfig.kubedns_manifests_enabled then
+"SKIP"
+else
 {
     apiVersion: "v1",
     kind: "Service",
