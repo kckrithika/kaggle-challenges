@@ -82,4 +82,10 @@ local util = import "util_functions.jsonnet";
         estate == "prd-dev-flowsnake_iot_test" ||
         (self.is_minikube && !self.is_minikube_small)
     ),
+    kubedns_manifests_enabled: (
+        estate == "iad-flowsnake_prod" ||
+        estate == "prd-data-flowsnake_test" ||
+        estate == "ord-flowsnake_prod" ||
+        estate == "phx-flowsnake_prod"
+    ),
 }

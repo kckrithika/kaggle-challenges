@@ -68,3 +68,9 @@ spec:
         name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:571
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/kubedns:571
+        name: kubedns
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/kubednsmasq:571
+        name: kubednsmasq
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/kubednssidecar:571
+        name: kubednssidecar
