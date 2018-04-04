@@ -19,8 +19,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                         command: [
                                      "/sam/watchdog",
                                      "-role=FILESYSTEM",
-                                     "-watchdogFrequency=180s",
-                                     "-alertThreshold=1h",
+                                     "-watchdogFrequency=600s",
+                                     "-alertThreshold=900s",
                                      "-maxUptimeSampleSize=5",
                                  ]
                                  + samwdconfig.filesystem_watchdog_args

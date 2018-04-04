@@ -16,8 +16,8 @@ spec:
       - command:
         - /sam/watchdog
         - -role=FILESYSTEM
-        - -watchdogFrequency=180s
-        - -alertThreshold=1h
+        - -watchdogFrequency=600s
+        - -alertThreshold=900s
         - -maxUptimeSampleSize=5
         - -recipient=sdn@salesforce.com,make@salesforce.com
         - -timeout=2s
