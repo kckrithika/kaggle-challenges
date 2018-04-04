@@ -20,7 +20,7 @@ local masterNodeSelector =
 // Environment variables for the Local Provisioner container.
 local cephOpEnvironmentVars =
         if isEstateNotSkipper then configs.filter_empty([configs.kube_config_env])
-        else configs.filter_empty([
+        else [
         {
             name: "MIN_OSD_VOL_SIZE",
             value: "5Gi",
@@ -33,7 +33,7 @@ local cephOpEnvironmentVars =
             name: "DEV_MODE",
             value: "YEs",
         },
-        ]);
+        ];
 
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",

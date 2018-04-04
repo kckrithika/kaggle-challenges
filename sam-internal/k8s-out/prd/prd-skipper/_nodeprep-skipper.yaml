@@ -40,7 +40,7 @@ items:
           - "echo 'Starting creation...'; \nrm -rf '/mnt/parent-node-mnt/lvhdd' ||
             true;\nfor c in $(seq 0 3); do\n    echo \"creating hdd $c\"\n    mkdir
             -p \"/mnt/parent-node-mnt/lvhdd/disk$c\" || true;\ndone;\nrm -rf \"/mnt/lvssd\"
-            || true;\nfor c in $(seq 0 0); do\n    echo \"creating sdd $c\"\n    mkdir
+            || true;\nfor c in $(seq 0 0); do\n    echo \"creating ssd $c\"\n    mkdir
             -p \"/mnt/parent-node-mnt/lvssd/disk$c\" || true;\ndone;\nnode_num=$(echo
             ${MY_NODE_NAME: -1});\nnodelen=$(kubectl get nodes --no-headers -o=custom-columns=NAME:.metadata.name
             | wc -l);\nkubectl label node $MY_NODE_NAME \"node.sam.sfdc.net/rack=$node_num\"

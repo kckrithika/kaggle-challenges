@@ -10,7 +10,7 @@ local nodestartup = |||
     done;
     rm -rf "/mnt/lvssd" || true;
     for c in $(seq 0 0); do
-        echo "creating sdd $c"
+        echo "creating ssd $c"
         mkdir -p "/mnt/parent-node-mnt/lvssd/disk$c" || true;
     done;
     node_num=$(echo ${MY_NODE_NAME: -1});
