@@ -25,6 +25,9 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
 
     - name: beacon-shipping
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
@@ -68,6 +71,9 @@ system:
         periodSeconds: 5
 
     volumes:
-    - name: logvol
+    - name: logvolbeacon
       hostPath:
-        path: /home/sfdc-shipping-service/logs
+        path: /home/sfdc-scone-shipping-beacon/logs
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-shipping-service/logs
