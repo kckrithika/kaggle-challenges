@@ -34,8 +34,8 @@ local fdsEnvironmentVars = std.prune([
         name: "FDS_PROFILING",
         value: storageconfigs.fds_profiling,
     },
-    # This is to force a resync for fds, since running all .yaml from a folder sometimes leads to 
-    # things running out of order, this is to allow for faster recovery for cluster creation 
+    // This is to force a resync for fds, since running all .yaml from a folder sometimes leads to
+    // things running out of order, this is to allow for faster recovery for cluster creation
     if configs.estate == "prd-skipper" then {
         name: "FDS_MIN_RESYNC_PERIOD",
         value: "3s",
