@@ -20,7 +20,7 @@ if configs.estate == "prd-sam" then {
                                     "--sqlK8sResourceDbName=sam_kube_resource",
                                     "--sqlDbPort=3306",
                                     "--sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet",
-                                    "--deployer-emailFrequency=24h",
+                                    "--emailFrequency=24h",
                                     "-v=5",
                                     "--alsologtostderr",
                                  ]
