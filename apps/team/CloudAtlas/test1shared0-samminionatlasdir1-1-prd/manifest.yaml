@@ -11,8 +11,8 @@ system:
       type: Recreate
     hostnetwork: true
     containers:
-    - name: sherpa-cloudatlas-client-prd-stage-dir1-1
-      image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
+    - name: sherpa-cloudatlas-client
+      image: sfci/servicelibs/sherpa:2.0.22
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
@@ -68,7 +68,7 @@ system:
           - /tmp/ready
         initialDelaySeconds: 60
         periodSeconds: 5
-        failureThreshold: 24
+        failureThreshold: 120
     volumes:
     - name: hosthomevol
       hostPath:
