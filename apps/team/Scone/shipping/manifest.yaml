@@ -44,7 +44,7 @@ system:
           - "/home/scone/is-alive.sh"
       volumeMounts:
       - mountPath: /log
-        name: logvol
+        name: logvolbeacon
 
     - name: sherpa-shipping
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2025---2018-03-27
