@@ -34,6 +34,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
+            kubedns_image_tag: "1.10.0",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -74,6 +75,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
+            kubedns_image_tag: "1.10.0",
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -108,6 +110,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
+            kubedns_image_tag: "1.10.0",
             version_mapping: {
                 main: {
                   "0.9.7": 571,
@@ -135,6 +138,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_image_tag: "sam-0001730-c7caec88",
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
+            kubedns_image_tag: "1.10.0",
             version_mapping: {
                 main: {
                   "0.9.7": 571,
@@ -159,6 +163,7 @@ local utils = import "util_functions.jsonnet";
             madkub_image_tag: "1.0.0-0000062-dca2d8d1",
             nodeMonitor_image_tag: "minikube",
             zookeeper_image_tag: "minikube",
+            kubedns_image_tag: "1.10.0",
             version_mapping: {
                 main: {
                   minikube: "minikube",
@@ -205,6 +210,9 @@ local utils = import "util_functions.jsonnet";
     deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
     madkub: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
+    kubedns: flowsnakeconfig.registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].kubedns_image_tag,
+    kubednsmasq: flowsnakeconfig.registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,
+    kubednssidecar: flowsnakeconfig.registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].kubedns_image_tag,
 
     # image function logic borrowed from samimages.jsonnet. We currently do not use the override functionality,
     # but benefit from the automatic DC-correct determination of which artifactrepo to use.
