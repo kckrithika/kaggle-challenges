@@ -19,8 +19,8 @@ if configs.estate == "prd-sam" then {
                                     "--sqlDbHostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net",
                                     "--sqlK8sResourceDbName=sam_kube_resource",
                                     "--sqlDbPort=3306",
-                                    "--sqlQuery=select * from nodeDetailView where Ready!=True and Kingdom='prd'",
-                                    "--recipient=a.mitra@salesforce.com",
+                                    "--sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet",
+                                    "--emailFrequency=24h",
                                     "-v=5",
                                     "--alsologtostderr",
                                  ]
@@ -29,6 +29,11 @@ if configs.estate == "prd-sam" then {
                             {
                                 mountPath: "/var/secrets/",
                                 name: "mysql",
+                                readOnly: true,
+                            },
+                            {
+                                mountPath: "/var/queries/",
+                                name: "queries",
                                 readOnly: true,
                             },
                             configs.sfdchosts_volume_mount,
@@ -43,6 +48,12 @@ if configs.estate == "prd-sam" then {
                         name: "mysql",
                         secret: {
                             secretName: "mysql",
+                        },
+                    },
+                    {
+                        name: "queries",
+                        configMap: {
+                            name: "watchdogsamsqlqueries",
                         },
                     },
                     configs.sfdchosts_volume,
