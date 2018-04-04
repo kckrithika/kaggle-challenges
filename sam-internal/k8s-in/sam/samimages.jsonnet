@@ -19,6 +19,10 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        # [cbatra] Test synthetic with k4a
+        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001844-5a6abb17",
+        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001844-5a6abb17",
+
         # [lizhang.li] Enable filesytem-watchdog everywhere
         "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
         "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
