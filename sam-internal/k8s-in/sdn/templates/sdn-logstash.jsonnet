@@ -18,7 +18,7 @@ if configs.estate == "prd-sdc" then {
                                     value: "logstash",
                                 },
                                 {
-                                    name: "config.reload.automatic",
+                                    name: "config_reload_automatic",
                                     value: "true",
                                 },
                         ],
