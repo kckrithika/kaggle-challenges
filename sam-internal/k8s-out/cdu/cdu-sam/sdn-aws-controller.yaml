@@ -33,7 +33,7 @@ spec:
         - --ddi=https://ddi-api-crz.data.sfdc.net/
         - --keyfile=/data/certs/hostcert.key
         - --certfile=/data/certs/hostcert.crt
-        - --cafile=/data/certs/ca.crt
+        - --cafile=/etc/pki_service/ca/cabundle.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/
         - --logtostderr=true
