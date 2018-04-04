@@ -14,8 +14,8 @@ system:
         maxUnavailable: 1
     hostnetwork: true
     containers:
-    - name: sherpa-cloudatlas-client-prd-stage-dir2-1
-      image: tnrp/sherpa:0.2.0-0000100-8b64e2f2
+    - name: sherpa-cloudatlas-client
+      image: sfci/servicelibs/sherpa:2.0.22
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
