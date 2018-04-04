@@ -21,6 +21,8 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
+        - name: MY_NAMESPACE
+          value: lvns
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/lvprovisioner:v1.0-0000015-0ba0b53a
         imagePullPolicy: Always
         name: provisioner

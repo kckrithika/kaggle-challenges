@@ -49,8 +49,7 @@ if std.setMember(configs.estate, enabledEstates) then
                             aggregateStorage: storageconfigs.perEstate.ceph.aggregateStorage[configs.estate][minionEstate],
                         },
                     ],
-                } + if isEstateNotSkipper then { pool: minionEstate } else {}
-                  + if !isEstateNotSkipper then { cephOsdDaemonOverride: "osd_directory" } else {},
+                } + if isEstateNotSkipper then { pool: minionEstate } else { cephOsdDaemonOverride: "osd_directory" },
             }
             for minionEstate in storageconfigs.cephEstates[configs.estate]
         ],

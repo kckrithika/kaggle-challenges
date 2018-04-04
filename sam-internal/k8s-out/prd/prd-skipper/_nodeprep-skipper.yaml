@@ -28,11 +28,17 @@ items:
           cloud: storage
           team: storage-foundation
       spec:
-        affinity: {}
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: storage.salesforce.com/nodeprep
+                  operator: DoesNotExist
         containers:
         - args:
-          - "echo 'Starting creation...'; \nkubectl delete pv --all;\nrm -rf '/mnt/parent-node-mnt/lvhdd'
-            || true;\nfor c in $(seq 0 3); do\n    echo \"creating hdd $c\"\n    mkdir
+          - "echo 'Starting creation...'; \nrm -rf '/mnt/parent-node-mnt/lvhdd' ||
+            true;\nfor c in $(seq 0 3); do\n    echo \"creating hdd $c\"\n    mkdir
             -p \"/mnt/parent-node-mnt/lvhdd/disk$c\" || true;\ndone;\nrm -rf \"/mnt/lvssd\"
             || true;\nfor c in $(seq 0 0); do\n    echo \"creating sdd $c\"\n    mkdir
             -p \"/mnt/parent-node-mnt/lvssd/disk$c\" || true;\ndone;\nnode_num=$(echo
@@ -43,8 +49,9 @@ items:
             --overwrite;\nif [ \"$nodelen\" == 3 ]; then\n    echo \"Less than 3 worker
             nodes, removing noschedule taint from master\";\n    kubectl taint nodes
             -l node-role.kubernetes.io/master=\"true\"   node-role.kubernetes.io/master-
-            2>&1 > /dev/null;\nfi;\necho \"Node Creation completed...\"; \nwhile true;\ndo\n
-            \   sleep 21600;\ndone;\n"
+            2>&1 > /dev/null;\nfi;\necho \"Node Creation completed...\"; \nkubectl
+            label node $MY_NODE_NAME \"storage.salesforce.com/nodeprep=true\" --overwrite;\nwhile
+            true;\ndo\n    sleep 21600;\ndone;\n"
           command:
           - /bin/sh
           - -c

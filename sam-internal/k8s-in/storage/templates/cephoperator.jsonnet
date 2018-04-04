@@ -19,8 +19,8 @@ local masterNodeSelector =
 
 // Environment variables for the Local Provisioner container.
 local cephOpEnvironmentVars =
-        if isEstateNotSkipper then std.prune([configs.kube_config_env])
-        else std.prune([
+        if isEstateNotSkipper then configs.filter_empty([configs.kube_config_env])
+        else configs.filter_empty([
         {
             name: "MIN_OSD_VOL_SIZE",
             value: "5Gi",
@@ -34,27 +34,6 @@ local cephOpEnvironmentVars =
             value: "YEs",
         },
         ]);
-
-local internal = {
-    cert_volume_mounts(estate):: (
-        if isEstateNotSkipper then
-            configs.filter_empty([
-                configs.maddog_cert_volume_mount,
-                configs.cert_volume_mount,
-                configs.kube_config_volume_mount,
-            ])
-        else []
-    ),
-    cert_volume(estate):: (
-        if isEstateNotSkipper then
-            configs.filter_empty([
-                configs.maddog_cert_volume,
-                configs.cert_volume,
-                configs.kube_config_volume,
-            ])
-        else []
-    ),
-};
 
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
@@ -103,7 +82,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                         image: storageimages.cephoperator,
                         volumeMounts:
                             storageutils.log_init_volume_mounts()
-                            + internal.cert_volume_mounts(configs.estate),
+                            + storageutils.cert_volume_mounts(),
                         env: cephOpEnvironmentVars + [
                             {
                                 name: "K8S_PLATFORM",
@@ -139,7 +118,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                 ],
                 volumes:
                     storageutils.log_init_volumes()
-                    + internal.cert_volume(configs.estate),
+                    + storageutils.cert_volume(),
                 nodeSelector: masterNodeSelector,
             },
         },

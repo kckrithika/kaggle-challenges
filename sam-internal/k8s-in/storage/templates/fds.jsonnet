@@ -25,13 +25,7 @@ local initContainers = [
 // Volume Mounts for the FDS container.
 local fdsVolumeMounts =
     storageutils.log_init_volume_mounts() +
-    if configs.estate != "prd-skipper" then
-        configs.filter_empty([
-            configs.maddog_cert_volume_mount,
-            configs.cert_volume_mount,
-            configs.kube_config_volume_mount,
-        ])
-    else [];
+    storageutils.cert_volume_mounts();
 
 // Environment variables for the FDS container.
 local fdsEnvironmentVars = std.prune([
@@ -49,13 +43,7 @@ local fdsEnvironmentVars = std.prune([
 // Volumes available to the pod.
 local podVolumes =
     storageutils.log_init_volumes() +
-    if configs.estate != "prd-skipper" then
-        configs.filter_empty([
-            configs.maddog_cert_volume,
-            configs.cert_volume,
-            configs.kube_config_volume,
-        ])
-    else [];
+    storageutils.cert_volume();
 
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
