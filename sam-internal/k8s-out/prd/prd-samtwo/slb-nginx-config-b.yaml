@@ -17,7 +17,7 @@ spec:
                                               "name": "cert1",
                                               "cert-type":"server",
                                               "kingdom":"prd",
-                                              "role": "sam_compute",
+                                              "role": "samapp.slb",
                                               "san":[
                                                   "*.sam-system.prd-samtwo.prd.slb.sfdc.net",
                                                   "*.slb.sfdc.net",
@@ -28,7 +28,7 @@ spec:
                                               "name": "cert2",
                                               "cert-type":"client",
                                               "kingdom":"prd",
-                                              "role": "sam_compute"
+                                              "role": "samapp.slb"
                                           }
                                       ]
                                    }
