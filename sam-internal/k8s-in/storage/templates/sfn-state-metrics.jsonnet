@@ -79,11 +79,11 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                         env: [
                             {
                                 name: "MC_ZK_SERVERS",
-                                value: storageconfigs.perEstate.sfstore.zkServer[configs.estate],
+                                value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
                             },
                             {
                                 name: "MC_PORT",
-                                value: storageconfigs.serviceDefn.sfn_metrics_svc.health.port,
+                                value: std.toString(storageconfigs.serviceDefn.sfn_metrics_svc.health.port),
                             },
                         ] + storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name),
                     },

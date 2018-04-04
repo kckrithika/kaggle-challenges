@@ -55,7 +55,7 @@ if configs.estate == "phx-sam" then {
                   cloud: "storage",
                },
                annotations: {
-                  "slb.sfdc.net/name": storageconfigs.serviceDefn.ceph_metrics_svc.name,
+                    "slb.sfdc.net/name": storageconfigs.serviceDefn.ceph_metrics_svc.name,
                     "slb.sfdc.net/portconfigurations": "[{%(port1)s}]" % {
                         port1: storageconfigs.serviceDefn.ceph_metrics_svc.health["port-config"],
                     },

@@ -20,7 +20,7 @@
     serviceDefn: {
         fds_svc: {
                 "name" : 'fds',
-                health: {
+                controller: {
                     "port-name" : "fds-controller-port",
                     "port" : 8080,
                     "port-config" : '"port":8080,"targetport":8080,"lbtype":"tcp"',
@@ -40,6 +40,19 @@
                     "port-name" : "sfn-metrics",
                     "port" : 8080,
                     "port-config" : '"port":8080,"targetport":8080,"lbtype":"tcp"',
+                }
+            },
+        alert_mgr_svc: {
+                "name" : 'alertmanager',
+                alert_hook: {
+                    "port-name" : "alert-hook",
+                    "port" : 15212,
+                    "port-config" : '"port":15212,"targetport":15212,"lbtype":"tcp"',
+                },
+                alert_publisher: {
+                    "port-name" : "alert-publisher",
+                    "port" : 15213,
+                    "port-config" : '"port":15213,"targetport":15213,"lbtype":"tcp"',
                 }
             },
     },
@@ -81,6 +94,11 @@
             },
         },
         sfstore: {
+            zkVIP: {
+                "prd-skipper" : "zk-external.zookeeper.svc.cluster.local:2181",
+                "prd-sam" : "sfstore-zk.slb.sfdc.net",
+                "prd-sam_storage" : "sfstore-zk.slb.sfdc.net",
+            },
             zkServer: {
                 "prd-skipper" : "zk-external.zookeeper.svc.cluster.local:2181",
                 "prd-sam" : "sfstorezk0-dnds1-1-prd.eng.sfdc.net:2181,sfstorezk0-dnds1-2-prd.eng.sfdc.net:2181,sfstorezk0-dnds2-1-prd.eng.sfdc.net:2181",

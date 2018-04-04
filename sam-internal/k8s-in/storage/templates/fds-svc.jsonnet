@@ -15,17 +15,17 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
             annotations: {
                 "slb.sfdc.net/name": storageconfigs.serviceDefn.fds_svc.name,
                 "slb.sfdc.net/portconfigurations": "[{%(port1)s}]" % {
-                    port1: storageconfigs.serviceDefn.fds_svc.health["port-config"],
+                    port1: storageconfigs.serviceDefn.fds_svc.controller["port-config"],
                 },
             },
         },
         spec: {
             ports: [
                 {
-                name: storageconfigs.serviceDefn.fds_svc.health["port-name"],
-                port: storageconfigs.serviceDefn.fds_svc.health.port,
+                name: storageconfigs.serviceDefn.fds_svc.controller["port-name"],
+                port: storageconfigs.serviceDefn.fds_svc.controller.port,
                 protocol: "TCP",
-                targetPort: storageconfigs.serviceDefn.fds_svc.health.port,
+                targetPort: storageconfigs.serviceDefn.fds_svc.controller.port,
                 } +
                 if configs.estate == "phx-sam" then {
                     nodePort: 32100,
