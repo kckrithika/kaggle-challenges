@@ -34,14 +34,14 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000730-c84f495f",
-            slbnginx: "v-0000024-6c678838",
+            hypersdn: "v-0000736-6a1608d8",
+            slbnginx: "v-0000026-409d6394",
             },
 
         ### Release Phase 4 - All Prod
         "4": {
-            hypersdn: "v-0000149-6e609e0f",
-            slbnginx: "v-0000004-d69f7abb",
+            hypersdn: "v-0000736-6a1608d8",
+            slbnginx: "v-0000026-409d6394",
             },
     },
 
@@ -51,7 +51,7 @@ local slbconfig = import "slbconfig.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if kingdom in { [k]: 1 for k in slbconfig.prodKingdoms } then
+        else if kingdom in { [k]: 1 for k in ['PHX', 'ORD'] } then
             "3"
         else
             "4"

@@ -17,7 +17,7 @@ spec:
                                               "name": "cert1",
                                               "cert-type":"server",
                                               "kingdom":"prd",
-                                              "role": "sam_compute",
+                                              "role": "samapp.slb",
                                               "san":[
                                                   "*.sam-system.iad-sam.iad.slb.sfdc.net",
                                                   "*.slb.sfdc.net",
@@ -28,7 +28,7 @@ spec:
                                               "name": "cert2",
                                               "cert-type":"client",
                                               "kingdom":"prd",
-                                              "role": "sam_compute"
+                                              "role": "samapp.slb"
                                           }
                                       ]
                                    }
@@ -114,7 +114,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --maxDeleteServiceCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000730-c84f495f
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000736-6a1608d8
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -132,7 +132,7 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000024-6c678838
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/slb-nginx:v-0000026-409d6394
         livenessProbe:
           httpGet:
             path: /
@@ -159,7 +159,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000730-c84f495f
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000736-6a1608d8
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d

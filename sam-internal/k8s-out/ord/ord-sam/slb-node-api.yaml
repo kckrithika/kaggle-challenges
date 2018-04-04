@@ -30,7 +30,7 @@ spec:
         - --port=9130
         - --configDir=/host/data/slb/config
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000730-c84f495f
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000736-6a1608d8
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
