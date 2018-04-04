@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+if configs.estate == "phx-sam" then {
    apiVersion: "v1",
    kind: "Service",
    metadata: {
@@ -33,7 +33,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
       },
       type: "NodePort",
    },
-} else if configs.estate == "prd-sam_storage" then
+} else if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then
    {
       apiVersion: "v1",
       kind: "List",
@@ -55,17 +55,19 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                   cloud: "storage",
                },
                annotations: {
-                  "slb.sfdc.net/name": storageconfigs.serviceNames["ceph-metrics-svc"],
-                  "slb.sfdc.net/portconfigurations": '[{"port":8001,"targetport":8001,"lbtype":"tcp"}]',
+                    "slb.sfdc.net/name": storageconfigs.serviceDefn.ceph_metrics_svc.name,
+                    "slb.sfdc.net/portconfigurations": "[{%(port1)s}]" % {
+                        port1: storageconfigs.serviceDefn.ceph_metrics_svc.health["port-config"],
+                    },
                },
             },
             spec: {
                ports: [
                   {
-                     name: "ceph-metrics",
-                     port: 8001,
+                     name: storageconfigs.serviceDefn.ceph_metrics_svc.health["port-name"],
+                     port: storageconfigs.serviceDefn.ceph_metrics_svc.health.port,
                      protocol: "TCP",
-                     targetPort: 8001,
+                     targetPort: storageconfigs.serviceDefn.ceph_metrics_svc.health.port,
                   },
                ],
                selector: {

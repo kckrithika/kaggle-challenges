@@ -16,7 +16,7 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfn-state-metrics:base-0000367-4217a04e
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfn-state-metrics:base-0000375-b6ea35ee
         name: sfn-state-metrics
         ports:
         - containerPort: 8080
@@ -42,7 +42,7 @@ spec:
         - /opt/sfms/bin/sfms
         env:
         - name: MC_ZK_SERVERS
-          value: sfstorezk0-dnds1-1-prd.eng.sfdc.net:2181,sfstorezk0-dnds1-2-prd.eng.sfdc.net:2181,sfstorezk0-dnds2-1-prd.eng.sfdc.net:2181
+          value: sfstore-zk.slb.sfdc.net
         - name: MC_PORT
           value: "8080"
         - name: SFDC_FUNNEL_VIP
@@ -65,7 +65,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000162-ba3dd8d0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
         name: sfms
       nodeSelector:
         master: "true"

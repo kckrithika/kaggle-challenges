@@ -3,7 +3,7 @@ local storageimages = (import "storageimages.jsonnet") + { templateFilename:: st
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+if configs.estate == "phx-sam" then {
    apiVersion: "extensions/v1beta1",
    kind: "Deployment",
    metadata: {
@@ -122,7 +122,7 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
          },
       },
    },
-} else if configs.estate == "prd-sam_storage" then
+} else if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then
    {
       apiVersion: "v1",
       kind: "List",
@@ -199,8 +199,8 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                            ],
                            ports: [
                               {
-                                 name: "ceph-metrics",
-                                 containerPort: 8001,
+                                 name: storageconfigs.serviceDefn.ceph_metrics_svc.health["port-name"],
+                                 containerPort: storageconfigs.serviceDefn.ceph_metrics_svc.health.port,
                                  protocol: "TCP",
                               },
                            ],
@@ -213,13 +213,13 @@ if configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
                            env: [
                               {
                                     name: "MC_ZK_SERVERS",
-                                    value: storageconfigs.perEstate.sfstore.zkServer[configs.estate],
+                                    value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
                               },
                               {
                                     name: "MC_PORT",
-                                    value: "8001",
+                                    value: std.toString(storageconfigs.serviceDefn.ceph_metrics_svc.health.port),
                               },
-                            ] + storageutils.sfms_environment_vars(storageconfigs.serviceNames["ceph-metrics-svc"]),
+                            ] + storageutils.sfms_environment_vars(storageconfigs.serviceDefn.ceph_metrics_svc.name),
                         },
                         {
                            name: "configwatcher",

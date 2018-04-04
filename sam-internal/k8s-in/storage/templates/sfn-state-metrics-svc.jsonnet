@@ -12,17 +12,19 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                 cloud: "storage",
             },
             annotations: {
-                "slb.sfdc.net/name": storageconfigs.serviceNames["sfn-metrics-svc"],
-                "slb.sfdc.net/portconfigurations": '[{"port":8080,"targetport":8080,"lbtype":"tcp"}]',
+                "slb.sfdc.net/name": storageconfigs.serviceDefn.sfn_metrics_svc.name,
+                "slb.sfdc.net/portconfigurations": "[{%(port1)s}]" % {
+                    port1: storageconfigs.serviceDefn.sfn_metrics_svc.health["port-config"],
+                },
             },
         },
         spec: {
             ports: [
                 {
                 name: "sfn-metrics",
-                port: 8080,
+                port: storageconfigs.serviceDefn.sfn_metrics_svc.health.port,
                 protocol: "TCP",
-                targetPort: 8080,
+                targetPort: storageconfigs.serviceDefn.sfn_metrics_svc.health.port,
                 },
             ],
             selector: {

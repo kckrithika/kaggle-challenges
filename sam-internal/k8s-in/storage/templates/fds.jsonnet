@@ -91,19 +91,19 @@ if std.setMember(configs.estate, enabledEstates) then {
                         image: storageimages.fdscontroller,
                         ports: [
                             {
-                                containerPort: 8080,
+                                containerPort: storageconfigs.serviceDefn.fds_svc.controller.port,
                             },
                         ],
                         livenessProbe: {
                             httpGet: {
                                 path: "/healthz",
-                                port: 8080,
+                                port: storageconfigs.serviceDefn.fds_svc.controller.port,
                             },
                         },
                         readinessProbe: {
                             httpGet: {
                                 path: "/healthz",
-                                port: 8080,
+                                port: storageconfigs.serviceDefn.fds_svc.controller.port,
                             },
                         },
                         volumeMounts:
@@ -122,21 +122,19 @@ if std.setMember(configs.estate, enabledEstates) then {
                             "-j",
                             "prometheus",
                         ],
-                        env: [] +
-                        if configs.estate != "prd-sam_storage" then
-                            storageutils.sfms_environment_vars(storageconfigs.serviceNames["fds-svc"])
-                        else
+                        env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.fds_svc.name) +
+                        if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
                         [
                             {
                                 name: "MC_ZK_SERVERS",
-                                value: storageconfigs.perEstate.sfstore.zkServer[configs.estate],
+                                value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
                             },
                             {
                                 name: "MC_PORT",
-                                value: "8080",
+                                value: std.toString(storageconfigs.serviceDefn.fds_svc.controller.port),
                             },
-                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceNames["fds-svc"]),
-
+                        ]
+                        else [],
                     },
                 ],
                 volumes:

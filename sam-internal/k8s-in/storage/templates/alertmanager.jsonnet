@@ -1,8 +1,9 @@
 local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
+local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -33,13 +34,13 @@ if configs.estate == "prd-sam_storage" then {
                         image: storageimages.alertmanager,
                         ports: [
                             {
-                                name: "alert-hook",
-                                containerPort: 15212,
+                                name: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook["port-name"],
+                                containerPort: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook.port,
                                 protocol: "TCP",
                             },
                             {
-                                name: "alert-publisher",
-                                containerPort: 15213,
+                                name: storageconfigs.serviceDefn.alert_mgr_svc.alert_publisher["port-name"],
+                                containerPort: storageconfigs.serviceDefn.alert_mgr_svc.alert_publisher.port,
                                 protocol: "TCP",
                             },
                         ],

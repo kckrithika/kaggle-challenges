@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
+local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
@@ -11,7 +12,10 @@ if configs.estate == "prd-sam_storage" then {
         },
         annotations: {
             "slb.sfdc.net/name": "alertmanager",
-            "slb.sfdc.net/portconfigurations": '[{"port":15212,"targetport":15212,"lbtype":"tcp"}, {"port":15213,"targetport":15213,"lbtype":"tcp"}]',
+            "slb.sfdc.net/portconfigurations": "[{%(port1)s},{%(port2)s}]" % {
+                port1: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook["port-config"],
+                port2: storageconfigs.serviceDefn.alert_mgr_svc.alert_publisher["port-config"],
+            },
         },
     },
     spec: {
@@ -21,18 +25,16 @@ if configs.estate == "prd-sam_storage" then {
         },
         ports: [
             {
-                name: "alert-hook",
+                name: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook["port-name"],
                 protocol: "TCP",
-                port: 15212,
-                nodePort: 35001,
-                targetPort: 15212,
+                port: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook.port,
+                targetPort: storageconfigs.serviceDefn.alert_mgr_svc.alert_hook.port,
             },
             {
-                name: "alert-publisher",
+                name: storageconfigs.serviceDefn.alert_mgr_svc.alert_publisher["port-name"],
                 protocol: "TCP",
-                port: 15213,
-                nodePort: 35002,
-                targetPort: 15213,
+                port: storageconfigs.serviceDefn.alert_mgr_svc.alert_publisher.port,
+                targetPort: storageconfigs.serviceDefn.alert_mgr_svc.alert_publisher.port,
             },
         ],
     },

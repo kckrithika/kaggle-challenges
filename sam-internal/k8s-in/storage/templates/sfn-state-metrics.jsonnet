@@ -45,8 +45,8 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                         name: "sfn-state-metrics",
                         ports: [
                             {
-                                containerPort: 8080,
-                                name: "sfn-metrics",
+                                containerPort: storageconfigs.serviceDefn.sfn_metrics_svc.health.port,
+                                name: storageconfigs.serviceDefn.sfn_metrics_svc.health["port-name"],
                             },
                         ],
                         volumeMounts:
@@ -79,13 +79,13 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                         env: [
                             {
                                 name: "MC_ZK_SERVERS",
-                                value: storageconfigs.perEstate.sfstore.zkServer[configs.estate],
+                                value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
                             },
                             {
                                 name: "MC_PORT",
-                                value: "8080",
+                                value: std.toString(storageconfigs.serviceDefn.sfn_metrics_svc.health.port),
                             },
-                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceNames["sfn-metrics-svc"]),
+                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name),
                     },
                 ],
             },
