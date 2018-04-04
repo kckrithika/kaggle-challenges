@@ -1,28 +1,5 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
-metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {   "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": {
-            "nodeSelectorTerms": [
-              {
-                "matchExpressions": [
-                  {
-                    "key": "slb-service",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx-a","slb-nginx-b"]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
-  labels:
-    name: slb-vip-watchdog
-  name: slb-vip-watchdog
-  namespace: sam-system
 spec:
   replicas: 1
   template:
@@ -32,6 +9,20 @@ spec:
         name: slb-vip-watchdog
       namespace: sam-system
     spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: slb-service
+                  operator: In
+                  values:
+                  - slb-ipvs
+                  - slb-nginx-a
+                  - slb-nginx-b
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       containers:
       - command:
         - /sdn/slb-vip-watchdog

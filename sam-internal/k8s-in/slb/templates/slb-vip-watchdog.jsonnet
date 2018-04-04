@@ -5,16 +5,6 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
-    metadata: {
-            labels: {
-                name: "slb-vip-watchdog",
-            },
-            name: "slb-vip-watchdog",
-           namespace: "sam-system",
-                    annotations: {
-                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-                    },
-     },
     spec: {
         replicas: 1,
         template: {
@@ -24,6 +14,31 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                    slbconfigs.logs_volume,
                    configs.sfdchosts_volume,
                 ]),
+                affinity: {
+                   podAntiAffinity: {
+                      preferredDuringSchedulingIgnoredDuringExecution: [
+                         {
+                           weight: 100,
+                           podAffinityTerm: {
+                           labelSelector: {
+                              matchExpressions: [
+                                 {
+                                    key: "slb-service",
+                                    operator: "In",
+                                    values: [
+                                       "slb-ipvs",
+                                       "slb-nginx-a",
+                                       "slb-nginx-b",
+                                    ],
+                                 },
+                              ],
+                           },
+                          topologyKey: "kubernetes.io/hostname",
+                        },
+                      },
+                    ],
+                  },
+                },
                 containers: [
                     {
                         name: "slb-vip-watchdog",
