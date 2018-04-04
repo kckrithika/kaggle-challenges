@@ -1,0 +1,12 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: samdeploymentlogs.samcrd.salesforce.com
+spec:
+  group: samcrd.salesforce.com
+  names:
+    kind: SamDeploymentLog
+    plural: samdeploymentlogs
+    singular: samdeploymentlog
+  scope: Namespaced
+  version: v1
