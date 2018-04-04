@@ -5,6 +5,13 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
+    metadata: {
+         labels: {
+                name: "slb-vip-watchdog",
+         },
+         name: "slb-vip-watchdog",
+         namespace: "sam-system",
+     },
     spec: {
         replicas: 1,
         template: {
