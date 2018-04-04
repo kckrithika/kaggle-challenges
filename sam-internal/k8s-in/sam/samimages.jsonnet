@@ -49,7 +49,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001825-c908451b",
 
         #[rbhat] watch on downstream objects & update bundleStatus
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001840-70b3990f",
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001845-7b99d56d",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001840-70b3990f",
 
         #[diana.chang] run newest version of manifest-repo-watcher in samdev
