@@ -24,8 +24,8 @@ spec:
         name: sdn-logstash
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
-          name: logstash_conf
+          name: logstashconf
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d
-        name: logstash_conf
+        name: logstashconf

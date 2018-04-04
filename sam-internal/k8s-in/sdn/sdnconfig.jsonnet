@@ -47,7 +47,7 @@ local utils = import "util_functions.jsonnet";
 
     # Volume for logstash
     sdn_logstash_volume: {
-        name: "logstash_conf",
+        name: "logstashconf",
         hostPath: {
             path: "/etc/logstash/conf.d",
         },
@@ -55,7 +55,7 @@ local utils = import "util_functions.jsonnet";
 
     # Volume mount for logstash
     sdn_logstash_volume_mount: {
-        name: "logstash_conf",
+        name: "logstashconf",
         mountPath: "/etc/logstash/conf.d",
     },
 
