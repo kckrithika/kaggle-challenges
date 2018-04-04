@@ -38,7 +38,7 @@ system:
       args:
       # mTLS port
       - -endpoint
-      - m-krishnan/sme-beacon:DATACENTER_ALLENV:7443
+      - samapp.m-krishnan/sme-beacon:DATACENTER_ALLENV:7443
 
       # Plaintext port
       - -endpoint
