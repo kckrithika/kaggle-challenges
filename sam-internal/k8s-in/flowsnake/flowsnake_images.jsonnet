@@ -260,8 +260,5 @@ local utils = import "util_functions.jsonnet";
         "flowsnake-job-flowsnake-storm-demo-job",
         "flowsnake-job-flowsnake-airflow-dags",
         "flowsnake-job-flowsnake-spark-local-mode-demo-job",
-        "kubedns",
-        "kubednsmasq",
-        "kubednssidecar",
     ],
 }
