@@ -24,9 +24,11 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001844-5a6abb17",
 
         # [lizhang.li] Enable filesytem-watchdog everywhere
-        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
-        "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
-        "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001824-9daa700e",
+        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
+        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
+        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
+        "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
+        "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
