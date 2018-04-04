@@ -51,7 +51,7 @@ system:
           command:
             - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-debug
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-debug-zkdisabled
       args: ["--http2-origin", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
