@@ -9,10 +9,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ssstestorganization/smt-search-model-executor:0.0-RC.4
       args:
       - --modelstore.repo.models=model_repository_root/models
-      - --modelstore.repo.manifests=model_repository_root/datacenters/${KINGDOM}/${FUNCTION_INSTANCE_NAME}
+      - --modelstore.repo.manifests=model_repository_root/datacenters/${KINGDOM}/${FUNCTION}
       env:
       - name: GRPC_ANNOUNCED_NAME
-        value: ${FUNCTION_INSTANCE_NAME}
+        value: ${FUNCTION}
       ports:
       - name: service-port
         containerPort: 7020
