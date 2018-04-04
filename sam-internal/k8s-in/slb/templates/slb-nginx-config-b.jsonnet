@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local samrole = if configs.kingdom == "prd" then "samapp.slb" else "sam_compute";
+local samrole = "samapp.slb";
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
