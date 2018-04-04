@@ -1,3 +1,5 @@
 apps:
- search-model-executor:
+ sme-beacon:
+  - prd/prd-sam
+ sme-groups:
   - prd/prd-sam
