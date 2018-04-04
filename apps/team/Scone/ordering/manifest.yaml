@@ -44,6 +44,7 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+      # Need to mount to a volume so that logs can be shipped to splunk
       volumeMounts:
       - mountPath: /log
         name: logvolbeacon
@@ -69,7 +70,8 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
     - name: logvolbeacon
       hostPath:
