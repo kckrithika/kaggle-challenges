@@ -168,4 +168,25 @@ local configs = import "config.jsonnet";
         else
             defaultTag
     ),
+
+    # Inserts the maddog and other cert volumes mounts if the estate is not skipper
+    cert_volume_mounts():: (
+      if configs.estate != "prd-skipper" then
+          configs.filter_empty([
+            configs.maddog_cert_volume_mount,
+            configs.cert_volume_mount,
+            configs.kube_config_volume_mount,
+        ])
+      else []
+    ),
+    # Inserts the maddog and other cert volumes if the estate is not skipper
+    cert_volume():: (
+      if configs.estate != "prd-skipper" then
+          configs.filter_empty([
+            configs.maddog_cert_volume,
+            configs.cert_volume,
+            configs.kube_config_volume,
+        ])
+      else []
+    ),
 }

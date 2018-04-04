@@ -1,0 +1,89 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: sam-system
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: storage-foundation
+- apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: legostore
+- apiVersion: extensions/v1beta1
+  kind: DaemonSet
+  metadata:
+    labels:
+      cloud: storage
+      team: storage-foundation
+    name: node-initializer
+    namespace: storage-foundation
+  spec:
+    template:
+      metadata:
+        labels:
+          app: node-initializer
+          cloud: storage
+          team: storage-foundation
+      spec:
+        affinity:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+              - matchExpressions:
+                - key: storage.salesforce.com/nodeprep
+                  operator: DoesNotExist
+        containers:
+        - args:
+          - "echo 'Starting creation...'; \nrm -rf '/mnt/parent-node-mnt/lvhdd' ||
+            true;\nfor c in $(seq 0 3); do\n    echo \"creating hdd $c\"\n    mkdir
+            -p \"/mnt/parent-node-mnt/lvhdd/disk$c\" || true;\ndone;\nrm -rf \"/mnt/lvssd\"
+            || true;\nfor c in $(seq 0 0); do\n    echo \"creating ssd $c\"\n    mkdir
+            -p \"/mnt/parent-node-mnt/lvssd/disk$c\" || true;\ndone;\nnode_num=$(echo
+            ${MY_NODE_NAME: -1});\nnodelen=$(kubectl get nodes --no-headers -o=custom-columns=NAME:.metadata.name
+            | wc -l);\nkubectl label node $MY_NODE_NAME \"node.sam.sfdc.net/rack=$node_num\"
+            --overwrite;\nkubectl label node $MY_NODE_NAME \"failure-domain.beta.kubernetes.io/region=us-westregion-$node_num\"
+            --overwrite; \nkubectl label node $MY_NODE_NAME \"failure-domain.beta.kubernetes.io/zone=us-westzone-node$node_num\"
+            --overwrite;\nif [ \"$nodelen\" == 3 ]; then\n    echo \"Less than 3 worker
+            nodes, removing noschedule taint from master\";\n    kubectl taint nodes
+            -l node-role.kubernetes.io/master=\"true\"   node-role.kubernetes.io/master-
+            2>&1 > /dev/null;\nfi;\necho \"Node Creation completed...\"; \nkubectl
+            label node $MY_NODE_NAME \"storage.salesforce.com/nodeprep=true\" --overwrite;\nwhile
+            true;\ndo\n    sleep 21600;\ndone;\n"
+          command:
+          - /bin/sh
+          - -c
+          env:
+          - name: MY_NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: KUBEVAR_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: KUBEVAR_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: lachlanevenson/k8s-kubectl:v1.10.0
+          name: initializer
+          securityContext:
+            privileged: true
+          volumeMounts:
+          - mountPath: /mnt/parent-node-mnt
+            name: parent-node-mnt
+        tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+          operator: Exists
+        volumes:
+        - hostPath:
+            path: /mnt
+          name: parent-node-mnt
+        - emptyDir: {}
+          name: container-log-vol
+kind: List
+metadata: {}

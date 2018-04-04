@@ -3,9 +3,9 @@ kind: Deployment
 metadata:
   labels:
     cloud: storage
-    name: fds-controller
-    team: storage-foundation
-  name: fds-controller-deployment
+    name: cephoperator
+    team: legostore
+  name: cephoperator-deployment
   namespace: sam-system
 spec:
   minReadySeconds: 30
@@ -19,35 +19,37 @@ spec:
     metadata:
       labels:
         cloud: storage
-        name: fds-controller
-        team: storage-foundation
+        name: cephoperator
+        team: legostore
     spec:
       containers:
       - env:
-        - name: FDS_PROFILING
-          value: "true"
-        - name: FDS_MIN_RESYNC_PERIOD
-          value: 3s
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000375-b6ea35ee
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-        name: fds
-        ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
+        - name: MIN_OSD_VOL_SIZE
+          value: 5Gi
+        - name: MIN_MON_VOL_SIZE
+          value: 5Gi
+        - name: DEV_MODE
+          value: YEs
+        - name: K8S_PLATFORM
+          value: prd-skipper
+        - name: CEPH_INIT_CONTAINER
+          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000375-b6ea35ee
+        - name: CEPH_DAEMON_IMAGE_PATH
+          value: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph-daemon
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/ceph:base-0000375-b6ea35ee
+        name: cephoperator
         volumeMounts:
         - mountPath: /var/log
           name: container-log-vol
         - mountPath: /var/log-mounted
           name: host-log-vol
       - args:
-        - -j
+        - -t
+        - ajna_with_tags
+        - -s
         - prometheus
+        - -i
+        - "60"
         command:
         - /opt/sfms/bin/sfms
         env:
@@ -58,7 +60,7 @@ spec:
         - name: MC_ESTATE
           value: prd-skipper
         - name: MC_NAME
-          value: fds
+          value: ceph-operator
         - name: MC_NAMESPACE
           valueFrom:
             fieldRef:
@@ -77,7 +79,7 @@ spec:
       - command:
         - sh
         - -c
-        - /entrypoint.sh -g 7337 -u 7337 -s sfdc -l fds
+        - /entrypoint.sh -g 0 -u 0 -s root -l ceph-operator
         env:
         - name: KUBEVAR_POD_NAME
           valueFrom:

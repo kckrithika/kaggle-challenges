@@ -1,4 +1,13 @@
 local configs = import "config.jsonnet";
+
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "prd-skipper",
+    "phx-sam",
+]);
+
 local node = |||
         - failure-domain.beta.kubernetes.io/zone
         - failure-domain.beta.kubernetes.io/region
@@ -18,7 +27,7 @@ local storclass = |||
            mountDir: /local-hdd
 |||;
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+if std.setMember(configs.estate, enabledEstates) then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
