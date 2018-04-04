@@ -3,6 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
+local samrole = if configs.kingdom == "prd" then "samapp.slb" else "sam_compute";
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -29,7 +30,7 @@ if slbconfigs.slbInKingdom then {
                                     \"name\": \"cert1\",
                                     \"cert-type\":\"server\",
                                     \"kingdom\":\"prd\",
-                                    \"role\": \"sam_compute\",
+                                    \"role\": \"" + samrole + "\",
                                     \"san\":[
                                         \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
                                         \"*.slb.sfdc.net\",
@@ -40,7 +41,7 @@ if slbconfigs.slbInKingdom then {
                                     \"name\": \"cert2\",
                                     \"cert-type\":\"client\",
                                     \"kingdom\":\"prd\",
-                                    \"role\": \"sam_compute\"
+                                    \"role\": \"" + samrole + "\"
                                 }
                             ]
                          }",
