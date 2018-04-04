@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-sdc" then {
@@ -16,8 +17,18 @@ if configs.estate == "prd-sdc" then {
                                     name: "RUN",
                                     value: "logstash",
                                 },
+                                {
+                                    name: "config.reload.automatic",
+                                    value: "true",
+                                },
+                        ],
+                        volumeMounts: [
+                            sdnconfigs.sdn_logstash_volume_mount,
                         ],
                     },
+                ],
+                volumes: [
+                    sdnconfigs.sdn_logstash_volume,
                 ],
             },
             metadata: {
