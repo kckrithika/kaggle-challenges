@@ -37,6 +37,11 @@ spec:
             configMapKeyRef:
               key: kubeconfig
               name: fleet-config
+        - name: DOCKER_STRATA_REGISTRY_URL
+          valueFrom:
+            configMapKeyRef:
+              key: strata_registry
+              name: fleet-config
         image: minikube/flowsnake-fleet-service:minikube
         imagePullPolicy: Never
         livenessProbe:
