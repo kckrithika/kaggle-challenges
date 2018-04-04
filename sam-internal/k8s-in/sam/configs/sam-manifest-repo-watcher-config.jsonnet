@@ -4,7 +4,7 @@ if configs.estate == "prd-samdev" then
 
 std.prune({
         "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
-        "tnrp-bot-account-name": "svc-tnrp-git-rw",
+        "tnrp-bot-account-names": ["svc-tnrp-git-rw", "svc-tnrp-git"],
         "tnrp-scan-frequency": "10m",
         "db-hostname": "10.251.156.116",
         "db-username": "root",
