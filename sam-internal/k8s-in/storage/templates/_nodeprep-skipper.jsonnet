@@ -50,7 +50,7 @@ local node_initializer_ds = {
                             {
                                 matchExpressions: [
                                 {
-                                    key: "storage.salesforce.com/nodeprep-skipper",
+                                    key: "storage.salesforce.com/nodeprep",
                                     operator: "DoesNotExist",
                                 },
                                 ],

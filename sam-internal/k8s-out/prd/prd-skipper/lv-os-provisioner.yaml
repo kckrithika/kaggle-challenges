@@ -19,7 +19,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: storage.salesforce.com/nodeprep-skipper
+              - key: storage.salesforce.com/nodeprep
                 operator: In
                 values:
                 - mounted

@@ -44,19 +44,8 @@ local internal = {
                 operator: "In",
                 values: storageconfigs.storageEstates,
             },
-            {
-                key: "storage.salesforce.com/nodeprep",
-                operator: "In",
-                values: ["mounted"],
-            },
         ]
         else [
-            {
-                key: "storage.salesforce.com/nodeprep-skipper",
-                operator: "In",
-                values: ["mounted"],
-            },
-
         ]
     ),
 };
@@ -87,7 +76,14 @@ if std.setMember(configs.estate, enabledEstates) then {
                         requiredDuringSchedulingIgnoredDuringExecution: {
                             nodeSelectorTerms: [
                                 {
-                                    matchExpressions: internal.provisioner_node_affinity(configs.estate),
+                                    matchExpressions: internal.provisioner_node_affinity(configs.estate) +
+                                    [
+                                        {
+                                            key: "storage.salesforce.com/nodeprep",
+                                            operator: "In",
+                                            values: ["mounted"],
+                                        },
+                                    ],
                                 },
                             ],
                         },

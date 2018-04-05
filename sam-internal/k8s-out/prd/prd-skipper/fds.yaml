@@ -28,7 +28,7 @@ spec:
           value: "true"
         - name: FDS_MIN_RESYNC_PERIOD
           value: 3s
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000375-b6ea35ee
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000380-573c92f8
         livenessProbe:
           httpGet:
             path: /healthz
