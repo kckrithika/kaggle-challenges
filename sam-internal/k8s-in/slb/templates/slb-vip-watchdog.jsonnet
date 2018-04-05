@@ -107,7 +107,8 @@ if slbconfigs.slbInProdKingdom then {
                                     operator: "In",
                                     values: [
                                        "slb-ipvs",
-                                       "slb-nginx",
+                                       "slb-nginx-config-a",
+                                       "slb-nginx-config-b",
                                     ],
                                  },
                               ],
