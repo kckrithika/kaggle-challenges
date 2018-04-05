@@ -126,9 +126,9 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 4
         "4": {
             canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
+            cert_secretizer_image_tag: "585",
             es_image_tag: "503",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-577-2-itest",
+            fleetService_image_tag: "585",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
