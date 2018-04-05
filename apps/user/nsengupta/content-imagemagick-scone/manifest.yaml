@@ -27,7 +27,7 @@ system:
       ports:
       - containerPort: 7012 # add additional container ports for the protocols your service uses
         name: sherpa-in-http2
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+      - containerPort: 15374 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
         exec:
