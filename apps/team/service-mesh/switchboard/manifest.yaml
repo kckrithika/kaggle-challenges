@@ -32,6 +32,7 @@ system:
       - --clusters.external-clusters[10]=h1-test-server-envoy.service-mesh:HTTP1
       - --clusters.external-clusters[11]=h1-test-server-envoy-tls.service-mesh:HTTP1_TLS
       - --clusters.external-clusters[12]=shipping-envoy-tls.service-mesh:HTTP2_TLS
+      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
