@@ -54,7 +54,10 @@ local utils = import "util_functions.jsonnet";
 
         #[diana.chang] run newest version of manifest-repo-watcher in samdev
         "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180403_165607.2ed8b0fc.dirty.dianachang-ltm1",
-    },
+
+        #[xiao.zhou] Test sam-api-proxy
+        "prd,prd-samtest,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
+        },
 
     ### Per-phase image tags
     per_phase: {
