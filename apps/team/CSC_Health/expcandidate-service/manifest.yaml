@@ -26,12 +26,16 @@ system:
         value: /certs/client/certificates/client.pem
       - name: CHS_REPORTCOLLECTOR_KEYPATH
         value: /certs/client/keys/client-key.pem
+      - name: CHS_REPORTCOLLECTOR_CACERTPATH
+        value: /certs/ca.pem
       - name: CHS_REPORTCOLLECTOR_POLLPERIOD
         value: 180s
       - name: CHS_GROK_CERTPATH
         value: /certs/client/certificates/client.pem
       - name: CHS_GROK_KEYPATH
         value: /certs/client/keys/client-key.pem
+      - name: CHS_GROK_CACERTPATH
+        value: /certs/ca.pem
       - name: CHS_HEALTH_PORT
         value: 8888
       livenessProbe:
