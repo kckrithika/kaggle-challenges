@@ -24,9 +24,8 @@ spec:
                   operator: In
                   values:
                   - slb-ipvs
-                  - slb-ipvs-a
-                  - slb-nginx-config-a
                   - slb-nginx-config-b
+                  - slb-nginx-config-a
               topologyKey: kubernetes.io/hostname
             weight: 100
       containers:
