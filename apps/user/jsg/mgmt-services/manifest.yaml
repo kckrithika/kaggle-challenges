@@ -46,12 +46,12 @@ system:
     #lbName: mgmtserviceslb
 
     #terminationGracePeriodSeconds: 33
-  loadbalancers:
-  - lbname: mgmt-services-lb
-    function: mgmt
-    nodeExposed: false
-    slbenabled: true
-    ports:
-      - port: 8889
-        targetport: 8080
+  #loadbalancers:
+  #- lbname: mgmt-services-lb
+  #  function: mgmt
+  #  nodeExposed: false
+  #  slbenabled: true
+  #  ports:
+  #    - port: 8889
+  #      targetport: 8080
  
