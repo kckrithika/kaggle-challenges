@@ -20,27 +20,48 @@ spec:
           value: logstash
         - name: config_reload_automatic
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000081-9b0881a7
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000085-eddb34c0
         name: sdn-logstash
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
           name: logstashconf
+        - mountPath: /etc/logstash/certs
+          name: logstashcerts
       - command:
         - /sdn/sdn-argus-auth-agent
         - --confFile=/etc/logstash/conf.d/logstash.conf
-        - --certFile=
-        - --keyFile=
-        - --caFile=
-        - --topicsPattern=
+        - --certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --caFile=/etc/pki_service/ca/cabundle.pem
+        - --topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam
         - --confFile=/etc/logstash/conf.d/logstash.conf
-        - --truststoreFile=
-        - --elasticsearchUrl=
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000736-6a1608d8
+        - --truststoreFile=/etc/logstash/certs/truststore.jks
+        - --elasticsearchUrl=10.254.219.223:9200
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000750-b104808f
         name: sdn-argus-auth-agent
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
           name: logstashconf
+      - env:
+        - name: RUN
+          value: keytool_agent
+        - name: OUTPUT_FILE
+          value: /etc/logstash/certs/truststore.jks
+        - name: CERT_PASSWORD
+          value: password
+        - name: CERT_DIR
+          value: /etc/pki_service/ca/
+        - name: CONVERT_INTERVAL
+          value: "86400"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000085-eddb34c0
+        name: sdn-keytool-agent
+        volumeMounts:
+        - mountPath: /etc/logstash/certs
+          name: logstashcerts
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d
         name: logstashconf
+      - hostPath:
+          path: /etc/logstash/certs
+        name: logstashcerts

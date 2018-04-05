@@ -45,18 +45,32 @@ local utils = import "util_functions.jsonnet";
     #    name: "sdnlogs",
     #},
 
-    # Volume for logstash
-    sdn_logstash_volume: {
+    # Volume for logstash conf
+    sdn_logstash_conf_volume: {
         name: "logstashconf",
         hostPath: {
             path: "/etc/logstash/conf.d",
         },
     },
 
-    # Volume mount for logstash
-    sdn_logstash_volume_mount: {
+    # Volume mount for logstash conf
+    sdn_logstash_conf_volume_mount: {
         name: "logstashconf",
         mountPath: "/etc/logstash/conf.d",
+    },
+
+    # Volume for logstash certs
+    sdn_logstash_certs_volume: {
+        name: "logstashcerts",
+        hostPath: {
+            path: "/etc/logstash/certs",
+        },
+    },
+
+    # Volume mount for logstash certs
+    sdn_logstash_certs_volume_mount: {
+        name: "logstashcerts",
+        mountPath: "/etc/logstash/certs",
     },
 
     # Volume for kubectl
