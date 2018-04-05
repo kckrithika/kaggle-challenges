@@ -6,7 +6,7 @@ data:
         {
           "bomrolename": "flowsnake_master_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_master_test",
+          "devicerole": "samkubeapi",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakemasteriottest1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -16,7 +16,7 @@ data:
         {
           "bomrolename": "flowsnake_master_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_master_test",
+          "devicerole": "samkubeapi",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakemasteriottest1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -26,7 +26,7 @@ data:
         {
           "bomrolename": "flowsnake_master_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_master_test",
+          "devicerole": "samkubeapi",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakemasteriottest1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -36,7 +36,7 @@ data:
         {
           "bomrolename": "flowsnake_master_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_master_test",
+          "devicerole": "samkubeapi",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakemasteriottest1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -46,7 +46,7 @@ data:
         {
           "bomrolename": "flowsnake_master_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_master_test",
+          "devicerole": "samkubeapi",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakemasteriottest1-5-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -56,7 +56,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -66,7 +66,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-10-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -76,7 +76,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-11-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -86,7 +86,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-12-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -96,7 +96,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-13-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -106,7 +106,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-14-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -116,7 +116,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-15-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -126,7 +126,47 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-16-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-17-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-18-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-19-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -136,7 +176,107 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-20-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-21-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-22-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-23-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-24-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-25-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-26-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-27-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-28-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-29-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -146,7 +286,97 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-31-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-32-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-33-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-34-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-35-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-36-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-37-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-38-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-39-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -156,7 +386,27 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-41-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
+          "estate": "prd-dev-flowsnake_iot_test",
+          "hostname": "dev0shared0-flowsnakeworkeriottest1-42-prd.eng.sfdc.net",
+          "kingdom": "prd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "flowsnake_worker_iot_test",
+          "controlestate": "prd-dev-flowsnake_iot_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-5-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -166,7 +416,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-6-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -176,7 +426,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-7-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -186,7 +436,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-8-prd.eng.sfdc.net",
           "kingdom": "prd",
@@ -196,7 +446,7 @@ data:
         {
           "bomrolename": "flowsnake_worker_iot_test",
           "controlestate": "prd-dev-flowsnake_iot_test",
-          "devicerole": "flowsnake_worker_test",
+          "devicerole": "samcompute",
           "estate": "prd-dev-flowsnake_iot_test",
           "hostname": "dev0shared0-flowsnakeworkeriottest1-9-prd.eng.sfdc.net",
           "kingdom": "prd",
