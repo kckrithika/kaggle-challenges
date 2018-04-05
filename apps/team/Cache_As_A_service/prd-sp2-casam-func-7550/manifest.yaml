@@ -14,7 +14,7 @@ system:
     containers:
     - name: csr-sam
 
-      image: tnrp/casam/coreapp:212.0.2-0000093-f55cc728
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mainsborough/casam_cix:212_freeze
 
       env:
         - name: DEPLOYMENT
