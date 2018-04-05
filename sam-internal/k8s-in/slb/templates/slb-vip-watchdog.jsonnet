@@ -75,7 +75,7 @@ if slbconfigs.slbInProdKingdom then {
             },
         },
     },
-} else if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
+} else if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
  apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -107,6 +107,7 @@ if slbconfigs.slbInProdKingdom then {
                                     operator: "In",
                                     values: [
                                        "slb-ipvs",
+                                       "slb-ipvs-a",
                                        "slb-nginx-config-a",
                                        "slb-nginx-config-b",
                                     ],
