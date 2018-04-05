@@ -14,7 +14,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     },
     spec: {
         progressDeadlineSeconds: 600,
-        replicas: 1,
+        replicas: 3,
         revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
@@ -213,9 +213,11 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                     },
                 ],
                 dnsPolicy: "Default",
-                nodeSelector: {
-                    pool: "prd-sam",
-                },
+                nodeSelector: if configs.kingdom == "prd" then {
+                                  master: "true",
+                              } else {
+                                  pool: configs.estate,
+                              },
                 restartPolicy: "Always",
                 schedulerName: "default-scheduler",
                 securityContext: {},
