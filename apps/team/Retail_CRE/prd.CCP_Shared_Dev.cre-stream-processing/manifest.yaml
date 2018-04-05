@@ -15,8 +15,6 @@ system:
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Shared_Dev
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: METRICS_KAFKA_KEYSTORE
-          value: /certs/shared2-samminionretailcre1-1-prd.jks
         - name: SFDC_ENVIRONMENT
           value: ccp-dev
         - name: METRICS_KAFKA_ENABLED
@@ -34,8 +32,6 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
-      - mountPath: /certs
-        name: certs
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
@@ -78,9 +74,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-sp-ccp-dev
-    - name: certs
-      hostPath:
-        path: /home/sfdc-retail/keystores
     - name: myclientcert
       maddogCert:
         type: client
