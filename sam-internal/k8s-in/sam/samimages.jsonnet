@@ -50,7 +50,7 @@ local utils = import "util_functions.jsonnet";
 
         #[rbhat] watch on downstream objects & update bundleStatus
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001845-7b99d56d",
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001840-70b3990f",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001845-7b99d56d",
 
         #[diana.chang] run newest version of manifest-repo-watcher in samdev
         "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180403_165607.2ed8b0fc.dirty.dianachang-ltm1",
