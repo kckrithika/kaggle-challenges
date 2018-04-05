@@ -30,12 +30,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            labelSelector: {
                               matchExpressions: [
                                  {
-                                    key: "slb-service",
+                                    key: "name",
                                     operator: "In",
                                     values: [
                                        "slb-ipvs",
-                                       "slb-nginx-a",
-                                       "slb-nginx-b",
+                                       "slb-nginx",
                                     ],
                                  },
                               ],
