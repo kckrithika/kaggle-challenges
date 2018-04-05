@@ -32,16 +32,16 @@ if configs.estate == "prd-sdc" then {
                         volumeMounts: [
                             sdnconfigs.sdn_logstash_volume_mount,
                         ],
-                        command: [                            
+                        command: [
                             "/sdn/sdn-argus-auth-agent",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
                             "--certFile=",
                             "--keyFile=",
                             "--caFile=",
-                            "--topicsPattern="
+                            "--topicsPattern=",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
-                            "--truststoreFile="
-                            "--elasticsearchUrl="
+                            "--truststoreFile=",
+                            "--elasticsearchUrl=",
                         ],
                     },
                 ],

@@ -25,6 +25,21 @@ spec:
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
           name: logstashconf
+      - command:
+        - /sdn/sdn-argus-auth-agent
+        - --confFile=/etc/logstash/conf.d/logstash.conf
+        - --certFile=
+        - --keyFile=
+        - --caFile=
+        - --topicsPattern=
+        - --confFile=/etc/logstash/conf.d/logstash.conf
+        - --truststoreFile=
+        - --elasticsearchUrl=
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000736-6a1608d8
+        name: sdn-argus-auth-agent
+        volumeMounts:
+        - mountPath: /etc/logstash/conf.d
+          name: logstashconf
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d
