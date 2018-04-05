@@ -6,9 +6,11 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "v1",
     metadata: {
         name: "alertmanager-svc",
+        namespace: "sam-system",
         labels: {
             app: "alertmanager-svc",
-            namespace: "sam-system",
+            team: "storage-foundation",
+            cloud: "storage",
         },
         annotations: {
             "slb.sfdc.net/name": "alertmanager",
@@ -21,7 +23,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     spec: {
         type: "NodePort",
         selector: {
-            app: "alertmanager",
+            name: "alertmanager",
         },
         ports: [
             {

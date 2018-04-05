@@ -1,0 +1,23 @@
+apiVersion: v1
+data:
+  sfn-selectors.yaml: |
+    pods:
+        matchExpressions:
+            - {key: cloud, operator: In, values: [storage]}
+    nodes:
+        matchExpressions:
+            - {key: pool, operator: In, values: ["phx-sam_ceph"]}
+    persistentvolumes:
+        matchExpressions:
+            - {key: pool, operator: In, values: ["phx-sam_ceph"]}
+    persistentvolumeclaims:
+        matchExpressions:
+            - {key: daemon, operator: In, values: ["mon", "osd"]}
+    statefulsets:
+        matchExpressions:
+            - {key: daemon, operator: In, values: ["mon", "osd"]}
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfn-config
+  namespace: sam-system

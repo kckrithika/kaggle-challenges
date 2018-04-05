@@ -16,7 +16,7 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfn-state-metrics:base-0000375-b6ea35ee
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfn-state-metrics:base-0000375-b6ea35ee
         name: sfn-state-metrics
         ports:
         - containerPort: 8080
@@ -42,11 +42,11 @@ spec:
         - /opt/sfms/bin/sfms
         env:
         - name: SFDC_FUNNEL_VIP
-          value: ajna0-funnel1-0-prd.data.sfdc.net:80
+          value: ajna0-funnel1-0-phx.data.sfdc.net:80
         - name: MC_KINGDOM
-          value: prd
+          value: phx
         - name: MC_ESTATE
-          value: prd-sam_storage
+          value: phx-sam
         - name: MC_NAME
           value: sfn-metrics
         - name: MC_NAMESPACE
@@ -61,11 +61,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: MC_ZK_SERVERS
-          value: sfstore-zk.slb.sfdc.net
-        - name: MC_PORT
-          value: "8080"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
         name: sfms
       nodeSelector:
         master: "true"

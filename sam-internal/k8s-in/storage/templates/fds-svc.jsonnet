@@ -26,10 +26,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
                 port: storageconfigs.serviceDefn.fds_svc.controller.port,
                 protocol: "TCP",
                 targetPort: storageconfigs.serviceDefn.fds_svc.controller.port,
-                } +
-                if configs.estate == "phx-sam" then {
-                    nodePort: 32100,
-                } else {},
+                },
             ],
             selector: {
                 name: "fds-controller",

@@ -1,91 +1,89 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  labels:
-    cloud: storage
-    team: legostore
-  name: ceph-metrics
-  namespace: legostore
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: ceph-metrics
-        cloud: storage
-        team: legostore
-    spec:
-      containers:
-      - args:
-        - -m
-        - snapshot_for_cephmon
-        - -t
-        - ajna_with_tags
-        - -s
-        - cephmon
-        - -i
-        - "60"
-        command:
-        - /opt/sfms/bin/sfms
-        env:
-        - name: SFDC_FUNNEL_VIP
-          value: ajna0-funnel1-0-phx.data.sfdc.net:80
-        - name: MC_KINGDOM
-          value: phx
-        - name: MC_ESTATE
-          value: phx-sam
-        - name: MC_NAME
-          value: ceph
-        - name: MC_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
-        - name: MC_NODE
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: MC_DEVICE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000162-ba3dd8d0
-        imagePullPolicy: IfNotPresent
-        name: sfms
-        ports:
-        - containerPort: 8001
-          name: ceph-metrics
-          protocol: TCP
-        volumeMounts:
-        - mountPath: /etc/ceph
-          name: ceph-conf
-      - args:
-        - -ceph-key-config-dir=/etc/ceph-metrics/key-config
-        - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
-        - -ceph-config-dir=/etc/ceph
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/configwatcher:base-0000367-4217a04e
-        name: configwatcher
-        volumeMounts:
-        - mountPath: /etc/ceph
-          name: ceph-conf
-        - mountPath: /etc/ceph-metrics/key-config
-          name: key-conf
-          readOnly: true
-        - mountPath: /etc/ceph-metrics/ceph-cluster-config
-          name: ceph-cluster-conf
-          readOnly: true
-        - mountPath: /etc/kubernetes
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    labels:
+      cloud: storage
+      team: legostore
+    name: ceph-metrics
+    namespace: legostore
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: ceph-metrics
+          cloud: storage
+          team: legostore
+      spec:
+        containers:
+        - args:
+          - -j
+          - ceph_mon
+          command:
+          - /opt/sfms/bin/sfms
+          env:
+          - name: SFDC_FUNNEL_VIP
+            value: ajna0-funnel1-0-phx.data.sfdc.net:80
+          - name: MC_KINGDOM
+            value: phx
+          - name: MC_ESTATE
+            value: phx-sam
+          - name: MC_NAME
+            value: ceph-metrics
+          - name: MC_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: MC_NODE
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: MC_DEVICE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
+          imagePullPolicy: IfNotPresent
+          name: sfms
+          ports:
+          - containerPort: 8001
+            name: ceph-metrics
+            protocol: TCP
+          volumeMounts:
+          - mountPath: /etc/ceph
+            name: ceph-conf
+        - args:
+          - -ceph-key-config-dir=/etc/ceph-metrics/key-config
+          - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
+          - -ceph-config-dir=/etc/ceph
+          image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/configwatcher:base-0000375-b6ea35ee
+          name: configwatcher
+          volumeMounts:
+          - mountPath: /etc/ceph
+            name: ceph-conf
+          - mountPath: /etc/ceph-metrics/key-config
+            name: key-conf
+            readOnly: true
+          - mountPath: /etc/ceph-metrics/ceph-cluster-config
+            name: ceph-cluster-conf
+            readOnly: true
+          - mountPath: /etc/kubernetes
+            name: kubernetes
+        nodeSelector:
+          pool: phx-sam
+        volumes:
+        - hostPath:
+            path: /etc/kubernetes
           name: kubernetes
-      nodeSelector:
-        pool: phx-sam
-      volumes:
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubernetes
-      - emptyDir: {}
-        name: ceph-conf
-      - name: key-conf
-        secret:
-          secretName: ceph-client-key
-      - configMap:
-          name: ceph-cluster
-        name: ceph-cluster-conf
+        - emptyDir: {}
+          name: ceph-conf
+        - name: key-conf
+          secret:
+            secretName: ceph-client-key
+        - configMap:
+            name: ceph-cluster
+          name: ceph-cluster-conf
+kind: List
+metadata: {}

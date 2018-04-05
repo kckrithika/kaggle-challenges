@@ -2,20 +2,19 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    slb.sfdc.net/name: fds
+    slb.sfdc.net/name: sfn-metrics
     slb.sfdc.net/portconfigurations: '[{"port":8080,"targetport":8080,"lbtype":"tcp"}]'
   labels:
-    app: fds-controller
     cloud: storage
     team: storage-foundation
-  name: fds-svc
+  name: sfn-state-metrics-svc
   namespace: sam-system
 spec:
   ports:
-  - name: fds-controller-port
+  - name: sfn-metrics
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
-    name: fds-controller
+    name: sfn-state-metrics
   type: NodePort

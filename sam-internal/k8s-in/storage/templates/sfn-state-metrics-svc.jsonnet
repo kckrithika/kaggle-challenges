@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+if configs.estate == "phx-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
