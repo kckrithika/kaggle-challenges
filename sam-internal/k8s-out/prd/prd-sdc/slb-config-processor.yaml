@@ -37,7 +37,7 @@ spec:
       - command:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config
-        - --period=1800s
+        - --period=1200s
         - --namespace=
         - --podstatus=running
         - --subnet=10.251.129.224-233,10.251.129.235-240

@@ -71,7 +71,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                             "/sdn/slb-config-processor",
                             "--configDir=" + slbconfigs.configDir,
+                         ] + (if configs.estate == "prd-sdc" then [
+                            "--period=1200s",
+                         ] else [
                             "--period=1800s",
+                         ]) +
+                         [
                             "--namespace=" + slbconfigs.namespace,
                             "--podstatus=running",
                             "--subnet=" + slbconfigs.subnet,
