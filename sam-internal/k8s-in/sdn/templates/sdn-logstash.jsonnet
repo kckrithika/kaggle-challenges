@@ -26,6 +26,24 @@ if configs.estate == "prd-sdc" then {
                             sdnconfigs.sdn_logstash_volume_mount,
                         ],
                     },
+                    {
+                        name: "sdn-argus-auth-agent",
+                        image: sdnimages.hypersdn,
+                        volumeMounts: [
+                            sdnconfigs.sdn_logstash_volume_mount,
+                        ],
+                        command: [                            
+                            "/sdn/sdn-argus-auth-agent",
+                            "--confFile=/etc/logstash/conf.d/logstash.conf",
+                            "--certFile=",
+                            "--keyFile=",
+                            "--caFile=",
+                            "--topicsPattern="
+                            "--confFile=/etc/logstash/conf.d/logstash.conf",
+                            "--truststoreFile="
+                            "--elasticsearchUrl="
+                        ],
+                    },
                 ],
                 volumes: [
                     sdnconfigs.sdn_logstash_volume,
