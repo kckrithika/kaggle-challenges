@@ -38,28 +38,26 @@ else [];
 
 local internal = {
     provisioner_node_affinity(estate):: (
-        if isEstateNotSkipper then {
-            nodeAffinity: {
-                requiredDuringSchedulingIgnoredDuringExecution: {
-                  nodeSelectorTerms: [
-                    {
-                       matchExpressions: [
-                         {
-                            key: "pool",
-                            operator: "In",
-                            values: storageconfigs.storageEstates,
-                         },
-                         {
-                            key: "storage.salesforce.com/nodeprep",
-                            operator: "In",
-                            values: ["mounted"],
-                         },
-                       ],
-                    },
-                  ],
-                },
+        if isEstateNotSkipper then [
+            {
+                key: "pool",
+                operator: "In",
+                values: storageconfigs.storageEstates,
             },
-        } else {}
+            {
+                key: "storage.salesforce.com/nodeprep",
+                operator: "In",
+                values: ["mounted"],
+            },
+        ]
+        else [
+            {
+                key: "storage.salesforce.com/nodeprep-skipper",
+                operator: "In",
+                values: ["mounted"],
+            },
+
+        ]
     ),
 };
 if std.setMember(configs.estate, enabledEstates) then {
@@ -84,7 +82,17 @@ if std.setMember(configs.estate, enabledEstates) then {
              },
             spec: {
                 hostNetwork: true,
-                affinity: internal.provisioner_node_affinity(configs.estate),
+                affinity: {
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: internal.provisioner_node_affinity(configs.estate),
+                                },
+                            ],
+                        },
+                    },
+                },
                 initContainers: [
                 {} +
                 storageutils.log_init_container(

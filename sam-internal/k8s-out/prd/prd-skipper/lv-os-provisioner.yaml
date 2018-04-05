@@ -14,7 +14,15 @@ spec:
         cloud: storage
         team: storage-foundation
     spec:
-      affinity: {}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: storage.salesforce.com/nodeprep-skipper
+                operator: In
+                values:
+                - mounted
       containers:
       - env:
         - name: MY_NODE_NAME
