@@ -30,8 +30,8 @@ system:
           path: /manage/health
           port: 15372
     - name: sherpa-tictactoe-client
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/19
-      image: sfci/servicelibs/sherpa-envoy:f6c2f267a003f433f5cffc9097c205c982dcf328
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/22
+      image: sfci/servicelibs/sherpa-envoy:428bc3818f0243d0c6ba537dd06f02cea6b7970a
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
