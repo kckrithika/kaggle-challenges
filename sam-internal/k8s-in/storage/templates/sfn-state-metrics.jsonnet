@@ -3,7 +3,7 @@ local storageimages = (import "storageimages.jsonnet") + { templateFilename:: st
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+if configs.estate == "phx-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -76,7 +76,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                             "-j",
                             "prometheus",
                         ],
-                        env: [
+                        env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name) +
+                        if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
+                        [
                             {
                                 name: "MC_ZK_SERVERS",
                                 value: storageconfigs.perEstate.sfstore.zkVIP[configs.estate],
@@ -85,7 +87,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                                 name: "MC_PORT",
                                 value: std.toString(storageconfigs.serviceDefn.sfn_metrics_svc.health.port),
                             },
-                        ] + storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name),
+                        ]
+                        else [],
+
                     },
                 ],
             },

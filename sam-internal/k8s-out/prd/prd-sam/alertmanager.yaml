@@ -8,7 +8,9 @@ spec:
   template:
     metadata:
       labels:
-        app: alertmanager
+        cloud: storage
+        name: alertmanager
+        team: storage-foundation
     spec:
       containers:
       - env:

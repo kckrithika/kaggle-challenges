@@ -15,7 +15,9 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
         template: {
             metadata: {
                 labels: {
-                app: "alertmanager",
+                    name: "alertmanager",
+                    team: "storage-foundation",
+                    cloud: "storage",
                 },
             },
             spec: {
