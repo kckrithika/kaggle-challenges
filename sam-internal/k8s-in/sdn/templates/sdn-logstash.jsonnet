@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" then {
                         ],
                         command: [
                             "/sdn/sdn-argus-auth-agent",
-                            "--svcSecretServiceUsername=svc_sdn",
+                            "--svcUsername=svc_sdn",
                             "--certfile=" + configs.certFile,
                             "--keyfile=" + configs.keyFile,
                             "--cafile=" + configs.caFile,
