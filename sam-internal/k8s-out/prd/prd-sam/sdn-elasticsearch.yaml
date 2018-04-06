@@ -26,11 +26,11 @@ spec:
       terminationGracePeriodSeconds: 30
   volumeClaimTemplates:
   - metadata:
-      name: sdn-dashboard-storage
+      name: sdn-dashboard
     spec:
       accessModes:
       - ReadWriteOnce
       resources:
         requests:
           storage: 500Gi
-      storageClassName: sdn-dashboard
+      storageClassName: sdn-dashboard-hdd-pool
