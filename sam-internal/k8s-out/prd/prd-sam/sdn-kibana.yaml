@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: sdn-kibana
+  name: sdn-kibana
+  namespace: sam-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-kibana
+      namespace: sam-system
+    spec:
+      containers:
+      - env:
+        - name: RUN
+          value: kibana
+        - name: ELASTICSEARCH_URL
+          value: 10.254.219.223:9200
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000085-eddb34c0
+        name: sdn-kibana
+      hostNetwork: true
