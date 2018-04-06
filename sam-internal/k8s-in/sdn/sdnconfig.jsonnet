@@ -73,6 +73,8 @@ local utils = import "util_functions.jsonnet";
         mountPath: "/etc/logstash/certs",
     },
 
+    sdn_elasticsearch_cluster_ip: "10.254.219.223",
+
     # Volume for kubectl
     sdn_kubectl_volume: {
         name: "kubectl",

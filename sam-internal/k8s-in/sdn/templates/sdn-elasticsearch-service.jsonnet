@@ -1,5 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local sdnconfigs = import "sdnconfig.jsonnet";
+
 if configs.estate == "prd-sdc" then {
     kind: "Service",
         apiVersion: "v1",
@@ -8,7 +10,7 @@ if configs.estate == "prd-sdc" then {
             namespace: "sam-system",
         },
         spec: {
-            clusterIP: "10.254.219.223",
+            clusterIP: sdnconfigs.sdn_elasticsearch_cluster_ip,
             ports: [
                 {
                     name: "sdn-elasticsearch-port",

@@ -1,5 +1,5 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: apps/v1beta1
+kind: StatefulSet
 metadata:
   labels:
     name: sdn-elasticsearch
@@ -7,6 +7,7 @@ metadata:
   namespace: sam-system
 spec:
   replicas: 1
+  serviceName: sdn-elasticsearch
   template:
     metadata:
       labels:
@@ -21,8 +22,15 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000085-eddb34c0
         name: sdn-elasticsearch
         ports:
-          containerPort: 9200
-      volumeClaimTemplates:
-        name: sdn-dashboard-storage
-        storageClassName: sdn-dashboard
-        storageSizeRequest: 500Gi
+        - containerPort: 9200
+      terminationGracePeriodSeconds: 30
+  volumeClaimTemplates:
+  - metadata:
+      name: sdn-dashboard-storage
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 500Gi
+      storageClassName: sdn-dashboard

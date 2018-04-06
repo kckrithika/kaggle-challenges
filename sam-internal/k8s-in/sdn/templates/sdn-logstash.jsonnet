@@ -43,7 +43,7 @@ if configs.estate == "prd-sdc" then {
                             "--topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
                             "--truststoreFile=/etc/logstash/certs/truststore.jks",
-                            "--elasticsearchUrl=10.254.219.223:" + portconfigs.sdn.sdn_elasticsearch,
+                            "--elasticsearchUrl=" + sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
                         ],
                     },
                     {

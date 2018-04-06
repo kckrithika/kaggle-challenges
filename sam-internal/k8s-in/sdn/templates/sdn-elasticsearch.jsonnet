@@ -4,8 +4,27 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
 if configs.estate == "prd-sdc" then {
-    kind: "Deployment",
+    kind: "StatefulSet",
     spec: {
+        serviceName: "sdn-elasticsearch",
+        volumeClaimTemplates: [
+            {
+                metadata: {
+                   name: "sdn-dashboard-storage",
+                },
+                spec: {
+                   accessModes: [
+                      "ReadWriteOnce",
+                   ],
+                   storageClassName: "sdn-dashboard",
+                   resources: {
+                      requests: {
+                         storage: "500Gi",
+                      },
+                   },
+                },
+            },
+        ],
         replicas: 1,
         template: {
             spec: {
@@ -19,16 +38,14 @@ if configs.estate == "prd-sdc" then {
                                     value: "elasticsearch",
                                 },
                         ],
-                        ports: {
-                            containerPort: portconfigs.sdn.sdn_elasticsearch,
-                        },
+                        ports: [
+                            {
+                                containerPort: portconfigs.sdn.sdn_elasticsearch,
+                            },
+                        ],
                     },
                 ],
-                volumeClaimTemplates: {
-                    name: "sdn-dashboard-storage",
-                    storageClassName: "sdn-dashboard",
-                    storageSizeRequest: "500Gi",
-                },
+                terminationGracePeriodSeconds: 30,
             },
             metadata: {
                 labels: {
@@ -39,7 +56,7 @@ if configs.estate == "prd-sdc" then {
             },
         },
     },
-    apiVersion: "extensions/v1beta1",
+    apiVersion: "apps/v1beta1",
     metadata: {
         labels: {
             name: "sdn-elasticsearch",
