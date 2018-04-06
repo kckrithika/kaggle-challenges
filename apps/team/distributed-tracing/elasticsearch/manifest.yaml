@@ -82,6 +82,7 @@ system:
       #  name: es-pass
       #  readOnly: true
 
+  loadbalancers:
   - lbname: es-rest
     function: elasticsearch
     slbEnabled: true
