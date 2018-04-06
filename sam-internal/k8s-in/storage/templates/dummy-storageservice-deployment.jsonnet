@@ -31,6 +31,10 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs
             spec: {
                 containers: [
                     {
+                        name: "configwatcher",
+                        image: storageimages.configwatcher,
+                    },
+                    {
                         name: "cephdaemon",
                         image: storageimages.cephdaemon,
                     },
