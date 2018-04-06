@@ -30,5 +30,5 @@ system:
     slbEnabled: true
     ports:
       - port: 80
-        targetport: 7022
+        targetport: 9411
         lbtype: http
