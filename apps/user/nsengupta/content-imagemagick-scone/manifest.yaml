@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: imagemagick-sconems
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-imagemagick:nsengupta
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nsengupta:firstversion
       ports:
       - containerPort: 7021
       - containerPort: 15375
