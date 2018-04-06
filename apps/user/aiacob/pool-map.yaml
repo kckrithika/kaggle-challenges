@@ -1,5 +1,8 @@
 apps:
  report-collector:
+   - prd/prd-sam
  repcollavailwd:
+   - prd/prd-sam
  report-collector-provider-perf:
+   - prd/prd-sam
  report-collector-consumer-perf:
