@@ -52,6 +52,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                                 name: "PROMETHEUS_PORT",
                                 value: "10055",
                             },
+                            {
+                                name: "TEST",
+                                value: "1",
+                            },
                         ],
                         image: samimages.kubedns,
                         imagePullPolicy: "IfNotPresent",
