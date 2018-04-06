@@ -1,4 +1,8 @@
 apps:
+    zipkin-frontend:
+    - prd/prd-sam_zipkin
+    elasticsearch:
+    - prd/prd-sam_zipkin
     zipkin-kafka-proxy-test:
     - prd/prd-sam_report_collector
     zipkin-kafka-proxy:
