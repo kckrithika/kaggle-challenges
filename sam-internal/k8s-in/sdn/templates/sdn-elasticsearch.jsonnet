@@ -28,6 +28,7 @@ if configs.estate == "prd-sam" then {
         replicas: 1,
         template: {
             spec: {
+                hostNetwork: true,
                 containers: [
                     {
                         name: "sdn-elasticsearch",
@@ -41,6 +42,12 @@ if configs.estate == "prd-sam" then {
                         ports: [
                             {
                                 containerPort: portconfigs.sdn.sdn_elasticsearch,
+                            },
+                        ],
+                        volumeMounts: [
+                            {
+                                name: "sdn-dashboard",
+                                mountPath: "/usr/share/elasticsearch",
                             },
                         ],
                     },

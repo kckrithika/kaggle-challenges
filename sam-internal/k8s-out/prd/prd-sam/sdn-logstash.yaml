@@ -64,6 +64,7 @@ spec:
           name: logstashcerts
         - mountPath: /etc/pki_service
           name: maddog-certs
+      hostNetwork: true
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d
