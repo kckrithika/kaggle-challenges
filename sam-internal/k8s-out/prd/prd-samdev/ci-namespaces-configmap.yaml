@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  ci-namespaces.json: |-
+    {
+      "namespacesToTeam": {
+        "ci-atf": "atf",
+        "ci-atf-dev": "atf",
+        "ci-atf-mirror": "atf",
+        "ci-ccait": "ccait",
+        "ci-ice-pd": "ice-pd",
+        "ci-iot": "iot",
+        "ci-user-sample": "user-sample",
+        "ci-user-vpod": "user-vpod"
+      }
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: ci-namespaces
+  namespace: sam-system
