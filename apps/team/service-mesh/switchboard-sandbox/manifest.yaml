@@ -33,6 +33,7 @@ system:
       - --clusters.external-clusters[11]=h1-test-server-envoy-tls.service-mesh:HTTP1_TLS
       - --clusters.external-clusters[12]=shipping-envoy-tls.service-mesh:HTTP2_TLS
       - --clusters.external-clusters[13]=tictactoe-server-service-envoy-ns.mesh-games:HTTP2
+      - --clusters.external-clusters[14]=h1-test-server-envoy-nons-plain:HTTP1
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       volumeMounts:
         - mountPath: /log
