@@ -29,7 +29,7 @@ spec:
           name: logstashcerts
       - command:
         - /sdn/sdn-argus-auth-agent
-        - --svcSecretServiceUsername=svc_sdn
+        - --svcUsername=svc_sdn
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
@@ -37,7 +37,7 @@ spec:
         - --confFile=/etc/logstash/conf.d/logstash.conf
         - --truststoreFile=/etc/logstash/certs/truststore.jks
         - --elasticsearchUrl=10.254.219.223:9200
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000752-a48a0570
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000753-ae12f692
         name: sdn-argus-auth-agent
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
