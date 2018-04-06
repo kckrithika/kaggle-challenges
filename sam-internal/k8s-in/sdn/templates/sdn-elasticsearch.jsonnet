@@ -10,13 +10,13 @@ if configs.estate == "prd-sam" then {
         volumeClaimTemplates: [
             {
                 metadata: {
-                   name: "sdn-dashboard-storage",
+                   name: "sdn-dashboard",
                 },
                 spec: {
                    accessModes: [
                       "ReadWriteOnce",
                    ],
-                   storageClassName: "sdn-dashboard",
+                   storageClassName: "sdn-dashboard-hdd-pool",
                    resources: {
                       requests: {
                          storage: "500Gi",
