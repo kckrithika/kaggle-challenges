@@ -11,7 +11,7 @@ system:
     count: 3
     containers:
     - name: gater
-      image: sfci/gater/gate-manager:1.8.0
+      image: sfci/gater/gate-manager:1.9.1
       args:
         - --server.port=9090
       # associate the /log directory to a logical volume. logging.dir is set to this in the startup script args above,
