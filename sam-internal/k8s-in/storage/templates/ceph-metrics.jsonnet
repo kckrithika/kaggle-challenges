@@ -108,6 +108,7 @@ if configs.estate == "phx-sam" || configs.estate == "prd-sam" || configs.estate 
                     {
                         name: "configwatcher",
                         image: storageimages.configwatcher,
+                        imagePullPolicy: "IfNotPresent",
                         args: [
                             "-ceph-key-config-dir=/etc/ceph-metrics/key-config",
                             "-ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config",

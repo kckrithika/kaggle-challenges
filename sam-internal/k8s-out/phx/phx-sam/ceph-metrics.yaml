@@ -59,6 +59,7 @@ items:
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
           image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/configwatcher:base-0000375-b6ea35ee
+          imagePullPolicy: IfNotPresent
           name: configwatcher
           volumeMounts:
           - mountPath: /etc/ceph

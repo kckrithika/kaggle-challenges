@@ -63,6 +63,7 @@ items:
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000380-573c92f8
+          imagePullPolicy: IfNotPresent
           name: configwatcher
           volumeMounts:
           - mountPath: /etc/ceph
@@ -152,6 +153,7 @@ items:
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
           image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000380-573c92f8
+          imagePullPolicy: IfNotPresent
           name: configwatcher
           volumeMounts:
           - mountPath: /etc/ceph
