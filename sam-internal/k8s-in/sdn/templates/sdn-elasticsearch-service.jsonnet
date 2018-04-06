@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sam" then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {
