@@ -144,6 +144,7 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.7": 571,
+                  "0.9.7-prod": 585,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
