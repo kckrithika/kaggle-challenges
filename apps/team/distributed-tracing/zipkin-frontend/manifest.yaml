@@ -17,19 +17,18 @@ system:
       image: docker-dva-rc/dva/zipkin-server:11
       ports:
       - name: zipkin
-        containerPort: 7022
+        containerPort: 9411
       livenessProbe:
         httpGet:
           path: /health
-          port: 7022
+          port: 9411
         initialDelaySeconds: 120
 
   loadbalancers:
   - lbname: zipkin-alpha
     function: zipkin-alpha
-    nodeExposed: true
     slbEnabled: true
     ports:
-      - port: 19222
-        targetport: 7022
+      - port: 80
+        targetport: 9411
         lbtype: http
