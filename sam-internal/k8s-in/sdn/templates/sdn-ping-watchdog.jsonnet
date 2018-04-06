@@ -53,7 +53,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             ] else []
                         )
                         + (
-                            if sdnimages.phase == "1" || sdnimages.phase == "2" || sdnimages.phase == "3" then ["--failPercentageThreshold=5"] else []
+                            if sdnimages.phase == "1" || sdnimages.phase == "2" || sdnimages.phase == "3" || sdnimages.phase == "4" then ["--failPercentageThreshold=5"] else []
                         ),
                         env: [
                             configs.kube_config_env,
