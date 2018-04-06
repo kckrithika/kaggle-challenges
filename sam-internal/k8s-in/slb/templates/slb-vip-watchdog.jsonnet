@@ -46,6 +46,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                             values: [
                                                                "slb-ipvs",
                                                                "slb-ipvs-a",
+                                                               "slb-ipvs-b",
                                                                "slb-nginx-config-b",
                                                                "slb-nginx-config-a",
                                                             ],
