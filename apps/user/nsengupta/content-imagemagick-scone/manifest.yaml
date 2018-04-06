@@ -41,6 +41,20 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+
+    - name: beacon
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+        args:
+        - -endpoint
+        - imagemagick-sconems:DATACENTER_ALLENV:7012
+        # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+        # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+        # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+        livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+            command:
+            - "/home/scone/is-alive.sh"
          
 # Add the log volume in the function section:
     volumes:
