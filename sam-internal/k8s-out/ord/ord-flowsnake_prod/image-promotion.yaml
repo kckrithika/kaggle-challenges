@@ -68,3 +68,67 @@ spec:
         name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:571
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver:585
+        name: flowsnake-spark-driver
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master:585
+        name: flowsnake-spark-master
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-worker:585
+        name: flowsnake-spark-worker
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-history-server:585
+        name: flowsnake-spark-history-server
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-rewriting-proxy:585
+        name: flowsnake-rewriting-proxy
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-kafka:585
+        name: flowsnake-local-kafka
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-global-kafka:585
+        name: flowsnake-global-kafka
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-local-zookeeper:585
+        name: flowsnake-local-zookeeper
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:585
+        name: flowsnake-kafka-rest-proxy
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-token-renewer:585
+        name: flowsnake-spark-token-renewer
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-secret-updater:585
+        name: flowsnake-spark-secret-updater
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python27:585
+        name: flowsnake-tensorflow-python27
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-tensorflow-python35:585
+        name: flowsnake-tensorflow-python35
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-worker:585
+        name: flowsnake-storm-worker
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-nimbus:585
+        name: flowsnake-storm-nimbus
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-submitter:585
+        name: flowsnake-storm-submitter
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-storm-ui:585
+        name: flowsnake-storm-ui
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:585
+        name: flowsnake-test-data
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-webserver:585
+        name: flowsnake-airflow-webserver
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-scheduler:585
+        name: flowsnake-airflow-scheduler
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-worker:585
+        name: flowsnake-airflow-worker
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-postgresql:585
+        name: flowsnake-postgresql
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-redis:585
+        name: flowsnake-redis
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-environment-service:585
+        name: flowsnake-environment-service
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-stream-production-monitor:585
+        name: flowsnake-stream-production-monitor
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-configurator:585
+        name: flowsnake-kafka-configurator
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-sluice-configurator:585
+        name: flowsnake-sluice-configurator
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-kafka-connect:585
+        name: flowsnake-kafka-connect
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:585
+        name: flowsnake-job-flowsnake-demo-job
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:585
+        name: flowsnake-job-flowsnake-storm-demo-job
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:585
+        name: flowsnake-job-flowsnake-airflow-dags
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:585
+        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
