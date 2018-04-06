@@ -30,9 +30,9 @@ spec:
       - command:
         - /sdn/sdn-argus-auth-agent
         - --confFile=/etc/logstash/conf.d/logstash.conf
-        - --certFile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - --keyFile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
-        - --caFile=/etc/pki_service/ca/cabundle.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --cafile=/etc/pki_service/ca/cabundle.pem
         - --topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam
         - --confFile=/etc/logstash/conf.d/logstash.conf
         - --truststoreFile=/etc/logstash/certs/truststore.jks
@@ -42,6 +42,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
           name: logstashconf
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
       - env:
         - name: RUN
           value: keytool_agent
@@ -58,6 +62,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/logstash/certs
           name: logstashcerts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d
@@ -65,3 +71,9 @@ spec:
       - hostPath:
           path: /etc/logstash/certs
         name: logstashcerts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
