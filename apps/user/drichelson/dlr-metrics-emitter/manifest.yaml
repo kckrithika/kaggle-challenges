@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: dlr-metrics-emitter
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-dev/drichelson/dlr-metrics-emitter:latestest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/drichelson/dlr-metrics-emitter:2
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
