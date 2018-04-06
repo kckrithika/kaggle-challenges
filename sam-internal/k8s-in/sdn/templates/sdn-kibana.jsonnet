@@ -24,6 +24,11 @@ if configs.estate == "prd-sam" then {
                                     value: sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
                                 },
                         ],
+                        ports: [
+                            {
+                                containerPort: portconfigs.sdn.sdn_kibana,
+                            },
+                        ],
                     },
                 ],
             },
