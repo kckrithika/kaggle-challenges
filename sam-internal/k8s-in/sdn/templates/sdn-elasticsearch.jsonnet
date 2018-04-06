@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate == "prd-sdc" then {
+if configs.estate == "prd-sam" then {
     kind: "StatefulSet",
     spec: {
         serviceName: "sdn-elasticsearch",
