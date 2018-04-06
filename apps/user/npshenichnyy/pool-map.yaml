@@ -25,3 +25,7 @@ apps:
   - prd/prd-sam
  tictactoe-server-envoy-ns:
   - prd/prd-sam
+ h1-test-client-envoy-nons-plain:
+  - prd/prd-sam
+ h1-test-server-envoy-nons-plain:
+  - prd/prd-sam
