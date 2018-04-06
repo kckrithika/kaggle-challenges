@@ -37,7 +37,7 @@ spec:
         - name: PROMETHEUS_PORT
           value: "10055"
         - name: TEST
-          value: "1"
+          value: "2"
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1
         imagePullPolicy: IfNotPresent
         livenessProbe:

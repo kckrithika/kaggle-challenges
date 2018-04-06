@@ -286,7 +286,9 @@ order by Count desc",
     {
       name: "Prd-Sandbox-IPs-Used-By-Node",
       sql: "select
-  *
+  ss3.*,
+  (CASE WHEN Ready = 'True' then '' else Ready END) as Ready,
+  (CASE WHEN Unschedulable IS NULL then '' else 'True' END) as Unschedulable
 from
 (
   select
@@ -320,10 +322,12 @@ from
         ControlEstate = 'prd-sam'
     ) as ss
   ) as ss2
-  where (NodeName like '%samcompute%')
+  where (NodeName like '%samcompute%' or NodeName like '%kubeapi%')
   group by NodeName
 ) as ss3
-order by  UsedPodIps desc, NumPodPending desc",
+inner join nodeDetailView
+on BINARY ss3.NodeName = BINARY nodeDetailView.Name
+order by UsedPodIps desc, NumPodPending desc",
     },
 
 #===================
@@ -331,7 +335,9 @@ order by  UsedPodIps desc, NumPodPending desc",
     {
       name: "Prd-All-IPs-Used-By-Node",
       sql: "select
-  *
+  ss3.*,
+  (CASE WHEN Ready = 'True' then '' else Ready END) as Ready,
+  (CASE WHEN Unschedulable IS NULL then '' else 'True' END) as Unschedulable
 from
 (
   select
@@ -365,10 +371,11 @@ from
         ControlEstate = 'prd-sam'
     ) as ss
   ) as ss2
- 
   group by NodeName
 ) as ss3
-order by  UsedPodIps desc, NumPodPending desc",
+inner join nodeDetailView
+on BINARY ss3.NodeName = BINARY nodeDetailView.Name
+order by UsedPodIps desc, NumPodPending desc",
     },
 
 #===================

@@ -54,7 +54,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                             },
                             {
                                 name: "TEST",
-                                value: "1",
+                                value: "2",
                             },
                         ],
                         image: samimages.kubedns,
