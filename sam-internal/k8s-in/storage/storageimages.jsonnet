@@ -4,7 +4,6 @@ local kingdom = std.extVar("kingdom");
 {
     ### Global overrides - Anything here will override anything below.
     overrides: {
-        "phx,phx-sam,ceph-metrics,configwatcher": "base-0000367-4217a04e"
         #
         # This section lets you override any storage image for a given kingdom,estate,template,image.
         # Template is the short name of the template. For k8s-in/storage/templates/fds.jsonnet use "fds"

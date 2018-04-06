@@ -43,6 +43,13 @@ if configs.estate == "phx-sam" || configs.estate == "prd-sam_storage" || configs
                     {
                         image: storageimages.sfnstatemetrics,
                         name: "sfn-state-metrics",
+                        command: [
+                            "/sfn-state-metrics/sfn-state-metrics",
+                        ],
+                        args: [
+                            "--config",
+                            "/etc/sfn-state-metrics/sfn-selectors.yaml",
+                        ],
                         ports: [
                             {
                                 containerPort: storageconfigs.serviceDefn.sfn_metrics_svc.health.port,
@@ -53,8 +60,7 @@ if configs.estate == "phx-sam" || configs.estate == "prd-sam_storage" || configs
                             storageutils.log_init_volume_mounts()
                             + [{
                                     name: "sfn-config-dir",
-                                    mountPath: "/sfn-state-metrics/sfn-selectors.yaml",
-                                    subPath: "sfn-selectors.yaml",
+                                    mountPath: "/etc/sfn-state-metrics",
                             }]
                             + configs.filter_empty([
                                 configs.maddog_cert_volume_mount,
