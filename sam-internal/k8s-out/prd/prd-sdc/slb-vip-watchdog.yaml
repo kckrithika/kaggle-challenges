@@ -1,6 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  annotations: {}
   labels:
     name: slb-vip-watchdog
   name: slb-vip-watchdog
@@ -24,6 +25,7 @@ spec:
                   operator: In
                   values:
                   - slb-ipvs
+                  - slb-ipvs-a
                   - slb-nginx-config-b
                   - slb-nginx-config-a
               topologyKey: kubernetes.io/hostname

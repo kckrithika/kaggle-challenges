@@ -32,6 +32,7 @@ spec:
         name: slb-vip-watchdog
       namespace: sam-system
     spec:
+      affinity: {}
       containers:
       - command:
         - /sdn/slb-vip-watchdog
