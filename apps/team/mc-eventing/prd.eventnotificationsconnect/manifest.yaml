@@ -31,7 +31,7 @@ system:
     function: eventnotifications-connect
     nodeExposed: true
     ports:
-      - port: 8081
+      - port: 8082
         targetport: 8080
       - port: 15373
         targetport: 15372
