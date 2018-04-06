@@ -5,12 +5,7 @@ system:
   functions: 
   - name: elasticsearch
     count: 1
-    #type: stateful-set
-    strategy:
-        type: RollingUpdate
-        rollingUpdate:
-            maxSurge: 0
-            maxUnavailable: 1
+    type: stateful-set
     containers:
     - name: elasticsearch
       image: docker-dva-rc/dva/elasticsearch-server:8
@@ -44,11 +39,11 @@ system:
     #      path: /data/elasticsearch
     terminationGracePeriodSeconds: 20
 
-    #volumeClaimTemplates:
-    #- name: elasticsearch-persistent-storage
-    #  storageClassName: gater-hdd-pool
-    #  storageSizeRequest: 1Gi
-    #lbname: elasticsearch-stateful-lb  
+    volumeClaimTemplates:
+    - name: elasticsearch-persistent-storage
+      storageClassName: zipkin-es-persistent-storage-hdd-pool
+      storageSizeRequest: 10Gi
+    lbname: elasticsearch-stateful-lb  
 
   - name: zipkin-es-spark
     count: 1
