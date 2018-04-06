@@ -20,7 +20,7 @@ system:
         type: client
     containers:
     - name: commercejourneys
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.15
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.16
       ports:
         - containerPort: 8080
         - containerPort: 15372
