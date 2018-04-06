@@ -37,9 +37,9 @@ if configs.estate == "prd-sdc" then {
                         command: [
                             "/sdn/sdn-argus-auth-agent",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
-                            "--certFile=" + configs.certFile,
-                            "--keyFile=" + configs.keyFile,
-                            "--caFile=" + configs.caFile,
+                            "--certfile=" + configs.certFile,
+                            "--keyfile=" + configs.keyFile,
+                            "--cafile=" + configs.caFile,
                             "--topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
                             "--truststoreFile=/etc/logstash/certs/truststore.jks",
@@ -74,12 +74,14 @@ if configs.estate == "prd-sdc" then {
                         ],
                         volumeMounts: [
                             sdnconfigs.sdn_logstash_certs_volume_mount,
+                            sdnconfigs.sdn_pkicerts_volume_mount,
                         ],
                     },
                 ],
                 volumes: [
                     sdnconfigs.sdn_logstash_conf_volume,
                     sdnconfigs.sdn_logstash_certs_volume,
+                    sdnconfigs.sdn_pkicerts_volume,
                 ],
             },
             metadata: {
