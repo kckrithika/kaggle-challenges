@@ -15,7 +15,7 @@ system:
           maxUnavailable: 1
       containers:
       - name: prd-warden-stage
-        image: tnrp/casp/warden:0.0.1-0000260-a3b32b1f
+        image:  docker-sam/dtupper/casp-warden:test-0001
         ports:
         - name: warden-stage
           containerPort: 8889
