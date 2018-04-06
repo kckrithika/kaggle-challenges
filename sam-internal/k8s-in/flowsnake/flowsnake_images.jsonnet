@@ -128,7 +128,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "585",
             es_image_tag: "503",
-            fleetService_image_tag: "585",
+            fleetService_image_tag: "588",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
