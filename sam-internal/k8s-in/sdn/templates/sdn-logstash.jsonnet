@@ -33,6 +33,8 @@ if configs.estate == "prd-sdc" then {
                         image: sdnimages.hypersdn,
                         volumeMounts: [
                             sdnconfigs.sdn_logstash_conf_volume_mount,
+                            configs.maddog_cert_volume_mount,
+                            configs.cert_volume_mount,
                         ],
                         command: [
                             "/sdn/sdn-argus-auth-agent",
@@ -74,14 +76,15 @@ if configs.estate == "prd-sdc" then {
                         ],
                         volumeMounts: [
                             sdnconfigs.sdn_logstash_certs_volume_mount,
-                            sdnconfigs.sdn_pkicerts_volume_mount,
+                            configs.maddog_cert_volume_mount,
                         ],
                     },
                 ],
                 volumes: [
                     sdnconfigs.sdn_logstash_conf_volume,
                     sdnconfigs.sdn_logstash_certs_volume,
-                    sdnconfigs.sdn_pkicerts_volume,
+                    configs.maddog_cert_volume,
+                    configs.cert_volume,
                 ],
             },
             metadata: {

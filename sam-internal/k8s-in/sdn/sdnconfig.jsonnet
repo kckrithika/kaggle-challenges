@@ -73,20 +73,6 @@ local utils = import "util_functions.jsonnet";
         mountPath: "/etc/logstash/certs",
     },
 
-    # Volume mount for certs
-    sdn_pkicerts_volume_mount: {
-        name: "sdnpkicerts",
-        mountPath: "/etc/pki_service/ca/",
-    },
-
-    # Volume for certs
-    sdn_pkicerts_volume: {
-        name: "sdnpkicerts",
-        hostPath: {
-            path: "/etc/pki_service/ca/",
-        },
-    },
-
     sdn_elasticsearch_cluster_ip: "10.254.219.223",
 
     # Volume for kubectl

@@ -42,6 +42,10 @@ spec:
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
           name: logstashconf
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /data/certs
+          name: certs
       - env:
         - name: RUN
           value: keytool_agent
@@ -58,8 +62,8 @@ spec:
         volumeMounts:
         - mountPath: /etc/logstash/certs
           name: logstashcerts
-        - mountPath: /etc/pki_service/ca/
-          name: sdnpkicerts
+        - mountPath: /etc/pki_service
+          name: maddog-certs
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d
@@ -68,5 +72,8 @@ spec:
           path: /etc/logstash/certs
         name: logstashcerts
       - hostPath:
-          path: /etc/pki_service/ca/
-        name: sdnpkicerts
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/certs
+        name: certs
