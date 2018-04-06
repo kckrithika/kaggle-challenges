@@ -51,7 +51,7 @@ local slbconfig = import "slbconfig.jsonnet";
             "1"
         else if (kingdom == "prd") then
             "2"
-        else if kingdom in { [k]: 1 for k in ['PHX', 'ORD'] } then
+        else if kingdom in { [k]: 1 for k in ['phx', 'iad'] } then
             "3"
         else
             "4"
