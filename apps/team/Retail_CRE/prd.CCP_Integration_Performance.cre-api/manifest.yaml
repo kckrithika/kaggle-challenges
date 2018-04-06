@@ -9,12 +9,14 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-perf
-      image: sfci/cre/cre-api:0.0.1.37.master.ff81da4.89
+      image: sfci/cre/cre-api:0.0.1.34.master.b5d081e.86
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit_CCP_Integration_Performance
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: METRICS_KAFKA_KEYSTORE
+          value: /certs/shared2-samminionretailcre1-1-prd.jks
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
         - name: METRICS_KAFKA_ENABLED
@@ -32,6 +34,8 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
+      - mountPath: /certs
+        name: certs
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
@@ -70,7 +74,10 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
-    volumes: 
+    volumes:
+    - name: certs
+      hostPath:
+        path: /home/sfdc-retail/keystores      
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-api-ccp-perf
