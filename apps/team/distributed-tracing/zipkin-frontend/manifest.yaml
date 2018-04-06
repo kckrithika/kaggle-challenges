@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: zipkin-alpha
-      image: docker-dva-rc/dva/zipkin-server:11
+      image: docker-dva-rc/dva/zipkin-server:12
       ports:
       - name: zipkin
         containerPort: 9411
