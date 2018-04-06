@@ -38,7 +38,7 @@ if configs.estate == "prd-sdc" then {
                         ],
                         command: [
                             "/sdn/sdn-argus-auth-agent",
-                            "--confFile=/etc/logstash/conf.d/logstash.conf",
+                            "--svcSecretServiceUsername=svc_sdn",
                             "--certfile=" + configs.certFile,
                             "--keyfile=" + configs.keyFile,
                             "--cafile=" + configs.caFile,
