@@ -27,7 +27,7 @@ local utils = import "util_functions.jsonnet";
     logToStdErrArg: "--logtostderr=true",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
-    elasticsearchUrl: "http://" + sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
+    elasticsearchUrl: "http://" + sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
 
     # Volume for logs
     sdn_logs_volume: {},
