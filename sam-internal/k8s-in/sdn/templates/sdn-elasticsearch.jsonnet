@@ -47,7 +47,7 @@ if configs.estate == "prd-sam" then {
                         volumeMounts: [
                             {
                                 name: "sdn-dashboard",
-                                mountPath: "/usr/share/elasticsearch",
+                                mountPath: "/usr/share/elasticsearch/data",
                             },
                         ],
                     },
