@@ -57,9 +57,11 @@ local utils = import "util_functions.jsonnet";
         #[diana.chang] run newest version of manifest-repo-watcher in samdev
         "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180403_165607.2ed8b0fc.dirty.dianachang-ltm1",
 
-        #[xiao.zhou] Test sam-api-proxy
+        #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-samtest,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
         "prd,prd-samdev,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
+        "prd,prd-samdev,samapp-controller,hypersam": "sam-0001853-500861a8",
+        "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
 
         #[jiayi.yan] Test sam app status CRD of samcontrol in samdev
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001848-170a0744",

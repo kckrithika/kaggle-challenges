@@ -10,7 +10,7 @@ if configs.kingdom == "prd" then {
     data: {
         "haproxy-maddog.cfg": (if configs.estate == "prd-sam" then
                                    std.format(std.toString(importstr "configs/haproxy-maddog-acl.cfg"), configs.chainFile)
-                               else if configs.estate == "prd-samtest" then
+                               else if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
                                std.format(std.toString(importstr "configs/haproxy-maddog-apiproxy.cfg"), configs.chainFile)
                                else
                                std.format(std.toString(importstr "configs/haproxy-maddog.cfg"), configs.chainFile)),
