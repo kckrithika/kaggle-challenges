@@ -65,6 +65,8 @@ spec:
         - mountPath: /etc/pki_service
           name: maddog-certs
       hostNetwork: true
+      nodeSelector:
+        pool: prd-sam
       volumes:
       - hostPath:
           path: /etc/logstash/conf.d

@@ -52,6 +52,9 @@ if configs.estate == "prd-sam" then {
                         ],
                     },
                 ],
+                nodeSelector: {
+                    pool: configs.estate,
+                },
                 terminationGracePeriodSeconds: 30,
             },
             metadata: {

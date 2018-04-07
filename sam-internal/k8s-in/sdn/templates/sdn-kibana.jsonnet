@@ -31,6 +31,9 @@ if configs.estate == "prd-sam" then {
                         ],
                     },
                 ],
+                nodeSelector: {
+                    pool: configs.estate,
+                },
             },
             metadata: {
                 labels: {

@@ -25,3 +25,5 @@ spec:
         ports:
         - containerPort: 5601
       hostNetwork: true
+      nodeSelector:
+        pool: prd-sam
