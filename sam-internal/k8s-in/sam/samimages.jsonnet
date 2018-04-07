@@ -59,6 +59,7 @@ local utils = import "util_functions.jsonnet";
 
         #[xiao.zhou] Test sam-api-proxy
         "prd,prd-samtest,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
+        "prd,prd-samdev,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
 
         #[jiayi.yan] Test sam app status CRD of samcontrol in samdev
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001848-170a0744",
