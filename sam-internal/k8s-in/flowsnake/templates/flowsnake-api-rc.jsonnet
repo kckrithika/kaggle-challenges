@@ -88,7 +88,17 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                     },
                                 },
                             },
-                        ],
+                        ] + if flowsnakeconfig.is_098_registry_config then [
+                            {
+                                name: "DOCKER_STRATA_REGISTRY_URL",
+                                valueFrom: {
+                                    configMapKeyRef: {
+                                        name: "fleet-config",
+                                        key: "strata_registry",
+                                    },
+                                },
+                            },
+                        ] else [],
                         volumeMounts: [
                             {
                                 name: "version-mapping",

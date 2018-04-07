@@ -13,7 +13,7 @@ if util.is_production(kingdom) then
 [
           {
             name: imageName,
-            image: flowsnakeconfig.registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
+            image: flowsnakeconfig.strata_registry + "/" + imageName + ":" + flowsnakeimages.version_mapping.main[version],
           }
         for imageName in flowsnakeimages.flowsnakeImagesToPromote
 ]

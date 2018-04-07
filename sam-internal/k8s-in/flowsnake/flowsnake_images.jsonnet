@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-ord-iad-flowsnake-config-1-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -52,6 +52,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7-itest": 565,
                   "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
                   "0.9.7-patch-worker-secrets": 584,
+                  "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-service_mesh-1-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -128,7 +129,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "585",
             es_image_tag: "503",
-            fleetService_image_tag: "588",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -144,7 +145,7 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.7": 571,
-                  "0.9.7-prod": 588,
+                  "0.9.8-SNAPSHOT": "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -194,18 +195,18 @@ local utils = import "util_functions.jsonnet";
 
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
-    canary: flowsnakeconfig.registry + "/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
-    cert_secretizer: flowsnakeconfig.registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
-    es: flowsnakeconfig.registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
-    fleet_service: flowsnakeconfig.registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
-    glok: flowsnakeconfig.registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
-    ingress_controller_nginx: flowsnakeconfig.registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
-    ingress_default_backend: flowsnakeconfig.registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
-    kibana: flowsnakeconfig.registry + "/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
-    logloader: flowsnakeconfig.registry + "/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
-    logstash: flowsnakeconfig.registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
-    node_monitor: flowsnakeconfig.registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
-    zookeeper: flowsnakeconfig.registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
+    canary: flowsnakeconfig.strata_registry + "/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
+    cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
+    es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
+    fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
+    glok: flowsnakeconfig.strata_registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
+    ingress_controller_nginx: flowsnakeconfig.strata_registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
+    ingress_default_backend: flowsnakeconfig.strata_registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,
+    kibana: flowsnakeconfig.strata_registry + "/flowsnake-kibana:" + $.per_phase[$.phase].kibana_image_tag,
+    logloader: flowsnakeconfig.strata_registry + "/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
+    logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
+    node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
+    zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 
     version_mapping: $.per_phase[$.phase].version_mapping,
 
@@ -213,9 +214,9 @@ local utils = import "util_functions.jsonnet";
     deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
     madkub: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
-    kubedns: flowsnakeconfig.registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].kubedns_image_tag,
-    kubednsmasq: flowsnakeconfig.registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,
-    kubednssidecar: flowsnakeconfig.registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].kubedns_image_tag,
+    kubedns: flowsnakeconfig.strata_registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].kubedns_image_tag,
+    kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,
+    kubednssidecar: flowsnakeconfig.strata_registry + "/k8s-dns-sidecar:" + $.per_phase[$.phase].kubedns_image_tag,
 
     # image function logic borrowed from samimages.jsonnet. We currently do not use the override functionality,
     # but benefit from the automatic DC-correct determination of which artifactrepo to use.

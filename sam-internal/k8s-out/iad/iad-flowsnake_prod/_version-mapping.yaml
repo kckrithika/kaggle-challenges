@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   version-mapping.properties: |
     0.9.7 = 571
-    0.9.7-prod = 588
+    0.9.8-SNAPSHOT = jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null

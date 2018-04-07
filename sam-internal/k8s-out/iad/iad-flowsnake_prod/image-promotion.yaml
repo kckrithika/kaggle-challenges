@@ -68,67 +68,67 @@ spec:
         name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:571
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-driver:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-driver:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-driver
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-master:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-master:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-master
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-worker:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-worker:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-worker
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-history-server:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-history-server:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-history-server
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-rewriting-proxy:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-rewriting-proxy:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-rewriting-proxy
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-local-kafka:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-local-kafka:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-global-kafka:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-global-kafka:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-global-kafka
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-local-zookeeper:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-local-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-local-zookeeper
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-kafka-rest-proxy
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-token-renewer:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-token-renewer
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-secret-updater:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-tensorflow-python27:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-tensorflow-python27:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-tensorflow-python35:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-tensorflow-python35:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-worker:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-worker:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-nimbus:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-nimbus:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-submitter:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-submitter:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-ui:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-storm-ui:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-storm-ui
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-test-data:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-airflow-webserver:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-airflow-webserver:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-airflow-scheduler:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-airflow-scheduler:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-airflow-worker:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-airflow-worker:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-airflow-worker
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-postgresql:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-postgresql:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-redis:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-redis:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-redis
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-environment-service:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-environment-service
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-stream-production-monitor:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-stream-production-monitor
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-configurator:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-configurator:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-kafka-configurator
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-sluice-configurator:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-sluice-configurator:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-sluice-configurator
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-connect:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-kafka-connect
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-job-flowsnake-airflow-dags
-      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:588
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job

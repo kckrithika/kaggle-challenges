@@ -37,7 +37,12 @@ spec:
             configMapKeyRef:
               key: kubeconfig
               name: fleet-config
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-fleet-service:jenkins-dva-transformation-flowsnake-platform-ord-iad-flowsnake-config-1-itest
+        - name: DOCKER_STRATA_REGISTRY_URL
+          valueFrom:
+            configMapKeyRef:
+              key: strata_registry
+              name: fleet-config
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-fleet-service:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
