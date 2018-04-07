@@ -23,6 +23,12 @@ spec:
         name: sdn-elasticsearch
         ports:
         - containerPort: 9200
+        volumeMounts:
+        - mountPath: /usr/share/elasticsearch
+          name: sdn-dashboard
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-sam
       terminationGracePeriodSeconds: 30
   volumeClaimTemplates:
   - metadata:

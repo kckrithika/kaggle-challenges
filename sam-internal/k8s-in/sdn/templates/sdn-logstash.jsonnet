@@ -9,6 +9,7 @@ if configs.estate == "prd-sam" then {
         replicas: 1,
         template: {
             spec: {
+                hostNetwork: true,
                 containers: [
                     {
                         name: "sdn-logstash",
@@ -80,6 +81,9 @@ if configs.estate == "prd-sam" then {
                         ],
                     },
                 ],
+                nodeSelector: {
+                    pool: configs.estate,
+                },
                 volumes: [
                     sdnconfigs.sdn_logstash_conf_volume,
                     sdnconfigs.sdn_logstash_certs_volume,
