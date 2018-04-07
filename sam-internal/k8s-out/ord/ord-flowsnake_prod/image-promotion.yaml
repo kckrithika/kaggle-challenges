@@ -68,6 +68,8 @@ spec:
         name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:571
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:571
+        name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-driver:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-driver
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-spark-master:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
@@ -132,3 +134,5 @@ spec:
         name: flowsnake-job-flowsnake-airflow-dags
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
+      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
+        name: flowsnake-zookeeper
