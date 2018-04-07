@@ -19,7 +19,7 @@ spec:
       - env:
         - name: RUN
           value: elasticsearch
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000085-eddb34c0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000086-e2257744
         name: sdn-elasticsearch
         ports:
         - containerPort: 9200
