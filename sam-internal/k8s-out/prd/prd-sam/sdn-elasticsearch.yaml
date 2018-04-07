@@ -24,7 +24,7 @@ spec:
         ports:
         - containerPort: 9200
         volumeMounts:
-        - mountPath: /usr/share/elasticsearch
+        - mountPath: /usr/share/elasticsearch/data
           name: sdn-dashboard
       hostNetwork: true
       nodeSelector:
