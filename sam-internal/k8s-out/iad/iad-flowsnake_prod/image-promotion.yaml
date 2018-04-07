@@ -70,6 +70,8 @@ spec:
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-zookeeper:571
         name: flowsnake-zookeeper
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-logstash:571
+        name: flowsnake-logstash
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-driver:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-spark-driver
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-spark-master:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
@@ -136,3 +138,5 @@ spec:
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
       - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         name: flowsnake-zookeeper
+      - image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
+        name: flowsnake-logstash
