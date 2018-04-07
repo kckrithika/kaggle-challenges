@@ -265,5 +265,6 @@ local utils = import "util_functions.jsonnet";
         "flowsnake-job-flowsnake-airflow-dags",
         "flowsnake-job-flowsnake-spark-local-mode-demo-job",
         "flowsnake-zookeeper",
+        "flowsnake-logstash",
     ],
 }
