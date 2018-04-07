@@ -1,6 +1,8 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local util = import "util_functions.jsonnet";
+local kingdom = std.extVar("kingdom");
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -88,7 +90,7 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                     },
                                 },
                             },
-                        ] + if flowsnakeconfig.is_098_registry_config then [
+                        ] + (if flowsnakeconfig.is_098_registry_config then [
                             {
                                 name: "DOCKER_STRATA_REGISTRY_URL",
                                 valueFrom: {
@@ -97,6 +99,11 @@ local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
                                         key: "strata_registry",
                                     },
                                 },
+                            },
+                        ] else []) + if util.is_production(kingdom) then [
+                            {
+                                name: "FLOWSNAKE_CONFIG_OVERRIDES",
+                                value: " { flowsnake.tenantCertificateConfig.imageName: \"" + flowsnakeimage.madkub + "\" } ",
                             },
                         ] else [],
                         volumeMounts: [
