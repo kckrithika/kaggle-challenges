@@ -21,6 +21,7 @@ spec:
         - /sam/samapp-controller
         - --v=3
         - --logtostderr=true
+        - --ciNamespaceConfigFile=/ci/ci-namespaces.json
         - --config=/config/samapp-controller-config.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --madkubEndpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007
@@ -40,6 +41,8 @@ spec:
           name: kubeconfig
         - mountPath: /config
           name: config
+        - mountPath: /ci
+          name: ci-namespaces
       hostNetwork: true
       nodeSelector:
         master: "true"
@@ -47,6 +50,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - configMap:
+          name: ci-namespaces
+        name: ci-namespaces
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

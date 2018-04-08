@@ -207,6 +207,18 @@ local utils = import "util_functions.jsonnet",
     },
     sfdchosts_arg: "--hostsConfigFile=/sfdchosts/hosts.json",
 
+    # For apps that uses ci-namespace configmap
+    ci_namespaces_volume_mount: {
+        mountPath: "/ci",
+        name: "ci-namespaces",
+    },
+    ci_namespaces_volume: {
+        name: "ci-namespaces",
+        configMap: {
+            name: "ci-namespaces",
+        },
+    },
+
     # === OTHER ===
 
     # These are here so files that include this jsonnet can easily access estate/kingdom.
