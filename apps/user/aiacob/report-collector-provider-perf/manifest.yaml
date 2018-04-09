@@ -13,7 +13,7 @@ system:
           secretName: csc-rc-hack-certificates
     containers:
     - name: andreis-locust-provider-master
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-locust:201802090755
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-locust:201804091430
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
@@ -120,10 +120,7 @@ system:
       ports:
         - port: 8089
           targetPort: 8089
-          name: loc-master-ui
         - port: 5557
           targetPort: 5557
-          name: loc-master-w1
         - port: 5558
           targetPort: 5558
-          name: loc-master-w2
