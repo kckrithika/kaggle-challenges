@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector:20180316073251
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       ports:
       - name: provider
         containerPort: 8080
@@ -96,7 +96,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.13.1-0000247-a03c62e2
+      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
@@ -137,7 +137,7 @@ system:
           secretName: csc-redis-hack-auth
     containers:
     - name: redis
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-redis:201820031205
+      image: tnrp/csc-health/redis-auth:3.2
       volumeMounts:
       - mountPath: /var/secrets/redis
         name: redisauthvol
