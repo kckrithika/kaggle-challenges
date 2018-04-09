@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam"then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -43,25 +43,32 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam"then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--hostnameoverride=$(NODE_NAME)",
                             "--port=" + portconfigs.slb.baboonEndPointPort,
-                            configs.sfdchosts_arg,
                             "--metricsEndpoint=" + configs.funnelVIP,
-
                             "--deletePodPeriod=20m",
                             "--deleteIpvsStatePeriod=4h",
-
                             "--deleteConfigFilePeriod=50m",
-                            "--deleteConfigFileFlag=true",
                             "--deleteNginxTunnelIntfPeriod=2h",
-                            "--deleteNginxTunnelIntfFlag=true",
                             "--deleteIpvsIntfPeriod=1.5h",
-                            "--deleteIpvsIntfFlag=true",
-                            "--deleteCustomerPodFlag=true",
                             "--deleteCustomerPodPeriod=30m",
-
                             "--slbPodLabel=" + slbconfigs.podLabelList,
-                            "--deleteIpvsStateFlag=true",
                             "--deletePodFlag=true",
-                        ],
+                            configs.sfdchosts_arg,
+                        ]
+                        + (
+                             if configs.estate == "prd-sdc" then [
+                                  "--deleteIpvsStateFlag=true",
+                                  "--deleteConfigFileFlag=true",
+                                  "--deleteNginxTunnelIntfFlag=true",
+                                  "--deleteIpvsIntfFlag=true",
+                                  "--deleteCustomerPodFlag=true",
+                             ] else [
+                                  "--deleteIpvsStateFlag=false",
+                                  "--deleteConfigFileFlag=false",
+                                  "--deleteNginxTunnelIntfFlag=false",
+                                  "--deleteIpvsIntfFlag=false",
+                                  "--deleteCustomerPodFlag=false",
+                             ]
+                        ),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
