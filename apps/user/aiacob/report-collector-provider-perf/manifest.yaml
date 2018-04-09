@@ -120,10 +120,7 @@ system:
       ports:
         - port: 8089
           targetPort: 8089
-          name: loc-master-ui
         - port: 5557
           targetPort: 5557
-          name: loc-master-w1
         - port: 5558
           targetPort: 5558
-          name: loc-master-w2
