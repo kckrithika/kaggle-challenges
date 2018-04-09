@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000022-1ee3a2aa
+      image: tnrp/csc-health/candidate-service:candidate-service-0000024-65acaefb
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,13 +39,12 @@ system:
         done
       ']
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000022-1ee3a2aa
+      image: tnrp/csc-health/candidate-service:candidate-service-0000024-65acaefb
       ports:
       - containerPort: 8888
       volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
+        - mountPath: /certs
+          name: client-cert
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
       env:
@@ -54,13 +53,17 @@ system:
       - name: CHS_REPORTCOLLECTOR_WHITELIST
         value: network-nvt,grok.server_watchdog,sandman,netmgt.sandman
       - name: CHS_REPORTCOLLECTOR_CERTPATH
-        value: /var/secrets/grok-client.crt.pem
+        value: /certs/client/certificates/client.pem
       - name: CHS_REPORTCOLLECTOR_KEYPATH
-        value: /var/secrets/grok-client.key
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_REPORTCOLLECTOR_CACERTPATH
+        value: /certs/ca.pem
       - name: CHS_GROK_CERTPATH
-        value: /var/secrets/grok-client.crt.pem
+        value: /certs/client/certificates/client.pem
       - name: CHS_GROK_KEYPATH
-        value: /var/secrets/grok-client.key
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_GROK_CACERTPATH
+        value: /certs/ca.pem
       - name: CHS_HEALTH_PORT
         value: 8888
       - name: CHS_LOG_FILE
@@ -80,9 +83,9 @@ system:
         /candidateservice
       "]
     volumes:
-      - name: secretvol
-        secret:
-          secretName: csc-health-secret
+      - name: client-cert
+        maddogCert:
+          type: client
       - name: logvol
         hostPath:
           path: /home/sfdc-csc-health/candidate-service
