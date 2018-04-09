@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: tnrp/csc-health/observation-service:observation-service-0000032-17c1c78c
+      image: tnrp/csc-health/observation-service:observation-service-0000033-a6e345e9
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000032-17c1c78c
+      image: tnrp/csc-health/observation-service:observation-service-0000033-a6e345e9
       ports:
       - containerPort: 8080
       volumeMounts:
