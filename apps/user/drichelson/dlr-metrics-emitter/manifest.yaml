@@ -18,12 +18,6 @@ system:
       - log.stdout.enabled=true
       - log.stdout.json=false
       livenessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15373
-        initialDelaySeconds: 30
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15373
-        initialDelaySeconds: 30
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20
