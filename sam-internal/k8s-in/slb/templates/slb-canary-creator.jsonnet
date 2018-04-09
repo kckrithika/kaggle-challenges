@@ -43,7 +43,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maxParallelism=" + slbconfigs.canaryMaxParallelism,
-                        ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=2h"] else []) +  # Limit SDC preservation to 2h because of VIP exhaustion
+                        ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
                             [configs.sfdchosts_arg],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
