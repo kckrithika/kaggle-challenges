@@ -8,11 +8,11 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta:firstversion
       ports:
       - containerPort: 7021
-      - containerPort: 15375
+      - containerPort: 15373
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15375
+          port: 15373
     
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.25 # Use the latest version from https://git.soma.salesforce.com/servicelibs/sherpa/releases
