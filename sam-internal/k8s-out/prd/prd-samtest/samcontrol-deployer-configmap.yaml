@@ -23,7 +23,7 @@ data:
         "sdn-secret.yaml"
       ],
       "sender": "sam@salesforce.com",
-      "smtp-server": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+      "smtp-server": "smtpops-prd-sp1.data.sfdc.net:25",
       "tnrp-endpoint": "https://ops0-piperepo2-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive",
       "tokenfile": "/var/token/token"
     }

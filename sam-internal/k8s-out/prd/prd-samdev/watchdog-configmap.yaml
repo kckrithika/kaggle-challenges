@@ -9,7 +9,7 @@ data:
       "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "",
       "deployer-sender": "",
-      "deployer-smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+      "deployer-smtpServer": "smtpops-prd-sp1.data.sfdc.net:25",
       "deploymentNamespacePrefixWhitelist": "sam-system",
       "email-subject-prefix": "SAMWD",
       "enableK4aChecks": true,
@@ -66,7 +66,7 @@ data:
       "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
       "sender": "",
-      "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
+      "smtpServer": "smtpops-prd-sp1.data.sfdc.net:25",
       "snooze": [
         {
           "checker": "nodeChecker",
