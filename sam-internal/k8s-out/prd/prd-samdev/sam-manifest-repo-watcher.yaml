@@ -17,7 +17,7 @@ spec:
       - command:
         - /sam/sam-manifest-repo-watcher
         - --config=/config/sammanifestrepowatcher.json
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180403_165607.2ed8b0fc.dirty.dianachang-ltm1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001847-1b9453cd
         name: sam-manifest-repo-watcher
         volumeMounts:
         - mountPath: /config

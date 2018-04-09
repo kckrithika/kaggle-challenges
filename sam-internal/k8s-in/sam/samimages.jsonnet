@@ -19,14 +19,8 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [cbatra] Test synthetic with k4a
-        "prd,prd-samtest,watchdog-synthetic,hypersam": "sam-0001844-5a6abb17",
-        "prd,prd-samdev,watchdog-synthetic,hypersam": "sam-0001844-5a6abb17",
-
         # [lizhang.li] Enable filesytem-watchdog everywhere
         "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
-        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
-        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001818-cc165257",
@@ -51,20 +45,11 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001825-c908451b",
 
         #[rbhat] watch on downstream objects & update bundleStatus
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001845-7b99d56d",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001845-7b99d56d",
 
-        #[diana.chang] run newest version of manifest-repo-watcher in samdev
-        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180403_165607.2ed8b0fc.dirty.dianachang-ltm1",
-
         #[xiao.zhou] Test sam-api-proxy and samapp controller
-        "prd,prd-samtest,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
-        "prd,prd-samdev,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0001853-500861a8",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
 
-        #[jiayi.yan] Test sam app status CRD of samcontrol in samdev
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001848-170a0744",
         },
 
     ### Per-phase image tags
@@ -88,7 +73,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001837-ee111691",
+            hypersam: "sam-0001847-1b9453cd",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
