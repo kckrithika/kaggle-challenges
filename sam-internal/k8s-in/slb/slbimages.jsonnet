@@ -40,7 +40,7 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 4 - All Prod
         "4": {
-            hypersdn: "v-0000736-6a1608d8",
+            hypersdn: "v-0000748-d1fa158b",
             slbnginx: "v-0000026-409d6394",
             },
     },

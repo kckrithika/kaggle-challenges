@@ -22,7 +22,7 @@ spec:
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000736-6a1608d8
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000748-d1fa158b
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -55,7 +55,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --maximumDeleteCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000736-6a1608d8
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000748-d1fa158b
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -75,7 +75,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000736-6a1608d8
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000748-d1fa158b
         livenessProbe:
           httpGet:
             path: /
