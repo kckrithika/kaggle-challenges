@@ -23,11 +23,11 @@ system:
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
-      - name: PHOENIX_KEYTABSERVICE_ENABLED
+      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
         value: true
-      - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CLIENT_DIRECTORY
+      - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
         value: /client-certs/client
-      - name: PHOENIX_KEYTABSERVICE_CERTIFICATE_CA_DIRECTORY
+      - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
         value: /client-certs
       - name: PHOENIX_ENVIRONMENT
         value: kingdom-test
