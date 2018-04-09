@@ -71,6 +71,15 @@ spec:
           name: kubectl
       hostNetwork: true
       nodeSelector:
+        affinity:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                - matchExpressions:
+                  - key: name
+                    operator: In
+                    values: sdn-ping-watchdog
         master: "true"
       volumes:
       - configMap:

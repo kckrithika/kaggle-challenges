@@ -84,12 +84,30 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     sdnconfigs.sdn_kubectl_volume,
                 ]),
                 nodeSelector: {
-                              } +
-                              if utils.is_flowsnake_cluster(configs.estate) then {
-                                  pool: configs.estate,
-                              } else {
-                                  master: "true",
-                              },
+                } +
+                if utils.is_flowsnake_cluster(configs.estate) then {
+                    pool: configs.estate,
+                } else {
+                    master: "true",
+                } + (
+                if configs.estate == "prd-sdc" then {
+                    affinity: {
+                        podAntiAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: [{
+                                podAffinityTerm: {
+                                    labelSelector: [{
+                                        matchExpressions: [{
+                                            key: "name",
+                                            operator: "In",
+                                            values: "sdn-ping-watchdog",
+                                        }],
+                                    }],
+                                },
+                            }],
+                        },
+                    },
+                } else {}
+                ),
             },
             metadata: {
                 labels: {
