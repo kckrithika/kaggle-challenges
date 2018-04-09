@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: tnrp/csc-health/observation-service:observation-service-0000031-4957247f
+      image: tnrp/csc-health/observation-service:observation-service-0000032-17c1c78c
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
@@ -39,13 +39,12 @@ system:
         done
       ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000031-4957247f
+      image: tnrp/csc-health/observation-service:observation-service-0000032-17c1c78c
       ports:
       - containerPort: 8080
       volumeMounts:
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
+        - mountPath: /certs
+          name: client-cert
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
       env:
@@ -54,13 +53,17 @@ system:
       - name: OBS_REPORTCOLLECTOR_WHITELIST
         value: netmgt.nhal_client,netmgt.sandman,sandman
       - name: OBS_REPORTCOLLECTOR_CERTPATH
-        value: /var/secrets/grok-client.crt.pem
+        value: /certs/client/certificates/client.pem
       - name: OBS_REPORTCOLLECTOR_KEYPATH
-        value: /var/secrets/grok-client.key
+        value: /certs/client/keys/client-key.pem
+      - name: OBS_REPORTCOLLECTOR_CACERTPATH
+        value: /certs/ca.pem
       - name: OBS_GROK_CERTPATH
-        value: /var/secrets/grok-client.crt.pem
+        value: /certs/client/certificates/client.pem
       - name: OBS_GROK_KEYPATH
-        value: /var/secrets/grok-client.key
+        value: /certs/client/keys/client-key.pem
+      - name: OBS_GROK_CACERTPATH
+        value: /certs/ca.pem
       - name: OBS_HEALTH_PORT
         value: 8080
       - name: OBS_LOG_FILE
@@ -80,9 +83,9 @@ system:
         /observationservice
       "]
     volumes:
-      - name: secretvol
-        secret:
-          secretName: csc-health-secret
+      - name: client-cert
+        maddogCert:
+          type: client
       - name: logvol
         hostPath:
           path: /home/sfdc-csc-health/observation-service
