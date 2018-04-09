@@ -89,9 +89,8 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     pool: configs.estate,
                 } else {
                     master: "true",
-                } + (
-                if configs.estate == "prd-sdc" then {
-                    affinity: {
+                },
+                [if configs.estate == "prd-sdc" then "affinity"]: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{
                                 podAffinityTerm: {
@@ -105,9 +104,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 },
                             }],
                         },
-                    },
-                } else {}
-                ),
+                },
             },
             metadata: {
                 labels: {
