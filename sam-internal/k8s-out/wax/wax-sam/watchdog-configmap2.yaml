@@ -17,6 +17,11 @@ data:
         "/data/slb/logs/",
         "/home/sfdc/"
       ],
+      "filesystemRecursiveCheck": true,
+      "filesystemRecursiveCheckDirs": [
+        "/data/",
+        "/home/"
+      ],
       "funnelEndpoint": "mandm-funnel-wax.data.sfdc.net:8080",
       "imageName": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001815-8cfb538e",
       "k8sproxyEndpoint": "http://localhost:40000",
