@@ -11,12 +11,15 @@ system:
   - name: retailcalculator
     count: 1
     volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: multitenantcreds
     - name: cccjclientcert
       maddogCert:
         type: client
     containers:
     - name: retailcalculator
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.6
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -35,6 +38,9 @@ system:
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
+      - name: secretvol
+        mountPath: /secrets/
+        readOnly: true
   loadbalancers:
   - lbname: retailcalculator-lb
     function: retailcalculator
