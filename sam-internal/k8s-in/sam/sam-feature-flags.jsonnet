@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
     rbacstorage: configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev",
 
     # MadDog
-    maddogforsamapps: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
+    maddogforsamapps: true,
 
     maddogforsamhosts: configs.maddogForSamHostsEnabled,
 

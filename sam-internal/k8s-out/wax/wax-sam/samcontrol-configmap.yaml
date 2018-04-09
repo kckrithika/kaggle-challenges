@@ -9,7 +9,7 @@ data:
       "deletionEnabled": false,
       "deletionPercentageThreshold": 20,
       "dockerregistry": "ops-artifactrepo1-0-wax.data.sfdc.net",
-      "enableMaddog": false,
+      "enableMaddog": true,
       "httpsDisableCertsCheck": true,
       "imageCheckV2": true,
       "k4aInitContainerImage": "ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001800-1972769a",

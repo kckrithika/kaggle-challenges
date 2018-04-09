@@ -32,11 +32,31 @@ apps:
   - phx/phx-sam
   - ukb/ukb-sam
   - hnd/hnd-sam
+  - yhu/yhu-sam
+  - yul/yul-sam
+  - cdu/cdu-sam
+  - syd/syd-sam
+  - chx/chx-sam
+  - wax/wax-sam
  SamTestAppMaddogMultiCert:
-  - prd/prd-samdev
-  - prd/prd-samtest
   - prd/prd-sam
+  - prd/prd-samtest
+  - prd/prd-samdev
+  - prd/prd-sdc
+  - dfw/dfw-sam
   - frf/frf-sam
+  - iad/iad-sam
+  - ord/ord-sam
+  - par/par-sam
+  - phx/phx-sam
+  - ukb/ukb-sam
+  - hnd/hnd-sam
+  - yhu/yhu-sam
+  - yul/yul-sam
+  - cdu/cdu-sam
+  - syd/syd-sam
+  - chx/chx-sam
+  - wax/wax-sam
  SamTestAppSecret:
   - prd/prd-sam
   - frf/frf-sam
