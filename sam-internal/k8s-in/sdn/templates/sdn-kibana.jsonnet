@@ -21,7 +21,7 @@ if configs.estate == "prd-sam" then {
                                 },
                                 {
                                     name: "ELASTICSEARCH_URL",
-                                    value: sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
+                                    value: sdnconfigs.elasticsearchUrl,
                                 },
                         ],
                         ports: [
