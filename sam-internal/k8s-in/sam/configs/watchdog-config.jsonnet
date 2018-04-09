@@ -107,6 +107,11 @@ std.prune({
     "/data/slb/logs/",
     "/home/sfdc/",
   ],
+  filesystemRecursiveCheck: true,
+  filesystemRecursiveCheckDirs: [
+    "/data/",
+    "/home/",
+  ],
 })
   + (if utils.is_cephstorage_supported(configs.estate) then {
     storageClassName: "synthetic-hdd-pool",
@@ -129,12 +134,5 @@ std.prune({
     maddogEtcdCerts: [
       "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
       "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
-    ],
-  } else {})
-  + (if configs.kingdom == "prd" then {
-    filesystemRecursiveCheck: true,
-    filesystemRecursiveCheckDirs: [
-      "/data/",
-      "/home/",
     ],
   } else {})
