@@ -51,17 +51,18 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                             "--deleteIpvsIntfPeriod=1.5h",
                             "--deleteCustomerPodPeriod=30m",
                             "--slbPodLabel=" + slbconfigs.podLabelList,
-                            "--deletePodFlag=true",
                             configs.sfdchosts_arg,
                         ]
                         + (
                              if configs.estate == "prd-sdc" then [
+                                  "--deletePodFlag=true",
                                   "--deleteIpvsStateFlag=true",
                                   "--deleteConfigFileFlag=true",
                                   "--deleteNginxTunnelIntfFlag=true",
                                   "--deleteIpvsIntfFlag=true",
                                   "--deleteCustomerPodFlag=true",
                              ] else [
+                                  "--deletePodFlag=false",
                                   "--deleteIpvsStateFlag=false",
                                   "--deleteConfigFileFlag=false",
                                   "--deleteNginxTunnelIntfFlag=false",

@@ -30,8 +30,8 @@ spec:
         - --deleteIpvsIntfPeriod=1.5h
         - --deleteCustomerPodPeriod=30m
         - --slbPodLabel=name=slb-vip-watchdog
-        - --deletePodFlag=true
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - --deletePodFlag=false
         - --deleteIpvsStateFlag=false
         - --deleteConfigFileFlag=false
         - --deleteNginxTunnelIntfFlag=false
