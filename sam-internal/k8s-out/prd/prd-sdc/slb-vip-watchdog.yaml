@@ -24,6 +24,8 @@ spec:
                   operator: In
                   values:
                   - slb-ipvs
+                  - slb-ipvs-a
+                  - slb-ipvs-b
                   - slb-nginx-config-b
                   - slb-nginx-config-a
               topologyKey: kubernetes.io/hostname
@@ -54,7 +56,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        slb-dns-register: "true"
+        pool: prd-sdc
       volumes:
       - hostPath:
           path: /data/slb
