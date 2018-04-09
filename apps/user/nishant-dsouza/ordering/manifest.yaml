@@ -31,6 +31,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15371
+
     - name: beacon-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
@@ -50,6 +51,7 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+
     - name: sherpa-ordering
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nishant-dsouza/sherpa:2.0.24-snapshot-0402
       args: ["--http2-origin", "localhost:7021"]
