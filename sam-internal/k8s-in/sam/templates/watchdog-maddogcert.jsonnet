@@ -5,7 +5,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 
 # This is a watchdog for SAM's hosts that request maddog certs
 
-if samfeatureflags.maddogforsamhosts then {
+{
     kind: "DaemonSet",
     spec: {
         template: {
@@ -55,4 +55,4 @@ if samfeatureflags.maddogforsamhosts then {
         },
         name: "watchdog-maddogcert",
     },
-} else "SKIP"
+}
