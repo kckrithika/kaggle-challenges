@@ -21,7 +21,7 @@ spec:
         - --namespace=sam-system
         - --log_dir=/host/data/slb/logs
         - --hostnameoverride=$(NODE_NAME)
-        - --port=32555
+        - --port=32556
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --deletePodPeriod=20m
         - --deleteIpvsStatePeriod=4h

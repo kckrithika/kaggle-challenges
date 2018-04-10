@@ -11,10 +11,10 @@ metadata:
 spec:
   ports:
   - name: slb-baboon-port
-    nodePort: 32555
-    port: 32555
+    nodePort: 32556
+    port: 32556
     protocol: TCP
-    targetPort: 32555
+    targetPort: 32556
   selector:
     name: slb-baboon
   type: NodePort
