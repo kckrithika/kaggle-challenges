@@ -12,9 +12,9 @@ system:
       #env:
       #- name: ES_PASSWORD_FILE
       #  value: /secrets/rootpassword
-      #volumeMounts:
-      #- mountPath: /var/lib/elasticsearch
-      #  name: elasticsearch-persistent-storage
+      volumeMounts:
+      - mountPath: /var/lib/elasticsearch
+        name: elasticsearch-persistent-storage
       #- mountPath: /certs
       #  name: certs
       #- mountPath: /secrets
