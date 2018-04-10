@@ -14,23 +14,21 @@ spec:
       namespace: sam-system
     spec:
       affinity:
-        nodeAffinity:
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: pool
-                operator: In
-                values:
-                - prd-sdc
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-                - slb-nginx
-              - key: illumio
-                operator: NotIn
-                values:
-                - b
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - slb-ipvs
+                  - slb-ipvs-a
+                  - slb-ipvs-b
+                  - slb-nginx-config-b
+                  - slb-nginx-config-a
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       containers:
       - command:
         - /sdn/slb-canary-service

@@ -62,34 +62,30 @@ if configs.estate == "prd-sdc" then {
             } + (
             if configs.estate == "prd-sdc" then {
               affinity: {
-                nodeAffinity: {
-                  requiredDuringSchedulingIgnoredDuringExecution: {
-                    nodeSelectorTerms: [
-                      {
-                        matchExpressions: [
-                          {
-                            key: "pool",
-                            operator: "In",
-                            values: [configs.estate],
-                          },
-                          {
-                            key: "slb-service",
-                            operator: "NotIn",
-                            values: ["slb-ipvs", "slb-nginx"],
-                          },
-                        ] + (
-                          if configs.estate == "prd-sdc" then
-                          [
-                            {
-                              key: "illumio",
-                              operator: "NotIn",
-                              values: ["b"],
-                            },
-                          ] else []
-                        ),
-                      },
-                    ],
-                  },
+                podAntiAffinity: {
+                   requiredDuringSchedulingIgnoredDuringExecution: [
+                                          {
+                                            weight: 100,
+                                            podAffinityTerm: {
+                                            labelSelector: {
+                                               matchExpressions: [
+                                                  {
+                                                     key: "name",
+                                                     operator: "In",
+                                                     values: [
+                                                        "slb-ipvs",
+                                                        "slb-ipvs-a",
+                                                        "slb-ipvs-b",
+                                                        "slb-nginx-config-b",
+                                                        "slb-nginx-config-a",
+                                                     ],
+                                                  },
+                                               ],
+                                            },
+                                           topologyKey: "kubernetes.io/hostname",
+                                         },
+                                       },
+                                     ],
                 },
               },
             } else {}

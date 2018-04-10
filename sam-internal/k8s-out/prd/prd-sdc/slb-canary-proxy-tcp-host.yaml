@@ -13,6 +13,22 @@ spec:
         name: slb-canary-proxy-tcp-host
       namespace: sam-system
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: name
+                  operator: In
+                  values:
+                  - slb-ipvs
+                  - slb-ipvs-a
+                  - slb-ipvs-b
+                  - slb-nginx-config-b
+                  - slb-nginx-config-a
+              topologyKey: kubernetes.io/hostname
+            weight: 100
       containers:
       - command:
         - /sdn/slb-canary-service
