@@ -59,7 +59,15 @@ if slbconfigs.slbInKingdom then {
 
                                     ],
                                 },
-                            ],
+                            ] + if configs.estate == "prd-sdc" then [{
+                                matchExpressions: [
+                                    {
+                                        key: "master",
+                                        operator: "In",
+                                        values: ["true"],
+                                    },
+                                ],
+                            }] else [],
                         },
                     },
                 },

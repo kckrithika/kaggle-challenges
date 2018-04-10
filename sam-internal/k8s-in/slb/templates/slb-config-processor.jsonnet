@@ -26,34 +26,42 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             spec: {
                 hostNetwork: true,
                 affinity: {
-                   nodeAffinity: {
-                     requiredDuringSchedulingIgnoredDuringExecution: {
-                       nodeSelectorTerms: [
-                         {
-                           matchExpressions: [
-                             {
-                                key: "slb-service",
-                                operator: "NotIn",
-                                values: ["slb-nginx-a", "slb-ipvs-a"],
-                             },
-                             {
-                                key: "pool",
-                                operator: "In",
-                                values: [configs.estate, configs.kingdom + "-slb"],
-                             },
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "slb-service",
+                                            operator: "NotIn",
+                                            values: ["slb-nginx-a", "slb-ipvs-a"],
+                                        },
+                                        {
+                                            key: "pool",
+                                            operator: "In",
+                                            values: [configs.estate, configs.kingdom + "-slb"],
+                                        },
 
-                           ] + (if configs.estate == "prd-sdc" then [
-                              {
-                                key: "illumio",
-                                operator: "NotIn",
-                                values: ["b"],
-                              },
-                           ] else []),
-                         },
-                       ],
-                     },
-                   },
-                 },
+                                    ] + (if configs.estate == "prd-sdc" then [
+                                             {
+                                                 key: "illumio",
+                                                 operator: "NotIn",
+                                                 values: ["b"],
+                                             },
+                                         ] else []),
+                                },
+                            ] + if configs.estate == "prd-sdc" then [{
+                                matchExpressions: [
+                                    {
+                                        key: "master",
+                                        operator: "In",
+                                        values: ["true"],
+                                    },
+                                ],
+                            }] else [],
+                        },
+                    },
+                },
 
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
@@ -63,37 +71,37 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                 ]),
+                ]),
                 containers: [
                     {
                         name: "slb-config-processor",
                         image: slbimages.hypersdn,
                         command: [
-                            "/sdn/slb-config-processor",
-                            "--configDir=" + slbconfigs.configDir,
-                         ] + (if configs.estate == "prd-sdc" then [
-                            "--period=1200s",
-                         ] else [
-                            "--period=1800s",
-                         ]) +
-                         [
-                            "--namespace=" + slbconfigs.namespace,
-                            "--podstatus=running",
-                            "--subnet=" + slbconfigs.subnet,
-                            "--k8sapiserver=",
-                            "--serviceList=" + slbconfigs.serviceList,
-                            "--useVipLabelToSelectSvcs=" + slbconfigs.useVipLabelToSelectSvcs,
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            "--sleepTime=100ms",
-                            "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
-                            "--kneConfigDir=" + slbconfigs.kneConfigDir,
-                            "--kneDomainName=" + slbconfigs.kneDomainName,
-                            "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
-                            "--shouldRemoveConfig=true",
-                            configs.sfdchosts_arg,
-                            "--proxySelectorLabelValue=slb-nginx-config-b",
-                        ],
+                                     "/sdn/slb-config-processor",
+                                     "--configDir=" + slbconfigs.configDir,
+                                 ] + (if configs.estate == "prd-sdc" then [
+                                          "--period=1200s",
+                                      ] else [
+                                          "--period=1800s",
+                                      ]) +
+                                 [
+                                     "--namespace=" + slbconfigs.namespace,
+                                     "--podstatus=running",
+                                     "--subnet=" + slbconfigs.subnet,
+                                     "--k8sapiserver=",
+                                     "--serviceList=" + slbconfigs.serviceList,
+                                     "--useVipLabelToSelectSvcs=" + slbconfigs.useVipLabelToSelectSvcs,
+                                     "--metricsEndpoint=" + configs.funnelVIP,
+                                     "--log_dir=" + slbconfigs.logsDir,
+                                     "--sleepTime=100ms",
+                                     "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
+                                     "--kneConfigDir=" + slbconfigs.kneConfigDir,
+                                     "--kneDomainName=" + slbconfigs.kneDomainName,
+                                     "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
+                                     "--shouldRemoveConfig=true",
+                                     configs.sfdchosts_arg,
+                                     "--proxySelectorLabelValue=slb-nginx-config-b",
+                                 ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
@@ -102,21 +110,21 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             configs.sfdchosts_volume_mount,
-                         ]),
-                         env: [
+                        ]),
+                        env: [
                             configs.kube_config_env,
                         ],
                         securityContext: {
                             privileged: true,
                         },
                         livenessProbe: {
-                          httpGet: {
-                             path: "/liveness-probe",
-                             port: portconfigs.slb.slbConfigProcessorLivenessProbePort,
-                          },
-                          initialDelaySeconds: 600,
-                          timeoutSeconds: 5,
-                          periodSeconds: 30,
+                            httpGet: {
+                                path: "/liveness-probe",
+                                port: portconfigs.slb.slbConfigProcessorLivenessProbePort,
+                            },
+                            initialDelaySeconds: 600,
+                            timeoutSeconds: 5,
+                            periodSeconds: 30,
                         },
                     },
                     {
