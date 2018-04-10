@@ -25,7 +25,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-
     - name: beacon-shipping
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
@@ -45,7 +44,6 @@ system:
         exec:
           command:
           - "/home/scone/is-alive.sh"
-
     - name: sherpa-shipping
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-test2
       env:
