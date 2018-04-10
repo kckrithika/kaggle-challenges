@@ -46,7 +46,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       args:
       - -endpoint
-      - imagemagick-service:POD:7021
+      - imagemagick-sconems:POD:7021
       livenessProbe:
         initialDelaySeconds: 5
         exec:
