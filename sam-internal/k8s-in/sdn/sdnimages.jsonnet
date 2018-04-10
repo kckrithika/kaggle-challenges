@@ -23,7 +23,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000753-ae12f692",
+            hypersdn: "v-0000763-622223ea",
             bird: "v-0000016-a0f26f27",
             },
 
