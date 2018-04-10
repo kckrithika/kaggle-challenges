@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 
-if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then {
+if configs.estate == "prd-sam_storage" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -34,7 +34,7 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
                        {
                           key: "pool",
                           operator: "In",
-                          values: [/*"prd-sam_cephdev", "prd-sam_ceph",*/ "phx-sam_ceph"],
+                          values: ["not-in-any-pool-at-this-time"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
@@ -59,7 +59,7 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
           containers: [
             {
               name: "nodeprep",
-              image: storageimages.sfnodeprep,
+              image: storageimages.nodeprep,
               imagePullPolicy: "Always",
               securityContext: {
                 privileged: true,
@@ -103,10 +103,6 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
                   },
                 },
                 {
-                  name: "KUBECONFIG",
-                  value: "/kubeconfig/kubeconfig",
-                },
-                {
                   name: "PROC_PATH",
                   value: "/hostroot/proc",
                 },
@@ -122,7 +118,7 @@ if /*configs.estate == "prd-sam_storage" ||*/ configs.estate == "disabled" then 
                   name: "DELETE_DISCOVERY",
                   value: "no",
                 },
-              ],
+              ] + [configs.kube_config_env],
             },
           ],
           volumes: configs.filter_empty([

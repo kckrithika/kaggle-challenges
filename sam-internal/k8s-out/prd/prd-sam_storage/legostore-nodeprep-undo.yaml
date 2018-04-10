@@ -4,13 +4,13 @@ metadata:
   labels:
     cloud: storage
     team: storage-foundation
-  name: sfstore-nodeprep
+  name: legostore-nodeprep-undo
   namespace: storage-foundation
 spec:
   template:
     metadata:
       labels:
-        app: sfstore-nodeprep
+        app: legostore-nodeprep-undo
         cloud: storage
         team: storage-foundation
     spec:
@@ -24,7 +24,9 @@ spec:
                 values:
                 - not-in-any-pool-at-this-time
               - key: storage.salesforce.com/nodeprep
-                operator: DoesNotExist
+                operator: In
+                values:
+                - cleanup
       containers:
       - env:
         - name: MY_NODE_NAME
@@ -38,7 +40,7 @@ spec:
         - name: FSTAB_PATH
           value: /hostroot/etc
         - name: DELETE_DISCOVERY
-          value: "no"
+          value: "yes"
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/nodeprep:base-0000380-573c92f8
@@ -110,7 +112,7 @@ spec:
           path: /mnt
         name: discoverypath
       - configMap:
-          name: sfstore-nodeprep-config
+          name: legostore-nodeprep-config
         name: nodeprep-config
       - hostPath:
           path: /etc/pki_service

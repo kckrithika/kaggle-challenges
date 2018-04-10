@@ -35,7 +35,7 @@ if configs.estate == "prd-sam_storage" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: storageconfigs.sfstoreEstates[configs.estate],
+                          values: ["not-in-any-pool-at-this-time"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
@@ -104,10 +104,6 @@ if configs.estate == "prd-sam_storage" then {
                   },
                 },
                 {
-                  name: "KUBECONFIG",
-                  value: "/kubeconfig/kubeconfig",
-                },
-                {
                   name: "PROC_PATH",
                   value: "/hostroot/proc",
                 },
@@ -123,7 +119,7 @@ if configs.estate == "prd-sam_storage" then {
                   name: "DELETE_DISCOVERY",
                   value: "no",
                 },
-              ],
+              ] + [configs.kube_config_env],
             },
           ],
           volumes: configs.filter_empty([
