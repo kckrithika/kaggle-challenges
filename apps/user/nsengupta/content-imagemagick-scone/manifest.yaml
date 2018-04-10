@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: imagemagick-sconems
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta:secondverssion
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/imagemagick-sconems:third-version
       ports:
       - containerPort: 7021
       - containerPort: 15373
