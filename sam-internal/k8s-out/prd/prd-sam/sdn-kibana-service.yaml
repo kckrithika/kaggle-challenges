@@ -3,7 +3,7 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: sdn-kibana
-    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 5601,
+    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 9124,
       "reencrypt": false, "sticky": 0, "targetport": 9124}]'
   labels:
     app: sdn-kibana
