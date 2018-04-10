@@ -113,7 +113,7 @@ perCluster: {
     },
 
     kneConfigDir: {
-        "prd-sdc": "/var/slb/testkneconfigs",
+        "prd-sdc": "/var/slb/kneconfigs/testkneconfigs",
         "prd-samtest": "/var/slb/testkneconfigs",
         "prd-samdev": "/var/slb/testkneconfigs",
         "prd-sam_storage": "/var/slb/testkneconfigs",

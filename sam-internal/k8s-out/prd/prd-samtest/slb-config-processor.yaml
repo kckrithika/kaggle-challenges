@@ -49,7 +49,7 @@ spec:
         - --log_dir=/host/data/slb/logs
         - --sleepTime=100ms
         - --processKnEConfigs=false
-        - --kneConfigDir=/var/slb/testkneconfigs
+        - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
         - --kneDomainName=
         - --livenessProbePort=9876
         - --shouldRemoveConfig=true
