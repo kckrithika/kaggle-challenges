@@ -31,6 +31,8 @@ spec:
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
+      securityContext:
+        fsGroup: 7447
       terminationGracePeriodSeconds: 30
   volumeClaimTemplates:
   - metadata:

@@ -28,6 +28,9 @@ if configs.estate == "prd-sam" then {
         replicas: 1,
         template: {
             spec: {
+                securityContext: {
+                    fsGroup: 7447,
+                },
                 hostNetwork: true,
                 containers: [
                     {
