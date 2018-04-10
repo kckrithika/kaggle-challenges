@@ -5,7 +5,7 @@
 {
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
-local engOrOps = (if self.kingdom == "prd" then "eng" else "ops"),
+local engOrOps = (if self.kingdom == "prd" || self.kingdom == "xrd" then "eng" else "ops"),
 local utils = import "util_functions.jsonnet",
 
     # === DISCOVERY ===
@@ -20,6 +20,7 @@ local utils = import "util_functions.jsonnet",
         # TODO: Clean this up
         smtpServer: {
             prd: "smtpops-prd-sp1.data.sfdc.net:25",
+            xrd: "ops0-mta2-2-xrd.ops.sfdc.net:25",  #not sure if should match prod or prd
             dfw: "ops0-mta2-2-dfw.ops.sfdc.net:25",
             phx: "ops0-mta1-2-phx.ops.sfdc.net:25",
             frf: "ops0-mta2-1-frf.ops.sfdc.net:25",

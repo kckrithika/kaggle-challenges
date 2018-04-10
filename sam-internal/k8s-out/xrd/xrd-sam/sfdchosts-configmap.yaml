@@ -1,0 +1,722 @@
+apiVersion: v1
+data:
+  hosts.json: |-
+    {
+      "hosts": [
+        {
+          "bomrolename": "sam_compute",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam",
+          "hostname": "shared0-samcompute1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_compute",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam",
+          "hostname": "shared0-samcompute1-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_compute",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam",
+          "hostname": "shared0-samcompute2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "xrd-sam",
+          "devicerole": "samkubeapi",
+          "estate": "xrd-sam",
+          "hostname": "shared0-samkubeapi1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "xrd-sam",
+          "devicerole": "samkubeapi",
+          "estate": "xrd-sam",
+          "hostname": "shared0-samkubeapi2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_kube_api",
+          "controlestate": "xrd-sam",
+          "devicerole": "samkubeapi",
+          "estate": "xrd-sam",
+          "hostname": "shared0-samkubeapi3-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_gater",
+          "hostname": "shared0-samminiongater1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_gater",
+          "hostname": "shared0-samminiongater1-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_gater",
+          "hostname": "shared0-samminiongater1-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_gater",
+          "hostname": "shared0-samminiongater2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_gater",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_gater",
+          "hostname": "shared0-samminiongater2-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool1-8-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool2-8-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool3-8-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool4-8-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool5-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool6-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool7-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-3-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-4-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-5-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-6-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sampool",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sampool",
+          "hostname": "shared0-sampool8-7-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        }
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sfdchosts
+  namespace: sam-system
