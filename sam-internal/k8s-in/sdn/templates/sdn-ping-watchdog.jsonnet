@@ -93,15 +93,16 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 [if configs.estate == "prd-sdc" then "affinity"]: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{
-                                podAffinityTerm: {
-                                    labelSelector: [{
-                                        matchExpressions: [{
-                                            key: "name",
-                                            operator: "In",
-                                            values: "sdn-ping-watchdog",
-                                        }],
+                                labelSelector: {
+                                    matchExpressions: [{
+                                        key: "name",
+                                        operator: "In",
+                                        values: [
+                                            "sdn-ping-watchdog",
+                                        ],
                                     }],
                                 },
+                                topologyKey: "kubernetes.io/hostname",
                             }],
                         },
                 },
