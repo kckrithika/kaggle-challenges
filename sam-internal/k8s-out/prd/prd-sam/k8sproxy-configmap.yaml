@@ -21,12 +21,25 @@ data:
         http-request deny if secrets
         http-request deny if secrets_namespace
 
+        acl sam_api url_reg /apis/samcrd.salesforce.com/v1/namespaces/.*/samapps.*
+        use_backend sam_api_proxy_server if sam_api
+
         timeout client 50s
         timeout client-fin 30s
         log global
         default_backend kubernetes-apiserver
         option clitcpka
 
+    backend sam_api_proxy_server
+        mode http
+        timeout server 50s
+        timeout connect 5s
+        timeout tunnel  50s
+        option httpchk HEAD /healthz HTTP/1.1\r\nHost:\ localhost
+        default-server inter 5s fall 3 rise 2
+        option srvtcpka
+        # Nodeport for sam api proxy
+        server proxy localhost:39872
 
     backend kubernetes-apiserver
         mode http
