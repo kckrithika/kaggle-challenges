@@ -19,11 +19,11 @@ spec:
         - name: RUN
           value: kibana
         - name: ELASTICSEARCH_URL
-          value: http://10.254.219.223:9200
+          value: http://10.254.219.223:9123
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000086-e2257744
         name: sdn-kibana
         ports:
-        - containerPort: 5601
+        - containerPort: 9124
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
