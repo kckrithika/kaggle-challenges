@@ -4,60 +4,131 @@ system:
   functions:
   - name: ordering-dghosh
     count: 1
+    volumes:
+    - name: clientcert
+      maddogCert:
+        type: client
     containers:
     - name: ordering-dghosh
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180212-c8ba0a9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/ordering/ordering-sboobna:sboobna-20180215-2149427
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
-      - name: SCONE_SHIPPING_DEST
-        value: shipping-dghosh.service-mesh.localhost.mesh.force.com:5443
+        value: sconex
+      - name: SCONE_SHIPPING_HOST
+        value: shipping-dghosh.localhost.mesh.force.com
+      - name: SCONE_SHIPPING_PORT
+        value: 7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: MANAGEMENT_PORT
+        value: 15371
       ports:
-      - containerPort: 7020
-        name: grpc-svc
+      - containerPort: 7021
       - containerPort: 15371
-        name: scone-mgmt
+      - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
           path: /manage/health
           port: 15371
-
+    - name: beacon-ordering
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
+      args:
+      - -endpoint
+      - ordering-dghosh:DATACENTER:7012
+      - -service
+      - ordering-test
+      - -rootCert
+      - /clientcerts/ca.pem
+      - -certDir
+      - /clientcerts/client
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
     - name: sherpa-ordering
-      image: sfci/servicelibs/sherpa-envoy:8c88da117952065195ab198ecd2c26c260fdb0ec
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa7:2.0.22-snapshot
+      args: ["--http2-origin", "localhost:7021"]
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
-      ports:
-      - containerPort: 15375
-        name: sherpa-adm
+        value: sconex
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15375
-        initialDelaySeconds: 20
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15375
-        initialDelaySeconds: 15
-      volumeMounts:
-        - name: logvol
-          mountPath: /log
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
 
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-ordering-linkerd-tls/logs
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
+# apiVersion: v1
+#
+# system:
+#   functions:
+#   - name: ordering-dghosh
+#     count: 1
+#     containers:
+#     - name: ordering-dghosh
+#       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180212-c8ba0a9
+#       env:
+#       - name: SFDC_ENVIRONMENT
+#         value: mesh
+#       - name: SCONE_SHIPPING_DEST
+#         value: shipping-dghosh.service-mesh.localhost.mesh.force.com:5443
+#       - name: JAVA_HEAP_OPTS
+#         value: -Xmx64m
+#       ports:
+#       - containerPort: 7020
+#         name: grpc-svc
+#       - containerPort: 15371
+#         name: scone-mgmt
+#       livenessProbe:
+#         initialDelaySeconds: 120
+#         httpGet:
+#           path: /manage/health
+#           port: 15371
+#
+#     - name: sherpa-ordering
+#       image: sfci/servicelibs/sherpa-envoy:8c88da117952065195ab198ecd2c26c260fdb0ec
+#       env:
+#       - name: SFDC_ENVIRONMENT
+#         value: mesh
+#       ports:
+#       - containerPort: 15375
+#         name: sherpa-adm
+#       livenessProbe:
+#         httpGet:
+#           path: /listeners
+#           port: 15375
+#         initialDelaySeconds: 20
+#       readinessProbe:
+#         httpGet:
+#           path: /listeners
+#           port: 15375
+#         initialDelaySeconds: 15
+#       volumeMounts:
+#         - name: logvol
+#           mountPath: /log
+#         - name: tls-client-cert
+#           mountPath: /client-certs
+#         - name: tls-server-cert
+#           mountPath: /server-certs
+#
+#     volumes:
+#     - name: logvol
+#       hostPath:
+#         path: /home/sfdc-ordering-linkerd-tls/logs
+#     - name: tls-client-cert
+#       maddogCert:
+#         type: client
+#     - name: tls-server-cert
+#       maddogCert:
+#         type: server
