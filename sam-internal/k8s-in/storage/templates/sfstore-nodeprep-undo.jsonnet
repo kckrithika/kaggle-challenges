@@ -2,6 +2,9 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
+// Configures the set of minion estates that nodeprep undo runs in, applied as a node selector
+// term.  Currently disabled -- no minion estates need cleanup at this time.
+local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
 
 if configs.estate == "prd-sam_storage" then {
 
@@ -35,7 +38,7 @@ if configs.estate == "prd-sam_storage" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: ["not-in-any-pool-at-this-time"],
+                          values: enabledMinionEstates,
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
