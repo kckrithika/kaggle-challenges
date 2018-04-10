@@ -34,6 +34,7 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7014
+        hostPort: 7014
         name: sherpa-http1-in
       - containerPort: 15373
         name: sherpa-adm
@@ -69,5 +70,8 @@ system:
     slbEnabled: true
     ports:
       - port: 80
+        targetport: 9411
+        lbtype: http
+      - port: 443
         targetport: 9411
         lbtype: http
