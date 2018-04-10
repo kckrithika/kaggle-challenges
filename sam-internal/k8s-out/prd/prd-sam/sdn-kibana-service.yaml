@@ -3,8 +3,8 @@ kind: Service
 metadata:
   annotations:
     slb.sfdc.net/name: sdn-kibana
-    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 5601,
-      "reencrypt": false, "sticky": 0, "targetport": 5601}]'
+    slb.sfdc.net/portconfigurations: '[{"lbtype": "", "nodeport": 0, "port": 9124,
+      "reencrypt": false, "sticky": 0, "targetport": 9124}]'
   labels:
     app: sdn-kibana
   name: sdn-kibana
@@ -12,8 +12,8 @@ metadata:
 spec:
   ports:
   - name: sdn-kibana-port
-    port: 5601
+    port: 9124
     protocol: TCP
-    targetPort: 5601
+    targetPort: 9124
   selector:
     name: sdn-kibana

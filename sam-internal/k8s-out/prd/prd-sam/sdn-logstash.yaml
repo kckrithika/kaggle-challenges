@@ -20,7 +20,7 @@ spec:
           value: logstash
         - name: config_reload_automatic
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000086-e2257744
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000087-11275cb2
         name: sdn-logstash
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
@@ -36,7 +36,7 @@ spec:
         - --topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam
         - --confFile=/etc/logstash/conf.d/logstash.conf
         - --truststoreFile=/etc/logstash/certs/truststore.jks
-        - --elasticsearchUrl=10.254.219.223:9200
+        - --elasticsearchUrl=10.254.219.223:9123
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000753-ae12f692
         name: sdn-argus-auth-agent
         volumeMounts:
@@ -57,7 +57,7 @@ spec:
           value: /etc/pki_service/ca/
         - name: CONVERT_INTERVAL
           value: "86400"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000086-e2257744
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000087-11275cb2
         name: sdn-keytool-agent
         volumeMounts:
         - mountPath: /etc/logstash/certs

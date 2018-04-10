@@ -38,6 +38,10 @@ if configs.estate == "prd-sam" then {
                                     name: "RUN",
                                     value: "elasticsearch",
                                 },
+                                {
+                                    name: "http_port",
+                                    value: portconfigs.sdn.sdn_elasticsearch,
+                                },
                         ],
                         ports: [
                             {

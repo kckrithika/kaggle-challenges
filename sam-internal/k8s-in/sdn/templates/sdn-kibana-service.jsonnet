@@ -15,7 +15,7 @@ if configs.estate == "prd-sam" then {
             "slb.sfdc.net/portconfigurations": std.toString(
                 [
                     {
-                        port: 5601,
+                        port: portconfigs.sdn.sdn_kibana,
                         targetport: $.spec.ports[0].targetPort,
                         nodeport: 0,
                         lbtype: "",
