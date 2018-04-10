@@ -5,8 +5,8 @@ system:
     email:
       - steve.crouse@salesforce.com
       - charles.cox@salesforce.com
-      - richard.li@salesforce.com
       - jcormier@salesforce.com
+      - dkilgore@salesforce.com
   functions:
   - name: retailcalculator
     count: 1
@@ -17,9 +17,12 @@ system:
     - name: cccjclientcert
       maddogCert:
         type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cj/logs
     containers:
     - name: retailcalculator
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-calculator:retail-calculator-0.0.7
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -41,6 +44,8 @@ system:
       - name: secretvol
         mountPath: /secrets/
         readOnly: true
+      - name: logvol
+        mountPath: /home/sfdc-cj/logs
   loadbalancers:
   - lbname: retailcalculator-lb
     function: retailcalculator
