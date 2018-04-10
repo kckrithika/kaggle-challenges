@@ -60,6 +60,7 @@ local utils = import "util_functions.jsonnet";
         #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-samtest,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
         "prd,prd-samdev,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
+        "prd,prd-sam,sam-api-proxy,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:samappcontrol-04042018-2",
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0001853-500861a8",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
 
