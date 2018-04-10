@@ -73,6 +73,7 @@ perCluster: {
 
     podLabelList: {
         "prd-sdc": "name=slb-ipvs, name=slb-portal, name=slb-realsvrcfg, name=slb-dns-register, name=slb-node-os-stats, name=slb-vip-watchdog, name=slb-nginx-config, name=slb-ipvsdata-watchdog, name=slb-iface-processor, name=slb-echo-client, name=slb-echo-server, name=slb-config-processor, name=slb-cleanup, name=slb-canary-proxy-tcp, name=slb-canary-proxy-http, name=slb-canary-passthrough-tls, name=slb-canary-passthrough-host-network, name=slb-canary, name=slb-bravo, name=slb-alpha",
+        "prd-sam": "name=slb-vip-watchdog",
     },
 
     canaryServiceName: {
