@@ -20,6 +20,8 @@ spec:
           value: kibana
         - name: ELASTICSEARCH_URL
           value: http://10.254.219.223:9123
+        - name: SERVER_PORT
+          value: 9124
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000087-11275cb2
         name: sdn-kibana
         ports:
