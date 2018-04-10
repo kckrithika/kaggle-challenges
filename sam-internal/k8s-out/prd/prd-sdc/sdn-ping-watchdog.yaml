@@ -20,6 +20,16 @@ spec:
         name: sdn-ping-watchdog
       namespace: sam-system
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - sdn-ping-watchdog
+            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/sdn-ping-watchdog
@@ -71,15 +81,6 @@ spec:
           name: kubectl
       hostNetwork: true
       nodeSelector:
-        affinity:
-          podAntiAffinity:
-            requiredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                - matchExpressions:
-                  - key: name
-                    operator: In
-                    values: sdn-ping-watchdog
         master: "true"
       volumes:
       - configMap:
