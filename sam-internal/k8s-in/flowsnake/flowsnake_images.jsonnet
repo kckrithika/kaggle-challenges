@@ -146,6 +146,7 @@ local utils = import "util_functions.jsonnet";
                 main: {
                   "0.9.7": 571,
                   "0.9.8-SNAPSHOT": "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
+                  "0.9.7-595": "jenkins-dva-transformation-flowsnake-platform-PR-595-2-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
