@@ -1,0 +1,21 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - automationtestframeworks@salesforce.com
+  functions:
+  - name: atf-test-service
+    count: 1
+    hostnetwork: true
+    containers:
+    - name: atf-test-service-con
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/atf/atf-test-service:eea6cc0
+      ports:
+      - name: service-port
+        containerPort: 10080
+      - name: management-port
+        containerPort: 10081
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: management-port
