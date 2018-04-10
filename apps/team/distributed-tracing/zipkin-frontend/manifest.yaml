@@ -26,7 +26,7 @@ system:
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.25
       args: ["--zipkin-rate", "0.0"]
-      args: ["--http1-origin", "9411"]
+      args: ["--http1-origin", "localhost:9411"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
