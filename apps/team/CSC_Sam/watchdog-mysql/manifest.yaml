@@ -65,7 +65,6 @@ system:
   - lbname: watchdog-mysql
     function: watchdog-mysql
     slbEnabled: true
-    lbtype: dsr
     ports:
       - port: 3309
         targetport: 3309
