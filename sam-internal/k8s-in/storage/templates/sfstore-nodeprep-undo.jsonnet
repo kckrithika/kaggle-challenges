@@ -2,8 +2,11 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
+// Configures the set of minion estates that nodeprep undo runs in, applied as a node selector
+// term.  Currently disabled -- no minion estates need cleanup at this time.
+local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
 
-if configs.estate == "disable" then {
+if configs.estate == "prd-sam_storage" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -35,7 +38,7 @@ if configs.estate == "disable" then {
                        {
                           key: "pool",
                           operator: "In",
-                          values: storageconfigs.sfstoreEstates[configs.estate],
+                          values: enabledMinionEstates,
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
@@ -61,7 +64,7 @@ if configs.estate == "disable" then {
           containers: [
             {
               name: "nodeprep",
-              image: storageimages.sfnodeprep,
+              image: storageimages.nodeprep,
               imagePullPolicy: "Always",
               securityContext: {
                 privileged: true,
@@ -105,10 +108,6 @@ if configs.estate == "disable" then {
                   },
                 },
                 {
-                  name: "KUBECONFIG",
-                  value: "/kubeconfig/kubeconfig",
-                },
-                {
                   name: "PROC_PATH",
                   value: "/hostroot/proc",
                 },
@@ -124,7 +123,7 @@ if configs.estate == "disable" then {
                   name: "DELETE_DISCOVERY",
                   value: "yes",
                 },
-              ],
+              ] + [configs.kube_config_env],
             },
           ],
           volumes: configs.filter_empty([

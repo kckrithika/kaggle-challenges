@@ -4,13 +4,13 @@ metadata:
   labels:
     cloud: storage
     team: storage-foundation
-  name: sfstore-nodeprep
+  name: legostore-nodeprep
   namespace: storage-foundation
 spec:
   template:
     metadata:
       labels:
-        app: sfstore-nodeprep
+        app: legostore-nodeprep
         cloud: storage
         team: storage-foundation
     spec:
@@ -110,7 +110,7 @@ spec:
           path: /mnt
         name: discoverypath
       - configMap:
-          name: sfstore-nodeprep-config
+          name: legostore-nodeprep-config
         name: nodeprep-config
       - hostPath:
           path: /etc/pki_service

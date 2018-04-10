@@ -24,7 +24,6 @@ local kingdom = std.extVar("kingdom");
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
             default_tag: "base-0000380-573c92f8",
             ceph_operator_tag: "base-0000375-b6ea35ee",
-            sfnodeprep_tag: "base-0000375-b6ea35ee",
             loginit_tag: "base-0000375-b6ea35ee",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
             sfms_tag: "latest-0000166-d11c49fe",
@@ -41,7 +40,6 @@ local kingdom = std.extVar("kingdom");
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
             default_tag: "base-0000375-b6ea35ee",
             ceph_operator_tag: "base-0000375-b6ea35ee",
-            sfnodeprep_tag: "base-0000375-b6ea35ee",
             loginit_tag: "base-0000375-b6ea35ee",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
             sfms_tag: "latest-0000166-d11c49fe",
@@ -58,7 +56,6 @@ local kingdom = std.extVar("kingdom");
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
             default_tag: "base-0000375-b6ea35ee",
             ceph_operator_tag: "base-0000375-b6ea35ee",
-            sfnodeprep_tag: "base-0000375-b6ea35ee",
             loginit_tag: "base-0000375-b6ea35ee",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
             sfms_tag: "latest-0000166-d11c49fe",
@@ -101,7 +98,7 @@ local kingdom = std.extVar("kingdom");
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
     cephoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "ceph", $.per_phase[$.phase].ceph_operator_tag),
     loginit: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
-    nodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep", $.per_phase[$.phase].sfnodeprep_tag),
+    nodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep", $.per_phase[$.phase].default_tag),
     nodeprepskipper: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep-skipper", $.per_phase[$.phase].default_tag),
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.

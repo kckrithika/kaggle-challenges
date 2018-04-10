@@ -14,25 +14,26 @@ local enabledEstates = std.set([
 // Environment variables for the Local Provisioner container.
 local lvEnvironmentVars = std.prune([
    {
-      name: "MY_NODE_NAME",
+        name: "MY_NODE_NAME",
         valueFrom: {
-          fieldRef: {
-          fieldPath: "spec.nodeName",
-          },
+            fieldRef: {
+                fieldPath: "spec.nodeName",
+            },
         },
     },
     {
         name: "MY_NAMESPACE",
-        value: "lvns",
+        valueFrom: {
+          fieldRef: {
+              fieldPath: "metadata.namespace",
+          },
+        },
     },
 ]) +
 if isEstateNotSkipper then
-  [
-    {
-        name: "KUBECONFIG",
-        value: "/kubeconfig/kubeconfig",
-    },
-  ]
+    [
+        configs.kube_config_env,
+    ]
 else [];
 
 
