@@ -52,7 +52,12 @@ if samfeatureflags.maddogforsamapps then {
                             configs.kingdom,
                             "--estate",
                             configs.estate,
-                        ],
+
+                        ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                            [
+                                "--retry-max-elapsed-time",
+                                "20s",
+                            ] else [],
                         image: samimages.madkub,
                         name: "madkubserver",
                         ports: [
@@ -109,7 +114,6 @@ if samfeatureflags.maddogforsamapps then {
                                   "--refresher",
                                   "--refresher-token-grace-period",
                                   "30s",
-
                                   "--funnel-endpoint",
                                   "http://" + configs.funnelVIP,
                                   "--kingdom",
