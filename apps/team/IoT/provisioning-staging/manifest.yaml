@@ -26,7 +26,7 @@
                 value: "-XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g"
               - 
                 name: "COMPILER_TAG"
-                value: "6a483a2"
+                value: "680e5c6"
               - 
                 name: "CONTROLPLANE_ENDPOINT"
                 value: "shared0-samminioniottest1-1-prd.eng.sfdc.net:9115"
@@ -74,7 +74,7 @@
                 value: "1"
               - 
                 name: "INTAKE_TAG"
-                value: "900131d"
+                value: "49fb35a"
               - 
                 name: "JAVA_OPTS"
                 value: "-server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m -XX:ParallelGCThreads=5 -XX:ConcGCThreads=5"
@@ -111,7 +111,16 @@
               - 
                 name: "WORKER_REPLICAS"
                 value: "2"
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:d6a1d1d"
+              - 
+                name: "ZOOKEEPER_CORES"
+                value: "1"
+              - 
+                name: "ZOOKEEPER_HEAP"
+                value: "512 megabytes"
+              - 
+                name: "ZOOKEEPER_MEMORY"
+                value: "1 gigabytes"
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:d2c9399"
             livenessProbe: 
               httpGet: 
                 path: "/manage/health"
