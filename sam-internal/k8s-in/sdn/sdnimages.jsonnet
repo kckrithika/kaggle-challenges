@@ -35,7 +35,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 3 - Rest of the SAM clusters in PRD
         "3": {
-            hypersdn: "v-0000753-ae12f692",
+            hypersdn: "v-0000763-622223ea",
             bird: "v-0000014-b0a5951d",
             hyperelk: "v-0000087-11275cb2",
             },
