@@ -20,12 +20,11 @@ data:
         timeout client-fin 30s
         log global
 
-        acl sam_api url_reg /apis/samcrd.salesforce.com/v1/namespaces/.*/samapps$
+        acl sam_api url_reg /apis/samcrd.salesforce.com/v1/namespaces/.*/samapps.*
         use_backend sam_api_proxy_server if sam_api
 
         default_backend kubernetes-apiserver
         option clitcpka
-
 
     backend sam_api_proxy_server
         mode http
