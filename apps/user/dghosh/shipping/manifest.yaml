@@ -4,84 +4,148 @@ system:
   functions:
   - name: shipping-dghosh
     count: 1
+    volumes:
+    - name: clientcert
+      maddogCert:
+        type: client
     containers:
     - name: shipping-dghosh
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/shipping/shipping-robin-kalia:robin.kalia-20180212-c8ba0a9
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/shipping/shipping-sboobna:sboobna-20180216-2149427
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: sconex
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
       - containerPort: 7020
-        name: grpc-svc
       - containerPort: 15372
-        name: scone-mgmt
+      - containerPort: 9010
       livenessProbe:
         initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15372
-
     - name: beacon-shipping
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
       args:
-      # H2-TLS
       - -endpoint
-      - shipping-dghosh:DATACENTER:7443
-      # H2-Plain
-      - -endpoint
-      - shipping-dghosh-plain:DATACENTER:7012
-      - -logging.dir
-      - /log
+      - shipping-dghosh:DATACENTER:7012
+      - -service
+      - shipping-test
+      - -rootCert
+      - /clientcerts/ca.pem
+      - -certDir
+      - /clientcerts/client
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
           - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-
     - name: sherpa-shipping
-      image: sfci/servicelibs/sherpa-envoy:8c88da117952065195ab198ecd2c26c260fdb0ec
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa7:2.0.22-snapshot
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
-      ports:
-      - containerPort: 15376
-        name: sherpa-adm
-      - containerPort: 7443
-        name: h2-tls-in
-      - containerPort: 7012
-        name: grpc-in
+        value: sconex
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15376
-        initialDelaySeconds: 20
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 10
+        periodSeconds: 5
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15376
-        initialDelaySeconds: 15
-      volumeMounts:
-        - name: logvol
-          mountPath: /log
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-shipping-linkerd-tls/logs
-    - name: tls-client-cert
-      maddogCert:
-        type: client
-    - name: tls-server-cert
-      maddogCert:
-        type: server
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 5
+        periodSeconds: 5
+
+# apiVersion: v1
+#
+# system:
+#   functions:
+#   - name: shipping-dghosh
+#     count: 1
+#     containers:
+#     - name: shipping-dghosh
+#       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/shipping/shipping-robin-kalia:robin.kalia-20180212-c8ba0a9
+#       env:
+#       - name: SFDC_ENVIRONMENT
+#         value: mesh
+#       - name: JAVA_HEAP_OPTS
+#         value: -Xmx64m
+#       ports:
+#       - containerPort: 7020
+#         name: grpc-svc
+#       - containerPort: 15372
+#         name: scone-mgmt
+#       livenessProbe:
+#         initialDelaySeconds: 15
+#         httpGet:
+#           path: /manage/health
+#           port: 15372
+#
+#     - name: beacon-shipping
+#       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
+#       env:
+#       - name: SFDC_ENVIRONMENT
+#         value: mesh
+#       args:
+#       # H2-TLS
+#       - -endpoint
+#       - shipping-dghosh:DATACENTER:7443
+#       # H2-Plain
+#       - -endpoint
+#       - shipping-dghosh-plain:DATACENTER:7012
+#       - -logging.dir
+#       - /log
+#       livenessProbe:
+#         initialDelaySeconds: 5
+#         exec:
+#           command:
+#           - "/home/scone/is-alive.sh"
+#       volumeMounts:
+#       - mountPath: /log
+#         name: logvol
+#
+#     - name: sherpa-shipping
+#       image: sfci/servicelibs/sherpa-envoy:8c88da117952065195ab198ecd2c26c260fdb0ec
+#       env:
+#       - name: SFDC_ENVIRONMENT
+#         value: mesh
+#       ports:
+#       - containerPort: 15376
+#         name: sherpa-adm
+#       - containerPort: 7443
+#         name: h2-tls-in
+#       - containerPort: 7012
+#         name: grpc-in
+#       livenessProbe:
+#         httpGet:
+#           path: /listeners
+#           port: 15376
+#         initialDelaySeconds: 20
+#       readinessProbe:
+#         httpGet:
+#           path: /listeners
+#           port: 15376
+#         initialDelaySeconds: 15
+#       volumeMounts:
+#         - name: logvol
+#           mountPath: /log
+#         - name: tls-client-cert
+#           mountPath: /client-certs
+#         - name: tls-server-cert
+#           mountPath: /server-certs
+#     volumes:
+#     - name: logvol
+#       hostPath:
+#         path: /home/sfdc-shipping-linkerd-tls/logs
+#     - name: tls-client-cert
+#       maddogCert:
+#         type: client
+#     - name: tls-server-cert
+#       maddogCert:
+#         type: server
