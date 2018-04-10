@@ -15,7 +15,7 @@ system:
     hostnetwork: true
     containers:
     - name: cloudatlas-pdm-install
-      image: sfci/cloud-atlas/cloudatlas:2.9rc4
+      image: sfci/cloud-atlas/cloudatlas:2.10rc5
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
@@ -49,7 +49,7 @@ system:
           - /tmp/ready
         initialDelaySeconds: 60
         periodSeconds: 5
-        failureThreshold: 24
+        failureThreshold: 120
     volumes:
     - name: hosthomevol
       hostPath:
