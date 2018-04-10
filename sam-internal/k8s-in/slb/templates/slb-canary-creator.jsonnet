@@ -25,8 +25,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
             spec: {
                 hostNetwork: true,
                 nodeSelector: {
-                                                                master: "true",
-                                            },
+                      master: "true",
+                },
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
                     configs.maddog_cert_volume,

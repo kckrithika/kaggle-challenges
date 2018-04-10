@@ -70,7 +70,6 @@ spec:
           name: sfdchosts
       nodeSelector:
         master: "true"
-        pool: prd-sdc
       volumes:
       - hostPath:
           path: /etc/pki_service
