@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: sam-api-proxy
+  labels:
+    app: sam-api-proxy
+  name: sam-api-proxy
+spec:
+  ports:
+  - name: sam-api-proxy-port
+    nodePort: 39872
+    port: 9190
+    protocol: TCP
+    targetPort: 9190
+  selector:
+    name: sam-api-proxy
+  type: NodePort

@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  sam-api-proxy.json: |-
+    {
+      "apiServerUrl": "localhost:8000",
+      "caFile": "/etc/pki_service/ca/cabundle.pem",
+      "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "enableValidators": true,
+      "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: sam-api-proxy
