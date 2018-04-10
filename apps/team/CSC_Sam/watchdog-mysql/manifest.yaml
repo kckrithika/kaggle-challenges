@@ -10,7 +10,7 @@ system:
 
   functions:
   - name: watchdog-mysql
-    count: 1
+    count: 0
     type: stateful-set
     containers:
     - name: watchdog-mysql
