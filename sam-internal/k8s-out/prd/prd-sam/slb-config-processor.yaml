@@ -29,6 +29,11 @@ spec:
                 values:
                 - prd-sam
                 - prd-slb
+            - matchExpressions:
+              - key: master
+                operator: In
+                values:
+                - "true"
       containers:
       - command:
         - /sdn/slb-config-processor
