@@ -23,6 +23,10 @@ if configs.estate == "prd-sam" then {
                                     name: "ELASTICSEARCH_URL",
                                     value: sdnconfigs.elasticsearchUrl,
                                 },
+                                {
+                                    name: "SERVER_PORT",
+                                    value: portconfigs.sdn.sdn_kibana,
+                                },
                         ],
                         ports: [
                             {
