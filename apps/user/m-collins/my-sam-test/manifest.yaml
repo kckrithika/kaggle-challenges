@@ -15,6 +15,14 @@ system:
         httpGet:
           path: /
           port: 9090
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretsvol
+         readOnly: true
+    volumes:
+    - name: secretsvol
+      k4aSecret:
+        secretName: middlename
   loadbalancers:
   - lbname: samhellolb
     slbEnabled: true
