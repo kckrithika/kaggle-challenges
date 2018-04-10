@@ -47,6 +47,7 @@ if configs.estate == "prd-sam" then {
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
                             "--truststoreFile=/etc/logstash/certs/truststore.jks",
                             "--elasticsearchUrl=" + sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
+                            "--userName=platform-client",
                         ],
                     },
                     {
