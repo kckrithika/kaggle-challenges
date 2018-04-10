@@ -120,7 +120,7 @@
               - 
                 name: "ZOOKEEPER_MEMORY"
                 value: "1 gigabytes"
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:d2c9399"
+            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:c3bcdc9"
             livenessProbe: 
               httpGet: 
                 path: "/manage/health"
