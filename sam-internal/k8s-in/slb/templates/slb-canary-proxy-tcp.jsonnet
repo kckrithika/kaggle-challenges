@@ -26,6 +26,27 @@ if configs.estate == "prd-sdc" then {
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
                 ]),
+                affinity: {
+                  podAntiAffinity: {
+                     requiredDuringSchedulingIgnoredDuringExecution: [{
+                     labelSelector: {
+                         matchExpressions: [{
+                             key: "name",
+                             operator: "In",
+                             values: [
+                                 "slb-ipvs",
+                                 "slb-ipvs-a",
+                                 "slb-ipvs-b",
+                                 "slb-nginx-config-b",
+                                 "slb-nginx-config-a",
+                             ],
+                         }],
+                                },
+                      topologyKey: "kubernetes.io/hostname",
+                     }],
+                 },
+
+              },
                 containers: [
                     {
                         name: "slb-canary-proxy-tcp",
