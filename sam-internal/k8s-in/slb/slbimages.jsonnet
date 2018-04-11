@@ -28,7 +28,7 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000758-ec6de036",
+            hypersdn: "v-0000767-36a17fb0",  # 767 requires updates to kneconfigdir
             slbnginx: "v-0000026-409d6394",
             },
 
