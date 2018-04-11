@@ -37,7 +37,8 @@ spec:
         - --confFile=/etc/logstash/conf.d/logstash.conf
         - --truststoreFile=/etc/logstash/certs/truststore.jks
         - --elasticsearchUrl=10.254.219.223:9123
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000753-ae12f692
+        - --userName=platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000763-622223ea
         name: sdn-argus-auth-agent
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
