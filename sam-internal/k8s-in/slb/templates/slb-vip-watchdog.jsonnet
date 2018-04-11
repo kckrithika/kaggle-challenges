@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             name: "slb-vip-watchdog",
             namespace: "sam-system",
-    } + (if slbconfigs.slbInProdKingdom == "prd" then {
+    } + (if slbconfigs.slbInProdKingdom then {
                 annotations: {
                                     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
                 },
