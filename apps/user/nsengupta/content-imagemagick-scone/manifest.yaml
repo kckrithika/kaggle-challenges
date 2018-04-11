@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: imagemagick-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nsengupta/imagemagick-service:v1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nsengupta/imagemagick-service:v2
       ports:
       - containerPort: 7022
       - containerPort: 15303
