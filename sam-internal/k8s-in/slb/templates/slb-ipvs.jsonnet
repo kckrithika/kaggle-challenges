@@ -165,7 +165,28 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            periodSeconds: 3,
                        },
                     },
-                ],
+                ]
+                + (
+                    if configs.estate == "prd-sdc" then [
+                        {
+                           name: "slb-ipvs-conntrack",
+                           image: slbimages.hypersdn,
+                           command: [
+                               "/sdn/slb-ipvs-conntrack",
+                           ],
+                           volumeMounts: configs.filter_empty([
+                               slbconfigs.slb_volume_mount,
+                               slbconfigs.slb_config_volume_mount,
+                               slbconfigs.logs_volume_mount,
+                               slbconfigs.usr_sbin_volume_mount,
+                               configs.sfdchosts_volume_mount,
+                           ]),
+                           securityContext: {
+                               privileged: true,
+                           },
+                        },
+                    ] else []
+                ),
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },
