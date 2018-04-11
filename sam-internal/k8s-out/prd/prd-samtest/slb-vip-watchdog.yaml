@@ -15,6 +15,16 @@ spec:
       namespace: sam-system
     spec:
       affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+                - slb-nginx-a
+                - slb-nginx-b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -53,16 +63,6 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-          - matchExpressions:
-            - key: slb-service
-              operator: NotIn
-              values:
-              - slb-ipvs
-              - slb-nginx-a
-              - slb-nginx-b
       nodeSelector:
         pool: prd-samtest
       volumes:
