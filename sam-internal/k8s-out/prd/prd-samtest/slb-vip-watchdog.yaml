@@ -1,29 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    scheduler.alpha.kubernetes.io/affinity: |
-      {   "nodeAffinity": {
-          "requiredDuringSchedulingIgnoredDuringExecution": {
-            "nodeSelectorTerms": [
-              {
-                "matchExpressions": [
-                  {
-                    "key": "slb-service",
-                    "operator": "NotIn",
-                    "values": ["slb-ipvs", "slb-nginx-a","slb-nginx-b"]
-                  },
-                  {
-                    "key": "illumio",
-                    "operator": "NotIn",
-                    "values":["a", "b"]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
   labels:
     name: slb-vip-watchdog
   name: slb-vip-watchdog
@@ -76,6 +53,16 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: slb-service
+              operator: NotIn
+              values:
+              - slb-ipvs
+              - slb-nginx-a
+              - slb-nginx-b
       nodeSelector:
         pool: prd-samtest
       volumes:
