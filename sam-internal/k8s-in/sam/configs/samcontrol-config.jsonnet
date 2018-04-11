@@ -42,4 +42,7 @@ std.prune({
   # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
   # we will enable kubedns soon and then we can enable it for prod as well.
   enableDNS: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then true),
+
+  # SDP
+  createCRD: (if configs.kingdom == "prd" then true),
 })

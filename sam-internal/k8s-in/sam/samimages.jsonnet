@@ -42,8 +42,11 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0001853-500861a8",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
 
-        #[jiayi.yan] Test sam app status CRD of samcontrol in samdev
+        #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001848-170a0744",
+        "prd,prd-sam,samcontrol,hypersam": "sam-0001848-170a0744",
+        "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
+        "prd,prd-sdc,samcontrol,hypersam": "sam-0001848-170a0744",
 
         #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
         #api servers are under heavy load
