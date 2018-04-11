@@ -48,7 +48,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000748-d1fa158b
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000758-ec6de036
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
