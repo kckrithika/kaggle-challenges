@@ -116,9 +116,9 @@ perCluster: {
 
     kneConfigDir: {
         "prd-sdc": "/var/slb/kneconfigs/testkneconfigs",
-        "prd-samtest": "/var/slb/testkneconfigs",
-        "prd-samdev": "/var/slb/testkneconfigs",
-        "prd-sam_storage": "/var/slb/testkneconfigs",
+        "prd-samtest": "/var/slb/kneconfigs/testkneconfigs",
+        "prd-samdev": "/var/slb/kneconfigs/testkneconfigs",
+        "prd-sam_storage": "/var/slb/kneconfigs/testkneconfigs",
     } + {
         [k + "-sam"]: "/var/slb/kneconfig"
             for k in $.prodKingdoms + ["prd"]
