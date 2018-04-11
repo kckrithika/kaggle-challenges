@@ -56,6 +56,10 @@ local utils = import "util_functions.jsonnet";
 
         #[jiayi.yan] Test sam app status CRD of samcontrol in samdev
         "prd,prd-samdev,samcontrol,hypersam": "sam-0001848-170a0744",
+
+        #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
+        #api servers are under heavy load
+        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
         },
 
     ### Per-phase image tags
