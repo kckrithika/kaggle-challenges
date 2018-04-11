@@ -123,7 +123,7 @@ perCluster: {
         [k + "-sam"]: "/var/slb/kneconfig"
             for k in $.prodKingdoms + ["prd"]
     } + {  # this final block is temporary while phased shifting to a per-site kneConfigDir.
-        [k + "-sam"]: "/var/slb/kneconfig/" + k
+        [k + "-sam"]: "/var/slb/kneconfigs/" + k
             for k in ["prd"]
     },
     canaryMaxParallelism: {
