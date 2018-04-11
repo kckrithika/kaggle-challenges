@@ -2,6 +2,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
+local configs = import "config.jsonnet";
 {
     sdn_watchdog_emailsender: "sdn-alerts@salesforce.com",
     sdn_watchdog_emailrec: (if kingdom == "chx" || kingdom == "wax" || estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-samtwo" || estate == "prd-sam_storage" || estate == "prd-sdc" || estate == "prd-data-flowsnake_test" then "sdn@salesforce.com" else "sdn-alerts@salesforce.com"),
@@ -29,6 +30,13 @@ local portconfigs = import "portconfig.jsonnet";
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     elasticsearchUrl: "http://" + self.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
+
+    archiveSvcEndpoint: (
+        if estate == "prd-sdc" then
+            "http://10.253.152.173:14431/tnrp/content_repo/0/archive"
+        else
+            configs.tnrpArchiveEndpoint
+    ),
 
     # Volume for logs
     sdn_logs_volume: {},
