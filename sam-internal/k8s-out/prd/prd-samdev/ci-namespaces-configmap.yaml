@@ -12,7 +12,8 @@ data:
         "ci-iot": "iot",
         "ci-user-mmittelstadt": "user-mmittelstadt",
         "ci-user-sample": "user-sample",
-        "ci-user-vpod": "user-vpod"
+        "ci-user-vpod": "user-vpod",
+        "csc-sam": "csc-sam"
       }
     }
 kind: ConfigMap

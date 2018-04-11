@@ -1,4 +1,5 @@
 # Map of namespace to CI namespaces
+local configs = import "config.jsonnet";
 
  # teams want additional namespace other than "ci-team" namespaces
 local ci = {
@@ -11,7 +12,11 @@ local ci = {
     team: "atf",
     namespace: "ci-atf-mirror",
   },
-  ],
+  ]
+  + (if configs.estate == "prd-samdev" then [{
+    team: "csc-sam",
+    namespace: "csc-sam",
+  }] else []),
 };
 
 
