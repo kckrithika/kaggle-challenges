@@ -319,7 +319,7 @@ from
       from
         podDetailView
       where
-        ControlEstate = 'prd-sam'
+        ControlEstate = 'prd-sam' and Namespace != 'user-cbatra'
     ) as ss
   ) as ss2
   where (NodeName like '%samcompute%' or NodeName like '%kubeapi%')
