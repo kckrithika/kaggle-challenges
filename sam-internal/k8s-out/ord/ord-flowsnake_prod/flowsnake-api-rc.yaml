@@ -42,9 +42,6 @@ spec:
             configMapKeyRef:
               key: strata_registry
               name: fleet-config
-        - name: FLOWSNAKE_CONFIG_OVERRIDES
-          value: ' { flowsnake.tenantCertificateConfig.imageName: "ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1"
-            } '
         image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-fleet-service:jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
         imagePullPolicy: Always
         livenessProbe:

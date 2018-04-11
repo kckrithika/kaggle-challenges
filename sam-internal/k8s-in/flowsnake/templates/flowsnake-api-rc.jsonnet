@@ -100,12 +100,7 @@ local kingdom = std.extVar("kingdom");
                                     },
                                 },
                             },
-                        ] else []) + if util.is_production(kingdom) then [
-                            {
-                                name: "FLOWSNAKE_CONFIG_OVERRIDES",
-                                value: " { flowsnake.tenantCertificateConfig.imageName: \"" + flowsnakeimage.madkub + "\" } ",
-                            },
-                        ] else [],
+                        ] else []),
                         volumeMounts: [
                             {
                                 name: "version-mapping",
