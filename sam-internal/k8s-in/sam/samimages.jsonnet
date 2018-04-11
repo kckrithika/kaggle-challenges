@@ -20,9 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [lizhang.li] Enable filesytem-watchdog everywhere
-        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
-        "prd,prd-sam_storage,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
-        "prd,prd-sdc,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
@@ -37,15 +34,6 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
-
-        # [a.mitra] enable multiple queries for watchdog-sql
-        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001838-2b71386f",
-
-        # [mayank.kumar] fix synthetic timeout
-        "prd,prd-sam,watchdog-synthetic,hypersam": "sam-0001825-c908451b",
-
-        #[rbhat] watch on downstream objects & update bundleStatus
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001845-7b99d56d",
 
         #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-samtest,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
@@ -90,7 +78,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001815-8cfb538e",
+            hypersam: "sam-0001847-1b9453cd",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
