@@ -34,13 +34,13 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000748-d1fa158b",
+            hypersdn: "v-0000758-ec6de036",
             slbnginx: "v-0000026-409d6394",
             },
 
         ### Release Phase 4 - All Prod
         "4": {
-            hypersdn: "v-0000748-d1fa158b",
+            hypersdn: "v-0000758-ec6de036",
             slbnginx: "v-0000026-409d6394",
             },
     },
