@@ -72,69 +72,62 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 },
              } else {
                  volumes: configs.filter_empty([
-                                    slbconfigs.slb_volume,
-                                    slbconfigs.logs_volume,
-                                    configs.sfdchosts_volume,
+                        slbconfigs.slb_volume,
+                        slbconfigs.logs_volume,
+                        configs.sfdchosts_volume,
                  ]),
                  affinity: {
-                                    podAntiAffinity: {
-                                       preferredDuringSchedulingIgnoredDuringExecution: [
-                                          {
-                                            weight: 100,
-                                            podAffinityTerm: {
-                                            labelSelector: {
-                                               matchExpressions: [
-                                                  {
-                                                     key: "name",
-                                                     operator: "In",
-                                                     values: [
-                                                        "slb-ipvs",
-                                                        "slb-ipvs-a",
-                                                        "slb-ipvs-b",
-                                                        "slb-nginx-config-b",
-                                                        "slb-nginx-config-a",
-                                                     ],
-                                                  },
-                                               ],
-                                            },
-                                           topologyKey: "kubernetes.io/hostname",
+                    podAntiAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: [{
+                        labelSelector: {
+                           matchExpressions: [{
+                             key: "name",
+                             operator: "In",
+                             values: [
+                                 "slb-ipvs",
+                                 "slb-ipvs-a",
+                                 "slb-ipvs-b",
+                                 "slb-nginx-config-b",
+                                 "slb-nginx-config-a",
+                             ],
+                         }],
+                                },
+                        topologyKey: "kubernetes.io/hostname",
+                       }],
+                    },
+                 },
+                 containers: [
+                     {
+                          name: "slb-vip-watchdog",
+                          image: slbimages.hypersdn,
+                          command: [
+                                 "/sdn/slb-vip-watchdog",
+                                 "--vipLoop=10",
+                                 "--log_dir=" + slbconfigs.logsDir,
+                                 "--optOutNamespace=kne",
+                                 "--monitorFrequency=60s",
+                                 "--hostnameOverride=$(NODE_NAME)",
+                                 configs.sfdchosts_arg,
+                                 "--metricsEndpoint=" + configs.funnelVIP,
+                                 "--httpTimeout=5s",
+                          ],
+                          volumeMounts: configs.filter_empty([
+                                slbconfigs.slb_volume_mount,
+                                slbconfigs.logs_volume_mount,
+                                configs.sfdchosts_volume_mount,
+                          ]),
+                          env: [
+                                {
+                                    name: "NODE_NAME",
+                                    valueFrom: {
+                                         fieldRef: {
+                                             fieldPath: "spec.nodeName",
                                          },
-                                       },
-                                     ],
-                                   },
-                                 },
-                                 containers: [
-                                     {
-                                         name: "slb-vip-watchdog",
-                                         image: slbimages.hypersdn,
-                                         command: [
-                                             "/sdn/slb-vip-watchdog",
-                                             "--vipLoop=10",
-                                             "--log_dir=" + slbconfigs.logsDir,
-                                             "--optOutNamespace=kne",
-                                             "--monitorFrequency=60s",
-                                             "--hostnameOverride=$(NODE_NAME)",
-                                             configs.sfdchosts_arg,
-                                             "--metricsEndpoint=" + configs.funnelVIP,
-                                             "--httpTimeout=5s",
-                                         ],
-                                         volumeMounts: configs.filter_empty([
-                                             slbconfigs.slb_volume_mount,
-                                             slbconfigs.logs_volume_mount,
-                                             configs.sfdchosts_volume_mount,
-                                         ]),
-                                         env: [
-                                             {
-                                                name: "NODE_NAME",
-                                                valueFrom: {
-                                                   fieldRef: {
-                                                      fieldPath: "spec.nodeName",
-                                                   },
-                                                },
-                                             },
-                                         ],
-                                     },
-                                 ],
+                                    },
+                                },
+                          ],
+                     },
+                 ],
                    nodeSelector: {}
                 + (
                     if configs.estate == "prd-sam" then {
