@@ -65,6 +65,9 @@ local util = import "util_functions.jsonnet";
             $.fleet_name_overrides[estate]
         else
             estate,
+    is_test: (
+        estate == "prd-data-flowsnake_test"
+    ),
     is_098_registry_config: (
         self.is_minikube ||
         estate == "prd-data-flowsnake_test" ||
