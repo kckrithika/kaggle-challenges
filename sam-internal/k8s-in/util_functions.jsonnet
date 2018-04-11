@@ -15,6 +15,7 @@ local kingdom = std.extVar("kingdom");
 
     is_production(kingdom):: (
       kingdom != "prd" &&
+      kingdom != "xrd" &&
       kingdom != "crd" &&
       kingdom != "sfz" &&
       kingdom != "crz"
@@ -26,6 +27,7 @@ local kingdom = std.extVar("kingdom");
         estate == "prd-samtest" ||
         estate == "prd-sdc" ||
         estate == "prd-sam" ||
+        estate == "xrd-sam" ||
         estate == "prd-sam_storage" ||
         estate == "prd-sam_cephdev" ||
         estate == "prd-sam_sfstoredev"
