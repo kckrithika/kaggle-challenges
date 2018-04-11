@@ -49,6 +49,35 @@ spec:
           name: container-log-vol
         - mountPath: /var/log-mounted
           name: host-log-vol
+      - env:
+        - name: MADDOG_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MADDOG_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MADDOG_CERT_FILE_PATH
+          value: /etc/bashrc
+        - name: MADDOG_ALLOWED_DURATION
+          value: 1m
+        - name: MADDOG_LOOKBACK_PERIOD
+          value: 1m
+        - name: MADDOG_STAGGER_PERIOD
+          value: 1m
+        - name: MADDOG_POLL_PERIOD
+          value: 30s
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/foundation/poddeleter:latest
+        imagePullPolicy: Always
+        name: poddeleter
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
       hostNetwork: true
       initContainers:
       - command:

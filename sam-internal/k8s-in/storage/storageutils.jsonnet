@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local utils = import "util_functions.jsonnet";
 
 // Public functions
 {
@@ -169,9 +170,22 @@ local configs = import "config.jsonnet";
             defaultTag
     ),
 
+    is_skipper():: (
+        configs.estate == "prd-skipper"
+    ),
+
+    # prd-skipper doesn't use maddog certs, so there is no cert file to watch.
+    # poddeleter needs a file to watch in order to run though, so let's just watch our own binary.
+    cert_file_path():: (
+        if $.is_skipper() then
+            "/etc/bashrc"
+        else
+            configs.certFile
+    ),
+
     # Inserts the maddog and other cert volumes mounts if the estate is not skipper
     cert_volume_mounts():: (
-      if configs.estate != "prd-skipper" then
+      if !($.is_skipper()) then
           configs.filter_empty([
             configs.maddog_cert_volume_mount,
             configs.cert_volume_mount,
@@ -181,7 +195,7 @@ local configs = import "config.jsonnet";
     ),
     # Inserts the maddog and other cert volumes if the estate is not skipper
     cert_volume():: (
-      if configs.estate != "prd-skipper" then
+      if !($.is_skipper()) then
           configs.filter_empty([
             configs.maddog_cert_volume,
             configs.cert_volume,
@@ -189,4 +203,64 @@ local configs = import "config.jsonnet";
         ])
       else []
     ),
+
+    poddeleter_podspec(imageName):: {
+        name: "poddeleter",
+        image: imageName,
+        imagePullPolicy: "Always",
+        securityContext: {
+            privileged: true,
+        },
+        volumeMounts: configs.filter_empty(
+            $.cert_volume_mounts()
+            + $.log_init_volume_mounts()),
+        env: $.poddeleter_env() +
+            if !($.is_skipper()) then
+            [
+                configs.kube_config_env,
+            ]
+            else [],
+    },
+
+    # For test clusters, let's be more aggressive in allowing pods to be deleted.
+    # Otherwise, we may be waiting 48 hours before deleting a pod. If there was a problem here,
+    # we may have already shipped that problem to prod before truly testing in PRD.
+    poddeleter_env():: [
+    {
+      name: "MADDOG_POD_NAME",
+        valueFrom: {
+          fieldRef: {
+          fieldPath: "metadata.name",
+          },
+        },
+    },
+    {
+      name: "MADDOG_POD_NAMESPACE",
+        valueFrom: {
+          fieldRef: {
+          fieldPath: "metadata.namespace",
+          },
+        },
+    },
+    {
+        name: "MADDOG_CERT_FILE_PATH",
+        value: $.cert_file_path(),
+    },
+    {
+        name: "MADDOG_ALLOWED_DURATION",
+        value: if utils.is_test_cluster(configs.estate) then "1m" else "48h",
+    },
+    {
+        name: "MADDOG_LOOKBACK_PERIOD",
+        value: "1m",
+    },
+    {
+        name: "MADDOG_STAGGER_PERIOD",
+        value: if utils.is_test_cluster(configs.estate) then "1m" else "1h",
+    },
+    {
+        name: "MADDOG_POLL_PERIOD",
+        value: if utils.is_test_cluster(configs.estate) then "30s" else "5m",
+    },
+    ],
 }
