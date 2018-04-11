@@ -8,6 +8,12 @@ system:
     - name: clientcert
       maddogCert:
         type: client
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
     containers:
     - name: shipping-dghosh
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/shipping/shipping-sboobna:sboobna-20180216-2149427
@@ -29,7 +35,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
       - -endpoint
-      - shipping-dghosh:DATACENTER:7012
+      - shipping-dghosh:DATACENTER:7443
       - -service
       - shipping-test
       - -rootCert
@@ -61,6 +67,11 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 5
         periodSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
 
 # apiVersion: v1
 #
