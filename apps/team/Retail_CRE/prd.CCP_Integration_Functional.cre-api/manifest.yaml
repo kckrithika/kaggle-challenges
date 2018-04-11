@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-func
-      image: sfci/cre/cre-api:0.0.1.39.master.c0e691b.91
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:0.0.1.42.at-maddogg.9b6af4a.8
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit_CCP_Integration_Functional
@@ -21,6 +21,10 @@ system:
           value: ccp-func
         - name: METRICS_KAFKA_ENABLED
           value: true
+        - name: MADDOG_KEYSTORE_PATH
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_TRUSTSTORE_PATH
+          value: maddog/maddog-client-truststore.json   
       ports:
       - containerPort: 8080
       - containerPort: 7020
