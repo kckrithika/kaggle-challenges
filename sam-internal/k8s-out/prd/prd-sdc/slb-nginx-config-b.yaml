@@ -21,7 +21,8 @@ spec:
                                               "san":[
                                                   "*.sam-system.prd-sdc.prd.slb.sfdc.net",
                                                   "*.slb.sfdc.net",
-                                                  "*.soma.salesforce.com"
+                                                  "*.soma.salesforce.com",
+                                                  "*.data.sfdc.net"
                                               ]
                                           },
                                           {
