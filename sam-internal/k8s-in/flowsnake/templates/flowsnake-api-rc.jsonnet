@@ -126,13 +126,7 @@ local kingdom = std.extVar("kingdom");
                         flowsnakeconfigmapmount.kubeconfig_volumeMounts +
                         flowsnakeconfigmapmount.platform_cert_volumeMounts,
                     },
-                ] + if flowsnakeconfig.is_test then [
-                    {
-                        name: "beacon",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake:DATACENTER_ALLENV:8080", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
-                    },
-                ] else [],
+                ],
                 volumes: [
                     {
                         name: "flowsnake-ldap",
