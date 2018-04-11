@@ -4,8 +4,8 @@ system:
   - name: default
     count: 1
     containers:
-    - name: imagemagick-sconems
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nsengupta/imagemagick-sconems:v1
+    - name: imagemagick-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nsengupta/imagemagick-service:v1
       ports:
       - containerPort: 7021
       - containerPort: 15374
