@@ -2,3 +2,5 @@ version: v2
 apps:
  test-bash:
   - name: prd/prd-sp2-sam_coreapp
+ prd-sp2-casam-func-7500:
+  - name: prd/prd-sp2-sam_coreapp
