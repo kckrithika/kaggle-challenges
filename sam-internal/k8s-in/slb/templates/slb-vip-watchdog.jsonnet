@@ -11,65 +11,59 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             name: "slb-vip-watchdog",
             namespace: "sam-system",
-            annotations: {} +
-              (if configs.kingdom == "prd" then {
-                  "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            },\n            {\n              \"key\": \"illumio\",\n              \"operator\": \"NotIn\",\n              \"values\":[\"a\", \"b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-              } else {
+    } + (if slbconfigs.slbInProdKingdom == "prd" then {
+                annotations: {
                                     "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-              }),
-    },
+                },
+              } else {}),
     spec: {
         replicas: 1,
         template: {
-            spec: {}
+            spec: {
+              volumes: configs.filter_empty([
+                 slbconfigs.slb_volume,
+                 slbconfigs.logs_volume,
+                 configs.sfdchosts_volume,
+              ]),
+              containers: [
+                  {
+                       name: "slb-vip-watchdog",
+                       image: slbimages.hypersdn,
+                       command: [
+                              "/sdn/slb-vip-watchdog",
+                              "--vipLoop=10",
+                              "--log_dir=" + slbconfigs.logsDir,
+                              "--optOutNamespace=kne",
+                              "--monitorFrequency=60s",
+                              "--hostnameOverride=$(NODE_NAME)",
+                              configs.sfdchosts_arg,
+                              "--metricsEndpoint=" + configs.funnelVIP,
+                              "--httpTimeout=5s",
+                       ],
+                       volumeMounts: configs.filter_empty([
+                             slbconfigs.slb_volume_mount,
+                             slbconfigs.logs_volume_mount,
+                             configs.sfdchosts_volume_mount,
+                       ]),
+                       env: [
+                             {
+                                 name: "NODE_NAME",
+                                 valueFrom: {
+                                      fieldRef: {
+                                          fieldPath: "spec.nodeName",
+                                      },
+                                 },
+                             },
+                       ],
+                  },
+              ],
+            }
             + (
-             if slbconfigs.slbInProdKingdom then {
-                volumes: configs.filter_empty([
-                   slbconfigs.slb_volume,
-                   slbconfigs.logs_volume,
-                   configs.sfdchosts_volume,
-                ]),
-                containers: [
-                    {
-                        name: "slb-vip-watchdog",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-vip-watchdog",
-                            "--vipLoop=10",
-                            "--log_dir=" + slbconfigs.logsDir,
-                            "--optOutNamespace=kne",
-                            "--monitorFrequency=60s",
-                            "--hostnameOverride=$(NODE_NAME)",
-                            configs.sfdchosts_arg,
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--httpTimeout=5s",
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        env: [
-                            {
-                               name: "NODE_NAME",
-                               valueFrom: {
-                                  fieldRef: {
-                                     fieldPath: "spec.nodeName",
-                                  },
-                               },
-                            },
-                        ],
-                    },
-                ],
+            if slbconfigs.slbInProdKingdom then {
                 nodeSelector: {
                    pool: configs.estate,
                 },
-             } else {
-                 volumes: configs.filter_empty([
-                        slbconfigs.slb_volume,
-                        slbconfigs.logs_volume,
-                        configs.sfdchosts_volume,
-                 ]),
+            } else {
                  affinity: {
                     podAntiAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: [{
@@ -90,39 +84,31 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                        }],
                     },
                  },
-                 containers: [
-                     {
-                          name: "slb-vip-watchdog",
-                          image: slbimages.hypersdn,
-                          command: [
-                                 "/sdn/slb-vip-watchdog",
-                                 "--vipLoop=10",
-                                 "--log_dir=" + slbconfigs.logsDir,
-                                 "--optOutNamespace=kne",
-                                 "--monitorFrequency=60s",
-                                 "--hostnameOverride=$(NODE_NAME)",
-                                 configs.sfdchosts_arg,
-                                 "--metricsEndpoint=" + configs.funnelVIP,
-                                 "--httpTimeout=5s",
-                          ],
-                          volumeMounts: configs.filter_empty([
-                                slbconfigs.slb_volume_mount,
-                                slbconfigs.logs_volume_mount,
-                                configs.sfdchosts_volume_mount,
-                          ]),
-                          env: [
-                                {
-                                    name: "NODE_NAME",
-                                    valueFrom: {
-                                         fieldRef: {
-                                             fieldPath: "spec.nodeName",
-                                         },
-                                    },
-                                },
-                          ],
-                     },
-                 ],
-                   nodeSelector: {}
+                 nodeAffinity: {
+                   requiredDuringSchedulingIgnoredDuringExecution: {
+                     nodeSelectorTerms: [
+                         {
+                          matchExpressions: [
+                            {
+                              key: "slb-service",
+                              operator: "NotIn",
+                              values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                            },
+                          ] + (
+                           if configs.estate == "prd-sdc" then
+                           [
+                             {
+                               key: "illumio",
+                               operator: "NotIn",
+                               values: ["a", "b"],
+                             },
+                           ] else []
+                         ),
+                       },
+                     ],
+                   },
+                 },
+                 nodeSelector: {}
                 + (
                     if configs.estate == "prd-sam" then {
                          pool: configs.kingdom + "-slb",
