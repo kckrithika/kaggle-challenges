@@ -34,7 +34,8 @@ if slbconfigs.slbInKingdom then {
                                     \"san\":[
                                         \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
                                         \"*.slb.sfdc.net\",
-                                        \"*.soma.salesforce.com\"
+                                        \"*.soma.salesforce.com\",
+                                        \"*.data.sfdc.net\"
                                     ]
                                 },
                                 {
