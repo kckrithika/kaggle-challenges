@@ -17,8 +17,9 @@ system:
       volumeMounts:
         - mountPath: /database
           name: maxmind-volume
+
     - name: ccait-geoip-backend
-      image: sfci/ccait/geoip:049a201e1066a6773f5a4a9cacce1c45806a0637
+      image: sfci/ccait/geoip:8d0126e7fc0ac428347444a3a458dfc68842d24e
       env:
       - name: JAVA_OPTS
         value: "-Xms512m -Xmx512m"
@@ -37,7 +38,7 @@ system:
         - mountPath: /dw/data
           name: maxmind-volume
         - mountPath: /log
-          name: log-volume
+          name: geoip-log-volume
       ports:
         - containerPort: 7020
           name: grpc
@@ -51,18 +52,27 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
+
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa:2.0.15
+      image: sfci/servicelibs/sherpa:2.0.25
+      args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log
+        - name: geoip-client-cert
+          mountPath: /client-certs
+        - name: geoip-server-cert
+          mountPath: /server-certs
       ports:
       - containerPort: 7012
         name: sherpa-b-in
-      - containerPort: 7080
+      - containerPort: 15373
         name: sherpa-b-adm
       livenessProbe:
         exec:
@@ -76,9 +86,37 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+
+    - name: beacon-geoip
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      args:
+      # Non-namespaced, plaintext
+      - -endpoint
+      - geoip:DATACENTER_ALLENV:7012
+      # Namespaced, TLS
+      - -endpoint
+      - ccait/geoip:DATACENTER_ALLENV:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
     volumes:
     - name: maxmind-volume
       emptyDir: {}
-    - name: log-volume
+    - name: geoip-log-volume
       hostPath:
         path: /home/sfdc-geoip/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    - name: geoip-client-cert
+      maddogCert:
+        type: client
+    - name: geoip-server-cert
+      maddogCert:
+        type: server
