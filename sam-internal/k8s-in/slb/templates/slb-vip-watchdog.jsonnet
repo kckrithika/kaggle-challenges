@@ -5,25 +5,19 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
-    metadata: {}
-     + (
-         if slbconfigs.slbInProdKingdom then {
-              labels: {
-                         name: "slb-vip-watchdog",
-              },
-              name: "slb-vip-watchdog",
-              namespace: "sam-system",
-              annotations: {
-                    "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-              },
-         } else {
-              labels: {
-                  name: "slb-vip-watchdog",
-              },
-              name: "slb-vip-watchdog",
-              namespace: "sam-system",
-         }
-     ),
+    metadata: {
+            labels: {
+                       name: "slb-vip-watchdog",
+            },
+            name: "slb-vip-watchdog",
+            namespace: "sam-system",
+            annotations: {} +
+              (if configs.kingdom == "prd" then {
+                  "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            },\n            {\n              \"key\": \"illumio\",\n              \"operator\": \"NotIn\",\n              \"values\":[\"a\", \"b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
+              } else {
+                                    "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx-a\",\"slb-nginx-b\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
+              }),
+    },
     spec: {
         replicas: 1,
         template: {
