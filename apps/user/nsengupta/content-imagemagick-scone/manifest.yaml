@@ -8,8 +8,8 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/nsengupta/imagemagick-service:v1
       ports:
       - containerPort: 7022
-      - containerPort: 15374
+      - containerPort: 15303
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15374
+          port: 15303
