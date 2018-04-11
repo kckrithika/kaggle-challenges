@@ -48,7 +48,7 @@ if configs.estate == "prd-sam" then {
                             "--truststoreFile=/etc/logstash/certs/truststore.jks",
                             "--elasticsearchUrl=" + sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
                             "--userName=platform",
-                            "--ajnaEndpoint=ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
+                            "--ajnaEndpoint=ajna0-broker1-0-prd.data.sfdc.net:9093",
                         ],
                     },
                     {
