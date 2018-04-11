@@ -83,30 +83,30 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         topologyKey: "kubernetes.io/hostname",
                        }],
                     },
-                 },
-                 nodeAffinity: {
-                   requiredDuringSchedulingIgnoredDuringExecution: {
-                     nodeSelectorTerms: [
-                         {
-                          matchExpressions: [
+                    nodeAffinity: {
+                      requiredDuringSchedulingIgnoredDuringExecution: {
+                        nodeSelectorTerms: [
                             {
-                              key: "slb-service",
-                              operator: "NotIn",
-                              values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
-                            },
-                          ] + (
-                           if configs.estate == "prd-sdc" then
-                           [
-                             {
-                               key: "illumio",
-                               operator: "NotIn",
-                               values: ["a", "b"],
-                             },
-                           ] else []
-                         ),
-                       },
-                     ],
-                   },
+                             matchExpressions: [
+                               {
+                                 key: "slb-service",
+                                 operator: "NotIn",
+                                 values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                               },
+                             ] + (
+                              if configs.estate == "prd-sdc" then
+                              [
+                                {
+                                  key: "illumio",
+                                  operator: "NotIn",
+                                  values: ["a", "b"],
+                                },
+                              ] else []
+                            ),
+                          },
+                        ],
+                      },
+                    },
                  },
                  nodeSelector: {}
                 + (
