@@ -21,7 +21,7 @@ spec:
         - /sam/k8s-resource-reporter
         - --v=5
         - --k8sapiserver=
-        - --smtpServer=smtpops-prd-sp1.data.sfdc.net:25
+        - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
         - --sender=sam@salesforce.com
         - --defaultRecipient=mayank.kumar@salesforce.com
         - --namespacesToSkip=sam-watchdog,legostore,sam-system,sf-store
