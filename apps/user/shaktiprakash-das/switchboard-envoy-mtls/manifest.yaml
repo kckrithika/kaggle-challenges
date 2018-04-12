@@ -11,7 +11,8 @@ system:
     count: 1
     containers:
     - name: swb-mtls
-      image: sfci/servicelibs/switchboard:0f169e141c1ba9162bc47c7735bad388e8f44640
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
+      image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -21,13 +22,10 @@ system:
         value: 7020
       args:
       - --clusters.external-clusters[0]=shipping-envoy-mtls.user-shaktiprakash-das.samapp:HTTP2_TLS
-      - --template
-      - ./switchboard-sidecar.config.yaml.template
       volumeMounts:
         - mountPath: /log
           name: log-volume
       ports:
-      - containerPort: 15001
       - containerPort: 15372
       resources:
         limits: { cpu: "8", memory: "6Gi" }
@@ -45,13 +43,18 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
 
-    - name: swb-sc-envoy
+    - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
       image: sfci/servicelibs/sherpa-envoy:55f2e2813142f677427d4d334fc272317ae0a3c6
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      - name: 
+      args:
+      - --template
+      - ./switchboard-sidecar.config.yaml.template
+      ports:
+      - containerPort: 15001
+      - containerPort: 15373
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
