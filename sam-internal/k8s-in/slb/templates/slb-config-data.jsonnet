@@ -23,12 +23,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 },
                 namespace: "sam-system",
             },
-            spec: {
-                hostNetwork: true,
-                volumes: configs.filter_empty([
-                    slbconfigs.slb_volume,
-                 ]),
-                containers: [
+            spec:
+                (if slbconfigs.slbInProdKingdom then { hostNetwork: true }
+                 else {})
+                +
+                {
+                    volumes: configs.filter_empty([
+                        slbconfigs.slb_volume,
+                    ]),
+                    containers: [
                         {
                             name: "slb-config-data",
                             image: slbimages.hypersdn,
@@ -38,7 +41,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             ],
                             volumeMounts: configs.filter_empty([
                                 slbconfigs.slb_volume_mount,
-                             ]),
+                            ]),
                         }
                         + (
                             if configs.estate == "prd-sdc" then {
@@ -52,9 +55,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 },
                             }
                             else {}
-                          ),
-                ],
-             },
+                        ),
+                    ],
+                },
         },
     },
 } else "SKIP"
