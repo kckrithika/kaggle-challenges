@@ -3,56 +3,39 @@ system:
   functions:
   - containers:
     - env:
-      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
-        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
+      - name: COMPILER_ENDPOINT_FSENV_PREFIX
+        value: iot-prd-staging-
+      - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
+        value: ajna0-zk1-1-prd.ops.sfdc.net
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.integration
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
         value: /home/controlplane/cacerts
-      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
-        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: LOGGING_STDERR_LEVEL
         value: ALL
-      - name: METRICS_FUNNELURL
-        value: http://ajna0-funnel1-0-prd.data.sfdc.net
       - name: PHOENIX_DATACENTER
         value: prd
       - name: PHOENIX_KEYTABPATH
-        value: /home/controlplane/iot.keytab
+        value: /home/controlplane/controlplane-keytab/iot.keytab
       - name: PHOENIX_KEYTABPRINCIPAL
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
-      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
-        value: true
-      - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
-        value: /client-certs/client
-      - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
-        value: /client-certs
-      - name: PHOENIX_ENVIRONMENT
-        value: kingdom-test
       - name: SFDC_ENVIRONMENT
         value: staging
-      - name: SVCMESH_ANNOUNCE_PORT
-        value: 7012
-      - name: SVCMESH_ANNOUNCE_SERVICENAME
-        value: controlplane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:hbase_keytab_service-c8a79a4
-      #image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:foxtrot
+      image: sfci/iot/enterprise-controlplane:1.0.0.21
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 600
-        timeoutSeconds: 600
+        initialDelaySeconds: 120
+        timeoutSeconds: 120
       name: controlplane
       ports:
       - containerPort: 15372
         name: mgmt
       - containerPort: 7020
         name: grpc
-      - containerPort: 5005
-        name: debug
       resources:
         limits:
           cpu: 7
@@ -69,8 +52,6 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
-      - mountPath: /server-certs
-        name: server-certs
       - mountPath: /client-certs
         name: client-certs
     - env:
@@ -104,22 +85,28 @@ system:
         name: client-certs
     - args:
       - -endpoint
-      - controlplane:DATACENTER:7012
+      - iot/controlplane:DATACENTER:7443
       env:
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: docker-sfci-rc/sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       livenessProbe:
         exec:
           command:
           - /home/scone/is-alive.sh
         initialDelaySeconds: 5
       name: beacon
-    count: 1
+    count: 2
     name: controlplane
     strategy:
       type: Recreate
     volumes:
+    - maddogCert:
+        type: server
+      name: server-certs
+    - maddogCert:
+        type: client
+      name: client-certs
     - hostPath:
         path: /data/sam/iot/log/controlplane
       name: logvol
@@ -129,24 +116,18 @@ system:
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
-    - maddogCert:
-        type: server
-      name: server-certs
-    - maddogCert:
-        type: client
-      name: client-certs
   loadbalancers:
   - function: controlplane
     lbname: controlplane-lb
     nodeExposed: true
     ports:
     - port: 9115
-      targetport: 7012
-    - port: 8115
+      targetport: 7443
+    - lbtype: http
+      port: 8115
       targetport: 15372
-    - port: 7445
-      targetport: 5005
     slbEnabled: true
   notifications:
     email:
     - iotenterprise@salesforce.com
+
