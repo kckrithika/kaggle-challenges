@@ -39,6 +39,8 @@ spec:
         - prd
         - --estate
         - prd-samtest
+        - --retry-max-elapsed-time
+        - 20s
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000066-fedd8bce
         livenessProbe:
           httpGet:
