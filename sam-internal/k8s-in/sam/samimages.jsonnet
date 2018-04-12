@@ -52,6 +52,9 @@ local utils = import "util_functions.jsonnet";
         #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
         #api servers are under heavy load
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
+
+        #[diana.chang] Test sam-manifest-repo-watcher with webhook from diana.chang/manifests
+        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180412_111519.3930b882.dirty.dianachang-ltm1",
         },
 
     ### Per-phase image tags

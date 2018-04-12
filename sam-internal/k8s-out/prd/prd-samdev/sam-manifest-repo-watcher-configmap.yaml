@@ -6,6 +6,7 @@ data:
       "db-name": "sam_manifest_repo_watcher_dev",
       "db-password-file": "/var/mysqlPwd/pass.txt",
       "db-username": "root",
+      "ghe-tokenfile": "/var/token/token",
       "git-url": "https://git.soma.salesforce.com/api/v3/",
       "pr-table-name": "pr_table",
       "pr-to-teamoruser-table-name": "pr_to_teamoruser_table",
@@ -15,7 +16,7 @@ data:
       ],
       "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
       "tnrp-scan-frequency": "10m",
-      "tokenfile": "/var/token/token"
+      "webhook-tokenfile": "/var/webhook-token/webhook-token"
     }
 kind: ConfigMap
 metadata:

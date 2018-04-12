@@ -22,10 +22,16 @@ if configs.estate == "prd-samdev" then {
                                                             name: "mysql",
                                                             readOnly: true,
                                                         },
-                                        ]) + (if configs.kingdom == "prd" then [
+                                        ]) + (if configs.estate == "prd-samdev" then [
                                           {
                                               mountPath: "/var/token",
                                               name: "token",
+                                              readOnly: true,
+                                                  },
+                                              ] else []) + (if configs.estate == "prd-samdev" then [
+                                          {
+                                              mountPath: "/var/webhook-token",
+                                              name: "webhook-token",
                                               readOnly: true,
                                                   },
                                               ] else []),
@@ -39,12 +45,19 @@ if configs.estate == "prd-samdev" then {
                                             },
                                             name: "mysql",
                                     },
-                                ]) + (if configs.kingdom == "prd" then [
+                                ]) + (if configs.estate == "prd-samdev" then [
                                   {
                                       secret: {
                                           secretName: "git-token",
                                       },
                                       name: "token",
+                                  },
+                              ] else []) + (if configs.estate == "prd-samdev" then [
+                                  {
+                                      secret: {
+                                          secretName: "webhook-token",
+                                      },
+                                      name: "webhook-token",
                                   },
                               ] else []),
                                 nodeSelector: {
