@@ -10,7 +10,7 @@ system:
     count: 1
     containers:
     - name: eventnotifications-connect
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:eventnotifications-service-1.0.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:eventnotifications-service-1.0.1
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -31,7 +31,7 @@ system:
     function: eventnotifications-connect
     nodeExposed: true
     ports:
-      - port: 8083
+      - port: 8082
         targetport: 8080
       - port: 15373
         targetport: 15372
