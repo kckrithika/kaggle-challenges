@@ -26,6 +26,8 @@ system:
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /servercerts
+      - name: dfs-client-cert
+        mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
@@ -53,6 +55,9 @@ system:
     - name: dfs-server-cert
       maddogCert:
         type: server
+    - name: dfs-client-cert
+      maddogCert:
+        type: client
   loadbalancers:
   - lbname: dfs-lbpf
     function: dfs-perf
