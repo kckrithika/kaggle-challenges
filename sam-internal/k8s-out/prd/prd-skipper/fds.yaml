@@ -28,7 +28,7 @@ spec:
           value: "true"
         - name: FDS_MIN_RESYNC_PERIOD
           value: 3s
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000380-573c92f8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000387-bfd34c14
         livenessProbe:
           httpGet:
             path: /healthz
@@ -93,10 +93,7 @@ spec:
         - name: MADDOG_POLL_PERIOD
           value: 30s
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/poddeleter:base-0000387-bfd34c14
-        imagePullPolicy: Always
         name: poddeleter
-        securityContext:
-          privileged: true
         volumeMounts:
         - mountPath: /var/log
           name: container-log-vol

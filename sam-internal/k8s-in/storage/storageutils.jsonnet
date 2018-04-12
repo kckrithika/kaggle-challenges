@@ -175,7 +175,7 @@ local utils = import "util_functions.jsonnet";
     ),
 
     # prd-skipper doesn't use maddog certs, so there is no cert file to watch.
-    # poddeleter needs a file to watch in order to run though, so let's just watch our own binary.
+    # poddeleter needs a file to watch in order to run though, so let's watch an arbitrary file.
     cert_file_path():: (
         if $.is_skipper() then
             "/etc/bashrc"
@@ -207,10 +207,6 @@ local utils = import "util_functions.jsonnet";
     poddeleter_podspec(imageName):: {
         name: "poddeleter",
         image: imageName,
-        imagePullPolicy: "Always",
-        securityContext: {
-            privileged: true,
-        },
         volumeMounts: configs.filter_empty(
             $.cert_volume_mounts()
             + $.log_init_volume_mounts()),
