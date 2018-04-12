@@ -48,6 +48,9 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001848-170a0744",
 
+        #[rbhat] Update rrormsg in bundlestatus & latency metrics
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001866-e15d6541",
+
         #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
         #api servers are under heavy load
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
