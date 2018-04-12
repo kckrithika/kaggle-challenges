@@ -36,7 +36,6 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-alertThreshold=1h",
                                      "-emailFrequency=12h",
                                      "-laddr=" + samwdconfig.laddr,
-                                     "-maxdeploymentduration=5m",
                                      "-imageName=" + samimages.hypersam,
                                  ]
                                  + samwdconfig.shared_args,
