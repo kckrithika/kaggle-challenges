@@ -48,7 +48,6 @@ local utils = import "util_functions.jsonnet";
 
         #[rbhat] Update rrormsg in bundlestatus & latency metrics
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001866-e15d6541",
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001866-e15d6541",
 
         #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
         #api servers are under heavy load
