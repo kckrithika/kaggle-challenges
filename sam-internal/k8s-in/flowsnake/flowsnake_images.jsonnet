@@ -12,6 +12,8 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
+        "prd,prd-minikube-small-flowsnake,cert-secretizer,madkub": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
+        "prd,prd-minikube-big-flowsnake,cert-secretizer,madkub": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
     },
 
     ### Per-phase image tags

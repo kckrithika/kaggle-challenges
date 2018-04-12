@@ -22,6 +22,9 @@ local util = import "util_functions.jsonnet";
         "iad-flowsnake_prod": "flowsnake-iad.data.sfdc.net",
         "ord-flowsnake_prod": "flowsnake-ord.data.sfdc.net",
         "phx-flowsnake_prod": "flowsnake-phx.data.sfdc.net",
+        // minikube fake VIPs
+        "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
+        "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     },
     fleet_api_roles: {
         "prd-data-flowsnake": "api",

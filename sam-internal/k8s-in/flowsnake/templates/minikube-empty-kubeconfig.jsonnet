@@ -1,13 +1,15 @@
-local configmap = import "flowsnake_configmap.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+if !flowsnakeconfig.is_minikube then
+"SKIP"
+else
 {
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
-        name: "certs-to-secrets",
+        name: "version-mapping",
         namespace: "flowsnake",
     },
     data: {
-        "master.config": std.toString(configmap.cert_secretizer_config),
+        kubeconfig: "",
     },
 }

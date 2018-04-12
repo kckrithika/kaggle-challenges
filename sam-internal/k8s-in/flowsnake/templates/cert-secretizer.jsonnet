@@ -3,9 +3,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-if !flowsnakeconfig.maddog_enabled then
-"SKIP"
-else
 {
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",
@@ -30,6 +27,7 @@ else
             {
             name: "cert-secretizer",
             image: flowsnakeimage.cert_secretizer,
+            imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
             volumeMounts: [
               {
                 mountPath: "/certToSecretConfigs",
@@ -45,8 +43,10 @@ else
                 readOnly: true,
               },
             ] +
-            flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-            flowsnakeconfigmapmount.platform_cert_volumeMounts,
+            (if !flowsnakeconfig.is_minikube then
+                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
+                flowsnakeconfigmapmount.platform_cert_volumeMounts
+            else []),
             env: [
               {
                 name: "FLOWSNAKE_FLEET",
@@ -73,17 +73,15 @@ else
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
+              if flowsnakeconfig.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
-              "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
-              "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              "/etc/pki_service/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
-              "--funnel-endpoint",
-              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--superpod",
@@ -94,7 +92,11 @@ else
               "--run-init-for-refresher-mode",
               "--cert-folders",
               "ingresscerts:/certs",
-            ],
+            ] +
+            (if !flowsnakeconfig.is_minikube then [
+              "--funnel-endpoint",
+              flowsnakeconfig.funnel_endpoint,
+            ] else []),
             image: flowsnakeimage.madkub,
             resources: {
             },
@@ -107,7 +109,15 @@ else
                 mountPath: "/tokens",
                 name: "tokens",
               },
-            ] + flowsnakeconfigmapmount.platform_cert_volumeMounts,
+            ] +
+            (if !flowsnakeconfig.is_minikube then
+                flowsnakeconfigmapmount.platform_cert_volumeMounts
+            else [
+                {
+                  mountPath: "/sc",
+                  name: "maddog-onebox-claim",
+                },
+            ]),
             env: [
               {
                 name: "MADKUB_NODENAME",
@@ -145,17 +155,15 @@ else
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
+              if flowsnakeconfig.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
-              "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
-              "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              "/etc/pki_service/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
-              "--funnel-endpoint",
-              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--superpod",
@@ -164,7 +172,11 @@ else
               estate,
               "--cert-folders",
               "ingresscerts:/certs",
-            ],
+            ] +
+            (if !flowsnakeconfig.is_minikube then [
+              "--funnel-endpoint",
+              flowsnakeconfig.funnel_endpoint,
+            ] else []),
             image: flowsnakeimage.madkub,
             resources: {
             },
@@ -177,7 +189,15 @@ else
                 mountPath: "/tokens",
                 name: "tokens",
               },
-            ] + flowsnakeconfigmapmount.platform_cert_volumeMounts,
+            ] +
+            (if !flowsnakeconfig.is_minikube then
+                flowsnakeconfigmapmount.platform_cert_volumeMounts
+            else [
+                {
+                  mountPath: "/sc",
+                  name: "maddog-onebox-claim",
+                },
+            ]),
             env: [
               {
                 name: "MADKUB_NODENAME",
@@ -236,8 +256,17 @@ else
             },
           },
         ] +
-        flowsnakeconfigmapmount.platform_cert_volume +
-        flowsnakeconfigmapmount.kubeconfig_platform_volume,
+        (if !flowsnakeconfig.is_minikube then
+            flowsnakeconfigmapmount.platform_cert_volume +
+            flowsnakeconfigmapmount.kubeconfig_platform_volume
+        else [
+            {
+              persistentVolumeClaim: {
+                  claimName: "maddog-onebox-claim",
+              },
+              name: "maddog-onebox-claim",
+            },
+        ]),
       },
     },
   },
