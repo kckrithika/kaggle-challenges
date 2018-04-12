@@ -30,7 +30,9 @@ local kingdom = std.extVar("kingdom");
         estate == "xrd-sam" ||
         estate == "prd-sam_storage" ||
         estate == "prd-sam_cephdev" ||
-        estate == "prd-sam_sfstoredev"
+        estate == "prd-sam_sfstoredev" ||
+        estate == "prd-sam_storagedev" ||
+        estate == "prd-skipper"
     ),
 
     # This is for filtering flowsnake clusters.
