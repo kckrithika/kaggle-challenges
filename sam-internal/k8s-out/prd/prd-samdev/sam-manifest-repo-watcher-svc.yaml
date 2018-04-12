@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: sam-manifest-repo-watcher
+  name: sam-manifest-repo-watcher
+  namespace: sam-system
+spec:
+  ports:
+  - name: mrw-port
+    nodePort: 32865
+    port: 80
+    protocol: TCP
+    targetPort: 8099
+  selector:
+    name: sam-manifest-repo-watcher
+  type: NodePort
