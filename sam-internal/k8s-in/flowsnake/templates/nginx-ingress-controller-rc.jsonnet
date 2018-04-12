@@ -114,7 +114,7 @@ local estate = std.extVar("estate");
                     {
                         name: "beacon",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake:DATACENTER_ALLENV:7014", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
+                        args: ["-endpoint", "flowsnake:DATACENTER_ALLENV:7442", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE", "--server-cert", "/etc/ssl/certs/tls.crt", "--server-key", "/etc/ssl/certs/tls.key"],
                     },
                     {
                         name: "sherpa",
@@ -135,8 +135,15 @@ local estate = std.extVar("estate");
                         ],
                         ports: [
                             {
-                                containerPort: 7014,
+                                containerPort: 7442,
                             },
+                        ],
+                        volumeMounts: [
+                             {
+                                 name: "flowsnake-tls-secret",
+                                 mountPath: "/etc/ssl/certs",
+                                 readOnly: true,
+                             },
                         ],
                     },
                 ] else [],
