@@ -45,41 +45,10 @@ if configs.estate == "prd-sam" then {
                             "--cafile=" + configs.caFile,
                             "--topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
-                            "--truststoreFile=/etc/logstash/certs/truststore.jks",
+                            "--truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks",
                             "--elasticsearchUrl=" + sdnconfigs.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
                             "--userName=platform",
                             "--ajnaEndpoint=ajna0-broker1-0-prd.data.sfdc.net:9093",
-                        ],
-                    },
-                    {
-                        name: "sdn-keytool-agent",
-                        image: sdnimages.hyperelk,
-                        env: [
-                                {
-                                    name: "RUN",
-                                    value: "keytool_agent",
-                                },
-                                {
-                                    name: "OUTPUT_FILE",
-                                    value: "/etc/logstash/certs/truststore.jks",
-                                },
-                                {
-                                    name: "CERT_PASSWORD",
-                                    value: "password",
-                                },
-                                {
-                                    name: "CERT_DIR",
-                                    value: "/etc/pki_service/ca/",
-                                },
-                                {
-                                    name: "CONVERT_INTERVAL",
-                                    # 1 day in seconds
-                                    value: "86400",
-                                },
-                        ],
-                        volumeMounts: [
-                            sdnconfigs.sdn_logstash_certs_volume_mount,
-                            configs.maddog_cert_volume_mount,
                         ],
                     },
                 ],

@@ -20,12 +20,12 @@ spec:
           value: logstash
         - name: config_reload_automatic
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000087-11275cb2
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000089-cb737976
         name: sdn-logstash
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
           name: logstashconf
-        - mountPath: /etc/logstash/certs
+        - mountPath: /etc/pki/java
           name: logstashcerts
       - command:
         - /sdn/sdn-argus-auth-agent
@@ -35,11 +35,11 @@ spec:
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam
         - --confFile=/etc/logstash/conf.d/logstash.conf
-        - --truststoreFile=/etc/logstash/certs/truststore.jks
+        - --truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks
         - --elasticsearchUrl=10.254.219.223:9123
         - --userName=platform
         - --ajnaEndpoint=ajna0-broker1-0-prd.data.sfdc.net:9093
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000763-622223ea
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000774-8e734274
         name: sdn-argus-auth-agent
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
@@ -48,24 +48,6 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-      - env:
-        - name: RUN
-          value: keytool_agent
-        - name: OUTPUT_FILE
-          value: /etc/logstash/certs/truststore.jks
-        - name: CERT_PASSWORD
-          value: password
-        - name: CERT_DIR
-          value: /etc/pki_service/ca/
-        - name: CONVERT_INTERVAL
-          value: "86400"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000087-11275cb2
-        name: sdn-keytool-agent
-        volumeMounts:
-        - mountPath: /etc/logstash/certs
-          name: logstashcerts
-        - mountPath: /etc/pki_service
-          name: maddog-certs
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
@@ -74,7 +56,7 @@ spec:
           path: /etc/logstash/conf.d
         name: logstashconf
       - hostPath:
-          path: /etc/logstash/certs
+          path: /etc/pki/java
         name: logstashcerts
       - hostPath:
           path: /etc/pki_service
