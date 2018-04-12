@@ -4,6 +4,8 @@ system:
   functions:
   - name: default
     count: 1
+    identity:
+      serviceName: my-test-identity
     containers:
     - name: samhello
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cbatra/samtestapp:withuser
@@ -13,19 +15,26 @@ system:
       - mountPath : /secrets/
         name: secretvol
         readOnly: true
+      - mountPath : /server-cert/
+        name: server-cert
+        readOnly: true
+      - mountPath : /client-cert/
+        name: client-cert
+        readOnly: true
       livenessProbe:
         httpGet:
           path: /
           port: 9090
     volumes:
-     - name: secretvol
-       k4aSecret:
-         secretName: mysecret
-    env:
-      - name: TEST_ENV
-        value: test_val_new
-      - name: SFDC_ENVIRONMENT
-        value: myenv
+    - name: secretvol
+      k4aSecret:
+        secretName: mysecret
+    - name: server-cert
+      maddogCert:
+        type: client
+    - name: client-cert
+      maddogCert:
+        type: server
   loadbalancers:
   - lbname: samhellolb
     function: default
