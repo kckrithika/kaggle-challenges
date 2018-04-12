@@ -132,6 +132,9 @@ perCluster: {
         "prd-samdev": 1,
         "prd-sam_storage": 1,
         "prd-sam": 2,
+    } + {
+        [k + "-sam"]: 2
+            for k in $.prodKingdoms
     },
     madkubServer: {
         [k]: "https://all.pkicontroller.pki.blank." + k + ".prod.non-estates.sfdcsd.net:8443"
