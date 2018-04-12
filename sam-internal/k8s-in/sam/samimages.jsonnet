@@ -20,10 +20,8 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [lizhang.li] Enable filesytem-watchdog everywhere
-        "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
-        "frf,frf-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "hnd,hnd-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "iad,iad-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "ord,ord-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
@@ -91,7 +89,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
-            hypersam: "sam-0001815-8cfb538e",
+            hypersam: "sam-0001847-1b9453cd",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
