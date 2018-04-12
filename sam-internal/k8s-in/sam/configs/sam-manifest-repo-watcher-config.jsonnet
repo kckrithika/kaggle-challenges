@@ -13,5 +13,6 @@ std.prune({
         "git-url": "https://git.soma.salesforce.com/api/v3/",
         "pr-table-name": "pr_table",
         "pr-to-teamoruser-table-name": "pr_to_teamoruser_table",
-        tokenfile: "/var/token/token",
+        "ghe-tokenfile": "/var/token/token",
+        "webhook-tokenfile": "/var/webhook-token/webhook-token",
 }) else "SKIP"
