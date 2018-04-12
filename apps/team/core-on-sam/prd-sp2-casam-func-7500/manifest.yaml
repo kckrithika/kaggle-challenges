@@ -23,7 +23,7 @@ system:
           value: sneezy
 
         - name: DB_SID
-          value: mist61c214utf
+          value: mist61b212utf
 
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
