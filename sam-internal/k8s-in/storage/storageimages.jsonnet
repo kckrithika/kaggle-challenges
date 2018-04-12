@@ -22,7 +22,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000380-573c92f8",
+            default_tag: "base-0000387-bfd34c14",
             ceph_operator_tag: "base-0000375-b6ea35ee",
             loginit_tag: "base-0000375-b6ea35ee",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
@@ -100,6 +100,7 @@ local kingdom = std.extVar("kingdom");
     loginit: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "loginitcontainer", $.per_phase[$.phase].loginit_tag),
     nodeprep: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep", $.per_phase[$.phase].default_tag),
     nodeprepskipper: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "nodeprep-skipper", $.per_phase[$.phase].default_tag),
+    maddogpoddeleter: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "poddeleter", $.per_phase[$.phase].default_tag),
 
     # The Metric Streamer is maintained in https://git.soma.salesforce.com/SdbStoreOps/Prod-Operations repo. Therefore, it does not use the default_tag.
     sfms: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfms", $.per_phase[$.phase].sfms_tag),

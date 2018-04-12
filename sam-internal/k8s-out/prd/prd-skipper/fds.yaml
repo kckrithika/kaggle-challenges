@@ -28,7 +28,7 @@ spec:
           value: "true"
         - name: FDS_MIN_RESYNC_PERIOD
           value: 3s
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000380-573c92f8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/faultdomainset:base-0000387-bfd34c14
         livenessProbe:
           httpGet:
             path: /healthz
@@ -73,6 +73,32 @@ spec:
               fieldPath: metadata.name
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
         name: sfms
+      - env:
+        - name: MADDOG_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: MADDOG_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MADDOG_CERT_FILE_PATH
+          value: /etc/bashrc
+        - name: MADDOG_ALLOWED_DURATION
+          value: 1m
+        - name: MADDOG_LOOKBACK_PERIOD
+          value: 1m
+        - name: MADDOG_STAGGER_PERIOD
+          value: 1m
+        - name: MADDOG_POLL_PERIOD
+          value: 30s
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/poddeleter:base-0000387-bfd34c14
+        name: poddeleter
+        volumeMounts:
+        - mountPath: /var/log
+          name: container-log-vol
+        - mountPath: /var/log-mounted
+          name: host-log-vol
       initContainers:
       - command:
         - sh

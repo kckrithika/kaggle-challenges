@@ -2,13 +2,17 @@ local configs = import "config.jsonnet";
 local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
-local isEstateNotSkipper = configs.estate != "prd-skipper";
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam_storage",
     "prd-sam",
     "prd-skipper",
     "phx-sam",
+]);
+
+local enabledEstatesForPodDeleter = std.set([
+    "prd-sam_storage",
+    "prd-skipper",
 ]);
 
 // Environment variables for the Local Provisioner container.
@@ -30,16 +34,15 @@ local lvEnvironmentVars = std.prune([
         },
     },
 ]) +
-if isEstateNotSkipper then
+if !storageutils.is_skipper() then
     [
         configs.kube_config_env,
     ]
 else [];
 
-
 local internal = {
     provisioner_node_affinity(estate):: (
-        if isEstateNotSkipper then [
+        if !storageutils.is_skipper() then [
             {
                 key: "pool",
                 operator: "In",
@@ -100,7 +103,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     "root"
                 ),
                 ],
-                containers: [
+                containers: std.prune([
                 {
                     name: "provisioner",
                     image: storageimages.lvprovisioner,
@@ -125,7 +128,9 @@ if std.setMember(configs.estate, enabledEstates) then {
                     + storageutils.log_init_volume_mounts()),
                     env: lvEnvironmentVars,
                 },
-                ],
+                if std.setMember(configs.estate, enabledEstatesForPodDeleter) then
+                    storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
+                ]),
                 volumes: configs.filter_empty([
                 {
                     name: "hdd-vols",

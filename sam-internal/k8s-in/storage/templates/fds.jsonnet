@@ -11,6 +11,11 @@ local enabledEstates = std.set([
     "phx-sam",
 ]);
 
+local enabledEstatesForPodDeleter = std.set([
+    "prd-sam_storage",
+    "prd-skipper",
+]);
+
 // Init containers for the pod.
 local initContainers = [
     storageutils.log_init_container(
@@ -79,7 +84,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             },
             spec: {
                 initContainers: initContainers,
-                containers: [
+                containers: std.prune([
                     {
                         name: "fds",
                         image: storageimages.fdscontroller,
@@ -130,7 +135,9 @@ if std.setMember(configs.estate, enabledEstates) then {
                         ]
                         else [],
                     },
-                ],
+                    if std.setMember(configs.estate, enabledEstatesForPodDeleter) then
+                    storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
+                ]),
                 volumes:
                     podVolumes,
                 nodeSelector: if configs.estate != "prd-skipper" then {

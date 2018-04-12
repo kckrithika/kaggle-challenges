@@ -43,7 +43,7 @@ spec:
           value: "yes"
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/nodeprep:base-0000380-573c92f8
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/nodeprep:base-0000387-bfd34c14
         imagePullPolicy: Always
         name: nodeprep
         securityContext:
