@@ -31,8 +31,8 @@ spec:
         - --awsRegion=ap-southeast-2
         - --awsAZ=ap-southeast-2c
         - --ddi=https://ddi-api-crz.data.sfdc.net/
-        - --keyfile=/data/certs/hostcert.key
-        - --certfile=/data/certs/hostcert.crt
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --log_dir=/data/logs/sdn/

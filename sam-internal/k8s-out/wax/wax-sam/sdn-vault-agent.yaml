@@ -19,8 +19,8 @@ spec:
         - /sdn/sdn-vault-agent
         - --funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --archiveSvcEndpoint=https://ops-piperepo1-0-wax.data.sfdc.net/tnrp/content_repo/0/archive
-        - --keyfile=/data/certs/hostcert.key
-        - --certfile=/data/certs/hostcert.crt
+        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
+        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
         - --log_dir=/data/logs/sdn/

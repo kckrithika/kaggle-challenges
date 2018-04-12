@@ -3,12 +3,12 @@ data:
   snapshoter.json: |-
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
-      "cert-file": "/data/certs/hostcert.crt",
+      "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "kafka-endpoint": "ajna0-broker1-0-yul.data.sfdc.net:9093",
       "kafka-payload-kb": 300,
       "kafka-push-interval": "10s",
       "kafka-topic": "sfdc.prod.sam__yul.ajna_local__resourcestatus",
-      "key-file": "/data/certs/hostcert.key",
+      "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
       "kube-poll-interval": "30m",
       "liveness-probe-port": 9095,
       "send-events": true,

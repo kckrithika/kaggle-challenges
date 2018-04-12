@@ -104,9 +104,6 @@ local utils = import "util_functions.jsonnet",
 
     # Commonly used elements for kubernetes resources
 
-    # As of 2018-03, Flowsnake hosts are MadDog enabled where SAM is, so this applies to them too.
-    maddogForSamHostsEnabled: !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom),
-
     # For use by apps that talk to the Kube API server using the host's kubeConfig
     kube_config_env: {
         name: "KUBECONFIG",
@@ -150,16 +147,10 @@ local utils = import "util_functions.jsonnet",
         "/etc/pki_service/ca/cabundle.pem"
     ),
     keyFile: (
-        if $.maddogForSamHostsEnabled then
-            "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
-        else
-            "/data/certs/hostcert.key"
+        "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
     ),
     certFile: (
-        if $.maddogForSamHostsEnabled then
-            "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
-        else
-            "/data/certs/hostcert.crt"
+        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
     ),
     chainFile: (
         if kingdom == "prd" then
