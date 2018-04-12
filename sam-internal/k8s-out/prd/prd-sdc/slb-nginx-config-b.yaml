@@ -6,6 +6,7 @@ metadata:
   name: slb-nginx-config-b
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   replicas: 2
   template:
     metadata:
@@ -133,7 +134,7 @@ spec:
           name: sfdchosts
       - command:
         - /runner.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000026-409d6394
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000027-81124b0f
         livenessProbe:
           httpGet:
             path: /
