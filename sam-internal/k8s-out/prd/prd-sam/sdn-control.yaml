@@ -20,7 +20,7 @@ spec:
       containers:
       - command:
         - /sdn/sdn-control-service
-        - --archiveSvcEndpoint=https://ops0-piperepo2-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive
+        - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
         - --port=9108
         - --charonAgentEndpoint=https://sds2-polcore2-2-prd.eng.sfdc.net:9443/minions
         - --livenessProbePort=9110
