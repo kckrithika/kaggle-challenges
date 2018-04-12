@@ -75,13 +75,14 @@ spec:
         - -.-.PRD.-.kevin
         - -spod
         - NOPE
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+        name: beacon
+      - args:
         - --server-cert
         - /etc/ssl/certs/tls.crt
         - --server-key
         - /etc/ssl/certs/tls.key
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-        name: beacon
-      - env:
+        env:
         - name: SETTINGS_PATH
           value: -.-.PRD.-.kevin
         - name: SFDC_SETTINGS_PATH
