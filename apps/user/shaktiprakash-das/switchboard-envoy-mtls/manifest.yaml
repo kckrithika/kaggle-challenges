@@ -1,0 +1,97 @@
+# Switchboard TLS with Envoy sidecar.
+
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - shaktiprakash.das@salesforce.com
+  functions:
+  - name: swb-mtls
+    count: 1
+    containers:
+    - name: swb-mtls
+      image: sfci/servicelibs/switchboard:0f169e141c1ba9162bc47c7735bad388e8f44640
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: LOGGING_DIR
+        value: "/log"
+      - name: ADS_PORT
+        value: 7020
+      args:
+      - --clusters.external-clusters[0]=shipping-envoy-mtls.user-shaktiprakash-das.samapp:HTTP2_TLS
+      - --template
+      - ./switchboard-sidecar.config.yaml.template
+      volumeMounts:
+        - mountPath: /log
+          name: log-volume
+      ports:
+      - containerPort: 15001
+      - containerPort: 15372
+      resources:
+        limits: { cpu: "8", memory: "6Gi" }
+        requests: { cpu: "8", memory: "6Gi" }
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15372
+        initialDelaySeconds: 15
+        periodSeconds: 5
+
+    - name: swb-sc-envoy
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
+      image: sfci/servicelibs/sherpa-envoy:55f2e2813142f677427d4d334fc272317ae0a3c6
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: 
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs       
+
+    volumes:
+      - name: log-volume
+        hostPath:
+          path: /home/sfdc-switchboard/logs
+      - name: tls-client-cert
+        maddogCert:
+          type: client
+      - name: tls-server-cert
+        maddogCert:
+          type: server
+
+  loadbalancers:
+  - lbname: swb-mtls-lb
+    function: swb-mtls
+    slbEnabled: true
+    ports:
+    - port: 15001
+      targetport: 15001
+      lbtype: dsr
+    - port: 15372
+      targetport: 15372
+      lbtype: dsr
