@@ -6,8 +6,8 @@ system:
   - name: dfs-perf
     count: 2
     containers:
-    - name: dfs-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.4
+    - name: dfs
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.6
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -26,11 +26,14 @@ system:
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /servercerts
+      - name: dfs-client-cert
+        mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
       ports:
         - containerPort: 7442
+        - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
@@ -52,6 +55,9 @@ system:
     - name: dfs-server-cert
       maddogCert:
         type: server
+    - name: dfs-client-cert
+      maddogCert:
+        type: client
   loadbalancers:
   - lbname: dfs-lbpf
     function: dfs-perf
