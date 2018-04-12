@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-api:0.0.1.43.at-maddogg.2a26312.13
+      image: sfci/cre/cre-api:0.0.1.43.master.4fe5662.95
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit_CCP_Shared_Dev
