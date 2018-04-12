@@ -17,8 +17,6 @@ apps:
     - par/par-sam_gater
   demo-geoip:
     - prd/prd-sam
-  prd-fake-zipkin:
-    - prd/prd-sam_gater
   h1-test-client-l5d:
   - prd/prd-sam
   h1-test-server-l5d:
