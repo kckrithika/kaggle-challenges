@@ -74,14 +74,14 @@ local configs = import "config.jsonnet";
     sdn_logstash_certs_volume: {
         name: "logstashcerts",
         hostPath: {
-            path: "/etc/logstash/certs",
+            path: "/etc/pki/java",
         },
     },
 
     # Volume mount for logstash certs
     sdn_logstash_certs_volume_mount: {
         name: "logstashcerts",
-        mountPath: "/etc/logstash/certs",
+        mountPath: "/etc/pki/java",
     },
 
     sdn_elasticsearch_cluster_ip: "10.254.219.223",
