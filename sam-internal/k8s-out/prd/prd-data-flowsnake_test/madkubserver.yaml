@@ -1,6 +1,8 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  labels:
+    service: madkubserver
   name: madkubserver
   namespace: flowsnake
 spec:
@@ -33,12 +35,12 @@ spec:
         - /tokens/
         - --service-hostname
         - $(MADKUBSERVER_SERVICE_HOST)
-        - --funnel-endpoint
-        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
         - prd
         - --estate
         - prd-data-flowsnake_test
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         livenessProbe:
           httpGet:
@@ -53,12 +55,12 @@ spec:
         volumeMounts:
         - mountPath: /kubeconfig
           name: kubeconfig
-        - mountPath: /data/certs
-          name: kubeconfig-certs
         - mountPath: /certs
           name: datacerts
         - mountPath: /tokens
           name: tokens
+        - mountPath: /data/certs
+          name: kubeconfig-certs
         - mountPath: /etc/pki_service/
           name: pki
       - args:
@@ -76,12 +78,12 @@ spec:
         - --refresher
         - --refresher-token-grace-period
         - 30s
-        - --funnel-endpoint
-        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         - --kingdom
         - prd
         - --cert-folders
         - madkubInternalCert:/certs/
+        - --funnel-endpoint
+        - http://ajna0-funnel1-0-prd.data.sfdc.net:80
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -97,7 +99,6 @@ spec:
               fieldPath: metadata.namespace
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         name: madkub-refresher
-        resources: {}
         volumeMounts:
         - mountPath: /certs
           name: datacerts
@@ -107,6 +108,12 @@ spec:
           name: pki
       restartPolicy: Always
       volumes:
+      - emptyDir:
+          medium: Memory
+        name: datacerts
+      - emptyDir:
+          medium: Memory
+        name: tokens
       - hostPath:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
@@ -116,9 +123,3 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: pki
-      - emptyDir:
-          medium: Memory
-        name: datacerts
-      - emptyDir:
-          medium: Memory
-        name: tokens

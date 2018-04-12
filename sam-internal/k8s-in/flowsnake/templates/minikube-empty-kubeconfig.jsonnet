@@ -6,7 +6,7 @@ else
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
-        name: "version-mapping",
+        name: "minikube-empty-kubeconfig",
         namespace: "flowsnake",
     },
     data: {

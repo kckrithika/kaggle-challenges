@@ -2,18 +2,18 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-if !flowsnakeconfig.maddog_enabled then
-"SKIP"
-else
 {
   apiVersion: "extensions/v1beta1",
   kind: "Deployment",
   metadata: {
+    labels: {
+        service: "madkubserver",
+    },
     name: "madkubserver",
     namespace: "flowsnake",
   },
   spec: {
-    replicas: 3,
+    replicas: if flowsnakeconfig.is_minikube then 1 else 3,
     minReadySeconds: 45,
     template: {
       metadata: {
@@ -30,43 +30,41 @@ else
               "0.0.0.0:32007",
               "-d",
               "--maddog-endpoint",
-              "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--kubeconfig",
-              "/kubeconfig",
+              if flowsnakeconfig.is_minikube then "/fake/kubernetes/kubeconfig" else "/kubeconfig",
               "--client-cert",
-              "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+              if flowsnakeconfig.is_minikube then "/sc/client_chain.pem" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
               "--client-key",
-              "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
+              if flowsnakeconfig.is_minikube then "/sc/client-key.pem" else "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
               "--maddog-server-ca",
-              "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--cert-folder",
               "/certs/",
               "--token-folder",
               "/tokens/",
               "--service-hostname",
-              "$(MADKUBSERVER_SERVICE_HOST)",
-              "--funnel-endpoint",
-              flowsnakeconfig.funnel_endpoint,
+              if flowsnakeconfig.is_minikube then "madkubserver" else "$(MADKUBSERVER_SERVICE_HOST)",
               "--kingdom",
               kingdom,
               "--estate",
               estate,
-            ],
+            ] +
+            (if !flowsnakeconfig.is_minikube then [
+              "--funnel-endpoint",
+              flowsnakeconfig.funnel_endpoint,
+            ] else []),
             image: flowsnakeimage.madkub,
             name: "madkubserver",
             ports: [
               {
-                containerPort: 3000,
+                containerPort: if flowsnakeconfig.is_minikube then 32007 else 3000,
               },
             ],
             volumeMounts: [
               {
-                mountPath: "/kubeconfig",
+                mountPath: if flowsnakeconfig.is_minikube then "/fake/kubernetes" else "/kubeconfig",
                 name: "kubeconfig",
-              },
-              {
-                mountPath: "/data/certs",
-                name: "kubeconfig-certs",
               },
               {
                 mountPath: "/certs",
@@ -76,11 +74,22 @@ else
                 mountPath: "/tokens",
                 name: "tokens",
               },
-              {
-                mountPath: "/etc/pki_service/",
-                name: "pki",
-              },
-            ],
+            ] +
+            (if flowsnakeconfig.is_minikube then [
+                {
+                  mountPath: "/sc",
+                  name: "maddog-onebox-claim",
+                },
+            ] else [
+                {
+                  mountPath: "/data/certs",
+                  name: "kubeconfig-certs",
+                },
+                {
+                  mountPath: "/etc/pki_service/",
+                  name: "pki",
+                },
+            ]),
             livenessProbe: {
               httpGet: {
                 path: "/healthz",
@@ -98,26 +107,26 @@ else
               "--madkub-endpoint",
               "",
               "--maddog-endpoint",
-              "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
               "--maddog-server-ca",
-              "/maddog-certs/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca",
-              "/maddog-certs/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/sc/ca/ca.pem" else "/maddog-certs/ca/cacerts.pem",
               "--token-folder",
               "/tokens/",
               "--refresher",
               "--refresher-token-grace-period",
               "30s",
-              "--funnel-endpoint",
-              flowsnakeconfig.funnel_endpoint,
               "--kingdom",
               kingdom,
               "--cert-folders",
               "madkubInternalCert:/certs/",
-            ],
+            ] +
+            (if !flowsnakeconfig.is_minikube then [
+              "--funnel-endpoint",
+              flowsnakeconfig.funnel_endpoint,
+            ] else []),
             image: flowsnakeimage.madkub,
-            resources: {
-            },
             volumeMounts: [
               {
                 mountPath: "/certs",
@@ -127,11 +136,18 @@ else
                 mountPath: "/tokens",
                 name: "tokens",
               },
-              {
-                mountPath: "/maddog-certs/",
-                name: "pki",
-              },
-            ],
+            ] +
+            (if flowsnakeconfig.is_minikube then [
+                {
+                  mountPath: "/sc",
+                  name: "maddog-onebox-claim",
+                },
+            ] else [
+                {
+                  mountPath: "/maddog-certs/",
+                  name: "pki",
+                },
+            ]),
             env: [
               {
                 name: "MADKUB_NODENAME",
@@ -163,24 +179,6 @@ else
         restartPolicy: "Always",
         volumes: [
           {
-            name: "kubeconfig",
-            hostPath: {
-              path: "/etc/kubernetes/kubeconfig",
-            },
-          },
-          {
-            name: "kubeconfig-certs",
-            hostPath: {
-              path: "/data/certs",
-            },
-          },
-          {
-            name: "pki",
-            hostPath: {
-              path: "/etc/pki_service",
-            },
-          },
-          {
             name: "datacerts",
             emptyDir: {
               medium: "Memory",
@@ -192,7 +190,40 @@ else
               medium: "Memory",
             },
           },
-        ],
+        ] +
+        (if flowsnakeconfig.is_minikube then [
+            {
+              name: "kubeconfig",
+              configMap: {
+                name: "minikube-empty-kubeconfig",
+              },
+            },
+            {
+              name: "maddog-onebox-claim",
+              persistentVolumeClaim: {
+                claimName: "maddog-onebox-claim",
+              },
+            },
+        ] else [
+            {
+              name: "kubeconfig",
+              hostPath: {
+                path: "/etc/kubernetes/kubeconfig",
+              },
+            },
+            {
+              name: "kubeconfig-certs",
+              hostPath: {
+                path: "/data/certs",
+              },
+            },
+            {
+              name: "pki",
+              hostPath: {
+                path: "/etc/pki_service",
+              },
+            },
+        ]),
       },
     },
   },
