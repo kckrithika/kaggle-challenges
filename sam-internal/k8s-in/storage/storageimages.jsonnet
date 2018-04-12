@@ -34,7 +34,6 @@ local kingdom = std.extVar("kingdom");
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
             cephdaemon_tag: "jewel-0000056-50bd0816",
             poddeleter_tag: "base-0000387-bfd34c14",
-
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
