@@ -13,7 +13,7 @@ data:
       "lockName": "/locks/tempmanifestwatcher",
       "manifestV1Enabled": false,
       "tlsEnabled": true,
-      "tnrpArchiveEndpoint": "https://ops0-piperepo2-1-prd.eng.sfdc.net/tnrp/content_repo/0/archive"
+      "tnrpArchiveEndpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive"
     }
 kind: ConfigMap
 metadata:
