@@ -75,9 +75,7 @@ local utils = import "util_functions.jsonnet",
     # Rolling to use LB endpoints (.data)
     # [thargrove] TNRP has bad servers in par and prd, so pinning them to the good server
     # until we roll a code fix
-    if kingdom == "par" then "https://ops0-piperepo2-1-par.ops.sfdc.net/"
-    else if kingdom == "prd" then "https://ops0-piperepo2-1-prd.eng.sfdc.net/"
-    else if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
+    if !utils.is_public_cloud(kingdom) && !utils.is_gia(kingdom) then
         "https://ops0-piperepo1-0-" + kingdom + ".data.sfdc.net/"
     else if utils.is_gia(kingdom) then
         "https://ops-piperepo1-0-" + kingdom + ".data.sfdc.net/"
