@@ -84,15 +84,6 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
-      - args:
-        - -endpoint
-        - flowsnake:DATACENTER_ALLENV:8080
-        - -path
-        - -.-.PRD.-.kevin
-        - -spod
-        - NOPE
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-        name: beacon
       volumes:
       - name: flowsnake-ldap
         secret:

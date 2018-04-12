@@ -110,7 +110,36 @@ local estate = std.extVar("estate");
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                         ),
                     },
-                ],
+                ] + if flowsnakeconfig.is_test then [
+                    {
+                        name: "beacon",
+                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
+                        args: ["-endpoint", "flowsnake:DATACENTER_ALLENV:7014", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
+                    },
+                    {
+                        name: "sherpa",
+                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa:2.0.25",
+                        env: [
+                            {
+                                name: "SETTINGS_PATH",
+                                value: "-.-.PRD.-.kevin",
+                            },
+                            {
+                                name: "SFDC_SETTINGS_PATH",
+                                value: "-.-.PRD.-.kevin",
+                            },
+                            {
+                                name: "SETTINGS_SUPERPOD",
+                                value: "NOPE",
+                            },
+                        ],
+                        ports: [
+                            {
+                                containerPort: 7014,
+                            },
+                        ],
+                    },
+                ] else [],
                 volumes: (
                     if flowsnakeconfig.is_minikube then
                         [

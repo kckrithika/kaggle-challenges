@@ -68,6 +68,26 @@ spec:
         - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
           name: k8s-client-key
           readOnly: true
+      - args:
+        - -endpoint
+        - flowsnake:DATACENTER_ALLENV:7014
+        - -path
+        - -.-.PRD.-.kevin
+        - -spod
+        - NOPE
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+        name: beacon
+      - env:
+        - name: SETTINGS_PATH
+          value: -.-.PRD.-.kevin
+        - name: SFDC_SETTINGS_PATH
+          value: -.-.PRD.-.kevin
+        - name: SETTINGS_SUPERPOD
+          value: NOPE
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa:2.0.25
+        name: sherpa
+        ports:
+        - containerPort: 7014
       terminationGracePeriodSeconds: 60
       volumes:
       - name: flowsnake-tls-secret
