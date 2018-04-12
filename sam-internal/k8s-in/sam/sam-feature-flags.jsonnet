@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
     rbacstorage: configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev",
 
     # MadDog
-    maddogforsamapps: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
+    maddogforsamapps: (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) || configs.kingdom == "yul",
 
     # EstatesSvc gets an rpm from estates but that does not have data for GIA or public cloud
     # NodeController uses estatesSvc.
