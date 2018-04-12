@@ -70,11 +70,15 @@ spec:
           readOnly: true
       - args:
         - -endpoint
-        - flowsnake:DATACENTER_ALLENV:7014
+        - flowsnake:DATACENTER_ALLENV:7442
         - -path
         - -.-.PRD.-.kevin
         - -spod
         - NOPE
+        - --server-cert
+        - /etc/ssl/certs/tls.crt
+        - --server-key
+        - /etc/ssl/certs/tls.key
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
         name: beacon
       - env:
@@ -87,7 +91,11 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa:2.0.25
         name: sherpa
         ports:
-        - containerPort: 7014
+        - containerPort: 7442
+        volumeMounts:
+        - mountPath: /etc/ssl/certs
+          name: flowsnake-tls-secret
+          readOnly: true
       terminationGracePeriodSeconds: 60
       volumes:
       - name: flowsnake-tls-secret
