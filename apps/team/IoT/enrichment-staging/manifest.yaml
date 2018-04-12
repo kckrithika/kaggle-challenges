@@ -7,13 +7,11 @@ system:
         value: /home/enrichment/enrichment-keytab/enrichment.keytab
       - name: HBASE_SECURITY_KEYTAB_PRINCIPAL
         value: iot-enrichment@IOT1DCHBASE0A-PRD.APP.ENG.SFDC.NET
-      - name: SFDC_ENVIRONMENT
+      - name: IOT_ENRICH_HBASE_ENV_OVERRIDE
         value: kingdom-test
-      - name: SVCMESH_ANNOUNCE_PORT
-        value: 7012
-      - name: SVCMESH_ANNOUNCE_SERVICENAME
-        value: enrichment
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-enrichment:02b8ea9
+      - name: SFDC_ENVIRONMENT
+        value: staging
+      image: sfci/iot/enterprise-enrichment:1.0.1.2
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -36,9 +34,6 @@ system:
       volumeMounts:
       - mountPath: /home/enrichment/logs
         name: logvol
-      - mountPath: /home/enrichment/enrichment-keytab
-        name: enrichmentkeytab
-        readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
         value: staging
@@ -47,8 +42,8 @@ system:
         exec:
           command:
           - ./bin/is-alive
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       name: sherpa
       ports:
       - containerPort: 7012
@@ -61,8 +56,8 @@ system:
         exec:
           command:
           - ./bin/is-ready
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
       volumeMounts:
       - mountPath: /server-certs
         name: server-certs
@@ -74,7 +69,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: docker-sfci-rc/sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       livenessProbe:
         exec:
           command:
@@ -86,18 +81,15 @@ system:
     strategy:
       type: Recreate
     volumes:
-    - hostPath:
-        path: /data/sam/iot/log/enrichment
-      name: logvol
-    - name: enrichmentkeytab
-      secret:
-        secretName: enrichment-keytab
     - maddogCert:
         type: server
       name: server-certs
     - maddogCert:
         type: client
       name: client-certs
+    - hostPath:
+        path: /data/sam/iot/log/enrichment
+      name: logvol
   loadbalancers:
   - function: enrichment
     lbname: enrichment-lb
@@ -105,7 +97,8 @@ system:
     ports:
     - port: 9136
       targetport: 7012
-    - port: 8136
+    - lbtype: http
+      port: 8136
       targetport: 15372
     slbEnabled: true
   notifications:
