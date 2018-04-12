@@ -34,6 +34,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
+      args:
+      - --switchboard
+      - swb-mtls-lb.user-shaktiprakash-das.prd-sam.prd.slb.sfdc.net:15001
       ports:
       - containerPort: 15373
         name: sherpa-adm
