@@ -119,7 +119,7 @@ local estate = std.extVar("estate");
                     {
                         name: "sherpa",
                         image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa:2.0.25",
-                        args: ["--server-cert", "/etc/ssl/certs/tls.crt", "--server-key", "/etc/ssl/certs/tls.key"],
+                        args: ["--server-cert", "/server-certs/tls.crt", "--server-key", "/server-certs/tls.key", "--server-ca", "/etc/ssl/certs/ca.crt"],
                         env: [
                             {
                                 name: "SETTINGS_PATH",
@@ -142,6 +142,11 @@ local estate = std.extVar("estate");
                         volumeMounts: [
                              {
                                  name: "flowsnake-tls-secret",
+                                 mountPath: "/server-certs",
+                                 readOnly: true,
+                             },
+                             {
+                                 name: "sfdc-ca",
                                  mountPath: "/etc/ssl/certs",
                                  readOnly: true,
                              },
@@ -171,7 +176,14 @@ local estate = std.extVar("estate");
                         flowsnakeconfigmapmount.k8s_cert_volume
                     else flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
-                ),
+                ) + if flowsnakeconfig.is_test then [
+                    {
+                        name: "sfdc-ca",
+                        secret: {
+                            secretName: "sfdc-ca",
+                        },
+                    },
+                ] else [],
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",
                 },

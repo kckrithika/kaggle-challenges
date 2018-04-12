@@ -79,9 +79,11 @@ spec:
         name: beacon
       - args:
         - --server-cert
-        - /etc/ssl/certs/tls.crt
+        - /server-certs/tls.crt
         - --server-key
-        - /etc/ssl/certs/tls.key
+        - /server-certs/tls.key
+        - --server-ca
+        - /etc/ssl/certs/ca.crt
         env:
         - name: SETTINGS_PATH
           value: -.-.PRD.-.kevin
@@ -94,8 +96,11 @@ spec:
         ports:
         - containerPort: 7442
         volumeMounts:
-        - mountPath: /etc/ssl/certs
+        - mountPath: /server-certs
           name: flowsnake-tls-secret
+          readOnly: true
+        - mountPath: /etc/ssl/certs
+          name: sfdc-ca
           readOnly: true
       terminationGracePeriodSeconds: 60
       volumes:
@@ -114,3 +119,6 @@ spec:
       - hostPath:
           path: /etc/pki_service/kubernetes/k8s-client/keys
         name: k8s-client-key
+      - name: sfdc-ca
+        secret:
+          secretName: sfdc-ca
