@@ -6,7 +6,7 @@ std.prune({
         "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
         "tnrp-bot-account-names": ["svc-tnrp-git-rw", "svc-tnrp-git"],
         "tnrp-scan-frequency": "10m",
-        "db-hostname": "10.251.156.116",
+        "db-hostname": "10.251.156.109",
         "db-username": "root",
         "db-password-file": "/var/mysqlPwd/pass.txt",
         "db-name": "sam_manifest_repo_watcher_dev",
