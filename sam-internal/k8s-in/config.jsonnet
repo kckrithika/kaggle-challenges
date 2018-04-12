@@ -19,7 +19,7 @@ local utils = import "util_functions.jsonnet",
         # Why are some of these 1-4, some 2-2, some 1-2, and others 2-1???
         # TODO: Clean this up
         smtpServer: {
-            prd: "smtpops-prd-sp1.data.sfdc.net:25",
+            prd: "rd1-mta1-4-sfm.ops.sfdc.net:25",
             xrd: "ops0-mta2-2-xrd.ops.sfdc.net:25",  #not sure if should match prod or prd
             dfw: "ops0-mta2-2-dfw.ops.sfdc.net:25",
             phx: "ops0-mta1-2-phx.ops.sfdc.net:25",
