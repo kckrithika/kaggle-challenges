@@ -46,7 +46,7 @@ system:
           command:
           - "/home/scone/is-alive.sh"
     - name: sherpa-shipping-zk-disabled
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-04112018
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/sherpa:2.0.24-snapshot-04122018-3
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
