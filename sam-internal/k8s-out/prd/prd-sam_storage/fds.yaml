@@ -104,7 +104,7 @@ spec:
           value: 30s
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/poddeleter:1
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/poddeleter:base-0000387-bfd34c14
         imagePullPolicy: Always
         name: poddeleter
         securityContext:
