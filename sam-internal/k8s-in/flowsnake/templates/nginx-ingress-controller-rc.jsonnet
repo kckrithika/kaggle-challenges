@@ -114,11 +114,12 @@ local estate = std.extVar("estate");
                     {
                         name: "beacon",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake:DATACENTER_ALLENV:7442", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE", "--server-cert", "/etc/ssl/certs/tls.crt", "--server-key", "/etc/ssl/certs/tls.key"],
+                        args: ["-endpoint", "flowsnake:DATACENTER_ALLENV:7442", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
                     },
                     {
                         name: "sherpa",
                         image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa:2.0.25",
+                        args: ["--server-cert", "/etc/ssl/certs/tls.crt", "--server-key", "/etc/ssl/certs/tls.key"],
                         env: [
                             {
                                 name: "SETTINGS_PATH",
