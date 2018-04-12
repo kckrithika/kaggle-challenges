@@ -5,6 +5,8 @@ system:
       - agitelman@salesforce.com
   functions:
   - name: datapool-steelthread
+    identity:
+      serviceName: datapool
     count: 1
     containers:
     - name: datapool-service
