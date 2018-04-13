@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
             es_image_tag: "503",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
+            ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-7-itest",
             ingressDefaultBackend_image_tag: "571",
             kibana_image_tag: "345",
             logloader_image_tag: "468",
