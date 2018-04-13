@@ -351,7 +351,7 @@ if slbconfigs.slbInKingdom then {
                 },
             },
         },
-    } + if configs.estate == "prd-sdc" then {
+    } + if configs.kingdom == "prd" then {
        minReadySeconds: 30,
     } else {},
 } else "SKIP"
