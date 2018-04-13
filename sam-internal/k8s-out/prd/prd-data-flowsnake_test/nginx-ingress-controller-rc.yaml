@@ -32,7 +32,7 @@ spec:
               fieldPath: metadata.namespace
         - name: KUBECONFIG
           value: /etc/kubernetes/kubeconfig
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-ingress-controller-nginx:jenkins-dva-transformation-flowsnake-platform-PR-597-1-itest
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-ingress-controller-nginx:jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest
         imagePullPolicy: Always
         livenessProbe:
           httpGet:

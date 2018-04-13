@@ -22,9 +22,9 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-1-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
             glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-1-itest",
+            ingressControllerNginx_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
             ingressDefaultBackend_image_tag: "571",
             kibana_image_tag: "345",
             logloader_image_tag: "468",
@@ -53,7 +53,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
                   "0.9.7-patch-worker-secrets": 584,
                   "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-576-15-itest",
-                  "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-1-itest",
+                  "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
