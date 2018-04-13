@@ -1,4 +1,4 @@
 version: v2
 apps:
-  prd.eventnotificationsconnect:
+  prd-eventnotificationsconnect:
   - name: prd/prd-sam_mc_consumer

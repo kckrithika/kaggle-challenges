@@ -5,6 +5,8 @@ system:
     email:
       - tvlaming@salesforce.com
       - gogden@salesforce.com
+      - gmercer@salesforce.com
+      - afranken@salesforce.com
   functions:
   - name: eventnotifications-connect
     count: 1
