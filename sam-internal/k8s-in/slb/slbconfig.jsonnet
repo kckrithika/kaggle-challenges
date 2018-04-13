@@ -120,11 +120,8 @@ perCluster: {
         "prd-samdev": "/var/slb/kneconfigs/testkneconfigs",
         "prd-sam_storage": "/var/slb/kneconfigs/testkneconfigs",
     } + {
-        [k + "-sam"]: "/var/slb/kneconfig"
-            for k in $.prodKingdoms + ["prd"]
-    } + {  # this final block is temporary while phased shifting to a per-site kneConfigDir.
         [k + "-sam"]: "/var/slb/kneconfigs/" + k
-            for k in ["prd", "phx", "iad"]
+            for k in $.prodKingdoms + ["prd"]
     },
     canaryMaxParallelism: {
         "prd-sdc": 1,

@@ -24,7 +24,7 @@ spec:
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000758-ec6de036
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000767-36a17fb0
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
