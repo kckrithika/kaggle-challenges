@@ -8,6 +8,9 @@ system:
     - name: clientcert
       maddogCert:
         type: client
+    - name: servercert
+      maddogCert:
+        type: server
     containers:
     - name: ordering-dghosh
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/ordering/ordering-robin-kalia:robin.kalia-20180330-4bd5327
@@ -17,7 +20,7 @@ system:
       - name: SCONE_SHIPPING_HOST
         value: shipping-dghosh.localhost.mesh.force.com
       - name: SCONE_SHIPPING_PORT
-        value: 7011
+        value: 5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: MANAGEMENT_PORT
@@ -35,7 +38,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
       - -endpoint
-      - ordering-dghosh:DATACENTER:7012
+      - ordering-dghosh:DATACENTER:7443
       - -service
       - ordering-dghosh
       - -rootCert
@@ -68,6 +71,11 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
+      - name: servercert
+        mountPath: /servercerts
 
 
 # apiVersion: v1

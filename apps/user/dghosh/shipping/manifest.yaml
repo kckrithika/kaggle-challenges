@@ -9,6 +9,9 @@ system:
     - name: clientcert
       maddogCert:
         type: client
+    - name: servercert
+      maddogCert:
+        type: server
     containers:
     - name: shipping-dghosh
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/robin-kalia/shipping/shipping-robin-kalia:robin.kalia-20180330-4bd5327
@@ -30,7 +33,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sboobna/servicemesh/beacon-sboobna:sboobna-20180215-01ad134
       args:
       - -endpoint
-      - shipping-dghosh:DATACENTER:7012
+      - shipping-dghosh:DATACENTER:7443
       - -service
       - shipping-dghosh
       - -rootCert
@@ -62,6 +65,11 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 5
         periodSeconds: 5
+      volumeMounts:
+      - name: clientcert
+        mountPath: /clientcerts
+      - name: servercert
+        mountPath: /server
 
 # apiVersion: v1
 #
