@@ -4,7 +4,7 @@ system:
   functions:
   - name: shipping-envoy-mtls
     identity: 
-      serviceName: samapp.user-shaktiprakash-das.shipping-envoy-mtls
+      serviceName: shipping-envoy-mtls
     count: 1
     containers:
     - name: shipping
