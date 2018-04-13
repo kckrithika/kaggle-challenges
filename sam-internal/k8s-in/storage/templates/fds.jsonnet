@@ -15,6 +15,7 @@ local enabledEstatesForPodDeleter = std.set([
     "prd-sam",
     "prd-sam_storage",
     "prd-skipper",
+    "phx-sam",
 ]);
 
 // Init containers for the pod.
