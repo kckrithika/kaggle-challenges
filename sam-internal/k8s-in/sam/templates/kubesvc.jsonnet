@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
     apiVersion: "v1",
     kind: "Service",
     metadata: {
