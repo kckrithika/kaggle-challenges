@@ -29,7 +29,7 @@ else
       spec: {
         containers: [
           {
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/maddog-onebox:willversion",
+            image: "ops0-piperepo1-0-prd.data.sfdc.net/docker-sam/cdebains/maddog-onebox:willversion",
             name: "maddog-onebox",
             imagePullPolicy: "Never",
             ports: [
@@ -40,16 +40,16 @@ else
             volumeMounts: [
               {
                 mountPath: "/tmp/sc_repo",
-                name: "maddog-onebox-claim",
+                name: "maddog-onebox-certs",
               },
             ],
           },
         ],
         volumes: [
           {
-            name: "maddog-onebox-claim",
-            persistentVolumeClaim: {
-                claimName: "maddog-onebox-claim",
+            name: "maddog-onebox-certs",
+            hostPath: {
+                path: "/tmp/sc_repo",
             },
           },
         ],

@@ -115,7 +115,7 @@ local kingdom = std.extVar("kingdom");
             else [
                 {
                   mountPath: "/sc",
-                  name: "maddog-onebox-claim",
+                  name: "maddog-onebox-certs",
                 },
             ]),
             env: [
@@ -195,7 +195,7 @@ local kingdom = std.extVar("kingdom");
             else [
                 {
                   mountPath: "/sc",
-                  name: "maddog-onebox-claim",
+                  name: "maddog-onebox-certs",
                 },
             ]),
             env: [
@@ -261,10 +261,10 @@ local kingdom = std.extVar("kingdom");
             flowsnakeconfigmapmount.kubeconfig_platform_volume
         else [
             {
-              persistentVolumeClaim: {
-                  claimName: "maddog-onebox-claim",
+              hostPath: {
+                  path: "/tmp/sc_repo",
               },
-              name: "maddog-onebox-claim",
+              name: "maddog-onebox-certs",
             },
         ]),
       },

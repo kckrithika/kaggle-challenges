@@ -15,15 +15,15 @@ spec:
         service: maddog-onebox
     spec:
       containers:
-      - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/maddog-onebox:willversion
+      - image: ops0-piperepo1-0-prd.data.sfdc.net/docker-sam/cdebains/maddog-onebox:willversion
         imagePullPolicy: Never
         name: maddog-onebox
         ports:
         - containerPort: 8443
         volumeMounts:
         - mountPath: /tmp/sc_repo
-          name: maddog-onebox-claim
+          name: maddog-onebox-certs
       volumes:
-      - name: maddog-onebox-claim
-        persistentVolumeClaim:
-          claimName: maddog-onebox-claim
+      - hostPath:
+          path: /tmp/sc_repo
+        name: maddog-onebox-certs

@@ -78,7 +78,7 @@ local kingdom = std.extVar("kingdom");
             (if flowsnakeconfig.is_minikube then [
                 {
                   mountPath: "/sc",
-                  name: "maddog-onebox-claim",
+                  name: "maddog-onebox-certs",
                 },
             ] else [
                 {
@@ -140,7 +140,7 @@ local kingdom = std.extVar("kingdom");
             (if flowsnakeconfig.is_minikube then [
                 {
                   mountPath: "/sc",
-                  name: "maddog-onebox-claim",
+                  name: "maddog-onebox-certs",
                 },
             ] else [
                 {
@@ -199,9 +199,9 @@ local kingdom = std.extVar("kingdom");
               },
             },
             {
-              name: "maddog-onebox-claim",
-              persistentVolumeClaim: {
-                claimName: "maddog-onebox-claim",
+              name: "maddog-onebox-certs",
+              hostPath: {
+                path: "/tmp/sc_repo",
               },
             },
         ] else [
