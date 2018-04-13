@@ -18,6 +18,9 @@ system:
     - name: cccjclientcert
       maddogCert:
         type: client
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.17
@@ -25,6 +28,8 @@ system:
         - containerPort: 8080
         - containerPort: 15372
       env:
+        - name: SFDC_ENVIRONMENT
+          value: dev
         - name: SERVER_PORT
           value: 8080
         - name: MANAGEMENT_PORT
@@ -42,6 +47,8 @@ system:
       - name: secretvol
         mountPath: /secrets/
         readOnly: true
+      - name: logvol
+        mountPath: /home/sfdc-cj/logs
   loadbalancers:
   - lbname: commercejourneys-lb
     function: commercejourneys
