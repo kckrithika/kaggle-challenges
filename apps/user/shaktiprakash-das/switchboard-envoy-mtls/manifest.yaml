@@ -11,8 +11,8 @@ system:
     count: 1
     containers:
     - name: swb-mtls
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/34
-      image: sfci/servicelibs/switchboard:48fdf4e80b48b5e3eb209af8bf5aa85cbd880485
+      # https://git.soma.salesforce.com/servicelibs/switchboard/pull/77
+      image: sfci/servicelibs/switchboard:41e44e91fa841de0e08ad33d4626cc6a64ddc140
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
