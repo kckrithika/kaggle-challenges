@@ -2,7 +2,9 @@ apiVersion: v1
 
 system:
   functions:
-  - name: shipping-envoy-tls
+  - name: shipping-envoy-mtls
+    identity: 
+      serviceName: samapp.user-shaktiprakash-das.shipping-envoy-mtls
     count: 1
     containers:
     - name: shipping
@@ -81,7 +83,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-shipping-linkerd-tls/logs
+        path: /home/sfdc-shipping-envoy-mtls/logs
     - name: tls-client-cert
       maddogCert:
         type: client
