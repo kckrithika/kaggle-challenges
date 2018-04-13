@@ -52,7 +52,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7-itest": 565,
                   "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
                   "0.9.7-patch-worker-secrets": 584,
-                  "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-576-13-itest",
+                  "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-576-15-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -89,6 +89,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7": 571,
                   "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",  # temporary for IoT
                   "0.9.7-patch-worker-secrets": 584,  # temporary for IoT
+                  "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-576-15-itest",  # ALSO temporary for IoT...
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
