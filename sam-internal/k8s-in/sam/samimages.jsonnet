@@ -46,6 +46,9 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001848-170a0744",
 
+        #[jiayi.yan] Roll out sam app status CRD of SDP in prd-samdev
+        "prd,prd-samdev,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
+
         #[rbhat] Update rrormsg in bundlestatus & latency metrics
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001866-e15d6541",
 
