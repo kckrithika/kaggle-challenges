@@ -14,9 +14,9 @@ system:
     - name: cert
       maddogCert:
         type: client
-    #- name: secretvol
-    #  k4aSecret:
-    #    secretName: coreappjmx
+    - name: secretvol
+      k4aSecret:
+        secretName: coreappjmx
     # Docker image(s) that make up one instance of the service
     containers:
     - name: mgmt-services
@@ -31,9 +31,9 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
-    #  - name: secretvol
-    #    mountPath: /secrets/service-config/secure/
-    #    readOnly: true
+      - name: secretvol
+        mountPath: /secrets/service-config/secure/
+        readOnly: true
       ports:
         - containerPort: 8080
         - containerPort: 15372
