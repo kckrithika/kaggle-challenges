@@ -70,7 +70,7 @@ spec:
           readOnly: true
       - args:
         - -endpoint
-        - flowsnake:DATACENTER_ALLENV:7442
+        - flowsnake/flowsnake:DATACENTER_ALLENV:7442
         - -path
         - -.-.PRD.-.kevin
         - -spod
