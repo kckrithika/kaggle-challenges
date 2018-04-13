@@ -29,7 +29,7 @@ else
       spec: {
         containers: [
           {
-            image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cdebains/maddog-onebox:willversion",
+            image: "ops0-piperepo1-0-prd.data.sfdc.net/docker-sam/cdebains/maddog-onebox:willversion",
             name: "maddog-onebox",
             imagePullPolicy: "Never",
             ports: [
