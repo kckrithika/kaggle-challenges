@@ -14,7 +14,7 @@ system:
       - name: KAFKA_TRUSTSTORE_LOCATION
         value: /home/demo/ajna-certs/cacerts
       - name: CONTROLPLANE_ENDPOINT
-        value: controlplane.localhost.mesh.force.com:7011
+        value: controlplane.iot.localhost.mesh.force.com:5443
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
@@ -74,6 +74,8 @@ system:
         name: client-certs
     count: 1
     name: demo-sarthur
+    identity:
+      serviceName: demo
     strategy:
       type: Recreate
     volumes:
