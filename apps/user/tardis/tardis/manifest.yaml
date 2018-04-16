@@ -47,15 +47,13 @@ system:
         type: server
         lbnames:
           - tardisdev
+    - name: secretvol
+      k4aSecret:
+        secretName: gittoken
     containers:
     - name: tardis-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180110_157c351d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180416_a3f2d1e1
       env:
-      - name: GIT_TOKEN
-        valueFrom:
-          secretKeyRef:
-            name: tardis-secret
-            key: git-token
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
       - name: NO_PROXY
@@ -76,6 +74,9 @@ system:
       volumeMounts:
             - name: cert
               mountPath: /certs
+            - mountPath: /secrets/
+              name: secretvol
+              readOnly: true
 
   loadbalancers:
   - lbname: tardis
