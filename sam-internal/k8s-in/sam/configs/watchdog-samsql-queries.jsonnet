@@ -17,17 +17,19 @@
     JSON_EXTRACT(Payload, '$.status.availableReplicas') AS availableReplicas,
     JSON_EXTRACT(Payload, '$.status.readyReplicas') AS readyReplicas,
     JSON_EXTRACT(Payload, '$.status.updatedReplicas') AS updatedReplicas,
-    JSON_EXTRACT(Payload, '$.status.availableReplicas')/JSON_EXTRACT(Payload, '$.spec.replicas') AS availability,
+    (JSON_EXTRACT(Payload, '$.spec.replicas') - JSON_EXTRACT(Payload, '$.status.availableReplicas')) AS kpodsDown,
+    COALESCE(JSON_EXTRACT(Payload, '$.status.availableReplicas') /nullif(JSON_EXTRACT(Payload, '$.spec.replicas'), 0), 0) AS availability,
     CONCAT('http://dashboard-',SUBSTR(ControlEstate, 1, 3),'-sam.csc-sam.prd-sam.prd.slb.sfdc.net/#!/deployment/',Namespace,'/',Name,'?namespace=',Namespace) AS Url
-  FROM k8s_resource
-  WHERE ApiKind = 'Deployment'
+    FROM k8s_resource
+    WHERE ApiKind = 'Deployment'
 ) AS ss
 WHERE
-  ( Namespace != 'sam-watchdog' AND Namespace != 'sam-system' AND Namespace != 'csc-sam' AND Namespace NOT LIKE '%slb%') AND
-  (availableReplicas != desiredReplicas OR availableReplicas IS NULL) AND
-  (availability IS NULL OR availability < 0.6) AND
-  NOT ControlEstate LIKE 'prd-%' AND
-  desiredReplicas != 0",
+   ( Namespace != 'sam-watchdog' AND Namespace != 'sam-system' AND Namespace != 'csc-sam' AND Namespace NOT LIKE '%slb%') AND
+   (availableReplicas != desiredReplicas OR availableReplicas IS NULL) AND
+   (availability IS NULL OR availability < 0.6) AND
+   (kpodsDown IS NULL OR kpodsDown >1) AND
+   NOT ControlEstate LIKE 'prd-%' AND
+   desiredReplicas > 1",
     },
   ],
 }
