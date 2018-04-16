@@ -2,12 +2,12 @@ apiVersion: v1
 
 system:
   functions:
-  - name: stateful-grill-ceph        
+  - name: stateful-grill-ceph 
     type: stateful-set
     count: 2
     containers:
       - name: stateful-small
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/ceph-test:ceph-v1
+        image: tnrp/legostore/grill_ceph:v1-0000007-252062b3 
         command:
           - /bin/grill_ceph
         ports:
