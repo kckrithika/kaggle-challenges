@@ -34,30 +34,18 @@ local utils = import "util_functions.jsonnet";
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
 
         #[xiao.zhou] Test sam-api-proxy and samapp controller
-        "prd,prd-samtest,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
-        "prd,prd-samdev,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0001853-500861a8",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
 
         #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
-        "prd,prd-samdev,samcontrol,hypersam": "sam-0001848-170a0744",
         "prd,prd-sam,samcontrol,hypersam": "sam-0001848-170a0744",
         "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
         "prd,prd-sdc,samcontrol,hypersam": "sam-0001848-170a0744",
-
-        #[jiayi.yan] Roll out sam app status CRD of SDP in prd-samdev
-        "prd,prd-samdev,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
-
-        #[rbhat] Update rrormsg in bundlestatus & latency metrics
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001866-e15d6541",
 
         #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
         #api servers are under heavy load
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
 
-        #[diana.chang] Test sam-manifest-repo-watcher with webhook from diana.chang/manifests
-        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180412_111519.3930b882.dirty.dianachang-ltm1",
         },
 
     ### Per-phase image tags
@@ -81,7 +69,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001847-1b9453cd",
+            hypersam: "sam-0001880-098eaa65",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
