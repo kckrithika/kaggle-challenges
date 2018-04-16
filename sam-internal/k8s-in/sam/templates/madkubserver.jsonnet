@@ -20,6 +20,7 @@ if samfeatureflags.maddogforsamapps then {
                 },
             },
             spec: {
+                hostNetwork: if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then false else true,
                 nodeSelector: {
                     master: "true",
                 },
