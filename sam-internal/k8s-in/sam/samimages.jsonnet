@@ -33,6 +33,10 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001841-3560e70e",
 
+
+        # [prahlad.joshi] Releasing kubeletchecker changes to prd-samtest
+        "prd,prd-samtest,watchdog-common,hypersam": "sam-0001881-e28f9e05",
+
         #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
