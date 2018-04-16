@@ -167,7 +167,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                 ]
                 + (
-                    if configs.estate == "prd-sdc" then [
+                    if configs.kingdom == "prd" then [
                         {
                            name: "slb-ipvs-conntrack",
                            image: slbimages.hypersdn,
