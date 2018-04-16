@@ -112,10 +112,10 @@ system:
       - -endpoint
       - retail-setup:DATACENTER:7443
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 150
         exec:
           command:
-            - "./bin/is-alive"
+            - "/home/scone/is-alive.sh"
 
   loadbalancers:
   - lbname: rsui-func-lb
