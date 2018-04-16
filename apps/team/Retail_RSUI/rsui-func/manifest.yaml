@@ -23,12 +23,14 @@ system:
 
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.24
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.65
       ports:
       - containerPort: 7022
         name: rsui-in-http1
       - containerPort: 15372
         name: rsui-in-admin
+      - containerPort: 7020
+        name: rsui-in-http2
       env:
       - name: MDS_HOST
         value: metadata-service.retail-mds.localhost.mesh.force.com
@@ -36,6 +38,8 @@ system:
         value: 5443
       - name: SERVER_PORT
         value: 7022
+      - name: GRPC_SERVICE_PORT
+        value: 7020
       - name: PKI_CA_DIR
         value: /servercerts
       - name: PKI_MONITORDIR
@@ -77,8 +81,10 @@ system:
       - name: retailservercert
         mountPath: /server-certs
       ports:
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      - containerPort: 7014 # http1 in port non tls
         name: sherpa-in-http1
+      - containerPort: 7443 # http2 in port with tls for grpc
+        name: sherpa-in-http2
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -93,6 +99,24 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+
+    - name: beacon-rsui
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: stmfa
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - retail-setup:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 120
+        exec:
+          command:
+            - "./bin/is-alive"
+
   loadbalancers:
   - lbname: rsui-func-lb
     function: rsui-func
