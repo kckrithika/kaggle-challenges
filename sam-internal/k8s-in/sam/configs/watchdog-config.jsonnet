@@ -135,3 +135,9 @@ std.prune({
     syntheticretrytimeout: (if configs.estate == "prd-sam" then "15m" else 420000000000),
     maxdeploymentduration: (if configs.estate == "prd-sam" then "15m" else 420000000000),
   } else {})
+
+  #kubelet checker
+  + (if configs.estate == "prd-samtest" then {
+     KubeletErrorCheckerEnabled: true,
+     KubeletErrorPerSecond: 5,
+  } else {})
