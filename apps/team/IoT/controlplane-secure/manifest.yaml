@@ -27,7 +27,7 @@ system:
         value: iot
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:foxtrot
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:golf
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -56,6 +56,8 @@ system:
       - mountPath: /home/controlplane/controlplane-keytab
         name: controlplanekeytab
         readOnly: true
+      - mountPath: /client-certs
+        name: client-certs
     - env:
       - name: SFDC_ENVIRONMENT
         value: secure
@@ -87,7 +89,7 @@ system:
         name: client-certs
     - args:
       - -endpoint
-      - controlplane-secure:DATACENTER:7012
+      - iot/controlplane:DATACENTER:7443
       env:
       - name: SFDC_ENVIRONMENT
         value: secure
@@ -99,10 +101,18 @@ system:
         initialDelaySeconds: 5
       name: beacon
     count: 1
+    identity:
+      serviceName: controlplane
     name: controlplane-secure
     strategy:
       type: Recreate
     volumes:
+    - maddogCert:
+        type: server
+      name: server-certs
+    - maddogCert:
+        type: client
+      name: client-certs
     - hostPath:
         path: /data/sam/iot/log/controlplane-secure
       name: logvol
@@ -112,21 +122,17 @@ system:
     - name: controlplanekeytab
       secret:
         secretName: controlplane-keytab
-    - maddogCert:
-        type: server
-      name: server-certs
-    - maddogCert:
-        type: client
-      name: client-certs
   loadbalancers:
   - function: controlplane-secure
     lbname: controlplane-secure-lb
     nodeExposed: true
     ports:
     - port: 7444
-      targetport: 7012
-    - port: 15382
+      targetport: 7443
+    - lbtype: http
+      port: 15382
       targetport: 15372
+    slbEnabled: true
   notifications:
     email:
     - sarthur@salesforce.com

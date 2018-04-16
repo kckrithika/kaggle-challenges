@@ -18,7 +18,7 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
-        value: staging
+        value: secure
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:bravo
       livenessProbe:
         exec:
@@ -45,7 +45,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: staging
+        value: secure
       image: sfci/servicelibs/sherpa:2.0.23
       livenessProbe:
         exec:
