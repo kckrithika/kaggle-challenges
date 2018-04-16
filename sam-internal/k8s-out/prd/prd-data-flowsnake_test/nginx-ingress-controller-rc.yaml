@@ -75,6 +75,11 @@ spec:
         - -.-.PRD.-.kevin
         - -spod
         - NOPE
+        env:
+        - name: FUNCTION_INSTANCE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
         name: beacon
       - args:

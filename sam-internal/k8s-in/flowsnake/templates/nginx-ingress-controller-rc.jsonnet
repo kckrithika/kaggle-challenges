@@ -115,6 +115,16 @@ local estate = std.extVar("estate");
                         name: "beacon",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
                         args: ["-endpoint", "flowsnake/flowsnake:DATACENTER_ALLENV:7442", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
+                        env: [
+                            {
+                                name: "FUNCTION_INSTANCE_IP",
+                                valueFrom: {
+                                    fieldRef: {
+                                        fieldPath: "status.podIP",
+                                    },
+                                },
+                            },
+                        ],
                     },
                     {
                         name: "sherpa",
