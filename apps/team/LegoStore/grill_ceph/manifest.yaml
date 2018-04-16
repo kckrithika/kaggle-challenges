@@ -21,7 +21,7 @@ system:
               path: /
               port: 9098
       - name: sfms
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000163-f29e1f0b
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
         command:
           - /opt/sfms/bin/sfms
         args:
