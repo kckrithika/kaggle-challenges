@@ -167,12 +167,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     },
                 ]
                 + (
-                    if configs.kingdom == "prd" then [
+                    if configs.estate == "prd-sdc" then [
                         {
                            name: "slb-ipvs-conntrack",
                            image: slbimages.hypersdn,
                            command: [
                                "/sdn/slb-ipvs-conntrack",
+                                "--log_dir=" + slbconfigs.logsDir,
                            ],
                            volumeMounts: configs.filter_empty([
                                slbconfigs.slb_volume_mount,
