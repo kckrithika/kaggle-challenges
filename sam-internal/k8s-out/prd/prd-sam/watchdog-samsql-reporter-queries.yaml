@@ -3,8 +3,7 @@ data:
   watchdog-samsql-queries.jsonnet: '{"sql_alerts": [{"alertFrequency": "24h", "alertThreshold":
     "30m", "instructions": "The following deployments are reported as bad customer
     deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
-    "name": "Customer-Production-Deployment-Availability-LessThan60%", "sql": "SELECT
-    * FROM\n(\n  SELECT\n    ControlEstate,\n    Namespace,\n    Name,\n    JSON_EXTRACT(Payload,
+    "name": "Customer-Production-Deployment-SLA", "sql": "SELECT * FROM\n(\n  SELECT\n    ControlEstate,\n    Namespace,\n    Name,\n    JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n    JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n    JSON_EXTRACT(Payload, ''$.status.availableReplicas'')
     AS availableReplicas,\n    JSON_EXTRACT(Payload, ''$.status.readyReplicas'') AS

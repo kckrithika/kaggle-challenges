@@ -1,7 +1,7 @@
 {
   sql_alerts: [
     {
-      name: "Customer-Production-Deployment-Availability-LessThan60%",
+      name: "Customer-Production-Deployment-SLA",
       instructions: "The following deployments are reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
       alertThreshold: "30m",
       alertFrequency: "24h",
