@@ -8,6 +8,8 @@ system:
   functions:
   - name: metadata-service-prd-perf
     count: 1
+    identity:
+      serviceName: metadata-service
     volumes:
     - name: mds-server-cert
       maddogCert:
@@ -96,6 +98,8 @@ system:
       args:
       - -endpoint
       - metadata-service:DATACENTER:7012
+      - -endpoint
+      - retail-mds/metadata-service:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 5
         exec:
