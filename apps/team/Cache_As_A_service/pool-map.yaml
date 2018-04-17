@@ -2114,3 +2114,9 @@ apps:
   - name: hnd/hnd-sp1-sam_caas
  hnd-sp1-redis-sp-cs5-c1-12009:
   - name: hnd/hnd-sp1-sam_caas
+ prd-scheduler-func:
+  - name: prd/prd-sp2-sam_caas
+    hostSubList:
+     - samcaas2-caasminion1-7-prd.eng.sfdc.net
+     - samcaas2-caasminion2-7-prd.eng.sfdc.net
+     - samcaas2-caasminion3-6-prd.eng.sfdc.net   
