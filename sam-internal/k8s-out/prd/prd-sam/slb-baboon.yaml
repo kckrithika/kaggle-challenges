@@ -29,15 +29,15 @@ spec:
         - --hostnameoverride=$(NODE_NAME)
         - --port=32556
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --deletePodPeriod=20m
+        - --deletePodPeriod=2h
         - --deleteIpvsStatePeriod=4h
-        - --deleteConfigFilePeriod=50m
-        - --deleteNginxTunnelIntfPeriod=2h
+        - --deleteConfigFilePeriod=5h
+        - --deleteNginxTunnelIntfPeriod=3h
         - --deleteIpvsIntfPeriod=1.5h
-        - --deleteCustomerPodPeriod=30m
+        - --deleteCustomerPodPeriod=7h
         - --slbPodLabel=name=slb-vip-watchdog
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --deletePodFlag=false
+        - --deletePodFlag=true
         - --deleteIpvsStateFlag=false
         - --deleteConfigFileFlag=false
         - --deleteNginxTunnelIntfFlag=false
