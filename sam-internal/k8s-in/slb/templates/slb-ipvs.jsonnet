@@ -173,6 +173,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                            image: slbimages.hypersdn,
                            command: [
                                "/sdn/slb-ipvs-conntrack",
+                                "--log_dir=" + slbconfigs.logsDir,
                            ],
                            volumeMounts: configs.filter_empty([
                                slbconfigs.slb_volume_mount,
