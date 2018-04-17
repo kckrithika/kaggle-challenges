@@ -6,7 +6,13 @@ metadata:
   name: slb-vip-watchdog
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:

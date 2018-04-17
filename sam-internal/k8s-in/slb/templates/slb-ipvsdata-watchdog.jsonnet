@@ -79,5 +79,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 namespace: "sam-system",
             },
         },
-    },
+    } + if slbimages.phase == "1" then {
+        strategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: 1,
+                maxSurge: 1,
+            },
+        },
+        minReadySeconds: 30,
+    } else {},
 } else "SKIP"
