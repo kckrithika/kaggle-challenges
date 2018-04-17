@@ -27,7 +27,7 @@ system:
         value: iot
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:golf
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:hotel
       livenessProbe:
         httpGet:
           path: /manage/health
