@@ -114,7 +114,7 @@ local estate = std.extVar("estate");
                     {
                         name: "beacon",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake/flowsnake:DATACENTER_ALLENV:8080:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
+                        args: ["-endpoint", "flowsnake/flowsnake:DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
                     },
                 ] else [],
                 volumes: (
