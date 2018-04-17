@@ -18,6 +18,13 @@ spec:
         - /sam/sam-manifest-repo-watcher
         - --config=/config/sammanifestrepowatcher.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001880-098eaa65
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8099
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 10
         name: sam-manifest-repo-watcher
         volumeMounts:
         - mountPath: /config
