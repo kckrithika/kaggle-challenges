@@ -96,7 +96,7 @@ system:
     ports:
       - port: 80
         targetport: 9411
-        lbtype: dsr
+        lbtype: http
       - port: 443
         targetport: 8443
         lbtype: dsr
