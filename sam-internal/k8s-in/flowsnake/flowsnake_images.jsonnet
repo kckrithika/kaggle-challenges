@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "571",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-602-1-itest",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -52,7 +52,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7-itest": 565,
                   "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
                   "0.9.7-patch-worker-secrets": 584,
-                  "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-576-15-itest",
+                  "0.9.8-service-mesh-test": "599",
                   "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
                 },
                 # ignore this section, require by std.manifestIni
@@ -90,7 +90,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7": 571,
                   "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",  # temporary for IoT
                   "0.9.7-patch-worker-secrets": 584,  # temporary for IoT
-                  "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-576-15-itest",  # ALSO temporary for IoT...
+                  "0.9.8-service-mesh-test": "599",  # ALSO temporary for IoT...
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
