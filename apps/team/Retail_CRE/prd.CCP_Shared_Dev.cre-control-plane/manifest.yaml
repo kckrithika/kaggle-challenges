@@ -9,14 +9,14 @@ system:
     count: 3
     containers:
     - name: cre-control-plane-ccp-dev
-      image: sfci/cre/cre-control-plane:0.0.1.8.master.67cf67b.11
+      image: sfci/cre/cre-control-plane:0.0.1.9.master.e061be6.12
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Shared_Dev
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
-          value: ccp-shared-dev
+          value: ccp-dev
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
