@@ -24,10 +24,10 @@ system:
       - name: SECRETS_PATH
         value: /secrets/
     volumes:
-    - name: secretsvol1
+    - name: secretsvol
       k4aSecret:
         secretName: dontell2
-  - name: dev
+  - name: dev1
     count: 1
     containers:
     - name: ssamcont-dev
@@ -40,13 +40,13 @@ system:
           port: 9090
       volumeMounts:
        - mountPath: /secrets/
-         name: secretsvol
+         name: secretsvol-dev
          readOnly: true
       env:
       - name: SECRETS_PATH
         value: /secrets/
     volumes:
-    - name: secretsvol
+    - name: secretsvol-dev
       k4aSecret:
         secretName: dontell2
   loadbalancers:
@@ -59,7 +59,7 @@ system:
         lbtype: http
   - lbname: samhellolbdev
     slbEnabled: true
-    function: dev
+    function: dev1
     ports:
       - port: 12345
         targetport: 9090
