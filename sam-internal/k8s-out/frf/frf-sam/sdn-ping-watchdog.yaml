@@ -37,7 +37,7 @@ spec:
         - --livenessProbePort=9102
         - --controlEstate=frf-sam
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --log_dir=/data/logs/sdn/
+        - --log_dir=/var/logs/sdn/
         - --logtostderr=true
         - --alsologtostderr=true
         - --failPercentageThreshold=5

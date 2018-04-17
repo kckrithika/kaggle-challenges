@@ -3,12 +3,12 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if false then {
+if configs.estate == "prd-sdc" then {
     kind: "DaemonSet",
     spec: {
         template: {
             spec: {
-                [if configs.estate != "prd-sdc" then 'volumes']: [
+                volumes: [
                     sdnconfigs.sdn_logs_volume,
                 ],
                 containers: [
@@ -17,7 +17,7 @@ if false then {
                         image: sdnimages.hypersdn,
                         command: [
                             "/sdn/sdn-cleanup",
-                            "--period=300s",
+                            "--period=24h",
                             "--logsMaxAge=48h",
                             "--filesDirToCleanup=" + sdnconfigs.logFilePath,
                             "--shouldNotDeleteAllFiles=false",
@@ -25,7 +25,7 @@ if false then {
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
                         ],
-                        [if configs.estate != "prd-sdc" then 'volumeMounts']: [
+                        volumeMounts: [
                             sdnconfigs.sdn_logs_volume_mount,
                         ],
                         securityContext: {

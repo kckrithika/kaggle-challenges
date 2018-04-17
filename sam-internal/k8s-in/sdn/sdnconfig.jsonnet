@@ -23,10 +23,10 @@ local configs = import "config.jsonnet";
     ),
 
     # File path for logs
-    logFilePath: "/data/logs/sdn/",
+    logFilePath: "/var/logs/sdn/",
 
     logDirArg: "--log_dir=" + self.logFilePath,
-    logToStdErrArg: "--logtostderr=true",
+    logToStdErrArg: if estate == "prd-sdc" then "--logtostderr=false" else "--logtostderr=true",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     elasticsearchUrl: "http://" + self.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
@@ -39,22 +39,18 @@ local configs = import "config.jsonnet";
     ),
 
     # Volume for logs
-    sdn_logs_volume: {},
-    #Previously:
-    #{
-    #    name: "sdnlogs",
-    #    hostPath: {
-    #      path: "/data/logs/sdn",
-    #    },
-    #},
+    sdn_logs_volume: if estate == "prd-sdc" then {
+        name: "sdnlogs",
+        hostPath: {
+          path: "/var/logs/sdn/",
+        },
+    } else {},
 
     # Volume mount for logs
-    sdn_logs_volume_mount: {},
-    #Previously:
-    #{
-    #    mountPath: "/data/logs/sdn",
-    #    name: "sdnlogs",
-    #},
+    sdn_logs_volume_mount: if estate == "prd-sdc" then {
+        mountPath: "/var/logs/sdn/",
+        name: "sdnlogs",
+    } else {},
 
     # Volume for logstash conf
     sdn_logstash_conf_volume: {

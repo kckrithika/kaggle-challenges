@@ -23,7 +23,7 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --livenessProbePort=9106
-        - --log_dir=/data/logs/sdn/
+        - --log_dir=/var/logs/sdn/
         - --logtostderr=true
         - --alsologtostderr=true
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000777-f15777fe

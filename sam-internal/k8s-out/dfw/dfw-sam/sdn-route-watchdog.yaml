@@ -38,7 +38,7 @@ spec:
         - --pkiClientServiceName=k8s-client
         - --momCollectorEndpoint=https://ops0-momapi1-0-dfw.data.sfdc.net/api/v1/network/device?key=host-bgp-routes
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --log_dir=/data/logs/sdn/
+        - --log_dir=/var/logs/sdn/
         - --logtostderr=true
         - --alsologtostderr=true
         env:
