@@ -27,7 +27,7 @@ system:
         value: iot
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:hotel
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:india
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -61,7 +61,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
           command:
