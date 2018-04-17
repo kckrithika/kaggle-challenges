@@ -8,7 +8,7 @@ system:
   - name: default
     count: 1
     containers:
-    - name: samhello
+    - name: samcont
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/frankel/samhello:frankel-20180413
       ports:
       - containerPort: 9090
@@ -24,13 +24,13 @@ system:
       - name: SECRETS_PATH
         value: /secrets/
     volumes:
-    - name: secretsvol
+    - name: secretsvol1
       k4aSecret:
-        secretName: dontell1
+        secretName: dontell2
   - name: dev
     count: 1
     containers:
-    - name: samhello-dev
+    - name: ssamcont-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/frankel/samhello:frankel-20180413
       ports:
       - containerPort: 9090
@@ -48,7 +48,7 @@ system:
     volumes:
     - name: secretsvol
       k4aSecret:
-        secretName: dontell1
+        secretName: dontell2
   loadbalancers:
   - lbname: samhellolb
     slbEnabled: true
