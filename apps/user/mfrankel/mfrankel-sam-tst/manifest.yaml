@@ -26,7 +26,7 @@ system:
     volumes:
     - name: secretsvol
       k4aSecret:
-        secretName: dontell2
+        secretName: dontell
   - name: dev1
     count: 1
     containers:
@@ -48,7 +48,7 @@ system:
     volumes:
     - name: secretsvol-dev
       k4aSecret:
-        secretName: dontell2
+        secretName: dontell
   loadbalancers:
   - lbname: samhellolb
     slbEnabled: true
