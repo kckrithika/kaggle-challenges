@@ -45,6 +45,21 @@ if configs.estate == "prd-sdc" then {
                       topologyKey: "kubernetes.io/hostname",
                      }],
                  },
+                 nodeAffinity: {
+                     requiredDuringSchedulingIgnoredDuringExecution: {
+                         nodeSelectorTerms: [
+                             {
+                                 matchExpressions: [
+                                     {
+                                           key: "illumio",
+                                           operator: "NotIn",
+                                           values: ["a", "b"],
+                                     },
+                                 ],
+                              },
+                         ],
+                     },
+                 },
 
               },
                 containers: [
