@@ -12,6 +12,7 @@ local enabledEstates = std.set([
 
 local enabledEstatesForPodDeleter = std.set([
     "prd-sam_storage",
+    "prd-sam",
     "prd-skipper",
 ]);
 
