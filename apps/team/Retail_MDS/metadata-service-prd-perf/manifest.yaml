@@ -107,7 +107,7 @@ system:
   loadbalancers:
   - lbname: metadata-service-prd-perf-lb
     function: metadata-service-prd-perf
-    nodeExposed: true
+    slbenabled: true
     ports:
     - port: 9092
       targetport: 9091
