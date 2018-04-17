@@ -34,7 +34,7 @@ system:
         value: "sam"
       args:
       - -endpoint
-      - samapp/user-paras/pdss-api-test1:DATACENTER:7443
+      - samapp/user-paras/pdss-api-test1:DATACENTER:7442
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -56,6 +56,8 @@ system:
         - name: pdss-tls-demo-server-cert
           mountPath: /server-certs
       ports:
+      - containerPort: 7442
+        name: sherpa-h1-tls
       - containerPort: 15373
         name: sherpa-admin
       livenessProbe:
