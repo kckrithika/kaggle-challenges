@@ -3,7 +3,7 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {

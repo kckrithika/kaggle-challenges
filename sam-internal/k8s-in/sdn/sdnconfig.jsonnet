@@ -102,7 +102,7 @@ local configs = import "config.jsonnet";
 
     # Pool in which sdn_control_svc should run
     sdn_control_pool: (
-        if estate == "prd-sdc" then
+        if estate == "prd-sdc" || configs.estate == "prd-samtest" then
             estate
         else
             kingdom + "-sdn_control"
