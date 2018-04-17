@@ -6,9 +6,31 @@ system:
       - mfrankel@salesforce.com
   functions:
   - name: default
-    count: 2
+    count: 1
     containers:
     - name: samhello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/frankel/samhello:frankel-20180413
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+       - mountPath: /secrets/
+         name: secretsvol
+         readOnly: true
+      env:
+      - name: SECRETS_PATH
+        value: /secrets/
+    volumes:
+    - name: secretsvol
+      k4aSecret:
+        secretName: dontell
+  - name: dev
+    count: 1
+    containers:
+    - name: samhello-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/frankel/samhello:frankel-20180413
       ports:
       - containerPort: 9090
@@ -31,6 +53,13 @@ system:
   - lbname: samhellolb
     slbEnabled: true
     function: default
+    ports:
+      - port: 12345
+        targetport: 9090
+        lbtype: http
+  - lbname: samhellolbdev
+    slbEnabled: true
+    function: dev
     ports:
       - port: 12345
         targetport: 9090
