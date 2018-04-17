@@ -16,7 +16,7 @@ spec:
       containers:
       - command:
         - /sdn/sdn-hairpin-setter
-        - --log_dir=/var/logs/sdn/
+        - --log_dir=/data/logs/sdn/
         - --logtostderr=true
         - --alsologtostderr=true
         image: ops0-artifactrepo1-0-cdu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000751-43d005b0

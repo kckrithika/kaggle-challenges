@@ -31,7 +31,7 @@ spec:
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --log_dir=/var/logs/sdn/
+        - --log_dir=/data/logs/sdn/
         - --logtostderr=true
         - --alsologtostderr=true
         env:

@@ -23,7 +23,7 @@ local configs = import "config.jsonnet";
     ),
 
     # File path for logs
-    logFilePath: "/var/logs/sdn/",
+    logFilePath: if estate == "prd-sdc" then "/var/logs/sdn/" else "/data/logs/sdn/",
 
     logDirArg: "--log_dir=" + self.logFilePath,
     logToStdErrArg: if estate == "prd-sdc" then "--logtostderr=false" else "--logtostderr=true",
