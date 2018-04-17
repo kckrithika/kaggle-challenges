@@ -1,0 +1,43 @@
+apiVersion: v1
+system:
+  notifications:
+    email:
+    - smuramreddy@salesforce.com
+  functions:
+  - name: prd-scheduler-dbfn
+    count: 1
+    containers:
+    - name: prd-scheduler-dbapp
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scheduler/scheduler-db:0.0.5
+      args:
+      - --scheduler.databse.url="jdbc:discover://dbaas0-minionapp1-1-prd.eng.sfdc.net:1511,dbaas0-minionapp2-1-prd.eng.sfdc.net:1511/crondb?ssl=true&sslfactory=com.salesforce.sds.keystore.DynamicSSLSocketFactory&sslfactoryarg={\"monitoredDirectory\":\"/client-certs/client\",\"cadir\":\"/client-certs\"}"
+      - --scheduler.databse.driver="sayonara.jdbc.DiscoveryDriver"
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: ccp-demo
+      volumeMounts:
+      - name: logvol
+        mountPath: /home/scheduler-db/logs/app
+      - name: ldb-server-cert
+        mountPath: /server-certs
+      - name: ldb-client-cert
+        mountPath: /client-certs
+      livenessProbe:
+        httpGet:
+          path: /manage/config
+          port: 15373
+        initialDelaySeconds: 60
+        timeoutSeconds: 10
+      ports:
+      - containerPort: 6002
+      - containerPort: 15373
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /var/log/scheduler-db
+    - name: ldb-server-cert
+      maddogCert:
+        type: server
+    - name: ldb-client-cert
+      maddogCert:
+        type: client
