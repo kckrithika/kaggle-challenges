@@ -1,0 +1,57 @@
+apiVersion: v1
+ 
+system:
+  notifications:
+    email:
+      - yangyangliu@salesforce.com
+  functions:
+  - name: default
+    count: 1
+    hostnetwork: true
+    volumes: 
+    - name: gwcertclient
+      maddogCert:
+        type: client
+    - name: gwcertserver
+      maddogCert:
+        type: server
+        lbnames:
+        - gatewayconfiglb
+    containers:
+    - name: gatewayconfig
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-04-17a
+      env:
+      - name: PKI_CA_DIR
+        value: /gwcertserver
+      - name: PKI_MONITORDIR
+        value: /gwcertserver/server
+      volumeMounts:
+      - name: gwcertclient
+        mountPath: /gwcertclient
+      - name: gwcertserver
+        mountPath: /gwcertserver
+      args:
+        - start
+        - --debug
+        - --settings.path=-.-.sfm.-.gatewayconfig
+        - --superpod.name=-
+      ports:
+      - containerPort: 9133
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 20
+        periodSeconds: 15
+        exec:
+          command:
+          - "/bin/true"
+        #scheme: HTTPS
+        #httpGet:
+        #  path: /manage/health
+        #  port: 15372
+  loadbalancers:
+  - lbname: gatewayconfiglb
+    #nodeexposed: true
+    function: default
+    ports:
+      - port: 9133
+        targetport: 9133
