@@ -50,7 +50,7 @@ system:
           - tardisdev
     - name: secretvol
       k4aSecret:
-        secretName: gittoken
+        secretName: paswords
     containers:
     - name: tardis-dev
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180416_a3f2d1e1
