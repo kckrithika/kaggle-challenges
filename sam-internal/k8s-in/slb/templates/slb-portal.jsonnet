@@ -63,7 +63,55 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            },
+            }
++ (
+                         if configs.estate == "prd-sdc" then {
+                             affinity: {
+                                podAntiAffinity: {
+                                   requiredDuringSchedulingIgnoredDuringExecution: [{
+                                   labelSelector: {
+                                       matchExpressions: [{
+                                           key: "name",
+                                           operator: "In",
+                                           values: [
+                                                "slb-ipvs",
+                                                 "slb-ipvs-a",
+                                                 "slb-ipvs-b",
+                                                 "slb-nginx-config-b",
+                                                  "slb-nginx-config-a",
+                                           ],
+                                       }],
+                                   },
+                                   topologyKey: "kubernetes.io/hostname",
+                                   }],
+                                },
+                                nodeAffinity: {
+                                    requiredDuringSchedulingIgnoredDuringExecution: {
+                                    nodeSelectorTerms: [
+                                    {
+                                        matchExpressions: [
+                                           {
+                                               key: "slb-service",
+                                                          operator: "NotIn",
+                                                          values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                           },
+                                                      ] + (
+                                                       if configs.estate == "prd-sdc" then
+                                                       [
+                                                         {
+                                                           key: "illumio",
+                                                           operator: "NotIn",
+                                                           values: ["a", "b"],
+                                                         },
+                                                       ] else []
+                                                     ),
+                                                   },
+                                                 ],
+                                               },
+                                             },
+                                          },
+                         } else {}
+                       ),
         },
     },
 } else "SKIP"
