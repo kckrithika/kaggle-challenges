@@ -1,3 +1,6 @@
+# New Confluence Public Version
+See the [Confluence version](https://confluence.internal.salesforce.com/pages/viewpage.action?pageId=62624112) of this content for the latest version.
+
 ## SAM Team Folders
 
 Process for adding a new SAM team folder:
