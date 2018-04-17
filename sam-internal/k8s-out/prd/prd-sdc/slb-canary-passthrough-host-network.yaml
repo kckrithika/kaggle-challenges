@@ -6,7 +6,13 @@ metadata:
   name: slb-canary-passthrough-host-network
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:

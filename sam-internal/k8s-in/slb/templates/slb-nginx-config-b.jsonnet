@@ -351,7 +351,16 @@ if slbconfigs.slbInKingdom then {
                 },
             },
         },
-    } + if configs.kingdom == "prd" then {
-       minReadySeconds: 30,
+    } + if slbimages.phase == "1" then {
+        strategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: 1,
+                maxSurge: 1,
+            },
+        },
+        minReadySeconds: 60,
+    } else if slbimages.phase == "2" then {
+        minReadySeconds: 30,
     } else {},
 } else "SKIP"

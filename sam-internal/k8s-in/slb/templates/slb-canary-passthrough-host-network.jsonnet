@@ -108,5 +108,14 @@ if configs.estate == "prd-sdc" then {
                                       } else {}
                                     ),
         },
-    },
+    } + if slbimages.phase == "1" then {
+        strategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: 1,
+                maxSurge: 1,
+            },
+        },
+        minReadySeconds: 30,
+    } else {},
 } else "SKIP"
