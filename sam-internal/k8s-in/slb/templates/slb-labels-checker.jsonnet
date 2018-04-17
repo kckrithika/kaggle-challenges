@@ -72,7 +72,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                 namespace: "sam-system",
             },
         },
-    } + if slbimages.phase == "1" then {
+    } + if slbimages.phase == "1" || slbimages.phase == "2" then {
         strategy: {
             type: "RollingUpdate",
             rollingUpdate: {
