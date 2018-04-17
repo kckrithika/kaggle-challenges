@@ -35,6 +35,15 @@ if configs.estate == "prd-samdev" then {
                                               readOnly: true,
                                                   },
                                               ] else []),
+                                        livenessProbe: {
+                                            httpGet: {
+                                                path: "/",
+                                                port: 8099,
+                                            },
+                                            initialDelaySeconds: 20,
+                                            periodSeconds: 10,
+                                            timeoutSeconds: 10,
+                                        },
                                     },
                                 ],
                                 volumes: configs.filter_empty([

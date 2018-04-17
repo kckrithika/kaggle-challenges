@@ -15,4 +15,5 @@ std.prune({
         "pr-to-teamoruser-table-name": "pr_to_teamoruser_table",
         "ghe-tokenfile": "/var/token/token",
         "webhook-tokenfile": "/var/webhook-token/webhook-token",
+        "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
 }) else "SKIP"
