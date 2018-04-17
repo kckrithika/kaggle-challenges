@@ -114,53 +114,7 @@ local estate = std.extVar("estate");
                     {
                         name: "beacon",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake/flowsnake:DATACENTER_ALLENV:7442", "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
-                        env: [
-                            {
-                                name: "FUNCTION_INSTANCE_IP",
-                                valueFrom: {
-                                    fieldRef: {
-                                        fieldPath: "status.podIP",
-                                    },
-                                },
-                            },
-                        ],
-                    },
-                    {
-                        name: "sherpa",
-                        image: "ops0-artifactrepo2-0-prd.data.sfdc.net/sfci/servicelibs/sherpa:2.0.25",
-                        args: ["--server-cert", "/server-certs/tls.crt", "--server-key", "/server-certs/tls.key", "--server-ca", "/etc/ssl/certs/ca.crt"],
-                        env: [
-                            {
-                                name: "SETTINGS_PATH",
-                                value: "-.-.PRD.-.kevin",
-                            },
-                            {
-                                name: "SFDC_SETTINGS_PATH",
-                                value: "-.-.PRD.-.kevin",
-                            },
-                            {
-                                name: "SETTINGS_SUPERPOD",
-                                value: "NOPE",
-                            },
-                        ],
-                        ports: [
-                            {
-                                containerPort: 7442,
-                            },
-                        ],
-                        volumeMounts: [
-                             {
-                                 name: "flowsnake-tls-secret",
-                                 mountPath: "/server-certs",
-                                 readOnly: true,
-                             },
-                             {
-                                 name: "sfdc-ca",
-                                 mountPath: "/etc/ssl/certs",
-                                 readOnly: true,
-                             },
-                        ],
+                        args: ["-endpoint", "flowsnake/flowsnake:DATACENTER_ALLENV:8080:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
                     },
                 ] else [],
                 volumes: (
@@ -186,14 +140,7 @@ local estate = std.extVar("estate");
                         flowsnakeconfigmapmount.k8s_cert_volume
                     else flowsnakeconfigmapmount.kubeconfig_volume +
                         flowsnakeconfigmapmount.k8s_cert_volume
-                ) + if flowsnakeconfig.is_test then [
-                    {
-                        name: "sfdc-ca",
-                        secret: {
-                            secretName: "sfdc-ca",
-                        },
-                    },
-                ] else [],
+                ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",
                 },
