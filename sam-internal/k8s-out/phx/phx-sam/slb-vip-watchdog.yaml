@@ -58,7 +58,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        pool: phx-sam
+        pool: phx-slb
       volumes:
       - hostPath:
           path: /data/slb
