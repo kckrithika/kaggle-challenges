@@ -1633,6 +1633,18 @@
     },
     {
       "namespaces": [
+        "podgroup-prebuild"
+      ],
+      "access": [
+        "team/podgroup-prebuild"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_tardis",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "casp"
       ],
       "access": [
