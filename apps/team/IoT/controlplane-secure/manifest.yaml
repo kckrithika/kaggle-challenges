@@ -61,7 +61,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.27
       livenessProbe:
         exec:
           command:
