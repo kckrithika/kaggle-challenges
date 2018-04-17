@@ -60,9 +60,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             }
             + (
             if slbconfigs.slbInProdKingdom then {
-                nodeSelector: {
-                   pool: configs.estate,
-                },
+                nodeSelector: {} + (
+                    if configs.estate == "prd-sam" || slbimages.phase == "3" then {
+                         pool: configs.kingdom + "-slb",
+                    } else {
+                         pool: configs.estate,
+                    }
+                ),
             } else {
                  affinity: {
                     podAntiAffinity: {
@@ -110,7 +114,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                  },
                  nodeSelector: {}
                 + (
-                    if configs.estate == "prd-sam" then {
+                    if configs.estate == "prd-sam" || slbimages.phase == "3" then {
                          pool: configs.kingdom + "-slb",
                     } else {
                          pool: configs.estate,

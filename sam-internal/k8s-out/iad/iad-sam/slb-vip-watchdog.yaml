@@ -58,7 +58,7 @@ spec:
         - mountPath: /sfdchosts
           name: sfdchosts
       nodeSelector:
-        pool: iad-sam
+        pool: iad-slb
       volumes:
       - hostPath:
           path: /data/slb
