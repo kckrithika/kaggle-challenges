@@ -20,6 +20,7 @@ system:
       livenessProbe:
         httpGet:
           path: /v1/zone/status
+          port: 8080
       volumeMounts:
       - name: pdss-tls-demo-client-cert
         mountPath: /clientcert
