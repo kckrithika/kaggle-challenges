@@ -3,9 +3,9 @@
     {
       name: "Customer-Production-Deployment-SLA",
       instructions: "The following deployments are reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
-      alertThreshold: "30m",
+      alertThreshold: "10m",
       alertFrequency: "24h",
-      watchdogFrequency: "15m",
+      watchdogFrequency: "10m",
       sql: "SELECT * FROM
 (
   SELECT
@@ -34,5 +34,40 @@ WHERE
    NOT ControlEstate LIKE 'prd-%' AND
    desiredReplicas > 1",
     },
+    {
+        name: "Customer-Node_SLA",
+        instructions: "The following minion pools have multiple nodes down in Production requiring immediate attention according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+        alertThreshold: "10m",
+        alertFrequency: "24h",
+        watchdogFrequency: "10m",
+        sql: "SELECT
+              	minionpool,
+              	TotalCount,
+              	NotReadyCount,
+              	NotReadyPerc
+              FROM
+              (
+              SELECT
+                      minionpool,
+                      TotalCount ,
+                      NotReadyCount,
+                      (NotReadyCount/TotalCount) as 'NotReadyPerc'
+
+              FROM
+              (
+                  SELECT
+                        COUNT(*) as TotalCount,
+                        SUM(CASE WHEN READY != 'True' THEN 1 ELSE 0 END) as NotReadyCount,
+                        minionpool
+                  FROM
+                        nodeDetailView
+                  WHERE
+                        KINGDOM != 'PRD'
+                        AND minionpool NOT LIKE '%ceph%'
+                  GROUP BY minionpool
+              ) ss
+              ) ss2
+              WHERE (TotalCount < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
+        },
   ],
 }

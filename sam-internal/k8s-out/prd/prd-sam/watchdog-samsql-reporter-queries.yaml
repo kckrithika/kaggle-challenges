@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
   watchdog-samsql-queries.jsonnet: '{"sql_alerts": [{"alertFrequency": "24h", "alertThreshold":
-    "30m", "instructions": "The following deployments are reported as bad customer
+    "10m", "instructions": "The following deployments are reported as bad customer
     deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
     "name": "Customer-Production-Deployment-SLA", "sql": "SELECT * FROM\n(\n  SELECT\n    ControlEstate,\n    Namespace,\n    Name,\n    JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n    CASE
@@ -19,7 +19,19 @@ data:
     != ''csc-sam'' AND Namespace NOT LIKE ''%slb%'') AND\n   (availableReplicas !=
     desiredReplicas OR availableReplicas IS NULL) AND\n   (availability IS NULL OR
     availability < 0.6) AND\n   (kpodsDown IS NULL OR kpodsDown >1) AND\n   NOT ControlEstate
-    LIKE ''prd-%'' AND\n   desiredReplicas > 1", "watchdogFrequency": "15m"}]}'
+    LIKE ''prd-%'' AND\n   desiredReplicas > 1", "watchdogFrequency": "10m"}, {"alertFrequency":
+    "24h", "alertThreshold": "10m", "instructions": "The following minion pools have
+    multiple nodes down in Production requiring immediate attention according to our
+    SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
+    "name": "Customer-Node_SLA", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
+    ,\n                      NotReadyCount,\n                      (NotReadyCount/TotalCount)
+    as ''NotReadyPerc''\n\n              FROM\n              (\n                  SELECT\n                        COUNT(*)
+    as TotalCount,\n                        SUM(CASE WHEN READY != ''True'' THEN 1
+    ELSE 0 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView\n                  WHERE\n                        KINGDOM
+    != ''PRD''\n                        AND minionpool NOT LIKE ''%ceph%''\n                  GROUP
+    BY minionpool\n              ) ss\n              ) ss2\n              WHERE (TotalCount
+    < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency":
+    "10m"}]}'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
