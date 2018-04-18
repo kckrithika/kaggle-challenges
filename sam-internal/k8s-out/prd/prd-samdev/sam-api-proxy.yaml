@@ -18,7 +18,8 @@ spec:
         - --v=10
         - --ciNamespaceConfigFile=/ci/ci-namespaces.json
         - -alsologtostderr
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001880-098eaa65
+        - -namespaceWhiteListRegex=e2e-crd-*
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001886-9f1535db
         name: sam-api-proxy
         volumeMounts:
         - mountPath: /config

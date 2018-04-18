@@ -27,7 +27,8 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                   "--v=10",
                   "--ciNamespaceConfigFile=/ci/ci-namespaces.json",
                   "-alsologtostderr",
-                ],
+                ] +
+                (if configs.estate == "prd-samdev" then ["-namespaceWhiteListRegex=e2e-crd-*"] else []),
                 image: samimages.hypersam,
                 name: "sam-api-proxy",
                 volumeMounts: [
