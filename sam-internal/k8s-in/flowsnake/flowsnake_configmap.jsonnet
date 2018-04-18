@@ -239,7 +239,7 @@ local samconfig = import "config.jsonnet";
         {
             namespace: "wave-elt",
             authorizedLdapGroups: ["Analytics-DataPool"],
-            authorizedClientCerts: ["wave-elt.datapool", "wave-elt.datapool-test1", "wave-elt.datapool-test2", "wave-elt.datapool-steelthread"]
+            authorizedClientCerts: ["wave-elt.datapool", "wave-elt.datapool-test1", "wave-elt.datapool-test2", "wave-elt.datapool-steelthread"],
         },
       ],
       "prd/prd-minikube-small-flowsnake": [
@@ -270,7 +270,7 @@ local samconfig = import "config.jsonnet";
         {
             namespace: "wave-elt",
             authorizedLdapGroups: [],
-            authorizedClientCerts: ["wave-elt.datapool"]
+            authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
       "ord/ord-flowsnake_prod": [
@@ -287,7 +287,7 @@ local samconfig = import "config.jsonnet";
         {
             namespace: "wave-elt",
             authorizedLdapGroups: [],
-            authorizedClientCerts: ["wave-elt.datapool"]
+            authorizedClientCerts: ["wave-elt.datapool"],
         },
       ],
       "phx/phx-flowsnake_prod": [
