@@ -68,31 +68,8 @@ local util = import "util_functions.jsonnet";
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
-    is_098_registry_config: (
-        self.is_minikube ||
-        estate == "prd-data-flowsnake_test" ||
-        estate == "iad-flowsnake_prod" ||
-        estate == "ord-flowsnake_prod" ||
-        estate == "phx-flowsnake_prod"
-    ),
-    registry: if self.is_098_registry_config then
-            (if self.is_minikube then "minikube" else configs.registry)
-        else (
-            //TODO: remove the special cases when promoting 0.9.8 with revised registry config
-            if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
-                "dva-registry.internal.salesforce.com/dva"
-            else
-                configs.registry + "/dva"
-            ),
-    strata_registry: if self.is_098_registry_config then
-            (if self.is_minikube then "minikube" else configs.registry + "/dva")
-        else (
-            //TODO: remove the special cases when promoting 0.9.8 with revised registry config
-            if estate == "prd-data-flowsnake" || estate == "prd-dev-flowsnake_iot_test" then
-                "dva-registry.internal.salesforce.com/dva"
-            else
-                configs.registry + "/dva"
-             ),
+    registry: if self.is_minikube then "minikube" else configs.registry,
+    strata_registry: if self.is_minikube then "minikube" else configs.registry + "/dva",
     funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
     funnel_vip_and_port: $.funnel_vip + ":80",
     funnel_endpoint: "http://" + $.funnel_vip_and_port,

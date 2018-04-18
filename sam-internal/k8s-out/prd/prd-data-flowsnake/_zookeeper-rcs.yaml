@@ -22,7 +22,7 @@ spec:
           value: zookeeper-set
         - name: ZOOKEEPER_AUTOPURGE_HOURS
           value: "24"
-        image: dva-registry.internal.salesforce.com/dva/flowsnake-zookeeper:345
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-zookeeper:345
         imagePullPolicy: Always
         livenessProbe:
           exec:
