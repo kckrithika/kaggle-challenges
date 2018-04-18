@@ -38,8 +38,8 @@ spec:
         - --pkiClientServiceName=k8s-client
         - --momCollectorEndpoint=https://ops0-momapi1-0-prd.data.sfdc.net/api/v1/network/device?key=host-bgp-routes
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --log_dir=/data/logs/sdn/
-        - --logtostderr=true
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
         - --alsologtostderr=true
         env:
         - name: KUBECONFIG
@@ -62,6 +62,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: prd-samtest
@@ -78,3 +80,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
