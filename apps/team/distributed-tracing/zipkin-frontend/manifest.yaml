@@ -108,4 +108,4 @@ system:
         lbtype: http
       - port: 443
         targetport: 8443
-        lbtype: dsr
+        lbtype: tcp
