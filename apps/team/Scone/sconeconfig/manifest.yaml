@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: sconeconfig-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-sconeconfig:plaird-20180228-da39b30
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-sconeconfig:plaird-20180418-e54ad28
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -25,7 +25,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-  volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-sconeconfig-service/logs
+    volumes:
+      - name: logvol
+        hostPath:
+          path: /home/sfdc-sconeconfig-service/logs
