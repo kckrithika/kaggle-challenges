@@ -19,6 +19,8 @@ apps:
       - iad/iad-sam_iot
   enrichment-iad:
       - iad/iad-sam_iot
+  provisioning-iad:
+      - iad/iad-sam_iot
   controlplane-ord:
       - ord/ord-sam_iot
   enrichment-ord:
