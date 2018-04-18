@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         command: [
                         ]
                         + (
-                             if configs.estate == "prd-sdc" then [
+                             if slbimages.phase == "1" then [
                                   "/sdn/slb-baboon",
                                   "--k8sapiserver=",
                                   "--namespace=sam-system",
@@ -61,7 +61,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                   "--deleteNginxTunnelIntfFlag=true",
                                   "--deleteIpvsIntfFlag=true",
                                   "--deleteCustomerPodFlag=true",
-                             ] else [
+                             ] else if slbimages.phase == "2" then [
                                   "/sdn/slb-baboon",
                                   "--k8sapiserver=",
                                   "--namespace=sam-system",
