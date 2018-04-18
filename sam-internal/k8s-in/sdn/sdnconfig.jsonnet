@@ -23,10 +23,10 @@ local configs = import "config.jsonnet";
     ),
 
     # File path for logs
-    logFilePath: if estate == "prd-sdc" || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then "/var/logs/sdn/" else "/data/logs/sdn/",
+    logFilePath: if (kingdom == "prd") then "/var/logs/sdn/" else "/data/logs/sdn/",
 
     logDirArg: "--log_dir=" + self.logFilePath,
-    logToStdErrArg: if estate == "prd-sdc" || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then "--logtostderr=false" else "--logtostderr=true",
+    logToStdErrArg: if (kingdom == "prd") then "--logtostderr=false" else "--logtostderr=true",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     elasticsearchUrl: "http://" + self.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
@@ -39,7 +39,7 @@ local configs = import "config.jsonnet";
     ),
 
     # Volume for logs
-    sdn_logs_volume: if estate == "prd-sdc" || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then {
+    sdn_logs_volume: if (kingdom == "prd") then {
         name: "sdnlogs",
         hostPath: {
           path: "/var/logs/sdn/",
@@ -47,7 +47,7 @@ local configs = import "config.jsonnet";
     } else {},
 
     # Volume mount for logs
-    sdn_logs_volume_mount: if estate == "prd-sdc" || (estate == "prd-samtest") || (estate == "prd-samdev") || (estate == "prd-data-flowsnake_test") then {
+    sdn_logs_volume_mount: if (kingdom == "prd") then {
         mountPath: "/var/logs/sdn/",
         name: "sdnlogs",
     } else {},
