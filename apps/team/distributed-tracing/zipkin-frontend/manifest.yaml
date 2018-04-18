@@ -9,13 +9,15 @@ system:
     count: 6
     strategy:
       type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
     volumes:
     - name: server-certs
       maddogCert:
         type: server
     containers:
     - name: zipkin-nginx
-      image: docker-dva-rc/dva/zipkin-nginx:8
+      image: docker-dva-rc/dva/zipkin-nginx:9
       ports: 
       - name: http
         containerPort: 8080
