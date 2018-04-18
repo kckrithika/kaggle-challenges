@@ -28,7 +28,7 @@ system:
       - name: ZIPKIN_HOST
         value: zipkin-alpha
       - name: ZIPKIN_SERVER
-        value: zipkin
+        value: localhost
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
