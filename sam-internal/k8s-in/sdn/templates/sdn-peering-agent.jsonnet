@@ -34,7 +34,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
                         ]
-                        + (if configs.estate == "prd-sdc" || (configs.estate == "prd-samtest") || (configs.estate == "prd-samdev") || (configs.estate == "prd-data-flowsnake_test") then ["--birdlogdir=" + sdnconfigs.logFilePath] else []),
+                        + (if configs.kingdom == "prd" then ["--birdlogdir=" + sdnconfigs.logFilePath] else []),
                         env: [
                             configs.kube_config_env,
                         ],
