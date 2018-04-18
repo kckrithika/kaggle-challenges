@@ -81,6 +81,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      "--configDir=" + slbconfigs.configDir,
                                  ] + (if configs.estate == "prd-sdc" then [
                                           "--period=1200s",
+                                          "--podPhaseCheck=true",
                                       ] else [
                                           "--period=1800s",
                                       ]) +
