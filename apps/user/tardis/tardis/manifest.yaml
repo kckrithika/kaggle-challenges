@@ -52,7 +52,7 @@ system:
         secretName: passwords
     containers:
     - name: tardis-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180416_a3f2d1e1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/tardis/tardis:testing_20180418_85e777f3
       env:
       - name: HTTPS_PROXY
         value: public0-proxy1-0-prd.data.sfdc.net:8080
