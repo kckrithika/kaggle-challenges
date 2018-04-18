@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -39,7 +39,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         command: [
                         ]
                         + (
-                             if configs.estate == "prd-sdc" then [
+                             if slbimages.phase == "1" then [
                                   "/sdn/slb-baboon",
                                   "--k8sapiserver=",
                                   "--namespace=sam-system",
@@ -69,15 +69,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                   "--hostnameoverride=$(NODE_NAME)",
                                   "--port=" + portconfigs.slb.baboonEndPointPort,
                                   "--metricsEndpoint=" + configs.funnelVIP,
-                                  "--deletePodPeriod=20m",
+                                  "--deletePodPeriod=2h",
                                   "--deleteIpvsStatePeriod=4h",
-                                  "--deleteConfigFilePeriod=50m",
-                                  "--deleteNginxTunnelIntfPeriod=2h",
+                                  "--deleteConfigFilePeriod=5h",
+                                  "--deleteNginxTunnelIntfPeriod=3h",
                                   "--deleteIpvsIntfPeriod=1.5h",
-                                  "--deleteCustomerPodPeriod=30m",
+                                  "--deleteCustomerPodPeriod=7h",
                                   "--slbPodLabel=" + slbconfigs.podLabelList,
                                   configs.sfdchosts_arg,
-                                  "--deletePodFlag=false",
+                                  "--deletePodFlag=true",
                                   "--deleteIpvsStateFlag=false",
                                   "--deleteConfigFileFlag=false",
                                   "--deleteNginxTunnelIntfFlag=false",
