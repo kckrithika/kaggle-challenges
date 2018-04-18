@@ -137,7 +137,7 @@ std.prune({
   } else {})
 
   #kubelet checker
-  + (if configs.estate == "prd-samtest" then {
+  + (if configs.estate == "prd-samdev" then {
      KubeletErrorCheckerEnabled: true,
      KubeletErrorPerSecond: 5,
   } else {})
