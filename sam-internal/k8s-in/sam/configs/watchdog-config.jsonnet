@@ -140,5 +140,5 @@ std.prune({
   + (if configs.estate == "prd-samdev" then {
      KubeletErrorCheckerEnabled: true,
      KubeletErrorPerSecond: 0,
-     KubeletErrorCheckerFrequency: 2,
+     KubeletErrorCheckerFrequency: "1s",
   } else {})
