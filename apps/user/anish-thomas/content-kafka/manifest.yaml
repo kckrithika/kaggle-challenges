@@ -13,9 +13,7 @@ system:
             - name: KAFKA_ADVERTISED_PORT
               value: "9092"
             - name: KAFKA_ADVERTISED_HOST_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
+              value: 10.251.161.106
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: 10.251.161.103:2181
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
