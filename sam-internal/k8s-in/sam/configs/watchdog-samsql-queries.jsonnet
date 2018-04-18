@@ -35,7 +35,7 @@ WHERE
    desiredReplicas > 1",
     },
     {
-        name: "Customer-Node_SLA",
+        name: "Customer-Node-SLA",
         instructions: "The following minion pools have multiple nodes down in Production requiring immediate attention according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
         alertThreshold: "10m",
         alertFrequency: "24h",
@@ -57,7 +57,7 @@ WHERE
               (
                   SELECT
                         COUNT(*) as TotalCount,
-                        SUM(CASE WHEN READY != 'True' THEN 1 ELSE 0 END) as NotReadyCount,
+                        SUM(CASE WHEN READY = 'True' THEN 0 ELSE 1 END) as NotReadyCount,
                         minionpool
                   FROM
                         nodeDetailView

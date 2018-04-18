@@ -23,11 +23,11 @@ data:
     "24h", "alertThreshold": "10m", "instructions": "The following minion pools have
     multiple nodes down in Production requiring immediate attention according to our
     SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
-    "name": "Customer-Node_SLA", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
+    "name": "Customer-Node-SLA", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
     ,\n                      NotReadyCount,\n                      (NotReadyCount/TotalCount)
     as ''NotReadyPerc''\n\n              FROM\n              (\n                  SELECT\n                        COUNT(*)
-    as TotalCount,\n                        SUM(CASE WHEN READY != ''True'' THEN 1
-    ELSE 0 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView\n                  WHERE\n                        KINGDOM
+    as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
+    ELSE 1 END) as NotReadyCount,\n                        minionpool\n                  FROM\n                        nodeDetailView\n                  WHERE\n                        KINGDOM
     != ''PRD''\n                        AND minionpool NOT LIKE ''%ceph%''\n                  GROUP
     BY minionpool\n              ) ss\n              ) ss2\n              WHERE (TotalCount
     < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency":
