@@ -22,6 +22,8 @@ system:
               value: "false"
             - name: KAFKA_CREATE_TOPICS
               value: "jpg-png-topic:5:1:compact,jpg-png-topic1:5:1:compact"
+          args:
+            - "KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://$(KAFKA_ADVERTISED_HOST_NAME):9092"
           livenessProbe:
             initialDelaySeconds: 5
             exec:
