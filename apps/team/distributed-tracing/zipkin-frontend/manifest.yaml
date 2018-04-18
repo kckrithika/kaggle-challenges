@@ -16,6 +16,8 @@ system:
     - name: server-certs
       maddogCert:
         type: server
+        lbnames:
+        - zipkin-alpha
     - name: oauth2-proxy-secrets
       k4aSecret:
         secretName: oauth2-proxy-secrets
