@@ -90,7 +90,6 @@ local kingdom = std.extVar("kingdom");
                                     },
                                 },
                             },
-                        ] + (if flowsnakeconfig.is_098_registry_config then [
                             {
                                 name: "DOCKER_STRATA_REGISTRY_URL",
                                 valueFrom: {
@@ -100,7 +99,7 @@ local kingdom = std.extVar("kingdom");
                                     },
                                 },
                             },
-                        ] else []),
+                        ],
                         volumeMounts: [
                             {
                                 name: "version-mapping",
