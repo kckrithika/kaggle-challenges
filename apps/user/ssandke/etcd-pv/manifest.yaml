@@ -29,9 +29,6 @@ system:
         name: certs
       - mountPath: /client-certs
         name: clicerts
-      - mountPath: /secrets
-        name: secretvol
-        readOnly: true
 
       ports:
       - containerPort: 2379
@@ -54,9 +51,6 @@ system:
     volumes:
     - name: datavol
       emptyDir: {}
-    - name: secretvol
-      k4aSecret:
-        secretName: newsecrets
     - name: certs
       maddogCert:
         type: server

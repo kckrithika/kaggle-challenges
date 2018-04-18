@@ -17,9 +17,6 @@ system:
           path: /
           port: 9090
       volumeMounts:
-      - mountPath : /secrets/
-        name: secretvol
-        readOnly: true
       - mountPath: /certs
         name: certs
       - mountPath: /clientcerts
@@ -30,9 +27,6 @@ system:
       - name: SFDC_ENVIRONMENT
         value: myenv
     volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: dummy
     - name: certs
       maddogCert:
         type: server

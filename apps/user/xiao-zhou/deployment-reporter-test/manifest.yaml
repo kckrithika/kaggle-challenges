@@ -18,19 +18,11 @@ system:
         httpGet:
           path: /
           port: 9090
-      volumeMounts:
-      - mountPath : /secrets/
-        name: secretvol
-        readOnly: true
       env:
       - name: TEST_ENV
         value: test_val_new
       - name: SFDC_ENVIRONMENT
         value: myenv
-    volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: dummy
   loadbalancers:
   - lbname: deploymentreporterlb
     function: dr-fn
