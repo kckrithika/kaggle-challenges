@@ -23,7 +23,7 @@ system:
 
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.65
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.70
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -50,6 +50,8 @@ system:
         value: MDS065tATaAUcWi
       - name: TENANT_CANONICAL
         value: MDS08fS6PGukUaj
+      - name: CRE_SERVER_TARGET
+        value: http://cre-api-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8082
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
