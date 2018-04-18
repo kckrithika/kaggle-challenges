@@ -38,7 +38,7 @@ system:
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
