@@ -864,6 +864,206 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-1-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-10-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-3-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-4-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-5-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-6-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-7-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-8-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot1-9-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-1-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-10-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-2-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-3-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-4-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-5-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-6-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-7-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-8-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_iot",
+          "controlestate": "par-sam",
+          "devicerole": "samcompute",
+          "estate": "par-sam_iot",
+          "hostname": "shared0-samminioniot2-9-par.ops.sfdc.net",
+          "kingdom": "par",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_moderation_einstein",
           "controlestate": "par-sam",
           "devicerole": "samcompute",
