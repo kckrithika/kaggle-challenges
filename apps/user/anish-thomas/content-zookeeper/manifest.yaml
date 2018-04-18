@@ -2,10 +2,10 @@ apiVersion: v1
 
 system:
   functions:
-    - name: cp-zookeeper
+    - name: content-zookeeper
       count: 1
       containers: 
-        - name: cp-zookeeper
+        - name: content-zookeeper
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/zookeeper:first-version
           ports:
             - containerPort: 2181
