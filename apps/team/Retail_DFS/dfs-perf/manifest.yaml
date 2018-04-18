@@ -83,6 +83,7 @@ system:
   - lbname: dfs-lbpf
     function: dfs-perf
     nodeExposed: true
+    slbEnabled: true
     ports:
     - port: 7023
       targetport: 7022
