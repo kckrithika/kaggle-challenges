@@ -66,19 +66,19 @@ system:
         value: /certs/server/certificates/server.pem
       
       - name: SERVER_ENABLE_GUS
-        value: FALSE
+        value: 'FALSE'
       - name: GUS_CLIENT_SECRET
-        value: .
+        value: '.'
       - name: GIT_WEBHOOK_SECRET
-        value: .
+        value: '.'
       - name: GUS_ENDPOINT
-        value: gus--gilliesdev.cs46.my.salesforce.com
+        value: 'gus--gilliesdev.cs46.my.salesforce.com'
       - name: GUS_USERNAME
-        value: tardis@gus.com.GILLIESDEV
+        value: 'tardis@gus.com.GILLIESDEV'
       - name: GUS_PASSWORD 
-        value: .
+        value: '.'
       - name: GUS_CLIENT_ID
-        value: 3MVG9_AA.i9MRGPAMrL5flJzUpio4m4C5TtpuKyve3HQaK.KxCRko2swtjkNc4fPXdlJwwi6ADFIm1XPaomn4
+        value: '3MVG9_AA.i9MRGPAMrL5flJzUpio4m4C5TtpuKyve3HQaK.KxCRko2swtjkNc4fPXdlJwwi6ADFIm1XPaomn4'
       ports:
       - containerPort: 9091
       livenessProbe:
