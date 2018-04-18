@@ -32,8 +32,8 @@ spec:
         - --sdncNamespace=sam-system
         - --pkiClientServiceName=k8s-client
         - --livenessProbePort=9121
-        - --log_dir=/data/logs/sdn/
-        - --logtostderr=true
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
         - --alsologtostderr=true
         env:
         - name: KUBECONFIG
@@ -56,6 +56,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         pool: prd-sdc
@@ -72,3 +74,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
