@@ -9,5 +9,6 @@ if configs.estate == "prd-sam" then {
     },
     data: {
         "watchdog-samsql-queries.jsonnet": std.toString(import "configs/watchdog-samsql-queries.jsonnet"),
+        "watchdog-samsql-profiles.jsonnet": std.toString(import "configs/watchdog-samsql-profiles.jsonnet"),
     },
 } else "SKIP"
