@@ -81,5 +81,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 },
             },
         },
-    },
+    } + if slbimages.phase == "1" then {
+        updateStrategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: 1,
+            },
+        },
+        minReadySeconds: 30,
+    } else {},
 } else "SKIP"
