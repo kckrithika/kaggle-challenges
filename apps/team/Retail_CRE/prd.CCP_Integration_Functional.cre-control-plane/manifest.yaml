@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-control-plane-ccp-func
-      image: sfci/cre/cre-control-plane:0.0.1.9.master.e061be6.12
+      image: sfci/cre/cre-control-plane:0.0.1.10.master.edff14d.13
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
