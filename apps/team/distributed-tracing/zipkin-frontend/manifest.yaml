@@ -33,10 +33,10 @@ system:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
       livenessProbe:
-        httpGet:
-          path: /health
-          port: 8443
-        initialDelaySeconds: 120
+        exec:
+          # TODO: Check if process is running?
+          command:
+          - /bin/true
     - name: zipkin-alpha
       image: docker-dva-rc/dva/zipkin-server:13
       ports:
