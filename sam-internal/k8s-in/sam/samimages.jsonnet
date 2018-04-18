@@ -41,6 +41,9 @@ local utils = import "util_functions.jsonnet";
 
         #[rbhat] skip e2e namespace in proxy validator
         "prd,prd-samdev,sam-api-proxy,hypersam": "sam-0001886-9f1535db",
+
+        #[a.mitra] deploy latest sql watchdog in prd
+        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001894-7c4f0d45",
         },
 
     ### Per-phase image tags
