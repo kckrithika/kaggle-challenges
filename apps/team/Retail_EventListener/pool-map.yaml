@@ -4,7 +4,3 @@ apps:
   - name: prd/prd-sam_crosscloudplatform
   prd.retailcalculator:
   - name: prd/prd-sam_crosscloudplatform
-  iad.commercejourneys:
-  - name: iad/iad-sam_crosscloudplatform
-  iad.retailcalculator:
-  - name: iad/iad-sam_crosscloudplatform
