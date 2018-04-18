@@ -68,13 +68,7 @@ local util = import "util_functions.jsonnet";
     is_test: (
         estate == "prd-data-flowsnake_test"
     ),
-    is_098_registry_config: (
-        self.is_minikube ||
-        estate == "prd-data-flowsnake_test" ||
-        estate == "iad-flowsnake_prod" ||
-        estate == "ord-flowsnake_prod" ||
-        estate == "phx-flowsnake_prod"
-    ),
+    is_098_registry_config: true,
     registry: if self.is_098_registry_config then
             (if self.is_minikube then "minikube" else configs.registry)
         else (
