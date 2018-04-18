@@ -50,6 +50,12 @@ local utils = import "util_functions.jsonnet";
         #api servers are under heavy load
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
 
+        #[rbhat] Delete orphan deployments,services on resync
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001886-9f1535db",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001886-9f1535db",
+
+        #[rbhat] skip e2e namespace in proxy validator
+        "prd,prd-samdev,sam-api-proxy,hypersam": "sam-0001886-9f1535db",
         },
 
     ### Per-phase image tags
