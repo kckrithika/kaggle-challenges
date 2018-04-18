@@ -11,23 +11,35 @@ system:
     - env:
       - name: COMPILER_ENDPOINT_FSENV_PREFIX
         value: iot-prd-secure-
+      - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
+        value: topicsapi.ajna-zk.localhost.mesh.force.com
+      - name: DVAKAFKA_TOPICAPI_ENDPOINT_PORT
+        value: 5442
       - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
         value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.development1
+      - name: DVAKAFKA_TOPICAPI_SERVICEMESH_ENABLED
+        value: true
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
         value: /home/controlplane/cacerts
+      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
+        value: 'true'
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: PHOENIX_KEYTABPATH
-        value: /home/controlplane/controlplane-keytab/iot.keytab
+        value: /home/controlplane/iot.keytab
       - name: PHOENIX_KEYTABPRINCIPAL
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
+      - name: PKI_CA_LOCATION
+        value: /client-certs
+      - name: PKI_CLIENT_MONITORED_LOCATION
+        value: /client-certs/client
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:india
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:kilo
       livenessProbe:
         httpGet:
           path: /manage/health
