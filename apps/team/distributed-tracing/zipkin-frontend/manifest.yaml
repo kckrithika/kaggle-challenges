@@ -13,6 +13,9 @@ system:
     - name: server-certs
       maddogCert:
         type: server
+    - name: oauth2-proxy-secrets
+      k4aSecret:
+        secretName: oauth2-proxy-secrets
     containers:
     - name: zipkin-nginx
       image: docker-dva-rc/dva/zipkin-nginx:8
@@ -29,6 +32,9 @@ system:
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
+      - mountPath: /secrets/
+        name: oauth2-proxy-secrets
+        readOnly: true
       livenessProbe:
         httpGet:
           path: /health
