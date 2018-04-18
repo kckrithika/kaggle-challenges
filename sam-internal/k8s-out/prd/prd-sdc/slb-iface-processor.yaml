@@ -6,6 +6,7 @@ metadata:
   name: slb-iface-processor
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -64,3 +65,7 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
