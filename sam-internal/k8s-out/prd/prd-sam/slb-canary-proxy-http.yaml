@@ -6,7 +6,13 @@ metadata:
   name: slb-canary-proxy-http
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -23,7 +29,7 @@ spec:
         - --tlsPorts=443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sam.crt
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000778-14a22e42
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000784-31aef038
         name: slb-canary-proxy-http
         volumeMounts:
         - mountPath: /host/data/slb/logs
