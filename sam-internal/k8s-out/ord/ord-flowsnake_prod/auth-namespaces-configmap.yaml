@@ -2,7 +2,8 @@ apiVersion: v1
 data:
   data: '[{"authorizedClientCerts": ["flowsnake_master_prod"], "authorizedLdapGroups":
     [ ], "namespace": "flowsnake"}, {"authorizedClientCerts": ["retail-cre.cre-control-plane"],
-    "authorizedLdapGroups": [ ], "namespace": "retail-cre"}]'
+    "authorizedLdapGroups": [ ], "namespace": "retail-cre"}, {"authorizedClientCerts":
+    ["wave-elt.datapool"], "authorizedLdapGroups": [ ], "namespace": "wave-elt"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
