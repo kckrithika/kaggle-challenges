@@ -1,0 +1,28 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: content-kafka
+      count: 1
+      containers: 
+        - name: content-kafka
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/kafka:first-version
+          ports:
+            - containerPort: 9092
+          env:
+            - name: KAFKA_ADVERTISED_PORT
+              value: "9092"
+            - name: KAFKA_ADVERTISED_HOST_NAME
+              value: $SERVICE_EXTERNAL_IP
+            - name: KAFKA_ZOOKEEPER_CONNECT
+              value: 10.251.161.103:2181
+            - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
+              value: "false"
+            - name: KAFKA_CREATE_TOPICS
+              value: "jpg-png-topic:5:1:compact,jpg-png-topic1:5:1:compact"
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/usr/bin/kafka-ok.sh"
+

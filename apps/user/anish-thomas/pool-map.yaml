@@ -4,3 +4,6 @@ apps:
 
   content-zookeeper:
     - prd/prd-sam
+
+  content-kafka:
+    - prd/prd-sam
