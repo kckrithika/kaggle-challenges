@@ -2,5 +2,5 @@ apps:
   content-imagemagick-scone:
     - prd/prd-sam
 
-  zookeeper:
+  content-zookeeper:
     - prd/prd-sam
