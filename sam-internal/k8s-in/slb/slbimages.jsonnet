@@ -22,13 +22,13 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000792-567f1c20",
+            hypersdn: "v-0000792-567f1c20", # 792 requires removal of the configDir parameter from slb-ipvs-processor
             slbnginx: "v-0000028-7cbabf4f",
             },
 
         ### Release Phase 2 - Rest of the SAM clusters in PRD
         "2": {
-            hypersdn: "v-0000791-cb49d7b1",  # 792 requires removal of the configDir parameter from slb-ipvs-processor
+            hypersdn: "v-0000791-cb49d7b1",
             slbnginx: "v-0000028-7cbabf4f",
             },
 
