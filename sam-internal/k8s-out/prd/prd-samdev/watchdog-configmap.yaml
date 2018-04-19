@@ -3,8 +3,8 @@ data:
   watchdog.json: |-
     {
       "KubeletErrorCheckerEnabled": true,
-      "KubeletErrorCheckerFrequency": "1s",
-      "KubeletErrorPerSecond": 0,
+      "KubeletErrorCheckerFrequency": "20s",
+      "KubeletErrorPerSecond": 1,
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
