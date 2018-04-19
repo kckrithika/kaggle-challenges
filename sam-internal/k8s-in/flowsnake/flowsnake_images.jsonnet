@@ -54,6 +54,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7-patch-worker-secrets": 584,
                   "0.9.8-service-mesh-test": "jenkins-dva-transformation-flowsnake-platform-PR-604-1-itest",
                   "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
+                  "jvmtest-lhn": "jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
