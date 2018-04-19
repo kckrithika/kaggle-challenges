@@ -2,37 +2,36 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   labels:
-    name: sdn-hairpin-setter
-  name: sdn-hairpin-setter
+    name: sdn-cleanup
+  name: sdn-cleanup
   namespace: sam-system
 spec:
   template:
     metadata:
       labels:
+        apptype: control
         daemonset: "true"
-        name: sdn-hairpin-setter
+        name: sdn-cleanup
       namespace: sam-system
     spec:
       containers:
       - command:
-        - /sdn/sdn-hairpin-setter
+        - /sdn/sdn-cleanup
+        - --period=1440m
+        - --logsMaxAge=48h
+        - --filesDirToCleanup=/var/logs/sdn/
+        - --shouldNotDeleteAllFiles=false
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
         image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000763-622223ea
-        name: sdn-hairpin-setter
+        name: sdn-cleanup
         securityContext:
           privileged: true
         volumeMounts:
-        - mountPath: /sys/devices/virtual/net
-          name: sys-mount
         - mountPath: /var/logs/sdn/
           name: sdnlogs
-      hostNetwork: true
       volumes:
-      - hostPath:
-          path: /sys/devices/virtual/net
-        name: sys-mount
       - hostPath:
           path: /var/logs/sdn/
         name: sdnlogs
