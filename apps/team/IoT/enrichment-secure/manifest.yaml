@@ -114,7 +114,7 @@ system:
     nodeExposed: true
     ports:
     - port: 7500
-      targetport: 7443
+      targetport: 7012
     - lbtype: http
       port: 15400
       targetport: 15372
