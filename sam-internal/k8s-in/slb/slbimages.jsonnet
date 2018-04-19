@@ -22,7 +22,7 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000792-567f1c20", # 792 requires removal of the configDir parameter from slb-ipvs-processor
+            hypersdn: "v-0000792-567f1c20",  # 792 requires removal of the configDir parameter from slb-ipvs-processor
             slbnginx: "v-0000028-7cbabf4f",
             },
 
