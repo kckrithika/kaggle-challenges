@@ -18,12 +18,13 @@ system:
         type: server
         lbnames:
         - zipkin-alpha
-    - name: oauth2-proxy-secrets
-      k4aSecret:
-        secretName: oauth2-proxy-secrets
+    # BLOCKED ON: https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B00000050MNsIAM/view    
+    #- name: oauth2-proxy-secrets
+    #  k4aSecret:
+    #    secretName: oauth2-proxy-secrets
     containers:
     - name: zipkin-nginx
-      image: docker-dva-rc/dva/zipkin-nginx:9
+      image: docker-dva-rc/dva/zipkin-nginx:10
       ports: 
       - name: http
         containerPort: 8080
@@ -34,12 +35,14 @@ system:
         value: zipkin-alpha
       - name: ZIPKIN_SERVER
         value: localhost
+      - name: AUTH_ENABLED
+        value: false
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
-      - mountPath: /secrets/
-        name: oauth2-proxy-secrets
-        readOnly: true
+      #- mountPath: /secrets/
+      #  name: oauth2-proxy-secrets
+      #  readOnly: true
       livenessProbe:
         exec:
           # TODO: Check if process is running?
