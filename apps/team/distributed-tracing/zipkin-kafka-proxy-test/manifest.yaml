@@ -72,5 +72,5 @@ system:
         livenessProbe:
             initialDelaySeconds: 5
             exec:
-            command:
-            - "/home/scone/is-alive.sh"
+                command:
+                - "/home/scone/is-alive.sh"
