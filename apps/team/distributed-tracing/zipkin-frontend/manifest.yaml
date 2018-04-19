@@ -34,6 +34,8 @@ system:
         value: zipkin-alpha
       - name: ZIPKIN_SERVER
         value: localhost
+      - name: AUTH_ENABLED
+        value: false
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
