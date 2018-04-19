@@ -23,7 +23,7 @@ system:
         secretName: oauth2-proxy
     containers:
     - name: zipkin-nginx
-      image: docker-dva-rc/dva/zipkin-nginx:10
+      image: docker-dva-rc/dva/zipkin-nginx:12
       ports: 
       - name: http
         containerPort: 8080
