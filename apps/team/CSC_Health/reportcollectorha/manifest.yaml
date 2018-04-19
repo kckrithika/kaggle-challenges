@@ -6,7 +6,7 @@ system:
       - cschealthcp@salesforce.com
   functions:
   - name: report-collectorha
-    count: 3
+    count: 1
     volumes:
       - name: servercertvol
         secret:
