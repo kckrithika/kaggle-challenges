@@ -44,6 +44,11 @@ local utils = import "util_functions.jsonnet";
 
         #[a.mitra] deploy latest sql watchdog in prd
         "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001894-7c4f0d45",
+
+        #[lizhang.li] rollout filesystem watchdog with hidden file checker in prd
+        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
+        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
+        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         },
 
     ### Per-phase image tags
