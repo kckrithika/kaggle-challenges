@@ -7,8 +7,6 @@ apps:
   - prd/prd-sam_warden
  prd-warden-stage:
   - prd/prd-sam_warden
- prd-zipkin:
-  - prd/prd-sam_warden
  prod-warden:
   - dfw/dfw-sam_warden
   - iad/iad-sam_warden
