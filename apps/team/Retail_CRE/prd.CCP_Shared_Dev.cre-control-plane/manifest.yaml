@@ -21,6 +21,8 @@ system:
           value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
+        - name: GRPC_ANNOUNCED_PORT
+          value: 7012
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -41,7 +43,7 @@ system:
       - mountPath: /opt/cre/cre-control-plane-ccp-dev
         name: logvol
     - name: sherpa-cre-control-plane
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
       - mountPath: /myclientcert
         name: myclientcert
@@ -55,16 +57,40 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       ports:
       - containerPort: 7012
-        name: sherpa-ot-http2
+        name: sherpa-in-http2
+      - containerPort: 7443
+        name: sh-in-http2-tls
       - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sherpa-in-http1
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
         exec:
-            command:
-            - ls
-        initialDelaySeconds: 30
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - cre-control-plane:DATACENTER:7012
+      - -endpoint
+      - retail-cre/cre-control-plane:DATACENTER:7443
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
     volumes:
     - name: secretvol
       k4aSecret:
@@ -79,7 +105,10 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-control-plane-ccp-dev-lb        
+          - cre-control-plane-ccp-dev-lb  
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: cre-control-plane-ccp-dev-lb
     function: cre-control-plane-ccp-dev
