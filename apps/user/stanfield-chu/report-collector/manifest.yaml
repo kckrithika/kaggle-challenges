@@ -144,8 +144,6 @@ system:
         readOnly: true
       ports:
       - containerPort: 6379
-      logs:
-      - directory: /var/log/redis
       livenessProbe:
         tcpSocket:
           port: 6379
