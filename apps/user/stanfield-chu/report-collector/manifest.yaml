@@ -6,7 +6,7 @@ system:
       - stanfield.chu@salesforce.com
   functions:
   - name: stans-report-collector
-    count: 3
+    count: 1
     volumes:
       - name: servercertvol
         k4aSecret:
