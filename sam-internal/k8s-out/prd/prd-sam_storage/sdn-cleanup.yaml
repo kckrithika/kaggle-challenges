@@ -17,7 +17,7 @@ spec:
       containers:
       - command:
         - /sdn/sdn-cleanup
-        - --period=24h
+        - --period=1440m
         - --logsMaxAge=48h
         - --filesDirToCleanup=/var/logs/sdn/
         - --shouldNotDeleteAllFiles=false

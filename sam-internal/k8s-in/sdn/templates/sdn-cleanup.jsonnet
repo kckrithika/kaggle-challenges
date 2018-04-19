@@ -17,7 +17,7 @@ if sdnimages.phase == "1" || sdnimages.phase == "2" || sdnimages.phase == "3" th
                         image: sdnimages.hypersdn,
                         command: [
                             "/sdn/sdn-cleanup",
-                            "--period=24h",
+                            "--period=1440m",
                             "--logsMaxAge=48h",
                             "--filesDirToCleanup=" + sdnconfigs.logFilePath,
                             "--shouldNotDeleteAllFiles=false",
