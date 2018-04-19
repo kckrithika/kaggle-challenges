@@ -20,7 +20,7 @@ system:
         - zipkin-alpha
     - name: oauth2-proxy-secrets
       k4aSecret:
-        secretName: oauth2-proxy-secrets
+        secretName: oauth2-proxy
     containers:
     - name: zipkin-nginx
       image: docker-dva-rc/dva/zipkin-nginx:10
