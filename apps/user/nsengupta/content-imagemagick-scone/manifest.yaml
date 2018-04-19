@@ -14,14 +14,14 @@ system:
           path: /manage/health
           port: 15303
     - name: broker-service
-      image:ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:firstversion
-    ports:
-    - containerPort: 7012
-    - containerPort: 15303
-    livenessProbe:
-      httpGet:
-        path: /manage/health
-        port: 15303
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:firstversion
+      ports:
+      - containerPort: 7013
+      - containerPort: 15374
+      livenessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15374
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.25 # Use the latest version from https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
