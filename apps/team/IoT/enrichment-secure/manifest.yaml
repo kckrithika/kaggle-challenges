@@ -9,38 +9,24 @@ system:
   functions:
   - containers:
     - env:
-      - name: COMPILER_ENDPOINT_FSENV_PREFIX
-        value: iot-prd-secure-
-      - name: DVAKAFKA_TOPICAPI_KEYSTORE_FILE
-        value: /home/controlplane/ajna-certs/iot-dva-kafka-prd-test.jks
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.development1
-      - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
-        value: /home/controlplane/cacerts
-      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
-        value: 'true'
-      - name: LOGGING_STDERR_LEVEL
-        value: ALL
-      - name: PHOENIX_KEYTABPATH
-        value: /home/controlplane/iot.keytab
-      - name: PHOENIX_KEYTABPRINCIPAL
-        value: iot
-      - name: PHOENIX_KEYTABUSER
-        value: iot
-      - name: PKI_CA_LOCATION
-        value: /client-certs
-      - name: PKI_CLIENT_MONITORED_LOCATION
-        value: /client-certs/client
+      - name: HBASE_SECURITY_KEYTAB_LOCATION
+        value: /home/enrichment/enrichment-keytab/enrichment.keytab
+      - name: HBASE_SECURITY_KEYTAB_PRINCIPAL
+        value: iot-enrichment@IOT1DCHBASE0A-PRD.APP.ENG.SFDC.NET
+      - name: IOT_ENRICH_HBASE_ENV_OVERRIDE
+        value: kingdom-test
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:kilo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-enrichment:05025e6
       livenessProbe:
         httpGet:
-          path: /manage/health
+          path: /manage/info
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: controlplane-secure
+      name: enrichment-secure
       ports:
       - containerPort: 15372
         name: mgmt
@@ -54,20 +40,17 @@ system:
           cpu: 2
           memory: 2G
       volumeMounts:
-      - mountPath: /home/controlplane/logs
+      - mountPath: /home/enrichment/logs
         name: logvol
-      - mountPath: /home/controlplane/ajna-certs
-        name: ajnacerts
-        readOnly: true
-      - mountPath: /home/controlplane/controlplane-keytab
-        name: controlplanekeytab
+      - mountPath: /home/enrichment/enrichment-keytab
+        name: enrichmentkeytab
         readOnly: true
       - mountPath: /client-certs
         name: client-certs
     - env:
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa:2.0.23
       livenessProbe:
         exec:
           command:
@@ -95,7 +78,7 @@ system:
         name: client-certs
     - args:
       - -endpoint
-      - iot/controlplane:DATACENTER:7443
+      - iot/enrichment:DATACENTER:7443
       env:
       - name: SFDC_ENVIRONMENT
         value: secure
@@ -108,8 +91,8 @@ system:
       name: beacon
     count: 1
     identity:
-      serviceName: controlplane
-    name: controlplane-secure
+      serviceName: enrichment
+    name: enrichment-secure
     strategy:
       type: Recreate
     volumes:
@@ -120,23 +103,20 @@ system:
         type: client
       name: client-certs
     - hostPath:
-        path: /data/sam/iot/log/controlplane-secure
+        path: /data/sam/iot/log/enrichment-secure
       name: logvol
-    - name: ajnacerts
+    - name: enrichmentkeytab
       secret:
-        secretName: ajna-certs
-    - name: controlplanekeytab
-      secret:
-        secretName: controlplane-keytab
+        secretName: enrichment-keytab
   loadbalancers:
-  - function: controlplane-secure
-    lbname: controlplane-secure-lb
+  - function: enrichment-secure
+    lbname: enrichment-secure-lb
     nodeExposed: true
     ports:
-    - port: 7444
+    - port: 7500
       targetport: 7443
     - lbtype: http
-      port: 15382
+      port: 15400
       targetport: 15372
   notifications:
     email:
