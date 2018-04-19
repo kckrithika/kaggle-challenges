@@ -14,6 +14,7 @@ local enabledEstatesForPodDeleter = std.set([
     "prd-sam_storage",
     "prd-sam",
     "prd-skipper",
+    "phx-sam",
 ]);
 
 // Environment variables for the Local Provisioner container.
