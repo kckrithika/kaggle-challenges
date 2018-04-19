@@ -19,7 +19,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.15.0-20180419-circuitBreaker
       ports:
       - name: provider
         containerPort: 8080
@@ -69,6 +69,10 @@ system:
         value: 1
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
         value: 1
+      - name: ReportCollector_app_circuitBreaker_maxFailures
+        value: 2
+      - name: ReportCollector_app_circuitBreaker_resetTimeout
+        value: 30000
       livenessProbe:
         httpGet:
           path: /healthz
@@ -92,7 +96,7 @@ system:
         -jar ${JAR_PATH}
       "]
     - name: csc-health-stale-log-cleaner
-      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.15.0-20180419-circuitBreaker
       volumeMounts:
         - mountPath: /var/log/report-collector
           name: logvol
