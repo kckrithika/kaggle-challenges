@@ -11,7 +11,7 @@ system:
         - --sql-db-host=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
         - --sql-db-port=3306
         - --sql-db-name=sam_kube_resource
-        - --sql-db-pass=pass
+        - --sql-db-pass-file=/var/secrets/mysql.txt
         - --sql-db-user=root
         - --sql-db-resources-table=k8s_resource
         - --v=4
@@ -26,9 +26,17 @@ system:
         httpGet:
           path: /healthz
           port: 7002
+      volumeMounts:
+        - mountPath: /var/secrets/
+          name: mysql
+          readOnly: true
+    volumes:
+    - name: mysql
+      secret:
+        secretName: mysql
   loadbalancers:
-  - lbname: pseudo-kubeapi-prd-sam
-    function: pseudo-kubeapi-prd-sam
+  - lbname: pseudo-kubeapi
+    function: pseudo-kubeapi
     slbEnabled: true
     ports:
       - port: 40001
