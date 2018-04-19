@@ -79,13 +79,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                                      "/sdn/slb-config-processor",
                                      "--configDir=" + slbconfigs.configDir,
-                                 ] + (if configs.estate == "prd-sdc" then [
+                                 ] + (
+                                      if configs.estate == "prd-sdc" then [
                                           "--period=1200s",
-                                          "--podPhaseCheck=true",
                                       ] else [
                                           "--period=1800s",
-                                      ]) +
-                                 [
+                                      ]
+                                 ) + (
+                                        if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [
+                                           "--podPhaseCheck=true",
+                                        ] else []
+                                 ) + [
                                      "--namespace=" + slbconfigs.namespace,
                                      "--podstatus=running",
                                      "--subnet=" + slbconfigs.subnet,
