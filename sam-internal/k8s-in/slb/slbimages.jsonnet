@@ -22,7 +22,7 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000784-31aef038",
+            hypersdn: "v-0000791-cb49d7b1",
             slbnginx: "v-0000028-7cbabf4f",
             },
 
