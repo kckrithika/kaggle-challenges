@@ -5,7 +5,7 @@ system:
       - yangyangliu@salesforce.com
   functions:
   - name: default
-    count: 3
+    count: 1
     volumes: 
     - name: gwcertclient
       maddogCert:
@@ -17,7 +17,7 @@ system:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-04-18b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-04-18d
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
@@ -32,7 +32,7 @@ system:
         - start
         - --superpod.name=-
       ports:
-      - containerPort: 7022
+      - containerPort: 7122
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 21
@@ -49,5 +49,5 @@ system:
     #nodeexposed: true
     function: default
     ports:
-      - port: 7022
-        targetport: 7022
+      - port: 7122
+        targetport: 7122
