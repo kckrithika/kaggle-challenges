@@ -35,8 +35,8 @@ system:
       secret:
         secretName: mysql
   loadbalancers:
-  - lbname: pseudo-kubeapi
-    function: pseudo-kubeapi
+  - lbname: pseudo-kubeapi-prd-sam
+    function: pseudo-kubeapi-prd-sam
     slbEnabled: true
     ports:
       - port: 40001
