@@ -37,8 +37,8 @@ spec:
         - --livenessProbePort=9102
         - --controlEstate=dfw-sam
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --log_dir=/data/logs/sdn/
-        - --logtostderr=true
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
         - --alsologtostderr=true
         - --failPercentageThreshold=5
         env:
@@ -62,6 +62,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
         - mountPath: /usr/bin/kubectl
           name: kubectl
       hostNetwork: true
@@ -80,6 +82,9 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
       - hostPath:
           path: /usr/bin/kubectl
         name: kubectl

@@ -35,8 +35,8 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - --log_dir=/data/logs/sdn/
-        - --logtostderr=true
+        - --log_dir=/var/logs/sdn/
+        - --logtostderr=false
         - --alsologtostderr=true
         env:
         - name: KUBECONFIG
@@ -59,6 +59,8 @@ spec:
           name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
+        - mountPath: /var/logs/sdn/
+          name: sdnlogs
       hostNetwork: true
       nodeSelector:
         master: "false"
@@ -76,3 +78,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs

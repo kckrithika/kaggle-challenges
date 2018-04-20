@@ -23,10 +23,10 @@ local configs = import "config.jsonnet";
     ),
 
     # File path for logs
-    logFilePath: if (kingdom == "prd") || (kingdom == "frf") then "/var/logs/sdn/" else "/data/logs/sdn/",
+    logFilePath: "/var/logs/sdn/",
 
     logDirArg: "--log_dir=" + self.logFilePath,
-    logToStdErrArg: if (kingdom == "prd") || (kingdom == "frf") then "--logtostderr=false" else "--logtostderr=true",
+    logToStdErrArg: "--logtostderr=false",
     alsoLogToStdErrArg: "--alsologtostderr=true",
 
     elasticsearchUrl: "http://" + self.sdn_elasticsearch_cluster_ip + ":" + portconfigs.sdn.sdn_elasticsearch,
@@ -39,18 +39,18 @@ local configs = import "config.jsonnet";
     ),
 
     # Volume for logs
-    sdn_logs_volume: if (kingdom == "prd") || (kingdom == "frf") then {
+    sdn_logs_volume: {
         name: "sdnlogs",
         hostPath: {
           path: "/var/logs/sdn/",
         },
-    } else {},
+    },
 
     # Volume mount for logs
-    sdn_logs_volume_mount: if (kingdom == "prd") || (kingdom == "frf") then {
+    sdn_logs_volume_mount: {
         mountPath: "/var/logs/sdn/",
         name: "sdnlogs",
-    } else {},
+    },
 
     # Volume for logstash conf
     sdn_logstash_conf_volume: {
