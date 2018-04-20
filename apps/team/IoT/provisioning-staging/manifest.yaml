@@ -45,6 +45,8 @@ system:
         value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
       - name: FLOWSNAKE_USE_PKI
         value: 'true'
+      - name: HBASE_ENVIRONMENT
+        value: kingdom-test
       - name: INTAKE_CORES
         value: '2'
       - name: INTAKE_JAVA_OPTS
@@ -54,7 +56,7 @@ system:
       - name: INTAKE_REPLICAS
         value: '1'
       - name: INTAKE_TAG
-        value: d676124
+        value: 932c8d8
       - name: JAVA_OPTS
         value: -server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m -XX:ParallelGCThreads=5
           -XX:ConcGCThreads=5
@@ -66,6 +68,8 @@ system:
         value: all
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+      - name: OUTPUTS_POST_URL
+        value: ''
       - name: SFDC_ENVIRONMENT
         value: staging
       - name: SUBMITTER_CORES
@@ -88,7 +92,7 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:632d39e
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:d1ec7ae
       livenessProbe:
         httpGet:
           path: /manage/health
