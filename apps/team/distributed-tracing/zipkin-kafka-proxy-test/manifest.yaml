@@ -19,7 +19,7 @@ system:
               type: client
       containers:
       - name: kafka-test
-        image: docker-all/dva/dva-kafka
+        image: docker-all/dva/dva-kafka:227
         command: ["/usr/bin/sleep"]
         args: ["inf"]
         volumeMounts:
