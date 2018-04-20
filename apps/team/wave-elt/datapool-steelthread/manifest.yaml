@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - agitelman@salesforce.com
+      - analyticseltspark@salesforce.com
   functions:
   - name: datapool-steelthread
     identity:
