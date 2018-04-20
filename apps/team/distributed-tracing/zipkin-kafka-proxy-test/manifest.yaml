@@ -20,7 +20,7 @@ system:
       containers:
       - name: kafka-test
         image: docker-all/dva/dva-kafka:227
-        command: ["/usr/bin/sleep"]
+        command: ["/bin/sleep"]
         args: ["inf"]
         livenessProbe:
             exec:
