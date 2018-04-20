@@ -19,6 +19,8 @@ apps:
   - wax/wax-sam_gater
  gate-manager-test:
   - prd/prd-sam_gater
+ gate-manager-test-tnrp:
+  - prd/prd-sam_gater
  gate-manager-test-pv:
   - prd/prd-sam_gater
  gate-manager-pv:
