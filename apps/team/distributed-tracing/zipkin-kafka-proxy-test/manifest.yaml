@@ -18,6 +18,19 @@ system:
           maddogCert:
               type: client
       containers:
+      - name: kafka-test
+        image: docker-all/dva/dva-kafka:227
+        command: ["/usr/bin/sleep"]
+        args: ["inf"]
+        livenessProbe:
+            exec:
+                command:
+                - /bin/true
+            initialDelaySeconds: 5
+            periodSeconds: 5
+        volumeMounts:
+            - name: tls-client-cert
+              mountPath: /client-certs
       - name: zipkin-kafka-proxy-test
         image: docker-all/dva/zipkin-kafka-proxy:5
         ports: 
