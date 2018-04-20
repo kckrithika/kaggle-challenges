@@ -90,7 +90,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 } else {
                     master: "true",
                 },
-                [if configs.estate == "prd-sdc" then "affinity"]: {
+                [if configs.estate == "prd-sdc" || (configs.estate == "prd-samtest") || (configs.estate == "prd-samdev") || (configs.estate == "prd-data-flowsnake_test") then "affinity"]: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{
                                 labelSelector: {
