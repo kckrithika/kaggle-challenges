@@ -2,15 +2,17 @@ apiVersion: v1
 
 system: 
   functions: 
-    - name: searchserver
+    - name: na44-smt-searchserver
       type: stateful-set
       count: 2
       containers:  
       - name: searchserver 
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c.viswanathan/searchserver:20180330 # Use the latest version, see below
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/c.viswanathan/searchserver:20180420 # Use the latest version, see below
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam" # Use whatever environment your kpod uses
+        - name: INSTANCE_URL
+          value: "na44.stmfa.stm.salesforce.com"
         resources:
           limits: { cpu: "20", memory: "16Gi" }
           requests: { cpu: "20", memory: "16Gi" }
@@ -23,6 +25,9 @@ system:
             - "true"
           initialDelaySeconds: 120 
           periodSeconds: 5
+        volumeMounts:
+          - mountPath: /home/sfdc-searchserver/logs/solr
+            name: solr-log-volume
       - name: sherpa-searchserver
         image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see below
         env:
@@ -69,13 +74,16 @@ system:
             - "/home/scone/is-alive.sh" 
       lbname: searchservers
       volumes:
+        - name: solr-log-volume
+          hostPath: 
+            path: /home/sfdc-searchserver/logs/solr
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
 
   loadbalancers:
     - lbname: searchserverlb
-      function: searchserver
+      function: na44-smt-searchserver
       slbenabled: true
       ports:
         - port: 7014
