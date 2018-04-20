@@ -57,7 +57,7 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: small-test-hdd-pool
+      storageClassName: small-hdd-pool
       storageSizeRequest: 500Gi
   loadbalancers:
   - lbname: grill-ceph-lb
