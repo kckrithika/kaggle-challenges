@@ -23,6 +23,14 @@ local util = import "util_functions.jsonnet";
         "ord-flowsnake_prod": "flowsnake-ord.data.sfdc.net",
         "phx-flowsnake_prod": "flowsnake-phx.data.sfdc.net",
     },
+    fleet_api_roles: {
+        "prd-data-flowsnake": "api",
+        "prd-dev-flowsnake_iot_test": "api-dev",
+        "prd-data-flowsnake_test": "api-test",
+        "iad-flowsnake_prod": "api",
+        "ord-flowsnake_prod": "api",
+        "phx-flowsnake_prod": "api",
+    },
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
     deepsea_enabled_estates: [

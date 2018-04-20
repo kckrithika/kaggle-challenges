@@ -20,7 +20,7 @@ else
       metadata: {
         annotations: {
             "madkub.sam.sfdc.net/allcerts": if flowsnakeconfig.is_test then
-                std.toString({ certreqs: [{ name: "ingresscerts", role: "flowsnake.flowsnake", san: [flowsnakeconfig.fleet_vips[estate], "flowsnake.flowsnake.localhost.mesh.force.com"], "cert-type": "server", kingdom: kingdom }] })
+                std.toString({ certreqs: [{ name: "ingresscerts", role: flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake", san: [flowsnakeconfig.fleet_vips[estate], flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com"], "cert-type": "server", kingdom: kingdom }] })
             else
                 std.toString({ certreqs: [{ name: "ingresscerts", role: "flowsnake", san: [flowsnakeconfig.fleet_vips[estate]], "cert-type": "server", kingdom: kingdom }] }),
         },

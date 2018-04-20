@@ -70,7 +70,7 @@ spec:
           readOnly: true
       - args:
         - -endpoint
-        - flowsnake/flowsnake:DATACENTER_ALLENV:443:flowsnake-test1-0-prd.data.sfdc.net
+        - flowsnake/api-test:DATACENTER_ALLENV:443:flowsnake-test1-0-prd.data.sfdc.net
         - -path
         - -.-.PRD.-.kevin
         - -spod
