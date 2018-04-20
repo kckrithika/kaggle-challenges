@@ -4,74 +4,31 @@ system:
   - name: pdss-api-test1 
     count: 2
     volumes:
-    - name: pdss-tls-demo-client-cert
-      maddogCert:
-        type: client
     - name: pdss-tls-demo-server-cert
       maddogCert:
         type: server
         
     containers:
     - name: pdss-api-test1 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180406
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180420
       ports:
       - containerPort: 8080
       - containerPort: 53 
+      - containerPort: 15372
       livenessProbe:
         httpGet:
           path: /v1/zone/status
           port: 8080
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
+      - name: PKI_CA_DIR
+        value: /servercert
+      - name: PKI_MONITORDIR
+        value: /servercert/server
       volumeMounts:
-      - name: pdss-tls-demo-client-cert
-        mountPath: /clientcert
       - name: pdss-tls-demo-server-cert
         mountPath: /servercert   
-
-    - name: beacon
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      args:
-      - -endpoint
-      - samapp/user-paras/pdss-api-test1:DATACENTER:7442
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh" 
-
-    - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.23
-      args: ["--zipkin-rate", "0.0"]
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      volumeMounts:
-        - name: pdss-tls-demo-client-cert
-          mountPath: /client-certs
-        - name: pdss-tls-demo-server-cert
-          mountPath: /server-certs
-      ports:
-      - containerPort: 7442
-        name: sherpa-h1-tls
-      - containerPort: 15373
-        name: sherpa-admin
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-  
   loadbalancers:
   - lbname: pdssapitest1lb
     function: pdss-api-test1 
@@ -80,6 +37,9 @@ system:
       - port: 8080
         targetport: 8080
         lbtype: tcp
-      - port: 53 
+      - port: 15372
+        targetport: 15372
+        lbtype: tcp
+      - port: 53
         targetport: 53 
         lbtype: tcp
