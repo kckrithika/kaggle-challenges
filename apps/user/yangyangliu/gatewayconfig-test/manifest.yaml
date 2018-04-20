@@ -40,10 +40,10 @@ system:
         #exec:
         #  command:
         #  - "/bin/true"
-        #scheme: HTTPS
         httpGet:
           path: /manage/health
           port: 15372
+          scheme: HTTPS
   loadbalancers:
   - lbname: gatewayconfiglb
     #nodeexposed: true
