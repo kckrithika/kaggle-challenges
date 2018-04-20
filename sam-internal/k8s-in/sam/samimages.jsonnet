@@ -20,9 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [prahlad.joshi] Releasing kubeletchecker changes to prd-samtest
-        "prd,prd-samdev,watchdog-common,hypersam": "sam-0001900-a46c47b5",
-        "prd,prd-samtest,watchdog-common,hypersam": "sam-0001900-a46c47b5",
-        "prd,prd-sam,watchdog-common,hypersam": "sam-0001900-a46c47b5",
+        "prd,prd-samdev,watchdog-common,hypersam": "sam-0001905-ea177527",
+        "prd,prd-samtest,watchdog-common,hypersam": "sam-0001905-ea177527",
+        "prd,prd-sam,watchdog-common,hypersam": "sam-0001905-ea177527",
 
         #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
