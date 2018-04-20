@@ -22,6 +22,12 @@ system:
         image: docker-all/dva/dva-kafka:227
         command: ["/usr/bin/sleep"]
         args: ["inf"]
+        livenessProbe:
+            exec:
+                command:
+                - /bin/true
+            initialDelaySeconds: 5
+            periodSeconds: 5
         volumeMounts:
             - name: tls-client-cert
               mountPath: /client-certs
