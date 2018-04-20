@@ -1,12 +1,12 @@
 local configs = import "config.jsonnet";
-local clusterNamespace = (if configs.estate == "prd-sam_storage" then "ceph-prd-sam-storage" else "legostore");
-local appNamespace = "legostore";
+local clusterNamespace = "legostore";
+local appNamespace = "user-small";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
-        "name": "small-hdd-pool",
+        "name": "small-test-hdd-pool",
         "namespace": appNamespace,
         "annotations": {
             "manifestctl.sam.data.sfdc.net/swagger": "disable",

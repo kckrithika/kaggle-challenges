@@ -3,8 +3,8 @@ kind: CustomerStoragePool
 metadata:
   annotations:
     manifestctl.sam.data.sfdc.net/swagger: disable
-  name: small-hdd-pool
-  namespace: legostore
+  name: small-test-hdd-pool
+  namespace: user-small
 spec:
   clusterNamespace: legostore
   size: 500Gi
