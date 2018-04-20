@@ -6,7 +6,13 @@ metadata:
   name: slb-dns-register
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -24,7 +30,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-phx.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000767-36a17fb0
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000791-cb49d7b1
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service

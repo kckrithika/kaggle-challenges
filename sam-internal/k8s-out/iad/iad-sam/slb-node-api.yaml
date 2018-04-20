@@ -6,6 +6,7 @@ metadata:
   name: slb-node-api
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -30,7 +31,7 @@ spec:
         - --port=9130
         - --configDir=/host/data/slb/config
         - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000767-36a17fb0
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000791-cb49d7b1
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -45,3 +46,7 @@ spec:
       - hostPath:
           path: /data/slb/logs
         name: var-logs-volume
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate

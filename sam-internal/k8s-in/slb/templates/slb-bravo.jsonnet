@@ -117,7 +117,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                                       } else {}
                                     ),
         },
-    } + if slbimages.phase == "1" || slbimages.phase == "2" then {
+    } + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {
         strategy: {
             type: "RollingUpdate",
             rollingUpdate: {
