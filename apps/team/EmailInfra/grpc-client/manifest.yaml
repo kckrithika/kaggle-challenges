@@ -27,7 +27,7 @@ system:
         name: eaas-client-cert
 
     - name: sherpa-eaas-grpc-client
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.25
       args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
