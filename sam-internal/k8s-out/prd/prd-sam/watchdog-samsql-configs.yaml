@@ -6,7 +6,7 @@ data:
     "24h", "alertProfile": "sam", "alertThreshold": "10m", "instructions": "The following
     deployments are reported as bad customer deployments in Production. Debug Instructions:
     https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment", "name":
-    "Customer-Production-Deployment-SLA", "sql": "SELECT * FROM\n            (\n              SELECT\n                ControlEstate,\n                Namespace,\n                Name,\n                JSON_EXTRACT(Payload,
+    "SqlSlaDepl", "sql": "SELECT * FROM\n            (\n              SELECT\n                ControlEstate,\n                Namespace,\n                Name,\n                JSON_EXTRACT(Payload,
     ''$.metadata.annotations.\"smb.sam.data.sfdc.net/emailTo\"'') AS email,\n                CASE
     WHEN JSON_EXTRACT(Payload, ''$.metadata.labels.sam_app'') is NULL then False\n                     ELSE
     True END AS IsSamApp,\n                JSON_EXTRACT(Payload, ''$.spec.replicas'')
@@ -28,7 +28,7 @@ data:
     "alertThreshold": "10m", "instructions": "The following minion pools have multiple
     nodes down in Production requiring immediate attention according to our SLA. Debug
     Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
-    "name": "Customer-Node-SLA", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
+    "name": "SqlSlaNode", "sql": "SELECT\n              \tminionpool,\n              \tTotalCount,\n              \tNotReadyCount,\n              \tNotReadyPerc\n              FROM\n              (\n              SELECT\n                      minionpool,\n                      TotalCount
     ,\n                      NotReadyCount,\n                      (NotReadyCount/TotalCount)
     as ''NotReadyPerc''\n\n              FROM\n              (\n                  SELECT\n                        COUNT(*)
     as TotalCount,\n                        SUM(CASE WHEN READY = ''True'' THEN 0
@@ -38,8 +38,7 @@ data:
     < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)", "watchdogFrequency":
     "10m"}, {"alertAction": "email", "alertFrequency": "24h", "alertProfile": "sam",
     "alertThreshold": "10m", "instructions": "The following SAM control stack components
-    dont have even 1 healhty pod", "name": "Critical-Sam_System-Components", "sql":
-    "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
+    dont have even 1 healhty pod", "name": "SqlSamControl", "sql": "SELECT * FROM\n                  (\n                    SELECT\n                      ControlEstate,\n                      Namespace,\n                      Name,\n                      JSON_EXTRACT(Payload,
     ''$.spec.replicas'') AS desiredReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.availableReplicas'') AS availableReplicas,\n                      JSON_EXTRACT(Payload,
     ''$.status.updatedReplicas'') AS updatedReplicas,\n                      (JSON_EXTRACT(Payload,

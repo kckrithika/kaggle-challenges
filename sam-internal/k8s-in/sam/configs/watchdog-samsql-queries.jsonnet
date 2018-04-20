@@ -1,7 +1,7 @@
 {
   sql_alerts: [
     {
-      name: "Customer-Production-Deployment-SLA",
+      name: "SqlSlaDepl",
       instructions: "The following deployments are reported as bad customer deployments in Production. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Debug-Failed-Deployment",
       alertThreshold: "10m",
       alertFrequency: "24h",
@@ -37,7 +37,7 @@
                desiredReplicas > 1",
     },
     {
-        name: "Customer-Node-SLA",
+        name: "SqlSlaNode",
         instructions: "The following minion pools have multiple nodes down in Production requiring immediate attention according to our SLA. Debug Instructions: https://git.soma.salesforce.com/sam/sam/wiki/Repair-Failed-SAM-Host",
         alertThreshold: "10m",
         alertFrequency: "24h",
@@ -74,7 +74,7 @@
               WHERE (TotalCount < 10 AND NotReadyCount >=2) OR (TotalCount >= 10 AND NotReadyPerc >=0.2)",
         },
     {
-            name: "Critical-Sam_System-Components",
+            name: "SqlSamControl",
             instructions: "The following SAM control stack components dont have even 1 healhty pod",
             alertThreshold: "10m",
             alertFrequency: "24h",
