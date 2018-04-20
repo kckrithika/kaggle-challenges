@@ -114,6 +114,8 @@ system:
         requests: { cpu: "1", memory: "1Gi" }
       args:
       - -endpoint
+      - retail-setup:DATACENTER:7012
+      - -endpoint
       - retail-setup:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 150
