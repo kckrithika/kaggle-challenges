@@ -54,7 +54,7 @@ if samfeatureflags.maddogforsamapps then {
                             "--estate",
                             configs.estate,
 
-                        ] + if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then
+                        ] + if configs.kingdom == "prd" then
                             [
                                 "--retry-max-elapsed-time",
                                 "20s",
