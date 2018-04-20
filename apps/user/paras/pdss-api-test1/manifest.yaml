@@ -4,7 +4,7 @@ system:
   - name: pdss-api-test1 
     count: 2
     volumes:
-    - name: pdss-tls-demo-server-cert
+    - name: certs
       maddogCert:
         type: server
         
@@ -16,17 +16,18 @@ system:
       - containerPort: 53 
       - containerPort: 15372
       livenessProbe:
+        initialDelaySeconds: 120
         httpGet:
           path: /manage/health
           port: 15372
       env:
       - name: PKI_CA_DIR
-        value: /servercert
+        value: /certs
       - name: PKI_MONITORDIR
-        value: /servercert/server
+        value: /certs/server
       volumeMounts:
-      - name: pdss-tls-demo-server-cert
-        mountPath: /servercert   
+      - name: certs
+        mountPath: /certs   
   loadbalancers:
   - lbname: pdssapitest1lb
     function: pdss-api-test1 
