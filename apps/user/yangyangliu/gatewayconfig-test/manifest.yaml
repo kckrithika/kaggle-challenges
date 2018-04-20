@@ -40,7 +40,7 @@ system:
         #exec:
         #  command:
         #  - "/bin/true"
-        scheme: HTTPS
+        #scheme: HTTPS
         httpGet:
           path: /manage/health
           port: 15372
