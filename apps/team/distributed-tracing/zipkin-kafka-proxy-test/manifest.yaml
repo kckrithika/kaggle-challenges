@@ -19,7 +19,7 @@ system:
               type: client
       containers:
       - name: kafka-test
-        image: docker-all/dva/dva-kafka:227
+        image: docker-all/dva/dva-kafka:jenkins-monitoring-dva-kafka-afalko-zipkin-sam-test-2-itest
         command: ["/bin/sleep"]
         args: ["inf"]
         livenessProbe:
