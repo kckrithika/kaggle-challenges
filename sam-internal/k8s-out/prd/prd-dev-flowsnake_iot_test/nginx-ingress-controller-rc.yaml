@@ -71,6 +71,15 @@ spec:
         - mountPath: /data/certs
           name: data-cert
           readOnly: true
+      - args:
+        - -endpoint
+        - flowsnake/api-dev:DATACENTER_ALLENV:443:dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
+        - -path
+        - -.-.prd.-.flowsnake
+        - -spod
+        - NOPE
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+        name: beacon
       terminationGracePeriodSeconds: 60
       volumes:
       - name: flowsnake-tls-secret

@@ -2,6 +2,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local estate = std.extVar("estate");
+local kingdom = std.extVar("kingdom");
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -110,13 +111,13 @@ local estate = std.extVar("estate");
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                         ),
                     },
-                ] + if flowsnakeconfig.is_test then [
+                ] + if flowsnakeconfig.is_minikube then [] else [
                     {
                         name: "beacon",
                         image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-.PRD.-.kevin", "-spod", "NOPE"],
+                        args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NOPE"],
                     },
-                ] else [],
+                ],
                 volumes: (
                     if flowsnakeconfig.is_minikube then
                         [

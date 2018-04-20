@@ -19,10 +19,7 @@ else
     template: {
       metadata: {
         annotations: {
-            "madkub.sam.sfdc.net/allcerts": if flowsnakeconfig.is_test then
-                std.toString({ certreqs: [{ name: "ingresscerts", role: "flowsnake." + flowsnakeconfig.fleet_api_roles[estate], san: [flowsnakeconfig.fleet_vips[estate], flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com"], "cert-type": "server", kingdom: kingdom }] })
-            else
-                std.toString({ certreqs: [{ name: "ingresscerts", role: "flowsnake", san: [flowsnakeconfig.fleet_vips[estate]], "cert-type": "server", kingdom: kingdom }] }),
+            "madkub.sam.sfdc.net/allcerts": std.toString({ certreqs: [{ name: "ingresscerts", role: "flowsnake." + flowsnakeconfig.fleet_api_roles[estate], san: [flowsnakeconfig.fleet_vips[estate], flowsnakeconfig.fleet_api_roles[estate] + ".flowsnake.localhost.mesh.force.com"], "cert-type": "server", kingdom: kingdom }] }),
         },
         labels: {
           name: "cert-secretizer",
