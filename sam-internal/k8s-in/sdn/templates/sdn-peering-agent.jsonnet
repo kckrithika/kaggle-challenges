@@ -33,8 +33,8 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
-                        ]
-                        + (if configs.kingdom == "prd" || configs.kingdom == "frf" then ["--birdlogdir=" + sdnconfigs.logFilePath] else []),
+                            "--birdlogdir=" + sdnconfigs.logFilePath,
+                        ],
                         env: [
                             configs.kube_config_env,
                         ],
