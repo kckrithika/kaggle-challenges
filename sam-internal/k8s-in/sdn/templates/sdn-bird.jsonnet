@@ -32,10 +32,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 name: "socket",
                                 mountPath: "/usr/local/var/run",
                             },
-                            (if configs.kingdom == "prd" || configs.kingdom == "frf" then sdnconfigs.sdn_logs_volume_mount else {
-                                mountPath: "/data/logs/sdn",
-                                name: "sdnlogs",
-                            }),
+                            sdnconfigs.sdn_logs_volume_mount,
                         ]),
                         env: [
                             {
@@ -62,12 +59,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             path: "/etc/kubernetes/sdn",
                         },
                     },
-                    (if configs.kingdom == "prd" || configs.kingdom == "frf" then sdnconfigs.sdn_logs_volume else {
-                        name: "sdnlogs",
-                        hostPath: {
-                          path: "/data/logs/sdn",
-                        },
-                    }),
+                    sdnconfigs.sdn_logs_volume,
                 ]),
             },
             metadata: {
