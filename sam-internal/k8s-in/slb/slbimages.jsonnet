@@ -34,7 +34,7 @@ local slbconfig = import "slbconfig.jsonnet";
 
         ### Release Phase 3 - Canary sites in Prod
         "3": {
-            hypersdn: "v-0000767-36a17fb0",  # 767 requires updates to kneconfigdir
+            hypersdn: "v-0000791-cb49d7b1",
             slbnginx: "v-0000026-409d6394",
             },
 

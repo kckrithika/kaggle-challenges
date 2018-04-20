@@ -73,7 +73,7 @@ if slbconfigs.slbInKingdom then {
                 },
             },
         },
-     } + if slbimages.phase == "1" || slbimages.phase == "2" then {
+    } + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {
         updateStrategy: {
             type: "RollingUpdate",
             rollingUpdate: {

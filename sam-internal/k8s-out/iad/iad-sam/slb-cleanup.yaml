@@ -6,6 +6,7 @@ metadata:
   name: slb-cleanup
   namespace: sam-system
 spec:
+  minReadySeconds: 30
   template:
     metadata:
       labels:
@@ -27,7 +28,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000767-36a17fb0
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000791-cb49d7b1
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -54,3 +55,7 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 1
+    type: RollingUpdate
