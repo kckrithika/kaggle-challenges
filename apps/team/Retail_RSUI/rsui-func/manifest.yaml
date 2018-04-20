@@ -86,6 +86,8 @@ system:
       - containerPort: 7014 # http1 in port non tls
         name: sherpa-in-http1
       - containerPort: 7443 # http2 in port with tls for grpc
+        name: shrp-in-http2t
+      - containerPort: 7012 # http2 in port for grpc
         name: sherpa-in-http2
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
