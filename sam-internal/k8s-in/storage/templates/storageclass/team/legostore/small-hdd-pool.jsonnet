@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local clusterNamespace = (if configs.estate == "prd-sam_storage" then "ceph-prd-sam-storage" else "legostore");
 local appNamespace = "legostore";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" then {
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     "apiVersion": "csp.storage.salesforce.com/v1",
     "kind": "CustomerStoragePool",
     "metadata": {
