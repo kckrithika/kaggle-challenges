@@ -9,12 +9,9 @@ system:
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
   functions:
-  - name: commercejourneys
+  - name: eventbeacon
     count: 1
     volumes:
-    - name: secretvol
-      k4aSecret:
-          secretName: multitenantcreds
     - name: cccjclientcert
       maddogCert:
         type: client
@@ -22,8 +19,8 @@ system:
       hostPath:
         path: /home/sfdc-cj/logs
     containers:
-    - name: commercejourneys
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/commerce-journeys:commerce-journeys-0.0.22
+    - name: eventbeacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-retail/retail-mc-event-beacon:retail-mc-event-beacon-0.0.2
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -44,17 +41,14 @@ system:
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
-      - name: secretvol
-        mountPath: /secrets/
-        readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
   loadbalancers:
-  - lbname: commercejourneys-lb
-    function: commercejourneys
+  - lbname: eventbeacon-lb
+    function: eventbeacon
     nodeExposed: true
     ports:
-      - port: 8081
+      - port: 8088
         targetport: 8080
       - port: 15373
         targetport: 15372
