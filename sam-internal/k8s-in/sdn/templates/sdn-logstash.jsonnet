@@ -75,8 +75,8 @@ if configs.estate == "prd-sam" then {
                                 },
                                 {
                                     name: "CONVERT_INTERVAL",
-                                    # 1 day in seconds
-                                    value: "86400",
+                                    # 0.5 days in seconds
+                                    value: "43200",
                                 },
                         ],
                         volumeMounts: [
