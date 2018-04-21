@@ -63,7 +63,7 @@ spec:
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000094-f5bf30aa
         name: sdn-keytool-agent
         volumeMounts:
-        - mountPath: /etc/logstash/cert
+        - mountPath: /etc/logstash/certs
           name: logstashkeystore
         - mountPath: /etc/pki_service/root/sdn_agent
           name: sdnagent
@@ -78,7 +78,7 @@ spec:
           path: /etc/pki/java
         name: logstashcerts
       - hostPath:
-          path: /etc/logstash/cert
+          path: /etc/logstash/certs
         name: logstashkeystore
       - hostPath:
           path: /etc/pki_service/root/sdn_agent
