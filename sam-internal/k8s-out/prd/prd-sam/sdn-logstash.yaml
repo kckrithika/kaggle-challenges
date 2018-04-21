@@ -27,6 +27,8 @@ spec:
           name: logstashconf
         - mountPath: /etc/pki/java
           name: logstashcerts
+        - mountPath: /etc/logstash/certs
+          name: logstashkeystore
       - command:
         - /sdn/sdn-argus-auth-agent
         - --svcUsername=svc_sdn
