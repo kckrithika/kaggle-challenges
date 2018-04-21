@@ -1,0 +1,36 @@
+# created by scone-gen 0.0.1-SNAPSHOT
+
+# TODO Submit this file in a PR to https://git.soma.salesforce.com/sam/manifests
+# under apps/user/simon-toens/mytest/
+# When ready for production, change "simon-toens" to "Scone"
+apiVersion: v1
+
+system:
+  functions:
+  - name: mytest-service
+    count: 1
+    containers:
+    - name: mytest-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stoens/mytest:1
+      ports:
+      - containerPort: 8080
+        name: scone-http
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+      volumeMounts:
+      - mountPath: /home/scone/logs
+        name: logvolservice
+
+    # The volumes to mount for shipping logs to splunk
+    # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
+    volumes:
+    - name: logvolservice
+      hostPath:
+        path: /home/sfdc-scone-mytest/logs
