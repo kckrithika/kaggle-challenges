@@ -24,6 +24,33 @@ system:
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
+      - name: KAFKA_BOOTSTRAP_SERVERS
+        value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
+      - name: KAFKA_TOPIC
+        value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing
+      volumeMounts:
+      - mountPath: /etc/pki_service/zipkin-collector
+        name: client-certs
+      livenessProbe:
+        exec:
+          # TODO: Check if process is running?
+          command:
+          - /bin/true
+    # Same as above, but different topic
+    - name: zipkin-collector
+      image: docker-dva-rc/dva/zipkin-collector:6
+      ports: 
+      - name: http
+        containerPort: 8080
+      - name: https
+        containerPort: 8443
+      env:
+      - name: ZIPKIN_COLLECTOR_HOST
+        value: zipkin-collector
+      - name: KAFKA_BOOTSTRAP_SERVERS
+        value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
+      - name: KAFKA_TOPIC
+        value: sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing_test
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector
         name: client-certs
