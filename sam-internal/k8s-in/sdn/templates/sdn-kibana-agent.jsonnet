@@ -13,7 +13,7 @@ if configs.estate == "prd-sam" then {
                 containers: [
                     {
                         name: "sdn-kibana-agent",
-                        image: sdnimages.hypersdn,
+                        image: sdnimages.elkagents,
                         command: [
                             "/sdn/sdn-kibana-agent",
                             "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,

@@ -20,7 +20,7 @@ spec:
           value: logstash
         - name: config_reload_automatic
           value: "true"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000089-cb737976
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000094-f5bf30aa
         name: sdn-logstash
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
@@ -36,10 +36,11 @@ spec:
         - --topicsPattern=sfdc.prod.rsyslog__prd.ajna_local__logs.sam
         - --confFile=/etc/logstash/conf.d/logstash.conf
         - --truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks
+        - --keystoreFile=/etc/logstash/certs/keystore.jks
         - --elasticsearchUrl=10.254.219.223:9123
         - --userName=platform
         - --ajnaEndpoint=ajna0-broker1-0-prd.data.sfdc.net:9093
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000777-f15777fe
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000794-3bf7fbf9
         name: sdn-argus-auth-agent
         volumeMounts:
         - mountPath: /etc/logstash/conf.d
@@ -48,6 +49,24 @@ spec:
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
+      - env:
+        - name: RUN
+          value: keytool_agent
+        - name: OUTPUT_FILE
+          value: /etc/logstash/certs/keystore.jks
+        - name: REPO_DIR
+          value: /etc/pki_service/root/sdn_agent
+        - name: CERT_PASSWORD
+          value: password
+        - name: CONVERT_INTERVAL
+          value: "86400"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000094-f5bf30aa
+        name: sdn-keytool-agent
+        volumeMounts:
+        - mountPath: /etc/logstash/cert
+          name: logstashkeystore
+        - mountPath: /etc/pki_service/root/sdn_agent
+          name: sdnagent
       hostNetwork: true
       nodeSelector:
         pool: prd-sam
@@ -58,6 +77,12 @@ spec:
       - hostPath:
           path: /etc/pki/java
         name: logstashcerts
+      - hostPath:
+          path: /etc/logstash/cert
+        name: logstashkeystore
+      - hostPath:
+          path: /etc/pki_service/root/sdn_agent
+        name: sdnagent
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs

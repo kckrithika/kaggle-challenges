@@ -38,6 +38,18 @@ local configs = import "config.jsonnet";
             configs.tnrpArchiveEndpoint
     ),
 
+    sdn_agent_cert_volume: {
+        name: "sdnagent",
+        hostPath: {
+          path: "/etc/pki_service/root/sdn_agent",
+        },
+    },
+
+    sdn_agent_cert_volume_mount: {
+        mountPath: "/etc/pki_service/root/sdn_agent",
+        name: "sdnagent",
+    },
+
     # Volume for logs
     sdn_logs_volume: {
         name: "sdnlogs",
@@ -50,6 +62,20 @@ local configs = import "config.jsonnet";
     sdn_logs_volume_mount: {
         mountPath: "/var/logs/sdn/",
         name: "sdnlogs",
+    },
+
+    # Volume for logstash keystore
+    sdn_logstash_keystore_volume: {
+        name: "logstashkeystore",
+        hostPath: {
+            path: "/etc/logstash/cert",
+        },
+    },
+
+    # Volume mount for logstash keystore
+    sdn_logstash_keystore_volume_mount: {
+        name: "logstashkeystore",
+        mountPath: "/etc/logstash/cert",
     },
 
     # Volume for logstash conf
