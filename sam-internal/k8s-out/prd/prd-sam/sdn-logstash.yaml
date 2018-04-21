@@ -61,7 +61,7 @@ spec:
         - name: CERT_PASSWORD
           value: password
         - name: CONVERT_INTERVAL
-          value: "86400"
+          value: "43200"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000094-f5bf30aa
         name: sdn-keytool-agent
         volumeMounts:
