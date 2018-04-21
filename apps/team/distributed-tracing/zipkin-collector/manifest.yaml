@@ -15,7 +15,7 @@ system:
         type: client
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:5
+      image: docker-dva-rc/dva/zipkin-collector:6
       ports: 
       - name: http
         containerPort: 8080
