@@ -74,7 +74,7 @@ local kingdom = std.extVar("kingdom");
     hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
     bird: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "bird", $.per_phase[$.phase].bird),
     hyperelk: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hyperelk", $.per_phase[$.phase].hyperelk),
-    elkagents: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "elkagents", $.per_phase[$.phase].elkagents),
+    elkagents: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].elkagents),
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
     #
