@@ -16,11 +16,6 @@ system:
     containers:
     - name: zipkin-collector
       image: docker-dva-rc/dva/zipkin-collector:6
-      ports: 
-      - name: http
-        containerPort: 8080
-      - name: https
-        containerPort: 8443
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
@@ -39,11 +34,6 @@ system:
     # Same as above, but different topic
     - name: zipkin-collector-test
       image: docker-dva-rc/dva/zipkin-collector:6
-      ports: 
-      - name: http
-        containerPort: 8080
-      - name: https
-        containerPort: 8443
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
