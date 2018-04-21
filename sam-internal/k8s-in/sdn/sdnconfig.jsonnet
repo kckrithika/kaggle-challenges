@@ -68,14 +68,14 @@ local configs = import "config.jsonnet";
     sdn_logstash_keystore_volume: {
         name: "logstashkeystore",
         hostPath: {
-            path: "/etc/logstash/cert",
+            path: "/etc/logstash/certs",
         },
     },
 
     # Volume mount for logstash keystore
     sdn_logstash_keystore_volume_mount: {
         name: "logstashkeystore",
-        mountPath: "/etc/logstash/cert",
+        mountPath: "/etc/logstash/certs",
     },
 
     # Volume for logstash conf
