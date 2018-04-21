@@ -27,6 +27,7 @@ if configs.estate == "prd-sam" then {
                         volumeMounts: [
                             sdnconfigs.sdn_logstash_conf_volume_mount,
                             sdnconfigs.sdn_logstash_certs_volume_mount,
+                            sdnconfigs.sdn_logstash_keystore_volume_mount,
                         ],
                     },
                     {
