@@ -2,4 +2,3 @@ apps:
  grill_ceph:
   - prd/prd-sam_storage
   - prd/prd-sam
-  - phx/phx-sam_ceph
