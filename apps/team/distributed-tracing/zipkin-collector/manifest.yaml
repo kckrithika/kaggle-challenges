@@ -37,7 +37,7 @@ system:
           command:
           - /bin/true
     # Same as above, but different topic
-    - name: zipkin-collector
+    - name: zipkin-collector-test
       image: docker-dva-rc/dva/zipkin-collector:6
       ports: 
       - name: http
