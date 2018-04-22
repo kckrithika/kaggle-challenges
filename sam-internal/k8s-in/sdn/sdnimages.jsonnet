@@ -37,8 +37,8 @@ local kingdom = std.extVar("kingdom");
         "3": {
             hypersdn: "v-0000777-f15777fe",
             bird: "v-0000014-b0a5951d",
-            hyperelk: "v-0000094-f5bf30aa",
-            elkagents: "v-0000797-c134c306",
+            hyperelk: "v-0000095-0269895d",
+            elkagents: "v-0000802-3d9b258c",
             },
 
         ### Release Phase 4 - Canary sites in Prod
