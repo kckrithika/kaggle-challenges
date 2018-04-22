@@ -3,6 +3,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
 local slbconfig = import "slbconfig.jsonnet";
+local slbreleases = import "slbreleases.jsonnet";
 
 {
     ### Global overrides - Anything here will override anything below
@@ -17,33 +18,7 @@ local slbconfig = import "slbconfig.jsonnet";
 
     },
 
-    ### Per-phase image tags
-    per_phase: {
-
-        ### Release Phase 1 - prd-sdc
-        "1": {
-            hypersdn: "v-0000792-567f1c20",  # 792 requires removal of the configDir parameter from slb-ipvs-processor
-            slbnginx: "v-0000028-7cbabf4f",
-            },
-
-        ### Release Phase 2 - Rest of the SAM clusters in PRD
-        "2": {
-            hypersdn: "v-0000791-cb49d7b1",
-            slbnginx: "v-0000028-7cbabf4f",
-            },
-
-        ### Release Phase 3 - Canary sites in Prod
-        "3": {
-            hypersdn: "v-0000791-cb49d7b1",
-            slbnginx: "v-0000026-409d6394",
-            },
-
-        ### Release Phase 4 - All Prod
-        "4": {
-            hypersdn: "v-0000767-36a17fb0",  # 767 requires updates to kneconfigdir
-            slbnginx: "v-0000026-409d6394",
-            },
-    },
+    ### Per-phase image tags have been moved to slbreleases.jsonnet
 
     ### Phase kingdom/estate mapping
     phase: (
@@ -60,8 +35,8 @@ local slbconfig = import "slbconfig.jsonnet";
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
     # These are the images used by the templates
-    hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", $.per_phase[$.phase].hypersdn),
-    slbnginx: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "slb-nginx", $.per_phase[$.phase].slbnginx),
+    hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
+    slbnginx: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "slb-nginx", slbreleases[$.phase].slbnginx.label),
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
