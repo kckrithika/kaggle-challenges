@@ -16,4 +16,18 @@ system:
             exec:
               command:
                 - "/usr/bin/ok-zk.sh"
+  loadbalancers:
+  - lbname: content-zookeeper-lb
+    function: content-zookeeper
+    slbenabled: true
+    ports:
+      - port: 2181
+        targetPort: 2181
+        lbtype: tcp
+      - port: 2888
+        targetPort: 2888
+        lbtype: tcp
+      - port: 3888
+        targetPort: 3888
+        lbtype: tcp
 
