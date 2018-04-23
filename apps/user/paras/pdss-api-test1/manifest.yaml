@@ -9,7 +9,7 @@ system:
         type: server       
     containers:
     - name: pdss-api-test1 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180420-5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180423
       ports:
       - containerPort: 8080
       - containerPort: 53 
@@ -20,6 +20,8 @@ system:
           path: /manage/health 
           port: 15372
       env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
       - name: PKI_CA_DIR
         value: /certs
       - name: PKI_MONITORDIR
