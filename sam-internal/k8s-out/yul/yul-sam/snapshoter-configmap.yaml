@@ -4,6 +4,7 @@ data:
     {
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+      "ignored-resources": [],
       "kafka-endpoint": "ajna0-broker1-0-yul.data.sfdc.net:9093",
       "kafka-payload-kb": 300,
       "kafka-push-interval": "10s",
