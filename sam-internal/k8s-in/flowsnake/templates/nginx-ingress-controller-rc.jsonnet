@@ -114,7 +114,7 @@ local kingdom = std.extVar("kingdom");
                 ] + if flowsnakeconfig.is_minikube then [] else [
                     {
                         name: "beacon",
-                        image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0",
+                        image: flowsnakeconfig.registry + "/docker-sam/servicemesh/beacon:1.0.0",
                         args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NOPE"],
                     },
                 ],
