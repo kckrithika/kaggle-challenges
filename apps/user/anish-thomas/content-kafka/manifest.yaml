@@ -16,17 +16,16 @@ system:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            - name: KAFKA_ADVERTISED_LISTENERS
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
             - name: KAFKA_ZOOKEEPER_CONNECT
               value: 10.251.161.103:2181
             - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
               value: "false"
             - name: KAFKA_CREATE_TOPICS
               value: "jpg-png-topic:5:1:compact,jpg-png-topic1:5:1:compact"
-          command: ["/bin/sh", "-c"]
-          args: ["
-          export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://$(KAFKA_ADVERTISED_HOST_NAME):9092;
-          start-kafka.sh
-          "]
           livenessProbe:
             initialDelaySeconds: 5
             exec:
