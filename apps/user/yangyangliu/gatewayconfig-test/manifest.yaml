@@ -17,7 +17,7 @@ system:
         - gatewayconfiglb
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-04-23a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-04-23c
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
@@ -30,7 +30,6 @@ system:
         mountPath: /gwcertserver
       args:
         - start
-        - --superpod.name=-
       ports:
       - containerPort: 7122
       - containerPort: 15372
