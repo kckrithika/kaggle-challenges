@@ -22,7 +22,7 @@ system:
       - name: COMPILER_STORM_JAR_JVM_OPTS
         value: -XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g
       - name: COMPILER_TAG
-        value: d9ea4de
+        value: 3f32041
       - name: CONTROLPLANE_ENDPOINT
         value: shared0-samminioniottest1-1-prd.eng.sfdc.net:9115
       - name: ENRICHMENTSVC_HOST
@@ -56,7 +56,7 @@ system:
       - name: INTAKE_REPLICAS
         value: '1'
       - name: INTAKE_TAG
-        value: 932c8d8
+        value: 5a0ec42
       - name: JAVA_OPTS
         value: -server -XX:MaxMetaspaceSize=128m -Xmx512m -Xms512m -XX:ParallelGCThreads=5
           -XX:ConcGCThreads=5
@@ -70,6 +70,10 @@ system:
         value: ALL
       - name: OUTPUTS_POST_URL
         value: ''
+      - name: SERVICE_DATACENTER
+        value: PRD
+      - name: SERVICE_SUPERPOD
+        value: SP2
       - name: SFDC_ENVIRONMENT
         value: staging
       - name: SUBMITTER_CORES
@@ -92,7 +96,7 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:d1ec7ae
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-provisioning:7ab88e6
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -157,6 +161,19 @@ system:
         name: server-certs
       - mountPath: /client-certs
         name: client-certs
+    - args:
+      - -endpoint
+      - iot/provisioning:DATACENTER:7443
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: staging
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      livenessProbe:
+        exec:
+          command:
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
+      name: beacon
     count: 1
     identity:
       serviceName: provisioning
