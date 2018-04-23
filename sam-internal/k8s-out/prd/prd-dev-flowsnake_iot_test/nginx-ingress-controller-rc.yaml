@@ -78,7 +78,7 @@ spec:
         - -.-.prd.-.flowsnake
         - -spod
         - NONE
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/servicemesh/beacon:1.0.0
         name: beacon
       terminationGracePeriodSeconds: 60
       volumes:
