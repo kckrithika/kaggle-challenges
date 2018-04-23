@@ -42,7 +42,7 @@ system:
     volumeClaimTemplates:
     - name: elasticsearch-persistent-storage
       storageClassName: zipkin-es-persistent-storage-hdd-pool
-      storageSizeRequest: 10Gi
+      storageSizeRequest: 20Gi
     lbname: elasticsearch-stateful-lb  
 
   - name: zipkin-es-spark
