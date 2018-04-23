@@ -48,6 +48,7 @@ data:
       "maddogServerCAPath": "/etc/pki_service/ca/security-ca.pem",
       "maxUptimeSampleSize": 5,
       "monitoredProcesses": {
+        "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
         "dockerd.*docker-bootstrap": "age.dockerbootstrap",
         "dockerd.*docker.sock": "age.dockermain",
         "hyperkube.*apiserver": "age.kubeapiserver",

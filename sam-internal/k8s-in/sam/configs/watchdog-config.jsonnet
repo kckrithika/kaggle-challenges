@@ -75,6 +75,7 @@ std.prune({
     "hyperkube.*scheduler": "age.kubescheduler",
     "dockerd.*docker-bootstrap": "age.dockerbootstrap",
     "dockerd.*docker.sock": "age.dockermain",
+    "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
     "name=etcd": "age.etcd",
   },
   publishAlertsToKafka: (if configs.kingdom == "prd" then true else false),
