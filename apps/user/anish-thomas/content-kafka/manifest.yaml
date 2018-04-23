@@ -33,4 +33,11 @@ system:
               command:
               - echo
               - always_healthy
-
+  loadbalancers:
+  - lbname: content-kafka-lb
+    function: content-kafka
+    slbenabled: true
+    ports:
+      - port: 9092
+        targetPort: 9092
+        lbtype: tcp
