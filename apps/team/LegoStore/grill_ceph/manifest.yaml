@@ -6,7 +6,7 @@ system:
     type: stateful-set
     count: 2
     containers:
-      - name: stateful-small
+      - name: stateful-ceph-io
         image: tnrp/legostore/grill_ceph:v1-0000007-252062b3 
         command:
           - /bin/grill_ceph
