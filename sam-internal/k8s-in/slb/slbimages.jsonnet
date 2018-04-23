@@ -3,7 +3,7 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local utils = import "util_functions.jsonnet";
 local slbconfig = import "slbconfig.jsonnet";
-local slbreleases = import "slbreleases.jsonnet";
+local slbreleases = import "slbreleases.json";
 
 {
     ### Global overrides - Anything here will override anything below
