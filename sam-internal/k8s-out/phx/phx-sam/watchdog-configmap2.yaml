@@ -48,6 +48,7 @@ data:
       "maxUptimeSampleSize": 5,
       "maxdeploymentduration": 420000000000,
       "monitoredProcesses": {
+        "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
         "dockerd.*docker-bootstrap": "age.dockerbootstrap",
         "dockerd.*docker.sock": "age.dockermain",
         "hyperkube.*apiserver": "age.kubeapiserver",
