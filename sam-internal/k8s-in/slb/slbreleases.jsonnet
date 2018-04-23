@@ -1,7 +1,8 @@
 {
   "1": {
     hypersdn: {
-      label: "v-0000792-567f1c20",
+      label: "v-0000807-f8859ec4",
+      warning: "807 requires removal of the configDir parameter from slb-ipvs-processor",
       promotedTime: "2018-04-19T18:39:58Z",
     },
     slbnginx: {
