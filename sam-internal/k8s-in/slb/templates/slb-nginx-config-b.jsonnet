@@ -351,7 +351,6 @@ if slbconfigs.slbInKingdom then {
                 },
             },
         },
-    } + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {
         strategy: {
             type: "RollingUpdate",
             rollingUpdate: {
@@ -360,7 +359,5 @@ if slbconfigs.slbInKingdom then {
             },
         },
         minReadySeconds: 60,
-    } else if slbimages.phase == "2" then {
-        minReadySeconds: 30,
-    } else {},
+    },
 } else "SKIP"
