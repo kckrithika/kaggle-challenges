@@ -42,7 +42,7 @@ spec:
         - --elasticsearchUrl=10.254.219.223:9123
         - --userName=platform
         - --ajnaEndpoint=ajna0-brokeragg1-0-prd.data.sfdc.net:9093
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000802-3d9b258c
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000804-5db1dc0f
         name: sdn-argus-auth-agent
         volumeMounts:
         - mountPath: /etc/logstash/conf.d

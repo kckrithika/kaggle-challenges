@@ -23,7 +23,7 @@ local kingdom = std.extVar("kingdom");
 
         ### Release Phase 1 - prd-sdc
         "1": {
-            hypersdn: "v-0000797-c134c306",
+            hypersdn: "v-0000804-5db1dc0f",
             bird: "v-0000016-a0f26f27",
             },
 
@@ -38,7 +38,7 @@ local kingdom = std.extVar("kingdom");
             hypersdn: "v-0000777-f15777fe",
             bird: "v-0000014-b0a5951d",
             hyperelk: "v-0000095-0269895d",
-            elkagents: "v-0000802-3d9b258c",
+            elkagents: "v-0000804-5db1dc0f",
             },
 
         ### Release Phase 4 - Canary sites in Prod
