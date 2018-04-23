@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector:20180417105500
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector:20180423143733
       ports:
       - name: provider
         containerPort: 8080
@@ -68,6 +68,10 @@ system:
         value: /var/lib/report-collector/certificates/rc_server.key
       - name: ReportCollector_ajna_publishEnabled
         value: true
+      - name: ReportCollector_ajna_retry_maxTries
+        value: 7
+      - name: ReportCollector_ajna_retry_delayMs
+        value: 100
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
         value: 10
       - name: ReportCollector_app_verticleCounts_ConsumerEndpointVerticle
