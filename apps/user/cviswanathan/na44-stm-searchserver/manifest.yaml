@@ -2,7 +2,7 @@ apiVersion: v1
 
 system: 
   functions: 
-    - name: na44-smt-searchserver
+    - name: na44-stm-searchserver
       type: stateful-set
       count: 2
       containers:  
@@ -83,7 +83,7 @@ system:
 
   loadbalancers:
     - lbname: searchserverlb
-      function: na44-smt-searchserver
+      function: na44-stm-searchserver
       slbenabled: true
       ports:
         - port: 7014
