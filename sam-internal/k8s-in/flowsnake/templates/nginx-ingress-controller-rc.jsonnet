@@ -115,7 +115,7 @@ local kingdom = std.extVar("kingdom");
                     {
                         name: "beacon",
                         image: flowsnakeconfig.registry + "/docker-sam/servicemesh/beacon:1.0.0",
-                        args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NOPE"],
+                        args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NONE"],
                     },
                 ],
                 volumes: (
