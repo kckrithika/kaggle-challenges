@@ -31,9 +31,8 @@
   },
   "4": {
     hypersdn: {
-      label: "v-0000767-36a17fb0",
-      warning: "767 requires updates to kneconfigdir",
-      promotedTime: "2018-04-13T21:43:57Z",
+      label: "v-0000791-cb49d7b1",
+      promotedTime: "2018-04-20T17:35:32Z",
     },
     slbnginx: {
       label: "v-0000026-409d6394",
