@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if configs.estate != "prd-samtest" then {
+{
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -75,4 +75,4 @@ if configs.estate != "prd-samtest" then {
             },
         },
     },
-} else "SKIP"
+}
