@@ -46,3 +46,10 @@ std.prune({
   # SDP
   createCRD: (if configs.kingdom == "prd" then true),
 })
+
+# Controller V1 ignore namespace list
++ (if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" || configs.estate == "prd-sam" then {
+      BlackListNamespaceRegexp: [
+                 "e2e-.*-csc-sam$",
+             ],
+  } else {})
