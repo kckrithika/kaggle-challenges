@@ -12,7 +12,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: SCONE_SHIPPING_DEST
-        value: shipping-envoy-mtls.user-shaktiprakash-das.samapp.localhost.mesh.force.com:7011
+        value: shipping-envoy-mtls.user-shaktiprakash-das.samapp.localhost.mesh.force.com:5443
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
@@ -24,17 +24,9 @@ system:
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
-        # Linerd
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
-        # Envoy
-        # httpGet:
-        #   path: /manage/health
-        #   port: 15372
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
+        httpGet:
+          path: /manage/health
+          port: 15372
 
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
@@ -53,16 +45,30 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
+      # Linkerd Probes
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 20
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 15
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      # Envoy Probes
+      # livenessProbe:
+      #   httpGet:
+      #     path: /listeners
+      #     port: 15373
+      #   initialDelaySeconds: 20
+      # readinessProbe:
+      #   httpGet:
+      #     path: /listeners
+      #     port: 15373
+      #   initialDelaySeconds: 15
       volumeMounts:
         - name: logvol
           mountPath: /log
