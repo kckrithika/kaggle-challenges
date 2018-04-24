@@ -26,8 +26,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: envoy-canary-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/66
-      image: sfci/servicelibs/sherpa-envoy:61a72cea006a8e75f749293963d82aeb940ff5f6
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/34
+      image: sfci/servicelibs/sherpa-envoy:e8e7bef6bb2a0e43d246c7c157c41358cd4dc9a5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
