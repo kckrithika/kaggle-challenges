@@ -1,3 +1,5 @@
 apps:
   helloworld-dockersam:
   - prd/prd-sam
+  rabbitmq-server:
+  - prd/prd-sam
