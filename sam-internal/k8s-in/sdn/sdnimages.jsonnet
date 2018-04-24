@@ -25,7 +25,7 @@ local kingdom = std.extVar("kingdom");
         "1": {
             hypersdn: "v-0000814-c1ca2fa3",
             bird: "v-0000016-a0f26f27",
-            hyperelk: "v-0000098-c4602cb6",
+            hyperelk: "v-0000099-4cecb993",
             },
 
         ### Release Phase 2 - PRD-SAMTEST/PRD-SAMDEV/PRD-DATA-FLOWSNAKE-TEST
