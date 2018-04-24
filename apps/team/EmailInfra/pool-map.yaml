@@ -1,5 +1,8 @@
 apps:
+  eaas-nontls:
+    - prd/prd-sam
   eaas:
     - prd/prd-sam
   grpc-client:
     - prd/prd-sam
+
