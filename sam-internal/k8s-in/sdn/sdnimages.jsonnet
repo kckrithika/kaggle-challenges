@@ -39,7 +39,7 @@ local kingdom = std.extVar("kingdom");
         "3": {
             hypersdn: "v-0000777-f15777fe",
             bird: "v-0000014-b0a5951d",
-            hyperelk: "v-0000095-0269895d",
+            hyperelk: "v-0000102-91c9122c",
             elkagents: "v-0000804-5db1dc0f",
             },
 
