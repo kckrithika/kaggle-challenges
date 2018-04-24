@@ -33,13 +33,12 @@ system:
       - --clusters.external-clusters[11]=h1-test-server-envoy-tls.service-mesh:HTTP1_TLS
       - --clusters.external-clusters[12]=shipping-envoy-tls.service-mesh:HTTP2_TLS
       - --clusters.external-clusters[13]=tictactoe-server-service-envoy-ns.mesh-games:HTTP2
-      - --clusters.external-clusters[14]=h1-test-server-envoy-nons-plain:HTTP1      
+      - --clusters.external-clusters[14]=h1-test-server-envoy-nons-plain:HTTP1
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
       ports:
-      - containerPort: 15001
       - containerPort: 15370
       resources:
         limits: { cpu: "8", memory: "6Gi" }
@@ -57,10 +56,51 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
 
+    - name: sherpa
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/34
+      image: sfci/servicelibs/sherpa-envoy:e8e7bef6bb2a0e43d246c7c157c41358cd4dc9a5
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      args:
+      - --template
+      - ./switchboard-sidecar.config.yaml.template
+      - --admin-port
+      - 15374
+      ports:
+      - containerPort: 15001
+      - containerPort: 15374
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      livenessProbe:
+        httpGet:
+          path: /listeners
+          port: 15374
+        initialDelaySeconds: 20
+        periodSeconds: 5
+      readinessProbe:
+        httpGet:
+          path: /listeners
+          port: 15374
+        initialDelaySeconds: 15
+        periodSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+
     volumes:
         - name: switchboard-log-volume
           hostPath:
             path: /home/sfdc-switchboard/logs
+        - name: tls-client-cert
+          maddogCert:
+            type: client
+        - name: tls-server-cert
+          maddogCert:
+            type: server
 
   loadbalancers:
   - lbname: switchboard-lb
@@ -72,4 +112,7 @@ system:
       lbtype: dsr
     - port: 15370
       targetport: 15370
+      lbtype: dsr
+    - port: 15374
+      targetport: 15374
       lbtype: dsr
