@@ -13,6 +13,8 @@ system:
         httpGet:
           path: /manage/health
           port: 15303
+    
+    # Broker service
     - name: broker-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:firstversion
       ports:
