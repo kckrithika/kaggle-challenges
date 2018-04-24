@@ -52,9 +52,9 @@ system:
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
       # sfci/servicelibs/sherpa-envoy:55f2e2813142f677427d4d334fc272317ae0a3c6
 
-      # Linkerd: sfci/servicelibs/sherpa:2.0.27
+      # Linkerd: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-linkerd:xfcc-dev
       # Envoy: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-envoy:xfcc-dev
-      image: sfci/servicelibs/sherpa:2.0.27
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-linkerd:xfcc-dev
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
