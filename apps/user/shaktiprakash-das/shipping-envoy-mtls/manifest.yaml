@@ -40,14 +40,10 @@ system:
       - -logging.dir
       - /log
       livenessProbe:
-        # Linerd
+        initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
-        # Envoy
-        # httpGet:
-        #   path: /manage/health
-        #   port: 15372
+          - "/home/scone/is-alive.sh"
       volumeMounts:
       - mountPath: /log
         name: logvol
@@ -73,16 +69,30 @@ system:
         name: h2-tls-in
       - containerPort: 7012
         name: grpc-in
+      # Linkerd Probes
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 20
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 15
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+      # Envoy Probes
+      # livenessProbe:
+      #   httpGet:
+      #     path: /listeners
+      #     port: 15373
+      #   initialDelaySeconds: 20
+      # readinessProbe:
+      #   httpGet:
+      #     path: /listeners
+      #     port: 15373
+      #   initialDelaySeconds: 15
       volumeMounts:
         - name: logvol
           mountPath: /log
