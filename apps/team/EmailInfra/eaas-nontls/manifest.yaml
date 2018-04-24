@@ -5,18 +5,18 @@ system:
     email:
       - emailinfrastructure@salesforce.com
   functions:
-  - name: eaas
+  - name: eaas-nontls
     count: 3 
     strategy:
       type: RollingUpdate
     containers:
-    - name: eaas
+    - name: eaas-nontls
       image:  tnrp/emailinfrastructure/eaas:latest-0000039-ff1963a9
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       - name: GRPC_ANNOUNCED_PORT
-        value: 7443
+        value: 7012
       - name: SCONE_SERVICE_NAME
         value: eaas
       ports:
@@ -40,21 +40,21 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
 
-    - name: beacon-eaas
+    - name: beacon-eaas-nontls
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       args:
       - -endpoint
-      - emailinfra/eaas:DATACENTER_ALLENV:7443
+      - emailinfra/eaas:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: sherpa-eaas
+    - name: sherpa-eaas-nontls
       image: sfci/servicelibs/sherpa:2.0.25
       args: ["--zipkin-rate", "0.01"]
       env:
@@ -64,8 +64,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7443
-        name: sherpa-eaas-tls
+      - containerPort: 7012
+        name: sherpa-eaas-in
       - containerPort: 15373
         name: sherpa-eaas-adm
       livenessProbe:
@@ -81,8 +81,6 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
-      - name: eaas-server-cert
-        mountPath: /server-certs
       - name: sherpa-log-volume
         mountPath: /log
 
@@ -90,9 +88,6 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
-    - name: eaas-server-cert
-      maddogCert:
-        type: server
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
