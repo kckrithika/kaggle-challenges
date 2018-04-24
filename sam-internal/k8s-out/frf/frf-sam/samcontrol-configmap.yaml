@@ -5,6 +5,7 @@ data:
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "checkImageExistsFlag": false,
+      "createTPR": false,
       "debug": true,
       "deletionEnabled": false,
       "deletionPercentageThreshold": 20,
