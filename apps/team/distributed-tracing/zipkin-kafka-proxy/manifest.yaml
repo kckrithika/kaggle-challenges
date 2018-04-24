@@ -3,7 +3,7 @@ apiVersion: v1
 system:
     notifications:
         email:
-        - afalko@salesforce.com
+        - distributedtracing@salesforce.com
 
     functions:
     - name: zipkin-kafka-proxy
@@ -13,9 +13,23 @@ system:
           rollingUpdate:
               maxSurge: 0
               maxUnavailable: 1
+      volumes:
+      - name: client-certs
+        maddogCert:
+          type: client        
       containers:
       - name: zipkin-kafka-proxy
-        image: docker-all/dva/zipkin-kafka-proxy:1
+        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-4-itest
+        env:
+        - name: ZIPKIN_KAFKA_PROXY_HOST
+          value: zipkin-kafka-proxy
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: KAFKA_TOPIC
+          value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing
+        volumeMounts:
+        - mountPath: /etc/pki_service/zipkin-collector
+          name: client-certs
         livenessProbe:
             exec:
                 # TODO: Check if process is running?
