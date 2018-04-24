@@ -1,0 +1,76 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    name: sdn-logstash-push
+  name: sdn-logstash-push
+  namespace: sam-system
+spec:
+  template:
+    metadata:
+      labels:
+        apptype: monitoring
+        name: sdn-logstash-push
+      namespace: sam-system
+    spec:
+      containers:
+      - env:
+        - name: RUN
+          value: logstash_push
+        - name: config_reload_automatic
+          value: "true"
+        - name: DATA_CENTER
+          value: prd
+        - name: AJNA_ENDPOINT
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: TRUSTSTORE_LOCATION
+          value: /etc/pki/java/cacerts_sfdc_internal.jks
+        - name: KEYSTORE_LOCATION
+          value: /etc/logstash/certs/keystore.jks
+        - name: KEYSTORE_PASSWORD
+          value: password
+        - name: TOPIC
+          value: sfdc.prod.sdn__prd.ajna_local__log
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
+        name: sdn-logstash-push
+        volumeMounts:
+        - mountPath: /etc/pki/java
+          name: logstashcerts
+        - mountPath: /etc/logstash/certs
+          name: logstashkeystore
+        - mountPath: /var/log
+          name: sdnlogs
+      - env:
+        - name: RUN
+          value: keytool_agent
+        - name: OUTPUT_FILE
+          value: /etc/logstash/certs/keystore.jks
+        - name: REPO_DIR
+          value: /etc/pki_service/root/sdn_agent
+        - name: CERT_PASSWORD
+          value: password
+        - name: CONVERT_INTERVAL
+          value: "43200"
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
+        name: sdn-keytool-agent
+        volumeMounts:
+        - mountPath: /etc/logstash/certs
+          name: logstashkeystore
+        - mountPath: /etc/pki_service/root/sdn_agent
+          name: sdnagent
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-data-flowsnake_test
+      volumes:
+      - hostPath:
+          path: /etc/pki/java
+        name: logstashcerts
+      - hostPath:
+          path: /etc/logstash/certs
+        name: logstashkeystore
+      - hostPath:
+          path: /etc/pki_service/root/sdn_agent
+        name: sdnagent
+      - hostPath:
+          path: /var/logs/sdn/
+        name: sdnlogs
