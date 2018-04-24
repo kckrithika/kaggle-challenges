@@ -19,7 +19,7 @@ system:
           type: client        
       containers:
       - name: zipkin-kafka-proxy
-        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-5-itest
+        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-6-itest
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy
@@ -28,7 +28,7 @@ system:
         - name: KAFKA_TOPIC
           value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing
         volumeMounts:
-        - mountPath: /etc/pki_service/zipkin-collector
+        - mountPath: /etc/pki_service/zipkin-kafka-proxy
           name: client-certs
         livenessProbe:
             exec:
