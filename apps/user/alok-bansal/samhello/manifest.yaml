@@ -15,6 +15,9 @@ system:
   loadbalancers:
   - lbname: samhellolb
     function: default
+    slbEnabled: true
     ports:
       - port: 9090
         targetport: 9090
+        lbtype: http
+        tls: false
