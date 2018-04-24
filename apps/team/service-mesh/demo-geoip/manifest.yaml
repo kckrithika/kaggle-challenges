@@ -16,8 +16,8 @@ system:
         initialDelaySeconds: 20
 
     - name: demo-geoip-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/16/console
-      image: sfci/servicelibs/sherpa-envoy:76dd027d9d7e9d27a60b11793113957c68812657
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/34
+      image: sfci/servicelibs/sherpa-envoy:e8e7bef6bb2a0e43d246c7c157c41358cd4dc9a5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -31,3 +31,11 @@ system:
           path: /listeners
           port: 15373
         initialDelaySeconds: 15
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+
+    volumes:
+      - name: tls-client-cert
+        maddogCert:
+          type: client

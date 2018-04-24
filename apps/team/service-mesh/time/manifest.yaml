@@ -28,8 +28,8 @@ system:
           command:
             - "/home/scone/is-alive.sh"
     - name: time-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/19
-      image: sfci/servicelibs/sherpa-envoy:f6c2f267a003f433f5cffc9097c205c982dcf328
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/34
+      image: sfci/servicelibs/sherpa-envoy:e8e7bef6bb2a0e43d246c7c157c41358cd4dc9a5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -43,3 +43,9 @@ system:
           path: /listeners
           port: 15373
         initialDelaySeconds: 15
+
+
+    volumes:
+      - name: tls-client-cert
+        maddogCert:
+          type: client
