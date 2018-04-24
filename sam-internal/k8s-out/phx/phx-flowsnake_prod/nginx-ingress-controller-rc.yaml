@@ -68,6 +68,15 @@ spec:
         - mountPath: /etc/pki_service/kubernetes/k8s-client/keys
           name: k8s-client-key
           readOnly: true
+      - args:
+        - -endpoint
+        - flowsnake/api:DATACENTER_ALLENV:443:flowsnake-phx.data.sfdc.net
+        - -path
+        - -.-.phx.-.flowsnake
+        - -spod
+        - NONE
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+        name: beacon
       terminationGracePeriodSeconds: 60
       volumes:
       - name: flowsnake-tls-secret

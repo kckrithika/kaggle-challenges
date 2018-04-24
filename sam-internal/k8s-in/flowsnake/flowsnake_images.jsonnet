@@ -242,6 +242,7 @@ local utils = import "util_functions.jsonnet";
     local imageFunc = (import "image_functions.libsonnet") + { templateFilename:: $.templateFilename },
 
     # List of images that the Flowsnake control plane deploys dynamically
+    # Images are promoted if they are explicitly referenced in a manifest. To effect promotion of images we only refer to in dynamically created in Kubernetes resources, we list them here for inclusion in a bogus manifest. Note: only images from the three magic prefixes /dva, /sfci, and /tnrp are eligible for promotion.
     flowsnakeImagesToPromote: [
         "flowsnake-spark-driver",
         "flowsnake-spark-master",
