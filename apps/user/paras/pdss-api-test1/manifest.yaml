@@ -6,7 +6,9 @@ system:
     volumes:
     - name: certs
       maddogCert:
-        type: server       
+        type: server 
+        lbnames:
+        - pdssapitest1lb      
     containers:
     - name: pdss-api-test1 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180420-5
