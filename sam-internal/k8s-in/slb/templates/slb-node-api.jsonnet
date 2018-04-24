@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local sidecars = import "slb-sidecars.jsonnet";
+local slbshared = import "slb-sharedservices.jsonnet";
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -31,7 +31,7 @@ if slbconfigs.slbInKingdom then {
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
-                    sidecars.slbNodeApi,
+                    slbshared.slbNodeApi,
                 ],
                 affinity: {
                     nodeAffinity: {

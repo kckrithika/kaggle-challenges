@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
-local sidecars = import "slb-sidecars.jsonnet";
+local slbshared = import "slb-sharedservices.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -74,8 +74,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.sfdchosts_volume,
                 ]),
                 containers: [
-                    sidecars.slbConfigProcessor,
-                    sidecars.slbCleanupConfig,
+                    slbshared.slbConfigProcessor,
+                    slbshared.slbCleanupConfig,
                 ],
             },
         },
