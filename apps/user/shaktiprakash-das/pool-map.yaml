@@ -8,9 +8,9 @@ apps:
 # ordering-tls:
 #   - prd/prd-sam
 
- # switchboard-envoy-mtls:
- #   - prd/prd-sam
- # shipping-envoy-mtls:
- #   - prd/prd-sam
- # ordering-envoy-mtls:
- #   - prd/prd-sam
+ switchboard-envoy-mtls:
+   - prd/prd-sam
+ shipping-envoy-mtls:
+   - prd/prd-sam
+ ordering-envoy-mtls:
+   - prd/prd-sam
