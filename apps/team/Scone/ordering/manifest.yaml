@@ -51,12 +51,7 @@ system:
 
     - name: sherpa-ordering
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2025---2018-03-27
-      # image: sfci/servicelibs/sherpa:2.0.25
-
-      # Usage of this image is just temporary while we test a change. If you're using this config as an example
-      # for your own app, please use the stable version that's referenced above.
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jbratton/sherpa:linkerd-1.3.8-sfdc-rc1
-      
+      image: sfci/servicelibs/sherpa:2.0.25
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
