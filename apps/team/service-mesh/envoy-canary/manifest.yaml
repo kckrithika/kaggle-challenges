@@ -24,9 +24,10 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+
     - name: envoy-canary-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/26
-      image: sfci/servicelibs/sherpa-envoy:2de5bde66c7196c889603a2c0c1f44f21b65e66e
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/66
+      image: sfci/servicelibs/sherpa-envoy:61a72cea006a8e75f749293963d82aeb940ff5f6
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -45,3 +46,11 @@ system:
           port: 15373
         initialDelaySeconds: 15
         periodSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+
+    volumes:
+      - name: tls-client-cert
+        maddogCert:
+          type: client
