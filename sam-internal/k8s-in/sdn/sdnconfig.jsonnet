@@ -5,7 +5,7 @@ local portconfigs = import "portconfig.jsonnet";
 local configs = import "config.jsonnet";
 {
     sdn_watchdog_emailsender: "sdn-alerts@salesforce.com",
-    sdn_watchdog_emailrec: (if kingdom == "chx" || kingdom == "wax" || estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-samtwo" || estate == "prd-sam_storage" || estate == "prd-data-flowsnake_test" then "sdn@salesforce.com" else "sdn-alerts@salesforce.com"),
+    sdn_watchdog_emailrec: (if kingdom == "chx" || kingdom == "wax" || estate == "prd-sdc" || estate == "prd-samdev" || estate == "prd-samtest" || estate == "prd-samtwo" || estate == "prd-sam_storage" || estate == "prd-data-flowsnake_test" then "sdn@salesforce.com" else "sdn-alerts@salesforce.com"),
     sdn_route_watchdog_emailrec: "sdn@salesforce.com",
 
     # SDN MoM VIP Endpoints

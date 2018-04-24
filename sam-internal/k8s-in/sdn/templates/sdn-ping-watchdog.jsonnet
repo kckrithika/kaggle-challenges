@@ -42,6 +42,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
+                            "--failPercentageThreshold=5",
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
@@ -50,10 +51,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--rootPath=/etc/pki_service",
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
-                            "--failPercentageThreshold=0",
-                            ] else [
-                            "--failPercentageThreshold=5",
-                            ]
+                            ] else []
                         ),
                         env: [
                             configs.kube_config_env,
