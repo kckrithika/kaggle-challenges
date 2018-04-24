@@ -4,6 +4,9 @@ system:
   - name: pdss-api-test1 
     count: 2
     volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: certs
       maddogCert:
         type: server 
@@ -30,7 +33,51 @@ system:
         value: /certs/server
       volumeMounts:
       - name: certs
-        mountPath: /certs   
+        mountPath: /certs
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      args:
+      - -endpoint
+      # 7442 - http1 tls
+      - samapp/user-paras/pdss-api-test1:DATACENTER_ALLENV:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh" 
+
+    - name: sherpa-pdssa
+      image: sfci/servicelibs/sherpa:2.0.25
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      ports:
+      - containerPort: 7442
+        name: h1-tls-in
+      - containerPort: 15373
+        name: sherpa-adm
+      livenessProbe:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-alive"
+      readinessProbe:
+        initialDelaySeconds: 30
+        periodSeconds: 10
+        timeoutSeconds: 10
+        exec:
+          command:
+          - "/home/sfdc-sherpa/bin/is-ready"
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log 
+        - name: certs
+          mountPath: /certs 
   loadbalancers:
   - lbname: pdssapitest1lb
     function: pdss-api-test1 
