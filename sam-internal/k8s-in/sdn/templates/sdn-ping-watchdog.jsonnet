@@ -42,7 +42,6 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             sdnconfigs.logDirArg,
                             sdnconfigs.logToStdErrArg,
                             sdnconfigs.alsoLogToStdErrArg,
-                            "--failPercentageThreshold=5",
                         ]
                         + (
                             if configs.estate == "prd-sdc" then [
@@ -52,6 +51,13 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             "--userName=kubernetes",
                             "--pkiClientServiceName=k8s-client",
                             ] else []
+                        )
+                        + (
+                            if configs.estate == "prd-sam" then [
+                                "--failPercentageThreshold=0",
+                            ] else [
+                                "--failPercentageThreshold=5",
+                            ]
                         ),
                         env: [
                             configs.kube_config_env,

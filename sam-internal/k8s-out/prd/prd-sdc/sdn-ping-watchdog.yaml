@@ -50,12 +50,12 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
-        - --failPercentageThreshold=5
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
+        - --failPercentageThreshold=5
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
