@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = import "slb-sharedservices.jsonnet";
+local slbshared = import "slbsharedservices.jsonnet";
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",

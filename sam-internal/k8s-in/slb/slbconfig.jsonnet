@@ -1,6 +1,7 @@
 {
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
+local slbimages = import "slbimages.jsonnet",
 
 dirSuffix:: "",
 slbDir: "/host/data/slb",
@@ -160,24 +161,24 @@ perCluster: {
     slb_config_volume: {
         name: "var-config-volume",
         hostPath: {
-            path: if $.dirSuffix == "" then "/data/slb/config" else ("/data/slb/config/" + $.dirSuffix),
+            path: if slbimages.phase == "1" then ("/data/slb/config/" + $.dirSuffix) else "/data/slb/config",
         },
     },
     slb_config_volume_mount: {
         name: "var-config-volume",
-        mountPath: if $.dirSuffix == "" then "/host/data/slb/config" else ("/host/data/slb/config/" + $.dirSuffix),
+        mountPath: if slbimages.phase == "1" then ("/host/data/slb/config/" + $.dirSuffix) else "/host/data/slb/config",
     },
 
 # Frequently used volume: logs
     logs_volume: {
         name: "var-logs-volume",
         hostPath: {
-            path: if $.dirSuffix == "" then "/data/slb/logs" else ("/data/slb/logs/" + $.dirSuffix),
+            path: if slbimages.phase == "1" then ("/data/slb/logs/" + $.dirSuffix) else "/data/slb/logs",
         },
     },
     logs_volume_mount: {
         name: "var-logs-volume",
-        mountPath: if $.dirSuffix == "" then "/host/data/slb/logs" else ("/host/data/slb/logs/" + $.dirSuffix),
+        mountPath: if slbimages.phase == "1" then ("/host/data/slb/logs/" + $.dirSuffix) else "/host/data/slb/logs",
     },
 
 # Frequently used volume: host/sbin
