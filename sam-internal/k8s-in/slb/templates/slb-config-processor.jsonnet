@@ -86,7 +86,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                           "--period=1800s",
                                       ]
                                  ) + (
-                                        if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" then [
+                                        if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                            "--podPhaseCheck=true",
                                         ] else []
                                  ) + [

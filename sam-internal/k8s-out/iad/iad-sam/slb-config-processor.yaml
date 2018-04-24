@@ -35,6 +35,7 @@ spec:
         - /sdn/slb-config-processor
         - --configDir=/host/data/slb/config
         - --period=1800s
+        - --podPhaseCheck=true
         - --namespace=
         - --podstatus=running
         - --subnet=10.208.108.0/22
