@@ -39,6 +39,9 @@ apps:
   - frf/frf-sam
  SamTestAppMaddogMultiCertHostNetwork:
   - yul/yul-sam
+  - yhu/yhu-sam
+  - syd/syd-sam
+  - cdu/cdu-sam
  SamTestAppSecret:
   - prd/prd-sam
   - frf/frf-sam
