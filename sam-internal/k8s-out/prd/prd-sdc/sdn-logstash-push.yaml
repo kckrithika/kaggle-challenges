@@ -31,7 +31,7 @@ spec:
           value: password
         - name: TOPIC
           value: sfdc.prod.sdn__prd.ajna_local__log
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000101-2334e200
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
         name: sdn-logstash-push
         volumeMounts:
         - mountPath: /etc/pki/java
@@ -51,7 +51,7 @@ spec:
           value: password
         - name: CONVERT_INTERVAL
           value: "43200"
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000101-2334e200
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
         name: sdn-keytool-agent
         volumeMounts:
         - mountPath: /etc/logstash/certs
