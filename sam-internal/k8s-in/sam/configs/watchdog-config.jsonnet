@@ -100,7 +100,7 @@ std.prune({
   enableStatefulPVChecks: (if configs.estate == "prd-samdev" then true),
   storageClassName: (if configs.estate == "prd-samdev" then "standard"),
   enableK4aChecks: (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.kingdom == "frf" then true),
-  enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps then true),
+  enableMaddogCertChecks: (if samfeatureflags.maddogforsamapps && !utils.is_public_cloud(configs.kingdom) then true else false),
 
   filesystemCheckDirs: [
     "/data/",
