@@ -20,8 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [prahlad.joshi] Releasing kubeletchecker changes to prd-samtest
-        "prd,prd-samdev,watchdog-common,hypersam": "sam-0001905-ea177527",
-        "prd,prd-samtest,watchdog-common,hypersam": "sam-0001905-ea177527",
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001905-ea177527",
 
         #[xiao.zhou] Test sam-api-proxy and samapp controller
@@ -43,7 +41,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
 
         #[rbhat] Delete orphan deployments,services on resync
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001886-9f1535db",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001886-9f1535db",
 
         #[rbhat] skip e2e namespace in proxy validator
@@ -93,7 +90,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001880-098eaa65",
+            hypersam: "sam-0001912-3f0e2a18",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
