@@ -10,7 +10,7 @@ system:
   - containers:
     - env:
       - name: AQUEDUCT_HOST
-        value: shared0-internal-emp-aqueduct1-0-iad.data.sfdc.net
+        value: shared0-internal-emp-aqueduct1-0-ord.data.sfdc.net
       - name: BUILD_NUMBER
         value: 1
       - name: COMPILER_CORES
@@ -34,7 +34,7 @@ system:
       - name: ENV_ORGS
         value: ''
       - name: ENV_PREFIX
-        value: iot-iad-prod-
+        value: iot-ord-prod-
       - name: ENV_UPGRADE
         value: 'true'
       - name: FLOWSNAKE_OWNER_GROUP
@@ -42,7 +42,7 @@ system:
       - name: FLOWSNAKE_PLATFORM_VERSION
         value: 0.9.8-SNAPSHOT
       - name: FLOWSNAKE_URL
-        value: https://flowsnake-iad.data.sfdc.net
+        value: https://flowsnake-ord.data.sfdc.net
       - name: FLOWSNAKE_USE_PKI
         value: 'true'
       - name: INTAKE_CORES

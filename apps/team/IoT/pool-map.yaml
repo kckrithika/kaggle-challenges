@@ -21,3 +21,5 @@ apps:
       - ord/ord-sam_iot
   enrichment-ord:
       - ord/ord-sam_iot
+  provisioning-ord:
+      - ord/ord-sam_iot
