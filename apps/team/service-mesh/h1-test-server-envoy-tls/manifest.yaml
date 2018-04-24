@@ -34,8 +34,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/20/console
-      image: sfci/servicelibs/sherpa-envoy:8c88da117952065195ab198ecd2c26c260fdb0ec
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/34
+      image: sfci/servicelibs/sherpa-envoy:e8e7bef6bb2a0e43d246c7c157c41358cd4dc9a5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -57,8 +57,13 @@ system:
       volumeMounts:
         - name: h1-test-server-envoy-tls-server-cert
           mountPath: /server-certs
+        - name: h1-test-server-envoy-tls-client-cert
+          mountPath: /client-certs
 
     volumes:
     - name: h1-test-server-envoy-tls-server-cert
       maddogCert:
         type: server
+    - name: h1-test-server-envoy-tls-client-cert
+      maddogCert:
+        type: client
