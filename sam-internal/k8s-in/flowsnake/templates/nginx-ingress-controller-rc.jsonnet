@@ -111,7 +111,7 @@ local kingdom = std.extVar("kingdom");
                                 flowsnakeconfigmapmount.k8s_cert_volumeMounts
                         ),
                     },
-                ] + if flowsnakeconfig.is_minikube then [] else [
+                ] + if !flowsnakeconfig.is_test then [] else [
                     {
                         name: "beacon",
                         image: flowsnakeimage.beacon,

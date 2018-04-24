@@ -71,15 +71,6 @@ spec:
         - mountPath: /data/certs
           name: data-cert
           readOnly: true
-      - args:
-        - -endpoint
-        - flowsnake/api:DATACENTER_ALLENV:443:flowsnake-prd.data.sfdc.net
-        - -path
-        - -.-.prd.-.flowsnake
-        - -spod
-        - NONE
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/servicemesh/beacon:1.0.0
-        name: beacon
       nodeSelector:
         vippool: "true"
       terminationGracePeriodSeconds: 60
