@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local sidecars = import "slb-sidecars.jsonnet";
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -30,20 +31,7 @@ if slbconfigs.slbInKingdom then {
                     slbconfigs.logs_volume,
                 ]),
                 containers: [
-                    {
-                        name: "slb-node-api",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-node-api",
-                            "--port=" + slbports.slb.slbNodeApiPort,
-                            "--configDir=" + slbconfigs.configDir,
-                            "--log_dir=" + slbconfigs.logsDir,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                        ]),
-                    },
+                    sidecars.slbNodeApi,
                 ],
                 affinity: {
                     nodeAffinity: {

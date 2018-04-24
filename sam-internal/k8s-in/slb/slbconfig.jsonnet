@@ -2,6 +2,7 @@
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
 
+dirSuffix:: "",
 slbDir: "/host/data/slb",
 slbDockerDir: "/data/slb",
 configDir: self.slbDir + "/config",
@@ -159,7 +160,7 @@ perCluster: {
     slb_config_volume: {
         name: "var-config-volume",
         hostPath: {
-            path: "/data/slb/config",
+            path: if $.dirSuffix == "" then "/data/slb/config" else ("data/slb/config/" + $.dirSuffix),
         },
     },
     slb_config_volume_mount: {
@@ -171,7 +172,7 @@ perCluster: {
     logs_volume: {
         name: "var-logs-volume",
         hostPath: {
-            path: "/data/slb/logs",
+            path: if $.dirSuffix == "" then "/data/slb/logs" else ("data/slb/logs/" + $.dirSuffix),
         },
     },
     logs_volume_mount: {
@@ -234,6 +235,4 @@ slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
-
-
 }
