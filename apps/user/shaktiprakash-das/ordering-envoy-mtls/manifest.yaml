@@ -39,6 +39,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
+      # Envoy only
       # args:
       # - --switchboard
       # - swb-mtls-lb.user-shaktiprakash-das.prd-sam.prd.slb.sfdc.net:15001
