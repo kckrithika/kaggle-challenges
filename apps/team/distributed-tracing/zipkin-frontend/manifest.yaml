@@ -57,50 +57,6 @@ system:
           path: /health
           port: 9411
         initialDelaySeconds: 120
-    ###                                                       ###
-    ### Move in sherpa and beacon to front kafka-zipkin-proxy ###
-    ###                                                       ###
-    - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.25
-      args: ["--zipkin-rate", "0.0"]
-      args: ["--http1-origin", "localhost:9411"]
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
-      ports:
-      - containerPort: 7014
-        hostPort: 7014
-        name: sherpa-http1-in
-      - containerPort: 15373
-        name: sherpa-adm
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-    - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
-      args:
-      - -endpoint
-      - zipkin:DATACENTER_ALLENV:7014
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-            - "/home/scone/is-alive.sh"
 
   loadbalancers:
   - lbname: zipkin-alpha
