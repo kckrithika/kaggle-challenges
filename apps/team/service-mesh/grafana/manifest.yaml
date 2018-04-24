@@ -3,12 +3,12 @@ apiVersion: v1
 system:
   notifications:
     email:
-      - npshenichnyy@salesforce.com
+      - servicemesh@salesforce.com
   functions:
-  - name: sfdc-grafana
+  - name: grafana
     count: 1
     containers:
-    - name: sfdc-grafana
+    - name: grafana
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sfdc-grafana:latest
       env:
       - name: GF_SERVER_ROOT_URL
@@ -38,8 +38,8 @@ system:
           secretName: grafanaarguscreds
 
   loadbalancers:
-  - lbname: sfdc-grafanalb
-    function: sfdc-grafana
+  - lbname: grafanalb
+    function: grafana
     slbEnabled: true
     nodeExposed: true
     ports:
