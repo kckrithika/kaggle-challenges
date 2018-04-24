@@ -37,7 +37,7 @@ spec:
         - --archiveSvcEndpoint=https://ops0-piperepo1-0-prd.data.sfdc.net/tnrp/content_repo/0/archive
         - --smtpServer=rd1-mta1-4-sfm.ops.sfdc.net:25
         - --sender=sdn-alerts@salesforce.com
-        - --recipient=sdn@salesforce.com
+        - --recipient=sdn-alerts@salesforce.com
         - --emailFrequency=12h
         - --watchdogFrequency=180s
         - --alertThreshold=300s
@@ -50,12 +50,12 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
-        - --failPercentageThreshold=5
         - --sdncServiceName=sdn-control-svc
         - --sdncNamespace=sam-system
         - --rootPath=/etc/pki_service
         - --userName=kubernetes
         - --pkiClientServiceName=k8s-client
+        - --failPercentageThreshold=0
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
