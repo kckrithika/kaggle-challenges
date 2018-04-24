@@ -46,6 +46,14 @@ if configs.estate == "prd-sam" then {
                                     value: portconfigs.sdn.sdn_elasticsearch,
                                 },
                         ],
+                        livenessProbe: {
+                            tcpSocket: {
+                               port: portconfigs.sdn.sdn_elasticsearch,
+                            },
+                            initialDelaySeconds: 15,
+                            periodSeconds: 10,
+                            failureThreshold: 100,
+                        },
                         ports: [
                             {
                                 containerPort: portconfigs.sdn.sdn_elasticsearch,
