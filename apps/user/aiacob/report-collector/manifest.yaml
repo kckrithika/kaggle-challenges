@@ -22,7 +22,7 @@ system:
           path: /var/log/report-collector
     containers:
     - name: report-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector-funnel-to:20180424102333
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/aiacob/andreis-report-collector-funnel-to:20180424104419
       ports:
       - name: provider
         containerPort: 8080
