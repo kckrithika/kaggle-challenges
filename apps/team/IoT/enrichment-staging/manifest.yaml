@@ -34,10 +34,13 @@ system:
       volumeMounts:
       - mountPath: /home/enrichment/logs
         name: logvol
+      - mountPath: /home/enrichment/enrichment-keytab
+        name: enrichmentkeytab
+        readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
           command:
@@ -65,7 +68,7 @@ system:
         name: client-certs
     - args:
       - -endpoint
-      - enrichment:DATACENTER:7012
+      - iot/enrichment:DATACENTER:7443
       env:
       - name: SFDC_ENVIRONMENT
         value: staging
@@ -77,6 +80,8 @@ system:
         initialDelaySeconds: 5
       name: beacon
     count: 2
+    identity:
+      serviceName: enrichment
     name: enrichment
     strategy:
       type: Recreate
@@ -90,6 +95,9 @@ system:
     - hostPath:
         path: /data/sam/iot/log/enrichment
       name: logvol
+    - name: enrichmentkeytab
+      secret:
+        secretName: enrichment-keytab
   loadbalancers:
   - function: enrichment
     lbname: enrichment-lb
@@ -104,4 +112,3 @@ system:
   notifications:
     email:
     - iotenterprise@salesforce.com
-
