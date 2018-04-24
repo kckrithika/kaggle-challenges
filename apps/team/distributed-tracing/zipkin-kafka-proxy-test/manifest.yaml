@@ -14,25 +14,19 @@ system:
               maxSurge: 0
               maxUnavailable: 1
       volumes:
-        - name: tls-client-cert
+        - name: client-certs
           maddogCert:
               type: client
       containers:
-      - name: kafka-test
-        image: docker-all/dva/dva-kafka:jenkins-monitoring-dva-kafka-afalko-zipkin-sam-test-2-itest
-        command: ["/bin/sleep"]
-        args: ["inf"]
-        livenessProbe:
-            exec:
-                command:
-                - /bin/true
-            initialDelaySeconds: 5
-            periodSeconds: 5
-        volumeMounts:
-            - name: tls-client-cert
-              mountPath: /client-certs
       - name: zipkin-kafka-proxy-test
-        image: docker-all/dva/zipkin-kafka-proxy:5
+        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-4-itest
+        env:
+        - name: ZIPKIN_KAFKA_PROXY_HOST
+          value: zipkin-kafka-proxy-test
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: KAFKA_TOPIC
+          value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing
         ports: 
         - containerPort: 9411
           name: proxy-in
@@ -44,8 +38,8 @@ system:
             initialDelaySeconds: 5
             periodSeconds: 5
         volumeMounts:
-            - name: tls-client-cert
-              mountPath: /client-certs
+        - mountPath: /etc/pki_service/zipkin-kafka-proxy-test
+          name: client-certs
       - name: sherpa
         image: sfci/servicelibs/sherpa:2.0.25
         args: ["--zipkin-rate", "0.0"]
