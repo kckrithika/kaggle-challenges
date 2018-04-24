@@ -19,14 +19,14 @@ system:
               type: client
       containers:
       - name: zipkin-kafka-proxy-test
-        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-7-itest
+        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-8-itest
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy-test
         - name: KAFKA_BOOTSTRAP_SERVERS
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: KAFKA_TOPIC
-          value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing
+          value: sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing_test
         ports: 
         - containerPort: 9411
           name: proxy-in
