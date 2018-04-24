@@ -28,7 +28,7 @@ if configs.estate == "prd-sdc" then {
                                 },
                                 {
                                     name: "AJNA_ENDPOINT",
-                                    value: "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
+                                    value: "ajna0-broker1-0-prd.data.sfdc.net:9093",
                                 },
                                 {
                                     name: "TRUSTSTORE_LOCATION",
@@ -51,7 +51,7 @@ if configs.estate == "prd-sdc" then {
                             sdnconfigs.sdn_logstash_certs_volume_mount,
                             sdnconfigs.sdn_logstash_keystore_volume_mount,
                             {
-                                mountPath: "/var/log/sdn",
+                                mountPath: "/var/log",
                                 name: "sdnlogs",
                             },
                         ],
