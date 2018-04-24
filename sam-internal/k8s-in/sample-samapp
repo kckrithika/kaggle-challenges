@@ -1,0 +1,188 @@
+apiVersion: v1
+items:
+- apiVersion: sam.salesforce.com/v1
+  kind: SamApp
+  metadata:
+    creationTimestamp: 2017-12-08T20:24:09Z
+    name: e2etest
+    namespace: csc-sam
+    resourceVersion: "575946054"
+    selfLink: /apis/sam.salesforce.com/v1/namespaces/csc-sam/samapps/e2etest
+    uid: bf0239d9-dc55-11e7-82c2-260a393eaee1
+  spec:
+    controlMap:
+      annotations:
+        author: svc_moe_ci
+        commitSHA1: d3e8ac4bd5fece34c29d94ecea73df9d7fc6710e
+        date: Wed, 14 Mar 2018 22:40:34 +0000
+        titleLine: merge commit for e2e test
+      pool: prd/prd-samdev
+      superPod: None
+      teamNApp: team_-_CSC_SAM_-_e2e_test
+    customerApp:
+      apiVersion: v1
+      system:
+        functions:
+        - containers:
+          - command:
+            - /sam/sam-test-app
+            env:
+            - name: KEY1
+              value: VALUE1
+            - name: SOME_KEY4
+              value: SOME VALUE4
+            image: docker-sam/hypersam:latest-e2e
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 8000
+            name: e2econtainer
+            ports:
+            - containerPort: 8000
+            resources:
+              limits:
+                cpu: "1"
+                memory: 1Gi
+              requests:
+                cpu: 250m
+                memory: 250Mi
+            volumeMounts:
+            - mountPath: /var/test-volume/
+              name: test-volume
+            - mountPath: /var/hostvol
+              name: test-hostvol
+            - mountPath: /certs
+              name: client-cert
+            - mountPath: /servercert
+              name: server-cert
+          count: 1
+          hostnetwork: false
+          labels:
+            bootstrap: "true"
+            myfunc: customerfunc
+          name: syntheticwd-deployment
+          strategy:
+            type: Recreate
+          volumes:
+          - emptyDir:
+              sizeLimit: "0"
+            name: test-volume
+          - hostPath:
+              path: /home/sfdc-gater
+            name: test-hostvol
+          - maddogCert: {}
+            name: client-cert
+          - maddogCert:
+              lbnames:
+              - lb1
+              type: server
+            name: server-cert
+        - containers:
+          - command:
+            - /sam/sam-test-app
+            env:
+            - name: KEY1
+              value: VALUE1
+            - name: SOME_KEY2
+              value: SOME VALUE
+            image: docker-sam/hypersam:latest-e2e
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 8000
+            name: e2econtainer
+            ports:
+            - containerPort: 8000
+            resources:
+              limits:
+                cpu: "1"
+                memory: 1Gi
+              requests:
+                cpu: 250m
+                memory: 250Mi
+          count: 2
+          hostnetwork: false
+          labels:
+            bootstrap: "false"
+            myfunc: customerfunc
+          name: default2
+          strategy:
+            rollingUpdate:
+              maxSurge: 1
+              maxUnavailable: 15%
+            type: RollingUpdate
+          terminationGracePeriodSeconds: 39
+          volumes: null
+        - containers:
+          - command:
+            - /sam/sam-test-app
+            env:
+            - name: KEY1
+              value: VALUE1
+            - name: SOME_KEY2
+              value: SOME VALUE
+            image: docker-sam/hypersam:latest-e2e
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 8000
+            name: e2econtainer
+            ports:
+            - containerPort: 8000
+            resources:
+              limits:
+                cpu: "1"
+                memory: 1Gi
+              requests:
+                cpu: 250m
+                memory: 250Mi
+            volumeMounts:
+            - mountPath: /rbd/state
+              name: www
+          count: 1
+          hostnetwork: false
+          labels:
+            myfunc: state
+          lbname: stateful-lb
+          name: syntheticwd-stateful
+          terminationGracePeriodSeconds: 33
+          type: stateful-set
+          volumeClaimTemplates:
+          - name: www
+            storageClassName: standard
+            storageSizeRequest: 1Gi
+          volumes: null
+        loadbalancers:
+        - lbname: defaultlb
+          nodeExposed: true
+          ports:
+          - lbtype: ""
+            nodeport: 0
+            port: 80
+            targetport: 8000
+          - lbtype: ""
+            nodeport: 0
+            port: 81
+            targetport: 8000
+          selector:
+            myfunc: customerfunc
+          slbEnabled: false
+        - function: syntheticwd-deployment
+          lbname: lb1
+          nodeExposed: true
+          ports:
+          - lbtype: ""
+            nodeport: 0
+            port: 80
+            targetport: 8000
+          - lbtype: ""
+            nodeport: 0
+            port: 81
+            targetport: 8000
+          slbEnabled: false
+        notifications:
+          email: null
+kind: List
+metadata: {}
+resourceVersion: ""
+selfLink: ""

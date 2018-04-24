@@ -1,0 +1,39 @@
+Searching 3877 files for "get_Nodes"
+
+/Users/rbhat/dev/manifests/logs.text:
+    File too large, skipping
+
+/Users/rbhat/dev/manifests/sam-internal/k8s-in/sam/sam_rbac_functions.jsonnet:
+    9      allNamespaces:: "*",
+   10      # Returns list of nodes in given kingdom + controlestate + role from hosts.jsonnet
+   11:     get_Nodes(kingdom, controlestate, role):: [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.controlestate == controlestate && h.devicerole == role],
+   12  
+   13      # In production DC SAM control estate nodes get cluster-admin permission
+   14      # In PRD only kubeapi nodes get cluster-admin permission
+   15:     getMasterNodes(kingdom, controlestate):: if utils.is_test_cluster(controlestate) then $.get_Nodes(kingdom, controlestate, $.masterRole) else [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.estate == controlestate],
+   16  
+   17      getPools(kingdom, controlestate):: std.join([], [estate.pools for estate in pools.generatedPools if estate.kingdom == kingdom && estate.controlEstate == controlestate]),
+
+/Users/rbhat/dev/manifests/sam-internal/k8s-in/sam/templates/rbac/rbac-node-policies.jsonnet:
+   50  
+   51    },
+   52:   local minionNodes = rbac_utils.get_Nodes(configs.kingdom, configs.estate, rbac_utils.minionRole),
+   53  
+   54    local roles = std.join([], [
+
+3 matches across 2 files
+
+
+Searching 3715 files for "get_Nodes"
+
+/Users/rbhat/dev/manifests/logs.text:
+    File too large, skipping
+
+/Users/rbhat/dev/manifests/sam-internal/k8s-in/sam/templates/rbac/rbac-node-policies.jsonnet:
+   50  
+   51    },
+   52:   local minionNodes = rbac_utils.getNodes(configs.kingdom, configs.estate, rbac_utils.minionRole),
+   53  
+   54    local roles = std.join([], [
+
+1 match in 1 file
