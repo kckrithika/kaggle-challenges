@@ -40,10 +40,14 @@ system:
       - -logging.dir
       - /log
       livenessProbe:
-        initialDelaySeconds: 5
+        # Linerd
         exec:
           command:
-          - "/home/scone/is-alive.sh"
+            - "/home/scone/is-alive.sh"
+        # Envoy
+        # httpGet:
+        #   path: /manage/health
+        #   port: 15372
       volumeMounts:
       - mountPath: /log
         name: logvol
