@@ -45,6 +45,7 @@ std.prune({
 
   # SDP
   createCRD: (if configs.kingdom == "prd" then true),
+  createTPR: false,
 })
 
 # Controller V1 ignore namespace list
