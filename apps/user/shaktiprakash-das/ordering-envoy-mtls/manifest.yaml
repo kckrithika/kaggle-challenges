@@ -24,9 +24,17 @@ system:
         name: scone-mgmt
       livenessProbe:
         initialDelaySeconds: 120
-        httpGet:
-          path: /manage/health
-          port: 15372
+        # Linerd
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+        # Envoy
+        # httpGet:
+        #   path: /manage/health
+        #   port: 15372
+      volumeMounts:
+      - mountPath: /log
+        name: logvol
 
     - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
