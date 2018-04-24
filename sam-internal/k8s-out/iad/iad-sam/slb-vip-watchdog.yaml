@@ -76,7 +76,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: data/slb/logs/slb-vip-watchdog
+          path: /data/slb/logs
         name: var-logs-volume
       - configMap:
           name: sfdchosts

@@ -160,24 +160,24 @@ perCluster: {
     slb_config_volume: {
         name: "var-config-volume",
         hostPath: {
-            path: if $.dirSuffix == "" then "/data/slb/config" else ("data/slb/config/" + $.dirSuffix),
+            path: if $.dirSuffix == "" then "/data/slb/config" else ("/data/slb/config/" + $.dirSuffix),
         },
     },
     slb_config_volume_mount: {
         name: "var-config-volume",
-        mountPath: "/host/data/slb/config",
+        mountPath: if $.dirSuffix == "" then "/host/data/slb/config" else ("/host/data/slb/config/" + $.dirSuffix),
     },
 
 # Frequently used volume: logs
     logs_volume: {
         name: "var-logs-volume",
         hostPath: {
-            path: if $.dirSuffix == "" then "/data/slb/logs" else ("data/slb/logs/" + $.dirSuffix),
+            path: if $.dirSuffix == "" then "/data/slb/logs" else ("/data/slb/logs/" + $.dirSuffix),
         },
     },
     logs_volume_mount: {
         name: "var-logs-volume",
-        mountPath: "/host/data/slb/logs",
+        mountPath: if $.dirSuffix == "" then "/host/data/slb/logs" else ("/host/data/slb/logs/" + $.dirSuffix),
     },
 
 # Frequently used volume: host/sbin
