@@ -11,6 +11,7 @@ data:
     0.9.7-itest = 565
     0.9.7-mktest = jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest
     0.9.7-patch-worker-secrets = 584
+    0.9.8-prerelease = jenkins-dva-transformation-flowsnake-platform-PR-609-1-itest
     0.9.8-service-mesh-test = jenkins-dva-transformation-flowsnake-platform-PR-604-1-itest
     ajnaupgradetest-vg = jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest
     jvmtest-lhn = jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest
