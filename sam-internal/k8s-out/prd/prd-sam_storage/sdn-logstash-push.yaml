@@ -1,56 +1,45 @@
 apiVersion: extensions/v1beta1
-kind: Deployment
+kind: DaemonSet
 metadata:
   labels:
-    name: sdn-logstash
-  name: sdn-logstash
+    name: sdn-logstash-push
+  name: sdn-logstash-push
   namespace: sam-system
 spec:
-  replicas: 1
   template:
     metadata:
       labels:
         apptype: monitoring
-        name: sdn-logstash
+        name: sdn-logstash-push
       namespace: sam-system
     spec:
       containers:
       - env:
         - name: RUN
-          value: logstash
+          value: logstash_push
         - name: config_reload_automatic
           value: "true"
+        - name: DATA_CENTER
+          value: prd
+        - name: AJNA_ENDPOINT
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: TRUSTSTORE_LOCATION
+          value: /etc/pki/java/cacerts_sfdc_internal.jks
+        - name: KEYSTORE_LOCATION
+          value: /etc/logstash/certs/keystore.jks
+        - name: KEYSTORE_PASSWORD
+          value: password
+        - name: TOPIC
+          value: sfdc.prod.sdn__prd.ajna_local__log
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
-        name: sdn-logstash
+        name: sdn-logstash-push
         volumeMounts:
-        - mountPath: /etc/logstash/conf.d
-          name: logstashconf
         - mountPath: /etc/pki/java
           name: logstashcerts
         - mountPath: /etc/logstash/certs
           name: logstashkeystore
-      - command:
-        - /sdn/sdn-argus-auth-agent
-        - --svcUsername=svc_sdn
-        - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
-        - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
-        - --cafile=/etc/pki_service/ca/cabundle.pem
-        - --topicsPattern=sfdc.prod.sdn__prd.ajna_local__log
-        - --confFile=/etc/logstash/conf.d/logstash.conf
-        - --truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks
-        - --keystoreFile=/etc/logstash/certs/keystore.jks
-        - --elasticsearchUrl=10.254.219.223:9123
-        - --userName=platform
-        - --ajnaEndpoint=ajna0-brokeragg1-0-prd.data.sfdc.net:9093
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000804-5db1dc0f
-        name: sdn-argus-auth-agent
-        volumeMounts:
-        - mountPath: /etc/logstash/conf.d
-          name: logstashconf
-        - mountPath: /etc/pki_service
-          name: maddog-certs
-        - mountPath: /data/certs
-          name: certs
+        - mountPath: /var/log
+          name: sdnlogs
       - env:
         - name: RUN
           value: keytool_agent
@@ -71,11 +60,8 @@ spec:
           name: sdnagent
       hostNetwork: true
       nodeSelector:
-        pool: prd-sam
+        pool: prd-sam_storage
       volumes:
-      - hostPath:
-          path: /etc/logstash/conf.d
-        name: logstashconf
       - hostPath:
           path: /etc/pki/java
         name: logstashcerts
@@ -86,8 +72,5 @@ spec:
           path: /etc/pki_service/root/sdn_agent
         name: sdnagent
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/certs
-        name: certs
+          path: /var/logs/sdn/
+        name: sdnlogs

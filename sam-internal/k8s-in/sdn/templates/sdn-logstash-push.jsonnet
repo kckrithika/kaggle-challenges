@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if (configs.estate == "prd-sdc") || (configs.estate == "prd-samtest") || (configs.estate == "prd-samdev") || (configs.estate == "prd-data-flowsnake_test") then {
+if (configs.kingdom == "prd") then {
     kind: "DaemonSet",
     spec: {
         template: {
