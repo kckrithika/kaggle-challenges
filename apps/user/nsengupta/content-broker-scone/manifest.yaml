@@ -41,11 +41,6 @@ system:
           path: /listeners
           port: 15373
         initialDelaySeconds: 20
-      readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 15
 
     # Add the log volume in the function section:
     volumes:
