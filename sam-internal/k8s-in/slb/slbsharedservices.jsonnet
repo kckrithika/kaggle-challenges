@@ -1,9 +1,10 @@
-local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
-local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local portconfigs = import "slbports.jsonnet";
-
 {
+    dirSuffix:: "",
+    local configs = import "config.jsonnet",
+    local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
+    local portconfigs = import "slbports.jsonnet",
+
     slbConfigProcessor: {
         name: "slb-config-processor",
         image: slbimages.hypersdn,
