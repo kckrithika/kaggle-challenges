@@ -41,6 +41,9 @@ system:
         image: sfci/servicelibs/sherpa:2.0.25
         args: ["--zipkin-rate", "0.0"]
         args: ["--http1-origin", "localhost:9411"]
+        # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
+        args: ["--http1-in", "7442"]
+        args: ["--http1-tls-in", "74421"]
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -48,9 +51,9 @@ system:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
         ports:
-        - containerPort: 7014
-          # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
+        - containerPort: 7442
           hostPort: 7442
+          # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
           name: sherpa-http1-in
         - containerPort: 15373
           name: sherpa-adm
