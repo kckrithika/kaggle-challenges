@@ -75,7 +75,7 @@ system:
           value: mesh
         args:
         - -endpoint
-        - zipkin:DATACENTER_ALLENV:7014
+        - zipkin-test:DATACENTER_ALLENV:7014
         livenessProbe:
             initialDelaySeconds: 5
             exec:
