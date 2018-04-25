@@ -53,7 +53,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                             ] else []
                         )
                         + (
-                            if configs.estate == "prd-sam" then [
+                            if configs.estate == "prd-dev-flowsnake_iot_test" then [
                                 "--failPercentageThreshold=0",
                             ] else [
                                 "--failPercentageThreshold=5",
