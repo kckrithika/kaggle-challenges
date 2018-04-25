@@ -3,7 +3,7 @@ local portconfigs = import "portconfig.jsonnet";
 local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 
-if (configs.kingdom == "prd") then {
+if (configs.kingdom == "prd") || (configs.kingdom == "frf") then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -28,7 +28,7 @@ if (configs.kingdom == "prd") then {
                                 },
                                 {
                                     name: "AJNA_ENDPOINT",
-                                    value: "ajna0-broker1-0-prd.data.sfdc.net:9093",
+                                    value: "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093",
                                 },
                                 {
                                     name: "TRUSTSTORE_LOCATION",
@@ -44,7 +44,7 @@ if (configs.kingdom == "prd") then {
                                 },
                                 {
                                     name: "TOPIC",
-                                    value: "sfdc.prod.sdn__prd.ajna_local__log",
+                                    value: "sfdc.prod.sdn__" + configs.kingdom + ".ajna_local__log",
                                 },
                         ],
                         volumeMounts: [
