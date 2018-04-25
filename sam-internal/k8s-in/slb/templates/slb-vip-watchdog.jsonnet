@@ -62,14 +62,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           },
                       },
                       volumes: configs.filter_empty([
-                          configs.maddog_cert_volume,
-                          slbconfigs.slb_config_volume,
                           slbconfigs.slb_volume,
                           slbconfigs.logs_volume,
                           configs.sfdchosts_volume,
-                          configs.cert_volume,
-                          configs.kube_config_volume,
-                      ]),
+                      ] + (if slbimages.phase == "1" then [
+                               configs.maddog_cert_volume,
+                               slbconfigs.slb_config_volume,
+                               configs.cert_volume,
+                               configs.kube_config_volume,
+                           ] else [])),
                       containers: [
                           {
                               name: "slb-vip-watchdog",

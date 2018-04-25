@@ -167,12 +167,6 @@ spec:
         pool: prd-sdc
       volumes:
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/slb/config/slb-vip-watchdog
-        name: var-config-volume
-      - hostPath:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
@@ -181,6 +175,12 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /data/slb/config/slb-vip-watchdog
+        name: var-config-volume
       - hostPath:
           path: /data/certs
         name: certs

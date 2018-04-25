@@ -73,12 +73,6 @@ spec:
         pool: ord-sam
       volumes:
       - hostPath:
-          path: /etc/pki_service
-        name: maddog-certs
-      - hostPath:
-          path: /data/slb/config
-        name: var-config-volume
-      - hostPath:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
@@ -87,9 +81,3 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
-      - hostPath:
-          path: /data/certs
-        name: certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
