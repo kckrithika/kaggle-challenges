@@ -19,7 +19,9 @@ if configs.estate == "prd-sam" then {
                                      "-alertThreshold=10s",
                                      "-emailFrequency=1h",
                                  ]
-                                 + samwdconfig.shared_args,
+                                 + samwdconfig.shared_args
+                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
+                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             {
