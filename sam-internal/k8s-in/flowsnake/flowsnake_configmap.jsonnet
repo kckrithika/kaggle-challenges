@@ -272,6 +272,11 @@ local samconfig = import "config.jsonnet";
             authorizedLdapGroups: [],
             authorizedClientCerts: ["wave-elt.datapool"],
         },
+        {
+            namespace: "iot",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["iot.provisioning"],
+        },
       ],
       "ord/ord-flowsnake_prod": [
         {
@@ -288,6 +293,11 @@ local samconfig = import "config.jsonnet";
             namespace: "wave-elt",
             authorizedLdapGroups: [],
             authorizedClientCerts: ["wave-elt.datapool"],
+        },
+        {
+            namespace: "iot",
+            authorizedLdapGroups: [],
+            authorizedClientCerts: ["iot.provisioning"],
         },
       ],
       "phx/phx-flowsnake_prod": [
