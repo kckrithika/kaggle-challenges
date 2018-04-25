@@ -12,3 +12,8 @@ system:
         httpGet:
           path: /
           port: 5672
+      env:
+      - name: RABBITMQ_DEFAULT_USER
+        value: someuser
+      - name: RABBITMQ_DEFAULT_PASS
+        value: somepass
