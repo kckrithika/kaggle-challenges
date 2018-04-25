@@ -34,12 +34,13 @@
   },
   "4": {
     "hypersdn": {
-      "label": "v-0000791-cb49d7b1",
-      "promotedTime": "2018-04-23T17:35:32Z"
+      "label": "v-0000811-4203c08d",
+      "promotedTime": "2018-04-25T00:30:15.537548143Z",
+      "warning": "807 requires removal of the configDir parameter from slb-ipvs-processor"
     },
     "slbnginx": {
-      "label": "v-0000026-409d6394",
-      "promotedTime": "2018-04-04T18:00:26Z"
+      "label": "v-0000028-7cbabf4f",
+      "promotedTime": "2018-04-25T00:29:19.285498746Z"
     }
   }
 }

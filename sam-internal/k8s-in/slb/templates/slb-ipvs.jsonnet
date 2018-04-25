@@ -107,10 +107,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-ipvs-processor",
-                        ] + (if slbimages.phase == "4" then [
-                            "--configDir=" + slbconfigs.configDir,
-                        ] else []) +
-                        [
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,

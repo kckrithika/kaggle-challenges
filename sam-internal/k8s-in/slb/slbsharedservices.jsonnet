@@ -16,11 +16,8 @@ local portconfigs = import "slbports.jsonnet";
             ] else [
                 "--period=1800s",
             ]
-        ) + (
-            if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                "--podPhaseCheck=true",
-            ] else []
         ) + [
+            "--podPhaseCheck=true",
             "--namespace=" + slbconfigs.namespace,
             "--podstatus=running",
             "--subnet=" + slbconfigs.subnet,
