@@ -1,4 +1,5 @@
 apps:
   content-imagemagick-scone:
     - prd/prd-sam
-
+  content-broker-scone:
+    - prd/prd-sam
