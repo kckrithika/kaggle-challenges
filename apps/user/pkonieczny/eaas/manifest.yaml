@@ -85,6 +85,8 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
+      - name: eaas-server-cert
+        mountPath: /server-certs        
       - name: sherpa-log-volume
         mountPath: /log
 
@@ -92,6 +94,9 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
+    - name: eaas-server-cert
+      maddogCert:
+        type: server        
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
