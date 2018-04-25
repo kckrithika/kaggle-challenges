@@ -19,8 +19,8 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [prahlad.joshi] Releasing kubeletchecker changes to prd-samtest
-        "prd,prd-sam,watchdog-common,hypersam": "sam-0001905-ea177527",
+        # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam
+        "prd,prd-sam,watchdog-common,hypersam": "sam-0001921-1c8875a3",
 
         #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
