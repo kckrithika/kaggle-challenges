@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: imagemagick-service
-    count: 1
+    count: 3
     containers:
     # Imagemagick service
     - name: imagemagick
