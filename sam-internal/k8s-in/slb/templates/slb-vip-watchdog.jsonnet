@@ -84,7 +84,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               configs.sfdchosts_arg,
                               "--metricsEndpoint=" + configs.funnelVIP,
                               "--httpTimeout=5s",
-                       ],
+                       ] + (if slbimages.phase == "1" then [
+                              "--useLocalNodeApi=true",
+                       ] else []),
                        volumeMounts: configs.filter_empty([
                              slbconfigs.slb_volume_mount,
                              slbconfigs.logs_volume_mount,

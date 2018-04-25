@@ -53,19 +53,20 @@ spec:
       - command:
         - /sdn/slb-vip-watchdog
         - --vipLoop=10
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --optOutNamespace=kne
         - --monitorFrequency=60s
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --httpTimeout=5s
+        - --useLocalNodeApi=true
         env:
         - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         name: slb-vip-watchdog
         volumeMounts:
         - mountPath: /host/data/slb
@@ -76,7 +77,7 @@ spec:
           name: sfdchosts
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/data/slb/config
+        - --configDir=/host/data/slb/config/slb-vip-watchdog
         - --period=1200s
         - --podPhaseCheck=true
         - --namespace=
@@ -86,7 +87,7 @@ spec:
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --sleepTime=100ms
         - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
@@ -98,7 +99,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -128,13 +129,13 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=1h
-        - --filesDirToCleanup=/host/data/slb/config
+        - --filesDirToCleanup=/host/data/slb/config/slb-vip-watchdog
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -148,9 +149,9 @@ spec:
       - command:
         - /sdn/slb-node-api
         - --port=9130
-        - --configDir=/host/data/slb/config
-        - --log_dir=/host/data/slb/logs
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        - --configDir=/host/data/slb/config/slb-vip-watchdog
+        - --log_dir=/host/data/slb/logs/slb-vip-watchdog
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb

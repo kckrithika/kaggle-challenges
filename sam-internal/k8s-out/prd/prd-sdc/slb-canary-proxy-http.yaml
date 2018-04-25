@@ -53,12 +53,12 @@ spec:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-proxy-http
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --ports=9116
         - --tlsPorts=443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sdc.crt
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         livenessProbe:
           httpGet:
             path: /

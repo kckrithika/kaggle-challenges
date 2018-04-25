@@ -114,14 +114,14 @@ spec:
       containers:
       - command:
         - /sdn/slb-nginx-config
-        - --configDir=/host/data/slb/config
+        - --configDir=/host/data/slb/config/
         - --target=/host/data/slb/nginx/config
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --maxDeleteServiceCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         name: slb-nginx-config-b
         ports:
         - containerPort: 32146
@@ -164,9 +164,9 @@ spec:
         - --scanPeriod=10s
         - --skipZeroLengthFiles=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -222,9 +222,9 @@ spec:
       - command:
         - /sdn/slb-cert-checker
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /host/data/slb/nginx/config
