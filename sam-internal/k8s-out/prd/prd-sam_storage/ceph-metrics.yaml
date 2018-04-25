@@ -48,7 +48,7 @@ items:
             value: sfstore-zk.slb.sfdc.net
           - name: MC_PORT
             value: "8001"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000175-83f634ad
           imagePullPolicy: IfNotPresent
           name: sfms
           ports:
@@ -62,7 +62,7 @@ items:
           - -ceph-key-config-dir=/etc/ceph-metrics/key-config
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000387-bfd34c14
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000396-67df7de3
           imagePullPolicy: IfNotPresent
           name: configwatcher
           volumeMounts:
@@ -138,7 +138,7 @@ items:
             value: sfstore-zk.slb.sfdc.net
           - name: MC_PORT
             value: "8001"
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000175-83f634ad
           imagePullPolicy: IfNotPresent
           name: sfms
           ports:
@@ -152,7 +152,7 @@ items:
           - -ceph-key-config-dir=/etc/ceph-metrics/key-config
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
-          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000387-bfd34c14
+          image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/configwatcher:base-0000396-67df7de3
           imagePullPolicy: IfNotPresent
           name: configwatcher
           volumeMounts:
