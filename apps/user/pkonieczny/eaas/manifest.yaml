@@ -68,6 +68,8 @@ system:
       ports:
       - containerPort: 7012
         name: sherpa-eaas-in
+      - containerPort: 7443
+        name: sherpa-eaas-tls
       - containerPort: 15373
         name: sherpa-eaas-adm
       livenessProbe:
