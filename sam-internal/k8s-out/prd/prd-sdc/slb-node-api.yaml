@@ -36,7 +36,7 @@ spec:
         - --port=9130
         - --configDir=/host/data/slb/config/
         - --log_dir=/host/data/slb/logs/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000818-072ffbb4
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000819-3c36c100
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
