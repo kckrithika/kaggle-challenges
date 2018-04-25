@@ -2,10 +2,10 @@ apiVersion: v1
  
 system:
   functions:
-  - name: csr-kaiju-master
+  - name: kaiju-master
     count: 1
     containers:
-    - name: csr-kaiju-master
+    - name: kaiju-master
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/kaiju-master:2
       env:
         - name: ENV
@@ -25,10 +25,10 @@ system:
       ports:
         - containerPort: 8080
 
-  - name: csr-kaiju-agent
+  - name: kaiju-agent
     count: 1
     containers:
-    - name: csr-kaiju-agent
+    - name: kaiju-agent
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/kaiju-agent:4
       env:
         - name: ENV
@@ -49,14 +49,14 @@ system:
         - containerPort: 9090
 
   loadbalancers:
-  - lbname: csrkaijumaster
-    function: csr-kaiju-master
+  - lbname: kaijumaster
+    function: kaiju-master
     nodeExposed: true
     ports:
     - port: 8081
       targetport: 8080
-  - lbname: csrkaijuagent
-    function: csr-kaiju-agent
+  - lbname: kaijuagent
+    function: kaiju-agent
     nodeExposed: true
     ports:
     - port: 9090
