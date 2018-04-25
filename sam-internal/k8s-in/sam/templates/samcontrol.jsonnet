@@ -37,7 +37,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                         env: [
                             configs.kube_config_env,
                         ],
-                    } + (if configs.kingdom == "prd" then {
+                    } + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
                              livenessProbe: {
                                  httpGet: {
                                      path: "/healthz",

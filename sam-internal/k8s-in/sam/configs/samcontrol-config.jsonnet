@@ -36,7 +36,7 @@ std.prune({
 
   k4aInitContainerImage: samimages.k4aInitContainerImage,
 
-  livenessProbePort: (if configs.kingdom == "prd" then "22545"),
+  livenessProbePort: (if configs.kingdom == "prd" || configs.kingdom == "frf" then "22545"),
 
   # [mayank] This flag enables dns resolution for pods deployed by samcontroller
   # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
