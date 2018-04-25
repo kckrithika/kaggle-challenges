@@ -45,7 +45,7 @@ spec:
           name: usr-sbin-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -64,9 +64,9 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /host/usr/sbin
           name: usr-sbin-volume
@@ -92,7 +92,7 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /host/usr/sbin
           name: usr-sbin-volume
@@ -108,9 +108,9 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /host/usr/sbin
           name: usr-sbin-volume
@@ -124,7 +124,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/config
+          path: /data/slb/config/
         name: var-config-volume
       - hostPath:
           path: /dev
@@ -139,7 +139,7 @@ spec:
           path: /usr/sbin
         name: usr-sbin-volume
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
       - configMap:
           name: sfdchosts

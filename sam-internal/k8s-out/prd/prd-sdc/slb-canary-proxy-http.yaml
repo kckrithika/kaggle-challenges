@@ -67,11 +67,11 @@ spec:
           periodSeconds: 10
         name: slb-canary-proxy-http
         volumeMounts:
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
       nodeSelector:
         pool: prd-sdc
       volumes:
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume

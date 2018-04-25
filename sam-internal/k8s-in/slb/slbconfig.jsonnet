@@ -1,7 +1,9 @@
 {
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
+local slbimages = import "slbimages.jsonnet",
 
+dirSuffix:: "",
 slbDir: "/host/data/slb",
 slbDockerDir: "/data/slb",
 configDir: self.slbDir + "/config",
@@ -159,24 +161,24 @@ perCluster: {
     slb_config_volume: {
         name: "var-config-volume",
         hostPath: {
-            path: "/data/slb/config",
+            path: if slbimages.phase == "1" then ("/data/slb/config/" + $.dirSuffix) else "/data/slb/config",
         },
     },
     slb_config_volume_mount: {
         name: "var-config-volume",
-        mountPath: "/host/data/slb/config",
+        mountPath: if slbimages.phase == "1" then ("/host/data/slb/config/" + $.dirSuffix) else "/host/data/slb/config",
     },
 
 # Frequently used volume: logs
     logs_volume: {
         name: "var-logs-volume",
         hostPath: {
-            path: "/data/slb/logs",
+            path: if slbimages.phase == "1" then ("/data/slb/logs/" + $.dirSuffix) else "/data/slb/logs",
         },
     },
     logs_volume_mount: {
         name: "var-logs-volume",
-        mountPath: "/host/data/slb/logs",
+        mountPath: if slbimages.phase == "1" then ("/host/data/slb/logs/" + $.dirSuffix) else "/host/data/slb/logs",
     },
 
 # Frequently used volume: host/sbin
@@ -234,6 +236,4 @@ slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
 
 sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
 sdn_watchdog_emailrec: "slb@salesforce.com",
-
-
 }
