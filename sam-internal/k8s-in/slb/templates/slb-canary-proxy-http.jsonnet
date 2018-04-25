@@ -82,6 +82,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                                               "slb-ipvs-b",
                                                               "slb-nginx-config-b",
                                                                "slb-nginx-config-a",
+                                                               "slb-vip-watchdog",
                                                         ],
                                                     }],
                                                 },

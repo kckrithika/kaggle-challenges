@@ -74,6 +74,7 @@ if configs.estate == "prd-sdc" then {
                                                               "slb-ipvs-b",
                                                               "slb-nginx-config-b",
                                                                "slb-nginx-config-a",
+                                                               "slb-vip-watchdog",
                                                         ],
                                                     }],
                                                 },
