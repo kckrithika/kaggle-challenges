@@ -12,7 +12,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mesh
       - name: SCONE_SHIPPING_DEST
-        value: shipping-envoy-mtls.user-shaktiprakash-das.samapp.localhost.mesh.force.com:5443
+        value: shipping-envoy-mtls.user-shaktiprakash-das.samapp.localhost.mesh.force.com:7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       - name: SCONE_DEPLOYMENT_JVM_OPTIONS
@@ -28,48 +28,48 @@ system:
           path: /manage/health
           port: 15372
 
-    - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
-      # sfci/servicelibs/sherpa-envoy:55f2e2813142f677427d4d334fc272317ae0a3c6
-
       # Use one of these images and comment out --switchboard arg if using Linkerd.
       # Linkerd: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-linkerd:xfcc-dev
       # Envoy: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-envoy:xfcc-dev
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-linkerd:xfcc-dev
+      image: sfci/servicelibs/sherpa-envoy:910c0b2bd4e696b019c6ac560cdc37b000a10cd5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
       # Envoy only
-      # args:
-      # - --switchboard
-      # - swb-mtls-lb.user-shaktiprakash-das.prd-sam.prd.slb.sfdc.net:15001
+      args:
+      - --switchboard
+      - swb-mtls-lb.user-shaktiprakash-das.prd-sam.prd.slb.sfdc.net:15001
       ports:
       - containerPort: 15373
         name: sherpa-adm
+      - containerPort: 7443
+        name: h2-tls-in
+      - containerPort: 7012
+        name: grpc-in
       # Linkerd Probes
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-      # Envoy Probes
       # livenessProbe:
-      #   httpGet:
-      #     path: /listeners
-      #     port: 15373
-      #   initialDelaySeconds: 20
+      #   exec:
+      #     command:
+      #     - "./bin/is-alive"
+      #   initialDelaySeconds: 120
+      #   periodSeconds: 5
       # readinessProbe:
-      #   httpGet:
-      #     path: /listeners
-      #     port: 15373
-      #   initialDelaySeconds: 15
+      #   exec:
+      #     command:
+      #     - "./bin/is-ready"
+      #   initialDelaySeconds: 110
+      #   periodSeconds: 5
+      # Envoy Probes
+      livenessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
       volumeMounts:
         - name: logvol
           mountPath: /log
@@ -77,11 +77,10 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
-
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-ordering-envoy-mtls/logs
+        path: /home/sfdc-shipping-envoy-mtls/logs
     - name: tls-client-cert
       maddogCert:
         type: client
