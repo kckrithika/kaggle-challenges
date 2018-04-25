@@ -44,7 +44,7 @@ if configs.estate == "prd-sam" then {
                             "--certfile=" + configs.certFile,
                             "--keyfile=" + configs.keyFile,
                             "--cafile=" + configs.caFile,
-                            "--topicsPattern=sfdc.prod.sdn__prd.ajna_local__log",
+                            "--topicsPattern=sfdc.prod.sdn__.*.ajna_local__log",
                             "--confFile=/etc/logstash/conf.d/logstash.conf",
                             "--truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks",
                             "--keystoreFile=/etc/logstash/certs/keystore.jks",
