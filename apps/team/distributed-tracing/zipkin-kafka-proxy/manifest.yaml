@@ -49,7 +49,8 @@ system:
             requests: { cpu: "1", memory: "1Gi" }
         ports:
         - containerPort: 7014
-          hostPort: 7014
+          # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
+          hostPort: 7442
           name: sherpa-http1-in
         - containerPort: 15373
           name: sherpa-adm
@@ -72,7 +73,7 @@ system:
           value: mesh
         args:
         - -endpoint
-        - zipkin:DATACENTER_ALLENV:7014
+        - zipkin:DATACENTER_ALLENV:7442
         livenessProbe:
             initialDelaySeconds: 5
             exec:
