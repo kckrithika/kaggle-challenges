@@ -1,0 +1,54 @@
+apiVersion: v1
+system:
+  functions:
+  - name: broker-service
+    count: 1
+    containers:
+    # Broker service
+    - name: broker
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:firstversion
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
+      - name: JAVA_HEAP_OPTS
+        value: -Xmx64m
+      ports:
+      - containerPort: 7020
+        name: grpc-svc
+      - containerPort: 15372
+        name: scone-mgmt
+      livenessProbe:
+        initialDelaySeconds: 120
+        httpGet:
+          path: /manage/health
+          port: 15372
+    
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.25 # Use the latest version from https://git.soma.salesforce.com/servicelibs/sherpa/releases
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "mesh" # Use whatever environment your kpod uses
+      volumeMounts:
+        - name: logvol
+          mountPath: /log
+      ports:
+      - containerPort: 7012 # add additional container ports for the protocols your service uses
+        name: sherpa-in-http2
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 20
+      readinessProbe:
+        httpGet:
+          path: /listeners
+          port: 15373
+        initialDelaySeconds: 15
+
+    # Add the log volume in the function section:
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-imagemagick/logs
