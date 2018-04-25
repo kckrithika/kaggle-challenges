@@ -35,7 +35,7 @@ spec:
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
-        - --topicsPattern=sfdc.prod.sdn__prd.ajna_local__log
+        - --topicsPattern=sfdc.prod.sdn__.*.ajna_local__log
         - --confFile=/etc/logstash/conf.d/logstash.conf
         - --truststoreFile=/etc/pki/java/cacerts_sfdc_internal.jks
         - --keystoreFile=/etc/logstash/certs/keystore.jks
