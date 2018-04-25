@@ -24,7 +24,9 @@ local utils = import "util_functions.jsonnet";
 
         #[xiao.zhou] Test sam-api-proxy and samapp controller
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0001853-500861a8",
+        #[rbhat] release maddog fix changes
+        "prd,prd-samdev,samapp-controller,hypersam": "sam-0001921-1c8875a3",
+        "prd,prd-sam,samapp-controller,hypersam": "sam-0001921-1c8875a3",
 
         #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
         "prd,prd-sam,samcontrol,hypersam": "sam-0001848-170a0744",
