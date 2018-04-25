@@ -4,3 +4,9 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  prd-sp2-casam-func-7500:
   - name: prd/prd-sp2-sam_coreapp
+ kaiju:
+  - name: prd/prd-sp2-sam_coreapp
+# may-demo-core:
+#  - name: prd/prd-sp2-sam_coreapp
+# may-demo-cyan-enovy:
+#  - name: prd/prd-sp2-sam_coreapp
