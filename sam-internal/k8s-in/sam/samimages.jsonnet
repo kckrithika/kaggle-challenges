@@ -67,6 +67,9 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
+
+        #[diana.chang]temporary override for samcontrol-deployer in samtest so it doesn't get "rolled out" to an older version
+        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180424_161304.2b18f05e.dirty.dianachang-ltm1",
         },
 
     ### Per-phase image tags
