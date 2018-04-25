@@ -5,16 +5,18 @@ system:
     email:
       - emailinfrastructure@salesforce.com
   functions:
-  - name: eaas
+  - name: eaas-nontls
     count: 3 
     strategy:
       type: RollingUpdate
     containers:
-    - name: eaas
-      image: docker-sfci-dev/sfci/pkonieczny/emailservice:93e464339ed476e83cc7bda70cc9a279c6918e12
+    - name: eaas-nontls
+      image:  tnrp/emailinfrastructure/eaas:latest-0000039-ff1963a9
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
       - name: SCONE_SERVICE_NAME
         value: eaas
       ports:
@@ -37,22 +39,23 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 60
         timeoutSeconds: 30
-    - name: beacon-eaas
+
+    - name: beacon-eaas-nontls
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       args:
       - -endpoint
-      - samapp/user-pkonieczny/eaas:DATACENTER:7443
+      - samapp/user-pkonieczny/eaas:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: sherpa-eaas
-      image: sfci/servicelibs/sherpa:2.0.22
+    - name: sherpa-eaas-nontls
+      image: sfci/servicelibs/sherpa:2.0.25
       args: ["--zipkin-rate", "0.01"]
       env:
       - name: SFDC_ENVIRONMENT
@@ -63,8 +66,6 @@ system:
       ports:
       - containerPort: 7012
         name: sherpa-eaas-in
-      - containerPort: 7443
-        name: sherpa-eaas-tls
       - containerPort: 15373
         name: sherpa-eaas-adm
       livenessProbe:
@@ -80,8 +81,6 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
-      - name: eaas-server-cert
-        mountPath: /server-certs
       - name: sherpa-log-volume
         mountPath: /log
 
@@ -89,9 +88,14 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-eaas/logs
-    - name: eaas-server-cert
-      maddogCert:
-        type: server
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+  loadbalancers:
+  - lbname: emailinfra-eaas-pkonieczny-lb
+    function: eaas-nontls
+    slbEnabled: true
+    ports:
+      - port: 7020
+        targetport: 7020
+        lbtype : tcp  
