@@ -43,7 +43,7 @@ system:
         args: ["--http1-origin", "localhost:9411"]
         # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
         args: ["--http1-in", "7442"]
-        args: ["--http1-tls-in", "74421"]
+        args: ["--http1-tls-in", "17442"]
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
