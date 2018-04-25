@@ -1,0 +1,51 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - servicemesh@salesforce.com
+  functions:
+  - name: grafana
+    count: 1
+    containers:
+    - name: grafana
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sfdc-grafana:latest
+      env:
+      - name: GF_SERVER_ROOT_URL
+        value: "http://sfdc-grafanalb.user-npshenichnyy.prd-sam.prd.slb.sfdc.net:64135"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+        - containerPort: 3000
+      volumeMounts:
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+      livenessProbe:
+        initialDelaySeconds: 30
+        timeoutSeconds: 10
+        httpGet:
+          path: /
+          port: 3000
+      readinessProbe:
+        initialDelaySeconds: 30
+        timeoutSeconds: 10
+        httpGet:
+          path: /
+          port: 3000
+
+    volumes:
+      - name: secretvol
+        k4aSecret:
+          secretName: grafanaarguscreds
+
+  loadbalancers:
+  - lbname: grafanalb
+    function: grafana
+    slbEnabled: true
+    nodeExposed: true
+    ports:
+      - port: 64135
+        targetport: 3000
+        lbtype: http

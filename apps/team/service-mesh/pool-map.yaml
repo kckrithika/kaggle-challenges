@@ -41,3 +41,5 @@ apps:
   - prd/prd-sam
   shipping-envoy-tls:
   - prd/prd-sam
+  grafana:
+  - prd/prd-sam_gater
