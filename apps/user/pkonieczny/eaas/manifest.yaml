@@ -93,7 +93,7 @@ system:
         path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: emailinfra-eaas-pkonieczny-lb
-    function: eaas-demo
+    function: eaas-nontls
     slbEnabled: true
     ports:
       - port: 7020
