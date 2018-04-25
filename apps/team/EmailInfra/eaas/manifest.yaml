@@ -15,8 +15,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      - name: GRPC_ANNOUNCED_PORT
-        value: 7443
       - name: SCONE_SERVICE_NAME
         value: eaas
       ports:
@@ -46,8 +44,12 @@ system:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       args:
+      #Namespaced, mTLS
       - -endpoint
       - emailinfra/eaas:DATACENTER_ALLENV:7443
+      #Non-namespaced, plaintext
+      - -endpoint
+      - eaas:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -64,6 +66,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
+      - containerPort: 7012
+        name: sherpa-eaas-in
       - containerPort: 7443
         name: sherpa-eaas-tls
       - containerPort: 15373
@@ -96,3 +100,11 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+  loadbalancers:
+  - lbname: emailinfra-eaas-lb
+    function: eaas
+    slbEnabled: true
+    ports:
+      - port: 7020
+        targetport: 7020
+        lbtype : tcp  
