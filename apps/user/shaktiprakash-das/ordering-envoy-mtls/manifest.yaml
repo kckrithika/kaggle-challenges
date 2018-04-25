@@ -28,6 +28,10 @@ system:
           path: /manage/health
           port: 15372
 
+    - name: sherpa
+      # https://git.soma.salesforce.com/servicelibs/sherpa-envoy/pull/44
+      # sfci/servicelibs/sherpa-envoy:55f2e2813142f677427d4d334fc272317ae0a3c6
+
       # Use one of these images and comment out --switchboard arg if using Linkerd.
       # Linkerd: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-linkerd:xfcc-dev
       # Envoy: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/shaktiprakash-das/sherpa-envoy:xfcc-dev
@@ -42,10 +46,6 @@ system:
       ports:
       - containerPort: 15373
         name: sherpa-adm
-      - containerPort: 7443
-        name: h2-tls-in
-      - containerPort: 7012
-        name: grpc-in
       # Linkerd Probes
       # livenessProbe:
       #   exec:
@@ -77,10 +77,11 @@ system:
           mountPath: /client-certs
         - name: tls-server-cert
           mountPath: /server-certs
+
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-shipping-envoy-mtls/logs
+        path: /home/sfdc-ordering-envoy-mtls/logs
     - name: tls-client-cert
       maddogCert:
         type: client
