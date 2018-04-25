@@ -5,18 +5,16 @@ system:
     email:
       - emailinfrastructure@salesforce.com
   functions:
-  - name: eaas-nontls
+  - name: eaas
     count: 3 
     strategy:
       type: RollingUpdate
     containers:
-    - name: eaas-nontls
+    - name: eaas
       image:  tnrp/emailinfrastructure/eaas:latest-0000039-ff1963a9
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      - name: GRPC_ANNOUNCED_PORT
-        value: 7012
       - name: SCONE_SERVICE_NAME
         value: eaas
       ports:
@@ -40,21 +38,25 @@ system:
         periodSeconds: 60
         timeoutSeconds: 30
 
-    - name: beacon-eaas-nontls
+    - name: beacon-eaas
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
       args:
+      #Namespaced, TLS
       - -endpoint
-      - samapp/user-pkonieczny/eaas:DATACENTER:7012
+      - samapp/user-pkonieczny/eaas:DATACENTER:7443
+      #Non-namespaced, plaintext
+      - -endpoint
+      - samapp/eaas:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
             - "/home/scone/is-alive.sh"
 
-    - name: sherpa-eaas-nontls
+    - name: sherpa-eaas
       image: sfci/servicelibs/sherpa:2.0.25
       args: ["--zipkin-rate", "0.01"]
       env:
@@ -93,7 +95,7 @@ system:
         path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: emailinfra-eaas-pkonieczny-lb
-    function: eaas-nontls
+    function: eaas
     slbEnabled: true
     ports:
       - port: 7020
