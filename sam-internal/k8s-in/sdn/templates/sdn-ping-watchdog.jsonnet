@@ -96,7 +96,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 } else {
                     master: "true",
                 },
-                [if configs.kingdom == "prd" then "affinity"]: {
+                [if configs.kingdom == "prd" || configs.kingdom == "frf" then "affinity"]: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{
                                 labelSelector: {
