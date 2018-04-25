@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: rabbitmq-server
-    count: 3
+    count: 1
     containers:
     - name: rabbitmq-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/rabbitmq-server:3.7.0
