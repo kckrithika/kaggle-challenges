@@ -15,8 +15,8 @@ system:
           port: 15303
     
     # Broker service
-    - name: broker-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:secondversion
+    - name: brokerservice
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:thirdversion
       ports:
       - containerPort: 7013
       - containerPort: 15375
