@@ -3,7 +3,9 @@ data:
   data: '[{"authorizedClientCerts": ["flowsnake_master_prod"], "authorizedLdapGroups":
     [ ], "namespace": "flowsnake"}, {"authorizedClientCerts": ["retail-cre.cre-control-plane"],
     "authorizedLdapGroups": [ ], "namespace": "retail-cre"}, {"authorizedClientCerts":
-    ["wave-elt.datapool"], "authorizedLdapGroups": [ ], "namespace": "wave-elt"}]'
+    ["wave-elt.datapool"], "authorizedLdapGroups": [ ], "namespace": "wave-elt"},
+    {"authorizedClientCerts": ["iot.provisioning"], "authorizedLdapGroups": [ ], "namespace":
+    "iot"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
