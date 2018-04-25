@@ -54,7 +54,6 @@ system:
           name: sherpa-http1-in
         - containerPort: 7442
           hostPort: 7442
-          name: sherpa-http1-tls-in
         - containerPort: 15373
           name: sherpa-adm
         livenessProbe:
