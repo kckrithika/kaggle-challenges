@@ -1,0 +1,34 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - mayank.kumar@salesforce.com
+  functions:
+  - name: stateful-func-noceph
+    type: stateful-set
+    count: 2
+    containers:
+    - name: stateful-hello
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20171127_135121.2e73607.dirty.mayankkuma-ltm3
+      command:
+        - /sam/sam-test-app
+      ports:
+      - containerPort: 8000
+        name: web
+      volumeMounts:
+      - name: www
+        mountPath: /rbd/html
+      env:
+        - name: DUMMYENV
+          value: "SOMEVALUE06"
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8000
+    volumes:
+    - name: www
+      hostPath:
+        path: /data/rbd
+    lbname: stateful-noceph
+    terminationGracePeriodSeconds: 33
