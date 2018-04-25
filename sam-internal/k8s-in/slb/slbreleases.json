@@ -3,7 +3,7 @@
     "hypersdn": {
       "label": "v-0000818-072ffbb4",
       "promotedTime": "2018-04-25T14:53:47.495911Z",
-      "warning": "818 requires moving shared services into slb-vip-watchdog's pod"
+      "warning": "818 requires moving shared services into slb-vip-watchdog's pod. This has changes in config.jsonnet, slb-vip-watchdog.jsonnet and slbsharedservices.jsonnet"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
