@@ -5,8 +5,6 @@ apps:
   - prd/prd-sam
  sammon:
   - prd/prd-sam
- sfdc-grafana:
-  - prd/prd-sam
  tictactoe-server-envoy:
   - prd/prd-sam
  tictactoe-client-envoy:
