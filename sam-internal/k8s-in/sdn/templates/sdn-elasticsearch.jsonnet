@@ -19,7 +19,7 @@ if configs.estate == "prd-sam" then {
                    storageClassName: "sdn-dashboard-hdd-pool",
                    resources: {
                       requests: {
-                         storage: "500Gi",
+                         storage: "1750Gi",
                       },
                    },
                 },
