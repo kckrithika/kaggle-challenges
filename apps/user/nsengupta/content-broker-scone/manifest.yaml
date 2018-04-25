@@ -37,10 +37,16 @@ system:
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
-        initialDelaySeconds: 20
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
 
     # Add the log volume in the function section:
     volumes:
