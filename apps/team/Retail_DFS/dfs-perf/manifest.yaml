@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   functions:
   - name: dfs-perf
-    count: 2
+    count: 3
     containers:
     - name: dfs
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.10
