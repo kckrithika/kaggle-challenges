@@ -18,7 +18,7 @@ system:
           type: client        
       containers:
       - name: zipkin-kafka-proxy
-        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-13-itest
+        image: docker-all/dva/zipkin-kafka-proxy:jenkins-monitoring-zipkin-kafka-proxy-test-producer-14-itest
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy
@@ -54,6 +54,7 @@ system:
           name: sherpa-http1-in
         - containerPort: 7442
           hostPort: 7442
+          name: sherpa-http1-tls-in
         - containerPort: 15373
           name: sherpa-adm
         livenessProbe:
@@ -75,7 +76,7 @@ system:
           value: mesh
         args:
         - -endpoint
-        - zipkin:DATACENTER_ALLENV:7014
+        - zipkin:DATACENTER_ALLENV:7442
         livenessProbe:
             initialDelaySeconds: 5
             exec:
