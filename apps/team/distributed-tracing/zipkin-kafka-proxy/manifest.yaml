@@ -4,7 +4,6 @@ system:
     notifications:
         email:
         - distributedtracing@salesforce.com
-
     functions:
     - name: zipkin-kafka-proxy
       count: 1
@@ -23,6 +22,8 @@ system:
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy
+        - name: PORT
+          value: 7022
         - name: KAFKA_BOOTSTRAP_SERVERS
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: KAFKA_TOPIC
@@ -40,10 +41,6 @@ system:
       - name: sherpa
         image: sfci/servicelibs/sherpa:2.0.25
         args: ["--zipkin-rate", "0.0"]
-        args: ["--http1-origin", "localhost:9411"]
-        # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
-        args: ["--http1-in", "7442"]
-        args: ["--http1-tls-in", "17442"]
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
@@ -51,10 +48,12 @@ system:
             limits: { cpu: "1", memory: "1Gi" }
             requests: { cpu: "1", memory: "1Gi" }
         ports:
+        # Temporary: Eventually we will only allow tls
+        - containerPort: 7014
+          hostPort: 7014
+          name: sherpa-http1-in
         - containerPort: 7442
           hostPort: 7442
-          # Temporary: This is the MTLS port that happen to be the only one Kingdom listener
-          name: sherpa-http1-in
         - containerPort: 15373
           name: sherpa-adm
         livenessProbe:
@@ -76,7 +75,7 @@ system:
           value: mesh
         args:
         - -endpoint
-        - zipkin:DATACENTER_ALLENV:7442
+        - zipkin:DATACENTER_ALLENV:7014
         livenessProbe:
             initialDelaySeconds: 5
             exec:
