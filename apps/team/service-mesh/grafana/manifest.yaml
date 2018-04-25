@@ -14,8 +14,8 @@ system:
       - name: GF_SERVER_ROOT_URL
         value: "http://grafanalb.service-mesh.prd-sam.prd.slb.sfdc.net:64135"
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits: { cpu: "4", memory: "4Gi" }
+        requests: { cpu: "4", memory: "4Gi" }
       ports:
         - containerPort: 3000
       volumeMounts:
