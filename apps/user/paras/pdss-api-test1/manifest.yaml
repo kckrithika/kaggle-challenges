@@ -7,6 +7,9 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
+    - name: pdss-api-log-volume
+      hostPath:
+        path: /home/sfdc-pdss-api-test/logs    
     - name: certs
       maddogCert:
         type: server 
@@ -34,6 +37,8 @@ system:
       volumeMounts:
       - name: certs
         mountPath: /certs
+      - name: pdss-api-log-volume  
+        mountPath: /home/scone/logs
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
