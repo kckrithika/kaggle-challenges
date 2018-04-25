@@ -48,5 +48,5 @@ spec:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 1750Gi
+          storage: 1990Gi
       storageClassName: sdn-dashboard-hdd-pool
