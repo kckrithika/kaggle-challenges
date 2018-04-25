@@ -50,7 +50,7 @@ spec:
         - --log_dir=/var/logs/sdn/
         - --logtostderr=false
         - --alsologtostderr=true
-        - --failPercentageThreshold=0
+        - --failPercentageThreshold=5
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
