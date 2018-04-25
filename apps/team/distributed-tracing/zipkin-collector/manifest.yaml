@@ -15,7 +15,7 @@ system:
         type: client
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:6
+      image: docker-dva-rc/dva/zipkin-collector:7
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
@@ -23,6 +23,8 @@ system:
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
         value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing
+      - name: ZIPKIN_ARGS
+        value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector
         name: client-certs
