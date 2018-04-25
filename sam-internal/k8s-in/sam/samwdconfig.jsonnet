@@ -20,8 +20,14 @@ recipient: (
 laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
 syntheticPort: (if configs.estate == "prd-sam" then 8063 else 8083),
 pagerduty_args: (if (configs.estate != "prd-sdc" && configs.estate != "prd-sam_storage" && configs.estate != "prd-samdev" && configs.estate != "prd-samtest") then [
-  "-recipient=" + $.recipient + "," + "csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com",
+    (
+if (configs.estate == "prd-sam") then
+ "-recipient=" + $.recipient + "," + "sam-pagerduty@salesforce.com"
+ else
+ "-recipient=" + $.recipient + "," + "csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com"
+),
 ] else []),
+
 filesystem_watchdog_args: (["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "make@salesforce.com"]),
 
 shared_args: configs.filter_empty([
