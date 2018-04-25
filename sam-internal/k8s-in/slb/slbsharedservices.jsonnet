@@ -1,9 +1,10 @@
-local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
-local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local portconfigs = import "slbports.jsonnet";
-
 {
+    dirSuffix:: "",
+    local configs = import "config.jsonnet",
+    local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
+    local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
+    local portconfigs = import "slbports.jsonnet",
+
     slbConfigProcessor: {
         name: "slb-config-processor",
         image: slbimages.hypersdn,
@@ -34,7 +35,9 @@ local portconfigs = import "slbports.jsonnet";
             "--shouldRemoveConfig=true",
             configs.sfdchosts_arg,
             "--proxySelectorLabelValue=slb-nginx-config-b",
-        ],
+        ] + (if slbimages.phase == "1" then [
+                 "--hostnameOverride=$(NODE_NAME)",
+             ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
@@ -46,7 +49,9 @@ local portconfigs = import "slbports.jsonnet";
         ]),
         env: [
             configs.kube_config_env,
-        ],
+        ] + (if slbimages.phase == "1" then [
+                 slbconfigs.node_name_env,
+             ] else []),
         securityContext: {
             privileged: true,
         },
