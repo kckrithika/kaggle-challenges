@@ -15,6 +15,9 @@ system:
         value: 15370
       - name: LOGGING_DIR
         value: "/log"
+      args:
+      - --logging.json.enabled=false
+      - --zookeeper.seedHosts=shared0-discovery1-0-prd.data.sfdc.net
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
