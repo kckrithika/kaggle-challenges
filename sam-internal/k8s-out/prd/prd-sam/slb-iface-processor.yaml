@@ -45,6 +45,8 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /host/sbin
+          name: sbin-volume
       hostNetwork: true
       volumes:
       - hostPath:
@@ -59,6 +61,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /sbin
+        name: sbin-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1

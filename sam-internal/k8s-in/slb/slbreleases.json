@@ -3,7 +3,7 @@
     "hypersdn": {
       "label": "v-0000822-106403cc",
       "promotedTime": "2018-04-26T14:45:44.181156479Z",
-      "warning": "819 requires moving shared services into slb-vip-watchdog's pod. This has changes in config.jsonnet, slb-vip-watchdog.jsonnet and slbsharedservices.jsonnet"
+      "warning": "819 requires moving shared services into slb-vip-watchdog's pod. It also requires adding the /sbin volume mount to iface-processor"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
@@ -14,7 +14,7 @@
     "hypersdn": {
       "label": "v-0000822-106403cc",
       "promotedTime": "2018-04-26T18:26:13.879123904Z",
-      "warning": "819 requires moving shared services into slb-vip-watchdog's pod. This has changes in config.jsonnet, slb-vip-watchdog.jsonnet and slbsharedservices.jsonnet"
+      "warning": "819 requires moving shared services into slb-vip-watchdog's pod. It also requires adding the /sbin volume mount to iface-processor"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
