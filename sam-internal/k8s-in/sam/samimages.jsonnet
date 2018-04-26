@@ -22,39 +22,17 @@ local utils = import "util_functions.jsonnet";
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001921-1c8875a3",
 
-        #[xiao.zhou] Test sam-api-proxy and samapp controller
-        "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001856-d20c959b",
         #[rbhat] release maddog fix changes
         "prd,prd-samdev,samapp-controller,hypersam": "sam-0001921-1c8875a3",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001921-1c8875a3",
 
         #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
-        "prd,prd-sam,samcontrol,hypersam": "sam-0001848-170a0744",
         "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
-        "prd,prd-sdc,samcontrol,hypersam": "sam-0001848-170a0744",
 
         #[jiayi.yan] Roll out sam app status CRD in SDP
-        "prd,prd-sam,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
         "prd,prd-samtwo,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
-        "prd,prd-sdc,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
-
-        #[d.smith] Rollout change to daemonset rollouts to prevent SLB outages while
-        #api servers are under heavy load
-        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001854-6406a7e5",
-
-        #[rbhat] Delete orphan deployments,services on resync
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001886-9f1535db",
-
-        #[rbhat] skip e2e namespace in proxy validator
-        "prd,prd-samdev,sam-api-proxy,hypersam": "sam-0001886-9f1535db",
-
-        #[a.mitra] deploy latest sql watchdog in prd
-        "prd,prd-sam,watchdog-samsql,hypersam": "sam-0001894-7c4f0d45",
 
         #[lizhang.li] rollout filesystem watchdog with hidden file checker in prd
-        "prd,prd-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "prd,prd-samdev,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "prd,prd-samtest,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
@@ -102,7 +80,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001847-1b9453cd",
+            hypersam: "sam-0001912-3f0e2a18",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
