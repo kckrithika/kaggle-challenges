@@ -114,11 +114,11 @@ spec:
       containers:
       - command:
         - /sdn/slb-nginx-config
-        - --configDir=/host/data/slb/config
+        - --configDir=/host/data/slb/config/
         - --target=/host/data/slb/nginx/config
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --maxDeleteServiceCount=1000
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
@@ -133,7 +133,7 @@ spec:
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -150,7 +150,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /cert1
           name: cert1
@@ -164,14 +164,14 @@ spec:
         - --scanPeriod=10s
         - --skipZeroLengthFiles=true
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000811-4203c08d
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -230,7 +230,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
       - configMap:
           name: sfdchosts

@@ -25,7 +25,7 @@ spec:
         - /sdn/slb-baboon
         - --k8sapiserver=
         - --namespace=sam-system
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --hostnameoverride=$(NODE_NAME)
         - --port=32556
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
@@ -57,9 +57,9 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -79,10 +79,10 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/config
+          path: /data/slb/config/
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
       - hostPath:
           path: /data/certs
