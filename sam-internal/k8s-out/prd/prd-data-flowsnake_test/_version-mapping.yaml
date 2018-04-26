@@ -14,6 +14,7 @@ data:
     ajnaupgradetest-vg = jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest
     jvmtest-lhn = jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest
     smtest-kh = jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest
+    0.9.8-auth-test = jenkins-dva-transformation-flowsnake-platform-PR-585-7-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null

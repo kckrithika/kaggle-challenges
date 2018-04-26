@@ -22,7 +22,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "607",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-585-7-itest",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -56,6 +56,7 @@ local utils = import "util_functions.jsonnet";
                   "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
                   "jvmtest-lhn": "jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest",
                   "ajnaupgradetest-vg": "jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest",
+                  "0.9.8-auth-test": "jenkins-dva-transformation-flowsnake-platform-PR-585-7-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
