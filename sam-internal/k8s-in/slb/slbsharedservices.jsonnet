@@ -106,4 +106,25 @@
             privileged: true,
         },
     },
+    slbRealSvrCfg: {
+        name: "slb-realsvrcfg",
+        image: slbimages.hypersdn,
+        command: [
+            "/sdn/slb-realsvrcfg",
+            "--configDir=" + slbconfigs.configDir,
+            "--period=5s",
+            "--netInterfaceName=eth0",
+            "--log_dir=" + slbconfigs.logsDir,
+            configs.sfdchosts_arg,
+        ],
+        volumeMounts: configs.filter_empty([
+            slbconfigs.slb_volume_mount,
+            slbconfigs.sbin_volume_mount,
+            slbconfigs.logs_volume_mount,
+            configs.sfdchosts_volume_mount,
+        ]),
+        securityContext: {
+            privileged: true,
+        },
+    },
 }
