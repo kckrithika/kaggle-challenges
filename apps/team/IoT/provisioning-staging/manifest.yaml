@@ -88,7 +88,7 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: docker-sam/iot/enterprise-provisioning:1.0.0.11
+      image: sfci/iot/enterprise-provisioning:1.0.0.11
       livenessProbe:
         httpGet:
           path: /manage/health
