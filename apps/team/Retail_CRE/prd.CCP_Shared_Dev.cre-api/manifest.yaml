@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api-ccp-dev
-      image: sfci/cre/cre-api:0.0.1.49.master.2b98473.101
+      image: sfci/cre/cre-api:0.0.1.50.master.800f216.102
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_audit_CCP_Shared_Dev
@@ -22,7 +22,7 @@ system:
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
-          value: maddog/maddog-client-truststore.json  
+          value: maddog/maddog-client-truststore.json
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -48,7 +48,7 @@ system:
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
-        name: myservercert      
+        name: myservercert
       env:
         - name: SFDC_ENVIRONMENT
           value: CCP_Shared_Dev
