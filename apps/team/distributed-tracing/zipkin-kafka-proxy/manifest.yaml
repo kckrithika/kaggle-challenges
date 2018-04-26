@@ -24,10 +24,12 @@ system:
           value: zipkin-kafka-proxy
         - name: PORT
           value: 7022
-        - name: KAFKA_BOOTSTRAP_SERVERS
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: KAFKA_TOPIC
-          value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing
+        args:
+        - ajna0-broker1-0-$(KINGDOM).data.sfdc.net:9093
+        - sfdc.prod.distributed-tracing.zipkin-kafka-proxy__$(KINGDOM).ajna_local__tracing
+        resources:
+            limits: { cpu: "2", memory: "12Gi" }
+            requests: { cpu: "2", memory: "12Gi" }
         volumeMounts:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy
           name: client-certs
