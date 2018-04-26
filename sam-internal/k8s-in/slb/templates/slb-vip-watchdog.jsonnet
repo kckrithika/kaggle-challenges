@@ -65,7 +65,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbconfigs.slb_volume,
                           slbconfigs.logs_volume,
                           configs.sfdchosts_volume,
-                      ] + (if slbimages.phase == "1" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                configs.maddog_cert_volume,
                                slbconfigs.slb_config_volume,
                                configs.cert_volume,
@@ -85,7 +85,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   configs.sfdchosts_arg,
                                   "--metricsEndpoint=" + configs.funnelVIP,
                                   "--httpTimeout=5s",
-                              ] + (if slbimages.phase == "1" then [
+                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                        "--useLocalNodeApi=true",
                                    ] else []),
                               volumeMounts: configs.filter_empty([
@@ -97,7 +97,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   slbconfigs.node_name_env,
                               ],
                           },
-                      ] + if slbimages.phase == "1" then [
+                      ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
                           slbshared.slbConfigProcessor,
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi,
