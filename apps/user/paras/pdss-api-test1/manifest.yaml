@@ -17,7 +17,7 @@ system:
         - pdssapitest1lb      
     containers:
     - name: pdss-api-test1 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180423
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180426
       ports:
       - containerPort: 8080
       - containerPort: 53 
