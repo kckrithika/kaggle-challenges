@@ -23,7 +23,6 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - phx-sam
                 - phx-slb
       containers:
       - command:
