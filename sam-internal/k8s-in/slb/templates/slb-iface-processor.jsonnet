@@ -66,7 +66,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                         {
                                             key: "pool",
                                             operator: "In",
-                                            values: if configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate, configs.kingdom + "-slb"],
+                                            values: if configs.estate == "prd-sam" || slbimages.phase == "3" then [configs.kingdom + "-slb"] else [configs.estate, configs.kingdom + "-slb"],
                                         },
 
                                     ],
