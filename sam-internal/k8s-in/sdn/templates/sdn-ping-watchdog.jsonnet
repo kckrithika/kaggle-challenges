@@ -96,21 +96,21 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 } else {
                     master: "true",
                 },
-                [if configs.kingdom == "prd" || configs.kingdom == "frf" then "affinity"]: {
-                        podAntiAffinity: {
-                            requiredDuringSchedulingIgnoredDuringExecution: [{
-                                labelSelector: {
-                                    matchExpressions: [{
-                                        key: "name",
-                                        operator: "In",
-                                        values: [
-                                            "sdn-ping-watchdog",
-                                        ],
-                                    }],
-                                },
-                                topologyKey: "kubernetes.io/hostname",
-                            }],
-                        },
+                affinity: {
+                    podAntiAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: [{
+                            labelSelector: {
+                                matchExpressions: [{
+                                    key: "name",
+                                    operator: "In",
+                                    values: [
+                                        "sdn-ping-watchdog",
+                                    ],
+                                }],
+                            },
+                            topologyKey: "kubernetes.io/hostname",
+                        }],
+                    },
                 },
             },
             metadata: {
