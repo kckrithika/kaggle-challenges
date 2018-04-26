@@ -23,7 +23,6 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - frf-sam
                 - frf-slb
       containers:
       - command:

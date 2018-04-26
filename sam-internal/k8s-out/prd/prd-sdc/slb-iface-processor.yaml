@@ -24,7 +24,6 @@ spec:
                 operator: In
                 values:
                 - prd-sdc
-                - prd-slb
             - matchExpressions:
               - key: master
                 operator: In

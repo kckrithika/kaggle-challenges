@@ -23,7 +23,6 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - hnd-sam
                 - hnd-slb
       containers:
       - command:

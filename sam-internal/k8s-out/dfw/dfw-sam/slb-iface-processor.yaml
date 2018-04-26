@@ -23,7 +23,6 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - dfw-sam
                 - dfw-slb
       containers:
       - command:
