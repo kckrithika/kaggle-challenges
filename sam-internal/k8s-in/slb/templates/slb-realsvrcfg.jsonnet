@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbshared = import "slbsharedservices.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -31,27 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.sfdchosts_volume,
                 ]),
                 containers: [
-                    {
-                        name: "slb-realsvrcfg",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-realsvrcfg",
-                            "--configDir=" + slbconfigs.configDir,
-                            "--period=5s",
-                            "--netInterfaceName=eth0",
-                            "--log_dir=" + slbconfigs.logsDir,
-                            configs.sfdchosts_arg,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.sbin_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        securityContext: {
-                            privileged: true,
-                        },
-                    },
+                    slbshared.slbRealSvrCfg,
                 ],
                 affinity: {
                     nodeAffinity: {

@@ -1,9 +1,10 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-nginx-config-b" } else {});
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samrole = "samapp.slb";
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -115,8 +116,10 @@ if slbconfigs.slbInKingdom then {
                          ]",
                 },
             },
-            spec: {
-                hostNetwork: true,
+            spec: (if slbimages.phase == "1" then {}
+                   else {
+                       hostNetwork: true,
+                   }) + {
                 volumes: configs.filter_empty([
                     {
                         name: "var-target-config-volume",
@@ -145,13 +148,13 @@ if slbconfigs.slbInKingdom then {
                         },
                         name: "tokens",
                     },
-                    {
-                        hostPath: {
-                            path: "/etc/pki_service",
-                        },
-                        name: "maddog-certs",
-                    },
-                ]),
+                    configs.maddog_cert_volume,
+                ] + if slbimages.phase == "1" then [
+                    slbconfigs.sbin_volume,
+                    configs.kube_config_volume,
+                    configs.cert_volume,
+                    slbconfigs.slb_config_volume,
+                ] else []),
                 containers: [
                                 {
                                     ports: [
@@ -314,7 +317,7 @@ if slbconfigs.slbInKingdom then {
                                 },
                             ]
                             + (
-                                if configs.estate == "prd-sdc" then [
+                                if slbimages.phase == "1" then [
                                     {
                                         name: "slb-cert-checker",
                                         image: slbimages.hypersdn,
@@ -343,6 +346,10 @@ if slbconfigs.slbInKingdom then {
                                             configs.sfdchosts_volume_mount,
                                         ]),
                                     },
+                                    slbshared.slbConfigProcessor,
+                                    slbshared.slbCleanupConfig,
+                                    slbshared.slbNodeApi,
+                                    slbshared.slbRealSvrCfg,
                                 ] else []
                             ),
 
