@@ -2,7 +2,7 @@ apiVersion: v1
 system:
   functions:
   - name: broker-service
-    count: 1
+    count: 2
     containers:
     # Broker service
     - name: broker
