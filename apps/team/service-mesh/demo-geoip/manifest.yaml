@@ -16,8 +16,8 @@ system:
         initialDelaySeconds: 20
 
     - name: demo-geoip-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/34
-      image: sfci/servicelibs/sherpa-envoy:e8e7bef6bb2a0e43d246c7c157c41358cd4dc9a5
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/57
+      image: sfci/servicelibs/sherpa-envoy:910c0b2bd4e696b019c6ac560cdc37b000a10cd5
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
