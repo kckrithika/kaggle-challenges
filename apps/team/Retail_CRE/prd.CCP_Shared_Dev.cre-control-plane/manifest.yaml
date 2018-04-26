@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-control-plane-ccp-dev
-    count: 3
+    count: 1
     containers:
     - name: cre-control-plane-ccp-dev
       image: sfci/cre/cre-control-plane:0.0.1.17.master.b5ad1b0.20
@@ -78,9 +78,6 @@ system:
         periodSeconds: 5
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: ccp-dev
       args:
       - -endpoint
       - cre-control-plane:DATACENTER_ALLENV:7012
