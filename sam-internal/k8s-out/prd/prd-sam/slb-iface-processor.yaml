@@ -23,7 +23,7 @@ spec:
               - key: pool
                 operator: In
                 values:
-                - prd-slb
+                - prd-sam
       containers:
       - command:
         - /sdn/slb-iface-processor
