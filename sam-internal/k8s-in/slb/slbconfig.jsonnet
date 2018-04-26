@@ -11,6 +11,7 @@
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd'],
+    testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
 
     perCluster: {
         ddiService: {
@@ -242,6 +243,7 @@
     madkubServer: self.perCluster.madkubServer[kingdom],
     slbInKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms + ["prd"] },
     slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
+    isTestEstate: estate in { [e]: 1 for e in $.testEstateList },
 
     sdn_watchdog_emailsender: "sam-alerts@salesforce.com",
     sdn_watchdog_emailrec: "slb@salesforce.com",
