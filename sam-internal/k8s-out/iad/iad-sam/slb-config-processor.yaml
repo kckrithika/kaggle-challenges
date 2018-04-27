@@ -33,7 +33,7 @@ spec:
       containers:
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/data/slb/config
+        - --configDir=/host/data/slb/config/
         - --period=1800s
         - --podPhaseCheck=true
         - --namespace=
@@ -43,7 +43,7 @@ spec:
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-iad.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --sleepTime=100ms
         - --processKnEConfigs=false
         - --kneConfigDir=/var/slb/kneconfigs/iad
@@ -52,10 +52,15 @@ spec:
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
+        - --hostnameOverride=$(NODE_NAME)
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -71,9 +76,9 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -85,22 +90,22 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=1h
-        - --filesDirToCleanup=/host/data/slb/config
+        - --filesDirToCleanup=/host/data/slb/config/
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
       hostNetwork: true
       volumes:
@@ -111,10 +116,10 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/config
+          path: /data/slb/config/
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
       - hostPath:
           path: /data/certs
