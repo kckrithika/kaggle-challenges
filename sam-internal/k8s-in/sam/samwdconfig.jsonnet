@@ -2,6 +2,7 @@
 local estate = std.extVar("estate"),
 local kingdom = std.extVar("kingdom"),
 local configs = import "config.jsonnet",
+local utils = import "util_functions.jsonnet",
 
 # [thargrove] TODO: This is not the ideal setup for email.  We are specifying the base email in the configMap,
 # but since the configMap is shared across all checkers, we use an extra flag to add pagerDuty.  But
@@ -19,13 +20,11 @@ recipient: (
 ),
 laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
 syntheticPort: (if configs.estate == "prd-sam" then 8063 else 8083),
-pagerduty_args: (if (configs.estate != "prd-sdc" && configs.estate != "prd-sam_storage" && configs.estate != "prd-samdev" && configs.estate != "prd-samtest") then [
-    (
-if (configs.estate == "prd-sam") then
- "-recipient=" + $.recipient + "," + "sam-pagerduty@salesforce.com"
- else
- "-recipient=" + $.recipient + "," + "csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com"
-),
+
+pagerduty_args: (if utils.is_public_cloud(configs.kingdom) || utils.is_gia(configs.kingdom) || utils.is_production(configs.kingdom) then [
+        "-recipient=" + $.recipient + "," + "csc-sam-sam-email.mbaphr21@salesforce.pagerduty.com",
+] else if (configs.estate == "prd-sam" || configs.estate == "prd-samtwo" || configs.estate == "xrd-sam") then [
+        "-recipient=" + $.recipient + "," + "sam-pagerduty@salesforce.com",
 ] else []),
 
 filesystem_watchdog_args: (["-recipient=" + $.recipient + (if $.recipient != "" then "," else "") + "make@salesforce.com"]),
