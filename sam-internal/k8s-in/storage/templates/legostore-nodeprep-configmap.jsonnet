@@ -16,7 +16,15 @@ local discoveryCfg = |||
         -  fastdata-3
 |||;
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "xrd-sam",
+    "phx-sam",
+]);
+
+if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "v1",
     kind: "ConfigMap",
     metadata: {
