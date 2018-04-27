@@ -1,5 +1,5 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
 // Disable everywhere for now because too noisy, because at any given time we have failed customer pods.
@@ -48,7 +48,7 @@ else
                            name: "kubeconfig",
                          },
                        ] +
-                       flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                       certs_and_kubeconfig.platform_cert_volumeMounts,
                        env: [
                            {
                                name: "KUBECONFIG",
@@ -83,7 +83,7 @@ else
                    name: "kubeconfig",
                  },
                ] +
-               flowsnakeconfigmapmount.platform_cert_volume,
+               certs_and_kubeconfig.platform_cert_volume,
            },
            metadata: {
               labels: {
