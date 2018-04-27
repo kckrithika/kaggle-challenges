@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   samcontrol.json: |-
     {
-      "BlackListNamespaceRegexp": [
+      "blackListNamespaceRegexp": [
         "e2e-.*-csc-sam$"
       ],
       "caFile": "/etc/pki_service/ca/cabundle.pem",
