@@ -59,7 +59,7 @@ spec:
           name: datacerts
         - mountPath: /tokens
           name: tokens
-        - mountPath: /sc
+        - mountPath: /maddog-onbox
           name: maddog-onebox-certs
       - args:
         - /sam/madkub-client

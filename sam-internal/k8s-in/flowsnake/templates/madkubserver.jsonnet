@@ -80,7 +80,7 @@ local kingdom = std.extVar("kingdom");
             ] +
             (if flowsnakeconfig.is_minikube then [
                 {
-                  mountPath: "/sc",
+                  mountPath: "/maddog-onbox",
                   name: "maddog-onebox-certs",
                 },
             ] else [

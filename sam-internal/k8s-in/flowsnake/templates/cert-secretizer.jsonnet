@@ -117,7 +117,7 @@ local kingdom = std.extVar("kingdom");
                 flowsnakeconfigmapmount.platform_cert_volumeMounts
             else [
                 {
-                  mountPath: "/sc",
+                  mountPath: "/maddog-onbox",
                   name: "maddog-onebox-certs",
                 },
             ]),
