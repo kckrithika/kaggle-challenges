@@ -14,28 +14,15 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         selector: {
             service: "madkubserver",
         },
+        ports: [
+            {
+                name: "madkub-api-tls",
+                port: 32007,
+                targetPort: 32007,
+            },
+        ],
     } +
-    (if flowsnakeconfig.is_minikube then
-      {
-          ports: [
-              {
-                  name: "32007",
-                  port: 32007,
-                  targetPort: 32007,
-              },
-          ],
-      }
-    else
-      {
-          clusterIP: "10.254.208.254",
-          ports: [
-              {
-                  name: "madkubapitls",
-                  port: 32007,
-                  targetPort: 32007,
-              },
-          ],
-      }),
+    (if flowsnakeconfig.is_minikube then {} else { clusterIP: "10.254.208.254" }),
     status: {
         loadBalancer: {},
     },

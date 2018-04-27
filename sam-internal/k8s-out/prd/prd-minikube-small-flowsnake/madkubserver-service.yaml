@@ -7,7 +7,7 @@ metadata:
   namespace: flowsnake
 spec:
   ports:
-  - name: "32007"
+  - name: madkub-api-tls
     port: 32007
     targetPort: 32007
   selector:

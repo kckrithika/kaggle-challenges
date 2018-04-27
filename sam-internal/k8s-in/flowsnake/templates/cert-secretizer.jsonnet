@@ -73,13 +73,13 @@ local kingdom = std.extVar("kingdom");
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              if flowsnakeconfig.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
+              flowsnakeconfig.madkub_endpoint,  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
-              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              flowsnakeconfig.maddog_endpoint,
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
               "--kingdom",
@@ -96,7 +96,10 @@ local kingdom = std.extVar("kingdom");
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",
               flowsnakeconfig.funnel_endpoint,
-            ] else []),
+            ] else [
+              "--log-level",
+              "7",
+            ]),
             image: flowsnakeimage.madkub,
             resources: {
             },
@@ -155,13 +158,13 @@ local kingdom = std.extVar("kingdom");
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              if flowsnakeconfig.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
+              flowsnakeconfig.madkub_endpoint,  // TODO: Fix kubedns so we do not need the IP
               "--maddog-endpoint",
-              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              flowsnakeconfig.maddog_endpoint,
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
               "--kingdom",
@@ -176,7 +179,10 @@ local kingdom = std.extVar("kingdom");
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",
               flowsnakeconfig.funnel_endpoint,
-            ] else []),
+            ] else [
+              "--log-level",
+              "7",
+            ]),
             image: flowsnakeimage.madkub,
             resources: {
             },
@@ -194,7 +200,7 @@ local kingdom = std.extVar("kingdom");
                 flowsnakeconfigmapmount.platform_cert_volumeMounts
             else [
                 {
-                  mountPath: "/sc",
+                  mountPath: "/maddog-onbox",
                   name: "maddog-onebox-certs",
                 },
             ]),

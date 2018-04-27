@@ -30,15 +30,15 @@ local kingdom = std.extVar("kingdom");
               "0.0.0.0:32007",
               "-d",
               "--maddog-endpoint",
-              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              flowsnakeconfig.maddog_endpoint,
               "--kubeconfig",
               if flowsnakeconfig.is_minikube then "/fake/kubernetes/kubeconfig" else "/kubeconfig",
               "--client-cert",
-              if flowsnakeconfig.is_minikube then "/sc/client_chain.pem" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/client_chain.pem" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
               "--client-key",
-              if flowsnakeconfig.is_minikube then "/sc/client-key.pem" else "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/client-key.pem" else "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--cert-folder",
               "/certs/",
               "--token-folder",
@@ -53,7 +53,10 @@ local kingdom = std.extVar("kingdom");
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",
               flowsnakeconfig.funnel_endpoint,
-            ] else []),
+            ] else [
+              "--log-level",
+              "7",
+            ]),
             image: flowsnakeimage.madkub,
             name: "madkubserver",
             ports: [
@@ -107,11 +110,11 @@ local kingdom = std.extVar("kingdom");
               "--madkub-endpoint",
               "",
               "--maddog-endpoint",
-              if flowsnakeconfig.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+              flowsnakeconfig.maddog_endpoint,
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/security-ca.pem" else "/maddog-certs/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca",
-              if flowsnakeconfig.is_minikube then "/sc/ca/ca.pem" else "/maddog-certs/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/ca.pem" else "/maddog-certs/ca/cacerts.pem",
               "--token-folder",
               "/tokens/",
               "--refresher",
@@ -125,7 +128,10 @@ local kingdom = std.extVar("kingdom");
             (if !flowsnakeconfig.is_minikube then [
               "--funnel-endpoint",
               flowsnakeconfig.funnel_endpoint,
-            ] else []),
+            ] else [
+              "--log-level",
+              "7",
+            ]),
             image: flowsnakeimage.madkub,
             volumeMounts: [
               {
@@ -139,7 +145,7 @@ local kingdom = std.extVar("kingdom");
             ] +
             (if flowsnakeconfig.is_minikube then [
                 {
-                  mountPath: "/sc",
+                  mountPath: "/maddog-onbox",
                   name: "maddog-onebox-certs",
                 },
             ] else [

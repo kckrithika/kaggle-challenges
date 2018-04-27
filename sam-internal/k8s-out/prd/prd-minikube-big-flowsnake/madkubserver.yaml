@@ -24,11 +24,11 @@ spec:
         - --kubeconfig
         - /fake/kubernetes/kubeconfig
         - --client-cert
-        - /sc/client_chain.pem
+        - /maddog-onbox/client_chain.pem
         - --client-key
-        - /sc/client-key.pem
+        - /maddog-onbox/client-key.pem
         - --maddog-server-ca
-        - /sc/ca/security-ca.pem
+        - /maddog-onbox/ca/security-ca.pem
         - --cert-folder
         - /certs/
         - --token-folder
@@ -39,6 +39,8 @@ spec:
         - prd
         - --estate
         - prd-minikube-big-flowsnake
+        - --log-level
+        - "7"
         image: ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1
         livenessProbe:
           httpGet:
@@ -66,9 +68,9 @@ spec:
         - --maddog-endpoint
         - https://maddog-onebox:8443
         - --maddog-server-ca
-        - /sc/ca/security-ca.pem
+        - /maddog-onbox/ca/security-ca.pem
         - --madkub-server-ca
-        - /sc/ca/ca.pem
+        - /maddog-onbox/ca/ca.pem
         - --token-folder
         - /tokens/
         - --refresher
@@ -78,6 +80,8 @@ spec:
         - prd
         - --cert-folders
         - madkubInternalCert:/certs/
+        - --log-level
+        - "7"
         env:
         - name: MADKUB_NODENAME
           valueFrom:
@@ -98,7 +102,7 @@ spec:
           name: datacerts
         - mountPath: /tokens
           name: tokens
-        - mountPath: /sc
+        - mountPath: /maddog-onbox
           name: maddog-onebox-certs
       restartPolicy: Always
       volumes:
