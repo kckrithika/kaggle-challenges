@@ -73,13 +73,13 @@ local kingdom = std.extVar("kingdom");
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              flowsnakeconfig.madkub_endpoint,  // TODO: Fix kubedns so we do not need the IP
+              flowsnakeconfig.madkub_endpoint,
               "--maddog-endpoint",
               flowsnakeconfig.maddog_endpoint,
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
               "--kingdom",
@@ -117,7 +117,7 @@ local kingdom = std.extVar("kingdom");
                 flowsnakeconfigmapmount.platform_cert_volumeMounts
             else [
                 {
-                  mountPath: "/maddog-onbox",
+                  mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
                 },
             ]),
@@ -158,13 +158,13 @@ local kingdom = std.extVar("kingdom");
             args: [
               "/sam/madkub-client",
               "--madkub-endpoint",
-              flowsnakeconfig.madkub_endpoint,  // TODO: Fix kubedns so we do not need the IP
+              flowsnakeconfig.madkub_endpoint,
               "--maddog-endpoint",
               flowsnakeconfig.maddog_endpoint,
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--madkub-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/etc/pki_service/ca/cacerts.pem",
               "--token-folder",
               "/tokens",
               "--kingdom",
@@ -200,7 +200,7 @@ local kingdom = std.extVar("kingdom");
                 flowsnakeconfigmapmount.platform_cert_volumeMounts
             else [
                 {
-                  mountPath: "/maddog-onbox",
+                  mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
                 },
             ]),

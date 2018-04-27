@@ -34,11 +34,11 @@ local kingdom = std.extVar("kingdom");
               "--kubeconfig",
               if flowsnakeconfig.is_minikube then "/fake/kubernetes/kubeconfig" else "/kubeconfig",
               "--client-cert",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/client_chain.pem" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/client_chain.pem" else "/etc/pki_service/root/madkubtokenserver/certificates/madkubtokenserver.pem",
               "--client-key",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/client-key.pem" else "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/client-key.pem" else "/etc/pki_service/root/madkubtokenserver/keys/madkubtokenserver-key.pem",
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/etc/pki_service/ca/security-ca.pem",
               "--cert-folder",
               "/certs/",
               "--token-folder",
@@ -80,7 +80,7 @@ local kingdom = std.extVar("kingdom");
             ] +
             (if flowsnakeconfig.is_minikube then [
                 {
-                  mountPath: "/maddog-onbox",
+                  mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
                 },
             ] else [
@@ -112,9 +112,9 @@ local kingdom = std.extVar("kingdom");
               "--maddog-endpoint",
               flowsnakeconfig.maddog_endpoint,
               "--maddog-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/security-ca.pem" else "/maddog-certs/ca/security-ca.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/security-ca.pem" else "/maddog-certs/ca/security-ca.pem",
               "--madkub-server-ca",
-              if flowsnakeconfig.is_minikube then "/maddog-onbox/ca/ca.pem" else "/maddog-certs/ca/cacerts.pem",
+              if flowsnakeconfig.is_minikube then "/maddog-onebox/ca/ca.pem" else "/maddog-certs/ca/cacerts.pem",
               "--token-folder",
               "/tokens/",
               "--refresher",
@@ -145,7 +145,7 @@ local kingdom = std.extVar("kingdom");
             ] +
             (if flowsnakeconfig.is_minikube then [
                 {
-                  mountPath: "/maddog-onbox",
+                  mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
                 },
             ] else [

@@ -24,11 +24,11 @@ spec:
         - --kubeconfig
         - /fake/kubernetes/kubeconfig
         - --client-cert
-        - /maddog-onbox/client_chain.pem
+        - /maddog-onebox/client_chain.pem
         - --client-key
-        - /maddog-onbox/client-key.pem
+        - /maddog-onebox/client-key.pem
         - --maddog-server-ca
-        - /maddog-onbox/ca/security-ca.pem
+        - /maddog-onebox/ca/security-ca.pem
         - --cert-folder
         - /certs/
         - --token-folder
@@ -59,7 +59,7 @@ spec:
           name: datacerts
         - mountPath: /tokens
           name: tokens
-        - mountPath: /maddog-onbox
+        - mountPath: /maddog-onebox
           name: maddog-onebox-certs
       - args:
         - /sam/madkub-client
@@ -68,9 +68,9 @@ spec:
         - --maddog-endpoint
         - https://maddog-onebox:8443
         - --maddog-server-ca
-        - /maddog-onbox/ca/security-ca.pem
+        - /maddog-onebox/ca/security-ca.pem
         - --madkub-server-ca
-        - /maddog-onbox/ca/ca.pem
+        - /maddog-onebox/ca/ca.pem
         - --token-folder
         - /tokens/
         - --refresher
@@ -102,7 +102,7 @@ spec:
           name: datacerts
         - mountPath: /tokens
           name: tokens
-        - mountPath: /maddog-onbox
+        - mountPath: /maddog-onebox
           name: maddog-onebox-certs
       restartPolicy: Always
       volumes:
