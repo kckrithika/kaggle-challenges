@@ -70,6 +70,8 @@ system:
       ports:
       - containerPort: 7012
         name: sherpa-b-in
+      - containerPort: 7443
+        name: sherpa-b-in-tls
       - containerPort: 15373
         name: sherpa-b-adm
       livenessProbe:
