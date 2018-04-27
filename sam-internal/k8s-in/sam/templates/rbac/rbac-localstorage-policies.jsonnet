@@ -14,6 +14,7 @@ if samfeatureflags.rbacstorage then {
     "prd-sam_storage",
     "prd-sam_storagedev",
     "phx-sam_ceph",
+    "xrd-sam_ceph",
   ],
 
   createClusterRoleBindingForLocalPV(hosts):: {
