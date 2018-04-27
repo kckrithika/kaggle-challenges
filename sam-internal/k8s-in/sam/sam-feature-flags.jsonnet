@@ -19,7 +19,12 @@ local utils = import "util_functions.jsonnet";
     rbacwd: !utils.is_gia(configs.kingdom) && !utils.is_flowsnake_cluster(configs.estate),
 
     # todo: explain what is blocking this from going everywhere
-    rbacstorage: configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "phx-sam" || configs.estate == "prd-sam_storagedev",
+    rbacstorage:
+        configs.estate == "prd-sam" ||
+        configs.estate == "prd-sam_storage" ||
+        configs.estate == "phx-sam" ||
+        configs.estate == "prd-sam_storagedev" ||
+        configs.estate == "xrd-sam",
 
     # MadDog
     maddogforsamapps: !utils.is_gia(configs.kingdom),
@@ -28,4 +33,12 @@ local utils = import "util_functions.jsonnet";
     # NodeController uses estatesSvc.
     estatessvc: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
 
+    # k8sproxy is enabled in test clusters.
+    k8sproxy:
+        configs.estate == "prd-samdev" ||
+        configs.estate == "prd-samtest" ||
+        configs.estate == "prd-sam" ||
+        configs.estate == "prd-sam_storage" ||
+        configs.estate == "prd-sdc" ||
+        configs.estate == "xrd-sam",
 }
