@@ -66,6 +66,22 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: service-mesh:syd-sam_gater:rolebinding
+    namespace: service-mesh
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminiongater1-1-syd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater1-2-syd.ops.sfdc.net
+  - kind: User
+    name: shared0-samminiongater2-1-syd.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: csc-health:syd-sam_report_collector:rolebinding
     namespace: csc-health
   roleRef:
