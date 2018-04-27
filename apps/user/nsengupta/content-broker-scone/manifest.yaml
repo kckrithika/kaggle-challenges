@@ -6,7 +6,7 @@ system:
     containers:
     # Broker service
     - name: broker
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:firstversion
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:v1
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
