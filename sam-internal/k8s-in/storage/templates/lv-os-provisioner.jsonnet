@@ -6,6 +6,7 @@ local storageconfigs = import "storageconfig.jsonnet";
 local enabledEstates = std.set([
     "prd-sam_storage",
     "prd-sam",
+    "xrd-sam",
     "prd-skipper",
     "phx-sam",
 ]);
@@ -13,6 +14,7 @@ local enabledEstates = std.set([
 local enabledEstatesForPodDeleter = std.set([
     "prd-sam_storage",
     "prd-sam",
+    "xrd-sam",
     "prd-skipper",
     "phx-sam",
 ]);

@@ -3,9 +3,9 @@ local storageimages = (import "storageimages.jsonnet") + { templateFilename:: st
 local storageutils = import "storageutils.jsonnet";
 // Configures the set of minion estates that nodeprep runs in, applied as a node selector term.
 // Currently disabled -- no minion estates need prep at this time.
-local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
+local enabledMinionEstates = ["not-in-any-pool-at-this-time", "xrd-sam_ceph"];
 
-if configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sam_storage" || configs.estate == "xrd-sam" then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -38,6 +38,11 @@ if configs.estate == "prd-sam_storage" then {
                           key: "pool",
                           operator: "In",
                           values: enabledMinionEstates,
+                       },
+                       {
+                          key: "kubernetes.io/hostname",
+                          operator: "In",
+                          values: ["shared0-samminionceph1-12-xrd.eng.sfdc.net"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",

@@ -5,6 +5,7 @@
     cephEstates: {
         "prd-skipper": ["prd-skipper"],
         "prd-sam": ["prd-sam_ceph"],
+        "xrd-sam": ["xrd-sam_ceph"],
         "prd-sam_storage": ["prd-sam_cephdev", "prd-sam_storage"],
         "phx-sam": ["phx-sam_ceph"], # Do Not uncomment until you deploy Ceph Cluster to Prod
     },
@@ -13,6 +14,7 @@
     sfstoreEstates: {
         "prd-skipper": ["prd-skipper"],
         "prd-sam": ["prd-sam_sfstore"],
+        "xrd-sam": [],
         "prd-sam_storage": ["prd-sam_sfstoredev"],
         "phx-sam": [],
     },

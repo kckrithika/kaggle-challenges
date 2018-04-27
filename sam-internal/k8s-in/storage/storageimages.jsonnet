@@ -80,7 +80,7 @@ local kingdom = std.extVar("kingdom");
     phase: (
         if (estate == "prd-sam_storage" || estate == "prd-skipper") then
             "1"
-        else if (kingdom == "prd") then
+        else if (kingdom == "prd" || kingdom == "xrd") then
             "2"
         else if (kingdom == "phx") then
             "3"
