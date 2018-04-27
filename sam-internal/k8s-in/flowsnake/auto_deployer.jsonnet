@@ -1,6 +1,7 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnake_sdn = import "flowsnake_sdn.jsonnet";
 local samconfig = import "config.jsonnet";
 {
     samcontroldeployer: {
@@ -30,7 +31,7 @@ local samconfig = import "config.jsonnet";
             // always skip this, should never get deployed by auto-deployer, sdn-secret-agent will read this file and deploy.
             "_flowsnake-sdn-secret.yaml",
         ] +
-        (if !flowsnakeconfig.sdn_enabled then [
+        (if !flowsnake_sdn.sdn_enabled then [
             "sdn-bird.yaml",
             "sdn-cleanup.yaml",
             "sdn-hairpin-setter.yaml",
@@ -39,7 +40,7 @@ local samconfig = import "config.jsonnet";
             "sdn-route-watchdog.yaml",
             "sdn-secret-agent.yaml",
             "sdn-vault-agent.yaml",
-        ] else if flowsnakeconfig.sdn_pre_deployment then [
+        ] else if flowsnake_sdn.sdn_pre_deployment then [
             "cert-secretizer.yaml",
             "_zookeeper-rcs.yaml",
             "_zookeeper-set-svc.yaml",
@@ -70,7 +71,7 @@ local samconfig = import "config.jsonnet";
             "watchdog-etcd-quorum.yaml",
             "watchdog-etcd.yaml",
             "watchdog-master.yaml",
-        ] else if flowsnakeconfig.sdn_during_deployment then [
+        ] else if flowsnake_sdn.sdn_during_deployment then [
         // this state will get maually edited during sdn rollout
         // after its done please reset it same as sdn_pre_deployment
             "cert-secretizer.yaml",
