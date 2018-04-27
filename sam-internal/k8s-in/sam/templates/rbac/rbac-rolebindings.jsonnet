@@ -72,6 +72,9 @@ local data = {
             if configs.kingdom == "prd" && utils.is_test_cluster(minionEstate) then [
               functions.createClusterRoleBinding(minionEstate, hosts),
             ] else [
+              # if namespace "*" (allow all) create clusterrolebinding
+              if namespace == rbac_utils.allNamespaces then functions.createClusterRoleBinding(minionEstate, hosts)
+              else
               functions.createRoleBinding(namespace, minionEstate, hosts)
               for namespace in (rbac_utils.getNamespaces(configs.kingdom, minionEstate) + functions.getCiNamespaces(minionEstate))
             ]
