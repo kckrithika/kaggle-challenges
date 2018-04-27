@@ -1,8 +1,9 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local watchdog = import "watchdog.jsonnet";
 // Disable everywhere for now because too noisy, because at any given time we have failed customer pods.
-if flowsnakeconfig.is_minikube || true then
+if !watchdog.watchdog_enabled || true then
 "SKIP"
 else
 {
@@ -21,7 +22,7 @@ else
                            "-role=KUBERESOURCES",
                            "-watchdogFrequency=60s",
                            "-alertThreshold=300s",
-                           "-emailFrequency=" + flowsnakeconfig.watchdog_email_frequency_kuberesources,
+                           "-emailFrequency=" + watchdog.watchdog_email_frequency_kuberesources,
                            "-shouldBatchMetrics=true",
                            "-maxUptimeSampleSize=5",
                            "-timeout=2s",

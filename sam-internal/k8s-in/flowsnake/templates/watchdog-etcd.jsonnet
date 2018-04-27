@@ -2,7 +2,8 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
 local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
 local estate = std.extVar("estate");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+local watchdog = import "watchdog.jsonnet";
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 {
@@ -19,7 +20,7 @@ else
                             "-role=ETCD",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
-                            "-emailFrequency=" + flowsnakeconfig.watchdog_email_frequency,
+                            "-emailFrequency=" + watchdog.watchdog_email_frequency,
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
