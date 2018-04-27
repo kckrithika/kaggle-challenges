@@ -14,7 +14,7 @@ if samfeatureflags.k8sproxy then {
                         name: "k8sproxy",
                         image: samimages.k8sproxy,
                         args: [
-                        ] + (if configs.kingdom == "prd" then [
+                        ] + (if configs.kingdom == "prd" || configs.kingdom == "xrd" then [
                                  "-f",
                                  "/k8sproxyconfig/haproxy-maddog.cfg",
                              ] else [
