@@ -1,4 +1,4 @@
-local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
+local ajna_topic_auth = import "ajna_topic_auth.jsonnet";
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -7,6 +7,6 @@ local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
         namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeauthtopic.topic_grants),
+        data: std.toString(ajna_topic_auth.topic_grants),
     },
 }
