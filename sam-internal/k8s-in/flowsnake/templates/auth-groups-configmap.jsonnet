@@ -1,4 +1,4 @@
-local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
+local deprecated_ldap_auth = import "deprecated_ldap_auth.jsonnet";
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -7,6 +7,6 @@ local flowsnakeauthtopic = import "flowsnake_configmap.jsonnet";
         namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeauthtopic.auth_groups),
+        data: std.toString(deprecated_ldap_auth.auth_groups),
     },
 }

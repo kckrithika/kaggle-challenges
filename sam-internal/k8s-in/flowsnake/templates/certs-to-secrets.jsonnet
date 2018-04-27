@@ -1,4 +1,4 @@
-local configmap = import "flowsnake_configmap.jsonnet";
+local cert_secretizer = import "cert_secretizer.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 {
     apiVersion: "v1",
@@ -8,6 +8,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         namespace: "flowsnake",
     },
     data: {
-        "master.config": std.toString(configmap.cert_secretizer_config),
+        "master.config": std.toString(cert_secretizer.cert_secretizer_config),
     },
 }
