@@ -9,12 +9,16 @@ apps:
     - prd/prd-sam
   switchboard-prod:
     - par/par-sam_gater
+    - iad/iad-sam_gater
+    - ord/ord-sam_gater
   time:
     - prd/prd-sam
   envoy-canary:
     - prd/prd-sam_gater
   envoy-canary-prod:
     - par/par-sam_gater
+    - iad/iad-sam_gater
+    - ord/ord-sam_gater	
   demo-geoip:
     - prd/prd-sam
   h1-test-client-l5d:
