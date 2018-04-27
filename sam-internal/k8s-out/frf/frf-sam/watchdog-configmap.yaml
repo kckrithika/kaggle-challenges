@@ -65,6 +65,13 @@ data:
       "smtpServer": "ops0-mta2-1-frf.ops.sfdc.net:25",
       "snooze": [
         {
+          "checker": "procUpTime",
+          "estates": [
+            "prd-sam"
+          ],
+          "until": "2018/05/1"
+        },
+        {
           "checker": "nodeChecker",
           "estates": [
             "iad-sam"
