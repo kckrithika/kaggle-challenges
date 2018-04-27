@@ -954,6 +954,56 @@ data:
           "superpod": "none"
         },
         {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_fe",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_cloudatlas",
+          "hostname": "shared0-samminionatlasfe2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_dir",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_cloudatlas_dir",
+          "hostname": "shared0-samminionatlasdir1-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_dir",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_cloudatlas_dir",
+          "hostname": "shared0-samminionatlasdir1-2-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
+          "bomrolename": "sam_minion_cloudatlas_dir",
+          "controlestate": "xrd-sam",
+          "devicerole": "samcompute",
+          "estate": "xrd-sam_cloudatlas_dir",
+          "hostname": "shared0-samminionatlasdir2-1-xrd.eng.sfdc.net",
+          "kingdom": "xrd",
+          "pod": "none",
+          "superpod": "none"
+        },
+        {
           "bomrolename": "sam_minion_gater",
           "controlestate": "xrd-sam",
           "devicerole": "samcompute",
