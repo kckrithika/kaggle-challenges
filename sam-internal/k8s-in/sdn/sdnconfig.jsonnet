@@ -132,7 +132,7 @@ local configs = import "config.jsonnet";
 
     # Make the sdnc run in master nodes (Temporary fix)
     sdn_master: (
-        if estate == "prd-sdc" then
+        if estate == "prd-sdc" || estate == "prd-sam" || estate == "prd-samtest" then
             "true"
         else
             "false"
