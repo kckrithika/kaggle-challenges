@@ -32,6 +32,27 @@ local utils = import "util_functions.jsonnet";
         #[jiayi.yan] Roll out sam app status CRD in SDP
         "prd,prd-samtwo,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
 
+        #[d.smith] Pin snapshoter to known working version
+        "prd,prd-sdc,snapshoter,hypersam": "sam-0001847-1b9453cd",
+        "prd,prd-samdev,snapshoter,hypersam": "sam-0001847-1b9453cd",
+        "prd,prd-samtest,snapshoter,hypersam": "sam-0001847-1b9453cd",
+        "prd,prd-sam,snapshoter,hypersam": "sam-0001847-1b9453cd",
+        "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001847-1b9453cd",
+        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "chx,chx-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "iad,iad-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "ord,ord-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "par,par-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "phx,phx-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "syd,syd-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "wax,wax-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "yul,yul-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+        "frf,frf-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
+
         #[lizhang.li] rollout filesystem watchdog with hidden file checker in prd
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
