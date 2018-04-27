@@ -151,6 +151,18 @@ local kingdom = std.extVar("kingdom");
                             name: "auth-groups",
                         },
                     },
+                    {
+                        name: "ajna-applog-logrecordtype-whitelist",
+                        configMap: {
+                            name: "ajna-applog-logrecordtype-whitelist",
+                        },
+                    },
+                    {
+                        name: "ajna-applog-logrecordtype-grants",
+                        configMap: {
+                            name: "ajna-applog-logrecordtype-grants",
+                        },
+                    },
                 ] +
                 flowsnakeconfigmapmount.kubeconfig_platform_volume +
                 flowsnakeconfigmapmount.platform_cert_volume,
