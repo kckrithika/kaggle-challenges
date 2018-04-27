@@ -1,8 +1,8 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local samfeatureflags = import "sam-feature-flags.jsonnet";
 
-if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "prd-sdc" || configs.estate == "prd-samtest" || configs.estate == "prd-sam_storage" then {
-
+if samfeatureflags.k8sproxy then {
     kind: "Deployment",
     spec: {
         replicas: 3,
@@ -14,7 +14,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                         name: "k8sproxy",
                         image: samimages.k8sproxy,
                         args: [
-                        ] + (if configs.kingdom == "prd" then [
+                        ] + (if configs.kingdom == "prd" || configs.kingdom == "xrd" then [
                                  "-f",
                                  "/k8sproxyconfig/haproxy-maddog.cfg",
                              ] else [

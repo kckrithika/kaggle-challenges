@@ -153,7 +153,7 @@ local utils = import "util_functions.jsonnet",
         "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
     ),
     chainFile: (
-        if kingdom == "prd" then
+        if kingdom == "prd" || kingdom == "xrd" then
             "/etc/pki_service/kubernetes/chain-client.pem"
         else
             "/etc/certs/hostcert-chain.pem"
