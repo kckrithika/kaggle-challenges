@@ -33,10 +33,8 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtwo,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
 
         #[lizhang.li] rollout filesystem watchdog with hidden file checker in prd
-        "cdu,cdu-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "frf,frf-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "hnd,hnd-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "iad,iad-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "ord,ord-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
@@ -87,12 +85,12 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
-            hypersam: "sam-0001847-1b9453cd",
+            hypersam: "sam-0001912-3f0e2a18",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
-        ### Release Phase 4 - Rest of Prod + Pub + Gia (Pub overridden by 'pub' phase for now)
+        ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
             hypersam: "sam-0001847-1b9453cd",
             madkub: "1.0.0-0000066-fedd8bce",
