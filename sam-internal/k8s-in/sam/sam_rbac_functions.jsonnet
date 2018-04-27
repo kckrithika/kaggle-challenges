@@ -4,6 +4,7 @@ local pools = import "configs/generated-pools.jsonnet";
 {
     minionRole:: "samcompute",
     masterRole:: "samkubeapi",
+    allNamespaces:: "*",
 
     # Returns list of nodes in given kingdom + controlestate + role from hosts.jsonnet
     get_Nodes(kingdom, controlestate, role):: [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.controlestate == controlestate && h.devicerole == role],
