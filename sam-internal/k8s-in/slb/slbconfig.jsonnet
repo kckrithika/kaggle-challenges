@@ -6,8 +6,8 @@
     dirSuffix:: "",
     slbDir: "/host/data/slb",
     slbDockerDir: "/data/slb",
-    configDir: if slbimages.phase == "1" || slbimages.phase == "2" then (self.slbDir + "/config/" + $.dirSuffix) else (self.slbDir + "/config"),
-    logsDir: if slbimages.phase == "1" || slbimages.phase == "2" then (self.slbDir + "/logs/" + $.dirSuffix) else (self.slbDir + "/logs"),
+    configDir: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then (self.slbDir + "/config/" + $.dirSuffix) else (self.slbDir + "/config"),
+    logsDir: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then (self.slbDir + "/logs/" + $.dirSuffix) else (self.slbDir + "/logs"),
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd'],
@@ -162,24 +162,24 @@
     slb_config_volume: {
         name: "var-config-volume",
         hostPath: {
-            path: if slbimages.phase == "1" || slbimages.phase == "2" then ("/data/slb/config/" + $.dirSuffix) else "/data/slb/config",
+            path: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then ("/data/slb/config/" + $.dirSuffix) else "/data/slb/config",
         },
     },
     slb_config_volume_mount: {
         name: "var-config-volume",
-        mountPath: if slbimages.phase == "1" || slbimages.phase == "2" then ("/host/data/slb/config/" + $.dirSuffix) else "/host/data/slb/config",
+        mountPath: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then ("/host/data/slb/config/" + $.dirSuffix) else "/host/data/slb/config",
     },
 
     # Frequently used volume: logs
     logs_volume: {
         name: "var-logs-volume",
         hostPath: {
-            path: if slbimages.phase == "1" || slbimages.phase == "2" then ("/data/slb/logs/" + $.dirSuffix) else "/data/slb/logs",
+            path: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then ("/data/slb/logs/" + $.dirSuffix) else "/data/slb/logs",
         },
     },
     logs_volume_mount: {
         name: "var-logs-volume",
-        mountPath: if slbimages.phase == "1" || slbimages.phase == "2" then ("/host/data/slb/logs/" + $.dirSuffix) else "/host/data/slb/logs",
+        mountPath: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then ("/host/data/slb/logs/" + $.dirSuffix) else "/host/data/slb/logs",
     },
 
     # Frequently used volume: host/sbin

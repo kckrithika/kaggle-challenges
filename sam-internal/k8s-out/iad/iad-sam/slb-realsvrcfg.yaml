@@ -28,12 +28,12 @@ spec:
       containers:
       - command:
         - /sdn/slb-realsvrcfg
-        - --configDir=/host/data/slb/config
+        - --configDir=/host/data/slb/config/
         - --period=5s
         - --netInterfaceName=eth0
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -42,7 +42,7 @@ spec:
           name: var-slb-volume
         - mountPath: /host/sbin
           name: sbin-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -55,7 +55,7 @@ spec:
           path: /sbin
         name: sbin-volume
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
       - configMap:
           name: sfdchosts
