@@ -21,7 +21,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfn-state-metrics:base-0000375-b6ea35ee
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfn-state-metrics:base-0000396-67df7de3
         name: sfn-state-metrics
         ports:
         - containerPort: 8080
@@ -65,7 +65,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000166-d11c49fe
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000175-83f634ad
         name: sfms
       nodeSelector:
         master: "true"
