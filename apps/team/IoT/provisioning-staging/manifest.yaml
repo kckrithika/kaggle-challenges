@@ -22,7 +22,7 @@ system:
       - name: COMPILER_STORM_JAR_JVM_OPTS
         value: -XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g
       - name: COMPILER_TAG
-        value: '4437102'
+        value: 5e63eec
       - name: CONTROLPLANE_ENDPOINT
         value: shared0-samminioniottest1-1-prd.eng.sfdc.net:9115
       - name: ENRICHMENTSVC_HOST
@@ -40,7 +40,7 @@ system:
       - name: FLOWSNAKE_OWNER_GROUP
         value: iot-rm-flowsnake
       - name: FLOWSNAKE_PLATFORM_VERSION
-        value: 0.9.7-mktest
+        value: 0.9.8
       - name: FLOWSNAKE_URL
         value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
       - name: FLOWSNAKE_USE_PKI
@@ -88,14 +88,14 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: sfci/iot/enterprise-provisioning:1.0.0.11
+      image: sfci/iot/enterprise-provisioning:1.0.0.13
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: provisioning-prod
+      name: provisioning-staging
       ports:
       - containerPort: 15372
         name: mgmt
@@ -169,7 +169,7 @@ system:
     count: 1
     identity:
       serviceName: provisioning
-    name: provisioning-prod
+    name: provisioning-staging
     strategy:
       type: Recreate
     volumes:
@@ -180,7 +180,7 @@ system:
         type: client
       name: client-certs
     - hostPath:
-        path: /data/sam/iot/log/provisioning-prod
+        path: /data/sam/iot/log/provisioning-staging
       name: logvol
     - k4aSecret:
         secretName: flowsnake-keytab
@@ -192,16 +192,16 @@ system:
         secretName: flowsnake-aqueduct-keystore
       name: flowsnake-aqueduct-keystore
   loadbalancers:
-  - function: provisioning-prod
-    lbname: provisioning-prod-lb
+  - function: provisioning-staging
+    lbname: provisioning-staging-lb
     nodeExposed: true
     ports:
-    - port: 9116
+    - port: 9138
       targetport: 7012
     - lbtype: http
       port: 15374
       targetport: 15372
-    - port: 8116
+    - port: 8138
       targetport: 8080
     slbEnabled: true
   notifications:
