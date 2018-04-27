@@ -23,7 +23,7 @@ system:
 
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.96
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.98
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -46,10 +46,14 @@ system:
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      - name: TENANT_SOURCE
-        value: MDS065tATaAUcWi
+      - name: TENANT_SOURCE_KEYS
+        value: core/stmfana44ice1/00DRM0000005fR12AI,mds/stmfa/MDS01mXdmtgiuVS,mds/stmfa/MDS08XLUuE05HF4
+      - name: TENANT_SOURCE_NAMES
+        value: Service Cloud,Commerce cloud tenant,CRE tenant
       - name: TENANT_CANONICAL
-        value: MDS08fS6PGukUaj
+        value: mds/stmfa/MDS08fS6PGukUaj
+      - name: TENANT_SUPER
+        value: core/stmfana44ice1/00DRM0000005z702AA
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8082
       livenessProbe:
