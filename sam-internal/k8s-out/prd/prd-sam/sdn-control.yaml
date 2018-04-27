@@ -63,7 +63,7 @@ spec:
           name: sdnlogs
       hostNetwork: true
       nodeSelector:
-        master: "false"
+        master: "true"
         pool: prd-sdn_control
       volumes:
       - configMap:
