@@ -7,7 +7,7 @@ system:
     count: 3
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.13
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -15,6 +15,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
+      - name: LOAD_CC_CERT
+        value: false
       ports:
       - containerPort: 7022
       - containerPort: 15372
