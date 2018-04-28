@@ -12,6 +12,8 @@ system:
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
+      - name: dfs-client-cert
+        mountPath: /client-certs
       env:
       - name: SFDC_ENVIRONMENT
         value: mist
