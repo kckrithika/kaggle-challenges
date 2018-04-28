@@ -21,13 +21,13 @@ local kingdom = std.extVar("kingdom");
         "prd/prd-dev-flowsnake_iot_test": {
         },
         "prd/prd-minikube-small-flowsnake": {
-            Flowsnake_Ops_Platform: [
+            flowsnake: [
                 "wxurl",
                 "lulog",  //lulog is actually whitelisted anyway
             ],
         },
         "prd/prd-minikube-big-flowsnake": {
-            Flowsnake_Ops_Platform: [
+            flowsnake: [
                 "wxurl",
                 "lulog",  //lulog is actually whitelisted anyway
             ],
