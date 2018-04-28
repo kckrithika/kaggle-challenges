@@ -23,7 +23,7 @@ system:
 
     containers:
     - name: rsui-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.98
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.0.1.99
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -47,11 +47,11 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stmfa
       - name: TENANT_SOURCE_KEYS
-        value: core/stmfana44ice1/00DRM0000005fR12AI,mds/stmfa/MDS01mXdmtgiuVS,mds/stmfa/MDS08XLUuE05HF4
+        value: core/stmfana44ice1/00DRM0000005z7R2AQ,commercecloud/production/bbkhs01,cre/prd/00DRM000000Ccre
       - name: TENANT_SOURCE_NAMES
         value: Service Cloud,Commerce cloud tenant,CRE tenant
       - name: TENANT_CANONICAL
-        value: mds/stmfa/MDS08fS6PGukUaj
+        value: mds/stmfa/ST0000000000001
       - name: TENANT_SUPER
         value: core/stmfana44ice1/00DRM0000005z702AA
       - name: CRE_SERVER_TARGET
