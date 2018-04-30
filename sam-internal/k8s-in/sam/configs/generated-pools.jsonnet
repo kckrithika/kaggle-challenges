@@ -129,6 +129,18 @@
     },
     {
       "namespaces": [
+        "emailinfra"
+      ],
+      "access": [
+        "team/EmailInfra"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_eaas",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh"
@@ -140,6 +152,18 @@
       ],
       "controlEstate": "dfw-sam",
       "estate": "dfw-sam_gater",
+      "kingdom": "dfw",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "dfw-sam",
+      "estate": "dfw-sam_kingdom_caas",
       "kingdom": "dfw",
       "superPod": "None"
     },
@@ -326,6 +350,18 @@
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-sam_gater",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "iot"
+      ],
+      "access": [
+        "team/IoT"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-sam_iot",
       "kingdom": "frf",
       "superPod": "None"
     },
@@ -687,6 +723,18 @@
     },
     {
       "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_mc_consumer",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -931,6 +979,18 @@
     },
     {
       "namespaces": [
+        "mc-eventing"
+      ],
+      "access": [
+        "team/mc-eventing"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_mc_consumer",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -1121,6 +1181,18 @@
     },
     {
       "namespaces": [
+        "iot"
+      ],
+      "access": [
+        "team/IoT"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-sam_iot",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
@@ -1245,6 +1317,18 @@
     },
     {
       "namespaces": [
+        "emailinfra"
+      ],
+      "access": [
+        "team/EmailInfra"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_eaas",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "gater",
         "ccait",
         "service-mesh"
@@ -1256,6 +1340,18 @@
       ],
       "controlEstate": "phx-sam",
       "estate": "phx-sam_gater",
+      "kingdom": "phx",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "phx-sam",
+      "estate": "phx-sam_kingdom_caas",
       "kingdom": "phx",
       "superPod": "None"
     },
@@ -1656,6 +1752,42 @@
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_tardis",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "test-release"
+      ],
+      "access": [
+        "team/Test_Release"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_tnrp_merger",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "test-release"
+      ],
+      "access": [
+        "team/Test_Release"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_tnrp_promoter",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "test-release"
+      ],
+      "access": [
+        "team/Test_Release"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_tnrp_signer",
       "kingdom": "prd",
       "superPod": "None"
     },
@@ -2150,6 +2282,60 @@
       ],
       "controlEstate": "xrd-sam",
       "estate": "xrd-sam",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "legostore",
+        "storage-foundation"
+      ],
+      "access": [
+        "team/LegoStore",
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_ceph",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cloudatlas"
+      ],
+      "access": [
+        "team/CloudAtlas"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_cloudatlas",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cloudatlas"
+      ],
+      "access": [
+        "team/CloudAtlas"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_cloudatlas_dir",
+      "kingdom": "xrd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh"
+      ],
+      "controlEstate": "xrd-sam",
+      "estate": "xrd-sam_gater",
       "kingdom": "xrd",
       "superPod": "None"
     },
