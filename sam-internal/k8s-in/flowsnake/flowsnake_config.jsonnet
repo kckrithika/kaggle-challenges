@@ -33,6 +33,8 @@ local util = import "util_functions.jsonnet";
         "iad-flowsnake_prod": "api",
         "ord-flowsnake_prod": "api",
         "phx-flowsnake_prod": "api",
+        "prd-minikube-small-flowsnake": "api-minikube",
+        "prd-minikube-big-flowsnake": "api-minikube",
     },
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
