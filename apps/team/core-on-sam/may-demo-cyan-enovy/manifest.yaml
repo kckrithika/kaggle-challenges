@@ -17,7 +17,7 @@ system:
     containers:
     - name: cyan-envoy
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-envoy:tyler-04301327
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-envoy:tyler-04301400
 
       livenessProbe:
          exec:
