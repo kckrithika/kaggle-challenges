@@ -262,7 +262,9 @@ if slbconfigs.slbInKingdom then {
                                         "--requested-cert-type",
                                         "client",
                                         "--refresher",
-                                    ],
+                                    ] + (if slbimages.phase == "1" then [
+                                        "--run-init-for-refresher-mode",
+                                    ] else []),
                                     env: [
                                         {
                                             name: "MADKUB_NODENAME",
