@@ -51,7 +51,7 @@ system:
     progressDeadlineSeconds: 120
 
   loadbalancers:
-  - lbname: cyan-envoy
+  - lbname: cyan-envoy-lb
     function: cyan-envoy
     nodeExposed: true
     ports:
