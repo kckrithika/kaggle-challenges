@@ -16,6 +16,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                         command: configs.filter_empty([
                             "/sam/bundlecontroller",
                             "--funnelEndpoint=" + configs.funnelVIP,
+
                         ]),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -25,7 +26,17 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                         env: [
                             configs.kube_config_env,
                         ],
-                    },
+                    }
+                    + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+                        livenessProbe: {
+                             httpGet: {
+                                 path: "/healthz",
+                                 port: 21546,
+                             },
+                             initialDelaySeconds: 30,
+                             periodSeconds: 5,
+                         },
+                     } else {}),
                 ],
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
