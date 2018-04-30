@@ -22,7 +22,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                                      "-alertThreshold=30m",
                                      "-emailFrequency=24h",
                                  ]
-                                 + samwdconfig.shared_args,
+                                 + samwdconfig.shared_args
                                  + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
                                  + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
                         volumeMounts: configs.filter_empty([
