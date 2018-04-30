@@ -24,7 +24,6 @@ spec:
                 operator: In
                 values:
                 - dfw-sam
-                - dfw-slb
       containers:
       - command:
         - /sdn/slb-realsvrcfg
