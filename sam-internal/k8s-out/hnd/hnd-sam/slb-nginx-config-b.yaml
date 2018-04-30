@@ -114,11 +114,11 @@ spec:
       containers:
       - command:
         - /sdn/slb-nginx-config
-        - --configDir=/host/data/slb/config/
+        - --configDir=/host/data/slb/config/slb-nginx-config-b
         - --target=/host/data/slb/nginx/config
         - --netInterfaceName=eth0
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --maxDeleteServiceCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
@@ -133,7 +133,7 @@ spec:
           name: var-target-config-volume
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -150,7 +150,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
         - mountPath: /cert1
           name: cert1
@@ -164,14 +164,14 @@ spec:
         - --scanPeriod=10s
         - --skipZeroLengthFiles=true
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -219,7 +219,134 @@ spec:
           name: tokens
         - mountPath: /maddog-certs/
           name: maddog-certs
-      hostNetwork: true
+      - command:
+        - /sdn/slb-cert-checker
+        - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
+        name: slb-cert-checker
+        volumeMounts:
+        - mountPath: /host/data/slb/nginx/config
+          name: var-target-config-volume
+        - mountPath: /cert1
+          name: cert1
+        - mountPath: /cert2
+          name: cert2
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-config-processor
+        - --configDir=/host/data/slb/config/slb-nginx-config-b
+        - --period=1800s
+        - --podPhaseCheck=true
+        - --namespace=
+        - --podstatus=running
+        - --subnet=10.213.100.0/22
+        - --k8sapiserver=
+        - --serviceList=
+        - --useVipLabelToSelectSvcs=true
+        - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --sleepTime=100ms
+        - --processKnEConfigs=false
+        - --kneConfigDir=/var/slb/kneconfigs/hnd
+        - --kneDomainName=slb.sfdc.net
+        - --livenessProbePort=9876
+        - --shouldRemoveConfig=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
+        - --hostnameOverride=$(NODE_NAME)
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 9876
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 5
+        name: slb-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-config-b
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config/slb-nginx-config-b
+        - --shouldSkipServiceRecords=true
+        - --shouldNotDeleteAllFiles=true
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --skipFilesWithSuffix=slb.block
+        - --maxDeleteFileCount=20
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-nginx-config-b
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-node-api
+        - --port=9130
+        - --configDir=/host/data/slb/config/slb-nginx-config-b
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
+        name: slb-node-api
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-realsvrcfg
+        - --configDir=/host/data/slb/config/slb-nginx-config-b
+        - --period=5s
+        - --netInterfaceName=eth0
+        - --log_dir=/host/data/slb/logs/slb-nginx-config-b
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
+        name: slb-realsvrcfg
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/sbin
+          name: sbin-volume
+        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       nodeSelector:
         slb-service: slb-nginx-b
       volumes:
@@ -230,7 +357,7 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-nginx-config-b
         name: var-logs-volume
       - configMap:
           name: sfdchosts
@@ -247,3 +374,15 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /sbin
+        name: sbin-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /data/slb/config/slb-nginx-config-b
+        name: var-config-volume

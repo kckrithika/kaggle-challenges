@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || (slbimages.phase == "2" && configs.estate != "prd-samtwo") || slbimages.phase == "3" then { dirSuffix:: "slb-nginx-config-b" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-samtwo" then { dirSuffix:: "slb-nginx-config-b" } else {});
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local samrole = "samapp.slb";
@@ -116,10 +116,7 @@ if slbconfigs.slbInKingdom then {
                          ]",
                 },
             },
-            spec: (if slbimages.phase == "1" || (slbimages.phase == "2" && configs.estate != "prd-samtwo") || slbimages.phase == "3" then {}
-                   else {
-                       hostNetwork: true,
-                   }) + {
+            spec: {
                 volumes: configs.filter_empty([
                     {
                         name: "var-target-config-volume",
@@ -149,12 +146,11 @@ if slbconfigs.slbInKingdom then {
                         name: "tokens",
                     },
                     configs.maddog_cert_volume,
-                ] + if slbimages.phase == "1" || (slbimages.phase == "2" && configs.estate != "prd-samtwo") || slbimages.phase == "3" then [
                     slbconfigs.sbin_volume,
-                    configs.kube_config_volume,
-                    configs.cert_volume,
-                    slbconfigs.slb_config_volume,
-                ] else []),
+                                        configs.kube_config_volume,
+                                        configs.cert_volume,
+                                        slbconfigs.slb_config_volume,
+                ]),
                 containers: [
                                 {
                                     ports: [
@@ -317,7 +313,7 @@ if slbconfigs.slbInKingdom then {
                                 },
                             ]
                             + (
-                                if slbimages.phase == "1" || (slbimages.phase == "2" && configs.estate != "prd-samtwo") || slbimages.phase == "3" then [
+                                if configs.estate != "prd-samtwo" then [
                                     {
                                         name: "slb-cert-checker",
                                         image: slbimages.hypersdn,

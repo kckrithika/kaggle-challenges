@@ -219,7 +219,6 @@ spec:
           name: tokens
         - mountPath: /maddog-certs/
           name: maddog-certs
-      hostNetwork: true
       nodeSelector:
         slb-service: slb-nginx-b
       volumes:
@@ -247,3 +246,15 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
+      - hostPath:
+          path: /sbin
+        name: sbin-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/certs
+        name: certs
+      - hostPath:
+          path: /data/slb/config/
+        name: var-config-volume
