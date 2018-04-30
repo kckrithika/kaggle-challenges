@@ -12,10 +12,6 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        "prd,prd-minikube-small-flowsnake,cert-secretizer,madkub": "minikube/tnrp/sam/madkub:minikube",
-        "prd,prd-minikube-big-flowsnake,cert-secretizer,madkub": "minikube/tnrp/sam/madkub:minikube",
-        "prd,prd-minikube-small-flowsnake,madkubserver,madkub": "minikube/tnrp/sam/madkub:minikube",
-        "prd,prd-minikube-big-flowsnake,madkubserver,madkub": "minikube/tnrp/sam/madkub:minikube",
     },
 
     ### Per-phase image tags
@@ -230,7 +226,7 @@ local utils = import "util_functions.jsonnet";
     # Non-Flowsnake images
     deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
-    madkub: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
+    madkub: if flowsnakeconfig.is_minikube then flowsnakeconfig.strata_registry + "/tnrp/sam/madkub:" + $.per_phase[$.phase].zookeeper_image_tag else imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_image_tag),
     beacon: flowsnakeconfig.registry + "/sfci/servicelibs/beacon:" + $.per_phase[$.phase].beacon_image_tag,
     kubedns: flowsnakeconfig.strata_registry + "/k8s-dns-kube-dns:" + $.per_phase[$.phase].kubedns_image_tag,
     kubednsmasq: flowsnakeconfig.strata_registry + "/k8s-dns-dnsmasq-nanny:" + $.per_phase[$.phase].kubedns_image_tag,
