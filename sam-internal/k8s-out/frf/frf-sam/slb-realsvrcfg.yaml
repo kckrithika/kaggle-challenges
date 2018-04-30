@@ -24,7 +24,6 @@ spec:
                 operator: In
                 values:
                 - frf-sam
-                - frf-slb
       containers:
       - command:
         - /sdn/slb-realsvrcfg

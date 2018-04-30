@@ -24,7 +24,6 @@ spec:
                 operator: In
                 values:
                 - phx-sam
-                - phx-slb
       containers:
       - command:
         - /sdn/slb-realsvrcfg
