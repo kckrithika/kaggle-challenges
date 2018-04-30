@@ -49,13 +49,13 @@ system:
         - containerPort: 9090
 
   loadbalancers:
-  - lbname: kaijumaster
+  - lbname: kaijumaster-lb
     function: kaiju-master
     nodeExposed: true
     ports:
     - port: 8081
       targetport: 8080
-  - lbname: kaijuagent
+  - lbname: kaijuagent-lb
     function: kaiju-agent
     nodeExposed: true
     ports:
