@@ -12,10 +12,10 @@ local utils = import "util_functions.jsonnet";
         #
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
-        "prd,prd-minikube-small-flowsnake,cert-secretizer,madkub": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
-        "prd,prd-minikube-big-flowsnake,cert-secretizer,madkub": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
-        "prd,prd-minikube-small-flowsnake,madkubserver,madkub": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
-        "prd,prd-minikube-big-flowsnake,madkubserver,madkub": "ops0-artifactrepo1-0-prd.data.sfdc.net/tnrp/sam/madkub:1.0.0-0000062-dca2d8d1",
+        "prd,prd-minikube-small-flowsnake,cert-secretizer,madkub": "minikube/tnrp/sam/madkub:minikube",
+        "prd,prd-minikube-big-flowsnake,cert-secretizer,madkub": "minikube/tnrp/sam/madkub:minikube",
+        "prd,prd-minikube-small-flowsnake,madkubserver,madkub": "minikube/tnrp/sam/madkub:minikube",
+        "prd,prd-minikube-big-flowsnake,madkubserver,madkub": "minikube/tnrp/sam/madkub:minikube",
     },
 
     ### Per-phase image tags
@@ -181,7 +181,7 @@ local utils = import "util_functions.jsonnet";
             kibana_image_tag: "minikube",
             logloader_image_tag: "minikube",
             logstash_image_tag: "minikube",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
+            madkub_image_tag: "minikube",
             nodeMonitor_image_tag: "minikube",
             zookeeper_image_tag: "minikube",
             kubedns_image_tag: "1.10.0",
