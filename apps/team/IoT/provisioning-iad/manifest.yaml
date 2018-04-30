@@ -32,7 +32,7 @@ system:
       - name: ENV_NAMESPACE
         value: iot
       - name: ENV_ORGS
-        value: ''
+        value: 00D0U000000Coeq
       - name: ENV_PREFIX
         value: iot-iad-prod-
       - name: ENV_UPGRADE
@@ -40,7 +40,7 @@ system:
       - name: FLOWSNAKE_OWNER_GROUP
         value: iot-rm-flowsnake
       - name: FLOWSNAKE_PLATFORM_VERSION
-        value: 0.9.8-SNAPSHOT
+        value: 0.9.8
       - name: FLOWSNAKE_URL
         value: https://flowsnake-iad.data.sfdc.net
       - name: FLOWSNAKE_USE_PKI
@@ -86,14 +86,14 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: sfci/iot/enterprise-provisioning:1.0.0.10
+      image: sfci/iot/enterprise-provisioning:1.0.0.14
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: provisioning
+      name: provisioning-prod
       ports:
       - containerPort: 15372
         name: mgmt
@@ -158,7 +158,7 @@ system:
     count: 1
     identity:
       serviceName: provisioning
-    name: provisioning
+    name: provisioning-prod
     strategy:
       type: Recreate
     volumes:
@@ -169,7 +169,7 @@ system:
         type: client
       name: client-certs
     - hostPath:
-        path: /data/sam/iot/log/provisioning
+        path: /data/sam/iot/log/provisioning-prod
       name: logvol
   notifications:
     email:
