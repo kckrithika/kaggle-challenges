@@ -37,16 +37,16 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                         env: [
                             configs.kube_config_env,
                         ],
-                    } + (if configs.kingdom == "prd" || configs.kingdom == "frf" then {
-                             livenessProbe: {
+
+                        livenessProbe: {
                                  httpGet: {
                                      path: "/healthz",
                                      port: 22545,
                                  },
                                  initialDelaySeconds: 30,
                                  periodSeconds: 5,
-                             },
-                         } else {}),
+                        },
+                    },
                 ],
                 volumes: configs.filter_empty([
                     configs.sfdchosts_volume,
