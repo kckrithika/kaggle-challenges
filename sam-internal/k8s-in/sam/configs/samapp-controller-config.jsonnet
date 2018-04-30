@@ -5,8 +5,12 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
 {
   # MadDog
     enableMaddog: true,
-    maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
+    maddogMaddogEndpoint: if configs.estate == "vpod" then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank.prd.prod.non-estates.sfdcsd.net:8443",
     madkubImage: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/madkub:1.0.0-0000061-74e4a7b6",
+
+  #k4a
+  [if configs.estate == "vpod" then "enableK4a"]: "false",
+
 
   # others
     volPermissionInitContainerImage: "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-c07d4afb-673",

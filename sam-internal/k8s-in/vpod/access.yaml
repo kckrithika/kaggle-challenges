@@ -1,0 +1,16 @@
+#Use corp user name instead of git user ids.
+#If you are updating it, there is a high chance you need to update k8s-out/access.yaml
+#and tnrp/access.yaml
+users:
+  #VPod team members
+  - ksanghavi
+  - qgong
+  - v.gupta
+  - y.jiang
+  - manali.dhotre
+  - ashley.mitchell
+  - bverma
+  - m.aggarwal
+  - shekhar.sharma
+  - ksasidharan
+  - tsharma

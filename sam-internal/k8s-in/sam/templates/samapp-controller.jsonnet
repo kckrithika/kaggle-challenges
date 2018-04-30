@@ -3,7 +3,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 local utils = import "util_functions.jsonnet";
 
 // Only for testing purpose
-if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.estate == "vpod" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -75,5 +75,6 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             name: "samappcontroller",
         },
         name: "samappcontroller",
+        [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
 } else "SKIP"
