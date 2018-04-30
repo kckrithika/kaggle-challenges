@@ -25,6 +25,8 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                  ]
                                  + samwdconfig.filesystem_watchdog_args
                                  + samwdconfig.shared_args
+                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
+                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
                                  + ["-emailFrequency=24h"],
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
