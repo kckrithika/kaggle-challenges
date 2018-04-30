@@ -23,7 +23,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,watchdog-common,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180430_120115.d4ddbe3d.clean.prahladjos-ltm",
 
         #[rbhat] release maddog fix changes
-        "prd,prd-samdev,samapp-controller,hypersam": "sam-0001921-1c8875a3",
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001921-1c8875a3",
 
         #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
@@ -34,8 +33,6 @@ local utils = import "util_functions.jsonnet";
 
         #[d.smith] Pin snapshoter to known working version
         "prd,prd-sdc,snapshoter,hypersam": "sam-0001847-1b9453cd",
-        "prd,prd-samdev,snapshoter,hypersam": "sam-0001847-1b9453cd",
-        "prd,prd-samtest,snapshoter,hypersam": "sam-0001847-1b9453cd",
         "prd,prd-sam,snapshoter,hypersam": "sam-0001847-1b9453cd",
         "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001847-1b9453cd",
         "cdu,cdu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
@@ -67,8 +64,6 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
 
-        #[diana.chang]temporary override for samcontrol-deployer in samtest so it doesn't get "rolled out" to an older version
-        "prd,prd-samtest,samcontrol-deployer,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/diana.chang/hypersam:20180424_161304.2b18f05e.dirty.dianachang-ltm1",
         },
 
     ### Per-phase image tags
@@ -92,7 +87,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001912-3f0e2a18",
+            hypersam: "sam-0001931-927cd1fc",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
