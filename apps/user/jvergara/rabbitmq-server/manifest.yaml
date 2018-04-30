@@ -3,6 +3,13 @@ system:
   functions:
   - name: rabbitmq-server
     count: 1
+    volumes:
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
     containers:
     - name: rabbitmq-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/rabbitmq-server:3.7.0
@@ -17,3 +24,8 @@ system:
         value: someuser
       - name: RABBITMQ_DEFAULT_PASS
         value: somepass
+      volumeMounts:
+      - name: myclientcert
+        mountPath: /clientcert
+      - name: myservercert
+        mountPath: /servercert
