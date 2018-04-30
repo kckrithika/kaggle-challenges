@@ -35,6 +35,7 @@ local utils = import "util_functions.jsonnet",
             syd: "ops0-mta2-1-syd.ops.sfdc.net:25",
             chx: "ops-mta1-4-chx.ops.sfdc.net:25",
             wax: "ops-mta1-4-wax.ops.sfdc.net:25",
+            vpod: "rd1-mta1-3-sfm.ops.sfdc.net:25",
         },
 
         # TODO: remove mom and charon endpoint to sdn-config
@@ -88,6 +89,9 @@ local utils = import "util_functions.jsonnet",
         "ops0-artifactrepo2-0-" + kingdom + ".data.sfdc.net"
     else if utils.is_gia(kingdom) then
         "ops-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
+    else if kingdom == "vpod" then
+        #use PRD
+        "ops0-artifactrepo2-0-prd.data.sfdc.net"
     else
         "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     ),

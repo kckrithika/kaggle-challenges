@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" then {
+if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "vpod" then {
     kind: "Deployment",
     spec: {
         replicas: 1,
@@ -60,5 +60,6 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
             name: "bundlecontroller",
         },
         name: "bundlecontroller",
+        [if configs.kingdom == "vpod" then "namespace"]: "sam-system",
     },
 } else "SKIP"

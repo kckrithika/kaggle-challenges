@@ -1,0 +1,48 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: estate-server
+  name: estate-server
+  namespace: sam-system
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: estate-server
+  template:
+    metadata:
+      labels:
+        apptype: server
+        name: estate-server
+    spec:
+      containers:
+      - command:
+        - /sam/estatesvc/script/estatesvc-wrapper.sh
+        - vpod
+        - --funnelEndpoint=ajna0-funnel1-0-vpod.data.sfdc.net:80
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/sam/hypersam:sam-0001847-1b9453cd
+        livenessProbe:
+          httpGet:
+            path: /info
+            port: 9090
+          initialDelaySeconds: 15
+          timeoutSeconds: 10
+        name: estate-server
+        ports:
+        - containerPort: 9090
+          name: estate-server
+      nodeSelector:
+        pool: vpod
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
