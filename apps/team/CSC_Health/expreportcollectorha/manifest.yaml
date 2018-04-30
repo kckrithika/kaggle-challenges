@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.15.0-0000255-dd7679dc
+      image: tnrp/csc-health/report-collector:1.16.0-0000263-854463ca
       ports:
       - name: admin
         containerPort: 8082
@@ -52,6 +52,10 @@ system:
         value: /var/lib/report-collector/certificates/server/rc_server.crt
       - name: ReportCollector_app_https_privateKey
         value: /var/lib/report-collector/certificates/server/rc_server.key
+      - name: ReportCollector_app_https_supportDecompression
+        value: true
+      - name: ReportCollector_app_https_supportCompression
+        value: true
       - name: ReportCollector_app_http_enabled
         value: false
       - name: ReportCollector_ajna_publishEnabled
