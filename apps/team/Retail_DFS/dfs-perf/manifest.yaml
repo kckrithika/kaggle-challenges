@@ -5,9 +5,21 @@ system:
   functions:
   - name: dfs-perf
     count: 3
+    # maps the dfslogvol volumnMount to a directory on the host machine
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-dfs/logs
+    - name: dfs-server-cert
+      maddogCert:
+        type: server
+    - name: dfs-client-cert
+      maddogCert:
+        type: client
+
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.12
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.13
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -72,17 +84,6 @@ system:
           command:
             - "/home/scone/is-alive.sh"
    
-    # maps the dfslogvol volumnMount to a directory on the host machine
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-dfs/logs
-    - name: dfs-server-cert
-      maddogCert:
-        type: server
-    - name: dfs-client-cert
-      maddogCert:
-        type: client
   loadbalancers:
   - lbname: dfs-lbpf
     function: dfs-perf
