@@ -85,7 +85,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--metricsEndpoint=" + configs.funnelVIP,
                                   "--httpTimeout=5s",
                                   "--useLocalNodeApi=true",
-                              ],
+                              ] + if configs.estate == "prd-sam" then [
+                                  "--optOutServiceList=ops0-pkicontroller1-0-prd",
+                              ] else [],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
