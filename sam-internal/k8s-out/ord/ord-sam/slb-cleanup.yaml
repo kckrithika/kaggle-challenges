@@ -20,24 +20,24 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs
-        - --filesDirToCleanup=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
+        - --filesDirToCleanup=/host/data/slb/logs/
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
         name: slb-cleanup
         securityContext:
           privileged: true
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config
+        - mountPath: /host/data/slb/config/
           name: var-config-volume
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -47,10 +47,10 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/config
+          path: /data/slb/config/
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
       - configMap:
           name: sfdchosts

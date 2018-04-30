@@ -65,12 +65,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbconfigs.slb_volume,
                           slbconfigs.logs_volume,
                           configs.sfdchosts_volume,
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                               configs.maddog_cert_volume,
-                               slbconfigs.slb_config_volume,
-                               configs.cert_volume,
-                               configs.kube_config_volume,
-                           ] else [])),
+                          configs.maddog_cert_volume,
+                          slbconfigs.slb_config_volume,
+                          configs.cert_volume,
+                          configs.kube_config_volume,
+                      ]),
                       containers: [
                           {
                               name: "slb-vip-watchdog",
@@ -85,9 +84,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   configs.sfdchosts_arg,
                                   "--metricsEndpoint=" + configs.funnelVIP,
                                   "--httpTimeout=5s",
-                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                                       "--useLocalNodeApi=true",
-                                   ] else []),
+                                  "--useLocalNodeApi=true",
+                              ],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
@@ -97,11 +95,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   slbconfigs.node_name_env,
                               ],
                           },
-                      ] + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                           slbshared.slbConfigProcessor,
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi,
-                      ] else [],
+                      ],
                   }
                   + (
                       if configs.estate == "prd-sam" || slbimages.phase == "3" then {

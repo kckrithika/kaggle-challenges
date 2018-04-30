@@ -35,9 +35,8 @@
             "--shouldRemoveConfig=true",
             configs.sfdchosts_arg,
             "--proxySelectorLabelValue=slb-nginx-config-b",
-        ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                 "--hostnameOverride=$(NODE_NAME)",
-             ] else []),
+            "--hostnameOverride=$(NODE_NAME)",
+        ],
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
@@ -49,9 +48,8 @@
         ]),
         env: [
             configs.kube_config_env,
-        ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                 slbconfigs.node_name_env,
-             ] else []),
+            slbconfigs.node_name_env,
+        ],
         securityContext: {
             privileged: true,
         },

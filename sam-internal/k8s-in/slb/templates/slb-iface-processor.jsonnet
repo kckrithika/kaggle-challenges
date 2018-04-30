@@ -29,9 +29,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ] + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                     slbconfigs.sbin_volume,
-                ] else []),
+                ]),
                 containers: [
                     {
                         name: "slb-iface-processor",
@@ -49,9 +48,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
-                        ] + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                             slbconfigs.sbin_volume_mount,
-                        ] else []),
+                        ]),
                         securityContext: {
                             privileged: true,
                         },
