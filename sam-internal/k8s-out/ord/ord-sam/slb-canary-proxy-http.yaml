@@ -24,19 +24,19 @@ spec:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-proxy-http
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs
+        - --log_dir=/host/data/slb/logs/
         - --ports=9116
         - --tlsPorts=443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sam.crt
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000811-4203c08d
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
         name: slb-canary-proxy-http
         volumeMounts:
-        - mountPath: /host/data/slb/logs
+        - mountPath: /host/data/slb/logs/
           name: var-logs-volume
       nodeSelector:
         pool: ord-sam
       volumes:
       - hostPath:
-          path: /data/slb/logs
+          path: /data/slb/logs/
         name: var-logs-volume
