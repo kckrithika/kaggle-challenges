@@ -10,8 +10,6 @@ system:
     - name: cert-server
       maddogCert:
         type: server
-        lbnames:
-          - cyanlb
     - name: cert-client
       maddogCert:
         type: client
@@ -62,4 +60,4 @@ system:
     - port: 12061
       targetport: 12061
     - port: 12065
-      targetport: 12066
+      targetport: 12065
