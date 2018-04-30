@@ -33,8 +33,8 @@ system:
         value: /client-certs/client
       - name: SFDC_ENVIRONMENT
         value: secure
-      - name: COMPILER_ENDPOINT_URI
-        value: http://api.flowsnake.localhost.mesh.force.com:5442/{FS_ENV_ID}/services/matrix-compiler-server
+        #- name: COMPILER_ENDPOINT_URI
+        #- value: http://api.flowsnake.localhost.mesh.force.com:5442/{FS_ENV_ID}/services/matrix-compiler-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:kilo
       livenessProbe:
         httpGet:
