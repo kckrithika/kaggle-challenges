@@ -6,7 +6,6 @@ metadata:
   name: madkubserver
   namespace: flowsnake
 spec:
-  clusterIP: 10.254.208.254
   ports:
   - name: madkub-api-tls
     port: 32007

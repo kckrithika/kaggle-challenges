@@ -22,6 +22,9 @@ local util = import "util_functions.jsonnet";
         "iad-flowsnake_prod": "flowsnake-iad.data.sfdc.net",
         "ord-flowsnake_prod": "flowsnake-ord.data.sfdc.net",
         "phx-flowsnake_prod": "flowsnake-phx.data.sfdc.net",
+        // minikube fake VIPs
+        "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
+        "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
     },
     fleet_api_roles: {
         "prd-data-flowsnake": "api",
@@ -30,6 +33,8 @@ local util = import "util_functions.jsonnet";
         "iad-flowsnake_prod": "api",
         "ord-flowsnake_prod": "api",
         "phx-flowsnake_prod": "api",
+        "prd-minikube-small-flowsnake": "api-minikube",
+        "prd-minikube-big-flowsnake": "api-minikube",
     },
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
@@ -81,6 +86,8 @@ local util = import "util_functions.jsonnet";
     funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
     funnel_vip_and_port: $.funnel_vip + ":80",
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
+    madkub_endpoint: if self.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
+    maddog_endpoint: if self.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
     sdn_enabled: !(self.is_minikube),
     elastic_search_enabled: (
         estate == "prd-data-flowsnake" ||

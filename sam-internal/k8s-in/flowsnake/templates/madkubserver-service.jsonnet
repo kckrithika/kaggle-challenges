@@ -1,7 +1,4 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if !flowsnakeconfig.maddog_enabled then
-"SKIP"
-else
 {
     apiVersion: "v1",
     kind: "Service",
@@ -12,19 +9,20 @@ else
         name: "madkubserver",
         namespace: "flowsnake",
     },
-    spec: {
-        clusterIP: "10.254.208.254",
+    spec:
+    {
+        selector: {
+            service: "madkubserver",
+        },
         ports: [
             {
-                name: "madkubapitls",
+                name: "madkub-api-tls",
                 port: 32007,
                 targetPort: 32007,
             },
         ],
-        selector: {
-            service: "madkubserver",
-        },
-    },
+    } +
+    (if flowsnakeconfig.is_minikube then {} else { clusterIP: "10.254.208.254" }),
     status: {
         loadBalancer: {},
     },
