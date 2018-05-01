@@ -153,7 +153,13 @@ data:
         }
       ],
       "storageClassName": "standard",
-      "tlsEnabled": true
+      "tlsEnabled": true,
+      "universalProcesses": [
+        "dockerd.*docker-bootstrap",
+        "dockerd.*docker.sock",
+        "docker-containerd.*docker-containerd.sock",
+        "hyperkube.*kubelet"
+      ]
     }
 kind: ConfigMap
 metadata:

@@ -19,8 +19,10 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam
+        # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
+        "prd,prd-samdev,watchdog-common,hypersam": "sam-0001934-1a482ba7",
+        "prd,prd-samtest,watchdog-common,hypersam": "sam-0001934-1a482ba7",
 
         # [mgrass] Releasing estate-server early in xrd to unblock ceph cluster deployment (depends on failure domain labeling done by nodecontroller).
         "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
