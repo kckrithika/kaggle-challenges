@@ -1,3 +1,4 @@
+# TODO: Move "zipkin-kafka-proxy" function to report-collector tests and delete this
 apiVersion: v1
 
 system:
@@ -6,7 +7,9 @@ system:
         - distributedtracing@salesforce.com
     functions:
     - name: zipkin-kafka-proxy
-      count: 3
+      identity:
+          serviceName: zipkin-kafka-proxy
+      count: 1
       strategy:
           type: RollingUpdate
           rollingUpdate:
