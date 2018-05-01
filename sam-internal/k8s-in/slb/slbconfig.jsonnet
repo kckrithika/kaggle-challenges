@@ -12,6 +12,7 @@
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd'],
     testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
+    samrole: "samapp.slb",
 
     perCluster: {
         ddiService: {
