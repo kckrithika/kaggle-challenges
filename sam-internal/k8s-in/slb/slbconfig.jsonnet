@@ -10,7 +10,7 @@
     logsDir: self.slbDir + "/logs/" + $.dirSuffix,
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
-    prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd'],
+    prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd'],
     testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
 
     perCluster: {
@@ -31,6 +31,7 @@
             "ord-sam": "10.208.148.0/22",
             "dfw-sam": "10.214.188.0/22",
             "hnd-sam": "10.213.100.0/22",
+            "xrd-sam": "10.229.32.0/22",
             # prd-sam-a : 10.251.199.248-255
         },
 
