@@ -13,6 +13,7 @@ std.prune({
   certFile: configs.certFile,
   httpsDisableCertsCheck: true,
   volPermissionInitContainerImage: samimages.permissionInitContainer,
+  livenessProbePort: "22545",
 
   # Delete
   deletionPercentageThreshold: 20,
@@ -35,8 +36,6 @@ std.prune({
   slbConfigInAnnotations: (if configs.kingdom != "prd" then false),
 
   k4aInitContainerImage: samimages.k4aInitContainerImage,
-
-  livenessProbePort: (if configs.kingdom == "prd" || configs.kingdom == "frf" then "22545"),
 
   # [mayank] This flag enables dns resolution for pods deployed by samcontroller
   # Technically enabling this without kubedns running only causes some misc events in the pod describe, but
