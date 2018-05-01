@@ -36,6 +36,7 @@ local utils = import "util_functions.jsonnet";
 
         #[a.mitra] deploy liveness probe for bundlecontroller in prd-samdev
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001933-968970c4",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001933-968970c4",
 
         #[d.smith] Pin snapshoter to known working version
         "prd,prd-sdc,snapshoter,hypersam": "sam-0001847-1b9453cd",
