@@ -13,14 +13,14 @@ system:
 
     containers:
     - name: core
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15778034-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15778034-2
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
 
       env:
         # DB info
         - name: DB_USER
-#          value: happy
-          value: grumpy
+          value: happy
+#          value: grumpy
         - name: DB_SID
           value: mist61a216utf
         - name: IP_DB
@@ -64,8 +64,8 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-#          value: blue
-          value: green
+          value: blue
+#          value: green
 
         # Override port being announced in SD
         - name: SD_PORT_OVERRIDE
@@ -126,7 +126,7 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:c9de4f
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:d59b5e
 
       env:
         - name: USE_SWITCHBOARD
@@ -144,14 +144,14 @@ system:
         - name: JMX_PORT
           value: 8998
         - name: OLD_DWARF
-#          value: grumpy
-          value: happy
+          value: grumpy
+#          value: happy
         - name: CURRENT_RELEASE_VERSION
-#          value: green
-          value: blue
+          value: green.casam
+#          value: blue.casam
         - name: NEW_RELEASE_VERSION
-#          value: blue
-          value: green
+          value: blue.casam
+#          value: green.casam
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
