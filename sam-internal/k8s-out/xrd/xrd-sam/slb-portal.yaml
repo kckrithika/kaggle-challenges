@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: slb-portal
+  name: slb-portal
+  namespace: sam-system
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        name: slb-portal
+      namespace: sam-system
+    spec:
+      containers:
+      - command:
+        - /sdn/slb-portal
+        - --hostname=$(NODE_NAME)
+        - --templatePath=/sdn/webfiles
+        - --port=9112
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000822-106403cc
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9112
+          initialDelaySeconds: 30
+          periodSeconds: 3
+          timeoutSeconds: 10
+        name: slb-portal
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+      nodeSelector:
+        pool: xrd-sam
+      volumes:
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
