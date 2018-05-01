@@ -194,6 +194,7 @@ spec:
         - --requested-cert-type
         - client
         - --refresher
+        - --run-init-for-refresher-mode
         env:
         - name: MADKUB_NODENAME
           valueFrom:

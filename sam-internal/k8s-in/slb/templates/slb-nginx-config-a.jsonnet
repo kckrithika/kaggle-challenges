@@ -267,9 +267,8 @@ if configs.estate == "prd-sam" then {
                             "--requested-cert-type",
                             "client",
                             "--refresher",
-                        ] + (if slbimages.phase == "1" then [
-                                 "--run-init-for-refresher-mode",
-                             ] else []),
+                            "--run-init-for-refresher-mode",
+                        ],
                         env: [
                             {
                                 name: "MADKUB_NODENAME",
