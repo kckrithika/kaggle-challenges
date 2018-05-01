@@ -1,5 +1,6 @@
 {
     dirSuffix:: "",
+    proxyLabelSelector:: "slb-nginx-config-b",
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
@@ -34,7 +35,7 @@
             "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
             "--shouldRemoveConfig=true",
             configs.sfdchosts_arg,
-            "--proxySelectorLabelValue=slb-nginx-config-b",
+            "--proxySelectorLabelValue=" + $.proxyLabelSelector,
             "--hostnameOverride=$(NODE_NAME)",
         ],
         volumeMounts: configs.filter_empty([

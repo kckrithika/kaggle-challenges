@@ -3,7 +3,6 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-samtwo" then { dirSuffix:: "slb-nginx-config-b" } else {});
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local samrole = "samapp.slb";
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 
 if slbconfigs.slbInKingdom then {
@@ -31,7 +30,7 @@ if slbconfigs.slbInKingdom then {
                                     \"name\": \"cert1\",
                                     \"cert-type\":\"server\",
                                     \"kingdom\":\"prd\",
-                                    \"role\": \"" + samrole + "\",
+                                    \"role\": \"" + slbconfigs.samrole + "\",
                                     \"san\":[
                                         \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
                                         \"*.slb.sfdc.net\",
@@ -43,7 +42,7 @@ if slbconfigs.slbInKingdom then {
                                     \"name\": \"cert2\",
                                     \"cert-type\":\"client\",
                                     \"kingdom\":\"prd\",
-                                    \"role\": \"" + samrole + "\"
+                                    \"role\": \"" + slbconfigs.samrole + "\"
                                 }
                             ]
                          }",
