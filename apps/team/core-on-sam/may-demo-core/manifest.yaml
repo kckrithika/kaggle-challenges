@@ -13,12 +13,14 @@ system:
 
     containers:
     - name: core
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15778034-2
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15778034-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
 
       env:
         # DB info
         - name: DB_USER
-          value: happy
+#          value: happy
+          value: grumpy
         - name: DB_SID
           value: mist61a216utf
         - name: IP_DB
@@ -62,15 +64,16 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: blue
+#          value: blue
+          value: green
 
         # Override port being announced in SD
         - name: SD_PORT_OVERRIDE
           value: 12099
 
-      resources:
-        limits: { memory: "10240M" }
-        requests: { memory: "8292M" }
+#      resources:
+#        limits: { memory: "10240M" }
+#        requests: { memory: "8292M" }
  
       livenessProbe:
         exec:
@@ -106,11 +109,11 @@ system:
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
-#    strategy:
-#      type: RollingUpdate
-#      rollingUpdate:
-#        maxSurge: 200%
-#        maxUnavailable: 0            
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
 
   - name: sequencer
 
@@ -123,9 +126,11 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_major_release:bf6b45
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:6e077b
 
       env:
+        - name: USE_SWITCHBOARD
+          value: 1
         - name: CYAN
           value: https://shared2-samminioncoreapp1-1-prd.eng.sfdc.net:12065
         - name: CURL_GLOBAL_OPTS
@@ -139,9 +144,14 @@ system:
         - name: JMX_PORT
           value: 8998
         - name: OLD_DWARF
-          value: grumpy
-        - name: RELEASE_VERSION
+#          value: grumpy
+          value: happy
+        - name: CURRENT_RELEASE_VERSION
+#          value: green
           value: blue
+        - name: NEW_RELEASE_VERSION
+#          value: blue
+          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
