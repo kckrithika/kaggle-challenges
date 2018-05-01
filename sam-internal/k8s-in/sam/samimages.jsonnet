@@ -25,9 +25,6 @@ local utils = import "util_functions.jsonnet";
         # [mgrass] Releasing estate-server early in xrd to unblock ceph cluster deployment (depends on failure domain labeling done by nodecontroller).
         "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
 
-        #[rbhat] release maddog fix changes
-        "prd,prd-sam,samapp-controller,hypersam": "sam-0001921-1c8875a3",
-
         #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
         "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
 
@@ -39,8 +36,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001933-968970c4",
 
         #[d.smith] Pin snapshoter to known working version
-        "prd,prd-sdc,snapshoter,hypersam": "sam-0001847-1b9453cd",
-        "prd,prd-sam,snapshoter,hypersam": "sam-0001847-1b9453cd",
         "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001847-1b9453cd",
         "cdu,cdu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
         "chx,chx-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
@@ -101,7 +96,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001912-3f0e2a18",
+            hypersam: "sam-0001931-927cd1fc",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
