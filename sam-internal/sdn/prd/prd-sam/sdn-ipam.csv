@@ -1,4 +1,6 @@
 Hostname,HostIP/MaskLength,DockerSubnet/MaskLength,RackName,Estate
+mist51shared0-samminiongwc1-1-prd.eng.sfdc.net,10.231.186.34/29,10.251.137.160/27,w31-02,prd-sam_gatewayconfig
+mist51shared0-samminiongwc2-1-prd.eng.sfdc.net,10.231.186.42/29,10.251.137.128/27,m40-02,prd-sam_gatewayconfig
 rdi-release1-1-prd.eng.sfdc.net,10.253.156.15/26,10.252.162.32/27,l07-02,prd-rdi_release
 rdi-release300-1-prd.eng.sfdc.net,10.253.156.8/26,10.252.160.192/27,l07-02,prd-rdi_release
 rdi-release300-2-prd.eng.sfdc.net,10.253.156.7/26,10.252.160.224/27,l07-02,prd-rdi_release

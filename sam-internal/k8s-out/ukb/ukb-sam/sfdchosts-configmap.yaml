@@ -11,6 +11,7 @@ data:
           "hostname": "shared0-samcompute1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b07-ks31",
           "superpod": "none"
         },
         {
@@ -21,6 +22,7 @@ data:
           "hostname": "shared0-samcompute1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -31,6 +33,7 @@ data:
           "hostname": "shared0-samcompute2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -41,6 +44,7 @@ data:
           "hostname": "shared0-samkubeapi1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "none"
         },
         {
@@ -51,6 +55,7 @@ data:
           "hostname": "shared0-samkubeapi2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -61,6 +66,7 @@ data:
           "hostname": "shared0-samkubeapi3-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m09-ks31",
           "superpod": "none"
         },
         {
@@ -71,6 +77,7 @@ data:
           "hostname": "shared0-samminionceph1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "g08-ks31",
           "superpod": "none"
         },
         {
@@ -81,6 +88,7 @@ data:
           "hostname": "shared0-samminionceph1-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k09-ks31",
           "superpod": "none"
         },
         {
@@ -91,6 +99,7 @@ data:
           "hostname": "shared0-samminionceph1-11-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k10-ks31",
           "superpod": "none"
         },
         {
@@ -101,6 +110,7 @@ data:
           "hostname": "shared0-samminionceph1-12-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j07-ks31",
           "superpod": "none"
         },
         {
@@ -111,6 +121,7 @@ data:
           "hostname": "shared0-samminionceph1-13-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "c10-ks31",
           "superpod": "none"
         },
         {
@@ -121,6 +132,7 @@ data:
           "hostname": "shared0-samminionceph1-14-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "g08-ks31",
           "superpod": "none"
         },
         {
@@ -131,6 +143,7 @@ data:
           "hostname": "shared0-samminionceph1-15-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j05-ks31",
           "superpod": "none"
         },
         {
@@ -141,6 +154,7 @@ data:
           "hostname": "shared0-samminionceph1-16-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j05-ks31",
           "superpod": "none"
         },
         {
@@ -151,6 +165,7 @@ data:
           "hostname": "shared0-samminionceph1-17-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f03-ks31",
           "superpod": "none"
         },
         {
@@ -161,6 +176,7 @@ data:
           "hostname": "shared0-samminionceph1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k10-ks31",
           "superpod": "none"
         },
         {
@@ -171,6 +187,7 @@ data:
           "hostname": "shared0-samminionceph1-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l02-ks31",
           "superpod": "none"
         },
         {
@@ -181,6 +198,7 @@ data:
           "hostname": "shared0-samminionceph1-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "none"
         },
         {
@@ -191,6 +209,7 @@ data:
           "hostname": "shared0-samminionceph1-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k09-ks31",
           "superpod": "none"
         },
         {
@@ -201,6 +220,7 @@ data:
           "hostname": "shared0-samminionceph1-6-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "e10-ks31",
           "superpod": "none"
         },
         {
@@ -211,6 +231,7 @@ data:
           "hostname": "shared0-samminionceph1-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j07-ks31",
           "superpod": "none"
         },
         {
@@ -221,6 +242,7 @@ data:
           "hostname": "shared0-samminionceph1-8-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l02-ks31",
           "superpod": "none"
         },
         {
@@ -231,6 +253,7 @@ data:
           "hostname": "shared0-samminionceph1-9-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h01-ks31",
           "superpod": "none"
         },
         {
@@ -241,6 +264,7 @@ data:
           "hostname": "shared0-samminionceph2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m21-ks32",
           "superpod": "none"
         },
         {
@@ -251,6 +275,7 @@ data:
           "hostname": "shared0-samminionceph2-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f02-ks31",
           "superpod": "none"
         },
         {
@@ -261,6 +286,7 @@ data:
           "hostname": "shared0-samminionceph2-11-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b09-ks31",
           "superpod": "none"
         },
         {
@@ -271,6 +297,7 @@ data:
           "hostname": "shared0-samminionceph2-12-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b09-ks31",
           "superpod": "none"
         },
         {
@@ -281,6 +308,7 @@ data:
           "hostname": "shared0-samminionceph2-13-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "c09-ks31",
           "superpod": "none"
         },
         {
@@ -291,6 +319,7 @@ data:
           "hostname": "shared0-samminionceph2-14-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k08-ks31",
           "superpod": "none"
         },
         {
@@ -301,6 +330,7 @@ data:
           "hostname": "shared0-samminionceph2-15-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k11-ks31",
           "superpod": "none"
         },
         {
@@ -311,6 +341,7 @@ data:
           "hostname": "shared0-samminionceph2-16-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l30-ks32",
           "superpod": "none"
         },
         {
@@ -321,6 +352,7 @@ data:
           "hostname": "shared0-samminionceph2-17-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f24-ks32",
           "superpod": "none"
         },
         {
@@ -331,6 +363,7 @@ data:
           "hostname": "shared0-samminionceph2-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k21-ks32",
           "superpod": "none"
         },
         {
@@ -341,6 +374,7 @@ data:
           "hostname": "shared0-samminionceph2-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m21-ks32",
           "superpod": "none"
         },
         {
@@ -351,6 +385,7 @@ data:
           "hostname": "shared0-samminionceph2-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l01-ks31",
           "superpod": "none"
         },
         {
@@ -361,6 +396,7 @@ data:
           "hostname": "shared0-samminionceph2-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f24-ks32",
           "superpod": "none"
         },
         {
@@ -371,6 +407,7 @@ data:
           "hostname": "shared0-samminionceph2-6-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f02-ks31",
           "superpod": "none"
         },
         {
@@ -381,6 +418,7 @@ data:
           "hostname": "shared0-samminionceph2-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k25-ks32",
           "superpod": "none"
         },
         {
@@ -391,6 +429,7 @@ data:
           "hostname": "shared0-samminionceph2-8-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k25-ks32",
           "superpod": "none"
         },
         {
@@ -401,6 +440,7 @@ data:
           "hostname": "shared0-samminionceph2-9-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l30-ks32",
           "superpod": "none"
         },
         {
@@ -411,6 +451,7 @@ data:
           "hostname": "shared0-samminionceph3-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f05-ks31",
           "superpod": "none"
         },
         {
@@ -421,6 +462,7 @@ data:
           "hostname": "shared0-samminionceph3-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b10-ks31",
           "superpod": "none"
         },
         {
@@ -431,6 +473,7 @@ data:
           "hostname": "shared0-samminionceph3-11-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h22-ks32",
           "superpod": "none"
         },
         {
@@ -441,6 +484,7 @@ data:
           "hostname": "shared0-samminionceph3-12-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -451,6 +495,7 @@ data:
           "hostname": "shared0-samminionceph3-13-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b08-ks31",
           "superpod": "none"
         },
         {
@@ -461,6 +506,7 @@ data:
           "hostname": "shared0-samminionceph3-14-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f05-ks31",
           "superpod": "none"
         },
         {
@@ -471,6 +517,7 @@ data:
           "hostname": "shared0-samminionceph3-15-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "e08-ks31",
           "superpod": "none"
         },
         {
@@ -481,6 +528,7 @@ data:
           "hostname": "shared0-samminionceph3-16-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -491,6 +539,7 @@ data:
           "hostname": "shared0-samminionceph3-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b03-ks31",
           "superpod": "none"
         },
         {
@@ -501,6 +550,7 @@ data:
           "hostname": "shared0-samminionceph3-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d06-ks31",
           "superpod": "none"
         },
         {
@@ -511,6 +561,7 @@ data:
           "hostname": "shared0-samminionceph3-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b03-ks31",
           "superpod": "none"
         },
         {
@@ -521,6 +572,7 @@ data:
           "hostname": "shared0-samminionceph3-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b10-ks31",
           "superpod": "none"
         },
         {
@@ -531,6 +583,7 @@ data:
           "hostname": "shared0-samminionceph3-6-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k24-ks32",
           "superpod": "none"
         },
         {
@@ -541,6 +594,7 @@ data:
           "hostname": "shared0-samminionceph3-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "none"
         },
         {
@@ -551,6 +605,7 @@ data:
           "hostname": "shared0-samminionceph3-8-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d06-ks31",
           "superpod": "none"
         },
         {
@@ -561,6 +616,7 @@ data:
           "hostname": "shared0-samminionceph3-9-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b08-ks31",
           "superpod": "none"
         },
         {
@@ -571,6 +627,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "none"
         },
         {
@@ -581,6 +638,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m08-ks31",
           "superpod": "none"
         },
         {
@@ -591,6 +649,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m08-ks31",
           "superpod": "none"
         },
         {
@@ -601,6 +660,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m08-ks31",
           "superpod": "none"
         },
         {
@@ -611,6 +671,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "none"
         },
         {
@@ -621,6 +682,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -631,6 +693,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-6-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -641,6 +704,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "none"
         },
         {
@@ -651,6 +715,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-8-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "none"
         },
         {
@@ -661,6 +726,7 @@ data:
           "hostname": "shared0-samminionchatbotrt1-9-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -671,6 +737,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -681,6 +748,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-10-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -691,6 +759,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k23-ks32",
           "superpod": "none"
         },
         {
@@ -701,6 +770,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m09-ks31",
           "superpod": "none"
         },
         {
@@ -711,6 +781,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m09-ks31",
           "superpod": "none"
         },
         {
@@ -721,6 +792,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-5-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -731,6 +803,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-6-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k23-ks32",
           "superpod": "none"
         },
         {
@@ -741,6 +814,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-7-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -751,6 +825,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-8-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -761,6 +836,7 @@ data:
           "hostname": "shared0-samminionchatbotrt2-9-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m09-ks31",
           "superpod": "none"
         },
         {
@@ -771,6 +847,7 @@ data:
           "hostname": "shared0-samminionatlasfe1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -781,6 +858,7 @@ data:
           "hostname": "shared0-samminionatlasfe2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "none"
         },
         {
@@ -791,6 +869,7 @@ data:
           "hostname": "shared0-samminionatlasdir1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "none"
         },
         {
@@ -801,6 +880,7 @@ data:
           "hostname": "shared0-samminionatlasdir1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b07-ks31",
           "superpod": "none"
         },
         {
@@ -811,6 +891,7 @@ data:
           "hostname": "shared0-samminionatlasdir2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -821,6 +902,7 @@ data:
           "hostname": "shared0-samminiongater1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k23-ks32",
           "superpod": "none"
         },
         {
@@ -831,6 +913,7 @@ data:
           "hostname": "shared0-samminiongater1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -841,6 +924,7 @@ data:
           "hostname": "shared0-samminiongater1-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "none"
         },
         {
@@ -851,6 +935,7 @@ data:
           "hostname": "shared0-samminiongater2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "none"
         },
         {
@@ -861,6 +946,7 @@ data:
           "hostname": "shared0-samminiongater2-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m08-ks31",
           "superpod": "none"
         },
         {
@@ -871,6 +957,7 @@ data:
           "hostname": "shared0-samminionmoderationeinstein1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -881,6 +968,7 @@ data:
           "hostname": "shared0-samminionmoderationeinstein1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -891,6 +979,7 @@ data:
           "hostname": "shared0-samminionmoderationeinstein2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b07-ks31",
           "superpod": "none"
         },
         {
@@ -901,6 +990,7 @@ data:
           "hostname": "shared0-samminionreportcollector1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "b07-ks31",
           "superpod": "none"
         },
         {
@@ -911,6 +1001,7 @@ data:
           "hostname": "shared0-samminionreportcollector2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -921,6 +1012,7 @@ data:
           "hostname": "shared0-samminionreportcollector3-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "none"
         },
         {
@@ -931,6 +1023,7 @@ data:
           "hostname": "shared0-samminionwarden1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "none"
         },
         {
@@ -941,6 +1034,7 @@ data:
           "hostname": "shared0-samminionwarden1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "none"
         },
         {
@@ -951,6 +1045,7 @@ data:
           "hostname": "shared0-samminionwarden2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m08-ks31",
           "superpod": "none"
         },
         {
@@ -961,6 +1056,7 @@ data:
           "hostname": "samcaas1-caasminion1-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "sp1"
         },
         {
@@ -971,6 +1067,7 @@ data:
           "hostname": "samcaas1-caasminion1-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "j08-ks31",
           "superpod": "sp1"
         },
         {
@@ -981,6 +1078,7 @@ data:
           "hostname": "samcaas1-caasminion1-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "f07-ks31",
           "superpod": "sp1"
         },
         {
@@ -991,6 +1089,7 @@ data:
           "hostname": "samcaas1-caasminion1-4-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "l28-ks32",
           "superpod": "sp1"
         },
         {
@@ -1001,6 +1100,7 @@ data:
           "hostname": "samcaas1-caasminion2-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "sp1"
         },
         {
@@ -1011,6 +1111,7 @@ data:
           "hostname": "samcaas1-caasminion2-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "h02-ks31",
           "superpod": "sp1"
         },
         {
@@ -1021,6 +1122,7 @@ data:
           "hostname": "samcaas1-caasminion2-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m08-ks31",
           "superpod": "sp1"
         },
         {
@@ -1031,6 +1133,7 @@ data:
           "hostname": "samcaas1-caasminion3-1-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "d07-ks31",
           "superpod": "sp1"
         },
         {
@@ -1041,6 +1144,7 @@ data:
           "hostname": "samcaas1-caasminion3-2-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "k23-ks32",
           "superpod": "sp1"
         },
         {
@@ -1051,6 +1155,7 @@ data:
           "hostname": "samcaas1-caasminion3-3-ukb.ops.sfdc.net",
           "kingdom": "ukb",
           "pod": "none",
+          "rack": "m09-ks31",
           "superpod": "sp1"
         }
       ]

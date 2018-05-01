@@ -11,6 +11,7 @@ data:
           "hostname": "shared0-samtwocompute1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "d38-45",
           "superpod": "none"
         },
         {
@@ -21,6 +22,7 @@ data:
           "hostname": "shared0-samtwocompute1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "q09-45",
           "superpod": "none"
         },
         {
@@ -31,6 +33,7 @@ data:
           "hostname": "shared0-samtwocompute2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "w03-45",
           "superpod": "none"
         },
         {
@@ -41,6 +44,7 @@ data:
           "hostname": "shared0-samtwokubeapi1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "p32-45",
           "superpod": "none"
         },
         {
@@ -51,6 +55,7 @@ data:
           "hostname": "shared0-samtwokubeapi2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "w35-45",
           "superpod": "none"
         },
         {
@@ -61,6 +66,7 @@ data:
           "hostname": "shared0-samtwokubeapi3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "m40-45",
           "superpod": "none"
         }
       ]
