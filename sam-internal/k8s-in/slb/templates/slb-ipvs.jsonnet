@@ -199,6 +199,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 maxSurge: 1,
             },
         },
-        minReadySeconds: 60,
+        minReadySeconds: if slbimages.phase == "1" || slbimages.phase == "2" then 120 else 60,
     },
 } else "SKIP"

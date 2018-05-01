@@ -6,7 +6,7 @@ metadata:
   name: slb-ipvs
   namespace: sam-system
 spec:
-  minReadySeconds: 60
+  minReadySeconds: 120
   replicas: 2
   strategy:
     rollingUpdate:

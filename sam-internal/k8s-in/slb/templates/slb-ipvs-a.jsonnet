@@ -170,5 +170,6 @@ if configs.estate == "prd-sam" then {
                 },
             },
         },
+        minReadySeconds: if slbimages.phase == "1" || slbimages.phase == "2" then 120 else 60,
     },
 } else "SKIP"
