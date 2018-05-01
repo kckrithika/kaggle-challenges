@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expreport-collectorha
-      image: tnrp/csc-health/report-collector:1.15.0-0000259-f82c0217
+      image: tnrp/csc-health/report-collector:1.15.0-0000260-53f086c2
       ports:
       - name: admin
         containerPort: 8082
