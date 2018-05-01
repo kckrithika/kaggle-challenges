@@ -15,7 +15,6 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                         command: [
                                      "/sam/watchdog",
                                      "-role=SDP",
-                                     "-sdpEndpoint=http://localhost:39999",
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
                                      "-emailFrequency=24h",

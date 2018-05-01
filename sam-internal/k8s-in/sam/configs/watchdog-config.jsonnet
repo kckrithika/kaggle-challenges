@@ -58,9 +58,9 @@ std.prune({
   k8sproxyEndpoint: "http://localhost:40000",
   # Puppet
   maxUptimeSampleSize: 5,
+  #sdn
+  sdpEndpoint: (if configs.estate == "prd-sam" then "http://sdp.sam-system." + configs.estate + ".prd.slb.sfdc.net:64121" else "http://localhost:39999"),
 
-  # Sdp
-  sdpEndpoint: "http://localhost:39999",
   # Synthetic
   laddr: (if configs.estate == "prd-sam" then "0.0.0.0:8063" else "0.0.0.0:8083"),
   imageName: samimages.hypersam,
