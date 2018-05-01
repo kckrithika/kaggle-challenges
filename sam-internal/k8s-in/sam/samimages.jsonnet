@@ -22,6 +22,9 @@ local utils = import "util_functions.jsonnet";
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
 
+        # [mgrass] Releasing estate-server early in xrd to unblock ceph cluster deployment (depends on failure domain labeling done by nodecontroller).
+        "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
+
         #[rbhat] release maddog fix changes
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001921-1c8875a3",
 
