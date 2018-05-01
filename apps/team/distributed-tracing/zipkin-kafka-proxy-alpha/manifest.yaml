@@ -1,0 +1,88 @@
+# TODO: Move "zipkin-kafka-proxy" function to report-collector tests and delete this
+apiVersion: v1
+
+system:
+    notifications:
+        email:
+        - distributedtracing@salesforce.com
+    functions:
+    - name: zipkin-kafka-proxy
+      identity:
+          serviceName: zipkin-kafka-proxy
+      count: 1
+      strategy:
+          type: RollingUpdate
+          rollingUpdate:
+              maxSurge: 0
+              maxUnavailable: 1
+      volumes:
+      - name: client-certs
+        maddogCert:
+          type: client        
+      containers:
+      - name: zipkin-kafka-proxy
+        image: docker-all/dva/zipkin-kafka-proxy:12
+        env:
+        - name: ZIPKIN_KAFKA_PROXY_HOST
+          value: zipkin-kafka-proxy
+        - name: PORT
+          value: 7022
+        args:
+        - ajna0-broker1-0-$(KINGDOM).data.sfdc.net:9093
+        - sfdc.prod.distributed-tracing.zipkin-kafka-proxy__$(KINGDOM).ajna_local__tracing
+        resources:
+            limits: { cpu: "2", memory: "12Gi" }
+            requests: { cpu: "2", memory: "12Gi" }
+        volumeMounts:
+        - mountPath: /etc/pki_service/zipkin-kafka-proxy
+          name: client-certs
+        livenessProbe:
+            exec:
+                # TODO: Check if process is running?
+                command: 
+                - /bin/true
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      - name: sherpa
+        image: sfci/servicelibs/sherpa:2.0.25
+        args: ["--zipkin-rate", "0.0"]
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: "sam"
+        resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+        ports:
+        # Temporary: Eventually we will only allow tls
+        - containerPort: 7014
+          hostPort: 7014
+          name: sherpa-http1-in
+        - containerPort: 7442
+          hostPort: 7442
+        - containerPort: 15373
+          name: sherpa-adm
+        livenessProbe:
+            exec:
+                command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+        readinessProbe:
+            exec:
+                command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+      - name: beacon
+        image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+        env:
+        - name: SFDC_ENVIRONMENT
+          value: mesh
+        args:
+        - -endpoint
+        - zipkin:DATACENTER_ALLENV:7014
+        livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+                command:
+                - "/home/scone/is-alive.sh"            

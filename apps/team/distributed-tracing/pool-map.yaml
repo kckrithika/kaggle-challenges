@@ -7,8 +7,10 @@ apps:
     - prd/prd-sam_zipkin
     zipkin-kafka-proxy-test:
     - prd/prd-sam_report_collector
-    zipkin-kafka-proxy:
+    # Remove then once below linked estate change is fully rolled out
+    zipkin-kafka-proxy-alpha:
     - prd/prd-sam_report_collector
+    zipkin-kafka-proxy:
     # Temporary until estate change goes in: https://git.soma.salesforce.com/estates/estates/pull/5224
     - prd/prd-sam_zipkin
     #- iad/iad-sam_report_collector
