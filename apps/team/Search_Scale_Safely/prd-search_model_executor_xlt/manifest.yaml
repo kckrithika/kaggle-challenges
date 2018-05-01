@@ -13,13 +13,13 @@ system:
       livenessProbe:
         exec:
           command: ["cat", "./bin/agentcontroller.sh"]
-          initialDelaySeconds: 10
-          periodSeconds: 5
+        initialDelaySeconds: 10
+        periodSeconds: 5
       readinessProbe:
         exec:
           command: ["cat", "./bin/agentcontroller.sh"]
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        initialDelaySeconds: 5
+        periodSeconds: 5
     - name: sherpa-xlt
       image: sfci/servicelibs/sherpa:2.0.26
       env:
@@ -34,19 +34,19 @@ system:
       - name: sherpa-xlt-tls
         containerPort: 7443
       - name: sherpa-xlt-adm
-        containerPort: 7080
+        containerPort: 15373
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 120
-          periodSeconds: 5
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 110
-          periodSeconds: 5
+        initialDelaySeconds: 110
+        periodSeconds: 5
       volumeMounts:
       - name: tls-client-cert
         mountPath: /client-certs

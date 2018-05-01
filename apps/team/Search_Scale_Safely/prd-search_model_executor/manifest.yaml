@@ -70,7 +70,7 @@ system:
       - name: sherpa-b-tls
         containerPort: 7443
       - name: sherpa-b-adm
-        containerPort: 7080
+        containerPort: 15373
       livenessProbe:
         exec:
           command: ["./bin/is-alive"]
