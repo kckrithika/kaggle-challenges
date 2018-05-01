@@ -14,7 +14,10 @@ system:
       maddogCert:
         type: server 
         lbnames:
-        - pdssapitest1lb      
+        - pdssapitest1lb  
+    - name: secretvol
+      k4aSecret:
+        secretName: tsigsecrets    
     containers:
     - name: pdss-api-test1 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180426
@@ -39,6 +42,9 @@ system:
         mountPath: /certs
       - name: pdss-api-log-volume  
         mountPath: /home/scone/logs
+      - name: secretvol
+        mountPath: /secrets/service-config/
+        readOnly: true
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
@@ -82,7 +88,7 @@ system:
         - name: sherpa-log-volume
           mountPath: /log 
         - name: certs
-          mountPath: /certs 
+          mountPath: /certs
   loadbalancers:
   - lbname: pdssapitest1lb
     function: pdss-api-test1 
