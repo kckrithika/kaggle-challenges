@@ -126,7 +126,7 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:c18c6c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:c9de4f
 
       env:
         - name: USE_SWITCHBOARD
