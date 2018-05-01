@@ -20,7 +20,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam
-        "prd,prd-sam,watchdog-common,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/prahlad.joshi/hypersam:20180430_120115.d4ddbe3d.clean.prahladjos-ltm",
+        "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
 
         #[rbhat] release maddog fix changes
         "prd,prd-sam,samapp-controller,hypersam": "sam-0001921-1c8875a3",

@@ -145,3 +145,7 @@ std.prune({
      KubeletErrorPerSecond: 1,
      KubeletErrorCheckerFrequency: "20s",
   } else {})
+  #processUpTime checker
+  + (if configs.estate == "prd-sam" then {
+     universalProcesses: ["dockerd.*docker-bootstrap", "dockerd.*docker.sock", "docker-containerd.*docker-containerd.sock", "hyperkube.*kubelet"],
+  } else {})
