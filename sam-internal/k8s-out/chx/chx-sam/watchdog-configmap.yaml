@@ -63,13 +63,6 @@ data:
       "smtpServer": "ops-mta1-4-chx.ops.sfdc.net:25",
       "snooze": [
         {
-          "checker": "procUpTime",
-          "estates": [
-            "prd-sam"
-          ],
-          "until": "2018/05/01"
-        },
-        {
           "checker": "nodeChecker",
           "estates": [
             "iad-sam"

@@ -67,13 +67,6 @@ data:
       "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
       "snooze": [
         {
-          "checker": "procUpTime",
-          "estates": [
-            "prd-sam"
-          ],
-          "until": "2018/05/01"
-        },
-        {
           "checker": "nodeChecker",
           "estates": [
             "iad-sam"
