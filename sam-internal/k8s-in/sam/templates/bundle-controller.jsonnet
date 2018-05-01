@@ -27,7 +27,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                             configs.kube_config_env,
                         ],
                     }
-                    + (if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
+                    + (if configs.estate == "prd-samdev" then {
                         livenessProbe: {
                              httpGet: {
                                  path: "/healthz",

@@ -31,8 +31,7 @@ local utils = import "util_functions.jsonnet";
         #[jiayi.yan] Roll out sam app status CRD in SDP
         "prd,prd-samtwo,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
 
-        #[a.mitra] deploy liveness probe for bundlecontroller in prd-samtest/dev
-        "prd,prd-samtest,bundle-controller,hypersam": "sam-0001933-968970c4",
+        #[a.mitra] deploy liveness probe for bundlecontroller in prd-samdev
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001933-968970c4",
 
         #[d.smith] Pin snapshoter to known working version
