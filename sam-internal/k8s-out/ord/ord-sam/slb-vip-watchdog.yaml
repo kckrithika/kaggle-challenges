@@ -159,7 +159,7 @@ spec:
         - mountPath: /host/data/slb/logs/slb-vip-watchdog
           name: var-logs-volume
       nodeSelector:
-        pool: ord-sam
+        pool: ord-slb
       volumes:
       - hostPath:
           path: /data/slb

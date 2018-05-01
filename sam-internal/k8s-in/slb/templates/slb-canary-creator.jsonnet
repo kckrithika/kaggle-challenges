@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbimages.phase == "3" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -55,8 +55,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbimages.phase
                             configs.kube_config_env,
                         ],
                         securityContext: {
-                                                    privileged: true,
-                                                },
+                            privileged: true,
+                        },
                     },
                 ],
             },
