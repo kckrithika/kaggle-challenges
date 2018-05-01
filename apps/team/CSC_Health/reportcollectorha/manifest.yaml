@@ -63,8 +63,8 @@ system:
         value: true
       - name: ReportCollector_app_http_enabled
         value: false
-      - name: ReportCollector_app_redisWriteCircuitBreaker_maxFailures
-        value: 2
+      - name: ReportCollector_app_redisWriteCircuitBreaker_resetTimeout
+        value: 10000
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
