@@ -76,18 +76,24 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               image: slbimages.hypersdn,
                               command: [
                                   "/sdn/slb-vip-watchdog",
-                                  "--vipLoop=10",
                                   "--log_dir=" + slbconfigs.logsDir,
                                   "--optOutNamespace=kne",
-                                  "--monitorFrequency=60s",
                                   "--hostnameOverride=$(NODE_NAME)",
                                   configs.sfdchosts_arg,
                                   "--metricsEndpoint=" + configs.funnelVIP,
                                   "--httpTimeout=5s",
                                   "--useLocalNodeApi=true",
-                              ] + if configs.estate == "prd-sam" then [
-                                  "--optOutServiceList=ops0-pkicontroller1-0-prd",
-                              ] else [],
+                              ] + if configs.estate == "prd-sdc" then [
+                                    "--vipLoop=1",
+                                    "--monitorFrequency=10s",
+                              ] else if configs.estate == "prd-sam" then [
+                                   "--optOutServiceList=ops0-pkicontroller1-0-prd",
+                                   "--vipLoop=10",
+                                   "--monitorFrequency=60s",
+                              ] else [
+                                   "--vipLoop=10",
+                                   "--monitorFrequency=60s",
+                              ],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,

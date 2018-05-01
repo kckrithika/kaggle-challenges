@@ -47,15 +47,15 @@ spec:
       containers:
       - command:
         - /sdn/slb-vip-watchdog
-        - --vipLoop=10
         - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --optOutNamespace=kne
-        - --monitorFrequency=60s
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --httpTimeout=5s
         - --useLocalNodeApi=true
+        - --vipLoop=10
+        - --monitorFrequency=60s
         env:
         - name: NODE_NAME
           valueFrom:
