@@ -70,7 +70,7 @@ data:
       "publishAllReportsToKafka": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-test-alerts@salesforce.com",
-      "sdpEndpoint": "http://localhost:39999",
+      "sdpEndpoint": "http://sdp.sam-system.prd-sam.prd.slb.sfdc.net:64121",
       "sender": "sam-test-alerts@salesforce.com",
       "smtpServer": "rd1-mta1-4-sfm.ops.sfdc.net:25",
       "snooze": [
