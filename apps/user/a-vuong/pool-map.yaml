@@ -1,0 +1,5 @@
+apps:
+ na44-stm-searchserver:
+  - prd/prd-sam
+ searchserver:
+  - prd/prd-sam 
