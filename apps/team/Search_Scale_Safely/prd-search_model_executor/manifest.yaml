@@ -53,6 +53,9 @@ system:
         exec:
           command: ["/home/scone/is-alive.sh"]
         initialDelaySeconds: 5
+      volumeMounts:
+      - name: beacon-log-volume
+        mountPath: /home/scone/log
     - name: sherpa-b
       image: sfci/servicelibs/sherpa:2.0.26
       env:
@@ -90,6 +93,9 @@ system:
     - name: sherpa-log-volume
       hostpath:
         path: /home/sfdc-sherpa/logs
+    - name: beacon-log-volume
+      hostpath:
+        path: /home/sfdc-beacon/logs
     - name: tls-server-cert
       maddogCert:
         type: server
