@@ -13,5 +13,5 @@ apps:
     zipkin-kafka-proxy:
     # Temporary until estate change goes in: https://git.soma.salesforce.com/estates/estates/pull/5224
     - prd/prd-sam_zipkin
-    #- iad/iad-sam_report_collector
-    #- ord/ord-sam_report_collector
+    - iad/iad-sam_report_collector
+    - ord/ord-sam_report_collector
