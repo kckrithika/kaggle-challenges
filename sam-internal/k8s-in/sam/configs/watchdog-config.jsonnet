@@ -12,8 +12,6 @@ std.prune({
   #
   # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
   snooze: [
-    # [prahlad.joshi] Too many procStartTimeChecker failures
-    { estates: ["prd-sam"], checker: "procUpTime", until: "2018/05/01" },
     # Unknown - next time add comment
     { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
     { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
