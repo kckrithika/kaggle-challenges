@@ -1,3 +1,5 @@
 apps:
-  sam-test:
+  eaas:
+  - prd/prd-sam
+  grpc-client:
   - prd/prd-sam
