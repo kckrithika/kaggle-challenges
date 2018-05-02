@@ -22,7 +22,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000396-67df7de3",
+            default_tag: "base-0000410-7ecef0cd",
             ceph_operator_tag: "base-0000410-7ecef0cd",
             loginit_tag: "base-0000410-7ecef0cd",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
