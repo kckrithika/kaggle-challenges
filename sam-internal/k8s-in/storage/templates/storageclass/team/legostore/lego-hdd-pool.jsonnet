@@ -15,6 +15,6 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     "spec": {
         "clusterNamespace": clusterNamespace,
         "size": "500Gi",
-        "storageTier": "hdd" ,
+        "storageTier": "ssd" ,
     }
 } else "SKIP"
