@@ -34,8 +34,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa-envoy
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/19
-      image: sfci/servicelibs/sherpa-envoy:f6c2f267a003f433f5cffc9097c205c982dcf328
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/39
+      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
@@ -45,14 +45,14 @@ system:
       - containerPort: 15373
         name: sherpa-adm
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
+        exec:
+          command:
+          - ./bin/is-alive
         initialDelaySeconds: 20
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
+        exec:
+          command:
+          - ./bin/is-ready
         initialDelaySeconds: 15
       volumeMounts:
         - name: tls-client-cert
