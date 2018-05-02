@@ -88,6 +88,12 @@ spec:
       - configMap:
           name: auth-groups
         name: auth-groups
+      - configMap:
+          name: ajna-applog-logrecordtype-whitelist
+        name: ajna-applog-logrecordtype-whitelist
+      - configMap:
+          name: ajna-applog-logrecordtype-grants
+        name: ajna-applog-logrecordtype-grants
       - hostPath:
           path: /etc/kubernetes/kubeconfig-platform
         name: kubeconfig

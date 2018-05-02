@@ -4,9 +4,11 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local samconfig = import "config.jsonnet";
 {
-    auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else error "No matching auth group name: " + kingdom + "/" + estate),
-    topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic grants name: " + kingdom + "/" + estate),
-    auth_namespaces: (if std.objectHas(self.auth_namespaces_data, kingdom + "/" + estate) then $.auth_namespaces_data[kingdom + "/" + estate] else error "No matching auth namespaces data: " + kingdom + "/" + estate),
+    auth_groups: (if std.objectHas(self.auth_groups_map, kingdom + "/" + estate) then $.auth_groups_map[kingdom + "/" + estate] else error "No matching auth_groups entry: " + kingdom + "/" + estate),
+    topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic_grants entry: " + kingdom + "/" + estate),
+    auth_namespaces: (if std.objectHas(self.auth_namespaces_data, kingdom + "/" + estate) then $.auth_namespaces_data[kingdom + "/" + estate] else error "No matching auth_namespaces entry: " + kingdom + "/" + estate),
+    // DEPRECATED: Used for deploying Flowsnake versions <= 0.9.6.
+    // Map from fleet (kingdom/estate) to list of auth groups authorized to access it.
     auth_groups_map: {
         "prd/prd-data-flowsnake": [
             "Flowsnake_Ops_Platform",
@@ -47,6 +49,9 @@ local samconfig = import "config.jsonnet";
         "phx/phx-flowsnake_prod": [
         ],
     },
+
+    // Map from fleet (kingdom/estate) to map from PKI Namespace to list of Ajna topics.
+    // Flowsnake environments in that fleet using that PKI Namespace may access those Ajna topics.
     topic_grants_map: {
         "prd/prd-data-flowsnake": {
             alerting_flowsnake: [
@@ -205,6 +210,10 @@ local samconfig = import "config.jsonnet";
         "phx/phx-flowsnake_prod": {
         },
     },
+
+    // Map from fleet (kingdom/estate) to list of PKI namespaces and who is permitted to create Flowsnake environments
+    // with that namespace in that fleet.
+    // (Where "who" is identified by client certs for mTLS or LDAP group membership for Basic Auth)
     auth_namespaces_data: {
       "prd/prd-data-flowsnake": [
         {
@@ -308,6 +317,8 @@ local samconfig = import "config.jsonnet";
         },
       ],
     },
+
+
     samcontroldeployer: {
         email: true,
         "email-delay": 0,
