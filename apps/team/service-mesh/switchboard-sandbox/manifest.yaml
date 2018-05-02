@@ -14,8 +14,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      - name: ADS_PORT
-        value: GRPC_SERVER_PORT
+      - name: GRPC_SERVER_PORT
+        value: 7020
       - name: LOGGING_DIR
         value: "/log"
       args:
