@@ -43,7 +43,7 @@ data:
             "command": [
               "/sfs/sfsbuild/bin/k8sstartup.py"
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000072-858faabe",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000086-1413925c",
             "imagePullPolicy": "Always",
             "name": "bookie",
             "ports": [
@@ -80,7 +80,7 @@ data:
             "command": [
               "/sfs/sfsbuild/bin/k8sstartup.py"
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000072-858faabe",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/bookie:base-0000086-1413925c",
             "imagePullPolicy": "Always",
             "name": "autorecovery",
             "volumeMounts": [
@@ -153,7 +153,7 @@ data:
               "/bin/bash",
               "/opt/sfms/bin/sfms"
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000175-83f634ad",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000176-86dcedb3",
             "imagePullPolicy": "Always",
             "name": "sfms"
           }
@@ -184,7 +184,7 @@ data:
                 }
               }
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000396-67df7de3",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000410-7ecef0cd",
             "name": "log-init",
             "securityContext": {
               "privileged": true
