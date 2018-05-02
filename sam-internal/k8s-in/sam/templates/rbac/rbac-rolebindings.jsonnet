@@ -9,6 +9,7 @@ local ci = {
   "prd-sp2-sam_coreapp": ["ci-ice-pd"],
   "prd-sam_gater": ["ci-ccait"],
   "prd-sam_gatewayconfig": ["ci-gateway"],
+  "prd-search_model_executor": ["ci-search-scale-safely"],
 };
 
 # Functions
