@@ -6,9 +6,12 @@ system:
       - distributedtracing@salesforce.com
   functions:
   - name: zipkin-collector
-    count: 1
+    count: 3
     strategy:
-      type: Recreate
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     volumes:
     - name: client-certs
       maddogCert:
@@ -22,7 +25,7 @@ system:
       - name: KAFKA_BOOTSTRAP_SERVERS
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
-        value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing
+        value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__ord.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__iad.ajna_local__tracing
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       volumeMounts:
