@@ -18,6 +18,8 @@ local utils = import "util_functions.jsonnet";
                                      "-alertThreshold=3m",
                                  ]
                                  + samwdconfig.shared_args
+                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
+                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else [])
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
