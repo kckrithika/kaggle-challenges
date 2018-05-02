@@ -66,6 +66,9 @@ local utils = import "util_functions.jsonnet";
         "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
         "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
 
+        #[jiayi.yan] snapshotconsumer cleans 45min tombstones in mysql
+        "prd,prd-sam,snapshotconsumer,hypersam": "sam-0001941-65c61fc9",
+
         },
 
     ### Per-phase image tags
