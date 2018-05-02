@@ -6,3 +6,9 @@ apps:
   - name: prd/prd-sam_crosscloudplatform
   prd.eventbeacon:
   - name: prd/prd-sam_crosscloudsetup
+  iad.commercejourneys:
+  - name: iad/iad-sam_crosscloudplatform
+  iad.retailcalculator:
+  - name: iad/iad-sam_crosscloudplatform
+  iad.eventbeacon:
+  - name: iad/iad-sam_crosscloudsetup
