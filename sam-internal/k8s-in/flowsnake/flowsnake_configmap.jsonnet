@@ -255,6 +255,9 @@ local samconfig = import "config.jsonnet";
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+        },
+        {
+            namespace: "flowsnake.test",
             authorizedClientCerts: ["flowsnake.minikube"],
         },
       ],
@@ -262,6 +265,9 @@ local samconfig = import "config.jsonnet";
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
+        },
+        {
+            namespace: "flowsnake.test",
             authorizedClientCerts: ["flowsnake.minikube"],
         },
       ],
