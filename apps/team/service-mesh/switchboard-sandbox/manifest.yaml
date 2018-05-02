@@ -105,18 +105,3 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
-  loadbalancers:
-  - lbname: switchboardsb-lb
-    function: switchboardsb
-    nodeExposed: true
-    ports:
-    - port: 15001
-      targetport: 15001
-      lbtype: dsr
-    - port: 15372
-      targetport: 15372
-      lbtype: dsr
-    - port: 15373
-      targetport: 15373
-      lbtype: dsr
