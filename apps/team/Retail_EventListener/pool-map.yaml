@@ -4,3 +4,5 @@ apps:
   - name: prd/prd-sam_crosscloudplatform
   prd.retailcalculator:
   - name: prd/prd-sam_crosscloudplatform
+  prd.eventbeacon:
+  - name: prd/prd-sam_crosscloudsetup
