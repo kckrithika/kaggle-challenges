@@ -42,7 +42,6 @@ local utils = import "util_functions.jsonnet";
 
         #[d.smith] Pin snapshoter to known working version
         "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001847-1b9453cd",
-        "cdu,cdu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
         "chx,chx-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
         "dfw,dfw-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
         "hnd,hnd-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
@@ -55,7 +54,6 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
         "yhu,yhu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
         "yul,yul-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "frf,frf-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
 
         #[lizhang.li] rollout filesystem watchdog with hidden file checker in prd
         "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
@@ -111,7 +109,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
-            hypersam: "sam-0001912-3f0e2a18",
+            hypersam: "sam-0001931-927cd1fc",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
