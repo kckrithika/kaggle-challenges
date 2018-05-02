@@ -55,7 +55,7 @@ system:
         initialDelaySeconds: 5
       volumeMounts:
       - name: beacon-log-volume
-        mountPath: /home/scone/log
+        mountPath: /home/scone/logs
     - name: sherpa-b
       image: sfci/servicelibs/sherpa:2.0.26
       env:
