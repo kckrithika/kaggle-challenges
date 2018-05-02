@@ -25,6 +25,7 @@ local kingdom = std.extVar("kingdom");
             default_tag: "base-0000410-7ecef0cd",
             ceph_operator_tag: "base-0000410-7ecef0cd",
             loginit_tag: "base-0000410-7ecef0cd",
+            poddeleter_tag: "base-0000410-7ecef0cd",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
             sfms_tag: "latest-0000176-86dcedb3",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
@@ -33,7 +34,6 @@ local kingdom = std.extVar("kingdom");
             sfstorebookie_tag: "base-0000086-1413925c",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
             cephdaemon_tag: "jewel-0000056-50bd0816",
-            poddeleter_tag: "base-0000410-7ecef0cd",
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph and prd-sam_sfstore
