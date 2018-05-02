@@ -1,5 +1,4 @@
 apiVersion: v1
-
 system:
   functions:
   - name: geoip
@@ -7,39 +6,44 @@ system:
     containers:
     - name: ccait-geoip-database
       image: tnrp/ccait/geoip2-database:20170918
-      # SAM insists on a liveness probe for containers so we need to keep the data container running via supported -d arg
-      args: ["-d"]
+      args:
+      - -d
+      volumeMounts:
+      - mountPath: /database
+        name: maxmind-volume
       livenessProbe:
         exec:
-          command: ["ls", "/database/GeoIP2-City.mmdb"]
+          command:
+          - ls
+          - /database/GeoIP2-City.mmdb
         initialDelaySeconds: 10
         periodSeconds: 5
-      volumeMounts:
-        - name: maxmind-volume
-          mountPath: /database
-
     - name: ccait-geoip-backend
-      image: sfci/ccait/geoip:8d0126e7fc0ac428347444a3a458dfc68842d24e
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-sfci-dev/sfci/ccait/geoip:f4cfe549c46282df19934c7fec25e99cfc711418
+      ports:
+      - name: grpc
+        containerPort: 7020
       env:
       - name: JAVA_OPTS
-        value: "-Xms512m -Xmx512m"
+        value: -Xms512m -Xmx512m
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sam
       - name: COM_MAXMIND_DATABASE_FILE
-        value: "/dw/data/GeoIP2-City.mmdb"
+        value: /dw/data/GeoIP2-City.mmdb
       - name: LOGGING_DIR
-        value: "/log"
+        value: /log
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
       volumeMounts:
-        - name: maxmind-volume
-          mountPath: /dw/data
-        - name: geoip-log-volume
-          mountPath: /log
-      ports:
-        - containerPort: 7020
-          name: grpc
+      - mountPath: /dw/data
+        name: maxmind-volume
+      - mountPath: /log
+        name: geoip-log-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -50,61 +54,62 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-
     - name: sherpa-b
       image: sfci/servicelibs/sherpa:2.0.26
-      args: ["--zipkin-rate", "0.0"]
+      args:
+      - --zipkin-rate
+      - 0.0
+      ports:
+      - name: sherpa-b-in
+        containerPort: 7012
+      - name: sherpa-b-in-tls
+        containerPort: 7443
+      - name: sherpa-b-adm
+        containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sam
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
       volumeMounts:
-        - name: sherpa-log-volume
-          mountPath: /log
-        - name: geoip-client-cert
-          mountPath: /client-certs
-        - name: geoip-server-cert
-          mountPath: /server-certs
-      ports:
-      - containerPort: 7012
-        name: sherpa-b-in
-      - containerPort: 7443
-        name: sherpa-b-in-tls
-      - containerPort: 15373
-        name: sherpa-b-adm
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: geoip-client-cert
+      - mountPath: /server-certs
+        name: geoip-server-cert
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - ./bin/is-alive
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - ./bin/is-ready
         initialDelaySeconds: 110
         periodSeconds: 5
-
     - name: beacon-geoip
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
       args:
-      # Non-namespaced, plaintext
       - -endpoint
       - $(FUNCTION):DATACENTER_ALLENV:7012
-      # Namespaced, TLS
       - -endpoint
       - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
       livenessProbe:
-        initialDelaySeconds: 5
         exec:
           command:
-            - "/home/scone/is-alive.sh"
-
+          - /home/scone/is-alive.sh
+        initialDelaySeconds: 5
     volumes:
     - name: maxmind-volume
       emptyDir: {}
@@ -120,26 +125,29 @@ system:
     - name: geoip-server-cert
       maddogCert:
         type: server
-
   - name: geoip-demo
     count: 1
     containers:
     - name: ccait-geoip-frontend
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ccait/geoip2-demo:1.0.6-snapshot
-      env:
-        - name: JAVA_OPTS
-          value: "-Xms512m -Xmx512m"
-        - name: SFDC_ENVIRONMENT
-          value: "sam"
-        - name: GRPC_ROUTING_GEOIP_HOST
-          value: geoip.ccait.localhost.mesh.force.com
-        - name: GRPC_ROUTING_GEOIP_PORT
-          value: 5443
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
       ports:
-        - containerPort: 8080
+      - containerPort: 8080
+      env:
+      - name: JAVA_OPTS
+        value: -Xms512m -Xmx512m
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      - name: GRPC_ROUTING_GEOIP_HOST
+        value: geoip.ccait.localhost.mesh.force.com
+      - name: GRPC_ROUTING_GEOIP_PORT
+        value: 5443
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -150,39 +158,43 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 115
-
     - name: sherpa-f
       image: sfci/servicelibs/sherpa:2.0.26
-      args: ["--zipkin-rate", "0.0"]
+      args:
+      - --zipkin-rate
+      - 0.0
+      ports:
+      - name: sherpa-f-adm
+        containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sam
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
       volumeMounts:
-        - name: sherpa-log-volume
-          mountPath: /log
-        - name: geoip-demo-client-cert
-          mountPath: /client-certs
-        - name: geoip-demo-server-cert
-          mountPath: /server-certs
-      ports:
-      - containerPort: 15373
-        name: sherpa-f-adm
+      - mountPath: /log
+        name: sherpa-log-volume
+      - mountPath: /client-certs
+        name: geoip-demo-client-cert
+      - mountPath: /server-certs
+        name: geoip-demo-server-cert
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - ./bin/is-alive
         initialDelaySeconds: 120
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - ./bin/is-ready
         initialDelaySeconds: 110
         periodSeconds: 5
-
     volumes:
     - name: sherpa-log-volume
       hostPath:
@@ -193,7 +205,6 @@ system:
     - name: geoip-demo-server-cert
       maddogCert:
         type: server
-
   - name: geoip-xlt
     count: 1
     containers:
@@ -203,37 +214,35 @@ system:
       - containerPort: 8500
     - name: sherpa-xlt
       image: sfci/servicelibs/sherpa:2.0.26
+      ports:
+      - name: sherpa-xlt-adm
+        containerPort: 15373
       env:
       - name: SFDC_ENVIRONMENT
-        value: "sam"
+        value: sam
       volumeMounts:
-        - name: sherpa-log-volume
-          mountPath: /log
-      ports:
-      - containerPort: 15373
-        name: sherpa-xlt-adm
+      - mountPath: /log
+        name: sherpa-log-volume
       livenessProbe:
         exec:
           command:
-          - "./bin/is-alive"
+          - ./bin/is-alive
         initialDelaySeconds: 10
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "./bin/is-ready"
+          - ./bin/is-ready
         initialDelaySeconds: 5
         periodSeconds: 5
-
     volumes:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
-
   loadbalancers:
   - lbname: ccait-geoip-frontend-lb
-    function: geoip-demo
     nodeExposed: true
+    function: geoip-demo
     ports:
-      - port: 45080
-        targetport: 8080
+    - port: 45080
+      targetport: 8080
