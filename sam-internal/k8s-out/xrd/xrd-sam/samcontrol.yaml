@@ -19,7 +19,7 @@ spec:
       containers:
       - command:
         - /sam/sam-controller
-        - --dockerregistry=ops0-artifactrepo1-0-xrd.data.sfdc.net
+        - --dockerregistry=ops0-artifactrepo2-0-prd.data.sfdc.net
         - --funnelEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --v=3
         - --logtostderr=true
@@ -29,7 +29,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001912-3f0e2a18
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001912-3f0e2a18
         livenessProbe:
           httpGet:
             path: /healthz
