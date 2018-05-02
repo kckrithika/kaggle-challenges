@@ -3,7 +3,13 @@ local storageimages = (import "storageimages.jsonnet") + { templateFilename:: st
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+]);
+
+if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -64,6 +70,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
                         ],
                         env: storageutils.sfms_environment_vars("sfstoreoperator"),
                     },
+                    storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
 
                 ],
                 volumes: configs.filter_empty([

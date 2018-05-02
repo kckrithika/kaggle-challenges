@@ -115,6 +115,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                         ],
                         env: storageutils.sfms_environment_vars("ceph-operator"),
                     },
+                    storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ],
                 volumes:
                     storageutils.log_init_volumes()

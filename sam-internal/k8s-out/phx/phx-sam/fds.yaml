@@ -100,7 +100,7 @@ spec:
           value: 5m
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000387-bfd34c14
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000396-67df7de3
         name: poddeleter
         volumeMounts:
         - mountPath: /etc/pki_service

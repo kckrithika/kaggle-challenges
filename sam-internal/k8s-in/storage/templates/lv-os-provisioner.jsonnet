@@ -11,14 +11,6 @@ local enabledEstates = std.set([
     "phx-sam",
 ]);
 
-local enabledEstatesForPodDeleter = std.set([
-    "prd-sam_storage",
-    "prd-sam",
-    "xrd-sam",
-    "prd-skipper",
-    "phx-sam",
-]);
-
 // Environment variables for the Local Provisioner container.
 local lvEnvironmentVars = std.prune([
    {
@@ -132,8 +124,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     + storageutils.log_init_volume_mounts()),
                     env: lvEnvironmentVars,
                 },
-                if std.setMember(configs.estate, enabledEstatesForPodDeleter) then
-                    storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
+                storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ]),
                 volumes: configs.filter_empty([
                 {
