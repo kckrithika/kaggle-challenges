@@ -11,13 +11,6 @@ local enabledEstates = std.set([
     "phx-sam",
 ]);
 
-local enabledEstatesForPodDeleter = std.set([
-    "prd-sam",
-    "prd-sam_storage",
-    "prd-skipper",
-    "phx-sam",
-]);
-
 // Init containers for the pod.
 local initContainers = [
     storageutils.log_init_container(
@@ -40,12 +33,6 @@ local fdsEnvironmentVars = std.prune([
     {
         name: "FDS_PROFILING",
         value: storageconfigs.fds_profiling,
-    },
-    // This is to force a resync for fds, since running all .yaml from a folder sometimes leads to
-    // things running out of order, this is to allow for faster recovery for cluster creation
-    if configs.estate == "prd-skipper" then {
-        name: "FDS_MIN_RESYNC_PERIOD",
-        value: "3s",
     },
 ]);
 
@@ -137,7 +124,6 @@ if std.setMember(configs.estate, enabledEstates) then {
                         ]
                         else [],
                     },
-                    if std.setMember(configs.estate, enabledEstatesForPodDeleter) then
                     storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ]),
                 volumes:
