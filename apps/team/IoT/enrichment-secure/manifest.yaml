@@ -11,15 +11,23 @@ system:
     - env:
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.development1
+      - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
+        value: /client-certs
+      - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
+        value: /client-certs/client
       - name: HBASE_SECURITY_KEYTAB_LOCATION
-        value: /home/enrichment/enrichment-keytab/enrichment.keytab
+        value: /home/enrichment/iot-enrichment.keytab
+      - name: HBASE_SECURITY_KEYTAB_PASSWORD_REFRESHENABLED
+        value: 'true'
       - name: HBASE_SECURITY_KEYTAB_PRINCIPAL
         value: iot-enrichment@IOT1DCHBASE0A-PRD.APP.ENG.SFDC.NET
+      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
+        value: 'true'
       - name: IOT_ENRICH_HBASE_ENV_OVERRIDE
         value: kingdom-test
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-enrichment:05025e6
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-enrichment:72b2b5d
       livenessProbe:
         httpGet:
           path: /manage/info
@@ -42,15 +50,12 @@ system:
       volumeMounts:
       - mountPath: /home/enrichment/logs
         name: logvol
-      - mountPath: /home/enrichment/enrichment-keytab
-        name: enrichmentkeytab
-        readOnly: true
       - mountPath: /client-certs
         name: client-certs
     - env:
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
           command:
@@ -105,9 +110,6 @@ system:
     - hostPath:
         path: /data/sam/iot/log/enrichment-secure
       name: logvol
-    - name: enrichmentkeytab
-      secret:
-        secretName: enrichment-keytab
   loadbalancers:
   - function: enrichment-secure
     lbname: enrichment-secure-lb
@@ -118,6 +120,7 @@ system:
     - lbtype: http
       port: 15400
       targetport: 15372
+    slbEnabled: true
   notifications:
     email:
     - sarthur@salesforce.com
