@@ -2,11 +2,11 @@ apiVersion: v1
 system:
   functions:
   - name: imagemagick-service
-    count: 3
+    count: 1
     containers:
     # Imagemagick service
     - name: imagemagick
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/imagemagick:firstversion
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/imagemagick:v1
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
