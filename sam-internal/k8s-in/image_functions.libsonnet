@@ -15,7 +15,10 @@ local internal = {
     # tag - the docker tag.  Used when no override exists, otherwise gets replaced ("sam-0000934-6f12a434")
     #
     add_tnrp_registry(tnrp_repo, image_name, tag):: (
-        if (kingdom == "prd") then
+        # Temporary hack while xrd Artifactory is dead.
+        # Use prd artifactory path even in XRD.
+        # See https://gus.lightning.force.com/one/one.app#/sObject/a07B000000526lgIAA/view
+        if (kingdom == "prd" || kingdom == "xrd") then
             configs.registry + "/" + "docker-release-candidate/tnrp/" + tnrp_repo + "/" + image_name + ":" + tag
         else
             configs.registry + "/" + "tnrp/" + tnrp_repo + "/" + image_name + ":" + tag
