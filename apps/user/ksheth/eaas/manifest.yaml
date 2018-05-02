@@ -46,10 +46,10 @@ system:
       args:
       #Namespaced, mTLS
       - -endpoint
-      - emailinfra/eaas:DATACENTER_ALLENV:7443
+      - samapp/user-ksheth/eaas:DATACENTER:7443
       #Non-namespaced, plaintext
       - -endpoint
-      - eaas:DATACENTER:7012
+      - samapp/eaas:DATACENTER:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
