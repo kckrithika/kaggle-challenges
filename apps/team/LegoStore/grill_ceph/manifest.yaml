@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: stateful-grill-ceph-2 
+  - name: stateful-grill-ceph 
     type: stateful-set
     count: 2
     containers:
@@ -57,11 +57,11 @@ system:
     terminationGracePeriodSeconds: 33
     volumeClaimTemplates:
     - name: www
-      storageClassName: small-hdd-pool
+      storageClassName: lego-hdd-pool 
       storageSizeRequest: 500Gi
   loadbalancers:
   - lbname: grill-ceph-lb
-    function: stateful-grill-ceph-2
+    function: stateful-grill-ceph
     slbenabled: true
     ports:
       - port: 9099
