@@ -145,5 +145,5 @@ std.prune({
   } else {})
   #processUpTime checker
   + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
-     universalProcesses: ["dockerd.*docker-bootstrap", "dockerd.*docker.sock", "docker-containerd.*docker-containerd.sock", "hyperkube.*kubelet"],
+     universalProcesses: ["dockerd.*docker-bootstrap", "dockerd.*docker.sock", "docker-containerd.*docker-containerd.sock", "docker-containerd.*docker-bootstrap", "hyperkube.*kubelet"],
   } else {})
