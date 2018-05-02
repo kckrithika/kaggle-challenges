@@ -9,9 +9,9 @@ system:
     count: 3
     strategy:
       type: RollingUpdate
-        rollingUpdate:
-          maxSurge: 0
-          maxUnavailable: 1
+      rollingUpdate:
+        maxSurge: 0
+        maxUnavailable: 1
     volumes:
     - name: client-certs
       maddogCert:
