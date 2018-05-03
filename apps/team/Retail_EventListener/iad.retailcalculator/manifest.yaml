@@ -11,9 +11,6 @@ system:
   - name: retailcalculator
     count: 1
     volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: multitenantcreds
     - name: cccjclientcert
       maddogCert:
         type: client
@@ -22,7 +19,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: retailcalculator
-      image: sfci/mc-retail/retail-calculator:0.0.37
+      image: sfci/mc-retail/retail-calculator:0.0.38
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -43,9 +40,6 @@ system:
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
-      - name: secretvol
-        mountPath: /secrets/
-        readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
   loadbalancers:
