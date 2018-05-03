@@ -32,7 +32,7 @@ spec:
           value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000396-67df7de3
         - name: CEPH_DAEMON_IMAGE_PATH
           value: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph:base-0000396-67df7de3
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph:base-0000415-9fcbef7c
         name: cephoperator
         volumeMounts:
         - mountPath: /var/log
