@@ -12,7 +12,7 @@ system:
       - name: COMPILER_ENDPOINT_FSENV_PREFIX
         value: iot-prd-secure-
       - name: COMPILER_ENDPOINT_URI
-        value: http://api-dev.flowsnake.localhost.mesh.force.com:5442/{FS_ENV_ID}/services/matrix-compiler-server
+        value: http://api-dev.flowsnake.localhost.mesh.force.com:5442/{FS_ENV_ID}/services/compiler
       - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
         value: topicsapi.ajna-zk.localhost.mesh.force.com
       - name: DVAKAFKA_TOPICAPI_ENDPOINT_PORT
