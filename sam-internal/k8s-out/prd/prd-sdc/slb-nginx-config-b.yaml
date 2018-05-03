@@ -158,7 +158,7 @@ spec:
           name: cert2
       - command:
         - /sdn/slb-file-watcher
-        - --filePath=/host/data/slb/logs/slb-nginx-proxy.emerg.log
+        - --filePath=/host/data/slb/logs/slb-nginx-config-b/slb-nginx-proxy.emerg.log
         - --metricName=nginx-emergency
         - --lastModReportTime=120s
         - --scanPeriod=10s

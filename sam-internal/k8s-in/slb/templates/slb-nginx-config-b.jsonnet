@@ -218,29 +218,7 @@ if slbconfigs.slbInKingdom then {
                                         },
                                     ]),
                                 },
-                                {
-                                    name: "slb-file-watcher",
-                                    image: slbimages.hypersdn,
-                                    command: [
-                                        "/sdn/slb-file-watcher",
-                                        "--filePath=/host/data/slb/logs/slb-nginx-proxy.emerg.log",
-                                        "--metricName=nginx-emergency",
-                                        "--lastModReportTime=120s",
-                                        "--scanPeriod=10s",
-                                        "--skipZeroLengthFiles=true",
-                                        "--metricsEndpoint=" + configs.funnelVIP,
-                                        "--log_dir=" + slbconfigs.logsDir,
-                                        configs.sfdchosts_arg,
-                                    ],
-                                    volumeMounts: configs.filter_empty([
-                                        {
-                                            name: "var-target-config-volume",
-                                            mountPath: "/etc/nginx/conf.d",
-                                        },
-                                        slbconfigs.logs_volume_mount,
-                                        configs.sfdchosts_volume_mount,
-                                    ]),
-                                },
+                                slbshared.slbFileWatcher,
                                 {
                                     args: [
                                         "/sam/madkub-client",
