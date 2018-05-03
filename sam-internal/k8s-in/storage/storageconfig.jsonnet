@@ -63,7 +63,7 @@
     storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate]],
     perEstate: {
         ceph: {
-            // host subnets from https://git.soma.salesforce.com/estates/estates/tree/master/kingdoms/prd
+            // host subnets from https://git.soma.salesforce.com/estates/estates/tree/master/kingdoms/
             k8s_subnet: {
                 "prd-skipper": {
                     "prd-skipper": "10.248.0.0/13",
