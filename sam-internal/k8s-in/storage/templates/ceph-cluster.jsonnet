@@ -9,6 +9,7 @@ local enabledEstates = std.set([
     "prd-sam",
     "phx-sam",
     "prd-skipper",
+    "xrd-sam",
 ]);
 
 if std.setMember(configs.estate, enabledEstates) then

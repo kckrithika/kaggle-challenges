@@ -63,7 +63,7 @@
     storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate]],
     perEstate: {
         ceph: {
-            // host subnets from git.soma.salesforce.com/estates/estates/tree/master/kingdoms/prd
+            // host subnets from https://git.soma.salesforce.com/estates/estates/tree/master/kingdoms/prd
             k8s_subnet: {
                 "prd-skipper": {
                     "prd-skipper": "10.248.0.0/13",
@@ -77,6 +77,9 @@
                 },
                 "phx-sam": {
                     "phx-sam_ceph": "10.220.25.128/25",
+                },
+                "xrd-sam": {
+                    "xrd-sam_ceph": "10.210.206.0/24,10.210.207.0/24,10.210.212.0/24",
                 },
             },
             aggregateStorage: {
@@ -92,6 +95,9 @@
                 },
                 "phx-sam": {
                     "phx-sam_ceph": "273Ti",
+                },
+                "xrd-sam": {
+                    "xrd-sam_ceph": "975Ti",
                 },
             },
         },
