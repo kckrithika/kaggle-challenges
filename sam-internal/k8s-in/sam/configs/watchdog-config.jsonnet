@@ -76,6 +76,7 @@ std.prune({
     "dockerd.*docker-bootstrap": "age.dockerbootstrap",
     "dockerd.*docker.sock": "age.dockermain",
     "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
+    "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
     "name=etcd": "age.etcd",
   },
   publishAlertsToKafka: (if configs.kingdom == "prd" then true else false),
