@@ -12,3 +12,5 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  may-demo-cyan-enovy:
   - name: prd/prd-sp2-sam_coreapp
+ perf-cyan-jetty:
+  - name: prd/prd-sp2-sam_coreapp
