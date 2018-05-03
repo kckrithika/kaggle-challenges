@@ -20,7 +20,7 @@ system:
         secretName: tsigsecrets    
     containers:
     - name: pdss-api-test1 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180426
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180502
       ports:
       - containerPort: 8080
       - containerPort: 53 
@@ -37,6 +37,8 @@ system:
         value: /certs
       - name: PKI_MONITORDIR
         value: /certs/server
+      - name: SECRETS_DIR
+        value: /secrets/service-config/
       volumeMounts:
       - name: certs
         mountPath: /certs
