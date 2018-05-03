@@ -230,7 +230,7 @@ local samconfig = import "config.jsonnet";
             namespace: "sec-einstein-deepsea",
             authorizedLdapGroups: ["security-analytics"],
             authorizedClientCerts: [],
-        },        
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
