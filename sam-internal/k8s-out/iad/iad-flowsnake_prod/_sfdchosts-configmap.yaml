@@ -11,6 +11,7 @@ data:
           "hostname": "shared0-flowsnakemasterprod1-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -21,6 +22,7 @@ data:
           "hostname": "shared0-flowsnakemasterprod1-2-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -31,6 +33,7 @@ data:
           "hostname": "shared0-flowsnakemasterprod1-3-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -41,6 +44,7 @@ data:
           "hostname": "shared0-flowsnakemasterprod1-4-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -51,6 +55,7 @@ data:
           "hostname": "shared0-flowsnakemasterprod1-5-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -61,6 +66,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-1-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -71,6 +77,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-10-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -81,6 +88,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-100-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -91,6 +99,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-101-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -101,6 +110,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-102-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -111,6 +121,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-103-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -121,6 +132,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-104-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -131,6 +143,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-105-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -141,6 +154,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-106-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -151,6 +165,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-107-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -161,6 +176,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-108-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -171,6 +187,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-109-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -181,6 +198,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-11-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -191,6 +209,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-110-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -201,6 +220,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-111-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -211,6 +231,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-112-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -221,6 +242,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-113-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -231,6 +253,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-114-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -241,6 +264,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-115-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -251,6 +275,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-12-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -261,6 +286,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-13-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -271,6 +297,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-14-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -281,6 +308,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-15-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -291,6 +319,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-16-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -301,6 +330,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-17-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -311,6 +341,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-18-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -321,6 +352,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-19-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -331,6 +363,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-2-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -341,6 +374,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-20-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -351,6 +385,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-21-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -361,6 +396,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-22-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -371,6 +407,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-23-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -381,6 +418,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-24-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -391,6 +429,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-25-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -401,6 +440,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-26-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -411,6 +451,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-27-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -421,6 +462,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-28-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -431,6 +473,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-29-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -441,6 +484,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-3-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -451,6 +495,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-30-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -461,6 +506,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-31-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -471,6 +517,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-32-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -481,6 +528,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-33-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -491,6 +539,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-34-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -501,6 +550,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-35-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -511,6 +561,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-36-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -521,6 +572,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-37-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -531,6 +583,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-38-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -541,6 +594,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-39-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -551,6 +605,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-4-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -561,6 +616,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-40-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -571,6 +627,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-41-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -581,6 +638,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-42-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -591,6 +649,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-43-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -601,6 +660,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-44-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -611,6 +671,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-45-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -621,6 +682,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-46-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -631,6 +693,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-47-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -641,6 +704,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-48-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -651,6 +715,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-49-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -661,6 +726,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-5-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -671,6 +737,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-50-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -681,6 +748,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-51-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -691,6 +759,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-52-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -701,6 +770,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-53-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -711,6 +781,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-54-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -721,6 +792,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-55-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -731,6 +803,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-56-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -741,6 +814,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-57-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -751,6 +825,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-58-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -761,6 +836,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-59-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -771,6 +847,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-6-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -781,6 +858,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-60-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -791,6 +869,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-61-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -801,6 +880,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-62-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -811,6 +891,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-63-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -821,6 +902,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-64-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -831,6 +913,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-65-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -841,6 +924,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-66-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -851,6 +935,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-67-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -861,6 +946,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-68-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -871,6 +957,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-69-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -881,6 +968,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-7-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -891,6 +979,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-70-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -901,6 +990,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-71-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -911,6 +1001,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-72-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -921,6 +1012,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-73-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -931,6 +1023,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-74-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -941,6 +1034,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-75-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -951,6 +1045,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-76-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -961,6 +1056,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-77-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -971,6 +1067,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-78-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "d05-9a",
           "superpod": "none"
         },
         {
@@ -981,6 +1078,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-79-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -991,6 +1089,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-8-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -1001,6 +1100,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-80-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -1011,6 +1111,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-81-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f06-9b",
           "superpod": "none"
         },
         {
@@ -1021,6 +1122,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-82-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -1031,6 +1133,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-83-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -1041,6 +1144,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-84-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -1051,6 +1155,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-85-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -1061,6 +1166,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-86-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f12-9b",
           "superpod": "none"
         },
         {
@@ -1071,6 +1177,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-87-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -1081,6 +1188,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-88-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -1091,6 +1199,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-89-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -1101,6 +1210,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-9-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -1111,6 +1221,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-90-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f11-9b",
           "superpod": "none"
         },
         {
@@ -1121,6 +1232,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-91-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -1131,6 +1243,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-92-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "e14-9a",
           "superpod": "none"
         },
         {
@@ -1141,6 +1254,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-93-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "a07-10b",
           "superpod": "none"
         },
         {
@@ -1151,6 +1265,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-94-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g16-10b",
           "superpod": "none"
         },
         {
@@ -1161,6 +1276,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-95-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -1171,6 +1287,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-96-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f05-9b",
           "superpod": "none"
         },
         {
@@ -1181,6 +1298,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-97-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "g11-9a",
           "superpod": "none"
         },
         {
@@ -1191,6 +1309,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-98-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         },
         {
@@ -1201,6 +1320,7 @@ data:
           "hostname": "shared0-flowsnakeworkerprod1-99-iad.ops.sfdc.net",
           "kingdom": "iad",
           "pod": "none",
+          "rack": "f03-9a",
           "superpod": "none"
         }
       ]

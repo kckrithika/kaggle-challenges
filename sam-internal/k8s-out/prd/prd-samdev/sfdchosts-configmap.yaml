@@ -11,6 +11,7 @@ data:
           "hostname": "shared0-samdevcompute1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n32-45",
           "superpod": "none"
         },
         {
@@ -21,6 +22,7 @@ data:
           "hostname": "shared0-samdevcompute1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "c02-45",
           "superpod": "none"
         },
         {
@@ -31,6 +33,7 @@ data:
           "hostname": "shared0-samdevcompute2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n31-45",
           "superpod": "none"
         },
         {
@@ -41,6 +44,7 @@ data:
           "hostname": "shared0-samdevkubeapi1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "v34-45",
           "superpod": "none"
         },
         {
@@ -51,6 +55,7 @@ data:
           "hostname": "shared0-samdevkubeapi2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "m35-45",
           "superpod": "none"
         },
         {
@@ -61,6 +66,7 @@ data:
           "hostname": "shared0-samdevkubeapi3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "m41-45",
           "superpod": "none"
         },
         {
@@ -71,6 +77,7 @@ data:
           "hostname": "shared0-samdevpool1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "h21-45",
           "superpod": "none"
         },
         {
@@ -81,6 +88,7 @@ data:
           "hostname": "shared0-samdevpool2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "h11-45",
           "superpod": "none"
         },
         {
@@ -91,6 +99,7 @@ data:
           "hostname": "shared0-samdevpool3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "f35-45",
           "superpod": "none"
         }
       ]

@@ -11,6 +11,7 @@ data:
           "hostname": "shared0-storageminionceph1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e34-45",
           "superpod": "none"
         },
         {
@@ -21,6 +22,7 @@ data:
           "hostname": "shared0-storageminionceph1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e34-45",
           "superpod": "none"
         },
         {
@@ -31,6 +33,7 @@ data:
           "hostname": "shared0-storageminionceph1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n02-45",
           "superpod": "none"
         },
         {
@@ -41,6 +44,7 @@ data:
           "hostname": "shared0-storageminionceph1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n07-45",
           "superpod": "none"
         },
         {
@@ -51,6 +55,7 @@ data:
           "hostname": "shared0-storageminionceph1-5-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n02-45",
           "superpod": "none"
         },
         {
@@ -61,6 +66,7 @@ data:
           "hostname": "shared0-storageminionceph1-6-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e34-45",
           "superpod": "none"
         },
         {
@@ -71,6 +77,7 @@ data:
           "hostname": "shared0-storageminionceph1-7-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n07-45",
           "superpod": "none"
         },
         {
@@ -81,6 +88,7 @@ data:
           "hostname": "shared0-storageminionceph2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "m31-45",
           "superpod": "none"
         },
         {
@@ -91,6 +99,7 @@ data:
           "hostname": "shared0-storageminionceph2-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "m31-45",
           "superpod": "none"
         },
         {
@@ -101,6 +110,7 @@ data:
           "hostname": "shared0-storageminionceph2-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "m31-45",
           "superpod": "none"
         },
         {
@@ -111,6 +121,7 @@ data:
           "hostname": "shared0-storageminionceph2-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n31-45",
           "superpod": "none"
         },
         {
@@ -121,6 +132,7 @@ data:
           "hostname": "shared0-storageminionceph2-5-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n41-45",
           "superpod": "none"
         },
         {
@@ -131,6 +143,7 @@ data:
           "hostname": "shared0-storageminionceph2-6-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n41-45",
           "superpod": "none"
         },
         {
@@ -141,6 +154,7 @@ data:
           "hostname": "shared0-storageminionceph2-7-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "n31-45",
           "superpod": "none"
         },
         {
@@ -151,6 +165,7 @@ data:
           "hostname": "shared0-storageminionceph3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "b34-45",
           "superpod": "none"
         },
         {
@@ -161,6 +176,7 @@ data:
           "hostname": "shared0-storageminionceph3-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e06-45",
           "superpod": "none"
         },
         {
@@ -171,6 +187,7 @@ data:
           "hostname": "shared0-storageminionceph3-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "b34-45",
           "superpod": "none"
         },
         {
@@ -181,6 +198,7 @@ data:
           "hostname": "shared0-storageminionceph3-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "b34-45",
           "superpod": "none"
         },
         {
@@ -191,6 +209,7 @@ data:
           "hostname": "shared0-storageminionceph3-5-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e06-45",
           "superpod": "none"
         },
         {
@@ -201,6 +220,7 @@ data:
           "hostname": "shared0-storageminionceph3-6-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e06-45",
           "superpod": "none"
         },
         {
@@ -211,6 +231,7 @@ data:
           "hostname": "shared0-storageminioncephtwo1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -221,6 +242,7 @@ data:
           "hostname": "shared0-storageminioncephtwo1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -231,6 +253,7 @@ data:
           "hostname": "shared0-storageminioncephtwo1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -241,6 +264,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -251,6 +275,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -261,6 +286,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -271,6 +297,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-4-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -281,6 +308,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-5-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -291,6 +319,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-6-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -301,6 +330,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -311,6 +341,7 @@ data:
           "hostname": "shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         },
         {
@@ -321,6 +352,7 @@ data:
           "hostname": "shared0-storagesamcompute1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "a08-45",
           "superpod": "none"
         },
         {
@@ -331,6 +363,7 @@ data:
           "hostname": "shared0-storagesamcompute1-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "a08-45",
           "superpod": "none"
         },
         {
@@ -341,6 +374,7 @@ data:
           "hostname": "shared0-storagesamcompute1-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "t10-45",
           "superpod": "none"
         },
         {
@@ -351,6 +385,7 @@ data:
           "hostname": "shared0-storagesamcompute2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "l41-45",
           "superpod": "none"
         },
         {
@@ -361,6 +396,7 @@ data:
           "hostname": "shared0-storagesamcompute2-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e07-45",
           "superpod": "none"
         },
         {
@@ -371,6 +407,7 @@ data:
           "hostname": "shared0-storagesamcompute2-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "c02-45",
           "superpod": "none"
         },
         {
@@ -381,6 +418,7 @@ data:
           "hostname": "shared0-storagesamcompute3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "e06-45",
           "superpod": "none"
         },
         {
@@ -391,6 +429,7 @@ data:
           "hostname": "shared0-storagesamcompute3-2-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "w32-45",
           "superpod": "none"
         },
         {
@@ -401,6 +440,7 @@ data:
           "hostname": "shared0-storagesamcompute3-3-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "w06-45",
           "superpod": "none"
         },
         {
@@ -411,6 +451,7 @@ data:
           "hostname": "shared0-storagesamkubeapi1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "p03-45",
           "superpod": "none"
         },
         {
@@ -421,6 +462,7 @@ data:
           "hostname": "shared0-storagesamkubeapi2-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "t10-45",
           "superpod": "none"
         },
         {
@@ -431,6 +473,7 @@ data:
           "hostname": "shared0-storagesamkubeapi3-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "v10-45",
           "superpod": "none"
         },
         {
@@ -441,6 +484,7 @@ data:
           "hostname": "shared0-storagetwosamcompute1-1-prd.eng.sfdc.net",
           "kingdom": "prd",
           "pod": "none",
+          "rack": "k22-45",
           "superpod": "none"
         }
       ]

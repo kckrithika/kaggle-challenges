@@ -598,6 +598,26 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: emailinfra:dfw-sam_eaas:rolebinding
+    namespace: emailinfra
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminioneaas1-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioneaas1-2-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioneaas1-3-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioneaas2-1-dfw.ops.sfdc.net
+  - kind: User
+    name: shared0-samminioneaas2-2-dfw.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: ccait:dfw-sam_gater:rolebinding
     namespace: ccait
   roleRef:
