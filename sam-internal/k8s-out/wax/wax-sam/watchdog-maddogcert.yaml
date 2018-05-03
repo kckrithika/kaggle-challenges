@@ -24,7 +24,7 @@ spec:
         - -funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001912-3f0e2a18
+        image: ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc
         name: watchdog-maddogcert
         volumeMounts:
         - mountPath: /sfdchosts

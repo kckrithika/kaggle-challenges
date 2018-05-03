@@ -30,44 +30,9 @@ local utils = import "util_functions.jsonnet";
         # [mgrass] Releasing estate-server early in xrd to unblock ceph cluster deployment (depends on failure domain labeling done by nodecontroller).
         "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
 
-        #[jiayi.yan] Roll out sam app status CRD of samcontrol where SDP runs
-        "prd,prd-samtwo,samcontrol,hypersam": "sam-0001848-170a0744",
-
-        #[jiayi.yan] Roll out sam app status CRD in SDP
-        "prd,prd-samtwo,sam-deployment-portal,hypersam": "sam-0001873-67938cc8",
-
         #[a.mitra] deploy liveness probe for bundlecontroller in prd-samdev
         "prd,prd-samdev,bundle-controller,hypersam": "sam-0001933-968970c4",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001933-968970c4",
-
-        #[d.smith] Pin snapshoter to known working version
-        "prd,prd-sam_storage,snapshoter,hypersam": "sam-0001847-1b9453cd",
-        "chx,chx-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "dfw,dfw-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "hnd,hnd-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "iad,iad-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "ord,ord-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "par,par-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "phx,phx-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "syd,syd-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "ukb,ukb-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "wax,wax-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "yhu,yhu-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-        "yul,yul-sam,snapshoter,hypersam": "sam-0001898-b97eccee",
-
-        #[lizhang.li] rollout filesystem watchdog with hidden file checker in prd
-        "chx,chx-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "dfw,dfw-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "hnd,hnd-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "iad,iad-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "ord,ord-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "par,par-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "phx,phx-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "syd,syd-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "ukb,ukb-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "wax,wax-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "yhu,yhu-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
-        "yul,yul-sam,watchdog-filesystem,hypersam": "sam-0001898-b97eccee",
 
         #[jiayi.yan] snapshotconsumer cleans 45min tombstones in mysql
         "prd,prd-sam,snapshotconsumer,hypersam": "sam-0001941-65c61fc9",
@@ -116,7 +81,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            hypersam: "sam-0001912-3f0e2a18",
+            hypersam: "sam-0001931-927cd1fc",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
