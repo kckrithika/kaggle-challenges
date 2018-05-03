@@ -20,7 +20,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.3
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.4
       ports:
         - containerPort: 8080
         - containerPort: 15372
