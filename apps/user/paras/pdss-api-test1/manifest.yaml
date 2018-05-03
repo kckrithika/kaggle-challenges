@@ -37,7 +37,7 @@ system:
         value: /certs
       - name: PKI_MONITORDIR
         value: /certs/server
-       - name: SECRETS_DIR
+      - name: SECRETS_DIR
         value: /secrets/service-config/
       volumeMounts:
       - name: certs
