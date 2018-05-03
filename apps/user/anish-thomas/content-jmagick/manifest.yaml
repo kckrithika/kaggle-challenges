@@ -1,0 +1,24 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: content-jmagick
+      count: 1
+      containers: 
+        - name: content-jmagick
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/content-jmagick:first-version
+          ports:
+            - containerPort: 7021
+            - containerPort: 15373
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15373
+  loadbalancers:
+  - lbname: content-jmagick-lb
+    function: content-jmagick
+    slbenabled: true
+    ports:
+      - port: 7021
+        targetPort: 7021
+        lbtype: tcp
