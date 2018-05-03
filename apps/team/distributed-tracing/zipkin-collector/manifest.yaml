@@ -18,7 +18,7 @@ system:
         type: client
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin-collector:7
+      image: docker-dva-rc/dva/zipkin-collector:11
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
