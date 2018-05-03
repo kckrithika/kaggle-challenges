@@ -221,6 +221,11 @@ local samconfig = import "config.jsonnet";
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
             authorizedClientCerts: ["flowsnake_master"],
         },
+        {
+            namespace: "sec-einstein-deepsea",
+            authorizedLdapGroups: ["security-analytics"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
