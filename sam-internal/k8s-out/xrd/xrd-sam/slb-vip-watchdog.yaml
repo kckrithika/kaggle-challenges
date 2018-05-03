@@ -84,7 +84,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-vip-watchdog
         - --sleepTime=100ms
-        - --processKnEConfigs=false
+        - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/xrd
         - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876

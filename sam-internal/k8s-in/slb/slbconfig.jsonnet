@@ -120,8 +120,9 @@
         } + {
             [k + "-sam"]: false
             for k in $.prodKingdoms
+        } + {
+            "xrd-sam": true,
         },
-
         kneConfigDir: {
             "prd-sdc": "/var/slb/kneconfigs/testkneconfigs",
             "prd-samtest": "/var/slb/kneconfigs/testkneconfigs",
