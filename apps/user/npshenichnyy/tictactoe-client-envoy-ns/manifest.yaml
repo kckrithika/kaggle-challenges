@@ -45,3 +45,10 @@ system:
           command:
           - ./bin/is-ready
         initialDelaySeconds: 15
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client

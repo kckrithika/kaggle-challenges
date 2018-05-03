@@ -54,6 +54,9 @@ system:
           command:
           - ./bin/is-ready
         initialDelaySeconds: 15
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
 
     - name: debug-tools
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
@@ -64,3 +67,8 @@ system:
         exec:
           command: ["/bin/true"]
         initialDelaySeconds: 20
+
+    volumes:
+    - name: tls-client-cert
+      maddogCert:
+        type: client
