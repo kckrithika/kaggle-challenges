@@ -1,8 +1,15 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "phx-sam",
+    "xrd-sam",
+]);
 
-if configs.estate == "phx-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then {
+if std.setMember(configs.estate, enabledEstates) then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

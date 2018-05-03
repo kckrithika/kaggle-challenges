@@ -7,7 +7,7 @@
         "prd-sam": ["prd-sam_ceph"],
         "xrd-sam": ["xrd-sam_ceph"],
         "prd-sam_storage": ["prd-sam_cephdev", "prd-sam_storage"],
-        "phx-sam": ["phx-sam_ceph"], # Do Not uncomment until you deploy Ceph Cluster to Prod
+        "phx-sam": ["phx-sam_ceph"],
     },
 
     // Map of SFStore control estate -> cluster estate.
@@ -127,6 +127,7 @@
             "prd-sam_storage": "true",
             "prd-sam": "true",
             "phx-sam": "false",
+            "xrd-sam": "true",
         },
     },
 

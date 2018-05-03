@@ -3,7 +3,13 @@ local storageimages = (import "storageimages.jsonnet") + { templateFilename:: st
 local storageutils = import "storageutils.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "phx-sam" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "phx-sam",
+]);
+
+if std.setMember(configs.estate, enabledEstates) then
 {
     apiVersion: "v1",
     kind: "List",

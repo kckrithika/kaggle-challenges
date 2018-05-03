@@ -8,6 +8,7 @@ local enabledEstates = std.set([
     "prd-sam_storage",
     "prd-sam",
     "phx-sam",
+    "xrd-sam",
 ]);
 
 if std.setMember(configs.estate, enabledEstates) then {
