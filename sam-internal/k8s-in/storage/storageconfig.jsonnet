@@ -97,7 +97,7 @@
                     "phx-sam_ceph": "273Ti",
                 },
                 "xrd-sam": {
-                    "xrd-sam_ceph": "975Ti",
+                    "xrd-sam_ceph": "965Ti",
                 },
             },
         },
