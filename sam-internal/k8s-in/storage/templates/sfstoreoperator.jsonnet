@@ -70,8 +70,6 @@ if std.setMember(configs.estate, enabledEstates) then {
                         ],
                         env: storageutils.sfms_environment_vars("sfstoreoperator"),
                     },
-                    storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
-
                 ],
                 volumes: configs.filter_empty([
                     {
