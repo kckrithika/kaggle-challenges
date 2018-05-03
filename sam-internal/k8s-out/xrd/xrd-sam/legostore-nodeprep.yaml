@@ -24,10 +24,6 @@ spec:
                 values:
                 - not-in-any-pool-at-this-time
                 - xrd-sam_ceph
-              - key: kubernetes.io/hostname
-                operator: In
-                values:
-                - shared0-samminionceph1-12-xrd.eng.sfdc.net
               - key: storage.salesforce.com/nodeprep
                 operator: DoesNotExist
       containers:

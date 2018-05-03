@@ -5,7 +5,13 @@ local storageutils = import "storageutils.jsonnet";
 // Currently disabled -- no minion estates need prep at this time.
 local enabledMinionEstates = ["not-in-any-pool-at-this-time", "xrd-sam_ceph"];
 
-if configs.estate == "prd-sam_storage" || configs.estate == "xrd-sam" then {
+// Defines the list of estates where this service is enabled.
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "xrd-sam",
+]);
+
+if std.setMember(configs.estate, enabledEstates) then {
 
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
@@ -38,11 +44,6 @@ if configs.estate == "prd-sam_storage" || configs.estate == "xrd-sam" then {
                           key: "pool",
                           operator: "In",
                           values: enabledMinionEstates,
-                       },
-                       {
-                          key: "kubernetes.io/hostname",
-                          operator: "In",
-                          values: ["shared0-samminionceph1-12-xrd.eng.sfdc.net"],
                        },
                        {
                           key: "storage.salesforce.com/nodeprep",
