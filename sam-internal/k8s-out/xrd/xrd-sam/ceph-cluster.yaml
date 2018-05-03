@@ -5,18 +5,18 @@ items:
   metadata:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
-    name: ceph-prd-skipper
+    name: ceph-xrd-sam-ceph
     namespace: legostore
   spec:
-    K8S_NETWORK: 10.248.0.0/13
-    cephOsdDaemonOverride: osd_directory
+    K8S_NETWORK: 10.210.206.0/24,10.210.207.0/24,10.210.212.0/24
     cephVersion: 10.2.7-0000060-5eafc0e2
     faultDomainBoundary: node.sam.sfdc.net/rack
     metadata:
-      name: ceph-prd-skipper
+      name: ceph-xrd-sam-ceph
       namespace: legostore
+    pool: xrd-sam_ceph
     storageClassAllocations:
-    - aggregateStorage: 5Gi
+    - aggregateStorage: 975Ti
       name: hdd
 kind: List
 metadata: {}
