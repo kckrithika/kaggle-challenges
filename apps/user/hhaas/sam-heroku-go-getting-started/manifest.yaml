@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: sam-heroku-go-getting-started
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/hhaas/sam-heroku-go-getting-started:demo
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+  loadbalancers:
+  - lbname: sam-heroku-go-getting-started-lb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
