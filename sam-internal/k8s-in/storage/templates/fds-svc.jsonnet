@@ -1,7 +1,14 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 
-if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" || configs.estate == "phx-sam" then {
+local enabledEstates = std.set([
+    "prd-sam_storage",
+    "prd-sam",
+    "phx-sam",
+    "xrd-sam",
+]);
+
+if std.setMember(configs.estate, enabledEstates) then {
     kind: "Service",
         apiVersion: "v1",
         metadata: {

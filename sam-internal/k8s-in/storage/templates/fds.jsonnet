@@ -9,6 +9,7 @@ local enabledEstates = std.set([
     "prd-sam",
     "prd-skipper",
     "phx-sam",
+    "xrd-sam",
 ]);
 
 // Init containers for the pod.
