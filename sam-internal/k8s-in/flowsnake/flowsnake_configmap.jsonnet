@@ -222,10 +222,15 @@ local samconfig = import "config.jsonnet";
             authorizedClientCerts: ["flowsnake_master"],
         },
         {
+            namespace: "alerting_snmp",
+            authorizedLdapGroups: ["alerting_flowsnake"],
+            authorizedClientCerts: [],
+        },
+        {
             namespace: "sec-einstein-deepsea",
             authorizedLdapGroups: ["security-analytics"],
             authorizedClientCerts: [],
-        },
+        },        
       ],
       "prd/prd-data-flowsnake_test": [
         {
