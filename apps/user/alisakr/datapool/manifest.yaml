@@ -108,7 +108,7 @@ system:
         initialDelaySeconds: 5
       args:
       - -endpoint
-      - wave-elt/datapool-service:DATACENTER:7443
+      - alisakr/datapool-service:DATACENTER:7443
     
     volumes:
     - name: logvol
@@ -138,7 +138,7 @@ system:
     nodeExposed: true
     slbenabled: true
     ports:
-      - port: 7025  # Plain text port until we get SSL working
+      - port: 7013  # Plain text port until we get SSL working
         targetport: 7012
       - port: 7443
         targetport: 7443
