@@ -96,7 +96,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7-patch-worker-secrets": 584,  # temporary for IoT
                   "0.9.8-service-mesh-test": "599",  # ALSO temporary for IoT...
                   "0.9.8": 607,
-                  "sluice-lite": "jenkins-dva-transformation-flowsnake-platform-log-type-hack-1-itest",  # for GDPR write to DeepSea
+                  "sluice-lite": "jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest",  # for GDPR write to DeepSea
 
                 },
                 # ignore this section, require by std.manifestIni
