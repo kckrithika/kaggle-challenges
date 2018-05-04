@@ -1,5 +1,5 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if !flowsnakeconfig.elastic_search_enabled then
+local elk = import "elk.jsonnet";
+if !elk.elastic_search_enabled then
 "SKIP"
 else
 {

@@ -1,8 +1,8 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local zookeeper = import "zookeeper-rcs.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if !flowsnakeconfig.elastic_search_enabled then
+local elk = import "elk.jsonnet";
+if !elk.elastic_search_enabled then
 "SKIP"
 else
 {

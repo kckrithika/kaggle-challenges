@@ -1,6 +1,7 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local zookeeper = import "_zookeeper-rcs.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local elk = import "elk.jsonnet";
 {
     apiVersion: "apps/v1beta1",
     kind: "StatefulSet",
@@ -15,7 +16,7 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         updateStrategy: {
             type: "RollingUpdate",
         },
-        replicas: if flowsnakeconfig.is_minikube_small then 1 else 3,
+        replicas: elk.kafka_replicas,
         serviceName: "glok-set",
         template: {
             metadata: {
@@ -45,11 +46,13 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
                             },
                             {
                                 name: "NUM_PARTITIONS",
-                                value: if flowsnakeconfig.is_minikube_small then "1" else "3",
+                                //TODO: there's no reason not to just use the int directly here
+                                value: std.format("%d", elk.kafka_partitions),
                             },
                             {
                                 name: "DEFAULT_REPLICATION_FACTOR",
-                                value: if flowsnakeconfig.is_minikube_small then "1" else "3",
+                                //TODO: there's no reason not to just use the int directly here
+                                value: std.format("%d", elk.kafka_replicas),
                             },
                             {
                                 name: "FLOWSNAKE_FLEET",

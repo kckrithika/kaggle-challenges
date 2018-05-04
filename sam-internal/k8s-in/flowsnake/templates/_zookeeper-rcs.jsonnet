@@ -1,9 +1,10 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local elk = import "elk.jsonnet";
 {
     connection_string:: std.join(",", ["zookeeper-" + ri + ".zookeeper-set" + ":" + $.zk_port for ri in std.range(0, $.zk_replicas - 1)]),
     zk_port:: 2181,
-    zk_replicas:: if flowsnakeconfig.is_minikube_small then 1 else 3,
+    zk_replicas:: elk.zk_replicas,
     apiVersion: "apps/v1beta1",
     kind: "StatefulSet",
     metadata: {
