@@ -3,22 +3,30 @@ system:
   functions:
   - containers:
     - env:
+      - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
+        value: /client-certs
+      - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
+        value: /client-certs/client
       - name: HBASE_SECURITY_KEYTAB_LOCATION
-        value: /home/enrichment/enrichment-keytab/enrichment.keytab
+        value: /home/enrichment/iot-enrichment.keytab
+      - name: HBASE_SECURITY_KEYTAB_PASSWORD_REFRESHENABLED
+        value: 'true'
       - name: HBASE_SECURITY_KEYTAB_PRINCIPAL
         value: iot-enrichment@IOT1DCHBASE0A-PRD.APP.ENG.SFDC.NET
+      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
+        value: 'true'
       - name: IOT_ENRICH_HBASE_ENV_OVERRIDE
         value: kingdom-test
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: sfci/iot/enterprise-enrichment:1.0.1.2
+      image: sfci/iot/enterprise-enrichment:1.0.1.9
       livenessProbe:
         httpGet:
           path: /manage/info
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: enrichment
+      name: enrichment-staging
       ports:
       - containerPort: 15372
         name: mgmt
@@ -34,9 +42,8 @@ system:
       volumeMounts:
       - mountPath: /home/enrichment/logs
         name: logvol
-      - mountPath: /home/enrichment/enrichment-keytab
-        name: enrichmentkeytab
-        readOnly: true
+      - mountPath: /client-certs
+        name: client-certs
     - env:
       - name: SFDC_ENVIRONMENT
         value: staging
@@ -82,7 +89,7 @@ system:
     count: 2
     identity:
       serviceName: enrichment
-    name: enrichment
+    name: enrichment-staging
     strategy:
       type: Recreate
     volumes:
@@ -93,14 +100,11 @@ system:
         type: client
       name: client-certs
     - hostPath:
-        path: /data/sam/iot/log/enrichment
+        path: /data/sam/iot/log/enrichment-staging
       name: logvol
-    - name: enrichmentkeytab
-      secret:
-        secretName: enrichment-keytab
   loadbalancers:
-  - function: enrichment
-    lbname: enrichment-lb
+  - function: enrichment-staging
+    lbname: enrichment-staging-lb
     nodeExposed: true
     ports:
     - port: 9136
