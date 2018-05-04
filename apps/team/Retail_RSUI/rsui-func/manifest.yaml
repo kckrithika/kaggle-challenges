@@ -138,3 +138,5 @@ system:
         targetport: 7022
       - port: 15372
         targetport: 15372
+      - port: 7020
+        targetport: 7020
