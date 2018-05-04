@@ -144,7 +144,14 @@ data:
       "storageClassName": "synthetic-hdd-pool",
       "syntheticPVRetrytimeout": 420000000000,
       "syntheticretrytimeout": 420000000000,
-      "tlsEnabled": true
+      "tlsEnabled": true,
+      "universalProcesses": [
+        "dockerd.*docker-bootstrap",
+        "dockerd.*docker.sock",
+        "docker-containerd.*docker-containerd.sock",
+        "docker-containerd.*docker-bootstrap",
+        "hyperkube.*kubelet"
+      ]
     }
 kind: ConfigMap
 metadata:
