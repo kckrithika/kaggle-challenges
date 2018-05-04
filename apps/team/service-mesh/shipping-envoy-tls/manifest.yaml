@@ -47,8 +47,8 @@ system:
         name: logvol
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/57
-      image: sfci/servicelibs/sherpa-envoy:910c0b2bd4e696b019c6ac560cdc37b000a10cd5
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/39
+      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -60,14 +60,14 @@ system:
       - containerPort: 7012
         name: grpc-in
       livenessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
+        exec:
+          command:
+          - ./bin/is-alive
         initialDelaySeconds: 20
       readinessProbe:
-        httpGet:
-          path: /listeners
-          port: 15373
+        exec:
+          command:
+          - ./bin/is-ready
         initialDelaySeconds: 15
       volumeMounts:
         - name: logvol
