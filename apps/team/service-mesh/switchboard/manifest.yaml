@@ -8,7 +8,7 @@ system:
   - name: switchboard
     count: 2
     containers:
-    - name: switchboard 
+    - name: switchboard
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/75
       image: sfci/servicelibs/switchboard:b2f644ff6c1deb7bc8827986b17521a95be25a93
       env:
@@ -17,7 +17,7 @@ system:
       - name: ADS_PORT
         value: 7020
       - name: MANAGEMENT_PORT
-        value: 15370
+        value: 15372
       - name: LOGGING_DIR
         value: "/log"
       args:
@@ -38,23 +38,25 @@ system:
       - --clusters.external-clusters[14]=h1-test-server-envoy-nons-plain:HTTP1
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       volumeMounts:
-        - mountPath: /log
-          name: switchboard-log-volume
+      - name: envoy-config-volume
+        mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+      - name: switchboard-log-volume
+        mountPath: /log
       ports:
-      - containerPort: 15370
+      - containerPort: 15372
       resources:
         limits: { cpu: "8", memory: "6Gi" }
         requests: { cpu: "8", memory: "6Gi" }
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15370
+          port: 15372
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 15370
+          port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
 
@@ -66,7 +68,7 @@ system:
         value: mesh
       args:
       - --template
-      - ./switchboard-sidecar.config.yaml.template
+      - /switchboard-config/switchboard-sidecar.config.yaml.template
       - --admin-port
       - 15374
       ports:
@@ -88,21 +90,25 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
       volumeMounts:
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
+      - name: envoy-config-volume
+        mountPath: /switchboard-config
+      - name: tls-client-cert
+        mountPath: /client-certs
+      - name: tls-server-cert
+        mountPath: /server-certs
 
     volumes:
-        - name: switchboard-log-volume
-          hostPath:
-            path: /home/sfdc-switchboard/logs
-        - name: tls-client-cert
-          maddogCert:
-            type: client
-        - name: tls-server-cert
-          maddogCert:
-            type: server
+    - name: envoy-config-volume
+      emptyDir: {}
+    - name: switchboard-log-volume
+      hostPath:
+        path: /home/sfdc-switchboard/logs
+    - name: tls-client-cert
+      maddogCert:
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
 
   loadbalancers:
   - lbname: switchboard-lb
@@ -113,7 +119,7 @@ system:
       targetport: 15001
       lbtype: dsr
     - port: 15370
-      targetport: 15370
+      targetport: 15372
       lbtype: dsr
     - port: 15374
       targetport: 15374
