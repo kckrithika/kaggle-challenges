@@ -51,6 +51,7 @@ apps:
   - par/par-sam
   - phx/phx-sam
   - ukb/ukb-sam
+  - hnd/hnd-sam
  mysql:
   - prd/prd-sam
   - prd/prd-samdev
