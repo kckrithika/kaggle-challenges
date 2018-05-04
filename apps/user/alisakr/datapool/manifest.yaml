@@ -53,6 +53,19 @@ system:
       - mountPath: /home/datapool/client-certs
         name: tls-client-certs
 
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: kingdom-test
+      livenessProbe:
+        exec:
+          command: ["/home/scone/is-alive.sh"]
+        initialDelaySeconds: 5
+      args:
+      - -endpoint
+      - alisakr/datapool-service:DATACENTER:7443
+      
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
       env:
@@ -96,20 +109,7 @@ system:
 
       - mountPath: /log
         name: sherpa-log-volume
-    
-    - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
-      livenessProbe:
-        exec:
-          command: ["/home/scone/is-alive.sh"]
-        initialDelaySeconds: 5
-      args:
-      - -endpoint
-      - alisakr/datapool-service:DATACENTER:7443
-    
+      
     volumes:
     - name: logvol
       hostPath:
@@ -131,7 +131,7 @@ system:
       maddogCert:
         type: client
 
-
+   
   loadbalancers:
   - lbname: datapool-lb
     function: datapool-steelthread
