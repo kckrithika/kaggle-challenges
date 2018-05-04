@@ -100,6 +100,24 @@ spec:
           name: usr-sbin-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-ipvs-conntrack
+        - --log_dir=/host/data/slb/logs/
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000836-be2622d7
+        name: slb-ipvs-conntrack
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
       hostNetwork: true
       nodeSelector:
         slb-service: slb-ipvs
