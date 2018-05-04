@@ -64,7 +64,7 @@ system:
         initialDelaySeconds: 5
       args:
       - -endpoint
-      - alisakr/datapool:DATACENTER:7443
+      - wave-elt/datapool-steelthread:DATACENTER:7443
 
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
