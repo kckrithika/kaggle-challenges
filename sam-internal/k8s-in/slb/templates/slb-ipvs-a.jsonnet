@@ -107,7 +107,6 @@ if configs.estate == "prd-sam" then {
                         image: slbimages.hypersdn,
                         command: [
                             "/sdn/slb-ipvs-processor",
-                            "--configDir=" + slbconfigs.configDir,
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,

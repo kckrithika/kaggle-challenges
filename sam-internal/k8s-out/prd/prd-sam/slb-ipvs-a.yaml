@@ -49,7 +49,6 @@ spec:
           name: sfdchosts
       - command:
         - /sdn/slb-ipvs-processor
-        - --configDir=/host/data/slb/config/
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
