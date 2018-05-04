@@ -14,3 +14,6 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  perf-cyan-jetty:
   - name: prd/prd-sp2-sam_coreapp
+ matt-startup-test:
+  - name: prd/prd-sp2-sam_coreapp
+ 
