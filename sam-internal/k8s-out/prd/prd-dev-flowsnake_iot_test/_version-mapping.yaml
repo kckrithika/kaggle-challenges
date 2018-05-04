@@ -12,7 +12,7 @@ data:
     0.9.7-patch-worker-secrets = 584
     0.9.8 = 607
     0.9.8-service-mesh-test = 599
-    sluice-lite = jenkins-dva-transformation-flowsnake-platform-log-type-hack-1-itest
+    sluice-lite = jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
