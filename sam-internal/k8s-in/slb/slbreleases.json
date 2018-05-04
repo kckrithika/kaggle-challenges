@@ -24,7 +24,7 @@
     "hypersdn": {
       "label": "v-0000834-b4b1cb89",
       "promotedTime": "2018-05-04T01:05:42.203795902Z",
-      "warning": "Take 834 to phase 2 before phase 4"
+      "warning": "Take 834 to phase 2 before phase 4. Also, 834 involves removal of metricsEndpoint from slb-ipvs"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",

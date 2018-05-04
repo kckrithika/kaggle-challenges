@@ -109,7 +109,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-ipvs-processor",
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
-                         ] + (if slbimages.phase == "1" then [] else [
+                         ] + (if slbimages.phase == "1" || slbimages.phase == "3" then [] else [
                             "--metricsEndpoint=" + configs.funnelVIP,
                          ]) + [
                             "--log_dir=" + slbconfigs.logsDir,

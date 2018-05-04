@@ -56,7 +56,6 @@ spec:
         - /sdn/slb-ipvs-processor
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
-        - --metricsEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --maximumDeleteCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
