@@ -14,7 +14,7 @@ system:
     containers:
     - name: perf-cyan-jetty
 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/cyan:perf-05031637
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/cyan:perf-05041044
 
       env:
         - name: CYAN_LIVE_VERSION
