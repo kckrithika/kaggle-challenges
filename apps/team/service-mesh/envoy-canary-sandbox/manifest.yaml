@@ -5,7 +5,9 @@ system:
     email:
     - servicemesh@salesforce.com
   functions:
-  - name: envoy-canary
+  - name: envoy-canary-sandbox
+    identity:
+      serviceName: envoy-canary
     count: 1
     containers:
     - name: envoy-canary-sherpa
