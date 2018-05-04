@@ -63,10 +63,14 @@ system:
   - lbname: perf-cyan-jetty-lb
     function: perf-cyan-jetty
     nodeExposed: true
+    slbEnabled: true
     ports:
     - port: 12051
       targetport: 12051
+      lbtype: tcp
     - port: 8443
       targetport: 8443
+      lbtype: tcp
     - port: 8085
       targetport: 8085
+      lbtype: tcp
