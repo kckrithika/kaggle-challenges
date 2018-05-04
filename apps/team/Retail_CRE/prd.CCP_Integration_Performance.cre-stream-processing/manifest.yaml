@@ -15,6 +15,8 @@ system:
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: METRICS_KAFKA_GROUP_ID
+          value: cre-sp-ccp-perf        
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
         - name: METRICS_KAFKA_ENABLED
