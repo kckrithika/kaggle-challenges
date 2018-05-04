@@ -14,7 +14,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
-      - name: ADS_PORT
+      - name: GRPC_SERVER_PORT
         value: 7020
       - name: MANAGEMENT_PORT
         value: 15370
