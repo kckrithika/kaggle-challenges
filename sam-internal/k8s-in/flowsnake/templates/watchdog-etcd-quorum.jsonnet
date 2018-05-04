@@ -1,7 +1,8 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+local watchdog = import "watchdog.jsonnet";
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 {
@@ -19,7 +20,7 @@ else
                             "-role=ETCDQUORUM",
                             "-watchdogFrequency=5s",
                             "-alertThreshold=150s",
-                            "-emailFrequency=" + flowsnakeconfig.watchdog_email_frequency,
+                            "-emailFrequency=" + watchdog.watchdog_email_frequency,
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
@@ -35,7 +36,7 @@ else
                             name: "config",
                           },
                         ] +
-                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                        certs_and_kubeconfig.platform_cert_volumeMounts,
                         name: "watchdog-etcd-quorum",
                     },
                 ],
@@ -53,7 +54,7 @@ else
                     name: "config",
                   },
                 ] +
-                flowsnakeconfigmapmount.platform_cert_volume,
+                certs_and_kubeconfig.platform_cert_volume,
             },
             metadata: {
                 labels: {

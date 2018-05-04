@@ -1,5 +1,4 @@
-local flowsnakeconfigmap = import "flowsnake_configmap.jsonnet";
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local pki_auth = import "pki_auth.jsonnet";
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -8,6 +7,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         namespace: "flowsnake",
     },
     data: {
-        data: std.toString(flowsnakeconfigmap.auth_namespaces),
+        data: std.toString(pki_auth.auth_namespaces),
     },
 }

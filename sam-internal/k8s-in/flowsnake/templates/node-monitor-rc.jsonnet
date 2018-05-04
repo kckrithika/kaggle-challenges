@@ -1,7 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 if flowsnakeconfig.is_minikube_small then
 "SKIP"
 else
@@ -62,12 +61,12 @@ else
                                 },
                             },
                         ],
-                        volumeMounts: flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                            flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                        volumeMounts: certs_and_kubeconfig.kubeconfig_volumeMounts +
+                            certs_and_kubeconfig.platform_cert_volumeMounts,
                      },
                  ],
-                 volumes: flowsnakeconfigmapmount.kubeconfig_platform_volume +
-                     flowsnakeconfigmapmount.platform_cert_volume,
+                 volumes: certs_and_kubeconfig.kubeconfig_platform_volume +
+                            certs_and_kubeconfig.platform_cert_volume,
             },
         },
     },

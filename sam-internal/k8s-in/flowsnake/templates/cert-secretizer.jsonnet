@@ -1,6 +1,6 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 {
@@ -44,8 +44,8 @@ local kingdom = std.extVar("kingdom");
               },
             ] +
             (if !flowsnakeconfig.is_minikube then
-                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                flowsnakeconfigmapmount.platform_cert_volumeMounts
+                certs_and_kubeconfig.kubeconfig_volumeMounts +
+                certs_and_kubeconfig.platform_cert_volumeMounts
             else []),
             env: [
               {
@@ -114,7 +114,7 @@ local kingdom = std.extVar("kingdom");
               },
             ] +
             (if !flowsnakeconfig.is_minikube then
-                flowsnakeconfigmapmount.platform_cert_volumeMounts
+                certs_and_kubeconfig.platform_cert_volumeMounts
             else [
                 {
                   mountPath: "/maddog-onebox",
@@ -197,7 +197,7 @@ local kingdom = std.extVar("kingdom");
               },
             ] +
             (if !flowsnakeconfig.is_minikube then
-                flowsnakeconfigmapmount.platform_cert_volumeMounts
+                certs_and_kubeconfig.platform_cert_volumeMounts
             else [
                 {
                   mountPath: "/maddog-onebox",
@@ -263,8 +263,8 @@ local kingdom = std.extVar("kingdom");
           },
         ] +
         (if !flowsnakeconfig.is_minikube then
-            flowsnakeconfigmapmount.platform_cert_volume +
-            flowsnakeconfigmapmount.kubeconfig_platform_volume
+            certs_and_kubeconfig.platform_cert_volume +
+            certs_and_kubeconfig.kubeconfig_platform_volume
         else [
             {
               hostPath: {

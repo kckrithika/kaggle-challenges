@@ -1,6 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 {
@@ -105,10 +105,10 @@ local kingdom = std.extVar("kingdom");
                                      readOnly: true,
                                  },
                                 ] +
-                                flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
-                            else flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                                flowsnakeconfigmapmount.k8s_cert_volumeMounts
+                                certs_and_kubeconfig.kubeconfig_volumeMounts +
+                                certs_and_kubeconfig.k8s_cert_volumeMounts
+                            else certs_and_kubeconfig.kubeconfig_volumeMounts +
+                                certs_and_kubeconfig.k8s_cert_volumeMounts
                         ),
                     },
                 ] + if flowsnakeconfig.is_minikube then [] else [
@@ -137,10 +137,10 @@ local kingdom = std.extVar("kingdom");
                                 },
                             },
                         ] +
-                        flowsnakeconfigmapmount.kubeconfig_volume +
-                        flowsnakeconfigmapmount.k8s_cert_volume
-                    else flowsnakeconfigmapmount.kubeconfig_volume +
-                        flowsnakeconfigmapmount.k8s_cert_volume
+                        certs_and_kubeconfig.kubeconfig_volume +
+                        certs_and_kubeconfig.k8s_cert_volume
+                    else certs_and_kubeconfig.kubeconfig_volume +
+                        certs_and_kubeconfig.k8s_cert_volume
                 ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",

@@ -36,8 +36,6 @@ local util = import "util_functions.jsonnet";
         "prd-minikube-small-flowsnake": "api-minikube",
         "prd-minikube-big-flowsnake": "api-minikube",
     },
-    watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
-    watchdog_email_frequency_kuberesources: "72h",
     deepsea_enabled_estates: [
         "prd-data-flowsnake",
         "prd-data-flowsnake_test",
@@ -51,14 +49,6 @@ local util = import "util_functions.jsonnet";
         "prd-dev-flowsnake_iot_test",
     ],
     cert_services_preferred: std.count(self.cert_services_preferred_estates, estate) == 1,
-    sdn_pre_deployment_estates: [
-        "phx-flowsnake_prod",
-    ],
-    sdn_during_deployment_estates: [
-    ],
-    sdn_pre_deployment: std.count(self.sdn_pre_deployment_estates, estate) == 1,
-    sdn_during_deployment: std.count(self.sdn_during_deployment_estates, estate) == 1,
-    sdn_done_deployment: std.count(self.sdn_done_deployment_estates, estate) == 1,
     host_ca_cert_path: if self.maddog_enabled then
         "/etc/pki_service/ca/cabundle.pem"
       else
@@ -88,7 +78,6 @@ local util = import "util_functions.jsonnet";
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
     madkub_endpoint: if self.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
     maddog_endpoint: if self.is_minikube then "https://maddog-onebox:8443" else "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
-    sdn_enabled: !(self.is_minikube),
     elastic_search_enabled: (
         estate == "prd-data-flowsnake" ||
         estate == "prd-data-flowsnake_test" ||

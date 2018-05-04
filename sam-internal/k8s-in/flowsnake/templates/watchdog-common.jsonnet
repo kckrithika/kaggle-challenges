@@ -1,7 +1,8 @@
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+local watchdog = import "watchdog.jsonnet";
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 {
@@ -21,7 +22,7 @@ else
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
-                            "-emailFrequency=" + flowsnakeconfig.watchdog_email_frequency,
+                            "-emailFrequency=" + watchdog.watchdog_email_frequency,
                         ],
                         name: "watchdog",
                         resources: {
@@ -48,7 +49,7 @@ else
                             name: "config",
                           },
                         ] +
-                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                        certs_and_kubeconfig.platform_cert_volumeMounts,
                     },
                 ],
                 hostNetwork: true,
@@ -72,7 +73,7 @@ else
                     name: "config",
                   },
                 ] +
-                flowsnakeconfigmapmount.platform_cert_volume,
+                certs_and_kubeconfig.platform_cert_volume,
             },
             metadata: {
                 labels: {

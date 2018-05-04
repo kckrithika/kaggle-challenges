@@ -1,6 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-local flowsnakeconfigmapmount = import "flowsnake_configmap_mount.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
 {
@@ -122,8 +122,8 @@ local kingdom = std.extVar("kingdom");
                                 readOnly: true,
                             },
                         ] +
-                        flowsnakeconfigmapmount.kubeconfig_volumeMounts +
-                        flowsnakeconfigmapmount.platform_cert_volumeMounts,
+                        certs_and_kubeconfig.kubeconfig_volumeMounts +
+                        certs_and_kubeconfig.platform_cert_volumeMounts,
                     },
                 ],
                 volumes: [
@@ -164,8 +164,8 @@ local kingdom = std.extVar("kingdom");
                         },
                     },
                 ] +
-                flowsnakeconfigmapmount.kubeconfig_platform_volume +
-                flowsnakeconfigmapmount.platform_cert_volume,
+                certs_and_kubeconfig.kubeconfig_platform_volume +
+                certs_and_kubeconfig.platform_cert_volume,
             },
         },
     },
