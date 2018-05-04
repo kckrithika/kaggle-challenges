@@ -17,7 +17,7 @@ system:
       - name: ADS_PORT
         value: 7020
       - name: MANAGEMENT_PORT
-        value: 15372
+        value: 15370
       - name: LOGGING_DIR
         value: "/log"
       args:
@@ -43,20 +43,20 @@ system:
       - name: switchboard-log-volume
         mountPath: /log
       ports:
-      - containerPort: 15372
+      - containerPort: 15370
       resources:
         limits: { cpu: "8", memory: "6Gi" }
         requests: { cpu: "8", memory: "6Gi" }
       livenessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15370
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         httpGet:
           path: /manage/health
-          port: 15372
+          port: 15370
         initialDelaySeconds: 15
         periodSeconds: 5
 
@@ -119,7 +119,7 @@ system:
       targetport: 15001
       lbtype: dsr
     - port: 15370
-      targetport: 15372
+      targetport: 15370
       lbtype: dsr
     - port: 15374
       targetport: 15374
