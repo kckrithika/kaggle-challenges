@@ -2,7 +2,8 @@
   "1": {
     "hypersdn": {
       "label": "v-0000834-b4b1cb89",
-      "promotedTime": "2018-05-03T21:47:10.786788563Z"
+      "promotedTime": "2018-05-03T21:47:10.786788563Z",
+      "warning": "834 involves removal of metricsEndpoint from slb-ipvs"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
