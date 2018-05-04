@@ -13,7 +13,7 @@ system:
 
     containers:
     - name: core
-      image: tnrp/casam/coreapp:216__15776108-103
+      image: tnrp/casam/coreapp:216__15776108-0000103-ae8a90d0
 
       env:
         # DB info
