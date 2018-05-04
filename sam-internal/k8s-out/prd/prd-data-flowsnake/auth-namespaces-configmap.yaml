@@ -2,7 +2,9 @@ apiVersion: v1
 data:
   data: '[{"authorizedClientCerts": ["flowsnake_master"], "authorizedLdapGroups":
     ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"}, {"authorizedClientCerts":
-    [ ], "authorizedLdapGroups": ["security-analytics"], "namespace": "sec-einstein-deepsea"}]'
+    [ ], "authorizedLdapGroups": ["alerting_flowsnake"], "namespace": "alerting_snmp"},
+    {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["security-analytics"],
+    "namespace": "sec-einstein-deepsea"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
