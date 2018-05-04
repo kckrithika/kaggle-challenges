@@ -26,6 +26,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "prd,prd-samdev,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "prd,prd-samtest,watchdog-common,hypersam": "sam-0001934-1a482ba7",
+        "prd,prd-sam_storage,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "cdu,cdu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "dfw,dfw-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
