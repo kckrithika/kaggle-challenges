@@ -49,3 +49,7 @@ system:
       - port: 15372
         targetport: 15372
         lbtype: http
+      - port: 7020
+        targetport: 7020
+        lbtype: http
+
