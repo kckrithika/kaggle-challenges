@@ -253,7 +253,7 @@ spec:
         - --metricsEndpoint=mandm-funnel-frf1.data.sfdc.net:8080
         - --log_dir=/host/data/slb/logs/slb-nginx-config-b
         - --sleepTime=100ms
-        - --processKnEConfigs=false
+        - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/frf
         - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876

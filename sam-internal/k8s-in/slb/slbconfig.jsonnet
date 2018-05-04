@@ -118,10 +118,8 @@
             "prd-sam_storage": false,
             "prd-sam": true,
         } + {
-            [k + "-sam"]: false
+            [k + "-sam"]: true
             for k in $.prodKingdoms
-        } + {
-            "xrd-sam": true,
         },
         kneConfigDir: {
             "prd-sdc": "/var/slb/kneconfigs/testkneconfigs",

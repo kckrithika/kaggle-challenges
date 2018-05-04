@@ -45,7 +45,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --sleepTime=100ms
-        - --processKnEConfigs=false
+        - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/hnd
         - --kneDomainName=slb.sfdc.net
         - --livenessProbePort=9876
