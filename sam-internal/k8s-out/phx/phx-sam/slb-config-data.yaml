@@ -19,7 +19,7 @@ spec:
       - command:
         - /sdn/slb-config-data
         - --port=9117
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000834-b4b1cb89
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/sdn/hypersdn:v-0000836-be2622d7
         name: slb-config-data
         volumeMounts:
         - mountPath: /host/data/slb
