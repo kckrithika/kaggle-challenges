@@ -8,6 +8,7 @@ local kingdom = std.extVar("kingdom");
     auth_groups_map: {
         "prd/prd-data-flowsnake": [
             "Flowsnake_Ops_Platform",
+            "Flowsnake_Platform",
             "Security-Analytics",
             "alerting_flowsnake",
             "dbvisibility",
@@ -25,9 +26,11 @@ local kingdom = std.extVar("kingdom");
         ],
         "prd/prd-data-flowsnake_test": [
             "Flowsnake_Ops_Platform",
+            "Flowsnake_Platform",
         ],
         "prd/prd-dev-flowsnake_iot_test": [
             "Flowsnake_Ops_Platform",
+            "Flowsnake_Platform",
             "IoT-RM-Flowsnake",
             "CRE_AD",
             "Analytics-DataPool",

@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
-  data: '["Flowsnake_Ops_Platform", "IoT-RM-Flowsnake", "CRE_AD", "Analytics-DataPool"]'
+  data: '["Flowsnake_Ops_Platform", "Flowsnake_Platform", "IoT-RM-Flowsnake", "CRE_AD",
+    "Analytics-DataPool"]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null

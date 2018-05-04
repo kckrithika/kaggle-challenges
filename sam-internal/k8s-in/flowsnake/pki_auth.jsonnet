@@ -14,6 +14,10 @@ local kingdom = std.extVar("kingdom");
             authorizedClientCerts: ["flowsnake_master"],
         },
         {
+            namespace: "flowsnake_test",
+            authorizedLdapGroups: ["Flowsnake_Platform"],
+        },
+        {
             namespace: "alerting_snmp",
             authorizedLdapGroups: ["alerting_flowsnake"],
             authorizedClientCerts: [],
@@ -30,12 +34,20 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
             authorizedClientCerts: ["flowsnake_master_test"],
         },
+        {
+            namespace: "flowsnake_test",
+            authorizedLdapGroups: ["Flowsnake_Platform"],
+        },
       ],
       "prd/prd-dev-flowsnake_iot_test": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: ["Flowsnake_Ops_Platform"],
             authorizedClientCerts: ["flowsnake_master_iot_test"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedLdapGroups: ["Flowsnake_Platform"],
         },
         {
             namespace: "retail-cre",
