@@ -127,6 +127,9 @@ std.prune({
     "/etc/pki_service/etcd/etcd-server/certificates/etcd-server.pem",
     "/etc/pki_service/etcd/etcd-peer/certificates/etcd-peer.pem",
   ],
+
+  #processUpTime checker
+  universalProcesses: ["dockerd.*docker-bootstrap", "dockerd.*docker.sock", "docker-containerd.*docker-containerd.sock", "docker-containerd.*docker-bootstrap", "hyperkube.*kubelet"],
 })
   + (if utils.is_cephstorage_supported(configs.estate) then {
     storageClassName: "synthetic-hdd-pool",
@@ -143,8 +146,4 @@ std.prune({
      KubeletErrorCheckerEnabled: true,
      KubeletErrorPerSecond: 1,
      KubeletErrorCheckerFrequency: "20s",
-  } else {})
-  #processUpTime checker
-  + (if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
-     universalProcesses: ["dockerd.*docker-bootstrap", "dockerd.*docker.sock", "docker-containerd.*docker-containerd.sock", "docker-containerd.*docker-bootstrap", "hyperkube.*kubelet"],
   } else {})

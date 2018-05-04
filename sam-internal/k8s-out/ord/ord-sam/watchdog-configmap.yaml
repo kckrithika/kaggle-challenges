@@ -137,7 +137,14 @@ data:
           "until": "2017/12/31"
         }
       ],
-      "tlsEnabled": true
+      "tlsEnabled": true,
+      "universalProcesses": [
+        "dockerd.*docker-bootstrap",
+        "dockerd.*docker.sock",
+        "docker-containerd.*docker-containerd.sock",
+        "docker-containerd.*docker-bootstrap",
+        "hyperkube.*kubelet"
+      ]
     }
 kind: ConfigMap
 metadata:
