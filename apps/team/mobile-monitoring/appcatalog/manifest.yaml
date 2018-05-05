@@ -15,6 +15,9 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     containers:
     - name: appcatalog
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_app:20180504.0
@@ -54,8 +57,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
-        #- name: sherpa-log-volume
-        #  mountPath: /log
+        - name: sherpa-log-volume
+          mountPath: /log
         - name: tls-client-cert
           mountPath: /client-certs
         - name: tls-server-cert
