@@ -1,0 +1,143 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+    - jschroeder@salesforce.com
+
+  functions:
+  - name: appcatalog
+    count: 1
+    volumes:
+    - name: tls-client-cert
+      maddogCert: # Add "ROLE::samapp.mobile-monitoring.appcatalog" to Secret Service
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    containers:
+    - name: appcatalog
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_app:20180504.0
+      env:
+      - name: SECRETSERVICE_CERT_PATH
+        value: /certs/client/certificates/client.pem
+      - name: SECRETSERVICE_PRIVATE_KEY_PATH
+        value: /certs/client/keys/client-key.pem
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: 127.0.0.1,localhost,.sfdc.net,.dmz.salesforce.com
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /certs
+      readinessProbe:
+        tcpSocket:
+          port: 7020
+        initialDelaySeconds: 5
+        periodSeconds: 10
+      livenessProbe:
+        tcpSocket:
+          port: 7020
+        initialDelaySeconds: 15
+        periodSeconds: 20
+      ports:
+      - containerPort: 7020
+        name: grpc
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.26
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam" # Use whatever environment your kpod uses
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        #- name: sherpa-log-volume
+        #  mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+      ports:
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    - name: beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+        - -endpoint
+        - samapp/mobile-monitoring/appcatalog:DATACENTER:7012
+        - -endpoint
+        - samapp/mobile-monitoring/appcatalog:DATACENTER:7443
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+
+  - name: appcatalog-postgres
+    type: stateful-set
+    count: 1
+    containers:
+    - name: postgres
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/postgres:9.3-sfdc
+      env:
+      # Set PGDATA to a subdir, since postgres doesn't like being at a mountpoint.
+      # See https://github.com/docker-library/docs/pull/277/files
+      - name: PGDATA
+        value: /var/lib/postgresql/data/pgdata
+      volumeMounts:
+      - name: appcatalog-datavol
+        mountPath: /var/lib/postgresql/data
+      ports:
+      - containerPort: 5432
+
+      resources:
+        requests:
+          memory: "1Gi"
+          cpu: "1"
+        limits:
+          memory: "4Gi"
+          cpu: "2"
+
+      livenessProbe:
+        tcpSocket:
+          port: 5432
+        failureThreshold: 3
+        initialDelaySeconds: 5
+        periodSeconds: 60
+
+    lbname: mobile-monitoring-postgres-headless-lb
+
+    # Give containers a bit of time to shut down, as they might be syncing
+    # state into the PV on shutdown
+    terminationGracePeriodSeconds: 30
+
+    volumeClaimTemplates:
+    - name: appcatalog-datavol
+      storageClassName: mobile-monitoring-postgres-storage-hdd-pool
+      storageSizeRequest: 500Mb
+
+  loadbalancers:
+  - lbname: mobile-monitoring-postgres
+    function: appcatalog-postgres
+    slbEnabled: true
+    ports:
+      - port: 5432
+        targetport: 5432
