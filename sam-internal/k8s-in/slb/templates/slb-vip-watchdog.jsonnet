@@ -84,15 +84,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--httpTimeout=5s",
                                   "--useLocalNodeApi=true",
                               ] + if configs.estate == "prd-sdc" then [
-                                    "--vipLoop=1",
-                                    "--monitorFrequency=10s",
+                                  "--vipLoop=1",
+                                  "--monitorFrequency=10s",
                               ] else if configs.estate == "prd-sam" then [
-                                   "--optOutServiceList=ops0-pkicontroller1-0-prd",
-                                   "--vipLoop=1",
-                                   "--monitorFrequency=10s",
+                                  "--optOutServiceList=ops0-pkicontroller1-0-prd",
+                                  "--vipLoop=1",
+                                  "--monitorFrequency=10s",
                               ] else [
-                                   "--vipLoop=10",
-                                   "--monitorFrequency=60s",
+                                  "--vipLoop=10",
+                                  "--monitorFrequency=60s",
                               ],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
