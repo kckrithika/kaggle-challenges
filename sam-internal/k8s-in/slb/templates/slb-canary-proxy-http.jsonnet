@@ -31,21 +31,23 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                         name: "slb-canary-proxy-http",
                         image: slbimages.hypersdn,
                         command: [
-                            "/sdn/slb-canary-service",
-                            "--serviceName=slb-canary-proxy-http",
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            "--ports=" + portconfigs.slb.canaryServiceProxyHttpPort,
-                            "--tlsPorts=443",
-                            "--privateKey=/var/slb/canarycerts/server.key",
-                        ]
-                        + (
-                            if configs.estate == "prd-sdc" then [
-                                "--publicKey=/var/slb/canarycerts/sdc.crt",
-                            ] else [
-                                "--publicKey=/var/slb/canarycerts/sam.crt",
-                            ]
-                        ),
+                                     "/sdn/slb-canary-service",
+                                     "--serviceName=slb-canary-proxy-http",
+                                 ]
+                                 + (if slbimages.phase == "1" then [] else ["--metricsEndpoint=" + configs.funnelVIP])
+                                 + [
+                                     "--log_dir=" + slbconfigs.logsDir,
+                                     "--ports=" + portconfigs.slb.canaryServiceProxyHttpPort,
+                                     "--tlsPorts=443",
+                                     "--privateKey=/var/slb/canarycerts/server.key",
+                                 ]
+                                 + (
+                                     if configs.estate == "prd-sdc" then [
+                                         "--publicKey=/var/slb/canarycerts/sdc.crt",
+                                     ] else [
+                                         "--publicKey=/var/slb/canarycerts/sam.crt",
+                                     ]
+                                 ),
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
@@ -62,60 +64,60 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                             },
                         }
                         else {}
-                       ),
+                    ),
                 ],
                 nodeSelector: {
                     pool: configs.estate,
                 },
             } + (
-                                      if configs.estate == "prd-sdc" then {
-                                          affinity: {
-                                             podAntiAffinity: {
-                                                requiredDuringSchedulingIgnoredDuringExecution: [{
-                                                labelSelector: {
-                                                    matchExpressions: [{
-                                                        key: "name",
-                                                        operator: "In",
-                                                        values: [
-                                                             "slb-ipvs",
-                                                              "slb-ipvs-a",
-                                                              "slb-ipvs-b",
-                                                              "slb-nginx-config-b",
-                                                               "slb-nginx-config-a",
-                                                               "slb-vip-watchdog",
-                                                        ],
-                                                    }],
-                                                },
-                                                topologyKey: "kubernetes.io/hostname",
-                                                }],
-                                             },
-                                             nodeAffinity: {
-                                                 requiredDuringSchedulingIgnoredDuringExecution: {
-                                                 nodeSelectorTerms: [
-                                                 {
-                                                     matchExpressions: [
-                                                        {
-                                                            key: "slb-service",
-                                                                       operator: "NotIn",
-                                                                       values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
-                                                        },
-                                                                   ] + (
-                                                                    if configs.estate == "prd-sdc" then
-                                                                    [
-                                                                      {
-                                                                        key: "illumio",
-                                                                        operator: "NotIn",
-                                                                        values: ["a", "b"],
-                                                                      },
-                                                                    ] else []
-                                                                  ),
-                                                                },
-                                                              ],
-                                                            },
-                                                          },
-                                                       },
-                                      } else {}
-                                    ),
+                if configs.estate == "prd-sdc" then {
+                    affinity: {
+                        podAntiAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: [{
+                                labelSelector: {
+                                    matchExpressions: [{
+                                        key: "name",
+                                        operator: "In",
+                                        values: [
+                                            "slb-ipvs",
+                                            "slb-ipvs-a",
+                                            "slb-ipvs-b",
+                                            "slb-nginx-config-b",
+                                            "slb-nginx-config-a",
+                                            "slb-vip-watchdog",
+                                        ],
+                                    }],
+                                },
+                                topologyKey: "kubernetes.io/hostname",
+                            }],
+                        },
+                        nodeAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: {
+                                nodeSelectorTerms: [
+                                    {
+                                        matchExpressions: [
+                                            {
+                                                key: "slb-service",
+                                                operator: "NotIn",
+                                                values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                            },
+                                        ] + (
+                                            if configs.estate == "prd-sdc" then
+                                                [
+                                                    {
+                                                        key: "illumio",
+                                                        operator: "NotIn",
+                                                        values: ["a", "b"],
+                                                    },
+                                                ] else []
+                                        ),
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                } else {}
+            ),
         },
         strategy: {
             type: "RollingUpdate",

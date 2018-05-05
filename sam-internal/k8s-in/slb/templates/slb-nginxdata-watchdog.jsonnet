@@ -7,11 +7,11 @@ if configs.estate == "prd-sdc" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
-            labels: {
-                name: "slb-nginxdata-watchdog",
-            },
+        labels: {
             name: "slb-nginxdata-watchdog",
-            namespace: "sam-system",
+        },
+        name: "slb-nginxdata-watchdog",
+        namespace: "sam-system",
     },
     spec: {
         replicas: 1,
@@ -24,7 +24,7 @@ if configs.estate == "prd-sdc" then {
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                 ]),
+                ]),
                 containers: [
                     {
                         name: "slb-nginxdata-watchdog",
@@ -56,22 +56,22 @@ if configs.estate == "prd-sdc" then {
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             configs.sfdchosts_volume_mount,
-                         ]),
-                         env: [
+                        ]),
+                        env: [
                             {
-                               name: "NODE_NAME",
-                               valueFrom: {
-                                   fieldRef: {
-                                       fieldPath: "spec.nodeName",
-                                   },
-                               },
+                                name: "NODE_NAME",
+                                valueFrom: {
+                                    fieldRef: {
+                                        fieldPath: "spec.nodeName",
+                                    },
+                                },
                             },
                             configs.kube_config_env,
                         ],
                     },
                 ],
                 nodeSelector: {
-                                    pool: configs.estate,
+                    pool: configs.estate,
                 },
             },
             metadata: {

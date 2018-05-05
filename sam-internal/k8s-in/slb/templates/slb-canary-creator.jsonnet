@@ -11,7 +11,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
             name: "slb-canary-creator",
         },
         name: "slb-canary-creator",
-         namespace: "sam-system",
+        namespace: "sam-system",
     },
     spec: {
         replicas: 1,
@@ -25,7 +25,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
             spec: {
                 hostNetwork: true,
                 nodeSelector: {
-                      master: "true",
+                    master: "true",
                 },
                 volumes: configs.filter_empty([
                     slbconfigs.logs_volume,
@@ -38,13 +38,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                         name: "slb-canary-creator",
                         image: slbimages.hypersdn,
                         command: [
-                            "/sdn/slb-canary-creator",
-                            "--canaryImage=" + slbimages.hypersdn,
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            "--maxParallelism=" + slbconfigs.canaryMaxParallelism,
-                        ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
-                            [configs.sfdchosts_arg],
+                                     "/sdn/slb-canary-creator",
+                                     "--canaryImage=" + slbimages.hypersdn,
+                                 ]
+                                 + (if slbimages.phase == "1" then [] else ["--metricsEndpoint=" + configs.funnelVIP])
+                                 + [
+                                     "--log_dir=" + slbconfigs.logsDir,
+                                     "--maxParallelism=" + slbconfigs.canaryMaxParallelism,
+                                 ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
+                                 [configs.sfdchosts_arg],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.logs_volume_mount,

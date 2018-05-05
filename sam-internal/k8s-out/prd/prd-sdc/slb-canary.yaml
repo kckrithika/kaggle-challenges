@@ -55,7 +55,6 @@ spec:
       - command:
         - /sdn/slb-canary-service
         - --serviceName=slb-sdc-svc
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --ports=9111
         - --tlsPorts=9443

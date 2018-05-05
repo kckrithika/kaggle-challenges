@@ -6,23 +6,23 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
-            labels: {
-                name: "slb-labels-checker",
-            },
+        labels: {
             name: "slb-labels-checker",
-            namespace: "sam-system",
+        },
+        name: "slb-labels-checker",
+        namespace: "sam-system",
     },
     spec: {
         replicas: 1,
         template: {
             spec: {
                 volumes: configs.filter_empty([
-                   slbconfigs.slb_volume,
-                   slbconfigs.logs_volume,
-                   configs.sfdchosts_volume,
-                   configs.kube_config_volume,
-                   configs.cert_volume,
-                   configs.maddog_cert_volume,
+                    slbconfigs.slb_volume,
+                    slbconfigs.logs_volume,
+                    configs.sfdchosts_volume,
+                    configs.kube_config_volume,
+                    configs.cert_volume,
+                    configs.maddog_cert_volume,
                 ]),
                 containers: [
                     {
@@ -50,18 +50,18 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         env: [
                             configs.kube_config_env,
                             {
-                               name: "NODE_NAME",
-                               valueFrom: {
-                                  fieldRef: {
-                                     fieldPath: "spec.nodeName",
-                                  },
-                               },
+                                name: "NODE_NAME",
+                                valueFrom: {
+                                    fieldRef: {
+                                        fieldPath: "spec.nodeName",
+                                    },
+                                },
                             },
                         ],
                     },
                 ],
                 nodeSelector: {
-                       pool: configs.estate,
+                    pool: configs.estate,
                 },
             },
             metadata: {

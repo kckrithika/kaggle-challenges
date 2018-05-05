@@ -22,21 +22,21 @@ if configs.estate == "prd-sdc" then {
             },
             spec: {
                 affinity: {
-                   nodeAffinity: {
-                                     requiredDuringSchedulingIgnoredDuringExecution: {
-                                       nodeSelectorTerms: [
-                                         {
-                                                matchExpressions: [
-                                                  {
-                                                     key: "slb-service",
-                                                     operator: "In",
-                                                     values: ["slb-nginx-b", "slb-ipvs"],
-                                                  },
-                                                ],
-                                             },
-                                           ],
-                                         },
-                   },
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "slb-service",
+                                            operator: "In",
+                                            values: ["slb-nginx-b", "slb-ipvs"],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    },
                 },
 
                 volumes: configs.filter_empty([
@@ -46,21 +46,21 @@ if configs.estate == "prd-sdc" then {
                 ]),
                 containers: [
                     {
-                       name: "slb-node-os-stats",
-                       image: slbimages.hypersdn,
-                       command: [
-                           "/sdn/slb-node-os-stats",
-                           "--metricsEndpoint=" + configs.funnelVIP,
-                           "--log_dir=" + slbconfigs.logsDir,
-                       ],
-                       volumeMounts: configs.filter_empty([
-                           slbconfigs.slb_volume_mount,
-                           slbconfigs.logs_volume_mount,
-                           slbconfigs.proc_volume_mount,
-                       ]),
-                       securityContext: {
-                           privileged: true,
-                       },
+                        name: "slb-node-os-stats",
+                        image: slbimages.hypersdn,
+                        command: [
+                            "/sdn/slb-node-os-stats",
+                            "--metricsEndpoint=" + configs.funnelVIP,
+                            "--log_dir=" + slbconfigs.logsDir,
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                            slbconfigs.proc_volume_mount,
+                        ]),
+                        securityContext: {
+                            privileged: true,
+                        },
                     },
                 ],
             },

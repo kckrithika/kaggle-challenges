@@ -53,7 +53,6 @@ spec:
       - command:
         - /sdn/slb-canary-service
         - --serviceName=slb-bravo-svc
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --ports=9090,9091,9092
         - --tlsPorts=9443
