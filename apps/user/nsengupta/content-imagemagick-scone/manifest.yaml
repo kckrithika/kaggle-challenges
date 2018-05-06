@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: imagemagick-service
+  - name: imagemagick
     count: 1
     containers:
     # Imagemagick service
@@ -56,7 +56,7 @@ system:
         value: mesh
       args:
       - -endpoint
-      - content:DATACENTER:7012
+      - imagemagick:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:
