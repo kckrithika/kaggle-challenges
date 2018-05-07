@@ -9,9 +9,11 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:v22
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: "sam"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: GRPC_ENDPOINT
+        value: "imagemagick.localhost.mesh.force.com:7011" 
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -27,7 +29,7 @@ system:
       image: sfci/servicelibs/sherpa:2.0.25 # Use the latest version from https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh # Use whatever environment your kpod uses
+        value: "sam" # Use whatever environment your kpod uses
       volumeMounts:
         - name: logvol
           mountPath: /log
