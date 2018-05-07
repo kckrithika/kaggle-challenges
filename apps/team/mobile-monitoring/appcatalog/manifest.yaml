@@ -36,13 +36,15 @@ system:
       - name: tls-client-cert
         mountPath: /certs
       readinessProbe:
-        tcpSocket:
-          port: 7020
+        exec:
+          command:
+          - "true"
         initialDelaySeconds: 30
         periodSeconds: 30
       livenessProbe:
-        tcpSocket:
-          port: 7020
+        exec:
+          command:
+          - "true"
         initialDelaySeconds: 15
         periodSeconds: 20
       ports:
