@@ -19,8 +19,11 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[alok.bansal] deploy latest samp-api-proxy code to test cert rotation
+        #[alok.bansal] deploy latest sam-api-proxy code to test cert rotation
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001941-65c61fc9",
+
+        #[alok.bansal] deploy manifest repo watcher with latest hypersam to test mysql host change
+        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "sam-0001948-03d9baca",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
