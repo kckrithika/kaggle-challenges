@@ -20,7 +20,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:1.0.0
+      image: sfci/retail/retail-setup:0.1.1.1
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -39,10 +39,14 @@ system:
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
         value: prod
-      - name: TENANT_SOURCE
-        value: MDS065tATaAUcWi
+      - name: TENANT_SOURCE_KEYS
+        value: core/prod/00De0000005WbtkEAC
+      - name: TENANT_SOURCE_NAMES
+        value: Service Org
       - name: TENANT_CANONICAL
-        value: MDS08fS6PGukUaj
+        value: mds/prod/ST0000000000001
+      - name: TENANT_SUPER
+        value: core/prod/00De0000005WbtaEAC
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
