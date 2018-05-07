@@ -9,12 +9,24 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/imagemagick:v6
       env:
       - name: SFDC_ENVIRONMENT
-        value: mesh
+        value: sam
       - name: JAVA_HEAP_OPTS
-        value: -Xmx64m
+        value: -Xmx64mi
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
+      - name: LOGGING_DIR
+        value: "/log"
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - mountPath: /dw/data
+          name: maxmind-volume
+        - mountPath: /log
+          name: imagemagick-log-volume
       ports:
       - containerPort: 7020
-        name: grpc-svc
+        name: grpc
       - containerPort: 15303
         name: scone-mgmt
       livenessProbe:
@@ -22,20 +34,27 @@ system:
         httpGet:
           path: /manage/health
           port: 15303
+        initialDelaySeconds: 130
+      readinessProbe:
+        httpGet:
+          path: /manage/health
+          port: 15303
+        initialDelaySeconds: 115
     
-    - name: sherpa
+    - name: sherpa-b
       image: sfci/servicelibs/sherpa:2.0.25 # Use the latest version from https://git.soma.salesforce.com/servicelibs/sherpa/releases
+      args: ["--zipkin-rate", "0.0"]
       env:
       - name: SFDC_ENVIRONMENT
-        value: "mesh" # Use whatever environment your kpod uses
+        value: "sam" # Use whatever environment your kpod uses
       volumeMounts:
-        - mountPath: /log
-          name: logvol
+      - name: sherpa-log-volume
+        mountPath: /log
       ports:
       - containerPort: 7012 # add additional container ports for the protocols your service uses
-        name: sherpa-in-http2
+        name: sherpa-b-in
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
+        name: sherpa-b-admin
       livenessProbe:
         exec:
           command:
@@ -49,27 +68,25 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
 
-#    - name: beacon
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-#      env:
-#      - name: SFDC_ENVIRONMENT
-#        value: mesh
-#      args:
-#      - -endpoint
-#      - imagemagick:DATACENTER:7012
-#      - -logging.dir
-#      - /log
-#      livenessProbe:
-#        initialDelaySeconds: 5
-#        exec:
-#          command:
-#          - "/home/scone/is-alive.sh"
-#      volumeMounts:
-#      - mountPath: /log
-#        name: logvol
-         
-    # Add the log volume in the function section:
+    - name: beacon-imagemegick
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam"
+      args:
+      - -endpoint
+      - content/imagemagick:DATACENTER_ALLENV:7012
+      livenessProbe:
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    
     volumes:
-    - name: logvol
+    - name: maxmind-volume
+      emptyDir: {}
+    - name: imagemagick-log-volume
       hostPath:
-        path: /home/sfdc-imagemagick/logs
+        path: /home/sfdc-geoip/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
