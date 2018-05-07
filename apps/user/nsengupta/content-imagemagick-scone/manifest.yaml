@@ -12,6 +12,8 @@ system:
         value: mesh
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: GRPC_ANNOUNCED_PORT
+        value: 7012
       ports:
       - containerPort: 7020
         name: grpc-svc
