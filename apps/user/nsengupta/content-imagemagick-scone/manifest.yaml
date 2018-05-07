@@ -9,7 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/imagemagick:v6
       env:
       - name: SFDC_ENVIRONMENT
-        value: sam
+        value: "sam"
       - name: JAVA_HEAP_OPTS
         value: -Xmx64mi
       - name: GRPC_ANNOUNCED_PORT
