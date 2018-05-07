@@ -56,7 +56,6 @@ spec:
         - /sdn/slb-ipvs-processor
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --maximumDeleteCount=1000
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -95,6 +94,24 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
+        - mountPath: /host/data/slb/logs/
+          name: var-logs-volume
+        - mountPath: /host/usr/sbin
+          name: usr-sbin-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-ipvs-conntrack
+        - --log_dir=/host/data/slb/logs/
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000839-0dc3b36f
+        name: slb-ipvs-conntrack
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/
+          name: var-config-volume
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
         - mountPath: /host/usr/sbin
