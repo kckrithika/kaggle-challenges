@@ -5,32 +5,44 @@ system:
     - env:
       - name: COMPILER_ENDPOINT_FSENV_PREFIX
         value: iot-prd-staging-
+      - name: COMPILER_ENDPOINT_URI
+        value: http://api-dev.flowsnake.localhost.mesh.force.com:5442/{FS_ENV_ID}/services/compiler
       - name: DVAKAFKA_TOPICAPI_ENDPOINT_HOST
         value: ajna0-zk1-1-prd.ops.sfdc.net
+      - name: DVAKAFKA_TOPICAPI_ENDPOINT_PORT
+        value: '5442'
       - name: DVAKAFKA_TOPICAPI_NAMESPACE
         value: sfdc.test.iot.integration
+      - name: DVAKAFKA_TOPICAPI_SERVICEMESH_ENABLED
+        value: 'true'
       - name: DVAKAFKA_TOPICAPI_TRUSTSTORE_FILE
         value: /home/controlplane/cacerts
+      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
+        value: 'true'
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: PHOENIX_DATACENTER
         value: prd
       - name: PHOENIX_KEYTABPATH
-        value: /home/controlplane/controlplane-keytab/iot.keytab
+        value: /home/controlplane/iot.keytab
       - name: PHOENIX_KEYTABPRINCIPAL
         value: iot
       - name: PHOENIX_KEYTABUSER
         value: iot
+      - name: PKI_CA_LOCATION
+        value: /client-certs
+      - name: PKI_CLIENT_MONITORED_LOCATION
+        value: /client-certs/client
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: sfci/iot/enterprise-controlplane:1.0.0.21
+      image: sfci/iot/enterprise-controlplane:1.0.0.26
       livenessProbe:
         httpGet:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: controlplane
+      name: controlplane-staging
       ports:
       - containerPort: 15372
         name: mgmt
@@ -57,7 +69,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
           command:
@@ -97,7 +109,9 @@ system:
         initialDelaySeconds: 5
       name: beacon
     count: 2
-    name: controlplane
+    identity:
+      serviceName: controlplane
+    name: controlplane-staging
     strategy:
       type: Recreate
     volumes:
@@ -108,7 +122,7 @@ system:
         type: client
       name: client-certs
     - hostPath:
-        path: /data/sam/iot/log/controlplane
+        path: /data/sam/iot/log/controlplane-staging
       name: logvol
     - name: ajnacerts
       secret:
@@ -117,12 +131,12 @@ system:
       secret:
         secretName: controlplane-keytab
   loadbalancers:
-  - function: controlplane
-    lbname: controlplane-lb
+  - function: controlplane-staging
+    lbname: controlplane-staging-lb
     nodeExposed: true
     ports:
     - port: 9115
-      targetport: 7443
+      targetport: 7012
     - lbtype: http
       port: 8115
       targetport: 15372
@@ -130,4 +144,3 @@ system:
   notifications:
     email:
     - iotenterprise@salesforce.com
-
