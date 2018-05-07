@@ -14,97 +14,6 @@ if configs.estate == "prd-sam" then {
         },
         name: "slb-nginx-config-a",
         namespace: "sam-system",
-        annotations: {
-            "madkub.sam.sfdc.net/allcerts": "{
-                                    \"certreqs\":[
-                                        {
-                                            \"name\": \"cert1\",
-                                            \"cert-type\":\"server\",
-                                            \"kingdom\":\"prd\",
-                                            \"role\": \"" + slbconfigs.samrole + "\",
-                                            \"san\":[
-                                                \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
-                                                \"*.slb.sfdc.net\",
-                                                \"*.soma.salesforce.com\",
-                                                \"*.data.sfdc.net\"
-                                            ]
-                                        },
-                                        {
-                                            \"name\": \"cert2\",
-                                            \"cert-type\":\"client\",
-                                            \"kingdom\":\"prd\",
-                                            \"role\": \"" + slbconfigs.samrole + "\"
-                                        }
-                                    ]
-                                 }",
-            "pod.beta.kubernetes.io/init-containers": "[
-                                    {
-                                      \"image\": \"" + samimages.madkub + "\",
-                                      \"args\": [
-                                        \"/sam/madkub-client\",
-                                        \"--madkub-endpoint\",
-                                        \"https://$(MADKUBSERVER_SERVICE_HOST):32007\",
-                                        \"--maddog-endpoint\",
-                                        \"" + slbconfigs.madkubServer + "\",
-                                        \"--maddog-server-ca\",
-                                        \"/maddog-certs/ca/security-ca.pem\",
-                                        \"--madkub-server-ca\",
-                                        \"/maddog-certs/ca/cacerts.pem\",
-                                        \"--cert-folders\",
-                                        \"cert1:/cert1/\",
-                                        \"--cert-folders\",
-                                        \"cert2:/cert2/\",
-                                        \"--token-folder\",
-                                        \"/tokens/\",
-                                        \"--requested-cert-type\",
-                                        \"client\"
-                                      ],
-                                      \"name\": \"madkub-init\",
-                                      \"imagePullPolicy\": \"IfNotPresent\",
-                                      \"volumeMounts\": [
-                                        {
-                                            \"mountPath\": \"/cert1\",
-                                            \"name\": \"cert1\"
-                                        },
-                                        {
-                                            \"mountPath\": \"/cert2\",
-                                            \"name\": \"cert2\"
-                                        },
-                                        {
-                                            \"mountPath\": \"/maddog-certs/\",
-                                            \"name\": \"maddog-certs\"
-                                        },
-                                        {
-                                            \"mountPath\": \"/tokens\",
-                                            \"name\": \"tokens\"
-                                        }
-                                      ],
-                                      \"env\": [
-                                        {
-                                            \"name\": \"MADKUB_NODENAME\",
-                                            \"valueFrom\":
-                                            {
-                                                \"fieldRef\":{\"fieldPath\": \"spec.nodeName\", \"apiVersion\": \"v1\"}
-                                            }
-                                        },
-                                        {
-                                            \"name\": \"MADKUB_NAME\",
-                                            \"valueFrom\":
-                                            {
-                                                \"fieldRef\":{\"fieldPath\": \"metadata.name\", \"apiVersion\": \"v1\"}
-                                            }
-                                        },
-                                        {
-                                            \"name\": \"MADKUB_NAMESPACE\",
-                                            \"valueFrom\":
-                                            {
-                                                \"fieldRef\":{\"fieldPath\": \"metadata.namespace\", \"apiVersion\": \"v1\"}
-                                            }
-                                        }
-                                      ]
-                                    }
-                                 ]",
-        },
     },
     spec: {
         replicas: 1,
@@ -114,6 +23,97 @@ if configs.estate == "prd-sam" then {
                     name: "slb-nginx-config-a",
                 },
                 namespace: "sam-system",
+                annotations: {
+                            "madkub.sam.sfdc.net/allcerts": "{
+                                                            \"certreqs\":[
+                                                                {
+                                                                    \"name\": \"cert1\",
+                                                                    \"cert-type\":\"server\",
+                                                                    \"kingdom\":\"prd\",
+                                                                    \"role\": \"" + slbconfigs.samrole + "\",
+                                                                    \"san\":[
+                                                                        \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
+                                                                        \"*.slb.sfdc.net\",
+                                                                        \"*.soma.salesforce.com\",
+                                                                        \"*.data.sfdc.net\"
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    \"name\": \"cert2\",
+                                                                    \"cert-type\":\"client\",
+                                                                    \"kingdom\":\"prd\",
+                                                                    \"role\": \"" + slbconfigs.samrole + "\"
+                                                                }
+                                                            ]
+                                                         }",
+                            "pod.beta.kubernetes.io/init-containers": "[
+                                                            {
+                                                              \"image\": \"" + samimages.madkub + "\",
+                                                              \"args\": [
+                                                                \"/sam/madkub-client\",
+                                                                \"--madkub-endpoint\",
+                                                                \"https://$(MADKUBSERVER_SERVICE_HOST):32007\",
+                                                                \"--maddog-endpoint\",
+                                                                \"" + slbconfigs.madkubServer + "\",
+                                                                \"--maddog-server-ca\",
+                                                                \"/maddog-certs/ca/security-ca.pem\",
+                                                                \"--madkub-server-ca\",
+                                                                \"/maddog-certs/ca/cacerts.pem\",
+                                                                \"--cert-folders\",
+                                                                \"cert1:/cert1/\",
+                                                                \"--cert-folders\",
+                                                                \"cert2:/cert2/\",
+                                                                \"--token-folder\",
+                                                                \"/tokens/\",
+                                                                \"--requested-cert-type\",
+                                                                \"client\"
+                                                              ],
+                                                              \"name\": \"madkub-init\",
+                                                              \"imagePullPolicy\": \"IfNotPresent\",
+                                                              \"volumeMounts\": [
+                                                                {
+                                                                    \"mountPath\": \"/cert1\",
+                                                                    \"name\": \"cert1\"
+                                                                },
+                                                                {
+                                                                    \"mountPath\": \"/cert2\",
+                                                                    \"name\": \"cert2\"
+                                                                },
+                                                                {
+                                                                    \"mountPath\": \"/maddog-certs/\",
+                                                                    \"name\": \"maddog-certs\"
+                                                                },
+                                                                {
+                                                                    \"mountPath\": \"/tokens\",
+                                                                    \"name\": \"tokens\"
+                                                                }
+                                                              ],
+                                                              \"env\": [
+                                                                {
+                                                                    \"name\": \"MADKUB_NODENAME\",
+                                                                    \"valueFrom\":
+                                                                    {
+                                                                        \"fieldRef\":{\"fieldPath\": \"spec.nodeName\", \"apiVersion\": \"v1\"}
+                                                                    }
+                                                                },
+                                                                {
+                                                                    \"name\": \"MADKUB_NAME\",
+                                                                    \"valueFrom\":
+                                                                    {
+                                                                        \"fieldRef\":{\"fieldPath\": \"metadata.name\", \"apiVersion\": \"v1\"}
+                                                                    }
+                                                                },
+                                                                {
+                                                                    \"name\": \"MADKUB_NAMESPACE\",
+                                                                    \"valueFrom\":
+                                                                    {
+                                                                        \"fieldRef\":{\"fieldPath\": \"metadata.namespace\", \"apiVersion\": \"v1\"}
+                                                                    }
+                                                                }
+                                                              ]
+                                                            }
+                                                         ]",
+                        },
             },
             spec: {
                 volumes: configs.filter_empty([
@@ -204,27 +204,6 @@ if configs.estate == "prd-sam" then {
                         ]),
                     },
                     slbshared.slbFileWatcher,
-                    {
-                        name: "slb-realsvrcfg",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-realsvrcfg",
-                            "--configDir=" + slbconfigs.configDir,
-                            "--period=5s",
-                            "--netInterfaceName=eth0",
-                            "--log_dir=" + slbconfigs.logsDir,
-                            configs.sfdchosts_arg,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.sbin_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        securityContext: {
-                            privileged: true,
-                        },
-                    },
                     {
                         args: [
                             "/sam/madkub-client",
