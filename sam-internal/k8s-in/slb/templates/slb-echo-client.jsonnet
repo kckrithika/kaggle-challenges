@@ -10,15 +10,15 @@ if configs.estate == "prd-sdc" then {
             name: "slb-echo-client",
         },
         name: "slb-echo-client",
-         namespace: "sam-system",
-                    annotations: {
-                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n
+        namespace: "sam-system",
+        annotations: {
+            "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n
            \"requiredDuringSchedulingIgnoredDuringExecution\": {\n
            \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\":
            [\n            {\n              \"key\": \"slb-service\",\n
            \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\",
            \"slb-nginx\", \"slb-echo-server\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-                    },
+        },
     },
     spec: {
         replicas: 1,
@@ -54,7 +54,7 @@ if configs.estate == "prd-sdc" then {
                     },
                 ],
                 nodeSelector: {
-                  pool: configs.estate,
+                    pool: configs.estate,
                 },
             },
         },

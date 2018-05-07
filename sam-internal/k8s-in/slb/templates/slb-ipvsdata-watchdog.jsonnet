@@ -7,15 +7,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
-            labels: {
-                name: "slb-ipvsdata-watchdog",
-            },
+        labels: {
             name: "slb-ipvsdata-watchdog",
-            namespace: "sam-system",
-                    annotations: {
-                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-                    },
-     },
+        },
+        name: "slb-ipvsdata-watchdog",
+        namespace: "sam-system",
+        annotations: {
+            "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
+        },
+    },
     spec: {
         replicas: 1,
         template: {
@@ -28,7 +28,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                 ]),
+                ]),
                 containers: [
                     {
                         name: "slb-ipvsdata-watchdog",
@@ -58,17 +58,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.cert_volume_mount,
                             configs.kube_config_volume_mount,
                             configs.sfdchosts_volume_mount,
-                         ]),
-                         env: [
+                        ]),
+                        env: [
                             configs.kube_config_env,
                         ],
                         securityContext: {
-                           privileged: true,
+                            privileged: true,
                         },
                     },
                 ],
                 nodeSelector: {
-                                    pool: configs.estate,
+                    pool: configs.estate,
                 },
             },
             metadata: {

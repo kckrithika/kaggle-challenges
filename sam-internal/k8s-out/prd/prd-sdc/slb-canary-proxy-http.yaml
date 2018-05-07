@@ -53,7 +53,6 @@ spec:
       - command:
         - /sdn/slb-canary-service
         - --serviceName=slb-canary-proxy-http
-        - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --ports=9116
         - --tlsPorts=443

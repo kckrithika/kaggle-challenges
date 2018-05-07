@@ -24,7 +24,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             },
             spec: {
                 hostNetwork: true,
-               volumes: configs.filter_empty([
+                volumes: configs.filter_empty([
                     slbconfigs.slb_volume,
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
@@ -50,7 +50,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
                         ]),
-                         env: [
+                        env: [
                             configs.kube_config_env,
                         ],
                         securityContext: {
@@ -58,19 +58,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         },
                     }
                     + (
-                    if configs.estate == "prd-sdc" then {
-                    livenessProbe: {
-                      exec: {
-                            command: [
-                                       "test",
-                                       "`find /slb-cleanup-heartbeat -mmin -.5`",
-                                     ],
-                      },
-                      initialDelaySeconds: 15,
-                      periodSeconds: 15,
-                    },
-                    }
-                    else {}
+                        if configs.estate == "prd-sdc" then {
+                            livenessProbe: {
+                                exec: {
+                                    command: [
+                                        "test",
+                                        "`find /slb-cleanup-heartbeat -mmin -.5`",
+                                    ],
+                                },
+                                initialDelaySeconds: 15,
+                                periodSeconds: 15,
+                            },
+                        }
+                        else {}
                     ),
                 ],
             },
@@ -83,4 +83,4 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         },
         minReadySeconds: 30,
     },
- } else "SKIP"
+} else "SKIP"

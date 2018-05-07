@@ -31,19 +31,19 @@ if configs.estate == "prd-sam" then {
                         name: "dev-volume",
                         hostPath: {
                             path: "/dev",
-                         },
+                        },
                     },
                     {
                         name: "lib-modules-volume",
                         hostPath: {
                             path: "/lib/modules",
-                         },
+                        },
                     },
                     {
                         name: "tmp-volume",
                         hostPath: {
                             path: "/tmp",
-                         },
+                        },
                     },
                     slbconfigs.usr_sbin_volume,
                     slbconfigs.logs_volume,
@@ -86,20 +86,20 @@ if configs.estate == "prd-sam" then {
                         ]),
                     }
                     + (
-                    if configs.estate == "prd-sdc" then {
-                        securityContext: {
-                            privileged: true,
-                        },
-                    } else {
-                        securityContext: {
-                            privileged: true,
-                            capabilities: {
-                                add: [
-                                    "ALL",
-                                ],
+                        if configs.estate == "prd-sdc" then {
+                            securityContext: {
+                                privileged: true,
                             },
-                        },
-                    }
+                        } else {
+                            securityContext: {
+                                privileged: true,
+                                capabilities: {
+                                    add: [
+                                        "ALL",
+                                    ],
+                                },
+                            },
+                        }
                     ),
 
                     {
@@ -109,7 +109,9 @@ if configs.estate == "prd-sam" then {
                             "/sdn/slb-ipvs-processor",
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
-                            "--metricsEndpoint=" + configs.funnelVIP,
+                        ] + (if slbimages.phase == "1" || slbimages.phase == "3" then [] else [
+                                 "--metricsEndpoint=" + configs.funnelVIP,
+                             ]) + [
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
@@ -127,30 +129,30 @@ if configs.estate == "prd-sam" then {
                     },
 
                     {
-                       name: "slb-ipvs-data",
-                       image: slbimages.hypersdn,
-                       command: [
-                           "/sdn/slb-ipvs-data",
-                           "--connPort=" + portconfigs.slb.ipvsDataConnPort,
-                           "--log_dir=" + slbconfigs.logsDir,
-                           configs.sfdchosts_arg,
-                       ],
-                       volumeMounts: configs.filter_empty([
-                           slbconfigs.slb_volume_mount,
-                           slbconfigs.logs_volume_mount,
-                           slbconfigs.usr_sbin_volume_mount,
-                           configs.sfdchosts_volume_mount,
-                       ]),
-                       securityContext: {
-                           privileged: true,
-                       },
-                       ports: [
-                             {
+                        name: "slb-ipvs-data",
+                        image: slbimages.hypersdn,
+                        command: [
+                            "/sdn/slb-ipvs-data",
+                            "--connPort=" + portconfigs.slb.ipvsDataConnPort,
+                            "--log_dir=" + slbconfigs.logsDir,
+                            configs.sfdchosts_arg,
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                            slbconfigs.usr_sbin_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                        ]),
+                        securityContext: {
+                            privileged: true,
+                        },
+                        ports: [
+                            {
                                 containerPort: portconfigs.slb.slbIpvsControlPort,
-                             },
-                       ],
-                     }
-                     + (
+                            },
+                        ],
+                    }
+                    + (
                         if configs.estate == "prd-sdc" then {
                             livenessProbe: {
                                 httpGet: {
@@ -162,7 +164,7 @@ if configs.estate == "prd-sam" then {
                             },
                         }
                         else {}
-                      ),
+                    ),
                 ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs-a",

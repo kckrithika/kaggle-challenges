@@ -146,9 +146,9 @@ if slbconfigs.slbInKingdom then {
                     },
                     configs.maddog_cert_volume,
                     slbconfigs.sbin_volume,
-                                        configs.kube_config_volume,
-                                        configs.cert_volume,
-                                        slbconfigs.slb_config_volume,
+                    configs.kube_config_volume,
+                    configs.cert_volume,
+                    slbconfigs.slb_config_volume,
                 ]),
                 containers: [
                                 {

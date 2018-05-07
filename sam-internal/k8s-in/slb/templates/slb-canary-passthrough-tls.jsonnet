@@ -27,53 +27,55 @@ if configs.estate == "prd-sdc" then {
                     slbconfigs.logs_volume,
                 ]),
                 affinity: {
-                 podAntiAffinity: {
-                     requiredDuringSchedulingIgnoredDuringExecution: [{
-                     labelSelector: {
-                         matchExpressions: [{
-                             key: "name",
-                             operator: "In",
-                             values: [
-                                 "slb-ipvs",
-                                 "slb-ipvs-a",
-                                 "slb-ipvs-b",
-                                 "slb-nginx-config-b",
-                                 "slb-nginx-config-a",
-                                 "slb-vip-watchdog",
-                             ],
-                         }],
+                    podAntiAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: [{
+                            labelSelector: {
+                                matchExpressions: [{
+                                    key: "name",
+                                    operator: "In",
+                                    values: [
+                                        "slb-ipvs",
+                                        "slb-ipvs-a",
+                                        "slb-ipvs-b",
+                                        "slb-nginx-config-b",
+                                        "slb-nginx-config-a",
+                                        "slb-vip-watchdog",
+                                    ],
+                                }],
+                            },
+                            topologyKey: "kubernetes.io/hostname",
+                        }],
+                    },
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [
+                                {
+                                    matchExpressions: [
+                                        {
+                                            key: "illumio",
+                                            operator: "NotIn",
+                                            values: ["a", "b"],
+                                        },
+                                    ],
                                 },
-                      topologyKey: "kubernetes.io/hostname",
-                     }],
-                 },
-                 nodeAffinity: {
-                     requiredDuringSchedulingIgnoredDuringExecution: {
-                         nodeSelectorTerms: [
-                             {
-                                 matchExpressions: [
-                                     {
-                                           key: "illumio",
-                                           operator: "NotIn",
-                                           values: ["a", "b"],
-                                     },
-                                 ],
-                              },
-                         ],
-                     },
-                 },
+                            ],
+                        },
+                    },
 
-              },
+                },
                 containers: [
                     {
                         name: "slb-canary-passthrough-tls",
                         image: slbimages.hypersdn,
                         command: [
-                            "/sdn/slb-canary-service",
-                            "--serviceName=slb-canary-passthrough-tls",
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            "--ports=" + portconfigs.slb.canaryServicePassthroughTlsPort,
-                        ],
+                                     "/sdn/slb-canary-service",
+                                     "--serviceName=slb-canary-passthrough-tls",
+                                 ]
+                                 + (if slbimages.phase == "1" then [] else ["--metricsEndpoint=" + configs.funnelVIP])
+                                 + [
+                                     "--log_dir=" + slbconfigs.logsDir,
+                                     "--ports=" + portconfigs.slb.canaryServicePassthroughTlsPort,
+                                 ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),

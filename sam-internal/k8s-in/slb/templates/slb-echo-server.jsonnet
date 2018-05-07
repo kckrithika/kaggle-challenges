@@ -11,10 +11,10 @@ if configs.estate == "prd-sdc" then {
             name: "slb-echo-server",
         },
         name: "slb-echo-server",
-         namespace: "sam-system",
-                    annotations: {
-                             "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
-                    },
+        namespace: "sam-system",
+        annotations: {
+            "scheduler.alpha.kubernetes.io/affinity": "{   \"nodeAffinity\": {\n    \"requiredDuringSchedulingIgnoredDuringExecution\": {\n      \"nodeSelectorTerms\": [\n        {\n          \"matchExpressions\": [\n            {\n              \"key\": \"slb-service\",\n              \"operator\": \"NotIn\",\n              \"values\": [\"slb-ipvs\", \"slb-nginx\"]\n            }\n          ]\n        }\n      ]\n    }\n  }\n}\n",
+        },
     },
     spec: {
         replicas: 2,
@@ -50,7 +50,7 @@ if configs.estate == "prd-sdc" then {
                     },
                 ],
                 nodeSelector: {
-                  "slb-service": "slb-echo-server",
+                    "slb-service": "slb-echo-server",
                 },
             },
         },
