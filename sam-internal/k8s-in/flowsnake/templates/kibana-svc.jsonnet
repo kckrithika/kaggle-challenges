@@ -1,5 +1,5 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if !flowsnakeconfig.elastic_search_enabled then
+local elk = import "elastic_search_logstash_kibana.jsonnet";
+if !elk.elastic_search_enabled then
 "SKIP"
 else
 {
@@ -23,7 +23,7 @@ else
                 port: 5601,
                 protocol: "TCP",
                 # NodePort allowed range is different in Minikube; compensate accordingly.
-                nodePort: if flowsnakeconfig.is_minikube then 30003 else 32003,
+                nodePort: elk.kibana_nodeport,
             },
         ],
     },

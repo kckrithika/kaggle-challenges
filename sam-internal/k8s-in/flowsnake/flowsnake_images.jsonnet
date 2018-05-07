@@ -17,7 +17,38 @@ local utils = import "util_functions.jsonnet";
     ### Per-phase image tags
     per_phase: {
 
-        ### Release Phase 1 - image tags from strata build
+        ### Release Phase minikube
+        minikube: {
+            canary_image_tag: "minikube",
+            cert_secretizer_image_tag: "minikube",
+            es_image_tag: "minikube",
+            fleetService_image_tag: "minikube",
+            glok_image_tag: "minikube",
+            ingressControllerNginx_image_tag: "minikube",
+            ingressDefaultBackend_image_tag: "minikube",
+            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
+            kibana_image_tag: "minikube",
+            logloader_image_tag: "minikube",
+            logstash_image_tag: "minikube",
+            madkub_image_tag: "minikube",
+            nodeMonitor_image_tag: "minikube",
+            zookeeper_image_tag: "minikube",
+            kubedns_image_tag: "1.10.0",
+            feature_flags: {
+                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                simplify_elk_replicas: "foo",
+            },
+            version_mapping: {
+                main: {
+                  minikube: "minikube",
+                },
+                # ignore this section, require by std.manifestIni
+                sections: {
+                },
+            },
+        },
+
+        ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": {
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
@@ -36,6 +67,9 @@ local utils = import "util_functions.jsonnet";
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
+            feature_flags: {
+                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+            },
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -64,7 +98,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        ### Release Phase 2
+        ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": {
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
@@ -83,6 +117,9 @@ local utils = import "util_functions.jsonnet";
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
+            feature_flags: {
+                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+            },
             version_mapping: {
                 main: {
                   "0.9.1": 377,
@@ -105,7 +142,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        ### Release Phase 3
+        ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": {
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
@@ -124,6 +161,9 @@ local utils = import "util_functions.jsonnet";
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
+            feature_flags: {
+                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+            },
             version_mapping: {
                 main: {
                   "0.9.7": 571,
@@ -135,7 +175,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        ### Release Phase 4
+        ### Release Phase 4 - Remaiing production fleets
         "4": {
             canary_image_tag: "345",
             cert_secretizer_image_tag: "585",
@@ -154,38 +194,15 @@ local utils = import "util_functions.jsonnet";
             zookeeper_image_tag: "345",
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
+            feature_flags: {
+                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+            },
             version_mapping: {
                 main: {
                   "0.9.7": 571,
                   "0.9.8-SNAPSHOT": "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
                   "0.9.7-595": "jenkins-dva-transformation-flowsnake-platform-PR-596-1-itest",
                   "0.9.8": 607,
-                },
-                # ignore this section, require by std.manifestIni
-                sections: {
-                },
-            },
-        },
-
-        minikube: {
-            canary_image_tag: "minikube",
-            cert_secretizer_image_tag: "minikube",
-            es_image_tag: "minikube",
-            fleetService_image_tag: "minikube",
-            glok_image_tag: "minikube",
-            ingressControllerNginx_image_tag: "minikube",
-            ingressDefaultBackend_image_tag: "minikube",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "minikube",
-            logloader_image_tag: "minikube",
-            logstash_image_tag: "minikube",
-            madkub_image_tag: "minikube",
-            nodeMonitor_image_tag: "minikube",
-            zookeeper_image_tag: "minikube",
-            kubedns_image_tag: "1.10.0",
-            version_mapping: {
-                main: {
-                  minikube: "minikube",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -223,6 +240,7 @@ local utils = import "util_functions.jsonnet";
     node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 
+    feature_flags: $.per_phase[$.phase].feature_flags,
     version_mapping: $.per_phase[$.phase].version_mapping,
 
     # Non-Flowsnake images
