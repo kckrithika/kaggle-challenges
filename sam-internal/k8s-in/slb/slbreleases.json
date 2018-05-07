@@ -11,8 +11,8 @@
   },
   "2": {
     "hypersdn": {
-      "label": "v-0000830-b01a3c44",
-      "promotedTime": "2018-05-02T21:21:17.95465438Z"
+      "label": "v-0000839-0dc3b36f",
+      "promotedTime": "2018-05-07T22:48:10.225059Z"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
@@ -32,8 +32,9 @@
   },
   "4": {
     "hypersdn": {
-      "label": "v-0000828-86ea12c1",
-      "promotedTime": "2018-05-02T21:21:17.954636897Z"
+      "label": "v-0000838-b38cefe7",
+      "promotedTime": "2018-05-04T22:48:10.225059Z",
+      "warning": "834 involves removal of metricsEndpoint from slb-ipvs"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
