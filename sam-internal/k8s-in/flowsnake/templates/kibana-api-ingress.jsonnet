@@ -1,4 +1,4 @@
-local elk = import "elk.jsonnet";
+local elk = import "elastic_search_logstash_kibana.jsonnet";
 if !elk.elastic_search_enabled then
 "SKIP"
 else

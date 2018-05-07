@@ -1,7 +1,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local zookeeper = import "_zookeeper-rcs.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local elk = import "elk.jsonnet";
+local elk = import "elastic_search_logstash_kibana.jsonnet";
 if std.objectHas(flowsnake_images.feature_flags, "simplify_elk_replicas") then
 {
     apiVersion: "apps/v1beta1",
