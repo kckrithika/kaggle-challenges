@@ -10,8 +10,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      - name: JAVA_HEAP_OPTS
-        value: -Xmx64mi
+      - name: JAVA_OPTS
+        value: "-Xms512m -Xmx512m"
       - name: GRPC_ANNOUNCED_PORT
         value: 7012
       - name: LOGGING_DIR
@@ -28,7 +28,6 @@ system:
       - containerPort: 15303
         name: scone-mgmt
       livenessProbe:
-        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15303
