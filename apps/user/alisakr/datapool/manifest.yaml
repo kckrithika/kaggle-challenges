@@ -9,19 +9,6 @@ system:
       serviceName: datapool
     count: 1
     containers:
-    - name: beacon
-      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: kingdom-test
-      livenessProbe:
-        exec:
-          command: ["/home/scone/is-alive.sh"]
-        initialDelaySeconds: 5
-      args:
-      - -endpoint
-      - alisakr/datapool-service:DATACENTER:7443
-
     - name: datapool-service
       image: sfci/insights/datapoolservice:3519bff
       ports:
