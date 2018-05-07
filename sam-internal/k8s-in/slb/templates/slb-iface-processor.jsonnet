@@ -42,7 +42,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ] + (if slbimages.phase == "1" then [
+                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                             "--readVipsFromIpvs=true",
                         ] else []),
                         volumeMounts: configs.filter_empty([

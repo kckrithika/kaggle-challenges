@@ -28,7 +28,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000839-0dc3b36f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000842-a7cf8f3b
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -59,7 +59,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --maximumDeleteCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000839-0dc3b36f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000842-a7cf8f3b
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -79,7 +79,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000839-0dc3b36f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000842-a7cf8f3b
         livenessProbe:
           httpGet:
             path: /
@@ -103,7 +103,7 @@ spec:
       - command:
         - /sdn/slb-ipvs-conntrack
         - --log_dir=/host/data/slb/logs/
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000839-0dc3b36f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000842-a7cf8f3b
         name: slb-ipvs-conntrack
         securityContext:
           privileged: true
