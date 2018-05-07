@@ -14,10 +14,6 @@ local kingdom = std.extVar("kingdom");
             authorizedClientCerts: ["flowsnake_master"],
         },
         {
-            namespace: "flowsnake_test",
-            authorizedLdapGroups: ["Flowsnake_Platform"],
-        },
-        {
             namespace: "alerting_snmp",
             authorizedLdapGroups: ["alerting_flowsnake"],
             authorizedClientCerts: [],
