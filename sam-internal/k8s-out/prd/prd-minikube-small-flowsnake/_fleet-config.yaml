@@ -4,6 +4,7 @@ data:
   name: minikube
   registry: minikube
   strata_registry: minikube
+  vip: prd-minikube-small-flowsnake.data.sfdc.net
 kind: ConfigMap
 metadata:
   creationTimestamp: null
