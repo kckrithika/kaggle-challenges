@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-portal" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-portal" } else {});
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
@@ -25,7 +26,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             spec: {
                       volumes: configs.filter_empty([
                           slbconfigs.slb_volume,
-                      ]),
+                      ] + if slbimages.phase == "1" then [
+                          configs.maddog_cert_volume,
+                          slbconfigs.slb_config_volume,
+                          slbconfigs.logs_volume,
+                          configs.sfdchosts_volume,
+                          configs.cert_volume,
+                          configs.kube_config_volume,
+                      ] else []),
                       containers: [
                           {
                               name: "slb-portal",
@@ -35,7 +43,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--hostname=$(NODE_NAME)",
                                   "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                                   "--port=" + portconfigs.slb.slbPortalServicePort,
-                              ],
+                              ] + (if slbimages.phase == "1" then [
+                                       "--useLocalNodeApi=true",
+                                   ] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                               ]),
@@ -59,7 +69,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   },
                               ],
                           },
-                      ],
+                      ] + (if slbimages.phase == "1" then [
+                               slbshared.slbConfigProcessor,
+                               slbshared.slbCleanupConfig,
+                               slbshared.slbNodeApi,
+                           ] else []),
                       nodeSelector: {
                           pool: configs.estate,
                       },
