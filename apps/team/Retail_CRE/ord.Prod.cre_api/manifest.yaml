@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-api
-      image: sfci/cre/cre-api:0.0.1.43.master.4fe5662.95
+      image: sfci/cre/cre-api:0.0.1.57.master.7084b35.109
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__ord.ajna_local__cre_audit
@@ -22,7 +22,7 @@ system:
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
-          value: maddog/maddog-client-truststore.json                    
+          value: maddog/maddog-client-truststore.json
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -90,7 +90,7 @@ system:
   - lbname: cre-api-lb
     function: cre-api
     nodeExposed: true
-    slbenabled: true    
+    slbenabled: true
     ports:
       - port: 8086
         targetport: 8080
