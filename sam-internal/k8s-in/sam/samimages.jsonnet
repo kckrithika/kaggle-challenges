@@ -19,12 +19,7 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[alok.bansal] deploy latest sam-api-proxy code to test cert rotation
-        "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001941-65c61fc9",
-
-
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
-        "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "prd,prd-sam_storage,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "cdu,cdu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
@@ -43,13 +38,6 @@ local utils = import "util_functions.jsonnet";
 
         # [mgrass] Releasing estate-server early in xrd to unblock ceph cluster deployment (depends on failure domain labeling done by nodecontroller).
         "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
-
-        #[a.mitra] deploy liveness probe for bundlecontroller in prd-samdev
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001933-968970c4",
-
-        #[jiayi.yan] snapshotconsumer cleans 45min tombstones in mysql
-        "prd,prd-sam,snapshotconsumer,hypersam": "sam-0001941-65c61fc9",
-
         },
 
     ### Per-phase image tags
@@ -80,7 +68,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
-            hypersam: "sam-0001931-927cd1fc",
+            hypersam: "sam-0001948-03d9baca",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
