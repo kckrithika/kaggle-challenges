@@ -1,4 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local estate = std.extVar("estate");
 {
     apiVersion: "v1",
     kind: "ConfigMap",
@@ -11,5 +12,6 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
         registry: flowsnakeconfig.registry,
         strata_registry: flowsnakeconfig.strata_registry,
         kubeconfig: "/etc/kubernetes/kubeconfig",
+        vip: flowsnakeconfig.fleet_vips[estate],
     },
 }
