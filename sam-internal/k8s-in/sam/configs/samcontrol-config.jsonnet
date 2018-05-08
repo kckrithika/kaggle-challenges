@@ -24,7 +24,7 @@ std.prune({
 
   # Image check
   imageCheckV2: true,
-  checkImageExistsFlag: (if configs.kingdom == "prd" || configs.kingdom == "frf" then true else false),
+  checkImageExistsFlag: true,
 
   # MadDog
   enableMaddog: samfeatureflags.maddogforsamapps,
