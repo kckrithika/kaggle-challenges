@@ -6,6 +6,17 @@ local storageconfigs = import "storageconfig.jsonnet";
 // Currently disabled -- no minion estates need prep at this time.
 local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
 
+local rolloutPolicy =
+  if storageimages.phase == "1" then {
+    updateStrategy: {
+      type: "RollingUpdate",
+      rollingUpdate: {
+          maxUnavailable: "10%",
+      },
+    },
+    minReadySeconds: 10,
+  } else {};
+
 if configs.estate == "prd-sam_storage" then {
 
     apiVersion: "extensions/v1beta1",
@@ -168,5 +179,5 @@ if configs.estate == "prd-sam_storage" then {
           ] + storageutils.log_init_volumes()),
         },
       },
-   },
+    } + rolloutPolicy,
 } else "SKIP"
