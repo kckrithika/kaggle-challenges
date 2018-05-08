@@ -38,6 +38,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                             "/sdn/slb-iface-processor",
                             "--configDir=" + slbconfigs.configDir,
+                            ] + (if slbimages.phase == "2" || slbimages.phase == "3" || slbimages.phase == "4" then [] else [
+                            "--control.sentinelExpiration=120s",
+                            ]) + [
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,

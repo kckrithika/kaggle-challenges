@@ -33,6 +33,7 @@ spec:
       - command:
         - /sdn/slb-iface-processor
         - --configDir=/host/data/slb/config/
+        - --control.sentinelExpiration=120s
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
