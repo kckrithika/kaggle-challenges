@@ -22,13 +22,9 @@ local utils = import "util_functions.jsonnet";
         #[alok.bansal] deploy latest sam-api-proxy code to test cert rotation
         "prd,prd-sam,sam-api-proxy,hypersam": "sam-0001941-65c61fc9",
 
-        #[alok.bansal] deploy manifest repo watcher with latest hypersam to test mysql host change
-        "prd,prd-samdev,sam-manifest-repo-watcher,hypersam": "sam-0001948-03d9baca",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "prd,prd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "prd,prd-samdev,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "prd,prd-samtest,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "prd,prd-sam_storage,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "cdu,cdu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
@@ -49,7 +45,6 @@ local utils = import "util_functions.jsonnet";
         "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
 
         #[a.mitra] deploy liveness probe for bundlecontroller in prd-samdev
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001933-968970c4",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001933-968970c4",
 
         #[jiayi.yan] snapshotconsumer cleans 45min tombstones in mysql
@@ -78,7 +73,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001931-927cd1fc",
+            hypersam: "sam-0001948-03d9baca",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
