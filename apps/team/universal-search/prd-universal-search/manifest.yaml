@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-prd
     containers:
     - name: universal-search
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.7.2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/universal-search/universal-search:0.7.3
       ports:
       - name: service-port
         containerPort: 7020
@@ -54,15 +54,7 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
-        timeoutSeconds: 30
-        periodSeconds: 120
-        failureThreshold: 1
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 120
-        timeoutSeconds: 30
+        timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
