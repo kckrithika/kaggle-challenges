@@ -6,6 +6,96 @@ system:
     - jschroeder@salesforce.com
 
   functions:
+  - name: appcatalog
+    count: 1
+    volumes:
+    - name: tls-client-cert
+      maddogCert: # Add "ROLE::samapp.mobile-monitoring.appcatalog" to Secret Service
+        type: client
+    - name: tls-server-cert
+      maddogCert:
+        type: server
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+    containers:
+    - name: appcatalog
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_app:20180508.0
+      env:
+      - name: SECRETSERVICE_CERT_PATH
+        value: /certs/client/certificates/client.pem
+      - name: SECRETSERVICE_PRIVATE_KEY_PATH
+        value: /certs/client/keys/client-key.pem
+      - name: HTTP_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: HTTPS_PROXY
+        value: public0-proxy1-0-prd.data.sfdc.net:8080
+      - name: NO_PROXY
+        value: 127.0.0.1,localhost,.sfdc.net,.dmz.salesforce.com
+      volumeMounts:
+      - name: tls-client-cert
+        mountPath: /certs
+      readinessProbe:
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 30
+        periodSeconds: 30
+      livenessProbe:
+        exec:
+          command:
+          - "true"
+        initialDelaySeconds: 15
+        periodSeconds: 20
+      ports:
+      - containerPort: 7020
+        name: grpc
+    - name: sherpa
+      image: sfci/servicelibs/sherpa:2.0.26
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: "sam" # Use whatever environment your kpod uses
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /log
+        - name: tls-client-cert
+          mountPath: /client-certs
+        - name: tls-server-cert
+          mountPath: /server-certs
+      ports:
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    - name: beacon
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      args:
+        - -endpoint
+        - samapp/mobile-monitoring/appcatalog:DATACENTER:7012
+        - -endpoint
+        - samapp/mobile-monitoring/appcatalog:DATACENTER:7443
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+
   - name: appcatalog-postgres
     type: stateful-set
     count: 1
