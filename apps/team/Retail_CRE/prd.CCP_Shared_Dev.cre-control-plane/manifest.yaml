@@ -85,6 +85,8 @@ system:
       - cre-control-plane:DATACENTER_ALLENV:7012
       - -endpoint
       - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
+      - -endpoint
+      - retail-cre/cre-control-plane:DATACENTER_ALLENV:7442
       # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
       # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
       # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
