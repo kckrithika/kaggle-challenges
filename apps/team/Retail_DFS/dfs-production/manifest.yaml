@@ -5,42 +5,83 @@ system:
   functions:
   - name: dfs-production
     count: 3
+    identity:
+      serviceName: dfs
+    # maps the dfslogvol volumnMount to a directory on the host machine
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-dfs/logs
+    - name: dfs-server-cert
+      maddogCert:
+        type: server
+    - name: dfs-client-cert
+      maddogCert:
+        type: client
+
     containers:
-    - name: dfs-production
-      image: sfci/enterprise-api/sfdc-platform-dfs:0.1.18
+    - name: dfs
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.2.16
+      # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
+      - name: dfs-client-cert
+        mountPath: /client-certs
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
+      - name: LOAD_CC_CERT
+        value: false
       ports:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         exec:
           command: ["true"]
+
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.21
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - name: dfs-server-cert
+        mountPath: /server-certs
+      - name: dfs-client-cert
+        mountPath: /client-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
       ports:
+        - containerPort: 7442
         - containerPort: 7014
         - containerPort: 15373
       livenessProbe:
         exec:
           command:
           - "./bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+        initialDelaySeconds: 60
+        periodSeconds: 120
       readinessProbe:
         exec:
           command:
           - "./bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-dfs/logs
+        initialDelaySeconds: 60
+        periodSeconds: 120
+
+    - name: beacon-dfs
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - dfs:DATACENTER:7014
+      - -endpoint
+      - retail-dfs/dfs:DATACENTER:7442
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
