@@ -54,15 +54,7 @@ system:
           path: /manage/health
           port: 15372
         initialDelaySeconds: 120
-        timeoutSeconds: 30
-        periodSeconds: 120
-        failureThreshold: 1
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
-        initialDelaySeconds: 120
-        timeoutSeconds: 30
+        timeoutSeconds: 10
         periodSeconds: 120
         failureThreshold: 1
     - name: sherpa
