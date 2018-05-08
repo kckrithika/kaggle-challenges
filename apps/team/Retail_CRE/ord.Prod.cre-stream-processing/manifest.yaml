@@ -1,0 +1,98 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-sp
+    count: 3
+    containers:
+    - name: cre-sp
+      image: sfci/cre/cre-stream-processing:0.0.1.54.master.4d70f79.122
+      env:
+        - name: METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__ord.ajna_local__cre_metrics
+        - name: METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: METRICS_KAFKA_GROUP_ID
+          value: cre-sp-ord
+        - name: SFDC_ENVIRONMENT
+          value: prod          
+        - name: METRICS_KAFKA_ENABLED
+          value: false
+        - name: MADDOG_CLIENT_KEYSTORE
+          value: maddog/maddog-client-keystore.json
+        - name: MADDOG_CLIENT_TRUSTSTORE
+          value: maddog/maddog-client-truststore.json          
+      ports:
+      - containerPort: 8080
+      - containerPort: 7020
+      - containerPort: 15372
+      livenessProbe:
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
+      volumeMounts:
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert        
+      - mountPath: /opt/cre/cre-sp
+        name: logvol
+    - name: sherpa-cre-stream-processing
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - mountPath: /myclientcert
+        name: myclientcert
+      - mountPath: /myservercert
+        name: myservercert 
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7012
+        name: sherpa-ot-http2
+      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+        name: sherpa-in-http1
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-sp
+    - name: myclientcert
+      maddogCert:
+        type: client
+    - name: myservercert
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-sp-lb       
+  loadbalancers:
+  - lbname: cre-sp-lb
+    function: cre-sp
+    nodeExposed: true
+    slbenabled: true
+    ports:
+      - port: 8091
+        targetport: 8080
