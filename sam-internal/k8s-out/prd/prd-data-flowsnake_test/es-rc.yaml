@@ -39,7 +39,7 @@ spec:
               key: kubeconfig
               name: fleet-config
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-elasticsearch:503
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           initialDelaySeconds: 180
           tcpSocket:

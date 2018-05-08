@@ -29,7 +29,7 @@ if flowsnakeconfig.is_minikube then
                     {
                         name: "test-data",
                         image: "minikube/flowsnake-test-data:minikube",
-                        imagePullPolicy: "Never",
+                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         ports: [
                             {
                                 containerPort: 80,

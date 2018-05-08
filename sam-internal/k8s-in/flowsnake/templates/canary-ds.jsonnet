@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 if flowsnakeconfig.is_minikube_small then
 "SKIP"
@@ -24,8 +24,8 @@ else
             spec: {
                 containers: [
                     {
-                        image: flowsnakeimage.canary,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "IfNotPresent",
+                        image: flowsnake_images.canary,
+                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         resources: {
                             requests: {
                                 cpu: 0.1,

@@ -8,6 +8,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
         estate == "prd-dev-flowsnake_iot_test" ||
         (flowsnake_config.is_minikube && !flowsnake_config.is_minikube_small)
     ),
+    elastic_search_replicas: if flowsnake_config.is_minikube_small then 1 else 3,
     zk_replicas: if flowsnake_config.is_minikube_small then 1 else 3,
     kafka_replicas: if flowsnake_config.is_minikube_small then 1 else 3,
     kafka_partitions: if flowsnake_config.is_minikube_small then 1 else 3,
