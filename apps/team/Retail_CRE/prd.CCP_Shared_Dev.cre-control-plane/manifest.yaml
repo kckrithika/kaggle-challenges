@@ -22,7 +22,7 @@ system:
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
-          value: 7443
+          value: 7020
       ports:
       - containerPort: 8080
       - containerPort: 7020
