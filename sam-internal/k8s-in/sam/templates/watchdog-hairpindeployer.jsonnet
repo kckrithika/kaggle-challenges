@@ -30,9 +30,7 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                                      "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
                                      "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
                                  ]
-                                 + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.maddog_cert_volume_mount,

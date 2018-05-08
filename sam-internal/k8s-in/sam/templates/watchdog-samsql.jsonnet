@@ -27,9 +27,7 @@ if configs.estate == "prd-sam" then {
                                     "-v=5",
                                     "--alsologtostderr",
                                  ]
-                                 + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             {
                                 mountPath: "/var/secrets/",

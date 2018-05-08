@@ -38,9 +38,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-laddr=" + samwdconfig.laddr,
                                      "-imageName=" + samimages.hypersam,
                                  ]
-                                 + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
+                                 + samwdconfig.shared_args,
                         ports: [
                             {
                                 name: "synthetic",

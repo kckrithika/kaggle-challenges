@@ -38,9 +38,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
 #                                 + (if configs.estate == "prd-samdev" then [
  #                                       "--breakwatchdogsdp",
   #                                  ] else [])
-                                 + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
+                                 + samwdconfig.shared_args,
                         name: "watchdog",
                         resources: {
                             requests: {

@@ -17,8 +17,6 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-alertThreshold=20m",
                                  ]
                                  + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else [])
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),
                         name: "watchdog",
                         resources: {
