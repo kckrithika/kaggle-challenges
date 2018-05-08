@@ -38,14 +38,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         command: [
                             "/sdn/slb-iface-processor",
                             "--configDir=" + slbconfigs.configDir,
-                            ] + (if slbimages.phase == "3" || slbimages.phase == "4" then [] else [
+                            ] + (if slbimages.phase == "4" then [] else [
                             "--control.sentinelExpiration=120s",
                             ]) + [
                             "--period=5s",
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                             "--readVipsFromIpvs=true",
                         ] else []),
                         volumeMounts: configs.filter_empty([
