@@ -28,12 +28,13 @@ spec:
       - command:
         - /sdn/slb-iface-processor
         - --configDir=/host/data/slb/config/
+        - --control.sentinelExpiration=120s
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --readVipsFromIpvs=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000842-a7cf8f3b
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000846-6a2b1e32
         name: slb-iface-processor
         securityContext:
           privileged: true
