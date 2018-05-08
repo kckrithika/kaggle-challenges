@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local util = import "util_functions.jsonnet";
 local kingdom = std.extVar("kingdom");
@@ -31,8 +31,10 @@ local kingdom = std.extVar("kingdom");
                 containers: [
                     {
                         name: "flowsnake-fleet-service",
-                        image: flowsnakeimage.fleet_service,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                        image: flowsnake_images.fleet_service,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         ports: [
                             {
                                 containerPort: 8080,
@@ -75,7 +77,9 @@ local kingdom = std.extVar("kingdom");
                             },
                             {
                                 name: "KUBERNETES_IMAGE_PULL_POLICY",
-                                value: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                                value: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                                    flowsnakeconfig.default_image_pull_policy else
+                                    (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                             },
                             {
                                 name: "SPRING_PROFILES_ACTIVE",

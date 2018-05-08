@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local elk = import "elastic_search_logstash_kibana.jsonnet";
 if !elk.elastic_search_enabled then
@@ -29,8 +29,10 @@ else
                 containers: [
                     {
                         name: "kibana",
-                        image: flowsnakeimage.kibana,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                        image: flowsnake_images.kibana,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         ports: [
                             {
                                 containerPort: 5601,

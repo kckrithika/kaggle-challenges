@@ -31,5 +31,5 @@ spec:
         - name: KUBERNETES_IMAGE_PULL_POLICY
           value: Always
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-logloader:468
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: flowsnake-logloader

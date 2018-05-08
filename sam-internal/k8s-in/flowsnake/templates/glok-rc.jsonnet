@@ -31,7 +31,9 @@ if std.objectHas(flowsnake_images.feature_flags, "simplify_elk_replicas") then
                     {
                         name: "glok",
                         image: flowsnake_images.glok,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         env: [
                             {
                                 name: "ZOOKEEPER_CONNECTION_STRING",
@@ -113,7 +115,9 @@ if std.objectHas(flowsnake_images.feature_flags, "simplify_elk_replicas") then
                     {
                         name: "glok",
                         image: flowsnake_images.glok,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         env: [
                             {
                                 name: "ZOOKEEPER_CONNECTION_STRING",

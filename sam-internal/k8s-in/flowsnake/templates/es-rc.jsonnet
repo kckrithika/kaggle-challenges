@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local elk = import "elastic_search_logstash_kibana.jsonnet";
@@ -17,7 +17,7 @@ else
         },
     },
     spec: {
-        replicas: 3,
+        replicas: elk.elastic_search_replicas,
         template: {
             metadata: {
                 namespace: "flowsnake",
@@ -37,8 +37,10 @@ else
                                 ],
                             },
                         },
-                        image: flowsnakeimage.es,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                        image: flowsnake_images.es,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         env: [
                             {
                                 name: "NAMESPACE",

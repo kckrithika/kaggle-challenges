@@ -23,16 +23,16 @@ spec:
         - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
           value: "true"
         - name: NUM_PARTITIONS
-          value: "3"
+          value: 3
         - name: DEFAULT_REPLICATION_FACTOR
-          value: "3"
+          value: 3
         - name: FLOWSNAKE_FLEET
           valueFrom:
             configMapKeyRef:
               key: name
               name: fleet-config
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-kafka:472
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           initialDelaySeconds: 180
           tcpSocket:

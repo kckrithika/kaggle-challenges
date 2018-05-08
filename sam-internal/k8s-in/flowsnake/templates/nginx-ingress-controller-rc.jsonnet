@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
@@ -33,8 +33,10 @@ local kingdom = std.extVar("kingdom");
                 containers: [
                     {
                         name: "nginx-ingress-lb",
-                        image: flowsnakeimage.ingress_controller_nginx,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "Always",
+                        image: flowsnake_images.ingress_controller_nginx,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         readinessProbe: {
                             httpGet: {
                                 path: "/healthz",
@@ -114,7 +116,7 @@ local kingdom = std.extVar("kingdom");
                 ] + if flowsnakeconfig.is_minikube then [] else [
                     {
                         name: "beacon",
-                        image: flowsnakeimage.beacon,
+                        image: flowsnake_images.beacon,
                         args: ["-endpoint", "flowsnake/" + flowsnakeconfig.fleet_api_roles[estate] + ":DATACENTER_ALLENV:443:" + flowsnakeconfig.fleet_vips[estate], "-path", "-.-." + kingdom + ".-.flowsnake", "-spod", "NONE"],
                     },
                 ],

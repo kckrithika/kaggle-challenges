@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 if !flowsnakeconfig.kubedns_manifests_enabled then
 "SKIP"
 else
@@ -56,8 +56,10 @@ else
                                 value: "10055",
                             },
                         ],
-                        image: flowsnakeimage.kubedns,
-                        imagePullPolicy: "Always",
+                        image: flowsnake_images.kubedns,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         livenessProbe: {
                             failureThreshold: 5,
                             httpGet: {
@@ -140,8 +142,10 @@ else
                             "--server=/in-addr.arpa/127.0.0.1#10053",
                             "--server=/ip6.arpa/127.0.0.1#10053",
                         ],
-                        image: flowsnakeimage.kubednsmasq,
-                        imagePullPolicy: "Always",
+                        image: flowsnake_images.kubednsmasq,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         livenessProbe: {
                             failureThreshold: 5,
                             httpGet: {
@@ -183,8 +187,10 @@ else
                             "--probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.cluster.local,5,A",
                             "--probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.cluster.local,5,A",
                         ],
-                        image: flowsnakeimage.kubednssidecar,
-                        imagePullPolicy: "Always",
+                        image: flowsnake_images.kubednssidecar,
+                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
+                            flowsnakeconfig.default_image_pull_policy else
+                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
                         livenessProbe: {
                             failureThreshold: 5,
                             httpGet: {

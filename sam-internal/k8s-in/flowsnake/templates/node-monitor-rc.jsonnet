@@ -1,5 +1,5 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 if flowsnakeconfig.is_minikube_small then
 "SKIP"
@@ -27,8 +27,8 @@ else
                  containers: [
                      {
                         name: "node-monitor",
-                        image: flowsnakeimage.node_monitor,
-                        imagePullPolicy: if flowsnakeconfig.is_minikube then "Never" else "IfNotPresent",
+                        image: flowsnake_images.node_monitor,
+                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         env: [
                             {
                                 name: "CANARY_INTERVAL_SECONDS",

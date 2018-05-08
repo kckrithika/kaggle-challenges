@@ -29,5 +29,5 @@ spec:
         - name: ZOOKEEPER_CONNECTION_STRING
           value: zookeeper-0.zookeeper-set:2181,zookeeper-1.zookeeper-set:2181,zookeeper-2.zookeeper-set:2181
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/flowsnake-logstash:468
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: logstash

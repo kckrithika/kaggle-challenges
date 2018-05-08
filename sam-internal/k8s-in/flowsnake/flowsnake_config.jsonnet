@@ -36,6 +36,7 @@ local util = import "util_functions.jsonnet";
         "prd-minikube-small-flowsnake": "api-minikube",
         "prd-minikube-big-flowsnake": "api-minikube",
     },
+    default_image_pull_policy: if self.is_minikube then "Never" else "IfNotPresent",
     deepsea_enabled_estates: [
         "prd-data-flowsnake",
         "prd-data-flowsnake_test",
