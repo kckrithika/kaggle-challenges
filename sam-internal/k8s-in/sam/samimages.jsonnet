@@ -19,6 +19,10 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        #[rbhat] Bundlecontroller fix
+        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001952-92e9889d",
+        "prd,prd-sam,bundle-controller,hypersam": "sam-0001952-92e9889d",
+
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "prd,prd-sam_storage,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "cdu,cdu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
