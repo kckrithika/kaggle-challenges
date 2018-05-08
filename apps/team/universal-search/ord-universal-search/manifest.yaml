@@ -25,7 +25,7 @@ system:
         secretName: solrcloudcli-keytab-private
     containers:
     - name: universal-search
-      image: sfci/searchdev/universal-search:0.7.2
+      image: sfci/searchdev/universal-search:0.7.3
       ports:
       - name: service-port
         containerPort: 7020
@@ -51,13 +51,10 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-        initialDelaySeconds: 120 
-        timeoutSeconds: 30
-      readinessProbe:
-        httpGet:
-          path: /manage/health
-          port: 15372
         initialDelaySeconds: 120
+        timeoutSeconds: 10
+        periodSeconds: 120
+        failureThreshold: 1
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.24
       ports:
@@ -121,10 +118,13 @@ system:
           mountPath: /home/sfdc-usmt/logs
       livenessProbe:
         exec:
+          command: ["true"]
+      readinessProbe:
+        exec:
           command:
           - "/home/sfdc-usmt/run.sh"
         initialDelaySeconds: 120
-        timeoutSeconds: 300
+        timeoutSeconds: 30
         periodSeconds: 900
         failureThreshold: 1
     - name: sherpa
