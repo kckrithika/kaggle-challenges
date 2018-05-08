@@ -182,6 +182,10 @@
         name: "var-logs-volume",
         mountPath: "/host/data/slb/logs/" + $.dirSuffix,
     },
+    nginx_logs_volume_mount: {
+        name: "var-logs-volume",
+        mountPath: "/host/data/slb/logs",
+    },
 
     # Frequently used volume: host/sbin
     sbin_volume: {

@@ -150,7 +150,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: var-target-config-volume
-        - mountPath: /host/data/slb/logs/slb-nginx-config-b
+        - mountPath: /host/data/slb/logs
           name: var-logs-volume
         - mountPath: /cert1
           name: cert1

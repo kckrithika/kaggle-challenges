@@ -207,7 +207,11 @@ if slbconfigs.slbInKingdom then {
                                             name: "var-target-config-volume",
                                             mountPath: "/etc/nginx/conf.d",
                                         },
+                                    ] + (if slbimages.phase == "1" then [
+                                        slbconfigs.nginx_logs_volume_mount,
+                                    ] else [
                                         slbconfigs.logs_volume_mount,
+                                    ]) + [
                                         {
                                             mountPath: "/cert1",
                                             name: "cert1",
