@@ -25,8 +25,6 @@ if samfeatureflags.maddogforsamapps then {
                                      "-maddog-endpoint=https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping",
                                  ]
                                  + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else [])
                                  + ["-emailFrequency=24h"],
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,

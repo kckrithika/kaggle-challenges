@@ -26,8 +26,6 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -watchDogKind=Deployment
-        - -publishToWatchDogCrd=true
         - -emailFrequency=24h
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:auto
         name: watchdog-estatesvc

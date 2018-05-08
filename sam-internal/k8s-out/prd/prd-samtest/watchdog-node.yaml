@@ -26,8 +26,6 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -watchDogKind=Deployment
-        - -publishToWatchDogCrd=true
         - -publishAllReportsToKafka=true
         - -emailFrequency=72h
         env:

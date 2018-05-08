@@ -22,9 +22,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                                  + (if configs.estate == "prd-samdev" then [
                                         "--breakwatchdogsdp",
                                     ] else [])
-                                 + samwdconfig.shared_args
-                                 + (if configs.estate == "prd-samtest" then ["-watchDogKind=" + $.kind] else [])
-                                 + (if configs.estate == "prd-samtest" then ["-publishToWatchDogCrd=true"] else []),
+                                 + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
                             configs.config_volume_mount,
