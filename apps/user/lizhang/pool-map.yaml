@@ -10,3 +10,11 @@ apps:
   - prd/prd-sam
   - prd/prd-samdev
   - prd/prd-samtest
+ k4a-test-app:
+  - prd/prd-sam
+  - prd/prd-samdev
+  - prd/prd-samtest
+ madkub-test-app:
+  - prd/prd-sam
+  - prd/prd-samdev
+  - prd/prd-samtest
