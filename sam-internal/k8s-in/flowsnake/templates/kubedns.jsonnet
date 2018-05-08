@@ -60,7 +60,22 @@ else
                         imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
                             flowsnakeconfig.default_image_pull_policy else
                             (if flowsnakeconfig.is_minikube then "Never" else "Always"),
-                        livenessProbe: {
+                        livenessProbe: if std.objectHas(flowsnake_images.feature_flags, "kubedns_daily_restart") then {
+                            failureThreshold: 5,
+                            exec: {
+                                # Verify responding to DNS requests AND kill once daily to ensure fresh PKI cert
+                                # See also https://github.com/kubernetes/kubernetes/issues/37218#issuecomment-372887460
+                                command: [
+                                    "sh",
+                                    "-c",
+                                    "nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null && ps -o etime= | grep -c - | grep -q 0",
+                                ],
+                            },
+                            initialDelaySeconds: 60,
+                            periodSeconds: 10,
+                            successThreshold: 1,
+                            timeoutSeconds: 5,
+                        } else {
                             failureThreshold: 5,
                             httpGet: {
                                 path: "/healthcheck/kubedns",
