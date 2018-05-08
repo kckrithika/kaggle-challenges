@@ -61,7 +61,7 @@ system:
       livenessProbe:
         exec:
           command: ["/home/scone/is-alive.sh"]
-        initialDelaySeconds: 5
+        initialDelaySeconds: 15
       args:
       - -endpoint
       - wave-elt/datapool-steelthread:DATACENTER:7443
