@@ -8,8 +8,9 @@ system:
       - richard.li@salesforce.com
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
+
   functions:
-  - name: eventbeacon
+  - name: event-beacon
     count: 1
     volumes:
     - name: cccjclientcert
@@ -18,9 +19,10 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
+
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.5
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.6
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -43,12 +45,41 @@ system:
         mountPath: /clientcert
       - name: logvol
         mountPath: /home/sfdc-cj/logs
+
+    - name: sherpa-event-beacon
+      image: sfci/servicelibs/sherpa:2.0.23
+      volumeMounts:
+      - name: event-beacon-server-cert
+        mountPath: /server-certs
+      - name: event-beacon-client-cert
+        mountPath: /client-certs
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: dev
+      ports:
+        - containerPort: 7442
+        - containerPort: 7014
+        - containerPort: 15373
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+
   loadbalancers:
-  - lbname: eventbeacon-lb
-    function: eventbeacon
+  - lbname: event-beacon-lb
+    function: event-beacon
     nodeExposed: true
+    slbEnabled: true
     ports:
-      - port: 8088
+      - port: 7023
         targetport: 8080
       - port: 15373
         targetport: 15372
