@@ -52,7 +52,7 @@ apps:
   - phx/phx-sam
   - ukb/ukb-sam
   - hnd/hnd-sam
- SamSelectorLabelTest
+ SamSelectorLabelTest:
   - prd/prd-sam
  mysql:
   - prd/prd-sam

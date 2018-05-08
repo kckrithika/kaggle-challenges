@@ -1,17 +1,17 @@
 apiVersion: v1
-
+  
 system:
   notifications:
     email:
       - sam@salesforce.com
   functions:
-  - name: samtestfn
+  - name: samselectortestfn
     count: 2
     progressDeadlineSeconds: 120
-    label:
-      test: selector-label-test
+    labels:
+      app: test
     containers:
-    - name: samtestapp
+    - name: samselectortestapp
       image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/sam-test-app"]
       args: ["-estate", "$(ESTATE)", "-kingdom", "$(KINGDOM)"]
@@ -35,18 +35,20 @@ system:
         path: /home/caas/logs/apps
     - name: amagicvolumethatvanishes
       emptyDir: {}
-  - name: samtestwd
+  - name: samselectortestwd
     count: 1
+    labels:
+      app: test
     containers:
-    - name: samtestwd
+    - name: samselectortestwd
       image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/service-wd"]
       args: ["-service=lb124"]
   loadbalancers:
-  - lbname: lb124
-    nodeExposed: true
+  - lbname: lb12
     selector:
-      test: selector-label-test
+      app: test
+    nodeExposed: true
     ports:
-      - port: 8888
+      - port: 8886
         targetport: 8000
