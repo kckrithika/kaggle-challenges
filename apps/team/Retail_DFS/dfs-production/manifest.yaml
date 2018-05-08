@@ -21,7 +21,7 @@ system:
 
     containers:
     - name: dfs
-      image: sfci/enterprise-api/sfdc-platform-dfs:0.2.16
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.2.16a
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
