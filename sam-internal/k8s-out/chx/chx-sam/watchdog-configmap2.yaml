@@ -64,76 +64,11 @@ data:
       "smtpServer": "ops-mta1-4-chx.ops.sfdc.net:25",
       "snooze": [
         {
-          "checker": "nodeChecker",
-          "estates": [
-            "iad-sam"
-          ],
-          "until": "2017/09/15"
-        },
-        {
-          "checker": "podChecker",
-          "estates": [
-            "iad-sam"
-          ],
-          "until": "2017/09/15"
-        },
-        {
-          "checker": "deploymentChecker",
-          "estates": [
-            "iad-sam"
-          ],
-          "until": "2017/09/15"
-        },
-        {
-          "checker": "estatesvcChecker",
-          "estates": [
-            "prd-sam",
-            "prd-samtest",
-            "prd-samdev"
-          ],
-          "until": "2017/10/01"
-        },
-        {
-          "checker": "prChecker",
+          "checker": "rbacChecker",
           "estates": [
             "prd-sam"
           ],
-          "until": "2017/10/01"
-        },
-        {
-          "checker": "hairpinChecker",
-          "estates": [
-            "prd-sam",
-            "prd-samtest",
-            "prd-samdev",
-            "prd-sam_storage"
-          ],
-          "until": "2017/11/01"
-        },
-        {
-          "checker": "bridgeChecker",
-          "estates": [
-            "prd-sam",
-            "prd-samtest",
-            "prd-samdev",
-            "prd-sam_storage"
-          ],
-          "until": "2017/11/01"
-        },
-        {
-          "checker": "nodeChecker",
-          "estates": [
-            "phx-sam"
-          ],
-          "until": "2017/11/30"
-        },
-        {
-          "checker": "syntheticChecker",
-          "estates": [
-            "chx-sam",
-            "wax-sam"
-          ],
-          "until": "2017/12/31"
+          "until": "2018/05/15"
         }
       ],
       "tlsEnabled": true,
