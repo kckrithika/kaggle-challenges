@@ -12,27 +12,9 @@ std.prune({
   #
   # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
   snooze: [
-    # Unknown - next time add comment
-    { estates: ["iad-sam"], checker: "nodeChecker", until: "2017/09/15" },
-    { estates: ["iad-sam"], checker: "podChecker", until: "2017/09/15" },
-    { estates: ["iad-sam"], checker: "deploymentChecker", until: "2017/09/15" },
-    # [thargrove] Watchdog was crashing because of yaml pkg switch
-    { estates: ["prd-sam", "prd-samtest", "prd-samdev"], checker: "estatesvcChecker", until: "2017/10/01" },
-    # [thargrove] TNRP changed bot name
-    { estates: ["prd-sam"], checker: "prChecker", until: "2017/10/01" },
-    { estates: ["prd-sam", "prd-samtest", "prd-samdev", "prd-sam_storage"], checker: "hairpinChecker", until: "2017/11/01" },
-    { estates: ["prd-sam", "prd-samtest", "prd-samdev", "prd-sam_storage"], checker: "bridgeChecker", until: "2017/11/01" },
-    # [xiao] Pending hypsersam prod release
-    { estates: ["phx-sam"], checker: "nodeChecker", until: "2017/11/30" },
-    # [rbhat] Debuy why synthetic is failing in GIA
-    { estates: ["chx-sam", "wax-sam"], checker: "syntheticChecker", until: "2017/12/31" },
-    ] + (
-    # Dont change prod
-    # 1.7.4 update triggered veth problems. Fixed in all non-flannel estates. Pending fix for flannel estates
-    if configs.kingdom == "prd" then [
-    { estates: ["prd-sp2-sam_caas"], checker: "hairpinChecker", until: "2018/04/01" },
-    ] else []
-    ),
+    #[rbhat] rbac is disabled in prd-sam for k8s upgrade. snoozing for now
+    { estates: ["prd-sam"], checker: "rbacChecker", until: "2018/05/15" },
+    ],
 
   # Shared
   "email-subject-prefix": "SAMWD",
