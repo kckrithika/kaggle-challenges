@@ -47,7 +47,7 @@ system:
     volumeClaimTemplates:
     - name: appcatalog-datavol
       storageClassName: mobile-monitoring-postgres-storage-hdd-pool
-      storageSizeRequest: 500Mb
+      storageSizeRequest: 1Gi
 
   loadbalancers:
   - lbname: mobile-monitoring-postgres
