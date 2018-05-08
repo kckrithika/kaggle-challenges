@@ -20,7 +20,7 @@ system:
         path: /home/sfdc-sherpa/logs
     containers:
     - name: appcatalog
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_app:20180508.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mobile/appcatalog_app:20180508.1
       env:
       - name: SECRETSERVICE_CERT_PATH
         value: /certs/client/certificates/client.pem
