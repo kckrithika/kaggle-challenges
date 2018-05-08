@@ -4,7 +4,6 @@ data:
   name: ord-flowsnake_prod
   registry: ops0-artifactrepo1-0-ord.data.sfdc.net
   strata_registry: ops0-artifactrepo1-0-ord.data.sfdc.net/dva
-  vip: flowsnake-ord.data.sfdc.net
 kind: ConfigMap
 metadata:
   creationTimestamp: null
