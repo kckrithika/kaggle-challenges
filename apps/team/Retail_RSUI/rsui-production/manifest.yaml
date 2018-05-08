@@ -51,6 +51,8 @@ system:
         value: mds/prod/ST0000000000001
       - name: TENANT_SUPER
         value: core/prod/00De0000005WbtaEAC
+      - name: CRE_SERVER_TARGET
+        value: http://cre-api-lb.retail-cre.iad-sam.iad.slb.sfdc.net:8086
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
