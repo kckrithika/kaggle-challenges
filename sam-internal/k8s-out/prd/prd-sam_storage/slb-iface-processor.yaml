@@ -73,5 +73,5 @@ spec:
         name: sbin-volume
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 10%
+      maxUnavailable: 20%
     type: RollingUpdate
