@@ -109,9 +109,6 @@ if configs.estate == "prd-sam" then {
                             "/sdn/slb-ipvs-processor",
                             "--marker=" + slbconfigs.ipvsMarkerFile,
                             "--period=5s",
-                        ] + (if slbimages.phase == "1" || slbimages.phase == "3" then [] else [
-                                 "--metricsEndpoint=" + configs.funnelVIP,
-                             ]) + [
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
