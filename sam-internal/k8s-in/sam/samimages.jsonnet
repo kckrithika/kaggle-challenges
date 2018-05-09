@@ -24,10 +24,8 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001952-92e9889d",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
-        "cdu,cdu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "dfw,dfw-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "frf,frf-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "hnd,hnd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "iad,iad-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "ord,ord-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
@@ -78,7 +76,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
-            hypersam: "sam-0001931-927cd1fc",
+            hypersam: "sam-0001948-03d9baca",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
