@@ -63,7 +63,9 @@ if slbconfigs.slbInKingdom then {
         },
         updateStrategy: {
             type: "RollingUpdate",
-            rollingUpdate: {
+            rollingUpdate: if slbimages.phase == "1" then {
+                maxUnavailable: "10%",
+            } else {
                 maxUnavailable: 1,
             },
         },
