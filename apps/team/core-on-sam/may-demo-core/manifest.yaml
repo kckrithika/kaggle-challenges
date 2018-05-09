@@ -69,6 +69,10 @@ system:
 #          value: blue
           value: green
 
+        # Used for 214 Core App
+        - name: CASAM_CYAN_PATH
+          value: casam/blue
+
         # Override port being announced in SD
         - name: SD_PORT_OVERRIDE
           value: 12099
