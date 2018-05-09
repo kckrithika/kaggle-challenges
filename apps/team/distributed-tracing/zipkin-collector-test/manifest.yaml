@@ -17,11 +17,11 @@ system:
       maddogCert:
         type: client
     containers:
-    - name: zipkin-collector
+    - name: zipkin-collector-test
       image: docker-dva-rc/dva/zipkin-collector:14
       env:
       - name: ZIPKIN_COLLECTOR_HOST
-        value: zipkin-collector
+        value: zipkin-collector-test
       - name: KAFKA_BOOTSTRAP_SERVERS
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
