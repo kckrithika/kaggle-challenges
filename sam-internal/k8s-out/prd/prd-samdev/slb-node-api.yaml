@@ -53,5 +53,5 @@ spec:
         name: var-logs-volume
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 1
+      maxUnavailable: 10%
     type: RollingUpdate
