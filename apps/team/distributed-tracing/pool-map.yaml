@@ -1,7 +1,13 @@
 apps:
+    zipkin-frontend-test:
+    - prd/prd-sam_zipkin
     zipkin-frontend:
     - prd/prd-sam_zipkin
+    zipkin-collector-test:
+    - prd/prd-sam_zipkin
     zipkin-collector:
+    - prd/prd-sam_zipkin
+    elasticsearch-test:
     - prd/prd-sam_zipkin
     elasticsearch:
     - prd/prd-sam_zipkin
