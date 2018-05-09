@@ -88,9 +88,9 @@ fi
 # Validate configMaps
 
 if [ -z "$GO_PIPELINE_LABEL" ]; then
-  docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl validate-config-maps --in /repo/sam-internal/k8s-out/
+  docker run -u 0 --rm -v ${PWD}/../../:/repo ${HYPERSAM} /sam/manifestctl validate-k8s -per-kingdom-dir-list /repo/sam-internal/k8s-out/ -verbose
 else
-  /opt/sam/manifestctl validate-config-maps --in ../k8s-out/
+  /opt/sam/manifestctl validate-k8s -per-kingdom-dir-list ../k8s-out/ -verbose
 fi
 
 # evaluate_pr2 has a check that all files in k8s-in/k8s-out match, and it does not read .gitignore
