@@ -20,7 +20,7 @@ system:
         value: "/log"
       args:
       - --clusters.external-clusters[0]=geoip:HTTP2
-      - --clusters.external-clusters[1]=geoip-tls:HTTP2_TLS
+      - --clusters.external-clusters[1]=geoip.ccait:HTTP2_TLS
       - --clusters.external-clusters[2]=geoip-tls-envoy:HTTP2_TLS
       - --clusters.external-clusters[3]=time:HTTP2
       - --clusters.external-clusters[4]=search-model-executor-rpulle:HTTP2

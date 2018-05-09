@@ -58,10 +58,8 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-b
-      image: sfci/servicelibs/sherpa:2.0.26
-      args:
-      - --zipkin-rate
-      - 0.0
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/40
+      image: sfci/servicelibs/sherpa-envoy:fc7ec6f0fae84600b44367d8cda2baca563dddf2
       ports:
       - name: sherpa-b-in
         containerPort: 7012
@@ -72,16 +70,7 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sam
-      resources:
-        limits:
-          cpu: 1
-          memory: 1Gi
-        requests:
-          cpu: 1
-          memory: 1Gi
       volumeMounts:
-      - mountPath: /log
-        name: sherpa-log-volume
       - mountPath: /client-certs
         name: geoip-client-cert
       - mountPath: /server-certs
@@ -90,13 +79,13 @@ system:
         exec:
           command:
           - ./bin/is-alive
-        initialDelaySeconds: 120
+        initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
         exec:
           command:
           - ./bin/is-ready
-        initialDelaySeconds: 110
+        initialDelaySeconds: 15
         periodSeconds: 5
     - name: beacon-geoip
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
