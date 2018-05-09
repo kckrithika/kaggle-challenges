@@ -11,6 +11,26 @@ local enabledEstates = std.set([
     "xrd-sam",
 ]);
 
+// Init containers for the pod.
+local initContainers = if storageimages.phase == "1" then {
+    initContainers: [
+        storageutils.log_init_container(
+            storageimages.loginit,
+            "sfms",
+            7337,
+            7337,
+            "sfdc"
+        ),
+    ],
+} else {};
+
+local sfmsLogPathEnvVar = if storageimages.phase == "1" then [
+    {
+        name: "SFMS_LOGS_PATH",
+        value: "/var/log/sfms",
+    },
+] else [];
+
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -26,7 +46,6 @@ if std.setMember(configs.estate, enabledEstates) then {
                     name: "sfn-state-metrics",
                     team: "storage-foundation",
                     cloud: "storage",
-
                 },
             },
             spec: {
@@ -91,6 +110,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                             "prometheus",
                         ],
                         env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name) +
+                        sfmsLogPathEnvVar +
                         if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
                         [
                             {
@@ -103,11 +123,10 @@ if std.setMember(configs.estate, enabledEstates) then {
                             },
                         ]
                         else [],
-
                     },
                     storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ],
-            },
+            } + initContainers,
         },
     },
 } else "SKIP"
