@@ -1,8 +1,9 @@
 {
   "1": {
     "hypersdn": {
-      "label": "v-0000846-6a2b1e32",
-      "promotedTime": "2018-05-08T13:30:16.751100356Z"
+      "label": "v-0000847-81912276",
+      "promotedTime": "2018-05-09T13:01:58.995194Z",
+      "warning": "847 has manifest changes in slb-nginx-config-b and slb-portal"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",

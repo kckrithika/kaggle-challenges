@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-canary-creator" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-canary-creator" } else {});
+local slbconfigs = import "slbconfig.jsonnet";
+local slbshared = import "slbsharedservices.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then {
@@ -33,11 +33,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                     configs.maddog_cert_volume,
                     configs.kube_config_volume,
                     configs.sfdchosts_volume,
-                ] + (if slbimages.phase == "1" then [
-                    slbconfigs.slb_config_volume,
-                    configs.cert_volume,
-                    slbconfigs.slb_volume,
-                ] else [])),
+                ]),
                 containers: [
                     {
                         name: "slb-canary-creator",
@@ -63,11 +59,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                             privileged: true,
                         },
                     },
-                ] + (if slbimages.phase == "1" then [
-                    slbshared.slbConfigProcessor,
-                    slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi,
-                ] else []),
+                ],
             },
         },
         strategy: {
