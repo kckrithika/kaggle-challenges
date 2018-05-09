@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.10
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.11
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -60,7 +60,7 @@ system:
       - name: cccjclientcert
         mountPath: /client-certs
       - name: sherpa-log-volume
-        mountPath: /home/sfdc-sherpa/logs
+        mountPath: /home/sfdc-cj/logs
 
       env:
         - name: SFDC_ENVIRONMENT
