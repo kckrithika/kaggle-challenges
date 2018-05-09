@@ -65,6 +65,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
         - --hostnameOverride=$(NODE_NAME)
+        - --servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
