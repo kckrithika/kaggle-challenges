@@ -1,5 +1,6 @@
 {
     dirSuffix:: "",
+    nodeApiPort:: portconfigs.slb.slbNodeApiPort,
     proxyLabelSelector:: "slb-nginx-config-b",
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
@@ -69,7 +70,7 @@
         image: slbimages.hypersdn,
         command: [
             "/sdn/slb-node-api",
-            "--port=" + portconfigs.slb.slbNodeApiPort,
+            "--port=" + $.nodeApiPort,
             "--configDir=" + slbconfigs.configDir,
             "--log_dir=" + slbconfigs.logsDir,
         ],

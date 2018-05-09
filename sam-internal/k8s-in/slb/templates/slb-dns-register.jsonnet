@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local portconfigs = import "slbports.jsonnet",
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -44,9 +45,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ] + if configs.estate == "prd-sam" then [
+                        ] + (if configs.estate == "prd-sam" then [
                             "--maxDeleteEntries=500",
-                        ] else [],
+                        ] else [])
+                        + (if slbimages.phase == "1" then [
+                            "--client.serverPort=" +
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
@@ -55,6 +59,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.sfdchosts_volume_mount,
                         ]),
                     },
+                ] + if slbimages.phase == "1" then [
+                    slbshared.slbConfigProcessor,
+                    slbshared.slbCleanupConfig,
+                    slbshared.slbNodeApi,
                 ],
                 nodeSelector: {
                     "slb-dns-register": "true",
