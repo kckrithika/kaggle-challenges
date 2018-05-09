@@ -22,10 +22,13 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.9
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.10
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -56,6 +59,9 @@ system:
         mountPath: /server-certs
       - name: cccjclientcert
         mountPath: /client-certs
+      - name: sherpa-log-volume
+        mountPath: /home/sfdc-sherpa/logs
+
       env:
         - name: SFDC_ENVIRONMENT
           value: dev
@@ -84,3 +90,5 @@ system:
     ports:
       - port: 7442
         targetport: 7442
+      - port: 7014
+        targetport: 7014
