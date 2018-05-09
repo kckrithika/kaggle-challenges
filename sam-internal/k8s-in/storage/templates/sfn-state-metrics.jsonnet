@@ -11,6 +11,17 @@ local enabledEstates = std.set([
     "xrd-sam",
 ]);
 
+// Init containers for the pod.
+local initContainers = [
+    storageutils.log_init_container(
+        storageimages.loginit,
+        "sfms",
+        7337,
+        7337,
+        "sfdc"
+    ),
+];
+
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -47,6 +58,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                 nodeSelector: {
                     master: "true",
                 },
+                initContainers: initContainers,
                 containers: [
                     {
                         image: storageimages.sfnstatemetrics,
@@ -100,6 +112,10 @@ if std.setMember(configs.estate, enabledEstates) then {
                             {
                                 name: "MC_PORT",
                                 value: std.toString(storageconfigs.serviceDefn.sfn_metrics_svc.health.port),
+                            },
+                            {
+                                name: "SFMS_LOGS_PATH",
+                                value: "/var/log/sfms"
                             },
                         ]
                         else [],
