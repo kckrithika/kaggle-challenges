@@ -163,9 +163,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                         periodSeconds: 3,
                                     },
                                 },
-                            ]
-                            + (
-                                if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                     {
                                         name: "slb-ipvs-conntrack",
                                         image: slbimages.hypersdn,
@@ -184,8 +181,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                             privileged: true,
                                         },
                                     },
-                                ] else []
-                            ),
+                                ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },
