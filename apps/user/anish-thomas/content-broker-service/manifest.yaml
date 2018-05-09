@@ -6,7 +6,7 @@ system:
       count: 1
       containers: 
         - name: content-broker-service
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/content-broker-service:first-version
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/content-broker-service:second-version
           env:
             - name: SFDC_ENVIRONMENT
               value: "sam"
