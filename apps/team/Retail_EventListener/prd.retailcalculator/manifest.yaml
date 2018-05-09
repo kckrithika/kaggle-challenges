@@ -22,7 +22,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: retailcalculator
-      image: sfci/mc-retail/retail-calculator:0.0.40
+      image: sfci/mc-retail/retail-calculator:0.0.42
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -48,12 +48,3 @@ system:
         readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
-  loadbalancers:
-  - lbname: retailcalculator-lb
-    function: retailcalculator
-    nodeExposed: true
-    ports:
-      - port: 8082
-        targetport: 8080
-      - port: 15374
-        targetport: 15372
