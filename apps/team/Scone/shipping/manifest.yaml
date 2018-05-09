@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: shipping-service
-    count: 1
+    count: 2
     containers:
     - name: scone-service
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
