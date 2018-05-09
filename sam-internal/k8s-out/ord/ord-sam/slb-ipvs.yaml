@@ -28,7 +28,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000838-b38cefe7
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000846-6a2b1e32
         name: slb-ipvs-installer
         securityContext:
           capabilities:
@@ -56,11 +56,10 @@ spec:
         - /sdn/slb-ipvs-processor
         - --marker=/host/data/slb/ipvs.marker
         - --period=5s
-        - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/
         - --maximumDeleteCount=20
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000838-b38cefe7
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000846-6a2b1e32
         name: slb-ipvs-processor
         securityContext:
           privileged: true
@@ -80,7 +79,7 @@ spec:
         - --connPort=9107
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000838-b38cefe7
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000846-6a2b1e32
         livenessProbe:
           httpGet:
             path: /

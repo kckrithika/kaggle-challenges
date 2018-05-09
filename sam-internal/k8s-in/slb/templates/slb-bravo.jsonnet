@@ -33,9 +33,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         command: [
                                      "/sdn/slb-canary-service",
                                      "--serviceName=slb-bravo-svc",
-                                 ]
-                                 + (if slbimages.phase == "1" || slbimages.phase == "2" then [] else ["--metricsEndpoint=" + configs.funnelVIP])
-                                 + [
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=9090,9091,9092",
                                      "--tlsPorts=" + portconfigs.slb.canaryServiceTlsPort,

@@ -34,9 +34,6 @@ if configs.estate == "prd-sdc" then {
                         command: [
                                      "/sdn/slb-canary-service",
                                      "--serviceName=slb-canary-passthrough-host-network",
-                                 ]
-                                 + (if slbimages.phase == "1" || slbimages.phase == "2" then [] else ["--metricsEndpoint=" + configs.funnelVIP])
-                                 + [
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=" + portconfigs.slb.canaryServicePassthroughHostNetworkPort,
                                  ],
