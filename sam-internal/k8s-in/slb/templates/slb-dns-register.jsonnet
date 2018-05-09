@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local portconfigs = import "slbports.jsonnet";
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-dns-register" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-dns-register", configProcessorLivenessPort:: portconfigs.slb.slbConfigProcessorLivenessProbeOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -29,7 +31,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ]),
+                ] + (if slbimages.phase == "1" then [
+                    slbconfigs.slb_volume,
+                    configs.kube_config_volume,
+                ] else [])),
                 containers: [
                     {
                         name: "slb-dns-register-processor",
@@ -44,9 +49,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--metricsEndpoint=" + configs.funnelVIP,
                             "--log_dir=" + slbconfigs.logsDir,
                             configs.sfdchosts_arg,
-                        ] + if configs.estate == "prd-sam" then [
+                        ] + (if configs.estate == "prd-sam" then [
                             "--maxDeleteEntries=500",
-                        ] else [],
+                        ] else []),
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             configs.cert_volume_mount,
@@ -55,7 +60,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.sfdchosts_volume_mount,
                         ]),
                     },
-                ],
+                ] + (if slbimages.phase == "1" then [
+                    slbshared.slbConfigProcessor,
+                    slbshared.slbCleanupConfig,
+                ] else []),
                 nodeSelector: {
                     "slb-dns-register": "true",
                 },

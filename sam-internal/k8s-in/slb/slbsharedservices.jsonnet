@@ -1,10 +1,12 @@
 {
     dirSuffix:: "",
+    local portconfigs = import "slbports.jsonnet",
+    nodeApiPort:: portconfigs.slb.slbNodeApiPort,
+    configProcessorLivenessPort:: portconfigs.slb.slbConfigProcessorLivenessProbePort,
     proxyLabelSelector:: "slb-nginx-config-b",
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
-    local portconfigs = import "slbports.jsonnet",
 
     slbConfigProcessor: {
         name: "slb-config-processor",
@@ -32,7 +34,7 @@
             "--processKnEConfigs=" + slbconfigs.processKnEConfigs,
             "--kneConfigDir=" + slbconfigs.kneConfigDir,
             "--kneDomainName=" + slbconfigs.kneDomainName,
-            "--livenessProbePort=" + portconfigs.slb.slbConfigProcessorLivenessProbePort,
+            "--livenessProbePort=" + $.configProcessorLivenessPort,
             "--shouldRemoveConfig=true",
             configs.sfdchosts_arg,
             "--proxySelectorLabelValue=" + $.proxyLabelSelector,
@@ -57,7 +59,7 @@
         livenessProbe: {
             httpGet: {
                 path: "/liveness-probe",
-                port: portconfigs.slb.slbConfigProcessorLivenessProbePort,
+                port: $.configProcessorLivenessPort,
             },
             initialDelaySeconds: 600,
             timeoutSeconds: 5,
@@ -69,7 +71,7 @@
         image: slbimages.hypersdn,
         command: [
             "/sdn/slb-node-api",
-            "--port=" + portconfigs.slb.slbNodeApiPort,
+            "--port=" + $.nodeApiPort,
             "--configDir=" + slbconfigs.configDir,
             "--log_dir=" + slbconfigs.logsDir,
         ],
