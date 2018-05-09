@@ -1751,6 +1751,18 @@
     },
     {
       "namespaces": [
+        "storage-foundation"
+      ],
+      "access": [
+        "team/Storage_Foundation"
+      ],
+      "controlEstate": "prd-sam_storagedev",
+      "estate": "prd-sam_storagedev",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "podgroup-prebuild"
       ],
       "access": [

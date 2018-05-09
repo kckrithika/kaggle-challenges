@@ -1,0 +1,18 @@
+apiVersion: v1
+data:
+  ops-adhoc.sh: |
+    #!/bin/bash -xe
+
+    hostname=$(hostname)
+
+    while true
+    do
+        # Cleanup SLB logs
+        rm /slb/* | true
+        sleep 1800
+    done
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: ops-adhoc
+  namespace: sam-system

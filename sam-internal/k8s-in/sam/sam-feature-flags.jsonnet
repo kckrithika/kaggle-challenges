@@ -39,6 +39,7 @@ local utils = import "util_functions.jsonnet";
         configs.estate == "prd-samtest" ||
         configs.estate == "prd-sam" ||
         configs.estate == "prd-sam_storage" ||
+        configs.estate == "prd-sam_storagedev" ||
         configs.estate == "prd-sdc" ||
         configs.estate == "xrd-sam",
 }

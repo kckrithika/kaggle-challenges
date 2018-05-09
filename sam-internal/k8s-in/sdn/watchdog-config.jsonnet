@@ -28,7 +28,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
   sender: "sam-alerts@salesforce.com",
   recipient: (
         if configs.estate == "prd-sdc" then "sdn@salesforce.com"
-        else if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
+        else if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then "storagefoundation@salesforce.com"
         else if configs.estate == "prd-samdev" then ""
         else if configs.estate == "prd-samtest" then ""
         else if configs.kingdom == "prd" then "sam@salesforce.com"
