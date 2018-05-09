@@ -14,7 +14,7 @@ system:
       #  value: /secrets/rootpassword
       volumeMounts:
       - mountPath: /var/lib/elasticsearch
-        name: elasticsearch-persistent-storage
+        name: elasticsearch-persistent-storage-test
       #- mountPath: /certs
       #  name: certs
       #- mountPath: /secrets
@@ -40,8 +40,8 @@ system:
     terminationGracePeriodSeconds: 20
 
     volumeClaimTemplates:
-    - name: elasticsearch-persistent-storage
-      storageClassName: zipkin-es-persistent-storage-hdd-pool-test
+    - name: elasticsearch-persistent-storage-test
+      storageClassName: zipkin-es-persistent-storage-hdd-pool
       storageSizeRequest: 20Gi
     lbname: elasticsearch-stateful-lb-test
 
