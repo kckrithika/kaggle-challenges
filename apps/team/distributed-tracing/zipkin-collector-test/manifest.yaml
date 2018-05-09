@@ -28,6 +28,8 @@ system:
         value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
+      - name: ES_HOSTS
+        value: es-rest-test.distributed-tracing.prd-sam.prd.slb.sfdc.net:9200
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector
         name: client-certs
