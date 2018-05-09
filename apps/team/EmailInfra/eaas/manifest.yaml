@@ -11,7 +11,7 @@ system:
       type: RollingUpdate
     containers:
     - name: eaas
-      image:  tnrp/emailinfrastructure/eaas:latest-0000039-ff1963a9
+      image:  docker-sfci-dev/sfci/eaas/emailservice:1.0.12-fb084e434e02ea4d48f0e6bbced6689045cebff5
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
