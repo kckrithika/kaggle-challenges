@@ -6,7 +6,7 @@ system:
       count: 1
       containers: 
         - name: content-jmagick
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/content-jmagick:first-version
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/content-image-transform:second-version
           env:
             - name: SFDC_ENVIRONMENT
               value: "sam"
