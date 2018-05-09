@@ -725,6 +725,18 @@
     },
     {
       "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "iad-sam",
+      "estate": "iad-sam_kingdom_caas",
+      "kingdom": "iad",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "mc-eventing"
       ],
       "access": [
@@ -978,6 +990,18 @@
       ],
       "controlEstate": "ord-sam",
       "estate": "ord-sam_iot",
+      "kingdom": "ord",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "ord-sam",
+      "estate": "ord-sam_kingdom_caas",
       "kingdom": "ord",
       "superPod": "None"
     },
