@@ -12,15 +12,24 @@ local enabledEstates = std.set([
 ]);
 
 // Init containers for the pod.
-local initContainers = [
-    storageutils.log_init_container(
-        storageimages.loginit,
-        "sfms",
-        7337,
-        7337,
-        "sfdc"
-    ),
-];
+local initContainers = if storageimages.phase == "1" then {
+    initContainers: [
+        storageutils.log_init_container(
+            storageimages.loginit,
+            "sfms",
+            7337,
+            7337,
+            "sfdc"
+        ),
+    ],
+} else {};
+
+local sfmsLogPathEnvVar = if storageimages.phase == "1" then [
+    {
+        name: "SFMS_LOGS_PATH",
+        value: "/var/log/sfms",
+    },
+] else [];
 
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
@@ -37,7 +46,6 @@ if std.setMember(configs.estate, enabledEstates) then {
                     name: "sfn-state-metrics",
                     team: "storage-foundation",
                     cloud: "storage",
-
                 },
             },
             spec: {
@@ -58,7 +66,6 @@ if std.setMember(configs.estate, enabledEstates) then {
                 nodeSelector: {
                     master: "true",
                 },
-                initContainers: initContainers,
                 containers: [
                     {
                         image: storageimages.sfnstatemetrics,
@@ -103,6 +110,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                             "prometheus",
                         ],
                         env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name) +
+                        sfmsLogPathEnvVar +
                         if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
                         [
                             {
@@ -113,17 +121,12 @@ if std.setMember(configs.estate, enabledEstates) then {
                                 name: "MC_PORT",
                                 value: std.toString(storageconfigs.serviceDefn.sfn_metrics_svc.health.port),
                             },
-                            {
-                                name: "SFMS_LOGS_PATH",
-                                value: "/var/log/sfms"
-                            },
                         ]
                         else [],
-
                     },
                     storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ],
-            },
+            } + initContainers,
         },
     },
 } else "SKIP"
