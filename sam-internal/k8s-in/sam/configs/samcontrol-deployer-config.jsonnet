@@ -11,7 +11,7 @@ std.prune({
   "smtp-server": configs.smtpServer,
   sender: "sam@salesforce.com",
   recipient: (
-    if configs.estate == "prd-sam_storage" then "storagefoundation@salesforce.com"
+    if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam_storagedev" then "storagefoundation@salesforce.com"
     else if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "phx" then "sam@salesforce.com,slb@salesforce.com"
     else "sam@salesforce.com"
   ),

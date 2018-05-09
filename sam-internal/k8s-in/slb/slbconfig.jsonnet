@@ -11,7 +11,7 @@
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd'],
-    testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage'],
+    testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev'],
     samrole: "samapp.slb",
 
     perCluster: {
@@ -25,6 +25,7 @@
             "prd-samtest": "10.251.129.241-242",
             "prd-samdev": "10.251.129.243-248",
             "prd-sam_storage": "10.251.129.249-254,10.251.199.240-247",
+            "prd-sam_storagedev": "",  # TODO: find a real subnet for this new estate.
             "prd-sam": "10.251.196.0-255,10.251.197.0-255,10.251.198.0-255,10.251.199.0-239",
             "frf-sam": "10.214.36.0/22",
             "phx-sam": "10.208.208.0/22",
@@ -41,6 +42,7 @@
             "prd-samtest": "",
             "prd-samdev": "",
             "prd-sam_storage": "",
+            "prd-sam_storagedev": "",
             "prd-sam": "csrlb,controlplane-ptest",
         } + {
             [k + "-sam"]: ""
@@ -62,6 +64,7 @@
             "prd-samtest": "",
             "prd-samdev": "",
             "prd-sam_storage": "",
+            "prd-sam_storagedev": "",
         } + {
             [k + "-sam"]: ""
             for k in $.prodKingdoms + ["prd"]
@@ -72,6 +75,7 @@
             "prd-samtest": "",
             "prd-samdev": "",
             "prd-sam_storage": "",
+            "prd-sam_storagedev": "",
             "prd-sam": "slb-bravo-svc,csrlb,controlplane-ptest,cyanlb,controlplane-ptest-lb",
         } + {
             [k + "-sam"]: ""
@@ -84,6 +88,7 @@
             "prd-samtest": "name=slb-vip-watchdog",
             "prd-samdev": "name=slb-vip-watchdog",
             "prd-sam_storage": "name=slb-vip-watchdog",
+            "prd-sam_storagedev": "name=slb-vip-watchdog",
         },
 
         canaryServiceName: {
@@ -91,6 +96,7 @@
             "prd-samtest": "slb-samtest-svc",
             "prd-samdev": "slb-samdev-svc",
             "prd-sam_storage": "slb-sam-storage-svc",
+            "prd-sam_storagedev": "slb-sam-storagedev-svc",
             "prd-sam": "slb-sam-svc",
         },
         useVipLabelToSelectSvcs: {
@@ -98,6 +104,7 @@
             "prd-samtest": true,
             "prd-samdev": true,
             "prd-sam_storage": true,
+            "prd-sam_storagedev": true,
         } + {
             [k + "-sam"]: true
             for k in $.prodKingdoms + ["prd"]
@@ -107,6 +114,7 @@
             "prd-samtest": "",
             "prd-samdev": "",
             "prd-sam_storage": "",
+            "prd-sam_storagedev": "",
         } + {
             [k + "-sam"]: "slb.sfdc.net"
             for k in $.prodKingdoms + ["prd"]
@@ -116,6 +124,7 @@
             "prd-samtest": false,
             "prd-samdev": false,
             "prd-sam_storage": false,
+            "prd-sam_storagedev": false,
             "prd-sam": true,
         } + {
             [k + "-sam"]: true
@@ -126,6 +135,7 @@
             "prd-samtest": "/var/slb/kneconfigs/testkneconfigs",
             "prd-samdev": "/var/slb/kneconfigs/testkneconfigs",
             "prd-sam_storage": "/var/slb/kneconfigs/testkneconfigs",
+            "prd-sam_storagedev": "/var/slb/kneconfigs/testkneconfigs",
         } + {
             [k + "-sam"]: "/var/slb/kneconfigs/" + k
             for k in $.prodKingdoms + ["prd"]
@@ -135,6 +145,7 @@
             "prd-samtest": 1,
             "prd-samdev": 1,
             "prd-sam_storage": 1,
+            "prd-sam_storagedev": 1,
             "prd-sam": 2,
         } + {
             [k + "-sam"]: 2

@@ -24,7 +24,6 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001952-92e9889d",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
-        "prd,prd-sam_storage,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "cdu,cdu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "dfw,dfw-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
