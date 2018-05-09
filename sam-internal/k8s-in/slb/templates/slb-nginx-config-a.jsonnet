@@ -200,7 +200,7 @@ if configs.estate == "prd-sam" then {
                                 name: "var-target-config-volume",
                                 mountPath: "/etc/nginx/conf.d",
                             },
-                            slbconfigs.logs_volume_mount,
+                            slbconfigs.nginx_logs_volume_mount,
                         ]),
                     },
                     slbshared.slbFileWatcher,
