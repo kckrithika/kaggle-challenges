@@ -24,7 +24,7 @@ if configs.estate == "prd-sam" then {
                 },
                 namespace: "sam-system",
                 annotations: {
-                            "madkub.sam.sfdc.net/allcerts": "{
+                    "madkub.sam.sfdc.net/allcerts": "{
                                                             \"certreqs\":[
                                                                 {
                                                                     \"name\": \"cert1\",
@@ -46,7 +46,7 @@ if configs.estate == "prd-sam" then {
                                                                 }
                                                             ]
                                                          }",
-                            "pod.beta.kubernetes.io/init-containers": "[
+                    "pod.beta.kubernetes.io/init-containers": "[
                                                             {
                                                               \"image\": \"" + samimages.madkub + "\",
                                                               \"args\": [
@@ -113,7 +113,7 @@ if configs.estate == "prd-sam" then {
                                                               ]
                                                             }
                                                          ]",
-                        },
+                },
             },
             spec: {
                 volumes: configs.filter_empty([
@@ -178,6 +178,7 @@ if configs.estate == "prd-sam" then {
                             slbconfigs.slb_config_volume_mount,
                             slbconfigs.logs_volume_mount,
                             configs.sfdchosts_volume_mount,
+                            slbconfigs.slb_volume_mount,
                         ]),
                         securityContext: {
                             privileged: true,
@@ -201,6 +202,14 @@ if configs.estate == "prd-sam" then {
                                 mountPath: "/etc/nginx/conf.d",
                             },
                             slbconfigs.nginx_logs_volume_mount,
+                            {
+                                mountPath: "/cert1",
+                                name: "cert1",
+                            },
+                            {
+                                mountPath: "/cert2",
+                                name: "cert2",
+                            },
                         ]),
                     },
                     slbshared.slbFileWatcher,
@@ -302,7 +311,6 @@ if configs.estate == "prd-sam" then {
                             configs.sfdchosts_volume_mount,
                         ]),
                     },
-                    slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi,
                     slbshared.slbRealSvrCfg,
                 ],

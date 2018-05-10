@@ -108,7 +108,7 @@ if configs.estate == "prd-sam" then {
                         command: [
                             "/sdn/slb-ipvs-processor",
                             "--marker=" + slbconfigs.ipvsMarkerFile,
-                            "--period=5s",
+                            "--period=6s",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
