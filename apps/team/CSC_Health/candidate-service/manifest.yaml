@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: candidate-service-logrotator
-      image: tnrp/csc-health/candidate-service:candidate-service-0000024-65acaefb
+      image: tnrp/csc-health/candidate-service:candidate-service-0000027-2c1e246e
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/candidate-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: candidate-service
-      image: tnrp/csc-health/candidate-service:candidate-service-0000024-65acaefb
+      image: tnrp/csc-health/candidate-service:candidate-service-0000027-2c1e246e
       ports:
       - containerPort: 8888
       volumeMounts:
@@ -50,6 +50,12 @@ system:
       env:
       - name: CHS_AJNA_ENABLED
         value: true
+      - name: CHS_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: CHS_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: CHS_AJNA_CACERTPATH
+        value: /certs/ca.pem
       - name: CHS_REPORTCOLLECTOR_WHITELIST
         value: network-nvt,grok.server_watchdog,sandman,netmgt.sandman
       - name: CHS_REPORTCOLLECTOR_CERTPATH
