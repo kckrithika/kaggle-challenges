@@ -25,7 +25,7 @@ system:
       - name: KAFKA_BOOTSTRAP_SERVERS
         value: ajna0-broker1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
-        value: sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing
+        value: sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing_test
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       - name: ES_HOSTS
