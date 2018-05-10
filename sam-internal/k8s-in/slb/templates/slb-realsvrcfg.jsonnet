@@ -35,7 +35,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_config_volume,
                     configs.maddog_cert_volume,
                     configs.cert_volume,
-                    configs.kube_config.volume,
+                    configs.kube_config_volume,
                 ] else []),
                 containers: [
                     slbshared.slbRealSvrCfg,
