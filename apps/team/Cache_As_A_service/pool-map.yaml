@@ -1676,66 +1676,15 @@ apps:
     - samcaas2-caasminion2-6-prd.eng.sfdc.net
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
+ 
  prd-sp2-casam-metrics-publisher-c1:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-3-prd.eng.sfdc.net
  prd-sp2-casam-redis-c1-12046:
   - name: prd/prd-sp2-sam_caas
     hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-casam-func-12100:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-casam-func-7500:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-casam-func-7550:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-cyan-func-7600:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-cyan-envoy-func-12060:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-2-prd.eng.sfdc.net
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
-    - samcaas2-caasminion2-2-prd.eng.sfdc.net
-    - samcaas2-caasminion2-4-prd.eng.sfdc.net
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-casam-func-7600:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion1-4-prd.eng.sfdc.net
 
  prd-caas-endurance-monitor-perf:
   - name: prd/prd-sp2-sam_caas
