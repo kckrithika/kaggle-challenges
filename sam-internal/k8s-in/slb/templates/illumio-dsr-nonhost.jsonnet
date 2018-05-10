@@ -35,17 +35,16 @@ if configs.estate == "prd-sam" then {
                                      "--serviceName=illumio-dsr-nonhost",
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=8443",
-                                     "--healthPort=9119",
                                  ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.logs_volume_mount,
                         ]),
-                    }
+                    },
                 ],
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            }
+            },
         },
         strategy: {
             type: "RollingUpdate",
