@@ -61,7 +61,7 @@ system:
       - containerPort: 7012
         name: sherpa-in
       - containerPort: 7014
-        name: mgmt-in_http1_plaintext
+        name: mgmt-in
       - containerPort: 7443
         name: sherpa-tls
       - containerPort: 15373
