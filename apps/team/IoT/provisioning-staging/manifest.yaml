@@ -32,7 +32,7 @@ system:
       - name: ENV_NAMESPACE
         value: iot
       - name: ENV_ORGS
-        value: '500000000000006'
+        value: ''
       - name: ENV_PREFIX
         value: iot-prd-staging-
       - name: ENV_UPGRADE
