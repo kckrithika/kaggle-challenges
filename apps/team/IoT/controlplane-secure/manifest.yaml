@@ -41,7 +41,7 @@ system:
         value: /client-certs/client
       - name: SFDC_ENVIRONMENT
         value: secure
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/iot/enterprise-controlplane:49e3e92
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-controlplane:lima
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -64,12 +64,6 @@ system:
       volumeMounts:
       - mountPath: /home/controlplane/logs
         name: logvol
-      - mountPath: /home/controlplane/ajna-certs
-        name: ajnacerts
-        readOnly: true
-      - mountPath: /home/controlplane/controlplane-keytab
-        name: controlplanekeytab
-        readOnly: true
       - mountPath: /client-certs
         name: client-certs
     - env:
@@ -130,12 +124,6 @@ system:
     - hostPath:
         path: /data/sam/iot/log/controlplane-secure
       name: logvol
-    - name: ajnacerts
-      secret:
-        secretName: ajna-certs
-    - name: controlplanekeytab
-      secret:
-        secretName: controlplane-keytab
   loadbalancers:
   - function: controlplane-secure
     lbname: controlplane-secure-lb
