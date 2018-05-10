@@ -24,6 +24,11 @@ spec:
                 operator: In
                 values:
                 - prd-sdc
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+                - slb-ipvs-a
             - matchExpressions:
               - key: master
                 operator: In

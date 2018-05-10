@@ -40,8 +40,8 @@
             "--proxySelectorLabelValue=" + $.proxyLabelSelector,
             "--hostnameOverride=$(NODE_NAME)",
         ] + (if configs.estate == "prd-sam" then [
-            "--servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
-        ] else []),
+                 "--servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
+             ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
@@ -131,30 +131,54 @@
         },
     },
     slbFileWatcher: {
-                                                        name: "slb-file-watcher",
-                                                        image: slbimages.hypersdn,
-                                                        command: [
-                                                            "/sdn/slb-file-watcher",
-                                                            ] + (if slbimages.phase == "1" then [
-                                                             "--filePath=/host/data/slb/logs/" + $.dirSuffix + "/slb-nginx-proxy.emerg.log",
-                                                            ] else [
-                                                              "--filePath=/host/data/slb/logs/slb-nginx-proxy.emerg.log",
-                                                            ]) + [
-                                                            "--metricName=nginx-emergency",
-                                                            "--lastModReportTime=120s",
-                                                            "--scanPeriod=10s",
-                                                            "--skipZeroLengthFiles=true",
-                                                            "--metricsEndpoint=" + configs.funnelVIP,
-                                                            "--log_dir=" + slbconfigs.logsDir,
-                                                            configs.sfdchosts_arg,
-                                                        ],
-                                                        volumeMounts: configs.filter_empty([
-                                                            {
-                                                                name: "var-target-config-volume",
-                                                                mountPath: "/etc/nginx/conf.d",
-                                                            },
-                                                            slbconfigs.logs_volume_mount,
-                                                            configs.sfdchosts_volume_mount,
-                                                        ]),
-                                                    },
+        name: "slb-file-watcher",
+        image: slbimages.hypersdn,
+        command: [
+            "/sdn/slb-file-watcher",
+        ] + (if slbimages.phase == "1" then [
+                 "--filePath=/host/data/slb/logs/" + $.dirSuffix + "/slb-nginx-proxy.emerg.log",
+             ] else [
+                 "--filePath=/host/data/slb/logs/slb-nginx-proxy.emerg.log",
+             ]) + [
+            "--metricName=nginx-emergency",
+            "--lastModReportTime=120s",
+            "--scanPeriod=10s",
+            "--skipZeroLengthFiles=true",
+            "--metricsEndpoint=" + configs.funnelVIP,
+            "--log_dir=" + slbconfigs.logsDir,
+            configs.sfdchosts_arg,
+        ],
+        volumeMounts: configs.filter_empty([
+            {
+                name: "var-target-config-volume",
+                mountPath: "/etc/nginx/conf.d",
+            },
+            slbconfigs.logs_volume_mount,
+            configs.sfdchosts_volume_mount,
+        ]),
+    },
+    slbIfaceProcessor: {
+        name: "slb-iface-processor",
+        image: slbimages.hypersdn,
+        command: [
+            "/sdn/slb-iface-processor",
+            "--configDir=" + slbconfigs.configDir,
+            "--control.sentinelExpiration=120s",
+            "--period=5s",
+            "--metricsEndpoint=" + configs.funnelVIP,
+            "--log_dir=" + slbconfigs.logsDir,
+            configs.sfdchosts_arg,
+            "--readVipsFromIpvs=true",
+        ],
+        volumeMounts: configs.filter_empty([
+            slbconfigs.slb_volume_mount,
+            slbconfigs.slb_config_volume_mount,
+            slbconfigs.logs_volume_mount,
+            configs.sfdchosts_volume_mount,
+            slbconfigs.sbin_volume_mount,
+        ]),
+        securityContext: {
+            privileged: true,
+        },
+    },
 }
