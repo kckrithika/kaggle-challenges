@@ -109,7 +109,7 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-control-planelb
+          - cre-control-plane-lb
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs

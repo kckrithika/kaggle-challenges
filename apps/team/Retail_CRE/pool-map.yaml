@@ -45,6 +45,8 @@ apps:
     hostSubList:
         - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
         - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
+  iad.Prod.cre-control-plane:
+  - name: iad/iad-sam_customerresolutionengine
 #  prd.CCP_Integration_Functional.cre-control-plane: # control-plane functional test env instance
 #  - name: prd/prd-sam_customerresolutionengine
 #    hostSubList:
