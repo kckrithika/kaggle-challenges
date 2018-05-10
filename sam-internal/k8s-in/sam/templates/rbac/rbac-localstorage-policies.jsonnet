@@ -19,7 +19,7 @@ if samfeatureflags.rbacstorage then {
 
   createClusterRoleBindingForLocalPV(hosts):: {
       kind: "ClusterRoleBinding",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
         name: "local-pv-create",
       },
@@ -39,7 +39,7 @@ for minionnode in hosts
 
   createUpdateNodeRoles(node):: {
       kind: "ClusterRole",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
         name: "localstorage-role:" + node,
       },
@@ -63,7 +63,7 @@ for minionnode in hosts
 
    createUpdateNodeBindings(node):: {
         kind: "ClusterRoleBinding",
-        apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+        apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
         metadata: {
           name: "localstorage-rolebinding:" + node,
         },
