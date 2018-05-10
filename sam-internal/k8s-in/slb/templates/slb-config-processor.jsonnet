@@ -81,7 +81,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         },
         updateStrategy: {
             type: "RollingUpdate",
-            rollingUpdate: if slbimages.phase == "1" || slbimages.phase == "2" then {
+            rollingUpdate: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {
                 maxUnavailable: "20%",
             } else {
                 maxUnavailable: 1,
