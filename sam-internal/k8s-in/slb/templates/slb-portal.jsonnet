@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-portal" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-portal" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-portal" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-portal" } else {});
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
@@ -26,7 +26,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
             spec: {
                       volumes: configs.filter_empty([
                           slbconfigs.slb_volume,
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                           configs.maddog_cert_volume,
                           slbconfigs.slb_config_volume,
                           slbconfigs.logs_volume,
@@ -43,7 +43,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--hostname=$(NODE_NAME)",
                                   "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                                   "--port=" + portconfigs.slb.slbPortalServicePort,
-                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                        "--useLocalNodeApi=true",
                                    ] else []),
                               volumeMounts: configs.filter_empty([
@@ -69,7 +69,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   },
                               ],
                           },
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                slbshared.slbConfigProcessor,
                                slbshared.slbCleanupConfig,
                                slbshared.slbNodeApi,
