@@ -60,7 +60,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                               ]),
                               env: [
                                   configs.kube_config_env,
-                              ],
+                              ] + (if slbimages.phase == "1" then [
+                                  slbconfigs.node_name_env,
+                              ] else []),
                               securityContext: {
                                   privileged: true,
                               },
