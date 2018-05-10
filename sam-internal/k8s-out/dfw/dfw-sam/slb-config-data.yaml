@@ -31,5 +31,5 @@ spec:
         name: var-slb-volume
   updateStrategy:
     rollingUpdate:
-      maxUnavailable: 1
+      maxUnavailable: 20%
     type: RollingUpdate
