@@ -39,7 +39,9 @@
             configs.sfdchosts_arg,
             "--proxySelectorLabelValue=" + $.proxyLabelSelector,
             "--hostnameOverride=$(NODE_NAME)",
-        ],
+        ] + (if configs.estate == "prd-sam" then [
+            "--servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
+        ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
             slbconfigs.slb_volume_mount,
