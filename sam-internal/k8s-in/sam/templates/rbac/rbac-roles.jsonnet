@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
   items: [
     {
       kind: "ClusterRole",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
         #When used in a ClusterRoleBinding, it gives permission to read secrets & update events &pod status in the cluster and in all namespaces. When used in a RoleBinding, it gives permission to read secrets & update events & pod status in the rolebinding's namespace.
         # Refer to "samcompute:clusterrolebinding" & "$namespace:rolebinding"
@@ -58,7 +58,7 @@ local configs = import "config.jsonnet";
     },
     {
       kind: "ClusterRole",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
         # When used in a ClusterRoleBinding, gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces. Used in "minion:clusterrolebinding".
         name: "minion:clusterrole",
@@ -118,7 +118,7 @@ local configs = import "config.jsonnet";
     },
     {
      kind: "Role",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
          name: "update-secrets",
          namespace: "sam-system",
@@ -139,7 +139,7 @@ local configs = import "config.jsonnet";
     },
     {
      kind: "ClusterRole",
-      apiVersion: "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
          name: "local-pv-create",
       },
