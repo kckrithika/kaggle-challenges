@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: observation-service-logrotator
-      image: tnrp/csc-health/observation-service:observation-service-0000033-a6e345e9
+      image: tnrp/csc-health/observation-service:observation-service-0000036-e7d2f861
       volumeMounts:
         - mountPath: /home/sfdc-csc-health/observation-service
           name: logvol
@@ -39,7 +39,7 @@ system:
         done
       ']
     - name: observation-service
-      image: tnrp/csc-health/observation-service:observation-service-0000033-a6e345e9
+      image: tnrp/csc-health/observation-service:observation-service-0000036-e7d2f861
       ports:
       - containerPort: 8080
       volumeMounts:
@@ -50,6 +50,12 @@ system:
       env:
       - name: OBS_AJNA_ENABLED
         value: true
+      - name: OBS_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: OBS_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: OBS_AJNA_CACERTPATH
+        value: /certs/ca.pem
       - name: OBS_REPORTCOLLECTOR_WHITELIST
         value: netmgt.nhal_client,netmgt.sandman,sandman
       - name: OBS_REPORTCOLLECTOR_CERTPATH
