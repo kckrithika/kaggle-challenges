@@ -47,13 +47,13 @@ system:
       - name: SFDC_ENVIRONMENT
         value: stmfa
       - name: TENANT_SOURCE_KEYS
-        value: core/stmfana44ice1/00DRM0000005z7R2AQ,commercecloud/production/bbkhs01,cre/prd/00DRM000000Ccre
+        value: core/stmfana48ice1/00DC20000000MOqMAM,commercecloud/production/bbkhdev,cre/prd/00DRM0000048cre
       - name: TENANT_SOURCE_NAMES
         value: Service Cloud,Commerce cloud tenant,CRE tenant
       - name: TENANT_CANONICAL
         value: mds/stmfa/ST0000000000001
       - name: TENANT_SUPER
-        value: core/stmfana44ice1/00DRM0000005z702AA
+        value: core/stmfana48ice1/00DC20000000MOgMAM
       - name: CRE_SERVER_TARGET
         value: http://cre-api-ccp-func-lb.retail-cre.prd-sam.prd.slb.sfdc.net:8082
       livenessProbe:
