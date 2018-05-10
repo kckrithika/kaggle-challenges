@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbshared = import "slbsharedservices.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -32,30 +33,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.sbin_volume,
                 ]),
                 containers: [
-                    {
-                        name: "slb-iface-processor",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-iface-processor",
-                            "--configDir=" + slbconfigs.configDir,
-                            "--control.sentinelExpiration=120s",
-                            "--period=5s",
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            configs.sfdchosts_arg,
-                            "--readVipsFromIpvs=true",
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.slb_config_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                            slbconfigs.sbin_volume_mount,
-                        ]),
-                        securityContext: {
-                            privileged: true,
-                        },
-                    },
+                    slbshared.slbIfaceProcessor,
                 ],
                 affinity: {
                     nodeAffinity: {
@@ -69,7 +47,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                             values: if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate],
                                         },
 
-                                    ],
+                                    ] + (if slbimages.phase == "1" then [
+                                        {
+                                                                                key: "slb-service",
+                                                                                operator: "NotIn",
+                                                                                values: ["slb-ipvs", "slb-ipvs-a"],
+                                                                            },
+                                    ] else []),
                                 },
                             ] + if slbconfigs.isTestEstate then [{
                                 matchExpressions: [
