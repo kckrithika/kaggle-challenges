@@ -24,6 +24,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001961-5cfd0a47",
         #[rbhat] use rbac beta client
         "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
+        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
