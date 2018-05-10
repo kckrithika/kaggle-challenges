@@ -1,0 +1,121 @@
+nodes:
+  - hostname: shared0-sampool1-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool2-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool3-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool4-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool5-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool6-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool7-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool8-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool9-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool10-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool11-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool12-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool13-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool14-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool15-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool16-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool17-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool18-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool19-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool20-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool21-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool22-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool23-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool24-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool25-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool26-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool27-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool28-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool29-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool30-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool31-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool32-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool33-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool34-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool35-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool36-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool37-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool38-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool39-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool40-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool41-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool42-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool43-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool44-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool45-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool46-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool47-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool48-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool49-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool50-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool51-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool52-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool53-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool54-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool55-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool56-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool57-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool58-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool59-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
+  - hostname: shared0-sampool60-1-xrd.eng.sfdc.net
+    pool: xrd-samspare
