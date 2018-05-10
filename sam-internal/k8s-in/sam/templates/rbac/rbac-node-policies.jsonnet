@@ -8,7 +8,7 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
   metadata: {},
   createRoles(node):: {
       kind: "ClusterRole",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
       metadata: {
         name: "role:" + node,
       },
@@ -32,7 +32,7 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
 
   createClusterRoleBindings(node):: {
         kind: "ClusterRoleBinding",
-        apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+        apiVersion: if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
         metadata: {
           name: "rolebinding:" + node,
         },
