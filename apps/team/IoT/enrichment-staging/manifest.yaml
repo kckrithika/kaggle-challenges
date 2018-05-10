@@ -113,10 +113,10 @@ system:
     lbname: enrichment-staging-lb
     nodeExposed: true
     ports:
-    - port: 9136
+    - port: 7012
       targetport: 7012
     - lbtype: http
-      port: 8136
+      port: 7014
       targetport: 7022
     slbEnabled: true
   notifications:
