@@ -107,7 +107,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       env:
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: prod
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -115,7 +115,7 @@ system:
       - -endpoint
       - retail-setup:DATACENTER:7012
       - -endpoint
-      - retail-setup-tls:DATACENTER:7443
+      - retail-rsui/retail-setup:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 150
         exec:
