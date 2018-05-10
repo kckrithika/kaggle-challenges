@@ -1669,6 +1669,18 @@
     },
     {
       "namespaces": [
+        "atf"
+      ],
+      "access": [
+        "team/atf"
+      ],
+      "controlEstate": "prd-sam",
+      "estate": "prd-sam_mit",
+      "kingdom": "prd",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "communities"
       ],
       "access": [
