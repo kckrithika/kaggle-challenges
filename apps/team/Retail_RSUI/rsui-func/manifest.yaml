@@ -120,7 +120,7 @@ system:
       - -endpoint
       - retail-setup:DATACENTER:7012
       - -endpoint
-      - retail-rsui/retail-setup-tls:DATACENTER:7443
+      - retail-rsui/retail-setup:DATACENTER:7443
       livenessProbe:
         initialDelaySeconds: 150
         exec:
