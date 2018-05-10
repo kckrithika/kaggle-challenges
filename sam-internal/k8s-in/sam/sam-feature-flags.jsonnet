@@ -33,6 +33,14 @@ local utils = import "util_functions.jsonnet";
     # NodeController uses estatesSvc.
     estatessvc: !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom),
 
+    # kubedns is enabled in a few select test clusters.
+    kubedns:
+        configs.estate == "prd-samdev" ||
+        configs.estate == "prd-sam" ||
+        configs.estate == "prd-samtest" ||
+        configs.estate == "prd-sam_storage" ||
+        configs.estate == "prd-sam_storagedev",
+
     # k8sproxy is enabled in test clusters.
     k8sproxy:
         configs.estate == "prd-samdev" ||
