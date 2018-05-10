@@ -60,6 +60,8 @@ system:
       ports:
       - containerPort: 7012
         name: sherpa-in
+      - containerPort: 7014
+        name: mgmt-in_http1_plaintext
       - containerPort: 7443
         name: sherpa-tls
       - containerPort: 15373
@@ -78,6 +80,8 @@ system:
     - args:
       - -endpoint
       - iot/enrichment:DATACENTER:7443
+      - -endpoint
+      - iot/enrichment-mgmt:DATACENTER:7014
       env:
       - name: SFDC_ENVIRONMENT
         value: staging
