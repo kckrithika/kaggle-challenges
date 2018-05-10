@@ -63,10 +63,8 @@ if slbconfigs.slbInKingdom then {
         },
         updateStrategy: {
             type: "RollingUpdate",
-            rollingUpdate: if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {
+            rollingUpdate: {
                 maxUnavailable: "20%",
-            } else {
-                maxUnavailable: 1,
             },
         },
         minReadySeconds: 30,
