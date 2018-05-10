@@ -2037,6 +2037,15 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion1-10-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: g31-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
   hostname: samcaas1-caasminion1-2-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -2064,10 +2073,64 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion1-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: g30-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion1-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: d22-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion1-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l35-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion1-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l35-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion1-9-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: c02-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
   hostname: samcaas1-caasminion2-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
   rack: j02-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-10-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: n06-dh2
   superpod: sp1
 - bomrolename: sam_minion_caas
   controlestate: dfw-sam
@@ -2091,10 +2154,73 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: r38-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: n06-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: r38-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j10-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: n06-dh2
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion2-9-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j02-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
   hostname: samcaas1-caasminion3-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
   rack: m35-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-10-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j12-dh4
   superpod: sp1
 - bomrolename: sam_minion_caas
   controlestate: dfw-sam
@@ -2113,6 +2239,60 @@ hosts:
   kingdom: dfw
   pod: none
   rack: j34-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m35-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j34-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j12-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m35-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j34-dh4
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp1-sam_caas
+  hostname: samcaas1-caasminion3-9-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: j12-dh4
   superpod: sp1
 - bomrolename: sam_minion_caas
   controlestate: dfw-sam
@@ -2154,6 +2334,24 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion1-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m09-dh2
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion1-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m09-dh2
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
   hostname: samcaas2-caasminion2-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -2181,6 +2379,33 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion2-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: s17-dh2
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion2-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: s17-dh2
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion2-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: e35-dh2
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
   hostname: samcaas2-caasminion3-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -2200,6 +2425,24 @@ hosts:
   devicerole: samcompute
   estate: dfw-sp2-sam_caas
   hostname: samcaas2-caasminion3-3-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l03-dh4
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion3-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l03-dh4
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp2-sam_caas
+  hostname: samcaas2-caasminion3-5-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
   rack: l03-dh4
@@ -2244,6 +2487,42 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion1-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: g30-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion1-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: d22-dh2
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion1-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l35-dh2
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion1-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: c02-dh2
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
   hostname: samcaas3-caasminion2-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -2266,6 +2545,51 @@ hosts:
   kingdom: dfw
   pod: none
   rack: m35-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion2-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l33-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion2-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l33-dh2
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion2-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: u31-dh2
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion2-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: g32-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion2-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l33-dh4
   superpod: sp3
 - bomrolename: sam_minion_caas
   controlestate: dfw-sam
@@ -2297,11 +2621,56 @@ hosts:
 - bomrolename: sam_minion_caas
   controlestate: dfw-sam
   devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion3-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l34-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion3-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: k25-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion3-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l34-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp3-sam_caas
+  hostname: samcaas3-caasminion3-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: k25-dh4
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
   estate: dfw-sp4-sam_caas
   hostname: samcaas4-caasminion1-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
   rack: l10-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion1-10-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l09-dh2
   superpod: sp4
 - bomrolename: sam_minion_caas
   controlestate: dfw-sam
@@ -2334,6 +2703,51 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion1-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l25-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion1-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l09-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion1-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l10-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion1-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l25-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion1-9-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l09-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
   hostname: samcaas4-caasminion2-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -2361,6 +2775,60 @@ hosts:
   controlestate: dfw-sam
   devicerole: samcompute
   estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion2-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l33-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion2-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: q40-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion2-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l26-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion2-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: q40-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion2-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l26-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion2-9-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: q40-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
   hostname: samcaas4-caasminion3-1-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
@@ -2380,6 +2848,60 @@ hosts:
   devicerole: samcompute
   estate: dfw-sp4-sam_caas
   hostname: samcaas4-caasminion3-3-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m10-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion3-4-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l11-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion3-5-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l11-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion3-6-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m10-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion3-7-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: l11-dh2
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion3-8-dfw.ops.sfdc.net
+  kingdom: dfw
+  pod: none
+  rack: m10-dh4
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: dfw-sam
+  devicerole: samcompute
+  estate: dfw-sp4-sam_caas
+  hostname: samcaas4-caasminion3-9-dfw.ops.sfdc.net
   kingdom: dfw
   pod: none
   rack: m10-dh4
@@ -14934,6 +15456,15 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion1-10-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d32-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
   hostname: samcaas1-caasminion1-2-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -14961,10 +15492,64 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion1-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d44-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion1-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d26-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion1-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: r28-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion1-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: s28-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion1-9-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa41-45
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
   hostname: samcaas1-caasminion2-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
   rack: w23-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-10-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa40-45
   superpod: sp1
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
@@ -14988,10 +15573,73 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: s05-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa40-45
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w23-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa40-45
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w23-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion2-9-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v46-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
   hostname: samcaas1-caasminion3-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
   rack: x14-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-10-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w32-40
   superpod: sp1
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
@@ -15010,6 +15658,60 @@ hosts:
   kingdom: phx
   pod: none
   rack: w32-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w26-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x14-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w32-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w26-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w32-40
+  superpod: sp1
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp1-sam_caas
+  hostname: samcaas1-caasminion3-9-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w26-40
   superpod: sp1
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
@@ -15051,6 +15753,24 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion1-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d32-40
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion1-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d44-40
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
   hostname: samcaas2-caasminion2-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -15078,6 +15798,33 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion2-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d26-40
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion2-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: r28-40
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion2-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: s28-40
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
   hostname: samcaas2-caasminion3-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -15100,6 +15847,24 @@ hosts:
   kingdom: phx
   pod: none
   rack: v48-40
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion3-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa41-45
+  superpod: sp2
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp2-sam_caas
+  hostname: samcaas2-caasminion3-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa40-45
   superpod: sp2
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
@@ -15141,6 +15906,42 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion1-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d44-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion1-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa41-45
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion1-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: aa40-45
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion1-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x09-45
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
   hostname: samcaas3-caasminion2-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -15163,6 +15964,51 @@ hosts:
   kingdom: phx
   pod: none
   rack: r28-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion2-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x09-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion2-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: q03-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion2-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d55-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion2-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d36-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion2-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x09-40
   superpod: sp3
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
@@ -15194,11 +16040,56 @@ hosts:
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
   devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion3-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v55-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion3-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: g26-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion3-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v55-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp3-sam_caas
+  hostname: samcaas3-caasminion3-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v55-40
+  superpod: sp3
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
   estate: phx-sp4-sam_caas
   hostname: samcaas4-caasminion1-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
   rack: v44-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion1-10-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v48-40
   superpod: sp4
 - bomrolename: sam_minion_caas
   controlestate: phx-sam
@@ -15231,6 +16122,51 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion1-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e43-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion1-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v48-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion1-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v44-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion1-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v44-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion1-9-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e43-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
   hostname: samcaas4-caasminion2-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -15258,6 +16194,60 @@ hosts:
   controlestate: phx-sam
   devicerole: samcompute
   estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion2-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v52-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion2-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e44-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion2-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e44-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion2-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x09-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion2-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w09-45
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion2-9-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: w09-45
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
   hostname: samcaas4-caasminion3-1-phx.ops.sfdc.net
   kingdom: phx
   pod: none
@@ -15280,6 +16270,60 @@ hosts:
   kingdom: phx
   pod: none
   rack: v55-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion3-4-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: v55-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion3-5-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: x32-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion3-6-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e45-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion3-7-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: e45-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion3-8-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d53-40
+  superpod: sp4
+- bomrolename: sam_minion_caas
+  controlestate: phx-sam
+  devicerole: samcompute
+  estate: phx-sp4-sam_caas
+  hostname: samcaas4-caasminion3-9-phx.ops.sfdc.net
+  kingdom: phx
+  pod: none
+  rack: d53-40
   superpod: sp4
 - bomrolename: flowsnake_master
   controlestate: prd-data-flowsnake
