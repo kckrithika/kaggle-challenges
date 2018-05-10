@@ -87,7 +87,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   "--vipLoop=1",
                                   "--monitorFrequency=10s",
                               ] else if configs.estate == "prd-sam" then [
-                                  "--optOutServiceList=ops0-pkicontroller1-0-prd",
+                                  "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
                                   "--vipLoop=1",
                                   "--monitorFrequency=10s",
                               ] else [
