@@ -23,6 +23,7 @@ spec:
         - -watchdogFrequency=7m
         - -alertThreshold=10s
         - -emailFrequency=1h
+        - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json

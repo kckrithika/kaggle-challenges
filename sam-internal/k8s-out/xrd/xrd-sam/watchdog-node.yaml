@@ -22,6 +22,7 @@ spec:
         - -role=NODE
         - -watchdogFrequency=60s
         - -alertThreshold=1h
+        - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-xrd.data.sfdc.net:80
         - --config=/config/watchdog.json

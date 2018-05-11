@@ -24,6 +24,7 @@ spec:
         - -alertThreshold=1h
         - -maxUptimeSampleSize=5
         - -shouldBatchMetrics=true
+        - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-cdu.data.sfdc.net:80
         - --config=/config/watchdog.json

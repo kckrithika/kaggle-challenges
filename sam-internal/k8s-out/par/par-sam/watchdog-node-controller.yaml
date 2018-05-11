@@ -23,6 +23,7 @@ spec:
         - -role=NODECONTROLLER
         - -watchdogFrequency=10s
         - -alertThreshold=300s
+        - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=mandm-funnel-par1.data.sfdc.net:8080
         - --config=/config/watchdog.json
