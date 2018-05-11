@@ -4,7 +4,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = import "slbsharedservices.jsonnet";
 
-if slbconfigs.slbInKingdom && slbimages.phase != "1" then {
+if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "DaemonSet",
     metadata: {
