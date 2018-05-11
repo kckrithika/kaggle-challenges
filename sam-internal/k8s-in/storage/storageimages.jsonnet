@@ -36,6 +36,8 @@ local kingdom = std.extVar("kingdom");
             sfstorebookie_tag: "base-0000089-39319751",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
             cephdaemon_tag: "10.2.7-0000061-0ac4ba7e",
+            cephdaemon_tag: "10.2.7-0000060-5eafc0e2",
+            madkub_tag: "1.0.0-0000061-74e4a7b6",
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph, prd-sam_sfstore and xrd-sam (control plane)
@@ -52,6 +54,7 @@ local kingdom = std.extVar("kingdom");
             sfstorebookie_tag: "base-0000087-2e69a3ce",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
             cephdaemon_tag: "10.2.7-0000060-5eafc0e2",
+            madkub_tag: "1.0.0-0000061-74e4a7b6",
         },
 
         ### Release Phase 3 - Canary sites in Prod (PHX)
@@ -68,6 +71,7 @@ local kingdom = std.extVar("kingdom");
             sfstorebookie_tag: "base-0000087-2e69a3ce",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
             cephdaemon_tag: "10.2.7-0000060-5eafc0e2",
+            madkub_tag: "1.0.0-0000061-74e4a7b6",
         },
 
         ### Release Phase 4 - All Prod. Currently disabled, because there are no other prod clusters yet.
@@ -121,6 +125,8 @@ local kingdom = std.extVar("kingdom");
 
     # The sfstore lvprovisioner image is maintained in the https://git.soma.salesforce.com/SFStorage/lvprovisioner repo.
     lvprovisioner: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "lvprovisioner", $.per_phase[$.phase].lvprovisioner_tag),
+
+    madkub_image_path: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub_tag),
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:

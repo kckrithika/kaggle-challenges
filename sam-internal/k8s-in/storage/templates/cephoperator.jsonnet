@@ -97,6 +97,31 @@ if std.setMember(configs.estate, enabledEstates) then {
                                 name: "CEPH_DAEMON_IMAGE_PATH",
                                 value: storageimages.cephdaemon_image_path,
                             },
+                            {
+                                name: "MADKUB_IMAGE",
+                                value: storageimages.madkub_image_path,
+                            },
+                            {
+                                name: "MADDOG_ENDPOINT",
+                                value: storageconfigs.maddog_endpoint,
+                            },
+                            {
+                                name: "MADKUB_ENDPOINT",
+                                value: "$(MADKUBSERVER_SERVICE_HOST):32007",
+                            },
+                            {
+                                name: "FUNNEL_ENDPOINT",
+                                value: storageconfigs.funnel_endpoint,
+                            },
+                            {
+                                name: "MC_ESTATE",
+                                value: configs.estate,
+                            },
+                            {
+                                name: "MC_KINGDOM",
+                                value: configs.kingdom,
+                            },
+
                         ],
                     },
                     {
