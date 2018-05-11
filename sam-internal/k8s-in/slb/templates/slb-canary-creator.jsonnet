@@ -36,7 +36,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                           configs.maddog_cert_volume,
                           configs.kube_config_volume,
                           configs.sfdchosts_volume,
-                      ]),
+                      ] + (if slbimages.phase == "1" then [
+                               slbconfigs.cleanup_logs_volume,
+                           ] else [])),
                       containers: [
                           {
                               name: "slb-canary-creator",
@@ -61,13 +63,15 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                               env: [
                                   configs.kube_config_env,
                               ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
-                                  slbconfigs.node_name_env,
-                              ] else []),
+                                       slbconfigs.node_name_env,
+                                   ] else []),
                               securityContext: {
                                   privileged: true,
                               },
                           },
-                      ],
+                      ] + (if slbimages.phase == "1" then [
+                               slbshared.slbLogCleanup,
+                           ] else []),
                   },
         },
         strategy: {

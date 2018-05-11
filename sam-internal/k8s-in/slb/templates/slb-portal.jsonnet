@@ -32,7 +32,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           configs.sfdchosts_volume,
                           configs.cert_volume,
                           configs.kube_config_volume,
-                      ]),
+                      ] + (if slbimages.phase == "1" then [
+                               slbconfigs.cleanup_logs_volume,
+                           ] else [])),
                       containers: [
                           {
                               name: "slb-portal",
@@ -70,7 +72,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbshared.slbConfigProcessor,
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi,
-                      ],
+                      ] + (if slbimages.phase == "1" then [
+                               slbshared.slbLogCleanup,
+                           ] else []),
                       nodeSelector: {
                           pool: configs.estate,
                       },
