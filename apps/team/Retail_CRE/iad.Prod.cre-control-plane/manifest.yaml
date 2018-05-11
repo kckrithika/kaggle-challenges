@@ -18,7 +18,7 @@ system:
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: METRICS_KAFKA_ENABLED
-          value: true
+          value: false
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-prod-gdot-private-key.json
         - name: GRPC_PORT
