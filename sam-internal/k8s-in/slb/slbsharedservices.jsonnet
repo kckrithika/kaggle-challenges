@@ -120,8 +120,8 @@
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
         ] + (if slbimages.phase == "1" then [
-            "--client.serverPort=" + $.nodeApiPort,
-        ] else []),
+                 "--client.serverPort=" + $.nodeApiPort,
+             ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -183,4 +183,46 @@
             privileged: true,
         },
     },
+    slbLogCleanup: {
+        name: "slb-cleanup",
+        image: slbimages.hypersdn,
+        command: [
+            "/sdn/slb-cleanup",
+            "--period=1800s",
+            "--logsMaxAge=48h",
+            "--log_dir=" + (if slbimages.phase == "1" then slbconfigs.cleanupLogsDir else slbconfigs.logsDir),
+            "--filesDirToCleanup=" + slbconfigs.logsDir,
+            "--shouldSkipServiceRecords=false",
+            "--shouldNotDeleteAllFiles=false",
+            configs.sfdchosts_arg,
+        ],
+        volumeMounts: configs.filter_empty([
+            slbconfigs.slb_volume_mount,
+            slbconfigs.slb_config_volume_mount,
+            slbconfigs.logs_volume_mount,
+            configs.sfdchosts_volume_mount,
+        ] + if slbimages.phase == "1" then [
+            slbconfigs.cleanup_logs_volume_mount,
+        ] else []),
+        env: [
+            configs.kube_config_env,
+        ],
+        securityContext: {
+            privileged: true,
+        },
+    } + (
+        if configs.estate == "prd-sdc" then {
+            livenessProbe: {
+                exec: {
+                    command: [
+                        "test",
+                        "`find /slb-cleanup-heartbeat -mmin -.5`",
+                    ],
+                },
+                initialDelaySeconds: 15,
+                periodSeconds: 15,
+            },
+        }
+        else {}
+    ),
 }

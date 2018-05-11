@@ -8,6 +8,7 @@
     slbDockerDir: "/data/slb",
     configDir: self.slbDir + "/config/" + $.dirSuffix,
     logsDir: self.slbDir + "/logs/" + $.dirSuffix,
+    cleanupLogsDir: self.logsDir + (if std.length($.dirSuffix) == 0 then "cleanup" else "/cleanup"),
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
     prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd'],
@@ -196,6 +197,16 @@
     nginx_logs_volume_mount: {
         name: "var-logs-volume",
         mountPath: "/host/data/slb/logs",
+    },
+    cleanup_logs_volume: {
+        name: "var-cleanup-logs-volume",
+        hostPath: {
+            path: if std.length($.dirSuffix) == 0 then "/data/slb/logs/cleanup" else "/data/slb/logs/" + $.dirSuffix + "/cleanup",
+        },
+    },
+    cleanup_logs_volume_mount: {
+        name: "var-cleanup-logs-volume",
+        mountPath: if std.length($.dirSuffix) == 0 then "/host/data/slb/logs/cleanup" else "/host/data/slb/logs/" + $.dirSuffix + "/cleanup",
     },
 
     # Frequently used volume: host/sbin

@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbshared = import "slbsharedservices.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -29,49 +30,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.slb_config_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ]),
+                ] + if slbimages.phase == "1" then [
+                    slbconfigs.cleanup_logs_volume,
+                ] else []),
                 containers: [
-                    {
-                        name: "slb-cleanup",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-cleanup",
-                            "--period=1800s",
-                            "--logsMaxAge=48h",
-                            "--log_dir=" + slbconfigs.logsDir,
-                            "--filesDirToCleanup=" + slbconfigs.logsDir,
-                            "--shouldSkipServiceRecords=false",
-                            "--shouldNotDeleteAllFiles=false",
-                            configs.sfdchosts_arg,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.slb_config_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        env: [
-                            configs.kube_config_env,
-                        ],
-                        securityContext: {
-                            privileged: true,
-                        },
-                    }
-                    + (
-                        if configs.estate == "prd-sdc" then {
-                            livenessProbe: {
-                                exec: {
-                                    command: [
-                                        "test",
-                                        "`find /slb-cleanup-heartbeat -mmin -.5`",
-                                    ],
-                                },
-                                initialDelaySeconds: 15,
-                                periodSeconds: 15,
-                            },
-                        }
-                        else {}
-                    ),
+                    slbshared.slbLogCleanup,
                 ],
             },
         },
