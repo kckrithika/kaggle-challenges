@@ -766,23 +766,63 @@ items:
   - kind: User
     name: samcaas1-caasminion1-1-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion1-10-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion1-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion1-3-dfw.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion1-4-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion1-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-8-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-9-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion2-1-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-10-dfw.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-3-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion2-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-8-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-9-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion3-1-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-10-dfw.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-3-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-8-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-9-dfw.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -802,17 +842,31 @@ items:
   - kind: User
     name: samcaas2-caasminion1-4-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas2-caasminion1-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-6-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas2-caasminion2-1-dfw.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion2-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion2-3-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas2-caasminion2-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-6-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas2-caasminion3-1-dfw.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-3-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-5-dfw.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -832,17 +886,43 @@ items:
   - kind: User
     name: samcaas3-caasminion1-4-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas3-caasminion1-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion1-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion1-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion1-8-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas3-caasminion2-1-dfw.ops.sfdc.net
   - kind: User
     name: samcaas3-caasminion2-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas3-caasminion2-3-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas3-caasminion2-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion2-8-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas3-caasminion3-1-dfw.ops.sfdc.net
   - kind: User
     name: samcaas3-caasminion3-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas3-caasminion3-3-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion3-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion3-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion3-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas3-caasminion3-7-dfw.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -856,11 +936,23 @@ items:
   - kind: User
     name: samcaas4-caasminion1-1-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas4-caasminion1-10-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas4-caasminion1-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas4-caasminion1-3-dfw.ops.sfdc.net
   - kind: User
     name: samcaas4-caasminion1-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion1-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion1-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion1-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion1-8-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion1-9-dfw.ops.sfdc.net
   - kind: User
     name: samcaas4-caasminion2-1-dfw.ops.sfdc.net
   - kind: User
@@ -868,10 +960,34 @@ items:
   - kind: User
     name: samcaas4-caasminion2-3-dfw.ops.sfdc.net
   - kind: User
+    name: samcaas4-caasminion2-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion2-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion2-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion2-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion2-8-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion2-9-dfw.ops.sfdc.net
+  - kind: User
     name: samcaas4-caasminion3-1-dfw.ops.sfdc.net
   - kind: User
     name: samcaas4-caasminion3-2-dfw.ops.sfdc.net
   - kind: User
     name: samcaas4-caasminion3-3-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion3-4-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion3-5-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion3-6-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion3-7-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion3-8-dfw.ops.sfdc.net
+  - kind: User
+    name: samcaas4-caasminion3-9-dfw.ops.sfdc.net
 kind: List
 metadata: {}
