@@ -33,7 +33,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0001948-03d9baca
         name: watchdog-kuberesources
         volumeMounts:
         - mountPath: /sfdchosts
