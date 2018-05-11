@@ -40,7 +40,7 @@ local kingdom = std.extVar("kingdom");
         },
     },
 
-    // List of restricted Ajna Applog Log Record Types that require special permission to access. (GDPR compliance)
+    // List of unrestricted Ajna Applog Log Record Types that do not require special permission to access. (GDPR compliance)
     ajna_applog_logrecordtype_whitelist: [
         "1",
         "2",
