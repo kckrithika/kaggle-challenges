@@ -23,6 +23,7 @@
         slbNginxProxyLivenessProbePort: 12080,
         slbConfigProcessorLivenessProbePort: 9876,
         slbConfigProcessorLivenessProbeOverridePort: 12082,
+        slbConfigProcessorDnsLivenessProbeOverridePort: 12083,
         slbBaboonLivenessProbePort: 9877,
         slbNodeApiPort: 9130,
         slbNodeApiOverridePort: 12081,
