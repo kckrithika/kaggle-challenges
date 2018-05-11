@@ -10,7 +10,7 @@ system:
       - dkilgore@salesforce.com
 
   functions:
-  - name: event-beacon
+  - name: eventbeacon
     count: 1
     volumes:
     - name: cccjservercert
@@ -81,7 +81,7 @@ system:
 
   loadbalancers:
   - lbname: event-beacon-lb
-    function: event-beacon
+    function: eventbeacon
     nodeExposed: true
     slbEnabled: true
     ports:
