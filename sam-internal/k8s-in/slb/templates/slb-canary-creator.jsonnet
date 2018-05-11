@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-canary-creator" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-canary-creator" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-canary-creator" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-canary-creator" } else {});
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then {
@@ -23,7 +23,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                 },
                 namespace: "sam-system",
             },
-            spec: (if slbimages.phase == "1" then {}
+            spec: (if slbimages.phase == "1" || slbimages.phase == "2" then {}
                    else {
                        hostNetwork: true,
                    })
@@ -49,7 +49,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                            "--maxParallelism=" + slbconfigs.canaryMaxParallelism,
                                        ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
                                        [configs.sfdchosts_arg]
-                                       + (if slbimages.phase == "1" then [
+                                       + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                               "--hostnameOverride=$(NODE_NAME)",
                                           ] else []),
                               volumeMounts: configs.filter_empty([
@@ -60,7 +60,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                               ]),
                               env: [
                                   configs.kube_config_env,
-                              ] + (if slbimages.phase == "1" then [
+                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                   slbconfigs.node_name_env,
                               ] else []),
                               securityContext: {

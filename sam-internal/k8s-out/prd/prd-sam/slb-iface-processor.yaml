@@ -24,6 +24,11 @@ spec:
                 operator: In
                 values:
                 - prd-slb
+              - key: slb-service
+                operator: NotIn
+                values:
+                - slb-ipvs
+                - slb-ipvs-a
       containers:
       - command:
         - /sdn/slb-iface-processor
@@ -34,7 +39,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --readVipsFromIpvs=true
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000847-81912276
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000852-5ab991e1
         name: slb-iface-processor
         securityContext:
           privileged: true
