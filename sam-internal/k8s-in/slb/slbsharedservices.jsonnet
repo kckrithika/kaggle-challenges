@@ -119,7 +119,9 @@
             "--netInterfaceName=eth0",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
-        ],
+        ] + (if slbimages.phase == "1" then [
+            "--client.serverPort=" + $.nodeApiPort,
+        ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,

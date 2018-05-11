@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = import "slbsharedservices.jsonnet";
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-realsvrcfg" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -30,10 +31,19 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.sbin_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ]),
+                ] + if slbimages.phase == "1" then [
+                    slbconfigs.slb_config_volume,
+                    configs.maddog_cert_volume,
+                    configs.cert_volume,
+                    configs.kube_config_volume,
+                ] else []),
                 containers: [
                     slbshared.slbRealSvrCfg,
-                ],
+                ] + if slbimages.phase == "1" then [
+                    slbshared.slbConfigProcessor,
+                    slbshared.slbCleanupConfig,
+                    slbshared.slbNodeApi,
+                ] else [],
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
