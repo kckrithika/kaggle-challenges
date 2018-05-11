@@ -14,11 +14,11 @@ system:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_metrics
         - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+          value: ajna0-broker1-0-iad.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: prod
         - name: METRICS_KAFKA_ENABLED
-          value: false
+          value: true
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
