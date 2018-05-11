@@ -24,7 +24,7 @@ system:
         path: /home/sfdc-cj/logs
     - name: sherpa-log-volume
       hostPath:
-        path: /logs
+        path: /home/sfdc-sherpa/logs
 
     containers:
     - name: eventbeacon
@@ -53,8 +53,6 @@ system:
         mountPath: /server-certs
       - name: logvol
         mountPath: /home/sfdc-cj/logs
-      - name: sherpa-log-volume
-        mountPath: /logs
 
     - name: sherpa-event-beacon
       image: sfci/servicelibs/sherpa:2.0.23
@@ -65,6 +63,9 @@ system:
         - containerPort: 7442
         - containerPort: 7014
         - containerPort: 15373
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /home/sfdc-cj/sherpa-logs
       livenessProbe:
         exec:
           command:
