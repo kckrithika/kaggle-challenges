@@ -14,9 +14,6 @@ local kingdom = std.extVar("kingdom");
         #
         # Ceph daemon image override example:
         #   "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "jewel-0000050-9308fbd0"
-
-        # Set xrd-sam_ceph ceph cluster to latest tag.
-        "xrd,xrd-sam_ceph,ceph-cluster,ceph-daemon": "10.2.7-0000060-5eafc0e2",
     },
 
     ### Per-phase image tags
@@ -25,17 +22,17 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000416-d57928a2",
-            ceph_operator_tag: "base-0000416-d57928a2",
-            loginit_tag: "base-0000416-d57928a2",
+            default_tag: "base-0000425-c640b395",
+            ceph_operator_tag: "base-0000425-c640b395",
+            loginit_tag: "base-0000425-c640b395",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
-            sfms_tag: "latest-0000178-48060496",
+            sfms_tag: "latest-0000181-64fa308f",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fbookie&last=10&repo=SFStorage%2Fbookkeeper
-            sfstorebookie_tag: "base-0000087-2e69a3ce",
+            sfstorebookie_tag: "base-0000089-39319751",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
-            cephdaemon_tag: "10.2.7-0000060-5eafc0e2",
+            cephdaemon_tag: "10.2.7-0000061-0ac4ba7e",
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph, prd-sam_sfstore and xrd-sam (control plane)
