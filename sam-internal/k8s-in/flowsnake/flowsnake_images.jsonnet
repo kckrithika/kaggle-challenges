@@ -96,7 +96,7 @@ local utils = import "util_functions.jsonnet";
                   "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
                   "jvmtest-lhn": "jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest",
                   "ajnaupgradetest-vg": "jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest",
-                  "0.9.9-storage-test": "jenkins-dva-transformation-flowsnake-platform-PR-619-9-itest",
+                  "0.9.9-jdk8u162": "jenkins-dva-transformation-flowsnake-platform-master-627-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
