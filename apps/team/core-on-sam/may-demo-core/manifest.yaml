@@ -14,17 +14,17 @@ system:
     containers:
     - name: core
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15778034-2
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/casam/coreapp:214.1.3-0000102-530ad059
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
+#      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/casam/coreapp:214.1.3-0000102-530ad059
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
 
       env:
         # DB info
         - name: DB_USER
-          value: happy
-#          value: grumpy
+#          value: happy
+          value: grumpy
         - name: DB_SID
-          value: mist61c214utf
-#          value: mist61a216utf
+#          value: mist61c214utf
+          value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
@@ -70,8 +70,8 @@ system:
           value: green
 
         # Used for 214 Core App
-        - name: CASAM_CYAN_PATH
-          value: casam/blue
+#        - name: CASAM_CYAN_PATH
+#          value: casam/blue
 
         # Override port being announced in SD
         - name: SD_PORT_OVERRIDE
@@ -94,8 +94,8 @@ system:
 
       readinessProbe:
         httpGet:
-          path: /ping.jsp
-#          path: /samReady.jsp
+#          path: /ping.jsp
+          path: /samReady.jsp
           port: 12100
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -116,11 +116,11 @@ system:
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
-#    strategy:
-#      type: RollingUpdate
-#      rollingUpdate:
-#        maxSurge: 200%
-#        maxUnavailable: 0
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
 
   - name: sequencer
 
@@ -133,7 +133,7 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_minor_release:d84760
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:f00ee3
 
       env:
         - name: USE_SWITCHBOARD
@@ -163,12 +163,13 @@ system:
         - name: READY_SERVER_COUNT
           value: 2
         - name: DB_SID
-          value: mist61a216utf
+          value: mist61c214utf
+        - name: LOCK_DWARF
+          value: 1
+        - name: TRIGGER_CAFFEINE
+          value: 1
         - name: UNLOCK_DWARF
           value: y
-        # Can increment value below to force restart of sequencer container
-        - name: RESTART
-          value: 1
         - name: K4A_OUTPUT
           value: /tmp/files/repo/user.properties
         - name: MADDOG_CLIENT
