@@ -37,6 +37,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-emailFrequency=12h",
                                      "-laddr=" + samwdconfig.laddr,
                                      "-imageName=" + samimages.hypersam,
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
                         ports: [

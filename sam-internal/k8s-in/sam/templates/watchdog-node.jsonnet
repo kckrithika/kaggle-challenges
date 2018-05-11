@@ -18,6 +18,7 @@ local utils = import "util_functions.jsonnet";
                                      "-role=NODE",
                                      "-watchdogFrequency=60s",
                                      "-alertThreshold=1h",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
                                  + (if !utils.is_public_cloud(configs.kingdom) then ["-publishAllReportsToKafka=true"] else [])

@@ -19,6 +19,7 @@ spec:
         - -role=COMMON
         - -watchdogFrequency=5s
         - -alertThreshold=20m
+        - -watchDogKind=DaemonSet
         - -timeout=2s
         - -funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --config=/config/watchdog.json

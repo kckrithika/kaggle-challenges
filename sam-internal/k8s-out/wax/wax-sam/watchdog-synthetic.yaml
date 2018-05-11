@@ -25,6 +25,7 @@ spec:
         - -emailFrequency=12h
         - -laddr=0.0.0.0:8083
         - -imageName=ops-artifactrepo1-0-wax.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc
+        - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=mandm-funnel-wax.data.sfdc.net:8080
         - --config=/config/watchdog.json

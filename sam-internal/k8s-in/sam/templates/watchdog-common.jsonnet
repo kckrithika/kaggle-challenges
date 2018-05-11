@@ -15,6 +15,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-role=COMMON",
                                      "-watchdogFrequency=5s",
                                      "-alertThreshold=20m",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=72h"] else ["-emailFrequency=24h"]),

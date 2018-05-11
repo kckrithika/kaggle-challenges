@@ -22,6 +22,7 @@ spec:
         - -role=ESTATESVC
         - -watchdogFrequency=10s
         - -alertThreshold=300s
+        - -watchDogKind=Deployment
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-vpod.data.sfdc.net:80
         - --config=/config/watchdog.json
