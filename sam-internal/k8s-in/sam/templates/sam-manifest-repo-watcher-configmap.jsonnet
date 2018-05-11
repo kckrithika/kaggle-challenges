@@ -1,5 +1,5 @@
 local configs = import "config.jsonnet";
-if configs.estate == "prd-samdev" then {
+if configs.estate == "prd-sam" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

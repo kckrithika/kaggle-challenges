@@ -19,6 +19,9 @@ local utils = import "util_functions.jsonnet";
         # Example:
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
+        #[alok.bansal] New version of Sam Manifest Repo Watcher
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0001977-5efe4159",
+
         #[rbhat] Bundlecontroller fix
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001961-5cfd0a47",
         #[rbhat] use rbac beta client

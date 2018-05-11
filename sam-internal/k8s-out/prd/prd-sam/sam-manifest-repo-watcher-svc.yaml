@@ -8,10 +8,8 @@ metadata:
 spec:
   ports:
   - name: mrw-port
-    nodePort: 32865
     port: 80
     protocol: TCP
     targetPort: 8099
   selector:
     name: sam-manifest-repo-watcher
-  type: NodePort
