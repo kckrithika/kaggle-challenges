@@ -171,7 +171,9 @@
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
             "--readVipsFromIpvs=true",
-        ],
+        ] + (if slbimages.phase == "1" then [
+                           "--client.serverPort=" + $.nodeApiPort,
+                       ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,
