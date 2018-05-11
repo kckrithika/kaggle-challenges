@@ -117,13 +117,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      "--marker=" + slbconfigs.ipvsMarkerFile,
                                      "--period=5s",
                                      "--log_dir=" + slbconfigs.logsDir,
-                                 ] + (if configs.estate == "prd-sam" then [
-                                          # All the KNE VIPs are being deleted
-                                          "--maximumDeleteCount=1000",
-                                      ] else [
-                                          "--maximumDeleteCount=20",
-                                      ]) +
-                                 [
+                                     "--maximumDeleteCount=20",
                                      configs.sfdchosts_arg,
                                  ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
                             "--client.serverPort=" + slbports.slb.slbNodeApiOverridePort,
