@@ -17,4 +17,5 @@ local configs = import "config.jsonnet";
     if configs.estate == "prd-samtest" then ["ReplicaSet"]
     else []
   ),
+  [if configs.kingdom == "prd" then "include-crds"]: true,
 }
