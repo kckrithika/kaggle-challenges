@@ -24,11 +24,11 @@ system:
         path: /home/sfdc-cj/logs
     - name: sherpa-log-volume
       hostPath:
-        path: /home/sfdc-sherpa/logs
+        path: /logs
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.13
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.14
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -49,22 +49,18 @@ system:
       volumeMounts:
       - name: cccjclientcert
         mountPath: /client-certs
-      - name: logvol
-        mountPath: /home/sfdc-cj/logs
-
-    - name: sherpa-event-beacon
-      image: sfci/servicelibs/sherpa:2.0.23
-      volumeMounts:
       - name: cccjservercert
         mountPath: /server-certs
-      - name: cccjclientcert
-        mountPath: /client-certs
+      - name: logvol
+        mountPath: /home/sfdc-cj/logs
       - name: sherpa-log-volume
         mountPath: /logs
 
+    - name: sherpa-event-beacon
+      image: sfci/servicelibs/sherpa:2.0.23
       env:
         - name: SFDC_ENVIRONMENT
-          value: dev
+          value: sam
       ports:
         - containerPort: 7442
         - containerPort: 7014
