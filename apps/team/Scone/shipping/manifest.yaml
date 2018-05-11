@@ -7,7 +7,7 @@ system:
     containers:
     - name: scone-service
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:bzimmerman-20180509-4aedf73
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:bzimmerman-20180511-f67fdc0
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
