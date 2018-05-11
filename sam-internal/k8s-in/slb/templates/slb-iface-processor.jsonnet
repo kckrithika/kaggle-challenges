@@ -47,7 +47,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                             values: if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate],
                                         },
 
-                                    ] + (if slbimages.phase == "1" then [
+                                    ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                         {
                                                                                 key: "slb-service",
                                                                                 operator: "NotIn",
