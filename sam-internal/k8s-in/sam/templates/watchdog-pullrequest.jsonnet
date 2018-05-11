@@ -18,6 +18,7 @@ if configs.estate == "prd-sam" then {
                                      "-watchdogFrequency=3m",
                                      "-alertThreshold=10s",
                                      "-emailFrequency=1h",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([

@@ -21,6 +21,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                                      "-watchdogFrequency=10m",
                                      "-alertThreshold=30m",
                                      "-emailFrequency=24h",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([

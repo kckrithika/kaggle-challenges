@@ -16,6 +16,7 @@ local utils = import "util_functions.jsonnet";
                                      "-role=ETCD",
                                      "-watchdogFrequency=5s",
                                      "-alertThreshold=3m",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
                                  + (if configs.kingdom == "prd" then ["-emailFrequency=48h"] else ["-emailFrequency=12h"]),

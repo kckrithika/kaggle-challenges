@@ -29,6 +29,7 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                                      "-watchdogFrequency=120s",
                                      "-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
                                      "-deployer-emailFrequency=" + (if configs.kingdom == "prd" then "72h" else "24h"),
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([

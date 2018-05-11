@@ -21,6 +21,7 @@ if samfeatureflags.estatessvc then {
                                      "-role=NODECONTROLLER",
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
                                  + ["-emailFrequency=24h"],

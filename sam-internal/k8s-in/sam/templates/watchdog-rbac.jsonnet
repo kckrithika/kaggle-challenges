@@ -20,6 +20,7 @@ if samfeatureflags.rbacwd then {
                                      "-watchdogFrequency=180s",
                                      "-alertThreshold=1h",
                                      "-maxUptimeSampleSize=5",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args
                                  + ["-emailFrequency=24h"],

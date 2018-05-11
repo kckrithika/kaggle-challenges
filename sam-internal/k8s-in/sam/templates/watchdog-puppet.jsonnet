@@ -34,6 +34,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                                      "-watchdogFrequency=15m",
                                      "-alertThreshold=1000h",
                                      "-emailFrequency=1000h",
+                                     "-watchDogKind=" + $.kind,
                                  ]
 #                                 + (if configs.estate == "prd-samdev" then [
  #                                       "--breakwatchdogsdp",

@@ -26,6 +26,7 @@ if configs.estate == "prd-sam" then {
                                     "--enableEmailPerCheckerInstance=true",
                                     "-v=5",
                                     "--alsologtostderr",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([

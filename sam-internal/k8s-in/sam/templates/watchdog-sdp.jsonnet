@@ -18,6 +18,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
                                      "-emailFrequency=24h",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + (if configs.estate == "prd-samdev" then [
                                         "--breakwatchdogsdp",

@@ -19,6 +19,7 @@ if configs.kingdom == "prd" then {
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
                                      "-emailFrequency=48h",
+                                     "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
