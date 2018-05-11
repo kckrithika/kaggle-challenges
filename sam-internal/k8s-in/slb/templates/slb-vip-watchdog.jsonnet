@@ -14,38 +14,53 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: 1,
+        replicas: if slbimages.phase == "1" then 2 else 1,
         template: {
             spec: {
-                      affinity: {
-                          podAntiAffinity: {
-                              requiredDuringSchedulingIgnoredDuringExecution: [{
-                                  labelSelector: {
-                                      matchExpressions: [{
-                                          key: "name",
-                                          operator: "In",
-                                          values: [
-                                              "slb-ipvs",
-                                              "slb-ipvs-a",
-                                              "slb-ipvs-b",
-                                              "slb-nginx-config-b",
-                                              "slb-nginx-config-a",
-                                          ],
-                                      }],
-                                  },
-                                  topologyKey: "kubernetes.io/hostname",
-                              }],
+                 affinity: {
+                      podAntiAffinity: {
+                           requiredDuringSchedulingIgnoredDuringExecution: [{
+                               labelSelector: {
+                                   matchExpressions: [
+                                   ] + (
+                                        if configs.estate == "prd-sdc" then
+                                        [
+                                             {
+                                                  key: "name",
+                                                  operator: "In",
+                                                  values: [
+                                                      "slb-ipvs",
+                                                      "slb-ipvs-a",
+                                                      "slb-ipvs-b",
+                                                      "slb-nginx-config-b",
+                                                      "slb-nginx-config-a",
+                                                      "slb-vip-watchdog",
+                                                  ],
+                                             },
+                                        ] else [
+                                             {
+                                                  key: "name",
+                                                  operator: "In",
+                                                  values: [
+                                                      "slb-ipvs",
+                                                      "slb-ipvs-a",
+                                                      "slb-ipvs-b",
+                                                      "slb-nginx-config-b",
+                                                      "slb-nginx-config-a",
+                                                  ],
+                                             },
+                                        ]
+
+                                   ),
+                               },
+                               topologyKey: "kubernetes.io/hostname",
+                           }],
                           },
                           nodeAffinity: {
                               requiredDuringSchedulingIgnoredDuringExecution: {
                                   nodeSelectorTerms: [
                                       {
                                           matchExpressions: [
-                                              {
-                                                  key: "slb-service",
-                                                  operator: "NotIn",
-                                                  values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
-                                              },
                                           ] + (
                                               if configs.estate == "prd-sdc" then
                                                   [
@@ -54,7 +69,18 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                           operator: "NotIn",
                                                           values: ["a", "b"],
                                                       },
-                                                  ] else []
+                                                      {
+                                                         key: "slb-service",
+                                                         operator: "NotIn",
+                                                         values: ["slb-ipvs"],
+                                                      },
+                                                  ] else [
+                                                      {
+                                                         key: "slb-service",
+                                                         operator: "NotIn",
+                                                         values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                                      },
+                                                  ]
                                           ),
                                       },
                                   ],
