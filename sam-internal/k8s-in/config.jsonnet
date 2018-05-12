@@ -101,6 +101,7 @@ local utils = import "util_functions.jsonnet",
         "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     ),
     rcImtEndpoint: (if kingdom == "dfw" then "http://shared0-samminionreportcollector1-1-dfw.ops.sfdc.net:18443/v1/bark" else "https://reportcollector-" + kingdom + ".data.sfdc.net:18443/v1/bark"),
+    maddogEndpoint: "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
 
     # === KUBERNETES ===
 

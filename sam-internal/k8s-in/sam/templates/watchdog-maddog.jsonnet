@@ -22,7 +22,7 @@ if samfeatureflags.maddogforsamapps then {
                                      "-watchdogFrequency=10s",
                                      "-alertThreshold=300s",
                                      "-madkub-endpoint=https://$(MADKUBSERVER_SERVICE_HOST):32007/healthz",
-                                     "-maddog-endpoint=https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443/sfdc/v1/ping",
+                                     "-maddog-endpoint=" + configs.maddogEndpoint + "/sfdc/v1/ping",
                                      "-watchDogKind=" + $.kind,
                                  ]
                                  + samwdconfig.shared_args

@@ -28,7 +28,7 @@ std.prune({
 
   # MadDog
   enableMaddog: samfeatureflags.maddogforsamapps,
-  maddogMaddogEndpoint: "https://all.pkicontroller.pki.blank." + configs.kingdom + ".prod.non-estates.sfdcsd.net:8443",
+  maddogMaddogEndpoint: configs.maddogEndpoint,
   maddogMadkubImage: samimages.madkubSidecar,
 
   # SLB
