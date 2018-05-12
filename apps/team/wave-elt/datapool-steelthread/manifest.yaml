@@ -34,7 +34,7 @@ system:
         value: /home/datapool/datapool-keytab/datapool.keytab
 
       - name: PHOENIX_LAZYINIT
-        value: ture
+        value: true
 
       - name: PKI_TRUSTSTORE_DIR
         value: /home/datapool/client-certs
