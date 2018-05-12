@@ -22,11 +22,13 @@
 
         slbNginxProxyLivenessProbePort: 12080,
         slbConfigProcessorLivenessProbePort: 9876,
-        slbConfigProcessorLivenessProbeOverridePort: 12082,
+        slbConfigProcessorIpvsLivenessProbeOverridePort: 12082,
         slbConfigProcessorDnsLivenessProbeOverridePort: 12083,
+        slbConfigProcessorRealSvrLivenessProbeOverridePort: 12085,
         slbBaboonLivenessProbePort: 9877,
         slbNodeApiPort: 9130,
-        slbNodeApiOverridePort: 12081,
+        slbNodeApiIpvsOverridePort: 12081,
+        slbNodeApiRealSvrOverridePort: 12084,
 
         canaryServiceTlsNodePort: 32135,
         canaryServiceNodePort: 32136,

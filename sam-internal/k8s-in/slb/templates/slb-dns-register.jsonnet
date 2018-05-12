@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-dns-register" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-dns-register", configProcessorLivenessPort:: if slbimages.phase == "1" then portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort else portconfigs.slb.slbConfigProcessorLivenessProbeOverridePort } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-dns-register", configProcessorLivenessPort:: if slbimages.phase == "1" then portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort else portconfigs.slb.slbConfigProcessorIpvsLivenessProbeOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
