@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-realsvrcfg" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiOverridePort } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: if slbimages.phase == "1" then slbports.slb.slbConfigProcessorDnsLivenessProbeOverridePort else slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: if slbimages.phase == "1" then slbports.slb.slbNodeApiRealSvrOverridePort else slbports.slb.slbNodeApiIpvsOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",

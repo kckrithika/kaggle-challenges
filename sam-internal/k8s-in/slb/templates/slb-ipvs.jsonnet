@@ -3,7 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-ipvs" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-ipvs", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiOverridePort } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-ipvs", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIpvsOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -120,7 +120,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      "--maximumDeleteCount=20",
                                      configs.sfdchosts_arg,
                                  ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
-                            "--client.serverPort=" + slbports.slb.slbNodeApiOverridePort,
+                            "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                         ] else [],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
@@ -173,7 +173,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-ipvs-conntrack",
                             "--log_dir=" + slbconfigs.logsDir,
                         ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
-                            "--client.serverPort=" + slbports.slb.slbNodeApiOverridePort,
+                            "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                         ] else [],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
