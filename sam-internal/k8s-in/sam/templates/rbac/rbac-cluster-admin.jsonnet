@@ -2,7 +2,7 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
 local configs = import "config.jsonnet";
 local utils = import "util_functions.jsonnet";
 {
-    apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+    apiVersion: rbac_utils.rbac_api_version,
     kind: "ClusterRoleBinding",
     metadata: {
         name: "cluster-admin",

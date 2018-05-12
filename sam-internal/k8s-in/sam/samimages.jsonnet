@@ -25,6 +25,8 @@ local utils = import "util_functions.jsonnet";
         #[rbhat] use rbac beta client
         "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
+        "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
+        "prd,prd-sam_storagedev,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
 
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
@@ -39,9 +41,6 @@ local utils = import "util_functions.jsonnet";
         "wax,wax-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "yhu,yhu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "yul,yul-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-
-        # [mgrass] Releasing estate-server early in xrd to unblock ceph cluster deployment (depends on failure domain labeling done by nodecontroller).
-        "xrd,xrd-sam,estate-server,hypersam": "ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sam/hypersam:sam-0001931-927cd1fc",
         },
 
     ### Per-phase image tags

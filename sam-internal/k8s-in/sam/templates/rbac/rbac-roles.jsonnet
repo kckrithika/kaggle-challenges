@@ -1,4 +1,5 @@
 local configs = import "config.jsonnet";
+local rbac_utils = import "sam_rbac_functions.jsonnet";
 
 {
   apiVersion: "v1",
@@ -7,7 +8,7 @@ local configs = import "config.jsonnet";
   items: [
     {
       kind: "ClusterRole",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         #When used in a ClusterRoleBinding, it gives permission to read secrets & update events &pod status in the cluster and in all namespaces. When used in a RoleBinding, it gives permission to read secrets & update events & pod status in the rolebinding's namespace.
         # Refer to "samcompute:clusterrolebinding" & "$namespace:rolebinding"
@@ -58,7 +59,7 @@ local configs = import "config.jsonnet";
     },
     {
       kind: "ClusterRole",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         # When used in a ClusterRoleBinding, gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces. Used in "minion:clusterrolebinding".
         name: "minion:clusterrole",
@@ -118,7 +119,7 @@ local configs = import "config.jsonnet";
     },
     {
      kind: "Role",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
          name: "update-secrets",
          namespace: "sam-system",
@@ -139,7 +140,7 @@ local configs = import "config.jsonnet";
     },
     {
      kind: "ClusterRole",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
          name: "local-pv-create",
       },
