@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: minion:clusterrolebinding
@@ -11,7 +11,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-system:rolebinding
@@ -23,7 +23,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-watchdog:rolebinding
@@ -35,7 +35,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: update-secrets
@@ -47,7 +47,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: prd-sam_cephdev:samcompute:clusterrolebinding
@@ -102,7 +102,7 @@ items:
     name: shared0-storageminioncephtwo1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-storageminioncephtwo1-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: prd-sam_sfstoredev:samcompute:clusterrolebinding
@@ -127,7 +127,7 @@ items:
     name: shared0-storageminionsfstoretwo1-7-prd.eng.sfdc.net
   - kind: User
     name: shared0-storageminionsfstoretwo1-8-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: samcompute:clusterrolebinding

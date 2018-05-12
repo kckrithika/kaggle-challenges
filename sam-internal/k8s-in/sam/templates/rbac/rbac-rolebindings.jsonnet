@@ -17,7 +17,7 @@ local functions = {
     createRoleBinding(namespace, estate, hosts):: {
       #Gives permission to read secrets & update events & pod status in the rolebinding's namespace
       kind: "RoleBinding",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         #All the $namespaces deployed on the $pool the node is part of should have rolebinding to "minion:role"
         name: namespace + ":" + estate + ":rolebinding",
@@ -43,7 +43,7 @@ local functions = {
 
       #Gives permission to read secrets & update events &pod status in the cluster and in all namespaces.
       kind: "ClusterRoleBinding",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         # In test clusters nodes get permission to read secrets, update pod/status & events across all namespace
         name: estateSpecificTag + "samcompute:clusterrolebinding",
@@ -86,7 +86,7 @@ local data = {
     {
       #Gives permission to read "services", "pods", "nodes" & "endpoints", create "nodes" in the cluster and across all namespaces.
       kind: "ClusterRoleBinding",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         name: "minion:clusterrolebinding",
       },
@@ -107,7 +107,7 @@ local data = {
     {
      #Gives permission to read secrets & update events & pod status in the sam-system namespace
       kind: "RoleBinding",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         name: "sam-system:rolebinding",
         namespace: "sam-system",
@@ -128,7 +128,7 @@ local data = {
     {
      #Gives permission to read secrets & update events & pod status in the sam-watchdog namespace
       kind: "RoleBinding",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         name: "sam-watchdog:rolebinding",
         namespace: "sam-watchdog",
@@ -149,7 +149,7 @@ local data = {
     {
       #Gives permission to read-write "secrets" in sam-system namespaces.
       kind: "RoleBinding",
-      apiVersion: if configs.estate == "prd-samdev" then "rbac.authorization.k8s.io/v1beta1" else "rbac.authorization.k8s.io/v1alpha1",
+      apiVersion: rbac_utils.rbac_api_version,
       metadata: {
         name: "update-secrets",
         namespace: "sam-system",
