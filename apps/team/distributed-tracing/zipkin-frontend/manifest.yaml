@@ -23,7 +23,7 @@ system:
         secretName: oauth2-proxy
     containers:
     - name: zipkin-nginx
-      image: docker-dva-rc/dva/zipkin-nginx:16
+      image: docker-dva-rc/dva/zipkin-nginx:18
       ports: 
       - name: http
         containerPort: 8080
@@ -34,8 +34,8 @@ system:
         value: zipkin-alpha
       - name: ZIPKIN_SERVER
         value: localhost
-      - name: AUTH_ENABLED
-        value: false
+      - name: ZIPKIN_ENDPOINT
+        value: https://zipkin.eng.sfdc.net
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
