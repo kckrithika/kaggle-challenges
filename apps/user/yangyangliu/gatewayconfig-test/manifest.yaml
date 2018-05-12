@@ -23,6 +23,10 @@ system:
         value: /gwcertserver
       - name: PKI_MONITORDIR
         value: /gwcertserver/server
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
+      - name: LOGGING_STDERR_LEVEL
+        value: all
       volumeMounts:
       - name: gwcertclient
         mountPath: /gwcertclient
