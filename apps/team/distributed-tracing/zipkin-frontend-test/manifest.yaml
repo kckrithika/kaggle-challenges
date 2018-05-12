@@ -18,9 +18,9 @@ system:
         type: server
         lbnames:
         - zipkin-test
-    - name: oauth2-proxy-secrets
-      k4aSecret:
-        secretName: oauth2-proxy
+    #- name: oauth2-proxy-secrets
+    #  k4aSecret:
+    #    secretName: oauth2-proxy-test
     containers:
     - name: zipkin-nginx
       image: docker-dva-rc/dva/zipkin-nginx:16
@@ -41,9 +41,9 @@ system:
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-test
         name: server-certs
-      - mountPath: /secrets/
-        name: oauth2-proxy-secrets
-        readOnly: true
+      #- mountPath: /secrets/
+      #  name: oauth2-proxy-secrets
+      #  readOnly: true
       livenessProbe:
         exec:
           # TODO: Check if process is running?
