@@ -31,19 +31,25 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.sbin_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                     slbconfigs.slb_config_volume,
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                ] else []),
+                ] else [])
+                       + (if slbimages.phase == "1" then [
+                              slbconfigs.cleanup_logs_volume,
+                          ] else [])),
                 containers: [
                     slbshared.slbRealSvrCfg,
-                ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                     slbshared.slbConfigProcessor,
                     slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi,
-                ] else [],
+                ] else [])
+                       + (if slbimages.phase == "1" then [
+                              slbshared.slbLogCleanup,
+                          ] else []),
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {

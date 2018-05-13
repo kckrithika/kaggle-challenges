@@ -50,148 +50,154 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.usr_sbin_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
                     slbconfigs.sbin_volume,
-                ] else []),
+                ] else [])
+                       + (if slbimages.phase == "1" then [
+                              slbconfigs.cleanup_logs_volume,
+                          ] else [])),
                 containers: [
-                    {
-                        name: "slb-ipvs-installer",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-ipvs-installer",
-                            "--modules=/sdn",
-                            "--host=/host",
-                            "--period=5s",
-                            "--metricsEndpoint=" + configs.funnelVIP,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            configs.sfdchosts_arg,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            {
-                                name: "dev-volume",
-                                mountPath: "/dev",
-                            },
-                            {
-                                name: "lib-modules-volume",
-                                mountPath: "/lib/modules",
-                            },
-                            {
-                                name: "tmp-volume",
-                                mountPath: "/host/tmp",
-                            },
-                            {
-                                name: "lib-modules-volume",
-                                mountPath: "/host/lib/modules",
-                            },
-                            slbconfigs.usr_sbin_volume_mount,
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                    }
-                    + (
-                        if configs.estate == "prd-sdc" then {
-                            securityContext: {
-                                privileged: true,
-                            },
-                        } else {
-                            securityContext: {
-                                privileged: true,
-                                capabilities: {
-                                    add: [
-                                        "ALL",
+                                {
+                                    name: "slb-ipvs-installer",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-ipvs-installer",
+                                        "--modules=/sdn",
+                                        "--host=/host",
+                                        "--period=5s",
+                                        "--metricsEndpoint=" + configs.funnelVIP,
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        configs.sfdchosts_arg,
                                     ],
+                                    volumeMounts: configs.filter_empty([
+                                        {
+                                            name: "dev-volume",
+                                            mountPath: "/dev",
+                                        },
+                                        {
+                                            name: "lib-modules-volume",
+                                            mountPath: "/lib/modules",
+                                        },
+                                        {
+                                            name: "tmp-volume",
+                                            mountPath: "/host/tmp",
+                                        },
+                                        {
+                                            name: "lib-modules-volume",
+                                            mountPath: "/host/lib/modules",
+                                        },
+                                        slbconfigs.usr_sbin_volume_mount,
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                }
+                                + (
+                                    if configs.estate == "prd-sdc" then {
+                                        securityContext: {
+                                            privileged: true,
+                                        },
+                                    } else {
+                                        securityContext: {
+                                            privileged: true,
+                                            capabilities: {
+                                                add: [
+                                                    "ALL",
+                                                ],
+                                            },
+                                        },
+                                    }
+                                ),
+
+                                {
+                                    name: "slb-ipvs-processor",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-ipvs-processor",
+                                        "--marker=" + slbconfigs.ipvsMarkerFile,
+                                        "--period=5s",
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        "--maximumDeleteCount=20",
+                                        configs.sfdchosts_arg,
+                                    ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                        "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
+                                    ] else [],
+                                    volumeMounts: configs.filter_empty([
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.slb_config_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        slbconfigs.usr_sbin_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                    securityContext: {
+                                        privileged: true,
+                                    },
                                 },
-                            },
-                        }
-                    ),
 
-                    {
-                        name: "slb-ipvs-processor",
-                        image: slbimages.hypersdn,
-                        command: [
-                                     "/sdn/slb-ipvs-processor",
-                                     "--marker=" + slbconfigs.ipvsMarkerFile,
-                                     "--period=5s",
-                                     "--log_dir=" + slbconfigs.logsDir,
-                                     "--maximumDeleteCount=20",
-                                     configs.sfdchosts_arg,
-                                 ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
-                            "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
-                        ] else [],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.slb_config_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            slbconfigs.usr_sbin_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        securityContext: {
-                            privileged: true,
-                        },
-                    },
-
-                    {
-                        name: "slb-ipvs-data",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-ipvs-data",
-                            "--connPort=" + portconfigs.slb.ipvsDataConnPort,
-                            "--log_dir=" + slbconfigs.logsDir,
-                            configs.sfdchosts_arg,
-                        ],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            slbconfigs.usr_sbin_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        securityContext: {
-                            privileged: true,
-                        },
-                        ports: [
-                            {
-                                containerPort: portconfigs.slb.slbIpvsControlPort,
-                            },
-                        ],
-                        livenessProbe: {
-                            httpGet: {
-                                path: "/",
-                                port: portconfigs.slb.ipvsDataConnPort,
-                            },
-                            initialDelaySeconds: 5,
-                            periodSeconds: 3,
-                        },
-                    },
-                    {
-                        name: "slb-ipvs-conntrack",
-                        image: slbimages.hypersdn,
-                        command: [
-                            "/sdn/slb-ipvs-conntrack",
-                            "--log_dir=" + slbconfigs.logsDir,
-                        ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
-                            "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
-                        ] else [],
-                        volumeMounts: configs.filter_empty([
-                            slbconfigs.slb_volume_mount,
-                            slbconfigs.slb_config_volume_mount,
-                            slbconfigs.logs_volume_mount,
-                            slbconfigs.usr_sbin_volume_mount,
-                            configs.sfdchosts_volume_mount,
-                        ]),
-                        securityContext: {
-                            privileged: true,
-                        },
-                    },
-                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
-                         slbshared.slbConfigProcessor,
-                         slbshared.slbCleanupConfig,
-                         slbshared.slbNodeApi,
-                         slbshared.slbIfaceProcessor,
-                     ] else []),
+                                {
+                                    name: "slb-ipvs-data",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-ipvs-data",
+                                        "--connPort=" + portconfigs.slb.ipvsDataConnPort,
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                        configs.sfdchosts_arg,
+                                    ],
+                                    volumeMounts: configs.filter_empty([
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        slbconfigs.usr_sbin_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                    securityContext: {
+                                        privileged: true,
+                                    },
+                                    ports: [
+                                        {
+                                            containerPort: portconfigs.slb.slbIpvsControlPort,
+                                        },
+                                    ],
+                                    livenessProbe: {
+                                        httpGet: {
+                                            path: "/",
+                                            port: portconfigs.slb.ipvsDataConnPort,
+                                        },
+                                        initialDelaySeconds: 5,
+                                        periodSeconds: 3,
+                                    },
+                                },
+                                {
+                                    name: "slb-ipvs-conntrack",
+                                    image: slbimages.hypersdn,
+                                    command: [
+                                        "/sdn/slb-ipvs-conntrack",
+                                        "--log_dir=" + slbconfigs.logsDir,
+                                    ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                        "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
+                                    ] else [],
+                                    volumeMounts: configs.filter_empty([
+                                        slbconfigs.slb_volume_mount,
+                                        slbconfigs.slb_config_volume_mount,
+                                        slbconfigs.logs_volume_mount,
+                                        slbconfigs.usr_sbin_volume_mount,
+                                        configs.sfdchosts_volume_mount,
+                                    ]),
+                                    securityContext: {
+                                        privileged: true,
+                                    },
+                                },
+                            ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                     slbshared.slbConfigProcessor,
+                                     slbshared.slbCleanupConfig,
+                                     slbshared.slbNodeApi,
+                                     slbshared.slbIfaceProcessor,
+                                 ] else [])
+                            + (if slbimages.phase == "1" then [
+                                   slbshared.slbLogCleanup,
+                               ] else []),
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },

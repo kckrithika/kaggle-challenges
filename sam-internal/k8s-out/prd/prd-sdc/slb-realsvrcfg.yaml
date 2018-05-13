@@ -139,6 +139,40 @@ spec:
           name: var-slb-volume
         - mountPath: /host/data/slb/logs/slb-realsvrcfg
           name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-realsvrcfg/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-realsvrcfg
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000852-5ab991e1
+        livenessProbe:
+          exec:
+            command:
+            - test
+            - '`find /slb-cleanup-heartbeat -mmin -.5`'
+          initialDelaySeconds: 15
+          periodSeconds: 15
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-realsvrcfg
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-realsvrcfg
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-realsvrcfg/cleanup
+          name: var-cleanup-logs-volume
       hostNetwork: true
       volumes:
       - hostPath:
@@ -165,6 +199,9 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/slb/logs/slb-realsvrcfg/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%

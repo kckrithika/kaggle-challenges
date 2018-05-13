@@ -149,7 +149,9 @@ if slbconfigs.slbInKingdom then {
                     configs.kube_config_volume,
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
-                ]),
+                ] + (if slbimages.phase == "1" then [
+                         slbconfigs.cleanup_logs_volume,
+                     ] else [])),
                 containers: [
                                 {
                                     ports: [
@@ -325,7 +327,10 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbNodeApi,
                                     slbshared.slbRealSvrCfg,
                                 ] else []
-                            ),
+                            )
+                            + (if slbimages.phase == "1" then [
+                                   slbshared.slbLogCleanup,
+                               ] else []),
 
                 nodeSelector: {
                     "slb-service": "slb-nginx-b",
