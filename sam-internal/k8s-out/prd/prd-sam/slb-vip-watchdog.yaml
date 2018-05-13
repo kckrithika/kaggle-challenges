@@ -54,9 +54,9 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --httpTimeout=5s
         - --useLocalNodeApi=true
-        - --optOutServiceList=ops0-pkicontroller1-0-prd,git-test
         - --vipLoop=1
         - --monitorFrequency=10s
+        - --optOutServiceList=ops0-pkicontroller1-0-prd,git-test
         env:
         - name: NODE_NAME
           valueFrom:
