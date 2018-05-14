@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-baboon" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-baboon" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-baboon" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-baboon" } else {});
 local portconfigs = import "slbports.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then {
@@ -32,7 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                         name: "kubectl",
                     },
                     configs.sfdchosts_volume,
-                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                          slbconfigs.cleanup_logs_volume,
                      ] else [])),
                 containers: [
@@ -112,7 +112,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                         configs.kube_config_env,
                                     ],
                                 },
-                            ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                            ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                      slbshared.slbConfigProcessor,
                                      slbshared.slbCleanupConfig,
                                      slbshared.slbNodeApi,
