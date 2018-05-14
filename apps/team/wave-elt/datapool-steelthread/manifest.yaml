@@ -46,9 +46,6 @@ system:
       - mountPath: /home/datapool/logs
         name: logvol
 
-      - mountPath: /home/datapool/datapool-keytab
-        name: datapoolkeytab
-
       - mountPath: /home/datapool/client-certs
         name: tls-client-certs
 
