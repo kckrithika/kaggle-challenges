@@ -34,7 +34,7 @@ system:
         value: /home/datapool/datapool-keytab/datapool.keytab
 
       - name: PHOENIX_LAZYINIT
-        value: true
+        value: false
 
       - name: PKI_TRUSTSTORE_DIR
         value: /home/datapool/client-certs
@@ -45,9 +45,6 @@ system:
       volumeMounts:
       - mountPath: /home/datapool/logs
         name: logvol
-
-      - mountPath: /home/datapool/datapool-keytab
-        name: datapoolkeytab
 
       - mountPath: /home/datapool/client-certs
         name: tls-client-certs
@@ -117,10 +114,6 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
-
-    - name: datapoolkeytab
-      k4aSecret:
-        secretName: datapool-keytab
 
     - name: tls-server-certs
       maddogCert:
