@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local storageutils = import "storageutils.jsonnet";
+local storageimages = (import "storageimages.jsonnet") + { templateFilename:: std.thisFile };
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam_storage",
@@ -17,6 +18,6 @@ if std.setMember(configs.estate, enabledEstates) then {
       namespace: "sam-system",
     },
     data: {
-      "sfn-selectors.yaml": storageutils.make_sfn_selector_rule(storageconfigs.storageEstates),
+      "sfn-selectors.yaml": storageutils.make_sfn_selector_rule(storageconfigs.storageEstates, storageimages.phase),
     },
 } else "SKIP"
