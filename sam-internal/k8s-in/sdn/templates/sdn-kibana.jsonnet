@@ -25,7 +25,7 @@ if configs.estate == "prd-sam" then {
                                 },
                                 {
                                     name: "SERVER_PORT",
-                                    value: portconfigs.sdn.sdn_kibana,
+                                    value: std.toString(portconfigs.sdn.sdn_kibana),
                                 },
                         ],
                         ports: [

@@ -43,7 +43,7 @@ if configs.estate == "prd-sam" then {
                                 },
                                 {
                                     name: "http_port",
-                                    value: portconfigs.sdn.sdn_elasticsearch,
+                                    value: std.toString(portconfigs.sdn.sdn_elasticsearch),
                                 },
                         ],
                         livenessProbe: {
