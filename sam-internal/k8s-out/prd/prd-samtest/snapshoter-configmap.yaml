@@ -7,6 +7,7 @@ data:
       "ignored-resources": [
         "ReplicaSet"
       ],
+      "include-crds": true,
       "kafka-endpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
       "kafka-payload-kb": 300,
       "kafka-push-interval": "10s",
