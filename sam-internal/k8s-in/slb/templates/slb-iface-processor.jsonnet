@@ -35,6 +35,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 ] + (if slbimages.phase == "1" then [
                     configs.cert_volume,
                     slbconfigs.cleanup_logs_volume,
+                    configs.maddog_cert_volume,
+                    configs.kube_config_volume,
                 ] else [])),
                 containers: [
                     slbshared.slbIfaceProcessor,
