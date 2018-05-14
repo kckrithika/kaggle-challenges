@@ -57,6 +57,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/logs/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%
