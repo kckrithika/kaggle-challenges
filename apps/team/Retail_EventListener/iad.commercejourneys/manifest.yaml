@@ -12,9 +12,6 @@ system:
   - name: commercejourneys
     count: 1
     volumes:
-    - name: secretvol
-      k4aSecret:
-          secretName: multitenantcreds
     - name: cccjclientcert
       maddogCert:
         type: client
@@ -44,8 +41,5 @@ system:
       volumeMounts:
       - name: cccjclientcert
         mountPath: /clientcert
-      - name: secretvol
-        mountPath: /secrets/
-        readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
