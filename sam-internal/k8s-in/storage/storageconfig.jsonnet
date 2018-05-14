@@ -1,6 +1,7 @@
 {
     local estate = std.extVar("estate"),
     local kingdom = std.extVar("kingdom"),
+    local configs = import "config.jsonnet",
 
     // Map of Ceph control estate -> cluster estate.
     cephEstates: {
@@ -141,9 +142,7 @@
 
     fds_profiling: self.perCluster.fds_profiling[estate],
     cephMetricsPool: (if estate == "prd-sam_storage" then self.cephEstates[estate][1] else self.cephEstates[estate][0]),
-    funnel_vip: "ajna0-funnel1-0-" + kingdom + ".data.sfdc.net",
-    funnel_vip_and_port: $.funnel_vip + ":80",
-    funnel_endpoint: "http://" + $.funnel_vip_and_port,
+    funnel_endpoint: configs.funnelVIP,
     maddog_endpoint: "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
 
 }
