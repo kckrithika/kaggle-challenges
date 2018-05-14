@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-realsvrcfg" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: if slbimages.phase == "1" then slbports.slb.slbConfigProcessorDnsLivenessProbeOverridePort else slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: if slbimages.phase == "1" then slbports.slb.slbNodeApiRealSvrOverridePort else slbports.slb.slbNodeApiIpvsOverridePort } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiRealSvrOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -36,20 +36,16 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
-                ] else [])
-                       + (if slbimages.phase == "1" then [
-                              slbconfigs.cleanup_logs_volume,
-                          ] else [])),
+                    slbconfigs.cleanup_logs_volume,
+                ] else [])),
                 containers: [
                     slbshared.slbRealSvrCfg,
                 ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                     slbshared.slbConfigProcessor,
                     slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi,
-                ] else [])
-                       + (if slbimages.phase == "1" then [
-                              slbshared.slbLogCleanup,
-                          ] else []),
+                    slbshared.slbLogCleanup,
+                ] else []),
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
