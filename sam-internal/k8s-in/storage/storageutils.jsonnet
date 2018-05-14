@@ -134,7 +134,7 @@ local utils = import "util_functions.jsonnet";
     make_sfn_selector_rule(estates) :: |||
         pods:
             matchExpressions:
-                - {key: cloud, operator: In, values: [storage]}
+                - {key: app, operator: In, values: [ceph-mon,ceph-osd,lv-os-provisioner]}
         nodes:
             matchExpressions:
                 - {key: pool, operator: In, values: %(poolSet)s}
@@ -147,6 +147,12 @@ local utils = import "util_functions.jsonnet";
         statefulsets:
             matchExpressions:
                 - {key: daemon, operator: In, values: %(daemonSet)s}
+        deployments:
+            matchExpressions:
+                - {key: cloud, operator: In, values: [storage]}
+        daemonsets:
+            matchExpressions:
+                - {key: cloud, operator: In, values: [storage]}
     ||| % {
         poolSet : std.toString([ minion for minion in estates]),
         daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
