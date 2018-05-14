@@ -143,6 +143,6 @@
     fds_profiling: self.perCluster.fds_profiling[estate],
     cephMetricsPool: (if estate == "prd-sam_storage" then self.cephEstates[estate][1] else self.cephEstates[estate][0]),
     funnel_endpoint: configs.funnelVIP,
-    maddog_endpoint: "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
+    maddog_endpoint: configs.maddogEndpoint,
 
 }
