@@ -38,6 +38,26 @@ apps:
         - test0shared0-samminionatlasdir1-2-prd.eng.sfdc.net
         - test0shared0-samminionatlasdir2-1-prd.eng.sfdc.net
 
+  # XRD Proxy Nodes
+  shared0-samminionatlasfe-xrd:
+    - name: xrd/xrd-sam_cloudatlas
+      hostSubList:
+      - shared0-samminionatlasfe2-1-xrd.eng.sfdc.net
+      - shared0-samminionatlasfe1-1-xrd.eng.sfdc.net
+
+  # XRD Topomaster
+  shared0-samminionatlasdir1-1-xrd:
+    - name: xrd/xrd-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir1-1-xrd.eng.sfdc.net
+
+  # XRD DS Nodes
+  shared0-samminionatlasdir-xrd:
+    - name: xrd/xrd-sam_cloudatlas_dir
+      hostSubList:
+      - shared0-samminionatlasdir2-1-xrd.eng.sfdc.net
+      - shared0-samminionatlasdir1-2-xrd.eng.sfdc.net
+
   # DFW Proxy Nodes
   shared0-samminionatlasfe-dfw:
     - name: dfw/dfw-sam_cloudatlas
