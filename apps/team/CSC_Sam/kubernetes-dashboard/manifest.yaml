@@ -19,7 +19,7 @@ system:
         httpGet:
           path: /
           port: 9090
-      volumesMounts:
+      volumeMounts:
       - mountPath: /tmp
         name: temp
     - name: dashboard-dfw
@@ -87,7 +87,7 @@ system:
         httpGet:
           path: /
           port: 9094
-      volumesMounts:
+      volumeMounts:
       - mountPath: /tmp
         name: temp
     - name: dashboard-par
