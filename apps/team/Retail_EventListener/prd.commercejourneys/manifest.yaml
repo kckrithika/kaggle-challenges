@@ -49,12 +49,3 @@ system:
         readOnly: true
       - name: logvol
         mountPath: /home/sfdc-cj/logs
-
-  loadbalancers:
-  - lbname: commerce-journeys-lb
-    function: commerce-journeys
-    nodeExposed: true
-    slbEnabled: true
-    ports:
-        - port: 15572
-          targetport: 15372
