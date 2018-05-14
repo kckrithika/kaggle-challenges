@@ -38,6 +38,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                           configs.sfdchosts_volume,
                       ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                slbconfigs.cleanup_logs_volume,
+                               slbconfigs.slb_volume,
+                               slbconfigs.slb_config_volume,
                            ] else [])),
                       containers: [
                           {
