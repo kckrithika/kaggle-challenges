@@ -205,6 +205,12 @@ spec:
       - hostPath:
           path: /data/slb/logs/slb-iface-processor/cleanup
         name: var-cleanup-logs-volume
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%
