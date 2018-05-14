@@ -8,27 +8,35 @@ system:
       - richard.li@salesforce.com
       - jcormier@salesforce.com
       - dkilgore@salesforce.com
+
   functions:
   - name: eventbeacon
     count: 1
     volumes:
+    - name: cccjservercert
+      maddogCert:
+        type: server
     - name: cccjclientcert
       maddogCert:
         type: client
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.5
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.15
       ports:
-        - containerPort: 8080
+        - containerPort: 7022
         - containerPort: 15372
       env:
         - name: SFDC_ENVIRONMENT
-          value: prod
+          value: dev
         - name: SERVER_PORT
-          value: 8080
+          value: 7022
         - name: MANAGEMENT_PORT
           value: 15372
       livenessProbe:
@@ -40,15 +48,44 @@ system:
           port: 15372
       volumeMounts:
       - name: cccjclientcert
-        mountPath: /clientcert
+        mountPath: /client-certs
+      - name: cccjservercert
+        mountPath: /server-certs
       - name: logvol
         mountPath: /home/sfdc-cj/logs
+
+    - name: sherpa-event-beacon
+      image: sfci/servicelibs/sherpa:2.0.23
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: prod
+      ports:
+        - containerPort: 7442
+        - containerPort: 7014
+        - containerPort: 15373
+      volumeMounts:
+        - name: sherpa-log-volume
+          mountPath: /home/sfdc-cj/sherpa-logs
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 60
+        periodSeconds: 120
+
   loadbalancers:
-  - lbname: eventbeacon-lb
+  - lbname: event-beacon-lb
     function: eventbeacon
     nodeExposed: true
+    slbEnabled: true
     ports:
-      - port: 8088
-        targetport: 8080
-      - port: 15373
-        targetport: 15372
+      - port: 7442
+        targetport: 7442
+      - port: 7014
+        targetport: 7014
