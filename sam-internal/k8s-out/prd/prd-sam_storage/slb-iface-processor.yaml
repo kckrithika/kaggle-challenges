@@ -39,6 +39,7 @@ spec:
         - --log_dir=/host/data/slb/logs/
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --readVipsFromIpvs=true
+        - --client.serverPort=9130
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000852-5ab991e1
         name: slb-iface-processor
         securityContext:

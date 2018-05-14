@@ -20,7 +20,7 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/cleanup
         - --filesDirToCleanup=/host/data/slb/logs/
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
@@ -41,6 +41,8 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /host/data/slb/logs/cleanup
+          name: var-cleanup-logs-volume
       hostNetwork: true
       volumes:
       - hostPath:

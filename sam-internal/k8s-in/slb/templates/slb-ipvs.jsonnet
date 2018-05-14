@@ -55,10 +55,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.cert_volume,
                     configs.kube_config_volume,
                     slbconfigs.sbin_volume,
-                ] else [])
-                       + (if slbimages.phase == "1" then [
-                              slbconfigs.cleanup_logs_volume,
-                          ] else [])),
+                    slbconfigs.cleanup_logs_volume,
+                ] else [])),
                 containers: [
                                 {
                                     name: "slb-ipvs-installer",
@@ -194,10 +192,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                      slbshared.slbCleanupConfig,
                                      slbshared.slbNodeApi,
                                      slbshared.slbIfaceProcessor,
-                                 ] else [])
-                            + (if slbimages.phase == "1" then [
-                                   slbshared.slbLogCleanup,
-                               ] else []),
+                                     slbshared.slbLogCleanup,
+                                 ] else []),
                 nodeSelector: {
                     "slb-service": "slb-ipvs",
                 },

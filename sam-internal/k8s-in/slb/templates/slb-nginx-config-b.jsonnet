@@ -149,7 +149,7 @@ if slbconfigs.slbInKingdom then {
                     configs.kube_config_volume,
                     configs.cert_volume,
                     slbconfigs.slb_config_volume,
-                ] + (if slbimages.phase == "1" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                          slbconfigs.cleanup_logs_volume,
                      ] else [])),
                 containers: [
@@ -328,7 +328,7 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbRealSvrCfg,
                                 ] else []
                             )
-                            + (if slbimages.phase == "1" then [
+                            + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                    slbshared.slbLogCleanup,
                                ] else []),
 

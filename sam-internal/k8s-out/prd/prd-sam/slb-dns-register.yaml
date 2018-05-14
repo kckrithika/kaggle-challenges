@@ -61,7 +61,7 @@ spec:
         - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/prd
         - --kneDomainName=slb.sfdc.net
-        - --livenessProbePort=12082
+        - --livenessProbePort=12083
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
@@ -78,7 +78,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /liveness-probe
-            port: 12082
+            port: 12083
           initialDelaySeconds: 600
           periodSeconds: 30
           timeoutSeconds: 5
@@ -121,6 +121,33 @@ spec:
           name: var-config-volume
         - mountPath: /host/data/slb/logs/slb-dns-register
           name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-dns-register/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-dns-register
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000852-5ab991e1
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-dns-register/cleanup
+          name: var-cleanup-logs-volume
       hostNetwork: true
       nodeSelector:
         slb-dns-register: "true"
@@ -146,3 +173,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/slb/logs/slb-dns-register/cleanup
+        name: var-cleanup-logs-volume

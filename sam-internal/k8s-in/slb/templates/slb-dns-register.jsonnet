@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-dns-register" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-dns-register", configProcessorLivenessPort:: if slbimages.phase == "1" then portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort else portconfigs.slb.slbConfigProcessorIpvsLivenessProbeOverridePort } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-dns-register", configProcessorLivenessPort:: portconfigs.slb.slbConfigProcessorDnsLivenessProbeOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -34,10 +34,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                               ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                                        slbconfigs.slb_volume,
                                                        configs.kube_config_volume,
-                                                   ] else [])
-                                              + (if slbimages.phase == "1" then [
-                                                     slbconfigs.cleanup_logs_volume,
-                                                 ] else [])),
+                                                       slbconfigs.cleanup_logs_volume,
+                                                   ] else [])),
                 containers: [
                                 {
                                     name: "slb-dns-register-processor",
@@ -66,10 +64,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                      slbshared.slbConfigProcessor,
                                      slbshared.slbCleanupConfig,
-                                 ] else [])
-                            + (if slbimages.phase == "1" then [
-                                   slbshared.slbLogCleanup,
-                               ] else []),
+                                     slbshared.slbLogCleanup,
+                                 ] else []),
                 nodeSelector: {
                     "slb-dns-register": "true",
                 },

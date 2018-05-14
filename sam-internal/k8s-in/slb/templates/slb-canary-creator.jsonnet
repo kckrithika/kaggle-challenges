@@ -36,7 +36,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                           configs.maddog_cert_volume,
                           configs.kube_config_volume,
                           configs.sfdchosts_volume,
-                      ] + (if slbimages.phase == "1" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                slbconfigs.cleanup_logs_volume,
                            ] else [])),
                       containers: [
@@ -69,7 +69,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                   privileged: true,
                               },
                           },
-                      ] + (if slbimages.phase == "1" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                slbshared.slbLogCleanup,
                            ] else []),
                   },

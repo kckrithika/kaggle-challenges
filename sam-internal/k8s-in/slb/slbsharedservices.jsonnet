@@ -119,7 +119,7 @@
             "--netInterfaceName=eth0",
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
-        ] + (if slbimages.phase == "1" then [
+        ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                  "--client.serverPort=" + $.nodeApiPort,
              ] else []),
         volumeMounts: configs.filter_empty([
@@ -171,7 +171,7 @@
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
             "--readVipsFromIpvs=true",
-        ] + (if slbimages.phase == "1" then [
+        ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                            "--client.serverPort=" + $.nodeApiPort,
                        ] else []),
         volumeMounts: configs.filter_empty([
@@ -192,7 +192,7 @@
             "/sdn/slb-cleanup",
             "--period=1800s",
             "--logsMaxAge=48h",
-            "--log_dir=" + (if slbimages.phase == "1" then slbconfigs.cleanupLogsDir else slbconfigs.logsDir),
+            "--log_dir=" + (if slbimages.phase == "1" || slbimages.phase == "2" then slbconfigs.cleanupLogsDir else slbconfigs.logsDir),
             "--filesDirToCleanup=" + slbconfigs.logsDir,
             "--shouldSkipServiceRecords=false",
             "--shouldNotDeleteAllFiles=false",
@@ -203,7 +203,7 @@
             slbconfigs.slb_config_volume_mount,
             slbconfigs.logs_volume_mount,
             configs.sfdchosts_volume_mount,
-        ] + if slbimages.phase == "1" then [
+        ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
             slbconfigs.cleanup_logs_volume_mount,
         ] else []),
         env: [

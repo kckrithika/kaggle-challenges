@@ -68,7 +68,7 @@ spec:
         - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/testkneconfigs
         - --kneDomainName=prd-sdc.slb.sfdc.net
-        - --livenessProbePort=12083
+        - --livenessProbePort=12085
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
@@ -84,7 +84,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /liveness-probe
-            port: 12083
+            port: 12085
           initialDelaySeconds: 600
           periodSeconds: 30
           timeoutSeconds: 5
