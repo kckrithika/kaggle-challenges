@@ -65,10 +65,15 @@ else
                             exec: {
                                 # Verify responding to DNS requests AND kill once daily to ensure fresh PKI cert
                                 # See also https://github.com/kubernetes/kubernetes/issues/37218#issuecomment-372887460
+                                # Note: bash ps etime syntax is <days>-<hours>:<minutes>:<seconds>, but busybox is
+                                # <minutes>:<seconds> even for large minute counts. Use 2000 minutes ( ~ 1.4 days) as
+                                # the threshold.
+                                # grep -c (count) | grep 0 will yield an error if the count non-zero and thus fail the
+                                # liveness check.
                                 command: [
                                     "sh",
                                     "-c",
-                                    "nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null && ps -o etime= | grep -c - | grep -q 0",
+                                    "nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null && ps -o etime= | grep -cE '[2-9][0-9][0-9][0-9]:' | grep -q 0",
                                 ],
                             },
                             initialDelaySeconds: 60,

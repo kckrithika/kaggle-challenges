@@ -44,7 +44,7 @@ spec:
             - sh
             - -c
             - nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null
-              && ps -o etime= | grep -c - | grep -q 0
+              && ps -o etime= | grep -cE '[2-9][0-9][0-9][0-9]:' | grep -q 0
           failureThreshold: 5
           initialDelaySeconds: 60
           periodSeconds: 10
