@@ -118,10 +118,6 @@ system:
       hostPath:
         path: /home/sfdc-sherpa/logs
 
-    - name: datapoolkeytab
-      k4aSecret:
-        secretName: datapool-keytab
-
     - name: tls-server-certs
       maddogCert:
         type: server
