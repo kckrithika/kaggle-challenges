@@ -1,7 +1,6 @@
 {
     local estate = std.extVar("estate"),
     local kingdom = std.extVar("kingdom"),
-    local configs = import "config.jsonnet",
 
     // Map of Ceph control estate -> cluster estate.
     cephEstates: {
@@ -142,7 +141,5 @@
 
     fds_profiling: self.perCluster.fds_profiling[estate],
     cephMetricsPool: (if estate == "prd-sam_storage" then self.cephEstates[estate][1] else self.cephEstates[estate][0]),
-    funnel_endpoint: configs.funnelVIP,
-    maddog_endpoint: configs.maddogEndpoint,
 
 }

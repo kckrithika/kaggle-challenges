@@ -45,7 +45,7 @@ local madkubOpEnvVars = if isEstateNotSkipper && storageimages.phase == "1" then
         },
         {
             name: "MADDOG_ENDPOINT",
-            value: storageconfigs.maddog_endpoint,
+            value: configs.maddogEndpoint,
         },
         {
             name: "MADKUB_ENDPOINT",
@@ -53,7 +53,7 @@ local madkubOpEnvVars = if isEstateNotSkipper && storageimages.phase == "1" then
         },
         {
             name: "FUNNEL_ENDPOINT",
-            value: storageconfigs.funnel_endpoint,
+            value: configs.funnelVIP,
         },
         {
             name: "MC_ESTATE",
