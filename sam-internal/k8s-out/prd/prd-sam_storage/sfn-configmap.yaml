@@ -3,7 +3,7 @@ data:
   sfn-selectors.yaml: |
     pods:
         matchExpressions:
-            - {key: app, operator: In, values: [ceph-mon,ceph-osd,lv-os-provisioner]}
+            - {key: app, operator: In, values: ["ceph-mon", "ceph-osd", "lv-os-provisioner"]}
     nodes:
         matchExpressions:
             - {key: pool, operator: In, values: ["prd-sam_cephdev", "prd-sam_storage", "prd-sam_sfstoredev"]}
