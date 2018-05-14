@@ -7,6 +7,7 @@ local isEstateNotSkipper = configs.estate != "prd-skipper";
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam",
+    "prd-sam_storage",
     "prd-skipper",
     "phx-sam",
     "xrd-sam",
@@ -37,7 +38,7 @@ local cephOpEnvironmentVars =
         ];
 
 //Environment variables for the madkub client init and refresher container.
-local madkubOpEnvVars = if storageimages.phase == "1" then [
+local madkubOpEnvVars = if isEstateNotSkipper && storageimages.phase == "1" then [
         {
             name: "MADKUB_IMAGE",
             value: storageimages.madkub_image_path,
