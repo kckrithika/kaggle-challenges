@@ -14,17 +14,17 @@ system:
     containers:
     - name: core
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15778034-2
-      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/casam/coreapp:214.1.3-0000102-530ad059
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
+#      image: ops0-artifactrepo2-0-prd.data.sfdc.net/tnrp/casam/coreapp:214.1.3-0000102-530ad059
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
 
       env:
         # DB info
         - name: DB_USER
-#          value: happy
-          value: grumpy
+          value: happy
+#          value: grumpy
         - name: DB_SID
-          value: mist61c214utf
-#          value: mist61a216utf
+#          value: mist61c214utf
+          value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
@@ -90,8 +90,8 @@ system:
 
       readinessProbe:
         httpGet:
-          path: /ping.jsp
-#          path: /samReady.jsp
+#          path: /ping.jsp
+          path: /samReady.jsp
           port: 12100
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -147,8 +147,8 @@ system:
         - name: JMX_PORT
           value: 8998
         - name: OLD_DWARF
-#          value: grumpy
-          value: happy
+          value: grumpy
+#          value: happy
         - name: CURRENT_RELEASE_VERSION
 #          value: green
           value: blue
@@ -161,9 +161,9 @@ system:
         - name: DB_SID
           value: mist61c214utf
         - name: LOCK_DWARF
-          value: 0
+          value: 1
         - name: TRIGGER_CAFFEINE
-          value: 0
+          value: 1
         - name: UNLOCK_DWARF
           value: y
         - name: K4A_OUTPUT
