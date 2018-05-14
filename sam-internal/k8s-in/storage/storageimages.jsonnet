@@ -36,7 +36,6 @@ local kingdom = std.extVar("kingdom");
             sfstorebookie_tag: "base-0000089-39319751",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
             cephdaemon_tag: "10.2.7-0000061-0ac4ba7e",
-            cephdaemon_tag: "10.2.7-0000060-5eafc0e2",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fsam%2Fmadkub&last=10&repo=sam%2Fmadkub
             madkub_tag: "1.0.0-0000061-74e4a7b6",
         },
