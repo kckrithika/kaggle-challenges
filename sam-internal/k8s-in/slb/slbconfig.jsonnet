@@ -152,10 +152,6 @@
             [k + "-sam"]: 2
             for k in $.prodKingdoms
         },
-        madkubServer: {
-            [k]: "https://all.pkicontroller.pki.blank." + k + ".prod.non-estates.sfdcsd.net:8443"
-            for k in $.prodKingdoms + ["prd"]
-        },
     },
 
 
@@ -267,7 +263,6 @@
     servicesToLbOverride: self.perCluster.servicesToLbOverride[estate],
     servicesNotToLbOverride: self.perCluster.servicesNotToLbOverride[estate],
     canaryMaxParallelism: self.perCluster.canaryMaxParallelism[estate],
-    madkubServer: self.perCluster.madkubServer[kingdom],
     slbInKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms + ["prd"] },
     slbInProdKingdom: kingdom in { [k]: 1 for k in $.prodKingdoms },
     isTestEstate: estate in { [e]: 1 for e in $.testEstateList },
