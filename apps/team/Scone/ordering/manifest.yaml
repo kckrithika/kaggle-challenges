@@ -74,6 +74,9 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+      volumeMounts:
+      - mountPath: /log
+        name: logvolsherpa
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
@@ -83,3 +86,6 @@ system:
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-ordering-service/logs
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-ordering-sherpa/logs
