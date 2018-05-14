@@ -18,7 +18,7 @@ local internal = {
         # Temporary hack while xrd Artifactory is dead.
         # Use prd artifactory path even in XRD.
         # See https://gus.lightning.force.com/one/one.app#/sObject/a07B000000526lgIAA/view
-        if (kingdom == "prd" || kingdom == "xrd") then
+        if (kingdom == "prd") then
             configs.registry + "/" + "docker-release-candidate/tnrp/" + tnrp_repo + "/" + image_name + ":" + tag
         else
             configs.registry + "/" + "tnrp/" + tnrp_repo + "/" + image_name + ":" + tag

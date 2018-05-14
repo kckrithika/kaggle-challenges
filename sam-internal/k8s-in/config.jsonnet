@@ -92,11 +92,6 @@ local utils = import "util_functions.jsonnet",
     else if kingdom == "vpod" then
         #use PRD
         "ops0-artifactrepo2-0-prd.data.sfdc.net"
-    else if kingdom == "xrd" then
-        # Temporary hack while xrd Artifactory is dead.
-        # Use prd artifactory in xrd.
-        # See https://gus.lightning.force.com/one/one.app#/sObject/a07B000000526lgIAA/view
-        "ops0-artifactrepo2-0-prd.data.sfdc.net"
     else
         "ops0-artifactrepo1-0-" + kingdom + ".data.sfdc.net"
     ),
