@@ -1,7 +1,8 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = import "slbsharedservices.jsonnet";
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-iface-processor" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" then { dirSuffix:: "slb-iface-processor", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIfaceOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -31,10 +32,18 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
                     slbconfigs.sbin_volume,
-                ]),
+                ] + (if slbimages.phase == "1" then [
+                    configs.cert_volume,
+                    slbconfigs.cleanup_logs_volume,
+                ] else [])),
                 containers: [
                     slbshared.slbIfaceProcessor,
-                ],
+                ] + (if slbimages.phase == "1" then [
+                    slbshared.slbConfigProcessor,
+                    slbshared.slbCleanupConfig,
+                    slbshared.slbNodeApi,
+                    slbshared.slbLogCleanup,
+                ] else []),
                 affinity: {
                     nodeAffinity: {
                         requiredDuringSchedulingIgnoredDuringExecution: {
