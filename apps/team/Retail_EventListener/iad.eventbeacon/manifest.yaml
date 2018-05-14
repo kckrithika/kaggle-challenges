@@ -28,7 +28,7 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.15
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.16
       ports:
         - containerPort: 7022
         - containerPort: 15372
