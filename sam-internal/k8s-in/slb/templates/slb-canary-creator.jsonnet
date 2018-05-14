@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-canary-creator" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-canary-creator" } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-canary-creator" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-canary-creator" } else {});
 local portconfigs = import "portconfig.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then {
@@ -23,7 +23,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                 },
                 namespace: "sam-system",
             },
-            spec: (if slbimages.phase == "1" || slbimages.phase == "2" then {}
+            spec: (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {}
                    else {
                        hostNetwork: true,
                    })
@@ -36,7 +36,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                           configs.maddog_cert_volume,
                           configs.kube_config_volume,
                           configs.sfdchosts_volume,
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                slbconfigs.cleanup_logs_volume,
                                slbconfigs.slb_volume,
                                slbconfigs.slb_config_volume,
@@ -53,7 +53,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                                            "--maxParallelism=" + slbconfigs.canaryMaxParallelism,
                                        ] + (if configs.estate == "prd-sdc" then ["--podPreservationTime=5m"] else []) +  # Avoid canary preservation in SDC due to VIP exhaustion
                                        [configs.sfdchosts_arg]
-                                       + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                       + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                               "--hostnameOverride=$(NODE_NAME)",
                                           ] else []),
                               volumeMounts: configs.filter_empty([
@@ -64,14 +64,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                               ]),
                               env: [
                                   configs.kube_config_env,
-                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                              ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                        slbconfigs.node_name_env,
                                    ] else []),
                               securityContext: {
                                   privileged: true,
                               },
                           },
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                slbshared.slbLogCleanup,
                            ] else []),
                   },

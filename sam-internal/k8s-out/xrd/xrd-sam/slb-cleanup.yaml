@@ -20,7 +20,7 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/cleanup
         - --filesDirToCleanup=/host/data/slb/logs/
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
@@ -28,7 +28,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000847-81912276
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000852-5ab991e1
         name: slb-cleanup
         securityContext:
           privileged: true
@@ -41,6 +41,8 @@ spec:
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+        - mountPath: /host/data/slb/logs/cleanup
+          name: var-cleanup-logs-volume
       hostNetwork: true
       volumes:
       - hostPath:
@@ -55,6 +57,9 @@ spec:
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb/logs/cleanup
+        name: var-cleanup-logs-volume
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 20%

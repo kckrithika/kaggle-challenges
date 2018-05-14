@@ -2,8 +2,8 @@ local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-ipvs" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-ipvs", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIpvsOverridePort } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-ipvs" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-ipvs", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIpvsOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -50,7 +50,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.usr_sbin_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
-                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                     configs.maddog_cert_volume,
                     configs.cert_volume,
                     configs.kube_config_volume,
@@ -120,7 +120,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                         "--log_dir=" + slbconfigs.logsDir,
                                         "--maximumDeleteCount=20",
                                         configs.sfdchosts_arg,
-                                    ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                    ] + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                         "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                                     ] else [],
                                     volumeMounts: configs.filter_empty([
@@ -173,7 +173,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                     command: [
                                         "/sdn/slb-ipvs-conntrack",
                                         "--log_dir=" + slbconfigs.logsDir,
-                                    ] + if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                    ] + if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                         "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                                     ] else [],
                                     volumeMounts: configs.filter_empty([
@@ -187,7 +187,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                         privileged: true,
                                     },
                                 },
-                            ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                            ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                      slbshared.slbConfigProcessor,
                                      slbshared.slbCleanupConfig,
                                      slbshared.slbNodeApi,
