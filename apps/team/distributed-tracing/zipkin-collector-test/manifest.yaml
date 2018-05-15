@@ -26,6 +26,8 @@ system:
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_TOPIC
         value: sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing_test
+      - nane: KAFKA_GROUP_ID
+        value: zipkin-test
       - name: ZIPKIN_ARGS
         value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
       - name: ES_HOSTS
