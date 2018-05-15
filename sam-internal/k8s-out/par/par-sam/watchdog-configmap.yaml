@@ -66,10 +66,8 @@ data:
       "snooze": [
         {
           "checker": "rbacChecker",
-          "estates": [
-            "prd-sam"
-          ],
-          "until": "2018/05/15"
+          "instanceRegex": "-prd.eng.sfdc.net$",
+          "until": "2018/06/01"
         }
       ],
       "tlsEnabled": true,

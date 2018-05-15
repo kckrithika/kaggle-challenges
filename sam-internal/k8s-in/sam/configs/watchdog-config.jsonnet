@@ -12,8 +12,8 @@ std.prune({
   #
   # Example: { estates: ["prd-samtest"], checker: "hairpinChecker", until: "2017/06/02" },
   snooze: [
-    #[rbhat] rbac is disabled in prd-sam for k8s upgrade. snoozing for now
-    { estates: ["prd-sam"], checker: "rbacChecker", until: "2018/05/15" },
+    #[a.mitra] rbac is disabled in prd-sam for k8s upgrade. snoozing alerts for now
+    { instanceRegex: "-prd.eng.sfdc.net$", checker: "rbacChecker", until: "2018/06/01" },
     ],
 
   # Shared
