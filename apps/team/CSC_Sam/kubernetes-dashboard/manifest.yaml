@@ -374,3 +374,9 @@ system:
     ports:
       - port: 80
         targetport: 9106
+  - lbname: dashboard-xrd-sam
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9107
