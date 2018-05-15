@@ -20,10 +20,8 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[rbhat] Bundlecontroller fix
-        "prd,prd-samdev,bundle-controller,hypersam": "sam-0001961-5cfd0a47",
         "prd,prd-sam,bundle-controller,hypersam": "sam-0001961-5cfd0a47",
         #[rbhat] use rbac beta client
-        "prd,prd-samdev,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
         "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
         "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
         "prd,prd-sam_storagedev,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
@@ -53,8 +51,8 @@ local utils = import "util_functions.jsonnet";
 
         "0": {
              hypersam: "auto",
-             madkub: $.per_phase["1"].madkub,
-             madkubSidecar: $.per_phase["1"].madkubSidecar,
+             madkub: "1.0.0-0000066-fedd8bce",
+             madkubSidecar: "1.0.0-0000061-74e4a7b6",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -64,34 +62,32 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001948-03d9baca",
-            madkub: "1.0.0-0000066-fedd8bce",
-            madkubSidecar: "1.0.0-0000061-74e4a7b6",
+            hypersam: "sam-0001970-a296421d",
+            madkub: $.per_phase["0"].madkub,
+            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": {
             hypersam: "sam-0001948-03d9baca",
-            madkub: "1.0.0-0000066-fedd8bce",
-            madkubSidecar: "1.0.0-0000061-74e4a7b6",
+            madkub: $.per_phase["0"].madkub,
+            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
             hypersam: "sam-0001948-03d9baca",
-            madkub: "1.0.0-0000066-fedd8bce",
-            madkubSidecar: "1.0.0-0000061-74e4a7b6",
+            madkub: $.per_phase["0"].madkub,
+            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
             hypersam: "sam-0001948-03d9baca",
-            madkub: "1.0.0-0000066-fedd8bce",
-            madkubSidecar: "1.0.0-0000061-74e4a7b6",
+            madkub: $.per_phase["0"].madkub,
+            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
-           madkub: $.per_phase["1"].madkub,
-           madkubSidecar: $.per_phase["1"].madkubSidecar,
         },
 
     ### Phase kingdom/estate mapping
@@ -143,12 +139,7 @@ local utils = import "util_functions.jsonnet";
     # madkub is for the server, the sidecar is for the injected containers. They are different because hte injected force a restart
     # of all containers
     madkub: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkub),
-
-    # override need to follow the phase as we are changing the format.
-    madkubSidecar: if $.per_phase[$.phase].hypersam == "sam-0001355-581a778b" then
-                "sam/madkub:" + $.per_phase[$.phase].madkubSidecar
-            else
-                imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
+    madkubSidecar: imageFunc.do_override_based_on_tag($.overrides, "sam", "madkub", $.per_phase[$.phase].madkubSidecar),
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
