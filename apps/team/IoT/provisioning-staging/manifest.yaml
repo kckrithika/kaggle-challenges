@@ -23,10 +23,6 @@ system:
         value: -XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g
       - name: COMPILER_TAG
         value: 1.0.0.5
-      - name: CONTROLPLANE_ENDPOINT
-        value: shared0-samminioniottest1-1-prd.eng.sfdc.net:9115
-      - name: ENRICHMENTSVC_HOST
-        value: shared0-samminioniottest1-1-prd.eng.sfdc.net:9136
       - name: ENV_EXTERNAL_ZOOKEEPER
         value: 'true'
       - name: ENV_FLOWSNAKE_MANIFEST
@@ -274,5 +270,4 @@ system:
   notifications:
     email:
     - iot-infra@salesforce.com
-
 
