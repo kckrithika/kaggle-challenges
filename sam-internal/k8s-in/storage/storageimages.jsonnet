@@ -17,11 +17,6 @@ local kingdom = std.extVar("kingdom");
 
         # Set prd-sam_ceph ceph cluster to latest tag.
         "prd,prd-sam_ceph,ceph-cluster,ceph-daemon": "10.2.7-0000061-0ac4ba7e",
-
-        # Set sfn state metrics to one phase behind default_tag
-        "prd,prd-sam,sfn-state-metrics,sfn-state-metrics": "base-0000416-d57928a2",
-        "xrd,xrd-sam,sfn-state-metrics,sfn-state-metrics": "base-0000416-d57928a2",
-        "phx,phx-sam,sfn-state-metrics,sfn-state-metrics": "base-0000416-d57928a2",
     },
 
     ### Per-phase image tags

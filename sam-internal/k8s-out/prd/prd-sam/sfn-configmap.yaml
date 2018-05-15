@@ -3,7 +3,7 @@ data:
   sfn-selectors.yaml: |
     pods:
         matchExpressions:
-            - {key: cloud, operator: In, values: [storage]}
+            - {key: app, operator: In, values: ["ceph-mon", "ceph-osd", "lv-os-provisioner"]}
     nodes:
         matchExpressions:
             - {key: pool, operator: In, values: ["prd-sam_ceph", "prd-sam_sfstore"]}
@@ -16,6 +16,12 @@ data:
     statefulsets:
         matchExpressions:
             - {key: daemon, operator: In, values: ["mon", "osd"]}
+    deployments:
+        matchExpressions:
+            - {key: cloud, operator: In, values: [storage]}
+    daemonsets:
+        matchExpressions:
+            - {key: cloud, operator: In, values: [storage]}
 kind: ConfigMap
 metadata:
   creationTimestamp: null
