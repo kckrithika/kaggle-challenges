@@ -94,6 +94,11 @@ local kingdom = std.extVar("kingdom");
             "4"
         ),
 
+    phasedDeploymentSettings: if std.parseInt($.phase) <= 1 then {
+        revisionHistoryLimit: 2,
+        progressDeadlineSeconds: 600,
+    } else {},
+
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
 
     # These are the images used by the templates.

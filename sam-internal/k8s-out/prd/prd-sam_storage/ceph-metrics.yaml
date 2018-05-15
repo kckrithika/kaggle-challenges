@@ -9,7 +9,9 @@ items:
     name: ceph-metrics
     namespace: ceph-prd-sam-cephdev
   spec:
+    progressDeadlineSeconds: 600
     replicas: 1
+    revisionHistoryLimit: 2
     template:
       metadata:
         labels:
@@ -99,7 +101,9 @@ items:
     name: ceph-metrics
     namespace: ceph-prd-sam-storage
   spec:
+    progressDeadlineSeconds: 600
     replicas: 1
+    revisionHistoryLimit: 2
     template:
       metadata:
         labels:

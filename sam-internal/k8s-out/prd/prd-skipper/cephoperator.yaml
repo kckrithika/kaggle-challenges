@@ -9,7 +9,9 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
+  progressDeadlineSeconds: 600
   replicas: 1
+  revisionHistoryLimit: 2
   strategy:
     rollingUpdate:
       maxSurge: 0
