@@ -37,7 +37,7 @@ if !storageutils.is_skipper() then
 else [];
 
 local rolloutPolicy =
-  if storageimages.phase == "1" then {
+  if std.parseInt(storageimages.phase) <= 2 then {
     updateStrategy: {
       type: "RollingUpdate",
       rollingUpdate: {
