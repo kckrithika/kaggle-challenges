@@ -9,7 +9,9 @@ items:
     name: ceph-metrics
     namespace: legostore
   spec:
+    progressDeadlineSeconds: 600
     replicas: 1
+    revisionHistoryLimit: 2
     template:
       metadata:
         labels:
@@ -44,7 +46,7 @@ items:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000178-48060496
+          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000181-64fa308f
           imagePullPolicy: IfNotPresent
           name: sfms
           ports:
@@ -58,7 +60,7 @@ items:
           - -ceph-key-config-dir=/etc/ceph-metrics/key-config
           - -ceph-cluster-config-dir=/etc/ceph-metrics/ceph-cluster-config
           - -ceph-config-dir=/etc/ceph
-          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/configwatcher:base-0000416-d57928a2
+          image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/configwatcher:base-0000425-c640b395
           imagePullPolicy: IfNotPresent
           name: configwatcher
           volumeMounts:

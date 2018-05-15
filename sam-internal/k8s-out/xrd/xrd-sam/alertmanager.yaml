@@ -16,7 +16,7 @@ spec:
       - env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/alertmanager:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/alertmanager:base-0000425-c640b395
         name: alertmanager
         ports:
         - containerPort: 15212
@@ -57,7 +57,7 @@ spec:
           value: 30s
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000425-c640b395
         name: poddeleter
         volumeMounts:
         - mountPath: /etc/pki_service
