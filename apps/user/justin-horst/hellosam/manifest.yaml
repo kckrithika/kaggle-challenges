@@ -8,16 +8,16 @@ system:
     - name: hellosam
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/justin.horst/hellosam:051418
       ports:
-      - containerPort: 9090
+      - containerPort: 3000
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 3000
   loadbalancers:
   - lbname: samhellolb
     function: default
     slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 3000
+        targetport: 3000
         lbtype: tcp
