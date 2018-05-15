@@ -7,7 +7,7 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 1
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -29,8 +29,6 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
-                - slb-nginx-a
-                - slb-nginx-b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
@@ -43,6 +41,7 @@ spec:
                 - slb-ipvs-b
                 - slb-nginx-config-b
                 - slb-nginx-config-a
+                - slb-vip-watchdog
             topologyKey: kubernetes.io/hostname
       containers:
       - command:
