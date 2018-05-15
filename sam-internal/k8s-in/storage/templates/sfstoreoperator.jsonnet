@@ -87,5 +87,5 @@ if std.setMember(configs.estate, enabledEstates) then {
                 },
             },
         },
-    },
+    } + storageimages.phasedDeploymentSettings,
 } else "SKIP"

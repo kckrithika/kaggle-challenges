@@ -145,7 +145,7 @@ if std.setMember(configs.estate, enabledEstates) then
                     ],
                 },
             },
-        },
+        } + storageimages.phasedDeploymentSettings,
         }
         for minionEstate in storageconfigs.cephEstates[configs.estate]
     ],
