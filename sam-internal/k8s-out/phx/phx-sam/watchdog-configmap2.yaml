@@ -70,10 +70,8 @@ data:
       "snooze": [
         {
           "checker": "rbacChecker",
-          "estates": [
-            "prd-sam"
-          ],
-          "until": "2018/05/15"
+          "instanceRegex": "^((?!test|dev).)*-prd.eng.sfdc.net",
+          "until": "2018/06/01"
         }
       ],
       "storageClassName": "synthetic-hdd-pool",
