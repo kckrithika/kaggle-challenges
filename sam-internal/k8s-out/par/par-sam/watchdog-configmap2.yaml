@@ -66,7 +66,7 @@ data:
       "snooze": [
         {
           "checker": "rbacChecker",
-          "instanceRegex": "^((?!test|dev).)*-prd.eng.sfdc.net",
+          "instanceRegex": "-prd.eng.sfdc.net$",
           "until": "2018/06/01"
         }
       ],
