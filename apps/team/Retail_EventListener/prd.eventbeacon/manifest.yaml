@@ -34,7 +34,7 @@ system:
         - containerPort: 15372
       env:
         - name: SFDC_ENVIRONMENT
-          value: dev
+          value: sam
         - name: SERVER_PORT
           value: 7022
         - name: MANAGEMENT_PORT
