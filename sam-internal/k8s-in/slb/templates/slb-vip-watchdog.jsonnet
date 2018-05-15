@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: if slbimages.phase == "1" then 2 else 1,
+        replicas: if slbimages.phase == "1" || configs.estate == "prd-sam" then 2 else 1,
         template: {
             spec: {
                  affinity: {
@@ -23,7 +23,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                labelSelector: {
                                    matchExpressions: [
                                    ] + (
-                                        if configs.estate == "prd-sdc" then
+                                        if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
                                         [
                                              {
                                                   key: "name",
@@ -62,7 +62,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                       {
                                           matchExpressions: [
                                           ] + (
-                                              if configs.estate == "prd-sdc" then
+                                              if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
                                                   [
                                                       {
                                                           key: "illumio",
