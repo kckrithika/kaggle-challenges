@@ -49,6 +49,9 @@ spec:
           name: kubectl
       nodeSelector:
         master: "true"
+      securityContext:
+        fsGroup: 0
+        runAsUser: 0
       volumes:
       - hostPath:
           path: /etc/pki_service
