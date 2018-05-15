@@ -110,7 +110,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                             "prometheus",
                         ],
                         env: storageutils.sfms_environment_vars(storageconfigs.serviceDefn.sfn_metrics_svc.name) +
-                        sfmsLogPathEnvVar +
+                        //sfmsLogPathEnvVar +
                         if configs.estate == "prd-sam_storage" || configs.estate == "prd-sam" then
                         [
                             {
@@ -126,7 +126,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     },
                     storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ],
-            } + initContainers,
+            },  //+ initContainers,
         },
     } + storageimages.phasedDeploymentSettings,
 } else "SKIP"
