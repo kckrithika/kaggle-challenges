@@ -34,9 +34,9 @@
   },
   "4": {
     "hypersdn": {
-      "label": "v-0000847-81912276",
-      "promotedTime": "2018-05-10T21:19:47.499581918Z",
-      "warning": "847 has manifest changes in slb-nginx-config-b and slb-portal"
+      "label": "v-0000852-5ab991e1",
+      "promotedTime": "2018-05-15T14:39:01.64075Z",
+      "warning": "850 has manifest changes in DNS register and canary creator"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",

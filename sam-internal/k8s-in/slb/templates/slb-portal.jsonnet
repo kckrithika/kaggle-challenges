@@ -72,9 +72,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           slbshared.slbConfigProcessor,
                           slbshared.slbCleanupConfig,
                           slbshared.slbNodeApi,
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                               slbshared.slbLogCleanup,
-                           ] else []),
+                          slbshared.slbLogCleanup,
+                      ],
                       nodeSelector: {
                           pool: configs.estate,
                       },
