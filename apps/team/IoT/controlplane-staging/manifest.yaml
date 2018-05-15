@@ -35,7 +35,7 @@ system:
         value: /client-certs/client
       - name: SFDC_ENVIRONMENT
         value: staging
-      image: sfci/iot/enterprise-controlplane:1.0.0.26
+      image: sfci/iot/enterprise-controlplane:1.0.0.28
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -144,3 +144,4 @@ system:
   notifications:
     email:
     - iotenterprise@salesforce.com
+
