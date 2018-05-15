@@ -25,11 +25,6 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
             - matchExpressions:
-              - key: illumio
-                operator: NotIn
-                values:
-                - a
-                - b
               - key: slb-service
                 operator: NotIn
                 values:

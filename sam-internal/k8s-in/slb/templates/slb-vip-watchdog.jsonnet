@@ -62,7 +62,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                       {
                                           matchExpressions: [
                                           ] + (
-                                              if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
+                                              if configs.estate == "prd-sdc" then
                                                   [
                                                       {
                                                           key: "illumio",
@@ -74,6 +74,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                          operator: "NotIn",
                                                          values: ["slb-ipvs"],
                                                       },
+                                                  ] else if configs.estate == "prd-sam" then [
+                                                       {
+                                                          key: "slb-service",
+                                                          operator: "NotIn",
+                                                          values: ["slb-ipvs"],
+                                                       },
                                                   ] else [
                                                       {
                                                          key: "slb-service",
