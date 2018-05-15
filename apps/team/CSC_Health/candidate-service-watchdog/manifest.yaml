@@ -7,9 +7,13 @@ system:
   functions:
   - name: candidate-service-watchdog
     count: 1
+    volumes:
+    - name: client-cert
+      maddogCert:
+        type: client
     containers:
     - name: candidate-service-watchdog
-      image: tnrp/csc-health/health-endpoint-watchdog:health-endpoint-watchdog-0000012-1f79ba8b
+      image: tnrp/csc-health/health-endpoint-watchdog:health-endpoint-watchdog-0000014-d8aadcef
       resources:
         limits: { cpu: "1", memory: "2Gi" }
         requests: { cpu: "1", memory: "2Gi" }
@@ -18,11 +22,20 @@ system:
           command:
           - echo
           - always_healthy
+      volumeMounts:
+        - mountPath: /certs
+          name: client-cert
       env:
       - name: HEWD_AJNA_ENABLED
         value: true
       - name: HEWD_AJNA_SERVICE
         value: candidate-service
+      - name: HEWD_AJNA_CERTPATH
+        value: /certs/client/certificates/client.pem
+      - name: HEWD_AJNA_KEYPATH
+        value: /certs/client/keys/client-key.pem
+      - name: HEWD_AJNA_CACERTPATH
+        value: /certs/ca.pem
       - name: HEWD_TARGET_DISPLAYNAME
         value: "Candidate Service"
       - name: HEWD_PUBLISHPRODUCTIONAVAILABILITYMETRIC
