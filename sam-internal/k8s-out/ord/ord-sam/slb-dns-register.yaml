@@ -22,27 +22,130 @@ spec:
       containers:
       - command:
         - /sdn/slb-dns-register
-        - --path=/host/data/slb/config/
+        - --path=/host/data/slb/config/slb-dns-register
         - --ddi=https://ddi-api-ord.data.sfdc.net
         - --keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem
         - --certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem
         - --cafile=/etc/pki_service/ca/cabundle.pem
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-dns-register
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000847-81912276
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000852-5ab991e1
         name: slb-dns-register-processor
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
         - mountPath: /data/certs
           name: certs
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-dns-register
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-dns-register
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
+      - command:
+        - /sdn/slb-config-processor
+        - --configDir=/host/data/slb/config/slb-dns-register
+        - --period=1800s
+        - --podPhaseCheck=true
+        - --namespace=
+        - --podstatus=running
+        - --subnet=10.208.148.0/22
+        - --k8sapiserver=
+        - --serviceList=
+        - --useVipLabelToSelectSvcs=true
+        - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --sleepTime=100ms
+        - --processKnEConfigs=true
+        - --kneConfigDir=/var/slb/kneconfigs/ord
+        - --kneDomainName=slb.sfdc.net
+        - --livenessProbePort=12083
+        - --shouldRemoveConfig=true
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        - --proxySelectorLabelValue=slb-nginx-config-b
+        - --hostnameOverride=$(NODE_NAME)
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000852-5ab991e1
+        livenessProbe:
+          httpGet:
+            path: /liveness-probe
+            port: 12083
+          initialDelaySeconds: 600
+          periodSeconds: 30
+          timeoutSeconds: 5
+        name: slb-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /data/certs
+          name: certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
+        - mountPath: /sfdchosts
+          name: sfdchosts
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=1h
+        - --filesDirToCleanup=/host/data/slb/config/slb-dns-register
+        - --shouldSkipServiceRecords=true
+        - --shouldNotDeleteAllFiles=true
+        - --log_dir=/host/data/slb/logs/slb-dns-register
+        - --skipFilesWithSuffix=slb.block
+        - --maxDeleteFileCount=20
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000852-5ab991e1
+        name: slb-cleanup-config-processor
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+      - command:
+        - /sdn/slb-cleanup
+        - --period=1800s
+        - --logsMaxAge=48h
+        - --log_dir=/host/data/slb/logs/slb-dns-register/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-dns-register
+        - --shouldSkipServiceRecords=false
+        - --shouldNotDeleteAllFiles=false
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        env:
+        - name: KUBECONFIG
+          value: /kubeconfig/kubeconfig-platform
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000852-5ab991e1
+        name: slb-cleanup
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /host/data/slb
+          name: var-slb-volume
+        - mountPath: /host/data/slb/config/slb-dns-register
+          name: var-config-volume
+        - mountPath: /host/data/slb/logs/slb-dns-register
+          name: var-logs-volume
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /host/data/slb/logs/slb-dns-register/cleanup
+          name: var-cleanup-logs-volume
       hostNetwork: true
       nodeSelector:
         slb-dns-register: "true"
@@ -54,11 +157,20 @@ spec:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /data/slb/config/
+          path: /data/slb/config/slb-dns-register
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-dns-register
         name: var-logs-volume
       - configMap:
           name: sfdchosts
         name: sfdchosts
+      - hostPath:
+          path: /data/slb
+        name: var-slb-volume
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
+      - hostPath:
+          path: /data/slb/logs/slb-dns-register/cleanup
+        name: var-cleanup-logs-volume
