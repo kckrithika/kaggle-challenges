@@ -182,3 +182,6 @@ spec:
       - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
+      - hostPath:
+          path: /data/slb/logs/slb-portal/cleanup
+        name: var-cleanup-logs-volume
