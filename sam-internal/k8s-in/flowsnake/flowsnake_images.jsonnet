@@ -73,6 +73,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",
+                watchdog_canaries: "foo",
                 uniform_pull_policy: "foo",
                 kubedns_daily_restart: "foo",
             },

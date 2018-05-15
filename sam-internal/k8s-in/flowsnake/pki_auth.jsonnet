@@ -33,6 +33,7 @@ local kingdom = std.extVar("kingdom");
         {
             namespace: "flowsnake_test",
             authorizedLdapGroups: ["Flowsnake_Platform"],
+            authorizedClientCerts: ["flowsnake_test"],
         },
       ],
       "prd/prd-dev-flowsnake_iot_test": [
