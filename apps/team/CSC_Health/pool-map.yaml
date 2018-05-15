@@ -14,6 +14,9 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+  reportcollector-pc:
+    - yhu/yhu-sam_report_collector
+    - yul/yul-sam_report_collector
   repcollavailwd:
     - prd/prd-sam_report_collector
     - dfw/dfw-sam_report_collector
@@ -25,6 +28,9 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+  repcollavailwd-pc:
+    - yhu/yhu-sam_report_collector
+    - yul/yul-sam_report_collector
   expobservation-service:
   observation-service:
     - prd/prd-sam_report_collector
@@ -82,4 +88,7 @@ apps:
     - iad/iad-sam_report_collector
     - ord/ord-sam_report_collector
     - hnd/hnd-sam_report_collector
+  cname-repcollavailwd-pc:
+    - yhu/yhu-sam_report_collector
+    - yul/yul-sam_report_collector
   service-event-recorder:
