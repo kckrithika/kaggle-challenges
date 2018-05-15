@@ -7,7 +7,6 @@ local isEstateNotSkipper = configs.estate != "prd-skipper";
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam",
-    "prd-sam_storage",
     "prd-skipper",
     "phx-sam",
     "xrd-sam",
