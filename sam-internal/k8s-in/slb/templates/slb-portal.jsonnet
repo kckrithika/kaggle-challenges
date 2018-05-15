@@ -32,9 +32,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                           configs.sfdchosts_volume,
                           configs.cert_volume,
                           configs.kube_config_volume,
-                      ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                               slbconfigs.cleanup_logs_volume,
-                           ] else [])),
+                          slbconfigs.cleanup_logs_volume,
+                      ]),
                       containers: [
                           {
                               name: "slb-portal",
