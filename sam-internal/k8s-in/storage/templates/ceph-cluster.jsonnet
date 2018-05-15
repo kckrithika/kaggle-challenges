@@ -6,6 +6,7 @@ local isEstateNotSkipper = configs.estate != "prd-skipper";
 
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
+    "prd-sam_storage",
     "prd-sam",
     "phx-sam",
     "prd-skipper",
@@ -17,8 +18,8 @@ if std.setMember(configs.estate, enabledEstates) then
         apiVersion: "v1",
         kind: "List",
         metadata: {},
-        items: [
-            {
+        items: std.prune([
+            if (minionEstate != "prd-sam_cephdev") then {
                 local escapedMinionEstate = utils.string_replace(minionEstate, "_", "-"),
                 local cephClusterName = "ceph-" + escapedMinionEstate,
 
@@ -52,6 +53,6 @@ if std.setMember(configs.estate, enabledEstates) then
                 } + if isEstateNotSkipper then { pool: minionEstate } else { cephOsdDaemonOverride: "osd_directory" },
             }
             for minionEstate in storageconfigs.cephEstates[configs.estate]
-        ],
+        ]),
     }
 else "SKIP"

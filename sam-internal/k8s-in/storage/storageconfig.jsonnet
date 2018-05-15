@@ -1,5 +1,6 @@
 {
     local estate = std.extVar("estate"),
+    local kingdom = std.extVar("kingdom"),
 
     // Map of Ceph control estate -> cluster estate.
     cephEstates: {

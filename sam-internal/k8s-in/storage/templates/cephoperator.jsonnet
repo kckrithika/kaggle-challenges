@@ -7,6 +7,7 @@ local isEstateNotSkipper = configs.estate != "prd-skipper";
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
     "prd-sam",
+    "prd-sam_storage",
     "prd-skipper",
     "phx-sam",
     "xrd-sam",
@@ -35,6 +36,35 @@ local cephOpEnvironmentVars =
             value: "YEs",
         },
         ];
+
+//Environment variables for the madkub client init and refresher container.
+local madkubOpEnvVars = if isEstateNotSkipper && storageimages.phase == "1" then [
+        {
+            name: "MADKUB_IMAGE",
+            value: storageimages.madkub_image_path,
+        },
+        {
+            name: "MADDOG_ENDPOINT",
+            value: configs.maddogEndpoint,
+        },
+        {
+            name: "MADKUB_ENDPOINT",
+            value: "$(MADKUBSERVER_SERVICE_HOST):32007",
+        },
+        {
+            name: "FUNNEL_ENDPOINT",
+            value: configs.funnelVIP,
+        },
+        {
+            name: "MC_ESTATE",
+            value: configs.estate,
+        },
+        {
+            name: "MC_KINGDOM",
+            value: configs.kingdom,
+        },
+        ] else [];
+
 
 if std.setMember(configs.estate, enabledEstates) then {
     apiVersion: "extensions/v1beta1",
@@ -84,7 +114,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                         volumeMounts:
                             storageutils.log_init_volume_mounts()
                             + storageutils.cert_volume_mounts(),
-                        env: cephOpEnvironmentVars + [
+                        env: cephOpEnvironmentVars + madkubOpEnvVars + [
                             {
                                 name: "K8S_PLATFORM",
                                 value: configs.estate,
@@ -97,6 +127,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                                 name: "CEPH_DAEMON_IMAGE_PATH",
                                 value: storageimages.cephdaemon_image_path,
                             },
+
                         ],
                     },
                     {
