@@ -262,6 +262,24 @@ system:
       volumeMounts:
       - mountPath: /tmp
         name: temp
+    - name: dashboard-xrd
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam
+        - --insecure-port=9107
+        - --system-banner=This dashboard is currently testing a dynamic webhook. If you see this message - we are not detecting any problems.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      ports:
+      - containerPort: 9107
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9107
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
     volumes:
     - name: temp
       emptyDir: {}
