@@ -129,7 +129,7 @@ system:
     
     containers:
     - name: sequencer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:8eb89b
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:a77071
 
       env:
         - name: USE_SWITCHBOARD
@@ -165,7 +165,7 @@ system:
         - name: TRIGGER_CAFFEINE
           value: 1
         - name: UNLOCK_DWARF
-          value: y
+          value: 1
 #        - name: K4A_OUTPUT
 #          value: /tmp/files/repo/user.properties
         - name: SNOWWHITE_PWD
