@@ -9,7 +9,9 @@ metadata:
   namespace: sam-system
 spec:
   minReadySeconds: 30
+  progressDeadlineSeconds: 600
   replicas: 1
+  revisionHistoryLimit: 2
   strategy:
     rollingUpdate:
       maxSurge: 0
@@ -29,10 +31,10 @@ spec:
         - name: K8S_PLATFORM
           value: xrd-sam
         - name: CEPH_INIT_CONTAINER
-          value: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000416-d57928a2
+          value: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000425-c640b395
         - name: CEPH_DAEMON_IMAGE_PATH
           value: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/ceph-daemon
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/ceph:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/ceph:base-0000425-c640b395
         name: cephoperator
         volumeMounts:
         - mountPath: /var/log
@@ -75,7 +77,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000178-48060496
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000181-64fa308f
         name: sfms
       - env:
         - name: MADDOG_POD_NAME
@@ -98,7 +100,7 @@ spec:
           value: 30s
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000425-c640b395
         name: poddeleter
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -125,7 +127,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000425-c640b395
         name: log-init
         securityContext:
           privileged: true

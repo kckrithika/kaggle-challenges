@@ -82,7 +82,7 @@ spec:
           value: 30s
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000425-c640b395
         name: poddeleter
         volumeMounts:
         - mountPath: /etc/pki_service
@@ -110,7 +110,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-xrd.data.sfdc.net/tnrp/storagecloud/loginitcontainer:base-0000425-c640b395
         name: log-init
         securityContext:
           privileged: true

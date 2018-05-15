@@ -132,7 +132,7 @@ local utils = import "util_functions.jsonnet";
     },
 
     make_sfn_selector_rule(estates,phase) :: (
-        if std.parseInt(phase) <= 1 then |||
+        if std.parseInt(phase) <= 2 then |||
             pods:
                 matchExpressions:
                     - {key: app, operator: In, values: %(sfnApps)s}
