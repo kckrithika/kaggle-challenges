@@ -31,12 +31,11 @@ system:
         - containerPort: 9411
           name: proxy-in
         livenessProbe:
-            exec:
-                # TODO: Check if process is running?
-                command: 
-                - /bin/true
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            httpGet:
+                path: /metrics
+                port: 9411
+            initialDelaySeconds: 15
+            periodSeconds: 15
         volumeMounts:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy-test
           name: client-certs
