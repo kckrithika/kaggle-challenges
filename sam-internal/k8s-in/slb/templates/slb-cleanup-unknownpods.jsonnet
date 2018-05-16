@@ -17,6 +17,10 @@ if configs.estate == "prd-sdc" then {
         replicas: 1,
         template: {
             spec: {
+                securityContext: {
+                     runAsUser: 0,
+                     fsGroup: 0,
+                 },
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
