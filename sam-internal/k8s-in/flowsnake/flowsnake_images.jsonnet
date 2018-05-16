@@ -56,7 +56,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "0.9.9",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-master-630-itest",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -87,7 +87,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
                   "0.9.8": 607,
-                  "0.9.9": "0.9.9",
+                  "0.9.10-SNAPSHOT630": "jenkins-dva-transformation-flowsnake-platform-master-630-itest",
                 }
                 +
                 # These are for developer testing only

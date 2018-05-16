@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   version-mapping.properties: |
     0.9.1 = 377
+    0.9.10-SNAPSHOT630 = jenkins-dva-transformation-flowsnake-platform-master-630-itest
     0.9.2 = 403
     0.9.3 = 427
     0.9.4 = 447
@@ -11,7 +12,6 @@ data:
     0.9.7-itest = 565
     0.9.7-mktest = jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest
     0.9.8 = 607
-    0.9.9 = 0.9.9
     0.9.9-jdk8u162 = jenkins-dva-transformation-flowsnake-platform-master-627-itest
     ajnaupgradetest-vg = jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest
     jvmtest-lhn = jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest
