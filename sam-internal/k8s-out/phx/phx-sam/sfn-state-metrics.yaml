@@ -21,7 +21,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfn-state-metrics:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfn-state-metrics:base-0000425-c640b395
         name: sfn-state-metrics
         ports:
         - containerPort: 8080
@@ -65,7 +65,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000178-48060496
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/sfms:latest-0000181-64fa308f
         name: sfms
       - env:
         - name: MADDOG_POD_NAME
@@ -88,7 +88,7 @@ spec:
           value: 5m
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000416-d57928a2
+        image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/poddeleter:base-0000425-c640b395
         name: poddeleter
         volumeMounts:
         - mountPath: /etc/pki_service
