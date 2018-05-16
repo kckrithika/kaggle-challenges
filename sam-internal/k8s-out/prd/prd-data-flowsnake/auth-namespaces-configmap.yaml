@@ -4,7 +4,8 @@ data:
     ["Flowsnake_Ops_Platform"], "namespace": "flowsnake"}, {"authorizedClientCerts":
     [ ], "authorizedLdapGroups": ["alerting_flowsnake"], "namespace": "alerting_snmp"},
     {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["security-analytics"],
-    "namespace": "sec-einstein-deepsea"}]'
+    "namespace": "sec-einstein-deepsea"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
+    ["collection_flowsnake"], "namespace": "collection_device_data_mon"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
