@@ -23,10 +23,8 @@ system:
         value: -XX:MaxMetaspaceSize=512m -Xmx6g -Xms6g
       - name: COMPILER_TAG
         value: 1.0.0.2
-      - name: CONTROLPLANE_ENDPOINT
-        value: shared0-samminioniottest1-1-prd.eng.sfdc.net:9115
-      - name: ENRICHMENTSVC_HOST
-        value: shared0-samminioniottest1-1-prd.eng.sfdc.net:9136
+      - name: ENV_EXTERNAL_ZOOKEEPER
+        value: 'true'
       - name: ENV_FLOWSNAKE_MANIFEST_PATH
         value: classpath:/manifests/provisioning-production.json
       - name: ENV_NAMESPACE
@@ -42,9 +40,11 @@ system:
       - name: FLOWSNAKE_PLATFORM_VERSION
         value: 0.9.8
       - name: FLOWSNAKE_URL
-        value: https://flowsnake-iad.data.sfdc.net
+        value: http://api.flowsnake.localhost.mesh.force.com:5442
       - name: FLOWSNAKE_USE_PKI
         value: 'true'
+      - name: HBASE_ENVIRONMENT
+        value: prod
       - name: INTAKE_CORES
         value: '2'
       - name: INTAKE_JAVA_OPTS
@@ -62,8 +62,14 @@ system:
         value: prod__iot
       - name: KAFKA_NAMESPACE
         value: sfdc.prod.iot
+      - name: LOGGING_JSON_STDOUT_LEVEL
+        value: all
       - name: LOGGING_STDERR_LEVEL
         value: ALL
+      - name: OUTPUTS_POST_URL
+        value: ''
+      - name: SERVICE_DATACENTER
+        value: IAD
       - name: SFDC_ENVIRONMENT
         value: prod
       - name: SUBMITTER_CORES
@@ -116,7 +122,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: prod
-      image: sfci/servicelibs/sherpa:2.0.22
+      image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
           command:

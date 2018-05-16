@@ -8,14 +8,27 @@ apiVersion: v1
 system:
   functions:
   - containers:
-    - image: sfci/iot/enterprise-enrichment:1.0.1.2
+    - env:
+      - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
+        value: /client-certs
+      - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
+        value: /client-certs/client
+      - name: HBASE_SECURITY_KEYTAB_LOCATION
+        value: /home/enrichment/iot-enrichment.keytab
+      - name: HBASE_SECURITY_KEYTAB_PASSWORD_REFRESHENABLED
+        value: 'true'
+      - name: HBASE_SECURITY_KEYTAB_PRINCIPAL
+        value: iot-enrichment
+      - name: HBASE_SECURITY_KEYTAB_SERVICE_ENABLED
+        value: 'true'
+      image: sfci/iot/enterprise-enrichment:1.0.1.11
       livenessProbe:
         httpGet:
           path: /manage/info
           port: 15372
         initialDelaySeconds: 120
         timeoutSeconds: 120
-      name: enrichment
+      name: enrichment-prod
       ports:
       - containerPort: 15372
         name: mgmt
@@ -36,7 +49,7 @@ system:
     - env:
       - name: SFDC_ENVIRONMENT
         value: prod
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
           command:
@@ -78,7 +91,7 @@ system:
     count: 2
     identity:
       serviceName: enrichment
-    name: enrichment
+    name: enrichment-prod
     strategy:
       type: Recreate
     volumes:
@@ -89,7 +102,7 @@ system:
         type: client
       name: client-certs
     - hostPath:
-        path: /data/sam/iot/log/enrichment
+        path: /data/sam/iot/log/enrichment-prod
       name: logvol
   notifications:
     email:
