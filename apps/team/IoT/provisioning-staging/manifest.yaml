@@ -74,7 +74,7 @@ system:
           "{{ SFDC_ENVIRONMENT }}", "SFDC_SETTINGS_PATH": "{{ SFDC_ENVIRONMENT }}.-.{{
           KINGDOM }}.-.compiler", "UNIVERSALSEARCH_URL": "universal-search.universal-search.localhost.mesh.force.com:5443",
           "ZOOKEEPER_HOSTS": "{{ ZOOKEEPER_HOSTS }}"}, "exposeAsExternalWebservice":
-          true, "image": {"image": "sfci/iot/matrix-compiler-server:{{ COMPILER_TAG
+          true, "image": {"image": "sfci/iot/enterprise-processing:{{ COMPILER_TAG
           }}", "kind": "dockerDefaultRegistryImage"}, "kind": "CustomDockerContainer",
           "memory": "{{ COMPILER_MEMORY }}", "name": "compiler", "replicaCount": "{{
           COMPILER_REPLICAS }}", "requiredSecrets": [ ], "serviceMeshClient": {"enableAdminPort":
@@ -97,7 +97,7 @@ system:
           "1 gigabyte", "memory": "1536 megabytes"}}, "storage": {"storageType": "containerTransient"},
           "submitter": {"cores": "{{ SUBMITTER_CORES }}", "jvmHeapSize": "{{ SUBMITTER_HEAP
           }}", "memory": "{{ SUBMITTER_MEMORY }}"}, "submitterContainer": {"image":
-          "sfci/iot/matrix-compiler-server:{{ COMPILER_TAG }}", "kind": "dockerDefaultRegistryImage"},
+          "sfci/iot/enterprise-processing:{{ COMPILER_TAG }}", "kind": "dockerDefaultRegistryImage"},
           "worker": {"cores": "{{ WORKER_CORES }}", "jvmHeapSize": "{{ WORKER_HEAP
           }}", "memory": "{{ WORKER_MEMORY }}", "replicaCount": "{{ WORKER_REPLICAS
           }}"}}], "flowsnakeVersion": "{{ FLOWSNAKE_PLATFORM_VERSION }}", "streams":
@@ -270,4 +270,3 @@ system:
   notifications:
     email:
     - iot-infra@salesforce.com
-
