@@ -877,6 +877,17 @@ data:
           "controlestate": "hnd-sam",
           "devicerole": "samcompute",
           "estate": "hnd-sp1-sam_caas",
+          "hostname": "samcaas1-caasminion1-5-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b10-2g",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sp1-sam_caas",
           "hostname": "samcaas1-caasminion2-1-hnd.ops.sfdc.net",
           "kingdom": "hnd",
           "pod": "none",
@@ -900,6 +911,28 @@ data:
           "devicerole": "samcompute",
           "estate": "hnd-sp1-sam_caas",
           "hostname": "samcaas1-caasminion2-3-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b16-2g",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sp1-sam_caas",
+          "hostname": "samcaas1-caasminion2-4-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b16-2g",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sp1-sam_caas",
+          "hostname": "samcaas1-caasminion2-5-hnd.ops.sfdc.net",
           "kingdom": "hnd",
           "pod": "none",
           "rack": "b16-2g",
@@ -936,6 +969,28 @@ data:
           "kingdom": "hnd",
           "pod": "none",
           "rack": "b09-2g",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sp1-sam_caas",
+          "hostname": "samcaas1-caasminion3-4-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b09-2g",
+          "superpod": "sp1"
+        },
+        {
+          "bomrolename": "sam_minion_caas",
+          "controlestate": "hnd-sam",
+          "devicerole": "samcompute",
+          "estate": "hnd-sp1-sam_caas",
+          "hostname": "samcaas1-caasminion3-5-hnd.ops.sfdc.net",
+          "kingdom": "hnd",
+          "pod": "none",
+          "rack": "b07-2g",
           "superpod": "sp1"
         }
       ]

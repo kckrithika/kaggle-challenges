@@ -818,6 +818,24 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
+    name: cache-as-a-service:ord-sam_kingdom_caas:rolebinding
+    namespace: cache-as-a-service
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: samkingdomcaas0-caasminion1-1-ord.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion1-2-ord.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion2-1-ord.ops.sfdc.net
+  - kind: User
+    name: samkingdomcaas0-caasminion3-1-ord.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1alpha1
+  kind: RoleBinding
+  metadata:
     name: mc-eventing:ord-sam_mc_consumer:rolebinding
     namespace: mc-eventing
   roleRef:
@@ -1018,17 +1036,47 @@ items:
   - kind: User
     name: samcaas1-caasminion1-4-ord.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion1-5-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-6-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-7-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-8-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-9-ord.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion2-1-ord.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-2-ord.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-3-ord.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion2-4-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-5-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-6-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-7-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-8-ord.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion3-1-ord.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-2-ord.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-3-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-4-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-5-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-6-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-7-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-8-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
@@ -1042,23 +1090,67 @@ items:
   - kind: User
     name: samcaas2-caasminion1-1-ord.ops.sfdc.net
   - kind: User
+    name: samcaas2-caasminion1-10-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-11-ord.ops.sfdc.net
+  - kind: User
     name: samcaas2-caasminion1-2-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion1-3-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion1-4-ord.ops.sfdc.net
   - kind: User
+    name: samcaas2-caasminion1-5-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-6-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-7-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-8-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion1-9-ord.ops.sfdc.net
+  - kind: User
     name: samcaas2-caasminion2-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-10-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-11-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion2-2-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion2-3-ord.ops.sfdc.net
   - kind: User
+    name: samcaas2-caasminion2-4-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-5-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-6-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-7-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-8-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion2-9-ord.ops.sfdc.net
+  - kind: User
     name: samcaas2-caasminion3-1-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-10-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-2-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-3-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-4-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-5-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-6-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-7-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-8-ord.ops.sfdc.net
+  - kind: User
+    name: samcaas2-caasminion3-9-ord.ops.sfdc.net
 - apiVersion: rbac.authorization.k8s.io/v1alpha1
   kind: RoleBinding
   metadata:
