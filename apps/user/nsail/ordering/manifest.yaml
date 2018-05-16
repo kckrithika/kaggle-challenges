@@ -15,8 +15,6 @@ system:
         value: shipping.localhost.mesh.force.com:7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      - name: zookeeper.seedHosts
-        value: ops0-deploydata1-2-prd.eng.sfdc.net:2181
       ports:
       - containerPort: 7020
         name: grpc-svc
