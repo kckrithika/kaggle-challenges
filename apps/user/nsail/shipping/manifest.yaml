@@ -37,6 +37,8 @@ system:
       - shipping:DATACENTER:7012
       - -logging.dir
       - /log
+      - -zk
+      - ops0-deploydata1-2-prd.eng.sfdc.net:2181
       livenessProbe:
         initialDelaySeconds: 5
         exec:
