@@ -76,7 +76,9 @@
             "--port=" + $.nodeApiPort,
             "--configDir=" + slbconfigs.configDir,
             "--log_dir=" + slbconfigs.logsDir,
-        ],
+        ] + (if slbimages.phase == "1" then [
+                 "--netInterface=lo",
+             ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.logs_volume_mount,
@@ -120,7 +122,9 @@
             "--log_dir=" + slbconfigs.logsDir,
             configs.sfdchosts_arg,
             "--client.serverPort=" + $.nodeApiPort,
-        ],
+        ] + (if slbimages.phase == "1" then [
+                 "--client.serverInterface=lo",
+             ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.sbin_volume_mount,
@@ -171,7 +175,9 @@
             configs.sfdchosts_arg,
             "--readVipsFromIpvs=true",
             "--client.serverPort=" + $.nodeApiPort,
-        ],
+        ] + (if slbimages.phase == "1" then [
+                 "--client.serverInterface=lo",
+             ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
             slbconfigs.slb_config_volume_mount,

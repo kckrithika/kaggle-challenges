@@ -177,7 +177,9 @@ if slbconfigs.slbInKingdom then {
 
                                              [
                                                  configs.sfdchosts_arg,
-                                             ],
+                                             ] + (if slbimages.phase == "1" then [
+                                                      "--client.serverInterface=lo",
+                                                  ] else []),
                                     volumeMounts: configs.filter_empty([
                                         {
                                             name: "var-target-config-volume",

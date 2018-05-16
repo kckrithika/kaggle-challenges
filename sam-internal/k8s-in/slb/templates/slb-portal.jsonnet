@@ -39,12 +39,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               name: "slb-portal",
                               image: slbimages.hypersdn,
                               command: [
-                                  "/sdn/slb-portal",
-                                  "--hostname=$(NODE_NAME)",
-                                  "--templatePath=" + slbconfigs.slbPortalTemplatePath,
-                                  "--port=" + portconfigs.slb.slbPortalServicePort,
-                                  "--useLocalNodeApi=true",
-                              ],
+                                           "/sdn/slb-portal",
+                                           "--hostname=$(NODE_NAME)",
+                                           "--templatePath=" + slbconfigs.slbPortalTemplatePath,
+                                           "--port=" + portconfigs.slb.slbPortalServicePort,
+                                       ] + (if slbimages.phase == "1" then []
+                                            else [
+                                                "--useLocalNodeApi=true",
+                                            ])
+                                       + (if slbimages.phase == "1" then [
+                                              "--client.serverInterface=lo",
+                                          ] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                               ]),
