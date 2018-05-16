@@ -1,8 +1,8 @@
 {
   "1": {
     "hypersdn": {
-      "label": "v-0000860-f5109d80",
-      "promotedTime": "2018-05-16T03:54:02.283069Z",
+      "label": "v-0000863-a33d6c92",
+      "promotedTime": "2018-05-16T18:10:11.478713815Z",
       "warning": "860 has changes in slbsharedservices,baboon,iface,ipvs,nginx-config,portal,realsvrcfg,vip-watchdog"
     },
     "slbnginx": {
