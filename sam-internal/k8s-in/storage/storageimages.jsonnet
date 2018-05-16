@@ -58,17 +58,17 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 3 - Canary sites in Prod (PHX)
         "3": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000416-d57928a2",
-            ceph_operator_tag: "base-0000416-d57928a2",
-            loginit_tag: "base-0000416-d57928a2",
+            default_tag: "base-0000425-c640b395",
+            ceph_operator_tag: "base-0000425-c640b395",
+            loginit_tag: "base-0000425-c640b395",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
-            sfms_tag: "latest-0000178-48060496",
+            sfms_tag: "latest-0000181-64fa308f",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fbookie&last=10&repo=SFStorage%2Fbookkeeper
-            sfstorebookie_tag: "base-0000087-2e69a3ce",
+            sfstorebookie_tag: "base-0000089-39319751",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
-            cephdaemon_tag: "10.2.7-0000060-5eafc0e2",
+            cephdaemon_tag: "10.2.7-0000061-0ac4ba7e",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fsam%2Fmadkub&last=10&repo=sam%2Fmadkub
             madkub_tag: "1.0.0-0000061-74e4a7b6",
         },
@@ -76,7 +76,7 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 4 - All Prod. Currently disabled, because there are no other prod clusters yet.
         "4": {
             default_tag: "Disabled",
-            },
+        },
     },
 
     ### Phase kingdom/estate mapping
