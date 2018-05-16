@@ -16,7 +16,7 @@ system:
           secretName: csc-redis-auth-0
     containers:
     - name: expreport-collectorha
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/stanfield.chu/report-collector:1.16.0-20180501-noRequeue
+      image: tnrp/csc-health/report-collector:1.17.0-0000271-bcf31fce
       ports:
       - name: admin
         containerPort: 8082
