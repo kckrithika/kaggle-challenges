@@ -122,6 +122,9 @@ local kingdom = std.extVar("kingdom");
                 "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.network",
                 "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.network.raw",
                 "sfdc.prod.dvasyslog__hnd.ajna_local__syslog.device",
+                "sfdc.prod.dvasyslog__xrd.ajna_local__syslog.network",
+                "sfdc.prod.dvasyslog__xrd.ajna_local__syslog.network.raw",
+                "sfdc.prod.dvasyslog__xrd.ajna_local__syslog.device",
                 "sfdc.prod.dvasyslog__dfw.ajna_local__trap",
                 "sfdc.prod.dvasyslog__phx.ajna_local__trap",
                 "sfdc.prod.dvasyslog__frf.ajna_local__trap",
@@ -131,6 +134,7 @@ local kingdom = std.extVar("kingdom");
                 "sfdc.prod.dvasyslog__hnd.ajna_local__trap",
                 "sfdc.prod.dvasyslog__ukb.ajna_local__trap",
                 "sfdc.prod.dvasyslog__prd.ajna_local__trap",
+                "sfdc.prod.dvasyslog__xrd.ajna_local__trap",
             ],
         },
         "prd/prd-data-flowsnake_test": {
