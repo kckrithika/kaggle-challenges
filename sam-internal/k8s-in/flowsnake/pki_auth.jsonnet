@@ -28,6 +28,11 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: ["collection_flowsnake"],
             authorizedClientCerts: [],
         },
+        {
+            namespace: "search_dlc",
+            authorizedLdapGroups: ["search_dlc"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
