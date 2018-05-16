@@ -1,2 +1,4 @@
 version: v2
 apps:
+ mysql:
+  - prd/prd-sam
