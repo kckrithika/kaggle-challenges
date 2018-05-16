@@ -17,7 +17,7 @@ std.prune({
 
   # Delete
   deletionPercentageThreshold: 20,
-  deletionEnabled: (if configs.kingdom == "prd" then true else false),
+  deletionEnabled: (if configs.kingdom == "prd" || configs.kingdom == "frf" || configs.kingdom == "cdu" then true else false),
 
   # Stateful
   statefulAppEnabled: (if configs.kingdom == "prd" || configs.kingdom == "phx" then true else false),
