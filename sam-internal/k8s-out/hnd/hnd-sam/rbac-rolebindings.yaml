@@ -280,16 +280,26 @@ items:
   - kind: User
     name: samcaas1-caasminion1-4-hnd.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion1-5-hnd.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion2-1-hnd.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-2-hnd.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-3-hnd.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion2-4-hnd.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-5-hnd.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion3-1-hnd.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-2-hnd.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-3-hnd.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-4-hnd.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-5-hnd.ops.sfdc.net
 kind: List
 metadata: {}

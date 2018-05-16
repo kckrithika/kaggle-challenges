@@ -464,11 +464,23 @@ items:
   - kind: User
     name: samcaas1-caasminion1-1-ukb.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion1-10-ukb.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion1-2-ukb.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion1-3-ukb.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion1-4-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-5-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-6-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-7-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-8-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion1-9-ukb.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion2-1-ukb.ops.sfdc.net
   - kind: User
@@ -476,10 +488,34 @@ items:
   - kind: User
     name: samcaas1-caasminion2-3-ukb.ops.sfdc.net
   - kind: User
+    name: samcaas1-caasminion2-4-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-5-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-6-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-7-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-8-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion2-9-ukb.ops.sfdc.net
+  - kind: User
     name: samcaas1-caasminion3-1-ukb.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-2-ukb.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-3-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-4-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-5-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-6-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-7-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-8-ukb.ops.sfdc.net
+  - kind: User
+    name: samcaas1-caasminion3-9-ukb.ops.sfdc.net
 kind: List
 metadata: {}
