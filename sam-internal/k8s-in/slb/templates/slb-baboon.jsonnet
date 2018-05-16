@@ -62,6 +62,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 "--deleteNginxTunnelIntfFlag=true",
                                 "--deleteIpvsIntfFlag=true",
                                 "--deleteCustomerPodFlag=true",
+                                "--client.serverInterface=lo",
                             ] else [
                                 "/sdn/slb-baboon",
                                 "--k8sapiserver=",

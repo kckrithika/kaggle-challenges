@@ -17,15 +17,28 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         replicas: if slbimages.phase == "1" || configs.estate == "prd-sam" then 2 else 1,
         template: {
             spec: {
-                 affinity: {
-                      podAntiAffinity: {
-                           requiredDuringSchedulingIgnoredDuringExecution: [{
-                               labelSelector: {
-                                   matchExpressions: [
-                                   ] + (
-                                        if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
-                                        [
-                                             {
+                      affinity: {
+                          podAntiAffinity: {
+                              requiredDuringSchedulingIgnoredDuringExecution: [{
+                                  labelSelector: {
+                                      matchExpressions: [
+                                      ] + (
+                                          if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then
+                                              [
+                                                  {
+                                                      key: "name",
+                                                      operator: "In",
+                                                      values: [
+                                                          "slb-ipvs",
+                                                          "slb-ipvs-a",
+                                                          "slb-ipvs-b",
+                                                          "slb-nginx-config-b",
+                                                          "slb-nginx-config-a",
+                                                          "slb-vip-watchdog",
+                                                      ],
+                                                  },
+                                              ] else [
+                                              {
                                                   key: "name",
                                                   operator: "In",
                                                   values: [
@@ -34,27 +47,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                       "slb-ipvs-b",
                                                       "slb-nginx-config-b",
                                                       "slb-nginx-config-a",
-                                                      "slb-vip-watchdog",
                                                   ],
-                                             },
-                                        ] else [
-                                             {
-                                                  key: "name",
-                                                  operator: "In",
-                                                  values: [
-                                                      "slb-ipvs",
-                                                      "slb-ipvs-a",
-                                                      "slb-ipvs-b",
-                                                      "slb-nginx-config-b",
-                                                      "slb-nginx-config-a",
-                                                  ],
-                                             },
-                                        ]
+                                              },
+                                          ]
 
-                                   ),
-                               },
-                               topologyKey: "kubernetes.io/hostname",
-                           }],
+                                      ),
+                                  },
+                                  topologyKey: "kubernetes.io/hostname",
+                              }],
                           },
                           nodeAffinity: {
                               requiredDuringSchedulingIgnoredDuringExecution: {
@@ -70,23 +70,23 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                           values: ["a", "b"],
                                                       },
                                                       {
-                                                         key: "slb-service",
-                                                         operator: "NotIn",
-                                                         values: ["slb-ipvs"],
-                                                      },
-                                                  ] else if configs.estate == "prd-sam" then [
-                                                       {
                                                           key: "slb-service",
                                                           operator: "NotIn",
                                                           values: ["slb-ipvs"],
-                                                       },
-                                                  ] else [
-                                                      {
-                                                         key: "slb-service",
-                                                         operator: "NotIn",
-                                                         values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
                                                       },
-                                                  ]
+                                                  ] else if configs.estate == "prd-sam" then [
+                                                  {
+                                                      key: "slb-service",
+                                                      operator: "NotIn",
+                                                      values: ["slb-ipvs"],
+                                                  },
+                                              ] else [
+                                                  {
+                                                      key: "slb-service",
+                                                      operator: "NotIn",
+                                                      values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
+                                                  },
+                                              ]
                                           ),
                                       },
                                   ],
@@ -108,19 +108,25 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               name: "slb-vip-watchdog",
                               image: slbimages.hypersdn,
                               command: [
-                                  "/sdn/slb-vip-watchdog",
-                                  "--log_dir=" + slbconfigs.logsDir,
-                                  "--optOutNamespace=kne",
-                                  "--hostnameOverride=$(NODE_NAME)",
-                                  configs.sfdchosts_arg,
-                                  "--metricsEndpoint=" + configs.funnelVIP,
-                                  "--httpTimeout=5s",
-                                  "--useLocalNodeApi=true",
-                                  "--vipLoop=1",
-                                  "--monitorFrequency=10s",
-                              ] + if configs.estate == "prd-sam" then [
-                                  "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
-                              ] else [],
+                                           "/sdn/slb-vip-watchdog",
+                                           "--log_dir=" + slbconfigs.logsDir,
+                                           "--optOutNamespace=kne",
+                                           "--hostnameOverride=$(NODE_NAME)",
+                                           configs.sfdchosts_arg,
+                                           "--metricsEndpoint=" + configs.funnelVIP,
+                                           "--httpTimeout=5s",
+                                       ] + (if slbimages.phase == "1" then []
+                                            else [
+                                                "--useLocalNodeApi=true",
+                                            ]) +
+                                       [
+                                           "--vipLoop=1",
+                                           "--monitorFrequency=10s",
+                                       ] + (if configs.estate == "prd-sam" then [
+                                                "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
+                                            ] else []) + (if slbimages.phase == "1" then [
+                                                              "--client.serverInterface=lo",
+                                                          ] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
