@@ -7,7 +7,7 @@ local storageconfigs = import "storageconfig.jsonnet";
 local enabledMinionEstates = ["not-in-any-pool-at-this-time"];
 
 local rolloutPolicy =
-  if storageimages.phase == "1" then {
+  if std.parseInt(storageimages.phase) <= 2 then {
     updateStrategy: {
       type: "RollingUpdate",
       rollingUpdate: {
