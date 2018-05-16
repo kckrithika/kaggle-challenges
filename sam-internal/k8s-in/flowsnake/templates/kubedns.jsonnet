@@ -70,10 +70,12 @@ else
                                 # the threshold.
                                 # grep -c (count) | grep 0 will yield an error if the count non-zero and thus fail the
                                 # liveness check.
+                                # grep explicitly for the kube-dns process because the pause container will survive a
+                                # liveness probe-based pod restart.
                                 command: [
                                     "sh",
                                     "-c",
-                                    "nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null && ps -o etime= | grep -cE '[2-9][0-9][0-9][0-9]:' | grep -q 0",
+                                    "nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null && ps -o comm,etime | grep kube-dns | grep -cE '[2-9][0-9][0-9][0-9]:' | grep -q 0",
                                 ],
                             },
                             initialDelaySeconds: 60,
