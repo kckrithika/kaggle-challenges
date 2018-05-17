@@ -9,7 +9,7 @@ system:
     count: 3
     containers:
     - name: cre-sp-ccp-perf
-      image: sfci/cre/cre-stream-processing:0.0.1.54.master.4d70f79.122
+      image: sfci/cre/cre-stream-processing:0.0.1.57.master.ad919e0.125
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
@@ -24,7 +24,9 @@ system:
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
-          value: maddog/maddog-client-truststore.json          
+          value: maddog/maddog-client-truststore.json
+        - name: METRICS_FUNNEL_URI
+          value: http://ajna0-funnel1-0-prd.data.sfdc.net                    
       ports:
       - containerPort: 8080
       - containerPort: 7020
