@@ -9,14 +9,12 @@ local pools = import "configs/generated-pools.jsonnet";
 
     # Defines the set of estates that use the v1beta1 API version for RBAC.
     # The default is v1alpha1, which is deprecated/disabled by default in k8s 1.9.
-    rbac_v1beta1_estates:: std.set([
-        "prd-samdev",
-        "prd-sam_storage",
-        "prd-sam_storagedev",
+    rbac_v1beta1_kingdoms:: std.set([
+        "prd",
     ]),
 
     rbac_api_version::
-        if std.setMember(configs.estate, $.rbac_v1beta1_estates) then
+        if std.setMember(configs.kingdom, $.rbac_v1beta1_kingdoms) then
              "rbac.authorization.k8s.io/v1beta1"
         else
              "rbac.authorization.k8s.io/v1alpha1",
