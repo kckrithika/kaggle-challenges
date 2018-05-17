@@ -17,9 +17,13 @@ system:
       - name: prd-warden
         image: tnrp/casp/warden:0.0.1-0000267-ae4301cc
         ports:
-        - name: warden
+        - name: http
           containerPort: 8889
           hostPort: 18889
+        - name: https
+          containerPort: 443
+        - name: grpc
+          containerPort: 7878
         env:
         - name: BRANCH
           value: "eng_production"
@@ -48,3 +52,7 @@ system:
       ports:
         - port: 80
           targetport: 8889
+        - port: 443
+          targetport: 443
+        - port: 7878
+          targetport: 7878
