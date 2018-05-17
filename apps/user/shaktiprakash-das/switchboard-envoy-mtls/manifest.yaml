@@ -22,6 +22,7 @@ system:
         value: 7020
       args:
       - --clusters.external-clusters[0]=shipping-envoy-mtls.user-shaktiprakash-das.samapp:HTTP2_TLS
+      - --listeners.tracing.random_sampling_percent=100
       volumeMounts:
         - mountPath: /log
           name: log-volume
