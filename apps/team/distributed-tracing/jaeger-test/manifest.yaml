@@ -4,14 +4,14 @@ system:
   notifications:
     email:
       - afalko@salesforce.com
-  volumes:
-  - name: client-certs
-      maddogCert:
-        type: client
   functions:
   - name: jaeger-test
     identity:
       serviceName: zipkin-collector
+    volumes:
+    - name: client-certs
+      maddogCert:
+        type: client
     count: 1
     strategy:
       type: Recreate
@@ -30,7 +30,7 @@ system:
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-collector
         name: client-certs
-	  livenessProbe:
+      livenessProbe:
         exec:
           # TODO: Check if process is running?
           command:
