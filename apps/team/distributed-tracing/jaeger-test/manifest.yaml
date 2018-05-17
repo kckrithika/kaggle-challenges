@@ -17,7 +17,7 @@ system:
       type: Recreate
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin:jenkins-monitoring-zipkin-hackday-13-itest
+      image: docker-dva-rc/dva/zipkin:jenkins-monitoring-zipkin-hackday-14-itest
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
@@ -45,6 +45,7 @@ system:
       ports:
       - name: jaeger
         containerPort: 16686
+      args: ["--log-level", "debug"]
       livenessProbe:
         httpGet:
           path: /
