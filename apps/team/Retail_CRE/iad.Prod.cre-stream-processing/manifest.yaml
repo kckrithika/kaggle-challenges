@@ -5,24 +5,28 @@ system:
     email:
       - cre@salesforce.com
   functions:
-  - name: cre-api
+  - name: cre-sp
     count: 3
     containers:
-    - name: cre-api
-      image: sfci/cre/cre-api:0.0.1.57.master.7084b35.109
+    - name: cre-sp
+      image: sfci/cre/cre-stream-processing:0.0.1.57.master.ad919e0.125
       env:
         - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__ord.ajna_local__cre_metrics
+          value: sfdc.prod.cre__iad.ajna_local__cre_metrics
         - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-ord.data.sfdc.net:9093
+          value: ajna0-broker1-0-iad.data.sfdc.net:9093
+        - name: METRICS_KAFKA_GROUP_ID
+          value: cre-sp-iad
         - name: SFDC_ENVIRONMENT
-          value: prod
+          value: prod          
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
+        - name: METRICS_FUNNEL_URI
+          value: http://ajna0-funnel1-0-iad.data.sfdc.net                     
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -39,16 +43,16 @@ system:
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
-        name: myservercert
-      - mountPath: /opt/cre/cre-api-prod
+        name: myservercert        
+      - mountPath: /opt/cre/cre-sp
         name: logvol
-    - name: sherpa-cre-api
+    - name: sherpa-cre-stream-processing
       image: sfci/servicelibs/sherpa:2.0.23
       volumeMounts:
       - mountPath: /myclientcert
         name: myclientcert
       - mountPath: /myservercert
-        name: myservercert
+        name: myservercert 
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
@@ -77,7 +81,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-api-prod
+        path: /home/sfdc-cre/logs/cre-sp
     - name: myclientcert
       maddogCert:
         type: client
@@ -85,12 +89,12 @@ system:
       maddogCert:
         type: server
         lbnames:
-          - cre-api-lb
+          - cre-sp-lb      
   loadbalancers:
-  - lbname: cre-api-lb
-    function: cre-api
+  - lbname: cre-sp-lb
+    function: cre-sp
     nodeExposed: true
     slbenabled: true
     ports:
-      - port: 8086
+      - port: 8091
         targetport: 8080
