@@ -27,6 +27,8 @@ system:
         value: ALL
       - name: PHOENIX_DATACENTER
         value: iad
+      - name: PHOENIX_ENVIRONMENT
+        value: prod
       - name: PHOENIX_KEYTABPATH
         value: /home/controlplane/iot.keytab
       - name: PHOENIX_KEYTABPRINCIPAL
