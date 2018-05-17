@@ -1,4 +1,4 @@
-# created by scone-gen 6d51f36
+# created by scone-gen 7a67fa4
 
 apiVersion: v1
 
@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: rrebello-test-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rrebello/rrebello-test:rrebello-20180516-819345c
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/rrebello/rrebello-test:rrebello-20180516-5c12743
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
@@ -25,10 +25,53 @@ system:
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
+    - name: beacon-rrebello-test
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      # This announces your gRPC endpoint for HTTP2 traffic without mTLS.
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      args:
+      - -endpoint
+      - rrebello-test:DATACENTER:7012
+      - -logging.dir
+      - /log
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+      # Need to mount to a volume so that logs can be shipped to splunk
+      volumeMounts:
+      - mountPath: /log
+        name: logvolbeacon
+    - name: sherpa-rrebello-test
+      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md
+      image: sfci/servicelibs/sherpa:2.0.25
+      # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
+      ports:
+      - containerPort: 15373
+        name: sherpa-adm
+      - containerPort: 7012
+        name: grpc-in
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
 
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+    - name: logvolbeacon
+      hostPath:
+        path: /home/sfdc-scone-rrebello-test-beacon/logs
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-rrebello-test/logs
