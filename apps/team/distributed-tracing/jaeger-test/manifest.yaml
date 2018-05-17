@@ -6,9 +6,35 @@ system:
       - afalko@salesforce.com
   functions:
   - name: jaeger-test
+    identity:
+      serviceName: zipkin-collector
+    volumes:
+    - name: client-certs
+      maddogCert:
+        type: client
     count: 1
     strategy:
       type: Recreate
+    containers:
+    - name: zipkin-collector
+      image: docker-dva-rc/dva/dva-registry.internal.salesforce.com/dva/zipkin:jenkins-monitoring-zipkin-hackday-7-itest
+      env:
+      - name: ZIPKIN_COLLECTOR_HOST
+        value: zipkin-collector
+      - name: KAFKA_BOOTSTRAP_SERVERS
+        value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
+      - name: KAFKA_TOPIC
+        value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__ord.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__iad.ajna_local__tracing
+      - name: ZIPKIN_ARGS
+        value: --logging.level.zipkin=DEBUG --logging.level.zipkin2=DEBUG
+      volumeMounts:
+      - mountPath: /etc/pki_service/zipkin-collector
+        name: client-certs
+      livenessProbe:
+        exec:
+          # TODO: Check if process is running?
+          command:
+          - /bin/true
     containers:
     - name: jaeger
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/afalko/jaegertracing/all-in-one:hackday1
