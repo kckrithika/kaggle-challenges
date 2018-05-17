@@ -1,6 +1,8 @@
 apps:
-  eaas:
+  eaas: #- pod to handle STEAM and development traffic. DO NOT use this environment for testing.
     - prd/prd-sam
+  eaas-prod: #- Prod configuration
+    - dfw/dfw-sam_eaas
+    - phx/phx-sam_eaas
   grpc-client:
     - prd/prd-sam
-
