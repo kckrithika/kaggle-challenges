@@ -35,7 +35,6 @@ system:
           # TODO: Check if process is running?
           command:
           - /bin/true
-    containers:
     - name: jaeger
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/afalko/jaegertracing/all-in-one:hackday1
       resources:
