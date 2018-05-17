@@ -1,4 +1,6 @@
 apps:
+    jaeger-test:
+    - prd/prd-sam_zipkin
     zipkin-frontend-test:
     - prd/prd-sam_zipkin
     zipkin-frontend:

@@ -1,0 +1,36 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - afalko@salesforce.com
+  functions:
+  - name: jaeger-test
+    count: 1
+    strategy:
+      type: Recreate
+    containers:
+    - name: jaeger
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/afalko/jaegertracing/all-in-one:hackday1
+      resources:
+        limits: { cpu: "2", memory: "40Gi" }
+        requests: { cpu: "2", memory: "40Gi" }
+      ports:
+      - name: jaeger
+        containerPort: 16686
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 16686
+        initialDelaySeconds: 120
+  loadbalancers:
+  - lbname: jaeger-hackday
+    function: jaeger-test
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 16686
+        lbtype: http
+      - port: 443
+        targetport: 16686
+        lbtype: http
