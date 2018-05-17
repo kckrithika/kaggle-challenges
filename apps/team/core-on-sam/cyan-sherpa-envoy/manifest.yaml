@@ -52,7 +52,8 @@ system:
       livenessProbe:
         exec:
           command:
-          - ./bin/is-alive
+          - echo
+          - HEALTHY
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
