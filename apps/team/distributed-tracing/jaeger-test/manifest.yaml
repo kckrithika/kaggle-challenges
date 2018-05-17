@@ -17,7 +17,7 @@ system:
       type: Recreate
     containers:
     - name: zipkin-collector
-      image: dva-registry.internal.salesforce.com/dva/zipkin:jenkins-monitoring-zipkin-hackday-7-itest
+      image: docker-dva-rc/dva/zipkin:jenkins-monitoring-zipkin-hackday-7-itest
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
