@@ -56,7 +56,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "632",
+            fleetService_image_tag: "633",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -88,6 +88,8 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7": 571,
                   "0.9.8": 607,
                   "632": "632",
+                  "633": "633",
+                  "634": "634",
                 }
                 +
                 # These are for developer testing only
