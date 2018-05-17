@@ -24,11 +24,6 @@ spec:
                 operator: In
                 values:
                 - xrd-slb
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-                - slb-ipvs-a
       containers:
       - command:
         - /sdn/slb-iface-processor
