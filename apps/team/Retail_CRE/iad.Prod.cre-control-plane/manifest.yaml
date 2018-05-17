@@ -40,7 +40,7 @@ system:
         name: myclientcert
       - mountPath: /myservercert
         name: myservercert
-      - mountPath: /opt/cre/cre-control-plane
+      - mountPath: /opt/cre/cre-control-plane-prod
         name: logvol
     - name: sherpa-cre-control-plane
       image: sfci/servicelibs/sherpa:2.0.26
@@ -101,7 +101,7 @@ system:
         secretName: prod-gdot-private-key
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-control-plane
+        path: /home/sfdc-cre/logs/cre-control-plane-prod
     - name: myclientcert
       maddogCert:
         type: client
