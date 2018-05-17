@@ -22,13 +22,6 @@ local utils = import "util_functions.jsonnet";
         #[alok.bansal] New version of Sam Manifest Repo Watcher
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0001977-5efe4159",
 
-        #[rbhat] Bundlecontroller fix
-        "prd,prd-sam,bundle-controller,hypersam": "sam-0001961-5cfd0a47",
-        #[rbhat] use rbac beta client
-        "prd,prd-sam,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
-        "prd,prd-sam_storage,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
-        "prd,prd-sam_storagedev,samcontrol-deployer,hypersam": "sam-0001961-5cfd0a47",
-
         # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
         "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         "dfw,dfw-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",

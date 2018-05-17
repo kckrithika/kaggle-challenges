@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: minion:clusterrolebinding
@@ -11,7 +11,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-system:rolebinding
@@ -23,7 +23,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-watchdog:rolebinding
@@ -35,7 +35,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: update-secrets
@@ -47,7 +47,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: samcompute:clusterrolebinding
@@ -116,7 +116,7 @@ items:
     name: shared0-samcompute2-8-prd.eng.sfdc.net
   - kind: User
     name: shared0-samcompute2-9-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: legostore:prd-sam_ceph:rolebinding
@@ -182,7 +182,7 @@ items:
     name: shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: storage-foundation:prd-sam_ceph:rolebinding
@@ -248,7 +248,7 @@ items:
     name: shared0-samminioncephrdtwo1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncephrdtwo1-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: chatbot:prd-sam_chatbot_kingdom:rolebinding
@@ -270,7 +270,7 @@ items:
     name: shared0-samminionchatbotrt2-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionchatbotrt2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:prd-sam_cloudatlas:rolebinding
@@ -288,7 +288,7 @@ items:
     name: test1shared0-samminionatlasfe1-1-prd.eng.sfdc.net
   - kind: User
     name: test1shared0-samminionatlasfe2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:prd-sam_cloudatlas_dir:rolebinding
@@ -310,7 +310,7 @@ items:
     name: test1shared0-samminionatlasdir1-2-prd.eng.sfdc.net
   - kind: User
     name: test1shared0-samminionatlasdir2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:prd-sam_cloudatlastwo:rolebinding
@@ -324,7 +324,7 @@ items:
     name: shared0-samminionatlastwofe1-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionatlastwofe2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:prd-sam_cloudatlastwo_dir:rolebinding
@@ -340,7 +340,7 @@ items:
     name: shared0-samminionatlastwodir1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionatlastwodir2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-dfs:prd-sam_crosscloudplatform:rolebinding
@@ -374,7 +374,7 @@ items:
     name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-eventlistener:prd-sam_crosscloudplatform:rolebinding
@@ -408,7 +408,7 @@ items:
     name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-mds:prd-sam_crosscloudplatform:rolebinding
@@ -442,7 +442,7 @@ items:
     name: shared0-samminioncrosscloudplatform3-3-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-4-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-eventlistener:prd-sam_crosscloudsetup:rolebinding
@@ -464,7 +464,7 @@ items:
     name: shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-rrps:prd-sam_crosscloudsetup:rolebinding
@@ -486,7 +486,7 @@ items:
     name: shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-rsui:prd-sam_crosscloudsetup:rolebinding
@@ -508,7 +508,7 @@ items:
     name: shared0-samminioncrosscloudsetup3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-cre:prd-sam_customerresolutionengine:rolebinding
@@ -530,7 +530,7 @@ items:
     name: shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-credata:prd-sam_customerresolutionengine:rolebinding
@@ -552,7 +552,7 @@ items:
     name: shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: wave-elt:prd-sam_datapool:rolebinding
@@ -566,7 +566,7 @@ items:
     name: shared0-samminiondatapool1-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiondatapool1-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ccait:prd-sam_gater:rolebinding
@@ -598,7 +598,7 @@ items:
     name: shared0-samminiongater2-4-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongater2-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: gater:prd-sam_gater:rolebinding
@@ -630,7 +630,7 @@ items:
     name: shared0-samminiongater2-4-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongater2-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: service-mesh:prd-sam_gater:rolebinding
@@ -662,7 +662,7 @@ items:
     name: shared0-samminiongater2-4-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongater2-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ci-ccait:prd-sam_gater:rolebinding
@@ -694,7 +694,7 @@ items:
     name: shared0-samminiongater2-4-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongater2-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: gateway:prd-sam_gatewayconfig:rolebinding
@@ -716,7 +716,7 @@ items:
     name: shared0-samminiongwc2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongwc2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ci-gateway:prd-sam_gatewayconfig:rolebinding
@@ -738,7 +738,7 @@ items:
     name: shared0-samminiongwc2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongwc2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: mc-eventing:prd-sam_mc_consumer:rolebinding
@@ -754,7 +754,7 @@ items:
     name: shared0-samminionmcconsumer2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionmcconsumer3-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: atf:prd-sam_mit:rolebinding
@@ -784,7 +784,7 @@ items:
     name: shared0-samminionmit3-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionmit3-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: communities:prd-sam_moderation_einstein:rolebinding
@@ -800,7 +800,7 @@ items:
     name: shared0-samminionmoderationeinstein1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionmoderationeinstein2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: csc-health:prd-sam_report_collector:rolebinding
@@ -822,7 +822,7 @@ items:
     name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: distributed-tracing:prd-sam_report_collector:rolebinding
@@ -844,7 +844,7 @@ items:
     name: shared0-samminionreportcollector3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: service-protection:prd-sam_serviceprotection:rolebinding
@@ -858,7 +858,7 @@ items:
     name: shared0-samminionserviceprotection1-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionserviceprotection2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sf-store:prd-sam_sfstore:rolebinding
@@ -882,7 +882,7 @@ items:
     name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: storage-foundation:prd-sam_sfstore:rolebinding
@@ -906,7 +906,7 @@ items:
     name: shared0-samminionsfstore3-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionsfstore3-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: podgroup-prebuild:prd-sam_tardis:rolebinding
@@ -922,7 +922,7 @@ items:
     name: shared0-samminiontardis1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiontardis2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: test-release:prd-sam_tnrp_merger:rolebinding
@@ -938,7 +938,7 @@ items:
     name: shared0-samminiontnrpmerger1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiontnrpmerger2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: test-release:prd-sam_tnrp_promoter:rolebinding
@@ -954,7 +954,7 @@ items:
     name: shared0-samminiontnrppromoter1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiontnrppromoter2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: test-release:prd-sam_tnrp_signer:rolebinding
@@ -970,7 +970,7 @@ items:
     name: shared0-samminiontnrpsigner1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminiontnrpsigner2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: casp:prd-sam_warden:rolebinding
@@ -986,7 +986,7 @@ items:
     name: shared0-samminionwarden1-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionwarden2-1-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: distributed-tracing:prd-sam_zipkin:rolebinding
@@ -1008,7 +1008,7 @@ items:
     name: shared0-samminionzipkin2-2-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionzipkin2-3-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: search-scale-safely:prd-search_model_executor:rolebinding
@@ -1026,7 +1026,7 @@ items:
     name: shared0-samminionsme2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionsme2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ci-search-scale-safely:prd-search_model_executor:rolebinding
@@ -1044,7 +1044,7 @@ items:
     name: shared0-samminionsme2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionsme2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sayonaradb:prd-sp1-sdb_kube:rolebinding
@@ -1062,7 +1062,7 @@ items:
     name: shared0-sdbcompute2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: user-sraspudic:prd-sp1-sdb_kube:rolebinding
@@ -1080,7 +1080,7 @@ items:
     name: shared0-sdbcompute2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-sdbcompute2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cache-as-a-service-sp2:prd-sp2-sam_caas:rolebinding
@@ -1142,7 +1142,7 @@ items:
     name: samcaas2-caasminion3-8-prd.eng.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-9-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: chatbot-sp2:prd-sp2-sam_chatbot:rolebinding
@@ -1160,7 +1160,7 @@ items:
     name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: chatbot-ci:prd-sp2-sam_chatbot:rolebinding
@@ -1178,7 +1178,7 @@ items:
     name: shared0-samminionchatbot2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminionchatbot2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: core-on-sam-sp2:prd-sp2-sam_coreapp:rolebinding
@@ -1218,7 +1218,7 @@ items:
     name: shared2-samminioncoreapp3-4-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminioncoreapp3-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ice-pd-sp2:prd-sp2-sam_coreapp:rolebinding
@@ -1258,7 +1258,7 @@ items:
     name: shared2-samminioncoreapp3-4-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminioncoreapp3-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ci-ice-pd:prd-sp2-sam_coreapp:rolebinding
@@ -1298,7 +1298,7 @@ items:
     name: shared2-samminioncoreapp3-4-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminioncoreapp3-5-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: emailinfra-sp2:prd-sp2-sam_eaas_sp:rolebinding
@@ -1316,7 +1316,7 @@ items:
     name: shared2-samminioneaassp2-1-prd.eng.sfdc.net
   - kind: User
     name: shared2-samminioneaassp2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: iot-sp2:prd-sp2-sam_iot_test:rolebinding
@@ -1334,7 +1334,7 @@ items:
     name: shared0-samminioniottest2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioniottest2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: iot-ci:prd-sp2-sam_iot_test:rolebinding
@@ -1352,7 +1352,7 @@ items:
     name: shared0-samminioniottest2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioniottest2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ci-iot:prd-sp2-sam_iot_test:rolebinding
@@ -1370,7 +1370,7 @@ items:
     name: shared0-samminioniottest2-1-prd.eng.sfdc.net
   - kind: User
     name: shared0-samminioniottest2-2-prd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: universal-search:prd-universalsearch_svc:rolebinding
