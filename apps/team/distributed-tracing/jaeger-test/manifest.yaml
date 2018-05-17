@@ -17,7 +17,7 @@ system:
       type: Recreate
     containers:
     - name: zipkin-collector
-      image: docker-dva-rc/dva/zipkin:jenkins-monitoring-zipkin-hackday-9-itest
+      image: docker-dva-rc/dva/zipkin:jenkins-monitoring-zipkin-hackday-10-itest
       env:
       - name: ZIPKIN_COLLECTOR_HOST
         value: zipkin-collector
@@ -25,10 +25,6 @@ system:
         value: ajna0-brokeragg1-0-prd.data.sfdc.net:9093
       - name: KAFKA_GROUP_ID
         value: jaeger-test
-      - name: QUERY_PORT
-        value: 12345
-      - name: SEARCH_ENABLED
-        value: true
       - name: KAFKA_TOPIC
         value: sfdc.prod.distributed-tracing.zipkin-kafka-proxy__prd.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__ord.ajna_local__tracing,sfdc.prod.distributed-tracing.zipkin-kafka-proxy__iad.ajna_local__tracing
       - name: ZIPKIN_ARGS
