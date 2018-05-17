@@ -152,7 +152,7 @@ system:
         initialDelaySeconds: 5
 
   loadbalancers:
-  - lbname: reportcollectorlb
+  - lbname: reportcollectorhalb
     function: report-collectorha
     nodeExposed: true
     ports:
