@@ -115,7 +115,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            configs.sfdchosts_arg,
                                            "--metricsEndpoint=" + configs.funnelVIP,
                                            "--httpTimeout=5s",
-                                       ] + (if slbimages.phase == "1" then []
+                                       ] + (if slbimages.phase == "1" || slbimages.phase == "2" then []
                                             else [
                                                 "--useLocalNodeApi=true",
                                             ]) +
@@ -124,7 +124,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--monitorFrequency=10s",
                                        ] + (if configs.estate == "prd-sam" then [
                                                 "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
-                                            ] else []) + (if slbimages.phase == "1" then [
+                                            ] else []) + (if slbimages.phase == "1" || slbimages.phase == "2" then [
                                                               "--client.serverInterface=lo",
                                                           ] else []),
                               volumeMounts: configs.filter_empty([
