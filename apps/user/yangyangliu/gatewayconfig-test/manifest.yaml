@@ -15,12 +15,9 @@ system:
         type: server
         lbnames:
         - gatewayconfiglb
-    - name: secretvol
-      k4aSecret:
-        secretName: my-secrets
     containers:
     - name: gatewayconfig
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-05-16a
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/yangyangliu/gatewayconfig:2018-05-16b
       env:
       - name: PKI_CA_DIR
         value: /gwcertserver
@@ -35,9 +32,6 @@ system:
         mountPath: /gwcertclient
       - name: gwcertserver
         mountPath: /gwcertserver
-      - name: secretvol
-        mountPath: /secrets/
-        readOnly: true
       args:
         - start
       ports:
