@@ -1,8 +1,8 @@
 local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-iface-processor" } else {});
-local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" then { dirSuffix:: "slb-iface-processor", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIfaceOverridePort } else {});
+local slbconfigs = (import "slbconfig.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-iface-processor" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { dirSuffix:: "slb-iface-processor", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIfaceOverridePort } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -32,7 +32,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
                     slbconfigs.sbin_volume,
-                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                     configs.cert_volume,
                     slbconfigs.cleanup_logs_volume,
                     configs.maddog_cert_volume,
@@ -40,7 +40,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                 ] else [])),
                 containers: [
                     slbshared.slbIfaceProcessor,
-                ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                     slbshared.slbConfigProcessor,
                     slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi,
@@ -58,7 +58,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                             values: if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate],
                                         },
 
-                                    ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                    ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                         {
                                                                                 key: "slb-service",
                                                                                 operator: "NotIn",

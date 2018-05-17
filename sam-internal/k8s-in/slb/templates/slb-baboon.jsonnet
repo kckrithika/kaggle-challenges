@@ -85,7 +85,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                 "--deleteNginxTunnelIntfFlag=false",
                                 "--deleteIpvsIntfFlag=false",
                                 "--deleteCustomerPodFlag=false",
-                            ] + (if slbimages.phase == "2" then [
+                            ] + (if slbimages.phase == "2" || slbimages.phase == "3" then [
                                 "--client.serverInterface=lo",
                             ] else [])
                         ),
