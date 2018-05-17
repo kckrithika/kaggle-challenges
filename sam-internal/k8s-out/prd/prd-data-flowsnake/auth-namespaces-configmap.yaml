@@ -5,7 +5,8 @@ data:
     [ ], "authorizedLdapGroups": ["alerting_flowsnake"], "namespace": "alerting_snmp"},
     {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["security-analytics"],
     "namespace": "sec-einstein-deepsea"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
-    ["collection_flowsnake"], "namespace": "collection_device_data_mon"}]'
+    ["collection_flowsnake"], "namespace": "collection_device_data_mon"}, {"authorizedClientCerts":
+    [ ], "authorizedLdapGroups": ["search_dlc"], "namespace": "search_dlc"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
