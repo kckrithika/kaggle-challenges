@@ -6,6 +6,8 @@ system:
       - cloudatlas-dev@salesforce.com
   functions:
   - name: cloudatlas-prd-dev-dir1-1
+    identity:
+      serviceName: cloudatlas-prd-dev-dir
     count: 1
     strategy:
       type: Recreate
