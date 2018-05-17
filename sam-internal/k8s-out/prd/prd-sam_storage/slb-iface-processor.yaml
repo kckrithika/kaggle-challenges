@@ -24,11 +24,6 @@ spec:
                 operator: In
                 values:
                 - prd-sam_storage
-              - key: slb-service
-                operator: NotIn
-                values:
-                - slb-ipvs
-                - slb-ipvs-a
             - matchExpressions:
               - key: master
                 operator: In

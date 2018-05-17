@@ -58,13 +58,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                             values: if slbconfigs.slbInProdKingdom || configs.estate == "prd-sam" then [configs.kingdom + "-slb"] else [configs.estate],
                                         },
 
-                                    ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
-                                        {
-                                                                                key: "slb-service",
-                                                                                operator: "NotIn",
-                                                                                values: ["slb-ipvs", "slb-ipvs-a"],
-                                                                            },
-                                    ] else []),
+                                    ],
                                 },
                             ] + if slbconfigs.isTestEstate then [{
                                 matchExpressions: [
