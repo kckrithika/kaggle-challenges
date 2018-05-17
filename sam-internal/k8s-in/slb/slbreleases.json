@@ -23,9 +23,9 @@
   },
   "3": {
     "hypersdn": {
-      "label": "v-0000856-d5cfec5f",
-      "promotedTime": "2018-05-16T17:56:00.2033349Z",
-      "warning": "850 has manifest changes in DNS register and canary creator"
+      "label": "v-0000863-a33d6c92",
+      "promotedTime": "2018-05-17T17:26:36.054845043Z",
+      "warning": "860 has changes in slbsharedservices,baboon,iface,ipvs,nginx-config,portal,realsvrcfg,vip-watchdog"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",

@@ -43,11 +43,11 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--hostname=$(NODE_NAME)",
                                            "--templatePath=" + slbconfigs.slbPortalTemplatePath,
                                            "--port=" + portconfigs.slb.slbPortalServicePort,
-                                       ] + (if slbimages.phase == "1" || slbimages.phase == "2" then []
+                                       ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then []
                                             else [
                                                 "--useLocalNodeApi=true",
                                             ])
-                                       + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                                       + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                               "--client.serverInterface=lo",
                                           ] else []),
                               volumeMounts: configs.filter_empty([

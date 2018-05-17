@@ -120,7 +120,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
-                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                  "--client.serverInterface=lo",
                              ] else []),
                         volumeMounts: configs.filter_empty([
@@ -174,7 +174,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "/sdn/slb-ipvs-conntrack",
                             "--log_dir=" + slbconfigs.logsDir,
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
-                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" then [
+                        ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                  "--client.serverInterface=lo",
                              ] else []),
                         volumeMounts: configs.filter_empty([
