@@ -115,9 +115,26 @@ local utils = import "util_functions.jsonnet";
         ),
 
         k4aInitContainerImage: "sam-0001948-03d9baca",
-        kubedns: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1",
-        kubednsmasq: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1",
-        kubednssidecar: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1",
+        kubedns: (
+            if (estate == "prd-samdev" || estate == "prd-samtest") then
+                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.10-2-g71f9bf5-dirty"
+            else
+                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-kube-dns-amd64:1.14.1"
+           ),
+
+        kubednsmasq: (
+            if (estate == "prd-samdev" || estate == "prd-samtest") then
+                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.10-2-g71f9bf5-dirty"
+            else
+                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-dnsmasq-nanny-amd64:1.14.1"
+           ),
+        kubednssidecar: (
+            if (estate == "prd-samdev" || estate == "prd-samtest") then
+                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.10-2-g71f9bf5-dirty"
+            else
+                "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/k8s-dns-sidecar-amd64:1.14.1"
+           ),
+
     },
 
     # ====== DO NOT EDIT BELOW HERE ======
