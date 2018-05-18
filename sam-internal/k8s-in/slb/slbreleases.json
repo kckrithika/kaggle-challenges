@@ -3,7 +3,7 @@
     "hypersdn": {
       "label": "v-0000866-da86367f",
       "promotedTime": "2018-05-18T15:27:07.369819763Z",
-      "warning": "860 has changes in slbsharedservices,baboon,iface,ipvs,nginx-config,portal,realsvrcfg,vip-watchdog"
+      "warning": "860 has manifest changes in slb-ipvs.jsonnet"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
