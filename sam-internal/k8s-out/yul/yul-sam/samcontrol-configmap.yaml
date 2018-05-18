@@ -7,7 +7,7 @@ data:
       "checkImageExistsFlag": true,
       "createTPR": false,
       "debug": true,
-      "deletionEnabled": false,
+      "deletionEnabled": true,
       "deletionPercentageThreshold": 20,
       "dockerregistry": "ops0-artifactrepo1-0-yul.data.sfdc.net",
       "enableMaddog": true,
