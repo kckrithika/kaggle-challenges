@@ -33,7 +33,8 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=12084
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000856-d5cfec5f
+        - --client.serverInterface=lo
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000863-a33d6c92
         name: slb-realsvrcfg
         securityContext:
           privileged: true
@@ -75,7 +76,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000856-d5cfec5f
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000863-a33d6c92
         livenessProbe:
           httpGet:
             path: /liveness-probe
@@ -111,7 +112,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000856-d5cfec5f
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000863-a33d6c92
         name: slb-cleanup-config-processor
         securityContext:
           privileged: true
@@ -127,7 +128,8 @@ spec:
         - --port=12084
         - --configDir=/host/data/slb/config/slb-realsvrcfg
         - --log_dir=/host/data/slb/logs/slb-realsvrcfg
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000856-d5cfec5f
+        - --netInterface=lo
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000863-a33d6c92
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -146,7 +148,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000856-d5cfec5f
+        image: ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sdn/hypersdn:v-0000863-a33d6c92
         name: slb-cleanup
         securityContext:
           privileged: true
