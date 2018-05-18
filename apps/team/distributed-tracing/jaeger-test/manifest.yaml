@@ -45,7 +45,8 @@ system:
       ports:
       - name: jaeger
         containerPort: 16686
-      args: ["--log-level", "debug"]
+      command: ["/go/bin/standalone-linux"]
+      args: ["--query.static-files=/go/src/jaeger-ui-build/build/","--sampling.strategies-file=/go/src/config/sampling_strategies.json","--log-level=debug"]
       livenessProbe:
         httpGet:
           path: /
