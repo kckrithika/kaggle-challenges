@@ -115,7 +115,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-nginx-config-a
         - --maxDeleteServiceCount=3
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000863-a33d6c92
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-nginx-config-a
         ports:
         - containerPort: 32146
@@ -162,7 +162,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-nginx-config-a
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000863-a33d6c92
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-file-watcher
         volumeMounts:
         - mountPath: /etc/nginx/conf.d
@@ -221,7 +221,7 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --log_dir=/host/data/slb/logs/slb-nginx-config-a
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000863-a33d6c92
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-cert-checker
         volumeMounts:
         - mountPath: /host/data/slb/nginx/config
@@ -242,7 +242,7 @@ spec:
         - --configDir=/host/data/slb/config/slb-nginx-config-a
         - --log_dir=/host/data/slb/logs/slb-nginx-config-a
         - --netInterface=lo
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000863-a33d6c92
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
@@ -258,7 +258,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=9130
         - --client.serverInterface=lo
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000863-a33d6c92
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-realsvrcfg
         securityContext:
           privileged: true
