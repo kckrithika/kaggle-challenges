@@ -134,5 +134,5 @@ if std.setMember(configs.estate, enabledEstates) then {
                 } else {},
             },
         },
-    } + storageimages.phasedDeploymentSettings,
+    } + storageutils.revisionHistorySettings,
 } else "SKIP"

@@ -11,17 +11,6 @@ local enabledEstates = std.set([
     "xrd-sam",
 ]);
 
-local rolloutPolicy =
-  if std.parseInt(storageimages.phase) <= 2 then {
-    updateStrategy: {
-      type: "RollingUpdate",
-      rollingUpdate: {
-          maxUnavailable: "10%",
-      },
-    },
-    minReadySeconds: 10,
-  } else {};
-
 if std.setMember(configs.estate, enabledEstates) then {
   apiVersion: "extensions/v1beta1",
   kind: "DaemonSet",
@@ -183,5 +172,5 @@ if std.setMember(configs.estate, enabledEstates) then {
         ] + storageutils.log_init_volumes()),
       },
     },
-  } + rolloutPolicy,
+  } + storageutils.rolloutPolicy("10%", 10),
 } else "SKIP"
