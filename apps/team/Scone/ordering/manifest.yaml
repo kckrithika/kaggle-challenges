@@ -8,7 +8,7 @@ system:
     - name: ordering-service
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
       # image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-ordering:86a47e93cb4796e4a24f63cee4b305356ddecc1e
-      image: docker-sam/scone/ordering-service/bazel-latest:sha256__0aee8c886fd8a2dbabd221dedb4e7171d89057a6b7c34adf30f888dc531006f7
+      image: docker-sam/scone/ordering-service:bazel-latest
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
