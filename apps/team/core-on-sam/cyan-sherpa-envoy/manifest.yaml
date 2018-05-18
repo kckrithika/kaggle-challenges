@@ -52,8 +52,7 @@ system:
       livenessProbe:
         exec:
           command:
-          - echo
-          - HEALTHY
+          - ./bin/is-alive
         initialDelaySeconds: 20
         periodSeconds: 5
       readinessProbe:
@@ -88,10 +87,7 @@ system:
     ports:
     - port: 13060
       targetport: 12060
-      lbtype: dsr
     - port: 13065
       targetport: 12065
-      lbtype: dsr
     - port: 15373
       targetport: 15373
-      lbtype: dsr
