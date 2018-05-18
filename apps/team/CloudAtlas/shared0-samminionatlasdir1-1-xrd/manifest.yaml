@@ -16,6 +16,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
+      - name: DUMMY_ENV_VAR
+        value: "dummy_remove_me"
       ports:
       - containerPort: 7012
         name: sherpa-in
