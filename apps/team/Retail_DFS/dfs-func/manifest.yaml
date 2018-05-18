@@ -33,8 +33,13 @@ system:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTPS
 
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa:2.0.23
