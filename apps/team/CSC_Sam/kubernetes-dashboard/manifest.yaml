@@ -10,9 +10,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam
         - --insecure-port=9090
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/phx-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9090
       livenessProbe:
@@ -27,9 +28,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam
         - --insecure-port=9091
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/dfw-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9091
       livenessProbe:
@@ -44,9 +46,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam
         - --insecure-port=9092
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/frf-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9092
       livenessProbe:
@@ -61,9 +64,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam
         - --insecure-port=9093
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/iad-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9093
       livenessProbe:
@@ -78,9 +82,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam
         - --insecure-port=9094
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ord-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9094
       livenessProbe:
@@ -95,9 +100,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam
         - --insecure-port=9095
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/par-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9095
       livenessProbe:
@@ -113,9 +119,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam
         - --insecure-port=9096
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/hnd-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9096
       livenessProbe:
@@ -130,9 +137,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb-sam
         - --insecure-port=9097
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/ukb-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9097
       livenessProbe:
@@ -147,9 +155,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --insecure-port=9099
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9099
       livenessProbe:
@@ -164,9 +173,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdu-sam
         - --insecure-port=9101
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/cdu-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9101
       livenessProbe:
@@ -181,9 +191,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yhu-sam
         - --insecure-port=9102
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yhu-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9102
       livenessProbe:
@@ -198,9 +209,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yul-sam
         - --insecure-port=9103
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/yul-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9103
       livenessProbe:
@@ -215,7 +227,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/syd-sam
         - --insecure-port=9104
-        - --system-banner=This dashboard is currently testing a dynamic webhook. If you see this message - we are not detecting any problems.
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
         - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/syd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
@@ -233,9 +245,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/chx-sam
         - --insecure-port=9105
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/chx-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9105
       livenessProbe:
@@ -250,9 +263,10 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/wax-sam
         - --insecure-port=9106
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
+        - --system-banner-severity=INFO
+        - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/wax-sam/dashboard-webhook
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9106
       livenessProbe:
@@ -267,7 +281,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam
         - --insecure-port=9107
-        - --system-banner=This dashboard is currently testing a dynamic webhook. If you see this message - we are not detecting any problems.
+        - --system-banner=This dashboard is currently testing a dynamic system-banner. If you see this message - we are not detecting any problems with the visibility pipeline.
         - --system-banner-severity=INFO
         - --system-banner-webhook=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/xrd-sam/dashboard-webhook
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
