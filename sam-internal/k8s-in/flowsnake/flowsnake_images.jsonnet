@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
             zookeeper_image_tag: "minikube",
             kubedns_image_tag: "1.10.0",
             feature_flags: {
-                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",
                 watchdog_canaries: "foo",
                 uniform_pull_policy: "foo",
@@ -56,7 +56,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "633",
+            fleetService_image_tag: "638",  # 0.9.10 didn't quite work the first time. Finally fixed here.
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -71,11 +71,11 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
             feature_flags: {
-                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                simplify_elk_replicas: "foo",
-                watchdog_canaries: "foo",
-                uniform_pull_policy: "foo",
-                kubedns_daily_restart: "foo",
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
+                watchdog_canaries: "foo",  # TESTED, please promote.
+                uniform_pull_policy: "foo",  # TESTED, please promote.
+                kubedns_daily_restart: "foo",  # TESTED, please promote.
             },
             version_mapping: {
                 main: {
@@ -87,9 +87,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
                   "0.9.8": 607,
-                  "632": "632",
-                  "633": "633",
-                  "634": "634",
+                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 }
                 +
                 # These are for developer testing only
@@ -128,7 +126,7 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
             feature_flags: {
-                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
             version_mapping: {
                 main: {
@@ -172,7 +170,7 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
             feature_flags: {
-                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
             version_mapping: {
                 main: {
@@ -205,7 +203,7 @@ local utils = import "util_functions.jsonnet";
             deployer_image_tag: "sam-0001730-c7caec88",
             kubedns_image_tag: "1.10.0",
             feature_flags: {
-                # Note: the value of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
             version_mapping: {
                 main: {
