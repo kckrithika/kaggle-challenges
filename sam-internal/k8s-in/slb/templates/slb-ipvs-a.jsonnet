@@ -112,6 +112,7 @@ if configs.estate == "prd-sam" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
+                            "--metricsEndpoint=" + configs.funnelVIP,
                         ],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,
