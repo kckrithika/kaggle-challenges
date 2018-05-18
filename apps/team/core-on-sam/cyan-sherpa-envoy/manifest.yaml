@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cyan-envoy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180516-164527
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180518-130827
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -44,8 +44,8 @@ system:
       - /cyan-config/front-proxy-config.yaml.template
       ports:
       - containerPort: 12060
-      - containerPort: 12061
       - containerPort: 12065
+      - containerPort: 15373
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -89,9 +89,9 @@ system:
     - port: 13060
       targetport: 12060
       lbtype: dsr
-    - port: 13061
-      targetport: 12061
-      lbtype: dsr
     - port: 13065
       targetport: 12065
+      lbtype: dsr
+    - port: 15373
+      targetport: 15373
       lbtype: dsr
