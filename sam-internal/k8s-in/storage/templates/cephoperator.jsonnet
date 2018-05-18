@@ -154,5 +154,5 @@ if std.setMember(configs.estate, enabledEstates) then {
                 nodeSelector: masterNodeSelector,
             },
         },
-    } + storageimages.phasedDeploymentSettings,
+    } + storageutils.revisionHistorySettings,
 } else "SKIP"

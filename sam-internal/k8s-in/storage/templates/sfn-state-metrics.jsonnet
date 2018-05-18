@@ -128,5 +128,5 @@ if std.setMember(configs.estate, enabledEstates) then {
                 ],
             },  //+ initContainers,
         },
-    } + storageimages.phasedDeploymentSettings,
+    } + storageutils.revisionHistorySettings,
 } else "SKIP"

@@ -131,55 +131,48 @@ local utils = import "util_functions.jsonnet";
         }
     },
 
-    make_sfn_selector_rule(estates,phase) :: (
-        if std.parseInt(phase) <= 3 then |||
-            pods:
-                matchExpressions:
-                    - {key: app, operator: In, values: %(sfnApps)s}
-            nodes:
-                matchExpressions:
-                    - {key: pool, operator: In, values: %(poolSet)s}
-            persistentvolumes:
-                matchExpressions:
-                    - {key: pool, operator: In, values: %(poolSet)s}
-            persistentvolumeclaims:
-                matchExpressions:
-                    - {key: daemon, operator: In, values: %(daemonSet)s}
-            statefulsets:
-                matchExpressions:
-                    - {key: daemon, operator: In, values: %(daemonSet)s}
-            deployments:
-                matchExpressions:
-                    - {key: cloud, operator: In, values: [storage]}
-            daemonsets:
-                matchExpressions:
-                    - {key: cloud, operator: In, values: [storage]}
-        ||| % {
-          poolSet : std.toString([ minion for minion in estates]),
-          daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
-          sfnApps: std.toString([ app for app in ["ceph-mon", "ceph-osd", "lv-os-provisioner"]]),
-        } else |||
-            pods:
-                matchExpressions:
-                    - {key: cloud, operator: In, values: [storage]}
-            nodes:
-                matchExpressions:
-                    - {key: pool, operator: In, values: %(poolSet)s}
-            persistentvolumes:
-                matchExpressions:
-                    - {key: pool, operator: In, values: %(poolSet)s}
-            persistentvolumeclaims:
-                matchExpressions:
-                    - {key: daemon, operator: In, values: %(daemonSet)s}
-            statefulsets:
-                matchExpressions:
-                    - {key: daemon, operator: In, values: %(daemonSet)s}
-        ||| % {
-          poolSet : std.toString([ minion for minion in estates]),
-          daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
-          sfnApps: std.toString([ app for app in ["ceph-mon", "ceph-osd", "lv-os-provisioner"]]),
-        }
-    ),
+    make_sfn_selector_rule(estates,phase) :: |||
+        pods:
+            matchExpressions:
+                - {key: app, operator: In, values: %(sfnApps)s}
+        nodes:
+            matchExpressions:
+                - {key: pool, operator: In, values: %(poolSet)s}
+        persistentvolumes:
+            matchExpressions:
+                - {key: pool, operator: In, values: %(poolSet)s}
+        persistentvolumeclaims:
+            matchExpressions:
+                - {key: daemon, operator: In, values: %(daemonSet)s}
+        statefulsets:
+            matchExpressions:
+                - {key: daemon, operator: In, values: %(daemonSet)s}
+        deployments:
+            matchExpressions:
+                - {key: cloud, operator: In, values: [storage]}
+        daemonsets:
+            matchExpressions:
+                - {key: cloud, operator: In, values: [storage]}
+    ||| % {
+        poolSet : std.toString([ minion for minion in estates]),
+        daemonSet : std.toString([ daemon for daemon in ["mon", "osd"]]),
+        sfnApps: std.toString([ app for app in ["ceph-mon", "ceph-osd", "lv-os-provisioner"]]),
+    },
+
+    revisionHistorySettings: {
+        revisionHistoryLimit: 2,
+        progressDeadlineSeconds: 600,
+    },
+
+    rolloutPolicy(unavailable,readySeconds) :: {
+        updateStrategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: unavailable,
+            },
+        },
+        minReadySeconds: readySeconds,
+    },
 
     # Check for an image override based on kingdom,minionEstate,ceph-cluster,ceph-daemon. If not found return default_tag.
     # This is based on the `do_override` function in util_functions.jsonnet, but allows overrides to be set for minion

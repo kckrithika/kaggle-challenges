@@ -10,6 +10,7 @@ items:
     name: ceph-image-puller
     namespace: storage-foundation
   spec:
+    minReadySeconds: 30
     template:
       metadata:
         labels:
@@ -36,4 +37,8 @@ items:
           - echo successfully pulled image ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon:10.2.7-0000061-0ac4ba7e
           image: ops0-artifactrepo1-0-phx.data.sfdc.net/tnrp/storagecloud/ceph-daemon:10.2.7-0000061-0ac4ba7e
           name: image-puller
+    updateStrategy:
+      rollingUpdate:
+        maxUnavailable: 33%
+      type: RollingUpdate
 kind: List

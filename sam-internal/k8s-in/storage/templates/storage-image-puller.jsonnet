@@ -25,17 +25,6 @@ local enabledEstates = std.set([
     "xrd-sam",
 ]);
 
-local rolloutPolicy =
-  if std.parseInt(storageimages.phase) <= 2 then {
-    updateStrategy: {
-      type: "RollingUpdate",
-      rollingUpdate: {
-          maxUnavailable: "33%",
-      },
-    },
-    minReadySeconds: 30,
-  } else {};
-
 // Local functions.
 local internal = {
     puller_node_affinity(estate):: (
@@ -138,7 +127,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                     ],
                 },
             },
-        } + rolloutPolicy,
+        } + storageutils.rolloutPolicy("33%", 30),
     }
     for storageImageType in storageImageTypes
     ],

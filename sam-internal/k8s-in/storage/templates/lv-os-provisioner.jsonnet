@@ -36,17 +36,6 @@ if !storageutils.is_skipper() then
     ]
 else [];
 
-local rolloutPolicy =
-  if std.parseInt(storageimages.phase) <= 2 then {
-    updateStrategy: {
-      type: "RollingUpdate",
-      rollingUpdate: {
-          maxUnavailable: "10%",
-      },
-    },
-    minReadySeconds: 10,
-  } else {};
-
 local internal = {
     provisioner_node_affinity(estate):: (
         if !storageutils.is_skipper() then [
@@ -159,5 +148,5 @@ if std.setMember(configs.estate, enabledEstates) then {
                 ] + storageutils.cert_volume() + storageutils.log_init_volumes()),
             },
         },
-    } + rolloutPolicy,
+    } + storageutils.rolloutPolicy("10%", 10),
 } else "SKIP"
