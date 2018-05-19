@@ -80,14 +80,14 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: cyan-envoy-lb-v2
+  - lbname: cyan
     function: cyan-envoy-v2
     nodeExposed: true
     slbEnabled: true
     ports:
-    - port: 13060
+    - port: 12060
       targetport: 12060
-    - port: 13065
+    - port: 12065
       targetport: 12065
     - port: 15373
       targetport: 15373
