@@ -6,7 +6,7 @@ system:
       - caas-dev@salesforce.com
   functions:
   - name: caas-release-perf
-    count: 17 
+    count: 8 
     strategy:
       type: Recreate
     containers:
