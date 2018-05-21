@@ -84,6 +84,20 @@ GROUP BY DayHour;",
 #===================
 
     {
+      name: "Failed-Watchdog-CRDs",
+      sql: "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success') = false",
+    },
+
+#===================
+
+    {
+      name: "Successful-Watchdog-CRDs",
+      sql: "SELECT ControlEstate, Name, Payload, ProduceTime, ConsumeTime, IsTombstone FROM k8s_resource WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success') = true",
+    },
+
+#===================
+
+    {
       name: "Bad-Customer-Deployments-Production",
       sql: "SELECT * FROM
 (
