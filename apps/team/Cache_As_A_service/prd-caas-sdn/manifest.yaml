@@ -10,7 +10,7 @@ system:
     containers:
     - name: caas-redis-12015 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000041-14611552
+      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
       resources:
         limits: { memory: "8292M" }
         requests: { memory: "8292M" }
@@ -29,37 +29,35 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12015
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
-      # expose redis outside the container
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       ports:
       - containerPort: 12015
-    - name: caas-redis-announcer-12015
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:0.1-0000041-14611552
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+    - name: caas-redis-announcer
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
-        - --redisPort=12015
-        - --cluster.name=sp-c2
-        - --logDir=/home/caas/logs
-        - --pathPrefix=/sdntesting/prd/sp2
+      - -endpoint
+      - caas/cluster/sp-sdn-c1:SUPERPOD:12015
+      - -logdir
+      - /home/sfdc-caas/logs/sp-sdn-c1-12015
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12015
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/home/scone/is-alive.sh"
       volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
+      env:
+       - name: SFDC_ENVIRONMENT
+         value: sdn 
+      resources:
+        limits: { memory: "500M" }
+        requests: { memory: "200M" }
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs/caas
+        path: /home/sfdc-caas/logs
     - name: secretvol
       secret:
         secretName: caas-secret-sp-c1
