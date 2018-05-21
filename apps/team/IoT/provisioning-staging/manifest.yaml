@@ -102,7 +102,7 @@ system:
       - name: ENV_NAMESPACE
         value: iot
       - name: ENV_ORGS
-        value: 00DRM00000062oR
+        value: '500000000000009'
       - name: ENV_PREFIX
         value: iot-prd-staging-
       - name: ENV_UPGRADE
@@ -164,7 +164,7 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: sfci/iot/enterprise-provisioning:1.0.0.18
+      image: sfci/iot/enterprise-provisioning:1.0.0.20
       livenessProbe:
         httpGet:
           path: /manage/health
