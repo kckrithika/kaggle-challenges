@@ -3,8 +3,6 @@ apps:
   - prd/prd-sam
  tictactoe-client:
   - prd/prd-sam
- sammon:
-  - prd/prd-sam
  tictactoe-server-envoy:
   - prd/prd-sam
  tictactoe-client-envoy:
