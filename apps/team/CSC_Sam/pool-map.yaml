@@ -4,6 +4,7 @@ apps:
   - phx/phx-sam
  SamTestApp:
   - prd/prd-sam
+  - prd/prd-samtwo
   - prd/prd-sdc
   - dfw/dfw-sam
   - iad/iad-sam
