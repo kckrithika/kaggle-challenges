@@ -7,7 +7,6 @@ system:
   functions:
   - name: prd-sdn-redis-metrics-publisher
     count: 1 
-    hostnetwork: true
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run
