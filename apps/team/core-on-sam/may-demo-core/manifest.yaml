@@ -150,11 +150,11 @@ system:
 #          value: grumpy
           value: happy
         - name: CURRENT_RELEASE_VERSION
-          value: blue
-#          value: green
-        - name: NEW_RELEASE_VERSION
           value: green
 #          value: blue
+        - name: NEW_RELEASE_VERSION
+          value: blue
+#          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
