@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cname-repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000105-9affedf4
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000111-84d23f37
       ports:
       - name: liveness
         containerPort: 8089
@@ -20,7 +20,7 @@ system:
         name: clientcertvol
       env:
       - name: RC_WD_INTERVALMS
-        value: 120000
+        value: 60000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
         value: 18443
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PROTOCOL
@@ -49,6 +49,14 @@ system:
         value: 130000
       - name: RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS
         value: true
+      - name: RC_WD_AJNA_STRICTSSL
+        value: true
+      - name: RC_WD_AJNA_AUTH_CERT
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
+      - name: RC_WD_AJNA_AUTH_KEY
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
+      - name: RC_WD_AJNA_AUTH_CA
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_REPORTCOLLECTOR_PROVIDER_HOST=reportcollector-${KINGDOM}.data.sfdc.net ;
