@@ -1,6 +1,6 @@
 apps:
- test:
-  - prd/prd-samdev
-  - prd/prd-samtest
-  - prd/prd-sam
+# test:
+#  - prd/prd-samdev
+# - prd/prd-samtest
+#  - prd/prd-sam
 
