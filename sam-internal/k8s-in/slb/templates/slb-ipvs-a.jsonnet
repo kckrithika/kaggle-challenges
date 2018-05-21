@@ -1,7 +1,9 @@
 local configs = import "config.jsonnet";
-local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-ipvs-a" };
 local portconfigs = import "portconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs-a", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIpvsOverridePort };
 
 if configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
@@ -48,6 +50,11 @@ if configs.estate == "prd-sam" then {
                     slbconfigs.usr_sbin_volume,
                     slbconfigs.logs_volume,
                     configs.sfdchosts_volume,
+                    configs.maddog_cert_volume,
+                    configs.cert_volume,
+                    configs.kube_config_volume,
+                    slbconfigs.sbin_volume,
+                    slbconfigs.cleanup_logs_volume,
                 ]),
                 containers: [
                     {
@@ -112,6 +119,8 @@ if configs.estate == "prd-sam" then {
                             "--log_dir=" + slbconfigs.logsDir,
                             "--maximumDeleteCount=20",
                             configs.sfdchosts_arg,
+                            "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
+                            "--client.serverInterface=lo",
                             "--metricsEndpoint=" + configs.funnelVIP,
                         ],
                         volumeMounts: configs.filter_empty([
@@ -163,12 +172,35 @@ if configs.estate == "prd-sam" then {
                         }
                         else {}
                     ),
+                    {
+                        name: "slb-ipvs-conntrack",
+                        image: slbimages.hypersdn,
+                        command: [
+                            "/sdn/slb-ipvs-conntrack",
+                            "--log_dir=" + slbconfigs.logsDir,
+                            "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
+                            "--client.serverInterface=lo",
+                        ],
+                        volumeMounts: configs.filter_empty([
+                            slbconfigs.slb_volume_mount,
+                            slbconfigs.slb_config_volume_mount,
+                            slbconfigs.logs_volume_mount,
+                            slbconfigs.usr_sbin_volume_mount,
+                            configs.sfdchosts_volume_mount,
+                        ]),
+                        securityContext: {
+                            privileged: true,
+                        },
+                    },
+                    slbshared.slbNodeApi,
+                    slbshared.slbIfaceProcessor,
+                    slbshared.slbLogCleanup,
                 ],
                 nodeSelector: {
                     "slb-service": "slb-ipvs-a",
                 },
             },
         },
-        minReadySeconds: if slbimages.phase == "1" || slbimages.phase == "2" then 120 else 60,
+        minReadySeconds: 120,
     },
 } else "SKIP"
