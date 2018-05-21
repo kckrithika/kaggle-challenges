@@ -14,3 +14,9 @@ apps:
  madkub-test-app:
   - prd/prd-sam
   - prd/prd-samdev
+ my-sam-test:
+  - prd/prd-samdev
+ madkub-test-app:
+  - prd/prd-samdev
+ upgrade-test-app:
+  - prd/prd-samdev
