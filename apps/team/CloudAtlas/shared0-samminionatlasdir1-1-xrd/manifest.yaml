@@ -16,8 +16,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
-      - name: DUMMY_VAR_TO_BE_REMOVED
-        value: "dummy"
       ports:
       - containerPort: 7012
         name: sherpa-in
@@ -60,7 +58,17 @@ system:
       livenessProbe:
         exec:
           command:
-          - /bin/true
+          - /opt/pdm/pdm.customer/bin/is-alive.sh
+        initialDelaySeconds: 60
+        periodSeconds: 30
+      readinessProbe:
+        exec:
+          command:
+          - cat
+          - /tmp/ready
+        initialDelaySeconds: 60
+        periodSeconds: 5
+        failureThreshold: 120
     volumes:
     - name: hosthomevol
       hostPath:
