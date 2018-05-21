@@ -164,8 +164,6 @@ spec:
         - --hostnameOverride=$(NODE_NAME)
         - --hostsConfigFile=/sfdchosts/hosts.json
         env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
         - name: NODE_NAME
           valueFrom:
             fieldRef:

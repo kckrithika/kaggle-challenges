@@ -149,7 +149,6 @@
             configs.sfdchosts_arg,
         ],
         env: [
-            configs.kube_config_env,
             slbconfigs.node_name_env,
         ],
         volumeMounts: configs.filter_empty([
