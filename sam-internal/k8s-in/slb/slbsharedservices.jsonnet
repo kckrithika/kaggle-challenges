@@ -138,18 +138,19 @@
         image: slbimages.hypersdn,
         command: [
             "/sdn/slb-file-watcher",
-        ] + (if slbimages.phase == "1" then [
-                 "--filePath=/host/data/slb/logs/" + $.dirSuffix + "/slb-nginx-proxy.emerg.log",
-             ] else [
-                 "--filePath=/host/data/slb/logs/slb-nginx-proxy.emerg.log",
-             ]) + [
+            "--filePath=/host/data/slb/logs/" + $.dirSuffix + "/slb-nginx-proxy.emerg.log",
             "--metricName=nginx-emergency",
             "--lastModReportTime=120s",
             "--scanPeriod=10s",
             "--skipZeroLengthFiles=true",
             "--metricsEndpoint=" + configs.funnelVIP,
             "--log_dir=" + slbconfigs.logsDir,
+            "--hostnameOverride=$(NODE_NAME)",
             configs.sfdchosts_arg,
+        ],
+        env: [
+            configs.kube_config_env,
+            slbconfigs.node_name_env,
         ],
         volumeMounts: configs.filter_empty([
             {
