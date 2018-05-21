@@ -34,6 +34,9 @@ spec:
                 operator: NotIn
                 values:
                 - slb-ipvs
+                - slb-ipvs-a
+                - slb-nginx-a
+                - slb-nginx-b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:

@@ -72,13 +72,13 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                       {
                                                           key: "slb-service",
                                                           operator: "NotIn",
-                                                          values: ["slb-ipvs"],
+                                                          values: ["slb-ipvs", "slb-ipvs-a", "slb-nginx-a", "slb-nginx-b"],
                                                       },
                                                   ] else if configs.estate == "prd-sam" then [
                                                   {
                                                       key: "slb-service",
                                                       operator: "NotIn",
-                                                      values: ["slb-ipvs"],
+                                                      values: ["slb-ipvs", "slb-ipvs-a", "slb-nginx-a", "slb-nginx-b"],
                                                   },
                                               ] else [
                                                   {
