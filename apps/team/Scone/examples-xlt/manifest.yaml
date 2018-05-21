@@ -44,7 +44,7 @@ system:
         initialDelaySeconds: 5 
         periodSeconds: 5
   loadbalancers:
-  - lbname: scone-examples-xlt-lb
+  - lbname: examples-xlt
     function: scone-examples-xlt
     slbEnabled: true
     ports:
