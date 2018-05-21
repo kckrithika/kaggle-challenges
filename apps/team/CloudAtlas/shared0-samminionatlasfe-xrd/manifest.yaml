@@ -18,8 +18,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cloud-atlas/cloudatlas:b3c15c9
       command: ["/opt/pdm/pdm.customer/bin/entrypoint.sh"]
       env:
+      - name: UBID_REMOVE_EXISTING
+        value: TRUE
       - name: UBID_DEPLOYMENT_STAGE
-        value: ALL
+        value: NONE
       volumeMounts:
       - mountPath: /home/sfdc-atlas
         name: hosthomevol
@@ -38,17 +40,9 @@ system:
       livenessProbe:
         exec:
           command:
-          - /opt/pdm/pdm.customer/bin/is-alive.sh
+          - /bin/true
         initialDelaySeconds: 60
         periodSeconds: 20
-      readinessProbe:
-        exec:
-          command:
-          - cat
-          - /tmp/ready
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
     volumes:
     - name: hosthomevol
       hostPath:
