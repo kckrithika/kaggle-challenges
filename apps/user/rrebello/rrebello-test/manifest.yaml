@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: rrebello-test-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/productivity/rrebello-test:80bf4b1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/productivity/rrebello-test:38f5cef
       ports:
       - name: scone-http
         containerPort: 8080
