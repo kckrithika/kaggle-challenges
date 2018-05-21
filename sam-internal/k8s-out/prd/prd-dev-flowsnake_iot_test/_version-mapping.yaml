@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   version-mapping.properties: |
     0.9.1 = 377
+    0.9.10 = 638
     0.9.2 = 403
     0.9.3 = 427
     0.9.4 = 447
