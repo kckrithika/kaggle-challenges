@@ -22,11 +22,11 @@ local kingdom = std.extVar("kingdom");
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000425-c640b395",
-            ceph_operator_tag: "base-0000425-c640b395",
-            loginit_tag: "base-0000425-c640b395",
+            default_tag: "base-0000429-3fbfdcf3",
+            ceph_operator_tag: "base-0000429-3fbfdcf3",
+            loginit_tag: "base-0000429-3fbfdcf3",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
-            sfms_tag: "latest-0000181-64fa308f",
+            sfms_tag: "latest-0000182-ebb4867b",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fbookie&last=10&repo=SFStorage%2Fbookkeeper
