@@ -111,7 +111,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "607",
+            fleetService_image_tag: "638",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -142,7 +142,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.8-service-mesh-test": "599",  # ALSO temporary for IoT...
                   "0.9.8": 607,
                   "sluice-lite": "jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest",  # for GDPR write to DeepSea
-
+                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
