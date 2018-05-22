@@ -161,7 +161,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
-            fleetService_image_tag: "607",
+            fleetService_image_tag: "638",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -182,6 +182,7 @@ local utils = import "util_functions.jsonnet";
                 main: {
                   "0.9.7": 571,
                   "0.9.8": 607,
+                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -194,7 +195,7 @@ local utils = import "util_functions.jsonnet";
             canary_image_tag: "345",
             cert_secretizer_image_tag: "585",
             es_image_tag: "503",
-            fleetService_image_tag: "607",
+            fleetService_image_tag: "638",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -217,6 +218,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.8-SNAPSHOT": "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
                   "0.9.7-595": "jenkins-dva-transformation-flowsnake-platform-PR-596-1-itest",
                   "0.9.8": 607,
+                  "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
