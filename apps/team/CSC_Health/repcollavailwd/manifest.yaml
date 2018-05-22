@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: repcollavailwd
-      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000105-9affedf4
+      image: tnrp/csc-health/report-collector-availability-watchdog:2.8.0-0000111-84d23f37
       ports:
       - name: liveness
         containerPort: 8089
@@ -22,7 +22,7 @@ system:
         name: clientcertvol
       env:
       - name: RC_WD_INTERVALMS
-        value: 120000
+        value: 60000
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_HOST
         value: $(REPORTCOLLECTORHALB_SERVICE_HOST)
       - name: RC_WD_REPORTCOLLECTOR_PROVIDER_PORT
@@ -55,12 +55,21 @@ system:
         value: debug
       - name: RC_WD_LIVENESS_FRESHNESSMS
         value: 130000
+      - name: RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS
+        value: false
+      - name: RC_WD_AJNA_STRICTSSL
+        value: true
+      - name: RC_WD_AJNA_AUTH_CERT
+        value: /var/lib/report-collector-availability-watchdog/pki/client/certificates/client.pem
+      - name: RC_WD_AJNA_AUTH_KEY
+        value: /var/lib/report-collector-availability-watchdog/pki/client/keys/client-key.pem
+      - name: RC_WD_AJNA_AUTH_CA
+        value: /var/lib/report-collector-availability-watchdog/pki/ca.pem
       command: ["/bin/sh", "-c"]
       args: ["
       export RC_WD_AJNA_FUNNELVIP=http://${SFDC_METRICS_SERVICE_HOST}:${SFDC_METRICS_SERVICE_PORT} ;
       export RC_WD_AJNA_DATACENTER=${KINGDOM} ;
       export RC_WD_AJNA_DEVICE=${ESTATE}.${FUNCTION_NAMESPACE}.${FUNCTION}.${FUNCTION_INSTANCE_NAME} ;
-      export RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS=false ;
       node --harmony ${APP_DIR}/lib/watchdog.js ;
       "]
       livenessProbe:
