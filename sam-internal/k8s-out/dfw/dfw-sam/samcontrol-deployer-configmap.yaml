@@ -11,7 +11,7 @@ data:
       "email-delay": 0,
       "funnelEndpoint": "ajna0-funnel1-0-dfw.data.sfdc.net:80",
       "key-file": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
-      "max-resource-time": "10m",
+      "max-resource-time": "20m",
       "poll-delay": 30000000000,
       "recipient": "sam@salesforce.com",
       "resource-cooldown": 15000000000,
