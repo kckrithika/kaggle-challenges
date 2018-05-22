@@ -25,7 +25,7 @@ system:
           value: zipkin-kafka-proxy-test
         - name: QUERY_PORT
           value: 7022
-		args:
+        args:
         - ajna0-broker1-0-$(KINGDOM).data.sfdc.net:9093
         - sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__$(KINGDOM).ajna_local__tracing_test
         ports: 
