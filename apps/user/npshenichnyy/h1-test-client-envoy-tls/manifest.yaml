@@ -47,8 +47,8 @@ system:
           mountPath: /server-certs
 
     #- name: sherpa-envoy
-    #  # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/16/console
-    #  image: sfci/servicelibs/sherpa-envoy:76dd027d9d7e9d27a60b11793113957c68812657
+    #  # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/43
+    #  image: sfci/servicelibs/sherpa-envoy:361a331e5abd22ba41bec4fc3523b6e52dbd8212
     #  env:
     #  - name: SFDC_ENVIRONMENT
     #    value: sam
