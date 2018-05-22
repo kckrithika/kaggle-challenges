@@ -4,6 +4,8 @@
     nodeApiPort:: portconfigs.slb.slbNodeApiPort,
     configProcessorLivenessPort:: portconfigs.slb.slbConfigProcessorLivenessProbePort,
     proxyLabelSelector:: "slb-nginx-config-b",
+    servicesToLbOverride:: "",
+    servicesNotToLbOverride:: "illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
     local configs = import "config.jsonnet",
     local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: $.dirSuffix },
     local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile },
@@ -40,7 +42,8 @@
             "--proxySelectorLabelValue=" + $.proxyLabelSelector,
             "--hostnameOverride=$(NODE_NAME)",
         ] + (if configs.estate == "prd-sam" then [
-                 "--servicesNotToLbOverride=illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc",
+                 "--servicesToLbOverride=" + $.servicesToLbOverride,
+                 "--servicesNotToLbOverride=" + $.servicesNotToLbOverride,
              ] else []),
         volumeMounts: configs.filter_empty([
             configs.maddog_cert_volume_mount,
