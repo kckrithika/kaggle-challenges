@@ -58,7 +58,7 @@ local utils = import "util_functions.jsonnet";
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
         "1": {
-            hypersam: "sam-0001970-a296421d",
+            hypersam: "sam-0001993-e3c36481",
             madkub: $.per_phase["0"].madkub,
             madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
