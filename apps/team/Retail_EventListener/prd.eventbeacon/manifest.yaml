@@ -65,6 +65,13 @@ system:
         - containerPort: 7442
         - containerPort: 7014
         - containerPort: 15373
+      volumeMounts:
+      - name: cccjclientcert
+        mountPath: /client-certs
+      - name: cccjservercert
+        mountPath: /server-certs
+      - name: sherpa-log-volume
+        mountPath: /log
       livenessProbe:
         exec:
           command:
