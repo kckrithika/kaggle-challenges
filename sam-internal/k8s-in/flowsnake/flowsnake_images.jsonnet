@@ -23,6 +23,7 @@ local utils = import "util_functions.jsonnet";
             cert_secretizer_image_tag: "minikube",
             es_image_tag: "minikube",
             fleetService_image_tag: "minikube",
+            testData_image_tag: "minikube",
             glok_image_tag: "minikube",
             ingressControllerNginx_image_tag: "minikube",
             ingressDefaultBackend_image_tag: "minikube",
@@ -40,6 +41,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_canaries: "foo",
                 uniform_pull_policy: "foo",
                 kubedns_daily_restart: "foo",
+                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
@@ -57,6 +59,7 @@ local utils = import "util_functions.jsonnet";
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
             fleetService_image_tag: "638",  # 0.9.10 didn't quite work the first time. Finally fixed here.
+            testData_image_tag: "638",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -76,6 +79,7 @@ local utils = import "util_functions.jsonnet";
                 watchdog_canaries: "foo",  # TESTED, please promote.
                 uniform_pull_policy: "foo",  # TESTED, please promote.
                 kubedns_daily_restart: "foo",  # TESTED, please promote.
+                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
@@ -112,6 +116,7 @@ local utils = import "util_functions.jsonnet";
             cert_secretizer_image_tag: "565",
             es_image_tag: "503",
             fleetService_image_tag: "638",
+            testData_image_tag: "638",
             glok_image_tag: "472",
             ingressControllerNginx_image_tag: "571",
             ingressDefaultBackend_image_tag: "571",
@@ -127,6 +132,7 @@ local utils = import "util_functions.jsonnet";
             kubedns_image_tag: "1.10.0",
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
@@ -239,6 +245,7 @@ local utils = import "util_functions.jsonnet";
     cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
     es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
     fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
+    test_data: flowsnakeconfig.strata_registry + "/flowsnake-test-data:" + $.per_phase[$.phase].testData_image_tag,
     glok: flowsnakeconfig.strata_registry + "/flowsnake-kafka:" + $.per_phase[$.phase].glok_image_tag,
     ingress_controller_nginx: flowsnakeconfig.strata_registry + "/flowsnake-ingress-controller-nginx:" + $.per_phase[$.phase].ingressControllerNginx_image_tag,
     ingress_default_backend: flowsnakeconfig.strata_registry + "/flowsnake-ingress-default-backend:" + $.per_phase[$.phase].ingressDefaultBackend_image_tag,

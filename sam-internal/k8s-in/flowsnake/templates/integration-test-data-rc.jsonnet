@@ -1,5 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+if std.objectHas(flowsnake_images.feature_flags, "integration_test_data") then
 {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -28,7 +30,7 @@ if flowsnakeconfig.is_minikube then
                 containers: [
                     {
                         name: "test-data",
-                        image: "minikube/flowsnake-test-data:minikube",
+                        image: flowsnake_images.test_data,
                         imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         ports: [
                             {
