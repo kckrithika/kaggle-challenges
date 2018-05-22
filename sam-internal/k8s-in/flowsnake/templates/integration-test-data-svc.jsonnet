@@ -1,5 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+if std.objectHas(flowsnake_images.feature_flags, "integration_test_data") then
 {
     apiVersion: "v1",
     kind: "Service",
