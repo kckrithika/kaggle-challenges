@@ -14,8 +14,8 @@ system:
     containers:
     - name: core
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-1
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-1
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
 
       env:
         # DB info
