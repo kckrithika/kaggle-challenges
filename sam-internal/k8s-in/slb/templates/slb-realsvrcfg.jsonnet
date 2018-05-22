@@ -2,7 +2,8 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-realsvrcfg" };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiRealSvrOverridePort };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-realsvrcfg", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorRealSvrLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiRealSvrOverridePort }
+                  + (if configs.estate == "prd-sam" then { servicesNotToLbOverride:: "" } else {});
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",

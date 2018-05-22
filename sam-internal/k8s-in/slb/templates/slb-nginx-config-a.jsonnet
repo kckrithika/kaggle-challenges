@@ -3,7 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-samtwo" then { dirSuffix:: "slb-nginx-config-a" } else {});
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-a", proxyLabelSelector:: "slb-nginx-config-a" };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-a", proxyLabelSelector:: "slb-nginx-config-a" } + (if configs.estate == "prd-sam" then { servicesToLbOverride:: "illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc", servicesNotToLbOverride:: "" } else {});
 
 if configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
@@ -311,6 +311,8 @@ if configs.estate == "prd-sam" then {
                             configs.sfdchosts_volume_mount,
                         ]),
                     },
+                    slbshared.slbConfigProcessor,
+                    slbshared.slbCleanupConfig,
                     slbshared.slbNodeApi,
                     slbshared.slbRealSvrCfg,
                 ],
