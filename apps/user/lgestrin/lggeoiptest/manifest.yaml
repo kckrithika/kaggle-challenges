@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: lggeoiptest-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lgestrin/lggeoiptest:lgestrin-20180517-e282448
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/lgestrin/lggeoiptest:lgestrin-20180521-e282448
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
