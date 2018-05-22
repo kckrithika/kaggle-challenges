@@ -72,7 +72,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": {
-            hypersam: "sam-0001948-03d9baca",
+            hypersam: "sam-0001970-a296421d",
             madkub: $.per_phase["0"].madkub,
             madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
@@ -92,7 +92,7 @@ local utils = import "util_functions.jsonnet";
             "0"
         else if (estate == "prd-samdev") then
             "1"
-        else if (kingdom == "prd") then
+        else if (estate != "prd-samtwo") && (kingdom == "prd") then
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
