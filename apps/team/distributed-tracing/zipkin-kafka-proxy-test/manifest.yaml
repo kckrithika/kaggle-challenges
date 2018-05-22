@@ -19,30 +19,30 @@ system:
               type: client
       containers:
       - name: zipkin-kafka-proxy-test
-        image: docker-all/dva/zipkin:jenkins-monitoring-zipkin-kafka-storage-docker-8-itest
+        image: docker-all/dva/zipkin:jenkins-monitoring-zipkin-kafka-storage-docker-9-itest
         env:
         - name: ZIPKIN_KAFKA_PROXY_HOST
           value: zipkin-kafka-proxy-test
-        - name: KAFKA_BOOTSTRAP_SERVERS
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
-        - name: KAFKA_TOPIC
-          value: sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__prd.ajna_local__tracing_test
+        - name: QUERY_PORT
+          value: 7022
+		args:
+        - ajna0-broker1-0-$(KINGDOM).data.sfdc.net:9093
+        - sfdc.test.distributed-tracing.zipkin-kafka-proxy-test__$(KINGDOM).ajna_local__tracing_test
         ports: 
-        - containerPort: 9411
+        - containerPort: 7022
           name: proxy-in
         livenessProbe:
             httpGet:
                 path: /metrics
-                port: 9411
+                port: 7022
             initialDelaySeconds: 15
             periodSeconds: 15
         volumeMounts:
         - mountPath: /etc/pki_service/zipkin-kafka-proxy-test
           name: client-certs
       - name: sherpa
-        image: sfci/servicelibs/sherpa:2.0.25
+        image: sfci/servicelibs/sherpa:2.0.26
         args: ["--zipkin-rate", "0.0"]
-        args: ["--http1-origin", "localhost:9411"]
         env:
         - name: SFDC_ENVIRONMENT
           value: "sam"
