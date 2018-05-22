@@ -13,6 +13,7 @@ if samfeatureflags.maddogforsamapps then {
     spec: {
         replicas: 3,
         minReadySeconds: 45,
+        revisionHistoryLimit: 2,
         template: {
             metadata: {
                 labels: {
