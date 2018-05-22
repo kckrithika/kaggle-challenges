@@ -13,18 +13,17 @@ system:
 
     containers:
     - name: core
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-1
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-1
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15776108-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-2
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-1
 
       env:
         # DB info
         - name: DB_USER
-#          value: grumpy
-          value: happy
+          value: grumpy
+#          value: happy
         - name: DB_SID
-#          value: mist61c214utf
-          value: mist61a216utf
+          value: mist61c214utf
+#          value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
@@ -66,8 +65,8 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-#          value: blue
-          value: green
+          value: blue
+#          value: green
 
         # Override port being announced in SD
         - name: SD_PORT_OVERRIDE
@@ -90,8 +89,8 @@ system:
 
       readinessProbe:
         httpGet:
-#          path: /ping.jsp
-          path: /samReady.jsp
+          path: /ping.jsp
+#          path: /samReady.jsp
           port: 12100
         initialDelaySeconds: 120
         periodSeconds: 1
@@ -147,20 +146,20 @@ system:
         - name: JMX_PORT
           value: 8998
         - name: OLD_DWARF
-          value: grumpy
-#          value: happy
+#          value: grumpy
+          value: happy
         - name: CURRENT_RELEASE_VERSION
-#          value: green
-          value: blue
-        - name: NEW_RELEASE_VERSION
-#          value: blue
           value: green
+#          value: blue
+        - name: NEW_RELEASE_VERSION
+          value: blue
+#          value: green
         # Min number of ready servers for cyan to indicate the new pod is ready
         - name: READY_SERVER_COUNT
           value: 2
         - name: DB_SID
-#          value: mist61c214utf
-          value: mist61a216utf
+          value: mist61c214utf
+#          value: mist61a216utf
         - name: LOCK_DWARF
           value: 1
         - name: TRIGGER_CAFFEINE
