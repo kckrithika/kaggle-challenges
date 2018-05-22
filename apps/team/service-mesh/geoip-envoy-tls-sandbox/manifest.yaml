@@ -86,8 +86,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/39
-      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/43
+      image: sfci/servicelibs/sherpa-envoy:361a331e5abd22ba41bec4fc3523b6e52dbd8212
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
@@ -158,8 +158,8 @@ system:
         initialDelaySeconds: 115
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/39
-      image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/43
+      image: sfci/servicelibs/sherpa-envoy:361a331e5abd22ba41bec4fc3523b6e52dbd8212
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
