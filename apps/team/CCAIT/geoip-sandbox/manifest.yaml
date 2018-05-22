@@ -58,8 +58,8 @@ system:
           port: 15372
         initialDelaySeconds: 115
     - name: sherpa-b
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/40
-      image: sfci/servicelibs/sherpa-envoy:fc7ec6f0fae84600b44367d8cda2baca563dddf2
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/43
+      image: sfci/servicelibs/sherpa-envoy:361a331e5abd22ba41bec4fc3523b6e52dbd8212
       ports:
       - name: sherpa-b-in
         containerPort: 7012
