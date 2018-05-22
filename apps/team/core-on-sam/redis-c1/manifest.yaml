@@ -65,5 +65,5 @@ system:
       hostPath:
         path: /home/caas/logs
     - name: secretvol
-      secret:
+      k4aSecret:
          secretName: caas-secret
