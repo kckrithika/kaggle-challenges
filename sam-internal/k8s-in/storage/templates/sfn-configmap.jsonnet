@@ -18,6 +18,6 @@ if std.setMember(configs.estate, enabledEstates) then {
       namespace: "sam-system",
     },
     data: {
-      "sfn-selectors.yaml": storageutils.make_sfn_selector_rule(storageconfigs.storageEstates, storageimages.phase),
+      "sfn-selectors.yaml": storageutils.make_sfn_selector_rule(storageconfigs.storageEstates, configs.estate),
     },
 } else "SKIP"

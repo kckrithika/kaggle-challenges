@@ -14,6 +14,7 @@ local kingdom = std.extVar("kingdom");
         #
         # Ceph daemon image override example:
         #   "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "jewel-0000050-9308fbd0"
+        "prd,prd-sam,sfn-state-metrics,sfn-state-metrics": "base-0000429-3fbfdcf3"
     },
 
     ### Per-phase image tags
