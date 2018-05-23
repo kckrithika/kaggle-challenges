@@ -18,7 +18,7 @@ system:
 
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.4.0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.16
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -33,13 +33,8 @@ system:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        initialDelaySeconds: 120
-        periodSeconds: 30
-        timeoutSeconds: 30
-        httpGet:
-          path: /manage/health
-          port: 15372
-          scheme: HTTP
+        exec:
+          command: ["true"]
 
     - name: sherpa-dfs
       image: sfci/servicelibs/sherpa:2.0.23
