@@ -57,31 +57,23 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
-        "1": {
+        "1": $.per_phase["0"] {
             hypersam: "sam-0001993-e3c36481",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
-        "2": {
+        "2": $.per_phase["0"] {
             hypersam: "sam-0001993-e3c36481",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
-        "3": {
+        "3": $.per_phase["0"] {
             hypersam: "sam-0001970-a296421d",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
-        "4": {
-            hypersam: "sam-0001948-03d9baca",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
+        "4": $.per_phase["0"] {
+            hypersam: "sam-0001970-a296421d",
             },
 
         },
@@ -92,7 +84,7 @@ local utils = import "util_functions.jsonnet";
             "0"
         else if (estate == "prd-samdev") then
             "1"
-        else if (kingdom == "prd") then
+        else if (estate != "prd-samtwo") && (kingdom == "prd") then
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
