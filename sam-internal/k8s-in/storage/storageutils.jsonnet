@@ -133,7 +133,7 @@ local utils = import "util_functions.jsonnet";
 
     make_sfn_selector_rule(storage_estates,estate) :: (
         // For now removing pod related metrics which constitute nearly half the sfn-state metrics 
-        // in prd-sam to check whether it has any impact on the vitual memory consumption.
+        // in prd-sam to check whether it has any impact on the virtual memory consumption.
         // TODO: Remove this conditional statement after resolving the memory issue in prd-sam.
         if estate == "prd-sam" then |||
             nodes:
