@@ -16,7 +16,7 @@ if slbconfigs.slbInKingdom then {
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if slbimages.phase == "3" then 3 else 2,
+        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
         template: {
             metadata: {
                 labels: {
