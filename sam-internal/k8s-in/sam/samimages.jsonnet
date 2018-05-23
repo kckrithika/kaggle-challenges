@@ -45,10 +45,8 @@ local utils = import "util_functions.jsonnet";
         # Overrides work just fine in this phase.  To see the active hypersam tag visit:
         # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
 
-        "0": {
+        "0": $.per_phase["1"] {
              hypersam: "auto",
-             madkub: "1.0.0-0000066-fedd8bce",
-             madkubSidecar: "1.0.0-0000061-74e4a7b6",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -57,23 +55,25 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
-        "1": $.per_phase["0"] {
+        "1": $.per_phase["2"] {
             hypersam: "sam-0001993-e3c36481",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
-        "2": $.per_phase["0"] {
+        "2": $.per_phase["3"] {
             hypersam: "sam-0001993-e3c36481",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
-        "3": $.per_phase["0"] {
+        "3": $.per_phase["4"] {
             hypersam: "sam-0001970-a296421d",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
-        "4": $.per_phase["0"] {
+        "4": {
             hypersam: "sam-0001970-a296421d",
+            madkub: "1.0.0-0000066-fedd8bce",
+            madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
         },
