@@ -14,7 +14,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
         namespace: "sam-system",
     },
     spec: {
-        replicas: if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then 2 else 1,
+        replicas: if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then 2 else if slbimages.phase == "3" then 3 else 1,
         template: {
             spec: {
                       affinity: {
