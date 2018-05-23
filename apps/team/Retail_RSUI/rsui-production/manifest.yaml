@@ -4,6 +4,8 @@ system:
   functions:
   - name: rsui-production
     count: 3
+    identity:
+      serviceName: retail-setup
     volumes:
     - name: retailservercert
       maddogCert:
@@ -20,7 +22,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:0.1.1.1 # docker image for 1.1 release
+      image: sfci/retail/retail-setup:0.1.2.22 # docker image for 1.2a release
       ports:
       - containerPort: 7022
         name: rsui-in-http1
