@@ -6,19 +6,19 @@ system:
       count: 4
       containers: 
         - name: content-platform-jmagick
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/content.platform/content-platform-jmagick:second-version
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/content.platform/content-platform-jmagick:third-version
           ports:
-            - containerPort: 7021
-            - containerPort: 15373
+            - containerPort: 7020
+            - containerPort: 15374
           livenessProbe:
             httpGet:
               path: /manage/health
-              port: 15373
+              port: 15374
   loadbalancers:
   - lbname: content-platform-jmagick-lb
     function: content-platform-jmagick
     slbenabled: true
     ports:
-      - port: 7021
-        targetPort: 7021
+      - port: 7020
+        targetPort: 7020
         lbtype: tcp
