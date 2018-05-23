@@ -14,7 +14,7 @@ system:
       maddogCert:
         type: server 
         lbnames:
-        - pdssapilb  
+        - pdssapilb
     - name: secretvol
       k4aSecret:
         secretName: tsigsecrets    
