@@ -27,14 +27,14 @@ spec:
       containers:
       - command:
         - /sdn/slb-iface-processor
-        - --configDir=/host/data/slb/config/
+        - --configDir=/host/data/slb/config/slb-iface-processor
         - --control.sentinelExpiration=120s
         - --period=5s
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --readVipsFromIpvs=true
-        - --client.serverPort=9130
+        - --client.serverPort=12086
         - --client.serverInterface=lo
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-iface-processor
@@ -43,9 +43,9 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-iface-processor
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-iface-processor
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
@@ -53,7 +53,7 @@ spec:
           name: sbin-volume
       - command:
         - /sdn/slb-config-processor
-        - --configDir=/host/data/slb/config/
+        - --configDir=/host/data/slb/config/slb-iface-processor
         - --period=1800s
         - --podPhaseCheck=true
         - --namespace=
@@ -63,12 +63,12 @@ spec:
         - --serviceList=
         - --useVipLabelToSelectSvcs=true
         - --metricsEndpoint=ajna0-funnel1-0-hnd.data.sfdc.net:80
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --sleepTime=100ms
         - --processKnEConfigs=true
         - --kneConfigDir=/var/slb/kneconfigs/hnd
         - --kneDomainName=slb.sfdc.net
-        - --livenessProbePort=9876
+        - --livenessProbePort=12087
         - --shouldRemoveConfig=true
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --proxySelectorLabelValue=slb-nginx-config-b
@@ -84,7 +84,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /liveness-probe
-            port: 9876
+            port: 12087
           initialDelaySeconds: 600
           periodSeconds: 30
           timeoutSeconds: 5
@@ -96,9 +96,9 @@ spec:
           name: maddog-certs
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-iface-processor
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-iface-processor
           name: var-logs-volume
         - mountPath: /data/certs
           name: certs
@@ -110,10 +110,10 @@ spec:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=1h
-        - --filesDirToCleanup=/host/data/slb/config/
+        - --filesDirToCleanup=/host/data/slb/config/slb-iface-processor
         - --shouldSkipServiceRecords=true
         - --shouldNotDeleteAllFiles=true
-        - --log_dir=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --skipFilesWithSuffix=slb.block
         - --maxDeleteFileCount=20
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000866-da86367f
@@ -123,29 +123,29 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-iface-processor
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-iface-processor
           name: var-logs-volume
       - command:
         - /sdn/slb-node-api
-        - --port=9130
-        - --configDir=/host/data/slb/config/
-        - --log_dir=/host/data/slb/logs/
+        - --port=12086
+        - --configDir=/host/data/slb/config/slb-iface-processor
+        - --log_dir=/host/data/slb/logs/slb-iface-processor
         - --netInterface=lo
         image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000866-da86367f
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-iface-processor
           name: var-logs-volume
       - command:
         - /sdn/slb-cleanup
         - --period=1800s
         - --logsMaxAge=48h
-        - --log_dir=/host/data/slb/logs/cleanup
-        - --filesDirToCleanup=/host/data/slb/logs/
+        - --log_dir=/host/data/slb/logs/slb-iface-processor/cleanup
+        - --filesDirToCleanup=/host/data/slb/logs/slb-iface-processor
         - --shouldSkipServiceRecords=false
         - --shouldNotDeleteAllFiles=false
         - --hostsConfigFile=/sfdchosts/hosts.json
@@ -159,13 +159,13 @@ spec:
         volumeMounts:
         - mountPath: /host/data/slb
           name: var-slb-volume
-        - mountPath: /host/data/slb/config/
+        - mountPath: /host/data/slb/config/slb-iface-processor
           name: var-config-volume
-        - mountPath: /host/data/slb/logs/
+        - mountPath: /host/data/slb/logs/slb-iface-processor
           name: var-logs-volume
         - mountPath: /sfdchosts
           name: sfdchosts
-        - mountPath: /host/data/slb/logs/cleanup
+        - mountPath: /host/data/slb/logs/slb-iface-processor/cleanup
           name: var-cleanup-logs-volume
       hostNetwork: true
       volumes:
@@ -173,10 +173,10 @@ spec:
           path: /data/slb
         name: var-slb-volume
       - hostPath:
-          path: /data/slb/config/
+          path: /data/slb/config/slb-iface-processor
         name: var-config-volume
       - hostPath:
-          path: /data/slb/logs/
+          path: /data/slb/logs/slb-iface-processor
         name: var-logs-volume
       - configMap:
           name: sfdchosts
@@ -188,7 +188,7 @@ spec:
           path: /data/certs
         name: certs
       - hostPath:
-          path: /data/slb/logs/cleanup
+          path: /data/slb/logs/slb-iface-processor/cleanup
         name: var-cleanup-logs-volume
       - hostPath:
           path: /etc/pki_service
