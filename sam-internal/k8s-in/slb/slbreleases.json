@@ -21,9 +21,8 @@
   },
   "3": {
     "hypersdn": {
-      "label": "v-0000866-da86367f",
-      "promotedTime": "2018-05-22T17:06:27.910955Z",
-      "warning": "866 has manifest changes in slb-ipvs.jsonnet"
+      "label": "v-0000869-6a1ab522",
+      "promotedTime": "2018-05-22T22:39:43.946798399Z"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
@@ -32,9 +31,9 @@
   },
   "4": {
     "hypersdn": {
-      "label": "v-0000863-a33d6c92",
-      "promotedTime": "2018-05-18T14:59:35.01651945Z",
-      "warning": "860 has changes in slbsharedservices,baboon,iface,ipvs,nginx-config,portal,realsvrcfg,vip-watchdog"
+      "label": "v-0000866-da86367f",
+      "promotedTime": "2018-05-22T22:39:43.946788954Z",
+      "warning": "866 has manifest changes in slb-ipvs.jsonnet"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
