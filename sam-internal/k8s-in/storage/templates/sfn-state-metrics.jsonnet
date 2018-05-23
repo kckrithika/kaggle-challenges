@@ -11,6 +11,17 @@ local enabledEstates = std.set([
     "xrd-sam",
 ]);
 
+local sfmsContainerLimits = if configs.estate == "prd-sam" then {
+    resources: {
+        limits: {
+            memory: "2Gi",
+        },
+        requests: {
+            memory: "2Gi",
+        },
+    },
+} else {};
+
 // Init containers for the pod.
 local initContainers = if storageimages.phase == "1" then {
     initContainers: [
@@ -123,7 +134,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                             },
                         ]
                         else [],
-                    },
+                    } + sfmsContainerLimits,
                     storageutils.poddeleter_podspec(storageimages.maddogpoddeleter),
                 ],
             },  //+ initContainers,
