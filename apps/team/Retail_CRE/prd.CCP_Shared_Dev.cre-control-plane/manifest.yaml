@@ -60,8 +60,6 @@ system:
         name: sherpa-in-http2
       - containerPort: 7443
         name: sh-in-http2-tls
-      - containerPort: 7442 # http1-tls
-        name: sh-in-http1-tls
       - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sherpa-in-http1
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
@@ -85,8 +83,6 @@ system:
       - cre-control-plane:DATACENTER_ALLENV:7012
       - -endpoint
       - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
-      - -endpoint
-      - retail-cre/cre-control-plane:DATACENTER_ALLENV:7442
       # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
       # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
       # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
