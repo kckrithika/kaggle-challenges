@@ -22,7 +22,7 @@ system:
         value: "/log"
       args:
       - --clusters.external-clusters[0]=shipping-envoy-mtls.user-shaktiprakash-das.samapp:HTTP2_TLS
-      - --listeners.tracing.random_sampling_percent=100
+      - --listeners.tracing.random_sampling_percent=1
       volumeMounts:
       - name: envoy-config-volume
         mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
