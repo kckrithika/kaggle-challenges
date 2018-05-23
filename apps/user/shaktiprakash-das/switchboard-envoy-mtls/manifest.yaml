@@ -11,8 +11,8 @@ system:
     count: 1
     containers:
     - name: swb-mtls
-      # https://git.soma.salesforce.com/servicelibs/switchboard/pull/103
-      image: sfci/servicelibs/switchboard:c8f9efbfb1902a304fc6934b26f1543fbf79dbfd
+      # https://git.soma.salesforce.com/servicelibs/switchboard/pull/104
+      image: sfci/servicelibs/switchboard:449280e6138feab59dad54cb2996ce1a64c74559
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
