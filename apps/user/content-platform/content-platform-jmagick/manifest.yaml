@@ -6,7 +6,7 @@ system:
       count: 4
       containers: 
         - name: content-platform-jmagick
-          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/content.platform/content-platform-jmagick:third-version
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/content.platform/content-platform-jmagick:fourth-version
           ports:
             - containerPort: 7020
             - containerPort: 15374
