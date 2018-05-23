@@ -45,6 +45,11 @@ local utils = import "util_functions.jsonnet";
         # Overrides work just fine in this phase.  To see the active hypersam tag visit:
         # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
 
+        # NOTE:
+        # Each phase is overlayed on the next phase.  This means that for things that are the same everywhere
+        # you are free to simply define it only in Phase4 and all the rest will inherit it.
+
+        ### Release Phase 0 - prd-samtest
         "0": $.per_phase["1"] {
              hypersam: "auto",
              },
@@ -55,6 +60,7 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
+        ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
             hypersam: "sam-0001993-e3c36481",
             },
