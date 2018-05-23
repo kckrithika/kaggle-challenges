@@ -45,10 +45,13 @@ local utils = import "util_functions.jsonnet";
         # Overrides work just fine in this phase.  To see the active hypersam tag visit:
         # https://git.soma.salesforce.com/sam/sam/wiki/SAM-Auto-Deployer#how-to-find-phase-0-hypersam-tag
 
-        "0": {
+        # NOTE:
+        # Each phase is overlayed on the next phase.  This means that for things that are the same everywhere
+        # you are free to simply define it only in Phase4 and all the rest will inherit it.
+
+        ### Release Phase 0 - prd-samtest
+        "0": $.per_phase["1"] {
              hypersam: "auto",
-             madkub: "1.0.0-0000066-fedd8bce",
-             madkubSidecar: "1.0.0-0000061-74e4a7b6",
              },
 
         ### Release Phase 1 - prd-samdev
@@ -57,31 +60,26 @@ local utils = import "util_functions.jsonnet";
         # When rolling this phase, remove all overrides from test beds above
         # Make sure there are no critical watchdogs firing before/after the release, and check SAMCD emails to make sure all rolled properly
 
-        "1": {
+        ### Release Phase 1 - prd-samdev
+        "1": $.per_phase["2"] {
             hypersam: "sam-0001993-e3c36481",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
-        "2": {
+        "2": $.per_phase["3"] {
             hypersam: "sam-0001993-e3c36481",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
-        "3": {
+        "3": $.per_phase["4"] {
             hypersam: "sam-0001970-a296421d",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            hypersam: "sam-0001948-03d9baca",
-            madkub: $.per_phase["0"].madkub,
-            madkubSidecar: $.per_phase["0"].madkubSidecar,
+            hypersam: "sam-0001970-a296421d",
+            madkub: "1.0.0-0000066-fedd8bce",
+            madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
 
         },
@@ -92,7 +90,7 @@ local utils = import "util_functions.jsonnet";
             "0"
         else if (estate == "prd-samdev") then
             "1"
-        else if (kingdom == "prd") then
+        else if (estate != "prd-samtwo") && (kingdom == "prd") then
             "2"
         else if (kingdom == "frf") || (kingdom == "cdu") then
             "3"
