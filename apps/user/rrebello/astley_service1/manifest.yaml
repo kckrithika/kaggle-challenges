@@ -8,7 +8,7 @@ system:
     count: 1
     containers:
     - name: astley_service-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/productivity/astley_service:1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/productivity/astley_service:ffc03f0
       # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
       ports:
       - containerPort: 8080
