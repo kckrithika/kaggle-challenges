@@ -103,7 +103,7 @@ spec:
       - command:
         - sh
         - -c
-        - /entrypoint.sh -g 7337 -u 7337 -s sfdc -l fds
+        - /entrypoint.sh -container 7337 fds
         env:
         - name: KUBEVAR_POD_NAME
           valueFrom:

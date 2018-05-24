@@ -107,7 +107,7 @@ spec:
       - command:
         - sh
         - -c
-        - /entrypoint.sh -g 0 -u 0 -s root -l ceph-operator
+        - /entrypoint.sh -container 0 ceph-operator
         env:
         - name: KUBEVAR_POD_NAME
           valueFrom:

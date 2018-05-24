@@ -164,7 +164,7 @@ data:
             "command": [
               "sh",
               "-c",
-              "/entrypoint.sh -g 7447 -u 7447 -s sfstore -l sfslogs"
+              "/entrypoint.sh -container 7447 sfslogs"
             ],
             "env": [
               {

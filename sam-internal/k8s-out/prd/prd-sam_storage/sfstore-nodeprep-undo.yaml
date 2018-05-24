@@ -76,7 +76,7 @@ spec:
       - command:
         - sh
         - -c
-        - /entrypoint.sh -g 0 -u 0 -s root -l localvol
+        - /entrypoint.sh -container 0 localvol
         env:
         - name: KUBEVAR_POD_NAME
           valueFrom:

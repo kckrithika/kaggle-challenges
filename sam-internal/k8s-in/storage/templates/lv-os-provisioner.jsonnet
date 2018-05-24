@@ -91,7 +91,7 @@ if std.setMember(configs.estate, enabledEstates) then {
                 },
                 initContainers: [
                 {} +
-                storageutils.log_init_container(
+                storageimages.log_init_container(
                     storageimages.loginit,
                     "localvol",
                     0,

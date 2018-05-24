@@ -98,7 +98,7 @@ if std.setMember(configs.estate, enabledEstates) then {
             spec: {
                 initContainers: [
                     {} +
-                    storageutils.log_init_container(
+                    storageimages.log_init_container(
                         storageimages.loginit,
                         "ceph-operator",
                         0,

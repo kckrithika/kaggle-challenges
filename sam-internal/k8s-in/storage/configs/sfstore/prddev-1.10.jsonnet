@@ -43,7 +43,7 @@ local configs = import "config.jsonnet";
 		"DNSPolicy": "ClusterFirstWithHostNet",
 		"initContainers" : [
 			{} + 
-			storageutils.log_init_container(
+			storageimages.log_init_container(
 				storageimages.loginit,
 				"sfslogs",
 				7447,

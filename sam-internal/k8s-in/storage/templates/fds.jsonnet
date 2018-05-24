@@ -14,7 +14,7 @@ local enabledEstates = std.set([
 
 // Init containers for the pod.
 local initContainers = [
-    storageutils.log_init_container(
+    storageimages.log_init_container(
         storageimages.loginit,
         "fds",
         7337,
