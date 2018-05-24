@@ -6,12 +6,12 @@ system:
       - distributedtracing@salesforce.com
   functions:
   - name: zipkin-alpha
-    count: 1
+    count: 6
     strategy:
       type: RollingUpdate
       rollingUpdate:
         maxSurge: 0
-        maxUnavailable: 1
+        maxUnavailable: 3
     volumes:
     - name: server-certs
       maddogCert:
@@ -37,7 +37,7 @@ system:
       - name: ZIPKIN_ENDPOINT
         value: https://zipkin.eng.sfdc.net
       - name: AUTH_ENABLED
-        value: true
+        value: false
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
