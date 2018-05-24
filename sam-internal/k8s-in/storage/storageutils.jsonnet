@@ -30,43 +30,6 @@ local utils = import "util_functions.jsonnet";
             name: "host-log-vol",
         },
     ],
-    // log_init_container generates the init container necessary to support propagation of logs to the host.
-    // image_name: name of the loginitcontainer docker image.
-    // pod_log_path: log path (relative to /var/log/) for logs from the pod.
-    // uid: userid for the process writing logs.
-    // gid: groupid for the process writing logs.
-    // username: username corresponding to uid.
-    log_init_container(image_name, pod_log_path, uid, gid, username):: {
-        command: [
-            "sh",
-            "-c",
-            "/entrypoint.sh -g " + gid + " -u " + uid + " -s " + username + " -l " + pod_log_path,
-        ],
-        name: "log-init",
-        image: image_name,
-        securityContext: {
-            privileged: true,
-        },
-        volumeMounts: $.log_init_volume_mounts(),
-        env: [
-            {
-                name: "KUBEVAR_POD_NAME",
-                valueFrom: {
-                    fieldRef: {
-                        fieldPath: "metadata.name",
-                    },
-                },
-            },
-            {
-                name: "KUBEVAR_POD_NAMESPACE",
-                valueFrom: {
-                    fieldRef: {
-                        fieldPath: "metadata.namespace",
-                    },
-                },
-            },
-        ],
-    },
 
     // sfms_environment_vars returns the set of environment variables to pass to an sfms container.
     sfms_environment_vars(serviceName):: [

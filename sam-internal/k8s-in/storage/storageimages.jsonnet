@@ -1,5 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
+local storageutils = import "storageutils.jsonnet";
 
 {
     ### Global overrides - Anything here will override anything below.
@@ -15,6 +16,53 @@ local kingdom = std.extVar("kingdom");
         # Ceph daemon image override example:
         #   "prd,prd-sam_cephdev,ceph-cluster,ceph-daemon": "jewel-0000050-9308fbd0"
         "prd,prd-sam,sfn-state-metrics,sfn-state-metrics": "base-0000429-3fbfdcf3"
+    },
+
+    // NOTE NOTE NOTE
+    //   Temporarily moved here as we phase in new breaking changes to the log init container's command line args.
+    //   Once the new version has rolled out to all phases, move back to storageconfig.jsonnet and make it more
+    //   generic.
+    // 
+    // log_init_container generates the init container necessary to support propagation of logs to the host.
+    // image_name: name of the loginitcontainer docker image.
+    // pod_log_path: log path (relative to /var/log/) for logs from the pod.
+    // uid: userid for the process writing logs.
+    // gid: groupid for the process writing logs.
+    // username: username corresponding to uid.
+    log_init_container(image_name, pod_log_path, uid, gid, username):: {
+        local cmdline = if std.parseInt($.phase) > 1 then
+                "-g " + gid + " -u " + uid + " -s " + username + " -l " + pod_log_path
+            else
+                "-container " + uid + " " + pod_log_path,
+        command: [
+            "sh",
+            "-c",
+            "/entrypoint.sh " + cmdline,
+        ],
+        name: "log-init",
+        image: image_name,
+        securityContext: {
+            privileged: true,
+        },
+        volumeMounts: storageutils.log_init_volume_mounts(),
+        env: [
+            {
+                name: "KUBEVAR_POD_NAME",
+                valueFrom: {
+                    fieldRef: {
+                        fieldPath: "metadata.name",
+                    },
+                },
+            },
+            {
+                name: "KUBEVAR_POD_NAMESPACE",
+                valueFrom: {
+                    fieldRef: {
+                        fieldPath: "metadata.namespace",
+                    },
+                },
+            },
+        ],
     },
 
     ### Per-phase image tags

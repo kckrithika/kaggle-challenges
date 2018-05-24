@@ -25,7 +25,7 @@ local sfmsContainerLimits = if configs.estate == "prd-sam" then {
 // Init containers for the pod.
 local initContainers = if storageimages.phase == "1" then {
     initContainers: [
-        storageutils.log_init_container(
+        storageimages.log_init_container(
             storageimages.loginit,
             "sfms",
             7337,

@@ -52,7 +52,7 @@ if configs.estate == "prd-sam_storage" then {
           },
           initContainers: [
             {} +
-            storageutils.log_init_container(
+            storageimages.log_init_container(
               storageimages.loginit,
               "localvol",
               0,
