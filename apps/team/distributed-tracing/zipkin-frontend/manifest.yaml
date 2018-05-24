@@ -37,7 +37,7 @@ system:
       - name: ZIPKIN_ENDPOINT
         value: https://zipkin.eng.sfdc.net
       - name: AUTH_ENABLED
-        value: false
+        value: true
       volumeMounts:
       - mountPath: /etc/pki_service/zipkin-alpha
         name: server-certs
