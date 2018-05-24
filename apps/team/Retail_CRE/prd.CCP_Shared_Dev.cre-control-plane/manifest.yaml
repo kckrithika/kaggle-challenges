@@ -56,12 +56,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7012
-        name: sherpa-in-http2
       - containerPort: 7443
         name: sh-in-http2-tls
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        name: sherpa-in-http1
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -79,8 +75,6 @@ system:
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
-      - -endpoint
-      - cre-control-plane:DATACENTER_ALLENV:7012
       - -endpoint
       - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
       # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
