@@ -8,7 +8,7 @@ system:
       - afranken@salesforce.com
       - gmercer@salesforce.com
   functions:
-  - name: mceventbusqa1s1
+  - name: wh-con
     count: 1
     volumes:
     - name: cert
