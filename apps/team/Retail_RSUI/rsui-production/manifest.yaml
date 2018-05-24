@@ -7,6 +7,9 @@ system:
     identity:
       serviceName: retail-setup
     volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: retailservercert
       maddogCert:
         type: server
@@ -81,6 +84,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
       - name: retailclientcert
         mountPath: /client-certs
       - name: retailservercert
@@ -125,6 +130,7 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: rsui-production-lb
     function: rsui-production
