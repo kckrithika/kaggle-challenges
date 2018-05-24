@@ -116,6 +116,13 @@ local k8s_prepend = "k8s-";
            readOnly: true,
         },
     ],
+    kubeconfig_platform_volumeMounts: [
+        {
+           mountPath: "/etc/kubernetes/kubeconfig-platform",
+           name: "kubeconfig",
+           readOnly: true,
+        },
+    ],
     kubeconfig_platform_volume: [
         {
             hostPath: {

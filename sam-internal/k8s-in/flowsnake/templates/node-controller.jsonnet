@@ -15,7 +15,7 @@ if flowsnakeconfig.is_test then
                         image: flowsnakeimage.node_controller,
                         command: [
                             "/sam/node-controller",
-                            "--funnelEndpoint=" + flowsnakeconfig.funnel_endpoint,
+                            "--funnelEndpoint=" + configs.funnelVIP,
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                         ],
                         volumeMounts: [
@@ -24,7 +24,7 @@ if flowsnakeconfig.is_test then
                             name: "sfdchosts",
                           },
                         ] +
-                        certs_and_kubeconfig.kubeconfig_volumeMounts +
+                        certs_and_kubeconfig.kubeconfig_platform_volumeMounts +
                         certs_and_kubeconfig.platform_cert_volumeMounts,
                         env: [
                             {
@@ -37,7 +37,7 @@ if flowsnakeconfig.is_test then
                             },
                             {
                               name: "KUBECONFIG",
-                              value: "/kubeconfig/kubeconfig-platform",
+                              value: "/etc/kubeconfig/kubeconfig-platform",
                             },
                         ],
                     },
