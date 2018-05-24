@@ -36,7 +36,7 @@ system:
           port: 15372
       volumeMounts:
       - name: cert
-        mountPath: /certs
+        mountPath: /certs/user
   - name: eventnotifications-connect
     count: 0
     containers:
