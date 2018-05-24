@@ -36,4 +36,4 @@ system:
           port: 15372
       volumeMounts:
       - name: cert
-        mountPath: /certs/user
+        mountPath: /certs
