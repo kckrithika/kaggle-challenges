@@ -37,7 +37,7 @@ if flowsnakeconfig.is_test then
                             },
                             {
                               name: "KUBECONFIG",
-                              value: "/etc/kubeconfig/kubeconfig-platform",
+                              value: "/etc/kubernetes/kubeconfig-platform",
                             },
                         ],
                     },
