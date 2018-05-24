@@ -81,6 +81,7 @@ local utils = import "util_functions.jsonnet";
                 uniform_pull_policy: "foo",  # TESTED, please promote.
                 kubedns_daily_restart: "foo",  # TESTED, please promote.
                 integration_test_data: "foo",
+                node_controller: "foo",
             },
             version_mapping: {
                 main: {
