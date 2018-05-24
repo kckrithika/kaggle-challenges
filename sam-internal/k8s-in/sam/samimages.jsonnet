@@ -17,24 +17,10 @@ local utils = import "util_functions.jsonnet";
         # Image name
         #
         # Example:
+        #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[alok.bansal] New version of Sam Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0001977-5efe4159",
 
-        # [prahlad.joshi] Releasing processStartTimeChecker changes to prd-sam*
-        "chx,chx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "dfw,dfw-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "hnd,hnd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "iad,iad-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "ord,ord-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "par,par-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "phx,phx-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "syd,syd-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "ukb,ukb-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "wax,wax-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "yhu,yhu-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
-        "yul,yul-sam,watchdog-common,hypersam": "sam-0001934-1a482ba7",
         },
 
     ### Per-phase image tags
