@@ -15,7 +15,7 @@ system:
       maddogCert:
         type: client
     containers:
-    - name: mceventbusqa1s1-container
+    - name: event-notification-service
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.5
       ports:
         - containerPort: 8080
