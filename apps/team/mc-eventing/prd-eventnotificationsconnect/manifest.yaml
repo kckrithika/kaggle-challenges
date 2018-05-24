@@ -16,7 +16,7 @@ system:
         type: client
     containers:
     - name: event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.5
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.6
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -36,4 +36,4 @@ system:
           port: 15372
       volumeMounts:
       - name: cert
-        mountPath: /certs/user
+        mountPath: /certs
