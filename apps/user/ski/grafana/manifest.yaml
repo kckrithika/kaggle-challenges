@@ -1,0 +1,14 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: grafana
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ski/grafana:ski-20180525
+      ports:
+      - containerPort: 3000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 3000
