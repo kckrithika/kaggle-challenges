@@ -12,7 +12,7 @@ apps:
   switchboard-prod:
     - iad/iad-sam_gater
     - ord/ord-sam_gater
-  switchboard-prod:
+  switchboard-prod-canary:
     - par/par-sam_gater
   switchboard-sandbox:
     - prd/prd-sam
