@@ -9,7 +9,7 @@ system:
       - gmercer@salesforce.com
   functions:
   - name: wh-con
-    count: 0
+    count: 1
     volumes:
     - name: cert
       maddogCert:
@@ -26,7 +26,7 @@ system:
         - name: MANAGEMENT_PORT
           value: 15372
         - name: CONSUMER_TOPICNAME
-          value: mc.test.mceventbusqa1s1__prd.ajna_local__transactional_send_events
+          value: mc.test.mceventbusdev__prd.ajna_local__dev_json
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
