@@ -45,3 +45,11 @@ system:
           port: 15373
         initialDelaySeconds: 15
         periodSeconds: 5
+      volumeMounts:
+        - name: tls-client-cert
+          mountPath: /client-certs
+
+    volumes:
+      - name: tls-client-cert
+        maddogCert:
+          type: client
