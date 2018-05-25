@@ -134,7 +134,6 @@ system:
   loadbalancers:
   - function: controlplane-staging
     lbname: controlplane-staging-lb
-    nodeExposed: true
     ports:
     - port: 7020
       targetport: 7012
