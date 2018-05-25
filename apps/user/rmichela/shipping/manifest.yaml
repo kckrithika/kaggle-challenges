@@ -15,6 +15,8 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
+      - name: SCONE_GEOIP_DEST
+        value: geoip.localhost.mesh.force.com:7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
@@ -38,7 +40,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - shipping:DATACENTER:7012
+      - shippingrmichela:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:
