@@ -10,10 +10,12 @@ system:
     - name: cert
       maddogCert:
         type: client
-
+    - name: automationvol
+      emptyDir: {}
     containers:
     - name: core
-      image: tnrp/casam/coreapp:216__15776108-0000103-ae8a90d0
+      #image: tnrp/casam/coreapp:216__15776108-0000103-ae8a90d0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-4
 
       env:
         # DB info
@@ -98,11 +100,37 @@ system:
         - containerPort: 11211
         - containerPort: 12099
         - containerPort: 12098
+        - containerPort: 10001
 
       volumeMounts:
         - name: cert
           mountPath: /certs
-    
+        - name: automationvol
+          mountPath: /home/sfdc/automation
+
+    - name: perf-sidecar
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perf-sidecar:20180525-1
+
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 1
+        periodSeconds: 120
+
+      readinessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 1
+        periodSeconds: 120
+
+      volumeMounts:
+        - name: automationvol
+          mountPath: /home/sfdc/automation
+
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
 
@@ -122,3 +150,5 @@ system:
       targetport: 12100
     - port: 7601
       targetport: 12099
+    - port: 10001
+      targetport: 10001
