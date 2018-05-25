@@ -15,6 +15,7 @@ system:
     containers:
     - name: mysql
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/mysql:20180123_135035.df4fafc7.dirty.duncsmith-ltm
+      args: ["--ignore-db-dir=lost+found"]
 
       # TODO: Use a k4a secret
       env:
