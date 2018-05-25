@@ -11,6 +11,7 @@ local pools = import "configs/generated-pools.jsonnet";
     # The default is v1alpha1, which is deprecated/disabled by default in k8s 1.9.
     rbac_v1beta1_kingdoms:: std.set([
         "prd",
+        "frf",
     ]),
 
     rbac_api_version::
