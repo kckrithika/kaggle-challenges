@@ -13,7 +13,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: sconex
       - name: SCONE_SHIPPING_DEST
-        value: shippingrmichela.localhost.mesh.force.com:7011
+        value: shipping.rmichela.localhost.mesh.force.com:7011
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
       ports:
@@ -37,7 +37,7 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - orderingrmichela:DATACENTER:7012
+      - rmichela/ordering:DATACENTER:7012
       - -logging.dir
       - /log
       livenessProbe:
@@ -57,6 +57,9 @@ system:
       # Usage of this image is just temporary while we test a change. If you're using this config as an example
       # for your own app, please use the stable version that's referenced above.
       image: sfci/servicelibs/sherpa:2.0.26
+      args:
+      - --zipkin-rate
+      - 1.0
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
