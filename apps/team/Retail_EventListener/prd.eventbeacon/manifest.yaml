@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.19
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.20
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -58,8 +58,6 @@ system:
     slbEnabled: true
     ports:
       - port: 443
-        targetport: 7022
-      - port: 8080
         targetport: 7022
       - port: 7442
         targetport: 7022
