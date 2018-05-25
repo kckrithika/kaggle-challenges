@@ -65,10 +65,6 @@ system:
       volumeMounts:
         - name: sherpa-log-volume
           mountPath: /log
-        - name: geoip-client-cert
-          mountPath: /client-certs
-        - name: geoip-server-cert
-          mountPath: /server-certs
       ports:
       - containerPort: 7012
         name: sherpa-b-in
@@ -111,9 +107,3 @@ system:
     - name: sherpa-log-volume
       hostPath:
         path: /home/sfdc-sherpa/logs
-    - name: geoip-client-cert
-      maddogCert:
-        type: client
-    - name: geoip-server-cert
-      maddogCert:
-        type: server
