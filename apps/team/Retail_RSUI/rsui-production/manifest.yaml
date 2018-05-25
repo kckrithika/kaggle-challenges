@@ -4,7 +4,12 @@ system:
   functions:
   - name: rsui-production
     count: 3
+    identity:
+      serviceName: retail-setup
     volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: retailservercert
       maddogCert:
         type: server
@@ -20,7 +25,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:0.1.1.1 # docker image for 1.1 release
+      image: sfci/retail/retail-setup:0.1.2.22 # docker image for 1.2a release
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -79,6 +84,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
       - name: retailclientcert
         mountPath: /client-certs
       - name: retailservercert
@@ -123,6 +130,7 @@ system:
         exec:
           command:
             - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: rsui-production-lb
     function: rsui-production
