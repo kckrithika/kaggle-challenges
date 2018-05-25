@@ -22,13 +22,10 @@ system:
     - name: logvol
       hostPath:
         path: /home/sfdc-cj/logs
-    - name: sherpa-log-volume
-      hostPath:
-        path: /home/sfdc-sherpa/logs
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.18
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.19
       ports:
         - containerPort: 7022
         - containerPort: 15372
@@ -46,6 +43,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
+          scheme: HTTPS
       volumeMounts:
       - name: cccjclientcert
         mountPath: /client-certs
@@ -53,45 +51,17 @@ system:
         mountPath: /server-certs
       - name: logvol
         mountPath: /home/sfdc-cj/logs
-      - name: sherpa-log-volume
-        mountPath: /log
-
-    - name: sherpa-event-beacon
-      image: sfci/servicelibs/sherpa:2.0.23
-      env:
-        - name: SFDC_ENVIRONMENT
-          value: sam
-      ports:
-        - containerPort: 7442
-        - containerPort: 7014
-        - containerPort: 15373
-      volumeMounts:
-      - name: cccjclientcert
-        mountPath: /client-certs
-      - name: cccjservercert
-        mountPath: /server-certs
-      - name: sherpa-log-volume
-        mountPath: /log
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 60
-        periodSeconds: 120
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 60
-        periodSeconds: 120
 
   loadbalancers:
   - lbname: event-beacon-lb
     function: eventbeacon
-    nodeExposed: true
     slbEnabled: true
     ports:
+      - port: 443
+        targetport: 7022
+      - port: 8080
+        targetport: 7022
       - port: 7442
-        targetport: 7442
-      - port: 7014
-        targetport: 7014
+        targetport: 7022
+      - port: 15372
+        targetport: 15372
