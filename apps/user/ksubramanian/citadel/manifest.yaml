@@ -39,10 +39,11 @@ system:
       - mountPath: /secrets/service-config/
         name: secretvol
         readOnly: true
+
     volumes:
     - name: logvolservice
       hostPath:
         path: /home/sfdc-backup/logs
     - name: secretvol
-      k4asecret:
-	secretName: dbmgt
+      k4aSecret:
+        secretName: dbmgt
