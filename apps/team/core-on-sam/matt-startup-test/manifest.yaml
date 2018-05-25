@@ -109,7 +109,7 @@ system:
           mountPath: /home/sfdc/automation
 
     - name: perf-sidecar
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perf-sidecar:20180525-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/kviphong/perf-sidecar:20180525-2
 
       livenessProbe:
         exec:
