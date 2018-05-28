@@ -9,7 +9,7 @@ system:
       - gmercer@salesforce.com
   functions:
   - name: wh-con
-    count: 0
+    count: 1
     volumes:
     - name: cert
       maddogCert:
