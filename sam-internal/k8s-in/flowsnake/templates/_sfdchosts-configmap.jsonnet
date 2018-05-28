@@ -1,6 +1,6 @@
-local configs = import "config.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+local watchdog = import "watchdog.jsonnet";
+if !(flowsnakeconfig.node_monitor_enabled || watchdog.watchdog_enabled) then
 "SKIP"
 else
 {

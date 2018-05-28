@@ -73,4 +73,5 @@ local util = import "util_functions.jsonnet";
         estate == "ord-flowsnake_prod" ||
         estate == "phx-flowsnake_prod"
     ),
+    node_monitor_enabled: !self.is_minikube_small,
 }
