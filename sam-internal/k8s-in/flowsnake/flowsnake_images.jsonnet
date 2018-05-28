@@ -14,11 +14,34 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
     },
 
+
     ### Per-phase image tags
     per_phase: {
+        ### Image tags we do not change very often
+        # When you *do* need to change one of these images, just override in the phase(s) you want to change.
+        default_image_tags: {
+                canary_image_tag: "345",
+                cert_secretizer_image_tag: "565",
+                es_image_tag: "503",
+                testData_image_tag: "638",
+                glok_image_tag: "472",
+                ingressControllerNginx_image_tag: "571",
+                ingressDefaultBackend_image_tag: "571",
+                beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
+                kibana_image_tag: "345",
+                logloader_image_tag: "468",
+                logstash_image_tag: "468",
+                madkub_image_tag: "1.0.0-0000062-dca2d8d1",
+                nodeMonitor_image_tag: "403",
+                watchdog_image_tag: "sam-0001730-c7caec88",
+                node_controller_image_tag: "sam-0001970-a296421d",
+                zookeeper_image_tag: "345",
+                deployer_image_tag: "sam-0001730-c7caec88",
+                kubedns_image_tag: "1.10.0",
+        },
 
         ### Release Phase minikube
-        minikube: {
+        minikube: self.default_image_tags {
             canary_image_tag: "minikube",
             cert_secretizer_image_tag: "minikube",
             es_image_tag: "minikube",
@@ -27,14 +50,13 @@ local utils = import "util_functions.jsonnet";
             glok_image_tag: "minikube",
             ingressControllerNginx_image_tag: "minikube",
             ingressDefaultBackend_image_tag: "minikube",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
             kibana_image_tag: "minikube",
             logloader_image_tag: "minikube",
             logstash_image_tag: "minikube",
             madkub_image_tag: "minikube",
             nodeMonitor_image_tag: "minikube",
             zookeeper_image_tag: "minikube",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",
@@ -55,26 +77,9 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
-        "1": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
-            es_image_tag: "503",
+        "1": self.default_image_tags {
             fleetService_image_tag: "641",
-            testData_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
@@ -115,26 +120,9 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
-        "2": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
-            es_image_tag: "503",
+        "2": self.default_image_tags {
             fleetService_image_tag: "638",
-            testData_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 integration_test_data: "foo",
@@ -164,25 +152,9 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
-        "3": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
-            es_image_tag: "503",
+        "3": self.default_image_tags {
             fleetService_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 node_controller: "foo",
@@ -200,25 +172,10 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 4 - Remaining production fleets
-        "4": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "585",
-            es_image_tag: "503",
+        "4": self.default_image_tags {
             fleetService_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+            cert_secretizer_image_tag: "585",  # TODO: Why are we running a newer tag in prod?
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 node_controller: "foo",
