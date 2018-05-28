@@ -1,6 +1,5 @@
 local auto_deployer = import "auto_deployer.jsonnet";
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube then
+if !auto_deployer.auto_deployer_enabled then
 "SKIP"
 else
 {

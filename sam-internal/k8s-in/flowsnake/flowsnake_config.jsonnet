@@ -50,18 +50,6 @@ local util = import "util_functions.jsonnet";
         "prd-dev-flowsnake_iot_test",
     ],
     cert_services_preferred: std.count(self.cert_services_preferred_estates, estate) == 1,
-    host_ca_cert_path: if self.maddog_enabled then
-        "/etc/pki_service/ca/cabundle.pem"
-      else
-        "/data/certs/ca.crt",
-    host_platform_client_cert_path: if self.maddog_enabled then
-        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
-      else
-        "/data/certs/hostcert.crt",
-    host_platform_client_key_path: if self.maddog_enabled then
-        "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
-      else
-        "/data/certs/hostcert.key",
     fleet_name: if self.is_minikube then
             # See flowsnake-platform/flowsnake-config
             "minikube"

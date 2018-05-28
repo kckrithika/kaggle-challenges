@@ -1,6 +1,6 @@
-local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
-if flowsnakeconfig.is_minikube then
+local auto_deployer = import "auto_deployer.jsonnet";
+if !auto_deployer.auto_deployer_enabled then
 "SKIP"
 else
 {
