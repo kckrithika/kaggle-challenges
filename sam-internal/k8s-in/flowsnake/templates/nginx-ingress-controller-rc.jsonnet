@@ -99,7 +99,7 @@ local kingdom = std.extVar("kingdom");
                                      readOnly: true,
                                  },
                                 ]
-                            else if flowsnakeconfig.maddog_enabled then
+                            else (
                                 [
                                  {
                                      name: "flowsnake-tls-secret",
@@ -109,8 +109,7 @@ local kingdom = std.extVar("kingdom");
                                 ] +
                                 certs_and_kubeconfig.kubeconfig_volumeMounts +
                                 certs_and_kubeconfig.k8s_cert_volumeMounts
-                            else certs_and_kubeconfig.kubeconfig_volumeMounts +
-                                certs_and_kubeconfig.k8s_cert_volumeMounts
+)
                         ),
                     },
                 ] + if flowsnakeconfig.is_minikube then [] else [
@@ -130,7 +129,7 @@ local kingdom = std.extVar("kingdom");
                                 },
                             },
                         ]
-                    else if flowsnakeconfig.maddog_enabled then
+                    else (
                         [
                             {
                                 name: "flowsnake-tls-secret",
@@ -141,8 +140,7 @@ local kingdom = std.extVar("kingdom");
                         ] +
                         certs_and_kubeconfig.kubeconfig_volume +
                         certs_and_kubeconfig.k8s_cert_volume
-                    else certs_and_kubeconfig.kubeconfig_volume +
-                        certs_and_kubeconfig.k8s_cert_volume
+)
                 ),
                 [if estate == "prd-data-flowsnake" then "nodeSelector"]: {
                     vippool: "true",
