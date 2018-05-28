@@ -16,7 +16,7 @@ system:
         type: client
     containers:
     - name: event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.7
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.8
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -25,8 +25,6 @@ system:
           value: 8080
         - name: MANAGEMENT_PORT
           value: 15372
-        - name: CONSUMER_TOPICNAME
-          value: mc.test.mceventbusdev__prd.ajna_local__dev_json
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
