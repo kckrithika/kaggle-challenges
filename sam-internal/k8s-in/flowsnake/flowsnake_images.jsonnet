@@ -91,12 +91,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.1": 377,
-                  "0.9.2": 403,
-                  "0.9.3": 427,
-                  "0.9.4": 447,
-                  "0.9.5": 487,
-                  "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
@@ -105,12 +99,6 @@ local utils = import "util_functions.jsonnet";
                 # These are for developer testing only
                 # only copy above to phase 2
                 {
-                  "0.9.7-itest": 565,
-                  "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
-                  "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
-                  "jvmtest-lhn": "jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest",
-                  "ajnaupgradetest-vg": "jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest",
-                  "0.9.9-jdk8u162": "jenkins-dva-transformation-flowsnake-platform-master-627-itest",
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
                 },
                 # ignore this section, require by std.manifestIni
@@ -130,18 +118,8 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.1": 377,
-                  "0.9.2": 403,
-                  "0.9.3": 427,
-                  "0.9.4": 447,
-                  "0.9.5": 487,
-                  "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
-                  "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",  # temporary for IoT
-                  "0.9.7-patch-worker-secrets": 584,  # temporary for IoT
-                  "0.9.8-service-mesh-test": "599",  # ALSO temporary for IoT...
                   "0.9.8": 607,
-                  "sluice-lite": "jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest",  # for GDPR write to DeepSea
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
                 },
@@ -183,8 +161,6 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.7": 571,
-                  "0.9.8-SNAPSHOT": "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
-                  "0.9.7-595": "jenkins-dva-transformation-flowsnake-platform-PR-596-1-itest",
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 },

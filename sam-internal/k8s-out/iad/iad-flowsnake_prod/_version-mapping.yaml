@@ -3,9 +3,7 @@ data:
   version-mapping.properties: |
     0.9.10 = 638
     0.9.7 = 571
-    0.9.7-595 = jenkins-dva-transformation-flowsnake-platform-PR-596-1-itest
     0.9.8 = 607
-    0.9.8-SNAPSHOT = jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
