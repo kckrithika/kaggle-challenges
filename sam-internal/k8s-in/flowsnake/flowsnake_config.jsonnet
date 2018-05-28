@@ -42,8 +42,10 @@ local util = import "util_functions.jsonnet";
         "prd-data-flowsnake_test",
     ],
     deepsea_enabled: std.count(self.deepsea_enabled_estates, estate) > 0,
-    // Note: maddog_enabled if pki_agent working. Includes both "enabled" and "in-transition" Puppet settings
-    maddog_enabled: !self.is_minikube,
+    // Note: true if pki_agent working. Includes both "enabled" and "in-transition" Puppet settings
+    // False for Minikube, which supports MadKub for tenant certs but does not have PKI agent running on the
+    // node itself.
+    host_pki_agent_enabled: !self.is_minikube,
     // Prefer cert_services certs on these estates. (But use MadDog cabundle if maddog_enabled)
     cert_services_preferred_estates: [
         "prd-data-flowsnake",
