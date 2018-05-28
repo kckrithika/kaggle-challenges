@@ -42,6 +42,7 @@ local utils = import "util_functions.jsonnet";
                 uniform_pull_policy: "foo",
                 kubedns_daily_restart: "foo",
                 integration_test_data: "foo",
+                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
             },
             version_mapping: {
                 main: {
@@ -198,7 +199,7 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        ### Release Phase 4 - Remaiing production fleets
+        ### Release Phase 4 - Remaining production fleets
         "4": {
             canary_image_tag: "345",
             cert_secretizer_image_tag: "585",

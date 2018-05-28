@@ -1,6 +1,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local elk = import "elastic_search_logstash_kibana.jsonnet";
+if !std.objectHas(flowsnake_images.feature_flags, "glok_retired") then
 {
     connection_string:: std.join(",", ["zookeeper-" + ri + ".zookeeper-set" + ":" + $.zk_port for ri in std.range(0, $.zk_replicas - 1)]),
     zk_port:: 2181,
@@ -87,4 +88,4 @@ local elk = import "elastic_search_logstash_kibana.jsonnet";
             },
         },
     },
-}
+} else "SKIP"
