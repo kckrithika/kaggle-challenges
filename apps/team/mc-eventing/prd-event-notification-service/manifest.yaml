@@ -8,7 +8,7 @@ system:
       - afranken@salesforce.com
       - gmercer@salesforce.com
   functions:
-  - name: wh-con
+  - name: wh-con-new
     count: 0
     volumes:
     - name: cert
@@ -37,7 +37,7 @@ system:
         mountPath: /certs
   loadbalancers:
   - lbname: event-notification-service-lb
-    function: wh-con
+    function: wh-con-new
     nodeExposed: true
     ports:
     - port: 8083
