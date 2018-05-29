@@ -152,7 +152,6 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 4 - Remaining production fleets
         "4": self.default_image_tags {
             fleetService_image_tag: "638",
-            cert_secretizer_image_tag: "585",  # TODO: Why are we running a newer tag in prod?
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
