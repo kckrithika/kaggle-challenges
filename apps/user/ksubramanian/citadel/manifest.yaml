@@ -12,7 +12,7 @@ system:
     # Docker image(s) that make up one instance of the service
     containers:
     - name: citadel
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/citadel:ksubramanian-20180528
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/citadel:ksubramanian-20180529
       
       # set container environment variables
       env:
