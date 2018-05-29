@@ -1,6 +1,6 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-if !(flowsnakeconfig.node_monitor_enabled || watchdog.watchdog_enabled) then
+if !(flowsnakeconfig.node_controller_enabled || watchdog.watchdog_enabled) then
 "SKIP"
 else
 {

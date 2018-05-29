@@ -1,6 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
 local configs = import "config.jsonnet";
 local util = import "util_functions.jsonnet";
 {
@@ -76,4 +76,5 @@ local util = import "util_functions.jsonnet";
         estate == "phx-flowsnake_prod"
     ),
     node_monitor_enabled: !self.is_minikube_small,
+    node_controller_enabled: std.objectHas(flowsnake_images.feature_flags, "node_controller"),
 }

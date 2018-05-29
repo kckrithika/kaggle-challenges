@@ -2,7 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
-if std.objectHas(flowsnake_images.feature_flags, "node_controller") then
+if flowsnakeconfig.node_controller_enabled then
 {
     kind: "Deployment",
     spec: {
