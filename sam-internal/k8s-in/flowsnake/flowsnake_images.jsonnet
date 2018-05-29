@@ -19,6 +19,7 @@ local utils = import "util_functions.jsonnet";
     per_phase: {
         ### Image tags we do not change very often
         # When you *do* need to change one of these images, just override in the phase(s) you want to change.
+        # Once the override is deployed to all phases, update the default and delete the overrides.
         default_image_tags: {
                 canary_image_tag: "345",
                 cert_secretizer_image_tag: "565",
