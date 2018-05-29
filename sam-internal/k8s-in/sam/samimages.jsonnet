@@ -58,7 +58,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
         "3": $.per_phase["4"] {
-            hypersam: "sam-0001970-a296421d",
+            hypersam: "sam-0001993-e3c36481",
             },
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
