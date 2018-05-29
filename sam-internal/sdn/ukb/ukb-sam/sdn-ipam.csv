@@ -119,6 +119,16 @@ shared0-samminionmoderationeinstein2-1-ukb.ops.sfdc.net,10.218.152.202/29,10.213
 shared0-samminionreportcollector1-1-ukb.ops.sfdc.net,10.218.149.34/28,10.213.62.0/27,b07-02,ukb-sam_report_collector
 shared0-samminionreportcollector2-1-ukb.ops.sfdc.net,10.218.149.18/28,10.213.62.32/27,f07-02,ukb-sam_report_collector
 shared0-samminionreportcollector3-1-ukb.ops.sfdc.net,10.218.149.10/28,10.213.62.64/27,l28-01,ukb-sam_report_collector
+shared0-samminionsme1-1-ukb.ops.sfdc.net,10.218.159.130/29,10.213.12.0/27,n02-02,ukb-search_model_executor
+shared0-samminionsme1-2-ukb.ops.sfdc.net,10.218.159.131/29,10.213.12.32/27,n02-02,ukb-search_model_executor
+shared0-samminionsme1-3-ukb.ops.sfdc.net,10.218.159.132/29,10.213.12.64/27,n02-02,ukb-search_model_executor
+shared0-samminionsme1-4-ukb.ops.sfdc.net,10.218.159.133/29,10.213.12.96/27,n02-02,ukb-search_model_executor
+shared0-samminionsme1-5-ukb.ops.sfdc.net,10.218.159.134/29,10.213.12.128/27,n02-02,ukb-search_model_executor
+shared0-samminionsme2-1-ukb.ops.sfdc.net,10.218.159.170/29,10.213.12.160/27,n03-02,ukb-search_model_executor
+shared0-samminionsme2-2-ukb.ops.sfdc.net,10.218.159.171/29,10.213.12.192/27,n03-02,ukb-search_model_executor
+shared0-samminionsme2-3-ukb.ops.sfdc.net,10.218.159.172/29,10.213.12.224/27,n03-02,ukb-search_model_executor
+shared0-samminionsme2-4-ukb.ops.sfdc.net,10.218.159.173/29,10.213.13.0/27,n03-02,ukb-search_model_executor
+shared0-samminionsme2-5-ukb.ops.sfdc.net,10.218.159.174/29,10.213.13.32/27,n03-02,ukb-search_model_executor
 shared0-samminionwarden1-1-ukb.ops.sfdc.net,10.218.151.66/29,10.213.0.32/27,f07-02,ukb-sam_warden
 shared0-samminionwarden1-2-ukb.ops.sfdc.net,10.218.151.82/29,10.213.0.0/27,d07-02,ukb-sam_warden
 shared0-samminionwarden2-1-ukb.ops.sfdc.net,10.218.151.74/29,10.213.0.64/27,m08-02,ukb-sam_warden
