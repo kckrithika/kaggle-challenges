@@ -38,6 +38,20 @@ local kingdom = std.extVar("kingdom");
         },
         "phx/phx-flowsnake_prod": {
         },
+        "prd/prd-data-flowsnake": {
+            search_dlc: [
+                "5",
+                "Q",
+                "ailtn",
+                "seabt",
+                "seclk",
+                "seeps",
+                "sepro",
+                "serfv",
+                "sespc",
+                "seuir",
+            ],
+        }
     },
 
     // List of unrestricted Ajna Applog Log Record Types that do not require special permission to access. (GDPR compliance)
