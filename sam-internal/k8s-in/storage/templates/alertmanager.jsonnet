@@ -68,5 +68,5 @@ if std.setMember(configs.estate, enabledEstates) then {
                 ],
             },
         },
-    },
+    } + storageutils.revisionHistorySettings,
 } else "SKIP"
