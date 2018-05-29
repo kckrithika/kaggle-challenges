@@ -1,5 +1,4 @@
 apiVersion: v1
-
 system:
   functions:
   - name: default
@@ -11,30 +10,10 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/a.mitra/hypersam:20180525_102312.54e4e3d8.dirty.amitra-ltm
       ports:
       - containerPort: 9090
-      volumeMounts:
-      - mountPath : /secrets/
-        name: secretvol
-        readOnly: true
-      - mountPath : /server-cert/
-        name: server-cert
-        readOnly: true
-      - mountPath : /client-cert/
-        name: client-cert
-        readOnly: true
       livenessProbe:
         httpGet:
           path: /
           port: 9090
-    volumes:
-    - name: secretvol
-      k4aSecret:
-        secretName: mysecret
-    - name: server-cert
-      maddogCert:
-        type: client
-    - name: client-cert
-      maddogCert:
-        type: server
   loadbalancers:
   - lbname: samhellolb
     function: default
