@@ -82,16 +82,19 @@ system:
 #           - "/bin/sh"
 #           - "-c"
 #           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
-        initialDelaySeconds: 480
-        periodSeconds: 1
+        initialDelaySeconds: 1
+        periodSeconds: 100
 
       readinessProbe:
-        httpGet:
-          path: /samReady.jsp
-          port: 12100
-        initialDelaySeconds: 120
-        periodSeconds: 1
-        failureThreshold: 10
+        exec:
+          command:
+           - echo
+           - HEALTHY
+#           - "/bin/sh"
+#           - "-c"
+#           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+        initialDelaySeconds: 1
+        periodSeconds: 100
 
       ports:
         # Actually used by the container
