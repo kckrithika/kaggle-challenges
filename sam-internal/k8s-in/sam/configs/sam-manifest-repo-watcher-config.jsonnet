@@ -1,16 +1,20 @@
 local configs = import "config.jsonnet";
+local mysql = import "sammysqlconfig.jsonnet";
 
 if configs.estate == "prd-sam" then
 std.prune({
         "tnrp-endpoint": configs.tnrpEndpoint,
         "tnrp-bot-account-names": ["svc-tnrp-git-rw", "svc-tnrp-git"],
-        "tnrp-scan-frequency": "10m",
-        "db-hostname": "mysql.csc-sam." + configs.estate + ".prd.slb.sfdc.net",
-        "db-username": "root",
+        "tnrp-scan-frequency": "5m",
+        "db-hostname": mysql.hostName,
+        "db-username": mysql.userName,
         "db-password-file": "/var/mysqlPwd/pass.txt",
-        "db-name": "sam_manifest_repo_watcher",
+        "db-name": mysql.visibilityDBName,
         "git-url": "https://git.soma.salesforce.com/api/v3/",
         "ghe-tokenfile": "/var/token/token",
         "webhook-tokenfile": "/var/webhook-token/webhook-token",
         "funnel-endpoint": configs.funnelVIP,
+        "full-scan-on": "true",
+        "freq-scan-on": "true",
+        "webhook-on": "true",
 }) else "SKIP"
