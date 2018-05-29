@@ -1,77 +1,15 @@
 apiVersion: v1
 system:
   functions:
-  - name: imagemagick
+  - name: default
     count: 1
     containers:
-    # Imagemagick service
-    - name: imagemagick
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/imagemagick:v6
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      - name: JAVA_HEAP_OPTS
-        value: -Xmx64m
-      - name: GRPC_ANNOUNCED_PORT
-        value: 7012
+    - name: imagemagick-sconems
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/anish.thomas/imagemagick-sconems:third-version
       ports:
-      - containerPort: 7020
-        name: grpc-svc
-      - containerPort: 15303
-        name: scone-mgmt
+      - containerPort: 7021
+      - containerPort: 15373
       livenessProbe:
-        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
-          port: 15303
-    
-    - name: sherpa
-      image: sfci/servicelibs/sherpa:2.0.25 # Use the latest version from https://git.soma.salesforce.com/servicelibs/sherpa/releases
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam" # Use whatever environment your kpod uses
-      volumeMounts:
-        - mountPath: /log
-          name: logvol
-      ports:
-      - containerPort: 7012 # add additional container ports for the protocols your service uses
-        name: sherpa-in-http2
-      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
-        name: sherpa-in-admin
-      livenessProbe:
-        exec:
-          command:
-          - "./bin/is-alive"
-        initialDelaySeconds: 120
-        periodSeconds: 5
-      readinessProbe:
-        exec:
-          command:
-          - "./bin/is-ready"
-        initialDelaySeconds: 110
-        periodSeconds: 5
-
-    - name: beacon
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: "sam"
-      args:
-      - -endpoint
-      - imagemagick:DATACENTER_ALLENV:7012
-      - -logging.dir
-      - /log
-      livenessProbe:
-        initialDelaySeconds: 5
-        exec:
-          command:
-          - "/home/scone/is-alive.sh"
-      volumeMounts:
-      - mountPath: /log
-        name: logvol
-         
-    # Add the log volume in the function section:
-    volumes:
-    - name: logvol
-      hostPath:
-        path: /home/sfdc-imagemagick/logs
+          port: 15373
