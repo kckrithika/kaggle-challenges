@@ -343,5 +343,5 @@ if slbconfigs.slbInKingdom then {
             },
         },
         minReadySeconds: 60,
-    },
+    } + (if slbimages.phase == "1" || slbimages.phase == "2" then { revisionHistoryLimit: 2 } else {}),
 } else "SKIP"

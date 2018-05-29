@@ -322,5 +322,5 @@ if configs.estate == "prd-sam" then {
                 },
             },
         },
-    },
+    } + (if slbimages.phase == "1" || slbimages.phase == "2" then { revisionHistoryLimit: 2 } else {}),
 } else "SKIP"
