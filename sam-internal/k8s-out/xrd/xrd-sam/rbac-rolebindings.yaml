@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: minion:clusterrolebinding
@@ -11,7 +11,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-system:rolebinding
@@ -23,7 +23,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-watchdog:rolebinding
@@ -35,7 +35,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: update-secrets
@@ -47,7 +47,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: samcompute:clusterrolebinding
@@ -62,7 +62,7 @@ items:
     name: shared0-samcompute1-2-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samcompute2-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: legostore:xrd-sam_ceph:rolebinding
@@ -250,7 +250,7 @@ items:
     name: shared0-samminionceph3-8-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: storage-foundation:xrd-sam_ceph:rolebinding
@@ -438,7 +438,7 @@ items:
     name: shared0-samminionceph3-8-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:xrd-sam_cloudatlas:rolebinding
@@ -452,7 +452,7 @@ items:
     name: shared0-samminionatlasfe1-1-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminionatlasfe2-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:xrd-sam_cloudatlas_dir:rolebinding
@@ -468,7 +468,7 @@ items:
     name: shared0-samminionatlasdir1-2-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminionatlasdir2-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: ccait:xrd-sam_gater:rolebinding
@@ -488,7 +488,7 @@ items:
     name: shared0-samminiongater2-1-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: gater:xrd-sam_gater:rolebinding
@@ -508,7 +508,7 @@ items:
     name: shared0-samminiongater2-1-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminiongater2-2-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: service-mesh:xrd-sam_gater:rolebinding

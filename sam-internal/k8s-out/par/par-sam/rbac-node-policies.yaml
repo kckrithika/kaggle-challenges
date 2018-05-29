@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samcompute1-1-par.ops.sfdc.net
@@ -13,7 +13,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samcompute1-2-par.ops.sfdc.net
@@ -26,7 +26,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samcompute2-1-par.ops.sfdc.net
@@ -39,7 +39,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-1-par.ops.sfdc.net
@@ -52,7 +52,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-10-par.ops.sfdc.net
@@ -65,7 +65,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-11-par.ops.sfdc.net
@@ -78,7 +78,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-12-par.ops.sfdc.net
@@ -91,7 +91,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-13-par.ops.sfdc.net
@@ -104,7 +104,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-14-par.ops.sfdc.net
@@ -117,7 +117,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-15-par.ops.sfdc.net
@@ -130,7 +130,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-16-par.ops.sfdc.net
@@ -143,7 +143,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-17-par.ops.sfdc.net
@@ -156,7 +156,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-2-par.ops.sfdc.net
@@ -169,7 +169,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-3-par.ops.sfdc.net
@@ -182,7 +182,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-4-par.ops.sfdc.net
@@ -195,7 +195,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-5-par.ops.sfdc.net
@@ -208,7 +208,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-6-par.ops.sfdc.net
@@ -221,7 +221,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-7-par.ops.sfdc.net
@@ -234,7 +234,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-8-par.ops.sfdc.net
@@ -247,7 +247,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph1-9-par.ops.sfdc.net
@@ -260,7 +260,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-1-par.ops.sfdc.net
@@ -273,7 +273,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-10-par.ops.sfdc.net
@@ -286,7 +286,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-11-par.ops.sfdc.net
@@ -299,7 +299,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-12-par.ops.sfdc.net
@@ -312,7 +312,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-13-par.ops.sfdc.net
@@ -325,7 +325,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-14-par.ops.sfdc.net
@@ -338,7 +338,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-15-par.ops.sfdc.net
@@ -351,7 +351,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-16-par.ops.sfdc.net
@@ -364,7 +364,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-17-par.ops.sfdc.net
@@ -377,7 +377,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-2-par.ops.sfdc.net
@@ -390,7 +390,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-3-par.ops.sfdc.net
@@ -403,7 +403,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-4-par.ops.sfdc.net
@@ -416,7 +416,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-5-par.ops.sfdc.net
@@ -429,7 +429,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-6-par.ops.sfdc.net
@@ -442,7 +442,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-7-par.ops.sfdc.net
@@ -455,7 +455,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-8-par.ops.sfdc.net
@@ -468,7 +468,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph2-9-par.ops.sfdc.net
@@ -481,7 +481,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-1-par.ops.sfdc.net
@@ -494,7 +494,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-10-par.ops.sfdc.net
@@ -507,7 +507,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-11-par.ops.sfdc.net
@@ -520,7 +520,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-12-par.ops.sfdc.net
@@ -533,7 +533,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-13-par.ops.sfdc.net
@@ -546,7 +546,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-14-par.ops.sfdc.net
@@ -559,7 +559,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-15-par.ops.sfdc.net
@@ -572,7 +572,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-16-par.ops.sfdc.net
@@ -585,7 +585,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-2-par.ops.sfdc.net
@@ -598,7 +598,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-3-par.ops.sfdc.net
@@ -611,7 +611,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-4-par.ops.sfdc.net
@@ -624,7 +624,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-5-par.ops.sfdc.net
@@ -637,7 +637,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-6-par.ops.sfdc.net
@@ -650,7 +650,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-7-par.ops.sfdc.net
@@ -663,7 +663,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-8-par.ops.sfdc.net
@@ -676,7 +676,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionceph3-9-par.ops.sfdc.net
@@ -689,7 +689,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-1-par.ops.sfdc.net
@@ -702,7 +702,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-10-par.ops.sfdc.net
@@ -715,7 +715,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-2-par.ops.sfdc.net
@@ -728,7 +728,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-3-par.ops.sfdc.net
@@ -741,7 +741,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-4-par.ops.sfdc.net
@@ -754,7 +754,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-5-par.ops.sfdc.net
@@ -767,7 +767,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-6-par.ops.sfdc.net
@@ -780,7 +780,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-7-par.ops.sfdc.net
@@ -793,7 +793,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-8-par.ops.sfdc.net
@@ -806,7 +806,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt1-9-par.ops.sfdc.net
@@ -819,7 +819,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-1-par.ops.sfdc.net
@@ -832,7 +832,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-10-par.ops.sfdc.net
@@ -845,7 +845,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-2-par.ops.sfdc.net
@@ -858,7 +858,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-3-par.ops.sfdc.net
@@ -871,7 +871,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-4-par.ops.sfdc.net
@@ -884,7 +884,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-5-par.ops.sfdc.net
@@ -897,7 +897,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-6-par.ops.sfdc.net
@@ -910,7 +910,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-7-par.ops.sfdc.net
@@ -923,7 +923,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-8-par.ops.sfdc.net
@@ -936,7 +936,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionchatbotrt2-9-par.ops.sfdc.net
@@ -949,7 +949,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionatlasfe1-1-par.ops.sfdc.net
@@ -962,7 +962,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionatlasfe2-1-par.ops.sfdc.net
@@ -975,7 +975,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionatlasdir1-1-par.ops.sfdc.net
@@ -988,7 +988,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionatlasdir1-2-par.ops.sfdc.net
@@ -1001,7 +1001,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionatlasdir2-1-par.ops.sfdc.net
@@ -1014,7 +1014,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminiongater1-1-par.ops.sfdc.net
@@ -1027,7 +1027,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminiongater1-2-par.ops.sfdc.net
@@ -1040,7 +1040,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminiongater1-3-par.ops.sfdc.net
@@ -1053,7 +1053,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminiongater2-1-par.ops.sfdc.net
@@ -1066,7 +1066,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminiongater2-2-par.ops.sfdc.net
@@ -1079,7 +1079,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-1-par.ops.sfdc.net
@@ -1092,7 +1092,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-10-par.ops.sfdc.net
@@ -1105,7 +1105,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-2-par.ops.sfdc.net
@@ -1118,7 +1118,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-3-par.ops.sfdc.net
@@ -1131,7 +1131,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-4-par.ops.sfdc.net
@@ -1144,7 +1144,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-5-par.ops.sfdc.net
@@ -1157,7 +1157,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-6-par.ops.sfdc.net
@@ -1170,7 +1170,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-7-par.ops.sfdc.net
@@ -1183,7 +1183,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-8-par.ops.sfdc.net
@@ -1196,7 +1196,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot1-9-par.ops.sfdc.net
@@ -1209,7 +1209,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-1-par.ops.sfdc.net
@@ -1222,7 +1222,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-10-par.ops.sfdc.net
@@ -1235,7 +1235,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-2-par.ops.sfdc.net
@@ -1248,7 +1248,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-3-par.ops.sfdc.net
@@ -1261,7 +1261,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-4-par.ops.sfdc.net
@@ -1274,7 +1274,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-5-par.ops.sfdc.net
@@ -1287,7 +1287,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-6-par.ops.sfdc.net
@@ -1300,7 +1300,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-7-par.ops.sfdc.net
@@ -1313,7 +1313,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-8-par.ops.sfdc.net
@@ -1326,7 +1326,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminioniot2-9-par.ops.sfdc.net
@@ -1339,7 +1339,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionmoderationeinstein1-1-par.ops.sfdc.net
@@ -1352,7 +1352,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionmoderationeinstein1-2-par.ops.sfdc.net
@@ -1365,7 +1365,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionmoderationeinstein2-1-par.ops.sfdc.net
@@ -1378,7 +1378,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionreportcollector1-1-par.ops.sfdc.net
@@ -1391,7 +1391,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionreportcollector2-1-par.ops.sfdc.net
@@ -1404,7 +1404,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionreportcollector3-1-par.ops.sfdc.net
@@ -1417,7 +1417,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionwarden1-1-par.ops.sfdc.net
@@ -1430,7 +1430,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionwarden1-2-par.ops.sfdc.net
@@ -1443,7 +1443,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionwarden2-1-par.ops.sfdc.net
@@ -1456,7 +1456,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme1-1-par.ops.sfdc.net
@@ -1469,7 +1469,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme1-2-par.ops.sfdc.net
@@ -1482,7 +1482,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme1-3-par.ops.sfdc.net
@@ -1495,7 +1495,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme1-4-par.ops.sfdc.net
@@ -1508,7 +1508,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme1-5-par.ops.sfdc.net
@@ -1521,7 +1521,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme2-1-par.ops.sfdc.net
@@ -1534,7 +1534,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme2-2-par.ops.sfdc.net
@@ -1547,7 +1547,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme2-3-par.ops.sfdc.net
@@ -1560,7 +1560,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme2-4-par.ops.sfdc.net
@@ -1573,7 +1573,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:shared0-samminionsme2-5-par.ops.sfdc.net
@@ -1586,7 +1586,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-1-par.ops.sfdc.net
@@ -1599,7 +1599,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-2-par.ops.sfdc.net
@@ -1612,7 +1612,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-3-par.ops.sfdc.net
@@ -1625,7 +1625,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-4-par.ops.sfdc.net
@@ -1638,7 +1638,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-5-par.ops.sfdc.net
@@ -1651,7 +1651,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-6-par.ops.sfdc.net
@@ -1664,7 +1664,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-7-par.ops.sfdc.net
@@ -1677,7 +1677,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-8-par.ops.sfdc.net
@@ -1690,7 +1690,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion1-9-par.ops.sfdc.net
@@ -1703,7 +1703,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-1-par.ops.sfdc.net
@@ -1716,7 +1716,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-2-par.ops.sfdc.net
@@ -1729,7 +1729,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-3-par.ops.sfdc.net
@@ -1742,7 +1742,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-4-par.ops.sfdc.net
@@ -1755,7 +1755,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-5-par.ops.sfdc.net
@@ -1768,7 +1768,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-6-par.ops.sfdc.net
@@ -1781,7 +1781,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-7-par.ops.sfdc.net
@@ -1794,7 +1794,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-8-par.ops.sfdc.net
@@ -1807,7 +1807,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion2-9-par.ops.sfdc.net
@@ -1820,7 +1820,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-1-par.ops.sfdc.net
@@ -1833,7 +1833,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-2-par.ops.sfdc.net
@@ -1846,7 +1846,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-3-par.ops.sfdc.net
@@ -1859,7 +1859,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-4-par.ops.sfdc.net
@@ -1872,7 +1872,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-5-par.ops.sfdc.net
@@ -1885,7 +1885,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-6-par.ops.sfdc.net
@@ -1898,7 +1898,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-7-par.ops.sfdc.net
@@ -1911,7 +1911,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-8-par.ops.sfdc.net
@@ -1924,7 +1924,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: role:samcaas1-caasminion3-9-par.ops.sfdc.net
@@ -1937,7 +1937,7 @@ items:
     - nodes/status
     verbs:
     - '*'
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samcompute1-1-par.ops.sfdc.net
@@ -1948,7 +1948,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samcompute1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samcompute1-2-par.ops.sfdc.net
@@ -1959,7 +1959,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samcompute1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samcompute2-1-par.ops.sfdc.net
@@ -1970,7 +1970,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samcompute2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-1-par.ops.sfdc.net
@@ -1981,7 +1981,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-10-par.ops.sfdc.net
@@ -1992,7 +1992,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-11-par.ops.sfdc.net
@@ -2003,7 +2003,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-11-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-12-par.ops.sfdc.net
@@ -2014,7 +2014,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-12-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-13-par.ops.sfdc.net
@@ -2025,7 +2025,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-13-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-14-par.ops.sfdc.net
@@ -2036,7 +2036,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-14-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-15-par.ops.sfdc.net
@@ -2047,7 +2047,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-15-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-16-par.ops.sfdc.net
@@ -2058,7 +2058,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-16-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-17-par.ops.sfdc.net
@@ -2069,7 +2069,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-17-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-2-par.ops.sfdc.net
@@ -2080,7 +2080,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-3-par.ops.sfdc.net
@@ -2091,7 +2091,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-4-par.ops.sfdc.net
@@ -2102,7 +2102,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-5-par.ops.sfdc.net
@@ -2113,7 +2113,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-6-par.ops.sfdc.net
@@ -2124,7 +2124,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-7-par.ops.sfdc.net
@@ -2135,7 +2135,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-8-par.ops.sfdc.net
@@ -2146,7 +2146,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph1-9-par.ops.sfdc.net
@@ -2157,7 +2157,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-1-par.ops.sfdc.net
@@ -2168,7 +2168,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-10-par.ops.sfdc.net
@@ -2179,7 +2179,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-11-par.ops.sfdc.net
@@ -2190,7 +2190,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-11-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-12-par.ops.sfdc.net
@@ -2201,7 +2201,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-12-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-13-par.ops.sfdc.net
@@ -2212,7 +2212,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-13-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-14-par.ops.sfdc.net
@@ -2223,7 +2223,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-14-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-15-par.ops.sfdc.net
@@ -2234,7 +2234,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-15-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-16-par.ops.sfdc.net
@@ -2245,7 +2245,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-16-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-17-par.ops.sfdc.net
@@ -2256,7 +2256,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-17-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-2-par.ops.sfdc.net
@@ -2267,7 +2267,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-3-par.ops.sfdc.net
@@ -2278,7 +2278,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-4-par.ops.sfdc.net
@@ -2289,7 +2289,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-5-par.ops.sfdc.net
@@ -2300,7 +2300,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-6-par.ops.sfdc.net
@@ -2311,7 +2311,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-7-par.ops.sfdc.net
@@ -2322,7 +2322,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-8-par.ops.sfdc.net
@@ -2333,7 +2333,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph2-9-par.ops.sfdc.net
@@ -2344,7 +2344,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-1-par.ops.sfdc.net
@@ -2355,7 +2355,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-10-par.ops.sfdc.net
@@ -2366,7 +2366,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-11-par.ops.sfdc.net
@@ -2377,7 +2377,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-11-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-12-par.ops.sfdc.net
@@ -2388,7 +2388,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-12-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-13-par.ops.sfdc.net
@@ -2399,7 +2399,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-13-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-14-par.ops.sfdc.net
@@ -2410,7 +2410,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-14-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-15-par.ops.sfdc.net
@@ -2421,7 +2421,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-15-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-16-par.ops.sfdc.net
@@ -2432,7 +2432,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-16-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-2-par.ops.sfdc.net
@@ -2443,7 +2443,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-3-par.ops.sfdc.net
@@ -2454,7 +2454,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-4-par.ops.sfdc.net
@@ -2465,7 +2465,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-5-par.ops.sfdc.net
@@ -2476,7 +2476,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-6-par.ops.sfdc.net
@@ -2487,7 +2487,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-7-par.ops.sfdc.net
@@ -2498,7 +2498,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-8-par.ops.sfdc.net
@@ -2509,7 +2509,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionceph3-9-par.ops.sfdc.net
@@ -2520,7 +2520,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-1-par.ops.sfdc.net
@@ -2531,7 +2531,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-10-par.ops.sfdc.net
@@ -2542,7 +2542,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-2-par.ops.sfdc.net
@@ -2553,7 +2553,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-3-par.ops.sfdc.net
@@ -2564,7 +2564,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-4-par.ops.sfdc.net
@@ -2575,7 +2575,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-5-par.ops.sfdc.net
@@ -2586,7 +2586,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-6-par.ops.sfdc.net
@@ -2597,7 +2597,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-7-par.ops.sfdc.net
@@ -2608,7 +2608,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-8-par.ops.sfdc.net
@@ -2619,7 +2619,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt1-9-par.ops.sfdc.net
@@ -2630,7 +2630,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt1-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-1-par.ops.sfdc.net
@@ -2641,7 +2641,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-10-par.ops.sfdc.net
@@ -2652,7 +2652,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-2-par.ops.sfdc.net
@@ -2663,7 +2663,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-3-par.ops.sfdc.net
@@ -2674,7 +2674,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-4-par.ops.sfdc.net
@@ -2685,7 +2685,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-5-par.ops.sfdc.net
@@ -2696,7 +2696,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-6-par.ops.sfdc.net
@@ -2707,7 +2707,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-7-par.ops.sfdc.net
@@ -2718,7 +2718,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-8-par.ops.sfdc.net
@@ -2729,7 +2729,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionchatbotrt2-9-par.ops.sfdc.net
@@ -2740,7 +2740,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionchatbotrt2-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionatlasfe1-1-par.ops.sfdc.net
@@ -2751,7 +2751,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionatlasfe1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionatlasfe2-1-par.ops.sfdc.net
@@ -2762,7 +2762,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionatlasfe2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionatlasdir1-1-par.ops.sfdc.net
@@ -2773,7 +2773,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionatlasdir1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionatlasdir1-2-par.ops.sfdc.net
@@ -2784,7 +2784,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionatlasdir1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionatlasdir2-1-par.ops.sfdc.net
@@ -2795,7 +2795,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionatlasdir2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminiongater1-1-par.ops.sfdc.net
@@ -2806,7 +2806,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminiongater1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminiongater1-2-par.ops.sfdc.net
@@ -2817,7 +2817,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminiongater1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminiongater1-3-par.ops.sfdc.net
@@ -2828,7 +2828,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminiongater1-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminiongater2-1-par.ops.sfdc.net
@@ -2839,7 +2839,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminiongater2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminiongater2-2-par.ops.sfdc.net
@@ -2850,7 +2850,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminiongater2-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-1-par.ops.sfdc.net
@@ -2861,7 +2861,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-10-par.ops.sfdc.net
@@ -2872,7 +2872,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-2-par.ops.sfdc.net
@@ -2883,7 +2883,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-3-par.ops.sfdc.net
@@ -2894,7 +2894,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-4-par.ops.sfdc.net
@@ -2905,7 +2905,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-5-par.ops.sfdc.net
@@ -2916,7 +2916,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-6-par.ops.sfdc.net
@@ -2927,7 +2927,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-7-par.ops.sfdc.net
@@ -2938,7 +2938,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-8-par.ops.sfdc.net
@@ -2949,7 +2949,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot1-9-par.ops.sfdc.net
@@ -2960,7 +2960,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot1-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-1-par.ops.sfdc.net
@@ -2971,7 +2971,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-10-par.ops.sfdc.net
@@ -2982,7 +2982,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-10-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-2-par.ops.sfdc.net
@@ -2993,7 +2993,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-3-par.ops.sfdc.net
@@ -3004,7 +3004,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-4-par.ops.sfdc.net
@@ -3015,7 +3015,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-5-par.ops.sfdc.net
@@ -3026,7 +3026,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-6-par.ops.sfdc.net
@@ -3037,7 +3037,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-7-par.ops.sfdc.net
@@ -3048,7 +3048,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-8-par.ops.sfdc.net
@@ -3059,7 +3059,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminioniot2-9-par.ops.sfdc.net
@@ -3070,7 +3070,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminioniot2-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionmoderationeinstein1-1-par.ops.sfdc.net
@@ -3081,7 +3081,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionmoderationeinstein1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionmoderationeinstein1-2-par.ops.sfdc.net
@@ -3092,7 +3092,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionmoderationeinstein1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionmoderationeinstein2-1-par.ops.sfdc.net
@@ -3103,7 +3103,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionmoderationeinstein2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionreportcollector1-1-par.ops.sfdc.net
@@ -3114,7 +3114,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionreportcollector1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionreportcollector2-1-par.ops.sfdc.net
@@ -3125,7 +3125,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionreportcollector2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionreportcollector3-1-par.ops.sfdc.net
@@ -3136,7 +3136,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionreportcollector3-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionwarden1-1-par.ops.sfdc.net
@@ -3147,7 +3147,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionwarden1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionwarden1-2-par.ops.sfdc.net
@@ -3158,7 +3158,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionwarden1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionwarden2-1-par.ops.sfdc.net
@@ -3169,7 +3169,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionwarden2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme1-1-par.ops.sfdc.net
@@ -3180,7 +3180,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme1-2-par.ops.sfdc.net
@@ -3191,7 +3191,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme1-3-par.ops.sfdc.net
@@ -3202,7 +3202,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme1-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme1-4-par.ops.sfdc.net
@@ -3213,7 +3213,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme1-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme1-5-par.ops.sfdc.net
@@ -3224,7 +3224,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme1-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme2-1-par.ops.sfdc.net
@@ -3235,7 +3235,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme2-2-par.ops.sfdc.net
@@ -3246,7 +3246,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme2-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme2-3-par.ops.sfdc.net
@@ -3257,7 +3257,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme2-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme2-4-par.ops.sfdc.net
@@ -3268,7 +3268,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme2-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:shared0-samminionsme2-5-par.ops.sfdc.net
@@ -3279,7 +3279,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionsme2-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-1-par.ops.sfdc.net
@@ -3290,7 +3290,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-2-par.ops.sfdc.net
@@ -3301,7 +3301,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-3-par.ops.sfdc.net
@@ -3312,7 +3312,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-4-par.ops.sfdc.net
@@ -3323,7 +3323,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-5-par.ops.sfdc.net
@@ -3334,7 +3334,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-6-par.ops.sfdc.net
@@ -3345,7 +3345,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-7-par.ops.sfdc.net
@@ -3356,7 +3356,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-8-par.ops.sfdc.net
@@ -3367,7 +3367,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion1-9-par.ops.sfdc.net
@@ -3378,7 +3378,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion1-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-1-par.ops.sfdc.net
@@ -3389,7 +3389,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-2-par.ops.sfdc.net
@@ -3400,7 +3400,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-3-par.ops.sfdc.net
@@ -3411,7 +3411,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-4-par.ops.sfdc.net
@@ -3422,7 +3422,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-5-par.ops.sfdc.net
@@ -3433,7 +3433,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-6-par.ops.sfdc.net
@@ -3444,7 +3444,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-7-par.ops.sfdc.net
@@ -3455,7 +3455,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-8-par.ops.sfdc.net
@@ -3466,7 +3466,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion2-9-par.ops.sfdc.net
@@ -3477,7 +3477,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion2-9-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-1-par.ops.sfdc.net
@@ -3488,7 +3488,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-1-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-2-par.ops.sfdc.net
@@ -3499,7 +3499,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-2-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-3-par.ops.sfdc.net
@@ -3510,7 +3510,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-3-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-4-par.ops.sfdc.net
@@ -3521,7 +3521,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-4-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-5-par.ops.sfdc.net
@@ -3532,7 +3532,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-5-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-6-par.ops.sfdc.net
@@ -3543,7 +3543,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-6-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-7-par.ops.sfdc.net
@@ -3554,7 +3554,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-7-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-8-par.ops.sfdc.net
@@ -3565,7 +3565,7 @@ items:
   subjects:
   - kind: User
     name: samcaas1-caasminion3-8-par.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: rolebinding:samcaas1-caasminion3-9-par.ops.sfdc.net

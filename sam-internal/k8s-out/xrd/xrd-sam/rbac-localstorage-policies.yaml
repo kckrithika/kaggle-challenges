@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: local-pv-create
@@ -187,7 +187,7 @@ items:
     name: shared0-samminionceph3-8-xrd.eng.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-1-xrd.eng.sfdc.net
@@ -200,7 +200,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-10-xrd.eng.sfdc.net
@@ -213,7 +213,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-11-xrd.eng.sfdc.net
@@ -226,7 +226,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-12-xrd.eng.sfdc.net
@@ -239,7 +239,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-13-xrd.eng.sfdc.net
@@ -252,7 +252,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-14-xrd.eng.sfdc.net
@@ -265,7 +265,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-15-xrd.eng.sfdc.net
@@ -278,7 +278,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-16-xrd.eng.sfdc.net
@@ -291,7 +291,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-17-xrd.eng.sfdc.net
@@ -304,7 +304,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-18-xrd.eng.sfdc.net
@@ -317,7 +317,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-19-xrd.eng.sfdc.net
@@ -330,7 +330,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-2-xrd.eng.sfdc.net
@@ -343,7 +343,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-20-xrd.eng.sfdc.net
@@ -356,7 +356,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-21-xrd.eng.sfdc.net
@@ -369,7 +369,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-22-xrd.eng.sfdc.net
@@ -382,7 +382,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-23-xrd.eng.sfdc.net
@@ -395,7 +395,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-24-xrd.eng.sfdc.net
@@ -408,7 +408,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-25-xrd.eng.sfdc.net
@@ -421,7 +421,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-26-xrd.eng.sfdc.net
@@ -434,7 +434,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-27-xrd.eng.sfdc.net
@@ -447,7 +447,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-28-xrd.eng.sfdc.net
@@ -460,7 +460,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-29-xrd.eng.sfdc.net
@@ -473,7 +473,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-3-xrd.eng.sfdc.net
@@ -486,7 +486,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-30-xrd.eng.sfdc.net
@@ -499,7 +499,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-4-xrd.eng.sfdc.net
@@ -512,7 +512,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-5-xrd.eng.sfdc.net
@@ -525,7 +525,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-6-xrd.eng.sfdc.net
@@ -538,7 +538,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-7-xrd.eng.sfdc.net
@@ -551,7 +551,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-8-xrd.eng.sfdc.net
@@ -564,7 +564,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph1-9-xrd.eng.sfdc.net
@@ -577,7 +577,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-1-xrd.eng.sfdc.net
@@ -590,7 +590,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-10-xrd.eng.sfdc.net
@@ -603,7 +603,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-11-xrd.eng.sfdc.net
@@ -616,7 +616,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-12-xrd.eng.sfdc.net
@@ -629,7 +629,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-13-xrd.eng.sfdc.net
@@ -642,7 +642,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-14-xrd.eng.sfdc.net
@@ -655,7 +655,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-15-xrd.eng.sfdc.net
@@ -668,7 +668,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-16-xrd.eng.sfdc.net
@@ -681,7 +681,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-17-xrd.eng.sfdc.net
@@ -694,7 +694,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-18-xrd.eng.sfdc.net
@@ -707,7 +707,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-19-xrd.eng.sfdc.net
@@ -720,7 +720,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-2-xrd.eng.sfdc.net
@@ -733,7 +733,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-20-xrd.eng.sfdc.net
@@ -746,7 +746,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-21-xrd.eng.sfdc.net
@@ -759,7 +759,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-22-xrd.eng.sfdc.net
@@ -772,7 +772,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-23-xrd.eng.sfdc.net
@@ -785,7 +785,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-24-xrd.eng.sfdc.net
@@ -798,7 +798,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-25-xrd.eng.sfdc.net
@@ -811,7 +811,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-26-xrd.eng.sfdc.net
@@ -824,7 +824,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-27-xrd.eng.sfdc.net
@@ -837,7 +837,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-28-xrd.eng.sfdc.net
@@ -850,7 +850,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-29-xrd.eng.sfdc.net
@@ -863,7 +863,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-3-xrd.eng.sfdc.net
@@ -876,7 +876,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-30-xrd.eng.sfdc.net
@@ -889,7 +889,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-4-xrd.eng.sfdc.net
@@ -902,7 +902,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-5-xrd.eng.sfdc.net
@@ -915,7 +915,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-6-xrd.eng.sfdc.net
@@ -928,7 +928,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-7-xrd.eng.sfdc.net
@@ -941,7 +941,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-8-xrd.eng.sfdc.net
@@ -954,7 +954,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph2-9-xrd.eng.sfdc.net
@@ -967,7 +967,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-1-xrd.eng.sfdc.net
@@ -980,7 +980,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-10-xrd.eng.sfdc.net
@@ -993,7 +993,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-11-xrd.eng.sfdc.net
@@ -1006,7 +1006,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-12-xrd.eng.sfdc.net
@@ -1019,7 +1019,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-13-xrd.eng.sfdc.net
@@ -1032,7 +1032,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-14-xrd.eng.sfdc.net
@@ -1045,7 +1045,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-15-xrd.eng.sfdc.net
@@ -1058,7 +1058,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-16-xrd.eng.sfdc.net
@@ -1071,7 +1071,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-17-xrd.eng.sfdc.net
@@ -1084,7 +1084,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-18-xrd.eng.sfdc.net
@@ -1097,7 +1097,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-19-xrd.eng.sfdc.net
@@ -1110,7 +1110,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-2-xrd.eng.sfdc.net
@@ -1123,7 +1123,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-20-xrd.eng.sfdc.net
@@ -1136,7 +1136,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-21-xrd.eng.sfdc.net
@@ -1149,7 +1149,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-22-xrd.eng.sfdc.net
@@ -1162,7 +1162,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-23-xrd.eng.sfdc.net
@@ -1175,7 +1175,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-24-xrd.eng.sfdc.net
@@ -1188,7 +1188,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-25-xrd.eng.sfdc.net
@@ -1201,7 +1201,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-26-xrd.eng.sfdc.net
@@ -1214,7 +1214,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-27-xrd.eng.sfdc.net
@@ -1227,7 +1227,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-28-xrd.eng.sfdc.net
@@ -1240,7 +1240,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-29-xrd.eng.sfdc.net
@@ -1253,7 +1253,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-3-xrd.eng.sfdc.net
@@ -1266,7 +1266,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-4-xrd.eng.sfdc.net
@@ -1279,7 +1279,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-5-xrd.eng.sfdc.net
@@ -1292,7 +1292,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-6-xrd.eng.sfdc.net
@@ -1305,7 +1305,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-7-xrd.eng.sfdc.net
@@ -1318,7 +1318,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-8-xrd.eng.sfdc.net
@@ -1331,7 +1331,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRole
   metadata:
     name: localstorage-role:shared0-samminionceph3-9-xrd.eng.sfdc.net
@@ -1344,7 +1344,7 @@ items:
     - nodes
     verbs:
     - patch
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-1-xrd.eng.sfdc.net
@@ -1355,7 +1355,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-10-xrd.eng.sfdc.net
@@ -1366,7 +1366,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-10-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-11-xrd.eng.sfdc.net
@@ -1377,7 +1377,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-11-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-12-xrd.eng.sfdc.net
@@ -1388,7 +1388,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-12-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-13-xrd.eng.sfdc.net
@@ -1399,7 +1399,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-13-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-14-xrd.eng.sfdc.net
@@ -1410,7 +1410,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-14-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-15-xrd.eng.sfdc.net
@@ -1421,7 +1421,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-15-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-16-xrd.eng.sfdc.net
@@ -1432,7 +1432,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-16-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-17-xrd.eng.sfdc.net
@@ -1443,7 +1443,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-17-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-18-xrd.eng.sfdc.net
@@ -1454,7 +1454,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-18-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-19-xrd.eng.sfdc.net
@@ -1465,7 +1465,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-19-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-2-xrd.eng.sfdc.net
@@ -1476,7 +1476,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-2-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-20-xrd.eng.sfdc.net
@@ -1487,7 +1487,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-20-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-21-xrd.eng.sfdc.net
@@ -1498,7 +1498,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-21-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-22-xrd.eng.sfdc.net
@@ -1509,7 +1509,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-22-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-23-xrd.eng.sfdc.net
@@ -1520,7 +1520,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-23-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-24-xrd.eng.sfdc.net
@@ -1531,7 +1531,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-24-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-25-xrd.eng.sfdc.net
@@ -1542,7 +1542,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-25-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-26-xrd.eng.sfdc.net
@@ -1553,7 +1553,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-26-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-27-xrd.eng.sfdc.net
@@ -1564,7 +1564,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-27-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-28-xrd.eng.sfdc.net
@@ -1575,7 +1575,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-28-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-29-xrd.eng.sfdc.net
@@ -1586,7 +1586,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-29-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-3-xrd.eng.sfdc.net
@@ -1597,7 +1597,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-3-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-30-xrd.eng.sfdc.net
@@ -1608,7 +1608,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-30-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-4-xrd.eng.sfdc.net
@@ -1619,7 +1619,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-4-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-5-xrd.eng.sfdc.net
@@ -1630,7 +1630,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-5-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-6-xrd.eng.sfdc.net
@@ -1641,7 +1641,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-6-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-7-xrd.eng.sfdc.net
@@ -1652,7 +1652,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-7-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-8-xrd.eng.sfdc.net
@@ -1663,7 +1663,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-8-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph1-9-xrd.eng.sfdc.net
@@ -1674,7 +1674,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph1-9-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-1-xrd.eng.sfdc.net
@@ -1685,7 +1685,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-10-xrd.eng.sfdc.net
@@ -1696,7 +1696,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-10-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-11-xrd.eng.sfdc.net
@@ -1707,7 +1707,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-11-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-12-xrd.eng.sfdc.net
@@ -1718,7 +1718,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-12-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-13-xrd.eng.sfdc.net
@@ -1729,7 +1729,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-13-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-14-xrd.eng.sfdc.net
@@ -1740,7 +1740,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-14-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-15-xrd.eng.sfdc.net
@@ -1751,7 +1751,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-15-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-16-xrd.eng.sfdc.net
@@ -1762,7 +1762,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-16-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-17-xrd.eng.sfdc.net
@@ -1773,7 +1773,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-17-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-18-xrd.eng.sfdc.net
@@ -1784,7 +1784,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-18-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-19-xrd.eng.sfdc.net
@@ -1795,7 +1795,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-19-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-2-xrd.eng.sfdc.net
@@ -1806,7 +1806,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-2-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-20-xrd.eng.sfdc.net
@@ -1817,7 +1817,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-20-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-21-xrd.eng.sfdc.net
@@ -1828,7 +1828,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-21-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-22-xrd.eng.sfdc.net
@@ -1839,7 +1839,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-22-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-23-xrd.eng.sfdc.net
@@ -1850,7 +1850,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-23-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-24-xrd.eng.sfdc.net
@@ -1861,7 +1861,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-24-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-25-xrd.eng.sfdc.net
@@ -1872,7 +1872,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-25-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-26-xrd.eng.sfdc.net
@@ -1883,7 +1883,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-26-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-27-xrd.eng.sfdc.net
@@ -1894,7 +1894,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-27-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-28-xrd.eng.sfdc.net
@@ -1905,7 +1905,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-28-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-29-xrd.eng.sfdc.net
@@ -1916,7 +1916,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-29-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-3-xrd.eng.sfdc.net
@@ -1927,7 +1927,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-3-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-30-xrd.eng.sfdc.net
@@ -1938,7 +1938,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-30-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-4-xrd.eng.sfdc.net
@@ -1949,7 +1949,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-4-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-5-xrd.eng.sfdc.net
@@ -1960,7 +1960,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-5-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-6-xrd.eng.sfdc.net
@@ -1971,7 +1971,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-6-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-7-xrd.eng.sfdc.net
@@ -1982,7 +1982,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-7-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-8-xrd.eng.sfdc.net
@@ -1993,7 +1993,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-8-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph2-9-xrd.eng.sfdc.net
@@ -2004,7 +2004,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph2-9-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-1-xrd.eng.sfdc.net
@@ -2015,7 +2015,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-1-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-10-xrd.eng.sfdc.net
@@ -2026,7 +2026,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-10-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-11-xrd.eng.sfdc.net
@@ -2037,7 +2037,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-11-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-12-xrd.eng.sfdc.net
@@ -2048,7 +2048,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-12-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-13-xrd.eng.sfdc.net
@@ -2059,7 +2059,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-13-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-14-xrd.eng.sfdc.net
@@ -2070,7 +2070,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-14-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-15-xrd.eng.sfdc.net
@@ -2081,7 +2081,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-15-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-16-xrd.eng.sfdc.net
@@ -2092,7 +2092,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-16-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-17-xrd.eng.sfdc.net
@@ -2103,7 +2103,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-17-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-18-xrd.eng.sfdc.net
@@ -2114,7 +2114,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-18-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-19-xrd.eng.sfdc.net
@@ -2125,7 +2125,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-19-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-2-xrd.eng.sfdc.net
@@ -2136,7 +2136,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-2-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-20-xrd.eng.sfdc.net
@@ -2147,7 +2147,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-20-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-21-xrd.eng.sfdc.net
@@ -2158,7 +2158,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-21-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-22-xrd.eng.sfdc.net
@@ -2169,7 +2169,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-22-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-23-xrd.eng.sfdc.net
@@ -2180,7 +2180,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-23-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-24-xrd.eng.sfdc.net
@@ -2191,7 +2191,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-24-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-25-xrd.eng.sfdc.net
@@ -2202,7 +2202,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-25-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-26-xrd.eng.sfdc.net
@@ -2213,7 +2213,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-26-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-27-xrd.eng.sfdc.net
@@ -2224,7 +2224,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-27-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-28-xrd.eng.sfdc.net
@@ -2235,7 +2235,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-28-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-29-xrd.eng.sfdc.net
@@ -2246,7 +2246,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-29-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-3-xrd.eng.sfdc.net
@@ -2257,7 +2257,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-3-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-4-xrd.eng.sfdc.net
@@ -2268,7 +2268,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-4-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-5-xrd.eng.sfdc.net
@@ -2279,7 +2279,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-5-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-6-xrd.eng.sfdc.net
@@ -2290,7 +2290,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-6-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-7-xrd.eng.sfdc.net
@@ -2301,7 +2301,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-7-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-8-xrd.eng.sfdc.net
@@ -2312,7 +2312,7 @@ items:
   subjects:
   - kind: User
     name: shared0-samminionceph3-8-xrd.eng.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: localstorage-rolebinding:shared0-samminionceph3-9-xrd.eng.sfdc.net
