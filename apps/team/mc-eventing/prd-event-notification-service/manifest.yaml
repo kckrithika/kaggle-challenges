@@ -8,15 +8,15 @@ system:
       - afranken@salesforce.com
       - gmercer@salesforce.com
   functions:
-  - name: wh-con-new
-    count: 0
+  - name: wh-con
+    count: 1
     volumes:
     - name: cert
       maddogCert:
         type: client
     containers:
     - name: event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.11
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.12
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -37,7 +37,7 @@ system:
         mountPath: /certs
   loadbalancers:
   - lbname: event-notification-service-lb
-    function: wh-con-new
+    function: wh-con
     nodeExposed: true
     ports:
     - port: 8083
