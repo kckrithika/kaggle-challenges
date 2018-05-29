@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: testfunc
     count: 1
     identity:
       serviceName: my-test-identity
