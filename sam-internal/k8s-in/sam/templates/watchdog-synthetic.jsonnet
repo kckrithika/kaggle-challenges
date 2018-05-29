@@ -14,6 +14,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     },
     spec: {
         replicas: 1,
+        revisionHistoryLimit: 2,
         selector: {
             matchLabels: {
                 name: "watchdog-synthetic",
