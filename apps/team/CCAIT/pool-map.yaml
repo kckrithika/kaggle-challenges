@@ -1,7 +1,8 @@
 apps:
   geoip-prod:
     - dfw/dfw-sam_gater
-    - par/par-sam_gater
     - phx/phx-sam_gater
+  geoip-prod-canary:
+    - par/par-sam_gater
   geoip-sandbox:
     - prd/prd-sam_gater
