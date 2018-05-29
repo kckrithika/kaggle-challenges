@@ -67,6 +67,7 @@ spec:
       - configMap:
           name: watchdog
         name: config
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

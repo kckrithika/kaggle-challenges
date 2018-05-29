@@ -74,6 +74,7 @@ spec:
       - hostPath:
           path: /etc/pki_service
         name: maddog-certs
-      - hostPath:
-          path: /etc/kubernetes
-        name: kubeconfig
+  updateStrategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+    type: RollingUpdate

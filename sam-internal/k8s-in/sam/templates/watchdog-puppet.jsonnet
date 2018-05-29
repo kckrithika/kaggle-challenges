@@ -78,6 +78,12 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 namespace: "sam-system",
             },
         },
+        updateStrategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: "25%",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {

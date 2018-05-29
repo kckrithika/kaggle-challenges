@@ -52,6 +52,12 @@ if samfeatureflags.rbacwd then {
                 namespace: "sam-system",
             },
         },
+        updateStrategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: "25%",
+            },
+        },
         selector: {
             matchLabels: {
                 name: "watchdog-rbac",

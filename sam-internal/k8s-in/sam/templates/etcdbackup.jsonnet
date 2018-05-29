@@ -62,6 +62,12 @@ local wdconfig = import "samwdconfig.jsonnet";
                 } + configs.ownerLabel.sam,
             },
         },
+        updateStrategy: {
+            type: "RollingUpdate",
+            rollingUpdate: {
+                maxUnavailable: "25%",
+            },
+        },
     },
     apiVersion: "extensions/v1beta1",
     metadata: {
