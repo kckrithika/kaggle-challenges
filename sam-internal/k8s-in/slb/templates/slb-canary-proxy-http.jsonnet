@@ -33,9 +33,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                         command: [
                                      "/sdn/slb-canary-service",
                                      "--serviceName=slb-canary-proxy-http",
-                                 ]
-                                 + (if slbimages.phase == "1" || slbimages.phase == "2" then [] else ["--metricsEndpoint=" + configs.funnelVIP])
-                                 + [
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=" + portconfigs.slb.canaryServiceProxyHttpPort,
                                      "--tlsPorts=443",
