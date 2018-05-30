@@ -3,9 +3,11 @@ data:
   sammanifestrepowatcher.json: |-
     {
       "db-hostname": "mysql.csc-sam.prd-sam.prd.slb.sfdc.net",
-      "db-name": "sam_manifest_repo_watcher",
+      "db-name": "sam_kube_resource",
       "db-password-file": "/var/mysqlPwd/pass.txt",
       "db-username": "root",
+      "freq-scan-on": "true",
+      "full-scan-on": "true",
       "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "ghe-tokenfile": "/var/token/token",
       "git-url": "https://git.soma.salesforce.com/api/v3/",
@@ -14,7 +16,8 @@ data:
         "svc-tnrp-git"
       ],
       "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
-      "tnrp-scan-frequency": "10m",
+      "tnrp-scan-frequency": "5m",
+      "webhook-on": "true",
       "webhook-tokenfile": "/var/webhook-token/webhook-token"
     }
 kind: ConfigMap

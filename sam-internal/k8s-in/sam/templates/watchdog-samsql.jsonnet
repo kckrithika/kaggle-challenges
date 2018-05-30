@@ -1,6 +1,8 @@
 local configs = import "config.jsonnet";
 local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
+local mysql = import "sammysqlconfig.jsonnet";
+
 if configs.estate == "prd-sam" then {
     kind: "Deployment",
     spec: {
@@ -15,10 +17,10 @@ if configs.estate == "prd-sam" then {
                         command: [
                                     "/sam/watchdog",
                                     "--role=MYSQL",
-                                    "--sqlDbUsername=root",
+                                    "--sqlDbUsername=" + mysql.userName,
                                     "--sqlDbPasswordFile=/var/secrets/mysql.txt",
-                                    "--sqlDbHostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net",
-                                    "--sqlK8sResourceDbName=sam_kube_resource",
+                                    "--sqlDbHostname=" + mysql.hostName,
+                                    "--sqlK8sResourceDbName=" + mysql.visibilityDBName,
                                     "--sqlDbPort=3306",
                                     "--sqlQueryFile=/var/queries/watchdog-samsql-queries.jsonnet",
                                     "--sqlAlertFile=/var/queries/watchdog-samsql-profiles.jsonnet",

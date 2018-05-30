@@ -1,12 +1,13 @@
 local configs = import "config.jsonnet";
+local mysql = import "sammysqlconfig.jsonnet";
 
 if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then
 std.prune({
   caFile: configs.caFile,
-  dbHostname: "mysql.csc-sam." + configs.estate + ".prd.slb.sfdc.net",
-  dbUsername: "root",
+  dbHostname: mysql.hostName,
+  dbUsername: mysql.userName,
   dbPasswordFile: "/var/mysqlPwd/pass.txt",
-  k8sResourceDbName: (if configs.estate == "prd-sam" then "sam_kube_resource" else "sam_kube_resource_test"),
+  k8sResourceDbName: mysql.visibilityDBName,
   k8sResourceTableName: "k8s_resource",
   consumeTableName: "consume",
   kafkaConsumerEndpoint: "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
