@@ -14,6 +14,7 @@ data:
     0.9.8 = 607
     0.9.8-service-mesh-test = 599
     sluice-lite = jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest
+    spark-2.3-test = jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
