@@ -14,7 +14,7 @@ std.prune({
         "ghe-tokenfile": "/var/token/token",
         "webhook-tokenfile": "/var/webhook-token/webhook-token",
         "funnel-endpoint": configs.funnelVIP,
-        "full-scan-on": "true",
-        "freq-scan-on": "true",
-        "webhook-on": "true",
+        "full-scan-on": true,
+        "freq-scan-on": true,
+        "webhook-on": true,
 }) else "SKIP"
