@@ -1,6 +1,6 @@
 apiVersion: v1
 items:
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: ClusterRoleBinding
   metadata:
     name: minion:clusterrolebinding
@@ -11,7 +11,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-system:rolebinding
@@ -23,7 +23,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sam-watchdog:rolebinding
@@ -35,7 +35,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: update-secrets
@@ -47,7 +47,7 @@ items:
   subjects:
   - kind: Group
     name: system:authenticated
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: csc-sam:ord-sam:rolebinding
@@ -63,7 +63,7 @@ items:
     name: shared0-samcompute1-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samcompute2-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: legostore:ord-sam_ceph:rolebinding
@@ -223,7 +223,7 @@ items:
     name: shared0-samminionceph3-8-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: storage-foundation:ord-sam_ceph:rolebinding
@@ -383,7 +383,7 @@ items:
     name: shared0-samminionceph3-8-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionceph3-9-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: chatbot:ord-sam_chatbot_kingdom:rolebinding
@@ -433,7 +433,7 @@ items:
     name: shared0-samminionchatbotrt2-8-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionchatbotrt2-9-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:ord-sam_cloudatlas:rolebinding
@@ -447,7 +447,7 @@ items:
     name: shared0-samminionatlasfe1-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionatlasfe2-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cloudatlas:ord-sam_cloudatlas_dir:rolebinding
@@ -463,7 +463,7 @@ items:
     name: shared0-samminionatlasdir1-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionatlasdir2-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-dfs:ord-sam_crosscloudplatform:rolebinding
@@ -503,7 +503,7 @@ items:
     name: shared0-samminioncrosscloudplatform3-4-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-eventlistener:ord-sam_crosscloudplatform:rolebinding
@@ -543,7 +543,7 @@ items:
     name: shared0-samminioncrosscloudplatform3-4-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-mds:ord-sam_crosscloudplatform:rolebinding
@@ -583,7 +583,7 @@ items:
     name: shared0-samminioncrosscloudplatform3-4-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudplatform3-5-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-eventlistener:ord-sam_crosscloudsetup:rolebinding
@@ -609,7 +609,7 @@ items:
     name: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-rrps:ord-sam_crosscloudsetup:rolebinding
@@ -635,7 +635,7 @@ items:
     name: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-rsui:ord-sam_crosscloudsetup:rolebinding
@@ -661,7 +661,7 @@ items:
     name: shared0-samminioncrosscloudsetup3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncrosscloudsetup3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-cre:ord-sam_customerresolutionengine:rolebinding
@@ -687,7 +687,7 @@ items:
     name: shared0-samminioncustomerresolutionengine3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine3-3-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: retail-credata:ord-sam_customerresolutionengine:rolebinding
@@ -713,7 +713,7 @@ items:
     name: shared0-samminioncustomerresolutionengine3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioncustomerresolutionengine3-3-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: gater:ord-sam_gater:rolebinding
@@ -739,7 +739,7 @@ items:
     name: shared0-samminiongater2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-4-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: service-mesh:ord-sam_gater:rolebinding
@@ -765,7 +765,7 @@ items:
     name: shared0-samminiongater2-3-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminiongater2-4-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: iot:ord-sam_iot:rolebinding
@@ -815,7 +815,7 @@ items:
     name: shared0-samminioniot2-8-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminioniot2-9-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cache-as-a-service:ord-sam_kingdom_caas:rolebinding
@@ -833,7 +833,7 @@ items:
     name: samkingdomcaas0-caasminion2-1-ord.ops.sfdc.net
   - kind: User
     name: samkingdomcaas0-caasminion3-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: mc-eventing:ord-sam_mc_consumer:rolebinding
@@ -849,7 +849,7 @@ items:
     name: shared0-samminionmcconsumer2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionmcconsumer3-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: communities:ord-sam_moderation_einstein:rolebinding
@@ -865,7 +865,7 @@ items:
     name: shared0-samminionmoderationeinstein1-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionmoderationeinstein2-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: csc-health:ord-sam_report_collector:rolebinding
@@ -887,7 +887,7 @@ items:
     name: shared0-samminionreportcollector3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: distributed-tracing:ord-sam_report_collector:rolebinding
@@ -909,7 +909,7 @@ items:
     name: shared0-samminionreportcollector3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionreportcollector3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: service-protection:ord-sam_serviceprotection:rolebinding
@@ -927,7 +927,7 @@ items:
     name: shared0-samminionserviceprotection2-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionserviceprotection3-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: sf-store:ord-sam_sfstore:rolebinding
@@ -949,7 +949,7 @@ items:
     name: shared0-samminionsfstore3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionsfstore3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: storage-foundation:ord-sam_sfstore:rolebinding
@@ -971,7 +971,7 @@ items:
     name: shared0-samminionsfstore3-1-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionsfstore3-2-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: casp:ord-sam_warden:rolebinding
@@ -987,7 +987,7 @@ items:
     name: shared0-samminionwarden1-2-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionwarden2-1-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: search-scale-safely:ord-search_model_executor:rolebinding
@@ -1017,7 +1017,7 @@ items:
     name: shared0-samminionsme2-4-ord.ops.sfdc.net
   - kind: User
     name: shared0-samminionsme2-5-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cache-as-a-service-sp1:ord-sp1-sam_caas:rolebinding
@@ -1077,7 +1077,7 @@ items:
     name: samcaas1-caasminion3-7-ord.ops.sfdc.net
   - kind: User
     name: samcaas1-caasminion3-8-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: cache-as-a-service-sp2:ord-sp2-sam_caas:rolebinding
@@ -1151,7 +1151,7 @@ items:
     name: samcaas2-caasminion3-8-ord.ops.sfdc.net
   - kind: User
     name: samcaas2-caasminion3-9-ord.ops.sfdc.net
-- apiVersion: rbac.authorization.k8s.io/v1alpha1
+- apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
     name: universal-search:ord-universalsearch_svc:rolebinding

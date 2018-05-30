@@ -6,19 +6,7 @@ local pools = import "configs/generated-pools.jsonnet";
     minionRole:: "samcompute",
     masterRole:: "samkubeapi",
     allNamespaces:: "*",
-
-    # Defines the set of estates that use the v1beta1 API version for RBAC.
-    # The default is v1alpha1, which is deprecated/disabled by default in k8s 1.9.
-    rbac_v1beta1_kingdoms:: std.set([
-        "prd",
-        "frf",
-    ]),
-
-    rbac_api_version::
-        if std.setMember(configs.kingdom, $.rbac_v1beta1_kingdoms) then
-             "rbac.authorization.k8s.io/v1beta1"
-        else
-             "rbac.authorization.k8s.io/v1alpha1",
+    rbac_api_version:: "rbac.authorization.k8s.io/v1beta1",
 
     # Returns list of nodes in given kingdom + controlestate + role from hosts.jsonnet
     get_Nodes(kingdom, controlestate, role):: [h.hostname for h in hosts.hosts if h.kingdom == kingdom && h.controlestate == controlestate && h.devicerole == role],
