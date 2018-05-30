@@ -64,6 +64,9 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
       volumeMounts:
       - mountPath: /client-certs
         name: geoip-client-cert
