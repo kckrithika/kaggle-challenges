@@ -3,6 +3,72 @@
   "generatedPools": [
     {
       "namespaces": [
+        "*"
+      ],
+      "access": [
+        "*"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "ccait",
+        "service-mesh"
+      ],
+      "access": [
+        "team/Gater",
+        "team/CCAIT",
+        "team/service-mesh"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_gater",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_kingdom_caas",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health",
+        "distributed-tracing"
+      ],
+      "access": [
+        "team/CSC_Health",
+        "team/distributed-tracing"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sam_report_collector",
+      "kingdom": "cdg",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "cdg-sam",
+      "estate": "cdg-sp1-sam_caas",
+      "kingdom": "cdg",
+      "superPod": "sp1"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -276,6 +342,70 @@
       "estate": "dfw-sp4-sam_caas",
       "kingdom": "dfw",
       "superPod": "sp4"
+    },
+    {
+      "namespaces": [
+        "csc-sam"
+      ],
+      "access": [
+        "team/CSC_Sam"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "gater",
+        "service-mesh"
+      ],
+      "access": [
+        "team/Gater",
+        "team/service-mesh"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_gater",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_kingdom_caas",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "csc-health",
+        "distributed-tracing"
+      ],
+      "access": [
+        "team/CSC_Health",
+        "team/distributed-tracing"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sam_report_collector",
+      "kingdom": "fra",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "cache-as-a-service-sp1"
+      ],
+      "access": [
+        "team/Cache_As_A_service"
+      ],
+      "controlEstate": "fra-sam",
+      "estate": "fra-sp1-sam_caas",
+      "kingdom": "fra",
+      "superPod": "sp1"
     },
     {
       "namespaces": [
