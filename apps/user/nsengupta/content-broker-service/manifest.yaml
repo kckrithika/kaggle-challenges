@@ -1,0 +1,71 @@
+apiVersion: v1
+
+system:
+  functions:
+    - name: content-broker-service
+      count: 1
+      containers: 
+        - name: content-broker-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/user/nsengupta/broker-service:v1
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: "sam"
+          ports:
+            - containerPort: 7020
+            - containerPort: 15374
+          livenessProbe:
+            httpGet:
+              path: /manage/health
+              port: 15374
+
+        - name: beacon-content-broker-service
+          image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+          args:
+            - -endpoint
+            - content-broker-service:DATACENTER:7012
+          livenessProbe:
+            initialDelaySeconds: 5
+            exec:
+              command:
+                - "/home/scone/is-alive.sh"
+
+        - name: sherpa-content-broker-service
+          image: sfci/servicelibs/sherpa:2.0.25
+          env:
+            - name: SFDC_ENVIRONMENT
+              value: "sam"
+          resources:
+            limits: { cpu: "1", memory: "1Gi" }
+            requests: { cpu: "1", memory: "1Gi" }
+          volumeMounts:
+            - mountPath: /log
+              name: sherpa-log-volume
+          ports:
+            - containerPort: 7012
+            - containerPort: 15373
+          livenessProbe:
+            exec:
+              command:
+                - "./bin/is-alive"
+            initialDelaySeconds: 120
+            periodSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - "./bin/is-ready"
+            initialDelaySeconds: 110
+            periodSeconds: 5
+
+      volumes:
+        - name: sherpa-log-volume
+          hostPath:
+            path: /home/sfdc-sherpa/logs
+
+  loadbalancers:
+  - lbname: content-broker-service-lb
+    function: content-broker-service
+    slbenabled: true
+    ports:
+      - port: 7020
+        targetPort: 7020
+        lbtype: tcp
