@@ -1,8 +1,9 @@
 {
   "1": {
     "hypersdn": {
-      "label": "v-0000889-fd41ebde",
-      "promotedTime": "2018-05-25T22:46:10.238969889Z"
+      "label": "v-0000890-dbe3d3d8",
+      "promotedTime": "2018-05-30T17:41:38.076864896Z",
+      "warning": "Build 890+ contains changes in slb-ipv"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
