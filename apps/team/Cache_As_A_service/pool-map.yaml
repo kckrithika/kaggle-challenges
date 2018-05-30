@@ -1677,15 +1677,6 @@ apps:
     - samcaas2-caasminion3-4-prd.eng.sfdc.net
     - samcaas2-caasminion3-5-prd.eng.sfdc.net
  
- prd-sp2-casam-metrics-publisher-c1:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
- prd-sp2-casam-redis-c1-12046:
-  - name: prd/prd-sp2-sam_caas
-    hostSubList:
-    - samcaas2-caasminion3-3-prd.eng.sfdc.net
-
  prd-caas-endurance-monitor-perf:
   - name: prd/prd-sp2-sam_caas
  prd-caas-release-perf-endurance:
