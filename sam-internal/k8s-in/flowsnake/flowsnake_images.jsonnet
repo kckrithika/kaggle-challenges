@@ -105,6 +105,7 @@ local utils = import "util_functions.jsonnet";
                   "jvmtest-lhn": "jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest",
                   "ajnaupgradetest-vg": "jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest",
                   "0.9.9-jdk8u162": "jenkins-dva-transformation-flowsnake-platform-master-627-itest",
+                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -152,6 +153,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.8": 607,
                   "sluice-lite": "jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest",  # for GDPR write to DeepSea
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
+                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
