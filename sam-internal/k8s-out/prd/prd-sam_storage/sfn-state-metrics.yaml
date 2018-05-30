@@ -73,6 +73,11 @@ spec:
           value: "8080"
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/sfms:latest-0000182-ebb4867b
         name: sfms
+        resources:
+          limits:
+            memory: 2Gi
+          requests:
+            memory: 2Gi
       - env:
         - name: MADDOG_POD_NAME
           valueFrom:

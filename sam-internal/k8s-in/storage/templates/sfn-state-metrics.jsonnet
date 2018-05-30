@@ -11,7 +11,8 @@ local enabledEstates = std.set([
     "xrd-sam",
 ]);
 
-local sfmsContainerLimits = if configs.estate == "prd-sam" then {
+local sfmsContainerLimits =
+if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
     resources: {
         limits: {
             memory: "2Gi",
