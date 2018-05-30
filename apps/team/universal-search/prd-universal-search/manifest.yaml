@@ -60,6 +60,9 @@ system:
     - name: sherpa
       image: sfci/servicelibs/sherpa:2.0.25
       ports:
+      # HTTP port for exposing to SLB for IoT
+      - containerPort: 7012
+        name: sherpa-in
       - containerPort: 7443
         name: sherpa-tls  
       - containerPort: 15373
@@ -89,12 +92,9 @@ system:
         periodSeconds: 5
     - name: beacon
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
-      # TODO Remove plaintext 7012 port once ACL is merged
       args:
       - -endpoint
       - universal-search/universal-search:DATACENTER_ALLENV:7443
-      - -endpoint
-      - universal-search-plaintext:DATACENTER_ALLENV:7012
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -163,3 +163,13 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+  loadbalancers:
+  - function: universal-search
+    lbname: universal-search-slb
+    ports:
+    - port: 7020
+      targetport: 7012
+    - lbtype: http
+      port: 15373
+      targetport: 15373
+    slbEnabled: true
