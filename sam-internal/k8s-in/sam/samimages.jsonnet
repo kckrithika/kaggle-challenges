@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[alok.bansal] New version of Sam Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002003-c01da0df",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002005-a5a31a24",
 
         },
 
