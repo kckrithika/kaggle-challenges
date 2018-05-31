@@ -3,10 +3,11 @@ local kingdom = std.extVar("kingdom");
 {
     topic_grants: (if std.objectHas(self.topic_grants_map, kingdom + "/" + estate) then $.topic_grants_map[kingdom + "/" + estate] else error "No matching topic_grants entry: " + kingdom + "/" + estate),
 
-    // Map from fleet (kingdom/estate) to map from PKI Namespace to list of Ajna topics.
-    // Flowsnake environments in that fleet using that PKI Namespace may access those Ajna topics.
-    // Note: For Flowsnake environments <= 0.9.6, key may be LDAP group rather than PKI Namespace
-    topic_grants_map: {
+    // Map from fleet (kingdom/estate) to map from LDAP group to list of Ajna topics.
+    // Flowsnake environments in that fleet using a PKI Namespace that may be accessed by that LDAP group
+    // may access those Ajna topics.
+    // TODO: Move customers over to using tenant certs and direct access to their topics. See also https://gus.lightning.force.com/lightning/r/ADM_Work__c/a07B0000004vNlhIAE/view
+   topic_grants_map: {
         "prd/prd-data-flowsnake": {
             alerting_flowsnake: [
                 "com.salesforce.prod.dva.alert",

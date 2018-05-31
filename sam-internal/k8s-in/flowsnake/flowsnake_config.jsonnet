@@ -1,6 +1,6 @@
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
-local flowsnakeimage = import "flowsnake_images.jsonnet";
+local flowsnake_images = import "flowsnake_images.jsonnet";
 local configs = import "config.jsonnet";
 local util = import "util_functions.jsonnet";
 {
@@ -42,26 +42,16 @@ local util = import "util_functions.jsonnet";
         "prd-data-flowsnake_test",
     ],
     deepsea_enabled: std.count(self.deepsea_enabled_estates, estate) > 0,
-    // Note: maddog_enabled if pki_agent working. Includes both "enabled" and "in-transition" Puppet settings
-    maddog_enabled: !self.is_minikube,
+    // Note: true if pki_agent working. Includes both "enabled" and "in-transition" Puppet settings
+    // False for Minikube, which supports MadKub for tenant certs but does not have PKI agent running on the
+    // node itself.
+    host_pki_agent_enabled: !self.is_minikube,
     // Prefer cert_services certs on these estates. (But use MadDog cabundle if maddog_enabled)
     cert_services_preferred_estates: [
         "prd-data-flowsnake",
         "prd-dev-flowsnake_iot_test",
     ],
     cert_services_preferred: std.count(self.cert_services_preferred_estates, estate) == 1,
-    host_ca_cert_path: if self.maddog_enabled then
-        "/etc/pki_service/ca/cabundle.pem"
-      else
-        "/data/certs/ca.crt",
-    host_platform_client_cert_path: if self.maddog_enabled then
-        "/etc/pki_service/platform/platform-client/certificates/platform-client.pem"
-      else
-        "/data/certs/hostcert.crt",
-    host_platform_client_key_path: if self.maddog_enabled then
-        "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem"
-      else
-        "/data/certs/hostcert.key",
     fleet_name: if self.is_minikube then
             # See flowsnake-platform/flowsnake-config
             "minikube"
@@ -85,4 +75,6 @@ local util = import "util_functions.jsonnet";
         estate == "ord-flowsnake_prod" ||
         estate == "phx-flowsnake_prod"
     ),
+    node_monitor_enabled: !self.is_minikube_small,
+    node_controller_enabled: std.objectHas(flowsnake_images.feature_flags, "node_controller"),
 }

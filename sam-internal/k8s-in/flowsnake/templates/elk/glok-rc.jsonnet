@@ -2,6 +2,7 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
 local zookeeper = import "_zookeeper-rcs.jsonnet";
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local elk = import "elastic_search_logstash_kibana.jsonnet";
+if !std.objectHas(flowsnake_images.feature_flags, "glok_retired") then
 {
     apiVersion: "apps/v1beta1",
     kind: "StatefulSet",
@@ -88,4 +89,4 @@ local elk = import "elastic_search_logstash_kibana.jsonnet";
             },
         },
     },
-}
+} else "SKIP"

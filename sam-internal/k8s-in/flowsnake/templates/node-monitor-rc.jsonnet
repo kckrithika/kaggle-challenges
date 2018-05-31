@@ -1,7 +1,7 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
-if flowsnakeconfig.is_minikube_small then
+if !flowsnakeconfig.node_monitor_enabled then
 "SKIP"
 else
 {

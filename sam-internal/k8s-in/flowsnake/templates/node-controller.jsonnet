@@ -1,8 +1,8 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 local configs = import "config.jsonnet";
-if std.objectHas(flowsnakeimage.feature_flags, "node_controller") then
+if flowsnakeconfig.node_controller_enabled then
 {
     kind: "Deployment",
     spec: {
@@ -12,7 +12,7 @@ if std.objectHas(flowsnakeimage.feature_flags, "node_controller") then
                 containers: [
                     {
                         name: "node-controller",
-                        image: flowsnakeimage.node_controller,
+                        image: flowsnake_images.node_controller,
                         command: [
                             "/sam/node-controller",
                             "--funnelEndpoint=" + configs.funnelVIP,

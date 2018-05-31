@@ -1,8 +1,11 @@
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local k8s_prepend = "k8s-";
 {
+    host_ca_cert_path: "/etc/pki_service/ca/cabundle.pem",
+    host_platform_client_cert_path: "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+    host_platform_client_key_path: "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
     k8s_cert_volume:
-        (if flowsnakeconfig.maddog_enabled then [
+        (if flowsnakeconfig.host_pki_agent_enabled then [
             {
                 name: k8s_prepend + "certificate-authority",
                 hostPath: {
@@ -31,7 +34,7 @@ local k8s_prepend = "k8s-";
             },
         ] else []),
     k8s_cert_volumeMounts:
-        (if flowsnakeconfig.maddog_enabled then [
+        (if flowsnakeconfig.host_pki_agent_enabled then [
             {
                 mountPath: "/etc/pki_service/ca",
                 name: k8s_prepend + "certificate-authority",
@@ -56,7 +59,7 @@ local k8s_prepend = "k8s-";
             },
         ] else []),
     platform_cert_volume:
-        (if flowsnakeconfig.maddog_enabled then [
+        (if flowsnakeconfig.host_pki_agent_enabled then [
             {
                 name: "certificate-authority",
                 hostPath: {
@@ -85,7 +88,7 @@ local k8s_prepend = "k8s-";
             },
         ] else []),
     platform_cert_volumeMounts:
-        (if flowsnakeconfig.maddog_enabled then [
+        (if flowsnakeconfig.host_pki_agent_enabled then [
             {
                 mountPath: "/etc/pki_service/ca",
                 name: "certificate-authority",

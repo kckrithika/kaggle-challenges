@@ -14,11 +14,35 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
     },
 
+
     ### Per-phase image tags
     per_phase: {
+        ### Image tags we do not change very often
+        # When you *do* need to change one of these images, just override in the phase(s) you want to change.
+        # Once the override is deployed to all phases, update the default and delete the overrides.
+        default_image_tags: {
+                canary_image_tag: "345",
+                cert_secretizer_image_tag: "565",
+                es_image_tag: "503",
+                testData_image_tag: "638",
+                glok_image_tag: "472",
+                ingressControllerNginx_image_tag: "571",
+                ingressDefaultBackend_image_tag: "571",
+                beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
+                kibana_image_tag: "345",
+                logloader_image_tag: "468",
+                logstash_image_tag: "468",
+                madkub_image_tag: "1.0.0-0000062-dca2d8d1",
+                nodeMonitor_image_tag: "403",
+                watchdog_image_tag: "sam-0001730-c7caec88",
+                node_controller_image_tag: "sam-0001970-a296421d",
+                zookeeper_image_tag: "345",
+                deployer_image_tag: "sam-0001730-c7caec88",
+                kubedns_image_tag: "1.10.0",
+        },
 
         ### Release Phase minikube
-        minikube: {
+        minikube: self.default_image_tags {
             canary_image_tag: "minikube",
             cert_secretizer_image_tag: "minikube",
             es_image_tag: "minikube",
@@ -27,14 +51,13 @@ local utils = import "util_functions.jsonnet";
             glok_image_tag: "minikube",
             ingressControllerNginx_image_tag: "minikube",
             ingressDefaultBackend_image_tag: "minikube",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
             kibana_image_tag: "minikube",
             logloader_image_tag: "minikube",
             logstash_image_tag: "minikube",
             madkub_image_tag: "minikube",
             nodeMonitor_image_tag: "minikube",
             zookeeper_image_tag: "minikube",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",
@@ -42,6 +65,7 @@ local utils = import "util_functions.jsonnet";
                 uniform_pull_policy: "foo",
                 kubedns_daily_restart: "foo",
                 integration_test_data: "foo",
+                # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
             },
             version_mapping: {
                 main: {
@@ -54,26 +78,9 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
-        "1": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
-            es_image_tag: "503",
+        "1": self.default_image_tags {
             fleetService_image_tag: "641",
-            testData_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
@@ -85,12 +92,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.1": 377,
-                  "0.9.2": 403,
-                  "0.9.3": 427,
-                  "0.9.4": 447,
-                  "0.9.5": 487,
-                  "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
@@ -99,12 +100,6 @@ local utils = import "util_functions.jsonnet";
                 # These are for developer testing only
                 # only copy above to phase 2
                 {
-                  "0.9.7-itest": 565,
-                  "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",
-                  "smtest-kh": "jenkins-dva-transformation-flowsnake-platform-PR-597-4-itest",
-                  "jvmtest-lhn": "jenkins-dva-transformation-flowsnake-platform-jvm_options-1-itest",
-                  "ajnaupgradetest-vg": "jenkins-dva-transformation-flowsnake-platform-PR-605-1-itest",
-                  "0.9.9-jdk8u162": "jenkins-dva-transformation-flowsnake-platform-master-627-itest",
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
                 },
                 # ignore this section, require by std.manifestIni
@@ -114,26 +109,9 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
-        "2": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
-            es_image_tag: "503",
+        "2": self.default_image_tags {
             fleetService_image_tag: "638",
-            testData_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 integration_test_data: "foo",
@@ -141,18 +119,8 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.1": 377,
-                  "0.9.2": 403,
-                  "0.9.3": 427,
-                  "0.9.4": 447,
-                  "0.9.5": 487,
-                  "0.9.6": "jenkins-dva-transformation-flowsnake-platform-0.9.6-ldap-hotfix-5-itest",
                   "0.9.7": 571,
-                  "0.9.7-mktest": "jenkins-dva-transformation-flowsnake-platform-madkub-sidecar-user-1-itest",  # temporary for IoT
-                  "0.9.7-patch-worker-secrets": 584,  # temporary for IoT
-                  "0.9.8-service-mesh-test": "599",  # ALSO temporary for IoT...
                   "0.9.8": 607,
-                  "sluice-lite": "jenkins-dva-transformation-flowsnake-platform-log-type-hack-2-itest",  # for GDPR write to DeepSea
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
                 },
@@ -163,25 +131,9 @@ local utils = import "util_functions.jsonnet";
         },
 
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
-        "3": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "565",
-            es_image_tag: "503",
+        "3": self.default_image_tags {
             fleetService_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 node_controller: "foo",
@@ -198,26 +150,10 @@ local utils = import "util_functions.jsonnet";
             },
         },
 
-        ### Release Phase 4 - Remaiing production fleets
-        "4": {
-            canary_image_tag: "345",
-            cert_secretizer_image_tag: "585",
-            es_image_tag: "503",
+        ### Release Phase 4 - Remaining production fleets
+        "4": self.default_image_tags {
             fleetService_image_tag: "638",
-            glok_image_tag: "472",
-            ingressControllerNginx_image_tag: "571",
-            ingressDefaultBackend_image_tag: "571",
-            beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
-            kibana_image_tag: "345",
-            logloader_image_tag: "468",
-            logstash_image_tag: "468",
-            madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-            nodeMonitor_image_tag: "403",
-            watchdog_image_tag: "sam-0001730-c7caec88",
-            node_controller_image_tag: "sam-0001970-a296421d",
-            zookeeper_image_tag: "345",
-            deployer_image_tag: "sam-0001730-c7caec88",
-            kubedns_image_tag: "1.10.0",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 node_controller: "foo",
@@ -225,8 +161,6 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.7": 571,
-                  "0.9.8-SNAPSHOT": "jenkins-dva-transformation-flowsnake-platform-PR-589-1-itest",
-                  "0.9.7-595": "jenkins-dva-transformation-flowsnake-platform-PR-596-1-itest",
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 },

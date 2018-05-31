@@ -3,7 +3,9 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_sdn = import "flowsnake_sdn.jsonnet";
 local samconfig = import "config.jsonnet";
+local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
 {
+    auto_deployer_enabled: !flowsnakeconfig.is_minikube,
     samcontroldeployer: {
         email: true,
         "email-delay": 0,
@@ -21,9 +23,9 @@ local samconfig = import "config.jsonnet";
         sender: "flowsnake@salesforce.com",
         "smtp-server": samconfig.smtpServer,
         "tnrp-endpoint": samconfig.tnrpArchiveEndpoint,
-        "ca-file": flowsnakeconfig.host_ca_cert_path,
-        "cert-file": flowsnakeconfig.host_platform_client_cert_path,
-        "key-file": flowsnakeconfig.host_platform_client_key_path,
+        "ca-file": certs_and_kubeconfig.host_ca_cert_path,
+        "cert-file": certs_and_kubeconfig.host_platform_client_cert_path,
+        "key-file": certs_and_kubeconfig.host_platform_client_key_path,
         "dry-run": false,
         "resources-to-skip": [
             // always skip this, this is used for image promotion to prod.
