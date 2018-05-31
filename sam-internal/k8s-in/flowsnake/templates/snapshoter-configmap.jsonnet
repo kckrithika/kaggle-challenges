@@ -6,7 +6,7 @@ if flowsnake_config.is_test then ({
     apiVersion: "v1",
     metadata: {
         name: "snapshoter",
-        namespace: "sam-system",
+        namespace: "flowsnake",
     },
     data: {
         "snapshoter.json": std.toString(import "configs/snapshoter-config.jsonnet"),
