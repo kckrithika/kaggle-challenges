@@ -330,11 +330,41 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-
-                nodeSelector: {
-                    "slb-service": "slb-nginx-b",
-                },
-            },
+            } + (
+                if slbimages.phase == "1" then {
+                    affinity: {
+                        podAntiAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: [{
+                                labelSelector: {
+                                    matchExpressions: [{
+                                        key: "name",
+                                        operator: "In",
+                                        values: [
+                                            "slb-nginx-config-b",
+                                        ],
+                                    }],
+                                },
+                                topologyKey: "kubernetes.io/hostname",
+                            }],
+                        },
+                        nodeAffinity: {
+                            requiredDuringSchedulingIgnoredDuringExecution: {
+                                nodeSelectorTerms: [{
+                                    matchExpressions: [{
+                                        key: "slb-service",
+                                        operator: "In",
+                                        values: ["slb-nginx-b"],
+                                    }],
+                                }],
+                            },
+                        },
+                    },
+                } else {
+                    nodeSelector: {
+                        "slb-service": "slb-nginx-b",
+                    },
+                }
+            ),
         },
         strategy: {
             type: "RollingUpdate",
