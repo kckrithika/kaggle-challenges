@@ -17,6 +17,7 @@ if slbconfigs.slbInKingdom then {
     },
     spec: {
         replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
+        revisionHistoryLimit: 2,
         template: {
             metadata: {
                 labels: {
@@ -343,5 +344,5 @@ if slbconfigs.slbInKingdom then {
             },
         },
         minReadySeconds: 60,
-    } + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then { revisionHistoryLimit: 2 } else {}),
+    },
 } else "SKIP"

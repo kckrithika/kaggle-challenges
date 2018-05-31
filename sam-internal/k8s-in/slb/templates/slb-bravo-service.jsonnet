@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
+local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbimages.phase == "3" then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
