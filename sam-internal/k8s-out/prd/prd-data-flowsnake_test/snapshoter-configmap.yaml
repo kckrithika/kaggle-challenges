@@ -21,4 +21,4 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: snapshoter
-  namespace: sam-system
+  namespace: flowsnake
