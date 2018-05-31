@@ -4,7 +4,7 @@ local sdnconfigs = import "sdnconfig.jsonnet";
 local sdnimages = (import "sdnimages.jsonnet") + { templateFilename:: std.thisFile };
 local utils = import "util_functions.jsonnet";
 
-if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then {
+if configs.estate == "prd-sdc" then {
     kind: "DaemonSet",
     spec: {
         template: {
@@ -45,14 +45,14 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                                 },
                                 {
                                     name: "TOPIC",
-                                    value: "sfdc.prod.sdn__" + configs.kingdom + ".ajna_local__log",
+                                    value: "sfdc.prod.rsyslog__" + configs.kingdom + ".ajna_local__logs.sdn",
                                 },
                         ],
                         volumeMounts: [
                             sdnconfigs.sdn_logstash_certs_volume_mount,
                             sdnconfigs.sdn_logstash_keystore_volume_mount,
                             {
-                                mountPath: "/var/log",
+                                mountPath: "/var/logs/sdn",
                                 name: "sdnlogs",
                             },
                         ],

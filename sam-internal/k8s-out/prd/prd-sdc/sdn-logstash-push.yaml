@@ -30,7 +30,7 @@ spec:
         - name: KEYSTORE_PASSWORD
           value: password
         - name: TOPIC
-          value: sfdc.prod.sdn__prd.ajna_local__log
+          value: sfdc.prod.rsyslog__prd.ajna_local__logs.sdn
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hyperelk:v-0000102-91c9122c
         name: sdn-logstash-push
         volumeMounts:
@@ -38,7 +38,7 @@ spec:
           name: logstashcerts
         - mountPath: /etc/logstash/certs
           name: logstashkeystore
-        - mountPath: /var/log
+        - mountPath: /var/logs/sdn
           name: sdnlogs
       - env:
         - name: RUN
