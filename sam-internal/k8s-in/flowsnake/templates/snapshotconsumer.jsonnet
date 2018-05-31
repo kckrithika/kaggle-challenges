@@ -10,6 +10,7 @@ if flowsnake_config.is_test then {
             name: "snapshotconsumer",
         },
         name: "snapshotconsumer",
+        namespace: "flowsnake",
     },
     spec: {
         replicas: 1,
@@ -66,9 +67,6 @@ if flowsnake_config.is_test then {
                     },
                 ]),
                 hostNetwork: true,
-                nodeSelector: {
-                    master: "true",
-                },
             },
         },
     },
