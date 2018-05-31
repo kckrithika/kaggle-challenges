@@ -18,7 +18,10 @@ system:
     - name: rabbitmq-server
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jvergara/rabbitmq-server:3.7.0
       ports:
-      - containerPort: 5672
+      - name: amqp
+        containerPort: 5672
+      - name: http
+        containerPort: 15672
       livenessProbe:
         httpGet:
           path: /
@@ -34,8 +37,13 @@ system:
       - name: myservercert
         mountPath: /servercert
   loadbalancers:
-  - lbname: rabbitmq
+  - lbname: rabbitmq-amqp
     function: rabbitmq-server
     ports:
       - port: 5672
         targetport: 5672
+  - lbname: rabbitmq-http
+    function: rabbitmq-server
+    ports:
+      - port: 15672
+        targetport: 15672
