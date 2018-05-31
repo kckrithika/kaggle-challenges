@@ -17,6 +17,6 @@ system:
     function: default
     slbenabled: true
     ports:
-      - port: 9090
-        targetport: 9090
+      - port: 7000
+        targetport: 7000
         lbtype: tcp
