@@ -4,7 +4,7 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "consumeTableName": "consume",
-      "dbHostname": "mysql.flowsnake.prd-data-flowsnake_test.prd.slb.sfdc.net",
+      "dbHostname": "mysql.flowsnake.prd-sam.prd.slb.sfdc.net",
       "dbPasswordFile": "/var/mysqlPwd/pass.txt",
       "dbUsername": "root",
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
