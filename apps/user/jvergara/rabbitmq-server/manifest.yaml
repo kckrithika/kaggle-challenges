@@ -1,5 +1,9 @@
 apiVersion: v1
 system:
+  notifications:
+    email:
+    - jvergara@salesforce.com
+
   functions:
   - name: rabbitmq-server
     count: 1
@@ -29,3 +33,9 @@ system:
         mountPath: /clientcert
       - name: myservercert
         mountPath: /servercert
+  loadbalancers:
+  - lbname: rabbitmq
+    function: rabbitmq-server
+    ports:
+      - port: 5672
+        targetport: 5672
