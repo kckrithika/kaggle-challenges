@@ -50,7 +50,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - prd-samdev
         "1": $.per_phase["2"] {
-            hypersam: "sam-0001993-e3c36481",
+            hypersam: "sam-0002010-ef8417c9",
             },
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
