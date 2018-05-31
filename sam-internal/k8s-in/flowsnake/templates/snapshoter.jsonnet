@@ -10,7 +10,7 @@ if flowsnake_config.is_test then ({
             name: "snapshoter",
         },
         name: "snapshoter",
-        namespace: "sam-system",
+        namespace: "flowsnake",
     },
     spec: {
         replicas: 1,
@@ -25,7 +25,7 @@ if flowsnake_config.is_test then ({
                     apptype: "control",
                     name: "snapshoter",
                 },
-                namespace: "sam-system",
+                namespace: "flowsnake",
             },
             spec: {
                 containers: [{
@@ -66,13 +66,6 @@ if flowsnake_config.is_test then ({
                     configs.config_volume("snapshoter"),
                 ]),
                 hostNetwork: true,
-                nodeSelector: {
-                              } +
-                              if configs.kingdom == "prd" then {
-                                  master: "true",
-                              } else {
-                                  pool: configs.estate,
-                              },
             },
         },
     },

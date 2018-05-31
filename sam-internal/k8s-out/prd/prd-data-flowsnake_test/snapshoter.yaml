@@ -4,7 +4,7 @@ metadata:
   labels:
     name: snapshoter
   name: snapshoter
-  namespace: sam-system
+  namespace: flowsnake
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
       labels:
         apptype: control
         name: snapshoter
-      namespace: sam-system
+      namespace: flowsnake
     spec:
       containers:
       - command:
@@ -48,8 +48,6 @@ spec:
         - mountPath: /config
           name: config
       hostNetwork: true
-      nodeSelector:
-        master: "true"
       volumes:
       - configMap:
           name: sfdchosts

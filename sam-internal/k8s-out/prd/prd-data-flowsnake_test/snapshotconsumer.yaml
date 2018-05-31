@@ -4,6 +4,7 @@ metadata:
   labels:
     name: snapshotconsumer
   name: snapshotconsumer
+  namespace: flowsnake
 spec:
   replicas: 1
   selector:
@@ -42,8 +43,6 @@ spec:
           name: mysql
           readOnly: true
       hostNetwork: true
-      nodeSelector:
-        master: "true"
       volumes:
       - configMap:
           name: sfdchosts
