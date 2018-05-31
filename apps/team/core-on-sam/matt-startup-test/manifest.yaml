@@ -18,6 +18,11 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-4
 
       env:
+        # ENV for settings.path
+        - name: SFDC_ENVIRONMENT
+          value: mist
+        - name: SFDC_SUBENVIRONMENT
+          value: mist61
         # DB info
         - name: DB_USER
           value: sleepy
