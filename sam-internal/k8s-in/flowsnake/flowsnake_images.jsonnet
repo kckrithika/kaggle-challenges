@@ -184,6 +184,7 @@ local utils = import "util_functions.jsonnet";
             kubedns_image_tag: "1.10.0",
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                node_controller: "foo",
             },
             version_mapping: {
                 main: {
@@ -219,6 +220,7 @@ local utils = import "util_functions.jsonnet";
             kubedns_image_tag: "1.10.0",
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                node_controller: "foo",
             },
             version_mapping: {
                 main: {
