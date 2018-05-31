@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 1
+    containers:
+    - name: scsvc
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sowmyatammana/scheduler-service:sowmya 
+      ports:
+      - containerPort: 7000
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 7000
+  loadbalancers:
+  - lbname: scsvclb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 9090
+        targetport: 9090
+        lbtype: tcp
