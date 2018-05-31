@@ -1,3 +1,5 @@
 apps:
  mysql:
    - prd/prd-sam
+ pseudo-api-test:
+   - prd/prd-sam
