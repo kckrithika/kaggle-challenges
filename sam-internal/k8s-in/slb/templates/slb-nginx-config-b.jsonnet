@@ -17,6 +17,7 @@ if slbconfigs.slbInKingdom then {
     },
     spec: {
         replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
+        revisionHistoryLimit: 2,
         template: {
             metadata: {
                 labels: {
