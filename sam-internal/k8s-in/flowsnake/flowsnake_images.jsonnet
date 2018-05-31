@@ -88,7 +88,6 @@ local utils = import "util_functions.jsonnet";
                 uniform_pull_policy: "foo",  # TESTED, please promote.
                 kubedns_daily_restart: "foo",  # TESTED, please promote.
                 integration_test_data: "foo",
-                node_controller: "foo",
             },
             version_mapping: {
                 main: {
@@ -112,8 +111,10 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                watchdog_canaries: "foo",  # TESTED, please promote.
+                uniform_pull_policy: "foo",  # TESTED, please promote.
+                kubedns_daily_restart: "foo",  # TESTED, please promote.
                 integration_test_data: "foo",
-                node_controller: "foo",
             },
             version_mapping: {
                 main: {
@@ -134,7 +135,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                node_controller: "foo",
                 watchdog_canaries: "foo",  # TESTED, please promote.
                 uniform_pull_policy: "foo",  # TESTED, please promote.
                 kubedns_daily_restart: "foo",  # TESTED, please promote.
@@ -156,8 +156,9 @@ local utils = import "util_functions.jsonnet";
             fleetService_image_tag: "638",
 
             feature_flags: {
-                # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                node_controller: "foo",
+                ### DO NOT SET FEATURE FLAGS HERE.
+                ### If your feature is ready to be enabled everywhere, remove the conditional logic around it
+                ### and delete the flag.
             },
             version_mapping: {
                 main: {
