@@ -100,7 +100,7 @@ local utils = import "util_functions.jsonnet";
                 # These are for developer testing only
                 # only copy above to phase 2
                 {
-                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
+                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-15-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -122,7 +122,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7": 571,
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-11-itest",
+                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-15-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
