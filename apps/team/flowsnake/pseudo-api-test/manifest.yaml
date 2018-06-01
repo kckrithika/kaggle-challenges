@@ -8,7 +8,7 @@ system:
     - name: virtual-api
       command:
         - /sam/virtual-api
-        - --sql-db-host=10.251.156.48
+        - --sql-db-host=mysql.flowsnake.prd-sam.prd.slb.sfdc.net
         - --sql-db-port=3306
         - --sql-db-name=sdp
         - --sql-db-user=root
