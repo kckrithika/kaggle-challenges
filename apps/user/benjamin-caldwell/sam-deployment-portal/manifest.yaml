@@ -9,7 +9,7 @@ system:
       command: 
       - "/sam/sam-deployment-portal-v2"
       - --db-hostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
-      - --db-user=root
+      - --db-username=root
       - --db-password=pass
       - --manifest-db-name=sam_manifest_repo_watcher
       - --v=4
