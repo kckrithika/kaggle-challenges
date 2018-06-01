@@ -26,6 +26,8 @@ system:
           value: 8080
         - name: MANAGEMENT_PORT
           value: 15372
+        - name: AJNA_NAMESPACE
+          value: mc.test.mceventbusqa1s1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
