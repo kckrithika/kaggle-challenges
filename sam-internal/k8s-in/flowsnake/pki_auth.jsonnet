@@ -33,6 +33,11 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: ["search_dlc"],
             authorizedClientCerts: [],
         },
+        {
+            namespace: "sayonara-applogs",
+            authorizedLdapGroups: ["Sayonara-Flowsnake"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
