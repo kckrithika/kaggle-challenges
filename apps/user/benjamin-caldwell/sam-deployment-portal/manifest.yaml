@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: sdp
     count: 2
     containers:
     - name: benjamin-sam-deployment-portal
@@ -25,8 +25,8 @@ system:
           path: /healthz
           port: 64123
   loadbalancers:
-  - lbname: benjaminsdp
-    function: default
+  - lbname: benjamin-sdp
+    function: sdp
     slbenabled: true
     ports:
       - port: 80
