@@ -4,12 +4,16 @@ system:
   - name: default
     count: 2
     containers:
-    - name: benjamin-sam-seployment-portal
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/hypersam:20180521_114243.8a709654.dirty.bencald-ltm0
+    - name: benjamin-sam-deployment-portal
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/hypersam:20180531_171019.bd84636a.dirty.bencald-ltm0
       command: 
       - "/sam/sam-deployment-portal-v2"
-      args: 
-      - 
+      - --db-hostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
+      - --db-user=root
+      - --db-password=pass
+      - --manifest-db-name=sam_manifest_repo_watcher
+      - --v=4
+      - --alsologtostderr
       ports:
       - containerPort: 64123
       livenessProbe:
@@ -21,10 +25,10 @@ system:
           path: /healthz
           port: 64123
   loadbalancers:
-  - lbname: benjaminhelloln
+  - lbname: benjaminsdp
     function: default
     slbenabled: true
     ports:
-      - port: 64123
+      - port: 80
         targetport: 64123
         lbtype: tcp
