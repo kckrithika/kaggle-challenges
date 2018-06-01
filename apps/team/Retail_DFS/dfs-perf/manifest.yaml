@@ -21,7 +21,7 @@ system:
 
     containers:
     - name: dfs
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.5.0
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -33,15 +33,26 @@ system:
         value: mist
       - name: LOAD_CC_CERT
         value: false
+      - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
+        value: mds/mist/ST0000000000001
+      - name: MDS_DESTINATION
+        value: metadata-service.retail-mds.localhost.mesh.force.com:5443
+      - name: GDOT_USER
+        value: datafederationservice
       ports:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
     
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /server-certs
