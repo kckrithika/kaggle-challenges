@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: jmeter-tests
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkilgore/jmeter-tests:dkilgore-20180524
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkilgore/jmeter-tests:dkilgore-20180601
       ports:
       - containerPort: 9090
       livenessProbe:
