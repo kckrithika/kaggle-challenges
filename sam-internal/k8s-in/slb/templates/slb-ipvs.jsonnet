@@ -179,7 +179,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             "--client.serverPort=" + slbports.slb.slbNodeApiIpvsOverridePort,
                             "--client.serverInterface=lo",
                         ] + if slbimages.phase == "1" then [
-                            "--enableNat=false",
+                            "--enableConntrack=false",
                         ] else [],
                         volumeMounts: configs.filter_empty([
                             slbconfigs.slb_volume_mount,

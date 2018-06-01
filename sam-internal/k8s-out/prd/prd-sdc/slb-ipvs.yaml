@@ -108,7 +108,7 @@ spec:
         - --log_dir=/host/data/slb/logs/slb-ipvs
         - --client.serverPort=12081
         - --client.serverInterface=lo
-        - --enableNat=false
+        - --enableConntrack=false
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000899-bf318b9c
         name: slb-ipvs-conntrack
         securityContext:
