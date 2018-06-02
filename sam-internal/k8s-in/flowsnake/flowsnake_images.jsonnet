@@ -92,8 +92,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.7": 571,
-                  "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 }
                 +
@@ -140,8 +138,6 @@ local utils = import "util_functions.jsonnet";
             },
             version_mapping: {
                 main: {
-                  "0.9.7": 571,
-                  "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                 },
                 # ignore this section, require by std.manifestIni
