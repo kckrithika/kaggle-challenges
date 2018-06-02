@@ -59,8 +59,6 @@ system:
         - name: SFDC_ENVIRONMENT
           value: stmfa
       ports:
-        - containerPort: 7012
-          name: sherpa-h2-plain
         - containerPort: 7443
           name: sherpa-h2-tls
         - containerPort: 15373
@@ -93,8 +91,6 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       args:
-      - -endpoint
-      - metadata-service:DATACENTER:7012
       - -endpoint
       - retail-mds/metadata-service:DATACENTER:7443
       livenessProbe:
