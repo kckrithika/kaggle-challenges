@@ -135,10 +135,15 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 node_controller: "foo",
+                watchdog_canaries: "foo",  # TESTED, please promote.
+                uniform_pull_policy: "foo",  # TESTED, please promote.
+                kubedns_daily_restart: "foo",  # TESTED, please promote.
+                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
+                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-15-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -173,9 +178,9 @@ local utils = import "util_functions.jsonnet";
             "minikube"
         else if estate == "prd-data-flowsnake_test" then
             "1"
-        else if (kingdom == "prd") then
+        else if (kingdom == "prd" && estate != "prd-data-flowsnake") then
             "2"
-        else if (kingdom == "phx") then
+        else if (estate == "prd-data-flowsnake" || kingdom == "phx") then
             "3"
         else
             "4"
