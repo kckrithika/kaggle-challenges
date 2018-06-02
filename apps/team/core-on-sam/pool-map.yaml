@@ -16,5 +16,3 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  redis-c1:
   - name: prd/prd-sp2-sam_coreapp
-    hostSubList:
-    - shared2-samminioncoreapp2-4-prd.eng.sfdc.net
