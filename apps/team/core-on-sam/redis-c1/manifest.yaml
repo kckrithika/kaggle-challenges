@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: redis-c1
-    count: 1
+    count: 3
     hostnetwork: true
     containers:
     - name: caas-redis
@@ -42,7 +42,7 @@ system:
         - --redisPort=12046
         - --cluster.name=caas-cluster-1
         - --logDir=/home/caas/logs
-        - --pathPrefix=/mist30/prd/sp2
+        - --pathPrefix=/mist61/prd/sp2
       livenessProbe:
         initialDelaySeconds: 5 
         exec:
