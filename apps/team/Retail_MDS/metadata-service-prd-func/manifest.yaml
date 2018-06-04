@@ -37,10 +37,6 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
-      - name: scone_server_security_mutualauth
-        value: true
-      - name: security_server_dynamickeystore_enabled
-        value: true
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 60
