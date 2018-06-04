@@ -43,6 +43,8 @@ system:
       ports:
         - containerPort: 15380
       env:
+        - name: SERVER_PORT
+          value: 8081
         - name: MANAGEMENT_PORT
           value: 15380
         - name: AJNA_NAMESPACE
