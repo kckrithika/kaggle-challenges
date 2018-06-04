@@ -10,22 +10,9 @@ system:
       env:
       - name: GF_SERVER_ROOT_URL
         value: "http://grafanalb.radc.prd-sam.prd.slb.sfdc.net:64135"
-      resources:
-        limits: { cpu: "4", memory: "4Gi" }
-        requests: { cpu: "4", memory: "4Gi" }
       ports:
       - containerPort: 3000
-      volumeMounts:
-      - mountPath: /secrets/
-        name: secretvol
-        readOnly: true
       livenessProbe:
-        initialDelaySeconds: 30
-        timeoutSeconds: 10
         httpGet:
           path: /
           port: 3000
-    volumes:
-      - name: secretvol
-        k4aSecret:
-          secretName: grafanaarguscreds
