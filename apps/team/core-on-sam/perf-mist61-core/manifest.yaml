@@ -1,0 +1,219 @@
+apiVersion: v1
+ 
+system:
+  functions:
+  - name: mist61-core
+
+    count: 2
+    
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+
+    containers:
+    - name: mist61-core
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-perf-1
+
+      env:
+        # DB info
+        - name: DB_USER
+#          value: grumpy
+          value: sleepy
+        - name: DB_SID
+#          value: mist61c214utf
+          value: mist61a216utf
+        - name: IP_DB
+          value: mist61ice1-db1-1-prd.eng.sfdc.net
+
+        # If the count is changed above, the same value must be set for the NODES env variable below
+        - name: NODES
+          value: 2
+
+        # Matches the external port on the load balancer, used for redirection upon login
+        - name: PUBLIC_PORT
+          value: 8086
+
+        # Set to true it PUBLIC_PORT is an https endpoint
+        - name: PUBLIC_PORT_IS_SECURE
+          value: true
+
+        # Container(s) may not actually get scheduled on this host; we just need to hit the LB proxy
+        # "samcaas2-caasminion1-2-prd.eng.sfdc.net" for SAM LB (either Cyan or direct to container),
+        # "cyanlb.cache-as-a-service-sp2.prd-sam.prd.slb.sfdc.net" for L4-SLB
+        - name: PUBLIC_HOST_NAME
+          value: mist61-cyan.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
+        # This maps to http_port
+        - name: PORT
+          value: 12100
+        # This maps to https_port
+        - name: SPORT
+          value: 12099
+        # This maps to https2way_port
+        - name: S2PORT
+          value: 12098
+
+        # Set to true to trigger a plsql stats load during startup
+        - name: PLSQL_UPDATE_RUNSTATS
+          value: true
+
+        # By default we patch server to NOT expire sessions across major release bounday.
+        # Comment out this name/value pair to revert back to normal session invalidation.
+        - name: DISABLE_AUTH_RELEASE_CHECK
+          value: true
+
+        # App color to be used for blue/green release
+        - name: CASAM_APP_COLOR
+#          value: green
+          value: blue
+
+        # Override port being announced in SD
+        - name: SD_PORT_OVERRIDE
+          value: 12099
+
+#      resources:
+#        limits: { memory: "10240M" }
+#        requests: { memory: "8292M" }
+ 
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+#           - "/bin/sh"
+#           - "-c"
+#           - "ps -ef | grep -v grep | grep `cat /home/sfdc/logs/sfdc.pid`"
+        initialDelaySeconds: 480
+        periodSeconds: 1
+
+      readinessProbe:
+        httpGet:
+#          path: /ping.jsp
+          path: /samReady.jsp
+          port: 12100
+        initialDelaySeconds: 120
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 8998
+        - containerPort: 12100
+        - containerPort: 11211
+        - containerPort: 12098
+        - containerPort: 12099
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+    
+    terminationGracePeriodSeconds: 500
+    progressDeadlineSeconds: 300
+
+    strategy:
+      type: RollingUpdate
+      rollingUpdate:
+        maxSurge: 200%
+        maxUnavailable: 0
+
+  - name: sequencer
+
+    count: 1
+
+    volumes:
+    - name: cert
+      maddogCert:
+        type: client
+    
+    containers:
+    - name: sequencer
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/coreonsam/casam_jenkins:b9c578
+
+      env:
+        - name: USE_SWITCHBOARD
+          value: 1
+        - name: CYAN
+          value: https://cyan.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net:12065
+        - name: CURL_GLOBAL_OPTS
+          value: -k
+        - name: K4A
+          value: have_to_get_this
+        - name: WAITTIME_PD
+          value: 60
+        - name: JMX_HOST
+          value: shared2-samminioncoreapp1-1-prd.eng.sfdc.net
+        - name: JMX_PORT
+          value: 8998
+        - name: OLD_DWARF
+          value: sleezy
+#          value: happy
+        - name: CURRENT_RELEASE_VERSION
+#          value: blue
+          value: green
+        - name: NEW_RELEASE_VERSION
+#          value: green
+          value: blue
+        # Min number of ready servers for cyan to indicate the new pod is ready
+        - name: READY_SERVER_COUNT
+          value: 2
+        - name: DB_SID
+#          value: mist61a216utf
+          value: mist61c214utf
+        - name: LOCK_DWARF
+          value: 1
+        - name: TRIGGER_CAFFEINE
+          value: 1
+        - name: UNLOCK_DWARF
+          value: 1
+#        - name: K4A_OUTPUT
+#          value: /tmp/files/repo/user.properties
+        - name: SNOWWHITE_PWD
+          value: rotate
+        - name: MADDOG_CLIENT
+          value: /certs
+
+      livenessProbe:
+        httpGet:
+          path: /login
+          port: 12062
+        initialDelaySeconds: 60
+        periodSeconds: 1
+        failureThreshold: 10
+
+      readinessProbe:
+        httpGet:
+          path: /login
+          port: 12062
+        initialDelaySeconds: 60
+        periodSeconds: 1
+        failureThreshold: 10
+
+      ports:
+        # Actually used by the container
+        - containerPort: 12062
+
+      volumeMounts:
+        - name: cert
+          mountPath: /certs
+ 
+    terminationGracePeriodSeconds: 500
+    progressDeadlineSeconds: 300
+      
+  loadbalancers:
+  - lbname: mist61-core-lb
+    function: mist61-core
+    nodeExposed: true
+    ports:
+    - port: 18998
+      targetport: 8998
+    - port: 18085
+      targetport: 12100
+    - port: 18086
+      targetport: 12099
+  - lbname: sequencer-lb
+    function: sequencer
+    nodeExposed: true
+    ports:
+    - port: 22062
+      targetport: 12062
