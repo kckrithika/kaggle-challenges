@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -40,25 +40,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               configs.sfdchosts_arg,
                               "--k8sapiserver=",
                               "--connPort=" + portconfigs.slb.ipvsDataConnPort,
-                        ] + (
-                             if configs.estate == "prd-sdc" then [
                                 "--monitorFrequency=180s",
                                 "--metricsEndpoint=" + configs.funnelVIP,
                                 "--hostnameOverride=$(NODE_NAME)",
-                             ] else [
-                                "--funnelEndpoint=" + configs.funnelVIP,
-                                "--archiveSvcEndpoint=" + configs.tnrpArchiveEndpoint,
-                                "--smtpServer=" + configs.smtpServer,
-                                "--sender=" + slbconfigs.sdn_watchdog_emailsender,
-                                "--recipient=" + slbconfigs.sdn_watchdog_emailrec,
-                                "--emailFrequency=12h",
-                                "--watchdogFrequency=180s",
-                                "--alertThreshold=300s",
-                                "--retryPeriod=2m",
-                                "--maxretries=2",
-                             ]
-                        ),
-
+                        ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             slbconfigs.slb_volume_mount,
