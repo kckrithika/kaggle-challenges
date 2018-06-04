@@ -16,3 +16,5 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  redis-c1:
   - name: prd/prd-sp2-sam_coreapp
+ perf-mist61-cyan:
+  - name: prd/prd-sp2-sam_coreapp
