@@ -1,4 +1,6 @@
 apps:
+  demo-sarthur:
+      - prd/prd-sp2-sam_iot_test
   controlplane-staging:
       - prd/prd-sp2-sam_iot_test
   enrichment-staging:
