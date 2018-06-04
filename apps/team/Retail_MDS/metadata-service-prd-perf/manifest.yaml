@@ -28,7 +28,7 @@ system:
         secretName: mds-gdot-secrets-prd
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.1.32
+      image: sfci/metadata-cannon/metadata-service:0.1.43
       ports:
       - containerPort: 7020
       - containerPort: 9091
@@ -40,6 +40,10 @@ system:
         value: 9091
       - name: MANAGEMENT_PORT
         value: 15523
+      - name: scone_server_security_mutualauth
+        value: true
+      - name: security_server_dynamickeystore_enabled
+        value: true
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 30
