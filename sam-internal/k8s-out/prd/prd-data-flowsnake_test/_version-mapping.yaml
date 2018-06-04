@@ -4,7 +4,7 @@ data:
     0.9.10 = 638
     0.9.7 = 571
     0.9.8 = 607
-    spark-2.3-test = jenkins-dva-transformation-flowsnake-platform-PR-630-15-itest
+    spark-2.3-test = jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
