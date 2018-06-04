@@ -18,7 +18,7 @@ system:
       - name: LOGGING_STDERR_LEVEL
         value: ALL
       - name: SFDC_ENVIRONMENT
-        value: secure
+        value: devsitest
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sarthur/enterprise-demo:bravo
       livenessProbe:
         exec:
@@ -45,7 +45,7 @@ system:
         readOnly: true
     - env:
       - name: SFDC_ENVIRONMENT
-        value: secure
+        value: devsitest
       image: sfci/servicelibs/sherpa:2.0.26
       livenessProbe:
         exec:
@@ -97,7 +97,7 @@ system:
   loadbalancers:
   - function: demo-sarthur
     lbname: demo-sarthur-lb
-    nodeExposed: true
+    slbEnabled: true
     ports:
-    - port: 15384
+    - port: 15373
       targetport: 15373
