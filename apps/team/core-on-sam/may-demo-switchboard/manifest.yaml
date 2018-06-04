@@ -18,7 +18,6 @@ system:
       args:
       - --logging.json.enabled=false
       - --zookeeper.seedHosts=shared0-discovery1-0-prd.data.sfdc.net
-      - --settings.path=dev.mydev.landmark.-.switchboard
       volumeMounts:
         - mountPath: /log
           name: switchboard-log-volume
