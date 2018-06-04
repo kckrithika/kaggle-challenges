@@ -38,6 +38,25 @@ system:
       volumeMounts:
       - name: cert
         mountPath: /certs
+    - name: dev-event-notification-service
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.13
+      ports:
+        - containerPort: 15380
+      env:
+        - name: MANAGEMENT_PORT
+          value: 15380
+        - name: AJNA_NAMESPACE
+          value: mc.test.mceventbusdev
+      livenessProbe:
+        initialDelaySeconds: 60
+        periodSeconds: 120
+        timeoutSeconds: 130
+        httpGet:
+          path: /manage/health
+          port: 15380
+      volumeMounts:
+      - name: cert
+        mountPath: /certs
   loadbalancers:
   - lbname: event-notification-service-lb
     function: wh-con
@@ -47,3 +66,5 @@ system:
       targetport: 8080
     - port: 15373
       targetport: 15372
+    - port: 15380
+      targetport: 15380
