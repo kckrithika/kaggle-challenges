@@ -73,8 +73,8 @@ data:
       "snooze": [
         {
           "checker": "rbacChecker",
-          "instanceRegex": "-prd.eng.sfdc.net$",
-          "until": "2018/06/01"
+          "instanceRegex": "-frf.ops.sfdc.net$",
+          "until": "2018/06/12"
         }
       ],
       "tlsEnabled": true,
