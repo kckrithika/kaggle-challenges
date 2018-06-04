@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: benjamin-sam-deployment-portal
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/hypersam:20180531_171019.bd84636a.dirty.bencald-ltm0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/hypersam:20180604_160604.bd84636a.dirty.bencald-ltm0
       command: 
       - "/sam/sam-deployment-portal-v2"
       - --db-hostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
@@ -24,6 +24,9 @@ system:
         httpGet:
           path: /healthz
           port: 64123
+      env:
+      - name: DUMMY_VAR
+        value: here
   loadbalancers:
   - lbname: benjamin-sdp
     function: sdp

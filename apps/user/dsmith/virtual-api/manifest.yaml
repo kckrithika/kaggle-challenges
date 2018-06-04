@@ -27,9 +27,6 @@ system:
         httpGet:
           path: /healthz
           port: 7002
-      env:
-      - name: DUMMY_VAR
-        value: here
   loadbalancers:
   - lbname: pseudo-kubeapi
     function: pseudo-kubeapi
