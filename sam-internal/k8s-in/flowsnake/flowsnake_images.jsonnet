@@ -143,7 +143,7 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-15-itest",
+                  "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -249,9 +249,10 @@ local utils = import "util_functions.jsonnet";
         "flowsnake-storm-submitter",
         "flowsnake-storm-ui",
         "flowsnake-test-data",
-        "flowsnake-airflow-webserver",
-        "flowsnake-airflow-scheduler",
-        "flowsnake-airflow-worker",
+        # Airflow prototype build broke, so we stopped building it for now.
+        #"flowsnake-airflow-webserver",
+        #"flowsnake-airflow-scheduler",
+        #"flowsnake-airflow-worker",
         "flowsnake-postgresql",
         "flowsnake-redis",
         "flowsnake-environment-service",
@@ -266,4 +267,50 @@ local utils = import "util_functions.jsonnet";
         "flowsnake-zookeeper",
         "flowsnake-logstash",
     ],
+
+    # Use this to manage the release of versions that change the set of images we build.
+    # Key is the user-facing version name, not the associated Docker tag.
+    flowsnakeImagesToPromoteOverrides: {
+        "spark-2.3-test": [
+           "flowsnake-spark-driver_2.1.0",
+           "flowsnake-spark-master_2.1.0",
+           "flowsnake-spark-worker_2.1.0",
+           "flowsnake-spark-history-server_2.1.0",
+           "flowsnake-spark-driver_2.3.0",
+           "flowsnake-spark-master_2.3.0",
+           "flowsnake-spark-worker_2.3.0",
+           "flowsnake-spark-history-server_2.3.0",
+           "flowsnake-rewriting-proxy",
+           "flowsnake-local-kafka",
+           "flowsnake-global-kafka",
+           "flowsnake-local-zookeeper",
+           "flowsnake-kafka-rest-proxy",
+           "flowsnake-spark-token-renewer",
+           "flowsnake-spark-secret-updater",
+           "flowsnake-tensorflow-python27",
+           "flowsnake-tensorflow-python35",
+           "flowsnake-storm-worker",
+           "flowsnake-storm-nimbus",
+           "flowsnake-storm-submitter",
+           "flowsnake-storm-ui",
+           "flowsnake-test-data",
+           # Airflow prototype build broke, so we stopped building it for now.
+           #"flowsnake-airflow-webserver",
+           #"flowsnake-airflow-scheduler",
+           #"flowsnake-airflow-worker",
+           "flowsnake-postgresql",
+           "flowsnake-redis",
+           "flowsnake-environment-service",
+           "flowsnake-stream-production-monitor",
+           "flowsnake-kafka-configurator",
+           "flowsnake-sluice-configurator",
+           "flowsnake-kafka-connect",
+           "flowsnake-job-flowsnake-demo-job",
+           "flowsnake-job-flowsnake-storm-demo-job",
+           "flowsnake-job-flowsnake-airflow-dags",
+           "flowsnake-job-flowsnake-spark-local-mode-demo-job",
+           "flowsnake-zookeeper",
+           "flowsnake-logstash",
+        ],
+    },
 }
