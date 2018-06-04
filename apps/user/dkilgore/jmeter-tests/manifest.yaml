@@ -5,13 +5,14 @@ system:
     count: 2
     containers:
     - name: jmeter-tests
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkilgore/jmeter-tests:dkilgore-20180601
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dkilgore/jmeter-tests:dkilgore-20180604
       ports:
       - containerPort: 9090
       livenessProbe:
-        httpGet:
-          path: /
-          port: 9090
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
   loadbalancers:
   - lbname: jmeter-testslb
     function: default
