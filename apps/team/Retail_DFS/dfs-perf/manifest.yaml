@@ -40,7 +40,7 @@ system:
       - name: GDOT_USER
         value: datafederationservice
       - name: JVM_ARGS
-        value: -Dspring.profiles.active=prod
+        value: -Dspring.profiles.active=default
       ports:
       - containerPort: 7022
       - containerPort: 15372
