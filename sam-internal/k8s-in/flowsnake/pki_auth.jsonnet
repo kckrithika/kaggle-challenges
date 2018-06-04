@@ -38,6 +38,11 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: ["Sayonara-Flowsnake"],
             authorizedClientCerts: [],
         },
+        {
+            namespace: "edge_intelligence",
+            authorizedLdapGroups: ["edge_intelligence"],
+            authorizedClientCerts: [],
+        },
       ],
       "prd/prd-data-flowsnake_test": [
         {
