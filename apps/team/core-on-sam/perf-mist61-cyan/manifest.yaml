@@ -9,10 +9,12 @@ system:
     count: 1
     containers:
     - name: cyan-envoy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180518-130827
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:kviphong-20180604-104859
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
+      - name: CASAM_SETTINGS_PATH
+        value: mist.mist61.prd.na1.cyan
       volumeMounts:
       - name: envoy-config-volume
         mountPath: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -38,7 +40,6 @@ system:
       image: sfci/servicelibs/sherpa-envoy:d4757f0fd9c186683784865cd25c02f7fcfc5e7a
       args:
       - --template=/cyan-config/front-proxy-config.yaml.template
-      - --settings.path=mist.mist61.prd.na1.cyan
       ports:
       - containerPort: 12060
       - containerPort: 12065
