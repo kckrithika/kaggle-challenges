@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: sfci/cre/cre-control-plane:0.0.1.19.5.master.34b18dc.43
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.6.at-cp_persist_state.3d370d2.10
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
@@ -23,6 +23,8 @@ system:
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
+        - name: SETTINGS_PATH
+          value: kingdom-test.kingdom-test.prd.-.-
       ports:
       - containerPort: 8080
       - containerPort: 7020
