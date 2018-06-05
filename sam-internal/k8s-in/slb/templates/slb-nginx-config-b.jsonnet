@@ -331,7 +331,7 @@ if slbconfigs.slbInKingdom then {
                                 ] else []
                             ),
             } + (
-                if slbimages.phase == "1" then {
+                if slbimages.phase == "1" || slbimages.phase == "2" then {
                     affinity: {
                         podAntiAffinity: {
                             requiredDuringSchedulingIgnoredDuringExecution: [{

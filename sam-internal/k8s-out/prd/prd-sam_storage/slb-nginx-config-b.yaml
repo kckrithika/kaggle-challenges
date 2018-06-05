@@ -112,6 +112,24 @@ spec:
         name: slb-nginx-config-b
       namespace: sam-system
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: slb-service
+                operator: In
+                values:
+                - slb-nginx-b
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: name
+                operator: In
+                values:
+                - slb-nginx-config-b
+            topologyKey: kubernetes.io/hostname
       containers:
       - command:
         - /sdn/slb-nginx-config
@@ -386,8 +404,6 @@ spec:
           name: sfdchosts
         - mountPath: /host/data/slb/logs/slb-nginx-config-b/cleanup
           name: var-cleanup-logs-volume
-      nodeSelector:
-        slb-service: slb-nginx-b
       volumes:
       - hostPath:
           path: /data/slb/nginx/config
