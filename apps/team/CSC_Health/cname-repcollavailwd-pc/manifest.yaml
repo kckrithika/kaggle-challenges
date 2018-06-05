@@ -49,7 +49,7 @@ system:
       - name: RC_WD_LIVENESS_FRESHNESSMS
         value: 130000
       - name: RC_WD_AJNA_SHOULDPUBLISHPRODUCTIONMETRICS
-        value: false
+        value: true
       - name: RC_WD_AJNA_STRICTSSL
         value: true
       - name: RC_WD_AJNA_AUTH_CERT
