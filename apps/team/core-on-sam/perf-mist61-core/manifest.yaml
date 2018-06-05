@@ -72,6 +72,13 @@ system:
         - name: SD_PORT_OVERRIDE
           value: 12099
 
+        # Settings.path
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na1.app
+
+        # Cluster name
+        - name: CLUSTER_NAME
+          value: MIST61
 #      resources:
 #        limits: { memory: "10240M" }
 #        requests: { memory: "8292M" }
