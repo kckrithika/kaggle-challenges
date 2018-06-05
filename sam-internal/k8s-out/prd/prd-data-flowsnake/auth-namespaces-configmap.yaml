@@ -7,7 +7,9 @@ data:
     "namespace": "sec-einstein-deepsea"}, {"authorizedClientCerts": [ ], "authorizedLdapGroups":
     ["collection_flowsnake"], "namespace": "collection_device_data_mon"}, {"authorizedClientCerts":
     [ ], "authorizedLdapGroups": ["search_dlc"], "namespace": "search_dlc"}, {"authorizedClientCerts":
-    [ ], "authorizedLdapGroups": ["Sayonara-Flowsnake"], "namespace": "sayonara-applogs"}]'
+    [ ], "authorizedLdapGroups": ["Sayonara-Flowsnake"], "namespace": "sayonara-applogs"},
+    {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["edge_intelligence"],
+    "namespace": "edge_intelligence"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
