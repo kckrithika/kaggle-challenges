@@ -16,3 +16,12 @@ system:
         httpGet:
           path: /
           port: 3000
+  loadbalancers:
+  - lbname: grafanalb
+    function: grafana-radc
+    slbEnabled: true
+    nodeExposed: true
+    ports:
+      - port: 64135
+        targetport: 3000
+        lbtype: http
