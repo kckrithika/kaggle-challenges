@@ -3,7 +3,7 @@
     "hypersdn": {
       "label": "v-0000899-bf318b9c",
       "promotedTime": "2018-06-01T20:25:40.919990501Z",
-      "warning": "899 has changes to slb-ipvs-conntrack's command line"
+      "warning": "899 has changes to slb-ipvs-conntrack's command line and nginx-config-b's affinity"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
@@ -14,7 +14,7 @@
     "hypersdn": {
       "label": "v-0000899-bf318b9c",
       "promotedTime": "2018-06-04T17:52:54.883923319Z",
-      "warning": "899 has changes to slb-ipvs-conntrack's command line"
+      "warning": "899 has changes to slb-ipvs-conntrack's command line and nginx-config-b's affinity"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
@@ -23,8 +23,9 @@
   },
   "3": {
     "hypersdn": {
-      "label": "v-0000891-6c4092ab",
-      "promotedTime": "2018-05-31T05:03:39.462098Z"
+      "label": "v-0000899-bf318b9c",
+      "promotedTime": "2018-06-05T16:44:11.057131Z",
+      "warning": "899 has changes to slb-ipvs-conntrack's command line and nginx-config-b's affinity"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
