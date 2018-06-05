@@ -22,6 +22,8 @@ local util = import "util_functions.jsonnet";
         "iad-flowsnake_prod": "flowsnake-iad.data.sfdc.net",
         "ord-flowsnake_prod": "flowsnake-ord.data.sfdc.net",
         "phx-flowsnake_prod": "flowsnake-phx.data.sfdc.net",
+        "frf-flowsnake_prod": "flowsnake-frf.data.sfdc.net",
+        "par-flowsnake_prod": "flowsnake-par.data.sfdc.net",
         // minikube fake VIPs
         "prd-minikube-small-flowsnake": "prd-minikube-small-flowsnake.data.sfdc.net",
         "prd-minikube-big-flowsnake": "prd-minikube-big-flowsnake.data.sfdc.net",
@@ -33,6 +35,8 @@ local util = import "util_functions.jsonnet";
         "iad-flowsnake_prod": "api",
         "ord-flowsnake_prod": "api",
         "phx-flowsnake_prod": "api",
+        "frf-flowsnake_prod": "api",
+        "par-flowsnake_prod": "api",
         "prd-minikube-small-flowsnake": "api-minikube",
         "prd-minikube-big-flowsnake": "api-minikube",
     },
@@ -73,7 +77,9 @@ local util = import "util_functions.jsonnet";
         estate == "iad-flowsnake_prod" ||
         estate == "prd-data-flowsnake_test" ||
         estate == "ord-flowsnake_prod" ||
-        estate == "phx-flowsnake_prod"
+        estate == "phx-flowsnake_prod" ||
+        estate == "par-flowsnake_prod" ||
+        estate == "frf-flowsnake_prod"
     ),
     node_monitor_enabled: !self.is_minikube_small,
     node_controller_enabled: !self.is_minikube,
