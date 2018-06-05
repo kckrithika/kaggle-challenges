@@ -44,6 +44,8 @@ system:
               mountPath: /server-certs
           ports:
             - containerPort: 7012
+            - name: sherpa-in-tls
+              containerPort: 7443
             - containerPort: 15373
           livenessProbe:
             exec:
