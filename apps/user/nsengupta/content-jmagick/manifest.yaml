@@ -22,7 +22,7 @@ system:
           image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
           args:
             - -endpoint
-            - content-jmagick:DATACENTER:7012
+            - content-jmagick:DATACENTER:7443
           livenessProbe:
             initialDelaySeconds: 5
             exec:
@@ -40,6 +40,8 @@ system:
           volumeMounts:
             - mountPath: /log
               name: sherpa-log-volume
+            - name: cbatch-tls-server-cert
+              mountPath: /server-certs
           ports:
             - containerPort: 7012
             - containerPort: 15373
@@ -60,6 +62,9 @@ system:
         - name: sherpa-log-volume
           hostPath:
             path: /home/sfdc-sherpa/logs
+        - name: cbatch-tls-server-cert
+          maddogCert:
+            type: server
 
   loadbalancers:
   - lbname: content-jmagick-lb
