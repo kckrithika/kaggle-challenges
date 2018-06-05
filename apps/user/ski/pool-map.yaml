@@ -1,3 +1,5 @@
 apps:
  grafana:
   - prd/prd-sam
+ argus-datasource:
+  - prd/prd-sam
