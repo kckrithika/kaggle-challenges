@@ -40,12 +40,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:638
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-webserver:638
-        name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-scheduler:638
-        name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-worker:638
-        name: flowsnake-airflow-worker
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-postgresql:638
         name: flowsnake-postgresql
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-redis:638
@@ -108,12 +102,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:571
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-webserver:571
-        name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-scheduler:571
-        name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-worker:571
-        name: flowsnake-airflow-worker
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-postgresql:571
         name: flowsnake-postgresql
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-redis:571
@@ -176,12 +164,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-test-data:607
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-webserver:607
-        name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-scheduler:607
-        name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-airflow-worker:607
-        name: flowsnake-airflow-worker
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-postgresql:607
         name: flowsnake-postgresql
       - image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-redis:607

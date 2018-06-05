@@ -32,7 +32,7 @@ spec:
               key: name
               name: fleet-config
         image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka:472
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           initialDelaySeconds: 180
           tcpSocket:

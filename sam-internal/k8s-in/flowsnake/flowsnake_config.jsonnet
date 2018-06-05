@@ -76,5 +76,5 @@ local util = import "util_functions.jsonnet";
         estate == "phx-flowsnake_prod"
     ),
     node_monitor_enabled: !self.is_minikube_small,
-    node_controller_enabled: std.objectHas(flowsnake_images.feature_flags, "node_controller"),
+    node_controller_enabled: !self.is_minikube,
 }

@@ -40,12 +40,6 @@ spec:
         name: flowsnake-storm-ui
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-test-data:638
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-webserver:638
-        name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-scheduler:638
-        name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-worker:638
-        name: flowsnake-airflow-worker
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-postgresql:638
         name: flowsnake-postgresql
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-redis:638
@@ -72,139 +66,73 @@ spec:
         name: flowsnake-zookeeper
       - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:638
         name: flowsnake-logstash
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver:571
-        name: flowsnake-spark-driver
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master:571
-        name: flowsnake-spark-master
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker:571
-        name: flowsnake-spark-worker
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server:571
-        name: flowsnake-spark-history-server
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-rewriting-proxy:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-driver_2.1.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-master_2.1.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-worker_2.1.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.1.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-history-server_2.1.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-driver_2.3.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-master_2.3.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-worker_2.3.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server_2.3.0:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
+        name: flowsnake-spark-history-server_2.3.0
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-rewriting-proxy:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-rewriting-proxy
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-kafka:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-kafka:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-global-kafka:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-global-kafka:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-global-kafka
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-zookeeper:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-local-zookeeper
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-kafka-rest-proxy
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-token-renewer:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-token-renewer:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-spark-token-renewer
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-secret-updater:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-secret-updater:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-tensorflow-python27:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-tensorflow-python27:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-tensorflow-python35:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-tensorflow-python35:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-worker:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-worker:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-nimbus:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-nimbus:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-submitter:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-submitter:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-ui:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-ui:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-storm-ui
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-test-data:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-test-data:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-webserver:571
-        name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-scheduler:571
-        name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-worker:571
-        name: flowsnake-airflow-worker
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-postgresql:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-postgresql:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-redis:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-redis:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-redis
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-environment-service:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-environment-service:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-environment-service
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-stream-production-monitor:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-stream-production-monitor:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-stream-production-monitor
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-configurator:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-configurator:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-kafka-configurator
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-sluice-configurator:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-sluice-configurator:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-sluice-configurator
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-connect:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-connect:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-kafka-connect
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-job-flowsnake-airflow-dags
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-zookeeper:571
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-zookeeper:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-zookeeper
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:571
-        name: flowsnake-logstash
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-driver:607
-        name: flowsnake-spark-driver
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-master:607
-        name: flowsnake-spark-master
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-worker:607
-        name: flowsnake-spark-worker
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-history-server:607
-        name: flowsnake-spark-history-server
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-rewriting-proxy:607
-        name: flowsnake-rewriting-proxy
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-kafka:607
-        name: flowsnake-local-kafka
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-global-kafka:607
-        name: flowsnake-global-kafka
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-local-zookeeper:607
-        name: flowsnake-local-zookeeper
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-rest-proxy:607
-        name: flowsnake-kafka-rest-proxy
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-token-renewer:607
-        name: flowsnake-spark-token-renewer
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-spark-secret-updater:607
-        name: flowsnake-spark-secret-updater
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-tensorflow-python27:607
-        name: flowsnake-tensorflow-python27
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-tensorflow-python35:607
-        name: flowsnake-tensorflow-python35
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-worker:607
-        name: flowsnake-storm-worker
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-nimbus:607
-        name: flowsnake-storm-nimbus
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-submitter:607
-        name: flowsnake-storm-submitter
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-storm-ui:607
-        name: flowsnake-storm-ui
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-test-data:607
-        name: flowsnake-test-data
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-webserver:607
-        name: flowsnake-airflow-webserver
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-scheduler:607
-        name: flowsnake-airflow-scheduler
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-airflow-worker:607
-        name: flowsnake-airflow-worker
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-postgresql:607
-        name: flowsnake-postgresql
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-redis:607
-        name: flowsnake-redis
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-environment-service:607
-        name: flowsnake-environment-service
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-stream-production-monitor:607
-        name: flowsnake-stream-production-monitor
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-configurator:607
-        name: flowsnake-kafka-configurator
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-sluice-configurator:607
-        name: flowsnake-sluice-configurator
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-kafka-connect:607
-        name: flowsnake-kafka-connect
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-demo-job:607
-        name: flowsnake-job-flowsnake-demo-job
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-storm-demo-job:607
-        name: flowsnake-job-flowsnake-storm-demo-job
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-airflow-dags:607
-        name: flowsnake-job-flowsnake-airflow-dags
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-job-flowsnake-spark-local-mode-demo-job:607
-        name: flowsnake-job-flowsnake-spark-local-mode-demo-job
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-zookeeper:607
-        name: flowsnake-zookeeper
-      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:607
+      - image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/flowsnake-logstash:jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
         name: flowsnake-logstash
