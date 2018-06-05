@@ -78,7 +78,7 @@ system:
         type: server
 
   loadbalancers:
-  - lbname: mist61-cyan
+  - lbname: mist61-cyan-lb
     function: mist61-cyan
     nodeExposed: true
     slbEnabled: true
