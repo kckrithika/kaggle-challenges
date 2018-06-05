@@ -16,15 +16,15 @@ system:
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
-          value: ccp-func
+          value: kingdom-test
+        - name: SFDC_SUBENVIRONMENT
+          value: kingdom-test
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
-        - name: SETTINGS_PATH
-          value: kingdom-test.kingdom-test.prd.-.-
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -42,7 +42,7 @@ system:
         name: client-certs
       - mountPath: /server-certs
         name: server-certs
-      - mountPath: /opt/cre/cre-control-plane-ccp-func
+      - mountPath: /opt/cre/cre-control-plane-kingdom-test
         name: logvol
     - name: sherpa-cre-control-plane
       image: sfci/servicelibs/sherpa:2.0.26
@@ -93,7 +93,7 @@ system:
         secretName: gdot-private-key
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-control-plane-ccp-func
+        path: /home/sfdc-cre/logs/cre-control-plane-kingdom-test
     - name: client-certs
       maddogCert:
         type: client
