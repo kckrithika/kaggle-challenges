@@ -53,7 +53,9 @@ system:
         name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: ccp-func
+          value: kingdom-test
+        - name: SFDC_SUBENVIRONMENT
+          value: kingdom-test
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
