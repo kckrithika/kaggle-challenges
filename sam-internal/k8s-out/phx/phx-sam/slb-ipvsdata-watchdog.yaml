@@ -71,7 +71,7 @@ spec:
           name: sfdchosts
       hostNetwork: true
       nodeSelector:
-        pool: phx-sam
+        pool: phx-slb
       volumes:
       - hostPath:
           path: /etc/pki_service
