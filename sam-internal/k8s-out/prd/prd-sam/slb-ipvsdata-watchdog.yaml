@@ -71,7 +71,7 @@ spec:
           name: sfdchosts
       hostNetwork: true
       nodeSelector:
-        pool: prd-sam
+        pool: prd-slb
       volumes:
       - hostPath:
           path: /etc/pki_service
