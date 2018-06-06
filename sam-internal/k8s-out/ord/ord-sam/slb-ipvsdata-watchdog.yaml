@@ -50,12 +50,12 @@ spec:
         - --metricsEndpoint=ajna0-funnel1-0-ord.data.sfdc.net:80
         - --hostnameOverride=$(NODE_NAME)
         env:
-        - name: KUBECONFIG
-          value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000891-6c4092ab
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/tnrp/sdn/hypersdn:v-0000902-1a7765cd
         name: slb-ipvsdata-watchdog
-        securityContext:
-          privileged: true
         volumeMounts:
         - mountPath: /etc/pki_service
           name: maddog-certs
@@ -69,7 +69,6 @@ spec:
           name: kubeconfig
         - mountPath: /sfdchosts
           name: sfdchosts
-      hostNetwork: true
       nodeSelector:
         pool: ord-slb
       volumes:

@@ -20,7 +20,6 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
         replicas: 1,
         template: {
             spec: {
-                hostNetwork: true,
                 volumes: configs.filter_empty([
                     configs.maddog_cert_volume,
                     slbconfigs.slb_volume,
@@ -40,9 +39,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                               configs.sfdchosts_arg,
                               "--k8sapiserver=",
                               "--connPort=" + portconfigs.slb.ipvsDataConnPort,
-                                "--monitorFrequency=180s",
-                                "--metricsEndpoint=" + configs.funnelVIP,
-                                "--hostnameOverride=$(NODE_NAME)",
+                              "--monitorFrequency=180s",
+                              "--metricsEndpoint=" + configs.funnelVIP,
+                              "--hostnameOverride=$(NODE_NAME)",
                         ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
@@ -53,16 +52,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                             configs.sfdchosts_volume_mount,
                         ]),
                         env: [
-                            configs.kube_config_env,
+                            slbconfigs.node_name_env,
                         ],
-                        securityContext: {
-                            privileged: true,
-                        },
                     },
                 ],
-                nodeSelector: {
-                    pool: configs.estate,
-                },
             } + (
                 if configs.estate == "prd-sam" || slbimages.phase == "3" || slbimages.phase == "4" then {
                     nodeSelector: {
