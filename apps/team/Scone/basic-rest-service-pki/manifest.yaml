@@ -35,6 +35,9 @@ system:
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+    - name: certs
+      hostPath:
+        path: /certs
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-basic-rest-pki-service/logs
