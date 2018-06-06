@@ -6,3 +6,5 @@ apps:
   - name: prd/prd-sam_crosscloudplatform
   prd.eventbeacon:
   - name: prd/prd-sam_crosscloudsetup
+  iad.eventbeacon:
+  - name: iad/iad-sam_crosscloudsetup
