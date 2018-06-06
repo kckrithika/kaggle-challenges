@@ -22,9 +22,9 @@
   },
   "3": {
     "hypersdn": {
-      "label": "v-0000899-bf318b9c",
-      "promotedTime": "2018-06-05T16:44:11.057131Z",
-      "warning": "899 has changes to slb-ipvs-conntrack's command line and nginx-config-b's affinity"
+      "label": "v-0000902-1a7765cd",
+      "promotedTime": "2018-06-06T17:27:45.597663377Z",
+      "warning": "902 has changes to slb-ipvs-conntrack's command line and nginx-config-b's affinity"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
