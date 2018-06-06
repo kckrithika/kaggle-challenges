@@ -25,13 +25,13 @@ system:
 
     containers:
     - name: eventbeacon
-      image: sfci/mc-retail/retail-mc-event-beacon:0.0.24
+      image: sfci/mc-retail/retail-mc-event-beacon:0.0.25
       ports:
         - containerPort: 7022
         - containerPort: 15372
       env:
         - name: SFDC_ENVIRONMENT
-          value: sam
+          value: prod
         - name: SERVER_PORT
           value: 7022
         - name: MANAGEMENT_PORT
