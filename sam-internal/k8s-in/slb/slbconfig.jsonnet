@@ -91,15 +91,6 @@
             "prd-sam_storage": "name=slb-vip-watchdog",
             "prd-sam_storagedev": "name=slb-vip-watchdog",
         },
-
-        canaryServiceName: {
-            "prd-sdc": "slb-sdc-svc",
-            "prd-samtest": "slb-samtest-svc",
-            "prd-samdev": "slb-samdev-svc",
-            "prd-sam_storage": "slb-sam-storage-svc",
-            "prd-sam_storagedev": "slb-sam-storagedev-svc",
-            "prd-sam": "slb-sam-svc",
-        },
         useVipLabelToSelectSvcs: {
             "prd-sdc": true,
             "prd-samtest": true,
@@ -252,7 +243,6 @@
     serviceList: self.perCluster.serviceList[estate],
     namespace: self.perCluster.namespace[estate],
     ddiService: self.perCluster.ddiService[kingdom],
-    canaryServiceName: self.perCluster.canaryServiceName[estate],
     useProxyServicesList: self.perCluster.useProxyServicesList[estate],
     podLabelList: self.perCluster.podLabelList[estate],
     useVipLabelToSelectSvcs: self.perCluster.useVipLabelToSelectSvcs[estate],

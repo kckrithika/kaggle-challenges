@@ -2,12 +2,12 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: slb-bravo
-  name: slb-bravo
+    name: slb-canary
+  name: slb-canary
   namespace: sam-system
 spec:
   minReadySeconds: 30
-  replicas: 1
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -16,25 +16,31 @@ spec:
   template:
     metadata:
       labels:
-        name: slb-bravo
+        name: slb-canary
       namespace: sam-system
     spec:
       containers:
       - command:
         - /sdn/slb-canary-service
-        - --serviceName=slb-bravo-svc
+        - --serviceName=slb-canary-service
         - --log_dir=/host/data/slb/logs/
-        - --ports=9090,9091,9092
+        - --ports=9111
         - --tlsPorts=9443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sam.crt
-        image: ops0-artifactrepo1-0-yhu.data.sfdc.net/tnrp/sdn/hypersdn:v-0000902-1a7765cd
-        name: slb-bravo
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000902-1a7765cd
+        name: slb-canary
+        securityContext:
+          capabilities:
+            add:
+            - ALL
+          privileged: true
         volumeMounts:
         - mountPath: /host/data/slb/logs/
           name: var-logs-volume
+      hostNetwork: true
       nodeSelector:
-        pool: yhu-sam
+        pool: hnd-sam
       volumes:
       - hostPath:
           path: /data/slb/logs/
