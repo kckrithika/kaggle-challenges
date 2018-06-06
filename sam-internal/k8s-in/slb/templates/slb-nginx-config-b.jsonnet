@@ -117,6 +117,33 @@ if slbconfigs.slbInKingdom then {
                 },
             },
             spec: {
+                affinity: {
+                    podAntiAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: [{
+                            labelSelector: {
+                                matchExpressions: [{
+                                    key: "name",
+                                    operator: "In",
+                                    values: [
+                                        "slb-nginx-config-b",
+                                    ],
+                                }],
+                            },
+                            topologyKey: "kubernetes.io/hostname",
+                        }],
+                    },
+                    nodeAffinity: {
+                        requiredDuringSchedulingIgnoredDuringExecution: {
+                            nodeSelectorTerms: [{
+                                matchExpressions: [{
+                                    key: "slb-service",
+                                    operator: "In",
+                                    values: ["slb-nginx-b"],
+                                }],
+                            }],
+                        },
+                    },
+                },
                 volumes: configs.filter_empty([
                     {
                         name: "var-target-config-volume",
@@ -330,41 +357,7 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-            } + (
-                if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then {
-                    affinity: {
-                        podAntiAffinity: {
-                            requiredDuringSchedulingIgnoredDuringExecution: [{
-                                labelSelector: {
-                                    matchExpressions: [{
-                                        key: "name",
-                                        operator: "In",
-                                        values: [
-                                            "slb-nginx-config-b",
-                                        ],
-                                    }],
-                                },
-                                topologyKey: "kubernetes.io/hostname",
-                            }],
-                        },
-                        nodeAffinity: {
-                            requiredDuringSchedulingIgnoredDuringExecution: {
-                                nodeSelectorTerms: [{
-                                    matchExpressions: [{
-                                        key: "slb-service",
-                                        operator: "In",
-                                        values: ["slb-nginx-b"],
-                                    }],
-                                }],
-                            },
-                        },
-                    },
-                } else {
-                    nodeSelector: {
-                        "slb-service": "slb-nginx-b",
-                    },
-                }
-            ),
+            },
         },
         strategy: {
             type: "RollingUpdate",
