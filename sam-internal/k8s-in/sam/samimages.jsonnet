@@ -23,6 +23,9 @@ local utils = import "util_functions.jsonnet";
         #[alok.bansal] New version of Sam Manifest Repo Watcher
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002017-d503a06f",
 
+        #[mayank] New version of Email Reporter
+        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002018-e0b31639",
+
         },
 
     ### Per-phase image tags
