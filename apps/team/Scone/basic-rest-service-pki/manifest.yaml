@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: scone-basic-rest-pki
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-basic-rest-pki:bazel-monorepo
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/basic-rest-service-pki:bazel-monorepo
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
