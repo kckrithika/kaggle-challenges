@@ -3,7 +3,7 @@ local slbconfigs = import "slbconfig.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
+if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -33,7 +33,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" then {
                         image: slbimages.hypersdn,
                         command: [
                                      "/sdn/slb-canary-service",
-                                     "--serviceName=" + slbconfigs.canaryServiceName,
+                                     "--serviceName=slb-canary-service",
                                      "--log_dir=" + slbconfigs.logsDir,
                                      "--ports=" + portconfigs.slb.canaryServicePort,
                                      "--tlsPorts=" + portconfigs.slb.canaryServiceTlsPort,

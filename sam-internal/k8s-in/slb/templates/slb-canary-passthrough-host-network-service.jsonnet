@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
-if configs.estate == "prd-sdc" then {
+local slbconfigs = import "slbconfig.jsonnet";
+if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
     kind: "Service",
     apiVersion: "v1",
     metadata: {
