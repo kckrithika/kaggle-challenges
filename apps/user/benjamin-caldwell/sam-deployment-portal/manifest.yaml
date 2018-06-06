@@ -5,17 +5,21 @@ system:
     count: 2
     containers:
     - name: benjamin-sam-deployment-portal
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/hypersam:20180604_160604.bd84636a.dirty.bencald-ltm0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/hypersam:20180606_092658.7969477f.dirty.bencald-ltm0
       command: 
       - "/sam/sam-deployment-portal-v2"
       - --db-hostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
       - --db-username=root
-      - --db-password=pass
+      - --db-password-file=/volumes/dbpass
       - --manifest-db-name=sam_manifest_repo_watcher
       - --v=4
       - --alsologtostderr
       ports:
       - containerPort: 64123
+      volumeMounts:
+       - mountPath: /volumes/dbpass
+         name: dbpass
+         readOnly: true
       livenessProbe:
         httpGet:
           path: /healthz
@@ -27,6 +31,10 @@ system:
       env:
       - name: DUMMY_VAR
         value: here
+    volumes:
+    - name: dbpass
+      k4aSecret:
+        secretName: dbpass
   loadbalancers:
   - lbname: benjamin-sdp
     function: sdp
