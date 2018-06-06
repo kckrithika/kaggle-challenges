@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.2.release-1_1-with-mTLS.d88d900.1
+      image: sfci/cre/cre-control-plane:0.0.1.19.5.master.34b18dc.43
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__iad.ajna_local__cre_metrics
