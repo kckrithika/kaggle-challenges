@@ -1,10 +1,10 @@
 local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-portal" };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-portal" };
+local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-portaltwo" };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-portaltwo" };
 local portconfigs = import "portconfig.jsonnet";
 
-if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-samdev" || configs.estate == "prd-sam_storage" || slbconfigs.slbInProdKingdom then {
+if configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
