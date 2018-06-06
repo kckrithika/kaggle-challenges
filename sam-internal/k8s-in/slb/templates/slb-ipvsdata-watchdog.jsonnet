@@ -63,7 +63,17 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbimages.phase
                 nodeSelector: {
                     pool: configs.estate,
                 },
-            },
+            } + (
+                if configs.estate == "prd-sam" then {
+                    nodeSelector: {
+                         pool: configs.kingdom + "-slb",
+                    },
+                } else {
+                     nodeSelector: {
+                          pool: configs.estate,
+                     },
+                }
+            ),
             metadata: {
                 labels: {
                     name: "slb-ipvsdata-watchdog",
