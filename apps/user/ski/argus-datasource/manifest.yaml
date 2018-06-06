@@ -16,3 +16,12 @@ system:
         httpGet:
           path: /
           port: 4400
+  loadbalancers:
+  - lbname: argus-datasource-lb
+    function: argus-datasource-radc
+    slbEnabled: true
+    nodeExposed: true
+    ports:
+      - port: 4400
+        targetport: 4400
+        lbtype: http
