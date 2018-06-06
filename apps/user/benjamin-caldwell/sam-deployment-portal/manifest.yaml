@@ -10,7 +10,7 @@ system:
       - "/sam/sam-deployment-portal-v2"
       - --db-hostname=mysql.csc-sam.prd-sam.prd.slb.sfdc.net
       - --db-username=root
-      - --db-password-file=/volumes/dbpass
+      - --db-password-file=/volumes/dbpass/benjamin_config_sdp.txt
       - --manifest-db-name=sam_manifest_repo_watcher
       - --v=4
       - --alsologtostderr
