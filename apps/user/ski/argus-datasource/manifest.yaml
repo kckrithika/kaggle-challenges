@@ -3,7 +3,7 @@ apiVersion: v1
 system:
   functions:
   - name: argus-datasource-radc
-    count: 2
+    count: 1
     containers:
     - name: grafana
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ski/argus-datasource:ski-20180605
