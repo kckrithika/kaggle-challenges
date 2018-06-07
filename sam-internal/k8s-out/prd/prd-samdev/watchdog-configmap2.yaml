@@ -67,7 +67,6 @@ data:
       },
       "publishAlertsToKafka": true,
       "publishAllReportsToKafka": true,
-      "publishToWatchDogCrd": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "",
       "sdpEndpoint": "http://localhost:39999",
