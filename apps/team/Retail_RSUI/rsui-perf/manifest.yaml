@@ -73,15 +73,15 @@ system:
       livenessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-alive"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
       readinessProbe:
         exec:
           command:
-          - "/home/sfdc-sherpa/bin/is-ready"
-          initialDelaySeconds: 60
-          periodSeconds: 120
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
 
   loadbalancers:
   - lbname: rsui-perf-lb
