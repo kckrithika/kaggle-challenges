@@ -17,4 +17,6 @@ std.prune({
         "full-scan-on": true,
         "freq-scan-on": true,
         "webhook-on": true,
+        "num-worker-threads": 50,
+        "maximum-github-calls-per-second": 1000,
 }) else "SKIP"
