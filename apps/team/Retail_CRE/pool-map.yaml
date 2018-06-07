@@ -60,3 +60,7 @@ apps:
   - name: prd/prd-sam_customerresolutionengine
     hostSubList:
         - shared0-samminioncustomerresolutionengine3-1-prd.eng.sfdc.net
+
+  # ======= ENGINE ======== #
+  iad.Prod.cre-engine:
+    - name: iad/iad-sam_customerresolutionengine
