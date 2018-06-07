@@ -1,1 +1,3 @@
 apps:
+  hello-world:
+    - prd/prd-sam_storage
