@@ -139,6 +139,27 @@ local rbac_utils = import "sam_rbac_functions.jsonnet";
       ],
     },
     {
+     kind: "Role",
+      apiVersion: rbac_utils.rbac_api_version,
+      metadata: {
+         name: "update-crd",
+         namespace: "sam-system",
+      },
+      rules: [
+        {
+          apiGroups: [
+             "samcrd.salesforce.com",
+          ],
+          resources: [
+             "watchdogs",
+          ],
+          verbs: [
+             "*",
+          ],
+       },
+      ],
+    },
+    {
      kind: "ClusterRole",
       apiVersion: rbac_utils.rbac_api_version,
       metadata: {
