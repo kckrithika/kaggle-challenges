@@ -10,6 +10,9 @@ system:
     - name: cert
       maddogCert:
         type: client
+    - name: secretvol
+      k4aSecret:
+        secretName: na1-secret
     
     containers:
     - name: bashc
@@ -38,5 +41,8 @@ system:
       volumeMounts:
         - name: cert
           mountPath: /certs
+        - mountPath: /var/secrets
+          name: secretvol
+          readOnly: true
     
       command: ["tail", "/home/sfdc/salesforce/build/sam_startup.sh", "-f"]
