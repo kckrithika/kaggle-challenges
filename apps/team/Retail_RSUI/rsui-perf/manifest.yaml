@@ -4,23 +4,36 @@ system:
   functions:
   - name: rsui-perf
     count: 1
+    identity:
+     serviceName: retail-setup
     volumes:
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
     - name: retailservercert
       maddogCert:
         type: server
         lbnames:
         - rsui-perf-lb
+    - name: retailclientcert
+      maddogCert:
+        type: client
     # maps the retail  volumnMount to a directory on the host machine
     - name: logvol
       hostPath:
         path: /home/sfdc-retail/logs
+
     containers:
-    - name: rsui-perf
+    - name: retail-setup
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/retail/retail-setup:0.1.3.15
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
+        name: rsui-in-http1
       - containerPort: 15372
-      env:
+        name: rsui-in-admin
+      - containerPort: 7020
+        name: rsui-in-http2
+    env:
       - name: MDS_HOST
         value: metadata-service.retail-mds.localhost.mesh.force.com
       - name: MDS_PORT
@@ -34,7 +47,7 @@ system:
       - name: PKI_MONITORDIR
         value: /servercerts/server
       - name: SFDC_ENVIRONMENT
-        value: stmfa
+        value: mist
       - name: TENANT_SOURCE_KEYS
         value: core/mist60ice1/00Dx00000005SubEAE,commercecloud/production/bbkhprd,cre/mist60ice1/00Dx00000005SuREAU
       - name: TENANT_SOURCE_NAMES
@@ -61,15 +74,29 @@ system:
         mountPath: /home/retail-setup/logs
 
     - name: sherpa-rsui-perf
-      image: tnrp/sherpa:0.2.0-0000076-47b587a5
+      image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
-        - name: SFDC_ENVIRONMENT
-          value: mist
-      args:
-        - --http2-in=9532
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      volumeMounts:
+      - name: sherpa-log-volume
+        mountPath: /log
+      - name: retailclientcert
+        mountPath: /client-certs
+      - name: retailservercert
+        mountPath: /server-certs
       ports:
-        - containerPort: 9532
-        - containerPort: 7080
+      - containerPort: 7014 # http1 in port non tls
+        name: sherpa-in-http1
+      - containerPort: 7012 # http2 in port for grpc
+        name: sherpa-in-http2
+      - containerPort: 7443 # http2 in port for grpc
+        name: sher-in-htp2tls
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
       livenessProbe:
         exec:
           command:
@@ -83,12 +110,35 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
 
+    - name: beacon-rsui
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mist
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      args:
+      - -endpoint
+      - retail-setup:DATACENTER:7012
+      - -endpoint
+      - retail-rsui/retail-setup:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 150
+        exec:
+          command:
+            - "/home/scone/is-alive.sh"
+
   loadbalancers:
   - lbname: rsui-perf-lb
     function: rsui-perf
     slbEnabled: true
     ports:
       - port: 8080
-        targetport: 8080
+        targetport: 7022
+      - port: 443
+        targetport: 7022
       - port: 15372
         targetport: 15372
+      - port: 7020
+        targetport: 7020
