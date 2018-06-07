@@ -11,6 +11,8 @@ data:
       "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "ghe-tokenfile": "/var/token/token",
       "git-url": "https://git.soma.salesforce.com/api/v3/",
+      "maximum-github-calls-per-second": 1000,
+      "num-worker-threads": 50,
       "tnrp-bot-account-names": [
         "svc-tnrp-git-rw",
         "svc-tnrp-git"
