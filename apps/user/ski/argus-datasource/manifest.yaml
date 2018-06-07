@@ -9,7 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/ski/argus-datasource:ski-20180607
       env:
       - name: GF_SERVER_ROOT_URL
-        value: "http://shared0-samcompute2-4-prd.eng.sfdc.net:64135"
+        value: "http://shared0-samcompute2-4-prd.eng.sfdc.net:4400"
       ports:
       - containerPort: 4400
       livenessProbe:
