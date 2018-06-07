@@ -23,6 +23,8 @@ system:
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
+        - name: ENGINE_IMAGE_TAG
+          value: 0.0.1.213.master.682708b.489
       ports:
       - containerPort: 8080
       - containerPort: 7020
