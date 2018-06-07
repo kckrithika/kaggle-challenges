@@ -1,0 +1,14 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: cre-engine
+    count: 0
+    containers:
+    - name: cre-engine
+      image: sfci/cre/cre-engine:0.0.1.216.master.5bce7eb.492
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 60
