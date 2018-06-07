@@ -99,6 +99,7 @@ local utils = import "util_functions.jsonnet";
                 {
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
                   "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
+                  "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-624-17-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -123,6 +124,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
+                  "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-624-17-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -145,6 +147,8 @@ local utils = import "util_functions.jsonnet";
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
+                  "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-624-17-itest",
+
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
