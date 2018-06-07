@@ -130,6 +130,7 @@
 
     perCluster: {
         fds_profiling: {
+            "prd-sam_storagedev": "true",
             "prd-skipper": "true",
             "prd-sam_storage": "true",
             "prd-sam": "true",
