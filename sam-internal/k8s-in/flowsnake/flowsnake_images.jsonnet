@@ -79,7 +79,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-655-4-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -98,7 +98,7 @@ local utils = import "util_functions.jsonnet";
                 # only copy above to phase 2
                 {
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
-                  "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-655-4-itest",
+                  "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
