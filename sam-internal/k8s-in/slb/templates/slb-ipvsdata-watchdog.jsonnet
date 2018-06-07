@@ -53,6 +53,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                         ]),
                         env: [
                             slbconfigs.node_name_env,
+                            configs.kube_config_env,
                         ],
                     },
                 ],
