@@ -61,6 +61,16 @@ system:
         - name: sherpa-log-volume
           mountPath: /log
 
+    - name: debug-tools
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20          
+
     volumes:
     - name: sherpa-log-volume
       hostPath:

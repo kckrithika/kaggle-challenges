@@ -60,6 +60,16 @@ system:
         - name: h1-test-server-envoy-tls-client-cert
           mountPath: /client-certs
 
+    - name: debug-tools
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/npshenichnyy/sherpa-debug-tools:latest
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sam
+      livenessProbe:
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20          
+
     volumes:
     - name: h1-test-server-envoy-tls-server-cert
       maddogCert:
