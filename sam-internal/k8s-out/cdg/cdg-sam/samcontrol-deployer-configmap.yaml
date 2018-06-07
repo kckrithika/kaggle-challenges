@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   samcontroldeployer.json: |-
     {
+      "app-key-ttl-duration": "12h",
       "ca-file": "/etc/pki_service/ca/cabundle.pem",
       "cert-file": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "delete-orphans": true,

@@ -5,7 +5,7 @@ data:
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
       "deployer-funnelEndpoint": "ajna0-funnel1-0-fra.data.sfdc.net:80",
-      "deployer-imageName": "ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0001970-a296421d",
+      "deployer-imageName": "ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0001993-e3c36481",
       "deployer-rcImtEndpoint": "https://reportcollector-fra.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "sam-alerts@salesforce.com",
       "deployer-sender": "sam-alerts@salesforce.com",
@@ -24,7 +24,7 @@ data:
         "/home/"
       ],
       "funnelEndpoint": "ajna0-funnel1-0-fra.data.sfdc.net:80",
-      "imageName": "ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0001970-a296421d",
+      "imageName": "ops0-artifactrepo1-0-fra.data.sfdc.net/tnrp/sam/hypersam:sam-0001993-e3c36481",
       "k8sproxyEndpoint": "http://localhost:40000",
       "kafkaProducerEndpoint": "ajna0-broker1-0-fra.data.sfdc.net:9093",
       "kafkaTopic": "sfdc.prod.sam__fra.ajna_local__opevents",
@@ -66,8 +66,8 @@ data:
       "snooze": [
         {
           "checker": "rbacChecker",
-          "instanceRegex": "-prd.eng.sfdc.net$",
-          "until": "2018/06/01"
+          "instanceRegex": "-frf.ops.sfdc.net$",
+          "until": "2018/06/12"
         }
       ],
       "tlsEnabled": true,
