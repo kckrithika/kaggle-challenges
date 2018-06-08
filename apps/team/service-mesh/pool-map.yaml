@@ -12,8 +12,6 @@ apps:
     - phx/phx-sam_gater
   switchboard-prod-canary:
     - par/par-sam_gater
-  switchboard-sandbox:
-    - prd/prd-sam
 
   time:
     - prd/prd-sam
