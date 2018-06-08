@@ -42,8 +42,13 @@ local internal = {
     #
     do_override(overrides, image_name, default_tag, templateFilename):: (
         local template = self.get_short_filename(templateFilename);
-        if (std.objectHas(overrides, kingdom + "," + estate + "," + template + "," + image_name)) then
-            overrides[kingdom + "," + estate + "," + template + "," + image_name]
+        local overrideKeys = [
+            std.join(",", [kingdom, estate, template, image_name]),
+            std.join(",", [kingdom, estate, "*", image_name]),
+        ];
+        local overrideTags = [overrides[overrideKey] for overrideKey in overrideKeys if std.objectHas(overrides, overrideKey)];
+        if std.length(overrideTags) > 0 then
+            overrideTags[0]
         else
             default_tag
     ),

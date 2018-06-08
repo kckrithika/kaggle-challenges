@@ -28,7 +28,7 @@ spec:
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -emailFrequency=72h
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sam/hypersam:sam-0001993-e3c36481
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/hypersam:20180607_155644.be427e43.clean.mgrass-wsl
         name: watchdog-apiserverlb
         volumeMounts:
         - mountPath: /sfdchosts
