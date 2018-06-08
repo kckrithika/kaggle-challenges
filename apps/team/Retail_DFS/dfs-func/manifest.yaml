@@ -30,7 +30,7 @@ system:
       - name: LOAD_CC_CERT
         value: true
       - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
-        value: mds/mist/ST0000000000001
+        value: mds/stmfa/ST0000000000001
       - name: MDS_DESTINATION
         value: metadata-service.retail-mds.localhost.mesh.force.com:5443
       - name: GDOT_USER
