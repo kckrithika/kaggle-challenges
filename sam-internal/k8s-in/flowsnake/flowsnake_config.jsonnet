@@ -73,14 +73,7 @@ local util = import "util_functions.jsonnet";
     funnel_endpoint: "http://" + $.funnel_vip_and_port,
     madkub_endpoint: if self.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
     maddog_endpoint: if self.is_minikube then "https://maddog-onebox:8443" else configs.maddogEndpoint,
-    kubedns_manifests_enabled: (
-        estate == "iad-flowsnake_prod" ||
-        estate == "prd-data-flowsnake_test" ||
-        estate == "ord-flowsnake_prod" ||
-        estate == "phx-flowsnake_prod" ||
-        estate == "par-flowsnake_prod" ||
-        estate == "frf-flowsnake_prod"
-    ),
+    kubedns_manifests_enabled: !self.is_minikube,
     node_monitor_enabled: !self.is_minikube_small,
     node_controller_enabled: !self.is_minikube,
 }
