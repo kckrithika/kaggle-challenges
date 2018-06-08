@@ -27,6 +27,11 @@ local kingdom = std.extVar("kingdom");
                 "sespc",
                 "seuir",
             ],
+            edge_intelligence: [
+                "augen",
+                "ailtn",
+                "u",
+            ],
         },
         "prd/prd-data-flowsnake_test": {
         },
