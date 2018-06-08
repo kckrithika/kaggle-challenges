@@ -18,7 +18,7 @@ system:
 
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.2.16
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.5.2
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -29,15 +29,28 @@ system:
         value: stmfa
       - name: LOAD_CC_CERT
         value: true
+      - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
+        value: mds/mist/ST0000000000001
+      - name: MDS_DESTINATION
+        value: metadata-service.retail-mds.localhost.mesh.force.com:5443
+      - name: GDOT_USER
+        value: datafederationservice
+      - name: JVM_ARGS
+        value: -Dspring.profiles.active=prod
       ports:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-          command: ["true"]
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
 
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
         - name: dfs-server-cert
           mountPath: /server-certs
