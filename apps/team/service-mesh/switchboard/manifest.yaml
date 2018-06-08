@@ -44,8 +44,8 @@ system:
         periodSeconds: 5
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/47
-      image: sfci/servicelibs/sherpa-envoy:5ebcab2fad830d2bb90b6c02acaa37f07364bae2
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/48
+      image: sfci/servicelibs/sherpa-envoy:d71990b0b4c748a25f0f0226a8a006c0eb3e58a3
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
