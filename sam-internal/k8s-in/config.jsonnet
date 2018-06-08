@@ -35,6 +35,8 @@ local utils = import "util_functions.jsonnet",
             syd: "ops0-mta2-1-syd.ops.sfdc.net:25",
             chx: "ops-mta1-4-chx.ops.sfdc.net:25",
             wax: "ops-mta1-4-wax.ops.sfdc.net:25",
+            cdg: "ops0-mta2-1-cdg.ops.sfdc.net:25",
+            fra: "ops0-mta2-1-fra.ops.sfdc.net:25",
             vpod: "rd1-mta1-3-sfm.ops.sfdc.net:25",
         },
 
