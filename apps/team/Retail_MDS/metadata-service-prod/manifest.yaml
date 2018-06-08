@@ -25,9 +25,8 @@ system:
         secretName: mds-gdot-secrets-prod3
     containers:
     - name: metadata-service
-      image: sfci/metadata-cannon/metadata-service:0.0.122
+      image: sfci/metadata-cannon/metadata-service:0.1.49
       ports:
-      - containerPort: 7020
       - containerPort: 15523
       env:
       - name: SFDC_ENVIRONMENT
@@ -58,8 +57,6 @@ system:
         - name: SFDC_ENVIRONMENT
           value: prod
       ports:
-        - containerPort: 7012
-          name: sherpa-h2-plain
         - containerPort: 7443
           name: sherpa-h2-tls
         - containerPort: 15373
@@ -92,8 +89,6 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       args:
-      - -endpoint
-      - metadata-service:DATACENTER:7012
       - -endpoint
       - retail-mds/metadata-service:DATACENTER:7443
       livenessProbe:
