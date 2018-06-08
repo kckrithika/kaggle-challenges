@@ -24,6 +24,7 @@ local utils = import "util_functions.jsonnet";
                 canary_image_tag: "345",
                 cert_secretizer_image_tag: "565",
                 es_image_tag: "503",
+                fleetService_image_tag: "638",
                 testData_image_tag: "638",
                 glok_image_tag: "472",
                 ingressControllerNginx_image_tag: "571",
@@ -79,6 +80,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
+            cert_secretizer_image_tag: "638",
             fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
 
             feature_flags: {
@@ -109,7 +111,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
-            fleetService_image_tag: "638",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -134,7 +135,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
-            fleetService_image_tag: "638",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -158,7 +158,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Remaining production fleets
         "4": self.default_image_tags {
-            fleetService_image_tag: "638",
 
             feature_flags: {
                 ### DO NOT SET FEATURE FLAGS HERE.
