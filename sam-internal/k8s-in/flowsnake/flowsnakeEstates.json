@@ -5,6 +5,8 @@
     "phx/phx-flowsnake_prod",
     "prd/prd-data-flowsnake",
     "prd/prd-data-flowsnake_test",
-    "prd/prd-dev-flowsnake_iot_test"
+    "prd/prd-dev-flowsnake_iot_test",
+    "frf/frf-flowsnake_prod",
+    "par/par-flowsnake_prod"
   ]
 }

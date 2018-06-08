@@ -168,5 +168,9 @@ local kingdom = std.extVar("kingdom");
         },
         "phx/phx-flowsnake_prod": {
         },
+        "frf/frf-flowsnake_prod": {
+        },
+        "par/par-flowsnake_prod": {
+        },
     },
 }

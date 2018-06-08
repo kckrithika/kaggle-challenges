@@ -42,7 +42,9 @@ local kingdom = std.extVar("kingdom");
         estate == "prd-dev-flowsnake_iot_test" ||
         estate == "iad-flowsnake_prod" ||
         estate == "ord-flowsnake_prod" ||
-        estate == "phx-flowsnake_prod"
+        estate == "phx-flowsnake_prod" ||
+        estate == "frf-flowsnake_prod" ||
+        estate == "par-flowsnake_prod"
     ),
 
     # This is for filtering Kingdoms which support Ceph Clusters
