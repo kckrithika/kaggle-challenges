@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cyan-envoy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:kviphong-20180604-104859
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:kviphong-20180608-151135
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -44,9 +44,9 @@ system:
       - containerPort: 12060
       - containerPort: 12065
       - containerPort: 15373
-      resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+#      resources:
+#        limits: { cpu: "1", memory: "1Gi" }
+#        requests: { cpu: "1", memory: "1Gi" }
       livenessProbe:
         exec:
           command:
