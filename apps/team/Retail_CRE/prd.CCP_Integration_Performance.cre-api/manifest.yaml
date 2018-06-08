@@ -25,7 +25,7 @@ system:
           value: maddog/maddog-client-truststore.json
       ports:
       - containerPort: 8080
-      - containerPort: 7020
+      - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
         initialDelaySeconds: 120
@@ -36,19 +36,19 @@ system:
           port: 15372
           scheme: HTTP
       volumeMounts:
-      - mountPath: /myclientcert
-        name: myclientcert
-      - mountPath: /myservercert
-        name: myservercert
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
       - mountPath: /opt/cre/cre-api-ccp-perf
         name: logvol
     - name: sherpa-cre-api
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
-      - mountPath: /myclientcert
-        name: myclientcert
-      - mountPath: /myservercert
-        name: myservercert
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
           value: mist
@@ -56,10 +56,8 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7012
-        name: sherpa-ot-http2
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        name: sherpa-in-http1
+      - containerPort: 7442
+        name: sh-in-http1-tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
@@ -74,18 +72,34 @@ system:
           - "./bin/is-ready"
         initialDelaySeconds: 110
         periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - retail-cre/cre-api-ccp-perf:DATACENTER_ALLENV:7442
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
     volumes:
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-api-ccp-perf
-    - name: myclientcert
+    - name: client-certs
       maddogCert:
         type: client
-    - name: myservercert
+    - name: server-certs
       maddogCert:
         type: server
         lbnames:
           - cre-api-ccp-perf-lb
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
   loadbalancers:
   - lbname: cre-api-ccp-perf-lb
     function: cre-api-ccp-perf
