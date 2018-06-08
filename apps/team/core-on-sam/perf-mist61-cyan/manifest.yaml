@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cyan-envoy-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:kviphong-20180608-151135
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:kviphong-20180608-154452
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
