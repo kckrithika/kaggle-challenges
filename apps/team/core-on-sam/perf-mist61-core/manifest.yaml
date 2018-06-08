@@ -14,7 +14,7 @@ system:
     containers:
     - name: mist61-core
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-2
 
       env:
         # DB info
@@ -79,6 +79,9 @@ system:
         # Cluster name
         - name: CLUSTER_NAME
           value: MIST61
+
+        - name: DEPLOYMENT
+          value: B
 #      resources:
 #        limits: { memory: "10240M" }
 #        requests: { memory: "8292M" }
