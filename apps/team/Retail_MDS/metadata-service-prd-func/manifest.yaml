@@ -27,7 +27,6 @@ system:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.1.49
       ports:
-      - containerPort: 7020
       - containerPort: 9091
       - containerPort: 15523
       env:
