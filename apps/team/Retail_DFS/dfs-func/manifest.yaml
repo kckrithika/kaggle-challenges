@@ -27,8 +27,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: stmfa
-      - name: LOAD_CC_CERT
-        value: true
       ports:
       - containerPort: 7022
       - containerPort: 15372
