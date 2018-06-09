@@ -14,7 +14,7 @@ system:
     containers:
     - name: mist61-core
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-3
 
       env:
         # DB info
@@ -56,7 +56,7 @@ system:
 
         # Set to true to trigger a plsql stats load during startup
         - name: PLSQL_UPDATE_RUNSTATS
-          value: true
+          value: false
 
         # By default we patch server to NOT expire sessions across major release bounday.
         # Comment out this name/value pair to revert back to normal session invalidation.
