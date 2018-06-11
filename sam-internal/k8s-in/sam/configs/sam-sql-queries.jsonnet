@@ -101,13 +101,13 @@ GROUP BY DayHour;",
       name: "Number of Failed WatchDogs across Estates",
       sql: "
       SELECT
-      	ControlEstate,
-      	(Payload ->> '$.status.report.CheckerName') AS 'CheckerName',
-      	(Payload -> '$.status.report.Success') AS 'Success',
-      	COUNT(*) AS 'COUNT'
+        ControlEstate,
+        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'CheckerName',
+        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',
+        COUNT(*) AS 'COUNT'
       FROM k8s_resource
-      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND (Payload -> '$.status.report.Success')=false
-      GROUP BY ControlEstate, Payload ->> '$.status.report.CheckerName', Payload -> '$.status.report.Success'
+      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
+      GROUP BY ControlEstate, JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')
       ORDER BY COUNT(*) DESC
       ",
     },
@@ -118,14 +118,14 @@ GROUP BY DayHour;",
       name: "Number of Failed WatchDogs across Kingdoms",
       sql: "
       SELECT
-      	(Payload ->> '$.status.report.Kingdom') as 'Kingdom',
-      	(Payload ->> '$.status.report.CheckerName') AS 'Checker',
-      	Payload -> '$.status.report.Success' AS 'Success',
-      	COUNT(*) AS 'COUNT'
+        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')) as 'Kingdom',
+        JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')) AS 'Checker',
+        JSON_EXTRACT(Payload, '$.status.report.Success') AS 'Success',
+        COUNT(*) AS 'COUNT'
       FROM k8s_resource
-      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND (Payload -> '$.status.report.Success')=false
+      WHERE ApiKind='Watchdog' AND ApiGroup='samcrd.salesforce.com' AND JSON_EXTRACT(Payload, '$.status.report.Success')=false
 
-      GROUP BY Payload ->> '$.status.report.Kingdom', Payload ->> '$.status.report.CheckerName', Payload -> '$.status.report.Success'
+      GROUP BY JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.Kingdom')), JSON_UNQUOTE(JSON_EXTRACT(Payload, '$.status.report.CheckerName')), JSON_EXTRACT(Payload, '$.status.report.Success')
       ORDER BY COUNT(*) DESC
       ",
     },
