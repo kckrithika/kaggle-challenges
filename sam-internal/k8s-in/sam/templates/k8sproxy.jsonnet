@@ -14,13 +14,9 @@ if samfeatureflags.k8sproxy then {
                         name: "k8sproxy",
                         image: samimages.k8sproxy,
                         args: [
-                        ] + (if configs.kingdom == "prd" || configs.kingdom == "xrd" then [
                                  "-f",
-                                 "/k8sproxyconfig/haproxy-maddog.cfg",
-                             ] else [
-                                 "-f",
-                                 "/etc/haproxy/haproxy.cfg",
-                             ]),
+                                 "/k8sproxyconfig/haproxy.cfg",
+                             ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             {

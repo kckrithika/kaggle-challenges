@@ -14,13 +14,9 @@ if configs.estate == "prd-sam" then {
                         name: "iotk8sproxy",
                         image: samimages.k8sproxy,
                         args: [
-                        ] + (if configs.estate == "prd-samtest" || configs.estate == "prd-sam" then [
                                  "-f",
-                                 "/k8sproxyconfig/haproxy-maddog.cfg",
-                             ] else [
-                                 "-f",
-                                 "/etc/haproxy/haproxy.cfg",
-                             ]),
+                                 "/k8sproxyconfig/haproxy.cfg",
+                             ],
                         volumeMounts: configs.filter_empty([
                             configs.maddog_cert_volume_mount,
                             {
