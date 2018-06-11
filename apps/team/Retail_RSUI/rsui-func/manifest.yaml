@@ -57,7 +57,7 @@ system:
       - name: TENANT_SUPER
         value: core/stmfana48ice1/00DC20000000MOgMAM
       - name: CRE_SERVER_TARGET
-        value: https://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
+        value: http://cre-api-ccp-func.retail-cre.localhost.mesh.force.com:5442
       livenessProbe:
         initialDelaySeconds: 120
         periodSeconds: 30
