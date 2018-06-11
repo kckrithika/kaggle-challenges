@@ -34,7 +34,7 @@ local utils = import "util_functions.jsonnet";
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-                nodeMonitor_image_tag: "403",
+                nodeMonitor_image_tag: "403",  # TODO: this is way to old. Does not work with PKI.
                 watchdog_image_tag: "sam-0001730-c7caec88",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
@@ -80,8 +80,12 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
-            cert_secretizer_image_tag: "638",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
+            canary_image_tag: "0.10.0",
+            cert_secretizer_image_tag: "0.10.0",
+            fleetService_image_tag: "0.10.0",
+            ingressControllerNginx_image_tag: "0.10.0",
+            ingressDefaultBackend_image_tag: "0.10.0",
+            nodeMonitor_image_tag: "0.10.0",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
