@@ -69,6 +69,7 @@ data:
       },
       "publishAlertsToKafka": true,
       "publishAllReportsToKafka": true,
+      "publishToWatchDogCrd": true,
       "rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "recipient": "sam-test-alerts@salesforce.com",
       "sdpEndpoint": "http://sdp.sam-system.prd-sam.prd.slb.sfdc.net:64121",
