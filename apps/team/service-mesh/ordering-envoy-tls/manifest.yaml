@@ -31,6 +31,9 @@ system:
     - name: sherpa
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/49
       image: sfci/servicelibs/sherpa-envoy:88be4eb34f399fbf7c1a356728ea92a302718d7b
+      args:
+      - --log-level
+      - trace
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
