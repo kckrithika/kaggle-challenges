@@ -28,7 +28,13 @@ system:
         - name: HBASE_ENVIRONMENT
           value: kingdom-perf
         - name: HBASE_DATACENTER
-          value: prd            
+          value: prd
+        - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
+          value: /client-certs/client
+        - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
+          value: /client-certs
+        - name: HBASE_SECURITY_KEYTAB_LOCATION
+          value: /var/tmp/kingdom-perf_prd.keytab  
       ports:
       - containerPort: 8080
       - containerPort: 7020
