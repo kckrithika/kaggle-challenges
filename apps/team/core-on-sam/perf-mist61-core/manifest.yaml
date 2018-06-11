@@ -13,23 +13,23 @@ system:
 
     containers:
     - name: mist61-core
-#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_freeze__15892384-2
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-2
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-1
+#      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-2
 
       env:
         # DB info
         - name: DB_USER
-#          value: grumpy
-          value: sleepy
+          value: grumpy
+#          value: sleepy
         - name: DB_SID
-#          value: mist61c214utf
-          value: mist61a216utf
+          value: mist61c214utf
+#          value: mist61a216utf
         - name: IP_DB
           value: mist61ice1-db1-1-prd.eng.sfdc.net
 
         # If the count is changed above, the same value must be set for the NODES env variable below
         - name: NODES
-          value: 2
+          value: 5
 
         # Matches the external port on the load balancer, used for redirection upon login
         - name: PUBLIC_PORT
