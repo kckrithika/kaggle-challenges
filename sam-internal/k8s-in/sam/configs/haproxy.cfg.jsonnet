@@ -1,4 +1,7 @@
-global
+local configs = import "config.jsonnet";
+
+{
+  data: @'global
     maxconn 1024
     # TODO: where should logs go? Local syslog for now.
     # http://cbonte.github.io/haproxy-dconv/1.6/configuration.html#3.1-log
@@ -56,4 +59,6 @@ backend kubernetes-apiserver
     # Connect to local HAProxy, preferring the one on this host
     # TODO: The below host specific cert will be called hostcert-chain.pem and will work on any host
     # Change this after the filename is available through puppet.
-    server proxy localhost:8000 ssl ca-file /etc/pki_service/ca/cabundle.pem crt %s
+    server proxy localhost:8000 ssl ca-file /etc/pki_service/ca/cabundle.pem crt ' + configs.chainFile + @'
+',
+}
