@@ -13,7 +13,7 @@ system:
 
     containers:
     - name: mist61-core
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-2
 #      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15983397-perf-2
 
       env:
@@ -99,8 +99,8 @@ system:
 
       readinessProbe:
         httpGet:
-#          path: /ping.jsp
-          path: /samReady.jsp
+          path: /ping.jsp
+#          path: /samReady.jsp
           port: 12100
         initialDelaySeconds: 120
         periodSeconds: 1
