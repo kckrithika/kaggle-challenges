@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-api-ccp-dev
-    count: 3
+    count: 1
     containers:
     - name: cre-api-ccp-dev
       image: sfci/cre/cre-api:0.0.1.73.master.028e22d.127
@@ -46,6 +46,8 @@ system:
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
