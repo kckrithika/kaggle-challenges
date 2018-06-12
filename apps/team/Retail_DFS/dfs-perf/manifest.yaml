@@ -32,7 +32,7 @@ system:
       - name: SFDC_ENVIRONMENT
         value: mist
       - name: LOAD_CC_CERT
-        value: true
+        value: false
       - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
         value: mds/mist/ST0000000000001
       - name: MDS_DESTINATION
