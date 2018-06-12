@@ -6,7 +6,7 @@ system:
       - cre@salesforce.com
   functions:
   - name: cre-api-ccp-func
-    count: 3
+    count: 1
     containers:
     - name: cre-api-ccp-func
       image: sfci/cre/cre-api:0.0.1.73.master.028e22d.127
