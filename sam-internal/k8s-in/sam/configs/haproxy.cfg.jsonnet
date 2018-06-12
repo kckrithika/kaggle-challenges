@@ -10,7 +10,7 @@ local configs = import "config.jsonnet";
 #
 #   foo = @'
 #   abc
-#   def
+#   def'
 #
 # When working on this file, make sure no multi-line string starts with a carrage return.
 
