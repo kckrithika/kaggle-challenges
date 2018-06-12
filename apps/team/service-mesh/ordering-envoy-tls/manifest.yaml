@@ -29,11 +29,8 @@ system:
           port: 15372
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/49
-      image: sfci/servicelibs/sherpa-envoy:88be4eb34f399fbf7c1a356728ea92a302718d7b
-      args:
-      - --log-level
-      - trace
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/50
+      image: sfci/servicelibs/sherpa-envoy:298f2fad9ca1bc356d1cf96ea4b8cd0c93a9e3af
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh

@@ -11,8 +11,8 @@ system:
     count: 1
     containers:
     - name: envoy-canary-sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/48
-      image: sfci/servicelibs/sherpa-envoy:d71990b0b4c748a25f0f0226a8a006c0eb3e58a3
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/50
+      image: sfci/servicelibs/sherpa-envoy:298f2fad9ca1bc356d1cf96ea4b8cd0c93a9e3af
       args:
       - --switchboard
       - switchboardsb-lb.service-mesh.prd-sam.prd.slb.sfdc.net:15001
