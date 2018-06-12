@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
   version-mapping.properties: |
+    0.10.0 = 0.10.0
     0.9.10 = 638
     sla-metrics-test = jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest
     spark-2.3-test = jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest
