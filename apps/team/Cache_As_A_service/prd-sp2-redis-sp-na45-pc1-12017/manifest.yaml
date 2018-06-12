@@ -7,15 +7,14 @@ system:
   functions:
   - name: redis-sp-na45-pc1-12017
     count: 2
-    hostnetwork: true
     containers:
     - name: caas-redis
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
       resources:
         limits: { memory: "2Gi" }
         requests: { memory: "1Gi" }
       volumeMounts:
-        - mountPath: /home/caas/logs
+        - mountPath: /home/sfdc-caas/logs
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -24,7 +23,7 @@ system:
         - --port=12017
         - --maxMemoryMB=1024
         - --maxMemoryPolicy=noeviction
-        - --logDir=/home/caas/logs
+        - --logDir=/home/sfdc-caas/logs/redis
       livenessProbe:
         exec:
           command:
@@ -35,12 +34,12 @@ system:
       ports:
       - containerPort: 12017
     - name: caas-redis-announcer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
       - caas/cluster/sp-na45-pc1:SUPERPOD:12017
-      - -logdir
-      - /home/sfdc-caas/logs/sp-na45-pc1-12017
+      - -logservdir
+      - /home/sfdc-caas/logs/beacon-sp-na45-pc1-12017
       livenessProbe:
         initialDelaySeconds: 5
         exec:
