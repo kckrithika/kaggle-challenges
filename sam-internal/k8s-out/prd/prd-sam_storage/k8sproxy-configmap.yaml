@@ -22,7 +22,7 @@ data:
         # The E2E test downloads this secret from sam-system namespace and uploads to the new
         # e2e namespce.  For now just allow this one secret through.
         # TODO: Remove this if we remove statufl ceph from E2E
-        acl e2e_secret url_reg /api/v1/namespaces/[a-z0-0-]+/secrets/ceph-sec-user-rdi
+        acl e2e_secret url_reg /api/v1/namespaces/[a-z0-9-]+/secrets/ceph-sec-user-rdi
         http-request deny if secrets or secrets_namespace !e2e_secret
 
         # Redirect API access to CI CRD so traffic goes through the validating proxy
