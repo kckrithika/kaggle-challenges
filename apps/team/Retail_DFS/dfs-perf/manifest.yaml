@@ -43,7 +43,7 @@ system:
         value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50"
       ports:
       - containerPort: 7022
-      - containerPort: 15372
+      - containerPort: 15373
       livenessProbe:
         exec:
           command: ["true"]
