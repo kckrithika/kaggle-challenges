@@ -51,6 +51,9 @@ system:
       - mountPath: /secrets
         name: secretsvol
         readOnly: true
+      - mountPath: /k4asecrets
+        name: k4a-secrets
+        readOnly: true
       ports:
       - containerPort: 1389
       - containerPort: 1636
@@ -85,3 +88,6 @@ system:
     - name: secretsvol
       secret:
         secretName: passwd
+    - name: k4a-secrets
+      k4asecret:
+        secretName: backupencryption
