@@ -7,10 +7,9 @@ system:
   functions:
   - name: metrics-publisher-sp-pc1
     count: 1
-    hostnetwork: true
     containers:
     - name: metrics-publisher
-      image: tnrp/caas/caas-monitor-prod:2.4.6-0000016-14730209
+      image: tnrp/caas/caas-monitor-prod:2.6.4-0000039-15515104
       resources:
         limits: { memory: "2048M" }
         requests: { memory: "1536M" }
