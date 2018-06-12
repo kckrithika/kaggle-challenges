@@ -98,6 +98,7 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
+                  "0.10.0": "0.10.0",
                 }
                 +
                 # These are for developer testing only
@@ -115,6 +116,12 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
+            canary_image_tag: "0.10.0",
+            cert_secretizer_image_tag: "0.10.0",
+            fleetService_image_tag: "0.10.0",
+            ingressControllerNginx_image_tag: "0.10.0",
+            ingressDefaultBackend_image_tag: "0.10.0",
+            nodeMonitor_image_tag: "0.10.0",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -130,6 +137,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
                   "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-624-24-itest",
+                  "0.10.0": "0.10.0",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
