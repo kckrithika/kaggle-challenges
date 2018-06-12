@@ -45,6 +45,8 @@ system:
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
+      - mountPath: /log
+        name: sherpa-log-volume
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
