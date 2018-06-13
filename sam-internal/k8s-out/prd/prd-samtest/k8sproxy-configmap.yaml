@@ -22,37 +22,37 @@ data:
         # The E2E test downloads this secret from sam-system namespace and uploads to the new
         # e2e namespce.  For now just allow this one secret through.
         # TODO: Remove this if we remove statufl ceph from E2E
-        acl e2e_secret url_reg /api/v1/namespaces/[a-z0-9-]+/secrets/ceph-sec-user-rdi
-        http-request deny if secrets !e2e_secret
-        http-request deny if secrets_namespace !e2e_secret
+        acl e2e_secret1 url_reg /api/v1/namespaces/sam-system/secrets/ceph-sec-user-rdi
+        acl e2e_secret2 url_reg /api/v1/namespaces/e2e-[a-z0-9-]+/secrets
+        http-request deny if secrets !e2e_secret1 !e2e_secret2
+        http-request deny if secrets_namespace !e2e_secret1 !e2e_secret2
+
+        # Define this early so it can be referenced in additional ACLs
+        acl sam_api url_reg /apis/samcrd.salesforce.com/v1/namespaces/.*/samapps.*
 
         # Begin additional ACLs
         # Block deletes except for pods
         acl pod-kind url_reg /api/v1/namespaces/[a-z0-9-]+/pods/
-        # /api/v1/namespaces/sam-system/pods/k8sproxy-b64d8d9cc-bpgks
         acl delete-method method DELETE
-        http-request deny if delete-method !pod-kind
+        http-request deny if delete-method !pod-kind !sam_api
 
-        # Block post (create) except for exec
+        # Block post (create) except for exec to non-system namespaces
         acl post-method method POST
         acl exec url_reg /api/v1/namespaces/[a-z0-9-]+/pods/[a-z0-9-]+/exec?
         acl sam-system-ns url_reg /api/v1/namespaces/sam-system/
         acl kube-system-ns url_reg /api/v1/namespaces/kube-system/
         acl kube-public-ns url_reg /api/v1/namespaces/kube-public/
-        # Block all posts that are not exec
-        http-request deny if post-method !exec
-        # Block exec on sam-system and kube-system / kube-public
-        http-request deny if post-method exec sam-system-ns
-        http-request deny if post-method exec kube-system-ns
-        http-request deny if post-method exec kube-public-ns
+        http-request deny if post-method !exec !sam_api
+        http-request deny if post-method exec sam-system-ns !sam_api
+        http-request deny if post-method exec kube-system-ns !sam_api
+        http-request deny if post-method exec kube-public-ns !sam_api
 
-        # Block put and patch
+        # Block put and patch for everything
         acl other-methods method PUT PATCH
-        http-request deny if other-methods
+        http-request deny if other-methods !sam_api
         # End additional ALCs
 
         # Redirect API access to CI CRD so traffic goes through the validating proxy
-        acl sam_api url_reg /apis/samcrd.salesforce.com/v1/namespaces/.*/samapps.*
         use_backend sam_api_proxy_server if sam_api
 
         timeout client 50s
