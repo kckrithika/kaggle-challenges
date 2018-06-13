@@ -6,7 +6,7 @@ system:
       - servicemesh@salesforce.com
   functions:
   - name: switchboard
-    count: 11
+    count: 2
     containers:
     - name: switchboard
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/95/
