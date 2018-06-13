@@ -476,6 +476,37 @@ order by ControlEstate, Namespace, PodName",
     },
 
 #===================
+
+    {
+      name: "SamSystem-Overview",
+      sql: "select
+  controlEstate,
+  sum(Running) as Running,
+  sum(NotRunning) as NotRunning,
+  sum(Running) / (sum(Running)+sum(NotRunning)) as PctHealthy,
+  group_concat(name, '') as Names
+from
+(
+select
+  controlEstate,
+  (CASE WHEN Phase <> 'Running' then name else null end) as name,
+  (CASE WHEN Phase = 'Running' then 1 else 0 end) as Running,
+  (CASE WHEN Phase <> 'Running' then 1 else 0 end) as NotRunning
+from podDetailView
+where namespace = 'sam-system'
+) as ss
+group by controlEstate
+order by NotRunning desc",
+    },
+
+#===================
+
+    {
+      name: "SamSystem-Failed-Pods",
+      sql: "select ControlEstate, Name, NodeName, Phase, Message, PodUrl from podDetailView where namespace = 'sam-system' and Phase <> 'Running' order by ControlEstate, Name",
+    },
+
+#===================
 #
 #    {
 #      name: "",
