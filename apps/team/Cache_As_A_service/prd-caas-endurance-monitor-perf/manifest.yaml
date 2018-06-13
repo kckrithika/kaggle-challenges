@@ -4,7 +4,6 @@ system:
   functions:
   - name: caas-endurance-monitor-perf
     count: 1 
-    hostnetwork: true
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run

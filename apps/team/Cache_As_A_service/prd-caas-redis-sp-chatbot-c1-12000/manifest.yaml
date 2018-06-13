@@ -4,7 +4,6 @@ system:
   functions:
   - name: redis-sp-chatbot-c1-12000
     count: 1 
-    hostnetwork: true
     containers:
     - name: caas-redis 
       # container image/version to  run
@@ -13,7 +12,7 @@ system:
         limits: { memory: "4196M" }
         requests: { memory: "4196M" }
       volumeMounts:
-        - mountPath: /home/caas/logs
+        - mountPath: /home/sfdc-caas/logs
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -21,7 +20,7 @@ system:
       args: 
         - --port=12000
         - --maxMemoryMB=4096
-        - --logDir=/home/caas/logs
+        - --logDir=/home/sfdc-caas/logs
       livenessProbe:
         exec:
           command:
@@ -33,36 +32,30 @@ system:
       ports:
       - containerPort: 12000
     - name: caas-announcer
-      # container image/version to  run
-      image: tnrp/caas/caas-redis:2.3.8-0000004-13931503
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
-        - --redisPort=12000
-        - --cluster.name=sp-chatbot-c1
-        - --logDir=/home/caas/logs
+      - -endpoint
+      - caas/cluster/sp-chatbot-c1:SUPERPOD:12000
+      - -logservdir
+      - /home/sfdc-caas/logs/beacon-sp-c9-12000
       livenessProbe:
+        initialDelaySeconds: 5
         exec:
           command:
-           - /opt/caas/redis/redis-livenessprobe.py
-           - --port=12000
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: prod
       resources:
-        limits: { memory: "200M" }
+        limits: { memory: "500M" }
         requests: { memory: "200M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs
+        path: /home/sfdc-caas/logs
     - name: secretvol
       secret:
          secretName: caas-secret-sp-c1
