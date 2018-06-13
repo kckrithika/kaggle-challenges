@@ -45,4 +45,4 @@ system:
         path: /home/caas/logs/caas
     - name: secretvol
       secret:
-        secretName: caas-secret-dc-c1
+        secretName: caas-secret-sp-c1
