@@ -102,6 +102,14 @@ data:
         {
           "name": "Pods-Pending-On-Nodes-Without-Free-IPs",
           "sql": "select\n  ControlEstate,\n  Namespace,\n  Name as PodName,\n  podDetailView.NodeName,\n  Phase,\n  Message,\n  PodUrl,\n  NodeUrl\nfrom podDetailView\ninner join \n(\n  select\n    NodeName\n  from  \n  (\n    select\n      NodeName,\n      (CASE WHEN COUNT(distinct PodIP) \u003e 28 then 1 else 0 END) as Full\n    from\n    (\n      select\n        NodeName,\n        (CASE WHEN HostIP = PodIP then NULL else PodIP END) as PodIP\n      from\n      (\n        select \n          NodeName,\n          Payload-\u003e\u003e'$.status.hostIP' as HostIP,\n          Payload-\u003e\u003e'$.status.podIP' as PodIP,\n          Phase\n        from\n          podDetailView\n      ) as ss\n    ) as ss2\n    group by NodeName\n  ) as ss3\n  where Full = 1\n) as ss4\non podDetailView.NodeName = ss4.NodeName\nwhere Phase \u003c\u003e 'Running' and IsSamApp = 1\norder by ControlEstate, Namespace, PodName"
+        },
+        {
+          "name": "SamSystem-Overview",
+          "sql": "select\n  controlEstate,\n  sum(Running) as Running,\n  sum(NotRunning) as NotRunning,\n  sum(Running) / (sum(Running)+sum(NotRunning)) as PctHealthy,\n  group_concat(name, '') as Names\nfrom\n(\nselect\n  controlEstate,\n  (CASE WHEN Phase \u003c\u003e 'Running' then name else null end) as name,\n  (CASE WHEN Phase = 'Running' then 1 else 0 end) as Running,\n  (CASE WHEN Phase \u003c\u003e 'Running' then 1 else 0 end) as NotRunning\nfrom podDetailView\nwhere namespace = 'sam-system'\n) as ss\ngroup by controlEstate\norder by NotRunning desc"
+        },
+        {
+          "name": "SamSystem-Failed-Pods",
+          "sql": "select ControlEstate, Name, NodeName, Phase, Message, PodUrl from podDetailView where namespace = 'sam-system' and Phase \u003c\u003e 'Running' order by ControlEstate, Name"
         }
       ]
     }
