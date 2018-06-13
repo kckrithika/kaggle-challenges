@@ -49,7 +49,6 @@ system:
                 -Dcom.sun.management.jmxremote.rmi.port=8898
                 -Dcom.sun.management.jmxremote.ssl=false
                 -Dcom.sun.management.jmxremote.authenticate=false
-                -XX:+UnlockCommercialFeatures -XX:+FlightRecorder
                 -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 7022
