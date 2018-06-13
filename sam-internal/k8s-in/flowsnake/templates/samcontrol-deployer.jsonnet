@@ -28,6 +28,7 @@ else
             command: [
               "/sam/samcontrol-deployer",
               "--config=/config/samcontroldeployer.json",
+              "--hostsConfigFile=/sfdchosts/hosts.json",
             ],
             env: [
               {
