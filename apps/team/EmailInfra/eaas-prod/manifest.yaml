@@ -41,7 +41,7 @@ system:
         timeoutSeconds: 30
 
     - name: beacon-eaas
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: sfci/servicelibs/beacon:e58780c97ece43447a97edcbc530c17a4f577cf3
       env:
       - name: SFDC_ENVIRONMENT
         value: "sam"
