@@ -7,7 +7,6 @@ system:
   functions:
   - name: redis-stmfb-sp-c1-12018
     count: 2
-    hostnetwork: true
     containers:
     - name: caas-redis
       image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
@@ -15,7 +14,7 @@ system:
         limits: { memory: "2Gi" }
         requests: { memory: "1Gi" }
       volumeMounts:
-        - mountPath: /home/caas/logs
+        - mountPath: /home/sfdc-caas/logs
           name: logvol
         - mountPath: /var/secrets
           name: secretvol
@@ -23,7 +22,7 @@ system:
       args:
         - --port=12018
         - --maxMemoryMB=1024
-        - --logDir=/home/caas/logs
+        - --logDir=/home/sfdc-caas/logs
       livenessProbe:
         exec:
           command:
@@ -34,33 +33,30 @@ system:
       ports:
       - containerPort: 12018
     - name: caas-redis-announcer
-      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
-      command: ["/opt/caas/redis/announcer-startup.sh"]
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
-        - --redisPort=12018
-        - --cluster.name=sp-c1
-        - --logDir=/home/caas/logs
+      - -endpoint
+      - caas/cluster/sp-c1:SUPERPOD:12018
+      - -logservdir
+      - /home/sfdc-caas/logs/beacon-sp-c1-12018
       livenessProbe:
         initialDelaySeconds: 5
         exec:
           command:
-            - "/opt/caas/redis/is-alive.sh"
+            - "/home/scone/is-alive.sh"
+      volumeMounts:
+      - mountPath: /home/sfdc-caas/logs
+        name: logvol
       env:
        - name: SFDC_ENVIRONMENT
          value: stmfb
       resources:
         limits: { memory: "500M" }
         requests: { memory: "200M" }
-      volumeMounts:
-        - mountPath: /home/caas/logs
-          name: logvol
-        - mountPath: /var/secrets
-          name: secretvol
-          readOnly: true
     volumes:
     - name: logvol
       hostPath:
-        path: /home/caas/logs
+        path: /home/sfdc-caas/logs
     - name: secretvol
       secret:
          secretName: caas-secret-stmfa-sp-c1

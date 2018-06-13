@@ -7,7 +7,6 @@ system:
   functions:
   - name: prd-sp2-metrics-publisher-sp-mist43-c1 
     count: 1 
-    hostnetwork: true
     containers:
     - name: caas-metrics-publisher 
       # container image/version to  run

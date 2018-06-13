@@ -4,11 +4,10 @@ system:
   functions:
   - name: redis-12090
     count: 2 
-    hostnetwork: true
     containers:
     - name: caas-redis 
       # container image/version to  run
-      image: tnrp/caas/caas-redis:2.4.6-0000017-14882304
+      image: tnrp/caas/caas-redis:3.2.10-0000019-15183614
       resources:
         limits: { memory: "10Gi" }
         requests: { memory: "6Gi" }
@@ -41,12 +40,12 @@ system:
       - containerPort: 12090
         name: caas-cluster
     - name: caas-redis-announcer
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/servicemesh/beacon:1.0.0
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
       - caas/cluster/sp-na1-c1:SUPERPOD:12090
-      - -logdir
-      - /home/sfdc-caas/logs/sp-na1-c1-12090
+      - -logservdir
+      - /home/sfdc-caas/logs/beacon-sp-na1-c1-12090
       livenessProbe:
         initialDelaySeconds: 5
         exec:
