@@ -11,14 +11,17 @@ data:
       "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "ghe-tokenfile": "/var/token/token",
       "git-url": "https://git.soma.salesforce.com/api/v3/",
+      "look-back": "6h",
       "maximum-github-calls-per-second": 1000,
       "num-worker-threads": 50,
+      "pr-scan-frequency": "60s",
       "tnrp-bot-account-names": [
         "svc-tnrp-git-rw",
         "svc-tnrp-git"
       ],
+      "tnrp-bot-scan-frequency": "30s",
       "tnrp-endpoint": "https://ops0-piperepo1-0-prd.data.sfdc.net/",
-      "tnrp-scan-frequency": "5m",
+      "tnrp-scan-on": true,
       "webhook-on": true,
       "webhook-tokenfile": "/var/webhook-token/webhook-token"
     }

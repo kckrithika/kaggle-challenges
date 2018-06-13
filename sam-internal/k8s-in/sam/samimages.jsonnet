@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[alok.bansal] New version of Sam Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002017-d503a06f",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002028-7ec070c0",
 
         #[mayank] New version of Email Reporter
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002018-e0b31639",
