@@ -14,7 +14,7 @@ system:
         - --sql-db-user=root
         - --sql-db-pass-file=/var/secrets/mysql.txt
         - --sql-db-resources-table=k8s_resource_test
-        - --v=1
+        - --v=10
         - --alsologtostderr
         - --insecure-port=7002
         - --passthrough-api-server=shared0-samdevkubeapi1-1-prd.eng.sfdc.net:40000
