@@ -26,8 +26,8 @@ system:
           command:
            - /opt/caas/redis/redis-livenessprobe.py
            - --port=12000
-          initialDelaySeconds: 15
-          timeoutSeconds: 10
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
       # expose redis outside the container
       ports:
       - containerPort: 12000
@@ -37,7 +37,7 @@ system:
       - -endpoint
       - caas/cluster/sp-chatbot-c1:SUPERPOD:12000
       - -logservdir
-      - /home/sfdc-caas/logs/beacon-sp-c9-12000
+      - /home/sfdc-caas/logs/beacon-sp-chatbot-c1-12000
       livenessProbe:
         initialDelaySeconds: 5
         exec:
