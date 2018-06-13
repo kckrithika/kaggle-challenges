@@ -58,8 +58,10 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - containerPort: 7442
-        name: sh-in-http1-tls
+#      - containerPort: 7442
+#        name: sh-in-http1-tls
+      - containerPort: 7014 # http1 in port non tls
+        name: sherpa-in-http1
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
       livenessProbe:
