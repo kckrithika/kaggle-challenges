@@ -33,9 +33,9 @@ local configs = import "config.jsonnet";
     acl kube-system-ns url_reg /api/v1/namespaces/kube-system/
     acl kube-public-ns url_reg /api/v1/namespaces/kube-public/
     http-request deny if post-method !exec !sam_api
-    http-request deny if post-method exec sam-system-ns !sam_api
-    http-request deny if post-method exec kube-system-ns !sam_api
-    http-request deny if post-method exec kube-public-ns !sam_api
+    http-request deny if post-method exec sam-system-ns
+    http-request deny if post-method exec kube-system-ns
+    http-request deny if post-method exec kube-public-ns
 
     # Block put and patch for everything
     acl other-methods method PUT PATCH
