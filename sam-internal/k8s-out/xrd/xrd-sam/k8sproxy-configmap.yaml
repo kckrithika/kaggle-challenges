@@ -31,7 +31,25 @@ data:
         acl sam_api url_reg /apis/samcrd.salesforce.com/v1/namespaces/.*/samapps.*
 
         # Begin additional ACLs
-        # Empty
+        # Block deletes except for pods
+        acl pod-kind url_reg /api/v1/namespaces/[a-z0-9-]+/pods/
+        acl delete-method method DELETE
+        http-request deny if delete-method !pod-kind !sam_api
+
+        # Block post (create) except for exec to non-system namespaces
+        acl post-method method POST
+        acl exec url_reg /api/v1/namespaces/[a-z0-9-]+/pods/[a-z0-9-]+/exec?
+        acl sam-system-ns url_reg /api/v1/namespaces/sam-system/
+        acl kube-system-ns url_reg /api/v1/namespaces/kube-system/
+        acl kube-public-ns url_reg /api/v1/namespaces/kube-public/
+        http-request deny if post-method !exec !sam_api
+        http-request deny if post-method exec sam-system-ns
+        http-request deny if post-method exec kube-system-ns
+        http-request deny if post-method exec kube-public-ns
+
+        # Block put and patch for everything
+        acl other-methods method PUT PATCH
+        http-request deny if other-methods !sam_api
         # End additional ALCs
 
         # Redirect API access to CI CRD so traffic goes through the validating proxy
