@@ -14,7 +14,7 @@ std.prune({
         "ghe-tokenfile": "/var/token/token",
         "webhook-tokenfile": "/var/webhook-token/webhook-token",
         "funnel-endpoint": configs.funnelVIP,
-        "look-back": "6h",
+        "look-back": "360h",
         "full-scan-on": true,
         "freq-scan-on": true,
         "tnrp-scan-on": true,
