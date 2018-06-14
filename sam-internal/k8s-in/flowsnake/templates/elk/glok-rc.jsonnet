@@ -31,9 +31,7 @@ if !std.objectHas(flowsnake_images.feature_flags, "glok_retired") then
                     {
                         name: "glok",
                         image: flowsnake_images.glok,
-                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
-                            flowsnakeconfig.default_image_pull_policy else
-                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
+                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         env: [
                             {
                                 name: "ZOOKEEPER_CONNECTION_STRING",

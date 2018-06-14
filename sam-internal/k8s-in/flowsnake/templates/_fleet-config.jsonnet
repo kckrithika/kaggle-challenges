@@ -13,11 +13,6 @@ local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilenam
         registry: flowsnakeconfig.registry,
         strata_registry: flowsnakeconfig.strata_registry,
         kubeconfig: "/etc/kubernetes/kubeconfig",
-    } +
-    if std.objectHas(flowsnake_images.feature_flags, "watchdog_canaries") then
-      {
         vip: flowsnakeconfig.fleet_vips[estate],
-      }
-    else
-      {},
+      },
 }
