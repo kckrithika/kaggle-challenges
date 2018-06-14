@@ -21,7 +21,7 @@ spec:
         - /sam/sam-deployment-portal
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --alsologtostderr
-        - --latency-tolerance=300h
+        - --latency-tolerance=301h
         - --gitPollPeriod=300h
         env:
         - name: KUBECONFIG

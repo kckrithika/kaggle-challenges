@@ -17,7 +17,7 @@ if configs.estate == "prd-sam" then {
                             "--alsologtostderr",
                             # This was putting a ton of traffic on GHE, and its not clear it even works
                             # Will be replaced soon by SDPv2
-                            "--latency-tolerance=300h",
+                            "--latency-tolerance=301h",
                             "--gitPollPeriod=300h",
                         ]),
                         ports: [
