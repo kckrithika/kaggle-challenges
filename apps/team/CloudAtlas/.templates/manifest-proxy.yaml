@@ -47,9 +47,9 @@ system:
           command:
           - cat
           - /tmp/ready
-        initialDelaySeconds: 60
-        periodSeconds: 5
-        failureThreshold: 120
+        initialDelaySeconds: 180
+        periodSeconds: 30
+        failureThreshold: 20
     volumes:
     - name: hosthomevol
       hostPath:
