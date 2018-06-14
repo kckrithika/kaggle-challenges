@@ -32,8 +32,8 @@ spec:
               fieldPath: metadata.namespace
         - name: KUBECONFIG
           value: /etc/kubernetes/kubeconfig
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-ingress-controller-nginx:571
-        imagePullPolicy: Always
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/flowsnake-ingress-controller-nginx:0.10.0
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           httpGet:
             path: /healthz

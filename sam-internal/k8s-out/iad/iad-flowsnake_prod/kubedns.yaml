@@ -37,13 +37,16 @@ spec:
         - name: PROMETHEUS_PORT
           value: "10055"
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/k8s-dns-kube-dns:1.10.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 > /dev/null
+              && ps -o comm,etime | grep kube-dns | grep -cE '[2-9][0-9][0-9][0-9]:'
+              | grep -q 0
           failureThreshold: 5
-          httpGet:
-            path: /healthcheck/kubedns
-            port: 10054
-            scheme: HTTP
           initialDelaySeconds: 60
           periodSeconds: 10
           successThreshold: 1
@@ -97,7 +100,7 @@ spec:
         - --server=/in-addr.arpa/127.0.0.1#10053
         - --server=/ip6.arpa/127.0.0.1#10053
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/k8s-dns-dnsmasq-nanny:1.10.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
           httpGet:
@@ -128,7 +131,7 @@ spec:
         - --probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.cluster.local,5,A
         - --probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.cluster.local,5,A
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/k8s-dns-sidecar:1.10.0
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 5
           httpGet:

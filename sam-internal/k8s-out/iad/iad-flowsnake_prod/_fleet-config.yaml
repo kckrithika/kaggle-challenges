@@ -4,6 +4,7 @@ data:
   name: iad-flowsnake_prod
   registry: ops0-artifactrepo1-0-iad.data.sfdc.net
   strata_registry: ops0-artifactrepo1-0-iad.data.sfdc.net/dva
+  vip: flowsnake-iad.data.sfdc.net
 kind: ConfigMap
 metadata:
   creationTimestamp: null
