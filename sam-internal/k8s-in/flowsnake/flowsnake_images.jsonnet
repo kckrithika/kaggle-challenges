@@ -81,12 +81,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            canary_image_tag: "0.10.0",
-            cert_secretizer_image_tag: "0.10.0",
             fleetService_image_tag: "662",
-            ingressControllerNginx_image_tag: "0.10.0",
-            ingressDefaultBackend_image_tag: "0.10.0",
-            nodeMonitor_image_tag: "0.10.0",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
