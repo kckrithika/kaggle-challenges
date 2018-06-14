@@ -21,20 +21,20 @@ local utils = import "util_functions.jsonnet";
         # When you *do* need to change one of these images, just override in the phase(s) you want to change.
         # Once the override is deployed to all phases, update the default and delete the overrides.
         default_image_tags: {
-                canary_image_tag: "345",
-                cert_secretizer_image_tag: "565",
+                canary_image_tag: "0.10.0",
+                cert_secretizer_image_tag: "0.10.0",
                 es_image_tag: "503",
-                fleetService_image_tag: "638",
+                fleetService_image_tag: "0.10.0",
                 testData_image_tag: "638",
                 glok_image_tag: "472",
-                ingressControllerNginx_image_tag: "571",
-                ingressDefaultBackend_image_tag: "571",
+                ingressControllerNginx_image_tag: "0.10.0",
+                ingressDefaultBackend_image_tag: "0.10.0",
                 beacon_image_tag: "853c4db9f14805018be6f5e7607ffe65b5648822",
                 kibana_image_tag: "345",
                 logloader_image_tag: "468",
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
-                nodeMonitor_image_tag: "403",  # TODO: this is way to old. Does not work with PKI.
+                nodeMonitor_image_tag: "0.10.0",
                 watchdog_image_tag: "sam-0001730-c7caec88",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
@@ -80,12 +80,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
-            canary_image_tag: "0.10.0",
-            cert_secretizer_image_tag: "0.10.0",
-            fleetService_image_tag: "0.10.0",
-            ingressControllerNginx_image_tag: "0.10.0",
-            ingressDefaultBackend_image_tag: "0.10.0",
-            nodeMonitor_image_tag: "0.10.0",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -116,12 +110,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
-            canary_image_tag: "0.10.0",
-            cert_secretizer_image_tag: "0.10.0",
-            fleetService_image_tag: "0.10.0",
-            ingressControllerNginx_image_tag: "0.10.0",
-            ingressDefaultBackend_image_tag: "0.10.0",
-            nodeMonitor_image_tag: "0.10.0",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -147,12 +135,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
-            canary_image_tag: "0.10.0",
-            cert_secretizer_image_tag: "0.10.0",
-            fleetService_image_tag: "0.10.0",
-            ingressControllerNginx_image_tag: "0.10.0",
-            ingressDefaultBackend_image_tag: "0.10.0",
-            nodeMonitor_image_tag: "0.10.0",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
@@ -176,17 +158,27 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Remaining production fleets
         "4": self.default_image_tags {
+            ### DO NOT SET TAG OVERRIDES HERE
+            ### Instead, update default_image_tags definition at top of this file and delete
+            ### any overrides in other phases that are equal to the new defaults.
 
             feature_flags: {
-                ### DO NOT SET FEATURE FLAGS HERE.
-                ### If your feature is ready to be enabled everywhere, remove the conditional logic around it
-                ### and delete the flag.
+                ### AFTER SETTING FEATURE FLAGS HERE:
+                ### issue PR to deploy your changes. Then create a follow-on PR
+                ### that deletes all the feature flags and conditional logic from
+                ### the templates. This PR should not result in any k8s-out diffs.
+
+                watchdog_canaries: "foo",  # TESTED, please promote.
+                uniform_pull_policy: "foo",  # TESTED, please promote.
+                kubedns_daily_restart: "foo",  # TESTED, please promote.
+                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
                   "0.9.7": 571,
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
+                  "0.10.0": "0.10.0",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {

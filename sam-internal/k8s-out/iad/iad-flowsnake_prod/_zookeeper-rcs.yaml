@@ -23,7 +23,7 @@ spec:
         - name: ZOOKEEPER_AUTOPURGE_HOURS
           value: "24"
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/flowsnake-zookeeper:345
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
             command:
