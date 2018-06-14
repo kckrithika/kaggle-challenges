@@ -1,6 +1,6 @@
 local configs = import "config.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
-if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.estate != "prd-samtest" then {
+if configs.estate == "prd-sam" then {
     kind: "Deployment",
     spec: {
         replicas: 3,
@@ -15,6 +15,10 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
                             "/sam/sam-deployment-portal",
                             configs.sfdchosts_arg,
                             "--alsologtostderr",
+                            # This was putting a ton of traffic on GHE, and its not clear it even works
+                            # Will be replaced soon by SDPv2
+                            "--latency-tolerance=301h",
+                            "--gitPollPeriod=300h",
                         ]),
                         ports: [
                             {
