@@ -9,8 +9,10 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: sfci/cre/cre-control-plane:0.0.1.19.25.master.6f4b0a2.64
+      image: sfci/cre/cre-control-plane:0.0.1.19.37.master.3126c2b.76
       env:
+        - name: AUTHORIZED_USERS
+          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
         - name: METRICS_KAFKA_SERVER
@@ -32,7 +34,9 @@ system:
         - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
           value: /client-certs
         - name: HBASE_SECURITY_KEYTAB_LOCATION
-          value: /var/tmp/kingdom-perf_prd.keytab  
+          value: /var/tmp/kingdom-perf_prd.keytab
+        - name: ENGINE_IMAGE_TAG
+          value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509
       ports:
       - containerPort: 8080
       - containerPort: 7020
