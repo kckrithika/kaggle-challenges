@@ -14,7 +14,7 @@ system:
     volumes:
     - name: secretvol
       k4aSecret:
-          secretName: multitenantcreds
+          secretName: commerce-journeys
     - name: cccjclientcert
       maddogCert:
         type: client
@@ -23,7 +23,7 @@ system:
         path: /home/sfdc-cj/logs
     containers:
     - name: commercejourneys
-      image: sfci/mc-retail/commerce-journeys:0.0.57
+      image: sfci/mc-retail/commerce-journeys:0.0.58
       ports:
         - containerPort: 8080
         - containerPort: 15372
