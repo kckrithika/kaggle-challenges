@@ -62,10 +62,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",
-                watchdog_canaries: "foo",
-                uniform_pull_policy: "foo",
-                kubedns_daily_restart: "foo",
-                integration_test_data: "foo",
                 # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
             },
             version_mapping: {
@@ -84,10 +80,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
-                watchdog_canaries: "foo",  # TESTED, please promote.
-                uniform_pull_policy: "foo",  # TESTED, please promote.
-                kubedns_daily_restart: "foo",  # TESTED, please promote.
-                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
@@ -113,10 +105,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                watchdog_canaries: "foo",  # TESTED, please promote.
-                uniform_pull_policy: "foo",  # TESTED, please promote.
-                kubedns_daily_restart: "foo",  # TESTED, please promote.
-                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
@@ -138,10 +126,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                watchdog_canaries: "foo",  # TESTED, please promote.
-                uniform_pull_policy: "foo",  # TESTED, please promote.
-                kubedns_daily_restart: "foo",  # TESTED, please promote.
-                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {
@@ -167,11 +151,6 @@ local utils = import "util_functions.jsonnet";
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
-
-                watchdog_canaries: "foo",  # TESTED, please promote.
-                uniform_pull_policy: "foo",  # TESTED, please promote.
-                kubedns_daily_restart: "foo",  # TESTED, please promote.
-                integration_test_data: "foo",
             },
             version_mapping: {
                 main: {

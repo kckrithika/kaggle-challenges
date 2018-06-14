@@ -34,9 +34,7 @@ local kingdom = std.extVar("kingdom");
                     {
                         name: "nginx-ingress-lb",
                         image: flowsnake_images.ingress_controller_nginx,
-                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
-                            flowsnakeconfig.default_image_pull_policy else
-                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
+                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         readinessProbe: {
                             httpGet: {
                                 path: "/healthz",

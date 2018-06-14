@@ -32,9 +32,7 @@ local kingdom = std.extVar("kingdom");
                     {
                         name: "flowsnake-fleet-service",
                         image: flowsnake_images.fleet_service,
-                        imagePullPolicy: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
-                            flowsnakeconfig.default_image_pull_policy else
-                            (if flowsnakeconfig.is_minikube then "Never" else "Always"),
+                        imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
                         ports: [
                             {
                                 containerPort: 8080,
@@ -77,9 +75,7 @@ local kingdom = std.extVar("kingdom");
                             },
                             {
                                 name: "KUBERNETES_IMAGE_PULL_POLICY",
-                                value: if std.objectHas(flowsnake_images.feature_flags, "uniform_pull_policy") then
-                                    flowsnakeconfig.default_image_pull_policy else
-                                    (if flowsnakeconfig.is_minikube then "Never" else "Always"),
+                                value: flowsnakeconfig.default_image_pull_policy,
                             },
                             {
                                 name: "SPRING_PROFILES_ACTIVE",
