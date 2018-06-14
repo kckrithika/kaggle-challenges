@@ -484,12 +484,14 @@ order by ControlEstate, Namespace, PodName",
   sum(Running) as Running,
   sum(NotRunning) as NotRunning,
   sum(Running) / (sum(Running)+sum(NotRunning)) as PctHealthy,
-  group_concat(name, '') as Names
+  group_concat(FailingSam, '') as FailingSam,
+  group_concat(FailingOther, '') as FailingOther
 from
 (
 select
   controlEstate,
-  (CASE WHEN Phase <> 'Running' then name else null end) as name,
+  (CASE WHEN Phase <> 'Running' and Name not like '%slb%' and Name not like '%sdn%' then name else null end) as FailingSam,
+  (CASE WHEN Phase <> 'Running' and (Name like '%slb%' or Name like '%sdn%') then name else null end) as FailingOther,
   (CASE WHEN Phase = 'Running' then 1 else 0 end) as Running,
   (CASE WHEN Phase <> 'Running' then 1 else 0 end) as NotRunning
 from podDetailView
@@ -502,8 +504,84 @@ order by NotRunning desc",
 #===================
 
     {
-      name: "SamSystem-Failed-Pods",
-      sql: "select ControlEstate, Name, NodeName, Phase, Message, PodUrl from podDetailView where namespace = 'sam-system' and Phase <> 'Running' order by ControlEstate, Name",
+      name: "SamSystem-Failed-Pods-Sam",
+      sql: "select ControlEstate, Name, NodeName, Phase, Message, PodUrl from podDetailView where namespace = 'sam-system' and Phase <> 'Running' and Name not like '%slb%' and Name not like '%sdn%' order by ControlEstate, Name",
+    },
+
+#===================
+
+    {
+      name: "SamSystem-Failed-Pods-NonSam",
+      sql: "select ControlEstate, Name, NodeName, Phase, Message, PodUrl from podDetailView where namespace = 'sam-system' and Phase <> 'Running' and (Name like '%slb%' or Name like '%sdn%') order by ControlEstate, Name",
+    },
+
+#===================
+
+    {
+      name: "Minion-Pool-Utilization-Per-Kingdom",
+      sql: "select
+  HostRole,
+  Kingdom,
+  SUM(NodeCount) as AllNodes,
+  SUM(NodeReady) as ReadyNodes,
+  SUM(HostWithNoSamApp) as IdleNodesWithNoSamApps,
+  SUM(SamAppPods) as TotalSamAppPods,
+  SUM(SamAppPods)/SUM(NodeCount) as PodToNodeRatio
+from
+(
+  select
+    1 as NodeCount,
+    (CASE WHEN not Ready is null and Ready = 'True' then 1 else 0 end) as NodeReady,
+    Kingdom,
+    SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(Name, '-', 2),'-',-1), 1, CHAR_LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(Name, '-', 2),'-',-1))-1) as HostRole,
+    ss0.SamAppPods,
+    (CASE WHEN ss0.SamAppPods is null or ss0.SamAppPods = 0 then 1 else 0 end) as HostWithNoSamApp
+  from nodeDetailView
+  left join
+  (
+    select CAST(NodeName as BINARY) as NodeName, Count(*) as SamAppPods
+    from podDetailView
+    where IsSamApp=1 and not NodeName is Null and Phase = 'Running'
+    group by NodeName
+  ) as ss0
+  on nodeDetailView.Name = ss0.NodeName
+) as ss
+group by HostRole, Kingdom
+order by HostRole, Kingdom",
+    },
+
+#===================
+
+    {
+      name: "Minion-Pool-Utilization-Per-Role",
+      sql: "select
+  HostRole,
+  SUM(NodeCount) as AllNodes,
+  SUM(NodeReady) as ReadyNodes,
+  SUM(HostWithNoSamApp) as IdleNodesWithNoSamApps,
+  SUM(SamAppPods) as TotalSamAppPods,
+  SUM(SamAppPods)/SUM(NodeCount) as PodToNodeRatio
+from
+(
+  select
+    1 as NodeCount,
+    (CASE WHEN not Ready is null and Ready = 'True' then 1 else 0 end) as NodeReady,
+    Kingdom,
+    SUBSTRING(SUBSTRING_INDEX(SUBSTRING_INDEX(Name, '-', 2),'-',-1), 1, CHAR_LENGTH(SUBSTRING_INDEX(SUBSTRING_INDEX(Name, '-', 2),'-',-1))-1) as HostRole,
+    ss0.SamAppPods,
+    (CASE WHEN ss0.SamAppPods is null or ss0.SamAppPods = 0 then 1 else 0 end) as HostWithNoSamApp
+  from nodeDetailView
+  left join
+  (
+    select CAST(NodeName as BINARY) as NodeName, Count(*) as SamAppPods
+    from podDetailView
+    where IsSamApp=1 and not NodeName is Null and Phase = 'Running'
+    group by NodeName
+  ) as ss0
+  on nodeDetailView.Name = ss0.NodeName
+) as ss
+group by HostRole
+order by IdleNodesWithNoSamApps desc",
     },
 
 #===================
