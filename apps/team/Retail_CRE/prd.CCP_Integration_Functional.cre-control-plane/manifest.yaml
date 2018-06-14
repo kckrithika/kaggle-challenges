@@ -16,7 +16,9 @@ system:
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
-          value: ccp-func
+          value: kingdom-test
+        - name: SFDC_SUBENVIRONMENT
+          value: kingdom-test          
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
@@ -55,7 +57,9 @@ system:
         name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: ccp-func
+          value: kingdom-test
+        - name: SFDC_SUBENVIRONMENT
+          value: kingdom-test
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
