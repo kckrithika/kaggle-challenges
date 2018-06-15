@@ -115,15 +115,14 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            configs.sfdchosts_arg,
                                            "--metricsEndpoint=" + configs.funnelVIP,
                                            "--httpTimeout=5s",
-                                       ] +
-                                       [
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
-                                       ] + (if configs.estate == "prd-sam" then [
+                                           "--client.serverInterface=lo",
+                                       ] + (if configs.estate == "prd-sdc" then [
+                                           "--metricsBatchTimeout=30s",
+                                       ] else if configs.estate == "prd-sam" then [
                                                 "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
-                                            ] else []) + ([
-                                                              "--client.serverInterface=lo",
-                                                          ]),
+                                            ] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
