@@ -85,7 +85,7 @@ system:
 
         # Increase DB connections
         - name: DB_CONN_NUM
-          value: 100
+          value: 25
 
 #      resources:
 #        limits: { memory: "10240M" }
