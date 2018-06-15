@@ -19,7 +19,7 @@ system:
       env:
         # DB info
         - name: DB_USER
-          value: grumpy
+          value: sneezy
 #          value: sleepy
         - name: DB_SID
           value: mist61c214utf
