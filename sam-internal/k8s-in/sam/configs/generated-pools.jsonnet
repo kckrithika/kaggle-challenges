@@ -1401,6 +1401,18 @@
     },
     {
       "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-search_model_executor",
+      "kingdom": "par",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "cache-as-a-service-sp1"
       ],
       "access": [
@@ -2416,6 +2428,18 @@
       ],
       "controlEstate": "ukb-sam",
       "estate": "ukb-sam_warden",
+      "kingdom": "ukb",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
+        "search-scale-safely"
+      ],
+      "access": [
+        "team/Search_Scale_Safely"
+      ],
+      "controlEstate": "ukb-sam",
+      "estate": "ukb-search_model_executor",
       "kingdom": "ukb",
       "superPod": "None"
     },

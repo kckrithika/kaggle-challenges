@@ -524,6 +524,36 @@ items:
 - apiVersion: rbac.authorization.k8s.io/v1beta1
   kind: RoleBinding
   metadata:
+    name: search-scale-safely:par-search_model_executor:rolebinding
+    namespace: search-scale-safely
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: minion:role
+  subjects:
+  - kind: User
+    name: shared0-samminionsme1-1-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-2-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-3-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-4-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme1-5-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-1-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-2-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-3-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-4-par.ops.sfdc.net
+  - kind: User
+    name: shared0-samminionsme2-5-par.ops.sfdc.net
+- apiVersion: rbac.authorization.k8s.io/v1beta1
+  kind: RoleBinding
+  metadata:
     name: cache-as-a-service-sp1:par-sp1-sam_caas:rolebinding
     namespace: cache-as-a-service-sp1
   roleRef:
