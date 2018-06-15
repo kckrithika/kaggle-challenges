@@ -36,7 +36,7 @@ system:
       - name: GDOT_USER
         value: datafederationservice
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
-        value: true
+        value: false
       - name: JVM_ARGS
         value: -Dspring.profiles.active=prod
       ports:
