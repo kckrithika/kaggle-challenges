@@ -9,7 +9,8 @@ data:
     [ ], "authorizedLdapGroups": ["search_dlc"], "namespace": "search_dlc"}, {"authorizedClientCerts":
     [ ], "authorizedLdapGroups": ["Sayonara-Flowsnake"], "namespace": "sayonara-applogs"},
     {"authorizedClientCerts": [ ], "authorizedLdapGroups": ["edge_intelligence"],
-    "namespace": "edge_intelligence"}]'
+    "namespace": "edge_intelligence"}, {"authorizedClientCerts": ["flowsnake_test"],
+    "authorizedLdapGroups": ["Flowsnake_Platform"], "namespace": "flowsnake_test"}]'
 kind: ConfigMap
 metadata:
   creationTimestamp: null
