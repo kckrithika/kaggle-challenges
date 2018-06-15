@@ -11,24 +11,22 @@ system:
     - name: cre-control-plane-ccp-func
       image: sfci/cre/cre-control-plane:0.0.1.19.37.master.3126c2b.76
       env:
+        - name: AUTHORIZED_USERS
+          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
-          value: kingdom-test
-        - name: SFDC_SUBENVIRONMENT
-          value: kingdom-test          
+          value: ccp-func
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
-        - name: HBASE_ENVIRONMENT
-          value: kingdom-test
-        - name: HBASE_DATACENTER
-          value: prd    
+        - name: ENGINE_IMAGE_TAG
+          value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509   
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -41,6 +39,9 @@ system:
       volumeMounts:
       - mountPath: /secrets/
         name: secretvol
+        readOnly: true
+      - mountPath: /keys/
+        name: aeskey
         readOnly: true
       - mountPath: /client-certs
         name: client-certs
@@ -97,6 +98,7 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: gdot-private-key
+    - name: aeskey    
       k4aSecret:
         secretName: cre-aes-key
     - name: logvol
