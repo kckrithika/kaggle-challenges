@@ -13,8 +13,8 @@ system:
       args:
       - --server.port=9090
       - --logging.level.com.zaxxer.hikari=debug
-      - --spring.datasource.hikari.maximumPoolSize=50
-      - --spring.datasource.hikari.minimumIdle=20
+      - --spring.datasource.hikari.maximumPoolSize=6
+      - --spring.datasource.hikari.minimumIdle=5
       ports:
       - containerPort: 9522
       - containerPort: 9523
