@@ -2,12 +2,14 @@ local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
 local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
+local flowsnakecanaries = import "flowsnake_canaries.jsonnet";
 local samconfig = import "config.jsonnet";
 {
     watchdog_enabled: !(flowsnakeconfig.is_minikube),
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
     watchdog_config: {
+        cliCheckerFullCommands: flowsnakecanaries.command_sets,
         "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
         "deployer-imageName": flowsnakeimage.deployer,
         "deployer-rcImtEndpoint": samconfig.rcImtEndpoint,

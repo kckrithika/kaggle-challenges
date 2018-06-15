@@ -36,6 +36,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0001730-c7caec88",
+                watchdog_canary_image_tag: "664",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0001730-c7caec88",
@@ -83,6 +84,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
                 watchdog_configmap_update: "foo",
+                watchdog_canaries: "foo",  #Untested, pending verification in test fleet
             },
             version_mapping: {
                 main: {
@@ -197,6 +199,7 @@ local utils = import "util_functions.jsonnet";
     logloader: flowsnakeconfig.strata_registry + "/flowsnake-logloader:" + $.per_phase[$.phase].logloader_image_tag,
     logstash: flowsnakeconfig.strata_registry + "/flowsnake-logstash:" + $.per_phase[$.phase].logstash_image_tag,
     node_monitor: flowsnakeconfig.strata_registry + "/flowsnake-node-monitor:" + $.per_phase[$.phase].nodeMonitor_image_tag,
+    watchdog_canary: flowsnakeconfig.strata_registry + "/watchdog-canary:" + $.per_phase[$.phase].watchdog_canary_image_tag,
     zookeeper: flowsnakeconfig.strata_registry + "/flowsnake-zookeeper:" + $.per_phase[$.phase].zookeeper_image_tag,
 
     feature_flags: $.per_phase[$.phase].feature_flags,
