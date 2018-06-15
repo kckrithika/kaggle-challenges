@@ -82,7 +82,6 @@ local utils = import "util_functions.jsonnet";
             ingressControllerNginx_image_tag: 662,
             ingressDefaultBackend_image_tag: 662,
             nodeMonitor_image_tag: 662,
-            kubedns_image_tag: 662,
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
