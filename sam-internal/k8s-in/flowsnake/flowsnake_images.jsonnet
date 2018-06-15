@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
                 canary_image_tag: "0.10.0",
                 cert_secretizer_image_tag: "0.10.0",
                 es_image_tag: "503",
-                fleetService_image_tag: "0.10.0",
+                fleetService_image_tag: "662",
                 testData_image_tag: "638",
                 glok_image_tag: "472",
                 ingressControllerNginx_image_tag: "0.10.0",
@@ -77,8 +77,6 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            fleetService_image_tag: "662",
-
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
@@ -104,8 +102,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
-
-            fleetService_image_tag: "662",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
