@@ -20,7 +20,7 @@ system:
         secretName: tsigsecrets    
     containers:
     - name: pdss-api 
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/paras/scone-pdss-ap-test1:paras-20180502
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/publicdns/scone-pdss-api:pubdnsa-20180614
       ports:
       - containerPort: 8080
       - containerPort: 53 
