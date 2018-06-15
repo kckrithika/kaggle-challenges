@@ -1,0 +1,19 @@
+apiVersion: v1
+data:
+  host-repair-aggregator.json: |-
+    {
+      "crdNamespace": "sam-system",
+      "crdPollFrequency": "5m",
+      "crdPushFrequency": "10m",
+      "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
+      "nodeOfflineAfterTime": "30m",
+      "signals": [
+        "filesystemChecker",
+        "kubeletChecker"
+      ]
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: host-repair-aggregator
+  namespace: sam-system
