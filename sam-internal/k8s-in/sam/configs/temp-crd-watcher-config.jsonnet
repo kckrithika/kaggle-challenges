@@ -13,4 +13,5 @@ local configs = import "config.jsonnet";
   endpointRepoName: (if configs.kingdom == "prd" then "test-manifests"),
   manifestV1Enabled: false,
   etcdAppFolder: "temp-crd-watcher",
+  livenessProbePort: "21553",
 }

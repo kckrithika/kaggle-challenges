@@ -10,6 +10,7 @@ data:
       "endpointRepoName": "test-manifests",
       "etcdAppFolder": "temp-crd-watcher",
       "keyFile": "/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+      "livenessProbePort": "21553",
       "lockName": "/locks/tempmanifestwatcher",
       "manifestV1Enabled": false,
       "tlsEnabled": true,
