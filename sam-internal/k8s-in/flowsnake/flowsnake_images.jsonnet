@@ -136,6 +136,12 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
+            canary_image_tag: 662,
+            cert_secretizer_image_tag: 662,
+            ingressControllerNginx_image_tag: 662,
+            ingressDefaultBackend_image_tag: 662,
+            nodeMonitor_image_tag: 662,
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
             },
