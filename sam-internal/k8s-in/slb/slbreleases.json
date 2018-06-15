@@ -21,8 +21,8 @@
   },
   "3": {
     "hypersdn": {
-      "label": "v-0000909-55e9e29a",
-      "promotedTime": "2018-06-14T18:41:28.759914578Z"
+      "label": "v-0000913-e5e351c8",
+      "promotedTime": "2018-06-15T16:13:09.994931955Z"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
@@ -31,9 +31,8 @@
   },
   "4": {
     "hypersdn": {
-      "label": "v-0000902-1a7765cd",
-      "promotedTime": "2018-06-06T20:26:30.511183432Z",
-      "warning": "902 has changes to slb-ipvs-conntrack's command line and nginx-config-b's affinity"
+      "label": "v-0000909-55e9e29a",
+      "promotedTime": "2018-06-15T16:13:09.994916205Z"
     },
     "slbnginx": {
       "label": "v-0000028-7cbabf4f",
