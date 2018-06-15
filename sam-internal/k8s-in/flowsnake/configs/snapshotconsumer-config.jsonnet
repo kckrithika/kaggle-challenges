@@ -5,6 +5,9 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 if flowsnake_config.is_test then
 std.prune({
   caFile: configs.caFile,
+  enableKafkaClientAuth: true,
+  clientCertFile: configs.certFile,
+  clientKeyFile: configs.keyFile,
   dbHostname: mysql.hostName,
   dbUsername: mysql.userName,
   dbPasswordFile: "/var/mysqlPwd/pass.txt",

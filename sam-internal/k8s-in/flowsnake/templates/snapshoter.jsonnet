@@ -55,7 +55,7 @@ if flowsnake_config.is_test then ({
                         periodSeconds: 20,
                         timeoutSeconds: 20,
                     },
-                    image: samimages.hypersam,
+                    image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180615_130230.dadbcf1.clean.khogeland-wsl0",
                     name: "snapshoter",
                 }],
                 volumes: configs.filter_empty([
