@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: sfci-scone-example-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sorugantitest/sfci-scone-example:445919d
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dci/sfci-scone-example:d198f2e
       ports:
       - name: scone-http
         containerPort: 8080
