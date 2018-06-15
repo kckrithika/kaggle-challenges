@@ -13,7 +13,7 @@ data:
       "funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "k8sResourceDbName": "kube_resource_test",
       "k8sResourceTableName": "k8s_resource",
-      "kafkaConsumerEndpoint": "ajna0-brokeragg1-0-prd.data.sfdc.net:9093",
+      "kafkaConsumerEndpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
       "kafkaTopics": "sfdc.test.fs-k8s-snapshots__prd.ajna_local__snapshot"
     }
 kind: ConfigMap
