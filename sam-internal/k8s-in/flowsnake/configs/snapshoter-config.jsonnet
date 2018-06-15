@@ -6,6 +6,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
   sources: "informer",
   "key-file": configs.keyFile,
   "cert-file": configs.certFile,
+  "enableKafkaClientAuth": true,
   "kube-poll-interval": "30m",
   "kafka-push-interval": "10s",
   "kafka-payload-kb": 300,
