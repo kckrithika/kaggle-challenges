@@ -84,7 +84,7 @@ local utils = import "util_functions.jsonnet";
             version_mapping: {
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "0.10.0": "0.10.0",
+                  "0.10.0": 662,
                 }
                 +
                 # These are for developer testing only
@@ -113,7 +113,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
                   "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-675-1-itest",
-                  "0.10.0": "0.10.0",
+                  "0.10.0": 662,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -132,7 +132,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
                   "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-675-1-itest",
-                  "0.10.0": "0.10.0",
+                  "0.10.0": 662,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
@@ -157,7 +157,7 @@ local utils = import "util_functions.jsonnet";
                   "0.9.7": 571,
                   "0.9.8": 607,
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
-                  "0.10.0": "0.10.0",
+                  "0.10.0": 662,
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
