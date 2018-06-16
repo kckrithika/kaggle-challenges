@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002028-7ec070c0",
 
         #[mayank] New version of Email Reporter
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002018-e0b31639",
+        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002032-7f03ae12",
 
         # [mgrass] Testing deployment changes in prd-sam_storage.
         "prd,prd-sam_storage,*,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/hypersam:20180607_155644.be427e43.clean.mgrass-wsl",
