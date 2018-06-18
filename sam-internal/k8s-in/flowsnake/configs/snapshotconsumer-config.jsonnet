@@ -14,12 +14,14 @@ std.prune({
   dbHostname: mysql.hostName,
   dbUsername: mysql.userName,
   dbPasswordFile: "/var/mysqlPwd/pass.txt",
-  k8sResourceDbName: mysql.visibilityDBName,
+  # TODO: testing currently in PRD data, uncomment when test topic permissions fixed
+  # k8sResourceDbName: (if flowsnake_config.is_test then "kube_resource_test" else "kube_resource"),
+  k8sResourceDbName: (if estate == "prd-data-flowsnake" then "kube_resource_test" else "kube_resource"),
   k8sResourceTableName: "k8s_resource",
   consumeTableName: "consume",
   # TODO: testing currently in PRD data, uncomment when test topic permissions fixed
   # kafkaConsumerEndpoint: (if flowsnake_config.is_test then "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093" else "ajna0-brokeragg1-0-prd.data.sfdc.net:9093"),
-  kafkaConsumerEndpoint: (if flowsnake_config.is_test then "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093" else "ajna0-brokeragg1-0-prd.data.sfdc.net:9093"),
+  kafkaConsumerEndpoint: (if estate == "prd-data-flowsnake" then "ajna0-broker1-0-" + configs.kingdom + ".data.sfdc.net:9093" else "ajna0-brokeragg1-0-prd.data.sfdc.net:9093"),
   kafkaTopics: (
     # TODO: testing currently in PRD data, uncomment when test topic permissions fixed
     # if flowsnake_config.is_test then "sfdc.test.fs-k8s-snapshots__prd.ajna_local__snapshot"

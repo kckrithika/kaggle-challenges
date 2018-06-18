@@ -11,7 +11,7 @@ data:
       "kafka-endpoint": "ajna0-broker1-0-prd.data.sfdc.net:9093",
       "kafka-payload-kb": 300,
       "kafka-push-interval": "10s",
-      "kafka-topic": "sfdc.prod.fs-k8s-snapshots__prd.ajna_local__snapshot",
+      "kafka-topic": "sfdc.test.fs-k8s-snapshots__prd.ajna_local__snapshot",
       "kube-poll-interval": "30m",
       "liveness-probe-port": 9095,
       "send-events": true,
