@@ -70,7 +70,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 4 - Rest of Prod + Pub + Gia
         "4": {
-            hypersam: "sam-0001993-e3c36481",
+            hypersam: "sam-0002015-fdb18963",
             madkub: "1.0.0-0000066-fedd8bce",
             madkubSidecar: "1.0.0-0000061-74e4a7b6",
             },
