@@ -25,9 +25,6 @@ local utils = import "util_functions.jsonnet";
 
         #[mayank] New version of Email Reporter
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002032-7f03ae12",
-
-        # [mgrass] Testing deployment changes in prd-sam_storage.
-        "prd,prd-sam_storage,*,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgrass/hypersam:20180607_155644.be427e43.clean.mgrass-wsl",
         },
 
     ### Per-phase image tags
