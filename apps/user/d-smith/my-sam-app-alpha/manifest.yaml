@@ -1,0 +1,27 @@
+apiVersion: v1
+system:
+  functions:
+  - containers:
+    - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/samctl-apps/my-sam-app:proud-star
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      name: default-container
+      ports:
+      - containerPort: 9090
+      resources: {}
+    count: 1
+    hostnetwork: false
+    name: default-function
+    volumes: null
+  loadbalancers:
+  - function: default-function
+    lbname: default-loadbalancer
+    ports:
+    - nodeport: 0
+      port: 9090
+      targetport: 9090
+    slbEnabled: false
+  notifications:
+    email: null
