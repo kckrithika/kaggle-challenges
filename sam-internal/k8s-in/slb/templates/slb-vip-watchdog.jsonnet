@@ -118,7 +118,8 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
-                                       ] + (if configs.estate == "prd-sdc" then [
+                                       ] + (if slbimages.phase == "1" then [
+                                           "--healthPathCheck=true",
                                            "--metricsBatchTimeout=30s",
                                        ] else if configs.estate == "prd-sam" then [
                                                 "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
