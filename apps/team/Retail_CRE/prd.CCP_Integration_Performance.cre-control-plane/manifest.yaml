@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: sfci/cre/cre-control-plane:0.0.1.19.40.master.36f2c19.79
+      image: sfci/cre/cre-control-plane:0.0.1.19.41.master.6cddbcc.80
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
