@@ -66,10 +66,10 @@ system:
         initialDelaySeconds: 110
         periodSeconds: 5
       volumeMounts:
-        - name: tls-client-cert
-          mountPath: /client-certs
-        - name: tls-server-cert
-          mountPath: /server-certs
+      - name: myclientcert
+        mountPath: /clientcert
+      - name: myservercert
+        mountPath: /servercert
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
@@ -79,10 +79,10 @@ system:
     - name: logvolservice
       hostPath:
         path: /home/sfdc-scone-hellodiscovery/logs
-    - name: tls-client-cert
+    - name: myclientcert
       maddogCert:
         type: client
-    - name: tls-server-cert
+    - name: myservercert
       maddogCert:
         type: server
   loadbalancers:
