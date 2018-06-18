@@ -32,6 +32,8 @@ system:
           value: 15372
         - name: AJNA_NAMESPACE
           value: mc.test.mceventbusqa1s1
+        - name: RESTARTDUMMY
+          value: willremove
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
