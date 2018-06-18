@@ -7,7 +7,7 @@ system:
     
     containers:
     - name: mist61-jmeter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/jmeter:kviphong-20180618-094404
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/jmeter:kviphong-20180618-110928
 
 #      resources:
 #        limits: { memory: "10240M" }
