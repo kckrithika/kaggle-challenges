@@ -187,7 +187,6 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
  {
      certs_mount: certs_mount,
      certs_volume: certs_volume,
-     tokens_mount: tokens_mount,
      tokens_volume: tokens_volume,
 
      refresher_container:: refresher_container,
