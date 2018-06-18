@@ -27,6 +27,9 @@ system:
       ports:
         - containerPort: 8080
         - containerPort: 15372
+      resources:
+        limits: { cpu: "2", memory: "5Gi" }
+        requests: { cpu: "2", memory: "5Gi" }
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
