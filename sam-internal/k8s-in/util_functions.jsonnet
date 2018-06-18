@@ -49,6 +49,6 @@ local kingdom = std.extVar("kingdom");
 
     # This is for filtering Kingdoms which support Ceph Clusters
     is_cephstorage_supported(estate):: (
-       estate == "prd-sam" || estate == "phx-sam"
+       estate == "prd-sam"
     ),
 }
