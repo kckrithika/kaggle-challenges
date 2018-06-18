@@ -9,20 +9,34 @@ system:
     count: 1
     containers:
     - name: cre-control-plane
-      image: sfci/cre/cre-control-plane:0.0.1.19.5.master.34b18dc.43
+      image: sfci/cre/cre-control-plane:0.0.1.19.43.master.3eb9aa2.82
       env:
-        - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__iad.ajna_local__cre_metrics
-        - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-iad.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: prod
-        - name: METRICS_KAFKA_ENABLED
-          value: false
+        - name: AUTHORIZED_USERS
+          value: "morun@salesforce.com,adray@salesforce.com,mbahrenburg@salesforce.com"
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-prod-gdot-private-key.json
+        - name: GDOT_ENVIRONMENT
+          value: production
+        - name: GDOT_PRODUCTION
+          value: true
         - name: GRPC_PORT
           value: 7020
+        - name: FLOWSNAKE_ENDPOINT
+          value: https://flowsnake-iad.data.sfdc.net
+        - name: ENGINE_IMAGE_TAG
+          value: sfci/cre/cre-engine:0.0.1.229.master.e1e9f20.505
+        - name: ENGINE_APPLICATION_NAME
+          value: cre-engine
+        - name: ENGINE_HBASE_DATACENTER
+          value: iad
+        - name: ENGINE_HBASE_ENVIRONMENT
+          value: prod
+        - name: ENGINE_METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-iad.data.sfdc.net:9093
+        - name: ENGINE_METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__iad.ajna_local__cre_metrics
       ports:
       - containerPort: 8080
       - containerPort: 7020
