@@ -16,7 +16,9 @@ system:
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
-          value: ccp-func
+          value: kingdom-test
+        - name: SFDC_SUBENVIRONMENT
+          value: kingdom-test          
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: MADDOG_CLIENT_KEYSTORE
@@ -40,7 +42,7 @@ system:
         name: client-certs
       - mountPath: /server-certs
         name: server-certs
-      - mountPath: /opt/cre/cre-api-ccp-func
+      - mountPath: /opt/cre/cre-api-kingdom-test
         name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.26
@@ -53,7 +55,9 @@ system:
         name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: stmfa
+          value: kingdom-test
+        - name: SFDC_SUBENVIRONMENT
+          value: kingdom-test
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -94,7 +98,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-api-ccp-func
+        path: /home/sfdc-cre/logs/cre-api-kingdom-test
     - name: client-certs
       maddogCert:
         type: client
