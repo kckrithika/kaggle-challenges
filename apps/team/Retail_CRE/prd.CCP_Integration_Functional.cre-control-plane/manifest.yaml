@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: sfci/cre/cre-control-plane:0.0.1.19.41.master.6cddbcc.80
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.44.at-hbase_fix.08e57cf.23
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -26,7 +26,11 @@ system:
         - name: GRPC_PORT
           value: 7020
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509   
+          value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509  
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-test
+        - name: HBASE_DATACENTER
+          value: prd 
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -58,9 +62,7 @@ system:
         name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: kingdom-test
-        - name: SFDC_SUBENVIRONMENT
-          value: kingdom-test
+          value: ccp-func
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
