@@ -49,3 +49,5 @@ apps:
   # ======= ENGINE ======== #
   iad.Prod.cre-engine:
     - name: iad/iad-sam_customerresolutionengine
+  ord.Prod.cre-engine:
+      - name: ord/ord-sam_customerresolutionengine
