@@ -67,6 +67,18 @@ local samconfig = import "config.jsonnet";
         "docker-containerd.*docker-bootstrap",
         "hyperkube.*kubelet",
       ],
+      monitoredProcesses: {
+        "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
+        "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler",
+        "name=etcd": "age.etcd",
+      },
     } else {
       deploymentNamespacePrefixWhitelist: "flowsnake",
       enableMaddogCertChecks: true,
@@ -76,5 +88,14 @@ local samconfig = import "config.jsonnet";
       maxdeploymentduration: 420000000000,
       syntheticPVRetrytimeout: 420000000000,
       syntheticretrytimeout: 420000000000,
+      monitoredProcesses: {
+        "dockerd.*docker-bootstrap": "age.dockerbootstrap",
+        "dockerd.*docker.sock": "age.dockermain",
+        "hyperkube.*apiserver": "age.kubeapiserver",
+        "hyperkube.*controller-manager": "age.kubecontrollermanager",
+        "hyperkube.*kubelet": "age.kubelet",
+        "hyperkube.*proxy": "age.kubeproxy",
+        "hyperkube.*scheduler": "age.kubescheduler",
+      },
     },
 }
