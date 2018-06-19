@@ -68,8 +68,6 @@ local samconfig = import "config.jsonnet";
         "hyperkube.*kubelet",
       ],
       monitoredProcesses: {
-        "docker-containerd.*docker-bootstrap": "age.dockercontainerdbootstrap",
-        "docker-containerd.*docker-containerd.sock": "age.dockercontainerd",
         "dockerd.*docker-bootstrap": "age.dockerbootstrap",
         "dockerd.*docker.sock": "age.dockermain",
         "hyperkube.*apiserver": "age.kubeapiserver",
