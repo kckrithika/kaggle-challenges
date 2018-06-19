@@ -51,7 +51,7 @@ system:
     - name: samtestwdwithmaddog
       image: tnrp/sam/hypersam:sam-0000701-487f2675
       command: ["/sam/service-wd"]
-      args: ["-service=lbappwithcert"]
+      args: ["-service=lbappwithmulticerthostnetwork"]
   loadbalancers:
   - lbname: lbappwithmulticerthostnetwork
     function: samtestfnwithmaddogmulticerthostnetwork
