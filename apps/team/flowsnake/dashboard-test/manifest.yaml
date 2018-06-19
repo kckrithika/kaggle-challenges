@@ -8,7 +8,7 @@ system:
     - name: dashboard-prd-samdev
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
+        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
