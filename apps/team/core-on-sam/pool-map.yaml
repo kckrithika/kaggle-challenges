@@ -8,8 +8,8 @@ apps:
   - name: prd/prd-sp2-sam_coreapp
  may-demo-switchboard:
   - name: prd/prd-sp2-sam_coreapp
-# may-demo-core:
-#  - name: prd/prd-sp2-sam_coreapp
+ may-demo-core:
+  - name: prd/prd-sp2-sam_coreapp
  matt-startup-test:
   - name: prd/prd-sp2-sam_coreapp
  cyan-sherpa-envoy:
