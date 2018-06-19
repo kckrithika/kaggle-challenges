@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: default
+  - name: green
     count: 2
     containers:
     - name: greentest
@@ -14,7 +14,7 @@ system:
           port: 9090
   loadbalancers:
   - lbname: greentestlb
-    function: default
+    function: green
     slbenabled: true
     ports:
       - port: 9090
