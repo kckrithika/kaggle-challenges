@@ -65,8 +65,6 @@ local samconfig = import "config.jsonnet";
       universalProcesses: [
         "dockerd.*docker-bootstrap",
         "dockerd.*docker.sock",
-        "docker-containerd.*docker-containerd.sock",
-        "docker-containerd.*docker-bootstrap",
         "hyperkube.*kubelet",
       ],
       monitoredProcesses: {
