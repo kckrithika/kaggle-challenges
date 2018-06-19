@@ -8,7 +8,6 @@ local enabledEstates = std.set([
     "prd-sam",
     "xrd-sam",
     "prd-skipper",
-    "phx-sam",
 ]);
 
 // Environment variables for the Local Provisioner container.

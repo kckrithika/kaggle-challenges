@@ -21,7 +21,6 @@ local enabledEstates = std.set([
     "prd-sam_storage",
     "prd-sam",
     "prd-skipper",
-    "phx-sam",
     "xrd-sam",
 ]);
 
