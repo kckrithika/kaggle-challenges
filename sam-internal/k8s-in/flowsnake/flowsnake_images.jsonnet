@@ -108,8 +108,11 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
+            watchdog_image_tag: "sam-0002015-fdb18963",
+
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                watchdog_configmap_update: "foo",
             },
             version_mapping: {
                 main: {
