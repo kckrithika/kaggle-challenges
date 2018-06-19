@@ -25,7 +25,7 @@ system:
       emptyDir: {}
   loadbalancers:
   - lbname: kube-dashboard-prd-data
-    function: kube-dashboard-prd-data
+    function: dashboard-test
     slbEnabled: true
     ports:
       - port: 80
