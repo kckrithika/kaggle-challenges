@@ -8,10 +8,8 @@ system:
     - name: dashboard-prd-samdev
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
         - --insecure-port=9090
-        - --system-banner=<b>Kubernetes Dashboard support is in Alpha</b> - See <a href="https://salesforce.quip.com/aamGAPYAQ4EK"> here </a> for status updates</br>
-        - --system-banner-severity=WARNING
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
       ports:
       - containerPort: 9090
@@ -26,8 +24,8 @@ system:
     - name: temp
       emptyDir: {}
   loadbalancers:
-  - lbname: kubernetes-dashboard
-    function: kubernetes-dashboard
+  - lbname: kube-dashboard-prd-data
+    function: kube-dashboard-prd-data
     slbEnabled: true
     ports:
       - port: 80
