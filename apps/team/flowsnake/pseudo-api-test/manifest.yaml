@@ -36,9 +36,10 @@ system:
       secret:
         secretName: mysql
   loadbalancers:
-  - lbname: pseudo-kubeapi-test
+  - lbname: kubeapi-test
     function: pseudo-kubeapi-test
-    nodeExposed: true
+    slbEnabled: true
     ports:
-      - port: 40001
+      - port: 7002
         targetport: 7002
+        lbtype: dsr
