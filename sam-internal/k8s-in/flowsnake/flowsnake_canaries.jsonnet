@@ -19,12 +19,12 @@ local build_run_command(version) = "java -jar " +
                         set_version(version) +
                         " junit.jar -cp integration-test.jar -n '.*'";
 
-## Classpath required for standalone junit to find / execute the target test class
-local set_test_classpath(test_name) = " -c com.salesforce.dva.transform.flowsnake." + test_name;
+## Required for standalone junit to find / execute the target test class
+local set_test_class(test_name) = " -c com.salesforce.dva.transform.flowsnake." + test_name;
 
 ## Builds a single command to be executed by the watchdog's cliChecker. Assumes a common location of the target testclass
 ##  and no additional parameters to be passed in, junit and test artifacts from the canary-watchdog image, etc.
-local build_test_command(test_name, version) = build_run_command(version) + set_test_classpath(test_name);
+local build_test_command(test_name, version) = build_run_command(version) + set_test_class(test_name);
 local build_command_sets = {
     "0.10.0": {
         SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.10.0'),
