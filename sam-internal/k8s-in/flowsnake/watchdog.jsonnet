@@ -14,18 +14,12 @@ local samconfig = import "config.jsonnet";
         "deployer-recipient": "flowsnake@salesforce.com",
         "deployer-sender": "flowsnake@salesforce.com",
         "deployer-smtpServer": samconfig.smtpServer,
-        deploymentNamespacePrefixWhitelist: "flowsnake",
         "email-subject-prefix": "FLOWSNAKEWD",
-        enableMaddogCertChecks: true,
-        enableStatefulChecks: true,
-        enableStatefulPVChecks: true,
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
         imageName: flowsnakeimage.watchdog,
         kubeResourceNamespacePrefixBlacklist: "sam-watchdog",
         kubeResourceNamespacePrefixWhitelist: "sam-system,flowsnake",
-        maxPVCAge: 420000000000,
         maxUptimeSampleSize: 5,
-        maxdeploymentduration: 420000000000,
         monitoredProcesses: {
           "dockerd.*docker-bootstrap": "age.dockerbootstrap",
           "dockerd.*docker.sock": "age.dockermain",
@@ -42,8 +36,6 @@ local samconfig = import "config.jsonnet";
         sdpEndpoint: "http://localhost:39999",
         sender: "flowsnake@salesforce.com",
         smtpServer: samconfig.smtpServer,
-        syntheticPVRetrytimeout: 420000000000,
-        syntheticretrytimeout: 420000000000,
         tlsEnabled: true,
         caFile: "/etc/pki_service/ca/cabundle.pem",
         certFile: "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
@@ -65,5 +57,24 @@ local samconfig = import "config.jsonnet";
           { estates: ["iad-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/30" },
           { estates: ["ord-flowsnake_prod"], checker: "kubeResourcesChecker", until: "2018/04/30" },
           ],
+    } +
+    if std.objectHas(flowsnakeimage.feature_flags, "watchdog_configmap_update") then
+    {
+      universalProcesses: [
+        "dockerd.*docker-bootstrap",
+        "dockerd.*docker.sock",
+        "docker-containerd.*docker-containerd.sock",
+        "docker-containerd.*docker-bootstrap",
+        "hyperkube.*kubelet",
+      ],
+    } else {
+      deploymentNamespacePrefixWhitelist: "flowsnake",
+      enableMaddogCertChecks: true,
+      enableStatefulChecks: true,
+      enableStatefulPVChecks: true,
+      maxPVCAge: 420000000000,
+      maxdeploymentduration: 420000000000,
+      syntheticPVRetrytimeout: 420000000000,
+      syntheticretrytimeout: 420000000000,
     },
 }
