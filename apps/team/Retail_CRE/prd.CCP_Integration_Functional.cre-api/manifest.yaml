@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api-ccp-func
-      image: sfci/cre/cre-api:0.0.1.78.master.9a37936.134
+      image: sfci/cre/cre-api:0.0.1.81.master.cb32713.137
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
