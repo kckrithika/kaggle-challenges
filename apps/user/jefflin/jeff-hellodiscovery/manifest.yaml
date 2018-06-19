@@ -72,9 +72,14 @@ system:
         mountPath: /clientcert
       - name: myservercert
         mountPath: /servercert
+      - mountPath: /log
+        name: logvolsherpa
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
     volumes:
+    - name: logvolsherpa
+      hostPath:
+        path: /home/sfdc-scone-hellodiscovery-sherpa/logs
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-hellodiscovery-beacon/logs
