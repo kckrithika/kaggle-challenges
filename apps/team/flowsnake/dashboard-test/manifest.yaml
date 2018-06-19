@@ -17,7 +17,7 @@ system:
         httpGet:
           path: /
           port: 9090
-      volumesMounts:
+      volumeMounts:
       - mountPath: /tmp
         name: temp
     volumes:
