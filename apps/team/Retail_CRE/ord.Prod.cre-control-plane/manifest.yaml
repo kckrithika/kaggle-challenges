@@ -1,0 +1,127 @@
+apiVersion: v1
+
+system:
+  notifications:
+    email:
+      - cre@salesforce.com
+  functions:
+  - name: cre-control-plane
+    count: 1
+    containers:
+    - name: cre-control-plane
+      image: sfci/cre/cre-control-plane:0.0.1.19.43.master.3eb9aa2.82
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: prod
+        - name: AUTHORIZED_USERS
+          value: "morun@salesforce.com,adray@salesforce.com,mbahrenburg@salesforce.com"
+        - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
+          value: /secrets/cre-prod-gdot-private-key.json
+        - name: GDOT_ENVIRONMENT
+          value: production
+        - name: GDOT_PRODUCTION
+          value: true
+        - name: GRPC_PORT
+          value: 7020
+        - name: FLOWSNAKE_ENDPOINT
+          value: https://flowsnake-ord.data.sfdc.net
+        - name: ENGINE_IMAGE_TAG
+          value: sfci/cre/cre-engine:0.0.1.229.master.e1e9f20.505
+        - name: ENGINE_APPLICATION_NAME
+          value: cre-engine
+        - name: ENGINE_HBASE_DATACENTER
+          value: ord
+        - name: ENGINE_HBASE_ENVIRONMENT
+          value: prod
+        - name: ENGINE_METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-ord.data.sfdc.net:9093
+        - name: ENGINE_METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__ord.ajna_local__cre_metrics
+      ports:
+      - containerPort: 8080
+      - containerPort: 7020
+      - containerPort: 15372
+      livenessProbe:
+        exec:
+            command:
+            - ls
+        initialDelaySeconds: 30
+      volumeMounts:
+      - mountPath: /secrets/
+        name: secretvol
+        readOnly: true
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      - mountPath: /opt/cre/cre-control-plane-prod
+        name: logvol
+    - name: sherpa-cre-control-plane
+      image: sfci/servicelibs/sherpa:2.0.26
+      volumeMounts:
+      - mountPath: /client-certs
+        name: client-certs
+      - mountPath: /server-certs
+        name: server-certs
+      env:
+        - name: SFDC_ENVIRONMENT
+          value: prod
+      resources:
+        limits: { cpu: "1", memory: "1Gi" }
+        requests: { cpu: "1", memory: "1Gi" }
+      ports:
+      - containerPort: 7443
+        name: sh-in-http2-tls
+      - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
+        name: sherpa-in-admin
+      livenessProbe:
+        exec:
+          command:
+          - "./bin/is-alive"
+        initialDelaySeconds: 120
+        periodSeconds: 5
+      readinessProbe:
+        exec:
+          command:
+          - "./bin/is-ready"
+        initialDelaySeconds: 110
+        periodSeconds: 5
+    - name: beacon
+      image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
+      args:
+      - -endpoint
+      - retail-cre/cre-control-plane:DATACENTER_ALLENV:7443
+      # gRPC (http2) example without a namespace - myservice:DATACENTER:7012
+      # gRPC (http2) + namespace - <SAM team name>/<SAM function name>:DATACENTER:7012
+      # gRPC (http2) mTLS + namespace - <SAM team name>/<SAM function name>:DATACENTER:7443
+      livenessProbe:
+        initialDelaySeconds: 5
+        exec:
+          command:
+          - "/home/scone/is-alive.sh"
+    volumes:
+    - name: secretvol
+      k4aSecret:
+        secretName: prod-gdot-private-key
+    - name: logvol
+      hostPath:
+        path: /home/sfdc-cre/logs/cre-control-plane-prod
+    - name: client-certs
+      maddogCert:
+        type: client
+    - name: server-certs
+      maddogCert:
+        type: server
+        lbnames:
+          - cre-control-plane-lb
+    - name: sherpa-log-volume
+      hostPath:
+        path: /home/sfdc-sherpa/logs
+  loadbalancers:
+  - lbname: cre-control-plane-lb
+    function: cre-control-plane
+    nodeExposed: true
+    slbEnabled: true
+    ports:
+      - port: 8094
+        targetport: 8080

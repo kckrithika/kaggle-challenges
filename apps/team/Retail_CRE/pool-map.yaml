@@ -34,6 +34,8 @@ apps:
   # ====== CONTROL PLANE ======
   iad.Prod.cre-control-plane:
   - name: iad/iad-sam_customerresolutionengine
+  ord.Prod.cre-control-plane:
+  - name: ord/ord-sam_customerresolutionengine
 
   prd.CCP_Integration_Functional.cre-control-plane: # control-plane functional test env instance
   - name: prd/prd-sam_customerresolutionengine
