@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: watchdog-comparek8sresources
+  name: watchdog-comparek8sresources
+  namespace: sam-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: watchdog-comparek8sresources
+  template:
+    metadata:
+      labels:
+        apptype: comparision
+        name: watchdog-comparek8sresources
+    spec:
+      containers:
+      - command:
+        - /sam/watchdog
+        - --role=COMPAREK8SRESOURCES
+        - --emailFrequency=1h
+        - --enableEmailPerCheckerInstance=true
+        - --deployer-recipient=small@salesforce.com,rbhat@salesforce.com
+        - xiao-zhou@salesforce.com
+        - -timeout=2s
+        - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
+        - --config=/config/watchdog.json
+        - --hostsConfigFile=/sfdchosts/hosts.json
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm
+        name: watchdog-comparek8sresources
+        volumeMounts:
+        - mountPath: /sfdchosts
+          name: sfdchosts
+        - mountPath: /config
+          name: config
+        - mountPath: /data/certs
+          name: certs
+      hostNetwork: true
+      nodeSelector:
+        pool: prd-samtest
+      volumes:
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
+      - configMap:
+          name: watchdog
+        name: config
+      - hostPath:
+          path: /data/certs
+        name: certs
