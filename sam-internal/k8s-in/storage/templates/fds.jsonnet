@@ -5,6 +5,7 @@ local storageutils = import "storageutils.jsonnet";
 
 // Defines the list of estates where this service is enabled.
 local enabledEstates = std.set([
+    "prd-sam_storagedev",
     "prd-sam_storage",
     "prd-sam",
     "prd-skipper",

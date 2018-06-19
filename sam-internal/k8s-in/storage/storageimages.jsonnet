@@ -67,6 +67,23 @@ local storageutils = import "storageutils.jsonnet";
 
     ### Per-phase image tags
     per_phase: {
+        ### Release Phase 0 - prd-sam_storagedev 
+        "0": {
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
+            default_tag: "base-0000437-311530ce",
+            ceph_operator_tag: "base-0000437-311530ce",
+            loginit_tag: "base-0000437-311530ce",
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
+            sfms_tag: "latest-0000182-ebb4867b",
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
+            lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fbookie&last=10&repo=SFStorage%2Fbookkeeper
+            sfstorebookie_tag: "base-0000089-39319751",
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fceph-daemon&last=10&repo=SFStorage%2Fceph-docker
+            cephdaemon_tag: "10.2.7-0000062-6d863283",
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fsam%2Fmadkub&last=10&repo=sam%2Fmadkub
+            madkub_tag: "1.0.0-0000061-74e4a7b6",
+        },
 
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
         "1": {
@@ -130,7 +147,9 @@ local storageutils = import "storageutils.jsonnet";
 
     ### Phase kingdom/estate mapping
     phase: (
-        if (estate == "prd-sam_storage" || estate == "prd-skipper") then
+        if (estate == "prd-sam_storagedev") then
+            "0"
+        else if (estate == "prd-sam_storage" || estate == "prd-skipper") then
             "1"
         else if (kingdom == "prd" || kingdom == "xrd") then
             "2"
