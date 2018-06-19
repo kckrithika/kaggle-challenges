@@ -107,7 +107,7 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
-          
+
             watchdog_image_tag: "sam-0002015-fdb18963",
 
             feature_flags: {
