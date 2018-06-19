@@ -25,6 +25,10 @@ local utils = import "util_functions.jsonnet";
 
         #[mayank] New version of Email Reporter
         "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002032-7f03ae12",
+
+        # [small] Comparing v1 and v2 flow changes
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm",
+
         },
 
     ### Per-phase image tags
