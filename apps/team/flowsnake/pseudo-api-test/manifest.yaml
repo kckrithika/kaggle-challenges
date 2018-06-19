@@ -10,10 +10,10 @@ system:
         - /sam/virtual-api
         - --sql-db-host=mysql.flowsnake.prd-sam.prd.slb.sfdc.net
         - --sql-db-port=3306
-        - --sql-db-name=sdp
+        - --sql-db-name=kube_resource_test
         - --sql-db-user=root
         - --sql-db-pass-file=/var/secrets/mysql.txt
-        - --sql-db-resources-table=k8s_resource_test
+        - --sql-db-resources-table=k8s_resource
         - --v=10
         - --alsologtostderr
         - --insecure-port=7002
