@@ -8,7 +8,6 @@
         "prd-sam": ["prd-sam_ceph"],
         "xrd-sam": ["xrd-sam_ceph"],
         "prd-sam_storage": ["prd-sam_cephdev", "prd-sam_storage"],
-        "phx-sam": ["phx-sam_ceph"],
     },
 
     // Map of SFStore control estate -> cluster estate.
@@ -17,7 +16,6 @@
         "prd-sam": ["prd-sam_sfstore"],
         "xrd-sam": [],
         "prd-sam_storage": ["prd-sam_sfstoredev"],
-        "phx-sam": [],
     },
 
     serviceDefn: {
@@ -76,9 +74,6 @@
                 "prd-sam": {
                     "prd-sam_ceph": "10.231.171.0/24",
                 },
-                "phx-sam": {
-                    "phx-sam_ceph": "10.220.25.128/25",
-                },
                 "xrd-sam": {
                     "xrd-sam_ceph": "10.210.206.0/24,10.210.207.0/24,10.210.212.0/24",
                 },
@@ -93,9 +88,6 @@
                 },
                 "prd-sam": {
                     "prd-sam_ceph": "152Ti",
-                },
-                "phx-sam": {
-                    "phx-sam_ceph": "273Ti",
                 },
                 "xrd-sam": {
                     "xrd-sam_ceph": "965Ti",
@@ -134,7 +126,6 @@
             "prd-skipper": "true",
             "prd-sam_storage": "true",
             "prd-sam": "true",
-            "phx-sam": "false",
             "xrd-sam": "true",
         },
     },

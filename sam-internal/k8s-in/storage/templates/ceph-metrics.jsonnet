@@ -6,7 +6,6 @@ local storageconfigs = import "storageconfig.jsonnet";
 local enabledEstates = std.set([
     "prd-sam_storage",
     "prd-sam",
-    "phx-sam",
     "xrd-sam",
 ]);
 
@@ -43,10 +42,6 @@ if std.setMember(configs.estate, enabledEstates) then
                 },
                 spec: {
                     nodeSelector: {
-                    } +
-                    if configs.estate == "phx-sam" then {
-                        pool: configs.estate,
-                    } else {
                         pool: storageconfigs.cephMetricsPool,
                     },
                     volumes: [

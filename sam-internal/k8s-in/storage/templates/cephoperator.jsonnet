@@ -8,7 +8,6 @@ local isEstateNotSkipper = configs.estate != "prd-skipper";
 local enabledEstates = std.set([
     "prd-sam",
     "prd-skipper",
-    "phx-sam",
     "xrd-sam",
 ]);
 
