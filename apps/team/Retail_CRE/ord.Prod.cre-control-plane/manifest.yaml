@@ -37,6 +37,8 @@ system:
           value: ajna0-broker1-0-ord.data.sfdc.net:9093
         - name: ENGINE_METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__ord.ajna_local__cre_metrics
+        - name: GDOT_PROVISIONING_USER_NAME
+          value: creprodprovisioner
       ports:
       - containerPort: 8080
       - containerPort: 7020
