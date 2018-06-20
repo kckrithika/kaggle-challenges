@@ -51,7 +51,7 @@ system:
           value: cyan.core-on-sam-sp2.prd-sam.prd.slb.sfdc.net
         # This maps to http_port
         - name: PORT
-          value: 12100
+          value: 13100
         # This maps to https_port
         - name: SPORT
           value: 12099
@@ -96,7 +96,7 @@ system:
         httpGet:
           path: /ping.jsp
 #          path: /samReady.jsp
-          port: 12100
+          port: 13100
         initialDelaySeconds: 120
         periodSeconds: 1
         failureThreshold: 10
@@ -104,7 +104,7 @@ system:
       ports:
         # Actually used by the container
         - containerPort: 8998
-        - containerPort: 12100
+        - containerPort: 13100
         - containerPort: 11211
         - containerPort: 12099
         - containerPort: 12098
@@ -114,7 +114,7 @@ system:
           mountPath: /certs
 
     - name: envoy-tls-terminator-config
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180618-170833
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/cyan-config:sathish.santhanam-20180620-154748
       env:
       - name: CONFIG_DIR
         value: /home/sfdc-sherpa/sherpa-envoy-config-volume
@@ -144,11 +144,13 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: front-proxy
+      - name: ENVOY_DEBUG_OPTIONS
+        value: -l debug
       args:
       - --template
       - /cyan-config/tls-terminator-config.yaml.template
       ports:
-      - containerPort: 12065
+      - containerPort: 13065
       - containerPort: 15373
       livenessProbe:
         exec:
@@ -185,7 +187,9 @@ system:
     ports:
     - port: 8998
       targetport: 8998
-    - port: 12100
-      targetport: 12100
+    - port: 13100
+      targetport: 13100
     - port: 12099
       targetport: 12099
+    - port: 13065
+      targetport: 13065
