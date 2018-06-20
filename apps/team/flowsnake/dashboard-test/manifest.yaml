@@ -10,7 +10,7 @@ system:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
         - --insecure-port=9090
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:latest
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9090
       livenessProbe:
