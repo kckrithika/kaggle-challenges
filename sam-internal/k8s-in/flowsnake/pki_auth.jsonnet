@@ -70,6 +70,7 @@ local kingdom = std.extVar("kingdom");
         {
             namespace: "flowsnake_test",
             authorizedLdapGroups: ["Flowsnake_Platform"],
+            authorizedClientCerts: ["flowsnake_test"],
         },
         {
             namespace: "retail-cre",
