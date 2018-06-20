@@ -158,6 +158,10 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: [],
             authorizedClientCerts: ["flowsnake_master_prod"],
         },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
       ],
       "frf/frf-flowsnake_prod": [
         {

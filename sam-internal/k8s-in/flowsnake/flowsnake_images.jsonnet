@@ -113,7 +113,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 watchdog_configmap_update: "foo",
-                watchdog_canaries: "foo",  #Untested - needs verification before promotion to phase 3
+                watchdog_canaries: "foo",  #Verified in IoT Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
             },
             version_mapping: {
                 main: {
@@ -138,6 +138,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 watchdog_configmap_update: "foo",
+                watchdog_canaries: "foo",  #Untested, requires verification before promotion to phase 4
             },
             version_mapping: {
                 main: {
