@@ -1,5 +1,5 @@
 apps:
- test-search_model_service:
+ test-search-model-service:
   - prd/prd-sam
  prd-search_model_executor_xlt:
   - prd/prd-sam
