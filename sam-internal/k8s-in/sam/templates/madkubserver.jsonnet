@@ -129,7 +129,12 @@ if samfeatureflags.maddogforsamapps then {
                               ] else [
                                   "--cert-folders",
                                   "madkubInternalCert:/certs/",
-                              ],
+                              ] +
+                            if configs.kingdom == "prd" then
+                            [
+                                "--ca-folder",
+                                "/maddog-certs/ca",
+                            ] else [],
                         image: samimages.madkub,
                         resources: {
                         },

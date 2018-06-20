@@ -85,6 +85,8 @@ spec:
         - prd
         - --cert-folders
         - madkubInternalCert:/certs/
+        - --ca-folder
+        - /maddog-certs/ca
         env:
         - name: MADKUB_NODENAME
           valueFrom:
