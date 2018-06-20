@@ -32,7 +32,7 @@ system:
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       args:
       - -endpoint
-      - hellodiscovery:DATACENTER:7443
+      - hellodiscovery/user-jefflin:DATACENTER:7443
       - -logging.dir
       - /log
       livenessProbe:
