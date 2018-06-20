@@ -84,7 +84,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
                 watchdog_configmap_update: "foo",
-                watchdog_canaries: "foo",  #Untested, pending verification in test fleet
+                watchdog_canaries: "foo",  #Verified in Test Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
             },
             version_mapping: {
                 main: {
@@ -113,6 +113,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 watchdog_configmap_update: "foo",
+                watchdog_canaries: "foo",  #Untested - needs verification before promotion to phase 3
             },
             version_mapping: {
                 main: {
