@@ -21,7 +21,7 @@ system:
 
     containers:
     - name: dfs
-      image: sfci/enterprise-api/sfdc-platform-dfs:0.2.16c
+      image: sfci/enterprise-api/sfdc-platform-dfs:0.8.1
       # associate the log directory to a logical volume.
       volumeMounts:
       - name: logvol
@@ -33,15 +33,40 @@ system:
         value: prod
       - name: LOAD_CC_CERT
         value: false
+      - name: MDS_CANONICALMETADATA_SOURCETENANTKEY
+        value: mds/prod/ST0000000000001
+      - name: MDS_DESTINATION
+        value: metadata-service.retail-mds.localhost.mesh.force.com:5443
+      - name: GDOT_USER
+        value: datafederationservice
+      - name: SCONE_SERVER_SECURITY_MUTUALAUTH
+        value: true
+      - name: JVM_ARGS
+        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+                -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                -Xloggc:/home/scone/logs/dfs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
+                -Dcom.sun.management.jmxremote.port=8898
+                -Dcom.sun.management.jmxremote.rmi.port=8898
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 7022
       - containerPort: 15372
       livenessProbe:
-        exec:
-          command: ["true"]
-
+        initialDelaySeconds: 120
+        periodSeconds: 30
+        timeoutSeconds: 30
+        httpGet:
+          path: /manage/health
+          port: 15372
+          scheme: HTTP
     - name: sherpa-dfs
-      image: sfci/servicelibs/sherpa:2.0.23
+      image: sfci/servicelibs/sherpa:2.0.26
       volumeMounts:
       - name: dfs-server-cert
         mountPath: /server-certs
