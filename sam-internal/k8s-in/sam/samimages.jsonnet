@@ -20,12 +20,6 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        #[alok.bansal] New version of Sam Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002028-7ec070c0",
-
-        #[mayank] New version of Email Reporter
-        "prd,prd-sam,k8s-resource-reporter,hypersam": "sam-0002032-7f03ae12",
-
         # [small] Comparing v1 and v2 flow changes
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm",
 
@@ -63,7 +57,9 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 2 - PRD Sandbox and prd-sdc
         "2": $.per_phase["3"] {
-            hypersam: "sam-0002015-fdb18963",
+            hypersam: "sam-0002036-9f787768",
+            madkub: "1.0.0-0000071-5a6dcab2",
+            madkubSidecar: "1.0.0-0000071-5a6dcab2",
             },
 
         ### Release Phase 3 - Canary Prod FRF / Pub CDU
