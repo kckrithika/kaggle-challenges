@@ -118,12 +118,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
-                                       ] + (if slbimages.phase == "1" || slbimages.phase == "2" || slbimages.phase == "3" then [
                                            "--healthPathCheck=true",
                                            "--metricsBatchTimeout=30s",
-                                       ] else if configs.estate == "prd-sam" then [
-                                                "--optOutServiceList=ops0-pkicontroller1-0-prd,git-test",
-                                            ] else []),
+                              ],
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,
