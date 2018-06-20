@@ -27,10 +27,10 @@ system:
           value: 7020
         - name: ENGINE_IMAGE_TAG
           value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509  
-        - name: HBASE_ENVIRONMENT
-          value: kingdom-test
-        - name: HBASE_DATACENTER
-          value: prd 
+        # - name: HBASE_ENVIRONMENT
+        #   value: kingdom-test
+        # - name: HBASE_DATACENTER
+        #   value: prd 
       ports:
       - containerPort: 8080
       - containerPort: 7020
