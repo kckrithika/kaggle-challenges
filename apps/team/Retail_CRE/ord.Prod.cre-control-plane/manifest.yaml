@@ -104,7 +104,7 @@ system:
     volumes:
     - name: secretvol
       k4aSecret:
-        secretName: prod-gdot-private-key
+        secretName: gdot-private-key
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-prod
