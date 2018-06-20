@@ -9,22 +9,24 @@ system:
     count: 1
     containers:
     - name: cre-api-ccp-func
-      image: sfci/cre/cre-api:0.0.1.81.master.cb32713.137
+      image: sfci/cre/cre-api:0.0.1.83.master.9d1eead.139
       env:
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
         - name: METRICS_KAFKA_SERVER
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
-          value: kingdom-test
-        - name: SFDC_SUBENVIRONMENT
-          value: kingdom-test          
+          value: ccp-func
         - name: METRICS_KAFKA_ENABLED
           value: true
         - name: MADDOG_CLIENT_KEYSTORE
           value: maddog/maddog-client-keystore.json
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-test     
+        - name: HBASE_DATA_CENTER
+          value: prd               
       ports:
       - containerPort: 8080
       - containerPort: 7022
@@ -42,7 +44,7 @@ system:
         name: client-certs
       - mountPath: /server-certs
         name: server-certs
-      - mountPath: /opt/cre/cre-api-kingdom-test
+      - mountPath: /opt/cre/cre-api-ccp-func
         name: logvol
     - name: sherpa-cre-api
       image: sfci/servicelibs/sherpa:2.0.26
@@ -55,9 +57,7 @@ system:
         name: server-certs
       env:
         - name: SFDC_ENVIRONMENT
-          value: kingdom-test
-        - name: SFDC_SUBENVIRONMENT
-          value: kingdom-test
+          value: ccp-func
       resources:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
@@ -98,7 +98,7 @@ system:
     volumes:
     - name: logvol
       hostPath:
-        path: /home/sfdc-cre/logs/cre-api-kingdom-test
+        path: /home/sfdc-cre/logs/cre-api-ccp-func
     - name: client-certs
       maddogCert:
         type: client
