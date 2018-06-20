@@ -47,7 +47,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                 labels: {
                     name: "stateful-revision-cleaner",
                     apptype: "control",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
             },
         },
         selector: {

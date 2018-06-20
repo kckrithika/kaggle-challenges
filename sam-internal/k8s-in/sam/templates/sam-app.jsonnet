@@ -5,6 +5,9 @@ if configs.kingdom == "prd" then {
     kind: "ThirdPartyResource",
     metadata: {
         name: "sam-app.samapp.salesforce.com",
+        labels: {} + if configs.estate == "prd-samdev" then {
+                owner: "sam",
+              } else {},
     },
     description: "A specification of a SAM application",
     versions: [

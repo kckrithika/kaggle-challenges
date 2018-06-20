@@ -10,6 +10,7 @@ spec:
       labels:
         daemonset: "true"
         name: etcdbackup
+        owner: sam
     spec:
       containers:
       - command:

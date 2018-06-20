@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: jenkins
         name: jenkins
+        owner: sam
     spec:
       containers:
       - image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/myjenkins:20180220

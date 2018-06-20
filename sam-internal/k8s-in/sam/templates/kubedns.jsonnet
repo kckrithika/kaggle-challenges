@@ -10,7 +10,9 @@ if samfeatureflags.kubedns then {
             "addonmanager.kubernetes.io/mode": "Reconcile",
             "k8s-app": "kube-dns",
             "kubernetes.io/cluster-service": "true",
-        },
+        } + if configs.estate == "prd-samdev" then {
+                  owner: "sam",
+                } else {},
         name: "kube-dns",
         namespace: "kube-system",
     },

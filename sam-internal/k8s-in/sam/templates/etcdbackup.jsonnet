@@ -59,7 +59,9 @@ local wdconfig = import "samwdconfig.jsonnet";
                 labels: {
                     name: "etcdbackup",
                     daemonset: "true",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                    owner: "sam",
+                } else {},
             },
         },
     },

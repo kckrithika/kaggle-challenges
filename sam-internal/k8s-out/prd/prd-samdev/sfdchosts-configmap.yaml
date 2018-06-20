@@ -107,5 +107,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: sfdchosts
   namespace: sam-system

@@ -4,6 +4,7 @@ metadata:
   annotations: {}
   labels:
     app: samcontrol-deployer
+    owner: sam
   name: samcontrol-deployer
   namespace: sam-system
 spec:

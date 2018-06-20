@@ -6,6 +6,9 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     metadata: {
         name: "samapp-controller",
         namespace: "sam-system",
+        labels: {} + if configs.estate == "prd-samdev" then {
+                owner: "sam",
+              } else {},
     },
     data: {
         "samapp-controller-config.json": std.toString(import "configs/samapp-controller-config.jsonnet"),

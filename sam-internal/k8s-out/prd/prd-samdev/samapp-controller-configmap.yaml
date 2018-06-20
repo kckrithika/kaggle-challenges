@@ -11,5 +11,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: samapp-controller
   namespace: sam-system

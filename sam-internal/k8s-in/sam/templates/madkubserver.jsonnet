@@ -18,7 +18,9 @@ if samfeatureflags.maddogforsamapps then {
             metadata: {
                 labels: {
                     service: "madkubserver",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
             },
             spec: {
                 hostNetwork: if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) then false else true,

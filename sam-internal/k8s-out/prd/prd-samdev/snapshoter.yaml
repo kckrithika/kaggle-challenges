@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: snapshoter
+        owner: sam
       namespace: sam-system
     spec:
       containers:

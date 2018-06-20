@@ -6,6 +6,9 @@ if configs.estate == "prd-sam" then {
     metadata: {
         name: "watchdogsamsqlqueries",
         namespace: "sam-system",
+        labels: {} + if configs.estate == "prd-samdev" then {
+                owner: "sam",
+              } else {},
     },
     data: {
         "watchdog-samsql-queries.jsonnet": std.toString(import "configs/watchdog-samsql-queries.jsonnet"),

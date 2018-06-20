@@ -6,6 +6,9 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "sfdchosts",
         namespace: "sam-system",
+        labels: {} + if configs.estate == "prd-samdev" then {
+                owner: "sam",
+              } else {},
     },
     data: {
         "hosts.json": std.toString(import "configs/hosts_filtered.jsonnet"),

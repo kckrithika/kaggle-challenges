@@ -8,7 +8,9 @@ if configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "samsqlreporter",
-        },
+        } + if configs.estate == "prd-samdev" then {
+                  owner: "sam",
+                } else {},
         name: "samsqlreporter",
         namespace: "sam-system",
     },

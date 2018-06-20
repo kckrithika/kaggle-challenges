@@ -11,7 +11,9 @@ if samfeatureflags.estatessvc then {
         namespace: "sam-system",
         labels: {
             app: "estate-server",
-        },
+        } + if configs.estate == "prd-samdev" then {
+            owner: "sam",
+        } else {},
     },
     spec: {
         ports: [

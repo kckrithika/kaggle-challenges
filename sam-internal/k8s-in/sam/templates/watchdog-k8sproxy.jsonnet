@@ -48,7 +48,9 @@ if configs.kingdom == "prd" then {
                 labels: {
                     name: "watchdog-proxy",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
                 namespace: "sam-system",
             },
         },

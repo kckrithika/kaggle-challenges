@@ -69,7 +69,9 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "estate-server",
                     apptype: "server",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                    owner: "sam",
+                } else {},
             },
         },
         selector: {

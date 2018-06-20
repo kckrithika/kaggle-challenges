@@ -59,7 +59,9 @@ local utils = import "util_functions.jsonnet";
                     app: "watchdog-etcd",
                     apptype: "monitoring",
                     daemonset: "true",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
                 namespace: "sam-system",
             },
         },

@@ -6,6 +6,9 @@ if configs.estate == "prd-sam" then {
     metadata: {
         name: "samsqlqueries",
         namespace: "sam-system",
+        labels: {} + if configs.estate == "prd-samdev" then {
+                owner: "sam",
+              } else {},
     },
     data: {
         "sam-sql-queries.json": std.toString(import "configs/sam-sql-queries.jsonnet"),

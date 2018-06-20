@@ -19,5 +19,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: temp-crd-watcher
   namespace: sam-system

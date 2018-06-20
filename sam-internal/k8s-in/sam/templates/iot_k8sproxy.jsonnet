@@ -68,7 +68,9 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "iotk8sproxy",
                     apptype: "proxy",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                    owner: "sam",
+                } else {},
             },
         },
         selector: {

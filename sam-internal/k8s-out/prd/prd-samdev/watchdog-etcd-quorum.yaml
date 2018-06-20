@@ -14,6 +14,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-etcd-quorum
+        owner: sam
       namespace: sam-system
     spec:
       containers:

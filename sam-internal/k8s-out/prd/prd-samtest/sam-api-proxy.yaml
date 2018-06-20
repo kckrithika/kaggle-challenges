@@ -1,6 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  labels: {}
   name: sam-api-proxy
   namespace: sam-system
 spec:

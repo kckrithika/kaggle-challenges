@@ -7,6 +7,9 @@ if configs.kingdom == "prd" then
         metadata: {
             name: "temp-crd-watcher",
             namespace: "sam-system",
+            labels: {} + if configs.estate == "prd-samdev" then {
+                    owner: "sam",
+                  } else {},
         },
         data: {
             "tempmanifestwatcher.json": std.toString(import "configs/temp-crd-watcher-config.jsonnet"),

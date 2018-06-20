@@ -33,5 +33,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: samcontrol
   namespace: sam-system

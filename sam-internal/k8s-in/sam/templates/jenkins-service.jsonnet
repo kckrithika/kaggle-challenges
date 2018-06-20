@@ -7,6 +7,7 @@ if configs.estate == "prd-samdev" then {
         namespace: "sam-system",
         labels: {
             app: "jenkins",
+            owner: "sam",
         },
     },
     spec: {

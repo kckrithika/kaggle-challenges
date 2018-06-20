@@ -8,7 +8,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
     metadata: {
         labels: {
             name: "watchdog-synthetic",
-        },
+        } + if configs.estate == "prd-samdev" then {
+                  owner: "sam",
+                } else {},
         name: "watchdog-synthetic",
         namespace: "sam-system",
     },

@@ -73,7 +73,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                     app: "watchdog-puppet",
                     apptype: "monitoring",
                     daemonset: "true",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                    owner: "sam",
+                } else {},
                 namespace: "sam-system",
             },
         },

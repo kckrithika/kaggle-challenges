@@ -63,7 +63,9 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                 labels: {
                     name: "watchdog-hairpindeployer",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                         owner: "sam",
+                       } else {},
                 namespace: "sam-system",
             },
         },

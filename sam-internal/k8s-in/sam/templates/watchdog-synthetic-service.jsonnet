@@ -7,7 +7,9 @@ local configs = import "config.jsonnet";
         namespace: "sam-system",
         labels: {
             app: "watchdog-synthetic-service",
-        },
+        } + if configs.estate == "prd-samdev" then {
+                   owner: "sam",
+                 } else {},
     },
     spec: {
         ports: [

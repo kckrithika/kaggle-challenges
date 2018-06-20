@@ -9,7 +9,9 @@ if samfeatureflags.maddogforsamapps then {
     metadata: {
         labels: {
             service: "madkubserver",
-        },
+        } + if configs.estate == "prd-samdev" then {
+                  owner: "sam",
+                } else {},
         name: "madkubserver",
         namespace: "sam-system",
     },

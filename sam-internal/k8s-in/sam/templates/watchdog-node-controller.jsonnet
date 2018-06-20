@@ -56,7 +56,9 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "watchdog-node-controller",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
                 namespace: "sam-system",
             },
         },

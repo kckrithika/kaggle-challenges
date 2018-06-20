@@ -8,6 +8,9 @@ if configs.kingdom == "prd" then {
       annotations: {
         "manifestctl.sam.data.sfdc.net/swagger": "disable",
       },
+      labels: {} + if configs.estate == "prd-samdev" then {
+        owner: "sam",
+      } else {},
     },
     spec: {
       group: "samcrd.salesforce.com",

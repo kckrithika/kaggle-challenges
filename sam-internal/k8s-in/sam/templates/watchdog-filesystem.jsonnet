@@ -71,7 +71,9 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     name: "watchdog-filesystem",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
                 namespace: "sam-system",
             },
         },

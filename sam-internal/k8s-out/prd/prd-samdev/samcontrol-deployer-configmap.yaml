@@ -31,5 +31,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: samcontrol-deployer
   namespace: sam-system

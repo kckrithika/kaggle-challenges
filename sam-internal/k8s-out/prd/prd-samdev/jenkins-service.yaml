@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: jenkins
+    owner: sam
   name: jenkins
   namespace: sam-system
 spec:

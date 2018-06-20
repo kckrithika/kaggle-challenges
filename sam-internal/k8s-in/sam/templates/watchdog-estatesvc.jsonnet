@@ -50,7 +50,9 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "watchdog-estatesvc",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
             },
         },
         selector: {

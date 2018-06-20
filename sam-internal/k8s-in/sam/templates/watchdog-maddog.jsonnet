@@ -58,7 +58,9 @@ if samfeatureflags.maddogforsamapps then {
                 labels: {
                     name: "watchdog-maddog",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                           owner: "sam",
+                         } else {},
                 namespace: "sam-system",
             },
         },

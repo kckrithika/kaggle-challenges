@@ -47,7 +47,9 @@ if false then {
                 labels: {
                     app: "ops-adhoc",
                     daemonset: "true",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                          owner: "sam",
+                        } else {},
             },
         },
     },

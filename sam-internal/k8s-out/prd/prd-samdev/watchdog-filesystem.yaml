@@ -10,6 +10,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-filesystem
+        owner: sam
       namespace: sam-system
     spec:
       containers:

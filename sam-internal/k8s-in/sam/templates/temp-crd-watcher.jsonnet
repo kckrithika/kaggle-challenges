@@ -58,7 +58,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" || configs.esta
                     labels: {
                         name: "temp-crd-watcher",
                         apptype: "control",
-                    },
+                    } + if configs.estate == "prd-samdev" then {
+                             owner: "sam",
+                           } else {},
                     namespace: "sam-system",
                 },
             },

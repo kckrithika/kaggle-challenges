@@ -54,7 +54,9 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "watchdog-pullrequest",
                     apptype: "monitoring",
-                },
+                } + if configs.estate == "prd-samdev" then {
+                           owner: "sam",
+                         } else {},
                 namespace: "sam-system",
             },
         },

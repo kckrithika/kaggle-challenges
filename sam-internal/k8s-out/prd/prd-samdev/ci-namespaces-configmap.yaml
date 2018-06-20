@@ -20,5 +20,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: ci-namespaces
   namespace: sam-system

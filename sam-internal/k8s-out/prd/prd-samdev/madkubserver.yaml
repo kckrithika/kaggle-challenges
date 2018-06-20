@@ -10,6 +10,7 @@ spec:
   template:
     metadata:
       labels:
+        owner: sam
         service: madkubserver
     spec:
       containers:

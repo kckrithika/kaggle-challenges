@@ -88,5 +88,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    owner: sam
   name: prometheus
   namespace: sam-system
