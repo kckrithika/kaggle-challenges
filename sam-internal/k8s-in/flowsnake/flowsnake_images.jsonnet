@@ -35,7 +35,7 @@ local utils = import "util_functions.jsonnet";
                 logstash_image_tag: "468",
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
                 nodeMonitor_image_tag: 662,
-                watchdog_image_tag: "sam-0001730-c7caec88",
+                watchdog_image_tag: "sam-0002015-fdb18963",
                 watchdog_canary_image_tag: "664",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
@@ -78,12 +78,9 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            watchdog_image_tag: "sam-0002015-fdb18963",
-
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
-                watchdog_configmap_update: "foo",
                 watchdog_canaries: "foo",  #Verified in Test Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
             },
             version_mapping: {
@@ -108,11 +105,8 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 2 - Used for customer-facing prototyping fleets
         "2": self.default_image_tags {
 
-            watchdog_image_tag: "sam-0002015-fdb18963",
-
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                watchdog_configmap_update: "foo",
                 watchdog_canaries: "foo",  #Verified in IoT Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
             },
             version_mapping: {
@@ -133,11 +127,8 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 3 - Canary on production fleets (plus critical-workload fleets in R&D data centers)
         "3": self.default_image_tags {
 
-            watchdog_image_tag: "sam-0002015-fdb18963",
-
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                watchdog_configmap_update: "foo",
                 watchdog_canaries: "foo",  #Untested, requires verification before promotion to phase 4
             },
             version_mapping: {
