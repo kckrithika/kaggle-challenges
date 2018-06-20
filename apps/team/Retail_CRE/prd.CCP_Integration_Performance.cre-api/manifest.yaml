@@ -24,7 +24,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: HBASE_ENVIRONMENT
-          value: kingdom-test     
+          value: kingdom-perf     
         - name: HBASE_DATA_CENTER
           value: prd             
       ports:
