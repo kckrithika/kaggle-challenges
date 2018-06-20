@@ -1,0 +1,41 @@
+apiVersion: v1
+
+system:
+  functions:
+  - name: payloadbot
+    count: 1
+    containers:
+    - name: payloadbot
+      image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/payloadbot:v-0000928-ac598571
+      command: ["/payloadbot/payloadbot"]
+      ports:
+      - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+      volumeMounts:
+      - mountPath: /host/data/payloadbot/logs
+        name: logvol
+      - mountPath: /secrets
+        name: payloadbot-ghe-pat
+        readOnly: true
+    volumes:
+    - name: logvol
+      hostPath:
+        path: /data/payloadbot/logs
+    - name: payloadbot-ghe-pat
+      k4aSecret:
+        secretName: speedometer-ghe-pat
+  loadbalancers:
+  - lbname: payloadbot
+    function: payloadbot
+    slbenabled: true
+    ports:
+      - port: 80
+        targetport: 8080
+        lbtype: http
+      - port: 443
+        targetport: 8080
+        lbtype: http
+        tls: true
