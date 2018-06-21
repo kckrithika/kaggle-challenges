@@ -52,6 +52,9 @@ system:
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
+      - mountPath: /keys/
+        name: aeskey
+        readOnly: true        
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
@@ -105,6 +108,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: gdot-private-key
+    - name: aeskey    
+      k4aSecret:
+        secretName: cre-aes-key        
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-ccp-perf
