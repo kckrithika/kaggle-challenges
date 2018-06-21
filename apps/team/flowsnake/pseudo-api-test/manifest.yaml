@@ -17,10 +17,10 @@ system:
         - --v=10
         - --alsologtostderr
         - --insecure-port=7002
-        - --passthrough-api-server=pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
+        - --passthrough-api-server=http://pseudo-kubeapi.csc-sam.prd-sam.prd.slb.sfdc.net:40001/prd-sam
         - --passthrough-all-cluster=prd-sam
         - --secret-passthrough-namespace=kube-system
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180621_141527.9f29a8c.dirty.khogeland-wsl0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180621_152554.9f29a8c.dirty.khogeland-wsl0
       ports:
       - containerPort: 7002
       livenessProbe:
