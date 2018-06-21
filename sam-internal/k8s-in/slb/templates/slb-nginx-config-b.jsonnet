@@ -4,50 +4,17 @@ local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-sam
 local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
+local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 
-if slbconfigs.slbInKingdom then {
-    apiVersion: "extensions/v1beta1",
-    kind: "Deployment",
-    metadata: {
-        labels: {
-            name: "slb-nginx-config-b",
-        },
-        name: "slb-nginx-config-b",
-        namespace: "sam-system",
-    },
-    spec: {
-        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sdc" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
-        revisionHistoryLimit: 2,
-        template: {
-            metadata: {
-                labels: {
-                    name: "slb-nginx-config-b",
-                },
-                namespace: "sam-system",
-                annotations: {
-                    "madkub.sam.sfdc.net/allcerts": "{
-                            \"certreqs\":[
-                                {
-                                    \"name\": \"cert1\",
-                                    \"cert-type\":\"server\",
-                                    \"kingdom\":\"prd\",
-                                    \"role\": \"" + slbconfigs.samrole + "\",
-                                    \"san\":[
-                                        \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
-                                        \"*.slb.sfdc.net\",
-                                        \"*.soma.salesforce.com\",
-                                        \"*.data.sfdc.net\"
-                                    ]
-                                },
-                                {
-                                    \"name\": \"cert2\",
-                                    \"cert-type\":\"client\",
-                                    \"kingdom\":\"prd\",
-                                    \"role\": \"" + slbconfigs.samrole + "\"
-                                }
-                            ]
-                         }",
-                    "pod.beta.kubernetes.io/init-containers": "[
+// Phase out the use of the deprecated init container annotation in favor of spec.initContainers.
+local useInitContainerAnnotation = std.parseInt(slbimages.phase) > 1;
+local initContainers = if !useInitContainerAnnotation then {
+    initContainers: [
+        madkub.madkubInitContainer(),
+    ],
+} else {};
+local initContainersAnnotation = if useInitContainerAnnotation then {
+    "pod.beta.kubernetes.io/init-containers": "[
                             {
                               \"image\": \"" + samimages.madkub + "\",
                               \"args\": [
@@ -114,7 +81,51 @@ if slbconfigs.slbInKingdom then {
                               ]
                             }
                          ]",
+} else {};
+
+if slbconfigs.slbInKingdom then {
+    apiVersion: "extensions/v1beta1",
+    kind: "Deployment",
+    metadata: {
+        labels: {
+            name: "slb-nginx-config-b",
+        },
+        name: "slb-nginx-config-b",
+        namespace: "sam-system",
+    },
+    spec: {
+        replicas: if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.estate == "prd-sdc" then 1 else if slbconfigs.slbInProdKingdom then 3 else 2,
+        revisionHistoryLimit: 2,
+        template: {
+            metadata: {
+                labels: {
+                    name: "slb-nginx-config-b",
                 },
+                namespace: "sam-system",
+                annotations: {
+                    "madkub.sam.sfdc.net/allcerts": "{
+                            \"certreqs\":[
+                                {
+                                    \"name\": \"cert1\",
+                                    \"cert-type\":\"server\",
+                                    \"kingdom\":\"prd\",
+                                    \"role\": \"" + slbconfigs.samrole + "\",
+                                    \"san\":[
+                                        \"*.sam-system." + configs.estate + "." + configs.kingdom + ".slb.sfdc.net\",
+                                        \"*.slb.sfdc.net\",
+                                        \"*.soma.salesforce.com\",
+                                        \"*.data.sfdc.net\"
+                                    ]
+                                },
+                                {
+                                    \"name\": \"cert2\",
+                                    \"cert-type\":\"client\",
+                                    \"kingdom\":\"prd\",
+                                    \"role\": \"" + slbconfigs.samrole + "\"
+                                }
+                            ]
+                         }",
+                } + initContainersAnnotation,
             },
             spec: {
                 affinity: {
@@ -357,7 +368,7 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-            },
+            } + initContainers,
         },
         strategy: {
             type: "RollingUpdate",
