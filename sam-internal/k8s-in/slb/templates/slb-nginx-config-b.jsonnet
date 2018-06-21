@@ -7,7 +7,7 @@ local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ngin
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 
 // Phase out the use of the deprecated init container annotation in favor of spec.initContainers.
-local useInitContainerAnnotation = std.parseInt(slbimages.phase) > 1;
+local useInitContainerAnnotation = std.parseInt(slbimages.phase) > 2;
 local initContainers = if !useInitContainerAnnotation then {
     initContainers: [
         madkub.madkubInitContainer(),
@@ -281,7 +281,7 @@ if slbconfigs.slbInKingdom then {
                                         "client",
                                         "--refresher",
                                         "--run-init-for-refresher-mode",
-                                    ] + if std.parseInt(slbimages.phase) < 2 then [
+                                    ] + if std.parseInt(slbimages.phase) < 3 then [
                                         "--ca-folder",
                                         "/maddog-certs/ca",
                                     ] else [],
