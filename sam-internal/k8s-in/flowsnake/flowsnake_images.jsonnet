@@ -85,6 +85,7 @@ local utils = import "util_functions.jsonnet";
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
                 watchdog_configmap_update: "foo",
                 watchdog_canaries: "foo",  #Verified in Test Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
+                canary_hostconfig: "foo",  #Untested - requires test fleet validation before promotion
             },
             version_mapping: {
                 main: {
