@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.48.at-hbase_fix.807fbfd.32
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.48.at-hbase_fix.862b147.33
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -25,10 +25,10 @@ system:
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
-        # - name: HBASE_ENVIRONMENT
-        #   value: kingdom-perf
-        # - name: HBASE_DATACENTER
-        #   value: prd
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-perf
+        - name: HBASE_DATACENTER
+          value: prd
         - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
           value: /client-certs/client
         - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
