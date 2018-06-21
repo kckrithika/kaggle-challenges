@@ -4,7 +4,11 @@ data:
     {
       "caFile": "/etc/pki_service/ca/cabundle.pem",
       "certFile": "/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
-      "cliCheckerFullCommands": {},
+      "cliCheckerFullCommands": {
+        "0.10.0": {
+          "SparkStandalone": "java -jar  -Dintegration.test.target=canary -Dflowsnake.api.host=flowsnake-frf.data.sfdc.net -Dflowsnake.project.version=0.10.0 junit.jar -cp integration-test.jar -n '.*' -c com.salesforce.dva.transform.flowsnake.SparkStandaloneDemoJobIT"
+        }
+      },
       "deployer-funnelEndpoint": "ajna0-funnel1-0-frf.data.sfdc.net:80",
       "deployer-imageName": "ops0-artifactrepo1-0-frf.data.sfdc.net/tnrp/sam/hypersam:sam-0001730-c7caec88",
       "deployer-rcImtEndpoint": "https://reportcollector-frf.data.sfdc.net:18443/v1/bark",

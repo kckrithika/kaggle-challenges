@@ -129,7 +129,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                watchdog_canaries: "foo",  #Untested, requires verification before promotion to phase 4
+                watchdog_canaries: "foo",  #Verified in DATA Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
             },
             version_mapping: {
                 main: {
@@ -155,6 +155,7 @@ local utils = import "util_functions.jsonnet";
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
+                watchdog_canaries: "foo",  #Untested
             },
             version_mapping: {
                 main: {
