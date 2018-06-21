@@ -283,7 +283,7 @@ if slbconfigs.slbInKingdom then {
                                         "--run-init-for-refresher-mode",
                                     ] + if std.parseInt(slbimages.phase) < 2 then [
                                         "--ca-folder",
-                                        "/maddog/ca",
+                                        "/maddog-certs/ca",
                                     ] else [],
                                     env: [
                                         {

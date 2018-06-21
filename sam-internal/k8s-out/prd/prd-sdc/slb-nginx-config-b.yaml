@@ -154,7 +154,7 @@ spec:
         - --refresher
         - --run-init-for-refresher-mode
         - --ca-folder
-        - /maddog/ca
+        - /maddog-certs/ca
         env:
         - name: MADKUB_NODENAME
           valueFrom:
