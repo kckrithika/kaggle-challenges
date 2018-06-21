@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.48.at-hbase_fix.95dc6b0.35
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.48.at-hbase_fix.f7235ee.36
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
@@ -35,6 +35,8 @@ system:
           value: /client-certs
         - name: HBASE_SECURITY_KEYTAB_LOCATION
           value: /var/tmp/kingdom-perf_prd.keytab
+        - name: SECRET_KEY_FILE
+          value: /keys/cre-aes.key  
         - name: ENGINE_IMAGE_TAG
           value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509
       ports:
@@ -50,6 +52,9 @@ system:
       - mountPath: /secrets/
         name: secretvol
         readOnly: true
+      - mountPath: /keys/
+        name: aeskey
+        readOnly: true        
       - mountPath: /client-certs
         name: client-certs
       - mountPath: /server-certs
@@ -103,6 +108,9 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: gdot-private-key
+    - name: aeskey    
+      k4aSecret:
+        secretName: cre-aes-key        
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-ccp-perf
