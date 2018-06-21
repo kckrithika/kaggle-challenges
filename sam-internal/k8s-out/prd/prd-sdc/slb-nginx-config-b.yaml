@@ -153,6 +153,8 @@ spec:
         - client
         - --refresher
         - --run-init-for-refresher-mode
+        - --ca-folder
+        - /maddog/ca
         env:
         - name: MADKUB_NODENAME
           valueFrom:

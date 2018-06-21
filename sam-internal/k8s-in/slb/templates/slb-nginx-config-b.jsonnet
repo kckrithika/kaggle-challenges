@@ -281,7 +281,10 @@ if slbconfigs.slbInKingdom then {
                                         "client",
                                         "--refresher",
                                         "--run-init-for-refresher-mode",
-                                    ],
+                                    ] + if std.parseInt(slbimages.phase) < 2 then [
+                                        "--ca-folder",
+                                        "/maddog/ca",
+                                    ] else [],
                                     env: [
                                         {
                                             name: "MADKUB_NODENAME",
