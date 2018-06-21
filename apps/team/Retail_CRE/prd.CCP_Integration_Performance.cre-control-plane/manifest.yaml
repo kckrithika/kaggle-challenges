@@ -38,7 +38,7 @@ system:
         - name: SECRET_KEY_FILE
           value: /keys/cre-aes.key  
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.233.master.9c4ffce.509
+          value: sfci/cre/cre-engine:0.0.1.244.master.4b5fe24.520
       ports:
       - containerPort: 8080
       - containerPort: 7020
