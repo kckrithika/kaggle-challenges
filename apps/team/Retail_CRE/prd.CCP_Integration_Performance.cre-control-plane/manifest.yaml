@@ -25,10 +25,10 @@ system:
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
-        - name: HBASE_ENVIRONMENT
-          value: kingdom-perf
-        - name: HBASE_DATACENTER
-          value: prd
+        # - name: HBASE_ENVIRONMENT
+        #   value: kingdom-perf
+        # - name: HBASE_DATACENTER
+        #   value: prd
         - name: HBASE_SECURITY_CERTIFICATE_CLIENTCERT_DIRECTORY
           value: /client-certs/client
         - name: HBASE_SECURITY_CERTIFICATE_CA_DIRECTORY
