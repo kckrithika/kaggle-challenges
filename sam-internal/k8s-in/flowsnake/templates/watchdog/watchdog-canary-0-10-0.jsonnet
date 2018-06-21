@@ -62,6 +62,8 @@ local cert_name = "watchdogcanarycerts";
                             "--config=/config/watchdog.json",
                             "-cliCheckerCommandTarget=0.10.0",
                             "-cliCheckerTimeout=10m",
+                        ] + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
+                          "--hostsConfigFile=/sfdchosts/hosts.json"
                         ],
                         name: "watchdog-canary",
                         resources: {
@@ -77,7 +79,10 @@ local cert_name = "watchdogcanarycerts";
                         volumeMounts: [
                             configs.config_volume_mount,
                             madkub_common.certs_mount,
-                        ] + certs_and_kubeconfig.platform_cert_volumeMounts,
+                        ] + certs_and_kubeconfig.platform_cert_volumeMounts
+                         + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
+                          watchdog.sfdchosts_volume_mount
+                        ],
                     },
                     madkub_common.refresher_container(cert_name)
                 ],
@@ -94,7 +99,10 @@ local cert_name = "watchdogcanarycerts";
                   madkub_common.certs_volume,
                   madkub_common.tokens_volume,
                 ] +
-                certs_and_kubeconfig.platform_cert_volume,
+               certs_and_kubeconfig.platform_cert_volume
+               + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
+                 watchdog.sfdchosts_volume
+               ],
             },
         },
     }

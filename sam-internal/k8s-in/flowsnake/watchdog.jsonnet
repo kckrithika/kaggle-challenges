@@ -8,6 +8,16 @@ local samconfig = import "config.jsonnet";
     watchdog_enabled: !(flowsnakeconfig.is_minikube),
     watchdog_email_frequency: if estate == "prd-data-flowsnake_test" then "72h" else "10m",
     watchdog_email_frequency_kuberesources: "72h",
+    sfdchosts_volume: {
+        configMap: {
+          name: "sfdchosts",
+        },
+        name: "sfdchosts",
+    },
+    sfdchosts_volume_mount: {
+        mountPath: "/sfdchosts",
+        name: "sfdchosts",
+    },
     watchdog_config: {
         cliCheckerFullCommands: flowsnakecanaries.command_sets,
         "deployer-funnelEndpoint": flowsnakeconfig.funnel_vip_and_port,
