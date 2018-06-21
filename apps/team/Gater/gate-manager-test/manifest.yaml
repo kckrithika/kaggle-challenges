@@ -16,6 +16,7 @@ system:
       - --spring.datasource.hikari.maximumPoolSize=6
       - --spring.datasource.hikari.minimumIdle=5
       - --spring.datasource.hikari.leakDetectionThreshold=2000
+      - --thread.pool.max-size=48
       ports:
       - containerPort: 9522
       - containerPort: 9523
