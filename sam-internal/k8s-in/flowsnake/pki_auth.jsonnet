@@ -115,6 +115,10 @@ local kingdom = std.extVar("kingdom");
             authorizedClientCerts: ["flowsnake_master_prod"],
         },
         {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
+        {
             namespace: "retail-cre",
             authorizedLdapGroups: [],
             authorizedClientCerts: ["retail-cre.cre-control-plane"],
@@ -135,6 +139,10 @@ local kingdom = std.extVar("kingdom");
             namespace: "flowsnake",
             authorizedLdapGroups: [],
             authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
         },
         {
             namespace: "retail-cre",
@@ -169,12 +177,20 @@ local kingdom = std.extVar("kingdom");
             authorizedLdapGroups: [],
             authorizedClientCerts: ["flowsnake_master_prod"],
         },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
+        },
       ],
       "par/par-flowsnake_prod": [
         {
             namespace: "flowsnake",
             authorizedLdapGroups: [],
             authorizedClientCerts: ["flowsnake_master_prod"],
+        },
+        {
+            namespace: "flowsnake_test",
+            authorizedClientCerts: ["flowsnake_test"],
         },
       ],
     },
