@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane
-      image: sfci/cre/cre-control-plane:0.0.1.19.43.master.3eb9aa2.82
+      image: sfci/cre/cre-control-plane:0.0.1.19.47.master.f616f85.86
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
@@ -20,7 +20,7 @@ system:
         - name: GDOT_ENVIRONMENT
           value: production
         - name: GDOT_PRODUCTION
-          value: true
+          value: false
         - name: GRPC_PORT
           value: 7020
         - name: FLOWSNAKE_ENDPOINT
