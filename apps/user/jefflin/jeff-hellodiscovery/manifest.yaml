@@ -52,6 +52,9 @@ system:
     - name: sherpa-hellodiscovery
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md
       image: sfci/servicelibs/sherpa:2.0.26
+      args:
+      - --server-ca
+      - /server-certs/ca_test/cacerts.pem
       # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
       ports:
       - containerPort: 15373
