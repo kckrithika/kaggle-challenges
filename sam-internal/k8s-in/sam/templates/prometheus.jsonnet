@@ -79,9 +79,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
             metadata: {
                 labels: {
                     name: "prometheus",
-                } + if configs.estate == "prd-samdev" then {
-                          owner: "sam",
-                        } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

@@ -63,9 +63,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 labels: {
                     name: "sam-secret-agent",
                     apptype: "control",
-                } + if configs.estate == "prd-samdev" then {
-                          owner: "sam",
-                        } else {},
+                } + configs.ownerLabel,
                 namespace: "sam-system",
             },
         },

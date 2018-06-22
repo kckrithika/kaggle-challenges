@@ -8,9 +8,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     metadata: {
         name: "sam-api-proxy",
         namespace: "sam-system",
-        labels: {} + if configs.estate == "prd-samdev" then {
-                owner: "sam",
-              } else {},
+        labels: {} + configs.ownerLabel,
     },
     spec: {
         replicas: 2,

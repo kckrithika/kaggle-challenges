@@ -67,9 +67,7 @@ if samfeatureflags.k8sproxy then {
                 labels: {
                     name: "k8sproxy",
                     apptype: "proxy",
-                } + if configs.estate == "prd-samdev" then {
-                          owner: "sam",
-                        } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

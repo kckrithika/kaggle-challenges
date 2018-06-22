@@ -10,7 +10,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-filesystem
-        owner: sam
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

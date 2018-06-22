@@ -34,6 +34,6 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   labels:
-    owner: sam
+    sam.data.sfdc.net/owner: sam
   name: samcontrol
   namespace: sam-system

@@ -4,6 +4,7 @@ metadata:
   labels:
     app: jenkins
     owner: sam
+    sam.data.sfdc.net/owner: sam
   name: jenkins
   namespace: sam-system
 spec:

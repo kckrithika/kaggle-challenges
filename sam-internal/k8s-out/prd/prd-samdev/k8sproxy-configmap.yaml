@@ -72,6 +72,6 @@ kind: ConfigMap
 metadata:
   creationTimestamp: null
   labels:
-    owner: sam
+    sam.data.sfdc.net/owner: sam
   name: k8sproxy
   namespace: sam-system

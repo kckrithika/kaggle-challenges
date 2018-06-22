@@ -134,9 +134,7 @@ if configs.estate == "prd-samdev" then {
                 labels: {
                     name: "jenkins",
                     apptype: "jenkins",
-                } + if configs.estate == "prd-samdev" then {
-                    owner: "sam",
-                } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

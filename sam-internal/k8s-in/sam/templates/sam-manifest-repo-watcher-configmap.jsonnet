@@ -5,9 +5,7 @@ if configs.estate == "prd-sam" then {
     metadata: {
         name: "sam-manifest-repo-watcher",
         namespace: "sam-system",
-        labels: {} + if configs.estate == "prd-samdev" then {
-                owner: "sam",
-              } else {},
+        labels: {} + configs.ownerLabel,
     },
     data: {
         "sammanifestrepowatcher.json": std.toString(import "configs/sam-manifest-repo-watcher-config.jsonnet"),

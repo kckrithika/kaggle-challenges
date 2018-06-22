@@ -55,9 +55,7 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "node-controller",
                     apptype: "control",
-                } + if configs.estate == "prd-samdev" then {
-                           owner: "sam",
-                         } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

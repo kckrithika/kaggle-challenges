@@ -99,9 +99,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
                 labels: {
                     name: "k8s-event-processor",
                     apptype: "control",
-                } + if configs.estate == "prd-samdev" then {
-                    owner: "sam",
-                } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

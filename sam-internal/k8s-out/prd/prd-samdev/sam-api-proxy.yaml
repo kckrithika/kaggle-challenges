@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    owner: sam
+    sam.data.sfdc.net/owner: sam
   name: sam-api-proxy
   namespace: sam-system
 spec:

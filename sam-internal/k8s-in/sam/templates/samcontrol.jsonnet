@@ -67,9 +67,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                 labels: {
                     name: "samcontrol",
                     apptype: "control",
-                } + if configs.estate == "prd-samdev" then {
-                          owner: "sam",
-                        } else {},
+                } + configs.ownerLabel,
                 namespace: "sam-system",
             },
         },

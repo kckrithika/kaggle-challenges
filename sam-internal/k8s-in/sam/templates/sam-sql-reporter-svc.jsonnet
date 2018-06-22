@@ -8,9 +8,7 @@ if configs.estate == "prd-sam" then {
         namespace: "sam-system",
         labels: {
             app: "samsqlreporter",
-        } + if configs.estate == "prd-samdev" then {
-                  owner: "sam",
-                } else {},
+        } + configs.ownerLabel,
         annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "samsqlreporter",
             "slb.sfdc.net/portconfigurations": std.toString(

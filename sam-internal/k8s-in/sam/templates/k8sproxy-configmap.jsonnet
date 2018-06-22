@@ -7,9 +7,7 @@ if samfeatureflags.k8sproxy then {
     metadata: {
         name: "k8sproxy",
         namespace: "sam-system",
-        labels: {} + if configs.estate == "prd-samdev" then {
-                owner: "sam",
-              } else {},
+        labels: {} + configs.ownerLabel,
     },
     data: {
         "haproxy.cfg": std.toString((import "configs/haproxy.cfg.jsonnet").data),

@@ -15,7 +15,7 @@ spec:
       labels:
         apptype: control
         name: k8s-resource-reporter
-        owner: sam
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

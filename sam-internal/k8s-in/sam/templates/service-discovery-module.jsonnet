@@ -48,9 +48,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-samtest" || configs.est
                 labels: {
                     name: "service-discovery-module",
                     apptype: "control",
-                } + if configs.estate == "prd-samdev" then {
-                          owner: "sam",
-                        } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

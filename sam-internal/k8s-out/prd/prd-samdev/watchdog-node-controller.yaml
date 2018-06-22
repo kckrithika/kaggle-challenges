@@ -15,7 +15,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-node-controller
-        owner: sam
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

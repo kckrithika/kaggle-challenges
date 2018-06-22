@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         name: prometheus
-        owner: sam
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - args:

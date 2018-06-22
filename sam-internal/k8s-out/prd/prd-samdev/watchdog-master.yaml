@@ -11,7 +11,7 @@ spec:
         app: watchdog-master
         apptype: monitoring
         daemonset: "true"
-        owner: sam
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

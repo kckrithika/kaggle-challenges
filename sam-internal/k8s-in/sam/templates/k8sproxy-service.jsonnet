@@ -9,9 +9,7 @@ if samfeatureflags.k8sproxy then {
         namespace: "sam-system",
         labels: {
             app: "k8sproxy",
-        } + if configs.estate == "prd-samdev" then {
-                   owner: "sam",
-                 } else {},
+        } + configs.ownerLabel,
         annotations: {
             "slb.sfdc.net/name": "k8sproxy",
         },

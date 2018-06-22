@@ -50,9 +50,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     name: "k8s-resource-reporter",
                     apptype: "control",
-                } + if configs.estate == "prd-samdev" then {
-                    owner: "sam",
-                } else {},
+                } + configs.ownerLabel,
             },
         },
         selector: {

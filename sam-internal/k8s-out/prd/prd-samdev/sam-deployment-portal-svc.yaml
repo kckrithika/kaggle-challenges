@@ -4,7 +4,7 @@ metadata:
   annotations: {}
   labels:
     app: sam-deployment-portal
-    owner: sam
+    sam.data.sfdc.net/owner: sam
   name: sdp
   namespace: sam-system
 spec:

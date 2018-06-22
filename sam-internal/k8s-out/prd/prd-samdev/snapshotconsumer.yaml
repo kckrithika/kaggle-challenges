@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: snapshotconsumer
-    owner: sam
+    sam.data.sfdc.net/owner: sam
   name: snapshotconsumer
 spec:
   replicas: 1

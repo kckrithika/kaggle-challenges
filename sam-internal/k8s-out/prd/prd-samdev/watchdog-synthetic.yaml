@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-synthetic
-    owner: sam
+    sam.data.sfdc.net/owner: sam
   name: watchdog-synthetic
   namespace: sam-system
 spec:

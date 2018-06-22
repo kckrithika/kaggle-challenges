@@ -6,9 +6,7 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "manifest-watcher",
         namespace: "sam-system",
-    } + if configs.estate == "prd-samdev" then {
-              owner: "sam",
-            } else {},
+    } + configs.ownerLabel,
     data: {
         "manifestwatcher.json": std.toString(import "configs/manifest-watcher-config.jsonnet"),
     },

@@ -8,7 +8,7 @@ if configs.estate == "prd-samdev" then {
         labels: {
             app: "jenkins",
             owner: "sam",
-        },
+        } + configs.ownerLabel,
     },
     spec: {
         ports: [

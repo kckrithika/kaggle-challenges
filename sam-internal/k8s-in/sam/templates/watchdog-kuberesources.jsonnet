@@ -54,9 +54,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     name: "watchdog-kuberesources",
                     apptype: "monitoring",
-                } + if configs.estate == "prd-samdev" then {
-                         owner: "sam",
-                       } else {},
+                } + configs.ownerLabel,
                 namespace: "sam-system",
             },
         },
