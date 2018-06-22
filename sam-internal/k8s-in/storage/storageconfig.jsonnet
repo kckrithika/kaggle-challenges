@@ -129,7 +129,7 @@
         },
         zookeeper: {
             replicas: {
-                "prd-sam_storagedev": "5",
+                "prd-sam_storagedev": 5,
             },
             boundary: {
                 "prd-sam_storagedev": "kubernetes.io/hostname",

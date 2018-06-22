@@ -8,8 +8,8 @@ items:
     name: sfn-zk
     namespace: zookeeper
   spec:
-    aggregateStorage: "5"
     faultDomainBoundary: kubernetes.io/hostname
+    replicas: 5
     version: 3.4.9
 kind: List
 metadata: {}

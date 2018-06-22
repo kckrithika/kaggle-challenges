@@ -25,7 +25,7 @@ if configs.estate == "prd-sam_storagedev" then
                 spec: {
                     version: storageconfigs.perEstate.zookeeper.version[minionEstate],
                     faultDomainBoundary: storageconfigs.perEstate.zookeeper.boundary[minionEstate],
-                    aggregateStorage: storageconfigs.perEstate.zookeeper.replicas[minionEstate],
+                    replicas: storageconfigs.perEstate.zookeeper.replicas[minionEstate],
                 },
             }
             for minionEstate in storageconfigs.zookeeperEstates[configs.estate]
