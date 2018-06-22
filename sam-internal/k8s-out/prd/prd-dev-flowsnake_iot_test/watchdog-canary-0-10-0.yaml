@@ -28,6 +28,7 @@ spec:
         - --config=/config/watchdog.json
         - -cliCheckerCommandTarget=0.10.0
         - -cliCheckerTimeout=10m
+        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:664
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
@@ -55,6 +56,8 @@ spec:
         - mountPath: /data/certs
           name: data-cert
           readOnly: true
+        - mountPath: /sfdchosts
+          name: sfdchosts
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
@@ -198,3 +201,6 @@ spec:
       - hostPath:
           path: /data/certs
         name: data-cert
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts
