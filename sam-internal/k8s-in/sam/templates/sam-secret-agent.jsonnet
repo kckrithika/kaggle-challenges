@@ -63,7 +63,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                 labels: {
                     name: "sam-secret-agent",
                     apptype: "control",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

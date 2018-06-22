@@ -101,11 +101,13 @@ local utils = import "util_functions.jsonnet",
     maddogEndpoint: "https://all.pkicontroller.pki.blank." + kingdom + ".prod.non-estates.sfdcsd.net:8443",
 
     # setting label name to identify which team owns the app
-    ownerLabel: (
-        if estate == "prd-samdev" then {
-            "sam.data.sfdc.net/owner": "sam",
-        } else {}
-    ),
+    ownerLabel: {
+        sam: (
+            if estate == "prd-samdev" then {
+                "sam.data.sfdc.net/owner": "sam",
+            } else {}
+        ),
+    },
 
     # === KUBERNETES ===
 

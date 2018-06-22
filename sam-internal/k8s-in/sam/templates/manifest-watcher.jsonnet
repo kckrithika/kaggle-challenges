@@ -54,7 +54,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     name: "manifest-watcher",
                     apptype: "control",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

@@ -11,7 +11,7 @@ if samfeatureflags.kubedns then {
             "k8s-app": "kube-dns",
             "kubernetes.io/cluster-service": "true",
             "kubernetes.io/name": "KubeDNS",
-        } + configs.ownerLabel,
+        } + configs.ownerLabel.sam,
         name: "kube-dns",
         namespace: "kube-system",
     },

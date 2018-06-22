@@ -54,7 +54,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "watchdog-manifestzip",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

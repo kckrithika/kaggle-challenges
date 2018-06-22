@@ -6,7 +6,8 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "manifest-watcher",
         namespace: "sam-system",
-    } + configs.ownerLabel,
+        labels: {} + configs.ownerLabel.sam,
+    },
     data: {
         "manifestwatcher.json": std.toString(import "configs/manifest-watcher-config.jsonnet"),
     },

@@ -14,5 +14,7 @@ data:
 kind: ConfigMap
 metadata:
   creationTimestamp: null
+  labels:
+    sam.data.sfdc.net/owner: sam
   name: manifest-watcher
   namespace: sam-system

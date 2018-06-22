@@ -7,7 +7,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     metadata: {
         labels: {
             name: "snapshotconsumer",
-        } + configs.ownerLabel,
+        } + configs.ownerLabel.sam,
         name: "snapshotconsumer",
     },
     spec: {

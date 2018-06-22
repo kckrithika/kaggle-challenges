@@ -6,7 +6,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-sam" then {
     metadata: {
         name: "snapshotconsumer",
         namespace: "sam-system",
-        labels: {} + configs.ownerLabel,
+        labels: {} + configs.ownerLabel.sam,
     },
     data: {
         "snapshotconsumer.json": std.toString(import "configs/snapshotconsumer-config.jsonnet"),

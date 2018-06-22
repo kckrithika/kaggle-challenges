@@ -9,7 +9,7 @@ if samfeatureflags.maddogforsamapps then {
     metadata: {
         labels: {
             service: "madkubserver",
-        } + configs.ownerLabel,
+        } + configs.ownerLabel.sam,
         name: "madkubserver",
         namespace: "sam-system",
     },

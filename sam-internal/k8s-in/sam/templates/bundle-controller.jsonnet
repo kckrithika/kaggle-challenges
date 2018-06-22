@@ -55,7 +55,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-sam" || configs.est
                 labels: {
                     name: "bundlecontroller",
                     apptype: "control",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

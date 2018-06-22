@@ -58,7 +58,7 @@ if samfeatureflags.maddogforsamapps then {
                 labels: {
                     name: "watchdog-maddog",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

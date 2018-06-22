@@ -6,7 +6,7 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "watchdog",
         namespace: "sam-system",
-        labels: {} + configs.ownerLabel,
+        labels: {} + configs.ownerLabel.sam,
     },
     data: {
         "watchdog.json": std.toString(import "configs/watchdog-config.jsonnet"),

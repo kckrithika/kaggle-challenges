@@ -9,7 +9,7 @@ if configs.estate == "prd-sam" then {
             namespace: "sam-system",
             labels: {
                 name: "sam-manifest-repo-watcher",
-            } + configs.ownerLabel,
+            } + configs.ownerLabel.sam,
         },
         spec: {
             replicas: 1,

@@ -46,7 +46,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                 labels: {
                     name: "watchdog-sdp",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

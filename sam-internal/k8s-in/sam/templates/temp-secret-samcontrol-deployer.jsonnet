@@ -59,7 +59,7 @@ if (!utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom)) t
                                 labels: {
                                         name: "temp-secret-samcontrol-deployer",
                                         apptype: "control",
-                                } + configs.ownerLabel,
+                                } + configs.ownerLabel.sam,
                         },
                 },
         },

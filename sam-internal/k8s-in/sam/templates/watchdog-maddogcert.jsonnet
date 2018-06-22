@@ -44,7 +44,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                     name: "watchdog-maddogcert",
                     apptype: "monitoring",
                     daemonset: "true",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

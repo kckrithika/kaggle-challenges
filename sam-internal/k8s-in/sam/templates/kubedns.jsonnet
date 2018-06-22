@@ -10,7 +10,7 @@ if samfeatureflags.kubedns then {
             "addonmanager.kubernetes.io/mode": "Reconcile",
             "k8s-app": "kube-dns",
             "kubernetes.io/cluster-service": "true",
-        } + configs.ownerLabel,
+        } + configs.ownerLabel.sam,
         name: "kube-dns",
         namespace: "kube-system",
     },

@@ -71,7 +71,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     name: "watchdog-filesystem",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

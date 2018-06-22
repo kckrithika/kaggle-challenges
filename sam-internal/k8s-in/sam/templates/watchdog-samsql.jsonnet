@@ -75,7 +75,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "watchdog-samsql",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
             },
         },
         selector: {

@@ -48,7 +48,7 @@ if samfeatureflags.rbacwd then {
                 labels: {
                     name: "watchdog-rbac",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

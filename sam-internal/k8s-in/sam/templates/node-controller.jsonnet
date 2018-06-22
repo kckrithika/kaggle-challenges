@@ -55,7 +55,7 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "node-controller",
                     apptype: "control",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
             },
         },
         selector: {

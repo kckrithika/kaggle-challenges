@@ -50,7 +50,7 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "watchdog-estatesvc",
                     apptype: "monitoring",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
             },
         },
         selector: {

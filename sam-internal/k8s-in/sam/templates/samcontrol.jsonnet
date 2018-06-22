@@ -67,7 +67,7 @@ local samfeatureflags = import "sam-feature-flags.jsonnet";
                 labels: {
                     name: "samcontrol",
                     apptype: "control",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

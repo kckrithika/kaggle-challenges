@@ -59,7 +59,7 @@ local utils = import "util_functions.jsonnet";
                     app: "watchdog-etcd",
                     apptype: "monitoring",
                     daemonset: "true",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

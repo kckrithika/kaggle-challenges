@@ -67,7 +67,7 @@ if samfeatureflags.k8sproxy then {
                 labels: {
                     name: "k8sproxy",
                     apptype: "proxy",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
             },
         },
         selector: {

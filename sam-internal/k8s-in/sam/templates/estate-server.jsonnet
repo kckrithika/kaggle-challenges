@@ -69,7 +69,7 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "estate-server",
                     apptype: "server",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
             },
         },
         selector: {

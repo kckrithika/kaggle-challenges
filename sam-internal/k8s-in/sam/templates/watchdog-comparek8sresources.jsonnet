@@ -55,7 +55,7 @@ if configs.estate == "prd-samtest" then {
     metadata: {
         labels: {
             name: "watchdog-comparek8sresources",
-        } + configs.ownerLabel,
+        } + configs.ownerLabel.sam,
         name: "watchdog-comparek8sresources",
         namespace: "sam-system",
     },

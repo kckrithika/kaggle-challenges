@@ -7,7 +7,7 @@ if samfeatureflags.k8sproxy then {
     metadata: {
         name: "k8sproxy",
         namespace: "sam-system",
-        labels: {} + configs.ownerLabel,
+        labels: {} + configs.ownerLabel.sam,
     },
     data: {
         "haproxy.cfg": std.toString((import "configs/haproxy.cfg.jsonnet").data),

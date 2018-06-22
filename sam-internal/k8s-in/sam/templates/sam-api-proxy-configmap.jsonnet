@@ -5,7 +5,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     apiVersion: "v1",
     metadata: {
         name: "sam-api-proxy",
-        labels: {} + configs.ownerLabel,
+        labels: {} + configs.ownerLabel.sam,
     },
     data: {
         "sam-api-proxy.json": std.toString(import "configs/sam-api-proxy-config.jsonnet"),

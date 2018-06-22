@@ -11,7 +11,7 @@ if samfeatureflags.estatessvc then {
         namespace: "sam-system",
         labels: {
             app: "estate-server",
-        } + configs.ownerLabel,
+        } + configs.ownerLabel.sam,
     },
     spec: {
         ports: [

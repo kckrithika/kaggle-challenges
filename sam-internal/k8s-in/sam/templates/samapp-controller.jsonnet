@@ -59,7 +59,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
                 labels: {
                     name: "samappcontroller",
                     apptype: "control",
-                } + configs.ownerLabel,
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

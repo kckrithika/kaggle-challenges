@@ -6,7 +6,7 @@ local configs = import "config.jsonnet";
     metadata: {
         name: "snapshoter",
         namespace: "sam-system",
-        labels: {} + configs.ownerLabel,
+        labels: {} + configs.ownerLabel.sam,
     },
     data: {
         "snapshoter.json": std.toString(import "configs/snapshoter-config.jsonnet"),
