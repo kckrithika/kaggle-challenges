@@ -8,10 +8,9 @@ system:
     count: 1
     containers:
     - name: hellodiscovery-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jefflin/hellodiscovery:11
-      # If your service doesn't serve HTTP traffic then you can remove the scone-http 8080 port.
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jefflin/hellodiscovery:12
       ports:
-      - containerPort: 8080
+      - containerPort: 7022
         name: scone-http
       - containerPort: 7020
         name: grpc-svc
@@ -22,7 +21,7 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-          scheme: HTTPS
+          scheme: HTTP
       volumeMounts:
       - mountPath: /home/scone/logs
         name: logvolservice
@@ -105,6 +104,6 @@ system:
     function: hellodiscovery
     slbenabled: true
     ports:
-      - port: 8080
-        targetport: 8080
+      - port: 7022
+        targetport: 7022
         lbtype: tcp
