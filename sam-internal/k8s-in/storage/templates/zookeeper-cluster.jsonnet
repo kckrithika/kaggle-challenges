@@ -17,7 +17,7 @@ if configs.estate == "prd-sam_storage" || configs.estate == "prd-skipper" then
                 apiVersion: "storage.salesforce.com/v1beta1",
                 metadata: {
                     name: zookeeperClusterName,
-                    namespace: zookeeperClusterName,
+                    namespace: zookeeperClusterNamespace,
                     annotations: {
                         "manifestctl.sam.data.sfdc.net/swagger": "disable",
                     },

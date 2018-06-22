@@ -136,8 +136,8 @@
                 "prd-sam_storagedev": "kubernetes.io/hostname",
             },
             version: {
-                "prd-skipper": "3.4.10",
-                "prd-sam_storagedev": "3.4.10",
+                "prd-skipper": "3.4.9",
+                "prd-sam_storagedev": "3.4.9",
             },
         },
     },

@@ -6,10 +6,10 @@ items:
     annotations:
       manifestctl.sam.data.sfdc.net/swagger: disable
     name: sfn-zk
-    namespace: sfn-zk
+    namespace: zookeeper
   spec:
     aggregateStorage: "3"
     faultDomainBoundary: kubernetes.io/hostname
-    version: 3.4.10
+    version: 3.4.9
 kind: List
 metadata: {}
