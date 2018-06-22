@@ -1,0 +1,15 @@
+apiVersion: v1
+items:
+- apiVersion: storage.salesforce.com/v1beta1
+  kind: ZkCluster
+  metadata:
+    annotations:
+      manifestctl.sam.data.sfdc.net/swagger: disable
+    name: sfn-zk
+    namespace: zookeeper
+  spec:
+    aggregateStorage: "5"
+    faultDomainBoundary: kubernetes.io/hostname
+    version: 3.4.9
+kind: List
+metadata: {}
