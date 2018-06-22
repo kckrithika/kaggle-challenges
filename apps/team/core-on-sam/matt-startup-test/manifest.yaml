@@ -15,17 +15,15 @@ system:
     containers:
     - name: core
       #image: tnrp/casam/coreapp:216__15776108-0000103-ae8a90d0
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__15896931-4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:216__16058046-1
 
       env:
-        # ENV for settings.path
-        - name: SFDC_ENVIRONMENT
-          value: mist
-        - name: SFDC_SUBENVIRONMENT
-          value: mist61
+        # Settings.path
+        - name: CASAM_SETTINGS_PATH
+          value: mist.mist61.prd.na1.app
         # DB info
         - name: DB_USER
-          value: sleepy
+          value: bashful
         - name: DB_SID
           value: mist61a216utf
         - name: IP_DB
@@ -69,11 +67,14 @@ system:
 
         # App color to be used for blue/green release
         - name: CASAM_APP_COLOR
-          value: green
+          value: yellow
 
         # Override port being announced in SD
         - name: SD_PORT_OVERRIDE
           value: 12099
+
+        - name: DEPLOYMENT
+          value: Z
 
 #      resources:
 #        limits: { memory: "10240M" }
