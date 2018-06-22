@@ -98,7 +98,7 @@ local utils = import "util_functions.jsonnet";
                   "spark-2.3-test": "jenkins-dva-transformation-flowsnake-platform-PR-630-18-itest",
                   "sla-metrics-test": "jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest",
                   "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-675-1-itest",
-                  branch_name_truncation: "jenkins-dva-transformation-flowsnake-platform-PR-680-2-itest",
+                  "branch_name_truncation": "jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest",
                 },
                 # ignore this section, require by std.manifestIni
                 sections: {
