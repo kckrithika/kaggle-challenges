@@ -129,15 +129,12 @@
         },
         zookeeper: {
             replicas: {
-                "prd-skipper": "3",
                 "prd-sam_storagedev": "5",
             },
             boundary: {
-                "prd-skipper": "kubernetes.io/hostname",
                 "prd-sam_storagedev": "kubernetes.io/hostname",
             },
             version: {
-                "prd-skipper": "3.4.9",
                 "prd-sam_storagedev": "3.4.9",
             },
         },
