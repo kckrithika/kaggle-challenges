@@ -23,7 +23,8 @@
         "prd-skipper": ["prd-skipper"],
         "prd-sam": [],
         "xrd-sam": [],
-        "prd-sam_storage": ["prd-sam_storagedev"],
+        "prd-sam_storage": [],
+        "prd-sam_storagedev": ["prd-sam_storagedev"],
     },
 
     serviceDefn: {
