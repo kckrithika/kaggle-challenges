@@ -6,83 +6,6 @@ local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.th
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-b" };
 local madkub = (import "slbmadkub.jsonnet") + { templateFileName:: std.thisFile };
 
-// Phase out the use of the deprecated init container annotation in favor of spec.initContainers.
-local useInitContainerAnnotation = std.parseInt(slbimages.phase) > 3;
-local initContainers = if !useInitContainerAnnotation then {
-    initContainers: [
-        madkub.madkubInitContainer(),
-    ],
-} else {};
-local initContainersAnnotation = if useInitContainerAnnotation then {
-    "pod.beta.kubernetes.io/init-containers": "[
-                            {
-                              \"image\": \"" + samimages.madkub + "\",
-                              \"args\": [
-                                \"/sam/madkub-client\",
-                                \"--madkub-endpoint\",
-                                \"https://$(MADKUBSERVER_SERVICE_HOST):32007\",
-                                \"--maddog-endpoint\",
-                                \"" + configs.maddogEndpoint + "\",
-                                \"--maddog-server-ca\",
-                                \"/maddog-certs/ca/security-ca.pem\",
-                                \"--madkub-server-ca\",
-                                \"/maddog-certs/ca/cacerts.pem\",
-                                \"--cert-folders\",
-                                \"cert1:/cert1/\",
-                                \"--cert-folders\",
-                                \"cert2:/cert2/\",
-                                \"--token-folder\",
-                                \"/tokens/\",
-                                \"--requested-cert-type\",
-                                \"client\"
-                              ],
-                              \"name\": \"madkub-init\",
-                              \"imagePullPolicy\": \"IfNotPresent\",
-                              \"volumeMounts\": [
-                                {
-                                    \"mountPath\": \"/cert1\",
-                                    \"name\": \"cert1\"
-                                },
-                                {
-                                    \"mountPath\": \"/cert2\",
-                                    \"name\": \"cert2\"
-                                },
-                                {
-                                    \"mountPath\": \"/maddog-certs/\",
-                                    \"name\": \"maddog-certs\"
-                                },
-                                {
-                                    \"mountPath\": \"/tokens\",
-                                    \"name\": \"tokens\"
-                                }
-                              ],
-                              \"env\": [
-                                {
-                                    \"name\": \"MADKUB_NODENAME\",
-                                    \"valueFrom\":
-                                    {
-                                        \"fieldRef\":{\"fieldPath\": \"spec.nodeName\", \"apiVersion\": \"v1\"}
-                                    }
-                                },
-                                {
-                                    \"name\": \"MADKUB_NAME\",
-                                    \"valueFrom\":
-                                    {
-                                        \"fieldRef\":{\"fieldPath\": \"metadata.name\", \"apiVersion\": \"v1\"}
-                                    }
-                                },
-                                {
-                                    \"name\": \"MADKUB_NAMESPACE\",
-                                    \"valueFrom\":
-                                    {
-                                        \"fieldRef\":{\"fieldPath\": \"metadata.namespace\", \"apiVersion\": \"v1\"}
-                                    }
-                                }
-                              ]
-                            }
-                         ]",
-} else {};
-
 if slbconfigs.slbInKingdom then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -125,7 +48,7 @@ if slbconfigs.slbInKingdom then {
                                 }
                             ]
                          }",
-                } + initContainersAnnotation,
+                },
             },
             spec: {
                 affinity: {
@@ -281,10 +204,9 @@ if slbconfigs.slbInKingdom then {
                                         "client",
                                         "--refresher",
                                         "--run-init-for-refresher-mode",
-                                    ] + if std.parseInt(slbimages.phase) < 4 then [
                                         "--ca-folder",
                                         "/maddog-certs/ca",
-                                    ] else [],
+                                    ],
                                     env: [
                                         {
                                             name: "MADKUB_NODENAME",
@@ -371,7 +293,10 @@ if slbconfigs.slbInKingdom then {
                                     slbshared.slbLogCleanup,
                                 ] else []
                             ),
-            } + initContainers,
+                initContainers: [
+                        madkub.madkubInitContainer(),
+                    ],
+            },
         },
         strategy: {
             type: "RollingUpdate",
