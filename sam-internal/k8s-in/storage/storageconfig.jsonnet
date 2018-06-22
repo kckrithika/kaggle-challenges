@@ -20,7 +20,7 @@
 
     // Map of Zookeeper control estate -> cluster estate.
     zookeeperEstates: {
-        "prd-skipper": ["prd-skipper"],
+        "prd-skipper": [],
         "prd-sam": [],
         "xrd-sam": [],
         "prd-sam_storage": [],

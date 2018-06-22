@@ -103,8 +103,6 @@ local storageutils = import "storageutils.jsonnet";
             cephdaemon_tag: "10.2.7-0000062-6d863283",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fsam%2Fmadkub&last=10&repo=sam%2Fmadkub
             madkub_tag: "1.0.0-0000061-74e4a7b6",
-            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fzookeeper&last=10&repo=SFStorage%2Fzookeeper-docker
-            zookeeper_tag: "latest-0000006-9f49608c",
         },
 
         ### Release Phase 2 - prd-sam (control plane), prd-sam_ceph, prd-sam_sfstore and xrd-sam (control plane)
