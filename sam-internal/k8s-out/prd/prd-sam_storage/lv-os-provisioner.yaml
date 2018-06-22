@@ -26,6 +26,7 @@ spec:
                 - prd-sam_cephdev
                 - prd-sam_storage
                 - prd-sam_sfstoredev
+                - prd-sam_storagedev
               - key: storage.salesforce.com/nodeprep
                 operator: In
                 values:

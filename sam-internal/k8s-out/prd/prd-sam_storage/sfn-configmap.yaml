@@ -6,10 +6,10 @@ data:
             - {key: app, operator: In, values: ["ceph-mon", "ceph-osd", "lv-os-provisioner"]}
     nodes:
         matchExpressions:
-            - {key: pool, operator: In, values: ["prd-sam_cephdev", "prd-sam_storage", "prd-sam_sfstoredev"]}
+            - {key: pool, operator: In, values: ["prd-sam_cephdev", "prd-sam_storage", "prd-sam_sfstoredev", "prd-sam_storagedev"]}
     persistentvolumes:
         matchExpressions:
-            - {key: pool, operator: In, values: ["prd-sam_cephdev", "prd-sam_storage", "prd-sam_sfstoredev"]}
+            - {key: pool, operator: In, values: ["prd-sam_cephdev", "prd-sam_storage", "prd-sam_sfstoredev", "prd-sam_storagedev"]}
     persistentvolumeclaims:
         matchExpressions:
             - {key: daemon, operator: In, values: ["mon", "osd"]}

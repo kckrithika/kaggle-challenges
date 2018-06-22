@@ -18,6 +18,14 @@
         "prd-sam_storage": ["prd-sam_sfstoredev"],
     },
 
+    // Map of Zookeeper control estate -> cluster estate.
+    zookeeperEstates: {
+        "prd-skipper": ["prd-skipper"],
+        "prd-sam": [],
+        "xrd-sam": [],
+        "prd-sam_storage": ["prd-sam_storagedev"],
+    },
+
     serviceDefn: {
         fds_svc: {
                 "name" : 'fds',
@@ -59,7 +67,7 @@
     },
 
     // Aggregate all the storage related minion estates in the control plane.
-    storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate]],
+    storageEstates: [ minion for minion in self.cephEstates[estate] + self.sfstoreEstates[estate] + self.zookeeperEstates[estate]],
     perEstate: {
         ceph: {
             // host subnets from https://git.soma.salesforce.com/estates/estates/tree/master/kingdoms/
@@ -116,6 +124,20 @@
             version: {
                 "prd-skipper": "1.10",
                 "prd-sam_sfstoredev": "1.10",
+            },
+        },
+        zookeeper: {
+            replicas: {
+                "prd-skipper": "3",
+                "prd-sam_storagedev": "5",
+            },
+            boundary: {
+                "prd-skipper": "kubernetes.io/hostname",
+                "prd-sam_storagedev": "kubernetes.io/hostname",
+            },
+            version: {
+                "prd-skipper": "3.4.10",
+                "prd-sam_storagedev": "3.4.10",
             },
         },
     },
