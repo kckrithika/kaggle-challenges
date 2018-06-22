@@ -130,7 +130,7 @@ if samfeatureflags.maddogforsamapps then {
                                   "--cert-folders",
                                   "madkubInternalCert:/certs/",
                               ] +
-                            if configs.kingdom == "prd" then
+                            if configs.kingdom == "prd" || configs.kingdom == "cdu" || configs.kingdom == "frf" then
                             [
                                 "--ca-folder",
                                 "/maddog-certs/ca",
