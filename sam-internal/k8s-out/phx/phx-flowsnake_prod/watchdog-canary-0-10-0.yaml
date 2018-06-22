@@ -28,6 +28,7 @@ spec:
         - --config=/config/watchdog.json
         - -cliCheckerCommandTarget=0.10.0
         - -cliCheckerTimeout=10m
+        - --hostsConfigFile=/sfdchosts/hosts.json
         image: ops0-artifactrepo1-0-phx.data.sfdc.net/dva/watchdog-canary:664
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
@@ -52,6 +53,8 @@ spec:
         - mountPath: /etc/pki_service/platform/platform-client/keys
           name: client-key
           readOnly: true
+        - mountPath: /sfdchosts
+          name: sfdchosts
       - args:
         - /sam/madkub-client
         - --madkub-endpoint
@@ -186,3 +189,6 @@ spec:
       - hostPath:
           path: /etc/pki_service/platform/platform-client/keys
         name: client-key
+      - configMap:
+          name: sfdchosts
+        name: sfdchosts

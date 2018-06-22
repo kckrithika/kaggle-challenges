@@ -109,7 +109,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 watchdog_canaries: "foo",  #Verified in IoT Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
-                canary_hostconfig: "foo",  #Pending verification before promotion
+                canary_hostconfig: "foo",  #Verified in IoT fleet
             },
             version_mapping: {
                 main: {
@@ -132,6 +132,7 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 watchdog_canaries: "foo",  #Verified in DATA Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
+                canary_hostconfig: "foo",  #Pending verification before promotion
             },
             version_mapping: {
                 main: {
@@ -158,6 +159,7 @@ local utils = import "util_functions.jsonnet";
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
                 watchdog_canaries: "foo",  #Untested
+                canary_hostconfig: "foo",  #Pending verification before promotion
             },
             version_mapping: {
                 main: {
