@@ -58,7 +58,7 @@ if estate == "prd-data-flowsnake" then ({
                         periodSeconds: 20,
                         timeoutSeconds: 20,
                     },
-                    image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180615_130230.dadbcf1.clean.khogeland-wsl0",
+                    image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180622_150001.1e3b6bf.dirty.khogeland-wsl0",
                     name: "snapshoter",
                 }],
                 volumes: configs.filter_empty([
