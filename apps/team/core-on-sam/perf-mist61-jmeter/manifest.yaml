@@ -4,6 +4,7 @@ system:
   functions:
   - name: mist61-jmeter
     count: 4
+    hostnetwork: true
     
     containers:
     - name: mist61-jmeter
