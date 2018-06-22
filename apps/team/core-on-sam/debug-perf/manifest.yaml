@@ -103,6 +103,24 @@ system:
       volumeMounts:
         - name: cert
           mountPath: /certs
+
+    - name: mist61-jmeter
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/jmeter:kviphong-20180622-132219
+
+      livenessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 30
+        periodSeconds: 120
+      readinessProbe:
+        exec:
+          command:
+           - echo
+           - HEALTHY
+        initialDelaySeconds: 30
+        periodSeconds: 120
     
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
