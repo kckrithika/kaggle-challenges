@@ -27,6 +27,7 @@ system:
     - name: metadata-service
       image: sfci/metadata-cannon/metadata-service:0.2.19
       ports:
+      # 9091 is for REST which is disabled in prod
       - containerPort: 9091
       - containerPort: 15523
       env:
