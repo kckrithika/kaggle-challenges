@@ -7,7 +7,7 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" && configs.es
         namespace: "sam-system",
         labels: {
             app: "sam-deployment-portal",
-        },
+        } + configs.ownerLabel.sam,
         annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "sdp",
             "slb.sfdc.net/portconfigurations": std.toString(

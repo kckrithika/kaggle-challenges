@@ -7,7 +7,7 @@ local configs = import "config.jsonnet";
         namespace: "sam-system",
         labels: {
             app: "watchdog-synthetic-service",
-        },
+        } + configs.ownerLabel.sam,
     },
     spec: {
         ports: [

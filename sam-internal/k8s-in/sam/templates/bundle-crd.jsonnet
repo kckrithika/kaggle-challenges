@@ -8,6 +8,7 @@ if configs.kingdom == "prd" || configs.kingdom == "vpod" then {
       annotations: {
         "manifestctl.sam.data.sfdc.net/swagger": "disable",
       },
+      labels: {} + configs.ownerLabel.sam,
     },
     spec: {
       group: "samcrd.salesforce.com",

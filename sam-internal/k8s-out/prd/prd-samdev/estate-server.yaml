@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: server
         name: estate-server
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

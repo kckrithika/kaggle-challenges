@@ -9,7 +9,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     },
     labels: {
       app: "sam-api-proxy",
-    },
+    } + configs.ownerLabel.sam,
     name: "sam-api-proxy",
   },
   spec: {

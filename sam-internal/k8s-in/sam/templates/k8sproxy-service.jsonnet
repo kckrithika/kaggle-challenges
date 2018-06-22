@@ -9,7 +9,7 @@ if samfeatureflags.k8sproxy then {
         namespace: "sam-system",
         labels: {
             app: "k8sproxy",
-        },
+        } + configs.ownerLabel.sam,
         annotations: {
             "slb.sfdc.net/name": "k8sproxy",
         },

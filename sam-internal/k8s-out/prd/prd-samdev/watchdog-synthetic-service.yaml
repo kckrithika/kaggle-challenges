@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: watchdog-synthetic-service
+    sam.data.sfdc.net/owner: sam
   name: watchdog-synthetic-service
   namespace: sam-system
 spec:

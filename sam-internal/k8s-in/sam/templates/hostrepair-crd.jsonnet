@@ -8,6 +8,7 @@ if configs.estate == "prd-samtest" then {
       annotations: {
         "manifestctl.sam.data.sfdc.net/swagger": "disable",
       },
+      labels: {} + configs.ownerLabel.sam,
     },
     spec: {
       group: "samcrd.salesforce.com",

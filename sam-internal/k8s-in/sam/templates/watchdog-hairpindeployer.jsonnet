@@ -63,7 +63,7 @@ local samwdconfigmap = import "configs/watchdog-config.jsonnet";
                 labels: {
                     name: "watchdog-hairpindeployer",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

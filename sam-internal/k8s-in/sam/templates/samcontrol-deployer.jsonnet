@@ -69,7 +69,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     name: "samcontrol-deployer",
                     apptype: "control",
-                },
+                } + configs.ownerLabel.sam,
             },
         },
     },

@@ -11,6 +11,7 @@ spec:
         apptype: monitoring
         daemonset: "true"
         name: watchdog-maddogcert
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

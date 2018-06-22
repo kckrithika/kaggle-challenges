@@ -6,6 +6,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
     metadata: {
         name: "prometheus",
         namespace: "sam-system",
+        labels: {} + configs.ownerLabel.sam,
     },
     data: {
         "prometheus.json": std.toString(import "configs/prometheus.jsonnet"),

@@ -7,7 +7,7 @@ if configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || configs.
         namespace: "sam-system",
         labels: {
             app: "prometheus",
-        },
+        } + configs.ownerLabel.sam,
         annotations: if configs.estate == "prd-sam" then {
             "slb.sfdc.net/name": "prometheus",
             "slb.sfdc.net/portconfigurations": std.toString(

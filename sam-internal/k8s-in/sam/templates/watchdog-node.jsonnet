@@ -54,7 +54,7 @@ local utils = import "util_functions.jsonnet";
                 labels: {
                     name: "watchdog-node",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

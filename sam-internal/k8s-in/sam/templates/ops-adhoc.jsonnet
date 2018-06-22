@@ -47,7 +47,7 @@ if false then {
                 labels: {
                     app: "ops-adhoc",
                     daemonset: "true",
-                },
+                } + configs.ownerLabel.sam,
             },
         },
     },

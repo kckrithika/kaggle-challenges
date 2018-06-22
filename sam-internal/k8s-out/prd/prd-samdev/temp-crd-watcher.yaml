@@ -14,6 +14,7 @@ spec:
       labels:
         apptype: control
         name: temp-crd-watcher
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

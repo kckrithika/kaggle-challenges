@@ -23,7 +23,7 @@ local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFi
                 labels: {
                     apptype: "control",
                     name: "snapshoter",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
             spec: {

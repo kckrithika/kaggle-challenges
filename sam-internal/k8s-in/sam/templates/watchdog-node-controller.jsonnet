@@ -56,7 +56,7 @@ if samfeatureflags.estatessvc then {
                 labels: {
                     name: "watchdog-node-controller",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },

@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: estate-server
+    sam.data.sfdc.net/owner: sam
   name: estate-service
   namespace: sam-system
 spec:

@@ -74,7 +74,7 @@ if configs.estate == "prd-sam" then {
                 labels: {
                     name: "sam-deployment-portal",
                     apptype: "control",
-                },
+                } + configs.ownerLabel.sam,
                 namespace: "sam-system",
             },
         },
