@@ -3,8 +3,6 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local samimages = (import "../../sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
 
-# TODO: testing currently in PRD data, uncomment when test topic permissions fixed
-# if flowsnake_config.is_test then {
 if estate == "prd-data-flowsnake" then ({
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
@@ -33,6 +31,7 @@ if estate == "prd-data-flowsnake" then ({
             spec: {
                 containers: [{
                     name: "snapshotconsumer",
+                    # From https://git.soma.salesforce.com/dva-transformation/sam/tree/support-replication-controllers
                     image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180622_150001.1e3b6bf.dirty.khogeland-wsl0",
                     command: [
                         "/sam/snapshotconsumer",

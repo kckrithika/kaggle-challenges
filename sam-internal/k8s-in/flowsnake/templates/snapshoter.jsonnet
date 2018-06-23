@@ -3,9 +3,7 @@ local flowsnake_config = import "flowsnake_config.jsonnet";
 local samimages = (import "../../sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
 
-# TODO: testing currently in PRD data, uncomment when test topic permissions fixed
-# if flowsnake_config.is_test then ({
-if estate == "prd-data-flowsnake" then ({
+if !flowsnake_config.is_minikube then ({
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
