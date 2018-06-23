@@ -29,7 +29,7 @@ spec:
         - -cliCheckerCommandTarget=0.10.0
         - -cliCheckerTimeout=10m
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/watchdog-canary:664
+        image: ops0-artifactrepo1-0-ord.data.sfdc.net/dva/watchdog-canary:670
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
         resources:
