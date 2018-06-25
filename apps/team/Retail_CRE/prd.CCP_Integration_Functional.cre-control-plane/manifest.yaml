@@ -26,7 +26,7 @@ system:
         - name: GRPC_PORT
           value: 7020
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.244.master.4b5fe24.520
+          value: sfci/cre/cre-engine:0.0.1.249.master.b8d4e4b.525
         # - name: HBASE_ENVIRONMENT
         #   value: kingdom-test
         # - name: HBASE_DATACENTER
