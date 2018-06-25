@@ -26,9 +26,9 @@ spec:
         - --config=/config/watchdog.json
         - -cliCheckerCommandTarget=0.10.0
         - --hostsConfigFile=/sfdchosts/hosts.json
-        - -watchdogFrequency=10m
-        - -alertThreshold=30m
-        - -cliCheckerTimeout=10m
+        - -watchdogFrequency=15m
+        - -alertThreshold=45m
+        - -cliCheckerTimeout=15m
         image: ops0-artifactrepo1-0-iad.data.sfdc.net/dva/watchdog-canary:670
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
