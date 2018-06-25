@@ -4,8 +4,8 @@ if configs.estate == "prd-sam" then {
     apiVersion: "v1",
     metadata: {
         name: "sam-manifest-repo-watcher",
-        namespace: "sam-system",
         labels: {} + configs.ownerLabel.sam,
+        namespace: "sam-system",
     },
     data: {
         "sammanifestrepowatcher.json": std.toString(import "configs/sam-manifest-repo-watcher-config.jsonnet"),
