@@ -22,7 +22,7 @@ spec:
         - --role=COMPAREK8SRESOURCES
         - --emailFrequency=1h
         - --enableEmailPerCheckerInstance=true
-        - --deployer-recipient=small@salesforce.com,rbhat@salesforce.com,xiao.zhou@salesforce.com
+        - --deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
