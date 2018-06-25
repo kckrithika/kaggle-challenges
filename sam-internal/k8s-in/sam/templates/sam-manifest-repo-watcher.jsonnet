@@ -6,10 +6,10 @@ if configs.estate == "prd-sam" then {
         apiVersion: "extensions/v1beta1",
         metadata: {
             name: "sam-manifest-repo-watcher",
-            namespace: "sam-system",
             labels: {
                 name: "sam-manifest-repo-watcher",
             } + configs.ownerLabel.sam,
+            namespace: "sam-system",
         },
         spec: {
             replicas: 1,
