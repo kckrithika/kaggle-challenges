@@ -19,7 +19,10 @@ system:
 
       image: tnrp/casam/coreapp:214__15043100-0000094-120c8cb2
 
- 
+      resources:
+        limits: { cpu: "2", memory: "20Gi" }
+        requests: { cpu: "2", memory: "20Gi" }
+         
       livenessProbe:
         exec:
           command:
