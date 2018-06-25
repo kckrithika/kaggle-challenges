@@ -13,3 +13,5 @@ apps:
   - frf/frf-search_model_executor
   - iad/iad-search_model_executor
   - hnd/hnd-search_model_executor
+  - ukb/ukb-search_model_executor
+  - par/par-search_model_executor
