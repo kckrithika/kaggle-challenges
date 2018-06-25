@@ -40,6 +40,8 @@ local utils = import "util_functions.jsonnet";
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0001730-c7caec88",
+                snapshoter_image_tag: "sam-0002052-bc0d9ea5",
+                snapshot_consumer_image_tag: "sam-0002052-bc0d9ea5",
                 kubedns_image_tag: "1.10.0",
         },
 
@@ -214,6 +216,8 @@ local utils = import "util_functions.jsonnet";
     version_mapping: $.per_phase[$.phase].version_mapping,
 
     # Non-Flowsnake images
+    snapshoter: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].snapshoter_image_tag),
+    snapshot_consumer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].snapshot_consumer_image_tag),
     deployer: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].deployer_image_tag),
     watchdog: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].watchdog_image_tag),
     node_controller: imageFunc.do_override_based_on_tag($.overrides, "sam", "hypersam", $.per_phase[$.phase].node_controller_image_tag),
