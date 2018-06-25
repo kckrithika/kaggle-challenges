@@ -121,7 +121,7 @@ data:
                 }
               }
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000445-0b34edf0",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000448-ce3fdf18",
             "name": "log-init",
             "securityContext": {
               "privileged": true
@@ -328,7 +328,7 @@ data:
                 }
               }
             ],
-            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000445-0b34edf0",
+            "image": "ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/storagecloud/loginitcontainer:base-0000448-ce3fdf18",
             "name": "log-init",
             "securityContext": {
               "privileged": true

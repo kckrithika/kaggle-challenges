@@ -70,9 +70,9 @@ local storageutils = import "storageutils.jsonnet";
         ### Release Phase 0 - prd-sam_storagedev
         "0": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000445-0b34edf0",
-            ceph_operator_tag: "base-0000445-0b34edf0",
-            loginit_tag: "base-0000445-0b34edf0",
+            default_tag: "base-0000448-ce3fdf18",
+            ceph_operator_tag: "base-0000448-ce3fdf18",
+            loginit_tag: "base-0000448-ce3fdf18",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
             sfms_tag: "latest-0000186-c6ab91f6",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
