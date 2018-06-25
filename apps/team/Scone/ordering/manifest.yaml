@@ -28,9 +28,6 @@ system:
         httpGet:
           path: /manage/health
           port: 15372
-      volumeMounts:
-      - mountPath: /home/scone/logs
-        name: logvolservice
 
     - name: beacon-ordering
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
@@ -80,9 +77,6 @@ system:
     - name: logvolbeacon
       hostPath:
         path: /home/sfdc-scone-ordering-beacon/logs
-    - name: logvolservice
-      hostPath:
-        path: /home/sfdc-scone-ordering-service/logs
     - name: logvolsherpa
       hostPath:
         path: /home/sfdc-scone-ordering-sherpa/logs
