@@ -20,15 +20,15 @@ spec:
       - command:
         - /sam/watchdog
         - -role=CLI
-        - -watchdogFrequency=10m
-        - -alertThreshold=30m
         - -emailFrequency=10m
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-par.data.sfdc.net:80
         - --config=/config/watchdog.json
         - -cliCheckerCommandTarget=0.10.0
-        - -cliCheckerTimeout=10m
         - --hostsConfigFile=/sfdchosts/hosts.json
+        - -watchdogFrequency=10m
+        - -alertThreshold=30m
+        - -cliCheckerTimeout=10m
         image: ops0-artifactrepo1-0-par.data.sfdc.net/dva/watchdog-canary:670
         imagePullPolicy: IfNotPresent
         name: watchdog-canary

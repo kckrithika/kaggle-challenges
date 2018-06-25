@@ -54,16 +54,21 @@ local cert_name = "watchdogcanarycerts";
                         command: [
                             "/sam/watchdog",
                             "-role=CLI",
-                            "-watchdogFrequency=10m",
-                            "-alertThreshold=30m",
                             "-emailFrequency=" + watchdog.watchdog_email_frequency,
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
                             "-cliCheckerCommandTarget=0.10.0",
-                            "-cliCheckerTimeout=10m",
                         ] + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
                           "--hostsConfigFile=/sfdchosts/hosts.json"
+                        ] + if !std.objectHas(flowsnake_images.feature_flags, "canary_timeout_bump") then [
+                            "-watchdogFrequency=10m",
+                            "-alertThreshold=30m",
+                            "-cliCheckerTimeout=10m",
+                        ] else [
+                            "-watchdogFrequency=15m",
+                            "-alertThreshold=45m",
+                            "-cliCheckerTimeout=15m",
                         ],
                         name: "watchdog-canary",
                         resources: {
