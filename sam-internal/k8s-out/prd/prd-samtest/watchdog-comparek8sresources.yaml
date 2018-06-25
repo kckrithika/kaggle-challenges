@@ -23,6 +23,7 @@ spec:
         - --emailFrequency=1h
         - --enableEmailPerCheckerInstance=true
         - --deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com
+        - --publishAlertsToKafka=false
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
