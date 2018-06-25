@@ -20,6 +20,7 @@ if configs.estate == "prd-samtest" then {
                                     "--emailFrequency=1h",
                                     "--enableEmailPerCheckerInstance=true",
                                     "--deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com",
+                                    "--publishAlertsToKafka=false",
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
