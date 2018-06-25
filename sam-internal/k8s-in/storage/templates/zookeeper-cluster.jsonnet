@@ -14,7 +14,7 @@ if configs.estate == "prd-sam_storagedev" then
                 local zookeeperClusterNamespace = "zookeeper",  // Alternatively, this could come from per-estate config.
 
                 kind: "ZkCluster",
-                apiVersion: "storage.salesforce.com/v1beta1",
+                apiVersion: "storage.salesforce.com/v1",
                 metadata: {
                     name: zookeeperClusterName,
                     namespace: zookeeperClusterNamespace,
