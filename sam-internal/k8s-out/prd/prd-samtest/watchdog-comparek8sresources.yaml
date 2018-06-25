@@ -22,8 +22,9 @@ spec:
         - --role=COMPAREK8SRESOURCES
         - --emailFrequency=1h
         - --enableEmailPerCheckerInstance=true
-        - --deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com
+        - --deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com
         - --publishAlertsToKafka=false
+        - --publishAllReportsToKafka=false
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
@@ -37,6 +38,10 @@ spec:
           name: config
         - mountPath: /data/certs
           name: certs
+        - mountPath: /etc/pki_service
+          name: maddog-certs
+        - mountPath: /kubeconfig
+          name: kubeconfig
       hostNetwork: true
       nodeSelector:
         pool: prd-samtest
@@ -50,3 +55,9 @@ spec:
       - hostPath:
           path: /data/certs
         name: certs
+      - hostPath:
+          path: /etc/pki_service
+        name: maddog-certs
+      - hostPath:
+          path: /etc/kubernetes
+        name: kubeconfig
