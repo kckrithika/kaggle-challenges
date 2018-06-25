@@ -32,5 +32,5 @@ local build_command_sets = {
 };
 
 {
-    command_sets:: if !std.objectHas(flowsnake_images.feature_flags, "watchdog_canaries") then {} else build_command_sets,
+    command_sets:: build_command_sets,
 }

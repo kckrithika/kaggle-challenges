@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-if !std.objectHas(flowsnake_images.feature_flags, "watchdog_canaries") || !watchdog.watchdog_enabled then
+if !watchdog.watchdog_enabled then
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
@@ -59,13 +59,7 @@ local cert_name = "watchdogcanarycerts";
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
                             "-cliCheckerCommandTarget=0.10.0",
-                        ] + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
-                          "--hostsConfigFile=/sfdchosts/hosts.json"
-                        ] + if !std.objectHas(flowsnake_images.feature_flags, "canary_timeout_bump") then [
-                            "-watchdogFrequency=10m",
-                            "-alertThreshold=30m",
-                            "-cliCheckerTimeout=10m",
-                        ] else [
+                            "--hostsConfigFile=/sfdchosts/hosts.json",
                             "-watchdogFrequency=15m",
                             "-alertThreshold=45m",
                             "-cliCheckerTimeout=15m",
@@ -85,9 +79,7 @@ local cert_name = "watchdogcanarycerts";
                             configs.config_volume_mount,
                             madkub_common.certs_mount,
                         ] + certs_and_kubeconfig.platform_cert_volumeMounts
-                         + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
-                          watchdog.sfdchosts_volume_mount
-                        ],
+                         + [ watchdog.sfdchosts_volume_mount ],
                     },
                     madkub_common.refresher_container(cert_name)
                 ],
@@ -105,9 +97,7 @@ local cert_name = "watchdogcanarycerts";
                   madkub_common.tokens_volume,
                 ] +
                certs_and_kubeconfig.platform_cert_volume
-               + if !std.objectHas(flowsnake_images.feature_flags, "canary_hostconfig") then [] else [
-                 watchdog.sfdchosts_volume
-               ],
+               + [ watchdog.sfdchosts_volume ],
             },
         },
     }
