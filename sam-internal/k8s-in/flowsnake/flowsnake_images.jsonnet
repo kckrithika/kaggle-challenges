@@ -36,7 +36,7 @@ local utils = import "util_functions.jsonnet";
                 madkub_image_tag: "1.0.0-0000062-dca2d8d1",
                 nodeMonitor_image_tag: 662,
                 watchdog_image_tag: "sam-0002015-fdb18963",
-                watchdog_canary_image_tag: "664",
+                watchdog_canary_image_tag: "670",
                 node_controller_image_tag: "sam-0001970-a296421d",
                 zookeeper_image_tag: "345",
                 deployer_image_tag: "sam-0001730-c7caec88",
@@ -77,7 +77,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
-            watchdog_canary_image_tag: "670",
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
