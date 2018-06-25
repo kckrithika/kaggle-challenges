@@ -25,7 +25,7 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-dfw.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0002015-fdb18963
+        image: ops0-artifactrepo1-0-dfw.data.sfdc.net/tnrp/sam/hypersam:sam-0002036-9f787768
         name: watchdog
         resources:
           limits:
