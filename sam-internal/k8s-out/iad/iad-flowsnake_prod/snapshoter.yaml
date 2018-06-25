@@ -27,7 +27,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180622_150001.1e3b6bf.dirty.khogeland-wsl0
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sam/hypersam:sam-0002052-bc0d9ea5
         livenessProbe:
           httpGet:
             path: /

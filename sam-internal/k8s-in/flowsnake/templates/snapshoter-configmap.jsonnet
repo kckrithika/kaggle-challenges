@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 
-if !flowsnake_config.is_minikube then ({
+if flowsnake_config.snapshots_enabled then ({
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {

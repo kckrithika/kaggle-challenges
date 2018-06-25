@@ -5,9 +5,9 @@ local estate = std.extVar("estate");
 {
   sinks: "kafka",
   sources: "informer",
-  "clientKeyFile": configs.keyFile,
-  "clientCertFile": configs.certFile,
-  "enableKafkaClientAuth": true,
+  "client-key-file": configs.keyFile,
+  "client-cert-file": configs.certFile,
+  "enable-kafka-client-auth": true,
   "kube-poll-interval": "30m",
   "kafka-push-interval": "10s",
   "kafka-payload-kb": 300,

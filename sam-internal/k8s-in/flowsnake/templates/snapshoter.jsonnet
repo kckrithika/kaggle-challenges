@@ -1,9 +1,9 @@
 local configs = import "config.jsonnet";
 local flowsnake_config = import "flowsnake_config.jsonnet";
-local samimages = (import "../../sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local estate = std.extVar("estate");
 
-if !flowsnake_config.is_minikube then ({
+if flowsnake_config.snapshots_enabled then ({
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
@@ -56,7 +56,7 @@ if !flowsnake_config.is_minikube then ({
                         periodSeconds: 20,
                         timeoutSeconds: 20,
                     },
-                    image: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/khogeland/hypersam:20180622_150001.1e3b6bf.dirty.khogeland-wsl0",
+                    image: flowsnake_images.snapshoter,
                     name: "snapshoter",
                 }],
                 volumes: configs.filter_empty([
