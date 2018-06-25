@@ -32,7 +32,7 @@ spec:
         - --configDir=/host/data/slb/config/
         - --log_dir=/host/data/slb/logs/
         - --netInterface=lo
-        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000928-ac598571
+        image: ops0-artifactrepo1-0-iad.data.sfdc.net/tnrp/sdn/hypersdn:v-0000932-3492f42a
         name: slb-node-api
         volumeMounts:
         - mountPath: /host/data/slb
