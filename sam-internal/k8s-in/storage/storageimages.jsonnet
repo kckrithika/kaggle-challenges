@@ -67,14 +67,14 @@ local storageutils = import "storageutils.jsonnet";
 
     ### Per-phase image tags
     per_phase: {
-        ### Release Phase 0 - prd-sam_storagedev 
+        ### Release Phase 0 - prd-sam_storagedev
         "0": {
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Ffaultdomainset&last=10&repo=SFStorage%2Ffoundation
-            default_tag: "base-0000437-311530ce",
-            ceph_operator_tag: "base-0000437-311530ce",
-            loginit_tag: "base-0000437-311530ce",
+            default_tag: "base-0000448-ce3fdf18",
+            ceph_operator_tag: "base-0000448-ce3fdf18",
+            loginit_tag: "base-0000448-ce3fdf18",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fsfms&last=10&repo=SdbStoreOps%2FProd-Operations
-            sfms_tag: "latest-0000182-ebb4867b",
+            sfms_tag: "latest-0000186-c6ab91f6",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Flvprovisioner&last=10&repo=SFStorage%2Flvprovisioner
             lvprovisioner_tag: "v1.0-0000015-0ba0b53a",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fbookie&last=10&repo=SFStorage%2Fbookkeeper
@@ -83,6 +83,8 @@ local storageutils = import "storageutils.jsonnet";
             cephdaemon_tag: "10.2.7-0000062-6d863283",
             # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fsam%2Fmadkub&last=10&repo=sam%2Fmadkub
             madkub_tag: "1.0.0-0000061-74e4a7b6",
+            # http://samdrlb.csc-sam.prd-sam.prd.slb.sfdc.net:64122/images?hostname=ops0-artifactrepo1-0-prd.data.sfdc.net&path=%2Ftnrp%2Fstoragecloud%2Fzookeeper&last=10&repo=SFStorage%2Fzookeeper-docker
+            zookeeper_tag: "latest-0000006-9f49608c",
         },
 
         ### Release Phase 1 - prd-sam_storage (control plane), prd-sam_cephdev, prd-sam_sfstoredev, and prd-skipper (control plane)
@@ -154,6 +156,7 @@ local storageutils = import "storageutils.jsonnet";
     fdscontroller: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "faultdomainset", $.per_phase[$.phase].default_tag),
     configwatcher: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "configwatcher", $.per_phase[$.phase].default_tag),
     sfstoreoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfstoreoperator", $.per_phase[$.phase].default_tag),
+    zookeeperoperator: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "zookeeperoperator", $.per_phase[$.phase].default_tag),
     alertmanager: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "alertmanager", $.per_phase[$.phase].default_tag),
     sfnstatemetrics: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "sfn-state-metrics", $.per_phase[$.phase].default_tag),
     # TODO(rohit.shekhar) change ceph to cephoperator in foundation codebase, then update ceph below to be cephoperator
@@ -173,6 +176,9 @@ local storageutils = import "storageutils.jsonnet";
     # ceph_daemon_tag is the tag used for daemon images. This is populated in the ceph cluster spec, and can be overridden per-minion estate
     # via $.overrides (see do_cephdaemon_tag_override in ceph-cluster.jsonnet).
     cephdaemon_tag: $.per_phase[$.phase].cephdaemon_tag,
+
+    # The zookeeper image is maintained in the https://git.soma.salesforce.com/SFStorage/zookeeper-docker repo.
+    zookeeper: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "zookeeper", $.per_phase[$.phase].zookeeper_tag),
 
     # The sfstore bookie image is maintained in the https://git.soma.salesforce.com/SFStorage/bookkeeper repo.
     sfstorebookie: imageFunc.do_override_for_tnrp_image($.overrides, "storagecloud", "bookie", $.per_phase[$.phase].sfstorebookie_tag),
