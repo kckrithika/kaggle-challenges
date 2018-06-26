@@ -6,6 +6,17 @@ if configs.estate == "prd-sam" then {
   metadata: {
     annotations: {
       "slb.sfdc.net/name": "sam-manifest-repo-watcher",
+      "slb.sfdc.net/portconfigurations": std.toString(
+          [
+              {
+                  port: 80,
+                  targetport: $.spec.ports[0].targetPort,
+                  lbtype: "tcp",
+                  reencrypt: false,
+                  sticky: 0,
+              },
+          ]
+      ),
     },
     labels: {
       app: "sam-manifest-repo-watcher",
@@ -17,7 +28,7 @@ if configs.estate == "prd-sam" then {
     ports: [
       {
         name: "sam-manifest-repo-watcher-port",
-        port: 80,
+        port: 8099,
         protocol: "TCP",
         targetPort: 8099,
         nodePort: 39865,
