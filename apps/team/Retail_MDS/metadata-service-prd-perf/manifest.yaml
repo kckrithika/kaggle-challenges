@@ -74,6 +74,10 @@ system:
           mountPath: /client-certs
         - name:  mds-server-cert
           mountPath: /server-certs
+      # Point Sherpa to test certificate. PRD only.
+      args:
+      - --server-ca
+      - /server-certs/ca_test/cacerts.pem
       livenessProbe:
         exec:
           command:
