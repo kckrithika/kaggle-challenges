@@ -47,8 +47,7 @@ system:
         name: logvol
 
     - name: sherpa
-      # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2025---2018-03-27
-      image: sfci/servicelibs/sherpa:2.0.25
+      image: sfci/servicelibs/sherpa:2.0.27
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
