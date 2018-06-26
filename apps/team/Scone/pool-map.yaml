@@ -5,7 +5,7 @@ apps:
         - prd/prd-sam
     sconeconfig:
         - prd/prd-sam
-    examples-xlt:
+    perf-report-gen:
         - prd/prd-sam
     perf-shipping:
         - prd/prd-sam
