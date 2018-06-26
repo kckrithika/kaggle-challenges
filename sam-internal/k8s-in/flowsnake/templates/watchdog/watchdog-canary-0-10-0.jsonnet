@@ -51,19 +51,7 @@ local cert_name = "watchdogcanarycerts";
                     {
                         image: flowsnake_images.watchdog_canary,
                         imagePullPolicy: flowsnakeconfig.default_image_pull_policy,
-                        command: [] + if std.objectHas(flowsnake_images.feature_flags, "update_canary_names") && std.objectHas(flowsnake_images.feature_flags, "add_local_canary") then [
-                            "/sam/watchdog",
-                            "-role=CLI",
-                            "-emailFrequency=" + watchdog.watchdog_email_frequency,
-                            "-timeout=2s",
-                            "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
-                            "--config=/config/watchdog.json",
-                            "-cliCheckerCommandTarget=flowsnake_v0.10.0",
-                            "--hostsConfigFile=/sfdchosts/hosts.json",
-                            "-watchdogFrequency=15m",
-                            "-alertThreshold=45m",
-                            "-cliCheckerTimeout=15m",
-                        ] else [
+                        command: [
                             "/sam/watchdog",
                             "-role=CLI",
                             "-emailFrequency=" + watchdog.watchdog_email_frequency,

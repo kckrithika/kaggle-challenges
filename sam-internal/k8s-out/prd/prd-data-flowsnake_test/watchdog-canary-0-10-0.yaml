@@ -24,7 +24,7 @@ spec:
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=flowsnake_v0.10.0
+        - -cliCheckerCommandTarget=0.10.0
         - --hostsConfigFile=/sfdchosts/hosts.json
         - -watchdogFrequency=15m
         - -alertThreshold=45m
