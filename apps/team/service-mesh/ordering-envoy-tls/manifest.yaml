@@ -34,8 +34,6 @@ system:
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
-      - name: ENVOY_DEBUG_OPTIONS
-        value: --drain-time-s 5 --parent-shutdown-time-s 10
       ports:
       - containerPort: 15373
         name: sherpa-adm
