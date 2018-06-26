@@ -85,9 +85,6 @@ local utils = import "util_functions.jsonnet";
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
-                canary_timeout_bump: "foo",  #Verified in Test Fleet
-                watchdog_canaries: "foo",  #Verified in Test Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
-                canary_hostconfig: "foo",  #verified in test
                 autodeployer_with_detectOrphan: "foo",  # Untested;
             },
             version_mapping: {
@@ -115,9 +112,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                canary_timeout_bump: "unverified",  #Unverified
-                watchdog_canaries: "foo",  #Verified in IoT Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
-                canary_hostconfig: "foo",  #Verified in IoT fleet
             },
             version_mapping: {
                 main: {
@@ -139,9 +133,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                canary_timeout_bump: "unverified",  #Unverified
-                watchdog_canaries: "foo",  #Verified in DATA Fleet - https://salesforce.quip.com/MCYHA4Z0Gfpa
-                canary_hostconfig: "foo",  #Pending verification before promotion
             },
             version_mapping: {
                 main: {
@@ -167,9 +158,6 @@ local utils = import "util_functions.jsonnet";
                 ### issue PR to deploy your changes. Then create a follow-on PR
                 ### that deletes all the feature flags and conditional logic from
                 ### the templates. This PR should not result in any k8s-out diffs.
-                canary_timeout_bump: "unverified",  #Unverified
-                watchdog_canaries: "foo",  #Untested
-                canary_hostconfig: "foo",  #Pending verification before promotion
             },
             version_mapping: {
                 main: {
