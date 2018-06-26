@@ -1,35 +1,37 @@
 apiVersion: v1
-
 system:
   notifications:
     email:
-      - servicemesh@salesforce.com
+    - servicemesh@salesforce.com
   functions:
   - name: switchboard
     count: 2
     containers:
     - name: switchboard
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/101/
-      image: sfci/servicelibs/switchboard:5d752f9bc56acf97f8a87c1e89d8a508f62449df
+      image: sfci/servicelibs/switchboard:95d86ec30c56830eebe4cd8f0dfb179304ebb569
+      args:
+      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
+      ports:
+      - containerPort: 15372
       env:
       - name: SFDC_ENVIRONMENT
         value: stm
       - name: GRPC_SERVER_PORT
         value: 7020
       - name: LOGGING_DIR
-        value: "/log"
-      args:
-      - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
-      volumeMounts:
-      - name: envoy-config-volume
-        mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
-      - name: switchboard-log-volume
-        mountPath: /log
-      ports:
-      - containerPort: 15372
+        value: /log
       resources:
-        limits: { cpu: "8", memory: "6Gi" }
-        requests: { cpu: "8", memory: "6Gi" }
+        limits:
+          cpu: 8
+          memory: 6Gi
+        requests:
+          cpu: 8
+          memory: 6Gi
+      volumeMounts:
+      - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
+        name: envoy-config-volume
+      - mountPath: /log
+        name: switchboard-log-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -42,22 +44,31 @@ system:
           port: 15372
         initialDelaySeconds: 15
         periodSeconds: 5
-
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/50
       image: sfci/servicelibs/sherpa-envoy:298f2fad9ca1bc356d1cf96ea4b8cd0c93a9e3af
-      env:
-      - name: SFDC_ENVIRONMENT
-        value: mesh
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
       ports:
       - containerPort: 15001
       - containerPort: 15373
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: mesh
       resources:
-        limits: { cpu: "1", memory: "1Gi" }
-        requests: { cpu: "1", memory: "1Gi" }
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 1
+          memory: 1Gi
+      volumeMounts:
+      - mountPath: /switchboard-config
+        name: envoy-config-volume
+      - mountPath: /client-certs
+        name: tls-client-cert
+      - mountPath: /server-certs
+        name: tls-server-cert
       livenessProbe:
         exec:
           command:
@@ -70,14 +81,6 @@ system:
           - ./bin/is-ready
         initialDelaySeconds: 15
         periodSeconds: 5
-      volumeMounts:
-      - name: envoy-config-volume
-        mountPath: /switchboard-config
-      - name: tls-client-cert
-        mountPath: /client-certs
-      - name: tls-server-cert
-        mountPath: /server-certs
-
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
@@ -90,18 +93,17 @@ system:
     - name: tls-server-cert
       maddogCert:
         type: server
-
   loadbalancers:
   - lbname: switchboard-lb
-    function: switchboard
     nodeExposed: true
+    function: switchboard
     ports:
-    - port: 15001
+    - lbtype: dsr
+      port: 15001
       targetport: 15001
-      lbtype: dsr
-    - port: 15370
+    - lbtype: dsr
+      port: 15370
       targetport: 15372
-      lbtype: dsr
-    - port: 15374
+    - lbtype: dsr
+      port: 15374
       targetport: 15373
-      lbtype: dsr
