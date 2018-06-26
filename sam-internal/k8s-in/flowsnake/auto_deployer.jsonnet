@@ -116,7 +116,7 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
     {
       "delete-orphans": true,
       "detect-orphans": true,
-      "orphan-namespaces": "flowsnake,default,kube-system,sam-system",
+      "orphan-namespaces": "flowsnake,default,kube-system",
     } else {
       "delete-orphans": false,
       "orphan-namespaces": "flowsnake",
