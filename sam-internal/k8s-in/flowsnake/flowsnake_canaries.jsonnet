@@ -26,12 +26,7 @@ local set_test_class(test_name) = " -c com.salesforce.dva.transform.flowsnake." 
 ##  and no additional parameters to be passed in, junit and test artifacts from the canary-watchdog image, etc.
 local build_test_command(test_name, version) = build_run_command(version) + set_test_class(test_name);
 
-local build_command_sets = if std.objectHas(flowsnake_images.feature_flags, "update_canary_names") && std.objectHas(flowsnake_images.feature_flags, "add_local_canary") then {
-    "flowsnake_v0.10.0": {
-            SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.10.0'),
-            SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.10.0'),
-    },
-} else {
+local build_command_sets = {
     "0.10.0": {
        SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.10.0'),
     },
