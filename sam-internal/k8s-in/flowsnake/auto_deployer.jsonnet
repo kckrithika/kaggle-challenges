@@ -4,16 +4,15 @@ local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local flowsnake_sdn = import "flowsnake_sdn.jsonnet";
 local samconfig = import "config.jsonnet";
 local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
+local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 {
     auto_deployer_enabled: !flowsnakeconfig.is_minikube,
     samcontroldeployer: {
         email: true,
         "email-delay": 0,
-        "delete-orphans": false,
         "disable-rollback": true,
         "disable-security-check": true,
         "override-control-estate": "/" + kingdom + "/" + kingdom + "-sam",
-        "orphan-namespaces": "flowsnake",
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
         "max-resource-time": 300000000000,
         "poll-delay": 30000000000,
@@ -112,5 +111,14 @@ local certs_and_kubeconfig = import "certs_and_kubeconfig.jsonnet";
             // WI to change deepsea setup to not require the endpoint: https://gus.my.salesforce.com/a07B0000004lMMSIA2
             "deepsea-kdc-endpoints.yaml",
         ] else []),
+    } +
+    if std.objectHas(flowsnakeimage.feature_flags, "autodeployer_with_detectOrphan") then
+    {
+      "delete-orphans": true,
+      "detect-orphans": true,
+      "orphan-namespaces": "flowsnake,default,kube-system,sam-system",
+    } else {
+      "delete-orphans": false,
+      "orphan-namespaces": "flowsnake",
     },
 }
