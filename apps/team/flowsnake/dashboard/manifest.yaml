@@ -1,0 +1,165 @@
+apiVersion: v1
+system:
+  functions:
+  - name: dashboard
+    count: 1
+    progressDeadlineSeconds: 120
+    containers:
+    - name: dashboard-prd-data
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9090
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-prd-dev
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-dev-flowsnake_iot_test
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9091
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-frf
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/frf-flowsnake_prod
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9092
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-iad
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/iad-flowsnake_prod
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9093
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-ord
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ord-flowsnake_prod
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9094
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-par
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/par-flowsnake_prod
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9095
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    - name: dashboard-phx
+      args:
+        - --logtostderr=true
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/phx-flowsnake_prod
+        - --insecure-port=9090
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
+      ports:
+      - containerPort: 9096
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9090
+      volumeMounts:
+      - mountPath: /tmp
+        name: temp
+    volumes:
+    - name: temp
+      emptyDir: {}
+  loadbalancers:
+  - lbname: dashboard-prd-data
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9090
+        lbtype: dsr
+  - lbname: dashboard-prd-dev
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9091
+        lbtype: dsr
+  - lbname: dashboard-frf
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9092
+        lbtype: dsr
+  - lbname: dashboard-iad
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9093
+        lbtype: dsr
+  - lbname: dashboard-ord
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9094
+        lbtype: dsr
+  - lbname: dashboard-par
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9095
+        lbtype: dsr
+  - lbname: dashboard-phx
+    function: dashboard
+    slbEnabled: true
+    ports:
+      - port: 80
+        targetport: 9096
+        lbtype: dsr
