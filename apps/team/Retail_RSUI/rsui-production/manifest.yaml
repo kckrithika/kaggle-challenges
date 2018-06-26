@@ -25,7 +25,7 @@ system:
 
     containers:
     - name: rsui-production
-      image: sfci/retail/retail-setup:0.1.3.13.0 # docker image for 1.2b release
+      image: sfci/retail/retail-setup:0.1.3.46 # docker image for 1.2b release
       ports:
       - containerPort: 7022
         name: rsui-in-http1
@@ -91,11 +91,7 @@ system:
       - name: retailservercert
         mountPath: /server-certs
       ports:
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        name: sherpa-in-http1
-      - containerPort: 7012 # http2 in port for grpc
-        name: sherpa-in-http2
-      - containerPort: 7443 # http2 in port for grpc tls
+      - containerPort: 7443 # http2 in port for grpc tls. See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sher-in-htp2tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
@@ -121,8 +117,6 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       args:
-      - -endpoint
-      - retail-setup:DATACENTER:7012
       - -endpoint
       - retail-rsui/retail-setup:DATACENTER:7443
       livenessProbe:
