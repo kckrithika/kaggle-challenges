@@ -24,14 +24,14 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-dev-flowsnake_iot_test
-        - --insecure-port=9090
+        - --insecure-port=9091
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9091
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9091
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -39,14 +39,14 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/frf-flowsnake_prod
-        - --insecure-port=9090
+        - --insecure-port=9092
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9092
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9092
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -54,14 +54,14 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/iad-flowsnake_prod
-        - --insecure-port=9090
+        - --insecure-port=9093
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9093
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9093
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -69,14 +69,14 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ord-flowsnake_prod
-        - --insecure-port=9090
+        - --insecure-port=9094
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9094
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9094
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -84,14 +84,14 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/par-flowsnake_prod
-        - --insecure-port=9090
+        - --insecure-port=9095
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9095
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9095
       volumeMounts:
       - mountPath: /tmp
         name: temp
@@ -99,14 +99,14 @@ system:
       args:
         - --logtostderr=true
         - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/phx-flowsnake_prod
-        - --insecure-port=9090
+        - --insecure-port=9096
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
       - containerPort: 9096
       livenessProbe:
         httpGet:
           path: /
-          port: 9090
+          port: 9096
       volumeMounts:
       - mountPath: /tmp
         name: temp
