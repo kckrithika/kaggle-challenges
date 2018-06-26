@@ -12,9 +12,7 @@ std.prune({
   dbHostname: mysql.hostName,
   dbUsername: mysql.userName,
   dbPasswordFile: "/var/mysqlPwd/pass.txt",
-  # TODO: testing currently in PRD data, uncomment when test topic permissions fixed
-  # k8sResourceDbName: (if flowsnake_config.is_test then "kube_resource_test" else "kube_resource"),
-  k8sResourceDbName: (if estate == "prd-data-flowsnake" then "kube_resource_test" else "kube_resource"),
+  k8sResourceDbName: (if flowsnake_config.is_test then "kube_resource_test" else "kube_resource"),
   k8sResourceTableName: "k8s_resource",
   consumeTableName: "consume",
   kafkaConsumerEndpoint: "ajna0-brokeragg1-0-" + configs.kingdom + ".data.sfdc.net:9093",
