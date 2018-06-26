@@ -9,8 +9,8 @@ system:
     count: 2
     containers:
     - name: switchboard 
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/86
-      image: sfci/servicelibs/switchboard:0774366d13efdaeefa494d913da2d2739b0a996b
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/switchboard/job/master/101/
+      image: sfci/servicelibs/switchboard:5d752f9bc56acf97f8a87c1e89d8a508f62449df
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
@@ -44,8 +44,8 @@ system:
         periodSeconds: 5
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/45
-      image: sfci/servicelibs/sherpa-envoy:8883f0e13bbb759ccbbd260ccbe1f5bbecce0b6f
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/53
+      image: sfci/servicelibs/sherpa-envoy:5b190980cfa3d123f80a1dbafaa86860e9723a76
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
