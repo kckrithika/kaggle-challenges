@@ -8,7 +8,7 @@ system:
     count: 2
     containers:
     - name: switchboard
-      image: sfci/servicelibs/switchboard:95d86ec30c56830eebe4cd8f0dfb179304ebb569
+      image: sfci/servicelibs/switchboard:dd950c9b29c07574103107625be19b81d9cc4252
       args:
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
       ports:
@@ -45,7 +45,6 @@ system:
         initialDelaySeconds: 15
         periodSeconds: 5
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/55
       image: sfci/servicelibs/sherpa-envoy:66c69d7673f06871ab1b111fbd0cf604ecba6fd2
       args:
       - --template
