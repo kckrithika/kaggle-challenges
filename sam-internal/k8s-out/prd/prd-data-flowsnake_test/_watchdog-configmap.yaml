@@ -10,7 +10,7 @@ data:
         }
       },
       "deployer-funnelEndpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
-      "deployer-imageName": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180626_103608.8095d1a8.dirty.jinxingwang-wsm",
+      "deployer-imageName": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180626_135908.8095d1a8.dirty.jinxingwang-wsm",
       "deployer-rcImtEndpoint": "https://reportcollector-prd.data.sfdc.net:18443/v1/bark",
       "deployer-recipient": "flowsnake@salesforce.com",
       "deployer-sender": "flowsnake@salesforce.com",

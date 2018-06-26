@@ -21,7 +21,7 @@ spec:
         env:
         - name: KUBECONFIG
           value: /kubeconfig/kubeconfig-platform
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180626_103608.8095d1a8.dirty.jinxingwang-wsm
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180626_135908.8095d1a8.dirty.jinxingwang-wsm
         livenessProbe:
           httpGet:
             path: /
