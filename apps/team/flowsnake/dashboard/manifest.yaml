@@ -8,7 +8,7 @@ system:
     - name: dashboard-prd-data
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-data-flowsnake
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -23,7 +23,7 @@ system:
     - name: dashboard-prd-dev
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-dev-flowsnake_iot_test
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/prd-dev-flowsnake_iot_test
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -38,7 +38,7 @@ system:
     - name: dashboard-frf
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/frf-flowsnake_prod
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/frf-flowsnake_prod
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -53,7 +53,7 @@ system:
     - name: dashboard-iad
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/iad-flowsnake_prod
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/iad-flowsnake_prod
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -68,7 +68,7 @@ system:
     - name: dashboard-ord
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ord-flowsnake_prod
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/ord-flowsnake_prod
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -83,7 +83,7 @@ system:
     - name: dashboard-par
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/par-flowsnake_prod
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/par-flowsnake_prod
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
@@ -98,7 +98,7 @@ system:
     - name: dashboard-phx
       args:
         - --logtostderr=true
-        - --apiserver-host=http://kubeapi-test.flowsnake.prd-sam.prd.slb.sfdc.net:7002/phx-flowsnake_prod
+        - --apiserver-host=http://kubeapi.flowsnake.prd-sam.prd.slb.sfdc.net:7002/phx-flowsnake_prod
         - --insecure-port=9090
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/d.smith/dashboard:webhook
       ports:
