@@ -3,7 +3,7 @@ data:
   version-mapping.properties: |
     0.10.0 = 662
     0.9.10 = 638
-    spark-2.3-test = jenkins-dva-transformation-flowsnake-platform-PR-630-29-itest
+    spark-2.3-test = 672
     vg-maddog-test = jenkins-dva-transformation-flowsnake-platform-PR-675-1-itest
 kind: ConfigMap
 metadata:
