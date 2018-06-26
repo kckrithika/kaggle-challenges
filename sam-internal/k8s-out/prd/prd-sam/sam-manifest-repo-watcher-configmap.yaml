@@ -7,14 +7,14 @@ data:
       "db-password-file": "/var/mysqlPwd/pass.txt",
       "db-username": "root",
       "freq-scan-on": true,
-      "full-scan-on": true,
+      "full-scan-on": false,
       "funnel-endpoint": "ajna0-funnel1-0-prd.data.sfdc.net:80",
       "ghe-tokenfile": "/var/token/token",
       "git-url": "https://git.soma.salesforce.com/api/v3/",
       "look-back": "24h",
-      "maximum-github-calls-per-second": 500,
-      "num-worker-threads": 25,
-      "pr-scan-frequency": "300s",
+      "maximum-github-calls-per-second": 5,
+      "num-worker-threads": 5,
+      "pr-scan-frequency": "900s",
       "tnrp-bot-account-names": [
         "svc-tnrp-git-rw",
         "svc-tnrp-git"
