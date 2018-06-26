@@ -2,7 +2,8 @@ local configs = import "config.jsonnet";
 local storageconfigs = import "storageconfig.jsonnet";
 local utils = import "storageutils.jsonnet";
 
-if configs.estate == "prd-sam_storagedev" then
+//if configs.estate == "prd-sam_storagedev" then
+if configs.estate == "disabled" then
     {
         apiVersion: "v1",
         kind: "List",
