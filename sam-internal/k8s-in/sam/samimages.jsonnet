@@ -21,7 +21,7 @@ local utils = import "util_functions.jsonnet";
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
         #[alok.bansal] SAM Manifest Repo Watcher
-        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002048-c3491341",
+        "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002058-89e4dfc4",
 
         # [small] Comparing v1 and v2 flow changes
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm",

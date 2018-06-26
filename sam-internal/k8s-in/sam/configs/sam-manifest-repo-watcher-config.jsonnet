@@ -19,7 +19,7 @@ std.prune({
         "freq-scan-on": true,
         "tnrp-scan-on": true,
         "webhook-on": true,
-        "pr-scan-frequency": "900s",
+        "pr-scan-frequency": "1800s",
         "num-worker-threads": 5,
         "maximum-github-calls-per-second": 5,
 }) else "SKIP"
