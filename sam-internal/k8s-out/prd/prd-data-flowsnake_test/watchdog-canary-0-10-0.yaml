@@ -24,11 +24,7 @@ spec:
         - -timeout=2s
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
-        - -cliCheckerCommandTarget=0.10.0
-        - --hostsConfigFile=/sfdchosts/hosts.json
-        - -watchdogFrequency=15m
-        - -alertThreshold=45m
-        - -cliCheckerTimeout=15m
+        - -cliCheckerCommandTarget=flowsnake_v0.10.0
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/dva/watchdog-canary:670
         imagePullPolicy: IfNotPresent
         name: watchdog-canary
