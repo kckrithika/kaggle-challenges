@@ -7,3 +7,5 @@ apps:
    - prd/prd-sam
  pseudo-api:
    - prd/prd-sam
+ dashboard:
+   - prd/prd-sam
