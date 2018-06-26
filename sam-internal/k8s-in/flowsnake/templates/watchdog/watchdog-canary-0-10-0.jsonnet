@@ -58,7 +58,11 @@ local cert_name = "watchdogcanarycerts";
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
+                        ] + if std.objectHas(flowsnake_images.feature_flags, "update_canary_names") && std.objectHas(flowsnake_images.feature_flags, "add_local_canary") then [
+                            "-cliCheckerCommandTarget=flowsnake_v0.10.0",
+                        ] else [
                             "-cliCheckerCommandTarget=0.10.0",
+                        ] + [
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                             "-watchdogFrequency=15m",
                             "-alertThreshold=45m",
