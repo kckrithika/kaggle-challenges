@@ -91,11 +91,7 @@ system:
       - name: retailservercert
         mountPath: /server-certs
       ports:
-      - containerPort: 7014 # See https://git.soma.salesforce.com/servicelibs/sherpa#ports
-        name: sherpa-in-http1
-      - containerPort: 7012 # http2 in port for grpc
-        name: sherpa-in-http2
-      - containerPort: 7443 # http2 in port for grpc tls
+      - containerPort: 7443 # http2 in port for grpc tls. See https://git.soma.salesforce.com/servicelibs/sherpa#ports
         name: sher-in-htp2tls
       - containerPort: 15373 # Sherpa admin port. This can be handy when debugging issues.
         name: sherpa-in-admin
