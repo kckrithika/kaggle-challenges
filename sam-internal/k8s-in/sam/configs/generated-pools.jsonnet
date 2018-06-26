@@ -1797,12 +1797,14 @@
       "namespaces": [
         "gater",
         "ccait",
-        "service-mesh"
+        "service-mesh",
+        "scone"
       ],
       "access": [
         "team/Gater",
         "team/CCAIT",
-        "team/service-mesh"
+        "team/service-mesh",
+        "team/Scone"
       ],
       "controlEstate": "prd-sam",
       "estate": "prd-sam_gater",
