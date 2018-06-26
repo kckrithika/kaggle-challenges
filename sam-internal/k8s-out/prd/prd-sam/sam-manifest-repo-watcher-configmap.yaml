@@ -14,7 +14,7 @@ data:
       "look-back": "24h",
       "maximum-github-calls-per-second": 5,
       "num-worker-threads": 5,
-      "pr-scan-frequency": "900s",
+      "pr-scan-frequency": "1800s",
       "tnrp-bot-account-names": [
         "svc-tnrp-git-rw",
         "svc-tnrp-git"
