@@ -81,10 +81,10 @@ spec:
         - http://mandm-funnel-frf1.data.sfdc.net:8080
         - --kingdom
         - frf
-        - --cert-folders
-        - madkubInternalCert:/certs/
         - --ca-folder
         - /maddog-certs/ca
+        - --cert-folders
+        - madkubInternalCert:/certs/
         env:
         - name: MADKUB_NODENAME
           valueFrom:

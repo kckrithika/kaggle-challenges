@@ -81,10 +81,10 @@ spec:
         - http://ajna0-funnel1-0-cdu.data.sfdc.net:80
         - --kingdom
         - cdu
-        - --cert-folders
-        - madkubInternalCert:/certs/
         - --ca-folder
         - /maddog-certs/ca
+        - --cert-folders
+        - madkubInternalCert:/certs/
         env:
         - name: MADKUB_NODENAME
           valueFrom:

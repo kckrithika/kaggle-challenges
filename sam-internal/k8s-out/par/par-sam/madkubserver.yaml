@@ -81,6 +81,8 @@ spec:
         - http://mandm-funnel-par1.data.sfdc.net:8080
         - --kingdom
         - par
+        - --ca-folder
+        - /maddog-certs/ca
         - --cert-folders
         - madkubInternalCert:/certs/
         env:

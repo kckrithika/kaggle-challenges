@@ -81,6 +81,8 @@ spec:
         - http://ajna0-funnel1-0-vpod.data.sfdc.net:80
         - --kingdom
         - vpod
+        - --ca-folder
+        - /maddog-certs/ca
         - --cert-folders
         - madkubInternalCert:/certs/
         env:

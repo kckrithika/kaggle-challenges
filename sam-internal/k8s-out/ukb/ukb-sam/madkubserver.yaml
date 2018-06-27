@@ -81,6 +81,8 @@ spec:
         - http://ajna0-funnel1-0-ukb.data.sfdc.net:80
         - --kingdom
         - ukb
+        - --ca-folder
+        - /maddog-certs/ca
         - --cert-folders
         - madkubInternalCert:/certs/
         env:
