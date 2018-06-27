@@ -31,7 +31,7 @@ system:
           port: 64123
       env:
       - name: DUMMY_VAR
-        value: empty
+        value: em
     volumes:
     - name: dbpass
       k4aSecret:
