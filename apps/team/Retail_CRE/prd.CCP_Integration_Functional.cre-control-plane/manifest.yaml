@@ -33,6 +33,10 @@ system:
           value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: ENGINE_METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
+        - name: HBASE_ENVIRONMENT
+          value: kingdom-test
+        - name: HBASE_DATACENTER
+          value: prd              
       ports:
       - containerPort: 8080
       - containerPort: 7020

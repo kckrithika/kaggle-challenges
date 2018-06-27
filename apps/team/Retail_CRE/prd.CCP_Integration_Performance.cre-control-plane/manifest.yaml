@@ -9,28 +9,34 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/cre/cre-control-plane:0.0.1.19.52.at-cp_persist_state.ea81c3c.41
+      image: sfci/cre/cre-control-plane:0.0.1.19.51.master.5b85006.90
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
-        - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
-        - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
-        - name: METRICS_KAFKA_ENABLED
-          value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
+        - name: FLOWSNAKE_ENDPOINT
+          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
+        - name: ENGINE_IMAGE_TAG
+          value: sfci/cre/cre-engine:0.0.1.253.master.79d31de.529
+        - name: ENGINE_APPLICATION_NAME
+          value: cre-engine
+        - name: ENGINE_HBASE_DATACENTER
+          value: prd
+        - name: ENGINE_HBASE_ENVIRONMENT
+          value: kingdom-perf
+        - name: ENGINE_METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: ENGINE_METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Performance
         - name: HBASE_ENVIRONMENT
           value: kingdom-perf
         - name: HBASE_DATACENTER
-          value: prd
-        - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.244.master.4b5fe24.520
+          value: prd    
       ports:
       - containerPort: 8080
       - containerPort: 7020
