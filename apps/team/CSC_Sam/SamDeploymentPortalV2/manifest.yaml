@@ -1,7 +1,7 @@
 apiVersion: v1
 system:
   functions:
-  - name: sdp
+  - name: sam-deployment-portal
     count: 2
     containers:
     - name: sam-deployment-portal
@@ -35,7 +35,7 @@ system:
         secretName: sql-dbpass
   loadbalancers:
   - lbname: sdp2
-    function: sdp
+    function: sam-deployment-portal
     slbenabled: true
     ports:
       - port: 80
