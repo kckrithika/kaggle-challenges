@@ -87,7 +87,7 @@ local utils = import "util_functions.jsonnet";
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
                 autodeployer_with_detectOrphan: "foo",  # Untested;
-                add_all_canaries: "unverified",  #Unverified in test fleet
+                add_local_canary: "verified",  #Verfied successfully in test fleet
             },
             version_mapping: {
                 main: {
@@ -114,6 +114,7 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
+                add_local_canary: "unverified",  #Unverified in IoT fleet
             },
             version_mapping: {
                 main: {
