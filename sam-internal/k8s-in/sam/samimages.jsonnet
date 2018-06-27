@@ -26,8 +26,11 @@ local utils = import "util_functions.jsonnet";
         # [small] Comparing v1 and v2 flow changes
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm",
 
+        # [small] node affinity changes
+        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180626_173213.52cc933c.clean.small-ltm",
+
         # [xiao] Enable dual run in prd-samtest
-        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180621_160827.fda84804.dirty.xiaozhou-ltm2",
+        #"prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180621_160827.fda84804.dirty.xiaozhou-ltm2",
 
         #[pjoshi] Enable Resource start and end time
         "prd,prd-sam,bundle-controller,hypersam": "sam-0002047-796c2ad9",
