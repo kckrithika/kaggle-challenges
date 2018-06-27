@@ -71,10 +71,10 @@ system:
         exec:
           command:
           - cat
-          - /tmp/ready
-        initialDelaySeconds: 600
+          - /tmp/willneverbeready
+        initialDelaySeconds: 240
         periodSeconds: 5
-        failureThreshold: 24
+        failureThreshold: 12
     volumes:
     - name: hosthomevol
       hostPath:
