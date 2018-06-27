@@ -29,9 +29,6 @@ system:
         httpGet:
           path: /healthz
           port: 64123
-      env:
-      - name: DUMMY_VAR
-        value: empty
     volumes:
     - name: sql-dbpass
       k4aSecret:
