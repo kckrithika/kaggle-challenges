@@ -11,6 +11,8 @@ system:
     - name: cre-api-ccp-func
       image: sfci/cre/cre-api:0.0.1.95.master.3ff42f9.154
       env:
+        - name: HBASE_SUPER_TENANT_IDS_FLUSH
+          value: 00DD10000000MQ8
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
         - name: METRICS_KAFKA_SERVER
