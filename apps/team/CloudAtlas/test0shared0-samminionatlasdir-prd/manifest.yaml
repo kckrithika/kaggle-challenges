@@ -66,13 +66,13 @@ system:
           command:
           - /opt/pdm/pdm.customer/bin/is-alive.sh
         initialDelaySeconds: 60
-        periodSeconds: 20
+        periodSeconds: 60
       readinessProbe:
         exec:
           command:
           - cat
           - /tmp/ready
-        initialDelaySeconds: 60
+        initialDelaySeconds: 600
         periodSeconds: 5
         failureThreshold: 24
     volumes:
