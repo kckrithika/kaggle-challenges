@@ -5,7 +5,7 @@ system:
     count: 2
     containers:
     - name: benjamin-sam-deployment-portal
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/sam-deployment-portal-v2:20180626_160116.580cf264.dirty.bencald-ltm0
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/benjamin.caldwell/sam-deployment-portal-v2:20180627_095311.48b8c2f5.dirty.bencald-ltm0
       command:
       - "/sam/sam-deployment-portal-v2"
       - --port=64123
@@ -31,7 +31,7 @@ system:
           port: 64123
       env:
       - name: DUMMY_VAR
-        value: empty
+        value: em
     volumes:
     - name: dbpass
       k4aSecret:
