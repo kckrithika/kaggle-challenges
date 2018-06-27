@@ -9,28 +9,30 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-func
-      image: sfci/cre/cre-control-plane:0.0.1.19.47.master.f616f85.86
+      image: sfci/cre/cre-control-plane:0.0.1.19.51.master.5b85006.90
       env:
         - name: AUTHORIZED_USERS
           value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
-        - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
-        - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-prd.data.sfdc.net:9093
         - name: SFDC_ENVIRONMENT
           value: ccp-func
-        - name: METRICS_KAFKA_ENABLED
-          value: true
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
           value: /secrets/cre-gdot-private-key.json
         - name: GRPC_PORT
           value: 7020
+        - name: FLOWSNAKE_ENDPOINT
+          value: https://dev0shared0-flowsnakeiottest1-0-prd.data.sfdc.net
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.249.master.b8d4e4b.525
-        # - name: HBASE_ENVIRONMENT
-        #   value: kingdom-test
-        # - name: HBASE_DATACENTER
-        #   value: prd 
+          value: sfci/cre/cre-engine:0.0.1.253.master.79d31de.529
+        - name: ENGINE_APPLICATION_NAME
+          value: cre-engine
+        - name: ENGINE_HBASE_DATACENTER
+          value: prd
+        - name: ENGINE_HBASE_ENVIRONMENT
+          value: kingdom-test
+        - name: ENGINE_METRICS_KAFKA_SERVER
+          value: ajna0-broker1-0-prd.data.sfdc.net:9093
+        - name: ENGINE_METRICS_KAFKA_TOPIC
+          value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -100,7 +102,7 @@ system:
     - name: secretvol
       k4aSecret:
         secretName: gdot-private-key
-    - name: aeskey    
+    - name: aeskey
       k4aSecret:
         secretName: cre-aes-key
     - name: logvol
