@@ -118,7 +118,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--vipLoop=1",
                                            "--monitorFrequency=10s",
                                            "--client.serverInterface=lo",
-                                           "--healthPathCheck=true",
+                                           "--healthPathCheck=false",
                                            "--metricsBatchTimeout=30s",
                               ],
                               volumeMounts: configs.filter_empty([

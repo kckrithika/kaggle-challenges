@@ -56,7 +56,7 @@ spec:
         - --vipLoop=1
         - --monitorFrequency=10s
         - --client.serverInterface=lo
-        - --healthPathCheck=true
+        - --healthPathCheck=false
         - --metricsBatchTimeout=30s
         env:
         - name: NODE_NAME
