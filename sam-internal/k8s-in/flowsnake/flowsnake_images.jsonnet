@@ -82,6 +82,7 @@ local utils = import "util_functions.jsonnet";
 
             deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180626_162148.798e1e84.dirty.jinxingwang-wsm",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-687-2-itest",
+            testData_image_tag: "676",  #Currently under test verification in Test Fleet - Do not promote
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
