@@ -7,6 +7,8 @@ apps:
   - iad/iad-sam_gater
   - ord/ord-sam_gater
   - hnd/hnd-sam_gater
+  - cdg/cdg-sam_gater
+  - fra/fra-sam_gater
  gate-manager-par:
   - par/par-sam_gater
  gate-manager-public-cloud:
