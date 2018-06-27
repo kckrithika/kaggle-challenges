@@ -18,7 +18,7 @@ system:
 
     containers:
     - name: dfs-func
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.8.1
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/dfs/service:dfs-0.8.2
       volumeMounts:
       - name: logvol
         mountPath: /home/scone/logs
@@ -38,7 +38,18 @@ system:
       - name: SCONE_SERVER_SECURITY_MUTUALAUTH
         value: true
       - name: JVM_ARGS
-        value: -Dspring.profiles.active=prod
+        value: "-Dspring.profiles.active=prod -Djava.util.concurrent.ForkJoinPool.common.parallelism=50
+                -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC
+                -XX:+PrintPromotionFailure -XX:+PrintTenuringDistribution -XX:+PrintGCDetails
+                -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime
+                -XX:+PrintGCApplicationConcurrentTime -XX:+PrintGCCause -XX:+DisableExplicitGC
+                -Xloggc:/home/scone/logs/dfs/verbosegc_$(FUNCTION_INSTANCE_NAME).log
+                -XX:+HeapDumpOnOutOfMemoryError  -XX:HeapDumpPath=/home/scone/logs/dfs
+                -Dcom.sun.management.jmxremote.port=8898
+                -Dcom.sun.management.jmxremote.rmi.port=8898
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Xmx2G -Xms2G -XX:ParallelGCThreads=8"
       ports:
       - containerPort: 7022
       - containerPort: 15372
