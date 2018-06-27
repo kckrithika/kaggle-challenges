@@ -81,6 +81,8 @@ spec:
         - http://ajna0-funnel1-0-phx.data.sfdc.net:80
         - --kingdom
         - phx
+        - --ca-folder
+        - /maddog-certs/ca
         - --cert-folders
         - madkubInternalCert:/certs/
         env:

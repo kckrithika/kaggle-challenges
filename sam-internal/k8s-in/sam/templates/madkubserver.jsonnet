@@ -120,6 +120,8 @@ if samfeatureflags.maddogforsamapps then {
                                   "http://" + configs.funnelVIP,
                                   "--kingdom",
                                   configs.kingdom,
+                                  "--ca-folder",
+                                  "/maddog-certs/ca",
                               ] +
                               if samimages.per_phase[samimages.phase].madkub == "1.0.0-0000035-9241ed31" then [
                                   "--cert-folder",
@@ -129,12 +131,7 @@ if samfeatureflags.maddogforsamapps then {
                               ] else [
                                   "--cert-folders",
                                   "madkubInternalCert:/certs/",
-                              ] +
-                            if configs.kingdom == "prd" || configs.kingdom == "cdu" || configs.kingdom == "frf" then
-                            [
-                                "--ca-folder",
-                                "/maddog-certs/ca",
-                            ] else [],
+                              ],
                         image: samimages.madkub,
                         resources: {
                         },
