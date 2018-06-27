@@ -6,7 +6,7 @@ data:
     0.9.7 = 571
     0.9.8 = 607
     spark-2.3-test = 672
-    vg-maddog-test = jenkins-dva-transformation-flowsnake-platform-PR-675-1-itest
+    vg-maddog-test = jenkins-dva-transformation-flowsnake-platform-PR-675-7-itest
 kind: ConfigMap
 metadata:
   creationTimestamp: null
