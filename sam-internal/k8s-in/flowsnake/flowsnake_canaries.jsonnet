@@ -30,7 +30,6 @@ local build_command_sets = if std.objectHas(flowsnake_images.feature_flags, "add
     "0.10.0": {
         SparkStandalone: build_test_command('SparkStandaloneDemoJobIT', '0.10.0'),
         SparkLocal: build_test_command('SparkLocalDriverDemoJobIT', '0.10.0'),
-        SparkStreaming: build_test_command('SparkStreamingDemoJobIT', '0.10.0'),
    },
 } else {
     "0.10.0": {
