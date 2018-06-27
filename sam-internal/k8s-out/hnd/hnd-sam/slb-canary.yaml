@@ -28,7 +28,7 @@ spec:
         - --tlsPorts=9443
         - --privateKey=/var/slb/canarycerts/server.key
         - --publicKey=/var/slb/canarycerts/sam.crt
-        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000932-3492f42a
+        image: ops0-artifactrepo1-0-hnd.data.sfdc.net/tnrp/sdn/hypersdn:v-0000937-dd9fa0d5
         name: slb-canary
         securityContext:
           capabilities:
