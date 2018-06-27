@@ -57,7 +57,7 @@ system:
       - name: TENANT_SUPER
         value: core/prod/00De0000005WbtaEAC
       - name: CRE_SERVER_TARGET
-        value: http://cre-api-lb.retail-cre.iad-sam.iad.slb.sfdc.net:8086
+        value: http://cre-api.retail-cre.localhost.mesh.force.com:5442
       - name: C2C_PATH
         value: https://cloudatlas.salesforce.com/empire/cloudatlas/scim
       livenessProbe:
@@ -76,7 +76,7 @@ system:
         mountPath: /home/retail-setup/logs
 
     - name: sherpa-rsui-production
-      image: sfci/servicelibs/sherpa:2.0.22 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
+      image: sfci/servicelibs/sherpa:2.0.26 # Use the latest version, see https://git.soma.salesforce.com/servicelibs/sherpa/releases
       env:
       - name: SFDC_ENVIRONMENT
         value: prod
