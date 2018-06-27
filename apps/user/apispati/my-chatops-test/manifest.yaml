@@ -1,0 +1,22 @@
+apiVersion: v1
+system:
+  functions:
+  - name: default
+    count: 2
+    containers:
+    - name: chatops-service-server
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apispati/chatops-service-server:chatops-20180626
+      ports:
+      - containerPort: 4455
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 4455
+  loadbalancers:
+  - lbname: chatopslb
+    function: default
+    slbenabled: true
+    ports:
+      - port: 4455
+        targetport: 4455
+        lbtype: tcp
