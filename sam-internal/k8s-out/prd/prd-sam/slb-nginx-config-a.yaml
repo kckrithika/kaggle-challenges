@@ -136,7 +136,7 @@ spec:
           name: var-slb-volume
       - command:
         - /runner.sh
-        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000028-7cbabf4f
+        image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/slb-nginx:v-0000030-7ade34cf
         livenessProbe:
           httpGet:
             path: /
