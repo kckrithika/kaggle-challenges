@@ -139,7 +139,6 @@ local utils = import "util_functions.jsonnet";
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "spark-2.3-test": 672,
-                  "vg-maddog-test": "jenkins-dva-transformation-flowsnake-platform-PR-675-7-itest",
                   "0.10.0": 662,
                 },
                 # ignore this section, require by std.manifestIni
