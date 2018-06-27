@@ -80,7 +80,7 @@ local utils = import "util_functions.jsonnet";
         ### Release Phase 1 - Used for Flowsnake team-facing fleets
         "1": self.default_image_tags {
 
-            deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180626_162148.798e1e84.dirty.jinxingwang-wsm",
+            deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180627_145521.117759c3.dirty.jinxingwang-wsm",
             watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-687-2-itest",
             testData_image_tag: "676",  #Currently under test verification in Test Fleet - Do not promote
 

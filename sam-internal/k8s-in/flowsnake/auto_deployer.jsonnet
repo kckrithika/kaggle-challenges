@@ -13,7 +13,6 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
         "disable-rollback": true,
         "disable-security-check": true,
         "override-control-estate": "/" + kingdom + "/" + kingdom + "-sam",
-        "delete-orphans": false,
         funnelEndpoint: flowsnakeconfig.funnel_vip_and_port,
         "max-resource-time": 300000000000,
         "poll-delay": 30000000000,
@@ -115,9 +114,10 @@ local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:
     } +
     if std.objectHas(flowsnakeimage.feature_flags, "autodeployer_with_detectOrphan") then
     {
-      "detect-orphans": true,
+      "delete-orphans": true,
       "orphan-namespaces": "flowsnake,default,kube-system",
     } else {
+      "delete-orphans": false,
       "orphan-namespaces": "flowsnake",
     },
 }
