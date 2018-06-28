@@ -77,6 +77,6 @@ local util = import "util_functions.jsonnet";
     madkub_endpoint: if self.is_minikube then "https://madkubserver:32007" else "https://10.254.208.254:32007",  // TODO: Fix kubedns so we do not need the IP
     maddog_endpoint: if self.is_minikube then "https://maddog-onebox:8443" else configs.maddogEndpoint,
     kubedns_manifests_enabled: !self.is_minikube,
-    node_monitor_enabled: !self.is_minikube_small && !self.is_minikube && !self.is_test && !(estate == "prd-dev-flowsnake_iot_test"),
+    node_monitor_enabled: !self.is_minikube_small && !self.is_minikube && !self.is_test && !(estate == "prd-dev-flowsnake_iot_test") && !(estate == "prd-data-flowsnake"),
     node_controller_enabled: !self.is_minikube,
 }
