@@ -28,7 +28,7 @@ system:
         httpGet:
           path: /status/health
           port: 8000
-    - name: sherpa-perf
+    - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2024---2018-03-13
       image: sfci/servicelibs/sherpa:2.0.25
       env:
@@ -58,6 +58,6 @@ system:
     function: perf-report-gen
     slbEnabled: true
     ports:
-      - port: 8000
+      - port: 8210
         targetport: 8000
         lbtype: http
