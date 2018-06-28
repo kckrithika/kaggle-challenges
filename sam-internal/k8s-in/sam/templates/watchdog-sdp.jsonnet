@@ -20,9 +20,6 @@ if configs.kingdom == "prd" && configs.estate != "prd-sam_storage" then {
                                      "-emailFrequency=24h",
                                      "-watchDogKind=" + $.kind,
                                  ]
-                                 + (if configs.estate == "prd-samdev" then [
-                                        "--breakwatchdogsdp",
-                                    ] else [])
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
                             configs.sfdchosts_volume_mount,
