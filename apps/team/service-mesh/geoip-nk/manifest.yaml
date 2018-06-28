@@ -4,7 +4,7 @@ apiVersion: v1
 system:
   functions:
   - name: geoip-nk
-    count: 3
+    count: 1
     containers:
     - name: geoip-nk-backend
       image: sfci/servicelibs/geoip-nk:1.0.2
