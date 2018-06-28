@@ -1,7 +1,6 @@
 local configs = import "config.jsonnet";
 
-//if configs.estate == "prd-sam_storagedev" then {
-if configs.estate == "disabled" then {
+if configs.estate == "prd-sam_storagedev" then {
     kind: "ConfigMap",
     apiVersion: "v1",
     metadata: {
