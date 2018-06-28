@@ -9,7 +9,7 @@ system:
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20180625
       env:
       - name: SCONE_SHIPPING_SERVICE_HOST
-        value: perf-shipping.localhost.mesh.force.com
+        value: perf-shipping.scone.localhost.mesh.force.com
       - name: SCONE_SHIPPING_SERVICE_PORT
         value: 7011
       ports:
