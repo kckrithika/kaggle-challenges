@@ -5,7 +5,7 @@ system:
   - name: perf-shipping-service
     count: 1
     containers:
-    - name: perf-scone-service
+    - name: perf-shipping
       # Maven repo
       #   https://sconelibci.dop.sfdc.net/job/servicelibs/job/scone-ms-examples/job/master/231/
       #   image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/sfci/servicelibs/scone-ms-examples/scone-shipping:86a47e93cb4796e4a24f63cee4b305356ddecc1e
@@ -17,13 +17,13 @@ system:
         value: sconex
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
+      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
+        value: -Dscone.service.name=perf-shipping-service
       ports:
       - containerPort: 7020
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
-      - containerPort: 9010
-        name: jmx-remote
       resources:
         requests:
           cpu: "1"
@@ -37,12 +37,12 @@ system:
           path: /manage/health
           port: 15372
 
-    - name: perf-beacon-shipping
+    - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - perf-shipping:DATACENTER:7012
+      - scone/perf-shipping:DATACENTER:7012
       - -logging.dir
       - /log
       resources:
@@ -62,9 +62,9 @@ system:
       - mountPath: /log
         name: logvolbeacon
 
-    - name: perf-sherpa-shipping
+    - name: sherpa
       # https://git.soma.salesforce.com/servicelibs/sherpa/blob/master/CHANGELOG.md#sherpa-2026---2018-04-12
-      image: sfci/servicelibs/sherpa:2.0.26
+      image: sfci/servicelibs/sherpa:2.0.27
       env:
       - name: SFDC_ENVIRONMENT
         value: sconex
@@ -90,7 +90,7 @@ system:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 110
+        initialDelaySeconds: 120
         periodSeconds: 5
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
