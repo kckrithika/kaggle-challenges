@@ -6,7 +6,7 @@ system:
       - stanfield.chu@salesforce.com
   functions:
   - name: stans-report-collector
-    count: 3
+    count: 1
     volumes:
       - name: servercertvol
         k4aSecret:
@@ -70,7 +70,7 @@ system:
       - name: ReportCollector_app_serviceProtection_enabled
         value: true
       - name: ReportCollector_app_serviceProtection_publishPeriodMs
-        value: 60000
+        value: 600000
       - name: ReportCollector_ajna_publishEnabled
         value: true
       - name: ReportCollector_app_verticleCounts_ProviderEndpointVerticle
