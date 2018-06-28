@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-api-ccp-func
-      image: sfci/cre/cre-api:0.0.1.95.master.3ff42f9.154
+      image: sfci/cre/cre-api:0.0.1.98.master.12a6298.157
       env:
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
           value: 00DD10000000MQ8
