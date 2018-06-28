@@ -1,7 +1,7 @@
 local configs = import "config.jsonnet";
 local mysql = import "sammysqlconfig.jsonnet";
 
-if configs.estate == "prd-sam" || configs.estate == "prd-samdev" then
+if configs.estate == "prd-sam" then
 std.prune({
   caFile: configs.caFile,
   dbHostname: mysql.hostName,
