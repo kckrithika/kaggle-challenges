@@ -9,7 +9,7 @@ system:
     count: 1
     containers:
     - name: cre-control-plane
-      image: sfci/cre/cre-control-plane:0.0.1.19.47.master.f616f85.86
+      image: sfci/cre/cre-control-plane:0.0.1.19.51.master.5b85006.90
       env:
         - name: SFDC_ENVIRONMENT
           value: prod
@@ -26,7 +26,7 @@ system:
         - name: FLOWSNAKE_ENDPOINT
           value: https://flowsnake-ord.data.sfdc.net
         - name: ENGINE_IMAGE_TAG
-          value: sfci/cre/cre-engine:0.0.1.244.master.4b5fe24.520
+          value: sfci/cre/cre-engine:0.0.1.253.master.79d31de.529
         - name: ENGINE_APPLICATION_NAME
           value: cre-engine
         - name: ENGINE_HBASE_DATACENTER
@@ -39,6 +39,10 @@ system:
           value: sfdc.prod.cre__ord.ajna_local__cre_metrics
         - name: GDOT_PROVISIONING_USER_NAME
           value: creprodprovisioner
+        - name: HBASE_ENVIRONMENT
+          value: prod
+        - name: HBASE_DATACENTER
+          value: ord
       ports:
       - containerPort: 8080
       - containerPort: 7020
