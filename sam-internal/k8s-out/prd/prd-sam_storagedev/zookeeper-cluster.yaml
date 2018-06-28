@@ -9,7 +9,7 @@ items:
     namespace: zookeeper
   spec:
     faultDomainBoundary: kubernetes.io/hostname
-    replicas: 5
+    replicas: 3
     version: 3.4.9
 kind: List
 metadata: {}
