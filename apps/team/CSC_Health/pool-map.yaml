@@ -31,6 +31,8 @@ apps:
   repcollavailwd-pc:
     - yhu/yhu-sam_report_collector
     - yul/yul-sam_report_collector
+  repcollavailwd-hostnet:
+    - syd/syd-sam_report_collector
   expobservation-service:
   observation-service:
     - prd/prd-sam_report_collector
