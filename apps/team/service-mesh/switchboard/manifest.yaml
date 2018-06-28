@@ -11,6 +11,7 @@ system:
       image: sfci/servicelibs/switchboard:887e54a4c950055894c569087d25f382baa2799a
       args:
       - --listeners.external-auth-enabled-clusters[0]=tictactoe-server-service-envoy
+      - --listeners.tracing.random_sampling_percent=5
       ports:
       - containerPort: 15372
       env:
@@ -49,7 +50,6 @@ system:
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
-      - --listeners.tracing.random_sampling_percent=5
       ports:
       - containerPort: 15001
       - containerPort: 15373
