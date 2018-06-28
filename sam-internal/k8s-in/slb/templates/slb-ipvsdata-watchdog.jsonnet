@@ -58,7 +58,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || slbconfigs.slbI
                     },
                 ],
             } + (
-                if configs.estate == "prd-sam" || slbimages.phase == "3" || slbimages.phase == "4" then {
+                if configs.estate == "prd-sam" || slbimages.phaseNum >= 3 then {
                     nodeSelector: {
                          pool: configs.kingdom + "-slb",
                     },

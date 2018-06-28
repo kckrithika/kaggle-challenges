@@ -33,10 +33,14 @@ local slbreleases = import "slbreleases.json";
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
+    phaseNum: std.parseInt(self.phase),
 
     # These are the images used by the templates
     hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
+    hypersdn_build: std.parseInt(std.split(slbreleases[$.phase].hypersdn.label, "-")[1]),
+
     slbnginx: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "slb-nginx", slbreleases[$.phase].slbnginx.label),
+    slbnginx_build: std.parseInt(std.split(slbreleases[$.phase].slbnginx.label, "-")[1]),
 
     # image_functions needs to know the filename of the template we are processing
     # Each template must set this at time of importing this file, for example:
