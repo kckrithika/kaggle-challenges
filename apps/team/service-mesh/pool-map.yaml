@@ -28,21 +28,21 @@ apps:
 
   
   h1-test-client-l5d:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-server-l5d:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-client-l5d-tls:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-server-l5d-tls:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-client-envoy:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-server-envoy:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-client-envoy-tls:
-    - prd/prd-sam
+    - prd/prd-sam_gater
   h1-test-server-envoy-tls:
-    - prd/prd-sam
+    - prd/prd-sam_gater
 
   ordering-l5d-tls:
     - prd/prd-sam_gater
@@ -51,4 +51,6 @@ apps:
   ordering-envoy-tls:
     - prd/prd-sam_gater
   shipping-envoy-tls:
+    - prd/prd-sam_gater
+  geoip-nk:
     - prd/prd-sam_gater
