@@ -1,4 +1,6 @@
-{
+local configs = import "config.jsonnet";
+
+if configs.kingdom == "prd" then {
    apiVersion: "apiextensions.k8s.io/v1beta1",
     kind: "CustomResourceDefinition",
     metadata: {
@@ -18,4 +20,4 @@
         kind: "WatchDog",
         },
       },
-}
+} else "SKIP"
