@@ -33,7 +33,7 @@ local slbreleases = import "slbreleases.json";
         ),
 
     # ====== ONLY CHANGE THE STUFF BELOW WHEN ADDING A NEW IMAGE.  RELEASES SHOULD ONLY INVOLVE CHANGES ABOVE ======
-    phaseNum: std.parseInt(self.phase),
+    phaseNum: std.parseInt($.phase),
 
     # These are the images used by the templates
     hypersdn: imageFunc.do_override_for_tnrp_image($.overrides, "sdn", "hypersdn", slbreleases[$.phase].hypersdn.label),
