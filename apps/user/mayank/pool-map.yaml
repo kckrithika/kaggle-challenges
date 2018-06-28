@@ -6,6 +6,7 @@ apps:
   - name: prd/prd-sam
  TestApp:
   - name: prd/prd-sam
+  - name: prd/prd-samdev
  StatefulDemoApp:
   - name: prd/prd-samtest
   - name: prd/prd-sam
