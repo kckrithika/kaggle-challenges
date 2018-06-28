@@ -49,6 +49,7 @@ system:
       args:
       - --template
       - /switchboard-config/switchboard-sidecar.config.yaml.template
+      - --listeners.tracing.random_sampling_percent=5
       ports:
       - containerPort: 15001
       - containerPort: 15373
