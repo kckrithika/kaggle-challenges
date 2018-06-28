@@ -38,11 +38,11 @@ spec:
         - --slbPodLabel=name=slb-vip-watchdog
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --deletePodFlag=true
-        - --deleteIpvsStateFlag=false
-        - --deleteConfigFileFlag=false
-        - --deleteNginxTunnelIntfFlag=false
-        - --deleteIpvsIntfFlag=false
-        - --deleteCustomerPodFlag=false
+        - --deleteIpvsStateFlag=true
+        - --deleteConfigFileFlag=true
+        - --deleteNginxTunnelIntfFlag=true
+        - --deleteIpvsIntfFlag=true
+        - --deleteCustomerPodFlag=true
         - --client.serverInterface=lo
         env:
         - name: NODE_NAME
