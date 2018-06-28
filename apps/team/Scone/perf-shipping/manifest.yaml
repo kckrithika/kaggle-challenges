@@ -17,8 +17,6 @@ system:
         value: sconex
       - name: JAVA_HEAP_OPTS
         value: -Xmx64m
-      - name: SCONE_DEPLOYMENT_JVM_OPTIONS
-        value: -Dscone.service.name=perf-shipping-service
       ports:
       - containerPort: 7020
         name: grpc-svc
@@ -32,7 +30,7 @@ system:
           cpu: "2"
           memory: "1Gi"
       livenessProbe:
-        initialDelaySeconds: 15
+        initialDelaySeconds: 120
         httpGet:
           path: /manage/health
           port: 15372
@@ -53,7 +51,7 @@ system:
           cpu: "2"
           memory: "1Gi"
       livenessProbe:
-        initialDelaySeconds: 5
+        initialDelaySeconds: 120
         exec:
           command:
           - "/home/scone/is-alive.sh"
