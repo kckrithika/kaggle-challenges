@@ -52,5 +52,5 @@ apps:
     - prd/prd-sam_gater
   shipping-envoy-tls:
     - prd/prd-sam_gater
-  eoip-nk:
+  geoip-nk:
     - prd/prd-sam_gater
