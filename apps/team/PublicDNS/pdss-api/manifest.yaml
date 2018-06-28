@@ -22,7 +22,7 @@ system:
     - name: pdss-api 
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/publicdns/scone-pdss-api:pubdnsa-20180625-2
       ports:
-      - containerPort: 8443
+      - containerPort: 8080
       - containerPort: 53 
       - containerPort: 15372
       livenessProbe:
@@ -52,8 +52,11 @@ system:
     function: pdss-api 
     slbenabled: true
     ports:
+      - port: 443
+        targetport: 8080
+        lbtype: tcp
       - port: 8443
-        targetport: 8443
+        targetport: 8080
         lbtype: tcp
       - port: 15372
         targetport: 15372
