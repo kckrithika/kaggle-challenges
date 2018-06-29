@@ -30,7 +30,7 @@ system:
           cpu: "2"
           memory: "1Gi"
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 15
         httpGet:
           path: /manage/health
           port: 15372
@@ -51,7 +51,7 @@ system:
           cpu: "2"
           memory: "1Gi"
       livenessProbe:
-        initialDelaySeconds: 120
+        initialDelaySeconds: 5
         exec:
           command:
           - "/home/scone/is-alive.sh"
@@ -88,7 +88,7 @@ system:
         exec:
           command:
           - "./bin/is-ready"
-        initialDelaySeconds: 120
+        initialDelaySeconds: 110
         periodSeconds: 5
     # The volumes to mount for shipping logs to splunk
     # General rule is to use path that satisfies the pattern: /home/sfdc-*/logs/**/*.json
