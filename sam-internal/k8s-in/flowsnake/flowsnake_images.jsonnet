@@ -21,7 +21,6 @@ local utils = import "util_functions.jsonnet";
         # When you *do* need to change one of these images, just override in the phase(s) you want to change.
         # Once the override is deployed to all phases, update the default and delete the overrides.
         default_image_tags: {
-                canary_image_tag: 662,
                 cert_secretizer_image_tag: 662,
                 es_image_tag: "503",
                 fleetService_image_tag: "662",
@@ -47,7 +46,6 @@ local utils = import "util_functions.jsonnet";
 
         ### Release Phase minikube
         minikube: self.default_image_tags {
-            canary_image_tag: "minikube",
             cert_secretizer_image_tag: "minikube",
             es_image_tag: "minikube",
             fleetService_image_tag: "minikube",
@@ -192,7 +190,6 @@ local utils = import "util_functions.jsonnet";
 
     # These are the images used by the templates
     # Only change when image name change from https://git.soma.salesforce.com/dva-transformation/flowsnake-platform
-    canary: flowsnakeconfig.strata_registry + "/flowsnake-canary:" + $.per_phase[$.phase].canary_image_tag,
     cert_secretizer: flowsnakeconfig.strata_registry + "/flowsnake-cert-secretizer:" + $.per_phase[$.phase].cert_secretizer_image_tag,
     es: flowsnakeconfig.strata_registry + "/flowsnake-elasticsearch:" + $.per_phase[$.phase].es_image_tag,
     fleet_service: flowsnakeconfig.strata_registry + "/flowsnake-fleet-service:" + $.per_phase[$.phase].fleetService_image_tag,
