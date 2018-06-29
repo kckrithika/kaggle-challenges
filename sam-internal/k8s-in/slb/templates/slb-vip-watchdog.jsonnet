@@ -120,7 +120,7 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                            "--client.serverInterface=lo",
                                            "--healthPathCheck=" + (if slbimages.hypersdn_build >= 942 then "true" else "false"),
                                            "--metricsBatchTimeout=30s",
-                              ],
+                              ] + (if slbimages.phaseNum == 2 then ["--optOutServiceList=devrepo5-0-prd"] else []),
                               volumeMounts: configs.filter_empty([
                                   slbconfigs.slb_volume_mount,
                                   slbconfigs.logs_volume_mount,

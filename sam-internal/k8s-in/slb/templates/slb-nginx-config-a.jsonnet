@@ -5,7 +5,8 @@ local portconfigs = import "portconfig.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-a", proxyLabelSelector:: "slb-nginx-config-a" } + (if configs.estate == "prd-sam" then { servicesToLbOverride:: "illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc", servicesNotToLbOverride:: "" } else {});
 
-if configs.estate == "prd-sam" then {
+# Temporarily disable a-pipeline until it can be repaired
+if false && configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {

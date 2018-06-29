@@ -58,6 +58,7 @@ spec:
         - --client.serverInterface=lo
         - --healthPathCheck=true
         - --metricsBatchTimeout=30s
+        - --optOutServiceList=devrepo5-0-prd.slb.sfdc.net
         env:
         - name: NODE_NAME
           valueFrom:
