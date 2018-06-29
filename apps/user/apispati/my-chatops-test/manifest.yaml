@@ -5,7 +5,7 @@ system:
     count: 1
     containers:
     - name: chatops-service-server
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apispati/chatops-service-server:chatops-20180628
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/apispati/chatops-service-server:chatops-20180629
       ports:
       - containerPort: 4455
       livenessProbe:
