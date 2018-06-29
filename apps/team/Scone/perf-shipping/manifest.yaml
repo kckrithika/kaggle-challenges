@@ -29,11 +29,15 @@ system:
         limits:
           cpu: "2"
           memory: "1Gi"
+      # livenessProbe:
+      #   initialDelaySeconds: 15
+      #   httpGet:
+      #     path: /manage/health
+      #     port: 15372
       livenessProbe:
-        initialDelaySeconds: 15
-        httpGet:
-          path: /manage/health
-          port: 15372
+        exec:
+          command: ["/bin/true"]
+        initialDelaySeconds: 20 
 
     - name: beacon
       # https://sconelibci.dop.sfdc.net/job/servicelibs/job/beacon/job/master/216/
