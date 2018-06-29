@@ -37,6 +37,8 @@ system:
           value: kingdom-perf
         - name: HBASE_DATACENTER
           value: prd
+        - name: SECRET_KEY_FILE
+          value: /keys/control-plane-aes.key  
       ports:
       - containerPort: 8080
       - containerPort: 7020
@@ -108,7 +110,7 @@ system:
         secretName: gdot-private-key
     - name: aeskey
       k4aSecret:
-        secretName: cre-aes-key
+        secretName: control-plane-aes-key
     - name: logvol
       hostPath:
         path: /home/sfdc-cre/logs/cre-control-plane-ccp-perf
