@@ -5,7 +5,7 @@ local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs-a", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIpvsOverridePort };
 
-if configs.estate == "prd-sam" then {
+if false && configs.estate == "prd-sam" then {
     apiVersion: "extensions/v1beta1",
     kind: "Deployment",
     metadata: {
