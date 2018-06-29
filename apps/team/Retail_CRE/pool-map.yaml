@@ -16,7 +16,9 @@ apps:
         - shared0-samminioncustomerresolutionengine1-1-prd.eng.sfdc.net
         - shared0-samminioncustomerresolutionengine1-2-prd.eng.sfdc.net
   iad.Prod.cre-stream-processing:
-  - name: iad/iad-sam_customerresolutionengine        
+  - name: iad/iad-sam_customerresolutionengine
+  ord.Prod.cre-stream-processing:
+  - name: ord/ord-sam_customerresolutionengine          
   # ======= API ======== #
   prd.CCP_Integration_Functional.cre-api: # api functional test env instance
   - name: prd/prd-sam_customerresolutionengine
