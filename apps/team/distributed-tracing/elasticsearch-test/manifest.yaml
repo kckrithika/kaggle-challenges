@@ -45,6 +45,27 @@ system:
       storageSizeRequest: 20Gi
     lbname: elasticsearch-stateful-lb-test
 
+  - name: zipkin-es-curator-test
+    count: 1
+    strategy:
+        type: RollingUpdate
+        rollingUpdate:
+            maxSurge: 0
+            maxUnavailable: 1
+    containers:
+    - name: zipkin-es-curator-test
+      image: docker-dva-rc/dva/zipkin-es-curator:1
+      env:
+      - name: ES_ENDPOINT
+        value: es-rest-test:9200
+      livenessProbe:
+          exec:
+              # TODO: Check if process is running?
+              command:
+              - /bin/true
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
   - name: zipkin-es-spark-test
     count: 1
     strategy:
