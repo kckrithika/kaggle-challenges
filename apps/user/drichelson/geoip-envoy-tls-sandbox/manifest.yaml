@@ -86,8 +86,8 @@ system:
             - "/home/scone/is-alive.sh"
 
     - name: sherpa
-      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/55
-      image: sfci/servicelibs/sherpa-envoy:66c69d7673f06871ab1b111fbd0cf604ecba6fd2
+      # https://sconelibci.dop.sfdc.net/job/servicelibs/job/sherpa-envoy/job/master/56
+      image: sfci/servicelibs/sherpa-envoy:2465d3eae46f71b2221a5a30c2e10ec95ceca917
       env:
       - name: SFDC_ENVIRONMENT
         value: mesh
