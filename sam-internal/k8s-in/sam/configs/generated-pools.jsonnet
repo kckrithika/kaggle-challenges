@@ -571,10 +571,10 @@
     },
     {
       "namespaces": [
-        "iot"
+        "universal-search"
       ],
       "access": [
-        "team/IoT"
+        "team/universal-search"
       ],
       "controlEstate": "frf-sam",
       "estate": "frf-universalsearch_svc",
@@ -1437,10 +1437,10 @@
     },
     {
       "namespaces": [
-        "iot"
+        "universal-search"
       ],
       "access": [
-        "team/IoT"
+        "team/universal-search"
       ],
       "controlEstate": "par-sam",
       "estate": "par-universalsearch_svc",
