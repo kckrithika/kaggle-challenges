@@ -1,6 +1,7 @@
 local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
-if flowsnakeconfig.is_minikube_small then
+local estate = std.extVar("estate");
+if flowsnakeconfig.is_minikube_small || estate == "prd-data-flowsnake_test" then
 "SKIP"
 else
 {
