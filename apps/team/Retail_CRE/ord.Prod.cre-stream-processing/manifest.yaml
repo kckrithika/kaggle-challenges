@@ -12,11 +12,11 @@ system:
       image: sfci/cre/cre-stream-processing:0.0.1.57.master.ad919e0.125
       env:
         - name: METRICS_KAFKA_TOPIC
-          value: sfdc.prod.cre__iad.ajna_local__cre_metrics
+          value: sfdc.prod.cre__ord.ajna_local__cre_metrics
         - name: METRICS_KAFKA_SERVER
-          value: ajna0-broker1-0-iad.data.sfdc.net:9093
+          value: ajna0-broker1-0-ord.data.sfdc.net:9093
         - name: METRICS_KAFKA_GROUP_ID
-          value: cre-sp-iad
+          value: cre-sp-ord
         - name: SFDC_ENVIRONMENT
           value: prod          
         - name: METRICS_KAFKA_ENABLED
@@ -26,7 +26,7 @@ system:
         - name: MADDOG_CLIENT_TRUSTSTORE
           value: maddog/maddog-client-truststore.json
         - name: METRICS_FUNNEL_URI
-          value: http://ajna0-funnel1-0-iad.data.sfdc.net                     
+          value: http://ajna0-funnel1-0-ord.data.sfdc.net                     
       ports:
       - containerPort: 8080
       - containerPort: 7020
