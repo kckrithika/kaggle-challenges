@@ -25,7 +25,6 @@ data:
         "cert-secretizer.yaml",
         "_zookeeper-rcs.yaml",
         "_zookeeper-set-svc.yaml",
-        "canary-ds.yaml",
         "flowsnake-api-ingress.yaml",
         "flowsnake-api-rc.yaml",
         "flowsnake-api-svc.yaml",
