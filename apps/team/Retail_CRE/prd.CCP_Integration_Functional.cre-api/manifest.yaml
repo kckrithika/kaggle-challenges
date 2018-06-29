@@ -12,7 +12,7 @@ system:
       image: sfci/cre/cre-api:0.0.1.99.master.99e8c2b.158
       env:
         - name: HBASE_SUPER_TENANT_IDS_FLUSH
-          value: 00DD10000000MQ8
+          value: 00DD10000000MS9
         - name: METRICS_KAFKA_TOPIC
           value: sfdc.prod.cre__prd.ajna_local__cre_metrics_CCP_Integration_Functional
         - name: METRICS_KAFKA_SERVER
