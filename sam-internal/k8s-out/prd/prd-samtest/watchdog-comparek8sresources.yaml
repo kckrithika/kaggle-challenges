@@ -29,7 +29,7 @@ spec:
         - -funnelEndpoint=ajna0-funnel1-0-prd.data.sfdc.net:80
         - --config=/config/watchdog.json
         - --hostsConfigFile=/sfdchosts/hosts.json
-        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm
+        image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180629_093101.2581ce60.dirty.small-ltm
         name: watchdog-comparek8sresources
         volumeMounts:
         - mountPath: /sfdchosts

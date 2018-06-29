@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-sam,sam-manifest-repo-watcher,hypersam": "sam-0002048-c3491341",
 
         # [small] Comparing v1 and v2 flow changes
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180619_090404.db4eda0e.dirty.small-ltm",
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180629_093101.2581ce60.dirty.small-ltm",
 
         # [xiao] Enable dual run in prd-samtest
         "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/xiao.zhou/hypersam:20180621_160827.fda84804.dirty.xiaozhou-ltm2",
