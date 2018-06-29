@@ -8,14 +8,16 @@ system:
     - name: cert
       maddogCert:
         type: client
+    - name: automationvol
+      emptyDir: {}
     containers:
     - name: debug-perf-core
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-4
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mgainsborough/casam:214_patch__16015380-perf-mcd-1
 
       env:
         # DB info
         - name: DB_USER
-          value: sleepy
+          value: bashful
         - name: DB_SID
           value: mist61c214utf
         - name: IP_DB
@@ -103,9 +105,11 @@ system:
       volumeMounts:
         - name: cert
           mountPath: /certs
+        - name: automationvol
+          mountPath: /home/sfdc/automation
 
-    - name: mist61-jmeter
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/jmeter:kviphong-20180622-132219
+    - name: perfsidecar
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/casam/perfsidecar:20180629-153037
 
       livenessProbe:
         exec:
@@ -121,6 +125,9 @@ system:
            - HEALTHY
         initialDelaySeconds: 30
         periodSeconds: 120
+      volumeMounts:
+        - name: automationvol
+          mountPath: /home/sfdc/automation
     
     terminationGracePeriodSeconds: 500
     progressDeadlineSeconds: 300
