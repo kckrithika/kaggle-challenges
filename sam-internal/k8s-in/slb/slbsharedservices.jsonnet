@@ -125,8 +125,8 @@
             configs.sfdchosts_arg,
             "--client.serverPort=" + $.nodeApiPort,
             "--client.serverInterface=lo",
-        ] + (if $.dirSuffix == "slb-nginx-config-b" && configs.estate == "prd-sam" then [
-            "--control.sentinelExpiration=600s",
+        ] + (if $.dirSuffix == "slb-nginx-config-b" && slbimages.phaseNum <= 3 then [
+            "--control.sentinelExpiration=1200s",
         ] else []),
         volumeMounts: configs.filter_empty([
             slbconfigs.slb_volume_mount,
