@@ -118,8 +118,8 @@ spec:
           path: /etc/kubernetes/kubeconfig
         name: kubeconfig
       - hostPath:
-          path: /data/certs
-        name: kubeconfig-certs
-      - hostPath:
           path: /etc/pki_service
         name: pki
+      - hostPath:
+          path: /data/certs
+        name: kubeconfig-certs
