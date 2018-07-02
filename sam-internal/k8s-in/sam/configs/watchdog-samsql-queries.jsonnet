@@ -105,6 +105,34 @@
                      ControlEstate NOT LIKE '%slb%' AND
                      desiredReplicas != 0",
     },
+    {
+    name: "SqlPRLatency",
+      instructions: "Following PRs have failed to get deployed within 45 minutes of getting merged.",
+      alertThreshold: "10m",
+      alertFrequency: "24h",
+      watchdogFrequency: "10m",
+      alertProfile: "sam",
+      alertAction: "email",
+      sql: "SELECT 
+ 	pr_num
+FROM 
+	(
+	SELECT 	
+   		prs.pr_num,
+   		TIMESTAMPDIFF(MINUTE,prs.merged_time, CASE WHEN payload -> '$.status.endTime' = '0001-01-01T00:00:00Z' THEN CURRENT_TIMESTAMP() ELSE payload -> '$.status.endTime' END  ) latency
+FROM 
+	PullRequests prs
+LEFT  JOIN  
+		(
+		SELECT * 
+		FROM 
+		crd_history 
+	 	WHERE ApiKind = 'Bundle') crds
+	ON crds.PRNum = prs.pr_num
+ORDER BY prs.pr_num 
+) prLatency
+WHERE latency > 45",
+    },
 
   ],
 }
