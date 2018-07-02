@@ -46,9 +46,6 @@ system:
       # mTLS port
       - -endpoint
       - search-scale-safely/search-model-executor:DATACENTER_ALLENV:7443
-      # Plaintext port
-      - -endpoint
-      - search-model-executor:DATACENTER_ALLENV:7012
       livenessProbe:
         exec:
           command: ["/home/scone/is-alive.sh"]
@@ -65,8 +62,6 @@ system:
         limits: { cpu: "1", memory: "1Gi" }
         requests: { cpu: "1", memory: "1Gi" }
       ports:
-      - name: sherpa-b-ptx
-        containerPort: 7012
       - name: sherpa-b-tls
         containerPort: 7443
       - name: sherpa-b-adm
