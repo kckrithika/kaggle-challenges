@@ -24,7 +24,7 @@ local utils = import "util_functions.jsonnet";
         "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180701_211915.7a03bfc1.dirty.small-ltm",
 
         # [small] node affinity changes
-        "prd,prd-samtest,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180626_173213.52cc933c.clean.small-ltm",
+        "prd,prd-samdev,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180626_173213.52cc933c.clean.small-ltm",
 
         # [mayank] email failure reporting testing
         "prd,prd-samdev,k8s-resource-reporter,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mayank.kumar/hypersam:20180628_131226.1039056f.dirty.mayankkuma-ltm3",
