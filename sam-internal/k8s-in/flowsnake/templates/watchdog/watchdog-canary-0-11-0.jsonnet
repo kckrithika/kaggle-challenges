@@ -16,7 +16,7 @@ local cert_name = "watchdogcanarycerts";
         labels: {
             name: "watchdog-canary",
         },
-        name: "watchdog-canary",
+        name: "watchdog-canary-0-11-0",
         namespace: "flowsnake",
     },
     kind: "Deployment",
