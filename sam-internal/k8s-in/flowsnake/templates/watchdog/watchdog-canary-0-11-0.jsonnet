@@ -6,7 +6,7 @@ local kingdom = std.extVar("kingdom");
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local madkub_common = import "madkub_common.jsonnet";
 local watchdog = import "watchdog.jsonnet";
-if !watchdog.watchdog_enabled || std.objectHas(flowsnake_images.feature_flags, "add_11_canary") then
+if !watchdog.watchdog_enabled || !std.objectHas(flowsnake_images.feature_flags, "add_11_canary") then
 "SKIP"
 else
 local cert_name = "watchdogcanarycerts";
@@ -40,7 +40,7 @@ local cert_name = "watchdogcanarycerts";
                     }),
                 },
                 labels: {
-                    app: "watchdog-canary-0-10-0",
+                    app: "watchdog-canary-0-11-0",
                     apptype: "monitoring"
                 },
             },
@@ -58,7 +58,7 @@ local cert_name = "watchdogcanarycerts";
                             "-timeout=2s",
                             "-funnelEndpoint=" + flowsnakeconfig.funnel_vip_and_port,
                             "--config=/config/watchdog.json",
-                            "-cliCheckerCommandTarget=0.10.0",
+                            "-cliCheckerCommandTarget=0.11.0",
                             "--hostsConfigFile=/sfdchosts/hosts.json",
                             "-watchdogFrequency=15m",
                             "-alertThreshold=45m",

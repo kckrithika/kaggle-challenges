@@ -78,13 +78,14 @@ local utils = import "util_functions.jsonnet";
         "1": self.default_image_tags {
 
             deployer_image_tag: "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/jinxing.wang/hypersam:20180627_145521.117759c3.dirty.jinxingwang-wsm",
-            watchdog_canary_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-687-2-itest",
+            watchdog_canary_image_tag: "681",
             testData_image_tag: "676",  #Currently under test verification in Test Fleet - Do not promote
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
                 autodeployer_with_detectOrphan: "foo",  # Untested;
                 add_local_canary: "verified",  #Verfied successfully in test fleet
+                add_11_canary: "Unverified",  #Yet to be verified for test fleet, success pending 0.11.0 release in Test fleet
                 del_certsvc_certs: "foo",  #Untested
             },
             version_mapping: {
