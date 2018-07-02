@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    slb.sfdc.net/name: slb-portal-service
+  labels:
+    app: slb-portal-service
+    slb.sfdc.net/name: slb-portal-service
+  name: slb-portal-service
+  namespace: sam-system
+spec:
+  ports:
+  - name: slb-portal-port
+    nodePort: 32139
+    port: 9112
+    protocol: TCP
+    targetPort: 9112
+  selector:
+    name: slb-portal
+  type: NodePort
