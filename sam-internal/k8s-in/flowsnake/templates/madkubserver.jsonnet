@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local flowsnakeconfig = import "flowsnake_config.jsonnet";
 local estate = std.extVar("estate");
 local kingdom = std.extVar("kingdom");
@@ -57,7 +57,7 @@ local kingdom = std.extVar("kingdom");
               "--log-level",
               "7",
             ]),
-            image: flowsnakeimage.madkub,
+            image: flowsnake_images.madkub,
             name: "madkubserver",
             ports: [
               {
@@ -78,12 +78,20 @@ local kingdom = std.extVar("kingdom");
                 name: "tokens",
               },
             ] +
-            (if flowsnakeconfig.is_minikube then [
+            (
+if flowsnakeconfig.is_minikube then [
                 {
                   mountPath: "/maddog-onebox",
                   name: "maddog-onebox-certs",
                 },
-            ] else [
+            ] else if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then
+            [
+                {
+                  mountPath: "/etc/pki_service/",
+                  name: "pki",
+                },
+            ] else
+            [
                 {
                   mountPath: "/data/certs",
                   name: "kubeconfig-certs",
@@ -92,7 +100,8 @@ local kingdom = std.extVar("kingdom");
                   mountPath: "/etc/pki_service/",
                   name: "pki",
                 },
-            ]),
+            ]
+            ),
             livenessProbe: {
               httpGet: {
                 path: "/healthz",
@@ -132,7 +141,7 @@ local kingdom = std.extVar("kingdom");
               "--log-level",
               "7",
             ]),
-            image: flowsnakeimage.madkub,
+            image: flowsnake_images.madkub,
             volumeMounts: [
               {
                 mountPath: "/certs",
@@ -197,7 +206,8 @@ local kingdom = std.extVar("kingdom");
             },
           },
         ] +
-        (if flowsnakeconfig.is_minikube then [
+        (
+if flowsnakeconfig.is_minikube then [
             {
               name: "kubeconfig",
               configMap: {
@@ -218,18 +228,21 @@ local kingdom = std.extVar("kingdom");
               },
             },
             {
-              name: "kubeconfig-certs",
-              hostPath: {
-                path: "/data/certs",
-              },
-            },
-            {
               name: "pki",
               hostPath: {
                 path: "/etc/pki_service",
               },
             },
-        ]),
+        ] + (if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then []
+            else [
+            {
+              name: "kubeconfig-certs",
+              hostPath: {
+                path: "/data/certs",
+              },
+            },
+            ])
+        ),
       },
     },
   },

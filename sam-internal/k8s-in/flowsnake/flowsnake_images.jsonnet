@@ -62,7 +62,6 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                simplify_elk_replicas: "foo",
                 # glok_retired: "foo", # W-4959832 (Remove logging to GloK and Glok/ZK/ES/Kibana/logloader) https://gus.my.salesforce.com/a07B0000004wnlxIAA
             },
             version_mapping: {
@@ -84,9 +83,9 @@ local utils = import "util_functions.jsonnet";
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
-                simplify_elk_replicas: "foo",  # Untested; Elastic Search totally borked due to cert issues.
                 autodeployer_with_detectOrphan: "foo",  # Untested;
                 add_local_canary: "verified",  #Verfied successfully in test fleet
+                del_certsvc_certs: "foo",  #Untested
             },
             version_mapping: {
                 main: {

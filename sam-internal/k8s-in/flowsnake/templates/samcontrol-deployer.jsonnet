@@ -1,4 +1,4 @@
-local flowsnakeimage = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
+local flowsnake_images = (import "flowsnake_images.jsonnet") + { templateFilename:: std.thisFile };
 local auto_deployer = import "auto_deployer.jsonnet";
 if !auto_deployer.auto_deployer_enabled then
 "SKIP"
@@ -36,7 +36,7 @@ else
                 value: "/kubeconfig/kubeconfig-platform",
               },
             ],
-            image: flowsnakeimage.deployer,
+            image: flowsnake_images.deployer,
             livenessProbe: {
               httpGet: {
                 path: "/",
@@ -57,10 +57,6 @@ else
                 name: "maddog-certs",
               },
               {
-                mountPath: "/data/certs",
-                name: "certs",
-              },
-              {
                 mountPath: "/kubeconfig",
                 name: "kubeconfig",
               },
@@ -68,7 +64,13 @@ else
                 mountPath: "/config",
                 name: "config",
               },
-            ],
+            ] + (
+if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then [] else
+              [{
+                mountPath: "/data/certs",
+                name: "certs",
+              }]
+            ),
           },
         ],
         hostNetwork: true,
@@ -87,12 +89,6 @@ else
           },
           {
             hostPath: {
-              path: "/data/certs",
-            },
-            name: "certs",
-          },
-          {
-            hostPath: {
               path: "/etc/kubernetes",
             },
             name: "kubeconfig",
@@ -103,7 +99,16 @@ else
             },
             name: "config",
           },
-        ],
+        ] + (
+if std.objectHas(flowsnake_images.feature_flags, "del_certsvc_certs") then [] else [
+          {
+            hostPath: {
+              path: "/data/certs",
+            },
+            name: "certs",
+          },
+]
+        ),
       },
     },
   },

@@ -35,12 +35,12 @@ spec:
           name: sfdchosts
         - mountPath: /etc/pki_service
           name: maddog-certs
-        - mountPath: /data/certs
-          name: certs
         - mountPath: /kubeconfig
           name: kubeconfig
         - mountPath: /config
           name: config
+        - mountPath: /data/certs
+          name: certs
       hostNetwork: true
       volumes:
       - configMap:
@@ -50,11 +50,11 @@ spec:
           path: /etc/pki_service
         name: maddog-certs
       - hostPath:
-          path: /data/certs
-        name: certs
-      - hostPath:
           path: /etc/kubernetes
         name: kubeconfig
       - configMap:
           name: samcontrol-deployer
         name: config
+      - hostPath:
+          path: /data/certs
+        name: certs
