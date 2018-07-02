@@ -92,6 +92,7 @@ local utils = import "util_functions.jsonnet";
                 main: {
                   "0.9.10": 638,  # 0.9.10 didn't work the first time. Finally fixed here.
                   "0.10.0": 662,
+                  "0.11.0": 681,
                 }
                 +
                 # These are for developer testing only
