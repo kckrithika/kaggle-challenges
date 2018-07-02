@@ -19,8 +19,6 @@ system:
         value: stm
       - name: GRPC_SERVER_PORT
         value: 7020
-      - name: LOGGING_DIR
-        value: /log
       resources:
         limits:
           cpu: 8
@@ -31,8 +29,6 @@ system:
       volumeMounts:
       - mountPath: /home/sfdc-switchboard/sherpa-envoy-config-volume
         name: envoy-config-volume
-      - mountPath: /log
-        name: switchboard-log-volume
       livenessProbe:
         httpGet:
           path: /manage/health
@@ -85,9 +81,6 @@ system:
     volumes:
     - name: envoy-config-volume
       emptyDir: {}
-    - name: switchboard-log-volume
-      hostPath:
-        path: /home/sfdc-switchboard/logs
     - name: tls-client-cert
       maddogCert:
         type: client
