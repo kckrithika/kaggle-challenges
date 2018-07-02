@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: control
         name: snapshoter
+        sam.data.sfdc.net/owner: sam
       namespace: sam-system
     spec:
       containers:

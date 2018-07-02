@@ -15,6 +15,7 @@ spec:
       labels:
         apptype: monitoring
         name: watchdog-estatesvc
+        sam.data.sfdc.net/owner: sam
     spec:
       containers:
       - command:

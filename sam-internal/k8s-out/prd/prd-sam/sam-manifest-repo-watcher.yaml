@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: sam-manifest-repo-watcher
+    sam.data.sfdc.net/owner: sam
   name: sam-manifest-repo-watcher
   namespace: sam-system
 spec:
