@@ -11,7 +11,7 @@
     cleanupLogsDir: self.logsDir + (if std.length($.dirSuffix) == 0 then "cleanup" else "/cleanup"),
     ipvsMarkerFile: self.slbDir + "/ipvs.marker",
     slbPortalTemplatePath: "/sdn/webfiles",
-    prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd'],
+    prodKingdoms: ['frf', 'phx', 'iad', 'ord', 'dfw', 'hnd', 'xrd', 'cdg', 'fra'],
     testEstateList: ['prd-sdc', 'prd-samdev', 'prd-samtest', 'prd-sam_storage', 'prd-sam_storagedev'],
     samrole: "samapp.slb",
 
@@ -35,6 +35,8 @@
             "dfw-sam": "10.214.188.0/22",
             "hnd-sam": "10.213.100.0/22",
             "xrd-sam": "10.229.32.0/22",
+            "cdg-sam": "10.229.136.0/22",
+            "fra-sam": "10.160.8.0/22",
             # prd-sam-a : 10.251.199.248-255
         },
 
