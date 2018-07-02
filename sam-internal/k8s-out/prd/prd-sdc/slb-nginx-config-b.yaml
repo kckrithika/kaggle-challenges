@@ -298,6 +298,7 @@ spec:
         - --hostsConfigFile=/sfdchosts/hosts.json
         - --client.serverPort=9130
         - --client.serverInterface=lo
+        - --control.sentinelExpiration=1200s
         image: ops0-artifactrepo2-0-prd.data.sfdc.net/docker-release-candidate/tnrp/sdn/hypersdn:v-0000943-fedabd23
         name: slb-realsvrcfg
         securityContext:
