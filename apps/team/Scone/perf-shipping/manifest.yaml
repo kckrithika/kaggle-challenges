@@ -22,13 +22,13 @@ system:
         name: grpc-svc
       - containerPort: 15372
         name: scone-mgmt
-      resources:
-        requests:
-          cpu: "1"
-          memory: "2Gi"
-        limits:
-          cpu: "2"
-          memory: "2Gi"
+      # resources:
+      #   requests:
+      #     cpu: "1"
+      #     memory: "2Gi"
+      #   limits:
+      #     cpu: "2"
+      #     memory: "2Gi"
       livenessProbe:
         initialDelaySeconds: 120
         httpGet:
@@ -43,13 +43,13 @@ system:
       - scone/perf-shipping:DATACENTER:7443
       - -logging.dir
       - /log
-      resources:
-        requests:
-          cpu: "1"
-          memory: "1Gi"
-        limits:
-          cpu: "2"
-          memory: "1Gi"
+      # resources:
+      #   requests:
+      #     cpu: "1"
+      #     memory: "1Gi"
+      #   limits:
+      #     cpu: "2"
+      #     memory: "1Gi"
       livenessProbe:
         initialDelaySeconds: 5
         exec:
@@ -73,13 +73,13 @@ system:
         name: grpc-in
       - containerPort: 7443
         name: h2-tls-in
-      resources:
-        requests:
-          cpu: "1"
-          memory: "1Gi"
-        limits:
-          cpu: "2"
-          memory: "1Gi"
+      # resources:
+      #   requests:
+      #     cpu: "1"
+      #     memory: "1Gi"
+      #   limits:
+      #     cpu: "2"
+      #     memory: "1Gi"
       livenessProbe:
         exec:
           command:
