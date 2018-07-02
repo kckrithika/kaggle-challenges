@@ -571,6 +571,18 @@
     },
     {
       "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "frf-sam",
+      "estate": "frf-universalsearch_svc",
+      "kingdom": "frf",
+      "superPod": "None"
+    },
+    {
+      "namespaces": [
         "csc-sam"
       ],
       "access": [
@@ -1422,6 +1434,18 @@
       "estate": "par-sp1-sam_caas",
       "kingdom": "par",
       "superPod": "sp1"
+    },
+    {
+      "namespaces": [
+        "universal-search"
+      ],
+      "access": [
+        "team/universal-search"
+      ],
+      "controlEstate": "par-sam",
+      "estate": "par-universalsearch_svc",
+      "kingdom": "par",
+      "superPod": "None"
     },
     {
       "namespaces": [
