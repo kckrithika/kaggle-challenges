@@ -2,6 +2,7 @@ apiVersion: v1
 data:
   version-mapping.properties: |
     0.10.0 = 662
+    0.11.0 = 681
     0.9.10 = 638
     branch_name_truncation = jenkins-dva-transformation-flowsnake-platform-PR-680-5-itest
     sla-metrics-test = jenkins-dva-transformation-flowsnake-platform-PR-656-9-itest
