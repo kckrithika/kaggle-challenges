@@ -74,7 +74,7 @@ if configs.estate == "prd-sdc" then {
                 labels: {
                     name: "sdn-sdnc-watchdog",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },

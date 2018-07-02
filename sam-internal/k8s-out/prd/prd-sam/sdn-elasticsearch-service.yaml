@@ -1,6 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    sam.data.sfdc.net/owner: sdn
   name: sdn-elasticsearch-svc
   namespace: sam-system
 spec:

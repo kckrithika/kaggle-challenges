@@ -18,6 +18,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-ping-watchdog
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       affinity:

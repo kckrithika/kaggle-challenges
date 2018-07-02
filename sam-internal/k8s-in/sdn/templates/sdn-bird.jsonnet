@@ -67,7 +67,7 @@ if !utils.is_public_cloud(configs.kingdom) && !utils.is_gia(configs.kingdom) the
                     name: "sdn-bird",
                     apptype: "control",
                     daemonset: "true",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },

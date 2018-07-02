@@ -68,7 +68,7 @@ if !utils.is_public_cloud(configs.kingdom) then {
                 labels: {
                     name: "sdn-vault-agent",
                     apptype: "monitoring",
-                },
+                } + configs.ownerLabel.sdn,
                 namespace: "sam-system",
             },
         },

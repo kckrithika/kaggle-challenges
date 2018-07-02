@@ -8,6 +8,7 @@ if configs.estate == "prd-sam" then {
         metadata: {
             name: "sdn-elasticsearch-svc",
             namespace: "sam-system",
+            labels: {} + configs.ownerLabel.sdn,
         },
         spec: {
             clusterIP: sdnconfigs.sdn_elasticsearch_cluster_ip,

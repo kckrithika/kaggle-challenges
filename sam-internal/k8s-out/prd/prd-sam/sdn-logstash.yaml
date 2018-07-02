@@ -12,6 +12,7 @@ spec:
       labels:
         apptype: monitoring
         name: sdn-logstash
+        sam.data.sfdc.net/owner: sdn
       namespace: sam-system
     spec:
       containers:
