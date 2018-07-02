@@ -3,7 +3,7 @@ local samwdconfig = import "samwdconfig.jsonnet";
 local samimages = (import "samimages.jsonnet") + { templateFilename:: std.thisFile };
 local mysql = import "sammysqlconfig.jsonnet";
 
-if configs.estate == "prd-samtest" then {
+if configs.estate == "prd-samdev" then {
     kind: "Deployment",
     spec: {
         replicas: 1,

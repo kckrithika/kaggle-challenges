@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     name: watchdog-comparek8sresources
+    sam.data.sfdc.net/owner: sam
   name: watchdog-comparek8sresources
   namespace: sam-system
 spec:
@@ -44,7 +45,7 @@ spec:
           name: kubeconfig
       hostNetwork: true
       nodeSelector:
-        pool: prd-samtest
+        pool: prd-samdev
       volumes:
       - configMap:
           name: sfdchosts
