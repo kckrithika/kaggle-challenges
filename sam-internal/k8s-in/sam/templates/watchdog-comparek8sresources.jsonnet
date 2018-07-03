@@ -22,6 +22,7 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                                     "--deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com",
                                     "--publishAlertsToKafka=false",
                                     "--publishAllReportsToKafka=false",
+                                    "--context=/Users/small/.kube/config",
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
