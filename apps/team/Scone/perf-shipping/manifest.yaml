@@ -40,9 +40,14 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - scone/perf-shipping:DATACENTER:7443
+      - scone/perf-shipping:DATACENTER_ALLENV:7443
+      - -endpoint
+      - scone/perf-shipping-non-tls:DATACENTER_ALLENV:7012
       - -logging.dir
       - /log
+      env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
       # resources:
       #   requests:
       #     cpu: "1"

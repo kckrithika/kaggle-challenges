@@ -8,10 +8,14 @@ system:
     - name: perf-report-gen
       image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20180703
       env:
+      - name: SFDC_ENVIRONMENT
+        value: sconex
       - name: SCONE_SHIPPING_SERVICE_HOST
         value: perf-shipping.scone.localhost.mesh.force.com
+        #value: perf-shipping-non-tls.scone.localhost.mesh.force.com
       - name: SCONE_SHIPPING_SERVICE_PORT
         value: 5443
+        #value: 7011
       ports:
       - containerPort: 8000
       # resources:
