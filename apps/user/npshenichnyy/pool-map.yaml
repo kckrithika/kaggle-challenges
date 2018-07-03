@@ -23,5 +23,3 @@ apps:
   - prd/prd-sam
  h1-test-server-envoy-nons-plain:
   - prd/prd-sam
- test-perf-shipping:
-  - prd/prd-sam
