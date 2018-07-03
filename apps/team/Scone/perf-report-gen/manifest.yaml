@@ -6,7 +6,7 @@ system:
     count: 1
     containers:
     - name: perf-report-gen
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20180625
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/scone/scone-ms-examples-xlt:bbuxton-20180703
       env:
       - name: SCONE_SHIPPING_SERVICE_HOST
         value: perf-shipping.scone.localhost.mesh.force.com
