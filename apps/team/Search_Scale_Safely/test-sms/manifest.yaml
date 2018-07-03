@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: test-search-model-executor
+  - name: test-sms
     count: 3
     identity:
       serviceName: search-model-executor
