@@ -1,6 +1,7 @@
 local configs = import "config.jsonnet";
 local portconfigs = import "portconfig.jsonnet";
 local slbconfigs = import "slbconfig.jsonnet";
+local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
     kind: "Service",
     apiVersion: "v1",
@@ -14,7 +15,9 @@ if configs.estate == "prd-sdc" || slbconfigs.slbInProdKingdom then {
         },
         annotations: {
             "slb.sfdc.net/name": "slb-canary-proxy-tcp",
-            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\"}]",
+            "slb.sfdc.net/portconfigurations": "[{\"port\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"targetport\":" + portconfigs.slb.canaryServiceProxyTcpPort + ",\"lbtype\":\"tcp\""
+                                                 + (if slbimages.slbnginx_build >= 31 then ",\"healthPath\":\"/\"" else "")
+                                                 + "}]",
         },
     },
     spec: {
