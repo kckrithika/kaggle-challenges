@@ -20,8 +20,9 @@ local utils = import "util_functions.jsonnet";
         #   # [alias] Added this override to fix issue xxx
         #   "prd,prd-sam,samcontrol,hypersam": "sam-0000123-deadbeef",
 
-        # [small] Comparing v1 and v2 flow changes
-        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180702_170427.1eb4bdf8.dirty.small-ltm",
+        # [small] watchdog for comparing v1 and v2 flow changes
+        "prd,prd-samtest,watchdog-comparek8sresources,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180702_223523.1eb4bdf8.dirty.small-ltm",
+
         # [small] node affinity changes
         "prd,prd-samdev,samapp-controller,hypersam": "ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/small/hypersam:20180626_173213.52cc933c.clean.small-ltm",
 
