@@ -6,9 +6,9 @@ apps:
     sconeconfig:
         - prd/prd-sam
     perf-report-gen:
-        - prd/prd-sam
+        - prd/prd-sam_gater
     perf-shipping:
-        - prd/prd-sam
+        - prd/prd-sam_gater
     bazel-spike:
         - prd/prd-sam
     scone-go:
