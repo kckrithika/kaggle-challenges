@@ -9,10 +9,10 @@ system:
     count: 1
     containers:
     - name: cre-control-plane-ccp-perf
-      image: sfci/cre/cre-control-plane:0.0.1.19.51.master.5b85006.90
+      image: sfci/cre/cre-control-plane:0.0.1.19.59.master.f64d748.100
       env:
         - name: AUTHORIZED_USERS
-          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com"
+          value: "admin@bt8.salesforce.com,adminqa@bt8.salesforce.com,adminqa@bt60.salesforce.com,admin@bt.salesforce.com"
         - name: SFDC_ENVIRONMENT
           value: ccp-perf
         - name: GDOT_PROVISIONING_USER_KEY_FILE_PATH
