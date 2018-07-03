@@ -21,7 +21,7 @@ system:
         secretName: test-secret
     containers:
     - name: event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.21
       ports:
         - containerPort: 8080
         - containerPort: 15372
@@ -32,6 +32,8 @@ system:
           value: 15372
         - name: AJNA_NAMESPACE
           value: mc.test.mceventbusqa1s1
+        - name: EVENTCONSUMER_NUMTHREADS
+          value: 1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
@@ -46,7 +48,7 @@ system:
         name: secretvol
         readOnly: true
     - name: dev-event-notification-service
-      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.20
+      image: ops0-artifactrepo1-0-prd.data.sfdc.net/docker-sam/mc-eventing/event-notification:event-notification-service-1.0.21
       ports:
         - containerPort: 15380
       env:
@@ -58,6 +60,8 @@ system:
           value: mc.test.mceventbusdev
         - name: SUBSCRIPTIONCONSUMER_TOPICNAME
           value: mc.test.mceventbusdev__prd.ajna_local__dev_binary
+        - name: EVENTCONSUMER_NUMTHREADS
+          value: 1
       livenessProbe:
         initialDelaySeconds: 60
         periodSeconds: 120
