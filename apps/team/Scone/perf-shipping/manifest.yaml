@@ -2,7 +2,7 @@ apiVersion: v1
 
 system:
   functions:
-  - name: perf-shipping-service
+  - name: perf-shipping
     count: 1
     containers:
     - name: perf-shipping
@@ -40,9 +40,10 @@ system:
       image: sfci/servicelibs/beacon:853c4db9f14805018be6f5e7607ffe65b5648822
       args:
       - -endpoint
-      - scone/perf-shipping:DATACENTER_ALLENV:7443
       - -endpoint
-      - scone/perf-shipping-non-tls:DATACENTER_ALLENV:7012
+      - $(FUNCTION):DATACENTER_ALLENV:7012
+      - -endpoint
+      - $(FUNCTION_NAMESPACE)/$(FUNCTION):DATACENTER_ALLENV:7443
       - -logging.dir
       - /log
       env:
