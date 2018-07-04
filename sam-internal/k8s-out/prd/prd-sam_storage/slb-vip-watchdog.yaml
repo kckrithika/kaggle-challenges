@@ -58,7 +58,7 @@ spec:
         - --client.serverInterface=lo
         - --healthPathCheck=true
         - --metricsBatchTimeout=30s
-        - --optOutServiceList=devrepo5-0-prd,ops0-netlog1-0-prd
+        - --optOutServiceList=devrepo5-0-prd
         env:
         - name: NODE_NAME
           valueFrom:
