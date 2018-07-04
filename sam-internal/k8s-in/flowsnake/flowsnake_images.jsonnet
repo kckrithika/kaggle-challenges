@@ -81,7 +81,7 @@ local utils = import "util_functions.jsonnet";
             watchdog_canary_image_tag: "681",
             testData_image_tag: "681",  #Currently under test verification in Test Fleet - Do not promote
             cert_secretizer_image_tag: "681",
-            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-9-itest",
+            fleetService_image_tag: "jenkins-dva-transformation-flowsnake-platform-PR-689-11-itest",
 
             feature_flags: {
                 # Note: the *value* of the flags is ignored. jsonnet lacks array search, so we use a an object.
