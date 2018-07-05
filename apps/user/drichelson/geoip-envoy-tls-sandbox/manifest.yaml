@@ -16,7 +16,8 @@ apiVersion: v1
 system:
   functions:
   - name: geoip-envoy-tls
-    count: 3
+  # Setting to zero instances due to ongoing issues in SAM-PRD sandbox producing noisy alerts etc.
+    count: 0
     containers:
 
     - name: geoip-database
