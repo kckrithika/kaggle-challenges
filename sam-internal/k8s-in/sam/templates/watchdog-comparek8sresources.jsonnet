@@ -19,10 +19,10 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                                     "--role=COMPAREK8SRESOURCES",
                                     "--emailFrequency=1h",
                                     "--enableEmailPerCheckerInstance=true",
-                                    "--deployer-recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com",
+                                    "--recipient=small@salesforce.com,xiao.zhou@salesforce.com,rbhat@salesforce.com,prabh.singh@salesforce.com",
+                                    "--sender=sam@salesforce.com",
                                     "--publishAlertsToKafka=false",
                                     "--publishAllReportsToKafka=false",
-                                    "--context=/Users/small/.kube/config",
                                  ]
                                  + samwdconfig.shared_args,
                         volumeMounts: configs.filter_empty([
@@ -32,6 +32,9 @@ if configs.estate == "prd-samdev" || configs.estate == "prd-samtest" then {
                             configs.maddog_cert_volume_mount,
                             configs.kube_config_volume_mount,
                         ]),
+                        env: [
+                            configs.kube_config_env,
+                        ],
                     },
                 ],
                 volumes: configs.filter_empty([
