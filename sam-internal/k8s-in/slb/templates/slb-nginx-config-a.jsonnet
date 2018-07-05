@@ -2,8 +2,9 @@ local configs = import "config.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + (if configs.estate != "prd-samtwo" then { dirSuffix:: "slb-nginx-config-a" } else {});
 local portconfigs = import "portconfig.jsonnet";
+local slbports = import "slbports.jsonnet";
 local samimages = (import "sam/samimages.jsonnet") + { templateFilename:: std.thisFile };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-a", proxyLabelSelector:: "slb-nginx-config-a" } + (if configs.estate == "prd-sam" then { servicesToLbOverride:: "illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc", servicesNotToLbOverride:: "" } else {});
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-nginx-config-a" };
 
 # Temporarily disable a-pipeline until it can be repaired
 if false && configs.estate == "prd-sam" then {
@@ -313,10 +314,10 @@ if false && configs.estate == "prd-sam" then {
                             configs.sfdchosts_volume_mount,
                         ]),
                     },
-                    slbshared.slbConfigProcessor,
+                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort, "slb-nginx-config-a", "illumio-proxy-svc,illumio-dsr-nonhost-svc,illumio-dsr-host-svc", ""),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi,
-                    slbshared.slbRealSvrCfg,
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
+                    slbshared.slbRealSvrCfg(slbports.slb.slbNodeApiPort, true),
                 ],
 
                 nodeSelector: {

@@ -3,7 +3,7 @@ local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFi
 local portconfigs = import "portconfig.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-ipvs" };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIpvsOverridePort };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-ipvs" };
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -191,10 +191,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             privileged: true,
                         },
                     },
-                    slbshared.slbConfigProcessor,
+                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIpvsLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi,
-                    slbshared.slbIfaceProcessor,
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiIpvsOverridePort),
+                    slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIpvsOverridePort),
                     slbshared.slbLogCleanup,
                 ],
                 nodeSelector: {

@@ -87,9 +87,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                             configs.kube_config_env,
                         ],
                     },
-                    slbshared.slbConfigProcessor,
+                    slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorLivenessProbePort),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi,
+                    slbshared.slbNodeApi(portconfigs.slb.slbNodeApiPort),
                     slbshared.slbLogCleanup,
                 ],
                 nodeSelector: {

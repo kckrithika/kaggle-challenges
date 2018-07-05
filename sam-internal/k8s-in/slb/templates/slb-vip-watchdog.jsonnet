@@ -2,6 +2,7 @@ local configs = import "config.jsonnet";
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-vip-watchdog" };
+local slbports = import "slbports.jsonnet";
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -130,9 +131,9 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                   slbconfigs.node_name_env,
                               ],
                           },
-                          slbshared.slbConfigProcessor,
+                          slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorLivenessProbePort),
                           slbshared.slbCleanupConfig,
-                          slbshared.slbNodeApi,
+                          slbshared.slbNodeApi(slbports.slb.slbNodeApiPort),
                           slbshared.slbLogCleanup,
                       ],
                   }

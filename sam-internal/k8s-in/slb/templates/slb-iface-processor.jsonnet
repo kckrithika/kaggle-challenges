@@ -2,7 +2,7 @@ local configs = import "config.jsonnet";
 local slbports = import "slbports.jsonnet";
 local slbimages = (import "slbimages.jsonnet") + { templateFilename:: std.thisFile };
 local slbconfigs = (import "slbconfig.jsonnet") + { dirSuffix:: "slb-iface-processor" };
-local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-iface-processor", configProcessorLivenessPort:: slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort, nodeApiPort:: slbports.slb.slbNodeApiIfaceOverridePort };
+local slbshared = (import "slbsharedservices.jsonnet") + { dirSuffix:: "slb-iface-processor" };
 
 if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs.estate == "prd-samtest" || configs.estate == "prd-samdev" || slbconfigs.slbInProdKingdom then {
     apiVersion: "extensions/v1beta1",
@@ -38,10 +38,10 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                     configs.kube_config_volume,
                 ]),
                 containers: [
-                    slbshared.slbIfaceProcessor,
-                    slbshared.slbConfigProcessor,
+                    slbshared.slbIfaceProcessor(slbports.slb.slbNodeApiIfaceOverridePort),
+                    slbshared.slbConfigProcessor(slbports.slb.slbConfigProcessorIfaceLivenessProbeOverridePort),
                     slbshared.slbCleanupConfig,
-                    slbshared.slbNodeApi,
+                    slbshared.slbNodeApi(slbports.slb.slbNodeApiIfaceOverridePort),
                     slbshared.slbLogCleanup,
                 ],
                 affinity: {

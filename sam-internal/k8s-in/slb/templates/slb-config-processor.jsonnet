@@ -74,7 +74,7 @@ if configs.estate == "prd-sam" || configs.estate == "prd-sam_storage" || configs
                     configs.sfdchosts_volume,
                 ]),
                 containers: [
-                    slbshared.slbConfigProcessor,
+                    slbshared.slbConfigProcessor(portconfigs.slb.slbConfigProcessorLivenessProbePort),
                     slbshared.slbCleanupConfig,
                 ],
             },
