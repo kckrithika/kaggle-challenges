@@ -30,11 +30,6 @@ spec:
                 - slb-ipvs
                 - slb-nginx-a
                 - slb-nginx-b
-              - key: illumio
-                operator: NotIn
-                values:
-                - a
-                - b
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:

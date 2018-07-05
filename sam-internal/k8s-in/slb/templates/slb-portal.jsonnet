@@ -39,15 +39,27 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                               name: "slb-portal",
                               image: slbimages.hypersdn,
                               command: [
-                                           "/sdn/slb-portal",
-                                           "--hostname=$(NODE_NAME)",
-                                           "--templatePath=" + slbconfigs.slbPortalTemplatePath,
-                                           "--port=" + portconfigs.slb.slbPortalServicePort,
-                                           "--client.serverInterface=lo",
-                                       ],
-                              volumeMounts: configs.filter_empty([
-                                  slbconfigs.slb_volume_mount,
-                              ]),
+                                  "/sdn/slb-portal",
+                                  "--hostname=$(NODE_NAME)",
+                                  "--templatePath=" + slbconfigs.slbPortalTemplatePath,
+                                  "--port=" + portconfigs.slb.slbPortalServicePort,
+                                  "--client.serverInterface=lo",
+                              ] + (if slbimages.hypersdn_build >= 947 then [
+                                       "--keyfile=/etc/pki_service/platform/platform-client/keys/platform-client-key.pem",
+                                       "--certfile=/etc/pki_service/platform/platform-client/certificates/platform-client.pem",
+                                       "--log_dir=/host/data/slb/logs/slb-portal",
+                                       "--cafile=/etc/pki_service/ca/cabundle.pem",
+                                   ] + (if slbconfigs.isTestEstate then [
+                                            "--slbEstate=" + configs.estate,
+                                        ] else []) else []),
+                              volumeMounts: configs.filter_empty(
+                                  [
+                                      slbconfigs.slb_volume_mount,
+                                  ] + (if slbimages.hypersdn_build >= 947 then [
+                                           configs.maddog_cert_volume_mount,
+                                           configs.cert_volume_mount,
+                                       ] else []),
+                              ),
                               livenessProbe: {
                                   httpGet: {
                                       path: "/",
@@ -109,12 +121,12 @@ if configs.estate == "prd-sdc" || configs.estate == "prd-sam" || configs.estate 
                                                       values: ["slb-ipvs", "slb-nginx-a", "slb-nginx-b"],
                                                   },
                                               ] + (
-                                                  if configs.estate == "prd-sdc" then
+                                                  if slbimages.hypersdn_build >= 947 then
                                                       [
                                                           {
-                                                              key: "illumio",
-                                                              operator: "NotIn",
-                                                              values: ["a", "b"],
+                                                              key: "slb-dns-register",
+                                                              operator: "In",
+                                                              values: ["true"],
                                                           },
                                                       ] else []
                                               ),
