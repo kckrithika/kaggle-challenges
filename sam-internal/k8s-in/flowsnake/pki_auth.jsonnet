@@ -44,6 +44,11 @@ local kingdom = std.extVar("kingdom");
             authorizedClientCerts: [],
         },
         {
+            namespace: "database-heimdall",
+            authorizedLdapGroups: ["dbvisibility"],
+            authorizedClientCerts: [],
+        },
+        {
             namespace: "flowsnake_test",
             authorizedLdapGroups: ["Flowsnake_Platform"],
             authorizedClientCerts: ["flowsnake_test"],
