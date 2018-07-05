@@ -174,7 +174,7 @@ system:
         value: 512 megabytes
       - name: ZOOKEEPER_MEMORY
         value: 1 gigabytes
-      image: sfci/iot/enterprise-provisioning:1.0.0.23
+      image: sfci/iot/enterprise-provisioning:1.0.0.24
       livenessProbe:
         httpGet:
           path: /manage/health
