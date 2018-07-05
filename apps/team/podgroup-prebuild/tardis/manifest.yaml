@@ -35,6 +35,8 @@ system:
         value: 'gus.my.salesforce.com'
       - name: DEPLOY_DATE
         value: 201807051
+      - name: STATIC_CONTENT_PATH
+        value: '/tardis/static-content'
       ports:
       - containerPort: 10443
       volumeMounts:
